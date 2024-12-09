@@ -31,19 +31,18 @@ struct DashboardView: View {
         InstUI.BaseScreen(
             state: viewModel.state,
             config: .init(refreshable: true)
-        ) { proxy in
+        ) { _ in
             VStack(spacing: 0) {
-                ForEach(viewModel.programs) { program in
-                    if program.currentModuleItem != nil, !program.upcomingModuleItems.isEmpty {
+                ForEach(viewModel.courses) { course in
+                    if course.currentModuleItem != nil, !course.upcomingModuleItems.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
-                            Size24BoldTextDarkestTitle(title: program.name)
+                            Size24BoldTextDarkestTitle(title: course.name)
                                 .padding(.top, 16)
                             CertificateProgressBar(
-                                maxWidth: proxy.size.width - 2 * 16,
-                                progress: program.progress,
-                                progressString: program.progressString
+                                progress: course.progress,
+                                progressString: course.progressString
                             )
-                            moduleView(program: program)
+                            moduleView(course: course)
                         }
                         .padding(.horizontal, 16)
                         .background()
@@ -99,11 +98,11 @@ struct DashboardView: View {
     }
 
     @ViewBuilder
-    private func moduleView(program: HProgram) -> some View {
-        if let module = program.currentModule, let moduleItem = program.currentModuleItem {
+    private func moduleView(course: HCourse) -> some View {
+        if let module = course.currentModule, let moduleItem = course.currentModuleItem {
             VStack(spacing: 0) {
                 GeometryReader { proxy in
-                    AsyncImage(url: program.course.imageURL) { image in
+                    AsyncImage(url: course.imageURL) { image in
                         image.image?.resizable().scaledToFill()
                     }
                     .frame(width: proxy.size.width)

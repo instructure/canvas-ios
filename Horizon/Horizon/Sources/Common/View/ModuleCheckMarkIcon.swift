@@ -16,36 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Core
-import Foundation
+import SwiftUI
 
-final class ProgramDetailsViewModel: ObservableObject {
-    // MARK: - Outputs
+struct ModuleCheckMarkIcon: View {
+    let isCompleted: Bool
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var program: HProgram?
+    var body: some View {
+        ZStack {
+            if isCompleted {
+                Circle()
+                    .fill(Color.green)
+                    .frame(width: 20, height: 20)
 
-    // MARK: - Private
-
-    private let router: Router
-    private var subscriptions = Set<AnyCancellable>()
-
-    // MARK: - Init
-
-    init(
-        router: Router,
-        program: HProgram
-    ) {
-        self.router = router
-        self.program = program
-        self.state = .data
-    }
-
-    // MARK: - Inputs
-
-    func moduleItemDidTap(url: URL, from: WeakViewController) {
-        router.route(to: url, from: from)
+                Image(systemName: "checkmark")
+                    .font(.regular10)
+                    .foregroundColor(.backgroundLightest)
+            } else {
+                Circle()
+                    .stroke(Color.backgroundDark, lineWidth: 1)
+                    .frame(width: 20, height: 20)
+            }
+        }
     }
 }
+
+#if DEBUG
+#Preview {
+    ModuleCheckMarkIcon(isCompleted: true)
+}
+#endif

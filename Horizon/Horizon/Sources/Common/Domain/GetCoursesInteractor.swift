@@ -20,18 +20,19 @@ import Combine
 import CombineSchedulers
 import Core
 
-protocol GetProgramsInteractor {
-    func getPrograms() -> AnyPublisher<[HProgram], Never>
+protocol GetCoursesInteractor {
+    func getCourses() -> AnyPublisher<[HCourse], Never>
 }
 
-final class GetProgramsInteractorLive: GetProgramsInteractor {
+final class GetCoursesInteractorLive: GetCoursesInteractor {
     // MARK: - Properties
 
     private let appEnvironment: AppEnvironment
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
-    private var subscriptions = Set<AnyCancellable>()
+
     init(
         appEnvironment: AppEnvironment,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
@@ -42,27 +43,27 @@ final class GetProgramsInteractorLive: GetProgramsInteractor {
 
     // MARK: - Functions
 
-    func getPrograms() -> AnyPublisher<[HProgram], Never> {
-        Publishers.Zip(fetchPrograms(), fetchCourseProgression())
+    func getCourses() -> AnyPublisher<[HCourse], Never> {
+        Publishers.Zip(fetchCourses(), fetchCourseProgression())
             .receive(on: scheduler)
-            .map { programs, coursesProgression in
-                programs.map { program in
+            .map { courses, coursesProgression in
+                courses.map { course in
                     guard let progression = coursesProgression.first(
-                        where: { $0.courseID == program.course.id }) else {
-                        return program
+                        where: { $0.courseID == course.id }) else {
+                        return course
                     }
 
-                    var updatedProgram = program
+                    var updatedCourse = course
                     let completionPercentage = progression.completionPercentage
-                    updatedProgram.percentage = completionPercentage
-                    updatedProgram.progressState = HProgram.ProgressState(from: completionPercentage)
-                    return updatedProgram
+                    updatedCourse.percentage = completionPercentage
+                    updatedCourse.progressState = HCourse.ProgressState(from: completionPercentage)
+                    return updatedCourse
                 }
             }
             .eraseToAnyPublisher()
     }
 
-    private func fetchPrograms() -> AnyPublisher<[HProgram], Never> {
+    private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
         ReactiveStore(useCase: GetCourses())
             .getEntities()
             .replaceError(with: [])
@@ -75,8 +76,8 @@ final class GetProgramsInteractorLive: GetProgramsInteractor {
                         .getEntities()
                         .replaceError(with: [])
                         .map {
-                            HProgram(
-                                courseEntity: course,
+                            HCourse(
+                                from: course,
                                 modulesEntity: $0
                             )
                         }

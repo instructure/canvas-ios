@@ -18,26 +18,26 @@
 
 import Core
 
-final class ProgramsAssembly {
-    static func makeGetProgramsInteractor() -> GetProgramsInteractor {
-        GetProgramsInteractorLive(appEnvironment: AppEnvironment.shared)
+final class LearnAssembly {
+    static func makeGetCoursesInteractor() -> GetCoursesInteractor {
+        GetCoursesInteractorLive(appEnvironment: AppEnvironment.shared)
     }
 
-    static func makeProgramsView() -> ProgramsView {
-        ProgramsView(
+    static func makeCoursesView() -> CourseListView {
+        CourseListView(
             viewModel: .init(
                 router: CommonAssembly.makeRouter(),
-                interactor: makeGetProgramsInteractor()
+                interactor: makeGetCoursesInteractor()
             )
         )
     }
 
-    static func makeProgramDetailsViewController(program: HProgram) -> UIViewController {
+    static func makeCourseDetailsViewController(course: HCourse) -> UIViewController {
         CoreHostingController(
-            ProgramDetailsViewView(
+            CourseDetailsView(
                 viewModel: .init(
                     router: AppEnvironment.shared.router,
-                    program: program
+                    course: course
                 )
             )
         )

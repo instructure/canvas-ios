@@ -80,7 +80,7 @@ struct NotebookView: View {
     NotebookView(
         viewModel: .init(
             router: AppEnvironment.shared.router,
-            getCoursesInteractor: GetCoursesInteractor(
+            getCoursesInteractor: GetNotebookCoursesInteractor(
                 courseNotesRepository: StaticCourseNotesRepository.instance
             )
         )

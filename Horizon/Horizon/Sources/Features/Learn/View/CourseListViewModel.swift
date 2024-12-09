@@ -17,53 +17,43 @@
 //
 
 import Combine
+import CombineExt
 import Core
 import Foundation
 
-final class DashboardViewModel: ObservableObject {
+final class CourseListViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Hi, John"
     @Published private(set) var courses: [HCourse] = []
 
-    // MARK: - Private variables
+    // MARK: - Inputs
+
+    let courseDidSelect = PassthroughRelay<(HCourse, WeakViewController)>()
+
+    // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
-    private let router: Router
 
     // MARK: - Init
 
     init(
-        getCoursesInteractor: GetCoursesInteractor,
-        getUserInteractor: GetUserInteractor,
-        router: Router
+        router: Router,
+        interactor: GetCoursesInteractor
     ) {
-        self.router = router
-
         unowned let unownedSelf = self
 
-        getCoursesInteractor.getCourses()
+        interactor.getCourses()
             .sink { courses in
                 unownedSelf.courses = courses
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
 
-        getUserInteractor.getUser()
-            .map { $0.name }
-            .map { "Hi, \($0)" }
-            .replaceError(with: "")
-            .assign(to: &$title)
+        courseDidSelect
+            .sink { course, vc in
+                router.route(to: "/courses/\(course.id)", userInfo: ["course": course], from: vc)
+            }
+            .store(in: &subscriptions)
     }
-
-    // MARK: - Inputs
-
-    func notebookDidTap(_ viewController: WeakViewController) {
-        router.route(to: "/notebook", from: viewController)
-    }
-
-    func notificationsDidTap() {}
-
-    func profileDidTap() {}
 }

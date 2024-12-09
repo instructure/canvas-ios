@@ -18,30 +18,34 @@
 
 import SwiftUI
 
-struct ProgramCheckMarkIcon: View {
-    let isCompleted: Bool
+public extension HorizonUI {
+    enum Borders: CaseIterable {
+        case level1
 
-    var body: some View {
-        ZStack {
-            if isCompleted {
-                Circle()
-                    .fill(Color.green)
-                    .frame(width: 20, height: 20)
-
-                Image(systemName: "checkmark")
-                    .font(.regular10)
-                    .foregroundColor(.backgroundLightest)
-            } else {
-                Circle()
-                    .stroke(Color.backgroundDark, lineWidth: 1)
-                    .frame(width: 20, height: 20)
+        var attributes: BorderAttributes {
+            switch self {
+            case .level1:
+                return BorderAttributes(
+                    width: 1,
+                    // TODO: Use predefined color
+                    color: Color(hexString: "#D7DADE")
+                )
             }
         }
     }
+
+    struct BorderAttributes {
+        let width: Double
+        let color: Color
+    }
 }
 
-#if DEBUG
-#Preview {
-    ProgramCheckMarkIcon(isCompleted: true)
+public extension View {
+    func huiBorder(
+        level: HorizonUI.Borders,
+        radius: Double = 0
+    ) -> some View {
+        RoundedRectangle(cornerRadius: radius)
+            .strokeBorder(level.attributes.color, lineWidth: level.attributes.width)
+    }
 }
-#endif

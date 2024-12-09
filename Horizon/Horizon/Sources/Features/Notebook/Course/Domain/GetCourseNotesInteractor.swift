@@ -38,8 +38,8 @@ final class GetCourseNotesInteractor {
 
     let courseNotesRepository: CourseNotesRepositoryProtocol
 
-    //MARK: - Public
-    
+    // MARK: - Public
+
     var filter: CourseNoteLabel? {
         filterPublisher.value
     }
