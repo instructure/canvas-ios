@@ -74,23 +74,14 @@ public struct GradeFilterView: View {
     }
 
     private var sortBySection: some View {
-        Section {
-            ForEach(viewModel.sortByOptions, id: \.self) { item in
-                sortByItem(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Sort By", bundle: .core))
-        }
-    }
-
-    private func sortByItem(with item: GradeArrangementOptions) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title,
-            value: item,
-            selectedValue: $viewModel.selectedSortByOption,
-            color: Color(Brand.shared.primary)
+        OptionsSectionView(
+            title: String(localized: "Sort By", bundle: .core),
+            options: viewModel.sortingOptionItems,
+            selectionType: .single,
+            selectedOption: viewModel.selectedSortingOptionItem
         )
-        .accessibilityIdentifier("GradeFilter.sortBy.\(item)")
+        // TODO:
+//        .accessibilityIdentifier("GradeFilter.sortBy.\(item)")
     }
 
     private var sendButton: some View {
