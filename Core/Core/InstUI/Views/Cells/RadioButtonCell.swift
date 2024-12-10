@@ -26,7 +26,7 @@ extension InstUI {
         private let title: String
         private let value: Value?
         private let color: Color
-        private let hasDivider: Bool
+        private let dividerStyle: InstUI.Divider.Style
 
         /// - parameters:
         ///   - value: The value represented by this cell that will be passed to the `selectedValue` binding upon tap.
@@ -36,13 +36,13 @@ extension InstUI {
             value: Value?,
             selectedValue: Binding<Value?>,
             color: Color,
-            hasDivider: Bool = true
+            dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
             self.value = value
             self._selectedValue = selectedValue
             self.color = color
-            self.hasDivider = hasDivider
+            self.dividerStyle = dividerStyle
         }
 
         public var body: some View {
@@ -66,7 +66,7 @@ extension InstUI {
                     .paddingStyle(set: .iconCell)
 
                 }
-                if hasDivider { InstUI.Divider() }
+                InstUI.Divider(dividerStyle)
             }
             .accessibilityRepresentation {
                 let binding = Binding {

@@ -18,9 +18,33 @@
 
 import SwiftUI
 
-public extension InstUI {
-    struct Divider: View {
+extension InstUI {
+
+    public struct Divider: View {
+        public enum Style {
+            case full
+            case padded
+            case hidden
+        }
+
+        private let style: Style
+
+        public init(_ style: Style = .full) {
+            self.style = style
+        }
+
         public var body: some View {
+            switch style {
+            case .full:
+                divider
+            case .padded:
+                divider.paddingStyle(.horizontal, .standard)
+            case .hidden:
+                SwiftUI.EmptyView()
+            }
+        }
+
+        private var divider: some View {
             SwiftUI.Divider().overlay(Color.borderMedium)
         }
     }
