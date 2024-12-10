@@ -21,29 +21,22 @@ import SwiftUI
 public extension HorizonUI.Colors {
 
     struct IconColor: Sendable, ColorCollection {
-        let action = Color(.action)
-        let actionSecondary = Color(.actionSecondary)
-        let beigePrimary = Color(.iconBeigePrimary)
-        let beigeSecondary = Color(.iconBeigeSecondary)
-        let `default` = Color(.iconDefault)
-        let error = Color(.iconError)
-        let light = Color(.iconLight)
-        let medium = Color(.iconMedium)
-        let success = Color(.iconSuccess)
-        let surfaceColored = Color(.iconSurfaceColored)
-        let surfaceInverseSecondary = Color(.iconSurfaceInverseSecondary)
-        let warning = Color(.iconWarning)
-
-        // TODO: Make it #if DEBUG later
-        var allColors: [ColorWithID] = []
-
-        init() {
-            allColors = extractColorsWithIDs()
-        }
+        let action = Color(hexString: "#0E68B3")
+        let actionSecondary = Color(hexString: "#0A5A9E")
+        let beigePrimary = Color(hexString: "#FBF5ED")
+        let beigeSecondary = Color(hexString: "#FFFDFA")
+        let `default` = Color(hexString: "#273540")
+        let error = Color(hexString: "#C71F23")
+        let light = Color(hexString: "#9EA6AD")
+        let medium = Color(hexString: "#6A7883")
+        let success = Color(hexString: "#03893D")
+        let surfaceColored = Color(hexString: "#FFFFFF")
+        let surfaceInverseSecondary = Color(hexString: "#0A1B2A")
+        let warning = Color(hexString: "#CF4A00")
     }
 }
 
-// TODO: Remove it later
+#if DEBUG
 public protocol ColorCollection {}
 extension ColorCollection {
     func extractColorsWithIDs() -> [HorizonUI.Colors.ColorWithID] {
@@ -64,3 +57,4 @@ extension ColorCollection {
         return colorList
     }
 }
+#endif

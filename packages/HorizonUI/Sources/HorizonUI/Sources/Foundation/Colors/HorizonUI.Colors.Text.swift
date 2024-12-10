@@ -21,25 +21,20 @@ import SwiftUI
 public extension HorizonUI.Colors {
     struct TextColor: Sendable, ColorCollection {
 
-        let author = Color(.textAuthor)
-        let beigePrimary = Color(.textBeigePrimary)
-        let beigeSecondary = Color(.textBeigeSecondary)
-        let body = Color(.textBody)
-        let dataPoint = Color(.dataPoint)
-        let link = Color(.textLink)
-        let linkSecondary = Color(.linkSecondary)
-        let placeholder = Color(.textPlaceholder)
-        let surfaceColored = Color(.textSurfaceColored)
-        let surfaceInverseSecondary = Color(.textSurfaceInverseSecondary)
-        let textError = Color(.textError)
-        let textSuccess = Color(.textSuccess)
-        let textWarning = Color(.textWarning)
-        let timestamp = Color(.textTimestamp)
-        let title = Color(.textTitle)
-        var allColors: [ColorWithID] = []
-
-        init() {
-            self.allColors = extractColorsWithIDs()
-        }
+        let author = Color(hexString: "#586874")
+        let beigePrimary = Color(hexString: "#FBF5ED")
+        let beigeSecondary = Color(hexString: "#FFFDFA")
+        let body = Color(hexString: "#273540")
+        let dataPoint = Color(hexString: "#586874")
+        let link = Color(hexString: "#0E68B3")
+        let linkSecondary = Color(hexString: "#0A5A9E")
+        let placeholder = Color(hexString: "#6A7883")
+        let surfaceColored = Color(hexString: "#FFFFFF")
+        let surfaceInverseSecondary = Color(hexString: "#273540")
+        let error = Color(hexString: "#C71F23")
+        let success = Color(hexString: "#03893D")
+        let warning = Color(hexString: "#B34000")
+        let timestamp = Color(hexString: "#586874")
+        let title = Color(hexString: "#273540")
     }    
 }

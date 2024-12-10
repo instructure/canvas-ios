@@ -84,11 +84,11 @@ extension HorizonUI.Colors {
 
         static var sections: [Self] {
             [
-                .init(title: "UI and Additional Primitives", colors: Color.huiColors.primitives.allColors),
-                .init(title: "Text", colors: Color.huiColors.text.allColors),
-                .init(title: "Icon", colors: Color.huiColors.icon.allColors),
-                .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.allColors),
-                .init(title: "Surfaces", colors: Color.huiColors.surface.allColors),
+                .init(title: "UI and Additional Primitives", colors: Color.huiColors.primitives.extractColorsWithIDs()),
+                .init(title: "Text", colors: Color.huiColors.text.extractColorsWithIDs()),
+                .init(title: "Icon", colors: Color.huiColors.icon.extractColorsWithIDs()),
+                .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.extractColorsWithIDs()),
+                .init(title: "Surfaces", colors: Color.huiColors.surface.extractColorsWithIDs()),
 
             ]
         }

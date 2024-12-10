@@ -20,16 +20,9 @@ import SwiftUI
 
 public extension HorizonUI.Colors {
     struct LineAndBorders: Sendable, ColorCollection {
-        let containerStroke = Color(.containerStroke)
-        let lineConnector = Color(.lineConnector)
-        let lineDivider = Color(.lineDivider)
-        let lineStroke = Color(.lineStroke)
-
-        // TODO: Make it #if DEBUG later
-        var allColors: [ColorWithID] = []
-
-        init() {
-            allColors = extractColorsWithIDs()
-        }
+        let containerStroke = Color(hexString: "#6A7883")
+        let lineConnector = Color(hexString: "#D7DADE")
+        let lineDivider = Color(hexString: "#D7DADE")
+        let lineStroke = Color(hexString: "#D7DADE")
     }
 }

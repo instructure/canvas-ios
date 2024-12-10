@@ -20,28 +20,21 @@ import SwiftUI
 
 public extension HorizonUI.Colors {
     struct Surface: Sendable, ColorCollection {
-        let attention = Color(.attention)
-        let attentionSecondary = Color(.attentionSecondary)
-        let cardPrimary = Color(.cardPrimary)
-        let cardSecondary = Color(.cardSecondary)
-        let divider = Color(.divider)
-        let error = Color(.surfaceError)
-        let institution = Color(.institution)
-        let inversePrimary = Color(.inversePrimary)
-        let inverseSecondary = Color(.inverseSecondary)
-        let overlayGrey = Color(.overlayGrey)
-        let overlayWhite = Color(.overlayWhite)
-        let pagePrimary = Color(.pagePrimary)
-        let pageSecondary = Color(.pageSecondary)
-        let pageTertiary = Color(.pageTertiary)
-        let surfaceWarning = Color(.surfaceWarning)
-        let surfaceSuccess = Color(.surfaceSuccess)
-
-        // TODO: Make it #if DEBUG later
-        var allColors: [ColorWithID] = []
-
-        init() {
-            allColors = extractColorsWithIDs()
-        }
+        let attention = Color(hexString: "#2B7ABC")
+        let attentionSecondary = Color(hexString: "#0A5A9E")
+        let cardPrimary = Color(hexString: "#FFFFFF")
+        let cardSecondary = Color(hexString: "#FFFDFA")
+        let divider = Color(hexString: "#E8EAEC")
+        let error = Color(hexString: "#C71F23")
+        let institution = Color(hexString: "#09508C")
+        let inversePrimary = Color(hexString: "#273540")
+        let inverseSecondary = Color(hexString: "#0A1B2A")
+        let overlayGrey = Color(hexString: "#586874")
+        let overlayWhite = Color(hexString: "#FFFFFF")
+        let pagePrimary = Color(hexString: "#FBF5ED")
+        let pageSecondary = Color(hexString: "#FFFFFF")
+        let pageTertiary = Color(hexString: "#E8EAEC")
+        let surfaceWarning = Color(hexString: "#CF4A00")
+        let surfaceSuccess = Color(hexString: "#03893D")
     }
 }
