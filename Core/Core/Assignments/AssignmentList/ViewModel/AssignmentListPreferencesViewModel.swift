@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Combine
 
 // MARK: - Structs
 
@@ -194,7 +195,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     @Published var selectedFilterOptionTeacher: AssignmentFilterOptionsTeacher?
 
     // Sorting Options
-    @Published var selectedSortingOption: AssignmentListViewModel.AssignmentArrangementOptions?
+    let selectedSortingOptionItem = CurrentValueSubject<OptionItem?, Never>(nil)
 
     // Grading Periods
     @Published var selectedGradingPeriod: GradingPeriodOption?
@@ -204,7 +205,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     private let initialFilterOptionsStudent: [AssignmentFilterOptionStudent]
     private let initialFilterOptionTeacher: AssignmentFilterOptionsTeacher
     private let initialStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher
-    private let initialSortingOption: AssignmentListViewModel.AssignmentArrangementOptions
+    private let initialSortingOptionItem: OptionItem
     private let initialGradingPeriod: GradingPeriodOption?
 
     private let env: AppEnvironment
@@ -213,7 +214,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Other properties and literals
 
     let isTeacher: Bool
-    let sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions]
+    private let sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions]
+    let sortingOptionItems: [OptionItem]
     let gradingPeriods: [GradingPeriodOption]
 
     let courseName: String
@@ -246,8 +248,10 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         // Sorting Options
         self.sortingOptions = sortingOptions
-        self.selectedSortingOption = initialSortingOption
-        self.initialSortingOption = initialSortingOption
+        self.sortingOptionItems = sortingOptions.map { $0.optionItem }
+        let initialSortingOptionItem = initialSortingOption.optionItem
+        self.initialSortingOptionItem = initialSortingOptionItem
+        selectedSortingOptionItem.value = initialSortingOptionItem
 
         // Grading Periods
         self.gradingPeriods = [GradingPeriodOption.allGradingPeriods] + gradingPeriods.map { GradingPeriodOption(id: $0.id ?? "", title: $0.title ?? "") }
@@ -276,7 +280,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     func didTapCancel(viewController: WeakViewController) {
         selectedAssignmentFilterOptionsStudent = initialFilterOptionsStudent
-        selectedSortingOption = initialSortingOption
+        selectedSortingOptionItem.value = initialSortingOptionItem
         selectedGradingPeriod = initialGradingPeriod
         selectedFilterOptionTeacher = initialFilterOptionTeacher
         selectedStatusFilterOptionTeacher = initialStatusFilterOptionTeacher
@@ -293,7 +297,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
                 filterOptionsStudent: selectedAssignmentFilterOptionsStudent,
                 filterOptionTeacher: selectedFilterOptionTeacher,
                 statusFilterOptionTeacher: selectedStatusFilterOptionTeacher,
-                sortingOption: selectedSortingOption,
+                sortingOption: sortingOptions.first { $0.isMatch(for: selectedSortingOptionItem.value) },
                 gradingPeriodId: selectedGradingPeriod?.id
             )
         )
@@ -310,5 +314,28 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         if !isSelected {
             selectedAssignmentFilterOptionsStudent.remove(at: indexOfOption)
         }
+    }
+}
+
+private extension AssignmentListViewModel.AssignmentArrangementOptions {
+    private var title: String {
+        switch self {
+        case .dueDate:
+            return String(localized: "Due Date", bundle: .core)
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
+        case .assignmentGroup:
+            return String(localized: "Assignment Group", bundle: .core)
+        case .assignmentType:
+            return String(localized: "Assignment Type", bundle: .core)
+        }
+    }
+
+    var optionItem: OptionItem {
+        .init(id: rawValue, title: title)
+    }
+
+    func isMatch(for optionItem: OptionItem?) -> Bool {
+        rawValue == optionItem?.id
     }
 }

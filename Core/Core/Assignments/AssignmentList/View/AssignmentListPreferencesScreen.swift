@@ -151,23 +151,14 @@ public struct AssignmentListPreferencesScreen: View {
     // MARK: - Sort By Section
 
     private var sortBySection: some View {
-        Section {
-            ForEach(viewModel.sortingOptions) { item in
-                sortByItem(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Grouped By", bundle: .core))
-        }
-    }
-
-    private func sortByItem(with item: AssignmentListViewModel.AssignmentArrangementOptions) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title,
-            value: item,
-            selectedValue: $viewModel.selectedSortingOption,
-            color: color
+        OptionsSectionView(
+            title: String(localized: "Grouped By", bundle: .core),
+            options: viewModel.sortingOptionItems,
+            selectionType: .single,
+            selectedOption: viewModel.selectedSortingOptionItem
         )
-        .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
+        // TODO:
+//        .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
     }
 
     // MARK: - Grading Period Section
