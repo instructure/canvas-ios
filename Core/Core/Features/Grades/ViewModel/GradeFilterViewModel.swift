@@ -27,14 +27,15 @@ public final class GradeFilterViewModel: ObservableObject {
     @Published private(set) var isShowGradingPeriodsView = true
     @Published private(set) var courseName: String?
     @Published private(set) var gradingPeriods: [GradePeriod] = []
-    @Published private(set) var sortByOptions: [GradeArrangementOptions] = []
     @Published var selectedGradingPeriod: GradePeriod?
-    @Published var selectedSortByOption: GradeArrangementOptions?
+    var sortingOptionItems: [OptionItem] = []
+    let selectedSortingOptionItem = CurrentValueSubject<OptionItem?, Never>(nil)
 
     // MARK: - Private Properties
     private let dependency: Dependency
     private let gradeFilterInteractor: GradeFilterInteractor
     private var initialFilterValue = FilterValue()
+    private var sortingOptions: [GradeArrangementOptions] = []
 
     // MARK: - Init
     init(
@@ -54,7 +55,7 @@ public final class GradeFilterViewModel: ObservableObject {
         mapSortByOptions()
         initialFilterValue = FilterValue(
             selectedGradingPeriod: selectedGradingPeriod,
-            selectedSortBy: selectedSortByOption
+            selectedSortBy: .init(optionItem: selectedSortingOptionItem.value) 
         )
     }
 
@@ -82,20 +83,24 @@ public final class GradeFilterViewModel: ObservableObject {
     }
 
     private func mapSortByOptions() {
-        let selectedSortById = gradeFilterInteractor.selectedSortById
-        selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .dueDate
-        sortByOptions = dependency.sortByOptions
+        sortingOptions = dependency.sortByOptions
+        sortingOptionItems = sortingOptions.map { $0.optionItem }
+
+        let selectedSortingOption = gradeFilterInteractor.selectedSortById.flatMap(GradeArrangementOptions.init)
+            ?? .dueDate
+
+        selectedSortingOptionItem.value = selectedSortingOption.optionItem
     }
 
     private func bindSaveButtonStates() {
         Publishers.CombineLatest(
             $selectedGradingPeriod,
-            $selectedSortByOption
+            selectedSortingOptionItem
         )
         .map { [initialFilterValue] grading, sortBy in
             let selectedFilterValue = FilterValue(
                 selectedGradingPeriod: grading,
-                selectedSortBy: sortBy
+                selectedSortBy: .init(optionItem: sortBy)
             )
             return initialFilterValue != selectedFilterValue
         }
@@ -103,11 +108,14 @@ public final class GradeFilterViewModel: ObservableObject {
     }
 
     func saveButtonTapped(viewController: WeakViewController) {
+        let selectedSortingOption = GradeArrangementOptions(optionItem: selectedSortingOptionItem.value)
+            ?? .dueDate
+
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriod?.value?.id)
-        dependency.selectedSortByPublisher.accept(selectedSortByOption ?? .dueDate)
+        dependency.selectedSortByPublisher.accept(selectedSortingOption)
         let selectedGradingPeriodId = selectedGradingPeriod?.value?.id
         gradeFilterInteractor.saveSelectedGradingPeriod(id: selectedGradingPeriodId)
-        gradeFilterInteractor.saveSortByOption(type: selectedSortByOption ?? .dueDate)
+        gradeFilterInteractor.saveSortByOption(type: selectedSortingOption)
         dimiss(viewController: viewController)
     }
 
@@ -141,5 +149,26 @@ extension GradeFilterViewModel {
     fileprivate struct FilterValue: Equatable {
         var selectedGradingPeriod: GradePeriod?
         var selectedSortBy: GradeArrangementOptions?
+    }
+}
+
+private extension GradeArrangementOptions {
+    private var title: String {
+        switch self {
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
+        case .dueDate:
+            return String(localized: "Due Date", bundle: .core)
+        }
+    }
+
+    var optionItem: OptionItem {
+        .init(id: rawValue, title: title)
+    }
+
+    init?(optionItem: OptionItem?) {
+        guard let optionItem else { return nil }
+
+        self.init(rawValue: optionItem.id)
     }
 }
