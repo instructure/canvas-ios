@@ -55,22 +55,14 @@ public struct GradeFilterView: View {
     }
 
     private var gradingPeriodSection: some View {
-        Section {
-            ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
-                gradingPeriodItem(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Grading Period", bundle: .core))
-        }
-    }
-
-    private func gradingPeriodItem(with item: GradeFilterViewModel.GradePeriod) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title ?? String(localized: "All", bundle: .core),
-            value: item,
-            selectedValue: $viewModel.selectedGradingPeriod,
-            color: Color(Brand.shared.primary)
+        OptionsSectionView(
+            title: String(localized: "Grading Period", bundle: .core),
+            options: viewModel.gradingPeriodItems,
+            selectionType: .single,
+            selectedOption: viewModel.selectedGradingPeriodItem
         )
+        // TODO:
+        //        .accessibilityIdentifier("GradeFilter.gradingPeriodItems.\(item.id ?? "0")")
     }
 
     private var sortBySection: some View {
