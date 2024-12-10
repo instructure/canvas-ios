@@ -88,11 +88,11 @@ struct CourseSearchResultRowView: View {
     }
 
     private var accentColor: Color {
-        Color(uiColor: searchContext.accentColor ?? .textDarkest)
+        searchContext.accentColor?.asColor ?? .textDarkest
     }
 
     private var titleColor: Color {
-        let visitedColor = searchContext.accentColor ?? .textDarkest
-        return Color(uiColor: isVisited ? visitedColor : .textDarkest)
+        let visitedColor: Color = searchContext.accentColor?.asColor ?? .textDarkest
+        return isVisited ? visitedColor : .textDarkest
     }
 }

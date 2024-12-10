@@ -120,6 +120,6 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
     }
 
     private var clearButtonColor: Color {
-        return searchContext.accentColor.flatMap({ Color(uiColor: $0) }) ?? .secondary
+        return searchContext.accentColor?.asColor ?? .secondary
     }
 }

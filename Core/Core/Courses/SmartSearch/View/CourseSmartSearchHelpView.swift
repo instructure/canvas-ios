@@ -110,7 +110,7 @@ public struct CourseSmartSearchHelpView: View {
     }
 
     private var contextColor: Color {
-        return Color(uiColor: searchContext.accentColor ?? .textDarkest)
+        return searchContext.accentColor?.asColor ?? .textDarkest
     }
 }
 

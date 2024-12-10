@@ -592,7 +592,7 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
 
         return CourseSmartSearchAssembly.makeHostController(
             courseID: courseID,
-            color: url.contextColor,
+            color: context.color ?? url.contextColor,
             containing: CourseDetailsView(viewModel: viewModel)
         )
     }
