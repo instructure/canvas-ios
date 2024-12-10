@@ -21,11 +21,10 @@ import SwiftUI
 // TODO: Make it #if DEBUG later
 public extension HorizonUI.Colors {
     struct Storybook: View {
-        let colors: [StorybookColorModel] = StorybookColorModel.sections
+        private let colors: [StorybookColorModel] = StorybookColorModel.sections
 
         public var body: some View {
             ScrollView {
-
                 LazyVGrid(
                     columns: [GridItem(.adaptive(minimum: 40), alignment: .bottom)],
                     alignment: .leading,
@@ -77,22 +76,20 @@ public extension HorizonUI.Colors {
     HorizonUI.Colors.Storybook()
 }
 
-extension HorizonUI.Colors {
-    struct StorybookColorModel: Identifiable {
+fileprivate extension HorizonUI.Colors {
+     struct StorybookColorModel: Identifiable {
         let title: String
         let colors: [ColorWithID]
 
         static var sections: [Self] {
             [
-                .init(title: "UI and Additional Primitives", colors: Color.huiColors.primitives.allColors),
-                .init(title: "Text", colors: Color.huiColors.text.allColors),
-                .init(title: "Icon", colors: Color.huiColors.icon.allColors),
-                .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.allColors),
-                .init(title: "Surfaces", colors: Color.huiColors.surface.allColors),
-
+                .init(title: "UI and Additional Primitives", colors: Color.huiColors.primitives.extractColorsWithIDs()),
+                .init(title: "Text", colors: Color.huiColors.text.extractColorsWithIDs()),
+                .init(title: "Icon", colors: Color.huiColors.icon.extractColorsWithIDs()),
+                .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.extractColorsWithIDs()),
+                .init(title: "Surfaces", colors: Color.huiColors.surface.extractColorsWithIDs()),
             ]
         }
-
         var id: String { title }
     }
 }

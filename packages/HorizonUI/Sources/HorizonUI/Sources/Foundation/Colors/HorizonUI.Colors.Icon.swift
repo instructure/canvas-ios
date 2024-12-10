@@ -19,48 +19,18 @@
 import SwiftUI
 
 public extension HorizonUI.Colors {
-
     struct IconColor: Sendable, ColorCollection {
-        let action = Color(.action)
-        let actionSecondary = Color(.actionSecondary)
-        let beigePrimary = Color(.iconBeigePrimary)
-        let beigeSecondary = Color(.iconBeigeSecondary)
-        let `default` = Color(.iconDefault)
-        let error = Color(.iconError)
-        let light = Color(.iconLight)
-        let medium = Color(.iconMedium)
-        let success = Color(.iconSuccess)
-        let surfaceColored = Color(.iconSurfaceColored)
-        let surfaceInverseSecondary = Color(.iconSurfaceInverseSecondary)
-        let warning = Color(.iconWarning)
-
-        // TODO: Make it #if DEBUG later
-        var allColors: [ColorWithID] = []
-
-        init() {
-            allColors = extractColorsWithIDs()
-        }
-    }
-}
-
-// TODO: Remove it later
-public protocol ColorCollection {}
-extension ColorCollection {
-    func extractColorsWithIDs() -> [HorizonUI.Colors.ColorWithID] {
-        var colorList: [HorizonUI.Colors.ColorWithID] = []
-        let mirror = Mirror(reflecting: self)
-        let typeName = String(describing: Self.self)
-        for child in mirror.children {
-            if let name = child.label {
-                if let color = child.value as? Color {
-                    colorList.append(HorizonUI.Colors.ColorWithID(name, color, id: "\(typeName) \(name)"))
-                } else if let gradient = child.value as? [Color] {
-                    for (index, gradientColor) in gradient.enumerated() {
-                        colorList.append(HorizonUI.Colors.ColorWithID("\(name)\(index)", gradientColor))
-                    }
-                }
-            }
-        }
-        return colorList
+        let action = Color(hexString: "#0E68B3")
+        let actionSecondary = Color(hexString: "#0A5A9E")
+        let beigePrimary = Color(hexString: "#FBF5ED")
+        let beigeSecondary = Color(hexString: "#FFFDFA")
+        let `default` = Color(hexString: "#273540")
+        let error = Color(hexString: "#C71F23")
+        let light = Color(hexString: "#9EA6AD")
+        let medium = Color(hexString: "#6A7883")
+        let success = Color(hexString: "#03893D")
+        let surfaceColored = Color(hexString: "#FFFFFF")
+        let surfaceInverseSecondary = Color(hexString: "#0A1B2A")
+        let warning = Color(hexString: "#CF4A00")
     }
 }
