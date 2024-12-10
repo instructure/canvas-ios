@@ -29,9 +29,9 @@ extension HorizonUI {
                                 .font(.headline)
 
                             Button("Black Button") {}
-                                .buttonStyle(HorizonButtonStyle.black)
+                                .buttonStyle(HorizonButtonStyle.black(leading: Text("*")))
                             Button("White Button") {}
-                                .buttonStyle(HorizonButtonStyle.white)
+                                .buttonStyle(HorizonButtonStyle.white(trailing: Text("!")))
                             Button("AI Button") {}
                                 .buttonStyle(HorizonButtonStyle.ai)
                             Button("Blue Button") {}

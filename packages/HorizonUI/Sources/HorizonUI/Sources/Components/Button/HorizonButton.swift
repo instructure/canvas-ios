@@ -65,9 +65,9 @@ extension HorizonButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         HStack {
-            self.leading
+            self.leading.frame(alignment: .center)
             configuration.label
-            self.trailing
+            self.trailing.frame(alignment: .center)
         }
         .padding(.horizontal, 16)
         .frame(maxWidth: width == .infinity ? .infinity : .none)
