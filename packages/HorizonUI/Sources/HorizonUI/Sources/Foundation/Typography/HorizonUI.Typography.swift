@@ -52,6 +52,24 @@ public extension HorizonUI {
                 case .buttonTextMedium: return .huiFonts.figtreeRegular14
                 }
             }
+            
+            var letterSpacing: CGFloat {
+                switch self {
+                case .h1: return 0
+                case .h2: return 0
+                case .h3: return 0
+                case .p1: return 0
+                case .p2: return 0
+                case .p3: return 0
+                case .tag: return 0.5
+                case .labelLargeBold: return 0
+                case .labelMediumBold: return 0
+                case .labelSmallBold: return 0.25
+                case .labelSmall: return 0.25
+                case .buttonTextLarge: return 0
+                case .buttonTextMedium: return 0
+                }
+            }
         }
 
         private let text: String
@@ -71,6 +89,7 @@ public extension HorizonUI {
         public var body: some View {
             Text(text)
                 .font(name.font)
+                .tracking(name.letterSpacing)
                 .foregroundStyle(color)
         }
     }
