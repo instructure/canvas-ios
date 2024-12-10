@@ -36,7 +36,7 @@ public extension HorizonUI.Colors {
     }
 }
 
-#if DEBUG
+// TODO: - Set in if DEBG later
 public protocol ColorCollection {}
 extension ColorCollection {
     func extractColorsWithIDs() -> [HorizonUI.Colors.ColorWithID] {
@@ -57,4 +57,3 @@ extension ColorCollection {
         return colorList
     }
 }
-#endif
