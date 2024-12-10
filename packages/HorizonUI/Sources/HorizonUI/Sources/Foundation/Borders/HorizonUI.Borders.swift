@@ -19,33 +19,25 @@
 import SwiftUI
 
 public extension HorizonUI {
-    enum Borders: CaseIterable {
-        case level1
-
-        var attributes: BorderAttributes {
-            switch self {
-            case .level1:
-                return BorderAttributes(
-                    width: 1,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#D7DADE")
-                )
-            }
-        }
-    }
-
-    struct BorderAttributes {
-        let width: Double
-        let color: Color
+    enum Borders: CGFloat, CaseIterable {
+        case level1 = 1
     }
 }
 
 public extension View {
+    @ViewBuilder
     func huiBorder(
-        level: HorizonUI.Borders,
+        level: HorizonUI.Borders?,
+        color: Color = Color(hexString: "#D7DADE"),
         radius: Double = 0
     ) -> some View {
-        RoundedRectangle(cornerRadius: radius)
-            .strokeBorder(level.attributes.color, lineWidth: level.attributes.width)
+        if let level {
+            overlay(
+                RoundedRectangle(cornerRadius: radius)
+                    .strokeBorder(color, lineWidth: level.rawValue)
+            )
+        } else {
+            self
+        }
     }
 }
