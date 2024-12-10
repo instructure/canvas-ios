@@ -91,6 +91,11 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Navigation").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.Buttons.Storybook()
+                    } label: {
+                        Text("Buttons").tint(Color.black)
+                    }
                 }
             }
             .listStyle(.sidebar)
