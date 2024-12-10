@@ -52,7 +52,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                         value: .relevance,
                         selectedValue: $viewModel.sortMode,
                         color: contextColor,
-                        hasDivider: false
+                        dividerStyle: .hidden
                     )
 
                     InstUI.Divider().padding(.horizontal, 16)
