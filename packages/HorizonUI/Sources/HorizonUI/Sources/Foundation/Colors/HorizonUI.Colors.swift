@@ -22,7 +22,10 @@ public extension HorizonUI {
     struct Colors: Sendable {
         fileprivate init() {}
         let primitives = Primitives()
-        let ui = UI()
+        let icon = IconColor()
+        let text = TextColor()
+        let surface = Surface()
+        let lineAndBorders = LineAndBorders()
     }
 
     static let colors = HorizonUI.Colors()
@@ -30,4 +33,26 @@ public extension HorizonUI {
 
 extension Color {
     static let huiColors = HorizonUI.colors
+}
+
+// TODO: - Set in if DEBG later
+public protocol ColorCollection {}
+extension ColorCollection {
+    func extractColorsWithIDs() -> [HorizonUI.Colors.ColorWithID] {
+        var colorList: [HorizonUI.Colors.ColorWithID] = []
+        let mirror = Mirror(reflecting: self)
+        let typeName = String(describing: Self.self)
+        for child in mirror.children {
+            if let name = child.label {
+                if let color = child.value as? Color {
+                    colorList.append(HorizonUI.Colors.ColorWithID(name, color, id: "\(typeName) \(name)"))
+                } else if let gradient = child.value as? [Color] {
+                    for (index, gradientColor) in gradient.enumerated() {
+                        colorList.append(HorizonUI.Colors.ColorWithID("\(name)\(index)", gradientColor))
+                    }
+                }
+            }
+        }
+        return colorList
+    }
 }

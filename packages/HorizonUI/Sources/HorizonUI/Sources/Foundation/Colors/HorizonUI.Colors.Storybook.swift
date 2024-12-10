@@ -21,33 +21,29 @@ import SwiftUI
 // TODO: Make it #if DEBUG later
 public extension HorizonUI.Colors {
     struct Storybook: View {
+        private let colors: [StorybookColorModel] = StorybookColorModel.sections
+
         public var body: some View {
-            LazyVGrid(
-                columns: [GridItem(.adaptive(minimum: 40))],
-                spacing: 16
-            ) {
-                Section(
-                    header: headerView("UI and Additional Primitives")
+            ScrollView {
+                LazyVGrid(
+                    columns: [GridItem(.adaptive(minimum: 40), alignment: .bottom)],
+                    alignment: .leading,
+                    spacing: 16
                 ) {
-                    ForEach(Color.huiColors.primitives.allColors) { color in
-                        VStack(spacing: 4) {
-                            Text(color.name).font(.system(size: 8))
-                            Circle().foregroundStyle(color.code)
+
+                    ForEach(colors) { section in
+                        Section(
+                            header: headerView(section.title)
+                        ) {
+                            ForEach(section.colors) { color in
+                                VStack(spacing: 4) {
+                                    Text(color.name).font(.system(size: 8))
+                                    Circle().foregroundStyle(color.code)
+                                }
+                            }
                         }
                     }
                 }
-                Spacer(minLength: 16)
-                Section(
-                    header: headerView("UI Colors")
-                ) {
-                    ForEach(Color.huiColors.ui.allColors) { color in
-                        VStack(spacing: 4) {
-                            Text(color.name).font(.system(size: 8))
-                            Circle().foregroundStyle(color.code)
-                        }
-                    }
-                }
-                Spacer()
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.all, 16)
@@ -66,16 +62,34 @@ public extension HorizonUI.Colors {
     struct ColorWithID: Identifiable, Sendable {
         let name: String
         let code: Color
+        public let id: String
 
-        init(_ name: String, _ code: Color) {
+        init(_ name: String, _ code: Color , id: String? = nil) {
             self.name = name
             self.code = code
+            self.id = id ?? name
         }
-
-        public var id: String { name }
     }
 }
 
 #Preview {
     HorizonUI.Colors.Storybook()
+}
+
+fileprivate extension HorizonUI.Colors {
+     struct StorybookColorModel: Identifiable {
+        let title: String
+        let colors: [ColorWithID]
+
+        static var sections: [Self] {
+            [
+                .init(title: "UI and Additional Primitives", colors: Color.huiColors.primitives.extractColorsWithIDs()),
+                .init(title: "Text", colors: Color.huiColors.text.extractColorsWithIDs()),
+                .init(title: "Icon", colors: Color.huiColors.icon.extractColorsWithIDs()),
+                .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.extractColorsWithIDs()),
+                .init(title: "Surfaces", colors: Color.huiColors.surface.extractColorsWithIDs()),
+            ]
+        }
+        var id: String { title }
+    }
 }
