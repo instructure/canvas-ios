@@ -29,15 +29,15 @@ extension HorizonUI {
                                 .font(.headline)
 
                             Button("Black Button") {}
-                                .buttonStyle(.black)
-                            Button("Inverse Button") {}
-                                .buttonStyle(.inverse)
+                                .buttonStyle(HorizonButtonStyle.black)
+                            Button("White Button") {}
+                                .buttonStyle(HorizonButtonStyle.white)
                             Button("AI Button") {}
-                                .buttonStyle(.ai)
+                                .buttonStyle(HorizonButtonStyle.ai)
                             Button("Blue Button") {}
-                                .buttonStyle(.blue)
+                                .buttonStyle(HorizonButtonStyle.blue)
                             Button("Beige Button") {}
-                                .buttonStyle(.beige)
+                                .buttonStyle(HorizonButtonStyle.beige)
                         }
 
                         SwiftUI.Group {
@@ -45,15 +45,15 @@ extension HorizonUI {
                                 .font(.headline)
 
                             Button("Small Black Button") {}
-                                .buttonStyle(.blackSmall)
-                            Button("Small Inverse Button") {}
-                                .buttonStyle(.inverseSmall)
+                                .buttonStyle(HorizonButtonStyle.blackSmall(width: .none))
+                            Button("Small White Button") {}
+                                .buttonStyle(HorizonButtonStyle.whiteSmall(width: .none))
                             Button("Small AI Button") {}
-                                .buttonStyle(.aiSmall)
+                                .buttonStyle(HorizonButtonStyle.aiSmall(width: .none))
                             Button("Small Blue Button") {}
-                                .buttonStyle(.blueSmall)
+                                .buttonStyle(HorizonButtonStyle.blueSmall(width: .none))
                             Button("Small Beige Button") {}
-                                .buttonStyle(.beigeSmall)
+                                .buttonStyle(HorizonButtonStyle.beigeSmall(width: .none))
                         }
 
                         SwiftUI.Group {
@@ -61,19 +61,19 @@ extension HorizonUI {
                                 .font(.headline)
 
                             Button("Disabled Black Button") {}
-                                .buttonStyle(.black)
+                                .buttonStyle(HorizonButtonStyle.black)
                                 .disabled(true)
-                            Button("Disabled Inverse Button") {}
-                                .buttonStyle(.inverse)
+                            Button("Disabled White Button") {}
+                                .buttonStyle(HorizonButtonStyle.white)
                                 .disabled(true)
                             Button("Disabled AI Button") {}
-                                .buttonStyle(.ai)
+                                .buttonStyle(HorizonButtonStyle.ai)
                                 .disabled(true)
                             Button("Disabled Blue Button") {}
-                                .buttonStyle(.blue)
+                                .buttonStyle(HorizonButtonStyle.blue)
                                 .disabled(true)
                             Button("Disabled Beige Button") {}
-                                .buttonStyle(.beige)
+                                .buttonStyle(HorizonButtonStyle.beige)
                                 .disabled(true)
                         }
                     }

@@ -19,47 +19,43 @@
 import SwiftUI
 
 extension HorizonButtonStyle {
-    private static func initBlue(
+    private static func initWhite(
         isSmall: Bool = false,
         width: HorizonButtonWidth = .infinity,
         leading: some View = EmptyView(),
         trailing: some View = EmptyView()
     ) -> HorizonButtonStyle {
         self.init(
-            background: ButtonColors.blue,
-            foreground: ButtonColors.white,
+            background: ButtonColors.white,
+            foreground: ButtonColors.dark,
             leading: leading,
             width: width,
             trailing: trailing
         )
     }
 
-    static var blue: HorizonButtonStyle {
-        self.initBlue()
+    static var white: HorizonButtonStyle {
+        self.initWhite()
     }
 
-    static var blueSmall: HorizonButtonStyle {
-        self.initBlue(isSmall: true)
+    static var whiteSmall: HorizonButtonStyle {
+        self.initWhite(isSmall: true)
     }
 
-    static func blue(
+    static func white(
         width: HorizonButtonWidth = .infinity,
         leading: some View = EmptyView(),
         trailing: some View = EmptyView()
     ) -> HorizonButtonStyle {
-        self.initBlue(
-            width: width,
-            leading: leading,
-            trailing: trailing
-        )
+        .initWhite(width: width, leading: leading, trailing: trailing)
     }
 
-    static func blueSmall(
+    static func whiteSmall(
         width: HorizonButtonWidth = .infinity,
         leading: some View = EmptyView(),
         trailing: some View = EmptyView()
     ) -> HorizonButtonStyle {
-        self.initBlue(
+        .initWhite(
             isSmall: true,
             width: width,
             leading: leading,
