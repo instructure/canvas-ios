@@ -40,6 +40,21 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
 
+    private var firstAppearanceHeight: CGFloat?
+    @Published private var isKeyboardPresented: Bool = false
+
+    init() {
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .map({ _ in return true })
+            .assign(to: &$isKeyboardPresented)
+
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .map({ _ in return false })
+            .assign(to: &$isKeyboardPresented)
+    }
+
     public func viewDidAppear() {
         settings.refresh()
     }
@@ -57,7 +72,11 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
     }
 
     public func shouldShowHeader(for height: CGFloat) -> Bool {
-        self.height < height / 2
+        let heightToCompare = firstAppearanceHeight ?? height
+        if isKeyboardPresented == false && firstAppearanceHeight == nil {
+            firstAppearanceHeight = height
+        }
+        return self.height < heightToCompare / 2
     }
 
     private func scrollPositionYChanged(to value: CGFloat) {
