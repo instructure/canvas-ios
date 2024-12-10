@@ -19,7 +19,6 @@
 import SwiftUI
 
 public extension HorizonUI.Colors {
-
     struct IconColor: Sendable, ColorCollection {
         let action = Color(hexString: "#0E68B3")
         let actionSecondary = Color(hexString: "#0A5A9E")
@@ -33,27 +32,5 @@ public extension HorizonUI.Colors {
         let surfaceColored = Color(hexString: "#FFFFFF")
         let surfaceInverseSecondary = Color(hexString: "#0A1B2A")
         let warning = Color(hexString: "#CF4A00")
-    }
-}
-
-// TODO: - Set in if DEBG later
-public protocol ColorCollection {}
-extension ColorCollection {
-    func extractColorsWithIDs() -> [HorizonUI.Colors.ColorWithID] {
-        var colorList: [HorizonUI.Colors.ColorWithID] = []
-        let mirror = Mirror(reflecting: self)
-        let typeName = String(describing: Self.self)
-        for child in mirror.children {
-            if let name = child.label {
-                if let color = child.value as? Color {
-                    colorList.append(HorizonUI.Colors.ColorWithID(name, color, id: "\(typeName) \(name)"))
-                } else if let gradient = child.value as? [Color] {
-                    for (index, gradientColor) in gradient.enumerated() {
-                        colorList.append(HorizonUI.Colors.ColorWithID("\(name)\(index)", gradientColor))
-                    }
-                }
-            }
-        }
-        return colorList
     }
 }

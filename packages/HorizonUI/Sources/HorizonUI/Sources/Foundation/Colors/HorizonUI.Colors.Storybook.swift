@@ -21,11 +21,10 @@ import SwiftUI
 // TODO: Make it #if DEBUG later
 public extension HorizonUI.Colors {
     struct Storybook: View {
-        let colors: [StorybookColorModel] = StorybookColorModel.sections
+        private let colors: [StorybookColorModel] = StorybookColorModel.sections
 
         public var body: some View {
             ScrollView {
-
                 LazyVGrid(
                     columns: [GridItem(.adaptive(minimum: 40), alignment: .bottom)],
                     alignment: .leading,
@@ -77,8 +76,8 @@ public extension HorizonUI.Colors {
     HorizonUI.Colors.Storybook()
 }
 
-extension HorizonUI.Colors {
-    struct StorybookColorModel: Identifiable {
+fileprivate extension HorizonUI.Colors {
+     struct StorybookColorModel: Identifiable {
         let title: String
         let colors: [ColorWithID]
 
@@ -89,10 +88,8 @@ extension HorizonUI.Colors {
                 .init(title: "Icon", colors: Color.huiColors.icon.extractColorsWithIDs()),
                 .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.extractColorsWithIDs()),
                 .init(title: "Surfaces", colors: Color.huiColors.surface.extractColorsWithIDs()),
-
             ]
         }
-
         var id: String { title }
     }
 }

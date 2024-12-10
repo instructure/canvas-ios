@@ -20,7 +20,6 @@ import SwiftUI
 
 public extension HorizonUI.Colors {
     struct TextColor: Sendable, ColorCollection {
-
         let author = Color(hexString: "#586874")
         let beigePrimary = Color(hexString: "#FBF5ED")
         let beigeSecondary = Color(hexString: "#FFFDFA")
