@@ -91,9 +91,12 @@ public struct OptionsSectionView: View {
         }
     }
 
-    @ViewBuilder
-    private var header: some View {
-        InstUI.ListSectionHeader(title: title)
+    private var selectionBinding: Binding<OptionItem?> {
+        Binding {
+            viewModel.selectedOption.value
+        } set: { selectedValue in
+            viewModel.selectedOption.send(selectedValue)
+        }
     }
 
     @ViewBuilder
@@ -102,7 +105,7 @@ public struct OptionsSectionView: View {
             InstUI.RadioButtonCell(
                 title: item.title,
                 value: item,
-                selectedValue: $viewModel.selectedOption,
+                selectedValue: selectionBinding,
                 color: item.color,
                 dividerStyle: item.id == options.last?.id ? .full : .padded
             )
@@ -118,16 +121,17 @@ public struct OptionsSectionView: View {
 
 final class OptionsSectionSingleSelectionViewModel: ObservableObject {
 
-    @Published var selectedOption: OptionItem?
+    let selectedOption: CurrentValueSubject<OptionItem?, Never>
 
     private var subscriptions = Set<AnyCancellable>()
 
     init(selectedOption: CurrentValueSubject<OptionItem?, Never>) {
-        self.selectedOption = selectedOption.value
+        self.selectedOption = selectedOption
 
-        $selectedOption
-            .sink { [weak selectedOption] option in
-                selectedOption?.send(option)
+        selectedOption
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                self?.objectWillChange.send()
             }
             .store(in: &subscriptions)
     }

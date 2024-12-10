@@ -30,7 +30,7 @@ final class SelectCalendarViewModel: ObservableObject {
     struct Section: Identifiable {
         var id: Int
         var title: String?
-        var items: [CDCalendarFilterEntry]
+        var items: [OptionItem]
     }
 
     // MARK: - Output
@@ -40,11 +40,12 @@ final class SelectCalendarViewModel: ObservableObject {
 
     let state: InstUI.ScreenState = .data
     @Published private(set) var sections: [Section] = []
-    @Published var selectedCalendar: CDCalendarFilterEntry?
+    let selectedCalendarItem = CurrentValueSubject<OptionItem?, Never>(nil)
 
     // MARK: - Private
 
     private let calendarListProviderInteractor: CalendarFilterInteractor
+    private var calendars: [CDCalendarFilterEntry] = []
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -55,9 +56,12 @@ final class SelectCalendarViewModel: ObservableObject {
         selectedCalendar: CurrentValueSubject<CDCalendarFilterEntry?, Never>
     ) {
         self.calendarListProviderInteractor = calendarListProviderInteractor
-        self.selectedCalendar = selectedCalendar.value
+        self.selectedCalendarItem.value = selectedCalendar.value?.optionItem
 
-        $selectedCalendar
+        selectedCalendarItem
+            .map { [weak self] optionItem in
+                return self?.calendars.first { $0.isMatch(for: optionItem) }
+            }
             .sink(receiveValue: { [weak selectedCalendar] filter in
                 selectedCalendar?.send(filter)
             })
@@ -76,10 +80,11 @@ final class SelectCalendarViewModel: ObservableObject {
                     : []
 
                 self?.sections = [
-                    Section(id: 0, title: nil, items: [userCalendar].compactMap { $0 }),
-                    Section(id: 1, title: String(localized: "Courses", bundle: .core), items: courseCalendars),
-                    Section(id: 2, title: String(localized: "Groups", bundle: .core), items: groupCalendars)
+                    Section(id: 0, title: nil, items: [userCalendar].compactMap { $0?.optionItem }),
+                    Section(id: 1, title: String(localized: "Courses", bundle: .core), items: courseCalendars.map(\.optionItem)),
+                    Section(id: 2, title: String(localized: "Groups", bundle: .core), items: groupCalendars.map(\.optionItem))
                 ]
+                self?.calendars = calendars
             }
             .store(in: &subscriptions)
 
@@ -87,5 +92,15 @@ final class SelectCalendarViewModel: ObservableObject {
             .load(ignoreCache: false)
             .sink()
             .store(in: &subscriptions)
+    }
+}
+
+private extension CDCalendarFilterEntry {
+    var optionItem: OptionItem {
+        .init(id: id, title: name, color: color)
+    }
+
+    func isMatch(for optionItem: OptionItem?) -> Bool {
+        id == optionItem?.id
     }
 }

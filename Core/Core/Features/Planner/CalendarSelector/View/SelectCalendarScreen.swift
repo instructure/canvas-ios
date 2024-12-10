@@ -32,27 +32,17 @@ struct SelectCalendarScreen: View {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(viewModel.sections) { section in
                     if !section.items.isEmpty {
-                        Section {
-                            ForEach(section.items) { item in
-                                itemCell(with: item)
-                            }
-                        } header: {
-                            InstUI.ListSectionHeader(title: section.title)
-                        }
+                        OptionsSectionView(
+                            title: section.title,
+                            options: section.items,
+                            selectionType: .single,
+                            selectedOption: viewModel.selectedCalendarItem
+                        )
                     }
                 }
             }
         }
         .navigationTitle(viewModel.pageTitle)
-    }
-
-    private func itemCell(with item: CDCalendarFilterEntry) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.name,
-            value: item,
-            selectedValue: $viewModel.selectedCalendar,
-            color: item.color
-        )
     }
 }
 
