@@ -32,13 +32,13 @@ public struct OptionItem: Equatable, Identifiable {
         id: String,
         title: String,
         subtitle: String? = nil,
-        color: Color = Color(uiColor: Brand.shared.primary),
+        color: Color? = nil,
         accessoryIcon: Image? = nil
     ) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
-        self.color = color
+        self.color = color ?? Color(uiColor: Brand.shared.primary)
         self.accessoryIcon = accessoryIcon
     }
 

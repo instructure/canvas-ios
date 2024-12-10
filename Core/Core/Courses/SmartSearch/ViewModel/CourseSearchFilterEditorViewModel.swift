@@ -45,7 +45,8 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Properties
 
-    @Published var sortMode: CourseSmartSearchFilter.SortMode?
+    let sortModes: [OptionItem]
+    let selectedSortModeItem = CurrentValueSubject<OptionItem?, Never>(nil)
     @Published var resultTypes: [ResultTypeSelection]
 
     private var initialFilter: CourseSmartSearchFilter?
@@ -54,12 +55,17 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Initialization
 
-    init(selection: Binding<CourseSmartSearchFilter?>) {
+    init(selection: Binding<CourseSmartSearchFilter?>, accentColor: Color?) {
         self.selection = selection
 
         let filter = selection.wrappedValue
         self.initialFilter = filter
-        self.sortMode = filter?.sortMode ?? .relevance
+
+        sortModes = CourseSmartSearchFilter.SortMode.allCases.map {
+            .init(id: $0.rawValue, title: $0.title, color: accentColor)
+        }
+        let initialSortMode = filter?.sortMode ?? .relevance
+        selectedSortModeItem.value = sortModes.first { $0.id == initialSortMode.rawValue }
 
         let included = filter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
         self.resultTypes = ResultType.filterableTypes.map({ type in
@@ -69,13 +75,13 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
         Publishers
             .CombineLatest(
-                $sortMode,
+                selectedSortModeItem,
                 $resultTypes
             )
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (modeSelection, typesSelection) in
                 self?.updateSelection(
-                    sortMode: modeSelection,
+                    sortMode: .init(optionItem: modeSelection),
                     resultTypes: typesSelection
                 )
             }
@@ -132,5 +138,23 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     private var isAllSelected: Bool {
         return resultTypes.allSatisfy({ $0.checked })
+    }
+}
+
+
+private extension CourseSmartSearchFilter.SortMode {
+    var title: String {
+        switch self {
+        case .relevance:
+            return String(localized: "Relevance", bundle: .core)
+        case .type:
+            return String(localized: "Type", bundle: .core)
+        }
+    }
+
+    init?(optionItem: OptionItem?) {
+        guard let optionItem else { return nil }
+
+        self.init(rawValue: optionItem.id)
     }
 }

@@ -36,32 +36,11 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     InstUI.Divider()
 
-                    HStack {
-                        Text("Sort By", bundle: .core)
-                            .font(.semibold14)
-                            .foregroundStyle(Color.textDark)
-                        Spacer()
-                    }
-                    .padding(16)
-                    .background(Color.borderLight)
-
-                    InstUI.Divider()
-
-                    InstUI.RadioButtonCell(
-                        title: String(localized: "Relevance", bundle: .core),
-                        value: .relevance,
-                        selectedValue: $viewModel.sortMode,
-                        color: contextColor,
-                        dividerStyle: .hidden
-                    )
-
-                    InstUI.Divider().padding(.horizontal, 16)
-
-                    InstUI.RadioButtonCell(
-                        title: String(localized: "Type", bundle: .core),
-                        value: .type,
-                        selectedValue: $viewModel.sortMode,
-                        color: contextColor
+                    OptionsSectionView(
+                        title: String(localized: "Sort By", bundle: .core),
+                        options: viewModel.sortModes,
+                        selectionType: .single,
+                        selectedOption: viewModel.selectedSortModeItem
                     )
 
                     HStack {
