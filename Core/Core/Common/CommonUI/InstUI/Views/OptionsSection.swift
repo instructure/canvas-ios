@@ -20,6 +20,8 @@ import Combine
 import SwiftUI
 
 public struct OptionItem: Equatable, Identifiable {
+    public static let allId = "_this_is_an_unlikely_id_preserved_for_the_all_option_"
+
     public let id: String
     public let title: String
     public let subtitle: String?

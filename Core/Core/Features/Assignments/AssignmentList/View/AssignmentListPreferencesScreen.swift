@@ -164,23 +164,14 @@ public struct AssignmentListPreferencesScreen: View {
     // MARK: - Grading Period Section
 
     private var gradingPeriodsSection: some View {
-        Section {
-            ForEach(viewModel.gradingPeriods) { item in
-                gradingPeriodItem(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Grading Period", bundle: .core))
-        }
-    }
-
-    private func gradingPeriodItem(with item: GradingPeriodOption) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title,
-            value: item,
-            selectedValue: $viewModel.selectedGradingPeriod,
-            color: color
+        OptionsSectionView(
+            title: String(localized: "Grading Period", bundle: .core),
+            options: viewModel.gradingPeriodItems,
+            selectionType: .single,
+            selectedOption: viewModel.selectedGradingPeriodItem
         )
-        .accessibilityIdentifier("AssignmentFilter.gradingPeriodItems.\(item.id ?? "0")")
+        // TODO:
+        //        .accessibilityIdentifier("AssignmentFilter.gradingPeriodItems.\(item.id ?? "0")")
     }
 }
 

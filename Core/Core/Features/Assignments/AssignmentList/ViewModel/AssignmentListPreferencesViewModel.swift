@@ -21,18 +21,6 @@ import Combine
 
 // MARK: - Structs
 
-public struct GradingPeriodOption: Identifiable, Equatable {
-    static let allGradingPeriods = Self(id: nil, title: String(localized: "All Grading Periods", bundle: .core))
-
-    public let id: String?
-    public let title: String
-
-    public init(id: String?, title: String) {
-        self.id = id
-        self.title = title
-    }
-}
-
 public struct AssignmentFilterOptionStudent: CaseIterable, Equatable, Identifiable {
     public static func == (lhs: AssignmentFilterOptionStudent, rhs: AssignmentFilterOptionStudent) -> Bool {
         lhs.id == rhs.id && lhs.title == rhs.title && lhs.subtitle == rhs.subtitle
@@ -198,7 +186,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     let selectedSortingOptionItem = CurrentValueSubject<OptionItem?, Never>(nil)
 
     // Grading Periods
-    @Published var selectedGradingPeriod: GradingPeriodOption?
+    let selectedGradingPeriodItem = CurrentValueSubject<OptionItem?, Never>(nil)
 
     // MARK: - Private properties
 
@@ -206,7 +194,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     private let initialFilterOptionTeacher: AssignmentFilterOptionsTeacher
     private let initialStatusFilterOptionTeacher: AssignmentStatusFilterOptionsTeacher
     private let initialSortingOptionItem: OptionItem
-    private let initialGradingPeriod: GradingPeriodOption?
+    private let initialGradingPeriodItem: OptionItem
 
     private let env: AppEnvironment
     private let completion: (AssignmentListPreferences) -> Void
@@ -216,7 +204,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     let isTeacher: Bool
     private let sortingOptions: [AssignmentListViewModel.AssignmentArrangementOptions]
     let sortingOptionItems: [OptionItem]
-    let gradingPeriods: [GradingPeriodOption]
+    let gradingPeriodItems: [OptionItem]
 
     let courseName: String
     let isGradingPeriodsSectionVisible: Bool
@@ -254,19 +242,10 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         selectedSortingOptionItem.value = initialSortingOptionItem
 
         // Grading Periods
-        self.gradingPeriods = [GradingPeriodOption.allGradingPeriods] + gradingPeriods.map { GradingPeriodOption(id: $0.id ?? "", title: $0.title ?? "") }
-
-        var initialGradingPeriodOption: GradingPeriodOption
-        if let initialGradingPeriod {
-            initialGradingPeriodOption = GradingPeriodOption(
-                id: initialGradingPeriod.id ?? "",
-                title: initialGradingPeriod.title ?? ""
-            )
-        } else {
-            initialGradingPeriodOption = GradingPeriodOption.allGradingPeriods
-        }
-        self.selectedGradingPeriod = initialGradingPeriodOption
-        self.initialGradingPeriod = initialGradingPeriodOption
+        self.gradingPeriodItems = [GradingPeriod.optionItemAll] + gradingPeriods.map { $0.optionItem }
+        let initialGradingPeriodItem = initialGradingPeriod?.optionItem ?? GradingPeriod.optionItemAll
+        self.initialGradingPeriodItem = initialGradingPeriodItem
+        selectedGradingPeriodItem.value = initialGradingPeriodItem
 
         // Other
         self.courseName = courseName
@@ -281,7 +260,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     func didTapCancel(viewController: WeakViewController) {
         selectedAssignmentFilterOptionsStudent = initialFilterOptionsStudent
         selectedSortingOptionItem.value = initialSortingOptionItem
-        selectedGradingPeriod = initialGradingPeriod
+        selectedGradingPeriodItem.value = initialGradingPeriodItem
         selectedFilterOptionTeacher = initialFilterOptionTeacher
         selectedStatusFilterOptionTeacher = initialStatusFilterOptionTeacher
         env.router.dismiss(viewController)
@@ -292,13 +271,16 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     }
 
     func didDismiss() {
+        let optionId = selectedGradingPeriodItem.value?.id
+        let gradingPeriodId = optionId == OptionItem.allId ? nil : optionId
+
         completion(
             AssignmentListPreferences(
                 filterOptionsStudent: selectedAssignmentFilterOptionsStudent,
                 filterOptionTeacher: selectedFilterOptionTeacher,
                 statusFilterOptionTeacher: selectedStatusFilterOptionTeacher,
                 sortingOption: sortingOptions.first { $0.isMatch(for: selectedSortingOptionItem.value) },
-                gradingPeriodId: selectedGradingPeriod?.id
+                gradingPeriodId: gradingPeriodId
             )
         )
     }
@@ -337,5 +319,16 @@ private extension AssignmentListViewModel.AssignmentArrangementOptions {
 
     func isMatch(for optionItem: OptionItem?) -> Bool {
         rawValue == optionItem?.id
+    }
+}
+
+private extension GradingPeriod {
+    static let optionItemAll = OptionItem(
+        id: OptionItem.allId,
+        title: String(localized: "All Grading Periods", bundle: .core)
+    )
+
+    var optionItem: OptionItem {
+        .init(id: id ?? "", title: title ?? "")
     }
 }
