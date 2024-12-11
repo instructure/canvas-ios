@@ -133,15 +133,17 @@ public class AssignmentListViewModel: ObservableObject {
 
         loadAssignmentListPreferences()
         featureFlags.refresh()
-        gradingPeriods.refresh(force: true)
         course.refresh()
+        gradingPeriods.refresh()
+        if gradingPeriods.isEmpty {
+            gradingPeriods.refresh(force: true)
+        }
     }
 
     // MARK: - Functions
 
     func viewDidAppear() {
         isFilterIconSolid = isFilteringCustom || selectedGradingPeriodId != defaultGradingPeriodId
-        assignmentGroups?.refresh()
     }
 
     private func gradingPeriodsDidUpdate() {
@@ -163,7 +165,7 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         filterOptionsDidUpdate(filterOptionsStudent: selectedFilterOptionsStudent, gradingPeriodId: selectedGradingPeriodId)
-        assignmentGroups?.refresh()
+        assignmentGroups?.refresh(force: true)
     }
 
     func filterOptionsDidUpdate(
