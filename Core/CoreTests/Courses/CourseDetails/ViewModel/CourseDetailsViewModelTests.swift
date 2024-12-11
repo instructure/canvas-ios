@@ -52,7 +52,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
         toolsRequest.suspend()
 
         let testee = CourseDetailsViewModel(context: .course("1"), offlineModeInteractor: mockOfflineModeInteractor)
-        testee.viewDidAppear()
+        testee.viewDidAppear(in: .typical)
         toolsRequest.resume()
 
         guard case .data(let cellViewModels) = testee.state else {
@@ -77,7 +77,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
         AppEnvironment.shared.app = .teacher
         let testee = CourseDetailsViewModel(context: .course("1"), offlineModeInteractor: mockOfflineModeInteractor)
         XCTAssertEqual(testee.state, .loading)
-        testee.viewDidAppear()
+        testee.viewDidAppear(in: .typical)
 
         XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(testee.homeLabel, nil)
@@ -103,7 +103,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
         AppEnvironment.shared.app = .student
         let testee = CourseDetailsViewModel(context: .course("1"), offlineModeInteractor: mockOfflineModeInteractor)
         XCTAssertEqual(testee.state, .loading)
-        testee.viewDidAppear()
+        testee.viewDidAppear(in: .typical)
         drainMainQueue()
 
         XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast(against: .backgroundLightest).hexString)

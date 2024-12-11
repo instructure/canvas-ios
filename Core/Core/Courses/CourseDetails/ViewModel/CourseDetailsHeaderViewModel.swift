@@ -40,23 +40,9 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
 
-    private var firstAppearanceHeight: CGFloat?
-    @Published private var isKeyboardPresented: Bool = false
-
-    init() {
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardWillShowNotification)
-            .map({ _ in return true })
-            .assign(to: &$isKeyboardPresented)
-
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardWillHideNotification)
-            .map({ _ in return false })
-            .assign(to: &$isKeyboardPresented)
-    }
-
-    public func viewDidAppear() {
+    public func viewDidAppear(in availableSize: CGSize) {
         settings.refresh()
+        shouldShow = self.height < availableSize.height / 2
     }
 
     public func courseUpdated(_ course: Course) {
@@ -71,13 +57,9 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         scrollPositionYChanged(to: frame.minY)
     }
 
-    public func shouldShowHeader(for height: CGFloat) -> Bool {
-        let heightToCompare = firstAppearanceHeight ?? height
-        if isKeyboardPresented == false && firstAppearanceHeight == nil {
-            firstAppearanceHeight = height
-        }
-        return self.height < heightToCompare / 2
-    }
+    @Published private(set) var shouldShow: Bool = false
+
+    public var visibleHeight: CGFloat { shouldShow ? height : 0 }
 
     private func scrollPositionYChanged(to value: CGFloat) {
         if value <= 0 { // scrolling down to content
