@@ -18,52 +18,52 @@
 
 import SwiftUI
 
-extension HorizonButtonStyle {
-    private static func initBlue(
-        isSmall: Bool = false,
-        width: HorizonButtonWidth = .infinity,
-        leading: some View = EmptyView(),
-        trailing: some View = EmptyView()
-    ) -> HorizonButtonStyle {
-        self.init(
-            background: ButtonColors.blue,
-            foreground: ButtonColors.white,
-            leading: leading,
-            width: width,
-            trailing: trailing
-        )
-    }
-
-    static var blue: HorizonButtonStyle {
-        self.initBlue()
-    }
-
-    static var blueSmall: HorizonButtonStyle {
-        self.initBlue(isSmall: true)
-    }
-
-    static func blue(
-        width: HorizonButtonWidth = .infinity,
-        leading: some View = EmptyView(),
-        trailing: some View = EmptyView()
-    ) -> HorizonButtonStyle {
-        self.initBlue(
-            width: width,
-            leading: leading,
-            trailing: trailing
-        )
-    }
-
-    static func blueSmall(
-        width: HorizonButtonWidth = .infinity,
-        leading: some View = EmptyView(),
-        trailing: some View = EmptyView()
-    ) -> HorizonButtonStyle {
-        self.initBlue(
-            isSmall: true,
-            width: width,
-            leading: leading,
-            trailing: trailing
-        )
-    }
-}
+//extension HorizonButtonStyle {
+//    private static func initBlue(
+//        isSmall: Bool = false,
+//        width: HorizonButtonWidth = .infinity,
+//        leading: some View = EmptyView(),
+//        trailing: some View = EmptyView()
+//    ) -> HorizonButtonStyle {
+//        self.init(
+//            background: ButtonColors.blue,
+//            foreground: ButtonColors.white,
+//            leading: leading,
+//            width: width,
+//            trailing: trailing
+//        )
+//    }
+//
+//    static var blue: HorizonButtonStyle {
+//        self.initBlue()
+//    }
+//
+//    static var blueSmall: HorizonButtonStyle {
+//        self.initBlue(isSmall: true)
+//    }
+//
+//    static func blue(
+//        width: HorizonButtonWidth = .infinity,
+//        leading: some View = EmptyView(),
+//        trailing: some View = EmptyView()
+//    ) -> HorizonButtonStyle {
+//        self.initBlue(
+//            width: width,
+//            leading: leading,
+//            trailing: trailing
+//        )
+//    }
+//
+//    static func blueSmall(
+//        width: HorizonButtonWidth = .infinity,
+//        leading: some View = EmptyView(),
+//        trailing: some View = EmptyView()
+//    ) -> HorizonButtonStyle {
+//        self.initBlue(
+//            isSmall: true,
+//            width: width,
+//            leading: leading,
+//            trailing: trailing
+//        )
+//    }
+//}

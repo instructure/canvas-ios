@@ -92,7 +92,7 @@ public struct Storybook: View {
                         Text("Navigation").tint(Color.black)
                     }
                     NavigationLink {
-                        HorizonUI.Buttons.Storybook()
+                        HorizonUI.ButtonStyles.Storybook()
                     } label: {
                         Text("Buttons").tint(Color.black)
                     }

@@ -1,74 +1,74 @@
+////
+//// This file is part of Canvas.
+//// Copyright (C) 2024-present  Instructure, Inc.
+////
+//// This program is free software: you can redistribute it and/or modify
+//// it under the terms of the GNU Affero General Public License as
+//// published by the Free Software Foundation, either version 3 of the
+//// License, or (at your option) any later version.
+////
+//// This program is distributed in the hope that it will be useful,
+//// but WITHOUT ANY WARRANTY; without even the implied warranty of
+//// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//// GNU Affero General Public License for more details.
+////
+//// You should have received a copy of the GNU Affero General Public License
+//// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+////
 //
-// This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+//import SwiftUI
 //
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as
-// published by the Free Software Foundation, either version 3 of the
-// License, or (at your option) any later version.
+//extension HorizonButtonStyle {
+//    private static func initAi(
+//        isSmall: Bool = false,
+//        width: HorizonButtonWidth = .infinity,
+//        leading: some View = EmptyView(),
+//        trailing: some View = EmptyView()
+//    ) -> HorizonButtonStyle {
+//        self.init(
+//            background: LinearGradient(
+//                gradient: ButtonColors.ai,
+//                startPoint: .leading,
+//                endPoint: .trailing
+//            ),
+//            foreground: ButtonColors.white,
+//            leading: leading,
+//            width: width,
+//            trailing: trailing
+//        )
+//    }
 //
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
+//    static var ai: HorizonButtonStyle {
+//        self.initAi()
+//    }
 //
-// You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//    static var aiSmall: HorizonButtonStyle {
+//        self.initAi(isSmall: true)
+//    }
 //
-
-import SwiftUI
-
-extension HorizonButtonStyle {
-    private static func initAi(
-        isSmall: Bool = false,
-        width: HorizonButtonWidth = .infinity,
-        leading: some View = EmptyView(),
-        trailing: some View = EmptyView()
-    ) -> HorizonButtonStyle {
-        self.init(
-            background: LinearGradient(
-                gradient: ButtonColors.ai,
-                startPoint: .leading,
-                endPoint: .trailing
-            ),
-            foreground: ButtonColors.white,
-            leading: leading,
-            width: width,
-            trailing: trailing
-        )
-    }
-
-    static var ai: HorizonButtonStyle {
-        self.initAi()
-    }
-
-    static var aiSmall: HorizonButtonStyle {
-        self.initAi(isSmall: true)
-    }
-
-    static func ai(
-        width: HorizonButtonWidth = .infinity,
-        leading: some View = EmptyView(),
-        trailing: some View = EmptyView()
-    ) -> HorizonButtonStyle {
-        self.initAi(
-            isSmall: false,
-            width: width,
-            leading: leading,
-            trailing: trailing
-        )
-    }
-
-    static func aiSmall(
-        width: HorizonButtonWidth = .infinity,
-        leading: some View = EmptyView(),
-        trailing: some View = EmptyView()
-    ) -> HorizonButtonStyle {
-        self.initAi(
-            isSmall: true,
-            width: width,
-            leading: leading,
-            trailing: trailing
-        )
-    }
-}
+//    static func ai(
+//        width: HorizonButtonWidth = .infinity,
+//        leading: some View = EmptyView(),
+//        trailing: some View = EmptyView()
+//    ) -> HorizonButtonStyle {
+//        self.initAi(
+//            isSmall: false,
+//            width: width,
+//            leading: leading,
+//            trailing: trailing
+//        )
+//    }
+//
+//    static func aiSmall(
+//        width: HorizonButtonWidth = .infinity,
+//        leading: some View = EmptyView(),
+//        trailing: some View = EmptyView()
+//    ) -> HorizonButtonStyle {
+//        self.initAi(
+//            isSmall: true,
+//            width: width,
+//            leading: leading,
+//            trailing: trailing
+//        )
+//    }
+//}
