@@ -76,6 +76,87 @@ public extension HorizonUI {
     }
 }
 
+extension View {
+    func h1() -> some View {
+        self
+            .font(.huiFonts.manropeBold28)
+            .lineSpacing(39.2)
+            .tracking(0)
+    }
+    func h2() -> some View {
+        self
+            .font(.huiFonts.manropeBold24)
+            .lineSpacing(33.6)
+            .tracking(0)
+    }
+    func h3() -> some View {
+        self
+            .font(.huiFonts.manropeBold20)
+            .lineSpacing(28)
+            .tracking(0)
+    }
+    func p1() -> some View {
+        self
+            .font(.huiFonts.figtreeRegular16)
+            .lineSpacing(22.4)
+            .tracking(0)
+    }
+    func p2() -> some View {
+        self
+            .font(.huiFonts.figtreeRegular14)
+            .lineSpacing(19.6)
+            .tracking(0)
+    }
+    func p3() -> some View {
+        self
+            .font(.huiFonts.figtreeRegular12)
+            .lineSpacing(16.8)
+            .tracking(0)
+    }
+    func tag() -> some View {
+        self
+            .font(.huiFonts.manropeRegular12)
+            .tracking(0.5)
+            .textCase(.uppercase)
+    }
+    func labelLargeBold() -> some View {
+        self
+            .font(.huiFonts.figtreeSemibold16)
+            .lineSpacing(22.4)
+            .tracking(0)
+    }
+    func labelMediumBold() -> some View {
+        self
+            .font(.huiFonts.figtreeSemibolt14)
+            .lineSpacing(19.6)
+            .tracking(0)
+    }
+    func labelSmallBold() -> some View {
+        self
+            .font(.huiFonts.figtreeSemibold12)
+            .lineSpacing(16.8)
+            .tracking(0.25)
+    }
+    func labelSmall() -> some View {
+        self
+            .font(.huiFonts.figtreeRegular12)
+            .lineSpacing(16.8)
+            .tracking(0.25)
+    }
+    func buttonTextLarge() -> some View {
+        self
+            .font(.huiFonts.figtreeRegular16)
+            .lineSpacing(22.4)
+            .tracking(0)
+    }
+    func buttonTextMedium() -> some View {
+        self
+            .font(.huiFonts.figtreeRegular14)
+            .lineSpacing(19.6)
+            .tracking(0)
+    }
+}
+
 #Preview {
     VStack(spacing: 8) {
         HorizonUI.Typography(
@@ -83,6 +164,9 @@ public extension HorizonUI {
             name: .h1,
             color: .huiColors.primitives.blue57
         )
+        Text("Second H1")
+            .foregroundStyle(Color.huiColors.primitives.blue57)
+            .h1()
         HorizonUI.Typography(
             text: "First text",
             name: .h2,

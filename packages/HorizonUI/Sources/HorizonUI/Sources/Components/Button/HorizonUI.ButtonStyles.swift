@@ -18,23 +18,107 @@
 
 import SwiftUI
 
+extension HorizonUI.ButtonStyles {
+    static func ai(
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: some View = EmptyView(),
+        trailing: some View = EmptyView()
+    ) -> HorizonUI.ButtonStyles {
+        self.init(
+            background: LinearGradient(
+                gradient: Gradient(colors: [ButtonColors.AI.gradientTop, ButtonColors.AI.gradientBottom]),
+                startPoint: .top,
+                endPoint: .bottom
+            ),
+            foreground: ButtonColors.white,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing
+        )
+    }
+
+    static func beige(
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: some View = EmptyView(),
+        trailing: some View = EmptyView()
+    ) -> HorizonUI.ButtonStyles {
+        self.init(
+            background: ButtonColors.beige,
+            foreground: ButtonColors.darkText,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing
+        )
+    }
+
+    static func black(
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: some View = EmptyView(),
+        trailing: some View = EmptyView()
+    ) -> HorizonUI.ButtonStyles {
+        .init(
+            background: Color.black,
+            foreground: ButtonColors.white,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing
+        )
+    }
+
+    static func blue(
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: some View = EmptyView(),
+        trailing: some View = EmptyView()
+    ) -> HorizonUI.ButtonStyles {
+        .init(
+            background: ButtonColors.blue,
+            foreground: ButtonColors.white,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing
+        )
+    }
+
+    static func white(
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: some View = EmptyView(),
+        trailing: some View = EmptyView()
+    ) -> HorizonUI.ButtonStyles {
+        .init(
+            background: Color.white,
+            foreground: ButtonColors.darkText,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing
+        )
+    }
+}
+
 extension HorizonUI {
     struct ButtonStyles: ButtonStyle {
         @Environment(\.isEnabled) private var isEnabled
-        private let variant: Variant
+        private let background: AnyShapeStyle
+        private let foreground: Color
         private let isSmall: Bool
         private let fillsWidth: Bool
         private let leading: AnyView
         private let trailing: AnyView
 
-        init(
-            variant: Variant,
+        fileprivate init(
+            background: any ShapeStyle,
+            foreground: Color,
             isSmall: Bool = false,
             fillsWidth: Bool = false,
             leading: some View = EmptyView(),
             trailing: some View = EmptyView()
         ) {
-            self.variant = variant
+            self.background = AnyShapeStyle(background)
+            self.foreground = foreground
             self.isSmall = isSmall
             self.fillsWidth = fillsWidth
             self.leading = AnyView(leading)
@@ -47,32 +131,28 @@ extension HorizonUI {
                 configuration.label
                 self.trailing.frame(alignment: .center)
             }
+            .buttonTextLarge()
+            .tracking(100)
             .padding(.horizontal, 16)
             .frame(height: isSmall ? 40 : 44)
-            .setFrameMaxWidth(isInfinite: fillsWidth)
-            .background(AnyShapeStyle(variant.background))
-            .foregroundStyle(variant.foregroundColor)
+            .frame(maxWidth: fillsWidth ? .infinity : nil)
+            .background(background)
+            .foregroundStyle(foreground)
             .cornerRadius(isSmall ? 20 : 22)
             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
         }
     }
 }
 
-private extension View {
-    func setFrameMaxWidth(isInfinite: Bool) -> some View {
-        modifier(ConditionalFrameMaxWidthModifier(isInfinite: isInfinite))
-    }
-}
+fileprivate struct ButtonColors {
+    static let darkText = Color(red: 39/255, green: 53/255, blue: 64/255)
+    static let white = Color.white
 
-private struct ConditionalFrameMaxWidthModifier: ViewModifier {
-    let isInfinite: Bool
-
-    @ViewBuilder
-    func body(content: Content) -> some View {
-        if isInfinite {
-            content.frame(maxWidth: .infinity)
-        } else {
-            content
-        }
+    struct AI {
+        static let gradientTop = Color(red: 9/255, green: 80/255, blue: 140/255)
+        static let gradientBottom = Color(red: 2/255, green: 103/255, blue: 45/255)
     }
+
+    static let blue = Color(red: 43/255, green: 122/255, blue: 188/255)
+    static let beige = Color(red: 251/255, green: 245/255, blue: 237/255)
 }
