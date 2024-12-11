@@ -18,26 +18,11 @@
 
 import SwiftUI
 
-public extension HorizonUI {
-    enum Borders: CGFloat, CaseIterable {
-        case level1 = 1
-    }
-}
-
-public extension View {
-    @ViewBuilder
-    func huiBorder(
-        level: HorizonUI.Borders?,
-        color: Color = Color(hexString: "#D7DADE"),
-        radius: Double = 0
-    ) -> some View {
-        if let level {
-            overlay(
-                RoundedRectangle(cornerRadius: radius)
-                    .strokeBorder(color, lineWidth: level.rawValue)
-            )
-        } else {
-            self
-        }
+public extension HorizonUI.Colors {
+    struct LineAndBorders: Sendable, ColorCollection {
+        let containerStroke = Color(hexString: "#6A7883")
+        let lineConnector = Color(hexString: "#D7DADE")
+        let lineDivider = Color(hexString: "#D7DADE")
+        let lineStroke = Color(hexString: "#D7DADE")
     }
 }

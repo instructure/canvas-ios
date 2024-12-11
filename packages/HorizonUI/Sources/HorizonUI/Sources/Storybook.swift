@@ -59,7 +59,9 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Badge").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Pill.Storybook()
+                    } label: {
                         Text("Pill").tint(Color.black)
                     }
                     NavigationLink {} label: {

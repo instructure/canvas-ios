@@ -19,16 +19,18 @@
 import SwiftUI
 
 public extension HorizonUI.Colors {
-    // swiftlint:disable:next type_name
-    struct UI: Sendable {
-        // TODO: Add UI Colors
-        // let color = Color(hexString: "#000000")
-        
-        // TODO: Make it #if DEBUG later
-        let allColors: [ColorWithID]
-
-        init() {
-            self.allColors = []
-        }
+    struct IconColor: Sendable, ColorCollection {
+        let action = Color(hexString: "#0E68B3")
+        let actionSecondary = Color(hexString: "#0A5A9E")
+        let beigePrimary = Color(hexString: "#FBF5ED")
+        let beigeSecondary = Color(hexString: "#FFFDFA")
+        let `default` = Color(hexString: "#273540")
+        let error = Color(hexString: "#C71F23")
+        let light = Color(hexString: "#9EA6AD")
+        let medium = Color(hexString: "#6A7883")
+        let success = Color(hexString: "#03893D")
+        let surfaceColored = Color(hexString: "#FFFFFF")
+        let surfaceInverseSecondary = Color(hexString: "#0A1B2A")
+        let warning = Color(hexString: "#CF4A00")
     }
 }
