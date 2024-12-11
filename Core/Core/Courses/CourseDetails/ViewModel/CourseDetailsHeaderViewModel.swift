@@ -48,10 +48,6 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         settings.refresh()
     }
 
-    public var visibleHeight: CGFloat {
-        shouldShow ? height : 0
-    }
-
     public func courseUpdated(_ course: Course) {
         courseName = course.name ?? ""
         imageURL = course.imageDownloadURL
@@ -59,22 +55,22 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         courseColor = course.color
     }
 
+    public func scrollPositionChanged(_ bounds: ViewBoundsKey.Value) {
+        guard let frame = bounds.first?.bounds else { return }
+        scrollPositionYChanged(to: frame.minY)
+    }
+
     public func shouldShowHeader(in availableSize: CGSize) -> Bool {
         let isRotating = checkedWidth.isFinite && checkedWidth != availableSize.width
         guard isRotating || keyboard.isHiding else { return shouldShow }
 
-        updateVisibility(in: availableSize)
+        shouldShow = self.height < availableSize.height / 2
         checkedWidth = availableSize.width
         return shouldShow
     }
 
-    public func updateVisibility(in availableSize: CGSize) {
-        shouldShow = self.height < availableSize.height / 2
-    }
-
-    public func scrollPositionChanged(_ bounds: ViewBoundsKey.Value) {
-        guard let frame = bounds.first?.bounds else { return }
-        scrollPositionYChanged(to: frame.minY)
+    public var visibleHeight: CGFloat {
+        shouldShow ? height : 0
     }
 
     private func scrollPositionYChanged(to value: CGFloat) {

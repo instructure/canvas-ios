@@ -43,10 +43,8 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
 
     func testHeaderVisibility() {
         let testee = CourseDetailsHeaderViewModel()
-
         // header would take half of the screen's height
         XCTAssertEqual(testee.shouldShowHeader(in: CGSize(width: 300, height: 2 * testee.height)), false)
-
         // there's more space for cells than what the header blocks
         XCTAssertEqual(testee.shouldShowHeader(in: CGSize(width: 300, height: 2 * testee.height + 1)), true)
     }
