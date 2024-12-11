@@ -22,7 +22,7 @@ enum CourseNoteLabel: String, CaseIterable {
     case confusing = "Confusing"
     case important = "Important"
     case other = "Other"
-    
+
     var color: Color {
         self == .confusing ?
             Color(red: 0.682, green: 0.106, blue: 0.122) :
