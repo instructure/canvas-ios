@@ -40,9 +40,29 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
 
-    public func viewDidAppear(in availableSize: CGSize) {
+    private var shouldShow: Bool = false
+    private var checkedWidth: CGFloat = .nan
+    private var keyboard = KeyboardObserved()
+
+    public func viewDidAppear() {
         settings.refresh()
+    }
+
+    public func shouldShow(in availableSize: CGSize) -> Bool {
+        let isRotating = checkedWidth.isFinite && checkedWidth != availableSize.width
+        guard isRotating || keyboard.isHiding else { return shouldShow }
+
+        updateVisibility(in: availableSize)
+        checkedWidth = availableSize.width
+        return shouldShow
+    }
+
+    public func updateVisibility(in availableSize: CGSize) {
         shouldShow = self.height < availableSize.height / 2
+    }
+
+    public var visibleHeight: CGFloat {
+        shouldShow ? height : 0
     }
 
     public func courseUpdated(_ course: Course) {
@@ -56,10 +76,6 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         guard let frame = bounds.first?.bounds else { return }
         scrollPositionYChanged(to: frame.minY)
     }
-
-    @Published private(set) var shouldShow: Bool = false
-
-    public var visibleHeight: CGFloat { shouldShow ? height : 0 }
 
     private func scrollPositionYChanged(to value: CGFloat) {
         if value <= 0 { // scrolling down to content

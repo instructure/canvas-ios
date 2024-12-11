@@ -58,7 +58,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
             .navigationBarGenericBackButton()
             .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
             .onAppear {
-                viewModel.viewDidAppear(in: geometry.size)
+                viewModel.viewDidAppear()
                 viewModel.splitModeObserver.splitViewController = controller.value.splitViewController
             }
         }
@@ -180,7 +180,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func imageHeader(geometry: GeometryProxy) -> some View {
-        if headerViewModel.shouldShow {
+        if headerViewModel.shouldShow(in: geometry.size) {
             CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
         }
     }

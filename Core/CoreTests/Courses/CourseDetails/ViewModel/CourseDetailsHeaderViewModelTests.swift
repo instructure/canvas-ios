@@ -28,7 +28,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
         course.contextColor = ContextColor.save(.init(custom_colors: ["1": "#FF0000"]), in: databaseClient)[0]
 
         let testee = CourseDetailsHeaderViewModel()
-        testee.viewDidAppear(in: .typical)
+        testee.viewDidAppear()
         testee.courseUpdated(course)
 
         XCTAssertTrue(testee.hideColorOverlay)
@@ -45,12 +45,10 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
         let testee = CourseDetailsHeaderViewModel()
 
         // header would take half of the screen's height
-        testee.viewDidAppear(in: CGSize(width: .zero, height: 2 * testee.height))
-        XCTAssertEqual(testee.shouldShow, false)
+        XCTAssertEqual(testee.shouldShow(in: CGSize(width: .zero, height: 2 * testee.height)), false)
 
         // there's more space for cells than what the header blocks
-        testee.viewDidAppear(in: CGSize(width: .zero, height: 2 * testee.height + 1))
-        XCTAssertEqual(testee.shouldShow, true)
+        XCTAssertEqual(testee.shouldShow(in: CGSize(width: .zero, height: 2 * testee.height)), true)
     }
 
     func testPullToRefreshScrollCalculation() {
@@ -74,8 +72,4 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.imageOpacity, 0)
         XCTAssertEqual(testee.titleOpacity, 0)
     }
-}
-
-extension CGSize {
-    static var typical = CGSize(width: 390, height: 844)
 }

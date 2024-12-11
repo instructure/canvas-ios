@@ -90,9 +90,9 @@ public class CourseDetailsViewModel: ObservableObject {
 
     // MARK: Preview Support -
 
-    public func viewDidAppear(in availableSize: CGSize) {
+    public func viewDidAppear() {
         selectionViewModel.viewDidAppear()
-        headerViewModel.viewDidAppear(in: availableSize)
+        headerViewModel.viewDidAppear()
         requestAttendanceTool()
         permissions.refresh()
         course.refresh()
