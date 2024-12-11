@@ -110,9 +110,9 @@ public class AssignmentListViewModel: ObservableObject {
     private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         self?.gradingPeriodsDidUpdate()
     }
-    private var wasAssignmentGroupsUpdated: Bool = false
 
     private var assignmentGroups: Store<GetAssignmentsByGroup>?
+    private var wasAssignmentGroupsUpdated: Bool = false
 
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
