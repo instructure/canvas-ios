@@ -29,7 +29,7 @@ final class NotebookCourseViewModel {
 
     // MARK: - Outputs
 
-    var filter: NotebookNoteLabel? {
+    var filter: CourseNoteLabel? {
         get {
             getCourseNotesInteractor.filter
         }
@@ -79,7 +79,7 @@ final class NotebookCourseViewModel {
                     .map { note in
                         NotebookNote(
                             id: note.id,
-                            type: note.type,
+                            types: note.types,
                             title: weakSelf?.formatter.string(from: note.date) ?? "",
                             note: note.note
                         )
@@ -98,12 +98,13 @@ final class NotebookCourseViewModel {
     }
 
     func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
+        router.route(to: "/notebook/note/\(note.id)", from: viewController)
     }
 }
 
 struct NotebookNote: Identifiable {
     let id: String
-    let type: NotebookNoteLabel?
+    let types: [CourseNoteLabel]
     let title: String
     let note: String
 }

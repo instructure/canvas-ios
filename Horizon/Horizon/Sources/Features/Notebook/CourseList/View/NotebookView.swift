@@ -30,7 +30,12 @@ struct NotebookView: View {
     var body: some View {
         NotesBody(
             title: String(localized: "Notebook", bundle: .horizon),
-            onBack: { viewModel.onBack(viewController: viewController) }
+            leading: {
+                NotesIconButton(systemName: "arrow.left") {
+                    viewModel.onBack(viewController: viewController)
+                }
+            },
+            trailing: { }
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.vertical, 24)
             ListViewItems(listItems: viewModel.listItems, onTap: viewModel.onTap, viewController: viewController)
@@ -76,7 +81,7 @@ struct NotebookView: View {
         viewModel: .init(
             router: AppEnvironment.shared.router,
             getCoursesInteractor: GetNotebookCoursesInteractor(
-                courseNotesRepository: CourseNotesRepository()
+                courseNotesRepository: CourseNotesRepositoryPreview.instance
             )
         )
     )

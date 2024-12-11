@@ -16,17 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
+import Core
 
-struct NotebookLabelIcon: View {
-    // MARK: - Dependencies
+final class NotebookNoteAssembly {
+    static func makeNotebookNoteInteractor() -> NotebookNoteInteractor {
+        .init(courseNotesRepository: CourseNotesRepositoryPreview.instance)
+    }
 
-    let type: CourseNoteLabel
-
-    var body: some View {
-        let image = type == .confusing ?
-            Image(systemName: "questionmark.circle") :
-            Image(.flag)
-        return image.foregroundStyle(type.color)
+    static func makeView(noteId: String) -> CoreHostingController<NotebookNoteView> {
+        CoreHostingController(
+            NotebookNoteView(
+                viewModel: .init(
+                    notebookNoteInteractor: makeNotebookNoteInteractor(),
+                    noteId: noteId,
+                    router: AppEnvironment.shared.router
+                )
+            )
+        )
     }
 }
