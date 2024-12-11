@@ -81,7 +81,7 @@ struct NotebookView: View {
         viewModel: .init(
             router: AppEnvironment.shared.router,
             getCoursesInteractor: GetNotebookCoursesInteractor(
-                courseNotesRepository: StaticCourseNotesRepository.instance
+                courseNotesRepository: CourseNotesRepositoryPreview.instance
             )
         )
     )

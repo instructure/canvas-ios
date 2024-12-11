@@ -20,15 +20,14 @@ import Core
 import SwiftUI
 
 struct NotebookNoteView: View {
-
     @State var viewModel: NotebookNoteViewModel
     @Environment(\.viewController) private var viewController
 
     var body: some View {
         NotesBody(
             title: "",
-            leading: { },
-            trailing: { }
+            leading: {},
+            trailing: {}
         ) {
             VStack(spacing: 32) {
                 HStack {
@@ -40,21 +39,20 @@ struct NotebookNoteView: View {
                         .multilineTextAlignment(.center)
                         .font(.bold22)
                         .foregroundColor(.textDarkest)
-                    NotesIconButton(systemName: "xmark") {
-                    }.hidden()
+                    NotesIconButton(systemName: "xmark") {}.hidden()
                 }
 
                 HStack(spacing: 8) {
                     NoteCardFilterButton(
                         type: .confusing,
                         selected: viewModel.isConfusing
-                    ) .onTapGesture {
+                    ).onTapGesture {
                         viewModel.onToggleConfusing()
                     }
                     NoteCardFilterButton(
                         type: .important,
                         selected: viewModel.isImportant
-                    ) .onTapGesture {
+                    ).onTapGesture {
                         viewModel.onToggleImportant()
                     }
                 }
@@ -76,7 +74,7 @@ struct NotebookNoteView: View {
                         )
 
                     if viewModel.isTextEditorDisabled {
-                        Color.clear .contentShape(Rectangle())
+                        Color.clear.contentShape(Rectangle())
                             .onTapGesture { viewModel.onTapTextEditor() }
                     }
                 }
@@ -103,14 +101,14 @@ struct NotebookNoteView: View {
                         ) {
                             viewModel.onDelete()
                         }
-                        NotesIconButton(resource: .chatBot) { }
+                        NotesIconButton(resource: .chatBot) {}
                         NotesIconButton(systemName: "pencil") {
                             viewModel.onEdit()
                         }
                     }
                 }
             }
-                .padding(.vertical, 32)
+            .padding(.vertical, 32)
         }
         .alert(isPresented: $viewModel.isDeleteAlertPresented) {
             Alert(
@@ -129,14 +127,8 @@ struct NotebookNoteView: View {
     NavigationView {
         NotebookNoteView(
             viewModel: NotebookNoteViewModel(
-                getNotebookNoteInteractor: GetNotebookNoteInteractor(
-                    courseNotesRepository: StaticCourseNotesRepository.instance
-                ),
-                updateNotebookNoteInteractor: UpdateNotebookNoteInteractor(
-                    courseNotesRepository: StaticCourseNotesRepository.instance
-                ),
-                deleteNotebookNoteInteractor: DeleteNotebookNoteInteractor(
-                    courseNotesRepository: StaticCourseNotesRepository.instance
+                notebookNoteInteractor: NotebookNoteInteractor(
+                    courseNotesRepository: CourseNotesRepositoryPreview.instance
                 ),
                 noteId: "1",
                 router: AppEnvironment.shared.router,

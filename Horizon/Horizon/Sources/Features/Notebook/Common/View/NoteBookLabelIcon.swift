@@ -27,14 +27,6 @@ struct NotebookLabelIcon: View {
         let image = type == .confusing ?
             Image(systemName: "questionmark.circle") :
             Image(.flag)
-        return image.foregroundStyle(colorFromType(type))
+        return image.foregroundStyle(type.color)
     }
-}
-
-// MARK: - Helpers
-
-@inline(__always) func colorFromType(_ type: CourseNoteLabel) -> Color {
-    type == .confusing ?
-        Color(red: 0.682, green: 0.106, blue: 0.122) :
-        Color(red: 0.055, green: 0.408, blue: 0.702)
 }

@@ -18,26 +18,54 @@
 
 import Combine
 
-struct GetNotebookNoteInteractor {
+final class NotebookNoteInteractor {
     // MARK: - Dependencies
 
-    private let courseNotesRepository: CourseNotesRepositoryProtocol
+    private let courseNotesRepository: CourseNotesRepository
+
+    // MARK: - Private
+
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init(courseNotesRepository: CourseNotesRepositoryProtocol) {
+    init(courseNotesRepository: CourseNotesRepository) {
         self.courseNotesRepository = courseNotesRepository
     }
 
     // MARK: - Public
 
+    func delete(noteId: String) -> Future<Void, Error> {
+        courseNotesRepository.delete(id: noteId)
+    }
+
     func get(noteId: String) -> AnyPublisher<NotebookCourseNote?, Error> {
         courseNotesRepository.get()
-            .map({notes in notes.first(where: {$0.id == noteId})})
-            .map({note in
+            .map { notes in notes.first { $0.id == noteId }}
+            .map { note in
                 guard let note = note else { return nil }
                 return NotebookCourseNote(from: note)
-            })
+            }
             .eraseToAnyPublisher()
+    }
+
+    func update(
+        noteId: String,
+        content: String? = nil,
+        labels: [CourseNoteLabel]? = nil
+    ) -> Future<Void, Error> {
+        Future { [weak self] promise in
+            guard let self = self else {
+                promise(.success(()))
+                return
+            }
+            self.courseNotesRepository.set(
+                id: noteId,
+                content: content,
+                labels: labels
+            ).sink { _ in
+                promise(.success(()))
+            }.store(in: &self.subscriptions)
+        }
     }
 }

@@ -19,10 +19,10 @@
 import Combine
 import Foundation
 
-protocol CourseNotesRepositoryProtocol {
+protocol CourseNotesRepository {
     func delete(id: String) -> Future<Void, Error>
-    func get() -> AnyPublisher<[CourseNote], any Error>
-    func get(id: String) -> AnyPublisher<CourseNote?, any Error>
+    func get() -> AnyPublisher<[CourseNote], Error>
+    func get(id: String) -> AnyPublisher<CourseNote?, Error>
     func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> Future<Void, Error>
 }
 
@@ -50,10 +50,10 @@ extension RepositoryNote {
     }
 }
 
-class StaticCourseNotesRepository: CourseNotesRepositoryProtocol {
+class CourseNotesRepositoryPreview: CourseNotesRepository {
     // MARK: - Static
 
-    static let instance: CourseNotesRepositoryProtocol = StaticCourseNotesRepository()
+    static let instance: CourseNotesRepository = CourseNotesRepositoryPreview()
 
     // MARK: - Properties
 
@@ -79,12 +79,12 @@ class StaticCourseNotesRepository: CourseNotesRepositoryProtocol {
         }
     }
 
-    func get() -> AnyPublisher<[CourseNote], any Error> {
+    func get() -> AnyPublisher<[CourseNote], Error> {
         courseNotesPublisher.send(notes.toCourseNotes())
         return courseNotesPublisher.eraseToAnyPublisher()
     }
 
-    func get(id: String) -> AnyPublisher<CourseNote?, any Error> {
+    func get(id: String) -> AnyPublisher<CourseNote?, Error> {
         let courseNote = notes
             .first { $0.id == id }?
             .toCourseNote()

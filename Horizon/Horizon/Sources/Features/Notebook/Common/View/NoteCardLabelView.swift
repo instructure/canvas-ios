@@ -25,15 +25,15 @@ struct NoteCardLabelView: View {
     var body: some View {
         HStack {
             NotebookLabelIcon(type: type)
-            Text(labelFromType(type))
+            Text(type.label)
                 .font(.regular12)
-                .foregroundStyle(colorFromType(type))
+                .foregroundStyle(type.color)
         }
         .padding()
         .frame(height: 31)
         .background(
             RoundedRectangle(cornerRadius: 15.5)
-                .stroke(colorFromType(type), lineWidth: 2)
+                .stroke(type.color, lineWidth: 2)
         )
         .cornerRadius(15.5)
     }

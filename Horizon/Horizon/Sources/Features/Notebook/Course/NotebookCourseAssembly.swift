@@ -19,16 +19,24 @@
 import Core
 
 final class NotebookCourseAssembly {
-    static func make(courseId: String) -> CoreHostingController<NotebookCourseView>? {
+    static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
+        GetCourseNotesInteractor(
+            courseNotesRepository: CourseNotesRepositoryPreview.instance
+        )
+    }
+
+    static func makeViewModel(courseId: String) -> NotebookCourseViewModel {
+        NotebookCourseViewModel(
+            courseId: courseId,
+            getCourseNotesInteractor: makeGetCourseNotesInteractor(),
+            router: AppEnvironment.shared.router
+        )
+    }
+
+    static func makeView(courseId: String) -> CoreHostingController<NotebookCourseView>? {
         CoreHostingController(
             NotebookCourseView(
-                viewModel: NotebookCourseViewModel(
-                    courseId: courseId,
-                    getCourseNotesInteractor: GetCourseNotesInteractor(
-                        courseNotesRepository: StaticCourseNotesRepository.instance
-                    ),
-                    router: AppEnvironment.shared.router
-                )
+                viewModel: makeViewModel(courseId: courseId)
             )
         )
     }

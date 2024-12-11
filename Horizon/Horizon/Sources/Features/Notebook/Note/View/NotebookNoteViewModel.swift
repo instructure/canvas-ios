@@ -40,12 +40,10 @@ final class NotebookNoteViewModel {
 
     // MARK: - Dependencies
 
-    private let deleteNotebookNoteInteractor: DeleteNotebookNoteInteractor
-    private let getNotebookNoteInteractor: GetNotebookNoteInteractor
     private var isEditing = false
+    private let notebookNoteInteractor: NotebookNoteInteractor
     private let noteId: String
     private let router: Router
-    private let updateNotebookNoteInteractor: UpdateNotebookNoteInteractor
 
     // MARK: - Private
 
@@ -53,21 +51,17 @@ final class NotebookNoteViewModel {
 
     // MARK: - Init
 
-    init(getNotebookNoteInteractor: GetNotebookNoteInteractor,
-         updateNotebookNoteInteractor: UpdateNotebookNoteInteractor,
-         deleteNotebookNoteInteractor: DeleteNotebookNoteInteractor,
+    init(notebookNoteInteractor: NotebookNoteInteractor,
          noteId: String,
          router: Router,
          isEditing: Bool = false
     ) {
-        self.getNotebookNoteInteractor = getNotebookNoteInteractor
-        self.updateNotebookNoteInteractor = updateNotebookNoteInteractor
-        self.deleteNotebookNoteInteractor = deleteNotebookNoteInteractor
+        self.notebookNoteInteractor = notebookNoteInteractor
         self.noteId = noteId
         self.router = router
         self.isEditing = isEditing
 
-        getNotebookNoteInteractor.get(noteId: noteId)
+        notebookNoteInteractor.get(noteId: noteId)
             .sink { _ in }
             receiveValue: { [weak self] note in
                 self?.note = note?.note ?? ""
@@ -87,7 +81,7 @@ final class NotebookNoteViewModel {
     }
 
     func onDeleteConfirmed(viewController: WeakViewController) {
-        deleteNotebookNoteInteractor.delete(noteId: noteId)
+        notebookNoteInteractor.delete(noteId: noteId)
             .sink { _ in
                 self.router.dismiss(viewController)
             }
@@ -104,20 +98,20 @@ final class NotebookNoteViewModel {
     }
 
     func onTapTextEditor() {
-        if(!isEditing) {
+        if !isEditing {
             isEditing = true
         }
     }
 
     func onToggleConfusing() {
         var labels: [CourseNoteLabel] = []
-        if(!isConfusing) {
+        if !isConfusing {
             labels.append(.confusing)
         }
-        if(isImportant) {
+        if isImportant {
             labels.append(.important)
         }
-        updateNotebookNoteInteractor
+        notebookNoteInteractor
             .update(noteId: noteId, labels: labels)
             .sink { _ in }
             .store(in: &subscriptions)
@@ -125,13 +119,13 @@ final class NotebookNoteViewModel {
 
     func onToggleImportant() {
         var labels: [CourseNoteLabel] = []
-        if(isConfusing) {
+        if isConfusing {
             labels.append(.confusing)
         }
-        if(!isImportant) {
+        if !isImportant {
             labels.append(.important)
         }
-        updateNotebookNoteInteractor
+        notebookNoteInteractor
             .update(noteId: noteId, labels: labels)
             .sink { _ in }
             .store(in: &subscriptions)
@@ -140,7 +134,7 @@ final class NotebookNoteViewModel {
     // MARK: - Private
 
     private func onTextChange() {
-        updateNotebookNoteInteractor
+        notebookNoteInteractor
             .update(noteId: noteId, content: note)
             .sink { _ in }
             .store(in: &subscriptions)

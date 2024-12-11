@@ -16,8 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
+
 enum CourseNoteLabel: String, CaseIterable {
     case confusing = "Confusing"
     case important = "Important"
     case other = "Other"
+    
+    var color: Color {
+        self == .confusing ?
+            Color(red: 0.682, green: 0.106, blue: 0.122) :
+            Color(red: 0.055, green: 0.408, blue: 0.702)
+    }
+
+    var label: String {
+        self == .confusing ?
+            String(localized: "Confusing", bundle: .horizon) :
+            String(localized: "Important", bundle: .horizon)
+    }
 }

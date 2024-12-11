@@ -20,19 +20,15 @@ import UIKit
 import Core
 
 final class NotebookNoteAssembly {
-    static func make(noteId: String) -> CoreHostingController<NotebookNoteView> {
+    static func makeNotebookNoteInteractor() -> NotebookNoteInteractor {
+        .init(courseNotesRepository: CourseNotesRepositoryPreview.instance)
+    }
+
+    static func makeView(noteId: String) -> CoreHostingController<NotebookNoteView> {
         CoreHostingController(
             NotebookNoteView(
                 viewModel: .init(
-                    getNotebookNoteInteractor: .init(
-                        courseNotesRepository: StaticCourseNotesRepository.instance
-                    ),
-                    updateNotebookNoteInteractor: .init(
-                        courseNotesRepository: StaticCourseNotesRepository.instance
-                    ),
-                    deleteNotebookNoteInteractor: DeleteNotebookNoteInteractor(
-                        courseNotesRepository: StaticCourseNotesRepository.instance
-                    ),
+                    notebookNoteInteractor: makeNotebookNoteInteractor(),
                     noteId: noteId,
                     router: AppEnvironment.shared.router
                 )

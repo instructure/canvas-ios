@@ -29,7 +29,7 @@ struct NoteCardFilterButton: View {
         HStack {
             NotebookLabelIcon(type: type)
                 .frame(width: 24, height: 24)
-            Text(labelFromType(type))
+            Text(type.label)
                 .font(.regular16)
         }
         .frame(height: 48)
@@ -37,7 +37,7 @@ struct NoteCardFilterButton: View {
         .background(
             RoundedRectangle(cornerRadius: 15.5)
                 .fill(Color.white)
-                .stroke(colorFromType(type), lineWidth: selected ? 2 : 0)
+                .stroke(type.color, lineWidth: selected ? 2 : 0)
         )
         .cornerRadius(16)
         .shadow(
@@ -48,13 +48,4 @@ struct NoteCardFilterButton: View {
             radius: selected ? 0 : 8
         )
     }
-}
-
-// MARK: - Helpers
-
-@inline(__always) func labelFromType(_ type: CourseNoteLabel, isBold: Bool = false) -> String {
-    let result = type == .confusing ?
-                  String(localized: "Confusing", bundle: .horizon):
-                    String(localized: "Important", bundle: .horizon)
-    return isBold ? result.uppercased() : result
 }

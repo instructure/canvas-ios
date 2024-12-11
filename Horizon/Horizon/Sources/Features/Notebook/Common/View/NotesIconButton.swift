@@ -76,7 +76,7 @@ struct NotesIconButton: View {
     }
 }
 
-extension View {
+fileprivate extension View {
     func buttonStyles() -> some View {
         self
             .clipShape(.circle)

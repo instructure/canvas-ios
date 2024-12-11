@@ -36,7 +36,7 @@ struct NotebookCourseNote {
 final class GetCourseNotesInteractor {
     // MARK: - Dependencies
 
-    let courseNotesRepository: CourseNotesRepositoryProtocol
+    let courseNotesRepository: CourseNotesRepository
 
     // MARK: - Public
 
@@ -55,7 +55,7 @@ final class GetCourseNotesInteractor {
 
     // MARK: - Init
 
-    init(courseNotesRepository: CourseNotesRepositoryProtocol) {
+    init(courseNotesRepository: CourseNotesRepository) {
         self.courseNotesRepository = courseNotesRepository
     }
 
