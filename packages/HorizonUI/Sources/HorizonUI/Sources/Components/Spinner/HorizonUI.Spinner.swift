@@ -29,6 +29,7 @@ extension HorizonUI {
 
         private let backgroundColor = Color(red: 232/255, green: 234/255, blue: 236/255)
         private let foregroundColor = Color(red: 9/255, green: 80/255, blue: 140/255)
+        @State private var rotation: Double = 0
 
         // MARK: - Init
 
@@ -53,6 +54,15 @@ extension HorizonUI {
                     isFullCircle: false,
                     strokeWidth: size.strokeWidth
                 )
+                .rotationEffect(.degrees(rotation))
+                .onAppear {
+                    withAnimation(
+                        .linear(duration: 1)
+                            .repeatForever(autoreverses: false)
+                    ) {
+                        rotation = 360
+                    }
+                }
             }
             .frame(
                 width: size.dimension + size.strokeWidth,
@@ -70,10 +80,6 @@ private struct SpinnerCircle: View {
     let isFullCircle: Bool
     let strokeWidth: CGFloat
 
-    // MARK: - Private
-
-    @State private var rotation: Double = 0
-
     var body: some View {
         PartialCircleShape(diameter: diameter, isFullCircle: isFullCircle)
             .stroke(
@@ -83,15 +89,6 @@ private struct SpinnerCircle: View {
                     lineCap: .round
                 )
             )
-            .rotationEffect(.degrees(rotation))
-            .onAppear {
-                withAnimation(
-                    .linear(duration: 1)
-                        .repeatForever(autoreverses: false)
-                ) {
-                    rotation = 360
-                }
-            }
     }
 }
 
