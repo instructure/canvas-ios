@@ -110,6 +110,7 @@ public class AssignmentListViewModel: ObservableObject {
     private lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         self?.gradingPeriodsDidUpdate()
     }
+    private var wasAssignmentGroupsUpdated: Bool = false
 
     private var assignmentGroups: Store<GetAssignmentsByGroup>?
 
@@ -134,10 +135,7 @@ public class AssignmentListViewModel: ObservableObject {
         loadAssignmentListPreferences()
         featureFlags.refresh()
         course.refresh()
-        gradingPeriods.refresh()
-        if gradingPeriods.isEmpty {
-            gradingPeriods.refresh(force: true)
-        }
+        gradingPeriods.refresh(force: true)
     }
 
     // MARK: - Functions
@@ -165,7 +163,7 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         filterOptionsDidUpdate(filterOptionsStudent: selectedFilterOptionsStudent, gradingPeriodId: selectedGradingPeriodId)
-        assignmentGroups?.refresh(force: true)
+        assignmentGroups?.refresh()
     }
 
     func filterOptionsDidUpdate(
@@ -203,6 +201,12 @@ public class AssignmentListViewModel: ObservableObject {
     private func assignmentGroupsDidUpdate() {
         guard let assignmentGroups else { return }
         if !assignmentGroups.requested || assignmentGroups.pending || !gradingPeriods.requested || gradingPeriods.pending { return }
+
+        if !wasAssignmentGroupsUpdated, assignmentGroups.isEmpty {
+            wasAssignmentGroupsUpdated = true
+            assignmentGroups.refresh(force: true)
+            return
+        }
 
         isShowingGradingPeriods = gradingPeriods.count > 1
         var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
