@@ -184,3 +184,8 @@ workflows:
       - $REQUIRE_TEACHER=true
       - $REQUIRE_STUDENT=true
       - $REQUIRE_HORIZON=true
+trigger_map:
+- pull_request_target_branch:
+    regex: .*
+  type: pull_request
+  workflow: pr_adhoc_builds
