@@ -50,7 +50,7 @@ extension HorizonUI {
                 configuration.label
                 self.trailing.frame(alignment: .center)
             }
-            .huiTypography(.buttonTextLarge)            
+            .huiTypography(.buttonTextLarge)
             .tracking(100)
             .padding(.horizontal, 16)
             .frame(height: isSmall ? 40 : 44)
@@ -77,6 +77,7 @@ extension HorizonUI.ButtonStyles {
                 endPoint: .bottom
             ),
             foreground: ButtonColors.white,
+            isSmall: isSmall,
             fillsWidth: fillsWidth,
             leading: leading,
             trailing: trailing
@@ -92,6 +93,7 @@ extension HorizonUI.ButtonStyles {
         self.init(
             background: ButtonColors.beige,
             foreground: ButtonColors.darkText,
+            isSmall: isSmall,
             fillsWidth: fillsWidth,
             leading: leading,
             trailing: trailing
@@ -107,6 +109,7 @@ extension HorizonUI.ButtonStyles {
         .init(
             background: Color.black,
             foreground: ButtonColors.white,
+            isSmall: isSmall,
             fillsWidth: fillsWidth,
             leading: leading,
             trailing: trailing
@@ -122,6 +125,7 @@ extension HorizonUI.ButtonStyles {
         .init(
             background: ButtonColors.blue,
             foreground: ButtonColors.white,
+            isSmall: isSmall,
             fillsWidth: fillsWidth,
             leading: leading,
             trailing: trailing
@@ -137,6 +141,7 @@ extension HorizonUI.ButtonStyles {
         .init(
             background: Color.white,
             foreground: ButtonColors.darkText,
+            isSmall: isSmall,
             fillsWidth: fillsWidth,
             leading: leading,
             trailing: trailing
@@ -144,16 +149,15 @@ extension HorizonUI.ButtonStyles {
     }
 }
 
-
-fileprivate struct ButtonColors {
-    static let darkText = Color(red: 39/255, green: 53/255, blue: 64/255)
+private enum ButtonColors {
+    static let darkText = Color(red: 39 / 255, green: 53 / 255, blue: 64 / 255)
     static let white = Color.white
 
-    struct AI {
-        static let gradientTop = Color(red: 9/255, green: 80/255, blue: 140/255)
-        static let gradientBottom = Color(red: 2/255, green: 103/255, blue: 45/255)
+    enum AI {
+        static let gradientTop = Color(red: 9 / 255, green: 80 / 255, blue: 140 / 255)
+        static let gradientBottom = Color(red: 2 / 255, green: 103 / 255, blue: 45 / 255)
     }
 
-    static let blue = Color(red: 43/255, green: 122/255, blue: 188/255)
-    static let beige = Color(red: 251/255, green: 245/255, blue: 237/255)
+    static let blue = Color(red: 43 / 255, green: 122 / 255, blue: 188 / 255)
+    static let beige = Color(red: 251 / 255, green: 245 / 255, blue: 237 / 255)
 }
