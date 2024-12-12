@@ -30,10 +30,13 @@ struct NoteCardView: View {
                     .font(.regular12)
                     .padding(.bottom, 8)
                 Text(note.note)
+                    .lineLimit(3)
                     .font(.regular16)
                     .padding(.bottom, 8)
-                if let type = note.type {
-                    NoteCardLabelView(type: type)
+                HStack(spacing: 8) {
+                    ForEach(note.types, id: \.self) { type in
+                        NoteCardLabelView(type: type)
+                    }
                 }
             }
         }
@@ -45,7 +48,15 @@ struct NoteCardView: View {
         NoteCardView(
             note: .init(
                 id: "1",
-                type: .important,
+                types: [],
+                title: "Title",
+                note: "Note"
+            )
+        )
+        NoteCardView(
+            note: .init(
+                id: "1",
+                types: [.important],
                 title: "Title",
                 note: "Note"
             )
@@ -53,7 +64,15 @@ struct NoteCardView: View {
         NoteCardView(
             note: .init(
                 id: "2",
-                type: .confusing,
+                types: [.confusing],
+                title: "Title",
+                note: "Note"
+            )
+        )
+        NoteCardView(
+            note: .init(
+                id: "2",
+                types: [.important, .confusing],
                 title: "Title",
                 note: "Note"
             )

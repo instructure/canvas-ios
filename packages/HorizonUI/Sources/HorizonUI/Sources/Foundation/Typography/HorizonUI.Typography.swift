@@ -70,7 +70,7 @@ public extension HorizonUI {
                 case .buttonTextMedium: return 0
                 }
             }
-            
+
             var lineSpacing: CGFloat {
                 switch self {
                 case .h1: return 39.2

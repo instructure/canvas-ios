@@ -51,7 +51,9 @@ public struct Storybook: View {
                     } label: {
                         Text("Elevation / Shadows").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Icons.Storybook()
+                    } label: {
                         Text("Iconography").tint(Color.black)
                     }
                 }
@@ -59,7 +61,9 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Badge").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Pill.Storybook()
+                    } label: {
                         Text("Pill").tint(Color.black)
                     }
                     NavigationLink {} label: {
