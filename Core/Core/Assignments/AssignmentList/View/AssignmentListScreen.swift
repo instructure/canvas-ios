@@ -128,9 +128,12 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         }
     }
 
-    private func setupDefaultSplitDetailView(_ route: String) {
-        guard let defaultViewProvider = controller.value as? DefaultViewProvider, defaultViewProvider.defaultViewRoute != route else { return }
-        defaultViewProvider.defaultViewRoute = route
+    private func setupDefaultSplitDetailView(_ routeUrl: String) {
+        guard let defaultViewProvider = controller.value as? DefaultViewProvider,
+              defaultViewProvider.defaultViewRoute?.url != routeUrl
+        else { return }
+
+        defaultViewProvider.defaultViewRoute = .init(url: routeUrl)
     }
 }
 

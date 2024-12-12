@@ -22,7 +22,17 @@
  View controllers implementing this protocol can provide a default view for such situations.
  */
 public protocol DefaultViewProvider: UIViewController {
-    var defaultViewRoute: String? { get set }
+    var defaultViewRoute: DefaultViewRouteParameters? { get set }
+}
+
+public struct DefaultViewRouteParameters {
+    let url: String
+    let userInfo: [String: Any]?
+
+    public init(url: String, userInfo: [String : Any]? = nil) {
+        self.url = url
+        self.userInfo = userInfo
+    }
 }
 
 extension UIViewController {
@@ -42,7 +52,12 @@ extension UIViewController {
             return
         }
 
-        AppEnvironment.shared.router.route(to: defaultRoute, from: self, options: .detail)
+        AppEnvironment.shared.router.route(
+            to: defaultRoute.url,
+            userInfo: defaultRoute.userInfo,
+            from: self,
+            options: .detail
+        )
     }
 
     private func isAddedToSplitViewController() -> Bool {
