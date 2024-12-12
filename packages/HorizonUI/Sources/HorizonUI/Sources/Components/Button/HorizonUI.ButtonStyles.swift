@@ -28,6 +28,7 @@ extension HorizonUI {
         private let leading: AnyView
         private let trailing: AnyView
 
+        // TODO: Add init for icons
         fileprivate init(
             background: any ShapeStyle,
             foreground: Color,
