@@ -29,7 +29,7 @@ public struct DefaultViewRouteParameters {
     let url: String
     let userInfo: [String: Any]?
 
-    public init(url: String, userInfo: [String : Any]? = nil) {
+    public init(url: String, userInfo: [String: Any]? = nil) {
         self.url = url
         self.userInfo = userInfo
     }
