@@ -79,7 +79,7 @@ public extension HorizonUI {
                 case .p1: return 22.4
                 case .p2: return 19.6
                 case .p3: return 16.8
-                // TODO: Need to check team
+                // TODO: Need to check with the team
                 case .tag: return 16.8
                 case .labelLargeBold: return 22.4
                 case .labelMediumBold: return 19.6
