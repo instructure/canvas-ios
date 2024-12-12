@@ -1,0 +1,13 @@
+---
+format_version: '13'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+meta:
+  bitrise.io:
+    stack: osx-xcode-16.0.x
+    machine_type_id: g2-m1.8core
+app:
+  envs:
+  - BITRISE_PROJECT_PATH: Canvas.xcworkspace
+    opts:
+      is_expand: false
