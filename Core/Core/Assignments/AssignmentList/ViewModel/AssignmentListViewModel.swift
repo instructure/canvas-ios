@@ -142,6 +142,7 @@ public class AssignmentListViewModel: ObservableObject {
 
     func viewDidAppear() {
         isFilterIconSolid = isFilteringCustom || selectedGradingPeriodId != defaultGradingPeriodId
+        assignmentGroups?.refresh()
     }
 
     private func gradingPeriodsDidUpdate() {
