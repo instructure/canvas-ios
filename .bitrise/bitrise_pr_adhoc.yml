@@ -88,6 +88,11 @@ workflows:
             PR_COMMENT+="</table>"
 
             envman add --key PR_BUILDS_COMMENT --value $PR_COMMENT
+    - comment-on-github-pull-request@0:
+        inputs:
+        - body: $PR_BUILDS_COMMENT
+        - update_comment_tag: $INST_XCODE_SCHEME_Build
+        - personal_access_token: $GITHUB_API_TOKEN
   _pr_adhoc_build:
     description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME (e.g., Horizon)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
     steps:
