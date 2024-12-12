@@ -1,3 +1,5 @@
 ---
 format_version: '13'
 workflows:
+  _pr_adhoc_build:
+    steps:
