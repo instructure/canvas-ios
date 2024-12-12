@@ -60,7 +60,6 @@ workflows:
             cd $BITRISE_SOURCE_DIR
             make sync-ci
     - restore-spm-cache@2: {}
-    triggers: {}
     summary: 'This step contains all the necessary steps to prepare the Xcode workspace
       for building/testing.'
   _common_save_spm_cache:
