@@ -1,6 +1,57 @@
 ---
 format_version: '13'
 workflows:
+  pr_adhoc_builds:
+    before_run:
+    - _common_prepare_workspace
+    - _pr_adhoc_build_discovery
+    after_run:
+    - _common_save_spm_cache
+    steps:
+    - set-env-var@0:
+        inputs:
+        - destination_keys: INST_XCODE_SCHEME
+        - value: Student
+        title: Setup Student Scheme
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - workflow_id: _pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_STUDENT" "true"}}'
+        title: Build Student
+    - set-env-var@0:
+        inputs:
+        - destination_keys: INST_XCODE_SCHEME
+        - value: Teacher
+        title: Setup Teacher Scheme
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - workflow_id: _pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_TEACHER" "true"}}'
+        title: Build Teacher
+    - set-env-var@0:
+        inputs:
+        - destination_keys: INST_XCODE_SCHEME
+        - value: Parent
+        title: Setup Parent Scheme
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - workflow_id: _pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_PARENT" "true"}}'
+        title: Build Parent
+    - set-env-var@0:
+        inputs:
+        - destination_keys: INST_XCODE_SCHEME
+        - value: Horizon
+        title: Setup Horizon Scheme
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - workflow_id: _pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
+        title: Build Horizon
   _pr_adhoc_build:
     steps:
     - set-xcode-build-number@1:
