@@ -65,30 +65,42 @@ workflows:
         - personal_access_token: "$DANGER_GITHUB_API_TOKEN"
         is_always_run: false
   _pr_adhoc_build:
+    description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME (e.g., Horizon)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
     steps:
     - set-xcode-build-number@1:
         inputs:
-        - plist_path: "$INST_XCODE_SCHEME/$INST_XCODE_SCHEME/Resources/Info.plist"
+        - plist_path: $INST_XCODE_SCHEME/$INST_XCODE_SCHEME/Resources/Info.plist
     - bitrise-step-stamp-appicon-with-version-number@1:
         inputs:
         - stamp_version: PR
-        - stamp_build_number: "$PR_NUMBER"
-        - stamp_path_to_icons: "$INST_XCODE_SCHEME/$INST_XCODE_SCHEME/Resources/Assets.xcassets/AppIcon.appiconset"
+        - stamp_build_number: $PR_NUMBER
+        - stamp_path_to_icons: $INST_XCODE_SCHEME/$INST_XCODE_SCHEME/Resources/Assets.xcassets/AppIcon.appiconset
     - xcode-archive@5:
         inputs:
         - distribution_method: ad-hoc
-        - perform_clean_action: 'yes'
+        - perform_clean_action: "yes"
         - automatic_code_signing: api-key
         - icloud_container_environment: Production
-        - scheme: "$INST_XCODE_SCHEME"
+        - scheme: $INST_XCODE_SCHEME
     - deploy-to-bitrise-io@2:
         inputs:
         - notify_user_groups: none
     - create-install-page-qr-code@1: {}
-    summary: This workflow stamps the app icon and creates a QR code installable ad-hoc
-      build used for pull request testing.
-    description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME
-      (e.g., Horizon)"
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            QR_KEY="${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL}_${INST_XCODE_SCHEME}"
+            envman add --key $QR_KEY --value $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL
+        title: Export QR Image URL
+    summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
   _pr_adhoc_build_discovery:
     steps:
     - script@1:
