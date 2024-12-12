@@ -23,7 +23,7 @@ extension HorizonUI {
         // MARK: - Dependencies
 
         private let showBackground: Bool
-        private let size: SpinnerSize
+        private let size: HorizonUI.Spinner.Size
 
         // MARK: - Private
 
@@ -33,7 +33,7 @@ extension HorizonUI {
 
         // MARK: - Init
 
-        init(size: SpinnerSize = .medium, showBackground: Bool = false) {
+        init(size: HorizonUI.Spinner.Size = .medium, showBackground: Bool = false) {
             self.size = size
             self.showBackground = showBackground
         }
