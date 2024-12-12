@@ -56,7 +56,8 @@ extension HorizonUI.Tooltip {
                             }
                             Spacer()
                         }
-                    }.padding(.bottom, 32)
+                    }
+                    .padding(.bottom, 32)
                 }
             }
         }
