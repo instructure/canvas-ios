@@ -87,7 +87,7 @@ workflows:
             PR_COMMENT+="<tr>${COLUMNS}</tr>"
             PR_COMMENT+="</table>"
 
-            envman add --key PR_BUILDS_COMMENT --value $HTML_TABLE
+            envman add --key PR_BUILDS_COMMENT --value $PR_COMMENT
   _pr_adhoc_build:
     description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME (e.g., Horizon)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
     steps:
@@ -102,7 +102,6 @@ workflows:
     - xcode-archive@5:
         inputs:
         - distribution_method: ad-hoc
-        - perform_clean_action: "yes"
         - automatic_code_signing: api-key
         - icloud_container_environment: Production
         - scheme: $INST_XCODE_SCHEME
