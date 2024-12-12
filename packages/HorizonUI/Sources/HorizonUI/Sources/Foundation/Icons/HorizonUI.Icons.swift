@@ -41,7 +41,6 @@ public extension HorizonUI {
         let archive = Image(.archive)
         let arrowLeftAlt = Image(.arrowLeftAlt)
         let arrowRightAlt = Image(.arrowRightAlt)
-
         let arrowUpwardAlt = Image(.arrowUpwardAlt)
         let arrowForward = Image(.arrowForward)
         let arrowBack = Image(.arrowBack)
@@ -62,7 +61,6 @@ public extension HorizonUI {
         let arrowTopLeft = Image(.arrowTopLeft)
         let arrowTopRight = Image(.arrowTopRight)
         let article = Image(.article)
-
         let attachFile = Image(.attachFile)
         let attachment = Image(.attachment)
         let autorenew = Image(.autorenew)
@@ -83,7 +81,6 @@ public extension HorizonUI {
         let build = Image(.build)
         let buildCircle = Image(.buildCircle)
         let cached = Image(.cached)
-
         let calendarMonth = Image(.calendarMonth)
         let calendarToday = Image(.calendarToday)
         let calendarViewMonth = Image(.calendarViewMonth)
@@ -104,7 +101,6 @@ public extension HorizonUI {
         let closeSmall = Image(.closeSmall)
         let closeFullscren = Image(.closeFullscren)
         let cloud = Image(.cloud)
-
         let cloudDone = Image(.cloudDone)
         let cloudDownload = Image(.cloudDownload)
         let cloudOff = Image(.cloudOff)
@@ -125,7 +121,6 @@ public extension HorizonUI {
         let counter3 = Image(.counter3)
         let counter4 = Image(.counter4)
         let counter5 = Image(.counter5)
-
         let counter6 = Image(.counter6)
         let counter7 = Image(.counter7)
         let counter8 = Image(.counter8)
@@ -146,7 +141,6 @@ public extension HorizonUI {
         let disabledByDefault = Image(.disabledByDefault)
         let doNotDisturbOn = Image(.doNotDisturbOn)
         let docs = Image(.docs)
-
         let docsAddOn = Image(.docsAddOn)
         let documentScanner = Image(.documentScanner)
         let doneAll = Image(.doneAll)
@@ -167,7 +161,6 @@ public extension HorizonUI {
         let editNote = Image(.editNote)
         let editOff = Image(.editOff)
         let editSquare = Image(.editSquare)
-
         let keyboardDoubleArrowLeft = Image(.keyboardDoubleArrowLeft)
         let error = Image(.error)
         let event = Image(.event)
@@ -188,7 +181,6 @@ public extension HorizonUI {
         let filterList = Image(.filterList)
         let findInPage = Image(.findInPage)
         let fingerprint = Image(.fingerprint)
-
         let firstPage = Image(.firstPage)
         let folder = Image(.folder)
         let folderCheck = Image(.folderCheck)
@@ -209,7 +201,6 @@ public extension HorizonUI {
         let formatColorReset = Image(.formatColorReset)
         let formatColorText = Image(.formatColorText)
         let formatIndentIncrease = Image(.formatIndentIncrease)
-
         let formatItalic = Image(.formatItalic)
         let formatLineSpacing = Image(.formatLineSpacing)
         let coursesFormatListBulleted = Image(.coursesFormatListBulleted)
@@ -230,7 +221,6 @@ public extension HorizonUI {
         let grading = Image(.grading)
         let gridView = Image(.gridView)
         let height = Image(.height)
-
         let help = Image(.help)
         let helpCenter = Image(.helpCenter)
         let history = Image(.history)
@@ -251,7 +241,6 @@ public extension HorizonUI {
         let keyboardArrowDown = Image(.keyboardArrowDown)
         let keyboardArrowUp = Image(.keyboardArrowUp)
         let keyboardDoubleArrowDown = Image(.keyboardDoubleArrowDown)
-
         let keyboardDoubleArrowRight = Image(.keyboardDoubleArrowRight)
         let keyboardDoubleArrowUp = Image(.keyboardDoubleArrowUp)
         let label = Image(.label)
@@ -272,7 +261,6 @@ public extension HorizonUI {
         let manageSearch = Image(.manageSearch)
         let markEmailUnread = Image(.markEmailUnread)
         let matchCase = Image(.matchCase)
-
         let menu = Image(.menu)
         let minimize = Image(.minimize)
         let moreHoriz = Image(.moreHoriz)
@@ -293,7 +281,6 @@ public extension HorizonUI {
         let openInNew = Image(.openInNew)
         let openWith = Image(.openWith)
         let pages = Image(.pages)
-
         let pageview = Image(.pageview)
         let panToolAlt = Image(.panToolAlt)
         let pending = Image(.pending)
@@ -314,7 +301,6 @@ public extension HorizonUI {
         let readMore = Image(.readMore)
         let recordVoiceOver = Image(.recordVoiceOver)
         let redo = Image(.redo)
-
         let refresh = Image(.refresh)
         let remove = Image(.remove)
         let reorder = Image(.reorder)
@@ -335,7 +321,6 @@ public extension HorizonUI {
         let sortByAlpha = Image(.sortByAlpha)
         let spaceBar = Image(.spaceBar)
         let spellcheck = Image(.spellcheck)
-
         let square = Image(.square)
         let stacks = Image(.stacks)
         let star = Image(.star)
@@ -356,7 +341,6 @@ public extension HorizonUI {
         let tableRows = Image(.tableRows)
         let tableView = Image(.tableView)
         let tag = Image(.tag)
-
         let task = Image(.task)
         let taskAlt = Image(.taskAlt)
         let teamDashboard = Image(.teamDashboard)
@@ -377,7 +361,6 @@ public extension HorizonUI {
         let unfoldMore = Image(.unfoldMore)
         let update = Image(.update)
         let upgrade = Image(.upgrade)
-
         let upload = Image(.upload)
         let uploadFile = Image(.uploadFile)
         let verified = Image(.verified)
@@ -398,7 +381,6 @@ public extension HorizonUI {
         let web = Image(.web)
         let webAsset = Image(.webAsset)
         let wysiwyg = Image(.wysiwyg)
-
         let zoomIn = Image(.zoomIn)
         let zoomOut = Image(.zoomOut)
         let search = Image(.search)
@@ -416,7 +398,6 @@ public extension HorizonUI {
         let link = Image(.link)
         let image = Image(.image)
         let videocam = Image(.videocam)
-
         let thumbUp = Image(.thumbUp)
         let thumbDown = Image(.thumbDown)
         let keepPin = Image(.keepPin)
@@ -432,6 +413,8 @@ public extension HorizonUI {
         let homeFilled = Image(.homeFilled)
         let circleFilled = Image(.circleFilled)
         let circle = Image(.circle)
+        let ai = Image(.ai)
+        let aiFilled = Image(.aiFilled)
 
         func allImages() -> [Image] {
             let mirror = Mirror(reflecting: self)
