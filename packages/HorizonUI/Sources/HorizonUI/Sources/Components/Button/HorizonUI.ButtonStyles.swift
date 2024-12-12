@@ -18,6 +18,51 @@
 
 import SwiftUI
 
+extension HorizonUI {
+    struct ButtonStyles: ButtonStyle {
+        @Environment(\.isEnabled) private var isEnabled
+        private let background: AnyShapeStyle
+        private let foreground: Color
+        private let isSmall: Bool
+        private let fillsWidth: Bool
+        private let leading: AnyView
+        private let trailing: AnyView
+
+        fileprivate init(
+            background: any ShapeStyle,
+            foreground: Color,
+            isSmall: Bool = false,
+            fillsWidth: Bool = false,
+            leading: some View = EmptyView(),
+            trailing: some View = EmptyView()
+        ) {
+            self.background = AnyShapeStyle(background)
+            self.foreground = foreground
+            self.isSmall = isSmall
+            self.fillsWidth = fillsWidth
+            self.leading = AnyView(leading)
+            self.trailing = AnyView(trailing)
+        }
+
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                self.leading.frame(alignment: .center)
+                configuration.label
+                self.trailing.frame(alignment: .center)
+            }
+            .huiTypography(.buttonTextLarge)            
+            .tracking(100)
+            .padding(.horizontal, 16)
+            .frame(height: isSmall ? 40 : 44)
+            .frame(maxWidth: fillsWidth ? .infinity : nil)
+            .background(background)
+            .foregroundStyle(foreground)
+            .cornerRadius(isSmall ? 20 : 22)
+            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
+        }
+    }
+}
+
 extension HorizonUI.ButtonStyles {
     static func ai(
         isSmall: Bool = false,
@@ -99,50 +144,6 @@ extension HorizonUI.ButtonStyles {
     }
 }
 
-extension HorizonUI {
-    struct ButtonStyles: ButtonStyle {
-        @Environment(\.isEnabled) private var isEnabled
-        private let background: AnyShapeStyle
-        private let foreground: Color
-        private let isSmall: Bool
-        private let fillsWidth: Bool
-        private let leading: AnyView
-        private let trailing: AnyView
-
-        fileprivate init(
-            background: any ShapeStyle,
-            foreground: Color,
-            isSmall: Bool = false,
-            fillsWidth: Bool = false,
-            leading: some View = EmptyView(),
-            trailing: some View = EmptyView()
-        ) {
-            self.background = AnyShapeStyle(background)
-            self.foreground = foreground
-            self.isSmall = isSmall
-            self.fillsWidth = fillsWidth
-            self.leading = AnyView(leading)
-            self.trailing = AnyView(trailing)
-        }
-
-        func makeBody(configuration: Configuration) -> some View {
-            HStack {
-                self.leading.frame(alignment: .center)
-                configuration.label
-                self.trailing.frame(alignment: .center)
-            }
-            .huiTypography(.buttonTextLarge)            
-            .tracking(100)
-            .padding(.horizontal, 16)
-            .frame(height: isSmall ? 40 : 44)
-            .frame(maxWidth: fillsWidth ? .infinity : nil)
-            .background(background)
-            .foregroundStyle(foreground)
-            .cornerRadius(isSmall ? 20 : 22)
-            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
-        }
-    }
-}
 
 fileprivate struct ButtonColors {
     static let darkText = Color(red: 39/255, green: 53/255, blue: 64/255)
