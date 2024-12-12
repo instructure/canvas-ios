@@ -18,15 +18,20 @@
 
 import SwiftUI
 
-struct NotebookLabelIcon: View {
-    // MARK: - Dependencies
+enum CourseNoteLabel: String, CaseIterable {
+    case confusing = "Confusing"
+    case important = "Important"
+    case other = "Other"
 
-    let type: CourseNoteLabel
+    var color: Color {
+        self == .confusing ?
+            Color(red: 0.682, green: 0.106, blue: 0.122) :
+            Color(red: 0.055, green: 0.408, blue: 0.702)
+    }
 
-    var body: some View {
-        let image = type == .confusing ?
-            Image(systemName: "questionmark.circle") :
-            Image(.flag)
-        return image.foregroundStyle(type.color)
+    var label: String {
+        self == .confusing ?
+            String(localized: "Confusing", bundle: .horizon) :
+            String(localized: "Important", bundle: .horizon)
     }
 }

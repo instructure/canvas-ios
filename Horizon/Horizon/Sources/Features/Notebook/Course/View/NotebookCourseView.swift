@@ -22,13 +22,17 @@ import Core
 struct NotebookCourseView: View {
 
     @Bindable var viewModel: NotebookCourseViewModel
-
     @Environment(\.viewController) private var viewController
 
     var body: some View {
         NotesBody(
             title: viewModel.title,
-            onBack: { viewModel.onBack(viewController: viewController) }
+            leading: {
+                NotesIconButton(systemName: "arrow.left") {
+                    viewModel.onBack(viewController: viewController)
+                }
+            },
+            trailing: { }
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.top, 32)
 
@@ -37,11 +41,11 @@ struct NotebookCourseView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(spacing: 8) {
-                NoteCardFilterButton(type: .confusing, enabled: viewModel.isConfusingEnabled)
+                NoteCardFilterButton(type: .confusing, selected: viewModel.isConfusingEnabled)
                     .onTapGesture {
                         viewModel.filter = .confusing
                     }
-                NoteCardFilterButton(type: .important, enabled: viewModel.isImportantEnabled)
+                NoteCardFilterButton(type: .important, selected: viewModel.isImportantEnabled)
                     .onTapGesture {
                         viewModel.filter = .important
                     }
