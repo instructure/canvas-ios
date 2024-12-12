@@ -2,11 +2,11 @@
 format_version: '13'
 workflows:
   pr_adhoc_builds:
+    after_run:
+    - _common_save_spm_cache
     before_run:
     - _common_prepare_workspace
     - _pr_adhoc_build_discovery
-    after_run:
-    - _common_save_spm_cache
     steps:
     - set-env-var@0:
         inputs:
@@ -52,18 +52,42 @@ workflows:
         - workflow_id: _pr_adhoc_build
         run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
         title: Build Horizon
-    - comment-on-github-pull-request@0:
+    - script@1:
+        title: Create Comment HTML
         inputs:
-        - body: |
-            <h1>Builds</h1>
-            <table>
-            </table>
-            <details><summary>$INST_XCODE_SCHEME Build QR Code</summary>
-            <img src="$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL" />
-            </details>
-        - update_comment_tag: "$INST_XCODE_SCHEME_Build"
-        - personal_access_token: "$DANGER_GITHUB_API_TOKEN"
-        is_always_run: false
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            declare -A APP_NAMES=(
+                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Student]="Student"
+                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Teacher]="Teacher"
+                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Parent]="Parent"
+                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Horizon]="Horizon"
+            )
+
+            COLUMNS=""
+
+            for VAR_NAME in "${!APP_NAMES[@]}"; do
+                if [[ -n "${!VAR_NAME}" ]]; then
+                    COLUMNS+="<td><details>"
+                    COLUMNS+="<summary>${APP_NAMES[$VAR_NAME]}</summary>"
+                    COLUMNS+="<img src='${!VAR_NAME}' />"
+                    COLUMNS+="</details></td>"
+                fi
+            done
+
+            PR_COMMENT="<h1>Builds</h1>"
+            PR_COMMENT+="<table>"
+            PR_COMMENT+="<tr>${COLUMNS}</tr>"
+            PR_COMMENT+="</table>"
+
+            envman add --key PR_BUILDS_COMMENT --value $HTML_TABLE
   _pr_adhoc_build:
     description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME (e.g., Horizon)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
     steps:
@@ -97,7 +121,7 @@ workflows:
             # debug log
             set -x
 
-            QR_KEY="${BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL}_${INST_XCODE_SCHEME}"
+            QR_KEY="BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_${INST_XCODE_SCHEME}"
             envman add --key $QR_KEY --value $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL
         title: Export QR Image URL
     summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
