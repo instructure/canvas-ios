@@ -25,16 +25,16 @@ extension HorizonUI {
         private let foreground: Color
         private let isSmall: Bool
         private let fillsWidth: Bool
-        private let leading: HorizonUI.Icon?
-        private let trailing: HorizonUI.Icon?
+        private let leading: Image?
+        private let trailing: Image?
 
         fileprivate init(
             background: any ShapeStyle,
             foreground: Color,
             isSmall: Bool = false,
             fillsWidth: Bool = false,
-            leading: HorizonUI.Icon? = nil,
-            trailing: HorizonUI.Icon? = nil
+            leading: Image? = nil,
+            trailing: Image? = nil
         ) {
             self.background = AnyShapeStyle(background)
             self.foreground = foreground
@@ -48,13 +48,13 @@ extension HorizonUI {
             HStack {
                 leading?
                     .renderingMode(.template)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(foreground)
 
                 configuration.label
 
                 trailing?
                     .renderingMode(.template)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(foreground)
             }
             .huiTypography(.buttonTextLarge)
             .tracking(100)
@@ -73,8 +73,8 @@ extension HorizonUI.ButtonStyles {
     static func ai(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
-        leading: HorizonUI.Icon? = nil,
-        trailing: HorizonUI.Icon? = nil
+        leading: Image? = nil,
+        trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         self.init(
             background: LinearGradient(
@@ -96,8 +96,8 @@ extension HorizonUI.ButtonStyles {
     static func beige(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
-        leading: HorizonUI.Icon? = nil,
-        trailing: HorizonUI.Icon? = nil
+        leading: Image? = nil,
+        trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         self.init(
             background: Color.huiColors.surface.pagePrimary,
@@ -112,8 +112,8 @@ extension HorizonUI.ButtonStyles {
     static func black(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
-        leading: HorizonUI.Icon? = nil,
-        trailing: HorizonUI.Icon? = nil
+        leading: Image? = nil,
+        trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
             background: Color.huiColors.surface.inversePrimary,
@@ -128,8 +128,8 @@ extension HorizonUI.ButtonStyles {
     static func blue(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
-        leading: HorizonUI.Icon? = nil,
-        trailing: HorizonUI.Icon? = nil
+        leading: Image? = nil,
+        trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
             background: Color.huiColors.surface.institution,
@@ -144,8 +144,8 @@ extension HorizonUI.ButtonStyles {
     static func white(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
-        leading: HorizonUI.Icon? = nil,
-        trailing: HorizonUI.Icon? = nil
+        leading: Image? = nil,
+        trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
             background: Color.huiColors.surface.pageSecondary,
