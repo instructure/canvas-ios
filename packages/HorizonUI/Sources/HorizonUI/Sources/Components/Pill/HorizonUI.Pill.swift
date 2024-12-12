@@ -64,11 +64,9 @@ public extension HorizonUI {
                         .frame(width: 18, height: 18)
                         .foregroundStyle(style.color)
                 }
-                HorizonUI.Typography(
-                    text: isUppercased ? title.uppercased() : title.capitalized,
-                    name: isUppercased ? .tag : .labelSmall,
-                    color: style.color
-                )
+                Text(isUppercased ? title.uppercased() : title.capitalized)
+                    .huiTypography(isUppercased ? .tag : .labelSmall)
+                    .foregroundStyle(style.color)
             }
             .padding(.horizontal, .huiSpaces.primitives.small)
             .padding(.vertical, .huiSpaces.primitives.xSmall)
