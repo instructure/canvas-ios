@@ -62,9 +62,8 @@ extension HorizonUI.Tooltip {
 }
 
 extension HorizonUI {
-    struct Tooltip {
+    enum Tooltip {
         struct Tooltip<TooltipContent: View>: ViewModifier {
-
             // MARK: - Dependencies
 
             private let arrowEdge: Edge?

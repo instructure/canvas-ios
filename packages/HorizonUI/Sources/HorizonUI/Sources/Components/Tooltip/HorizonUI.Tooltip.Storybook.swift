@@ -20,7 +20,6 @@ import SwiftUI
 
 extension HorizonUI.Tooltip {
     struct Storybook: View {
-
         @State private var isVisible: Bool = false
 
         @State private var visible: [Edge: [HorizonUI.Tooltip.Style: Bool]] = {
