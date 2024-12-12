@@ -26,10 +26,20 @@ extension HorizonUI.ButtonStyles {
                     Section(header: header("Regular Height - Relative Width Buttons")) {
                         VStack(alignment: .leading, spacing: 16) {
                             Button("Black Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.black(leading: Text("*")))
+                                .buttonStyle(
+                                    HorizonUI.ButtonStyles.black(
+                                        leading: HorizonUI.icons.addCircle,
+                                        trailing: HorizonUI.icons.addCircle
+                                    )
+                                )
 
                             Button("White Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.white(trailing: Text("!")))
+                                .buttonStyle(
+                                    HorizonUI.ButtonStyles.white(
+                                        leading: HorizonUI.icons.addCircle,
+                                        trailing: HorizonUI.icons.addCircle
+                                    )
+                                )
                                 .huiElevation(level: .level3)
 
                             Button("AI Button") {}
@@ -50,9 +60,7 @@ extension HorizonUI.ButtonStyles {
                                 .buttonStyle(
                                     HorizonUI.ButtonStyles.black(
                                         isSmall: true,
-                                        fillsWidth: true,
-                                        leading: Text("*"),
-                                        trailing: Text("!")
+                                        fillsWidth: true
                                     )
                                 )
                             Button("Small White Button") {}
