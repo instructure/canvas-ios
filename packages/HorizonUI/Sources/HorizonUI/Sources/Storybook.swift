@@ -78,7 +78,9 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Spinner").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Tooltip.Storybook()
+                    } label: {
                         Text("Tooltip").tint(Color.black)
                     }
                 }

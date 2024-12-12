@@ -1,86 +1,103 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2024-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
 import SwiftUI
-import TipKit
 
-public extension HorizonUI {
-    struct Tooltip: View {
-        private let text: String
-        private let style: TooltipStyle
-        private let tip: TooltipTip
+/// The intention is to call this in the same was as .popover
+/// e.g., Button("Pop!").tooltip($isPresented)
+extension View {
+    func tooltip(
+        isPresented: Binding<Bool>,
+        arrowEdge: Edge? = nil,
+        style: HorizonUI.Tooltip.Style = .primary,
+        content: @escaping () -> some View
+    ) -> some View {
+        modifier(HorizonUI.Tooltip.Tooltip(
+            isPresented: isPresented,
+            arrowEdge: arrowEdge,
+            style: style,
+            content: content
+        ))
+    }
+}
 
-        public init(
-            text: String,
-            style: TooltipStyle = .dark
-        ) {
-            self.text = text
-            self.style = style
-            self.tip = TooltipTip(text: text)
+extension HorizonUI.Tooltip {
+    enum Style: String, CaseIterable {
+        case primary = "Primary"
+        case secondary = "Secondary"
+
+        var foreground: Color {
+            switch self {
+            case .primary:
+                Color.huiColors.text.surfaceColored
+            case .secondary:
+                Color.huiColors.text.body
+            }
         }
 
-        public var body: some View {
-            TipView(tip) {_ in 
-                TooltipContent(text: text, style: style)
+        var background: Color {
+            switch self {
+            case .primary:
+                return Color.huiColors.surface.inverseSecondary
+            case .secondary:
+                return Color.huiColors.surface.cardPrimary
             }
         }
     }
 }
 
-// MARK: - Tooltip Tip
-private struct TooltipTip: Tip {
-    var title: Text
-    
-    let text: String
+extension HorizonUI {
+    struct Tooltip {
+        struct Tooltip<TooltipContent: View>: ViewModifier {
 
-    var rules: [Rule] {
-        [
-            Tips.Rule.oncePerSession
-        ]
-    }
+            // MARK: - Dependencies
 
-    var options: [TipOption] {
-        [
-            Tips.MaxDisplayCount(1)
-        ]
-    }
-}
+            private let arrowEdge: Edge?
+            private let content: TooltipContent
+            private let style: HorizonUI.Tooltip.Style
+            private var isPresented: Binding<Bool>
 
-// MARK: - Tooltip Content
-private struct TooltipContent: View {
-    let text: String
-    let style: HorizonUI.Tooltip.TooltipStyle
+            // MARK: - init
 
-    var body: some View {
-        HorizonUI.Typography(
-            text: text,
-            name: .p2,
-            color: style.textColor
-        )
-        .padding(8)
-        .background(style.backgroundColor)
-        .cornerRadius(8)
-    }
-}
-
-// MARK: - Tooltip Style
-public extension HorizonUI.Tooltip {
-    enum TooltipStyle {
-        case dark
-        case light
-
-        var backgroundColor: Color {
-            switch self {
-            case .dark:
-                return Color(red: 10/255, green: 27/255, blue: 42/255)
-            case .light:
-                return .white
+            init(
+                isPresented: Binding<Bool>,
+                arrowEdge: Edge? = nil,
+                style: HorizonUI.Tooltip.Style = .primary,
+                @ViewBuilder content: @escaping () -> TooltipContent
+            ) {
+                self.arrowEdge = arrowEdge
+                self.style = style
+                self.content = content()
+                self.isPresented = isPresented
             }
-        }
 
-        var textColor: Color {
-            switch self {
-            case .dark:
-                return .white
-            case .light:
-                return Color(red: 39/255, green: 53/255, blue: 64/255)
+            func body(content: Content) -> some View {
+                content
+                    .popover(
+                        isPresented: isPresented,
+                        arrowEdge: arrowEdge
+                    ) {
+                        self.content
+                            .padding([.horizontal], 16)
+                            .foregroundStyle(style.foreground)
+                            .presentationCompactAdaptation(.popover)
+                            .presentationBackground(style.background)
+                    }
             }
         }
     }
