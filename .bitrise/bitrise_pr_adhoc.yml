@@ -52,6 +52,18 @@ workflows:
         - workflow_id: _pr_adhoc_build
         run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
         title: Build Horizon
+    - comment-on-github-pull-request@0:
+        inputs:
+        - body: |
+            <h1>Builds</h1>
+            <table>
+            </table>
+            <details><summary>$INST_XCODE_SCHEME Build QR Code</summary>
+            <img src="$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL" />
+            </details>
+        - update_comment_tag: "$INST_XCODE_SCHEME_Build"
+        - personal_access_token: "$DANGER_GITHUB_API_TOKEN"
+        is_always_run: false
   _pr_adhoc_build:
     steps:
     - set-xcode-build-number@1:
@@ -73,15 +85,6 @@ workflows:
         inputs:
         - notify_user_groups: none
     - create-install-page-qr-code@1: {}
-    - comment-on-github-pull-request@0:
-        inputs:
-        - body: |
-            <details><summary>$INST_XCODE_SCHEME Build QR Code</summary>
-            <img src="$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL" />
-            </details>
-        - update_comment_tag: "$INST_XCODE_SCHEME_Build"
-        - personal_access_token: "$DANGER_GITHUB_API_TOKEN"
-        is_always_run: false
     summary: This workflow stamps the app icon and creates a QR code installable ad-hoc
       build used for pull request testing.
     description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME
