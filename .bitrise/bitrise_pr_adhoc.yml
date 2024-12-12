@@ -16,7 +16,7 @@ workflows:
         title: Setup Student Scheme
     - bitrise-run@0:
         inputs:
-        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - bitrise_config_path: ./.bitrise/bitrise.yml
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_STUDENT" "true"}}'
         title: Build Student
@@ -27,7 +27,7 @@ workflows:
         title: Setup Teacher Scheme
     - bitrise-run@0:
         inputs:
-        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - bitrise_config_path: ./.bitrise/bitrise.yml
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_TEACHER" "true"}}'
         title: Build Teacher
@@ -38,7 +38,7 @@ workflows:
         title: Setup Parent Scheme
     - bitrise-run@0:
         inputs:
-        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - bitrise_config_path: ./.bitrise/bitrise.yml
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_PARENT" "true"}}'
         title: Build Parent
@@ -49,7 +49,7 @@ workflows:
         title: Setup Horizon Scheme
     - bitrise-run@0:
         inputs:
-        - bitrise_config_path: ./.bitrise/bitrise_pr_adhoc.yml
+        - bitrise_config_path: ./.bitrise/bitrise.yml
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
         title: Build Horizon
