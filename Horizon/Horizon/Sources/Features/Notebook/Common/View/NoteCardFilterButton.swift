@@ -19,39 +19,33 @@
 import SwiftUI
 
 struct NoteCardFilterButton: View {
-    // MARK: - Properties
-
-    let textEnabledColor = Color(red: 39/255, green: 53/255, blue: 64/255)
-    let backgroundEnabledColor = Color.white
-    let backgroundDisabledColor = Color(red: 94/100, green: 95/100, blue: 96/100)
 
     // MARK: - Dependencies
 
-    let type: NotebookNoteLabel
-    let enabled: Bool
+    let type: CourseNoteLabel
+    let selected: Bool
 
     var body: some View {
         HStack {
-            NotebookLabelIcon(type: type, enabled: enabled)
+            NotebookLabelIcon(type: type)
                 .frame(width: 24, height: 24)
-            Text(labelFromType(type))
+            Text(type.label)
                 .font(.regular16)
-                .foregroundColor(enabled ? textEnabledColor : Color.disabledGray
-            )
         }
         .frame(height: 48)
         .frame(maxWidth: .infinity)
-        .background(enabled ? backgroundEnabledColor : backgroundDisabledColor)
+        .background(
+            RoundedRectangle(cornerRadius: 15.5)
+                .fill(Color.white)
+                .stroke(type.color, lineWidth: selected ? 2 : 0)
+        )
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.2), radius: enabled ? 8 : 0)
+        .shadow(
+            color: Color(red: 66/100,
+                         green: 54/100,
+                         blue: 36/100)
+                .opacity(0.12),
+            radius: selected ? 0 : 8
+        )
     }
-}
-
-// MARK: - Helpers
-
-@inline(__always) func labelFromType(_ type: NotebookNoteLabel, isBold: Bool = false) -> String {
-    let result = type == .confusing ?
-                  String(localized: "Confusing", bundle: .horizon):
-                    String(localized: "Important", bundle: .horizon)
-    return isBold ? result.uppercased() : result
 }

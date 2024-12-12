@@ -26,5 +26,5 @@ struct CourseNote {
     let institution: String
     let courseId: String
     let course: String
-    let labels: [String] // e.g. "Important", "Confusing", etc.
+    let labels: [CourseNoteLabel]
 }
