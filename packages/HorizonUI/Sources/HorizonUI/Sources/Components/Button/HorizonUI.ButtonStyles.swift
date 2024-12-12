@@ -131,7 +131,7 @@ extension HorizonUI {
                 configuration.label
                 self.trailing.frame(alignment: .center)
             }
-            .buttonTextLarge()
+            .huiTypography(.buttonTextLarge)            
             .tracking(100)
             .padding(.horizontal, 16)
             .frame(height: isSmall ? 40 : 44)
