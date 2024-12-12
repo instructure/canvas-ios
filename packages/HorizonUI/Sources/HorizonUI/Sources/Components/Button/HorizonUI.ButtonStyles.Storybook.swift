@@ -22,71 +22,104 @@ extension HorizonUI.ButtonStyles {
     struct Storybook: View {
         var body: some View {
             ScrollView {
-                SwiftUI.Group {
-                    Text("Regular Buttons")
-                        .font(.headline)
+                VStack(alignment: .leading, spacing: 24) {
+                    Section(header: header("Regular Height - Relative Width Buttons")) {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Button("Black Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.black(leading: Text("*")))
 
-                    Button("Black Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.black(leading: Text("*")))
-                    Button("White Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.white(trailing: Text("!")))
-                    Button("AI Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.ai())
-                    Button("Blue Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.blue())
-                    Button("Beige Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.beige())
+                            Button("White Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.white(trailing: Text("!")))
+                                .huiElevation(level: .level3)
+
+                            Button("AI Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.ai())
+
+                            Button("Blue Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.blue())
+
+                            Button("Beige Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.beige())
+                                .huiElevation(level: .level3)
+                        }
+                    }
+
+                    Section(header: header("Small Height - Block Width Buttons")) {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Button("Small Black Button") {}
+                                .buttonStyle(
+                                    HorizonUI.ButtonStyles.black(
+                                        isSmall: true,
+                                        fillsWidth: true,
+                                        leading: Text("*"),
+                                        trailing: Text("!")
+                                    )
+                                )
+                            Button("Small White Button") {}
+                                .buttonStyle(
+                                    HorizonUI.ButtonStyles.white(
+                                        isSmall: true,
+                                        fillsWidth: true
+                                    )
+                                )
+                                .huiElevation(level: .level3)
+                            Button("Small AI Button") {}
+                                .buttonStyle(
+                                    HorizonUI.ButtonStyles.ai(
+                                        isSmall: true,
+                                        fillsWidth: true
+                                    )
+                                )
+                            Button("Small Blue Button") {}
+                                .buttonStyle(
+                                    HorizonUI.ButtonStyles.blue(
+                                        isSmall: true,
+                                        fillsWidth: true
+                                    )
+                                )
+                            Button("Small Beige Button") {}
+                                .buttonStyle(
+                                    HorizonUI.ButtonStyles.beige(
+                                        isSmall: true,
+                                        fillsWidth: true
+                                    )
+                                )
+                                .huiElevation(level: .level3)
+                        }
+                    }
+
+                    Section(header: header("Disabled Buttons")) {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Button("Disabled Black Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.black())
+                                .disabled(true)
+                            Button("Disabled White Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.white())
+                                .disabled(true)
+                                .huiElevation(level: .level3)
+                            Button("Disabled AI Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.ai())
+                                .disabled(true)
+                            Button("Disabled Blue Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.blue())
+                                .disabled(true)
+                            Button("Disabled Beige Button") {}
+                                .buttonStyle(HorizonUI.ButtonStyles.beige())
+                                .disabled(true)
+                                .huiElevation(level: .level3)
+                        }
+                    }
                 }
+                .padding(16)
+            }
+            .navigationTitle("Buttons")
+            .navigationBarTitleDisplayMode(.large)
+        }
 
-                SwiftUI.Group {
-                    Text("Small Buttons")
-                        .font(.headline)
-
-                    Button("Small Black Button") {}
-                        .buttonStyle(
-                            HorizonUI.ButtonStyles.black(
-                                isSmall: true,
-                                fillsWidth: true,
-                                leading: Text("*"),
-                                trailing: Text("!")
-                            )
-                        )
-                    Button("Small White Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.white(isSmall: true, fillsWidth: true))
-                    Button("Small AI Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.ai(isSmall: true, fillsWidth: true))
-                    Button("Small Blue Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.blue(isSmall: true, fillsWidth: true))
-                    Button("Small Beige Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.beige(isSmall: true, fillsWidth: true))
-                }
-
-                SwiftUI.Group {
-                    Text("Disabled Buttons")
-                        .font(.headline)
-
-                    Button("Disabled Black Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.black())
-                        .disabled(true)
-                    Button("Disabled White Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.white())
-                        .disabled(true)
-                    Button("Disabled AI Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.ai())
-                        .disabled(true)
-                    Button("Disabled Blue Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.blue())
-                        .disabled(true)
-                    Button("Disabled Beige Button") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.beige())
-                        .disabled(true)
-                }
-            }.background(
-                Color(
-                    red: 226 / 255,
-                    green: 226 / 255,
-                    blue: 226 / 255)
-            )
+        private func header(_ title: String) -> some View {
+            Text(title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.headline)
         }
     }
 }
