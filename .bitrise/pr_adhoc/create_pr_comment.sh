@@ -29,7 +29,7 @@ for APP_NAME in "${APP_NAMES[@]}"; do
 		echo "${APP_NAME}'s QR url is ${QR_URL}."
         COLUMNS+="<td><details>"
         COLUMNS+="<summary>${APP_NAME}</summary>"
-        COLUMNS+="<img src='${QR_URL}' />"
+        COLUMNS+="<img src=\"${QR_URL}\" />"
         COLUMNS+="</details></td>"
     else
 		echo "File ${FILE_NAME} not found."

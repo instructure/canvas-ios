@@ -64,7 +64,9 @@ workflows:
       for building/testing.'
   _common_save_spm_cache:
     steps:
-    - save-spm-cache@1: {}
+    - save-spm-cache@1:
+        inputs:
+        - compression_level: 19
     summary: This workflow's only task is to save resolved SPM dependencies to the
       cache to be re-used later by other workflows (mainly the _common_prepare_workspace
       one).
