@@ -3,7 +3,7 @@ format_version: '13'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: ios
 include:
-  - path: .bitrise/bitrise_pr_adhoc.yml
+  - path: .bitrise/pr_adhoc/bitrise_pr_adhoc.yml
 workflows:
   _common_prepare_workspace:
     steps:

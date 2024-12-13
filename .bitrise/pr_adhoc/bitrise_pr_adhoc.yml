@@ -89,42 +89,9 @@ workflows:
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
         title: Build Horizon
-    - script@1:
-        title: Create Comment HTML
+    - script-runner@0:
         inputs:
-        - content: |
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            declare -A APP_NAMES=(
-                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Student]="Student"
-                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Teacher]="Teacher"
-                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Parent]="Parent"
-                [BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_Horizon]="Horizon"
-            )
-
-            COLUMNS=""
-
-            for VAR_NAME in "${!APP_NAMES[@]}"; do
-                if [[ -n "${!VAR_NAME}" ]]; then
-                    COLUMNS+="<td><details>"
-                    COLUMNS+="<summary>${APP_NAMES[$VAR_NAME]}</summary>"
-                    COLUMNS+="<img src='${!VAR_NAME}' />"
-                    COLUMNS+="</details></td>"
-                fi
-            done
-
-            PR_COMMENT="<h1>Builds</h1>"
-            PR_COMMENT+="<table>"
-            PR_COMMENT+="<tr>${COLUMNS}</tr>"
-            PR_COMMENT+="</table>"
-
-            envman add --key PR_BUILDS_COMMENT --value $PR_COMMENT
+        - file_path: ./.bitrise/pr_adhoc/create_pr_comment.sh
     - comment-on-github-pull-request@0:
         inputs:
         - body: $PR_BUILDS_COMMENT
