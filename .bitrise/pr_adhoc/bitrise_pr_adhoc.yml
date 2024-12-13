@@ -92,6 +92,8 @@ workflows:
     - script-runner@0:
         inputs:
         - file_path: ./.bitrise/pr_adhoc/create_pr_comment.sh
+        - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
+        title: Create PR Comment
     - comment-on-github-pull-request@0:
         inputs:
         - body: $PR_BUILDS_COMMENT
@@ -99,6 +101,7 @@ workflows:
         - personal_access_token: $GITHUB_API_TOKEN
         is_always_run: false
   pr_adhoc_build:
+    summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
     description: "This step expects the following environment variables: \n$INST_XCODE_SCHEME (e.g., Horizon)\n$INST_XCODE_APPICON_PATH (e.g., Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
     steps:
     - set-xcode-build-number@2:
@@ -115,26 +118,15 @@ workflows:
         - automatic_code_signing: api-key
         - icloud_container_environment: Production
         - scheme: $INST_XCODE_SCHEME
-        - verbose_log: "yes"
     - deploy-to-bitrise-io@2:
         inputs:
         - notify_user_groups: none
     - create-install-page-qr-code@1: {}
-    - script@1:
+    - script-runner@0:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            QR_KEY="BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_${INST_XCODE_SCHEME}"
-            envman add --key $QR_KEY --value $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL
-        title: Export QR Image URL
-    summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
+        - file_path: ./.bitrise/pr_adhoc/write_qr_url_to_file.sh
+        - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
+        title: Write QR URL To File
   _pr_adhoc_build_discovery:
     steps:
     - script@1:
