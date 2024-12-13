@@ -30,6 +30,21 @@ public extension HorizonUI {
 
         // MARK: - Init
 
+        /// - Parameters:
+        ///    - progress : The percentage value, must be from 0 to 1.
+        ///    - progressColor : The color for progress bar
+        ///    - size: Select from two values [small or medium]
+        ///    - numberPosition: The progress text position select from three values [inside, outside or hidden]
+        ///    - textColor: The color for the progress bar text
+        ///    
+        /// - Example:
+        /// HorizonUI.ProgressBar(
+        ///     progress: 0.5,
+        ///     progressColor:  .huiColors.surface.institution,
+        ///     size: .medium,
+        ///     numberPosition: .outside,
+        ///     textColor: .huiColors.primitives.white10
+        ///  )
         public init(
             progress: Double,
             progressColor: Color = .huiColors.surface.institution,
