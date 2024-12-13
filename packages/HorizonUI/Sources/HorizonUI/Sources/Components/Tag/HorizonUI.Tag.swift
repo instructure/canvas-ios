@@ -86,23 +86,18 @@ public extension HorizonUI {
 
         private var inlineTag: some View {
             ZStack(alignment: .topTrailing) {
-                HStack {
-                    Text(title)
-                        // TODO: Use new Typography modifier
-                        // .huiTypography(.buttonTextLarge)
-                        .font(size.typography.font)
-                }
-                .padding(.leading, leadingPadding())
-                .padding(.trailing, trailingPadding())
-                .padding(.vertical, verticalPadding())
-                .frame(minHeight: minimumHeight())
-                .fixedSize(horizontal: false, vertical: false)
-                .huiCornerRadius(level: style.cornerRadius)
-                .huiBorder(
-                    level: .level1,
-                    color: borderColor,
-                    radius: style.cornerRadius.attributes.radius
-                )
+                Text(title).huiTypography(size.typography)
+                    .padding(.leading, leadingPadding())
+                    .padding(.trailing, trailingPadding())
+                    .padding(.vertical, verticalPadding())
+                    .frame(minHeight: minimumHeight())
+                    .fixedSize(horizontal: false, vertical: false)
+                    .huiCornerRadius(level: style.cornerRadius)
+                    .huiBorder(
+                        level: .level1,
+                        color: borderColor,
+                        radius: style.cornerRadius.attributes.radius
+                    )
 
                 if let onCloseAction {
                     // TODO: Use Badge component
@@ -122,10 +117,7 @@ public extension HorizonUI {
 
         private var standaloneTag: some View {
             HStack(spacing: .huiSpaces.primitives.xxxSmall) {
-                Text(title)
-                    // TODO: Use new Typography modifier
-                    // .huiTypography(.buttonTextLarge)
-                    .font(size.typography.font)
+                Text(title).huiTypography(size.typography)
 
                 if let onCloseAction {
                     Button {
