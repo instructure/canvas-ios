@@ -37,7 +37,7 @@ extension HorizonUI.Tooltip {
         var body: some View {
             VStack(spacing: 8) {
                 ForEach(Edge.allCases, id: \.self) { edge in
-                    Text(edge.label)
+                    Text("Edge Direction: \(edge.label)")
                     HStack {
                         Spacer()
                         ForEach(HorizonUI.Tooltip.Style.allCases, id: \.self) { style in
@@ -57,7 +57,7 @@ extension HorizonUI.Tooltip {
                             Spacer()
                         }
                     }
-                    .padding(.bottom, 32)
+                    .padding(.bottom, 40)
                 }
             }
         }
