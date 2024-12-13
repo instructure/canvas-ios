@@ -97,7 +97,6 @@ workflows:
     - comment-on-github-pull-request@0:
         inputs:
         - body: $PR_BUILDS_COMMENT
-        - update_comment_tag: $INST_XCODE_SCHEME_Build
         - personal_access_token: $GITHUB_API_TOKEN
         is_always_run: false
   pr_adhoc_build:

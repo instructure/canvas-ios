@@ -37,10 +37,10 @@ for APP_NAME in "${APP_NAMES[@]}"; do
 
 done
 
-PR_COMMENT="<h1>Builds</h1>"
+PR_COMMENT="<h3>Builds</h3>"
 PR_COMMENT+="<table>"
 PR_COMMENT+="<tr>${COLUMNS}</tr>"
 PR_COMMENT+="</table>"
 
 printf "\nGenerated HTML snippet:\n${PR_COMMENT}"
-envman add --key PR_BUILDS_COMMENT --value $PR_COMMENT
+envman add --key PR_BUILDS_COMMENT --value "${PR_COMMENT}"
