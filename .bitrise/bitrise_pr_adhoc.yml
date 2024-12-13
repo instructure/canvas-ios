@@ -98,9 +98,9 @@ workflows:
   pr_adhoc_build:
     description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME (e.g., Horizon)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
     steps:
-    - set-xcode-build-number@1:
+    - set-xcode-build-number@2:
         inputs:
-        - plist_path: $INST_XCODE_SCHEME/$INST_XCODE_SCHEME/Resources/Info.plist
+        - scheme: $INST_XCODE_SCHEME
     - bitrise-step-stamp-appicon-with-version-number@1:
         inputs:
         - stamp_version: PR
