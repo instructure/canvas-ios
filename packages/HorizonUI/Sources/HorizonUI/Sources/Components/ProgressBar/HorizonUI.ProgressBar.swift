@@ -36,7 +36,7 @@ public extension HorizonUI {
         ///    - size: Select from two values [small or medium]
         ///    - numberPosition: The progress text position select from three values [inside, outside or hidden]
         ///    - textColor: The color for the progress bar text
-        ///    
+        ///
         /// - Example:
         /// HorizonUI.ProgressBar(
         ///     progress: 0.5,
@@ -88,7 +88,7 @@ extension HorizonUI.ProgressBar {
                             .frame(minWidth: width, alignment: .trailing)
                     }
                 }
-                .clipShape(Capsule())
+                .huiCornerRadius(level: .level28)
             }
     }
 
@@ -106,17 +106,20 @@ extension HorizonUI.ProgressBar {
     }
 
     private var backgroundView: some View {
-        Capsule()
+        Rectangle()
             .fill(size.backgroundColor)
-            .overlay {
-                Capsule()
-                    .stroke(size == .small ? .clear : progressColor, lineWidth: 2)
-            }
+            .huiCornerRadius(level: .level28)
+            .huiBorder(
+                level: .level2,
+                color: size == .small ? .clear : progressColor,
+                radius: size.height
+            )
     }
 
     private func progressFillView(width: CGFloat) -> some View {
-        Capsule()
+        Rectangle()
             .fill(progressColor)
+            .huiCornerRadius(level: .level28)
             .frame(width: width)
     }
 }

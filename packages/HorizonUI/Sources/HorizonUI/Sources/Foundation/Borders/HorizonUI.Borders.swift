@@ -21,6 +21,7 @@ import SwiftUI
 public extension HorizonUI {
     enum Borders: CGFloat, CaseIterable {
         case level1 = 1
+        case level2 = 2
     }
 }
 

@@ -29,7 +29,7 @@ public extension HorizonUI.ProgressBar {
                     mediumFull
                     smallBar
                 }
-                .padding(.horizontal, 16)
+                .padding(16)
                 .navigationTitle("ProgressBar")
             }
             .background(Color.black.opacity(0.1))
