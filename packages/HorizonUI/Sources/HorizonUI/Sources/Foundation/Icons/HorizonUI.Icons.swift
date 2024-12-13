@@ -19,6 +19,7 @@
 import SwiftUI
 
 public extension HorizonUI {
+
      struct Icons: Sendable {
         fileprivate init() {}
 
