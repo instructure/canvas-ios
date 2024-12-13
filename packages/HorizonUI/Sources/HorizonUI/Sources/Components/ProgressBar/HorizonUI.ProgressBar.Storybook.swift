@@ -83,7 +83,7 @@ public extension HorizonUI.ProgressBar {
                     progress: 0.5343,
                     size: .medium,
                     numberPosition: .inside,
-                    progressTextColor: .huiColors.primitives.white10
+                    textColor: .huiColors.primitives.white10
                 )
 
                 HorizonUI.ProgressBar(
@@ -106,7 +106,7 @@ public extension HorizonUI.ProgressBar {
                     progress: 1,
                     size: .medium,
                     numberPosition: .inside,
-                    progressTextColor: .huiColors.primitives.white10
+                    textColor: .huiColors.primitives.white10
                 )
 
                 HorizonUI.ProgressBar(

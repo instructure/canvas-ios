@@ -26,7 +26,7 @@ public extension HorizonUI {
         private let size: Size
         private let progressColor: Color
         private let numberPosition: NumberPosition
-        private let progressTextColor: Color
+        private let textColor: Color
 
         // MARK: - Init
 
@@ -35,13 +35,13 @@ public extension HorizonUI {
             size: Size,
             progressColor: Color = .huiColors.surface.institution,
             numberPosition: NumberPosition = .inside,
-            progressTextColor: Color = .huiColors.surface.institution
+            textColor: Color = .huiColors.surface.institution
         ) {
             self.progress = progress
             self.size = size
             self.progressColor = progressColor
             self.numberPosition = numberPosition
-            self.progressTextColor = progressTextColor
+            self.textColor = textColor
         }
 
         public var body: some View {
@@ -85,7 +85,7 @@ extension HorizonUI.ProgressBar {
                 Text(percentageRound, format: .number) + Text("%")
             }
             .padding(.horizontal, .huiSpaces.primitives.xSmall)
-            .foregroundStyle(progressTextColor)
+            .foregroundStyle(textColor)
             .font(.huiFonts.figtreeSemibolt14)
         }
     }
