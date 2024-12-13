@@ -32,8 +32,8 @@ public extension HorizonUI {
 
         public init(
             progress: Double,
-            size: Size,
             progressColor: Color = .huiColors.surface.institution,
+            size: Size,
             numberPosition: NumberPosition = .inside,
             textColor: Color = .huiColors.surface.institution
         ) {
