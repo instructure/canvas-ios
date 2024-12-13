@@ -21,82 +21,79 @@ import SwiftUI
 /// The intention is to call this in the same was as .popover
 /// e.g., Button("Pop!").tooltip($isPresented)
 extension View {
-    func tooltip(
+    func huiTooltip(
         isPresented: Binding<Bool>,
         arrowEdge: Edge? = nil,
         style: HorizonUI.Tooltip.Style = .primary,
         content: @escaping () -> some View
     ) -> some View {
-        modifier(HorizonUI.Tooltip.Tooltip(
-            isPresented: isPresented,
-            arrowEdge: arrowEdge,
-            style: style,
-            content: content
-        ))
-    }
-}
-
-extension HorizonUI.Tooltip {
-    enum Style: String, CaseIterable {
-        case primary = "Primary"
-        case secondary = "Secondary"
-
-        var foreground: Color {
-            switch self {
-            case .primary:
-                Color.huiColors.text.surfaceColored
-            case .secondary:
-                Color.huiColors.text.body
-            }
-        }
-
-        var background: Color {
-            switch self {
-            case .primary:
-                return Color.huiColors.surface.inverseSecondary
-            case .secondary:
-                return Color.huiColors.surface.cardPrimary
-            }
-        }
+        modifier(
+            HorizonUI.Tooltip(
+                isPresented: isPresented,
+                arrowEdge: arrowEdge,
+                style: style,
+                content: content
+            ))
     }
 }
 
 extension HorizonUI {
-    enum Tooltip {
-        struct Tooltip<TooltipContent: View>: ViewModifier {
-            // MARK: - Dependencies
+    struct Tooltip: ViewModifier {
+        // MARK: - Dependencies
 
-            private let arrowEdge: Edge?
-            private let content: TooltipContent
-            private let style: HorizonUI.Tooltip.Style
-            private var isPresented: Binding<Bool>
+        private let arrowEdge: Edge?
+        private let content: AnyView
+        private let style: HorizonUI.Tooltip.Style
+        private var isPresented: Binding<Bool>
 
-            // MARK: - init
+        // MARK: - init
 
-            init(
-                isPresented: Binding<Bool>,
-                arrowEdge: Edge? = nil,
-                style: HorizonUI.Tooltip.Style = .primary,
-                @ViewBuilder content: @escaping () -> TooltipContent
-            ) {
-                self.arrowEdge = arrowEdge
-                self.style = style
-                self.content = content()
-                self.isPresented = isPresented
+        init(
+            isPresented: Binding<Bool>,
+            arrowEdge: Edge? = nil,
+            style: HorizonUI.Tooltip.Style = .primary,
+            @ViewBuilder content: @escaping () -> any View
+        ) {
+            self.arrowEdge = arrowEdge
+            self.style = style
+            self.content = AnyView(content())
+            self.isPresented = isPresented
+        }
+
+        func body(content: Content) -> some View {
+            content
+                .popover(
+                    isPresented: isPresented,
+                    arrowEdge: arrowEdge
+                ) {
+                    self.content
+                        .padding([.horizontal], .huiSpaces.primitives.mediumSmall)
+                        .foregroundStyle(style.foregroundColor)
+                        .presentationCompactAdaptation(.popover)
+                        .presentationBackground(style.backgroundColor)
+                }
+        }
+
+        enum Style: String, CaseIterable {
+            case primary = "Primary"
+            case secondary = "Secondary"
+
+            var foregroundColor: Color {
+                switch self {
+                case .primary:
+                    Color.huiColors.text.surfaceColored
+                case .secondary:
+                    Color.huiColors.text.body
+                }
             }
 
-            func body(content: Content) -> some View {
-                content
-                    .popover(
-                        isPresented: isPresented,
-                        arrowEdge: arrowEdge
-                    ) {
-                        self.content
-                            .padding([.horizontal], 16)
-                            .foregroundStyle(style.foreground)
-                            .presentationCompactAdaptation(.popover)
-                            .presentationBackground(style.background)
-                    }
+            var backgroundColor: Color {
+                switch self {
+                case .primary:
+                    return Color.huiColors.surface.inverseSecondary
+                case .secondary:
+                    return Color.huiColors.surface.cardPrimary
+                }
             }
         }
     }

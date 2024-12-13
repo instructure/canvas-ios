@@ -44,7 +44,7 @@ extension HorizonUI.Tooltip {
                             Button(style.rawValue) {
                                 visible[edge]?[style] = true
                             }
-                            .tooltip(
+                            .huiTooltip(
                                 isPresented: Binding(
                                     get: { visible[edge]?[style] ?? false },
                                     set: { newValue in visible[edge]?[style] = newValue }
