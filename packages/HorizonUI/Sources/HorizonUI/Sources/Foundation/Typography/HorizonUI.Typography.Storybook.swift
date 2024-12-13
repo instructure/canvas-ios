@@ -29,12 +29,9 @@ public extension HorizonUI.Typography {
                     ForEach(HorizonUI.Typography.Name.allCases) { typography in
                         VStack(alignment: .leading, spacing: 4) {
                             Text("\(typography)")
-                                .font(typography.font)
-                            HorizonUI.Typography(
-                                text: text,
-                                name: typography.id,
-                                color: .black
-                            )
+                                .font(typography.font)                           
+                            Text(text)
+                                .huiTypography(typography.id)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }

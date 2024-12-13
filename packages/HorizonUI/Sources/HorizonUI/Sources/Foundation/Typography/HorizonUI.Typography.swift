@@ -19,7 +19,7 @@
 import SwiftUI
 
 public extension HorizonUI {
-    struct Typography: View {
+    struct Typography: ViewModifier {
         enum Name: CaseIterable {
             case h1
             case h2
@@ -52,7 +52,7 @@ public extension HorizonUI {
                 case .buttonTextMedium: return .huiFonts.figtreeRegular14
                 }
             }
-            
+
             var letterSpacing: CGFloat {
                 switch self {
                 case .h1: return 0
@@ -70,47 +70,55 @@ public extension HorizonUI {
                 case .buttonTextMedium: return 0
                 }
             }
+
+            var lineSpacing: CGFloat {
+                switch self {
+                case .h1: return 39.2
+                case .h2: return 33.6
+                case .h3: return 28
+                case .p1: return 22.4
+                case .p2: return 19.6
+                case .p3: return 16.8
+                // TODO: Need to check with the team
+                case .tag: return 16.8
+                case .labelLargeBold: return 22.4
+                case .labelMediumBold: return 19.6
+                case .labelSmallBold: return 16.8
+                case .labelSmall: return 16.8
+                case .buttonTextLarge: return 22.4
+                case .buttonTextMedium: return 19.6
+                }
+            }
         }
 
-        private let text: String
-        private let name: Typography.Name
-        private let color: Color
+        private let name: Name
 
-        init(
-            text: String,
-            name: Typography.Name,
-            color: Color = HorizonUI.colors.primitives.blue57
-        ) {
-            self.text = text
+        init(_ name: Name) {
             self.name = name
-            self.color = color
         }
 
-        public var body: some View {
-            Text(text)
+        public func body(content: Content) -> some View{
+            content
                 .font(name.font)
+                .lineSpacing(name.lineSpacing)
                 .tracking(name.letterSpacing)
-                .foregroundStyle(color)
         }
+    }
+}
+
+extension View {
+    func huiTypography(_ name: HorizonUI.Typography.Name) -> some View {
+        modifier(HorizonUI.Typography(name))
     }
 }
 
 #Preview {
     VStack(spacing: 8) {
-        HorizonUI.Typography(
-            text: "First text",
-            name: .h1,
-            color: .huiColors.primitives.blue57
-        )
-        HorizonUI.Typography(
-            text: "First text",
-            name: .h2,
-            color: .huiColors.primitives.blue57
-        )
-        HorizonUI.Typography(
-            text: "First text",
-            name: .h3,
-            color: .huiColors.primitives.blue57
-        )
+        Text("First text H1")
+            .foregroundStyle(Color.huiColors.primitives.blue57)
+            .huiTypography(.h1)
+        Text("Second text H2")
+            .foregroundStyle(Color.huiColors.primitives.blue57)
+            .huiTypography(.h2)
     }
 }
