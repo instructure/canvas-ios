@@ -148,6 +148,7 @@ workflows:
         - automatic_code_signing: api-key
         - icloud_container_environment: Production
         - scheme: $INST_XCODE_SCHEME
+        - verbose_log: "yes"
     - deploy-to-bitrise-io@2:
         inputs:
         - notify_user_groups: none
