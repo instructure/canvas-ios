@@ -40,15 +40,6 @@ public extension HorizonUI.ProgressBar {
                 return .clear
             }
         }
-
-        var isProgressTextVisible: Bool {
-            switch self {
-            case .medium:
-                return true
-            case .small:
-                return false
-            }
-        }
     }
 
     enum NumberPosition {
