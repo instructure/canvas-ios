@@ -27,7 +27,7 @@ extension HorizonUI {
 
         // MARK: - Private
 
-        private let backgroundColor = Color(red: 232/255, green: 234/255, blue: 236/255)
+        private let backgroundColor:Color = Color(red: 232/255, green: 234/255, blue: 236/255)
         private let foregroundColor = Color(red: 9/255, green: 80/255, blue: 140/255)
         @State private var rotation: Double = 0
 
@@ -55,19 +55,18 @@ extension HorizonUI {
                     strokeWidth: size.strokeWidth
                 )
                 .rotationEffect(.degrees(rotation))
-                .onAppear {
-                    withAnimation(
-                        .linear(duration: 1)
-                            .repeatForever(autoreverses: false)
-                    ) {
-                        rotation = 360
-                    }
-                }
+                .animation(
+                    .linear(duration: 1.0).repeatForever(autoreverses: false),
+                    value: rotation
+                )
             }
             .frame(
                 width: size.dimension + size.strokeWidth,
                 height: size.dimension + size.strokeWidth
             )
+            .onAppear {
+                rotation = 360
+            }
         }
     }
 }
@@ -94,7 +93,17 @@ private struct SpinnerCircle: View {
 
 private struct PartialCircleShape: Shape {
     let diameter: CGFloat
-    let isFullCircle: Bool
+    var arcDegrees: CGFloat
+
+    init(diameter: CGFloat, arcDegrees: CGFloat) {
+        self.diameter = diameter
+        self.arcDegrees = arcDegrees
+    }
+
+    var animatableData: CGFloat {
+        get { arcDegrees }
+        set { arcDegrees = newValue }
+    }
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -105,7 +114,7 @@ private struct PartialCircleShape: Shape {
             center: center,
             radius: radius,
             startAngle: .degrees(0),
-            endAngle: .degrees(isFullCircle ? 360 : 270),
+            endAngle: .degrees(arcDegrees),
             clockwise: false
         )
 
