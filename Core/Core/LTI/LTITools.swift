@@ -178,7 +178,10 @@ public class LTITools: NSObject {
             let url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
 
             if isQuizLTI == true {
-                let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
+                let controller = CoreWebViewController(features: [
+                    .invertColorsInDarkMode,
+                    .hideReturnButtonInQuizLTI
+                ])
                 controller.webView.load(URLRequest(url: url))
                 controller.title = String(localized: "Quiz", bundle: .core)
                 controller.addDoneButton(side: .right)
