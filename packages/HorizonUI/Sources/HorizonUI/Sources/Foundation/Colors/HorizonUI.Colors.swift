@@ -21,18 +21,18 @@ import SwiftUI
 public extension HorizonUI {
     struct Colors: Sendable {
         fileprivate init() {}
-        let primitives = Primitives()
-        let icon = IconColor()
-        let text = TextColor()
-        let surface = Surface()
-        let lineAndBorders = LineAndBorders()
+        public let primitives = Primitives()
+        public let icon = IconColor()
+        public let text = TextColor()
+        public let surface = Surface()
+        public let lineAndBorders = LineAndBorders()
     }
 
     static let colors = HorizonUI.Colors()
 }
 
 extension Color {
-    static let huiColors = HorizonUI.colors
+    public static let huiColors = HorizonUI.colors
 }
 
 // TODO: - Set in if DEBG later

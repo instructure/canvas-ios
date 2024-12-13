@@ -20,17 +20,17 @@ import SwiftUI
 
 public extension HorizonUI.Colors {
     struct IconColor: Sendable, ColorCollection {
-        let action = Color(hexString: "#0E68B3")
-        let actionSecondary = Color(hexString: "#0A5A9E")
-        let beigePrimary = Color(hexString: "#FBF5ED")
-        let beigeSecondary = Color(hexString: "#FFFDFA")
-        let `default` = Color(hexString: "#273540")
-        let error = Color(hexString: "#C71F23")
-        let light = Color(hexString: "#9EA6AD")
-        let medium = Color(hexString: "#6A7883")
-        let success = Color(hexString: "#03893D")
-        let surfaceColored = Color(hexString: "#FFFFFF")
-        let surfaceInverseSecondary = Color(hexString: "#0A1B2A")
-        let warning = Color(hexString: "#CF4A00")
+        public let action = Color(hexString: "#0E68B3")
+        public let actionSecondary = Color(hexString: "#0A5A9E")
+        public let beigePrimary = Color(hexString: "#FBF5ED")
+        public let beigeSecondary = Color(hexString: "#FFFDFA")
+        public let `default` = Color(hexString: "#273540")
+        public let error = Color(hexString: "#C71F23")
+        public let light = Color(hexString: "#9EA6AD")
+        public let medium = Color(hexString: "#6A7883")
+        public let success = Color(hexString: "#03893D")
+        public let surfaceColored = Color(hexString: "#FFFFFF")
+        public let surfaceInverseSecondary = Color(hexString: "#0A1B2A")
+        public let warning = Color(hexString: "#CF4A00")
     }
 }
