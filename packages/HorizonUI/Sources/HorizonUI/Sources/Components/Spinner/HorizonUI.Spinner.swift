@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 extension HorizonUI {
@@ -27,8 +28,9 @@ extension HorizonUI {
 
         // MARK: - Private
 
-        private let backgroundColor:Color = Color(red: 232/255, green: 234/255, blue: 236/255)
-        private let foregroundColor = Color(red: 9/255, green: 80/255, blue: 140/255)
+        private let spinDuration = 3.0
+        private let backgroundColor: Color = Color.huiColors.lineAndBorders.lineDivider
+        private let foregroundColor = Color.huiColors.surface.institution
         @State private var rotation: Double = 0
 
         // MARK: - Init
@@ -40,32 +42,31 @@ extension HorizonUI {
 
         var body: some View {
             ZStack {
-                if showBackground {
+                if self.showBackground {
                     SpinnerCircle(
-                        color: backgroundColor,
-                        diameter: size.dimension,
-                        isFullCircle: true,
-                        strokeWidth: size.strokeWidth
+                        color: self.backgroundColor,
+                        diameter: self.size.dimension,
+                        strokeWidth: self.size.strokeWidth,
+                        animated: false
                     )
                 }
                 SpinnerCircle(
-                    color: foregroundColor,
-                    diameter: size.dimension,
-                    isFullCircle: false,
-                    strokeWidth: size.strokeWidth
+                    color: self.foregroundColor,
+                    diameter: self.size.dimension,
+                    strokeWidth: self.size.strokeWidth
                 )
                 .rotationEffect(.degrees(rotation))
                 .animation(
-                    .linear(duration: 1.0).repeatForever(autoreverses: false),
+                    .linear(duration: spinDuration).repeatForever(autoreverses: false),
                     value: rotation
                 )
             }
             .frame(
-                width: size.dimension + size.strokeWidth,
-                height: size.dimension + size.strokeWidth
+                width: self.size.dimension + self.size.strokeWidth,
+                height: self.size.dimension + self.size.strokeWidth
             )
             .onAppear {
-                rotation = 360
+                self.rotation = 360
             }
         }
     }
@@ -74,47 +75,135 @@ extension HorizonUI {
 private struct SpinnerCircle: View {
     // MARK: - Dependencies
 
-    let color: Color
-    let diameter: CGFloat
-    let isFullCircle: Bool
-    let strokeWidth: CGFloat
+    private let animated: Bool
+    private let color: Color
+    private let diameter: CGFloat
+    private let strokeWidth: CGFloat
+
+    // MARK: - Configuration
+
+    private static let longStroke = 310.0
+    private static let shortStroke = 10.0
+    private static let short = 0.5
+    private static let long = 1.25
+
+    // MARK: - State
+
+    @State private var timeout: Double? {
+        didSet {
+            guard let timeout = self.timeout else { return }
+
+            self.timer = Timer.publish(
+                every: self.animated ? timeout : TimeInterval.greatestFiniteMagnitude,
+                on: .main,
+                in: .common
+            )
+            .autoconnect()
+
+            if animated && self.strokeLength == SpinnerCircle.longStroke {
+                self.strokeLength = SpinnerCircle.shortStroke
+            } else if animated {
+                self.strokeLength = SpinnerCircle.longStroke
+            } else {
+                self.strokeLength = 360.0
+            }
+
+            self.startDegrees = self.endDegrees
+            self.endDegrees = self.startDegrees + self.strokeLength
+        }
+    }
+    @State private var timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    @State private var endDegrees: Double = 360.0
+    @State private var startDegrees: Double = 0.0
+    @State private var strokeLength = SpinnerCircle.shortStroke
+
+    // MARK: - init
+
+    init(color: Color,
+         diameter: CGFloat,
+         strokeWidth: CGFloat,
+         animated: Bool = true
+    ) {
+        self.animated = animated
+        self.color = color
+        self.diameter = diameter
+        self.strokeWidth = strokeWidth
+        self.endDegrees = 0.0 + (animated ? SpinnerCircle.shortStroke : 360.0)
+        self.timeout = SpinnerCircle.long
+        self.timer = Timer.publish(
+            every: 0.05,
+            on: .main,
+            in: .common
+        )
+        .autoconnect()
+    }
 
     var body: some View {
-        PartialCircleShape(diameter: diameter, isFullCircle: isFullCircle)
-            .stroke(
-                color,
-                style: StrokeStyle(
-                    lineWidth: strokeWidth,
-                    lineCap: .round
-                )
+        PartialCircleShape(
+            diameter: self.diameter,
+            startDegrees: self.startDegrees,
+            endDegrees: self.endDegrees
+        )
+        .stroke(
+            self.color,
+            style: StrokeStyle(
+                lineWidth: self.strokeWidth,
+                lineCap: .round
             )
+        )
+        .animation(
+            .easeInOut(duration: self.timeout ?? 0.0),
+            value: self.endDegrees
+        )
+        .animation(
+            .easeInOut(duration: self.timeout ?? 0.0),
+            value: self.startDegrees
+        )
+        .onReceive(self.timer) { _ in
+            self.timeout = self.timeout == SpinnerCircle.long ? SpinnerCircle.short : SpinnerCircle.long
+        }
+    }
+}
+
+private extension View {
+    func conditionalModifier<Content: View>( _ condition: Bool, modifier: (Self) -> Content ) -> some View {
+        if condition {
+            return AnyView(modifier(self))
+        } else {
+            return AnyView(self)
+        }
     }
 }
 
 private struct PartialCircleShape: Shape {
-    let diameter: CGFloat
-    var arcDegrees: CGFloat
+    private let diameter: CGFloat
+    private var startDegrees: CGFloat
+    private var endDegrees: CGFloat
 
-    init(diameter: CGFloat, arcDegrees: CGFloat) {
+    init(diameter: CGFloat, startDegrees: CGFloat, endDegrees: CGFloat) {
         self.diameter = diameter
-        self.arcDegrees = arcDegrees
+        self.startDegrees = startDegrees
+        self.endDegrees = endDegrees
     }
 
-    var animatableData: CGFloat {
-        get { arcDegrees }
-        set { arcDegrees = newValue }
+    var animatableData: AnimatablePair<CGFloat, CGFloat> {
+        get { AnimatablePair(self.startDegrees, self.endDegrees) }
+        set {
+            self.startDegrees = newValue.first
+            self.endDegrees = newValue.second
+        }
     }
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let center = CGPoint(x: rect.midX, y: rect.midY)
-        let radius = diameter/2
+        let radius = self.diameter / 2
 
         path.addArc(
             center: center,
             radius: radius,
-            startAngle: .degrees(0),
-            endAngle: .degrees(arcDegrees),
+            startAngle: .degrees(self.startDegrees),
+            endAngle: .degrees(self.endDegrees),
             clockwise: false
         )
 
