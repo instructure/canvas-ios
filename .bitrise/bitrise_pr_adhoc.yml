@@ -9,44 +9,80 @@ workflows:
     - _common_prepare_workspace
     - _pr_adhoc_build_discovery
     steps:
-    - set-env-var@0:
+    - script@1:
         inputs:
-        - destination_keys: INST_XCODE_SCHEME
-        - value: Student
-        title: Setup Student Scheme
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Student
+            envman add --key INST_XCODE_APPICON_PATH --value Student/Student/Assets.xcassets/AppIcon.appiconset
+        title: Setup Student Variables
     - bitrise-run@0:
         inputs:
         - bitrise_config_path: ./.bitrise/bitrise.yml
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_STUDENT" "true"}}'
         title: Build Student
-    - set-env-var@0:
+    - script@1:
         inputs:
-        - destination_keys: INST_XCODE_SCHEME
-        - value: Teacher
-        title: Setup Teacher Scheme
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Teacher
+            envman add --key INST_XCODE_APPICON_PATH --value Teacher/Teacher/Assets.xcassets/AppIcon.appiconset
+        title: Setup Teacher Variables
     - bitrise-run@0:
         inputs:
         - bitrise_config_path: ./.bitrise/bitrise.yml
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_TEACHER" "true"}}'
         title: Build Teacher
-    - set-env-var@0:
+    - script@1:
         inputs:
-        - destination_keys: INST_XCODE_SCHEME
-        - value: Parent
-        title: Setup Parent Scheme
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Parent
+            envman add --key INST_XCODE_APPICON_PATH --value Parent/Parent/Assets.xcassets/AppIcon.appiconset
+        title: Setup Parent Variables
     - bitrise-run@0:
         inputs:
         - bitrise_config_path: ./.bitrise/bitrise.yml
         - workflow_id: pr_adhoc_build
         run_if: '{{enveq "REQUIRE_PARENT" "true"}}'
         title: Build Parent
-    - set-env-var@0:
+    - script@1:
         inputs:
-        - destination_keys: INST_XCODE_SCHEME
-        - value: Horizon
-        title: Setup Horizon Scheme
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Horizon
+            envman add --key INST_XCODE_APPICON_PATH --value Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset
+        title: Setup Horizon Variables
     - bitrise-run@0:
         inputs:
         - bitrise_config_path: ./.bitrise/bitrise.yml
@@ -96,7 +132,7 @@ workflows:
         - personal_access_token: $GITHUB_API_TOKEN
         is_always_run: false
   pr_adhoc_build:
-    description: "This step expects the following environment variable: \n$INST_XCODE_SCHEME (e.g., Horizon)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
+    description: "This step expects the following environment variables: \n$INST_XCODE_SCHEME (e.g., Horizon)\n$INST_XCODE_APPICON_PATH (e.g., Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
     steps:
     - set-xcode-build-number@2:
         inputs:
@@ -105,7 +141,7 @@ workflows:
         inputs:
         - stamp_version: PR
         - stamp_build_number: $PR_NUMBER
-        - stamp_path_to_icons: $INST_XCODE_SCHEME/$INST_XCODE_SCHEME/Resources/Assets.xcassets/AppIcon.appiconset
+        - stamp_path_to_icons: $INST_XCODE_APPICON_PATH
     - xcode-archive@5:
         inputs:
         - distribution_method: ad-hoc
