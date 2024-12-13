@@ -62,6 +62,7 @@ public extension HorizonUI.ProgressBar {
                     progress: 0.01,
                     size: .medium
                 )
+                
                 HorizonUI.ProgressBar(
                     progress: 0.1,
                     size: .medium,
