@@ -51,7 +51,9 @@ public struct Storybook: View {
                     } label: {
                         Text("Elevation / Shadows").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Icons.Storybook()
+                    } label: {
                         Text("Iconography").tint(Color.black)
                     }
                 }
@@ -67,7 +69,9 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Tag").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.ButtonStyles.Storybook()
+                    } label: {
                         Text("Buttons and Links").tint(Color.black)
                     }
                     NavigationLink {
@@ -94,7 +98,7 @@ public struct Storybook: View {
                     }
                     NavigationLink {} label: {
                         Text("Navigation").tint(Color.black)
-                    }
+                    }         
                 }
             }
             .listStyle(.sidebar)

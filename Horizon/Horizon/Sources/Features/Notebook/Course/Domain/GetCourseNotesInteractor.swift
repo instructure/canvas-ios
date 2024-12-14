@@ -23,29 +23,14 @@ struct NotebookCourseNote {
     let date: Date
     let id: String
     let note: String
-    let type: NotebookNoteLabel?
+    let types: [CourseNoteLabel]
 
     init(from courseNote: CourseNote) {
-        let notebookNoteLabel = courseNote.labels
-          .map { label in
-              NotebookNoteLabel.allCases.first {
-                  $0.rawValue.lowercased() == label.lowercased()
-              }
-          }
-          .filter {$0 != nil}
-          .map {$0!}
-          .first
-
         date = courseNote.date
         id = courseNote.id
         note = courseNote.content
-        type = notebookNoteLabel
+        types = courseNote.labels
     }
-}
-
-enum NotebookNoteLabel: String, CaseIterable {
-    case confusing = "Confusing"
-    case important = "Important"
 }
 
 final class GetCourseNotesInteractor {
@@ -53,17 +38,20 @@ final class GetCourseNotesInteractor {
 
     let courseNotesRepository: CourseNotesRepository
 
-    // MARK: - Properties
+    // MARK: - Public
+
+    var filter: CourseNoteLabel? {
+        filterPublisher.value
+    }
+
+    // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
     private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
     var term: String {
         termPublisher.value
     }
-    private var filterPublisher: CurrentValueSubject<NotebookNoteLabel?, Error> = CurrentValueSubject(nil)
-    var filter: NotebookNoteLabel? {
-        filterPublisher.value
-    }
+    private var filterPublisher: CurrentValueSubject<CourseNoteLabel?, Error> = CurrentValueSubject(nil)
 
     // MARK: - Init
 
@@ -71,7 +59,7 @@ final class GetCourseNotesInteractor {
         self.courseNotesRepository = courseNotesRepository
     }
 
-    // MARK: - Public
+    // MARK: - Public Methods
 
     func get(courseId: String) -> AnyPublisher<[NotebookCourseNote], Error> {
         courseNotesRepository.get()
@@ -89,17 +77,16 @@ final class GetCourseNotesInteractor {
         termPublisher.send(term)
     }
 
-    func setFilter(_ filter: NotebookNoteLabel?) {
+    func setFilter(_ filter: CourseNoteLabel?) {
         filterPublisher.send(filter)
     }
 
-    // MARK: - Private
+    // MARK: - Private Methods
 
-    private func filterByLabel(notes: [NotebookCourseNote], filter: NotebookNoteLabel?) -> [NotebookCourseNote] {
+    private func filterByLabel(notes: [NotebookCourseNote], filter: CourseNoteLabel?) -> [NotebookCourseNote] {
         notes.filter { note in
             guard let filter = filter else { return true } // if no label is specified, all values pass
-            guard let type = note.type else { return false } // if no type is specified on the note but a label is specified, it does not pass
-            return type.rawValue.lowercased() == filter.rawValue.lowercased() // otherwise, the note passes if the type matches the label
+            return note.types.contains(filter) // otherwise, the note passes if the type matches the label
         }
     }
 
