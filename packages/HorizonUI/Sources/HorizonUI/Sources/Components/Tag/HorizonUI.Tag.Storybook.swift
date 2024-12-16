@@ -20,6 +20,11 @@ import SwiftUI
 
 public extension HorizonUI.Tag {
     struct Storybook: View {
+        
+        @State private var isEnabled1 = true
+        @State private var isEnabled2 = true
+        @State private var isEnabled3 = true
+        
         public var body: some View {
             LazyVGrid(
                 columns: [
@@ -28,12 +33,13 @@ public extension HorizonUI.Tag {
                 ],
                 spacing: 16
             ) {
-                // MARK: - DEFAULT styles
+                // MARK: - Standalone with button - Enabled
 
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
                     style: .standalone,
                     size: .large,
+                    backgroundColor: .huiColors.surface.pageTertiary,
                     onCloseAction: {}
                 )
 
@@ -41,6 +47,7 @@ public extension HorizonUI.Tag {
                     title: "Lorem ipsum",
                     style: .standalone,
                     size: .medium,
+                    backgroundColor: .huiColors.surface.pageTertiary,
                     onCloseAction: {}
                 )
 
@@ -48,9 +55,41 @@ public extension HorizonUI.Tag {
                     title: "Lorem ipsum",
                     style: .standalone,
                     size: .small,
+                    backgroundColor: .huiColors.surface.pageTertiary,
+                    onCloseAction: {}
+                )
+                
+                // MARK: - Standalone with button - Disabled
+                
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .standalone,
+                    size: .large,
+                    backgroundColor: .huiColors.surface.pageTertiary,
+                    isEnabled: false,
                     onCloseAction: {}
                 )
 
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .standalone,
+                    size: .medium,
+                    backgroundColor: .huiColors.surface.pageTertiary,
+                    isEnabled: false,
+                    onCloseAction: {}
+                )
+
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .standalone,
+                    size: .small,
+                    backgroundColor: .huiColors.surface.pageTertiary,
+                    isEnabled: false,
+                    onCloseAction: {}
+                )
+
+                // MARK: - Standalone without button - Enabled
+                
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
                     style: .standalone,
@@ -68,6 +107,31 @@ public extension HorizonUI.Tag {
                     style: .standalone,
                     size: .small
                 )
+                
+                // MARK: - Standalone without button - Disabled
+
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .standalone,
+                    size: .large,
+                    isEnabled: false
+                )
+
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .standalone,
+                    size: .medium,
+                    isEnabled: false
+                )
+
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .standalone,
+                    size: .small,
+                    isEnabled: false
+                )
+                
+                // MARK: - Inline with button - Enabled
 
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
@@ -89,7 +153,35 @@ public extension HorizonUI.Tag {
                     size: .small,
                     onCloseAction: {}
                 )
+                
+                // MARK: Inline with button - Disabled
+                
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .inline,
+                    size: .large,
+                    isEnabled: false,
+                    onCloseAction: {}
+                )
 
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .inline,
+                    size: .medium,
+                    isEnabled: false,
+                    onCloseAction: {}
+                )
+
+                HorizonUI.Tag(
+                    title: "Lorem ipsum",
+                    style: .inline,
+                    size: .small,
+                    isEnabled: false,
+                    onCloseAction: {}
+                )
+
+                // MARK: - Inline without button - Enabled
+                
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
                     style: .inline,

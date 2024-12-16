@@ -54,7 +54,9 @@ public extension HorizonUI {
         private let style: Style
         private let size: Size
         private let backgroundColor: Color
+        private let textColor: Color
         private let borderColor: Color
+        private let isEnabled: Bool
         private let onCloseAction: (() -> Void)?
 
         // MARK: - Init
@@ -64,14 +66,18 @@ public extension HorizonUI {
             style: Style,
             size: Size,
             backgroundColor: Color = .huiColors.surface.pageSecondary,
+            textColor: Color = .huiColors.text.body,
             borderColor: Color = .huiColors.lineAndBorders.lineStroke,
+            isEnabled: Bool = true,
             onCloseAction: (() -> Void)? = nil
         ) {
             self.title = title
             self.style = style
             self.size = size
             self.backgroundColor = backgroundColor
+            self.textColor = textColor
             self.borderColor = borderColor
+            self.isEnabled = isEnabled
             self.onCloseAction = onCloseAction
         }
 
@@ -86,12 +92,15 @@ public extension HorizonUI {
 
         private var inlineTag: some View {
             ZStack(alignment: .topTrailing) {
-                Text(title).huiTypography(size.typography)
+                Text(title)
+                    .huiTypography(size.typography)
+                    .foregroundStyle(textColor)
                     .padding(.leading, leadingPadding())
                     .padding(.trailing, trailingPadding())
                     .padding(.vertical, verticalPadding())
                     .frame(minHeight: minimumHeight())
                     .fixedSize(horizontal: false, vertical: false)
+                    .background(backgroundColor)
                     .huiCornerRadius(level: style.cornerRadius)
                     .huiBorder(
                         level: .level1,
@@ -113,11 +122,15 @@ public extension HorizonUI {
                     }
                 }
             }
+            .disabled(!isEnabled)
+            .opacity(isEnabled ? 1 : 0.5)
         }
 
         private var standaloneTag: some View {
             HStack(spacing: .huiSpaces.primitives.xxxSmall) {
-                Text(title).huiTypography(size.typography)
+                Text(title)
+                    .huiTypography(size.typography)
+                    .foregroundStyle(textColor)
 
                 if let onCloseAction {
                     Button {
@@ -134,12 +147,15 @@ public extension HorizonUI {
             .padding(.vertical, verticalPadding())
             .frame(minHeight: minimumHeight())
             .fixedSize(horizontal: false, vertical: false)
+            .background(backgroundColor)
             .huiCornerRadius(level: style.cornerRadius)
             .huiBorder(
                 level: .level1,
                 color: borderColor,
                 radius: style.cornerRadius.attributes.radius
             )
+            .disabled(!isEnabled)
+            .opacity(isEnabled ? 1 : 0.5)
         }
 
         // MARK: - Helpers
