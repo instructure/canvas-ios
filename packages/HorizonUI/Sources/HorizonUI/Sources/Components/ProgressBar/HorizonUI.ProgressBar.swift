@@ -88,7 +88,7 @@ extension HorizonUI.ProgressBar {
                             .frame(minWidth: width, alignment: .trailing)
                     }
                 }
-                .huiCornerRadius(level: .level28)
+                .huiCornerRadius(level: .level6)
             }
     }
 
@@ -101,14 +101,14 @@ extension HorizonUI.ProgressBar {
             }
             .padding(.horizontal, .huiSpaces.primitives.xSmall)
             .foregroundStyle(textColor)
-            .font(.huiFonts.figtreeSemibolt14)
+            .huiTypography(.buttonTextMedium)
         }
     }
 
     private var backgroundView: some View {
         Rectangle()
             .fill(size.backgroundColor)
-            .huiCornerRadius(level: .level28)
+            .huiCornerRadius(level: .level6)
             .huiBorder(
                 level: .level2,
                 color: size == .small ? .clear : progressColor,
@@ -119,7 +119,7 @@ extension HorizonUI.ProgressBar {
     private func progressFillView(width: CGFloat) -> some View {
         Rectangle()
             .fill(progressColor)
-            .huiCornerRadius(level: .level28)
+            .huiCornerRadius(level: .level6)
             .frame(width: width)
     }
 }
