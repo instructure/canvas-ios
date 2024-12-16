@@ -127,6 +127,7 @@ class SubmissionButtonPresenter: NSObject {
                 context: .course(courseID),
                 id: assignment.externalToolContentID,
                 launchType: .assessment,
+                isQuizLTI: assignment.isQuizLTI,
                 assignmentID: assignment.id
             ).presentTool(from: view, animated: true)
         case .discussion_topic:
