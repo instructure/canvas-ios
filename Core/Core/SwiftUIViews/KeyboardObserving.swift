@@ -56,7 +56,8 @@ public extension KeyboardObserving {
 }
 
 /// Use this whenever you need quick access to keyboard state
-/// without worrying about state publishing.
+/// without worrying about state publishing. Keyboard state is assumed
+/// to be `hidden` when this object is initialized.
 public class KeyboardObserved: KeyboardObserving {
     public private(set) var state: KeyboardState = .hidden
     private var subscription: AnyCancellable?
