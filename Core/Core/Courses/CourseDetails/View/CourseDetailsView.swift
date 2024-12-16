@@ -186,8 +186,16 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
     }
 
     private func setupDefaultSplitDetailView(_ url: URL?) {
-        if let defaultViewProvider = controller.value as? DefaultViewProvider, defaultViewProvider.defaultViewRoute != url?.absoluteString {
-            defaultViewProvider.defaultViewRoute = url?.absoluteString
+        let routeUrl = url?.absoluteString
+        guard let defaultViewProvider = controller.value as? DefaultViewProvider,
+              defaultViewProvider.defaultViewRoute?.url != routeUrl
+        else { return }
+
+        defaultViewProvider.defaultViewRoute = routeUrl.map {
+            .init(
+                url: $0,
+                userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
+            )
         }
     }
 }

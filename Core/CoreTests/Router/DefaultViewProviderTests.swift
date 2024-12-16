@@ -48,8 +48,8 @@ class DefaultViewProviderTests: CoreTestCase {
 }
 
 class MockDefaultViewProviderViewController: UIViewController, DefaultViewProvider {
-    var defaultViewRoute: String? {
-        get { "/empty" }
+    var defaultViewRoute: DefaultViewRouteParameters? {
+        get { .init(url: "/empty") }
         set {}
     }
 }
