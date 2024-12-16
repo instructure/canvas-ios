@@ -142,7 +142,6 @@ public class AssignmentListViewModel: ObservableObject {
 
     func viewDidAppear() {
         isFilterIconSolid = isFilteringCustom || selectedGradingPeriodId != defaultGradingPeriodId
-        assignmentGroups?.refresh()
     }
 
     private func gradingPeriodsDidUpdate() {
@@ -164,7 +163,6 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         filterOptionsDidUpdate(filterOptionsStudent: selectedFilterOptionsStudent, gradingPeriodId: selectedGradingPeriodId)
-        assignmentGroups?.refresh()
     }
 
     func filterOptionsDidUpdate(
@@ -197,6 +195,8 @@ public class AssignmentListViewModel: ObservableObject {
         assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriodId)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
+
+        assignmentGroups?.refresh()
     }
 
     private func assignmentGroupsDidUpdate() {
@@ -340,7 +340,6 @@ public class AssignmentListViewModel: ObservableObject {
                     sortingOption: assignmentListPreferences.sortingOption,
                     gradingPeriodId: assignmentListPreferences.gradingPeriodId
                 )
-                assignmentGroups?.refresh()
                 saveAssignmentListPreferences()
             })
         let controller = CoreHostingController(AssignmentListPreferencesScreen(viewModel: viewModel))
