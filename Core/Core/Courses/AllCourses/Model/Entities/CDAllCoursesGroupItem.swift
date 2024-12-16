@@ -34,6 +34,7 @@ public final class CDAllCoursesGroupItem: NSManagedObject, WriteableModel {
 
     @NSManaged public var concluded: Bool
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var isAccessible: Bool
 
     public var context: Context? {
         get { contextRaw.flatMap { Context(canvasContextID: $0) } }
@@ -61,6 +62,7 @@ public final class CDAllCoursesGroupItem: NSManagedObject, WriteableModel {
 
         model.concluded = item.concluded
         model.isFavorite = item.is_favorite ?? true
+        model.isAccessible = item.can_access ?? false
 
         return model
     }

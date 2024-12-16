@@ -353,8 +353,8 @@ extension ModuleListViewController: MasteryPathDelegate {
 
 extension ModuleListViewController: DefaultViewProvider {
 
-    public var defaultViewRoute: String? {
-        get { "/empty" }
+    public var defaultViewRoute: DefaultViewRouteParameters? {
+        get { .init(url: "/empty") }
         // swiftlint:disable:next unused_setter_value
         set {}
     }
