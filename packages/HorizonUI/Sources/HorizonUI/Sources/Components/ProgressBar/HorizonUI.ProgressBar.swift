@@ -27,7 +27,7 @@ public extension HorizonUI {
         private let progressColor: Color
         private let numberPosition: NumberPosition
         private let textColor: Color
-        private let cornerRadius: CornerRadius
+        private let cornerRadius: CornerRadius = .level6
 
         // MARK: - Init
 
@@ -51,15 +51,13 @@ public extension HorizonUI {
             progressColor: Color = .huiColors.surface.institution,
             size: Size,
             numberPosition: NumberPosition = .inside,
-            textColor: Color = .huiColors.surface.institution,
-            cornerRadius: CornerRadius = .level6
+            textColor: Color = .huiColors.surface.institution
         ) {
             self.progress = progress
             self.size = size
             self.progressColor = progressColor
             self.numberPosition = numberPosition
             self.textColor = textColor
-            self.cornerRadius = cornerRadius
         }
 
         public var body: some View {
@@ -91,7 +89,7 @@ extension HorizonUI.ProgressBar {
                             .frame(minWidth: width, alignment: .trailing)
                     }
                 }
-                .huiCornerRadius(level: .level6)
+                .huiCornerRadius(level: cornerRadius)
             }
     }
 
@@ -111,7 +109,7 @@ extension HorizonUI.ProgressBar {
     private var backgroundView: some View {
         Rectangle()
             .fill(size.backgroundColor)
-            .huiCornerRadius(level: .level6)
+            .huiCornerRadius(level: cornerRadius)
             .huiBorder(
                 level: .level2,
                 color: size == .small ? .clear : progressColor,
@@ -122,7 +120,7 @@ extension HorizonUI.ProgressBar {
     private func progressFillView(width: CGFloat) -> some View {
         Rectangle()
             .fill(progressColor)
-            .huiCornerRadius(level: .level6)
+            .huiCornerRadius(level: cornerRadius)
             .frame(width: width)
     }
 }
