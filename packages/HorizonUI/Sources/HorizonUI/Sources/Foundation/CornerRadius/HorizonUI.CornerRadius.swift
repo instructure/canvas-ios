@@ -26,7 +26,7 @@ public extension HorizonUI {
         case level4
         case level5
         case level6
-        
+
         typealias CornerAttributes = SmoothRoundedRectangle.CornerAttributes
 
         var attributes: CornerAttributes {

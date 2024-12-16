@@ -18,27 +18,33 @@
 
 import SwiftUI
 
-public extension HorizonUI {
-    enum Borders: CGFloat, CaseIterable {
-        case level1 = 1
-        case level2 = 2
-    }
-}
+public extension HorizonUI.ProgressBar {
+    enum Size: Equatable {
+        case small
+        case medium
 
-public extension View {
-    @ViewBuilder
-    func huiBorder(
-        level: HorizonUI.Borders?,
-        color: Color = Color(hexString: "#D7DADE"),
-        radius: Double = 0
-    ) -> some View {
-        if let level {
-            overlay(
-                RoundedRectangle(cornerRadius: radius)
-                    .strokeBorder(color, lineWidth: level.rawValue)
-            )
-        } else {
-            self
+        var height: CGFloat {
+            switch self {
+            case .small:
+                return 8
+            case .medium:
+                return 28
+            }
         }
+
+        var backgroundColor: Color {
+            switch self {
+            case .small:
+                return .huiColors.primitives.white10.opacity(0.3)
+            case .medium:
+                return .clear
+            }
+        }
+    }
+
+    enum NumberPosition {
+        case inside
+        case outside
+        case hidden
     }
 }
