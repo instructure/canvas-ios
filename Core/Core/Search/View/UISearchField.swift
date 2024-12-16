@@ -31,7 +31,6 @@ class UISearchField: UIView {
         icon.setContentCompressionResistancePriority(.required, for: .horizontal)
         icon.translatesAutoresizingMaskIntoConstraints = false
 
-        field.placeholder = "Search in this course"
         field.font = .scaledNamedFont(.regular14)
         field.autocapitalizationType = .none
         field.returnKeyType = .search
