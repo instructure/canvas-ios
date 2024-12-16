@@ -150,7 +150,7 @@ public extension HorizonUI.Pill {
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.all, 16)
-            .navigationTitle("Pills")
+            .navigationTitle("Pill")
             .navigationBarTitleDisplayMode(.large)
         }
     }
