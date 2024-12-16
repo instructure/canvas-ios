@@ -60,7 +60,7 @@ class UISearchField: UIView {
         NSLayoutConstraint.activate([
             icon.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
             icon.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-            
+
             field.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10),
             field.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -5),
             field.trailingAnchor
@@ -69,7 +69,7 @@ class UISearchField: UIView {
             field.centerYAnchor.constraint(equalTo: container.centerYAnchor)
         ])
     }
-    
+
     required init?(coder: NSCoder) { nil }
 }
 
