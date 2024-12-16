@@ -23,7 +23,6 @@ COLUMNS=""
 for APP_NAME in "${APP_NAMES[@]}"; do
 	FILE_NAME="${APP_NAME}_qr_url"
 
-
 	if [[ -f "${FILE_NAME}" ]]; then
 		QR_URL=$(<"${FILE_NAME}")
 		echo "${APP_NAME}'s QR url is ${QR_URL}."

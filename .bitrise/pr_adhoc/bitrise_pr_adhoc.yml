@@ -98,6 +98,7 @@ workflows:
         inputs:
         - body: $PR_BUILDS_COMMENT
         - personal_access_token: $GITHUB_API_TOKEN
+        - update_comment_tag: bitrise_adhoc_builds
         is_always_run: false
   pr_adhoc_build:
     summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
@@ -170,7 +171,7 @@ workflows:
               envman add --key REQUIRE_PARENT --value "true" &&
               envman add --key REQUIRE_TEACHER --value "true" &&
               envman add --key REQUIRE_STUDENT --value "true" &&
-              envman add --key REQUIRE_HORIZON --value
+              envman add --key REQUIRE_HORIZON --value "true"
             fi
         title: Discover Which Apps To Build
     summary: |-
@@ -186,3 +187,4 @@ trigger_map:
     regex: .*
   type: pull_request
   workflow: pr_adhoc_builds
+  
