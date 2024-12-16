@@ -358,33 +358,28 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func loadAssignmentListPreferences() {
-        guard let filterSettingsData = userDefaults?.assignmentListStudentFilterSettingsByCourseId?[courseID] else {
-            return
+        guard let userDefaults else { return }
+
+        if let savedStudentFilterOptionIds = userDefaults.assignmentListStudentFilterSettingsByCourseId?[courseID] {
+            selectedFilterOptionsStudent = savedStudentFilterOptionIds.compactMap { id in
+                AssignmentFilterOptionStudent.allCases.first { $0.id == id }
+            }
         }
 
-        guard let customFilterSettingData = userDefaults?.assignmentListTeacherFilterSettingByCourseId?[courseID] else {
-            return
+        if let savedTeacherFilterOptionId = userDefaults.assignmentListTeacherFilterSettingByCourseId?[courseID],
+           let savedTeacherFilterOption = AssignmentFilterOptionsTeacher(rawValue: savedTeacherFilterOptionId) {
+            selectedFilterOptionTeacher = savedTeacherFilterOption
         }
 
-        guard let statusFilterSettingData = userDefaults?.assignmentListTeacherStatusFilterSettingByCourseId?[courseID] else {
-            return
+        if let savedStatusFilterOptionId = userDefaults.assignmentListTeacherStatusFilterSettingByCourseId?[courseID],
+           let savedStatusFilterOption = AssignmentStatusFilterOptionsTeacher(rawValue: savedStatusFilterOptionId) {
+            selectedStatusFilterOptionTeacher = savedStatusFilterOption
         }
 
-        guard let groupBySettingData = userDefaults?.assignmentListGroupBySettingByCourseId?[courseID] else {
-            return
+        if let savedGroupByOptionId = userDefaults.assignmentListGroupBySettingByCourseId?[courseID],
+           let savedGroupByOption = AssignmentArrangementOptions(rawValue: savedGroupByOptionId) {
+            selectedSortingOption = savedGroupByOption
         }
-
-        selectedFilterOptionsStudent = AssignmentFilterOptionStudent.allCases.filter { filterSettingsData.contains($0.id) }
-
-        selectedFilterOptionTeacher = AssignmentFilterOptionsTeacher.allCases.filter {
-            customFilterSettingData == $0.rawValue
-        }.first ?? selectedFilterOptionTeacher
-
-        selectedStatusFilterOptionTeacher = AssignmentStatusFilterOptionsTeacher.allCases.filter {
-            statusFilterSettingData == $0.rawValue
-        }.first ?? selectedStatusFilterOptionTeacher
-
-        selectedSortingOption = sortingOptions.filter { groupBySettingData == $0.rawValue }.first ?? selectedSortingOption
     }
 
     private func saveAssignmentListPreferences() {
