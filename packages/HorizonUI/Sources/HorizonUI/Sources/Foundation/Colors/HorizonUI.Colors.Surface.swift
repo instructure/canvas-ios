@@ -34,7 +34,7 @@ public extension HorizonUI.Colors {
         public let pagePrimary = Color(hexString: "#FBF5ED")
         public let pageSecondary = Color(hexString: "#FFFFFF")
         public let pageTertiary = Color(hexString: "#E8EAEC")
-        public let surfaceWarning = Color(hexString: "#CF4A00")
-        public let surfaceSuccess = Color(hexString: "#03893D")
+        public let warning = Color(hexString: "#CF4A00")
+        public let success = Color(hexString: "#03893D")
     }
 }
