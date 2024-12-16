@@ -112,6 +112,7 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private var assignmentGroups: Store<GetAssignmentsByGroup>?
+    private var wasAssignmentGroupsUpdated: Bool = false
 
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
@@ -133,13 +134,13 @@ public class AssignmentListViewModel: ObservableObject {
 
         loadAssignmentListPreferences()
         featureFlags.refresh()
+        course.refresh()
+        gradingPeriods.refresh(force: true)
     }
 
     // MARK: - Functions
 
-    public func viewDidAppear() {
-        gradingPeriods.refresh()
-        course.refresh()
+    func viewDidAppear() {
         isFilterIconSolid = isFilteringCustom || selectedGradingPeriodId != defaultGradingPeriodId
     }
 
@@ -162,7 +163,6 @@ public class AssignmentListViewModel: ObservableObject {
         }
 
         filterOptionsDidUpdate(filterOptionsStudent: selectedFilterOptionsStudent, gradingPeriodId: selectedGradingPeriodId)
-        assignmentGroups?.refresh()
     }
 
     func filterOptionsDidUpdate(
@@ -195,11 +195,19 @@ public class AssignmentListViewModel: ObservableObject {
         assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriodId)) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
+
+        assignmentGroups?.refresh()
     }
 
     private func assignmentGroupsDidUpdate() {
         guard let assignmentGroups else { return }
         if !assignmentGroups.requested || assignmentGroups.pending || !gradingPeriods.requested || gradingPeriods.pending { return }
+
+        if !wasAssignmentGroupsUpdated, assignmentGroups.isEmpty {
+            wasAssignmentGroupsUpdated = true
+            assignmentGroups.refresh(force: true)
+            return
+        }
 
         isShowingGradingPeriods = gradingPeriods.count > 1
         var assignmentGroupViewModels: [AssignmentGroupViewModel] = []
@@ -332,7 +340,6 @@ public class AssignmentListViewModel: ObservableObject {
                     sortingOption: assignmentListPreferences.sortingOption,
                     gradingPeriodId: assignmentListPreferences.gradingPeriodId
                 )
-                assignmentGroups?.refresh()
                 saveAssignmentListPreferences()
             })
         let controller = CoreHostingController(AssignmentListPreferencesScreen(viewModel: viewModel))
@@ -350,33 +357,28 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func loadAssignmentListPreferences() {
-        guard let filterSettingsData = userDefaults?.assignmentListStudentFilterSettingsByCourseId?[courseID] else {
-            return
+        guard let userDefaults else { return }
+
+        if let savedStudentFilterOptionIds = userDefaults.assignmentListStudentFilterSettingsByCourseId?[courseID] {
+            selectedFilterOptionsStudent = savedStudentFilterOptionIds.compactMap { id in
+                AssignmentFilterOptionStudent.allCases.first { $0.id == id }
+            }
         }
 
-        guard let customFilterSettingData = userDefaults?.assignmentListTeacherFilterSettingByCourseId?[courseID] else {
-            return
+        if let savedTeacherFilterOptionId = userDefaults.assignmentListTeacherFilterSettingByCourseId?[courseID],
+           let savedTeacherFilterOption = AssignmentFilterOptionsTeacher(rawValue: savedTeacherFilterOptionId) {
+            selectedFilterOptionTeacher = savedTeacherFilterOption
         }
 
-        guard let statusFilterSettingData = userDefaults?.assignmentListTeacherStatusFilterSettingByCourseId?[courseID] else {
-            return
+        if let savedStatusFilterOptionId = userDefaults.assignmentListTeacherStatusFilterSettingByCourseId?[courseID],
+           let savedStatusFilterOption = AssignmentStatusFilterOptionsTeacher(rawValue: savedStatusFilterOptionId) {
+            selectedStatusFilterOptionTeacher = savedStatusFilterOption
         }
 
-        guard let groupBySettingData = userDefaults?.assignmentListGroupBySettingByCourseId?[courseID] else {
-            return
+        if let savedGroupByOptionId = userDefaults.assignmentListGroupBySettingByCourseId?[courseID],
+           let savedGroupByOption = AssignmentArrangementOptions(rawValue: savedGroupByOptionId) {
+            selectedSortingOption = savedGroupByOption
         }
-
-        selectedFilterOptionsStudent = AssignmentFilterOptionStudent.allCases.filter { filterSettingsData.contains($0.id) }
-
-        selectedFilterOptionTeacher = AssignmentFilterOptionsTeacher.allCases.filter {
-            customFilterSettingData == $0.rawValue
-        }.first ?? selectedFilterOptionTeacher
-
-        selectedStatusFilterOptionTeacher = AssignmentStatusFilterOptionsTeacher.allCases.filter {
-            statusFilterSettingData == $0.rawValue
-        }.first ?? selectedStatusFilterOptionTeacher
-
-        selectedSortingOption = sortingOptions.filter { groupBySettingData == $0.rawValue }.first ?? selectedSortingOption
     }
 
     private func saveAssignmentListPreferences() {
