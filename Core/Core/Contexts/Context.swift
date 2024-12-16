@@ -99,12 +99,6 @@ public extension Context {
 
 public extension Context {
 
-    var color: UIColor? { contextColor?.color }
-
-    var contextColor: ContextColor? {
-        contextColor(in: AppEnvironment.shared.database.viewContext)
-    }
-
     func color(in client: NSManagedObjectContext) -> UIColor? {
         contextColor(in: client)?.color
     }
