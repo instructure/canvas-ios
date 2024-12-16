@@ -57,7 +57,8 @@ public extension HorizonUI {
                     .frame(width: 17, height: 17)
                     .padding(.huiSpaces.primitives.xxxSmall)
             case .empty:
-                Text("")
+                Circle()
+                    .fill(.clear)
                     .frame(width: 12, height: 12)
             }
         }
