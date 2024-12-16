@@ -26,8 +26,8 @@ class BackgroundVideoPlayerTests: XCTestCase {
     var player: BackgroundVideoPlayer!
 
     override func setUp() {
-        player = BackgroundVideoPlayer.shared
         super.setUp()
+        player = BackgroundVideoPlayer.shared
     }
 
     override func tearDown() {
@@ -56,12 +56,14 @@ class BackgroundVideoPlayerTests: XCTestCase {
         XCTAssertNil(player.player)
         if true { // create scope block the controller lives in
             let controller = AVPlayerViewController()
-            controller.player = AVPlayer()
+            // Assigning a player here will make the system keep alive the player view controller
+            // even when we have no strong references to it. We want to test the weak reference
+            // of `player.viewController` so we should have no player assigned otherwise the test will fail.
+            //  controller.player = AVPlayer()
             player.connect(controller)
             XCTAssertNotNil(player.viewController)
         }
-        waitUntil(5, shouldFail: true) {
-            player.viewController == nil
-        }
+
+        XCTAssertNil(player.viewController)
     }
 }
