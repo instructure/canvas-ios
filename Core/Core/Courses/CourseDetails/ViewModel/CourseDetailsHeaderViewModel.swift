@@ -40,6 +40,10 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         self?.hideColorOverlay = self?.settings.first?.hideDashcardColorOverlays == true
     }
 
+    private var shouldShow: Bool = false
+    private var checkedWidth: CGFloat = .nan
+    private var keyboard = KeyboardObserved()
+
     public func viewDidAppear() {
         settings.refresh()
     }
@@ -56,8 +60,17 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
         scrollPositionYChanged(to: frame.minY)
     }
 
-    public func shouldShowHeader(for height: CGFloat) -> Bool {
-        self.height < height / 2
+    public func shouldShowHeader(in availableSize: CGSize) -> Bool {
+        let isRotating = checkedWidth.isFinite && checkedWidth != availableSize.width
+        guard isRotating || keyboard.isHiding else { return shouldShow }
+
+        shouldShow = self.height < availableSize.height / 2
+        checkedWidth = availableSize.width
+        return shouldShow
+    }
+
+    public var visibleHeight: CGFloat {
+        shouldShow ? height : 0
     }
 
     private func scrollPositionYChanged(to value: CGFloat) {

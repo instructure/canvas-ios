@@ -21,66 +21,55 @@ import Foundation
 class UISearchField: UIView {
     let field = CoreTextField()
 
-    private lazy var container: CapsuleView = {
-        let container = CapsuleView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = UIColor.backgroundLightest
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
         let icon = UIImageView(image: UIImage.smartSearchSmallLine)
         icon.tintColor = .secondaryLabel
         icon.contentMode = .center
         icon.setContentHuggingPriority(.required, for: .horizontal)
         icon.setContentCompressionResistancePriority(.required, for: .horizontal)
+        icon.translatesAutoresizingMaskIntoConstraints = false
 
-        field.autocapitalizationType = .none
-        field.translatesAutoresizingMaskIntoConstraints = false
-        field.clearButtonMode = .always
         field.font = .scaledNamedFont(.regular14)
+        field.autocapitalizationType = .none
         field.returnKeyType = .search
+        field.clearButtonMode = .always
         field.tintColor = .systemBlue // caret color
         field.textColor = UIColor.textDarkest
 
-        let stack = UIStackView(arrangedSubviews: [icon, field])
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.alignment = .fill
-        stack.spacing = 10
+        field.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        field.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        field.translatesAutoresizingMaskIntoConstraints = false
 
-        container.addSubview(stack)
+        let container = CapsuleView()
+        container.backgroundColor = .backgroundLightest
+        container.frame = CGRect(x: 0, y: 5, width: frame.width, height: frame.height - 10)
+        container.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
         container.layer.shadowColor = UIColor.black.cgColor
         container.layer.shadowOpacity = 0.16
         container.layer.shadowRadius = 2
         container.layer.shadowOffset = CGSize(width: 0, height: 2)
 
-        NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
-            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -5),
-            stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 7.5),
-            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -7.5)
-        ])
-
-        return container
-    }()
-
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-
-        if newSuperview != superview {
-            container.removeFromSuperview()
-        }
-
-        guard newSuperview != nil else { return }
-
         addSubview(container)
+        container.addSubview(icon)
+        container.addSubview(field)
+
         NSLayoutConstraint.activate([
-            container.leadingAnchor.constraint(equalTo: leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: trailingAnchor),
-            container.centerYAnchor.constraint(equalTo: centerYAnchor)
+            icon.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            icon.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+
+            field.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10),
+            field.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -5),
+            field.trailingAnchor
+                .constraint(equalTo: container.trailingAnchor, constant: -5)
                 .with { $0.priority = .defaultHigh },
-            container.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
-            container.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
+            field.centerYAnchor.constraint(equalTo: container.centerYAnchor)
         ])
     }
+
+    required init?(coder: NSCoder) { nil }
 }
 
 class CoreTextField: UITextField {
