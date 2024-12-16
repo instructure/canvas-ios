@@ -589,10 +589,11 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
 
     let regularCourseDetails: () -> UIViewController = {
         let viewModel = CourseDetailsViewModel(context: .course(courseID), offlineModeInteractor: OfflineModeAssembly.make())
+        let client = AppEnvironment.shared.database.viewContext
 
         return CourseSmartSearchAssembly.makeHostController(
             courseID: courseID,
-            color: url.contextColor,
+            color: context.color(in: client) ?? url.contextColor,
             containing: CourseDetailsView(viewModel: viewModel)
         )
     }
