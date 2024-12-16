@@ -47,11 +47,9 @@ public extension HorizonUI {
         @ViewBuilder
         private var contentView: some View {
             switch type {
-
             case .number(let number):
                 Text(number)
                     .huiTypography(.tag)
-                    
                     .padding(.huiSpaces.primitives.xxSmall)
             case .icon(let icon):
                 icon
@@ -89,20 +87,17 @@ extension HorizonUI.Badge {
 
         var backgroundColor: Color {
             switch self {
-                
             case .primary:
                 return .huiColors.surface.institution
             case .custom(let backgroundColor, _):
                 return backgroundColor
             case .success: return .huiColors.surface.success
             case .danger: return .huiColors.surface.error
-
             }
         }
 
         var foregroundColor: Color {
             switch self {
-
             case .primary, .success, .danger:
                 return .huiColors.text.surfaceColored
             case .custom(_, let foregroundColor):
