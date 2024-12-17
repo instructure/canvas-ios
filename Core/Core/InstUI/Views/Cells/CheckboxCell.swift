@@ -30,7 +30,7 @@ extension InstUI {
         private let subtitle: String?
         @Binding private var isSelected: Bool
         private let color: Color
-        private let hasDivider: Bool
+        private let dividerStyle: InstUI.Divider.Style
         private let accessoryView: (() -> Accessory)?
 
         // MARK: Initializers
@@ -40,14 +40,14 @@ extension InstUI {
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
             color: Color,
-            hasDivider: Bool = true,
+            dividerStyle: InstUI.Divider.Style = .full,
             accessory: (() -> Accessory)?
         ) {
             self.title = title
             self.subtitle = subtitle
             self._isSelected = isSelected
             self.color = color
-            self.hasDivider = hasDivider
+            self.dividerStyle = dividerStyle
             self.accessoryView = accessory
         }
 
@@ -56,14 +56,14 @@ extension InstUI {
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
             color: Color,
-            hasDivider: Bool = true
+            dividerStyle: InstUI.Divider.Style = .full
         ) where Accessory == SwiftUI.EmptyView {
             self.init(
                 title: title,
                 subtitle: subtitle,
                 isSelected: isSelected,
                 color: color,
-                hasDivider: hasDivider,
+                dividerStyle: dividerStyle,
                 accessory: nil
             )
         }
@@ -87,15 +87,13 @@ extension InstUI {
                                 .font(.regular16, lineHeight: .fit)
                                 .multilineTextAlignment(.leading)
                                 .foregroundStyle(Color.textDarkest)
-                                .frame(maxWidth: .infinity,
-                                       alignment: .leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             if let subtitle {
                                 Text(subtitle)
                                     .font(.regular14, lineHeight: .fit)
                                     .multilineTextAlignment(.leading)
                                     .foregroundStyle(Color.textDark)
-                                    .frame(maxWidth: .infinity,
-                                           alignment: .leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
 
@@ -106,7 +104,7 @@ extension InstUI {
                     }
                     .paddingStyle(set: .iconCell)
                 }
-                if hasDivider { InstUI.Divider() }
+                InstUI.Divider(dividerStyle)
             }
             .accessibilityRepresentation {
                 Toggle(isOn: $isSelected) {

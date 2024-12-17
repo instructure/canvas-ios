@@ -56,15 +56,14 @@ extension InstUI {
                             color: color
                         )
                         .animation(.default, value: selectedValue)
+
                         Text(title)
                             .font(.regular16, lineHeight: .fit)
                             .multilineTextAlignment(.leading)
                             .foregroundStyle(Color.textDarkest)
-                            .frame(maxWidth: .infinity,
-                                   alignment: .leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .paddingStyle(set: .iconCell)
-
                 }
                 InstUI.Divider(dividerStyle)
             }
