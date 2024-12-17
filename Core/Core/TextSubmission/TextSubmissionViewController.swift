@@ -18,21 +18,26 @@
 
 import UIKit
 
-public class TextSubmissionViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
+public final class TextSubmissionViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
+    // MARK: - Outlets
 
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var keyboardSpace: NSLayoutConstraint!
+
+    // MARK: - Properties
     public var editor: RichContentEditorViewController!
     public var keyboard: KeyboardTransitioning?
-    public var didSetHtmlContent: ((String) -> Void) = { _ in}
-
-    var assignmentID: String!
-    var courseID: String!
-    var userID: String!
-
+    private var assignmentID: String?
+    private var courseID: String?
+    private var env = AppEnvironment.shared
+    private var userID: String?
     private var htmlContent = ""
-    private let isHorizonApp = AppEnvironment.shared.app == .horizon
-    private var env: AppEnvironment = .defaultValue
+    private var isHorizonApp: Bool {
+        env.app != .student
+    }
+
+    // MARK: - Public Properties
+    public var didSetHtmlContent: ((String) -> Void) = { _ in}
 
     public static func create(env: AppEnvironment, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
@@ -44,7 +49,7 @@ public class TextSubmissionViewController: UIViewController, ErrorViewController
             .create(env: env, context: .course(courseID), uploadTo: .myFiles)
         return controller
     }
-    
+
     public static func create(htmlContent: String, courseID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
@@ -59,17 +64,15 @@ public class TextSubmissionViewController: UIViewController, ErrorViewController
         title = String(localized: "Text Entry", bundle: .core)
 
         navigationController?.navigationBar.useModalStyle()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Submit", bundle: .core), style: .plain, target: self, action: #selector(submit))
         navigationItem.rightBarButtonItem?.accessibilityIdentifier = "TextSubmission.submitButton"
         navigationItem.rightBarButtonItem?.isEnabled = false
         addNavBarButtons()
-
         editor.delegate = self
         editor.placeholder = String(localized: "Write...", bundle: .core, comment: "Text submission editor placeholder")
         editor.a11yLabel = String(localized: "Submission text", bundle: .core, comment: "Text submission editor accessibility label")
         editor.webView.scrollView.layer.masksToBounds = false
         embed(editor, in: contentView)
-        
+
         if htmlContent.isNotEmpty, isHorizonApp {
             editor.setHTML(htmlContent)
         }
@@ -100,7 +103,7 @@ public class TextSubmissionViewController: UIViewController, ErrorViewController
                 title: String(localized: "Cancel", bundle: .core),
                 style: .plain,
                 target: self,
-                action: #selector(cancel)
+                action: #selector(horizonCancel)
             )
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -123,24 +126,25 @@ public class TextSubmissionViewController: UIViewController, ErrorViewController
         }
     }
 
-    @objc private func cancel() {
+    @objc private func horizonCancel() {
         didSetHtmlContent(htmlContent)
         env.router.dismiss(self)
     }
-    
+
     @objc func submit() {
+        guard let courseID, let assignmentID, let userID else {
+            return
+        }
         editor.getHTML { [weak self] (html: String) in
             guard let self else { return }
-
             CreateSubmission(
-                context: .course(self.courseID),
-                assignmentID: self.assignmentID,
-                userID: self.userID,
+                context: .course(courseID),
+                assignmentID: assignmentID,
+                userID: userID,
                 submissionType: .online_text_entry,
                 body: html
             )
             .fetch(environment: self.env, { (_, _, error) in
-
                 performUIUpdate {
                     if let error = error {
                         self.showError(error)
