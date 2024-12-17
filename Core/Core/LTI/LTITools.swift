@@ -28,6 +28,7 @@ public class LTITools: NSObject {
     let id: String?
     let url: URL?
     let launchType: GetSessionlessLaunchURLRequest.LaunchType?
+    let isQuizLTI: Bool? // This is optional because not all entry points provide this info
     let assignmentID: String?
     let moduleID: String?
     let moduleItemID: String?
@@ -45,12 +46,12 @@ public class LTITools: NSObject {
         )
     }
 
-    @objc
     public static func launch(
         context: String?,
         id: String?,
         url: URL?,
         launchType: String?,
+        isQuizLTI: Bool?,
         assignmentID: String?,
         from view: UIViewController,
         animated: Bool = true,
@@ -61,6 +62,7 @@ public class LTITools: NSObject {
             id: id,
             url: url,
             launchType: launchType.flatMap { GetSessionlessLaunchURLRequest.LaunchType(rawValue: $0) },
+            isQuizLTI: isQuizLTI,
             assignmentID: assignmentID
         )
         tools.presentTool(from: view, animated: animated, completionHandler: completionHandler)
@@ -72,6 +74,7 @@ public class LTITools: NSObject {
         id: String? = nil,
         url: URL? = nil,
         launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
+        isQuizLTI: Bool?,
         assignmentID: String? = nil,
         moduleID: String? = nil,
         moduleItemID: String? = nil,
@@ -82,6 +85,7 @@ public class LTITools: NSObject {
         self.id = id
         self.url = url
         self.launchType = launchType
+        self.isQuizLTI = isQuizLTI
         self.assignmentID = assignmentID
         self.moduleID = moduleID
         self.moduleItemID = moduleItemID
@@ -99,6 +103,7 @@ public class LTITools: NSObject {
                 env: env,
                 context: context,
                 url: url,
+                isQuizLTI: nil,
                 resourceLinkLookupUUID: resourceLinkUUID
             )
             return
@@ -107,7 +112,8 @@ public class LTITools: NSObject {
                 env: env,
                 context: .course(courseID),
                 id: toolID,
-                launchType: .course_navigation
+                launchType: .course_navigation,
+                isQuizLTI: nil
             )
             return
         } else {
@@ -157,19 +163,32 @@ public class LTITools: NSObject {
     }
 
     public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
-        getSessionlessLaunch { [weak view, originalUrl = url, env] response in
+        getSessionlessLaunch { [weak view, originalUrl = url, env, isQuizLTI] response in
             guard let view else { return }
             guard let response = response else {
                 completionHandler?(false)
                 return
             }
+
             Analytics.shared.logEvent("external_tool_launched", parameters: ["launchUrl": response.url])
             let completionHandler = { [weak self] (success: Bool) in
                 self?.markModuleItemRead()
                 completionHandler?(success)
             }
             let url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
-            if response.name == "Google Apps" {
+
+            if isQuizLTI == true {
+                let controller = CoreWebViewController(features: [
+                    .invertColorsInDarkMode,
+                    .hideReturnButtonInQuizLTI
+                ])
+                controller.webView.load(URLRequest(url: url))
+                controller.title = String(localized: "Quiz", bundle: .core)
+                controller.addDoneButton(side: .right)
+                env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true)) {
+                    completionHandler(true)
+                }
+            } else if response.name == "Google Apps" {
                 let controller = GoogleCloudAssignmentViewController(url: url)
                 self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
                     completionHandler(true)

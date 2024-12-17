@@ -32,11 +32,10 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         let testee = AssignmentListViewModel(env: environment, context: .course("1"))
 
-        XCTAssertEqual(testee.state, .loading)
         XCTAssertEqual(testee.defaultSortingOption, .dueDate)
         XCTAssertNil(testee.courseName)
         XCTAssertNil(testee.courseColor)
-        XCTAssertNil(testee.defaultGradingPeriodId)
+        XCTAssertEqual(testee.defaultGradingPeriodId, "2")
 
         testee.viewDidAppear()
         XCTAssertTrue(testee.isShowingGradingPeriods)
@@ -90,7 +89,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.defaultGradingPeriodId, "2")
     }
 
-    func testGroupeAssignmentsByAssignmentGroups() {
+    func testGroupAssignmentsByAssignmentGroups() {
         api.mock(GetGradingPeriods(courseID: "1"), value: [])
 
         let assignmentGroups = [
@@ -114,7 +113,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         api.mock(assignmentGroupRequest, value: assignmentGroups)
 
         let testee = AssignmentListViewModel(env: environment, context: .course("1"))
-        testee.selectedSortingOption = .groupName
+        testee.filterOptionsDidUpdate(sortingOption: .groupName, gradingPeriodId: nil)
         testee.viewDidAppear()
 
         guard case .data(let groupViewModels) = testee.state else {
@@ -237,7 +236,7 @@ class AssignmentListViewModelTests: CoreTestCase {
         api.mock(assignmentGroupRequest, value: assignmentGroups)
 
         let testee = AssignmentListViewModel(env: environment, context: .course("1"))
-        testee.selectedSortingOption = .assignmentType
+        testee.filterOptionsDidUpdate(sortingOption: .assignmentType, gradingPeriodId: nil)
         testee.viewDidAppear()
 
         guard case .data(let groupViewModels) = testee.state else {
@@ -327,7 +326,6 @@ class AssignmentListViewModelTests: CoreTestCase {
     }
 
     func testFilterOptionsDidUpdate() {
-        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
         api.mock(
             GetGradingPeriods(courseID: "1"),
             value: [
@@ -335,7 +333,13 @@ class AssignmentListViewModelTests: CoreTestCase {
                 .make(id: "2", title: "GP2", start_date: .now.addMonths(-3), end_date: .now.addMonths(3))
             ]
         )
+        let testee = AssignmentListViewModel(env: environment, context: .course("1"))
         testee.viewDidAppear()
+        XCTAssertEqual(testee.selectedSortingOption, .dueDate)
+        XCTAssertEqual(testee.selectedGradingPeriodId, "2")
+        XCTAssertEqual(testee.selectedGradingPeriodTitle, "GP2")
+        XCTAssertFalse(testee.isFilterIconSolid)
+
         testee.filterOptionsDidUpdate(
             filterOptionsStudent: [.notYetSubmitted],
             filterOptionTeacher: .notSubmitted,

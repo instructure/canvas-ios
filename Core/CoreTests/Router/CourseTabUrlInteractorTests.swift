@@ -268,14 +268,14 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(remoteLogHandler.lastErrorName, "Unexpected Course Tab path format")
     }
 
-    func test_setupEnabledTabs_whenTabIsHome_shouldNotLogIt() {
+    func test_setupEnabledTabs_whenTabIsHomeOrHasHomeFormat_shouldNotLogIt() {
         // `id: home` is not logged
         saveTab(id: "home", htmlUrl: "/courses/42/ignoring/this/url", context: .course("42"))
         XCTAssertEqual(remoteLogHandler.lastErrorName, nil)
 
-        // home-like format with different id is logged
-        saveTab(id: "pages", htmlUrl: "/courses/42", context: .course("42"))
-        XCTAssertEqual(remoteLogHandler.lastErrorName, "Unexpected Course Tab path format")
+        // home-like format with different id is not logged
+        saveTab(id: "schedule", htmlUrl: "/courses/42", context: .course("42"))
+        XCTAssertEqual(remoteLogHandler.lastErrorName, nil)
     }
 
     // MARK: - Cancel subscription

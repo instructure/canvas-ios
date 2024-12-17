@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import CoreData
 
 public enum ContextType: String, Codable {
     case account, course, group, user, section, folder
@@ -93,5 +94,18 @@ public extension Context {
     func isEquivalent(to context: Context) -> Bool {
         guard context.contextType == contextType else { return false }
         return context.id.localID == id.localID
+    }
+}
+
+public extension Context {
+
+    func color(in client: NSManagedObjectContext) -> UIColor? {
+        contextColor(in: client)?.color
+    }
+
+    func contextColor(in client: NSManagedObjectContext) -> ContextColor? {
+        client.fetch(
+            scope: .where(#keyPath(ContextColor.canvasContextID), equals: canvasContextID)
+        ).first
     }
 }
