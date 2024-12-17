@@ -164,7 +164,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
                 .background(Color.backgroundLightest)
-                .padding(.top, headerViewModel.shouldShowHeader(for: geometry.size.height) ? headerViewModel.height : 0)
+                .padding(.top, headerViewModel.visibleHeight)
                 // Save the frame of the content so we can inspect its y position and move course image based on that
                 .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
                     preferences = [.init(viewId: 0, bounds: geometry[bounds])]
@@ -180,14 +180,22 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func imageHeader(geometry: GeometryProxy) -> some View {
-        if headerViewModel.shouldShowHeader(for: geometry.size.height) {
+        if headerViewModel.shouldShowHeader(in: geometry.size) {
             CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
         }
     }
 
     private func setupDefaultSplitDetailView(_ url: URL?) {
-        if let defaultViewProvider = controller.value as? DefaultViewProvider, defaultViewProvider.defaultViewRoute != url?.absoluteString {
-            defaultViewProvider.defaultViewRoute = url?.absoluteString
+        let routeUrl = url?.absoluteString
+        guard let defaultViewProvider = controller.value as? DefaultViewProvider,
+              defaultViewProvider.defaultViewRoute?.url != routeUrl
+        else { return }
+
+        defaultViewProvider.defaultViewRoute = routeUrl.map {
+            .init(
+                url: $0,
+                userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
+            )
         }
     }
 }

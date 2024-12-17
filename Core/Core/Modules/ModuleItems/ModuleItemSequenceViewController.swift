@@ -34,7 +34,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
     private var leftBarButtonItems: [UIBarButtonItem]?
     private var rightBarButtonItems: [UIBarButtonItem]?
 
-    var env: AppEnvironment = .defaultValue
+    private var env: AppEnvironment = .defaultValue
     private lazy var isHorizon = env.app == .horizon
     private var courseID: String!
     private var assetType: AssetType!

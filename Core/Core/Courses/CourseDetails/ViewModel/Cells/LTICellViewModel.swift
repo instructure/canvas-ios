@@ -43,6 +43,7 @@ class LTICellViewModel: CourseDetailsCellViewModel {
             id: nil,
             url: url,
             launchType: nil,
+            isQuizLTI: false,
             assignmentID: nil,
             from: viewController.value
         )

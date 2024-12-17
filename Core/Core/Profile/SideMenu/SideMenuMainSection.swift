@@ -123,7 +123,7 @@ struct SideMenuMainSection: View {
         guard let url = url else { return }
         let dashboard = self.dashboard
         env.router.dismiss(controller) {
-            LTITools(url: url).presentTool(from: dashboard, animated: true)
+            LTITools(url: url, isQuizLTI: false).presentTool(from: dashboard, animated: true)
         }
     }
 }
