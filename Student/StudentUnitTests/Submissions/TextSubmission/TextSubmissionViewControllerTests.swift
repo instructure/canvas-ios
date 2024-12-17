@@ -39,6 +39,7 @@ class TextSubmissionViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
+        env.app = .student
         controller = TextSubmissionViewController
             .create(env: env, courseID: "1", assignmentID: "1", userID: "1")
         controller.editor = MockEditor()

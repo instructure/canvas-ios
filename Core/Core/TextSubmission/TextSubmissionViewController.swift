@@ -32,7 +32,9 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
     private var env = AppEnvironment.shared
     private var userID: String!
     private var htmlContent = ""
-    private let isHorizonApp = AppEnvironment.shared.app != .student
+    private var isHorizonApp: Bool {
+        env.app != .student
+    }
 
     // MARK: - Public Properties
     public var didSetHtmlContent: ((String) -> Void) = { _ in}
