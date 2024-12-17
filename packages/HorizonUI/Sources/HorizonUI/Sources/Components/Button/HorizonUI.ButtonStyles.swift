@@ -127,8 +127,8 @@ extension HorizonUI {
                     .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
 
                 if let badge = badge,
-                    let badgeColor = badgeColor,
-                    let badgeTextColor = badgeTextColor
+                   let badgeColor = badgeColor,
+                   let badgeTextColor = badgeTextColor
                 {
                     Text(badge)
                         .frame(width: 19, height: 19)
@@ -226,7 +226,7 @@ extension HorizonUI.ButtonStyles {
 }
 
 extension HorizonUI.ButtonStyles {
-    public static func primary(
+    static func primary(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         fillsWidth: Bool = false,
@@ -243,7 +243,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    public static func iconOnly(
+    static func iconOnly(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         badge: String? = nil,

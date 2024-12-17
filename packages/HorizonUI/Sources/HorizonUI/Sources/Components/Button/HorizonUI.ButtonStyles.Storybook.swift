@@ -19,7 +19,6 @@
 import SwiftUI
 
 extension HorizonUI.ButtonStyles {
-
     private struct StorybookConfiguration: Identifiable {
         var id: String { title }
 
