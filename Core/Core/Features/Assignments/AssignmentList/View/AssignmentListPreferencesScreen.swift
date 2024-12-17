@@ -104,52 +104,48 @@ public struct AssignmentListPreferencesScreen: View {
             isSelected: filterSelectionBinding,
             color: color
         )
-        .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
+        .accessibilityIdentifier("AssignmentFilter.studentFilterOption.\(item.id)")
     }
 
     @ViewBuilder
     private var teacherFilterSection: some View {
         OptionsSectionView(
             title: String(localized: "Assignment Filter", bundle: .core),
+            accessibilityIdentifier: "AssignmentFilter.teacherFilterOption",
             options: viewModel.filterOptionTeacherItems,
             selectionType: .single,
             selectedOption: viewModel.selectedFilterOptionTeacherItem
         )
-        // TODO:
-//        .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
     }
 
     private var teacherPublishStatusFilterSection: some View {
         OptionsSectionView(
             title: String(localized: "Status Filter", bundle: .core),
+            accessibilityIdentifier: "AssignmentFilter.teacherPublishStatusFilterOption",
             options: viewModel.statusFilterOptionTeacherItems,
             selectionType: .single,
             selectedOption: viewModel.selectedStatusFilterOptionTeacherItem
         )
-        // TODO:
-//        .accessibilityIdentifier("AssignmentFilter.statusFilterOptions.\(item.rawValue)")
     }
 
     private var sortBySection: some View {
         OptionsSectionView(
             title: String(localized: "Grouped By", bundle: .core),
+            accessibilityIdentifier: "AssignmentFilter.sortByOption",
             options: viewModel.sortingOptionItems,
             selectionType: .single,
             selectedOption: viewModel.selectedSortingOptionItem
         )
-        // TODO:
-//        .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
     }
 
     private var gradingPeriodsSection: some View {
         OptionsSectionView(
             title: String(localized: "Grading Period", bundle: .core),
+            accessibilityIdentifier: "AssignmentFilter.gradingPeriodOption",
             options: viewModel.gradingPeriodItems,
             selectionType: .single,
             selectedOption: viewModel.selectedGradingPeriodItem
         )
-        // TODO:
-        //        .accessibilityIdentifier("AssignmentFilter.gradingPeriodItems.\(item.id ?? "0")")
     }
 }
 

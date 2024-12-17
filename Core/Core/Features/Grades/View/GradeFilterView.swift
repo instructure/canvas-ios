@@ -57,23 +57,21 @@ public struct GradeFilterView: View {
     private var gradingPeriodSection: some View {
         OptionsSectionView(
             title: String(localized: "Grading Period", bundle: .core),
+            accessibilityIdentifier: "GradeFilter.gradingPeriodOption",
             options: viewModel.gradingPeriodItems,
             selectionType: .single,
             selectedOption: viewModel.selectedGradingPeriodItem
         )
-        // TODO:
-        //        .accessibilityIdentifier("GradeFilter.gradingPeriodItems.\(item.id ?? "0")")
     }
 
     private var sortBySection: some View {
         OptionsSectionView(
             title: String(localized: "Sort By", bundle: .core),
+            accessibilityIdentifier: "GradeFilter.sortByOption",
             options: viewModel.sortingOptionItems,
             selectionType: .single,
             selectedOption: viewModel.selectedSortingOptionItem
         )
-        // TODO:
-//        .accessibilityIdentifier("GradeFilter.sortBy.\(item)")
     }
 
     private var sendButton: some View {
