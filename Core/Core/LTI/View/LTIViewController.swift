@@ -26,7 +26,6 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
 
     private var env: AppEnvironment = .defaultValue
     public var tools: LTITools!
-    public var isQuizLTI: Bool!
     public var name: String?
     public var color: UIColor?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
@@ -47,7 +46,6 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
     public static func create(env: AppEnvironment, tools: LTITools, name: String? = nil) -> Self {
         let controller = loadFromStoryboard()
         controller.tools = tools
-        controller.isQuizLTI = isQuizLTI
         controller.name = name
         controller.env = env
         return controller
