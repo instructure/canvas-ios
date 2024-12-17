@@ -63,7 +63,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                             title: type.wrappedValue.type.title,
                             isSelected: type.checked,
                             color: contextColor,
-                            hasDivider: false,
+                            dividerStyle: .hidden,
                             accessory: {
                                 type.wrappedValue.type.icon.foregroundStyle(contextColor)
                             }
