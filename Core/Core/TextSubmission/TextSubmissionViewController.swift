@@ -27,10 +27,10 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
     // MARK: - Properties
     public var editor: RichContentEditorViewController!
     public var keyboard: KeyboardTransitioning?
-    private var assignmentID: String!
-    private var courseID: String!
+    private var assignmentID: String?
+    private var courseID: String?
     private var env = AppEnvironment.shared
-    private var userID: String!
+    private var userID: String?
     private var htmlContent = ""
     private var isHorizonApp: Bool {
         env.app != .student
@@ -103,7 +103,7 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
                 title: String(localized: "Cancel", bundle: .core),
                 style: .plain,
                 target: self,
-                action: #selector(cancel)
+                action: #selector(horizonCancel)
             )
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -126,18 +126,21 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
         }
     }
 
-    @objc private func cancel() {
+    @objc private func horizonCancel() {
         didSetHtmlContent(htmlContent)
         env.router.dismiss(self)
     }
 
     @objc func submit() {
+        guard let courseID, let assignmentID, let userID else {
+            return
+        }
         editor.getHTML { [weak self] (html: String) in
             guard let self else { return }
             CreateSubmission(
-                context: .course(self.courseID),
-                assignmentID: self.assignmentID,
-                userID: self.userID,
+                context: .course(courseID),
+                assignmentID: assignmentID,
+                userID: userID,
                 submissionType: .online_text_entry,
                 body: html
             )
