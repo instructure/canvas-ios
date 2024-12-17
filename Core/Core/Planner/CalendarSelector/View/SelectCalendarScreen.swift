@@ -32,10 +32,9 @@ struct SelectCalendarScreen: View {
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(viewModel.sections) { section in
                     if !section.items.isEmpty {
-                        OptionsSectionView(
+                        SingleSelectionView(
                             title: section.title,
                             options: section.items,
-                            selectionType: .single,
                             selectedOption: viewModel.selectedCalendarItem
                         )
                     }

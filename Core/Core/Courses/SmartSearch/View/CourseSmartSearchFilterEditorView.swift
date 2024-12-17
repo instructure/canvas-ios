@@ -36,10 +36,9 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     InstUI.Divider()
 
-                    OptionsSectionView(
+                    SingleSelectionView(
                         title: String(localized: "Sort By", bundle: .core),
                         options: viewModel.sortModes,
-                        selectionType: .single,
                         selectedOption: viewModel.selectedSortModeItem
                     )
 
