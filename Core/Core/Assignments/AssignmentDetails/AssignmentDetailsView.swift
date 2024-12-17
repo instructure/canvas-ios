@@ -255,6 +255,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             id: assignment.first?.externalToolContentID,
             url: nil,
             launchType: "assessment",
+            isQuizLTI: assignment.first?.isQuizLTI,
             assignmentID: assignmentID,
             from: controller.value
         )

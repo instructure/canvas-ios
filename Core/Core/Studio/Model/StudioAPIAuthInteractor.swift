@@ -120,7 +120,7 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
             }
             .mapErrorToAuthError(mapUnknownErrorsTo: StudioAPIAuthError.failedToGetLTIs)
             .flatMap { (webURL, baseURL) in
-                LTITools(url: webURL)
+                LTITools(url: webURL, isQuizLTI: false)
                     .getSessionlessLaunchURL()
                     .mapError { _ in StudioAPIAuthError.failedToGetLaunchURL }
                     .map { (webLaunchURL: $0, apiBaseURL: baseURL) }

@@ -199,9 +199,10 @@ class SubmissionDetailsPresenter {
                 env: env,
                 context: context,
                 launchType: .assessment,
+                isQuizLTI: assignment.isQuizLTI,
                 assignmentID: assignmentID
             )
-            return LTIViewController.create(env: env, tools: tools, isQuizLTI: assignment.isQuizLTI)
+            return LTIViewController.create(env: env, tools: tools)
         }
 
         switch submission.type {
@@ -270,9 +271,10 @@ class SubmissionDetailsPresenter {
             let tools = LTITools(
                 env: env,
                 context: context,
-                url: submission.externalToolURL
+                url: submission.externalToolURL,
+                isQuizLTI: false
             )
-            return LTIViewController.create(env: env, tools: tools, isQuizLTI: false)
+            return LTIViewController.create(env: env, tools: tools)
         case .student_annotation:
             guard let docViewerSessionURL = docViewerSessionURL else { return nil }
             return DocViewerViewController.create(

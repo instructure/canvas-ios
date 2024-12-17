@@ -58,7 +58,9 @@ public struct Storybook: View {
                     }
                 }
                 Section(header: Text("Components: Molecules")) {
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Badge.Storybook()
+                    } label: {
                         Text("Badge").tint(Color.black)
                     }
                     NavigationLink {

@@ -106,7 +106,9 @@ public class CoreSearchHostingController<
     }()
 
     private lazy var searchFieldView: UISearchField = {
-        let searchView = UISearchField()
+        let searchView = UISearchField(
+            frame: CGRect(origin: .zero, size: CGSize(width: 400, height: 100))
+        )
         searchView.field.placeholder = searchContext.searchPrompt
         searchView.field.accessibilityIdentifier = "ui_search_field"
         searchView.field.delegate = self
@@ -169,10 +171,11 @@ public class CoreSearchHostingController<
         filterBarItem.image = .filterLine
 
         searchFieldView.field.text = searchContext.searchText.value
-        searchFieldView.frame.size = CGSize(
-            width: CGFloat.greatestFiniteMagnitude,
-            height: CGFloat.greatestFiniteMagnitude
-        )
+
+        // Reset large enough length to re-fit search field in
+        // navigation title view
+        let length = view.bounds.width
+        searchFieldView.frame.size = CGSize(width: length, height: length)
 
         navigationItem.leftBarButtonItems = [closeBarItem]
         navigationItem.hidesBackButton = true

@@ -43,6 +43,7 @@ public struct AssignmentListPreferencesScreen: View {
                 }
             }
         }
+        .background(Color.backgroundLightest)
         .navigationTitleStyled(navBarTitleView)
         .navigationBarItems(leading: cancelButton, trailing: doneButton)
         .onDisappear {

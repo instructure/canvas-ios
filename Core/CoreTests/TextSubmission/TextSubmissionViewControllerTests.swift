@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import Core
-@testable import Student
 import TestsFoundation
 
-class TextSubmissionViewControllerTests: StudentTestCase {
+class TextSubmissionViewControllerTests: CoreTestCase {
     var controller: TextSubmissionViewController!
     var navigation: UINavigationController!
 
@@ -39,8 +38,9 @@ class TextSubmissionViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
+        environment.app = .student
         controller = TextSubmissionViewController
-            .create(env: env, courseID: "1", assignmentID: "1", userID: "1")
+            .create(env: environment, courseID: "1", assignmentID: "1", userID: "1")
         controller.editor = MockEditor()
         navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()

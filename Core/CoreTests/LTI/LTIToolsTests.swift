@@ -90,6 +90,7 @@ class LTIToolsTests: CoreTestCase {
             id: nil,
             url: nil,
             launchType: nil,
+            isQuizLTI: nil,
             assignmentID: nil,
             moduleItemID: nil
         )
@@ -138,6 +139,7 @@ class LTIToolsTests: CoreTestCase {
             id: nil,
             url: nil,
             launchType: nil,
+            isQuizLTI: nil,
             assignmentID: nil,
             moduleItemID: nil
         )
@@ -184,7 +186,7 @@ class LTIToolsTests: CoreTestCase {
     }
 
     func testPresentToolInSafariProper() {
-        let tools = LTITools()
+        let tools = LTITools(isQuizLTI: nil)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: nil,
@@ -200,8 +202,24 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertNil(router.presented)
     }
 
+    func testPresentQuizLTI() throws {
+        let tools = LTITools(isQuizLTI: true)
+        let request = GetSessionlessLaunchURLRequest(context: tools.context,
+                                                     id: nil,
+                                                     url: nil,
+                                                     assignmentID: nil,
+                                                     moduleItemID: nil,
+                                                     launchType: nil,
+                                                     resourceLinkLookupUUID: nil)
+        let url = URL(string: "https://canvas.instructure.com")!
+        api.mock(request, value: .make(name: "Google Apps", url: url))
+        tools.presentTool(from: mockView, animated: true)
+        let controller = try XCTUnwrap(router.presented as? CoreWebViewController)
+        XCTAssertTrue(router.lastRoutedTo(viewController: controller, from: mockView, withOptions: .modal(.overFullScreen, embedInNav: true)))
+    }
+
     func testPresentGoogleApp() throws {
-        let tools = LTITools()
+        let tools = LTITools(isQuizLTI: nil)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: nil,
@@ -218,7 +236,7 @@ class LTIToolsTests: CoreTestCase {
 
     func testPresentStudio() throws {
         let url = URL(string: "https://canvas.instructure.com?custom_arc_launch_type=global_nav")!
-        let tools = LTITools(url: url)
+        let tools = LTITools(url: url, isQuizLTI: nil)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: url,
@@ -242,7 +260,7 @@ class LTIToolsTests: CoreTestCase {
 
     func testMarksModuleItemAsRead() {
         api.mock(PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3"))
-        let tools = LTITools(context: .course("1"), launchType: .module_item, moduleID: "2", moduleItemID: "3")
+        let tools = LTITools(context: .course("1"), launchType: .module_item, isQuizLTI: nil, moduleID: "2", moduleItemID: "3")
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: nil,
@@ -268,6 +286,7 @@ class LTIToolsTests: CoreTestCase {
             id: nil,
             url: url,
             launchType: nil,
+            isQuizLTI: nil,
             assignmentID: nil,
             moduleItemID: nil
         )

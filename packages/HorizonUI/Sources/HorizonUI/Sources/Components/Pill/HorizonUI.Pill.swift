@@ -21,61 +21,94 @@ import SwiftUI
 public extension HorizonUI {
     struct Pill: View {
         public enum Style {
-            case `default`
-            case danger
-
-            var color: Color {
+            case outline(Style.Outline)
+            case solid(Style.Solid)
+            case inline(Style.Inline)
+            
+            var backgroundColor: Color {
                 switch self {
-                case .default:
-                    // TODO: replace with UI Colors/Text/Body
-                    return .black
-                case .danger:
-                    // TODO: replace with UI Colors/Surface/Error
-                    return .red
+                case .outline(let outline):
+                    return outline.backgroundColor
+                case .solid(let solid):
+                    return solid.backgroundColor
+                case .inline(let inline):
+                    return inline.backgroundColor
+                }
+            }
+            
+            var borderColor: Color {
+                switch self {
+                case .outline(let outline):
+                    return outline.borderColor
+                case .solid(let solid):
+                    return solid.borderColor
+                case .inline(let inline):
+                    return inline.borderColor
+                }
+            }
+            
+            var textColor: Color {
+                switch self {
+                case .outline(let outline):
+                    return outline.textColor
+                case .solid(let solid):
+                    return solid.textColor
+                case .inline(let inline):
+                    return inline.textColor
                 }
             }
         }
 
         private let title: String
         private let style: Pill.Style
-        private let isBordered: Bool
+        private let isSmall: Bool
         private let isUppercased: Bool
-        private let icon: Pill.PlaceholderIcon?
+        private let icon: Image?
         private let cornerRadius: CornerRadius = .level4
+        private let drawBorder: Bool
         
         public init(
             title: String,
-            style: Pill.Style,
-            isBordered: Bool,
+            style: Pill.Style = .outline(Style.Outline.default),
+            isSmall: Bool = false,
             isUppercased: Bool,
-            icon: Pill.PlaceholderIcon?
+            icon: Image?
         ) {
             self.title = title
             self.style = style
-            self.isBordered = isBordered
+            self.isSmall = isSmall
             self.isUppercased = isUppercased
             self.icon = icon
+            
+            if case .outline = style {
+                drawBorder = true
+            } else {
+                drawBorder = false
+            }
         }
 
         public var body: some View {
             HStack(spacing: .huiSpaces.primitives.xxSmall) {
                 if let icon {
                     icon
+                        .resizable()
                         .frame(width: 18, height: 18)
-                        .foregroundStyle(style.color)
+                        .foregroundStyle(style.textColor)
                 }
                 Text(isUppercased ? title.uppercased() : title.capitalized)
                     .huiTypography(isUppercased ? .tag : .labelSmall)
-                    .foregroundStyle(style.color)
+                    .foregroundStyle(style.textColor)
             }
-            .padding(.horizontal, .huiSpaces.primitives.small)
-            .padding(.vertical, .huiSpaces.primitives.xSmall)
+            .padding(.horizontal, isSmall ? .huiSpaces.primitives.xSmall : .huiSpaces.primitives.small)
+            .padding(.vertical, isSmall ? .huiSpaces.primitives.xxSmall : .huiSpaces.primitives.xSmall)
+            .background(style.backgroundColor)
             .huiCornerRadius(level: cornerRadius)
             .huiBorder(
-                level: isBordered ? .level1 : nil,
-                color: style.color,
+                level: drawBorder ? .level1 : nil,
+                color: style.borderColor,
                 radius: cornerRadius.attributes.radius
             )
+            .frame(minHeight: isSmall ? 25 : 33)
         }
     }
 }
@@ -84,10 +117,9 @@ public extension HorizonUI {
     VStack {
         HorizonUI.Pill(
             title: "Some text",
-            style: .default,
-            isBordered: true,
+            style: .outline(HorizonUI.Pill.Style.Outline.default),
             isUppercased: true,
-            icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
+            icon: .huiIcons.calendarToday
         )
         Spacer()
     }
