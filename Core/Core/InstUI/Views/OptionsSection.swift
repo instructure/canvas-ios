@@ -59,18 +59,21 @@ public struct OptionsSectionView: View {
     @StateObject private var viewModel: OptionsSectionSingleSelectionViewModel
 
     private let title: String?
+    private let accessibilityIdentifier: String?
     private let options: [OptionItem]
     private let selectionType: SelectionType
     private let hasSelectAllButton: Bool
 
     public init(
         title: String?,
+        accessibilityIdentifier: String? = nil,
         options: [OptionItem],
         selectionType: SelectionType,
         hasSelectAllButton: Bool = false,
         selectedOption: CurrentValueSubject<OptionItem?, Never>
     ) {
         self.title = title
+        self.accessibilityIdentifier = accessibilityIdentifier
         self.options = options
         self.selectionType = selectionType
         self.hasSelectAllButton = hasSelectAllButton
@@ -109,6 +112,7 @@ public struct OptionsSectionView: View {
                 color: item.color,
                 dividerStyle: item.id == options.last?.id ? .full : .padded
             )
+            .accessibilityIdentifier(accessibilityIdentifier(for: item))
         } else {
             InstUI.CheckboxCell(
                 title: item.title,
@@ -116,6 +120,12 @@ public struct OptionsSectionView: View {
                 color: item.color
             )
         }
+    }
+
+    private func accessibilityIdentifier(for item: OptionItem) -> String {
+        [accessibilityIdentifier ?? "", item.id]
+            .compactMap { $0 }
+            .joined(separator: ".")
     }
 }
 
