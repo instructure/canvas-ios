@@ -18,9 +18,10 @@
 
 import SwiftUI
 import Core
+import HorizonUI
 
 struct NotesBody<Content: View, Leading: View, Trailing: View>: View {
-    private let backgroundColor = Color(hexString: "#FBF5ED")!
+    private let backgroundColor = HorizonUI.colors.surface.pagePrimary
     private let content: Content
     private let leading: Leading?
     @State private var title: String

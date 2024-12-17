@@ -26,7 +26,7 @@ final class NotebookAssembly {
         )
     }
 
-    static func makeView() -> CoreHostingController<NotebookView> {
+    static func makeViewController() -> CoreHostingController<NotebookView> {
         CoreHostingController(
             NotebookView(
                 viewModel: NotebookViewModel(

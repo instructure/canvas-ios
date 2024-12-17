@@ -35,6 +35,16 @@ final class NotebookNoteInteractor {
 
     // MARK: - Public
 
+    func add(courseId: String,
+             highlightedText: String,
+             content: String? = nil,
+             labels: [CourseNoteLabel]? = nil) -> Future<Void, Error> {
+        courseNotesRepository.add(courseId: courseId,
+                                  highlightedText: highlightedText,
+                                  content: content,
+                                  labels: labels)
+    }
+
     func delete(noteId: String) -> Future<Void, Error> {
         courseNotesRepository.delete(id: noteId)
     }

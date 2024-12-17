@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-extension HorizonUI {
+public extension HorizonUI {
     struct ButtonStyles: ButtonStyle {
         @Environment(\.isEnabled) private var isEnabled
         private let background: AnyShapeStyle
@@ -44,7 +44,7 @@ extension HorizonUI {
             self.trailing = trailing
         }
 
-        func makeBody(configuration: Configuration) -> some View {
+        public func makeBody(configuration: Configuration) -> some View {
             HStack {
                 leading?
                     .renderingMode(.template)
@@ -70,7 +70,7 @@ extension HorizonUI {
 }
 
 extension HorizonUI.ButtonStyles {
-    static func ai(
+    public static func ai(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,
@@ -93,7 +93,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    static func beige(
+    public static func beige(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,
@@ -109,7 +109,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    static func black(
+    public static func black(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,
@@ -125,7 +125,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    static func blue(
+    public static func blue(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,
@@ -141,7 +141,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    static func white(
+    public static func white(
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,

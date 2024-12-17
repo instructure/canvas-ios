@@ -93,6 +93,11 @@ final class NotebookCourseViewModel {
 
     // MARK: - Inputs
 
+    func onAdd(viewController: WeakViewController) {
+        let route = "/notebook/\(courseId)/addNote"
+        router.route(to: route, from: viewController)
+    }
+
     func onBack(viewController: WeakViewController) {
         router.pop(from: viewController)
     }

@@ -17,6 +17,7 @@
 //
 
 import Core
+import HorizonUI
 import SwiftUI
 
 struct NotebookNoteView: View {
@@ -34,6 +35,7 @@ struct NotebookNoteView: View {
                     NotesIconButton(systemName: "arrow.left") {
                         viewModel.onClose(viewController: viewController)
                     }
+                    .hidden(viewModel.isBackButtonHidden)
                     Text(viewModel.title)
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
@@ -41,6 +43,7 @@ struct NotebookNoteView: View {
                         .foregroundColor(.textDarkest)
                     NotesIconButton(systemName: "xmark") {}.hidden()
                 }
+                .background(HorizonUI.colors.surface.pagePrimary)
 
                 HStack(spacing: 8) {
                     NoteCardFilterButton(
@@ -62,6 +65,7 @@ struct NotebookNoteView: View {
                         .disabled(viewModel.isTextEditorDisabled)
                         .onTapGesture { viewModel.onTapTextEditor() }
                         .padding(12)
+                        .frame(minHeight: 112, alignment: .topLeading)
                         .frame(maxWidth: .infinity)
                         .scrollDisabled(true)
                         .background(viewModel.isTextEditorDisabled ? .clear : .white)
@@ -79,18 +83,27 @@ struct NotebookNoteView: View {
                     }
                 }
 
-                if viewModel.isSaveVisible {
-                    Button {
-                        viewModel.onSave()
-                    } label: {
-                        Text(String(localized: "Save", bundle: .horizon))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                VStack(spacing: 16) {
+                    if viewModel.isSaveVisible {
+                        Button {
+                            viewModel.onSave(viewController: viewController)
+                        } label: {
+                            Text(String(localized: "Save", bundle: .horizon))
+                        }
+                        .buttonStyle(
+                            HorizonUI.ButtonStyles.blue(fillsWidth: true)
+                        )
+                        .disabled(viewModel.isSaveDisabled)
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
-                    .background(Color(red: 14/255, green: 104/255, blue: 179/255))
-                    .foregroundColor(.white)
-                    .cornerRadius(22)
+
+                    if viewModel.isCancelVisible {
+                        Button {
+                            viewModel.onCancel()
+                        } label: {
+                            Text(String(localized: "Cancel", bundle: .horizon))
+                        }
+                        .buttonStyle(HorizonUI.ButtonStyles.white(fillsWidth: true))
+                    }
                 }
 
                 if viewModel.isActionButtonsVisible {
@@ -130,9 +143,9 @@ struct NotebookNoteView: View {
                 notebookNoteInteractor: NotebookNoteInteractor(
                     courseNotesRepository: CourseNotesRepositoryPreview.instance
                 ),
-                noteId: "1",
                 router: AppEnvironment.shared.router,
-                isEditing: false
+                noteId: "1",
+                isEditing: true
             )
         )
     }

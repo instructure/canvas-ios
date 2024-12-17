@@ -32,7 +32,11 @@ struct NotebookCourseView: View {
                     viewModel.onBack(viewController: viewController)
                 }
             },
-            trailing: { }
+            trailing: {
+                NotesIconButton(systemName: "plus") {
+                    viewModel.onAdd(viewController: viewController)
+                }
+            }
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.top, 32)
 
