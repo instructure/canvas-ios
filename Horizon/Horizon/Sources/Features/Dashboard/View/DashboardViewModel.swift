@@ -19,6 +19,7 @@
 import Combine
 import Core
 import Foundation
+import HorizonUI
 
 final class DashboardViewModel: ObservableObject {
     // MARK: - Outputs
@@ -26,6 +27,11 @@ final class DashboardViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var title: String = "Hi, John"
     @Published private(set) var courses: [HCourse] = []
+
+    // MARK: - Input
+
+    var onEvent: (HorizonUI.NavigationBar.Trailing.Event) -> Void = { _ in}
+    var viewController: WeakViewController = .init()
 
     // MARK: - Private variables
 
@@ -55,15 +61,35 @@ final class DashboardViewModel: ObservableObject {
             .map { "Hi, \($0)" }
             .replaceError(with: "")
             .assign(to: &$title)
+
+        configNavigationBarEvents()
     }
 
     // MARK: - Inputs
 
-    func notebookDidTap(_ viewController: WeakViewController) {
+    func notebookDidTap() {
         router.route(to: "/notebook", from: viewController)
     }
 
     func notificationsDidTap() {}
 
-    func profileDidTap() {}
+    func mailDidTap() {}
+
+    // MARK: - Private Functions
+
+    private func configNavigationBarEvents() {
+        onEvent = { [weak self] event in
+            guard let self else {
+                return
+            }
+            switch event {
+            case .mail:
+                mailDidTap()
+            case .notebook:
+                notebookDidTap()
+            case .notification:
+                notificationsDidTap()
+            }
+        }
+    }
 }

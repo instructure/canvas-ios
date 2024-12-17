@@ -104,7 +104,9 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Cards").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.NavigationBar.Storybook()
+                    } label: {
                         Text("Navigation").tint(Color.black)
                     }         
                 }

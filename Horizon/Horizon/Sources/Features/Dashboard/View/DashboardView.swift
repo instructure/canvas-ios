@@ -18,6 +18,7 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct DashboardView: View {
     @ObservedObject private var viewModel: DashboardViewModel
@@ -50,51 +51,15 @@ struct DashboardView: View {
                 }
             }
         }
-        .navigationBarItems(leading: nameLabel)
-        .navigationBarItems(trailing: navBarIcons)
+        .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(title: "Hi, Horizon App"))
+        .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing(onEvent: viewModel.onEvent))
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.backgroundLight)
+        .onFirstAppear { viewModel.viewController =  viewController}
     }
 
     private var nameLabel: some View {
         Size16RegularTextDarkestTitle(title: viewModel.title)
-    }
-
-    private var navBarIcons: some View {
-        HStack(spacing: 0) {
-            Button {
-                viewModel.notebookDidTap(viewController)
-            } label: {
-                Image(systemName: "book.closed")
-                    .tint(.backgroundDark)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backgroundLightest)
-                    .clipShape(.circle)
-                    .shadow(color: .backgroundDark, radius: 2)
-            }
-
-            Button {
-                viewModel.notificationsDidTap()
-            } label: {
-                Image(systemName: "bell.badge")
-                    .tint(.backgroundDark)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backgroundLightest)
-                    .clipShape(.circle)
-                    .shadow(color: .backgroundDark, radius: 2)
-            }
-
-            Button {
-                viewModel.profileDidTap()
-            } label: {
-                Image(systemName: "person")
-                    .tint(.backgroundDark)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backgroundLightest)
-                    .clipShape(.circle)
-                    .shadow(color: .backgroundDark, radius: 2)
-            }
-        }
     }
 
     @ViewBuilder
