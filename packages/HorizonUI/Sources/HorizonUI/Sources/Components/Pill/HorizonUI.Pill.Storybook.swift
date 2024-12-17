@@ -21,135 +21,413 @@ import SwiftUI
 public extension HorizonUI.Pill {
     struct Storybook: View {
         public var body: some View {
-            LazyVGrid(
-                columns: [
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ],
-                spacing: 16
-            ) {
-                // MARK: - DEFAULT styles
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 32) {
+                    // MARK: - Regular uppercase
 
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: true,
-                    isUppercased: true,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: false,
-                    isUppercased: true,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: true,
-                    isUppercased: false,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: false,
-                    isUppercased: true,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: true,
-                    isUppercased: true,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: false,
-                    isUppercased: true,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: true,
-                    isUppercased: false,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
-                HorizonUI.Pill(
-                    title: "default",
-                    style: .default,
-                    isBordered: false,
-                    isUppercased: false,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible()),
+                            GridItem(.flexible()),
+                            GridItem(.flexible())
+                        ],
+                        spacing: 16
+                    ) {
+                        // MARK: Default colors, no icon
 
-                // MARK: DANGER styles
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: nil
+                        )
 
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: true,
-                    isUppercased: true,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: false,
-                    isUppercased: true,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: true,
-                    isUppercased: false,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: false,
-                    isUppercased: true,
-                    icon: nil
-                )
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: true,
-                    isUppercased: true,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: false,
-                    isUppercased: true,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: true,
-                    isUppercased: false,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
-                HorizonUI.Pill(
-                    title: "danger",
-                    style: .danger,
-                    isBordered: false,
-                    isUppercased: false,
-                    icon: HorizonUI.Pill.PlaceholderIcon(name: "calendar")
-                )
-                Spacer()
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.default),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        // MARK: Default colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.default),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        // MARK: Danger colors, no icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.danger),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        // MARK: Danger colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.danger),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        Spacer()
+                    }
+
+                    // MARK: - Small uppercase
+
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible()),
+                            GridItem(.flexible())
+                        ],
+                        spacing: 16
+                    ) {
+                        // MARK: Default colors, no icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        // MARK: Default colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        // MARK: Danger colors, no icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        // MARK: Danger colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: true,
+                            isUppercased: true,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        Spacer()
+                    }
+
+                    // MARK: - Regular, lowercase
+
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible()),
+                            GridItem(.flexible()),
+                            GridItem(.flexible())
+                        ],
+                        spacing: 16
+                    ) {
+                        // MARK: Default colors, no icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.default),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        // MARK: Default colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.default),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        // MARK: Danger colors, no icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: false,
+                            isUppercased: true,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.danger),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        // MARK: Danger colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .inline(.danger),
+                            isSmall: false,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        Spacer()
+                    }
+
+                    // MARK: - Small, lowercase
+
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible()),
+                            GridItem(.flexible())
+                        ],
+                        spacing: 16
+                    ) {
+                        // MARK: Default colors, no icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        // MARK: Default colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.default),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.default),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        // MARK: Danger colors, no icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: nil
+                        )
+
+                        // MARK: Danger colors, icon
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .outline(.danger),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        HorizonUI.Pill(
+                            title: "default",
+                            style: .solid(.danger),
+                            isSmall: true,
+                            isUppercased: false,
+                            icon: .huiIcons.calendarToday
+                        )
+
+                        Spacer()
+                    }
+                }
+                .padding(.all, 16)
             }
             .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.all, 16)
             .navigationTitle("Pill")
             .navigationBarTitleDisplayMode(.large)
         }
