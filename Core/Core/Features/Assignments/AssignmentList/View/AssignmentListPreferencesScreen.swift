@@ -81,13 +81,14 @@ public struct AssignmentListPreferencesScreen: View {
     @ViewBuilder
     private var filterSection: some View {
         if viewModel.isTeacher {
-            Section {
-                ForEach(AssignmentFilterOptionsTeacher.allCases) { item in
-                    filterItemTeacher(with: item)
-                }
-            } header: {
-                InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
-            }
+            OptionsSectionView(
+                title: String(localized: "Assignment Filter", bundle: .core),
+                options: viewModel.filterOptionTeacherItems,
+                selectionType: .single,
+                selectedOption: viewModel.selectedFilterOptionTeacherItem
+            )
+            // TODO:
+    //        .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
         } else {
             Section {
                 ForEach(AssignmentFilterOptionStudent.allCases) { item in
@@ -116,36 +117,17 @@ public struct AssignmentListPreferencesScreen: View {
         .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
     }
 
-    private func filterItemTeacher(with item: AssignmentFilterOptionsTeacher) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title,
-            value: item,
-            selectedValue: $viewModel.selectedFilterOptionTeacher,
-            color: color
-        )
-        .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
-    }
-
     // MARK: - Status Filter Section
 
     private var statusFilterSectionTeacher: some View {
-        Section {
-            ForEach(AssignmentStatusFilterOptionsTeacher.allCases) { item in
-                statusFilterItemTeacher(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Status Filter", bundle: .core))
-        }
-    }
-
-    private func statusFilterItemTeacher(with item: AssignmentStatusFilterOptionsTeacher) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title,
-            value: item,
-            selectedValue: $viewModel.selectedStatusFilterOptionTeacher,
-            color: color
+        OptionsSectionView(
+            title: String(localized: "Status Filter", bundle: .core),
+            options: viewModel.statusFilterOptionTeacherItems,
+            selectionType: .single,
+            selectedOption: viewModel.selectedStatusFilterOptionTeacherItem
         )
-        .accessibilityIdentifier("AssignmentFilter.statusFilterOptions.\(item.rawValue)")
+        // TODO:
+//        .accessibilityIdentifier("AssignmentFilter.statusFilterOptions.\(item.rawValue)")
     }
 
     // MARK: - Sort By Section
