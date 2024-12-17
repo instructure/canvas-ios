@@ -33,9 +33,9 @@ extension HorizonUI.Badge {
                 HStack {
                     HorizonUI.Badge(type: .icon(.huiIcons.check), style: .custom(backgroundColor: .black, foregroundColor: .white))
                     Spacer()
-                    HorizonUI.Badge(type: .solidColor, style: .custom(backgroundColor: .purple))
+                    HorizonUI.Badge(type: .solidColor, style: .custom(backgroundColor: .black))
                     Spacer()
-                    HorizonUI.Badge(type: .number("15"), style: .custom(backgroundColor: .orange, foregroundColor: .green))
+                    HorizonUI.Badge(type: .number("15"), style: .custom(backgroundColor: .black, foregroundColor: .white))
                 }
 
                 HStack {
