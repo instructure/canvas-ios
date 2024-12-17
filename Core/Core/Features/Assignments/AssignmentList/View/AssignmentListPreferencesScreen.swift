@@ -19,25 +19,26 @@
 import SwiftUI
 
 public struct AssignmentListPreferencesScreen: View {
-    // MARK: - Properties
     @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: AssignmentListPreferencesViewModel
     private let color: Color = .init(Brand.shared.primary)
 
-    // MARK: - Init
     public init(viewModel: AssignmentListPreferencesViewModel) {
         self.viewModel = viewModel
     }
 
-    // MARK: - Body
     public var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-                filterSection
                 if viewModel.isTeacher {
-                    statusFilterSectionTeacher
+                    teacherFilterSection
+                    teacherPublishStatusFilterSection
+                } else {
+                    studentFilterSection
                 }
+
                 sortBySection
+
                 if viewModel.isGradingPeriodsSectionVisible {
                     gradingPeriodsSection
                 }
@@ -76,27 +77,16 @@ public struct AssignmentListPreferencesScreen: View {
         }
     }
 
-    // MARK: - Filter Section
+    // MARK: - Sections
 
     @ViewBuilder
-    private var filterSection: some View {
-        if viewModel.isTeacher {
-            OptionsSectionView(
-                title: String(localized: "Assignment Filter", bundle: .core),
-                options: viewModel.filterOptionTeacherItems,
-                selectionType: .single,
-                selectedOption: viewModel.selectedFilterOptionTeacherItem
-            )
-            // TODO:
-    //        .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
-        } else {
-            Section {
-                ForEach(AssignmentFilterOptionStudent.allCases) { item in
-                    filterItemStudent(with: item)
-                }
-            } header: {
-                InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
+    private var studentFilterSection: some View {
+        Section {
+            ForEach(AssignmentFilterOptionStudent.allCases) { item in
+                filterItemStudent(with: item)
             }
+        } header: {
+            InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
         }
     }
 
@@ -117,9 +107,19 @@ public struct AssignmentListPreferencesScreen: View {
         .accessibilityIdentifier("AssignmentFilter.filterItems.\(item.id)")
     }
 
-    // MARK: - Status Filter Section
+    @ViewBuilder
+    private var teacherFilterSection: some View {
+        OptionsSectionView(
+            title: String(localized: "Assignment Filter", bundle: .core),
+            options: viewModel.filterOptionTeacherItems,
+            selectionType: .single,
+            selectedOption: viewModel.selectedFilterOptionTeacherItem
+        )
+        // TODO:
+//        .accessibilityIdentifier("AssignmentFilter.customFilterOptions.\(item.rawValue)")
+    }
 
-    private var statusFilterSectionTeacher: some View {
+    private var teacherPublishStatusFilterSection: some View {
         OptionsSectionView(
             title: String(localized: "Status Filter", bundle: .core),
             options: viewModel.statusFilterOptionTeacherItems,
@@ -129,8 +129,6 @@ public struct AssignmentListPreferencesScreen: View {
         // TODO:
 //        .accessibilityIdentifier("AssignmentFilter.statusFilterOptions.\(item.rawValue)")
     }
-
-    // MARK: - Sort By Section
 
     private var sortBySection: some View {
         OptionsSectionView(
@@ -142,8 +140,6 @@ public struct AssignmentListPreferencesScreen: View {
         // TODO:
 //        .accessibilityIdentifier("AssignmentFilter.sortByItems.\(item.rawValue)")
     }
-
-    // MARK: - Grading Period Section
 
     private var gradingPeriodsSection: some View {
         OptionsSectionView(
