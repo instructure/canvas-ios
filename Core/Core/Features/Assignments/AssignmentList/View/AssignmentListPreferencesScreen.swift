@@ -109,41 +109,37 @@ public struct AssignmentListPreferencesScreen: View {
 
     @ViewBuilder
     private var teacherFilterSection: some View {
-        OptionsSectionView(
+        SingleSelectionView(
             title: String(localized: "Assignment Filter", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.teacherFilterOption",
             options: viewModel.filterOptionTeacherItems,
-            selectionType: .single,
             selectedOption: viewModel.selectedFilterOptionTeacherItem
         )
     }
 
     private var teacherPublishStatusFilterSection: some View {
-        OptionsSectionView(
+        SingleSelectionView(
             title: String(localized: "Status Filter", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.teacherPublishStatusFilterOption",
             options: viewModel.statusFilterOptionTeacherItems,
-            selectionType: .single,
             selectedOption: viewModel.selectedStatusFilterOptionTeacherItem
         )
     }
 
     private var sortBySection: some View {
-        OptionsSectionView(
+        SingleSelectionView(
             title: String(localized: "Grouped By", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.sortByOption",
             options: viewModel.sortingOptionItems,
-            selectionType: .single,
             selectedOption: viewModel.selectedSortingOptionItem
         )
     }
 
     private var gradingPeriodsSection: some View {
-        OptionsSectionView(
+        SingleSelectionView(
             title: String(localized: "Grading Period", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.gradingPeriodOption",
             options: viewModel.gradingPeriodItems,
-            selectionType: .single,
             selectedOption: viewModel.selectedGradingPeriodItem
         )
     }
