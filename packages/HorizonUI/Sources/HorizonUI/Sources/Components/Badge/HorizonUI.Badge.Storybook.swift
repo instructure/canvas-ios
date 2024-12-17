@@ -25,7 +25,7 @@ extension HorizonUI.Badge {
                 HStack {
                     HorizonUI.Badge(type: .icon(.huiIcons.check), style: .primary)
                     Spacer()
-                    HorizonUI.Badge(type: .empty, style: .primary)
+                    HorizonUI.Badge(type: .solidColor, style: .primary)
                     Spacer()
                     HorizonUI.Badge(type: .number("5"), style: .primary)
                 }
@@ -33,7 +33,7 @@ extension HorizonUI.Badge {
                 HStack {
                     HorizonUI.Badge(type: .icon(.huiIcons.check), style: .custom(backgroundColor: .black, foregroundColor: .white))
                     Spacer()
-                    HorizonUI.Badge(type: .empty, style: .custom(backgroundColor: .purple))
+                    HorizonUI.Badge(type: .solidColor, style: .custom(backgroundColor: .purple))
                     Spacer()
                     HorizonUI.Badge(type: .number("15"), style: .custom(backgroundColor: .orange, foregroundColor: .green))
                 }
@@ -41,7 +41,7 @@ extension HorizonUI.Badge {
                 HStack {
                     HorizonUI.Badge(type: .icon(.huiIcons.close), style: .success)
                     Spacer()
-                    HorizonUI.Badge(type: .empty, style: .success)
+                    HorizonUI.Badge(type: .solidColor, style: .success)
                     Spacer()
                     HorizonUI.Badge(type: .number("20"), style: .success)
                 }
@@ -49,9 +49,17 @@ extension HorizonUI.Badge {
                 HStack {
                     HorizonUI.Badge(type: .icon(.huiIcons.closeSmall), style: .danger)
                     Spacer()
-                    HorizonUI.Badge(type: .empty, style: .danger)
+                    HorizonUI.Badge(type: .solidColor, style: .danger)
                     Spacer()
                     HorizonUI.Badge(type: .number("30"), style: .danger)
+                }
+
+                HStack {
+                    HorizonUI.Badge(type: .icon(.huiIcons.closeSmall), style: .primaryWhite)
+                    Spacer()
+                    HorizonUI.Badge(type: .solidColor, style: .primaryWhite)
+                    Spacer()
+                    HorizonUI.Badge(type: .number("30"), style: .primaryWhite)
                 }
                 Spacer()
             }

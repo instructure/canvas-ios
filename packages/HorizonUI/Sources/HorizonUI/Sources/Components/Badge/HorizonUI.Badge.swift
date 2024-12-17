@@ -50,13 +50,14 @@ public extension HorizonUI {
             case .number(let number):
                 Text(number)
                     .huiTypography(.tag)
+                    .frame(minWidth: 19, minHeight: 19)
                     .padding(.huiSpaces.primitives.xxSmall)
             case .icon(let icon):
                 icon
                     .resizable()
                     .frame(width: 17, height: 17)
                     .padding(.huiSpaces.primitives.xxxSmall)
-            case .empty:
+            case .solidColor:
                 Circle()
                     .fill(.clear)
                     .frame(width: 12, height: 12)
@@ -77,13 +78,14 @@ extension HorizonUI.Badge {
     public enum BadgeType {
         case number(String)
         case icon(Image)
-        case empty
+        case solidColor
     }
 
     public enum Style {
         case primary
         case success
         case danger
+        case primaryWhite
         case custom(backgroundColor: Color, foregroundColor: Color = .clear)
 
         var backgroundColor: Color {
@@ -94,6 +96,7 @@ extension HorizonUI.Badge {
                 return backgroundColor
             case .success: return .huiColors.surface.success
             case .danger: return .huiColors.surface.error
+            case .primaryWhite: return .huiColors.surface.pageSecondary
             }
         }
 
@@ -101,6 +104,8 @@ extension HorizonUI.Badge {
             switch self {
             case .primary, .success, .danger:
                 return .huiColors.text.surfaceColored
+            case .primaryWhite:
+                return .huiColors.text.body
             case .custom(_, let foregroundColor):
                 return foregroundColor
             }
