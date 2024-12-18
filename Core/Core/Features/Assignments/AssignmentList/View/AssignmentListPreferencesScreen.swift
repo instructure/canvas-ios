@@ -81,30 +81,12 @@ public struct AssignmentListPreferencesScreen: View {
 
     @ViewBuilder
     private var studentFilterSection: some View {
-        Section {
-            ForEach(AssignmentFilterOptionStudent.allCases) { item in
-                filterItemStudent(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Assignment Filter", bundle: .core))
-        }
-    }
-
-    private func filterItemStudent(with item: AssignmentFilterOptionStudent) -> some View {
-        var filterSelectionBinding: Binding<Bool> {
-            Binding {
-                viewModel.selectedAssignmentFilterOptionsStudent.contains(item)
-            } set: { isSelected in
-                viewModel.didSelectAssignmentFilterOption(item, isSelected: isSelected)
-            }
-        }
-
-        return InstUI.CheckboxCell(
-            title: item.title,
-            isSelected: filterSelectionBinding,
-            color: color
+        MultiSelectionView(
+            title: String(localized: "Assignment Filter", bundle: .core),
+            accessibilityIdentifier: "AssignmentFilter.studentFilterOption",
+            options: viewModel.assignmentFilterOptionsStudentItems,
+            selectedOptions: viewModel.selectedAssignmentFilterOptionsStudentItems
         )
-        .accessibilityIdentifier("AssignmentFilter.studentFilterOption.\(item.id)")
     }
 
     @ViewBuilder

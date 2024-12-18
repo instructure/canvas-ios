@@ -21,12 +21,12 @@ import Combine
 
 // MARK: - Structs
 
-public struct AssignmentFilterOptionStudent: CaseIterable, Equatable, Identifiable {
+public struct AssignmentFilterOptionStudent: CaseIterable, Equatable {
     public static func == (lhs: AssignmentFilterOptionStudent, rhs: AssignmentFilterOptionStudent) -> Bool {
-        lhs.id == rhs.id && lhs.title == rhs.title && lhs.subtitle == rhs.subtitle
+        lhs.id == rhs.id
     }
 
-    public let id: String
+    let id: String
     let title: String
     let subtitle: String?
     let rule: (Assignment) -> Bool
@@ -152,8 +152,9 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Outputs
 
     // Student Filter
-    @Published private(set) var selectedAssignmentFilterOptionsStudent: [AssignmentFilterOptionStudent]
-    private let initialFilterOptionsStudent: [AssignmentFilterOptionStudent]
+    let assignmentFilterOptionsStudentItems: [OptionItem]
+    let selectedAssignmentFilterOptionsStudentItems = CurrentValueSubject<Set<OptionItem>, Never>([])
+    private let initialFilterOptionsStudentItems: Set<OptionItem>
 
     // Teacher Filter
     let filterOptionTeacherItems: [OptionItem]
@@ -204,8 +205,10 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.isTeacher = isTeacher
 
         // Student Filter
-        self.initialFilterOptionsStudent = initialFilterOptionsStudent
-        self.selectedAssignmentFilterOptionsStudent = initialFilterOptionsStudent
+        self.assignmentFilterOptionsStudentItems = AssignmentFilterOptionStudent.allCases.map { $0.optionItem }
+        let initialFilterOptionsStudentItems = Set(initialFilterOptionsStudent.map { $0.optionItem })
+        self.initialFilterOptionsStudentItems = initialFilterOptionsStudentItems
+        selectedAssignmentFilterOptionsStudentItems.value = initialFilterOptionsStudentItems
 
         // Teacher Filter
         self.filterOptionTeacherItems = AssignmentFilterOptionsTeacher.allCases.map { $0.optionItem }
@@ -243,7 +246,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Functions
 
     func didTapCancel(viewController: WeakViewController) {
-        selectedAssignmentFilterOptionsStudent = initialFilterOptionsStudent
+        selectedAssignmentFilterOptionsStudentItems.value = initialFilterOptionsStudentItems
         selectedFilterOptionTeacherItem.value = initialFilterOptionTeacherItem
         selectedStatusFilterOptionTeacherItem.value = initialStatusFilterOptionTeacherItem
         selectedSortingOptionItem.value = initialSortingOptionItem
@@ -261,26 +264,15 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         completion(
             AssignmentListPreferences(
-                filterOptionsStudent: selectedAssignmentFilterOptionsStudent,
+                filterOptionsStudent: selectedAssignmentFilterOptionsStudentItems.value.compactMap { selected in
+                    AssignmentFilterOptionStudent.allCases.first { $0.isMatch(for: selected) }
+                },
                 filterOptionTeacher: .init(optionItem: selectedFilterOptionTeacherItem.value),
                 statusFilterOptionTeacher: .init(optionItem: selectedStatusFilterOptionTeacherItem.value),
                 sortingOption: sortingOptions.first { $0.isMatch(for: selectedSortingOptionItem.value) },
                 gradingPeriodId: gradingPeriodId
             )
         )
-    }
-
-    func didSelectAssignmentFilterOption(_ option: AssignmentFilterOptionStudent, isSelected: Bool) {
-        guard let indexOfOption = selectedAssignmentFilterOptionsStudent.firstIndex(of: option) else {
-            if isSelected {
-                selectedAssignmentFilterOptionsStudent.insert(option)
-            }
-            return
-        }
-
-        if !isSelected {
-            selectedAssignmentFilterOptionsStudent.remove(at: indexOfOption)
-        }
     }
 }
 
@@ -304,6 +296,16 @@ private extension AssignmentListViewModel.AssignmentArrangementOptions {
 
     func isMatch(for optionItem: OptionItem?) -> Bool {
         rawValue == optionItem?.id
+    }
+}
+
+private extension AssignmentFilterOptionStudent {
+    var optionItem: OptionItem {
+        .init(id: id, title: title)
+    }
+
+    func isMatch(for optionItem: OptionItem?) -> Bool {
+        id == optionItem?.id
     }
 }
 
