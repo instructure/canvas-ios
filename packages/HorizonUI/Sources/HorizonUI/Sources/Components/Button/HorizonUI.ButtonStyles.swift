@@ -36,8 +36,7 @@ extension HorizonUI {
         // MARK: - Icon Button Dependencies
 
         private let badge: String?
-        private let badgeColor: Color?
-        private let badgeTextColor: Color?
+        private let badgeStyle: HorizonUI.Badge.Style?
         private let icon: Image?
 
         fileprivate init(
@@ -56,24 +55,21 @@ extension HorizonUI {
             self.trailing = trailing
 
             self.badge = nil
-            self.badgeColor = nil
-            self.badgeTextColor = nil
+            self.badgeStyle = nil
             self.icon = nil
         }
 
         fileprivate init(
             background: any ShapeStyle,
             foreground: Color,
-            badgeColor: Color,
-            badgeTextColor: Color,
+            badgeStyle: HorizonUI.Badge.Style,
             isSmall: Bool = false,
             icon: Image,
             badge: String? = nil
         ) {
             self.background = AnyShapeStyle(background)
             self.badge = badge
-            self.badgeColor = badgeColor
-            self.badgeTextColor = badgeTextColor
+            self.badgeStyle = badgeStyle
             self.foreground = foreground
             self.icon = icon
             self.isSmall = isSmall
@@ -103,7 +99,7 @@ extension HorizonUI {
                     .foregroundColor(foreground)
             }
             .huiTypography(.buttonTextLarge)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
             .frame(height: isSmall ? 40 : 44)
             .frame(maxWidth: fillsWidth ? .infinity : nil)
             .background(background)
@@ -127,18 +123,9 @@ extension HorizonUI {
                     .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
 
                 if let badge = badge,
-                   let badgeColor = badgeColor,
-                   let badgeTextColor = badgeTextColor
+                   let badgeStyle = badgeStyle
                 {
-                    Text(badge)
-                        .frame(width: 19, height: 19)
-                        .huiTypography(.tag)
-                        .background(badgeColor)
-                        .foregroundStyle(badgeTextColor)
-                        .cornerRadius(10)
-                        .multilineTextAlignment(.center)
-                        .alignmentGuide(.top) { _ in 0 }
-                        .alignmentGuide(.trailing) { _ in 0 }
+                    HorizonUI.Badge(type: .number(badge), style: badgeStyle)
                         .offset(x: 15, y: -15)
                 }
             }
@@ -193,33 +180,18 @@ extension HorizonUI.ButtonStyles {
             }
         }
 
-        var badgeColor: Color {
+        var badgeStyle: HorizonUI.Badge.Style {
             switch self {
             case .ai:
-                return Color.huiColors.surface.pageSecondary
+                return .primaryWhite
             case .beige:
-                return Color.huiColors.surface.institution
+                return .primary
             case .blue:
-                return Color.huiColors.surface.pageSecondary
+                return .primaryWhite
             case .black:
-                return Color.huiColors.surface.pageSecondary
+                return .primaryWhite
             case .white:
-                return Color.huiColors.surface.institution
-            }
-        }
-
-        var badgeTextColor: Color {
-            switch self {
-            case .ai:
-                return Color.huiColors.text.body
-            case .beige:
-                return Color.huiColors.text.surfaceColored
-            case .blue:
-                return Color.huiColors.text.body
-            case .black:
-                return Color.huiColors.text.body
-            case .white:
-                return Color.huiColors.text.surfaceColored
+                return .primary
             }
         }
     }
@@ -252,8 +224,7 @@ extension HorizonUI.ButtonStyles {
         .init(
             background: type.background,
             foreground: type.foregroundColor,
-            badgeColor: type.badgeColor,
-            badgeTextColor: type.badgeTextColor,
+            badgeStyle: type.badgeStyle,
             isSmall: isSmall,
             icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add),
             badge: badge
