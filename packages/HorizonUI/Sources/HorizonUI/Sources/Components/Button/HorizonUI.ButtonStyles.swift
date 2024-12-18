@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension HorizonUI {
-    struct ButtonStyles: ButtonStyle {
+    public struct ButtonStyles: ButtonStyle {
         // MARK: - Common Dependencies
 
         @Environment(\.isEnabled) private var isEnabled
@@ -79,7 +79,7 @@ extension HorizonUI {
             self.trailing = nil
         }
 
-        func makeBody(configuration: Configuration) -> some View {
+        public func makeBody(configuration: Configuration) -> some View {
             if icon != nil {
                 return AnyView(makeIconOnlyButtonType(configuration: configuration))
             }
@@ -134,14 +134,14 @@ extension HorizonUI {
 }
 
 extension HorizonUI.ButtonStyles {
-    enum ButtonType: String, CaseIterable, Identifiable {
+    public enum ButtonType: String, CaseIterable, Identifiable {
         case ai = "AI"
         case beige = "Beige"
         case blue = "Blue"
         case black = "Black"
         case white = "White"
 
-        var id: String { rawValue }
+        public var id: String { rawValue }
 
         var background: any ShapeStyle {
             switch self {
@@ -198,7 +198,7 @@ extension HorizonUI.ButtonStyles {
 }
 
 extension HorizonUI.ButtonStyles {
-    static func primary(
+    public static func primary(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         fillsWidth: Bool = false,
@@ -215,7 +215,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    static func iconOnly(
+    public static func iconOnly(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         badge: String? = nil,
