@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct OptionItem: Equatable, Identifiable {
+public struct OptionItem: Equatable, Hashable, Identifiable {
     public static let allId = "_this_is_an_unlikely_id_preserved_for_the_all_option_"
 
     public let id: String
@@ -43,5 +43,9 @@ public struct OptionItem: Equatable, Identifiable {
 
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
