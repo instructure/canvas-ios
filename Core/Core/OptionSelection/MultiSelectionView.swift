@@ -66,6 +66,7 @@ public struct MultiSelectionView: View {
             subtitle: item.subtitle,
             isSelected: selectionBinding(for: item),
             color: item.color,
+            accessoryView: { item.accessoryIcon?.foregroundStyle(item.color) },
             dividerStyle: viewModel.dividerStyle(for: item)
         )
         .accessibilityIdentifier(accessibilityIdentifier(for: item))

@@ -153,7 +153,7 @@ private extension CourseSmartSearchFilter.SortMode {
 
 private extension CourseSmartSearchResultType {
     func optionItem(color: Color?) -> OptionItem {
-        .init(id: rawValue, title: title, color: color)
+        .init(id: rawValue, title: title, color: color, accessoryIcon: icon)
     }
 
     func isMatch(for optionItem: OptionItem?) -> Bool {

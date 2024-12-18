@@ -30,8 +30,8 @@ extension InstUI {
         private let subtitle: String?
         @Binding private var isSelected: Bool
         private let color: Color
-        private let dividerStyle: InstUI.Divider.Style
         private let accessoryView: (() -> Accessory)?
+        private let dividerStyle: InstUI.Divider.Style
 
         // MARK: Initializers
 
@@ -40,15 +40,15 @@ extension InstUI {
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
             color: Color,
-            dividerStyle: InstUI.Divider.Style = .full,
-            accessory: (() -> Accessory)?
+            accessoryView: (() -> Accessory)?,
+            dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
             self.subtitle = subtitle
             self._isSelected = isSelected
             self.color = color
+            self.accessoryView = accessoryView
             self.dividerStyle = dividerStyle
-            self.accessoryView = accessory
         }
 
         public init(
@@ -63,8 +63,8 @@ extension InstUI {
                 subtitle: subtitle,
                 isSelected: isSelected,
                 color: color,
-                dividerStyle: dividerStyle,
-                accessory: nil
+                accessoryView: nil,
+                dividerStyle: dividerStyle
             )
         }
 
