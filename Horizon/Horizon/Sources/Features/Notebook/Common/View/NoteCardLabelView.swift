@@ -17,24 +17,13 @@
 //
 
 import SwiftUI
+import HorizonUI
 
 struct NoteCardLabelView: View {
     // MARK: - Properties
     let type: CourseNoteLabel
 
     var body: some View {
-        HStack {
-            NotebookLabelIcon(type: type)
-            Text(type.label)
-                .font(.regular12)
-                .foregroundStyle(type.color)
-        }
-        .padding()
-        .frame(height: 31)
-        .background(
-            RoundedRectangle(cornerRadius: 15.5)
-                .stroke(type.color, lineWidth: 2)
-        )
-        .cornerRadius(15.5)
+
     }
 }

@@ -14,10 +14,16 @@
         }
       }
     },
+    "Add Note" : {
+
+    },
     "Add your text" : {
 
     },
     "AI Assist" : {
+
+    },
+    "AI Assistant" : {
 
     },
     "AI Learning Assist" : {
@@ -35,6 +41,9 @@
     "Are you sure you want to proceed?" : {
 
     },
+    "Back" : {
+
+    },
     "Cancel" : {
 
     },
@@ -42,6 +51,9 @@
 
     },
     "Check Answer" : {
+
+    },
+    "Close" : {
 
     },
     "Confirmation" : {
@@ -53,10 +65,16 @@
     "Continue learning" : {
 
     },
+    "Delete Note" : {
+
+    },
     "Due" : {
 
     },
     "Edit" : {
+
+    },
+    "Edit Note" : {
 
     },
     "Error" : {

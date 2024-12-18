@@ -32,16 +32,21 @@ struct NotebookNoteView: View {
         ) {
             VStack(spacing: 32) {
                 HStack {
-                    NotesIconButton(systemName: "arrow.left") {
+                    Button("Back") {
                         viewModel.onClose(viewController: viewController)
                     }
+                    .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.arrowBack))
                     .hidden(viewModel.isBackButtonHidden)
+
                     Text(viewModel.title)
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
                         .font(.bold22)
                         .foregroundColor(.textDarkest)
-                    NotesIconButton(systemName: "xmark") {}.hidden()
+
+                    Button("Close") {}
+                        .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.close))
+                        .hidden()
                 }
                 .background(HorizonUI.colors.surface.pagePrimary)
 
@@ -64,18 +69,13 @@ struct NotebookNoteView: View {
                     TextField("", text: $viewModel.note, axis: .vertical)
                         .disabled(viewModel.isTextEditorDisabled)
                         .onTapGesture { viewModel.onTapTextEditor() }
-                        .padding(12)
+                        .padding(.huiSpaces.primitives.small)
                         .frame(minHeight: 112, alignment: .topLeading)
                         .frame(maxWidth: .infinity)
                         .scrollDisabled(true)
                         .background(viewModel.isTextEditorDisabled ? .clear : .white)
-                        .cornerRadius(16)
-                        .shadow(
-                            color: viewModel.isTextEditorDisabled ? .clear : .black.opacity(0.12),
-                            radius: 8,
-                            x: 1,
-                            y: 2
-                        )
+                        .cornerRadius(.huiSpaces.primitives.xSmall)
+                        .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
 
                     if viewModel.isTextEditorDisabled {
                         Color.clear.contentShape(Rectangle())
@@ -91,7 +91,7 @@ struct NotebookNoteView: View {
                             Text(String(localized: "Save", bundle: .horizon))
                         }
                         .buttonStyle(
-                            HorizonUI.ButtonStyles.blue(fillsWidth: true)
+                            HorizonUI.ButtonStyles.primary(.blue, fillsWidth: true)
                         )
                         .disabled(viewModel.isSaveDisabled)
                     }
@@ -102,22 +102,24 @@ struct NotebookNoteView: View {
                         } label: {
                             Text(String(localized: "Cancel", bundle: .horizon))
                         }
-                        .buttonStyle(HorizonUI.ButtonStyles.white(fillsWidth: true))
+                        .buttonStyle(.primary(.white, fillsWidth: true))
                     }
                 }
 
                 if viewModel.isActionButtonsVisible {
                     HStack {
-                        NotesIconButton(
-                            systemName: "trash",
-                            tint: .textDanger
-                        ) {
+                        Button("Delete Note") {
                             viewModel.onDelete()
                         }
-                        NotesIconButton(resource: .chatBot) {}
-                        NotesIconButton(systemName: "pencil") {
+                        .buttonStyle(.iconOnly(.red, icon: .huiIcons.delete))
+
+                        Button("AI Assistant") { }
+                            .buttonStyle(.iconOnly(.ai))
+
+                        Button("Edit Note") {
                             viewModel.onEdit()
                         }
+                        .buttonStyle(.iconOnly(.white, icon: .huiIcons.edit))
                     }
                 }
             }

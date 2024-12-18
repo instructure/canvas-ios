@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import HorizonUI
 
 struct NotebookCard<Content: View>: View {
     private let content: Content
@@ -26,11 +27,11 @@ struct NotebookCard<Content: View>: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) { content }
+        VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) { content }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(24)
+            .padding(.huiSpaces.primitives.medium)
             .background(Color.white)
-            .cornerRadius(16)
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
+            .cornerRadius(.huiSpaces.primitives.mediumSmall)
+            .huiElevation(level: .level4)
     }
 }

@@ -42,8 +42,8 @@ struct NotesBody<Content: View, Leading: View, Trailing: View>: View {
     var body: some View {
         ScrollView {
             VStack { content }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 24)
+                .padding(.horizontal, .huiSpaces.primitives.medium)
+                .padding(.bottom, .huiSpaces.primitives.medium)
         }
         .frame(maxWidth: .infinity)
         .navigationBarBackButtonHidden(true)

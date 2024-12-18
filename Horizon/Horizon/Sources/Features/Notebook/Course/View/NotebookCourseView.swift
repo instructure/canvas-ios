@@ -18,6 +18,7 @@
 
 import SwiftUI
 import Core
+import HorizonUI
 
 struct NotebookCourseView: View {
 
@@ -28,20 +29,22 @@ struct NotebookCourseView: View {
         NotesBody(
             title: viewModel.title,
             leading: {
-                NotesIconButton(systemName: "arrow.left") {
+                Button("Back") {
                     viewModel.onBack(viewController: viewController)
                 }
+                .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.arrowBack))
             },
             trailing: {
-                NotesIconButton(systemName: "plus") {
+                Button("Add Note") {
                     viewModel.onAdd(viewController: viewController)
                 }
+                .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.add))
             }
         ) {
-            NotebookSearchBar(term: $viewModel.term).padding(.top, 32)
+            NotebookSearchBar(term: $viewModel.term).padding(.top, .huiSpaces.primitives.medium)
 
             Text("Filter", bundle: .horizon).font(.regular16)
-                .padding(.top, 32)
+                .padding(.top, .huiSpaces.primitives.mediumSmall)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(spacing: 8) {
@@ -56,7 +59,7 @@ struct NotebookCourseView: View {
             }.frame(maxWidth: .infinity)
 
             Text("Notes", bundle: .horizon).font(.regular16)
-                .padding(.top, 32)
+                .padding(.top, .huiSpaces.primitives.medium)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             ForEach(viewModel.notes) { note in

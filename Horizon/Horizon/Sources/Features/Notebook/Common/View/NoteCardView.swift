@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import HorizonUI
 
 struct NoteCardView: View {
     // MARK: - Properties
@@ -25,21 +26,39 @@ struct NoteCardView: View {
 
     var body: some View {
         NotebookCard {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
                 Text(note.title)
                     .font(.regular12)
-                    .padding(.bottom, 8)
+                    .padding(.bottom, .huiSpaces.primitives.xSmall)
                 Text(note.note)
                     .lineLimit(3)
                     .font(.regular16)
-                    .padding(.bottom, 8)
-                HStack(spacing: 8) {
+                    .padding(.bottom, .huiSpaces.primitives.xSmall)
+                HStack(spacing: .huiSpaces.primitives.xSmall) {
                     ForEach(note.types, id: \.self) { type in
-                        NoteCardLabelView(type: type)
+                        noteCardLabelView(type: type)
                     }
                 }
             }
         }
+    }
+
+    // MARK: - Private
+
+    private func noteCardLabelView(type: CourseNoteLabel) -> some View {
+        HStack {
+            type.image
+            Text(type.label)
+                .font(.regular12)
+                .foregroundStyle(type.color)
+        }
+        .padding()
+        .frame(height: 31)
+        .background(
+            RoundedRectangle(cornerRadius: 15.5)
+                .stroke(type.color, lineWidth: 2)
+        )
+        .huiCornerRadius(level: .level3)
     }
 }
 

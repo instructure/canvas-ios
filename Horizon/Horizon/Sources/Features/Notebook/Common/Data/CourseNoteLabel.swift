@@ -34,4 +34,10 @@ enum CourseNoteLabel: String, CaseIterable {
             String(localized: "Confusing", bundle: .horizon) :
             String(localized: "Important", bundle: .horizon)
     }
+
+    var image: some View {
+        self == .confusing ?
+            Image.huiIcons.help.foregroundStyle(self.color) :
+            Image.huiIcons.flag2.foregroundStyle(self.color)
+    }
 }

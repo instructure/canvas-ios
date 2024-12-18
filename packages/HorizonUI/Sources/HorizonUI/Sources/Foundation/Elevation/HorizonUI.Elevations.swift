@@ -18,8 +18,9 @@
 
 import SwiftUI
 
-public extension HorizonUI {
-    enum Elevations: CaseIterable {
+extension HorizonUI {
+    public enum Elevations: CaseIterable {
+        case level0
         case level1
         case level2
         case level3
@@ -28,6 +29,14 @@ public extension HorizonUI {
 
         var attributes: ElevationAttributes {
             switch self {
+            case .level0:
+                return ElevationAttributes(
+                    x: 0,
+                    y: 0,
+                    blur: 0,
+                    spread: 0,
+                    color: Color.clear
+                )
             case .level1:
                 return ElevationAttributes(
                     x: 0,
@@ -85,8 +94,8 @@ public extension HorizonUI {
     }
 }
 
-public extension View {
-    func huiElevation(level: HorizonUI.Elevations) -> some View {
+extension View {
+    public func huiElevation(level: HorizonUI.Elevations) -> some View {
         let spreadModifier = level.attributes.spread > 0 ? level.attributes.spread : 0
 
         return padding(spreadModifier)

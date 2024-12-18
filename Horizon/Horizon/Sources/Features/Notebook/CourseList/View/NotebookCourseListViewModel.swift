@@ -21,7 +21,7 @@ import SwiftUI
 import Core
 
 @Observable
-final class NotebookViewModel {
+final class NotebookCourseListViewModel {
     // MARK: - Outputs
 
     var listItems: [NotebookListItem] = []

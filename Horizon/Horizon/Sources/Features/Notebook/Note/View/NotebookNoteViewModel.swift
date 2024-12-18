@@ -161,10 +161,17 @@ final class NotebookNoteViewModel {
     }
 
     private func saveContent() {
-        saveLabels()
         if let noteId = noteId {
+            var labels: [CourseNoteLabel] = []
+            if isConfusing {
+                labels.append(.confusing)
+            }
+            if isImportant {
+                labels.append(.important)
+            }
+
             notebookNoteInteractor
-                .update(noteId: noteId, content: note)
+                .update(noteId: noteId, content: note, labels: labels)
                 .sink { _ in }
                 .store(in: &subscriptions)
         } else if let courseId = courseId,
@@ -177,22 +184,6 @@ final class NotebookNoteViewModel {
                 .sink { _ in }
                 .store(in: &subscriptions)
         }
-    }
-
-    private func saveLabels() {
-        guard let noteId = noteId else { return }
-
-        var labels: [CourseNoteLabel] = []
-        if isConfusing {
-            labels.append(.confusing)
-        }
-        if isImportant {
-            labels.append(.important)
-        }
-        notebookNoteInteractor
-            .update(noteId: noteId, labels: labels)
-            .sink { _ in }
-            .store(in: &subscriptions)
     }
 
     private var getCourseNoteLabels: [CourseNoteLabel] {
