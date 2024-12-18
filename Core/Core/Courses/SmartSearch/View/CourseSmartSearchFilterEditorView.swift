@@ -38,43 +38,16 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     SingleSelectionView(
                         title: String(localized: "Sort By", bundle: .core),
-                        options: viewModel.sortModes,
-                        selectedOption: viewModel.selectedSortModeItem
+                        options: viewModel.sortModeOptions,
+                        selectedOption: viewModel.selectedSortModeOption
                     )
 
-                    HStack {
-                        Text("Result type", bundle: .core)
-                            .font(.semibold14)
-                            .foregroundStyle(Color.textDark)
-                        Spacer()
-                        Button(
-                            viewModel.allSelectionMode.title,
-                            action: viewModel.allSelectionButtonTapped
-                        )
-                        .font(.semibold14)
-                    }
-                    .padding(16)
-                    .background(Color.borderLight)
-
-                    InstUI.Divider()
-
-                    ForEach($viewModel.resultTypes, id: \.type) { type in
-                        InstUI.CheckboxCell(
-                            title: type.wrappedValue.type.title,
-                            isSelected: type.checked,
-                            color: contextColor,
-                            dividerStyle: .hidden,
-                            accessory: {
-                                type.wrappedValue.type.icon.foregroundStyle(contextColor)
-                            }
-                        )
-
-                        if viewModel.isLastResultType(type.wrappedValue) == false {
-                            InstUI.Divider().padding(.horizontal, 16)
-                        }
-                    }
-
-                    InstUI.Divider()
+                    MultiSelectionView(
+                        title: String(localized: "Result type", bundle: .core),
+                        hasSelectAllButton: true,
+                        options: viewModel.resultTypeOptions,
+                        selectedOptions: viewModel.selectedResultTypeOptions
+                    )
                 }
             }
             .listStyle(.plain)
