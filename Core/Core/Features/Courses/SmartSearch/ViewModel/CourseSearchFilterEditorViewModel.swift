@@ -24,11 +24,6 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
     // MARK: Helper Types
     typealias ResultType = CourseSmartSearchResultType
 
-    struct ResultTypeSelection {
-        let type: ResultType
-        var checked: Bool = true
-    }
-
     enum AllSelectionMode: Equatable {
         case deselect
         case select
@@ -45,9 +40,11 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Properties
 
-    let sortModes: [OptionItem]
-    let selectedSortModeItem = CurrentValueSubject<OptionItem?, Never>(nil)
-    @Published var resultTypes: [ResultTypeSelection]
+    let sortModeOptions: [OptionItem]
+    let selectedSortModeOption = CurrentValueSubject<OptionItem?, Never>(nil)
+
+    let resultTypeOptions: [OptionItem]
+    let selectedResultTypeOptions = CurrentValueSubject<Set<OptionItem>, Never>([])
 
     private var initialFilter: CourseSmartSearchFilter?
     private var selection: Binding<CourseSmartSearchFilter?>
@@ -58,31 +55,33 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
     init(selection: Binding<CourseSmartSearchFilter?>, accentColor: Color?) {
         self.selection = selection
 
-        let filter = selection.wrappedValue
-        self.initialFilter = filter
+        let initialFilter = selection.wrappedValue
+        self.initialFilter = initialFilter
 
-        sortModes = CourseSmartSearchFilter.SortMode.allCases.map {
-            .init(id: $0.rawValue, title: $0.title, color: accentColor)
+        sortModeOptions = CourseSmartSearchFilter.SortMode.allCases.map {
+            $0.optionItem(color: accentColor)
         }
-        let initialSortMode = filter?.sortMode ?? .relevance
-        selectedSortModeItem.value = sortModes.first { $0.id == initialSortMode.rawValue }
+        let initialSortMode = initialFilter?.sortMode ?? .relevance
+        let initialSortModeOption = initialSortMode.optionItem(color: accentColor)
+        selectedSortModeOption.value = initialSortModeOption
 
-        let included = filter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
-        self.resultTypes = ResultType.filterableTypes.map({ type in
-            let checked = included.contains(type)
-            return ResultTypeSelection(type: type, checked: checked)
-        })
+        self.resultTypeOptions = ResultType.filterableTypes.map { $0.optionItem(color: accentColor) }
+        let initialResultTypes = initialFilter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
+        let initialResultTypeOptions = Set(initialResultTypes.map { $0.optionItem(color: accentColor) })
+        selectedResultTypeOptions.value = initialResultTypeOptions
 
         Publishers
             .CombineLatest(
-                selectedSortModeItem,
-                $resultTypes
+                selectedSortModeOption,
+                selectedResultTypeOptions
             )
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] (modeSelection, typesSelection) in
+            .sink { [weak self] (sortModeOption, resultTypeOptions) in
                 self?.updateSelection(
-                    sortMode: .init(optionItem: modeSelection),
-                    resultTypes: typesSelection
+                    sortMode: .init(optionItem: sortModeOption),
+                    resultTypes: resultTypeOptions.compactMap { selected in
+                        CourseSmartSearchResultType.filterableTypes.first { $0.isMatch(for: selected) }
+                    }
                 )
             }
             .store(in: &subscriptions)
@@ -90,23 +89,15 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Exposed to View
 
-    func isLastResultType(_ result: ResultTypeSelection) -> Bool {
-        return result.type == resultTypes.last?.type
-    }
-
     var allSelectionMode: AllSelectionMode {
         return isAllSelected ? .deselect : .select
     }
 
     func allSelectionButtonTapped() {
         if isAllSelected {
-            resultTypes.indices.forEach { index in
-                resultTypes[index].checked = false
-            }
+            selectedResultTypeOptions.value = []
         } else {
-            resultTypes.indices.forEach { index in
-                resultTypes[index].checked = true
-            }
+            selectedResultTypeOptions.value = Set(resultTypeOptions)
         }
     }
 
@@ -118,10 +109,10 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     private func updateSelection(
         sortMode: CourseSmartSearchFilter.SortMode?,
-        resultTypes: [ResultTypeSelection]
+        resultTypes: [CourseSmartSearchResultType]
     ) {
-        let allChecked = resultTypes.allSatisfy({ $0.checked })
-        let allUnchecked = resultTypes.allSatisfy({ $0.checked == false })
+        let allChecked = isAllSelected
+        let allUnchecked = selectedResultTypeOptions.value.isEmpty
 
         if sortMode == .relevance, allChecked || allUnchecked {  // This is invalid case
             selection.wrappedValue = nil
@@ -131,19 +122,16 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
         selection.wrappedValue = CourseSmartSearchFilter(
             sortMode: sortMode ?? .relevance,
             includedTypes: resultTypes
-                .filter({ $0.checked })
-                .map({ $0.type })
         )
     }
 
     private var isAllSelected: Bool {
-        return resultTypes.allSatisfy({ $0.checked })
+        selectedResultTypeOptions.value == Set(resultTypeOptions)
     }
 }
 
-
 private extension CourseSmartSearchFilter.SortMode {
-    var title: String {
+    private var title: String {
         switch self {
         case .relevance:
             return String(localized: "Relevance", bundle: .core)
@@ -156,5 +144,19 @@ private extension CourseSmartSearchFilter.SortMode {
         guard let optionItem else { return nil }
 
         self.init(rawValue: optionItem.id)
+    }
+
+    func optionItem(color: Color?) -> OptionItem {
+        .init(id: rawValue, title: title, color: color)
+    }
+}
+
+private extension CourseSmartSearchResultType {
+    func optionItem(color: Color?) -> OptionItem {
+        .init(id: rawValue, title: title, color: color)
+    }
+
+    func isMatch(for optionItem: OptionItem?) -> Bool {
+        rawValue == optionItem?.id
     }
 }
