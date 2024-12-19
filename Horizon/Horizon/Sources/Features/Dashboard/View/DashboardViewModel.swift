@@ -30,7 +30,6 @@ final class DashboardViewModel: ObservableObject {
 
     // MARK: - Input
 
-    var onEvent: (HorizonUI.NavigationBar.Trailing.Event) -> Void = { _ in}
     var viewController: WeakViewController = .init()
 
     // MARK: - Private variables
@@ -61,8 +60,6 @@ final class DashboardViewModel: ObservableObject {
             .map { "Hi, \($0)" }
             .replaceError(with: "")
             .assign(to: &$title)
-
-        configNavigationBarEvents()
     }
 
     // MARK: - Inputs
@@ -77,19 +74,14 @@ final class DashboardViewModel: ObservableObject {
 
     // MARK: - Private Functions
 
-    private func configNavigationBarEvents() {
-        onEvent = { [weak self] event in
-            guard let self else {
-                return
-            }
-            switch event {
-            case .mail:
-                mailDidTap()
-            case .notebook:
-                notebookDidTap()
-            case .notification:
-                notificationsDidTap()
-            }
+    func onEvent(event: HorizonUI.NavigationBar.Trailing.Event) {
+        switch event {
+        case .mail:
+            mailDidTap()
+        case .notebook:
+            notebookDidTap()
+        case .notification:
+            notificationsDidTap()
         }
     }
 }
