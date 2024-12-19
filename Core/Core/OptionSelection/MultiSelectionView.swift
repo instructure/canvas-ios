@@ -27,18 +27,18 @@ public struct MultiSelectionView: View {
 
     private let title: String?
     private let accessibilityIdentifier: String?
-    private let hasSelectAllButton: Bool
+    private let hasAllSelectionButton: Bool
 
     public init(
         title: String?,
         accessibilityIdentifier: String? = nil,
-        hasSelectAllButton: Bool = false,
+        hasAllSelectionButton: Bool = false,
         options: [OptionItem],
         selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     ) {
         self.title = title
         self.accessibilityIdentifier = accessibilityIdentifier
-        self.hasSelectAllButton = hasSelectAllButton
+        self.hasAllSelectionButton = hasAllSelectionButton
 
         self._viewModel = StateObject(wrappedValue: .init(
             options: options,
@@ -54,7 +54,15 @@ public struct MultiSelectionView: View {
                     optionCell(with: item)
                 }
             } header: {
-                InstUI.ListSectionHeader(title: title)
+                if hasAllSelectionButton {
+                    InstUI.ListSectionHeader(
+                        title: title,
+                        buttonLabel: Text(viewModel.allSelectionButtonTitle),
+                        buttonAction: { viewModel.didTapAllSelectionButton.send() }
+                    )
+                } else {
+                    InstUI.ListSectionHeader(title: title)
+                }
             }
         }
     }
@@ -77,6 +85,12 @@ public struct MultiSelectionView: View {
             viewModel.isOptionSelected(item)
         } set: { newValue in
             viewModel.didToggleSelection.send((option: item, isSelected: newValue))
+        }
+    }
+
+    private var allSelectionButton: Button<Text> {
+        Button(viewModel.allSelectionButtonTitle) {
+            viewModel.didTapAllSelectionButton.send()
         }
     }
 
