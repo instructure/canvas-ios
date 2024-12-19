@@ -52,6 +52,7 @@ public extension HorizonUI {
                     .huiTypography(.tag)
                     .frame(minWidth: 19, minHeight: 19)
                     .padding(.huiSpaces.primitives.xxSmall)
+                    .multilineTextAlignment(.center)
             case .icon(let icon):
                 icon
                     .resizable()
