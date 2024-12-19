@@ -72,8 +72,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             header: ListSectionHeaderOld(backgroundColor: .backgroundLightest) {
                 HStack {
                     Text("Grading Period:", bundle: .core)
-                        .font(.regular14)
-                        .fontWeight(.light)
+                        .textStyle(.sectionHeader)
                     Spacer()
                     text
                         .font(.semibold22)
