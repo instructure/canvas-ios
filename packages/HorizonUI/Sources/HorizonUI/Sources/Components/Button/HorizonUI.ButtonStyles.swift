@@ -80,53 +80,45 @@ extension HorizonUI {
         }
 
         public func makeBody(configuration: Configuration) -> some View {
-            if icon != nil {
-                return AnyView(makeIconOnlyButtonType(configuration: configuration))
-            }
-            return AnyView(makePrimaryButtonType(configuration: configuration))
-        }
+            ZStack {
+                if let icon = icon {
+                    ZStack {
+                        icon
+                            .renderingMode(.template)
+                            .frame(width: isSmall ? 40 : 44, height: isSmall ? 40 : 44)
+                            .background(backgroundColor)
+                            .foregroundStyle(foregroundColor)
+                            .cornerRadius(isSmall ? 20 : 22)
+                            .foregroundColor(foregroundColor)
+                            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
 
-        private func makePrimaryButtonType(configuration: Configuration) -> any View {
-            HStack {
-                leading?
-                    .renderingMode(.template)
-                    .foregroundColor(foregroundColor)
+                        if let badgeNumber = badgeNumber,
+                           let badgeStyle = badgeStyle
+                        {
+                            HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
+                                .offset(x: 15, y: -15)
+                        }
+                    }
+                } else {
+                    HStack {
+                        leading?
+                            .renderingMode(.template)
+                            .foregroundColor(foregroundColor)
 
-                configuration.label
+                        configuration.label
 
-                trailing?
-                    .renderingMode(.template)
-                    .foregroundColor(foregroundColor)
-            }
-            .huiTypography(.buttonTextLarge)
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
-            .frame(height: isSmall ? 40 : 44)
-            .frame(maxWidth: fillsWidth ? .infinity : nil)
-            .background(backgroundColor)
-            .foregroundStyle(foregroundColor)
-            .cornerRadius(isSmall ? 20 : 22)
-            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
-        }
-
-        private func makeIconOnlyButtonType(configuration: Configuration) -> any View {
-            guard let icon = icon else {
-                return EmptyView()
-            }
-            return ZStack {
-                icon
-                    .renderingMode(.template)
-                    .frame(width: isSmall ? 40 : 44, height: isSmall ? 40 : 44)
+                        trailing?
+                            .renderingMode(.template)
+                            .foregroundColor(foregroundColor)
+                    }
+                    .huiTypography(.buttonTextLarge)
+                    .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+                    .frame(height: isSmall ? 40 : 44)
+                    .frame(maxWidth: fillsWidth ? .infinity : nil)
                     .background(backgroundColor)
                     .foregroundStyle(foregroundColor)
                     .cornerRadius(isSmall ? 20 : 22)
-                    .foregroundColor(foregroundColor)
                     .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
-
-                if let badgeNumber = badgeNumber,
-                   let badgeStyle = badgeStyle
-                {
-                    HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
-                        .offset(x: 15, y: -15)
                 }
             }
         }
