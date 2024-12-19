@@ -23,6 +23,10 @@ public struct SingleSelectionOptions {
     public let selected: CurrentValueSubject<OptionItem?, Never>
     private let initial: OptionItem?
 
+    public var hasChanges: Bool {
+        selected.value != initial
+    }
+
     // designated init
     public init(
         all: [OptionItem],

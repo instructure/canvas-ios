@@ -34,8 +34,8 @@ struct SelectCalendarScreen: View {
                     if !section.items.isEmpty {
                         SingleSelectionView(
                             title: section.title,
-                            options: section.items,
-                            selectedOption: viewModel.selectedCalendarItem
+                            allOptions: section.items,
+                            selectedOption: viewModel.selectedCalendarOption
                         )
                     }
                 }

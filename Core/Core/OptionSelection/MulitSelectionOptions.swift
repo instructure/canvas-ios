@@ -23,6 +23,18 @@ public struct MultiSelectionOptions {
     public let selected: CurrentValueSubject<Set<OptionItem>, Never>
     private let initial: Set<OptionItem>
 
+    public var hasChanges: Bool {
+        selected.value != initial
+    }
+
+    public var isAllSelected: Bool {
+        selected.value == Set(all)
+    }
+
+    public var isAllUnselected: Bool {
+        selected.value.isEmpty
+    }
+
     // designated init
     public init(
         all: [OptionItem],

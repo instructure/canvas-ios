@@ -38,15 +38,13 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     SingleSelectionView(
                         title: String(localized: "Sort By", bundle: .core),
-                        options: viewModel.sortModeOptions,
-                        selectedOption: viewModel.selectedSortModeOption
+                        options: viewModel.sortModeOptions
                     )
 
                     MultiSelectionView(
                         title: String(localized: "Result type", bundle: .core),
                         hasAllSelectionButton: true,
-                        options: viewModel.resultTypeOptions,
-                        selectedOptions: viewModel.selectedResultTypeOptions
+                        options: viewModel.resultTypeOptions
                     )
                 }
             }

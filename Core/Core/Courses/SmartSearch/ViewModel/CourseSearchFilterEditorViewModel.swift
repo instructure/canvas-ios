@@ -26,11 +26,8 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Properties
 
-    let sortModeOptions: [OptionItem]
-    let selectedSortModeOption = CurrentValueSubject<OptionItem?, Never>(nil)
-
-    let resultTypeOptions: [OptionItem]
-    let selectedResultTypeOptions = CurrentValueSubject<Set<OptionItem>, Never>([])
+    let sortModeOptions: SingleSelectionOptions
+    let resultTypeOptions: MultiSelectionOptions
 
     private var initialFilter: CourseSmartSearchFilter?
     private var selection: Binding<CourseSmartSearchFilter?>
@@ -44,31 +41,27 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
         let initialFilter = selection.wrappedValue
         self.initialFilter = initialFilter
 
-        sortModeOptions = SortMode.allCases.map {
-            $0.optionItem(color: accentColor)
-        }
         let initialSortMode = initialFilter?.sortMode ?? .relevance
-        let initialSortModeOption = initialSortMode.optionItem(color: accentColor)
-        selectedSortModeOption.value = initialSortModeOption
+        self.sortModeOptions = .init(
+            all: SortMode.allCases.map { $0.optionItem(color: accentColor) },
+            initial: initialSortMode.optionItem(color: accentColor)
+        )
 
-        self.resultTypeOptions = ResultType.filterableTypes.map { $0.optionItem(color: accentColor) }
         let initialResultTypes = initialFilter?.includedTypes.nilIfEmpty ?? ResultType.filterableTypes
-        let initialResultTypeOptions = Set(initialResultTypes.map { $0.optionItem(color: accentColor) })
-        selectedResultTypeOptions.value = initialResultTypeOptions
+        self.resultTypeOptions = .init(
+            all: ResultType.filterableTypes.map { $0.optionItem(color: accentColor) },
+            initial: Set(initialResultTypes.map { $0.optionItem(color: accentColor) })
+        )
 
         Publishers
             .CombineLatest(
-                selectedSortModeOption,
-                selectedResultTypeOptions
+                sortModeOptions.selected,
+                resultTypeOptions.selected
             )
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] (sortModeOption, resultTypeOptions) in
-                self?.updateSelection(
-                    sortMode: .init(optionItem: sortModeOption),
-                    resultTypes: resultTypeOptions.compactMap { selected in
-                        ResultType.filterableTypes.first { $0.isMatch(for: selected) }
-                    }
-                )
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.updateSelection()
             }
             .store(in: &subscriptions)
     }
@@ -81,12 +74,14 @@ public class CourseSearchFilterEditorViewModel: ObservableObject {
 
     // MARK: Privates
 
-    private func updateSelection(
-        sortMode: SortMode?,
-        resultTypes: [ResultType]
-    ) {
-        let allChecked = selectedResultTypeOptions.value == Set(resultTypeOptions)
-        let allUnchecked = selectedResultTypeOptions.value.isEmpty
+    private func updateSelection() {
+        let sortMode = SortMode(optionItem: sortModeOptions.selected.value)
+        let resultTypes = resultTypeOptions.selected.value.compactMap { selected in
+            ResultType.filterableTypes.first { $0.isMatch(for: selected) }
+        }
+
+        let allChecked = resultTypeOptions.isAllSelected
+        let allUnchecked = resultTypeOptions.isAllUnselected
 
         if sortMode == .relevance, allChecked || allUnchecked {  // This is invalid case
             selection.wrappedValue = nil
