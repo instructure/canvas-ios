@@ -32,6 +32,8 @@ extension HorizonUI {
         private let fillsWidth: Bool
         private let leading: Image?
         private let trailing: Image?
+        private let smallButtonSize = 40.0
+        private let largeButtonSize = 44.0
 
         // MARK: - Icon Button Dependencies
 
@@ -85,16 +87,15 @@ extension HorizonUI {
                     ZStack {
                         icon
                             .renderingMode(.template)
-                            .frame(width: isSmall ? 40 : 44, height: isSmall ? 40 : 44)
+                            .frame(width: isSmall ? smallButtonSize : largeButtonSize,
+                                   height: isSmall ? smallButtonSize : largeButtonSize)
                             .background(backgroundColor)
                             .foregroundStyle(foregroundColor)
                             .huiCornerRadius(level: .level6)
                             .foregroundColor(foregroundColor)
                             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
 
-                        if let badgeNumber = badgeNumber,
-                           let badgeStyle = badgeStyle
-                        {
+                        if let badgeNumber = badgeNumber, let badgeStyle = badgeStyle {
                             HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
                                 .offset(x: 15, y: -15)
                         }
@@ -113,7 +114,7 @@ extension HorizonUI {
                     }
                     .huiTypography(.buttonTextLarge)
                     .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
-                    .frame(height: isSmall ? 40 : 44)
+                    .frame(height: isSmall ? smallButtonSize : largeButtonSize)
                     .frame(maxWidth: fillsWidth ? .infinity : nil)
                     .background(backgroundColor)
                     .foregroundStyle(foregroundColor)
