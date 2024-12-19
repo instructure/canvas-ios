@@ -62,6 +62,12 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
             .eraseToAnyPublisher()
     }
 
+    public func updateFilteredContexts(_ contexts: Set<Context>) -> AnyPublisher<Void, Error> {
+        Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
     public func contextsForAPIFiltering() -> [Context] {
         []
     }

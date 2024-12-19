@@ -21,10 +21,10 @@ import Combine
 public class CalendarFilterViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: InstUI.ScreenState = .loading
-    @Published public private(set) var userFilter: CDCalendarFilterEntry?
-    @Published public private(set) var courseFilters: [CDCalendarFilterEntry] = []
-    @Published public private(set) var groupFilters: [CDCalendarFilterEntry] = []
-    @Published public private(set) var selectedContexts = Set<Context>()
+    @Published public private(set) var userFilterOptions: [OptionItem] = []
+    @Published public private(set) var courseFilterOptions: [OptionItem] = []
+    @Published public private(set) var groupFilterOptions: [OptionItem] = []
+    let selectedOptions = CurrentValueSubject<Set<OptionItem>, Never>([])
     @Published public private(set) var selectAllButtonTitle: String?
     @Published public private(set) var filterLimitMessage: String?
     public let pageTitle = String(localized: "Calendars", bundle: .core)
@@ -40,6 +40,10 @@ public class CalendarFilterViewModel: ObservableObject {
     private let router: Router
     private let didDismissPicker: () -> Void
     private var subscriptions = Set<AnyCancellable>()
+
+    private var allOptions: [OptionItem] {
+        userFilterOptions + courseFilterOptions + groupFilterOptions
+    }
 
     public init(
         interactor: CalendarFilterInteractor,
@@ -81,12 +85,28 @@ public class CalendarFilterViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func setSelectedOptions(with contexts: Set<Context>) {
+        let options = allOptions.filter { option in
+            contexts.contains { $0.canvasContextID == option.id }
+        }
+        selectedOptions.value = Set(options)
+    }
+
     private func forwardSelectionChangesToInteractor() {
-        didToggleSelection
-            .flatMap { [interactor, snackbarViewModel] (context, isSelected) in
+        selectedOptions
+            .dropFirst()
+            .removeDuplicates()
+            .map { options in
+                Set(options.compactMap { Context(canvasContextID: $0.id) })
+            }
+            .flatMap { [interactor, snackbarViewModel, weak self] contexts in
                 interactor
-                    .updateFilteredContexts([context], isSelected: isSelected)
+                    .updateFilteredContexts(contexts)
                     .catch { _ in
+                        // roll back selection
+                        let oldContexts = interactor.selectedContexts.value
+                        self?.setSelectedOptions(with: oldContexts)
+                        // notify user
                         let limit = interactor.filterCountLimit.value.rawValue
                         return snackbarViewModel.showFilterLimitReachedMessage(limit: limit)
                     }
@@ -100,10 +120,8 @@ public class CalendarFilterViewModel: ObservableObject {
             .compactMap { [weak self] _ -> ([Context], Bool)? in
                 guard let self else { return nil }
 
-                var allContexts = courseFilters.map { $0.context }
-                allContexts.append(contentsOf: groupFilters.map { $0.context })
-                allContexts.appendUnwrapped(userFilter?.context)
-                return (allContexts, selectedContexts.isEmpty)
+                let allContexts = allOptions.compactMap { Context(canvasContextID: $0.id) }
+                return (allContexts, selectedOptions.value.isEmpty)
             }
             .flatMap { [interactor] (contexts, isSelect) in
                 interactor
@@ -132,7 +150,10 @@ public class CalendarFilterViewModel: ObservableObject {
     private func observeDataChanges() {
         interactor
             .selectedContexts
-            .assign(to: \.selectedContexts, on: self, ownership: .weak)
+            .removeDuplicates()
+            .sink { [weak self] contexts in
+                self?.setSelectedOptions(with: contexts)
+            }
             .store(in: &subscriptions)
 
         Publishers.CombineLatest(
@@ -168,13 +189,17 @@ public class CalendarFilterViewModel: ObservableObject {
             .sink { [weak self] filters in
                 guard let self else { return }
 
-                userFilter = filters.first { $0.context.contextType == .user }
-                courseFilters = filters
+                userFilterOptions = filters
+                    .filter { $0.context.contextType == .user }
+                    .map { $0.optionItem }
+                courseFilterOptions = filters
                     .filter { $0.context.contextType == .course }
                     .sorted()
-                groupFilters = filters
+                    .map { $0.optionItem }
+                groupFilterOptions = filters
                     .filter { $0.context.contextType == .group }
                     .sorted()
+                    .map { $0.optionItem }
             }
             .store(in: &subscriptions)
     }
@@ -188,5 +213,11 @@ private extension SnackBarViewModel {
             self?.showSnack(message, swallowDuplicatedSnacks: true)
             promise(.success(()))
         }
+    }
+}
+
+private extension CDCalendarFilterEntry {
+    var optionItem: OptionItem {
+        .init(id: rawContextID, title: name, color: color)
     }
 }
