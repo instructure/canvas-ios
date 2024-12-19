@@ -141,8 +141,8 @@ extension HorizonUI.ButtonStyles {
             case .ai:
                 return LinearGradient(
                     gradient: Gradient(colors: [
-                        Color(hexString: "#09508C"),
-                        Color(hexString: "#02672D"),
+                        .huiColors.surface.institution,
+                        .huiColors.primitives.green70
                     ]),
                     startPoint: .top,
                     endPoint: .bottom
