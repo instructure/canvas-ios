@@ -84,8 +84,8 @@ public struct AssignmentListPreferencesScreen: View {
         MultiSelectionView(
             title: String(localized: "Assignment Filter", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.studentFilterOption",
-            options: viewModel.assignmentFilterOptionsStudentItems,
-            selectedOptions: viewModel.selectedAssignmentFilterOptionsStudentItems
+            options: viewModel.studentFilterOptions,
+            selectedOptions: viewModel.selectedStudentFilterOptions
         )
     }
 
@@ -94,8 +94,8 @@ public struct AssignmentListPreferencesScreen: View {
         SingleSelectionView(
             title: String(localized: "Assignment Filter", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.teacherFilterOption",
-            options: viewModel.filterOptionTeacherItems,
-            selectedOption: viewModel.selectedFilterOptionTeacherItem
+            options: viewModel.teacherFilterOptions,
+            selectedOption: viewModel.selectedTeacherFilterOption
         )
     }
 
@@ -103,17 +103,17 @@ public struct AssignmentListPreferencesScreen: View {
         SingleSelectionView(
             title: String(localized: "Status Filter", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.teacherPublishStatusFilterOption",
-            options: viewModel.statusFilterOptionTeacherItems,
-            selectedOption: viewModel.selectedStatusFilterOptionTeacherItem
+            options: viewModel.teacherPublishStatusFilterOptions,
+            selectedOption: viewModel.selectedTeacherPublishStatusFilterOption
         )
     }
 
     private var sortBySection: some View {
         SingleSelectionView(
             title: String(localized: "Grouped By", bundle: .core),
-            accessibilityIdentifier: "AssignmentFilter.sortByOption",
-            options: viewModel.sortingOptionItems,
-            selectedOption: viewModel.selectedSortingOptionItem
+            accessibilityIdentifier: "AssignmentFilter.sortMode",
+            options: viewModel.sortModeOptions,
+            selectedOption: viewModel.selectedSortModeOption
         )
     }
 
@@ -121,8 +121,8 @@ public struct AssignmentListPreferencesScreen: View {
         SingleSelectionView(
             title: String(localized: "Grading Period", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.gradingPeriodOption",
-            options: viewModel.gradingPeriodItems,
-            selectedOption: viewModel.selectedGradingPeriodItem
+            options: viewModel.gradingPeriodOptions,
+            selectedOption: viewModel.selectedGradingPeriodOption
         )
     }
 }
