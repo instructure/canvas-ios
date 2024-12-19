@@ -84,8 +84,7 @@ public struct AssignmentListPreferencesScreen: View {
         MultiSelectionView(
             title: String(localized: "Assignment Filter", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.studentFilterOptions",
-            options: viewModel.studentFilterOptions,
-            selectedOptions: viewModel.selectedStudentFilterOptions
+            options: viewModel.studentFilterOptions
         )
     }
 

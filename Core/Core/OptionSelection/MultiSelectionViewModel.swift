@@ -20,7 +20,7 @@ import Combine
 
 final class MultiSelectionViewModel: ObservableObject {
 
-    let options: [OptionItem]
+    let allOptions: [OptionItem]
     let selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     var allSelectionButtonTitle: String = ""
 
@@ -30,10 +30,10 @@ final class MultiSelectionViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        options: [OptionItem],
+        allOptions: [OptionItem],
         selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     ) {
-        self.options = options
+        self.allOptions = allOptions
         self.selectedOptions = selectedOptions
 
         selectedOptions
@@ -61,7 +61,7 @@ final class MultiSelectionViewModel: ObservableObject {
                 if isAllSelected {
                     selectedOptions.value = []
                 } else {
-                    selectedOptions.value = Set(options)
+                    selectedOptions.value = Set(allOptions)
                 }
             }
             .store(in: &subscriptions)
@@ -72,11 +72,11 @@ final class MultiSelectionViewModel: ObservableObject {
     }
 
     func dividerStyle(for item: OptionItem) -> InstUI.Divider.Style {
-        item.id == options.last?.id ? .full : .padded
+        item.id == allOptions.last?.id ? .full : .padded
     }
 
     private var isAllSelected: Bool {
-        selectedOptions.value == Set(options)
+        selectedOptions.value == Set(allOptions)
     }
 
     private func updateAllSelectionButton() {

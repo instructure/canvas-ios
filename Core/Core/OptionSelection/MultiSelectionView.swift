@@ -33,7 +33,7 @@ public struct MultiSelectionView: View {
         title: String?,
         accessibilityIdentifier: String? = nil,
         hasAllSelectionButton: Bool = false,
-        options: [OptionItem],
+        allOptions: [OptionItem],
         selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     ) {
         self.title = title
@@ -41,16 +41,48 @@ public struct MultiSelectionView: View {
         self.hasAllSelectionButton = hasAllSelectionButton
 
         self._viewModel = StateObject(wrappedValue: .init(
-            options: options,
+            allOptions: allOptions,
             selectedOptions: selectedOptions
         ))
+    }
+
+    public init(
+        title: String?,
+        accessibilityIdentifier: String? = nil,
+        hasAllSelectionButton: Bool = false,
+        options: MultiSelectionOptions
+    ) {
+        self.init(
+            title: title,
+            accessibilityIdentifier: accessibilityIdentifier,
+            hasAllSelectionButton: hasAllSelectionButton,
+            allOptions: options.all,
+            selectedOptions: options.selected
+        )
+    }
+
+    // TODO: remove
+    public init(
+        title: String?,
+        accessibilityIdentifier: String? = nil,
+        hasAllSelectionButton: Bool = false,
+        options: [OptionItem],
+        selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
+    ) {
+        self.init(
+            title: title,
+            accessibilityIdentifier: accessibilityIdentifier,
+            hasAllSelectionButton: hasAllSelectionButton,
+            allOptions: options,
+            selectedOptions: selectedOptions
+        )
     }
 
     @ViewBuilder
     public var body: some View {
         LazyVStack(spacing: 0) {
             Section {
-                ForEach(viewModel.options) { item in
+                ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)
                 }
             } header: {
