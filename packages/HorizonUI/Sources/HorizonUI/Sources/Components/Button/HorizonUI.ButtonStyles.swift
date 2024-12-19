@@ -88,7 +88,7 @@ extension HorizonUI {
                             .frame(width: isSmall ? 40 : 44, height: isSmall ? 40 : 44)
                             .background(backgroundColor)
                             .foregroundStyle(foregroundColor)
-                            .cornerRadius(isSmall ? 20 : 22)
+                            .huiCornerRadius(level: .level6)
                             .foregroundColor(foregroundColor)
                             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
 
@@ -117,7 +117,7 @@ extension HorizonUI {
                     .frame(maxWidth: fillsWidth ? .infinity : nil)
                     .background(backgroundColor)
                     .foregroundStyle(foregroundColor)
-                    .cornerRadius(isSmall ? 20 : 22)
+                    .huiCornerRadius(level: .level6)
                     .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
                 }
             }
