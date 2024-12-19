@@ -23,8 +23,8 @@ extension HorizonUI {
         // MARK: - Common Dependencies
 
         @Environment(\.isEnabled) private var isEnabled
-        private let background: AnyShapeStyle
-        private let foreground: Color
+        private let backgroundColor: AnyShapeStyle
+        private let foregroundColor: Color
         private let isSmall: Bool
 
         // MARK: - Primary and Secondary Button Dependencies
@@ -40,15 +40,15 @@ extension HorizonUI {
         private let icon: Image?
 
         fileprivate init(
-            background: any ShapeStyle,
-            foreground: Color,
+            backgroundColor: any ShapeStyle,
+            foregroundColor: Color,
             isSmall: Bool = false,
             fillsWidth: Bool = false,
             leading: Image? = nil,
             trailing: Image? = nil
         ) {
-            self.background = AnyShapeStyle(background)
-            self.foreground = foreground
+            self.backgroundColor = AnyShapeStyle(backgroundColor)
+            self.foregroundColor = foregroundColor
             self.isSmall = isSmall
             self.fillsWidth = fillsWidth
             self.leading = leading
@@ -60,17 +60,17 @@ extension HorizonUI {
         }
 
         fileprivate init(
-            background: any ShapeStyle,
-            foreground: Color,
+            backgroundColor: any ShapeStyle,
+            foregroundColor: Color,
             badgeStyle: HorizonUI.Badge.Style,
             isSmall: Bool = false,
             icon: Image,
             badgeNumber: String? = nil
         ) {
-            self.background = AnyShapeStyle(background)
+            self.backgroundColor = AnyShapeStyle(backgroundColor)
             self.badgeNumber = badgeNumber
             self.badgeStyle = badgeStyle
-            self.foreground = foreground
+            self.foregroundColor = foregroundColor
             self.icon = icon
             self.isSmall = isSmall
 
@@ -90,20 +90,20 @@ extension HorizonUI {
             HStack {
                 leading?
                     .renderingMode(.template)
-                    .foregroundColor(foreground)
+                    .foregroundColor(foregroundColor)
 
                 configuration.label
 
                 trailing?
                     .renderingMode(.template)
-                    .foregroundColor(foreground)
+                    .foregroundColor(foregroundColor)
             }
             .huiTypography(.buttonTextLarge)
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
             .frame(height: isSmall ? 40 : 44)
             .frame(maxWidth: fillsWidth ? .infinity : nil)
-            .background(background)
-            .foregroundStyle(foreground)
+            .background(backgroundColor)
+            .foregroundStyle(foregroundColor)
             .cornerRadius(isSmall ? 20 : 22)
             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
         }
@@ -116,10 +116,10 @@ extension HorizonUI {
                 icon
                     .renderingMode(.template)
                     .frame(width: isSmall ? 40 : 44, height: isSmall ? 40 : 44)
-                    .background(background)
-                    .foregroundStyle(foreground)
+                    .background(backgroundColor)
+                    .foregroundStyle(foregroundColor)
                     .cornerRadius(isSmall ? 20 : 22)
-                    .foregroundColor(foreground)
+                    .foregroundColor(foregroundColor)
                     .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
 
                 if let badgeNumber = badgeNumber,
@@ -206,8 +206,8 @@ extension HorizonUI.ButtonStyles {
         trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
-            background: type.background,
-            foreground: type.foregroundColor,
+            backgroundColor: type.background,
+            foregroundColor: type.foregroundColor,
             isSmall: isSmall,
             fillsWidth: fillsWidth,
             leading: leading,
@@ -222,8 +222,8 @@ extension HorizonUI.ButtonStyles {
         icon: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
-            background: type.background,
-            foreground: type.foregroundColor,
+            backgroundColor: type.background,
+            foregroundColor: type.foregroundColor,
             badgeStyle: type.badgeStyle,
             isSmall: isSmall,
             icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add),
