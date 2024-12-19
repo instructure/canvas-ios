@@ -35,7 +35,7 @@ extension HorizonUI {
 
         // MARK: - Icon Button Dependencies
 
-        private let badge: String?
+        private let badgeNumber: String?
         private let badgeStyle: HorizonUI.Badge.Style?
         private let icon: Image?
 
@@ -54,7 +54,7 @@ extension HorizonUI {
             self.leading = leading
             self.trailing = trailing
 
-            self.badge = nil
+            self.badgeNumber = nil
             self.badgeStyle = nil
             self.icon = nil
         }
@@ -65,10 +65,10 @@ extension HorizonUI {
             badgeStyle: HorizonUI.Badge.Style,
             isSmall: Bool = false,
             icon: Image,
-            badge: String? = nil
+            badgeNumber: String? = nil
         ) {
             self.background = AnyShapeStyle(background)
-            self.badge = badge
+            self.badgeNumber = badgeNumber
             self.badgeStyle = badgeStyle
             self.foreground = foreground
             self.icon = icon
@@ -122,10 +122,10 @@ extension HorizonUI {
                     .foregroundColor(foreground)
                     .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
 
-                if let badge = badge,
+                if let badgeNumber = badgeNumber,
                    let badgeStyle = badgeStyle
                 {
-                    HorizonUI.Badge(type: .number(badge), style: badgeStyle)
+                    HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
                         .offset(x: 15, y: -15)
                 }
             }
@@ -218,7 +218,7 @@ extension HorizonUI.ButtonStyles {
     public static func iconOnly(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
-        badge: String? = nil,
+        badgeNumber: String? = nil,
         icon: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
@@ -227,7 +227,7 @@ extension HorizonUI.ButtonStyles {
             badgeStyle: type.badgeStyle,
             isSmall: isSmall,
             icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add),
-            badge: badge
+            badgeNumber: badgeNumber
         )
     }
 }
@@ -239,7 +239,7 @@ extension HorizonUI.ButtonStyles {
                 ForEach(HorizonUI.ButtonStyles.ButtonType.allCases, id: \.self) { type in
                     HStack {
                         Button("AI Icon Button") {}
-                            .buttonStyle(HorizonUI.ButtonStyles.iconOnly(type, badge: "99"))
+                            .buttonStyle(HorizonUI.ButtonStyles.iconOnly(type, badgeNumber: "99"))
                             .disabled(true)
                         Button("AI Button") {}
                             .buttonStyle(HorizonUI.ButtonStyles.primary(type))
