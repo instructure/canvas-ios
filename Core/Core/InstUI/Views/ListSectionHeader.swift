@@ -47,8 +47,7 @@ extension InstUI {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack(alignment: .center, spacing: 0) {
                         Text(title)
-                            .font(.semibold14)
-                            .foregroundStyle(Color.textDark)
+                            .textStyle(.sectionHeader)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .accessibilityAddTraits([.isHeader])
 
@@ -57,13 +56,13 @@ extension InstUI {
                                 action: buttonAction ?? { },
                                 label: { buttonLabel.font(.semibold14) }
                             )
+                            .paddingStyle(.leading, .cellAccessoryPadding)
                         }
                     }
-                    .paddingStyle(.all, .standard)
+                    .paddingStyle(set: .sectionHeader)
 
                     InstUI.Divider()
                 }
-                .background(Color.backgroundLight)
             } else {
                 SwiftUI.EmptyView()
             }

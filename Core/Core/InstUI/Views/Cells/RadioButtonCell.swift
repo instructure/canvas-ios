@@ -22,6 +22,7 @@ extension InstUI {
 
     public struct RadioButtonCell<Value: Equatable>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
         @Binding private var selectedValue: Value?
         private let title: String
         private let value: Value?
@@ -50,17 +51,17 @@ extension InstUI {
                 Button {
                     selectedValue = value
                 } label: {
-                    HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+                    HStack(spacing: 0) {
                         InstUI.RadioButton(
                             isSelected: (value == selectedValue),
                             color: color
                         )
+                        .paddingStyle(.trailing, .cellIconText)
                         .animation(.default, value: selectedValue)
 
                         Text(title)
-                            .font(.regular16, lineHeight: .fit)
+                            .textStyle(.cellLabel)
                             .multilineTextAlignment(.leading)
-                            .foregroundStyle(Color.textDarkest)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .paddingStyle(set: .iconCell)

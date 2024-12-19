@@ -75,31 +75,30 @@ extension InstUI {
                 Button {
                     isSelected.toggle()
                 } label: {
-                    HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+                    HStack(spacing: 0) {
                         InstUI.Checkbox(
                             isSelected: isSelected,
                             color: color
                         )
+                        .paddingStyle(.trailing, .cellIconText)
                         .animation(.default, value: isSelected)
 
                         VStack(spacing: 2) {
                             Text(title)
-                                .font(.regular16, lineHeight: .fit)
+                                .textStyle(.cellLabel)
                                 .multilineTextAlignment(.leading)
-                                .foregroundStyle(Color.textDarkest)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             if let subtitle {
                                 Text(subtitle)
-                                    .font(.regular14, lineHeight: .fit)
+                                    .textStyle(.cellLabelSubtitle)
                                     .multilineTextAlignment(.leading)
-                                    .foregroundStyle(Color.textDark)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
 
                         if let accessoryView {
-                            Spacer()
                             accessoryView()
+                                .paddingStyle(.leading, .cellAccessoryPadding)
                         }
                     }
                     .paddingStyle(set: .iconCell)
