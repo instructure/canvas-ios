@@ -35,7 +35,7 @@ struct NotebookCourseListView: View {
                 Button("Back") {
                     viewModel.onBack(viewController: viewController)
                 }
-                .buttonStyle(.iconOnly(.white, icon: .huiIcons.arrowBack))
+                .buttonStyle(.icon(.white, icon: .huiIcons.arrowBack))
             },
             trailing: {}
         ) {

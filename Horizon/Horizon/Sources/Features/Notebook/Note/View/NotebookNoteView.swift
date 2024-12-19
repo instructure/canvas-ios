@@ -35,7 +35,7 @@ struct NotebookNoteView: View {
                     Button("Back") {
                         viewModel.onClose(viewController: viewController)
                     }
-                    .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.arrowBack))
+                    .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.arrowBack))
                     .hidden(viewModel.isBackButtonHidden)
 
                     Text(viewModel.title)
@@ -45,7 +45,7 @@ struct NotebookNoteView: View {
                         .foregroundColor(.textDarkest)
 
                     Button("Close") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.close))
+                        .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.close))
                         .hidden()
                 }
                 .background(HorizonUI.colors.surface.pagePrimary)
@@ -111,15 +111,15 @@ struct NotebookNoteView: View {
                         Button("Delete Note") {
                             viewModel.onDelete()
                         }
-                        .buttonStyle(.iconOnly(.red, icon: .huiIcons.delete))
+                        .buttonStyle(.icon(.red, icon: .huiIcons.delete))
 
                         Button("AI Assistant") { }
-                            .buttonStyle(.iconOnly(.ai))
+                            .buttonStyle(.icon(.ai))
 
                         Button("Edit Note") {
                             viewModel.onEdit()
                         }
-                        .buttonStyle(.iconOnly(.white, icon: .huiIcons.edit))
+                        .buttonStyle(.icon(.white, icon: .huiIcons.edit))
                     }
                 }
             }

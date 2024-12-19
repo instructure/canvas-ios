@@ -32,13 +32,13 @@ struct NotebookCourseView: View {
                 Button("Back") {
                     viewModel.onBack(viewController: viewController)
                 }
-                .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.arrowBack))
+                .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.arrowBack))
             },
             trailing: {
                 Button("Add Note") {
                     viewModel.onAdd(viewController: viewController)
                 }
-                .buttonStyle(HorizonUI.ButtonStyles.iconOnly(.white, icon: .huiIcons.add))
+                .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.add))
             }
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.top, .huiSpaces.primitives.medium)

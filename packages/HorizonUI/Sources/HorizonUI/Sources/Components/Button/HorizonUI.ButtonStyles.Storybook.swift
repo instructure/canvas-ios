@@ -70,7 +70,7 @@ extension HorizonUI.ButtonStyles {
             HStack(spacing: 16) {
                 Button("\(type.rawValue) Icon Button") {}
                     .buttonStyle(
-                        HorizonUI.ButtonStyles.iconOnly(type, isSmall: isSmall, badge: "99")
+                        HorizonUI.ButtonStyles.icon(type, isSmall: isSmall, badgeNumber: "99")
                     )
                     .disabled(isDisabled)
 
