@@ -22,8 +22,10 @@ final class MultiSelectionViewModel: ObservableObject {
 
     let options: [OptionItem]
     let selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
+    var allSelectionButtonTitle: String = ""
 
     let didToggleSelection = PassthroughSubject<(option: OptionItem, isSelected: Bool), Never>()
+    let didTapAllSelectionButton = PassthroughSubject<Void, Never>()
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -37,16 +39,29 @@ final class MultiSelectionViewModel: ObservableObject {
         selectedOptions
             .removeDuplicates()
             .sink { [weak self] _ in
+                self?.updateAllSelectionButton()
                 self?.objectWillChange.send()
             }
             .store(in: &subscriptions)
 
         didToggleSelection
-            .sink { [selectedOptions] (option, isSelected) in
+            .sink { (option, isSelected) in
                 if isSelected {
                     selectedOptions.value.insert(option)
                 } else {
                     selectedOptions.value.remove(option)
+                }
+            }
+            .store(in: &subscriptions)
+
+        didTapAllSelectionButton
+            .sink { [weak self] in
+                guard let self else { return }
+
+                if isAllSelected {
+                    selectedOptions.value = []
+                } else {
+                    selectedOptions.value = Set(options)
                 }
             }
             .store(in: &subscriptions)
@@ -58,5 +73,15 @@ final class MultiSelectionViewModel: ObservableObject {
 
     func dividerStyle(for item: OptionItem) -> InstUI.Divider.Style {
         item.id == options.last?.id ? .full : .padded
+    }
+
+    private var isAllSelected: Bool {
+        selectedOptions.value == Set(options)
+    }
+
+    private func updateAllSelectionButton() {
+        allSelectionButtonTitle = isAllSelected
+            ? String(localized: "Deselect all", bundle: .core)
+            : String(localized: "Select all", bundle: .core)
     }
 }

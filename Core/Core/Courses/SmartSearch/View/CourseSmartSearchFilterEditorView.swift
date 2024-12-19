@@ -44,7 +44,7 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     MultiSelectionView(
                         title: String(localized: "Result type", bundle: .core),
-                        hasSelectAllButton: true,
+                        hasAllSelectionButton: true,
                         options: viewModel.resultTypeOptions,
                         selectedOptions: viewModel.selectedResultTypeOptions
                     )
