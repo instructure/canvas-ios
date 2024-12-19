@@ -152,9 +152,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Outputs
 
     // Student Filter
-    let studentFilterOptions: [OptionItem]
-    let selectedStudentFilterOptions = CurrentValueSubject<Set<OptionItem>, Never>([])
-    private let initialStudentFilterOptions: Set<OptionItem>
+    let studentFilterOptions: MultiSelectionOptions
 
     // Teacher Filter
     let teacherFilterOptions: SingleSelectionOptions
@@ -197,10 +195,10 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         self.isTeacher = isTeacher
 
         // Student Filter
-        self.studentFilterOptions = AssignmentFilterOptionStudent.allCases.map { $0.optionItem }
-        let initialStudentFilterOptions = Set(initialFilterOptionsStudent.map { $0.optionItem })
-        self.initialStudentFilterOptions = initialStudentFilterOptions
-        selectedStudentFilterOptions.value = initialStudentFilterOptions
+        self.studentFilterOptions = .init(
+            all: AssignmentFilterOptionStudent.allCases.map { $0.optionItem },
+            initial: Set(initialFilterOptionsStudent.map { $0.optionItem })
+        )
 
         // Teacher Filter
         self.teacherFilterOptions = .init(
@@ -238,7 +236,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     // MARK: - Functions
 
     func didTapCancel(viewController: WeakViewController) {
-        selectedStudentFilterOptions.value = initialStudentFilterOptions
+        studentFilterOptions.resetSelection()
         teacherFilterOptions.resetSelection()
         teacherPublishStatusFilterOptions.resetSelection()
         sortModeOptions.resetSelection()
@@ -256,7 +254,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
         completion(
             AssignmentListPreferences(
-                filterOptionsStudent: selectedStudentFilterOptions.value.compactMap { selected in
+                filterOptionsStudent: studentFilterOptions.selected.value.compactMap { selected in
                     AssignmentFilterOptionStudent.allCases.first { $0.isMatch(for: selected) }
                 },
                 filterOptionTeacher: .init(optionItem: teacherFilterOptions.selected.value),
