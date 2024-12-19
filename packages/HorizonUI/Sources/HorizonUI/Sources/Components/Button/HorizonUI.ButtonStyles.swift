@@ -208,7 +208,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    public static func iconOnly(
+    public static func icon(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         badgeNumber: String? = nil,
@@ -232,7 +232,7 @@ extension HorizonUI.ButtonStyles {
                 ForEach(HorizonUI.ButtonStyles.ButtonType.allCases, id: \.self) { type in
                     HStack {
                         Button("AI Icon Button") {}
-                            .buttonStyle(HorizonUI.ButtonStyles.iconOnly(type, badgeNumber: "99"))
+                            .buttonStyle(HorizonUI.ButtonStyles.icon(type, badgeNumber: "99"))
                             .disabled(true)
                         Button("AI Button") {}
                             .buttonStyle(HorizonUI.ButtonStyles.primary(type))
