@@ -26,16 +26,13 @@ public final class GradeFilterViewModel: ObservableObject {
     @Published private(set) var saveButtonIsEnabled = false
     @Published private(set) var isShowGradingPeriodsView = true
     @Published private(set) var courseName: String?
-    var gradingPeriodItems: [OptionItem] = []
-    let selectedGradingPeriodItem = CurrentValueSubject<OptionItem?, Never>(nil)
-    var sortingOptionItems: [OptionItem] = []
-    let selectedSortingOptionItem = CurrentValueSubject<OptionItem?, Never>(nil)
+    var gradingPeriodOptions: SingleSelectionOptions = .init(all: [], initial: nil)
+    var sortModeOptions: SingleSelectionOptions = .init(all: [], initial: nil)
 
     // MARK: - Private Properties
     private let dependency: Dependency
     private let gradeFilterInteractor: GradeFilterInteractor
-    private var initialFilterValue = FilterValue()
-    private var sortingOptions: [GradeArrangementOptions] = []
+    private var sortModes: [GradeArrangementOptions] = []
 
     // MARK: - Init
     init(
@@ -53,10 +50,6 @@ public final class GradeFilterViewModel: ObservableObject {
         courseName = dependency.courseName
         mapGradingPeriod()
         mapSortByOptions()
-        initialFilterValue = FilterValue(
-            gradingPeriodItem: selectedGradingPeriodItem.value,
-            sortingOptionItem: selectedSortingOptionItem.value
-        )
     }
 
     private func mapGradingPeriod() {
@@ -68,43 +61,43 @@ public final class GradeFilterViewModel: ObservableObject {
             return
         }
 
-        gradingPeriodItems = [GradingPeriod.optionItemAll] + gradingPeriods.map { $0.optionItem }
         let initialGradingPeriod = gradingPeriods.first { $0.id == gradeFilterInteractor.selectedGradingId }
-        selectedGradingPeriodItem.value = initialGradingPeriod?.optionItem ?? GradingPeriod.optionItemAll
+        gradingPeriodOptions = .init(
+            all: [GradingPeriod.optionItemAll] + gradingPeriods.map { $0.optionItem },
+            initial: initialGradingPeriod?.optionItem ?? GradingPeriod.optionItemAll
+        )
     }
 
     private func mapSortByOptions() {
-        sortingOptions = dependency.sortByOptions
-        sortingOptionItems = sortingOptions.map { $0.optionItem }
+        sortModes = dependency.sortByOptions
 
-        let selectedSortingOption = gradeFilterInteractor.selectedSortById.flatMap(GradeArrangementOptions.init)
+        let initialSortMode = gradeFilterInteractor.selectedSortById.flatMap(GradeArrangementOptions.init)
             ?? .dueDate
-
-        selectedSortingOptionItem.value = selectedSortingOption.optionItem
+        sortModeOptions = .init(
+            all: sortModes.map { $0.optionItem },
+            initial: initialSortMode.optionItem
+        )
     }
 
     private func bindSaveButtonStates() {
         Publishers.CombineLatest(
-            selectedGradingPeriodItem,
-            selectedSortingOptionItem
+            gradingPeriodOptions.selected,
+            sortModeOptions.selected
         )
-        .map { [initialFilterValue] gradingPeriodItem, sortingOptionItem in
-            let selectedFilterValue = FilterValue(
-                gradingPeriodItem: gradingPeriodItem,
-                sortingOptionItem: sortingOptionItem
-            )
-            return initialFilterValue != selectedFilterValue
+        .mapToVoid()
+        .map { [gradingPeriodOptions, sortModeOptions] in
+            [gradingPeriodOptions, sortModeOptions].contains { $0.hasChanges }
         }
         .assign(to: &$saveButtonIsEnabled)
     }
 
     func saveButtonTapped(viewController: WeakViewController) {
-        let selectedSortingOption = GradeArrangementOptions(optionItem: selectedSortingOptionItem.value)
+        let selectedSortingOption = GradeArrangementOptions(optionItem: sortModeOptions.selected.value)
             ?? .dueDate
         dependency.selectedSortByPublisher.accept(selectedSortingOption)
         gradeFilterInteractor.saveSortByOption(type: selectedSortingOption)
 
-        let optionId = selectedGradingPeriodItem.value?.id
+        let optionId = gradingPeriodOptions.selected.value?.id
         let selectedGradingPeriodId = optionId == OptionItem.allId ? nil : optionId
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriodId)
         gradeFilterInteractor.saveSelectedGradingPeriod(id: selectedGradingPeriodId)
@@ -131,14 +124,6 @@ extension GradeFilterViewModel {
 }
 
 // MARK: - Helpers
-extension GradeFilterViewModel {
-    /// Using this type to match between the initial values and the changed values to
-    /// make the save button is enabled or disabled
-    fileprivate struct FilterValue: Equatable {
-        var gradingPeriodItem: OptionItem?
-        var sortingOptionItem: OptionItem?
-    }
-}
 
 private extension GradeArrangementOptions {
     private var title: String {

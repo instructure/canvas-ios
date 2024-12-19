@@ -75,8 +75,8 @@ public class GradesHelper: BaseHelper {
     }
 
     public struct Filter {
-        public static var sortByGroupSwitch: XCUIElement { app.find(id: "GradeFilter.sortBy.groupName") }
-        public static var sortByDateSwitch: XCUIElement { app.find(id: "GradeFilter.sortBy.dueDate") }
+        public static var sortByGroupSwitch: XCUIElement { app.find(id: "GradeFilter.sortModeOptions.groupName") }
+        public static var sortByDateSwitch: XCUIElement { app.find(id: "GradeFilter.sortModeOptions.dueDate") }
         public static var saveButton: XCUIElement { app.find(id: "GradeFilter.saveButton", type: .button) }
 
         public static func optionButton(gradingPeriod: DSGradingPeriod? = nil) -> XCUIElement {

@@ -61,23 +61,6 @@ public struct MultiSelectionView: View {
         )
     }
 
-    // TODO: remove
-    public init(
-        title: String?,
-        accessibilityIdentifier: String? = nil,
-        hasAllSelectionButton: Bool = false,
-        options: [OptionItem],
-        selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
-    ) {
-        self.init(
-            title: title,
-            accessibilityIdentifier: accessibilityIdentifier,
-            hasAllSelectionButton: hasAllSelectionButton,
-            allOptions: options,
-            selectedOptions: selectedOptions
-        )
-    }
-
     @ViewBuilder
     public var body: some View {
         LazyVStack(spacing: 0) {

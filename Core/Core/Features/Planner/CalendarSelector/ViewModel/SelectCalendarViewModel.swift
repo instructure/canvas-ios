@@ -40,7 +40,7 @@ final class SelectCalendarViewModel: ObservableObject {
 
     let state: InstUI.ScreenState = .data
     @Published private(set) var sections: [Section] = []
-    let selectedCalendarItem = CurrentValueSubject<OptionItem?, Never>(nil)
+    let selectedCalendarOption = CurrentValueSubject<OptionItem?, Never>(nil)
 
     // MARK: - Private
 
@@ -56,9 +56,9 @@ final class SelectCalendarViewModel: ObservableObject {
         selectedCalendar: CurrentValueSubject<CDCalendarFilterEntry?, Never>
     ) {
         self.calendarListProviderInteractor = calendarListProviderInteractor
-        self.selectedCalendarItem.value = selectedCalendar.value?.optionItem
+        self.selectedCalendarOption.value = selectedCalendar.value?.optionItem
 
-        selectedCalendarItem
+        selectedCalendarOption
             .map { [weak self] optionItem in
                 return self?.calendars.first { $0.isMatch(for: optionItem) }
             }

@@ -56,21 +56,6 @@ public struct SingleSelectionView: View {
         )
     }
 
-    // TODO: remove
-    public init(
-        title: String?,
-        accessibilityIdentifier: String? = nil,
-        options: [OptionItem],
-        selectedOption: CurrentValueSubject<OptionItem?, Never>
-    ) {
-        self.init(
-            title: title,
-            accessibilityIdentifier: accessibilityIdentifier,
-            allOptions: options,
-            selectedOption: selectedOption
-        )
-    }
-
     @ViewBuilder
     public var body: some View {
         LazyVStack(spacing: 0) {
