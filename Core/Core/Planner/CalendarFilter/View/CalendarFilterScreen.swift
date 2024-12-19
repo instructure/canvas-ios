@@ -77,14 +77,6 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
         }
     }
 
-    private func selectionBinding(context: Context) -> Binding<Bool> {
-        Binding {
-            viewModel.selectedContexts.contains(context)
-        } set: { newValue in
-            viewModel.didToggleSelection.send((context, isSelected: newValue))
-        }
-    }
-
     @ViewBuilder
     private var filterCountInfo: some View {
         if let message = viewModel.filterLimitMessage {
@@ -100,46 +92,34 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var userFilter: some View {
-        if let filter = viewModel.userFilter {
-            InstUI.CheckboxCell(
-                title: filter.name,
-                isSelected: selectionBinding(context: filter.context),
-                color: filter.color
+        if !viewModel.userFilterOptions.isEmpty {
+            MultiSelectionView(
+                title: nil,
+                allOptions: viewModel.userFilterOptions,
+                selectedOptions: viewModel.selectedOptions
             )
         }
     }
 
     @ViewBuilder
     private var courseFilters: some View {
-        if !viewModel.courseFilters.isEmpty {
-            Section {
-                ForEach(viewModel.courseFilters) { filter in
-                    InstUI.CheckboxCell(
-                        title: filter.name,
-                        isSelected: selectionBinding(context: filter.context),
-                        color: filter.color
-                    )
-                }
-            } header: {
-                InstUI.ListSectionHeader(title: String(localized: "Courses", bundle: .core))
-            }
+        if !viewModel.courseFilterOptions.isEmpty {
+            MultiSelectionView(
+                title: String(localized: "Courses", bundle: .core),
+                allOptions: viewModel.courseFilterOptions,
+                selectedOptions: viewModel.selectedOptions
+            )
         }
     }
 
     @ViewBuilder
     private var groupFilters: some View {
-        if !viewModel.groupFilters.isEmpty {
-            Section {
-                ForEach(viewModel.groupFilters) { filter in
-                    InstUI.CheckboxCell(
-                        title: filter.name,
-                        isSelected: selectionBinding(context: filter.context),
-                        color: filter.color
-                    )
-                }
-            } header: {
-                InstUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core))
-            }
+        if !viewModel.groupFilterOptions.isEmpty {
+            MultiSelectionView(
+                title: String(localized: "Groups", bundle: .core),
+                allOptions: viewModel.groupFilterOptions,
+                selectedOptions: viewModel.selectedOptions
+            )
         }
     }
 }
