@@ -20,16 +20,16 @@ import Combine
 
 final class SingleSelectionViewModel: ObservableObject {
 
-    let options: [OptionItem]
+    let allOptions: [OptionItem]
     let selectedOption: CurrentValueSubject<OptionItem?, Never>
 
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        options: [OptionItem],
+        allOptions: [OptionItem],
         selectedOption: CurrentValueSubject<OptionItem?, Never>
     ) {
-        self.options = options
+        self.allOptions = allOptions
         self.selectedOption = selectedOption
 
         selectedOption
@@ -41,6 +41,6 @@ final class SingleSelectionViewModel: ObservableObject {
     }
 
     func dividerStyle(for item: OptionItem) -> InstUI.Divider.Style {
-        item.id == options.last?.id ? .full : .padded
+        item.id == allOptions.last?.id ? .full : .padded
     }
 }

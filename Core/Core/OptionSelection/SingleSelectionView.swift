@@ -31,23 +31,51 @@ public struct SingleSelectionView: View {
     public init(
         title: String?,
         accessibilityIdentifier: String? = nil,
-        options: [OptionItem],
+        allOptions: [OptionItem],
         selectedOption: CurrentValueSubject<OptionItem?, Never>
     ) {
         self.title = title
         self.accessibilityIdentifier = accessibilityIdentifier
 
         self._viewModel = StateObject(wrappedValue: .init(
-            options: options,
+            allOptions: allOptions,
             selectedOption: selectedOption
         ))
+    }
+
+    public init(
+        title: String?,
+        accessibilityIdentifier: String? = nil,
+        options: SingleSelectionOptions
+    ) {
+        self.init(
+            title: title,
+            accessibilityIdentifier: accessibilityIdentifier,
+            allOptions: options.all,
+            selectedOption: options.selected
+        )
+    }
+
+    // TODO: remove
+    public init(
+        title: String?,
+        accessibilityIdentifier: String? = nil,
+        options: [OptionItem],
+        selectedOption: CurrentValueSubject<OptionItem?, Never>
+    ) {
+        self.init(
+            title: title,
+            accessibilityIdentifier: accessibilityIdentifier,
+            allOptions: options,
+            selectedOption: selectedOption
+        )
     }
 
     @ViewBuilder
     public var body: some View {
         LazyVStack(spacing: 0) {
             Section {
-                ForEach(viewModel.options) { item in
+                ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)
                 }
             } header: {

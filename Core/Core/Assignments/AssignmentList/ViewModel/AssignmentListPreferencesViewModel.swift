@@ -157,25 +157,17 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     private let initialStudentFilterOptions: Set<OptionItem>
 
     // Teacher Filter
-    let teacherFilterOptions: [OptionItem]
-    let selectedTeacherFilterOption = CurrentValueSubject<OptionItem?, Never>(nil)
-    private let initialTeacherFilterOption: OptionItem
+    let teacherFilterOptions: SingleSelectionOptions
 
     // Teacher Publish Status Filter
-    let teacherPublishStatusFilterOptions: [OptionItem]
-    let selectedTeacherPublishStatusFilterOption = CurrentValueSubject<OptionItem?, Never>(nil)
-    private let initialTeacherPublishStatusFilterOption: OptionItem
+    let teacherPublishStatusFilterOptions: SingleSelectionOptions
 
     // Sort Mode
-    let sortModeOptions: [OptionItem]
-    let selectedSortModeOption = CurrentValueSubject<OptionItem?, Never>(nil)
+    let sortModeOptions: SingleSelectionOptions
     private let sortModes: [AssignmentListViewModel.AssignmentArrangementOptions]
-    private let initialSortModeOption: OptionItem
 
     // Grading Periods
-    let gradingPeriodOptions: [OptionItem]
-    let selectedGradingPeriodOption = CurrentValueSubject<OptionItem?, Never>(nil)
-    private let initialGradingPeriodOption: OptionItem
+    let gradingPeriodOptions: SingleSelectionOptions
 
     // misc
     let isTeacher: Bool
@@ -211,29 +203,29 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
         selectedStudentFilterOptions.value = initialStudentFilterOptions
 
         // Teacher Filter
-        self.teacherFilterOptions = AssignmentFilterOptionsTeacher.allCases.map { $0.optionItem }
-        let initialTeacherFilterOption = initialFilterOptionTeacher.optionItem
-        self.initialTeacherFilterOption = initialTeacherFilterOption
-        selectedTeacherFilterOption.value = initialTeacherFilterOption
+        self.teacherFilterOptions = .init(
+            all: AssignmentFilterOptionsTeacher.allCases.map { $0.optionItem },
+            initial: initialFilterOptionTeacher.optionItem
+        )
 
         // Teacher Publish Status Filter
-        self.teacherPublishStatusFilterOptions = AssignmentStatusFilterOptionsTeacher.allCases.map { $0.optionItem }
-        let initialTeacherPublishStatusFilterOption = initialStatusFilterOptionTeacher.optionItem
-        self.initialTeacherPublishStatusFilterOption = initialTeacherPublishStatusFilterOption
-        selectedTeacherPublishStatusFilterOption.value = initialTeacherPublishStatusFilterOption
+        self.teacherPublishStatusFilterOptions = .init(
+            all: AssignmentStatusFilterOptionsTeacher.allCases.map { $0.optionItem },
+            initial: initialStatusFilterOptionTeacher.optionItem
+        )
 
         // Sorting Options
         self.sortModes = sortingOptions
-        self.sortModeOptions = sortingOptions.map { $0.optionItem }
-        let initialSortModeOption = initialSortingOption.optionItem
-        self.initialSortModeOption = initialSortModeOption
-        selectedSortModeOption.value = initialSortModeOption
+        self.sortModeOptions = .init(
+            all: sortingOptions.map { $0.optionItem },
+            initial: initialSortingOption.optionItem
+        )
 
         // Grading Periods
-        self.gradingPeriodOptions = [GradingPeriod.optionItemAll] + gradingPeriods.map { $0.optionItem }
-        let initialGradingPeriodOption = initialGradingPeriod?.optionItem ?? GradingPeriod.optionItemAll
-        self.initialGradingPeriodOption = initialGradingPeriodOption
-        selectedGradingPeriodOption.value = initialGradingPeriodOption
+        self.gradingPeriodOptions = .init(
+            all: [GradingPeriod.optionItemAll] + gradingPeriods.map { $0.optionItem },
+            initial: initialGradingPeriod?.optionItem ?? GradingPeriod.optionItemAll
+        )
 
         // Other
         self.courseName = courseName
@@ -247,10 +239,10 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
 
     func didTapCancel(viewController: WeakViewController) {
         selectedStudentFilterOptions.value = initialStudentFilterOptions
-        selectedTeacherFilterOption.value = initialTeacherFilterOption
-        selectedTeacherPublishStatusFilterOption.value = initialTeacherPublishStatusFilterOption
-        selectedSortModeOption.value = initialSortModeOption
-        selectedGradingPeriodOption.value = initialGradingPeriodOption
+        teacherFilterOptions.resetSelection()
+        teacherPublishStatusFilterOptions.resetSelection()
+        sortModeOptions.resetSelection()
+        gradingPeriodOptions.resetSelection()
         env.router.dismiss(viewController)
     }
 
@@ -259,7 +251,7 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     }
 
     func didDismiss() {
-        let optionId = selectedGradingPeriodOption.value?.id
+        let optionId = gradingPeriodOptions.selected.value?.id
         let gradingPeriodId = optionId == OptionItem.allId ? nil : optionId
 
         completion(
@@ -267,9 +259,9 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
                 filterOptionsStudent: selectedStudentFilterOptions.value.compactMap { selected in
                     AssignmentFilterOptionStudent.allCases.first { $0.isMatch(for: selected) }
                 },
-                filterOptionTeacher: .init(optionItem: selectedTeacherFilterOption.value),
-                statusFilterOptionTeacher: .init(optionItem: selectedTeacherPublishStatusFilterOption.value),
-                sortingOption: sortModes.first { $0.isMatch(for: selectedSortModeOption.value) },
+                filterOptionTeacher: .init(optionItem: teacherFilterOptions.selected.value),
+                statusFilterOptionTeacher: .init(optionItem: teacherPublishStatusFilterOptions.selected.value),
+                sortingOption: sortModes.first { $0.isMatch(for: sortModeOptions.selected.value) },
                 gradingPeriodId: gradingPeriodId
             )
         )
