@@ -20,7 +20,7 @@ import Core
 import Combine
 import XCTest
 
-class DashboardViewModelTests: CoreTestCase {
+class DashboardContainerViewModelTests: CoreTestCase {
     private var subscriptions = Set<AnyCancellable>()
 
     func testCreatesSettingsView() {

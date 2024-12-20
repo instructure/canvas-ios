@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class DiscussionWebPageViewModelTests: CoreTestCase {
+class EmbeddedWebPageViewModelTests: CoreTestCase {
     let timezoneName = TimeZone.current.identifier
     let locale = Locale.current.identifier.replacingOccurrences(of: "_", with: "-")
 
