@@ -36,15 +36,15 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     InstUI.Divider()
 
-                    SingleSelectionView(
-                        title: String(localized: "Sort By", bundle: .core),
-                        options: viewModel.sortModeOptions
-                    )
-
                     MultiSelectionView(
-                        title: String(localized: "Result type", bundle: .core),
+                        title: String(localized: "Result types", bundle: .core),
                         hasAllSelectionButton: true,
                         options: viewModel.resultTypeOptions
+                    )
+
+                    SingleSelectionView(
+                        title: String(localized: "Grouped By", bundle: .core),
+                        options: viewModel.sortModeOptions
                     )
                 }
             }

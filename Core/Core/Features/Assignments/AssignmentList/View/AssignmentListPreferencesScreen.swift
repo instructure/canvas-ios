@@ -115,7 +115,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     private var gradingPeriodsSection: some View {
         SingleSelectionView(
-            title: String(localized: "Grading Period", bundle: .core),
+            title: String(localized: "Grading Periods", bundle: .core),
             accessibilityIdentifier: "AssignmentFilter.gradingPeriodOption",
             options: viewModel.gradingPeriodOptions
         )

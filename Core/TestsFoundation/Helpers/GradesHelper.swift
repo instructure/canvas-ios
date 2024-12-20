@@ -80,7 +80,7 @@ public class GradesHelper: BaseHelper {
         public static var saveButton: XCUIElement { app.find(id: "GradeFilter.saveButton", type: .button) }
 
         public static func optionButton(gradingPeriod: DSGradingPeriod? = nil) -> XCUIElement {
-            let label = gradingPeriod?.title ?? "All"
+            let label = gradingPeriod?.title ?? "All Grading Periods"
             return app.find(label: label, type: .switch)
         }
     }

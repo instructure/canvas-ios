@@ -128,10 +128,10 @@ extension GradeFilterViewModel {
 private extension GradeArrangementOptions {
     private var title: String {
         switch self {
-        case .groupName:
-            return String(localized: "Group", bundle: .core)
         case .dueDate:
             return String(localized: "Due Date", bundle: .core)
+        case .groupName:
+            return String(localized: "Group", bundle: .core)
         }
     }
 
@@ -149,7 +149,7 @@ private extension GradeArrangementOptions {
 private extension GradingPeriod {
     static let optionItemAll = OptionItem(
         id: OptionItem.allId,
-        title: String(localized: "All", bundle: .core)
+        title: String(localized: "All Grading Periods", bundle: .core)
     )
 
     var optionItem: OptionItem {
