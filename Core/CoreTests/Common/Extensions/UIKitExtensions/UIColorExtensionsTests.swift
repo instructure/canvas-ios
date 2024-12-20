@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import SwiftUI
 @testable import Core
 
 class UIColorExtensionsTests: XCTestCase {

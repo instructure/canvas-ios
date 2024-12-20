@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import SwiftUI
 import XCTest
+@testable import Core
 
-class CGFloatExtensionsTests: XCTestCase {
-
-    func testIconScales() {
-        XCTAssertEqual((0.8 as CGFloat).iconScale, 0.8)
-        XCTAssertEqual(  (1 as CGFloat).iconScale, 1)
-        XCTAssertEqual((1.2 as CGFloat).iconScale, 1.1)
-        XCTAssertEqual(  (3 as CGFloat).iconScale, 2)
+class TransactionExtensionsTests: XCTestCase {
+    func testExclusive() throws {
+        XCTAssertEqual(Transaction.exclusive().animation, nil)
+        XCTAssertEqual(Transaction.exclusive().disablesAnimations, true)
+        XCTAssertEqual(Transaction.exclusive(.default).animation, .default)
     }
 }

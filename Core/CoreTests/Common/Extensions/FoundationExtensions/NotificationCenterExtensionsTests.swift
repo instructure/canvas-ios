@@ -20,7 +20,7 @@ import XCTest
 import Foundation
 @testable import Core
 
-class NotificationExtensionTests: XCTestCase {
+class NotificationCenterExtensionsTests: XCTestCase {
     func testPostModuleItemCompletedRequirement() {
         let expectation = XCTestExpectation(description: "notification")
         let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { notification in

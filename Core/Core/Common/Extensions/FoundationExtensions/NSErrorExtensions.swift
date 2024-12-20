@@ -59,42 +59,4 @@ extension NSError {
             return true
         }
     }
-
-    public func showAlert(from: UIViewController?) {
-        guard let from = from else { return }
-        let dismiss = AlertAction(String(localized: "Dismiss", bundle: .core, comment: "Dismiss button for error messages"), style: .default)
-
-        let report = AlertAction(String(localized: "Report", bundle: .core, comment: "Button to report an error"), style: .default) { _ in
-            AppEnvironment.shared.router.show(ErrorReportViewController.create(error: self), from: from, options: .modal(embedInNav: true))
-        }
-
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        switch (domain, code) {
-        case (NSCocoaErrorDomain, 13): // NSCocoaErrorDomain 13 NSUnderlyingException: error during SQL execution : database or disk is full
-            alert.title = String(localized: "Disk Error", bundle: .core)
-            alert.message = String(localized: "Your device is out of storage space. Please free up space and try again.", bundle: .core)
-            alert.addAction(dismiss)
-
-        case (NSURLErrorDomain, _):
-            alert.title = String(localized: "Network Error", bundle: .core)
-            alert.message = localizedDescription
-            alert.addAction(report)
-            alert.addAction(dismiss)
-
-        case ("com.instructure.canvas", 90211): // push channel error. no idea where 90211 comes from.
-            alert.title = String(localized: "Notification Error", bundle: .core)
-            alert.message = String(localized: "There was a problem registering your device for push notifications.", bundle: .core)
-            alert.addAction(report)
-            alert.addAction(dismiss)
-
-        default:
-            alert.title = String(localized: "Unknown Error", bundle: .core)
-            alert.message = localizedFailureReason.flatMap {
-                "\(localizedDescription)\n\n\($0)"
-            } ?? localizedDescription
-            alert.addAction(report)
-            alert.addAction(dismiss)
-        }
-        AppEnvironment.shared.router.show(alert, from: from, options: .modal())
-    }
 }

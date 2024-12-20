@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 import XCTest
 
-class BoolExtensionsTests: XCTestCase {
+class BindingBoolTests: XCTestCase {
 
     func testInvertedBindingGetter() {
         // MARK: - GIVEN

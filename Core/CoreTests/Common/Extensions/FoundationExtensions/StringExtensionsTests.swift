@@ -18,7 +18,7 @@
 
 import XCTest
 
-class StringExtensionTests: XCTestCase {
+class StringExtensionsTests: XCTestCase {
 
     func testPopulatePathWithNilParams() {
         let path = "https://localhost/foo"

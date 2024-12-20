@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import SwiftUI
 import UIKit
 
 extension UIColor {
@@ -205,6 +204,4 @@ extension UIColor {
         }
         return color
     }
-
-    public var asColor: Color { Color(self) }
 }
