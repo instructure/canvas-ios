@@ -22,8 +22,8 @@ import CombineSchedulers
 import Foundation
 
 public enum GradeArrangementOptions: String, CaseIterable {
-    case groupName
     case dueDate
+    case groupName
 }
 
 public final class GradeListViewModel: ObservableObject {

@@ -45,7 +45,7 @@ public struct GradeFilterView: View {
 
     private var navBarTitleView: some View {
         VStack {
-            Text(String(localized: "Grade Preferences", bundle: .core))
+            Text(String(localized: "Grade List Preferences", bundle: .core))
                 .foregroundStyle(Color.textDarkest)
                 .font(.semibold16)
             Text(viewModel.courseName ?? "")
@@ -56,7 +56,7 @@ public struct GradeFilterView: View {
 
     private var gradingPeriodSection: some View {
         SingleSelectionView(
-            title: String(localized: "Grading Period", bundle: .core),
+            title: String(localized: "Grading Periods", bundle: .core),
             accessibilityIdentifier: "GradeFilter.gradingPeriodOptions",
             options: viewModel.gradingPeriodOptions
         )
@@ -64,7 +64,7 @@ public struct GradeFilterView: View {
 
     private var sortBySection: some View {
         SingleSelectionView(
-            title: String(localized: "Sort By", bundle: .core),
+            title: String(localized: "Grouped By", bundle: .core),
             accessibilityIdentifier: "GradeFilter.sortModeOptions",
             options: viewModel.sortModeOptions
         )
@@ -74,7 +74,7 @@ public struct GradeFilterView: View {
         Button {
             viewModel.saveButtonTapped(viewController: viewController)
         } label: {
-            Text(String(localized: "Save", bundle: .core))
+            Text(String(localized: "Done", bundle: .core))
                 .font(.semibold16)
                 .foregroundColor(viewModel.saveButtonIsEnabled
                                  ? .textDarkest
@@ -89,11 +89,9 @@ public struct GradeFilterView: View {
         Button {
             viewModel.dimiss(viewController: viewController)
         } label: {
-            Image.xLine
-                .padding(5)
+            Text(String(localized: "Cancel", bundle: .core))
+                .font(.semibold16)
         }
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Hide", bundle: .core))
     }
 }
 
