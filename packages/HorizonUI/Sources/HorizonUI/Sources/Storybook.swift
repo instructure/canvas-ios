@@ -101,7 +101,9 @@ public struct Storybook: View {
                     NavigationLink {} label: {
                         Text("Inputs and Interactive Fields").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.LearningObjectCard.Storybook()
+                    } label: {
                         Text("Cards").tint(Color.black)
                     }
                     NavigationLink {} label: {

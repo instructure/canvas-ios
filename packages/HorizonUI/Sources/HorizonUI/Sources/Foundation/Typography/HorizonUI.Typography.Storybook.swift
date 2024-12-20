@@ -45,7 +45,7 @@ public extension HorizonUI.Typography {
 }
 
 extension HorizonUI.Typography.Name: Identifiable {
-    var id: Self { self }
+    public var id: Self { self }
 }
 
 #Preview {

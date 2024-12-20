@@ -57,6 +57,27 @@ public extension HorizonUI {
                     return inline.textColor
                 }
             }
+
+            var drawBorder: Bool {
+                switch self {
+                case .outline: return true
+                default: return false
+                }
+            }
+
+            var verticalSpaceForSmallSize: CGFloat {
+                switch self {
+                case .inline: return 0
+                default: return .huiSpaces.primitives.xxSmall
+                }
+            }
+
+            var horizontalSpaceForSmallSize: CGFloat {
+                switch self {
+                case .inline: return 0
+                default: return .huiSpaces.primitives.xSmall
+                }
+            }
         }
 
         private let title: String
@@ -65,8 +86,7 @@ public extension HorizonUI {
         private let isUppercased: Bool
         private let icon: Image?
         private let cornerRadius: CornerRadius = .level4
-        private let drawBorder: Bool
-        
+//        private let drawBorder: Bool
         public init(
             title: String,
             style: Pill.Style = .outline(Style.Outline.default),
@@ -79,12 +99,12 @@ public extension HorizonUI {
             self.isSmall = isSmall
             self.isUppercased = isUppercased
             self.icon = icon
-            
-            if case .outline = style {
-                drawBorder = true
-            } else {
-                drawBorder = false
-            }
+
+//            if case .outline = style {
+//                drawBorder = true
+//            } else {
+//                drawBorder = false
+//            }
         }
 
         public var body: some View {
@@ -99,16 +119,17 @@ public extension HorizonUI {
                     .huiTypography(isUppercased ? .tag : .labelSmall)
                     .foregroundStyle(style.textColor)
             }
-            .padding(.horizontal, isSmall ? .huiSpaces.primitives.xSmall : .huiSpaces.primitives.small)
-            .padding(.vertical, isSmall ? .huiSpaces.primitives.xxSmall : .huiSpaces.primitives.xSmall)
+            // TODO: Need to check with Szabolcs
+            .padding(.horizontal, isSmall ? style.horizontalSpaceForSmallSize : .huiSpaces.primitives.small)
+            .padding(.vertical, isSmall ? style.verticalSpaceForSmallSize : .huiSpaces.primitives.xSmall)
             .background(style.backgroundColor)
             .huiCornerRadius(level: cornerRadius)
             .huiBorder(
-                level: drawBorder ? .level1 : nil,
+                level: style.drawBorder ? .level1 : nil,
                 color: style.borderColor,
                 radius: cornerRadius.attributes.radius
             )
-            .frame(minHeight: isSmall ? 25 : 33)
+//            .frame(minHeight: isSmall ? 25 : 33)
         }
     }
 }
