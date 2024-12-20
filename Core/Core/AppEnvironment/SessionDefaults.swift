@@ -235,8 +235,8 @@ public struct SessionDefaults {
         set { self["selectedGradingPeriodIdsByCourseIDs"] = newValue }
     }
 
-    public var selectedSortByOptionIDs: [String: Int]? {
-        get { self["selectedSortByOptionIDs"] as? [String: Int] }
+    public var selectedSortByOptionIDs: [String: String]? {
+        get { self["selectedSortByOptionIDs"] as? [String: String] }
         set { self["selectedSortByOptionIDs"] = newValue }
     }
 

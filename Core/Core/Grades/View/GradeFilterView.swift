@@ -45,7 +45,7 @@ public struct GradeFilterView: View {
 
     private var navBarTitleView: some View {
         VStack {
-            Text(String(localized: "Grade Preferences", bundle: .core))
+            Text(String(localized: "Grade List Preferences", bundle: .core))
                 .foregroundStyle(Color.textDarkest)
                 .font(.semibold16)
             Text(viewModel.courseName ?? "")
@@ -55,49 +55,26 @@ public struct GradeFilterView: View {
     }
 
     private var gradingPeriodSection: some View {
-        Section {
-            ForEach(viewModel.gradingPeriods, id: \.hashValue) { item in
-                gradingPeriodItem(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Grading Period", bundle: .core))
-        }
-    }
-
-    private func gradingPeriodItem(with item: GradeFilterViewModel.GradePeriod) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title ?? String(localized: "All", bundle: .core),
-            value: item,
-            selectedValue: $viewModel.selectedGradingPeriod,
-            color: Color(Brand.shared.primary)
+        SingleSelectionView(
+            title: String(localized: "Grading Periods", bundle: .core),
+            accessibilityIdentifier: "GradeFilter.gradingPeriodOptions",
+            options: viewModel.gradingPeriodOptions
         )
     }
 
     private var sortBySection: some View {
-        Section {
-            ForEach(viewModel.sortByOptions, id: \.self) { item in
-                sortByItem(with: item)
-            }
-        } header: {
-            InstUI.ListSectionHeader(title: String(localized: "Sort By", bundle: .core))
-        }
-    }
-
-    private func sortByItem(with item: GradeArrangementOptions) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title,
-            value: item,
-            selectedValue: $viewModel.selectedSortByOption,
-            color: Color(Brand.shared.primary)
+        SingleSelectionView(
+            title: String(localized: "Grouped By", bundle: .core),
+            accessibilityIdentifier: "GradeFilter.sortModeOptions",
+            options: viewModel.sortModeOptions
         )
-        .accessibilityIdentifier("GradeFilter.sortBy.\(item)")
     }
 
     private var sendButton: some View {
         Button {
             viewModel.saveButtonTapped(viewController: viewController)
         } label: {
-            Text(String(localized: "Save", bundle: .core))
+            Text(String(localized: "Done", bundle: .core))
                 .font(.semibold16)
                 .foregroundColor(viewModel.saveButtonIsEnabled
                                  ? .textDarkest
@@ -112,11 +89,9 @@ public struct GradeFilterView: View {
         Button {
             viewModel.dimiss(viewController: viewController)
         } label: {
-            Image.xLine
-                .padding(5)
+            Text(String(localized: "Cancel", bundle: .core))
+                .font(.semibold16)
         }
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Hide", bundle: .core))
     }
 }
 

@@ -36,67 +36,16 @@ public struct CourseSmartSearchFilterEditorView: View {
 
                     InstUI.Divider()
 
-                    HStack {
-                        Text("Sort By", bundle: .core)
-                            .font(.semibold14)
-                            .foregroundStyle(Color.textDark)
-                        Spacer()
-                    }
-                    .padding(16)
-                    .background(Color.borderLight)
-
-                    InstUI.Divider()
-
-                    InstUI.RadioButtonCell(
-                        title: String(localized: "Relevance", bundle: .core),
-                        value: .relevance,
-                        selectedValue: $viewModel.sortMode,
-                        color: contextColor,
-                        hasDivider: false
+                    MultiSelectionView(
+                        title: String(localized: "Result types", bundle: .core),
+                        hasAllSelectionButton: true,
+                        options: viewModel.resultTypeOptions
                     )
 
-                    InstUI.Divider().padding(.horizontal, 16)
-
-                    InstUI.RadioButtonCell(
-                        title: String(localized: "Type", bundle: .core),
-                        value: .type,
-                        selectedValue: $viewModel.sortMode,
-                        color: contextColor
+                    SingleSelectionView(
+                        title: String(localized: "Grouped By", bundle: .core),
+                        options: viewModel.sortModeOptions
                     )
-
-                    HStack {
-                        Text("Result type", bundle: .core)
-                            .font(.semibold14)
-                            .foregroundStyle(Color.textDark)
-                        Spacer()
-                        Button(
-                            viewModel.allSelectionMode.title,
-                            action: viewModel.allSelectionButtonTapped
-                        )
-                        .font(.semibold14)
-                    }
-                    .padding(16)
-                    .background(Color.borderLight)
-
-                    InstUI.Divider()
-
-                    ForEach($viewModel.resultTypes, id: \.type) { type in
-                        InstUI.CheckboxCell(
-                            title: type.wrappedValue.type.title,
-                            isSelected: type.checked,
-                            color: contextColor,
-                            hasDivider: false,
-                            accessory: {
-                                type.wrappedValue.type.icon.foregroundStyle(contextColor)
-                            }
-                        )
-
-                        if viewModel.isLastResultType(type.wrappedValue) == false {
-                            InstUI.Divider().padding(.horizontal, 16)
-                        }
-                    }
-
-                    InstUI.Divider()
                 }
             }
             .listStyle(.plain)

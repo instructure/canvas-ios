@@ -22,11 +22,12 @@ extension InstUI {
 
     public struct RadioButtonCell<Value: Equatable>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
         @Binding private var selectedValue: Value?
         private let title: String
         private let value: Value?
         private let color: Color
-        private let hasDivider: Bool
+        private let dividerStyle: InstUI.Divider.Style
 
         /// - parameters:
         ///   - value: The value represented by this cell that will be passed to the `selectedValue` binding upon tap.
@@ -36,13 +37,13 @@ extension InstUI {
             value: Value?,
             selectedValue: Binding<Value?>,
             color: Color,
-            hasDivider: Bool = true
+            dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
             self.value = value
             self._selectedValue = selectedValue
             self.color = color
-            self.hasDivider = hasDivider
+            self.dividerStyle = dividerStyle
         }
 
         public var body: some View {
@@ -50,23 +51,22 @@ extension InstUI {
                 Button {
                     selectedValue = value
                 } label: {
-                    HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+                    HStack(spacing: 0) {
                         InstUI.RadioButton(
                             isSelected: (value == selectedValue),
                             color: color
                         )
+                        .paddingStyle(.trailing, .cellIconText)
                         .animation(.default, value: selectedValue)
+
                         Text(title)
-                            .font(.regular16, lineHeight: .fit)
+                            .textStyle(.cellLabel)
                             .multilineTextAlignment(.leading)
-                            .foregroundStyle(Color.textDarkest)
-                            .frame(maxWidth: .infinity,
-                                   alignment: .leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .paddingStyle(set: .iconCell)
-
                 }
-                if hasDivider { InstUI.Divider() }
+                InstUI.Divider(dividerStyle)
             }
             .accessibilityRepresentation {
                 let binding = Binding {

@@ -21,18 +21,9 @@ import CombineExt
 import CombineSchedulers
 import Foundation
 
-public enum GradeArrangementOptions: Int, CaseIterable {
-    case groupName = 1
-    case dueDate = 2
-
-    var title: String {
-        switch self {
-        case .groupName:
-            return String(localized: "Group", bundle: .core)
-        case .dueDate:
-            return String(localized: "Due Date", bundle: .core)
-        }
-    }
+public enum GradeArrangementOptions: String, CaseIterable {
+    case dueDate
+    case groupName
 }
 
 public final class GradeListViewModel: ObservableObject {
@@ -197,9 +188,11 @@ public final class GradeListViewModel: ObservableObject {
     }
 
    private func loadSortPreferences() {
-        let selectedSortById = gradeFilterInteractor.selectedSortById
-        let selectedSortByOption = GradeArrangementOptions(rawValue: selectedSortById ?? 0) ?? .dueDate
-        selectedGroupByOption.accept(selectedSortByOption)
+       guard let id = gradeFilterInteractor.selectedSortById,
+             let option = GradeArrangementOptions(rawValue: id)
+       else { return }
+
+        selectedGroupByOption.accept(option)
     }
 
     private func getSelectedGradingPeriodId(
