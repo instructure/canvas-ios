@@ -21,7 +21,7 @@ import Foundation
 public extension HorizonUI {
     struct Spaces: Sendable {
         fileprivate init() {}
-        let primitives = Primitives()
+        public let primitives = Primitives()
     }
 
     static let spaces = HorizonUI.Spaces()

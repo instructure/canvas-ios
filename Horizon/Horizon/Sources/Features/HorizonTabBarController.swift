@@ -19,6 +19,7 @@
 import Core
 import HorizonUI
 import UIKit
+import SwiftUI
 
 final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Properties
@@ -63,7 +64,8 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         )
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .backgroundLight
+
+        appearance.backgroundColor = UIColor(Color.huiColors.surface.pagePrimary)
         appearance.shadowImage = UIImage()
         appearance.shadowColor = nil
 

@@ -18,6 +18,7 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct DashboardView: View {
     @ObservedObject private var viewModel: DashboardViewModel
@@ -30,30 +31,55 @@ struct DashboardView: View {
     var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
-            config: .init(refreshable: true)
+            config: .init(refreshable: true, loaderBackgroundColor: .huiColors.surface.pagePrimary)
         ) { _ in
-            VStack(spacing: 0) {
+            LazyVStack(spacing: .zero) {
                 ForEach(viewModel.courses) { course in
                     if course.currentModuleItem != nil, !course.upcomingModuleItems.isEmpty {
-                        VStack(alignment: .leading, spacing: 12) {
-                            Size24BoldTextDarkestTitle(title: course.name)
-                                .padding(.top, 16)
-                            CertificateProgressBar(
+                        VStack(alignment: .leading, spacing: .zero) {
+                            Text(course.name)
+                                .huiTypography(.h1)
+                                .foregroundStyle(Color.huiColors.text.title)
+                                .padding(.top, .huiSpaces.primitives.medium)
+                                .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+
+                            HorizonUI.ProgressBar(
                                 progress: course.progress,
-                                progressString: course.progressString
+                                size: .medium,
+                                numberPosition: .outside
                             )
-                            moduleView(course: course)
+                            if let module = course.currentModule, let moduleItem = course.currentModuleItem {
+                                Text("Next Up", bundle: .horizon)
+                                    .huiTypography(.h3)
+                                    .foregroundStyle(Color.huiColors.text.title)
+                                    .padding(.top, .huiSpaces.primitives.large)
+                                    .padding(.bottom, .huiSpaces.primitives.small)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                                HorizonUI.LearningObjectCard(
+                                    status: "Default",
+                                    moduleTitle: module.name,
+                                    learningObjectName: moduleItem.title,
+                                    duration: "20 Mins",
+                                    type: moduleItem.type?.label,
+                                    dueDate: moduleItem.dueAt?.relativeShortDateOnlyString
+                                ) {
+                                    if let url = moduleItem.htmlURL {
+                                        viewModel.navigateToCourseDetails(url: url, viewController: viewController)
+                                    }
+                                }
+                            }
                         }
-                        .padding(.horizontal, 16)
-                        .background()
+                        .padding(.horizontal, .huiSpaces.primitives.medium)
                     }
                 }
             }
+            .padding(.bottom, .huiSpaces.primitives.mediumSmall)
         }
         .navigationBarItems(leading: nameLabel)
         .navigationBarItems(trailing: navBarIcons)
         .scrollIndicators(.hidden, axes: .vertical)
-        .background(Color.backgroundLight)
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var nameLabel: some View {
@@ -97,64 +123,6 @@ struct DashboardView: View {
         }
     }
 
-    @ViewBuilder
-    private func moduleView(course: HCourse) -> some View {
-        if let module = course.currentModule, let moduleItem = course.currentModuleItem {
-            VStack(spacing: 0) {
-                GeometryReader { proxy in
-                    AsyncImage(url: course.imageURL) { image in
-                        image.image?.resizable().scaledToFill()
-                    }
-                    .frame(width: proxy.size.width)
-                    .cornerRadius(8)
-                }
-                .frame(height: 200)
-                .padding(.vertical, 24)
-
-                Size24RegularTextDarkestTitle(title: module.name)
-                    .padding(.bottom, 8)
-                HStack(spacing: 0) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "document")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundStyle(Color.textDark)
-                            .frame(width: 18, height: 18)
-                        Size12RegularTextDarkTitle(title: moduleItem.title)
-                            .lineLimit(2)
-                    }
-                    Spacer()
-                    HStack(spacing: 4) {
-                        Image(systemName: "timer")
-                            .resizable()
-                            .renderingMode(.template)
-                            .foregroundStyle(Color.textDark)
-                            .frame(width: 14, height: 14)
-                        Size12RegularTextDarkTitle(title: "20 Mins")
-                    }
-                }
-                Button {
-                    if let url = moduleItem.htmlURL {
-                        AppEnvironment.shared.router.route(to: url, from: viewController)
-                    }
-                } label: {
-                    Text("Continue learning")
-                        .font(.regular14)
-                        .frame(height: 36)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.backgroundLight)
-                        .foregroundColor(Color.textDark)
-                        .cornerRadius(8)
-                        .padding(.vertical, 16)
-                }
-            }
-            .padding(.horizontal, 16)
-            .background(Color.backgroundLightest)
-            .cornerRadius(8)
-            .padding(.vertical, 16)
-        }
-    }
 }
 
 #if DEBUG
