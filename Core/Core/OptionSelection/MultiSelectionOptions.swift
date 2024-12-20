@@ -18,6 +18,8 @@
 
 import Combine
 
+/// Helper type for clients of MultiSelectionView/ViewModel.
+/// Groups together selection options and the selection state.
 public struct MultiSelectionOptions {
     public let all: [OptionItem]
     public let selected: CurrentValueSubject<Set<OptionItem>, Never>

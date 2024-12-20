@@ -18,6 +18,8 @@
 
 import Combine
 
+/// Helper type for clients of SingleSelectionView/ViewModel.
+/// Groups together selection options and the selection state.
 public struct SingleSelectionOptions {
     public let all: [OptionItem]
     public let selected: CurrentValueSubject<OptionItem?, Never>
