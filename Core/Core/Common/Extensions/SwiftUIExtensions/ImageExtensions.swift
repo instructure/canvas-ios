@@ -18,22 +18,8 @@
 
 import SwiftUI
 
-public extension Text {
-    init(_ value: Double, number: NumberFormatter.Style = .decimal) {
-        self.init(NumberFormatter.localizedString(from: NSNumber(value: value), number: number))
-    }
-}
-
-public extension Text {
-    init(_ string: String, configure: ((inout AttributedString) -> Void)) {
-        var attributedString = AttributedString(string)
-        configure(&attributedString)
-        self.init(attributedString)
-    }
-}
-
-public extension Image {
-    func size(_ size: CGFloat?) -> some View {
+extension Image {
+    public func size(_ size: CGFloat?) -> some View {
         resizable().scaledToFill().frame(width: size, height: size)
     }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,21 +17,10 @@
 //
 
 import UIKit
-import XCTest
-@testable import Core
+import SwiftUI
 
-class UIButtonExtensionTests: XCTestCase {
-
-    func testButtonBadge() {
-        let b = DynamicButton()
-        b.iconName = "hamburgerSolid"
-
-        XCTAssertNoThrow(  b.addBadge(number: 3, color: .red) )
-        let textLayer: CATextLayer? = b.layer.sublayers?.first?.sublayers?.filter { $0 is CATextLayer }.first as? CATextLayer
-        let value: String? = textLayer?.string as? String
-        XCTAssertEqual(value, "3")
-        let shape = b.layer.sublayers?.first as? CAShapeLayer
-        XCTAssertEqual(shape?.fillColor, UIColor.textLightest.variantForLightMode.cgColor)
-        XCTAssertEqual(shape?.strokeColor, UIColor.red.cgColor)
+extension UIColor {
+    public var asColor: Color {
+        Color(self)
     }
 }
