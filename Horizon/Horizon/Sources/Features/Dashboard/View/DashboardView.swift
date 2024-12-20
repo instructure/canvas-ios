@@ -31,7 +31,10 @@ struct DashboardView: View {
     var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
-            config: .init(refreshable: true, loaderBackgroundColor: .huiColors.surface.pagePrimary)
+            config: .init(
+                refreshable: true,
+                loaderBackgroundColor: .huiColors.surface.pagePrimary
+            )
         ) { _ in
             LazyVStack(spacing: .zero) {
                 ForEach(viewModel.courses) { course in
