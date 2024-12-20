@@ -16,14 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 import XCTest
 @testable import Core
 
-class TransactionExtensionTests: XCTestCase {
-    func testExclusive() throws {
-        XCTAssertEqual(Transaction.exclusive().animation, nil)
-        XCTAssertEqual(Transaction.exclusive().disablesAnimations, true)
-        XCTAssertEqual(Transaction.exclusive(.default).animation, .default)
+class UIButtonExtensionsTests: XCTestCase {
+
+    func testButtonBadge() {
+        let b = DynamicButton()
+        b.iconName = "hamburgerSolid"
+
+        XCTAssertNoThrow(  b.addBadge(number: 3, color: .red) )
+        let textLayer: CATextLayer? = b.layer.sublayers?.first?.sublayers?.filter { $0 is CATextLayer }.first as? CATextLayer
+        let value: String? = textLayer?.string as? String
+        XCTAssertEqual(value, "3")
+        let shape = b.layer.sublayers?.first as? CAShapeLayer
+        XCTAssertEqual(shape?.fillColor, UIColor.textLightest.variantForLightMode.cgColor)
+        XCTAssertEqual(shape?.strokeColor, UIColor.red.cgColor)
     }
 }

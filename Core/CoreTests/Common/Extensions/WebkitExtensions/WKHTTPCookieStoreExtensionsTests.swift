@@ -20,7 +20,7 @@
 import WebKit
 import XCTest
 
-class WKHTTPCookieStoreExtensionTests: XCTestCase {
+class WKHTTPCookieStoreExtensionsTests: XCTestCase {
     private var webViewConfiguration: WKWebViewConfiguration!
     private let cookie = HTTPCookie.make()
 

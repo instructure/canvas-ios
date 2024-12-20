@@ -19,26 +19,7 @@
 import XCTest
 @testable import Core
 
-class NSErrorExtensionsTests: CoreTestCase {
-    func testInternalError() {
-        XCTAssertEqual(NSError.internalError(), NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: "Internal Error"]))
-    }
-
-    func testInstructureError() {
-        XCTAssertEqual(NSError.instructureError("doh!"), NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: "doh!"]))
-    }
-
-    func testShouldRecordInCrashlytics() {
-        XCTAssertFalse(NSError(domain: NSCocoaErrorDomain, code: 13).shouldRecordInCrashlytics)
-        XCTAssertFalse(NSError(domain: NSURLErrorDomain, code: NSURLErrorNotConnectedToInternet).shouldRecordInCrashlytics)
-        XCTAssertFalse(NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut).shouldRecordInCrashlytics)
-        XCTAssertFalse(NSError(domain: NSURLErrorDomain, code: NSURLErrorNetworkConnectionLost).shouldRecordInCrashlytics)
-        XCTAssertFalse(NSError(domain: NSURLErrorDomain, code: NSURLErrorDataNotAllowed).shouldRecordInCrashlytics)
-
-        XCTAssertTrue(NSError(domain: NSCocoaErrorDomain, code: 0).shouldRecordInCrashlytics)
-        XCTAssertTrue(NSError(domain: NSURLErrorDomain, code: 0).shouldRecordInCrashlytics)
-        XCTAssertTrue(NSError.internalError().shouldRecordInCrashlytics)
-    }
+class NSErrorShowAlertTests: CoreTestCase {
 
     func testShowAlert() {
         let view = UIViewController()

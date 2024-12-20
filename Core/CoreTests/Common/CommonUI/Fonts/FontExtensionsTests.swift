@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 import XCTest
 
-class FontExtensionTests: XCTestCase {
+class FontExtensionsTests: XCTestCase {
 
     func testFonts() {
         XCTAssertEqual(Font.regular10, Font(UIFont.scaledNamedFont(.regular10)))

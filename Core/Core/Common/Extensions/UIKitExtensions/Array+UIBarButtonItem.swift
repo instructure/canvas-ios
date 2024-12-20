@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,7 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
-extension LoggerProtocol {
+extension Array where Element: UIBarButtonItem {
+    func removeDuplicates() -> [Element] {
+        return reduce([]) { result, element in
+            result.contains { $0.action == element.action } ? result : result + [element]
+        }
+    }
 }
