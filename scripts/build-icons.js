@@ -205,7 +205,7 @@ for (const icon of whitelist) {
   }
 }
 
-fs.writeFileSync('./Core/Core/Extensions/InstIconExtensions.swift', `//
+fs.writeFileSync('./Core/Core/Common/Extensions/InstIconExtensions.swift', `//
 // This file is part of Canvas.
 // Copyright (C) 2019-present  Instructure, Inc.
 //
@@ -250,7 +250,7 @@ public extension Image {
     ).join('\n    ')}
 }
 `)
-fs.writeFileSync('./Core/CoreTests/Extensions/InstIconExtensionsTests.swift', `//
+fs.writeFileSync('./Core/CoreTests/Common/Extensions/InstIconExtensionsTests.swift', `//
 // This file is part of Canvas.
 // Copyright (C) 2020-present  Instructure, Inc.
 //
