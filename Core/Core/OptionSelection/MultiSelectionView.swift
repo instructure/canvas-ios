@@ -20,7 +20,6 @@ import Combine
 import SwiftUI
 
 public struct MultiSelectionView: View {
-
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @StateObject private var viewModel: MultiSelectionViewModel
