@@ -143,14 +143,14 @@ const getImages = (path) => fs.readdirSync(path, { withFileTypes: true }).flatMa
   if (dir.name.endsWith('.imageset')) { return dir.name.slice(0, -9) }
   return getImages(`${path}/${dir.name}`)
 })
-const localIcons = getImages('./Core/Core/Assets.xcassets/icons').sort()
+const localIcons = getImages('./Core/Core/Resources/Assets.xcassets/icons').sort()
 
 const overrides = {
   star: { Line: 'star-light' },
   'reply-all': { Line: 'reply-all-2', Solid: 'reply-all-2' },
 }
 
-const assetsFolder = './Core/Core/Assets.xcassets/InstIcons'
+const assetsFolder = './Core/Core/Resources/Assets.xcassets/InstIcons'
 
 echo('Building Icons...')
 run(`rm -rf ${assetsFolder}`)

@@ -49,7 +49,7 @@ for (const secret of process.argv.slice(2)) {
     data[offset] = data[offset] ^ mixer[offset % mixer.length]
   }
 
-  const folder = `./Core/Core/Assets.xcassets/Secrets/${name}.dataset`
+  const folder = `./Core/Core/Resources/Assets.xcassets/Secrets/${name}.dataset`
   run(`mkdir -p ${folder}`)
   fs.writeFileSync(`${folder}/${name}`, data)
   fs.writeFileSync(`${folder}/Contents.json`, `{
