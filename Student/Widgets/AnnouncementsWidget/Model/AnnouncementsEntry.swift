@@ -70,11 +70,46 @@ extension AnnouncementsEntry {
         let url = URL(string: "https://www.instructure.com/")!
 
         return AnnouncementsEntry(announcementItems: [
-            AnnouncementItem(title: "Finals are moving to next week.", date: Date(), url: url, authorName: "Thomas McKempis", courseName: "Introduction to the Solar System", courseColor: .textInfo),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().inCalendar.addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().inCalendar.addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().inCalendar.addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .course3),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().inCalendar.addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .textSuccess)
+            AnnouncementItem(
+                title: "Finals are moving to next week.",
+                date: Date(),
+                url: url,
+                authorName: "Thomas McKempis",
+                courseName: "Introduction to the Solar System",
+                courseColor: .textInfo
+            ),
+            AnnouncementItem(
+                title: "Zoo Field Trip!",
+                date: Date().inCalendar.addDays(-1),
+                url: url,
+                authorName: "Susan Jorgenson",
+                courseName: "Biology 201",
+                courseColor: .course3
+            ),
+            AnnouncementItem(
+                title: "Read Moby Dick by end of week.",
+                date: Date().inCalendar.addDays(-5),
+                url: url,
+                authorName: "Janet Hammond",
+                courseName: "American literature IV",
+                courseColor: .textSuccess
+            ),
+            AnnouncementItem(
+                title: "Zoo Field Trip!",
+                date: Date().inCalendar.addDays(-1),
+                url: url,
+                authorName: "Susan Jorgenson",
+                courseName: "Biology 201",
+                courseColor: .course3
+            ),
+            AnnouncementItem(
+                title: "Read Moby Dick by end of week.",
+                date: Date().inCalendar.addDays(-5),
+                url: url,
+                authorName: "Janet Hammond",
+                courseName: "American literature IV",
+                courseColor: .textSuccess
+            )
         ])
     }
 }
