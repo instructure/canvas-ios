@@ -112,6 +112,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                                  : .textLightest)
 
         }
+        .hidden(viewModel.state == .initialLoading)
         .accessibilityLabel(Text("Filter", bundle: .core))
         .accessibilityHint(Text("Filter grades options", bundle: .core))
         .accessibilityIdentifier("GradeList.filterButton")
