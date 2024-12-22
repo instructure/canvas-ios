@@ -60,8 +60,8 @@ extension APICalendarEvent {
         context_code: String = "course_1",
         effective_context_code: String? = nil,
         context_name: String? = "Course One",
-        created_at: Date = Clock.now.startOfHour(),
-        updated_at: Date = Clock.now.startOfHour(),
+        created_at: Date = Clock.now.inCalendar.startOfHour(),
+        updated_at: Date = Clock.now.inCalendar.startOfHour(),
         workflow_state: CalendarEventWorkflowState = .active,
         assignment: APIAssignment? = nil,
         description: String? = nil,
@@ -133,8 +133,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
 
     public init(
         contexts: [Context]? = nil,
-        startDate: Date = Clock.now.addYears(-2).startOfDay(),
-        endDate: Date = Clock.now.addYears(1).endOfDay(),
+        startDate: Date = Clock.now.inCalendar.addingYears(-2).startOfDay(),
+        endDate: Date = Clock.now.inCalendar.addingYears(1).endOfDay(),
         calendar: Calendar = .current,
         timeZone: TimeZone = .current,
         type: CalendarEventType = .event,

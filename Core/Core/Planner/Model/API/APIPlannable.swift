@@ -156,8 +156,8 @@ extension APIPlannerOverride {
         workflow_state: String = "published",
         marked_complete: Bool = false,
         dismissed: Bool = false,
-        created_at: Date = Date().addYears(-1),
-        updated_at: Date = Date().addYears(-1),
+        created_at: Date = Date().inCalendar.addYears(-1),
+        updated_at: Date = Date().inCalendar.addYears(-1),
         deleted_at: Date? = nil
     ) -> APIPlannerOverride {
         return APIPlannerOverride(

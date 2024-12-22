@@ -27,7 +27,7 @@ public struct APIGradingPeriod: Codable, Equatable {
 
 #if DEBUG
 extension APIGradingPeriod {
-    public static func make( id: ID = "1", title: String = "Grade Period X", start_date: Date?  = Clock.now.addDays(-7), end_date: Date? = Clock.now.addDays(7)) -> APIGradingPeriod {
+    public static func make( id: ID = "1", title: String = "Grade Period X", start_date: Date?  = Clock.now.inCalendar.addDays(-7), end_date: Date? = Clock.now.inCalendar.addDays(7)) -> APIGradingPeriod {
         return APIGradingPeriod(
             id: id,
             title: title,

@@ -36,8 +36,8 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
     @Published public private(set) var visibility: FileVisibility = .inheritCourse
     @Published public private(set) var availableFrom: Date?
     @Published public private(set) var availableUntil: Date?
-    @Published public private(set) var defaultFromDate = Date().startOfDay()
-    @Published public private(set) var defaultUntilDate = Date().startOfDay()
+    @Published public private(set) var defaultFromDate: Date = Date().inCalendar.startOfDay()
+    @Published public private(set) var defaultUntilDate: Date = Date().inCalendar.startOfDay()
     @Published public var showError = false
 
     // Inputs
@@ -116,9 +116,9 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
         availableFromDidSelect
             .map {
                 if let date = $0 {
-                    return date.addDays(1)
+                    return date.inCalendar.addDays(1)
                 }
-                return Date().startOfDay()
+                return Date().inCalendar.startOfDay()
             }
             .assign(to: &$defaultUntilDate)
 
@@ -127,9 +127,9 @@ class ModuleFilePermissionEditorViewModel: ObservableObject {
         availableUntilDidSelect
             .map {
                 if let date = $0 {
-                    return date.addDays(-1)
+                    return date.inCalendar.addDays(-1)
                 }
-                return Date().startOfDay()
+                return Date().inCalendar.startOfDay()
             }
             .assign(to: &$defaultFromDate)
     }

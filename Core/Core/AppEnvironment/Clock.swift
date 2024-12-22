@@ -40,6 +40,18 @@ public class Cal {
         #endif
         return Calendar.current
     }
+
+    public static var plannerCalendar: Calendar {
+        #if DEBUG
+        if let mock = shared.mockCalendar {
+            return mock
+        }
+        #endif
+
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.firstWeekday = 4
+        return calendar
+    }
 }
 
 public class Clock {

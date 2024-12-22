@@ -57,7 +57,7 @@ extension EditCustomFrequencyViewModel {
         var day: Int
         var month: Int
 
-        init(given date: Date, in calendar: Calendar = Cal.currentCalendar) {
+        init(given date: Date, in calendar: Calendar = Cal.plannerCalendar) {
             let comps = calendar.dateComponents(
                 [.day, .month, .year],
                 from: date
@@ -108,7 +108,7 @@ extension EditCustomFrequencyViewModel {
         }
     }
 
-    func dayOfMonthOptions(for date: Date, in calendar: Calendar = Cal.currentCalendar) -> [DayOfMonth] {
+    func dayOfMonthOptions(for date: Date, in calendar: Calendar = Cal.plannerCalendar) -> [DayOfMonth] {
         let comps = calendar.dateComponents(
             [.calendar, .day, .weekday, .weekdayOrdinal, .month, .year],
             from: date

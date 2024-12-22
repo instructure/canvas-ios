@@ -32,89 +32,12 @@ public extension Date {
         self = date
     }
 
-    // MARK: - Components
-
-    var months: Int {
-        Cal.currentCalendar.component(.month, from: self)
+    var inCalendar: CalendarCalculation {
+        return CalendarCalculation(calendar: Cal.currentCalendar, date: self)
     }
 
-    var daysOfMonth: Int {
-        Cal.currentCalendar.component(.day, from: self)
-    }
-
-    var hours: Int {
-        Cal.currentCalendar.component(.hour, from: self)
-    }
-
-    var minutes: Int {
-        Cal.currentCalendar.component(.minute, from: self)
-    }
-
-    // MARK: - add methods
-
-    func addYears(_ years: Int) -> Date {
-        Cal.currentCalendar.date(byAdding: .year, value: years, to: self)
-            ?? self
-    }
-
-    func addMonths(_ numberOfMonths: Int) -> Date {
-        Cal.currentCalendar.date(byAdding: .month, value: numberOfMonths, to: self)
-            ?? Date()
-    }
-
-    func addDays(_ days: Int) -> Date {
-        Cal.currentCalendar.date(byAdding: .day, value: days, to: self)
-            ?? Date()
-    }
-
-    func addHours(_ hours: Int) -> Date {
-        Cal.currentCalendar.date(byAdding: .hour, value: hours, to: self)
-            ?? Date()
-    }
-
-    func addMinutes(_ minutes: Int) -> Date {
-        Cal.currentCalendar.date(byAdding: .minute, value: minutes, to: self)
-            ?? Date()
-    }
-
-    func addSeconds(_ seconds: Int) -> Date {
-        Cal.currentCalendar.date(byAdding: .second, value: seconds, to: self)
-            ?? Date()
-    }
-
-    // MARK: - start/end methods
-
-    func startOfMonth() -> Date {
-        Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month], from: startOfDay()))
-            ?? Date()
-    }
-
-    func endOfMonth() -> Date {
-        Cal.currentCalendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth())
-            ?? Date()
-    }
-
-    func startOfWeek() -> Date {
-        Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
-            ?? Date()
-    }
-
-    func endOfWeek() -> Date {
-        Cal.currentCalendar.date(byAdding: .weekOfYear, value: 1, to: startOfWeek())
-            ?? Date()
-    }
-
-    func startOfDay() -> Date {
-        Cal.currentCalendar.startOfDay(for: self)
-    }
-
-    func endOfDay() -> Date {
-        Cal.currentCalendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay())
-            ?? Date()
-    }
-
-    func startOfHour() -> Date {
-        startOfDay().addHours(hours)
+    func inCalendar(_ calendar: Calendar) -> CalendarCalculation {
+        return CalendarCalculation(calendar: calendar, date: self)
     }
 
     // MARK: - Formatters
@@ -289,6 +212,142 @@ extension DateFormatter {
         self.init()
         self.dateFormat = dateFormat
     }
+}
+
+public struct CalendarCalculation {
+    public let calendar: Calendar
+    public let date: Date
+}
+
+public extension CalendarCalculation {
+    private static func now(in calendar: Calendar) -> CalendarCalculation {
+        return CalendarCalculation(calendar: calendar, date: .now)
+    }
+
+    // MARK: - Components
+
+    var months: Int {
+        calendar.component(.month, from: date)
+    }
+
+    var daysOfMonth: Int {
+        calendar.component(.day, from: date)
+    }
+
+    var hours: Int {
+        calendar.component(.hour, from: date)
+    }
+
+    var minutes: Int {
+        calendar.component(.minute, from: date)
+    }
+
+    // MARK: - add methods
+
+    func addYears(_ years: Int) -> Date {
+        calendar.date(byAdding: .year, value: years, to: date)
+             ?? date
+    }
+
+    func addMonths(_ numberOfMonths: Int) -> Date {
+        calendar.date(byAdding: .month, value: numberOfMonths, to: date)
+            ?? Date()
+    }
+
+    func addDays(_ days: Int) -> Date {
+        calendar.date(byAdding: .day, value: days, to: date)
+            ?? Date()
+    }
+
+    func addHours(_ hours: Int) -> Date {
+        calendar.date(byAdding: .hour, value: hours, to: date)
+            ?? Date()
+    }
+
+    func addMinutes(_ minutes: Int) -> Date {
+        calendar.date(byAdding: .minute, value: minutes, to: date)
+            ?? Date()
+    }
+
+    func addSeconds(_ seconds: Int) -> Date {
+        calendar.date(byAdding: .second, value: seconds, to: date)
+            ?? Date()
+    }
+
+    func addingYears(_ years: Int) -> CalendarCalculation {
+        addYears(years).inCalendar(calendar)
+    }
+
+    func addingMonths(_ numberOfMonths: Int) -> CalendarCalculation {
+        addMonths(numberOfMonths).inCalendar(calendar)
+    }
+
+    func addingDays(_ days: Int) -> CalendarCalculation {
+        addDays(days).inCalendar(calendar)
+    }
+
+    func addingHours(_ hours: Int) -> CalendarCalculation {
+        addHours(hours).inCalendar(calendar)
+    }
+
+    func addingMinutes(_ minutes: Int) -> CalendarCalculation {
+        addMinutes(minutes).inCalendar(calendar)
+    }
+
+    func addingSeconds(_ seconds: Int) -> CalendarCalculation {
+        addSeconds(seconds).inCalendar(calendar)
+    }
+
+    // MARK: - start/end methods
+
+    func startOfMonth() -> CalendarCalculation {
+        calendar
+            .date(from: calendar.dateComponents([.year, .month], from: startOfDay().date))?
+            .inCalendar(calendar) ?? .now(in: calendar)
+    }
+
+    func endOfMonth() -> CalendarCalculation {
+        calendar
+            .date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth().date)?
+            .inCalendar(calendar) ?? .now(in: calendar)
+    }
+
+    func startOfWeek() -> CalendarCalculation {
+        calendar
+            .date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))?
+            .inCalendar(calendar) ?? .now(in: calendar)
+    }
+
+    func endOfWeek() -> CalendarCalculation {
+        calendar
+            .date(byAdding: .weekOfYear, value: 1, to: startOfWeek().date)?
+            .inCalendar(calendar) ?? .now(in: calendar)
+    }
+
+    func startOfDay() -> CalendarCalculation {
+        calendar.startOfDay(for: date).inCalendar(calendar)
+    }
+
+    func endOfDay() -> CalendarCalculation {
+        calendar
+            .date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay().date)?
+            .inCalendar(calendar) ?? .now(in: calendar)
+    }
+
+    func startOfHour() -> CalendarCalculation {
+        startOfDay().addingHours(hours)
+    }
+
+    func startOfMonth() -> Date { startOfMonth().date }
+    func endOfMonth() -> Date { endOfMonth().date }
+
+    func startOfWeek() -> Date { startOfWeek().date }
+    func endOfWeek() -> Date { endOfWeek().date }
+
+    func startOfDay() -> Date { startOfDay().date }
+    func endOfDay() -> Date { endOfDay().date }
+
+    func startOfHour() -> Date { startOfHour().date }
 }
 
 #if DEBUG

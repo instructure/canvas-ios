@@ -245,7 +245,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     private func setupFields(event: CalendarEvent?, selectedDate: Date) {
         title = event?.title ?? ""
 
-        date = event?.startAt ?? selectedDate.startOfDay()
+        date = event?.startAt ?? selectedDate.inCalendar.startOfDay()
         isAllDay = event?.isAllDay ?? false
 
         if isAllDay {
@@ -264,14 +264,14 @@ final class EditCalendarEventViewModel: ObservableObject {
 
     private var defaultStartTime: Date {
         // 11:46 -> 12:00
-        Clock.now.startOfHour().addHours(1)
+        Clock.now.inCalendar.startOfHour().addHours(1)
     }
 
     private var defaultEndTime: Date {
         // 11:46 -> start 12:00, end 13:00
         let startTime = startTime ?? defaultStartTime
-        let hours = startTime.hours + 1
-        return startTime.startOfDay().addHours(hours)
+        let hours = startTime.inCalendar.hours + 1
+        return startTime.inCalendar.startOfDay().addHours(hours)
     }
 
     private func resetFrequencySelection(given newDate: Date) {
@@ -283,15 +283,15 @@ final class EditCalendarEventViewModel: ObservableObject {
             case .monthly:
 
                 if rule.daysOfTheWeek == nil {
-                    rule.daysOfTheMonth = [newDate.daysOfMonth]
+                    rule.daysOfTheMonth = [newDate.inCalendar.daysOfMonth]
                 } else {
-                    rule.daysOfTheWeek = [newDate.monthWeekday]
+                    rule.daysOfTheWeek = [newDate.inCalendar.monthWeekday]
                 }
 
             case .yearly:
 
-                rule.monthsOfTheYear = [newDate.months]
-                rule.daysOfTheMonth = [newDate.daysOfMonth]
+                rule.monthsOfTheYear = [newDate.inCalendar.months]
+                rule.daysOfTheMonth = [newDate.inCalendar.daysOfMonth]
 
             default: return
             }

@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 class CalendarDaysViewController: UIViewController {
-    static let calendar = Calendar.autoupdatingCurrent
+    static let calendar = Cal.plannerCalendar
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
 
     private struct Spacings {
@@ -85,7 +85,7 @@ class CalendarDaysViewController: UIViewController {
         weeksStackView.pin(inside: view, top: nil, bottom: nil)
         topOffset.isActive = true
 
-        var currentDate = selectedDate.startOfMonth().startOfWeek()
+        var currentDate: Date = selectedDate.inCalendar(calendar).startOfMonth().startOfWeek()
         start = currentDate
         while calendar.compare(currentDate, to: selectedDate, toGranularity: .month) != .orderedDescending {
             let week = UIStackView()
@@ -170,7 +170,7 @@ class CalendarDaysViewController: UIViewController {
         if isExpanded { return start <= date && date < end }
         let first = weeksStackView.arrangedSubviews[selectedWeekIndex].subviews.first as? CalendarDayButton
         let last = weeksStackView.arrangedSubviews[selectedWeekIndex].subviews.last as? CalendarDayButton
-        return first!.date <= date && date < last!.date.addDays(1)
+        return first!.date <= date && date < last!.date.inCalendar(calendar).addDays(1)
     }
 }
 

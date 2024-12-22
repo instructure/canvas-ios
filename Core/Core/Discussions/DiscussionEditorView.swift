@@ -187,7 +187,7 @@ public struct DiscussionEditorView: View {
                 if isAnnouncement {
                     Toggle(isOn: Binding(get: { delayedPostAt != nil }, set: { newValue in
                         withAnimation(.default) {
-                            delayedPostAt = newValue ? Clock.now.startOfDay() : nil
+                            delayedPostAt = newValue ? Clock.now.inCalendar.startOfDay() : nil
                         }
                     })) {
                         Text("Delay posting", bundle: .core)

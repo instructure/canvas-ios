@@ -42,7 +42,7 @@ struct FrequencyPresetViewModel: Identifiable {
             return String(localized: "Weekly on %@", bundle: .core)
                 .asFormat(for: date.formatted(format: "EEEE"))
         case .monthlyOnThatWeekday:
-            let weekday = date.monthWeekday
+            let weekday = date.inCalendar.monthWeekday
             return String(localized: "Monthly on %@", bundle: .core)
                 .asFormat(for: weekday.middleText)
         case .yearlyOnThatMonth:

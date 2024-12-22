@@ -89,12 +89,12 @@ final class EditCustomFrequencyViewModel: ObservableObject {
         self.endDate = rule?.recurrenceEnd?.asEndDate ?? Clock.now
         self.occurrenceCount = rule?.recurrenceEnd?.asOccurrenceCount ?? 0
 
-        self.daysOfTheWeek = [date.weekday]
+        self.daysOfTheWeek = [date.inCalendar.weekday]
         if case .weekly = frequency {
             self.daysOfTheWeek = rule?.daysOfTheWeek?.map { $0.weekday } ?? []
         }
 
-        self.proposedDayOfMonth = DayOfMonth.day(date.daysOfMonth)
+        self.proposedDayOfMonth = DayOfMonth.day(date.inCalendar.daysOfMonth)
         self.dayOfMonth = proposedDayOfMonth
         if case .monthly = frequency {
             if let weekDay = rule?.daysOfTheWeek?.first {

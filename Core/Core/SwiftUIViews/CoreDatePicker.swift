@@ -127,14 +127,14 @@ public struct CoreDatePickerActionSheetCard: View {
         }
 
         if let min = min, max == nil {
-            return min...min.addYears(2)
+            return min...min.inCalendar.addYears(2)
         }
 
         if let max = max, min == nil {
-            return max.addYears(-2)...max
+            return max.inCalendar.addYears(-2)...max
         }
 
-        return Clock.now.addYears(-1)...Clock.now.addYears(1)
+        return Clock.now.inCalendar.addYears(-1)...Clock.now.inCalendar.addYears(1)
     }
 
     private func dismissPresentation() {
@@ -152,7 +152,7 @@ struct CoreDatePickerActionSheetCard_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
             VStack {
-                CoreDatePickerActionSheetCard(selection: .constant(Date()), minDate: Clock.now, maxDate: Clock.now.addDays(5))
+                CoreDatePickerActionSheetCard(selection: .constant(Date()), minDate: Clock.now, maxDate: Clock.now.inCalendar.addDays(5))
             }.preferredColorScheme($0)
         }
     }
