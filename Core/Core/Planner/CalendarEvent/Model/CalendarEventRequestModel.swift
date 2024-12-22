@@ -63,7 +63,7 @@ extension CalendarEventRequestModel {
     }
 
     var timeZone: String {
-        Cal.plannerCalendar.timeZone.identifier
+        Cal.currentCalendar.timeZone.identifier
     }
 }
 

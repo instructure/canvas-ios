@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 class CalendarDaysViewController: UIViewController {
-    static let calendar = Cal.plannerCalendar
+    static let calendar = Cal.currentCalendar
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
 
     private struct Spacings {

@@ -38,18 +38,8 @@ public class Cal {
             return mock
         }
         #endif
-        return Calendar.current
-    }
-
-    public static var plannerCalendar: Calendar {
-        #if DEBUG
-        if let mock = shared.mockCalendar {
-            return mock
-        }
-        #endif
-
-        var calendar = Calendar.autoupdatingCurrent
-        calendar.firstWeekday = 4
+        var calendar = Calendar.current
+        calendar.locale = Locale.managed ?? .autoupdatingCurrent
         return calendar
     }
 }

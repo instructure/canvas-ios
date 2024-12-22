@@ -74,9 +74,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
         return controller
     }
 
-    var calendar: Calendar {
-        Cal.plannerCalendar
-    }
+    var calendar: Calendar { Cal.currentCalendar }
 
     lazy var numberOfDaysInWeek: Int = calendar.maximumRange(of: .weekday)!.count
     var selectedDate = Clock.now
