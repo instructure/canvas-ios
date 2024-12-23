@@ -35,8 +35,19 @@ class ActivityStreamViewControllerTests: StudentTestCase {
 
         api.mock(controller.activities, value: [
             APIActivity.make(id: "1", updated_at: mockNow.inCalendar.addDays(-2)),
-            APIActivity.make(id: "2", title: "grouptitle", message: "groupMessage", updated_at: mockNow.inCalendar.addDays(-3), context_type: ContextType.group.rawValue, course_id: nil, group_id: "2"),
-            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.inCalendar.addDays(-4), course_id: "2")
+            APIActivity.make(
+                id: "2",
+                title: "grouptitle",
+                message: "groupMessage",
+                updated_at: mockNow.inCalendar.addDays(-3),
+                context_type: ContextType.group.rawValue,
+                course_id: nil,
+                group_id: "2"
+            ),
+            APIActivity.make(
+                id: "3",
+                title: "title2",
+                updated_at: mockNow.inCalendar.addDays(-4), course_id: "2")
         ])
         Clock.mockNow( mockNow )
     }
