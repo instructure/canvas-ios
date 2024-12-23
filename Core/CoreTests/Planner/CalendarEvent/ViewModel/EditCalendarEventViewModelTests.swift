@@ -86,10 +86,10 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
     func testAddModeDefaultDate() {
         testee = makeAddViewModel()
-        XCTAssertEqual(testee.date, TestConstants.dateNow.startOfDay())
+        XCTAssertEqual(testee.date, TestConstants.dateNow.inCalendar.startOfDay())
 
         testee = makeAddViewModel(selectedDate: TestConstants.dateStart)
-        XCTAssertEqual(testee.date, TestConstants.dateStart.startOfDay())
+        XCTAssertEqual(testee.date, TestConstants.dateStart.inCalendar.startOfDay())
     }
 
     func testEditModeInitialValues() {
@@ -115,7 +115,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         testee = makeEditViewModel(makeEvent(
             isAllDay: true,
             startAt: TestConstants.dateStart,
-            endAt: TestConstants.dateStart.addHours(3)
+            endAt: TestConstants.dateStart.inCalendar.addHours(3)
         ))
 
         XCTAssertEqual(testee.isAllDay, true)
@@ -126,13 +126,13 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         testee = makeEditViewModel(makeEvent(
             isAllDay: false,
             startAt: TestConstants.dateStart,
-            endAt: TestConstants.dateStart.addHours(3)
+            endAt: TestConstants.dateStart.inCalendar.addHours(3)
         ))
 
         XCTAssertEqual(testee.isAllDay, false)
         XCTAssertEqual(testee.date, TestConstants.dateStart)
         XCTAssertEqual(testee.startTime, TestConstants.dateStart)
-        XCTAssertEqual(testee.endTime, TestConstants.dateStart.addHours(3))
+        XCTAssertEqual(testee.endTime, TestConstants.dateStart.inCalendar.addHours(3))
     }
 
     func testEditModeInitialCalendar() {
@@ -419,7 +419,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         testee.date = TestConstants.dateNow
         testee.isAllDay = true
         testee.startTime = TestConstants.dateStart
-        testee.endTime = TestConstants.dateStart.addHours(3)
+        testee.endTime = TestConstants.dateStart.inCalendar.addHours(3)
         testee.location = TestConstants.locationName
         testee.address = TestConstants.locationAddress
         testee.details = TestConstants.details
@@ -434,7 +434,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(model?.date, TestConstants.dateNow)
         XCTAssertEqual(model?.isAllDay, true)
         XCTAssertEqual(model?.startTime, TestConstants.dateStart)
-        XCTAssertEqual(model?.endTime, TestConstants.dateStart.addHours(3))
+        XCTAssertEqual(model?.endTime, TestConstants.dateStart.inCalendar.addHours(3))
         XCTAssertEqual(model?.contextCode, selectedCalendar.rawContextID)
         XCTAssertEqual(model?.location, TestConstants.locationName)
         XCTAssertEqual(model?.address, TestConstants.locationAddress)
@@ -449,7 +449,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
             title: TestConstants.title,
             isAllDay: false,
             startAt: TestConstants.dateStart,
-            endAt: TestConstants.dateStart.addHours(3),
+            endAt: TestConstants.dateStart.inCalendar.addHours(3),
             locationName: TestConstants.locationName,
             locationAddress: TestConstants.locationAddress,
             details: TestConstants.details
@@ -466,7 +466,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertEqual(model.date, TestConstants.dateStart)
         XCTAssertEqual(model.isAllDay, false)
         XCTAssertEqual(model.startTime, TestConstants.dateStart)
-        XCTAssertEqual(model.endTime, TestConstants.dateStart.addHours(3))
+        XCTAssertEqual(model.endTime, TestConstants.dateStart.inCalendar.addHours(3))
         XCTAssertEqual(model.contextCode, selectedCalendar.rawContextID)
         XCTAssertEqual(model.location, TestConstants.locationName)
         XCTAssertEqual(model.address, TestConstants.locationAddress)
@@ -613,11 +613,11 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         XCTAssertNil(testee.endTimeErrorMessage)
 
         testee.startTime = TestConstants.dateStart
-        testee.endTime = TestConstants.dateStart.addHours(1)
+        testee.endTime = TestConstants.dateStart.inCalendar.addHours(1)
         XCTAssertNil(testee.endTimeErrorMessage)
 
         testee.startTime = TestConstants.dateStart
-        testee.endTime = TestConstants.dateStart.addHours(-1)
+        testee.endTime = TestConstants.dateStart.inCalendar.addHours(-1)
         XCTAssertNotNil(testee.endTimeErrorMessage)
     }
 

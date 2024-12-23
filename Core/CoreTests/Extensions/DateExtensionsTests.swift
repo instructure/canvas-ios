@@ -44,70 +44,70 @@ class DateExtensionsTests: XCTestCase {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
         let b = Date(fromISOString: "2020-12-25T14:24:37Z")!
         let c = Date(fromISOString: "2018-12-25T14:24:37Z")!
-        XCTAssertEqual(a.addYears(1), b)
-        XCTAssertEqual(a.addYears(-1), c)
+        XCTAssertEqual(a.inCalendar.addYears(1), b)
+        XCTAssertEqual(a.inCalendar.addYears(-1), c)
     }
 
     func testPlusMonths() {
         let a = Date(fromISOString: "2019-08-25T14:24:37Z")!
         let b = Date(fromISOString: "2019-09-25T14:24:37Z")!
         let c = Date(fromISOString: "2019-07-25T14:24:37Z")!
-        XCTAssertEqual(a.addMonths(1), b)
-        XCTAssertEqual(a.addMonths(-1), c)
+        XCTAssertEqual(a.inCalendar.addMonths(1), b)
+        XCTAssertEqual(a.inCalendar.addMonths(-1), c)
     }
 
     func testPlusDays() {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
         let b = Date(fromISOString: "2019-12-26T14:24:37Z")!
         let c = Date(fromISOString: "2019-12-24T14:24:37Z")!
-        XCTAssertEqual(a.addDays(1), b)
-        XCTAssertEqual(a.addDays(-1), c)
+        XCTAssertEqual(a.inCalendar.addDays(1), b)
+        XCTAssertEqual(a.inCalendar.addDays(-1), c)
     }
 
     func testPlusMinutes() {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
         let b = Date(fromISOString: "2019-12-25T14:25:37Z")!
         let c = Date(fromISOString: "2019-12-25T14:23:37Z")!
-        XCTAssertEqual(a.addMinutes(1), b)
-        XCTAssertEqual(a.addMinutes(-1), c)
+        XCTAssertEqual(a.inCalendar.addMinutes(1), b)
+        XCTAssertEqual(a.inCalendar.addMinutes(-1), c)
     }
 
     func testStartOfMonth() {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
         let b = Date(fromISOString: "2019-12-01T07:00:00Z")!
-        XCTAssertEqual(a.startOfMonth(), b)
+        XCTAssertEqual(a.inCalendar.startOfMonth(), b)
     }
 
     func testEndOfMonth() {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
         let b = Date(fromISOString: "2019-12-31T07:00:00Z")!
-        XCTAssertEqual(a.endOfMonth(), b)
+        XCTAssertEqual(a.inCalendar.endOfMonth(), b)
     }
 
     func testStartOfWeek() {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
         let b = Date(fromISOString: "2019-12-22T07:00:00Z")!
-        XCTAssertEqual(a.startOfWeek(), b)
+        XCTAssertEqual(a.inCalendar.startOfWeek(), b)
     }
 
     func testEndOfWeek() {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
         let b = Date(fromISOString: "2019-12-29T07:00:00Z")!
-        XCTAssertEqual(a.endOfWeek(), b)
+        XCTAssertEqual(a.inCalendar.endOfWeek(), b)
     }
 
     func testStartOfDay() {
         let a = Date(fromISOString: "2020-02-21T06:59:59Z")!
         let b = Date(fromISOString: "2020-02-20T07:00:00Z")!
-        XCTAssertEqual(a.startOfDay(), b)
+        XCTAssertEqual(a.inCalendar.startOfDay(), b)
     }
 
     func testAddSeconds() {
         let a = Date(fromISOString: "2020-02-21T06:59:59Z")!
         let b = Date(fromISOString: "2020-02-21T07:00:00Z")!
         let c = Date(fromISOString: "2020-02-21T06:59:58Z")!
-        XCTAssertEqual(a.addSeconds(1), b)
-        XCTAssertEqual(a.addSeconds(-1), c)
+        XCTAssertEqual(a.inCalendar.addSeconds(1), b)
+        XCTAssertEqual(a.inCalendar.addSeconds(-1), c)
     }
 
     func testDateOnlyString() {

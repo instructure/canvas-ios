@@ -377,7 +377,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
             locked_for_user: true,
             lock_explanation: "this is locked",
             submission_types: [ .online_upload ],
-            unlock_at: Date().addYears(1)
+            unlock_at: Date.now.inCalendar.addYears(1)
         ))
         XCTAssertFalse( presenter.lockedEmptyViewIsHidden() )
     }
@@ -391,7 +391,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(
             allowed_extensions: ["png"],
             locked_for_user: true,
-            lock_at: Date().addDays(-5),
+            lock_at: Date.now.inCalendar.addDays(-5),
             lock_explanation: "this is locked",
             submission: .make(assignment_id: "1", id: "1", user_id: "1", workflow_state: SubmissionWorkflowState.submitted),
             submission_types: [ .online_upload ]
@@ -406,7 +406,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
             lock_explanation: "this is locked",
             quiz_id: "1",
             submission_types: [ .online_upload ],
-            unlock_at: Date().addYears(1)
+            unlock_at: Date.now.inCalendar.addYears(1)
         ))
 
         XCTAssertEqual( presenter.lockedEmptyViewHeader(), "Quiz Locked" )
@@ -418,7 +418,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
             locked_for_user: true,
             lock_explanation: "this is locked",
             submission_types: [ .online_upload ],
-            unlock_at: Date().addYears(1)
+            unlock_at: Date.now.inCalendar.addYears(1)
         ))
 
         XCTAssertEqual( presenter.lockedEmptyViewHeader(), "Assignment Locked" )

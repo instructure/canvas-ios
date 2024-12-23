@@ -96,8 +96,8 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
         reminderDateButton.setTitleColor(Brand.shared.primary, for: .normal)
-        minDate = Clock.now.addMinutes(1)
-        maxDate = Clock.now.addYears(1)
+        minDate = Clock.now.inCalendar.addMinutes(1)
+        maxDate = Clock.now.inCalendar.addYears(1)
 
         events.refresh()
         localNotifications.getReminder(eventID) { [weak self] request in performUIUpdate {
@@ -157,11 +157,13 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     @IBAction func reminderSwitchChanged() {
         guard let event = events.first else { return }
         if reminderSwitch.isOn {
-            minDate = Clock.now.addMinutes(1)
-            maxDate = Clock.now.addYears(1)
-            let defaultDate = max(minDate, min(maxDate,
-                event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
-            ))
+            minDate = Clock.now.inCalendar.addMinutes(1)
+            maxDate = Clock.now.inCalendar.addYears(1)
+            let defaultDate = max(
+                minDate,
+                min(maxDate, event.startAt?.inCalendar.addMinutes(-60)
+                    ?? Clock.now.inCalendar.addDays(7))
+            )
             userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {
                     self.reminderSwitch.setOn(false, animated: true)

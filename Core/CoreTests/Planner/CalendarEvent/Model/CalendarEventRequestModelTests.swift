@@ -34,13 +34,13 @@ final class CalendarEventRequestModelTests: CoreTestCase {
         testee = .make(title: "title", isAllDay: false, startTime: date, endTime: date)
         XCTAssertEqual(testee.isValid, true)
 
-        testee = .make(title: "title", isAllDay: false, startTime: date, endTime: date.addMinutes(1))
+        testee = .make(title: "title", isAllDay: false, startTime: date, endTime: date.inCalendar.addMinutes(1))
         XCTAssertEqual(testee.isValid, true)
 
-        testee = .make(title: "title", isAllDay: false, startTime: date.addMinutes(1), endTime: date)
+        testee = .make(title: "title", isAllDay: false, startTime: date.inCalendar.addMinutes(1), endTime: date)
         XCTAssertEqual(testee.isValid, false)
 
-        testee = .make(title: "title", isAllDay: true, startTime: date.addMinutes(1), endTime: date)
+        testee = .make(title: "title", isAllDay: true, startTime: date.inCalendar.addMinutes(1), endTime: date)
         XCTAssertEqual(testee.isValid, true)
     }
 

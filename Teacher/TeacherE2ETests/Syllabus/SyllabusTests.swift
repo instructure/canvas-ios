@@ -29,8 +29,8 @@ class SyllabusTests: E2ETestCase {
         seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Seed an assignment and a calendar event
-        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
-        let calendarEvent = CalendarHelper.createCalendarEvent(course: course, endDate: Date.now.addMinutes(30))
+        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.inCalendar.addMinutes(30))
+        let calendarEvent = CalendarHelper.createCalendarEvent(course: course, endDate: Date.now.inCalendar.addMinutes(30))
 
         // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
         logInDSUser(teacher)

@@ -61,9 +61,9 @@ class GetGradingPeriodsTests: CoreTestCase {
     }
 
     func testCurrentGradingPeriod() {
-        let a = GradingPeriod.make(from: .make(id: "1", title: "a", start_date: Clock.now.addDays(-3), end_date: Clock.now.addDays(3)))
+        let a = GradingPeriod.make(from: .make(id: "1", title: "a", start_date: Clock.now.inCalendar.addDays(-3), end_date: Clock.now.inCalendar.addDays(3)))
 
-        let b = GradingPeriod.make(from: .make(id: "2", title: "b", start_date: Clock.now.addDays(-100), end_date: Clock.now.addDays(-70)))
+        let b = GradingPeriod.make(from: .make(id: "2", title: "b", start_date: Clock.now.inCalendar.addDays(-100), end_date: Clock.now.inCalendar.addDays(-70)))
 
         let arr = [a, b]
         XCTAssertEqual(arr.current, a)

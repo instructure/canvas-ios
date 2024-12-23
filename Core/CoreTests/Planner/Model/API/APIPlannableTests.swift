@@ -37,8 +37,8 @@ class APIPlannableTests: XCTestCase {
     }
 
 	func testQuery() {
-        let start = Date().inCalendar.addDays(-1)
-        let end = Date().inCalendar.addDays(2)
+        let start = Date.now.inCalendar.addDays(-1)
+        let end = Date.now.inCalendar.addDays(2)
         req = GetPlannablesRequest(startDate: start, endDate: end, contextCodes: ["course_1"], filter: "new_activity")
         let expected = [
             URLQueryItem(name: "per_page", value: "100"),

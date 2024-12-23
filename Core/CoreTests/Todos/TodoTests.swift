@@ -77,7 +77,7 @@ class TodoTests: CoreTestCase {
     }
 
     func testNearFutureDueDateString() {
-        let dateTomorrow = Date().inCalendar.addDays(1)
+        let dateTomorrow = Date.now.inCalendar.addDays(1)
         let todo = Todo.make(from: .make(assignment: .make(due_at: dateTomorrow), course_id: "1", group_id: nil))
         XCTAssertEqual(todo.dueText, "Due " + dateTomorrow.relativeDateTimeStringWithDayOfWeek)
     }

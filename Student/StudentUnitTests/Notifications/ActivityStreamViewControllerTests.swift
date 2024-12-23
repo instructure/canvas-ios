@@ -34,9 +34,9 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         api.mock(controller.courses, value: [.make(course_code: "Code"), .make(id: "2", course_code: "Code2")])
 
         api.mock(controller.activities, value: [
-            APIActivity.make(id: "1", updated_at: mockNow.addDays(-2)),
-            APIActivity.make(id: "2", title: "grouptitle", message: "groupMessage", updated_at: mockNow.addDays(-3), context_type: ContextType.group.rawValue, course_id: nil, group_id: "2"),
-            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.addDays(-4), course_id: "2")
+            APIActivity.make(id: "1", updated_at: mockNow.inCalendar.addDays(-2)),
+            APIActivity.make(id: "2", title: "grouptitle", message: "groupMessage", updated_at: mockNow.inCalendar.addDays(-3), context_type: ContextType.group.rawValue, course_id: nil, group_id: "2"),
+            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.inCalendar.addDays(-4), course_id: "2")
         ])
         Clock.mockNow( mockNow )
     }
@@ -54,9 +54,9 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         XCTAssertEqual(controller.tableView.backgroundColor, .backgroundLightest)
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
-        let expectedDateCell0 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-2))
-        let expectedDateCell1 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-3))
-        let expectedDateCell2 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-4))
+        let expectedDateCell0 = ActivityStreamViewController.dateFormatter.string(from: mockNow.inCalendar.addDays(-2))
+        let expectedDateCell1 = ActivityStreamViewController.dateFormatter.string(from: mockNow.inCalendar.addDays(-3))
+        let expectedDateCell2 = ActivityStreamViewController.dateFormatter.string(from: mockNow.inCalendar.addDays(-4))
 
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast(against: .backgroundLightest).hexString)

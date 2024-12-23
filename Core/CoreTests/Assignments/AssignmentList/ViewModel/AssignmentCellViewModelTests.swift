@@ -131,7 +131,7 @@ class AssignmentCellViewModelTests: CoreTestCase {
     }
 
     func testDueDateLocked() {
-        let assignment = Assignment.make(from: .make(lock_at: Clock.now.addSeconds(-1)))
+        let assignment = Assignment.make(from: .make(lock_at: Clock.now.inCalendar.addSeconds(-1)))
         let testee = AssignmentCellViewModel(assignment: assignment, courseColor: nil)
         XCTAssertEqual(testee.formattedDueDate, "Availability: Closed")
     }

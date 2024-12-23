@@ -63,15 +63,15 @@ class AppStoreReviewTests: CoreTestCase {
         AppStoreReview.handleNavigateToAssignment()
         XCTAssertEqual(UserDefaults.standard.integer(forKey: AppStoreReview.viewAssignmentCountKey), 1)
 
-        UserDefaults.standard.set(Date().addDays(-1), forKey: AppStoreReview.viewAssignmentDateKey)
+        UserDefaults.standard.set(Date.now.inCalendar.addDays(-1), forKey: AppStoreReview.viewAssignmentDateKey)
         AppStoreReview.handleNavigateToAssignment()
         XCTAssertEqual(UserDefaults.standard.integer(forKey: AppStoreReview.viewAssignmentCountKey), 2)
 
-        UserDefaults.standard.set(Date().addDays(-1), forKey: AppStoreReview.viewAssignmentDateKey)
+        UserDefaults.standard.set(Date.now.inCalendar.addDays(-1), forKey: AppStoreReview.viewAssignmentDateKey)
         AppStoreReview.handleNavigateToAssignment()
         XCTAssertEqual(UserDefaults.standard.integer(forKey: AppStoreReview.viewAssignmentCountKey), 3)
 
-        UserDefaults.standard.set(Date().addDays(-1), forKey: AppStoreReview.viewAssignmentDateKey)
+        UserDefaults.standard.set(Date.now.inCalendar.addDays(-1), forKey: AppStoreReview.viewAssignmentDateKey)
         AppStoreReview.handleNavigateFromAssignment()
         XCTAssert(router.calls.isEmpty)
 

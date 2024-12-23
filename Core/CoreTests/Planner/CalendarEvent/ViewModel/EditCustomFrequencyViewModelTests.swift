@@ -263,14 +263,14 @@ private extension EditCustomFrequencyViewModelTests {
             rule: RecurrenceRule(
                 recurrenceWith: .daily,
                 interval: 1,
-                end: .endDate(eventDate.addDays(30))
+                end: .endDate(eventDate.inCalendar.addDays(30))
             ),
             expected: RRuleExpectedModel(
                 frequency: .daily,
                 interval: .init(value: 1),
                 endMode: .onDate,
-                endDate: eventDate.addDays(30),
-                daysOfTheWeek: [eventDate.weekday],
+                endDate: eventDate.inCalendar.addDays(30),
+                daysOfTheWeek: [eventDate.inCalendar.weekday],
                 dayOfMonth: .proposed(by: eventDate),
                 dayOfYear: .proposed(by: eventDate)
             )
@@ -282,13 +282,13 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: 5,
                 daysOfTheWeek: [DayOfWeek(.thursday, weekNumber: -1), DayOfWeek(.friday)],
                 daysOfTheMonth: [6, 18],
-                end: .endDate(eventDate.addDays(20))
+                end: .endDate(eventDate.inCalendar.addDays(20))
             ),
             expected: RRuleExpectedModel(
                 frequency: .weekly,
                 interval: .init(value: 5),
                 endMode: .onDate,
-                endDate: eventDate.addDays(20),
+                endDate: eventDate.inCalendar.addDays(20),
                 daysOfTheWeek: [.thursday, .friday],
                 dayOfMonth: .proposed(by: eventDate),
                 dayOfYear: .proposed(by: eventDate)
@@ -311,7 +311,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: .init(value: 2),
                 endMode: .afterOccurrences,
                 occurrenceCount: 10,
-                daysOfTheWeek: [eventDate.weekday],
+                daysOfTheWeek: [eventDate.inCalendar.weekday],
                 dayOfMonth: DayOfMonth.weekday(DayOfWeek(.sunday, weekNumber: 2)),
                 dayOfYear: .proposed(by: eventDate)
             )
@@ -329,7 +329,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: .init(value: 3),
                 endMode: .afterOccurrences,
                 occurrenceCount: 10,
-                daysOfTheWeek: [eventDate.weekday],
+                daysOfTheWeek: [eventDate.inCalendar.weekday],
                 dayOfMonth: DayOfMonth.day(1),
                 dayOfYear: .proposed(by: eventDate)
             )
@@ -349,7 +349,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: .init(value: 1),
                 endMode: .afterOccurrences,
                 occurrenceCount: 5,
-                daysOfTheWeek: [eventDate.weekday],
+                daysOfTheWeek: [eventDate.inCalendar.weekday],
                 dayOfMonth: .proposed(by: eventDate),
                 dayOfYear: DayOfYear(day: 7, month: 3)
             )
@@ -359,14 +359,14 @@ private extension EditCustomFrequencyViewModelTests {
             rule: RecurrenceRule(
                 recurrenceWith: .daily,
                 interval: 1,
-                end: .endDateWithoutTime(eventDate.addDays(30))
+                end: .endDateWithoutTime(eventDate.inCalendar.addDays(30))
             ),
             expected: RRuleExpectedModel(
                 frequency: .daily,
                 interval: .init(value: 1),
                 endMode: .onDate,
-                endDate: eventDate.addDays(30),
-                daysOfTheWeek: [eventDate.weekday],
+                endDate: eventDate.inCalendar.addDays(30),
+                daysOfTheWeek: [eventDate.inCalendar.weekday],
                 dayOfMonth: .proposed(by: eventDate),
                 dayOfYear: .proposed(by: eventDate)
             )
@@ -403,14 +403,14 @@ private extension EditCustomFrequencyViewModelTests {
                 recurrenceWith: .monthly,
                 interval: 3,
                 daysOfTheMonth: [8],
-                end: .endDate(dateNow.addDays(30))
+                end: .endDate(dateNow.inCalendar.addDays(30))
             ),
             expected: RRuleExpectedModel(
                 frequency: .monthly,
                 interval: .init(value: 3),
                 endMode: .onDate,
-                endDate: dateNow.addDays(30),
-                daysOfTheWeek: [eventDate.weekday],
+                endDate: dateNow.inCalendar.addDays(30),
+                daysOfTheWeek: [eventDate.inCalendar.weekday],
                 dayOfMonth: DayOfMonth.day(8),
                 dayOfYear: .proposed(by: eventDate)
             )
@@ -429,7 +429,7 @@ private extension EditCustomFrequencyViewModelTests {
                 interval: .init(value: 1),
                 endMode: .afterOccurrences,
                 occurrenceCount: 5,
-                daysOfTheWeek: [eventDate.weekday],
+                daysOfTheWeek: [eventDate.inCalendar.weekday],
                 dayOfMonth: .proposed(by: eventDate),
                 dayOfYear: DayOfYear(day: 9, month: 5)
             )
@@ -440,7 +440,9 @@ private extension EditCustomFrequencyViewModelTests {
 // MARK: - Helpers
 
 private extension EditCustomFrequencyViewModel.DayOfMonth {
-    static func proposed(by date: Date) -> Self { .day(date.daysOfMonth) }
+    static func proposed(by date: Date) -> Self {
+        .day(date.inCalendar.daysOfMonth)
+    }
 }
 
 private extension EditCustomFrequencyViewModel.DayOfYear {

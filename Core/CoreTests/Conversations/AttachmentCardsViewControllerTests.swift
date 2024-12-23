@@ -55,7 +55,7 @@ class AttachmentCardsViewControllerTests: CoreTestCase {
     lazy var thumbFile = File.make(from: .make(
         id: "t",
         display_name: "Thumbnail File",
-        created_at: Clock.now.addDays(-1),
+        created_at: Clock.now.inCalendar.addDays(-1),
         thumbnail_url: URL(string: "data:image/jpeg,")!
     ))
     lazy var newImageFile = File.make(from: .make(

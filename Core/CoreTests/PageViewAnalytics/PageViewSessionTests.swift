@@ -34,7 +34,7 @@ class PageViewSessionTests: XCTestCase {
 
     func testExpiredSession() {
         let now = Date()
-        let expire = now.addMinutes(-2)
+        let expire = now.inCalendar.addMinutes(-2)
         let uuid = Foundation.UUID().uuidString
         UserDefaults.standard.setValue(expire, forKey: PageViewSession.sessionCreationDateKey)
         UserDefaults.standard.setValue(uuid, forKey: PageViewSession.UUIDKey)

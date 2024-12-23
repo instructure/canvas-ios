@@ -24,7 +24,7 @@ class K5ScheduleWeekViewModelTests: CoreTestCase {
 
     func testCreatesViewModelsFromAPIData() {
         let weekStart = Date()
-        let weekEnd = weekStart.addDays(7)
+        let weekEnd = weekStart.inCalendar.addDays(7)
         let weekRange = weekStart..<weekEnd
         let testee = K5ScheduleWeekViewModel(weekRange: weekStart..<weekEnd, isTodayButtonAvailable: true, days: [
             K5ScheduleDayViewModel(range: weekStart..<weekStart.add(.day, number: 1), calendar: .current),

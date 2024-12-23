@@ -26,7 +26,7 @@ final class APICalendarEventRequestBodyTests: XCTestCase {
         static let title = "some title"
         static let description = "some description"
         static let startAt = Clock.now
-        static let endAt = Clock.now.addHours(1)
+        static let endAt = Clock.now.inCalendar.addHours(1)
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
         static let timeZone = "some timeZone"

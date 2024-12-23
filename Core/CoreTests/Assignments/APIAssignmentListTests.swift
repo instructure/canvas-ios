@@ -125,7 +125,7 @@ class AssignmentListRequestableTests: XCTestCase {
     }
 
     func testIconForLocked() {
-        let a = APIAssignmentListAssignment.make(lockAt: Clock.now.addDays(-1), submissionTypes: [.external_tool])
+        let a = APIAssignmentListAssignment.make(lockAt: Clock.now.inCalendar.addDays(-1), submissionTypes: [.external_tool])
         let icon = a.icon
         let expected = UIImage.lockLine
         XCTAssertEqual(icon, expected)
@@ -144,7 +144,7 @@ class AssignmentListRequestableTests: XCTestCase {
     }
 
     func testFormattedDueDateAvailabilityClosed() {
-        let lockAt = Clock.now.addDays(-5)
+        let lockAt = Clock.now.inCalendar.addDays(-5)
         let aa = APIAssignmentListAssignment.make(lockAt: lockAt)
         XCTAssertEqual(aa.formattedDueDate, "Availability: Closed")
     }

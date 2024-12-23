@@ -170,7 +170,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertFalse(AssignmentStatusFilterOptionsTeacher.unpublished.rule(assignment))
         XCTAssertTrue(AssignmentStatusFilterOptionsTeacher.published.rule(assignment))
 
-        submission.submittedAt = Clock.now.addDays(-1)
+        submission.submittedAt = Clock.now.inCalendar.addDays(-1)
         submission.type = .on_paper
         XCTAssertFalse(AssignmentFilterOptionsTeacher.notSubmitted.rule(assignment))
 
@@ -194,7 +194,7 @@ final class AssignmentListPreferencesViewModelTests: CoreTestCase {
         XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.noSubmission.rule(assignment))
 
-        submission.submittedAt = Clock.now.addDays(-1)
+        submission.submittedAt = Clock.now.inCalendar.addDays(-1)
         XCTAssertFalse(AssignmentFilterOptionStudent.notYetSubmitted.rule(assignment))
         XCTAssertTrue(AssignmentFilterOptionStudent.toBeGraded.rule(assignment))
         XCTAssertFalse(AssignmentFilterOptionStudent.graded.rule(assignment))

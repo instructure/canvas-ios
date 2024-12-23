@@ -22,7 +22,7 @@ import XCTest
 class GetPlannablesTests: CoreTestCase {
 
     var start = Clock.now
-    var end = Clock.now.addDays(1)
+    var end = Clock.now.inCalendar.addDays(1)
     var userID: String?
     var contextCodes: [String]?
 
@@ -50,12 +50,12 @@ class GetPlannablesTests: CoreTestCase {
         let third = Plannable.make(from: .make(
             plannable_id: "3",
             plannable: APIPlannable.plannable(details: "", title: "c"),
-            plannable_date: start.addMinutes(1)
+            plannable_date: start.inCalendar.addMinutes(1)
         ))
         let other = Plannable.make(from: .make(
             plannable_id: "4",
             plannable: APIPlannable.plannable(details: "", title: "d"),
-            plannable_date: end.addDays(1)
+            plannable_date: end.inCalendar.addDays(1)
         ))
         XCTAssertTrue([first, second, third].allSatisfy(useCase.scope.predicate.evaluate(with:)))
         XCTAssertFalse(useCase.scope.predicate.evaluate(with: other))
@@ -298,7 +298,7 @@ class GetPlannablesTests: CoreTestCase {
     func testWritePlannerNotes() {
         let response = GetPlannables.Response(plannerNotes: [
             .make(id: "44", todo_date: start),
-            .make(id: "76", todo_date: start.addHours(3))
+            .make(id: "76", todo_date: start.inCalendar.addHours(3))
         ])
 
         useCase.write(response: response, urlResponse: nil, to: databaseClient)

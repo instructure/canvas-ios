@@ -55,7 +55,7 @@ class AssignmentReminderTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.addMinutes(7))
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.inCalendar.addMinutes(7))
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -133,7 +133,7 @@ class AssignmentReminderTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.addMinutes(182))
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.inCalendar.addMinutes(182))
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -209,7 +209,7 @@ class AssignmentReminderTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.addMinutes(10))
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.inCalendar.addMinutes(10))
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -290,7 +290,7 @@ class AssignmentReminderTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.addMinutes(7))
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry], dueDate: .now.inCalendar.addMinutes(7))
 
         // MARK: Get the user logged in
         logInDSUser(student)

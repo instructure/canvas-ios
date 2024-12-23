@@ -24,7 +24,7 @@ class DashboardConferencesViewModelTests: CoreTestCase {
 
     func testCourseConference() {
         api.mock(GetCourses(enrollmentState: nil), value: [.make(id: "testCourseID", name: "testCourseName")])
-        api.mock(GetLiveConferences(), value: .init(conferences: [.make(context_id: ID("testCourseID"), context_type: "course", started_at: Clock.now.addMinutes(-60), title: "testConferenceName")]))
+        api.mock(GetLiveConferences(), value: .init(conferences: [.make(context_id: ID("testCourseID"), context_type: "course", started_at: Clock.now.inCalendar.addMinutes(-60), title: "testConferenceName")]))
 
         let testee = DashboardConferencesViewModel()
         let viewModelUpdatedExpectation = expectation(description: "view model updated")
@@ -44,7 +44,7 @@ class DashboardConferencesViewModelTests: CoreTestCase {
 
     func testGroupConference() {
         api.mock(GetDashboardGroups(), value: [.make(id: "testGroupID", name: "testGroupName")])
-        api.mock(GetLiveConferences(), value: .init(conferences: [.make(context_id: ID("testGroupID"), context_type: "group", started_at: Clock.now.addMinutes(-60), title: "testConferenceName")]))
+        api.mock(GetLiveConferences(), value: .init(conferences: [.make(context_id: ID("testGroupID"), context_type: "group", started_at: Clock.now.inCalendar.addMinutes(-60), title: "testConferenceName")]))
 
         let testee = DashboardConferencesViewModel()
         let viewModelUpdatedExpectation = expectation(description: "view model updated")

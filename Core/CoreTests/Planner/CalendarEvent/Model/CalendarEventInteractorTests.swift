@@ -26,7 +26,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         static let title = "some title"
         static let description = "some description"
         static let startAt = Date.make(year: 2024, month: 1, day: 1, hour: 3)
-        static let endAt = startAt.addHours(2)
+        static let endAt = startAt.inCalendar.addHours(2)
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
         static let timeZone = TimeZone(identifier: "Australia/Sydney")!
@@ -125,7 +125,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         verifyCreateEvent(
             model: .make(
                 title: TestConstants.title,
-                date: TestConstants.startAt.startOfDay(),
+                date: TestConstants.startAt.inCalendar.startOfDay(),
                 isAllDay: false,
                 startTime: TestConstants.startAt,
                 endTime: TestConstants.endAt,
@@ -171,7 +171,7 @@ final class CalendarEventInteractorTests: CoreTestCase {
         verifyUpdateEvent(
             model: .make(
                 title: TestConstants.title,
-                date: TestConstants.startAt.startOfDay(),
+                date: TestConstants.startAt.inCalendar.startOfDay(),
                 isAllDay: false,
                 startTime: TestConstants.startAt,
                 endTime: TestConstants.endAt,

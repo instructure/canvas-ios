@@ -230,12 +230,12 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testLockStatusBefore() {
-        let assignment = Assignment.make(from: .make(locked_for_user: true, unlock_at: Date().addYears(1)))
+        let assignment = Assignment.make(from: .make(locked_for_user: true, unlock_at: Date.now.inCalendar.addYears(1)))
         XCTAssertEqual(assignment.lockStatus, .before)
     }
 
     func testLockStatusAfter() {
-        let assignment = Assignment.make(from: .make(locked_for_user: true, lock_at: Date().addYears(-1)))
+        let assignment = Assignment.make(from: .make(locked_for_user: true, lock_at: Date.now.inCalendar.addYears(-1)))
         XCTAssertEqual(assignment.lockStatus, .after)
     }
 

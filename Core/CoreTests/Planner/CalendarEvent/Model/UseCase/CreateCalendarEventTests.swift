@@ -26,7 +26,7 @@ final class CreateCalendarEventTests: CoreTestCase {
         static let title = "some title"
         static let description = "some description"
         static let startAt = Clock.now
-        static let endAt = Clock.now.addHours(1)
+        static let endAt = Clock.now.inCalendar.addHours(1)
         static let locationName = "some locationName"
         static let locationAddress = "some locationAddress"
         static let timeZone = "some timeZone"
@@ -36,8 +36,8 @@ final class CreateCalendarEventTests: CoreTestCase {
         static let responseContextCode = "response contextCode"
         static let responseTitle = "response title"
         static let responseDescription = "response description"
-        static let responseStartAt = Clock.now.addYears(1)
-        static let responseEndAt = Clock.now.addHours(1).addYears(1)
+        static let responseStartAt = Clock.now.inCalendar.addYears(1)
+        static let responseEndAt = Clock.now.inCalendar.addingHours(1).addYears(1)
         static let responseLocationName = "response locationName"
         static let responseLocationAddress = "response locationAddress"
         static let responseRecurrenceRule = RecurrenceRule(recurrenceWith: .yearly, interval: 2)

@@ -27,7 +27,7 @@ public class GetK5HomeroomDueItemCount: CollectionUseCase {
 
     public init(courseIds: [String]) {
         let courseContextIds = courseIds.map { Core.Context(.course, id: $0).canvasContextID }
-        let nowCalc = Date().inCalendar
+        let nowCalc = Date.now.inCalendar
         request = GetPlannablesRequest(userID: nil, startDate: nowCalc.startOfDay(), endDate: nowCalc.endOfDay(), contextCodes: courseContextIds, filter: "")
     }
 

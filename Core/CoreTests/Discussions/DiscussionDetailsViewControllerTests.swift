@@ -445,7 +445,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
         // Simulate reply to thread, this will generate a context change of 1 insert and 1 update
         databaseClient.performAndWait {
-            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, created_at: Date().addSeconds(-6), message: "Old reply from the current user")
+            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, created_at: Date.now.inCalendar.addSeconds(-6), message: "Old reply from the current user")
 
             let parentEntry: DiscussionEntry = databaseClient.first(where: #keyPath(DiscussionEntry.id), equals: "1")!
             let newEntry = DiscussionEntry.save(newAPIEntry, topicID: "1", parent: parentEntry, unreadIDs: nil, forcedIDs: nil, entryRatings: nil, in: databaseClient)

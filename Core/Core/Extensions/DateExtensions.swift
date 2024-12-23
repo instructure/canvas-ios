@@ -226,6 +226,10 @@ public extension CalendarCalculation {
 
     // MARK: - Components
 
+    var years: Int {
+        calendar.component(.year, from: date)
+    }
+
     var months: Int {
         calendar.component(.month, from: date)
     }

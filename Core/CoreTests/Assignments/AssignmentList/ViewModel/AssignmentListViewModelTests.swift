@@ -25,8 +25,8 @@ class AssignmentListViewModelTests: CoreTestCase {
         api.mock(
             GetGradingPeriods(courseID: "1"),
             value: [
-                .make(id: "1", title: "GP1", start_date: .now.addMonths(-9), end_date: .now.addMonths(-3)),
-                .make(id: "2", title: "GP2", start_date: .now.addMonths(-3), end_date: .now.addMonths(3))
+                .make(id: "1", title: "GP1", start_date: .now.inCalendar.addMonths(-9), end_date: .now.inCalendar.addMonths(-3)),
+                .make(id: "2", title: "GP2", start_date: .now.inCalendar.addMonths(-3), end_date: .now.inCalendar.addMonths(3))
             ]
         )
 
@@ -61,8 +61,8 @@ class AssignmentListViewModelTests: CoreTestCase {
         api.mock(
             GetGradingPeriods(courseID: "1"),
             value: [
-                .make(id: "1", title: "GP1", start_date: .now.addMonths(-9), end_date: .now.addMonths(-3)),
-                .make(id: "2", title: "GP2", start_date: .now.addMonths(-3), end_date: .now.addMonths(3))
+                .make(id: "1", title: "GP1", start_date: .now.inCalendar.addMonths(-9), end_date: .now.inCalendar.addMonths(-3)),
+                .make(id: "2", title: "GP2", start_date: .now.inCalendar.addMonths(-3), end_date: .now.inCalendar.addMonths(3))
             ]
         )
 
@@ -94,10 +94,10 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         let assignmentGroups = [
             APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: [
-                .make(assignment_group_id: "AG1", due_at: Clock.now.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
+                .make(assignment_group_id: "AG1", due_at: Clock.now.inCalendar.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
             ]),
             APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [
-                .make(assignment_group_id: "AG2", due_at: Clock.now.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
+                .make(assignment_group_id: "AG2", due_at: Clock.now.inCalendar.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
             ]),
             APIAssignmentGroup.make(id: "AG3", name: "AGroup3", position: 3, assignments: [
                 .make(assignment_group_id: "AG3", id: "3", name: "Undated Assignment", submission_types: [.external_tool]),
@@ -154,10 +154,10 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         let assignmentGroups = [
             APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: [
-                .make(assignment_group_id: "AG1", due_at: Clock.now.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
+                .make(assignment_group_id: "AG1", due_at: Clock.now.inCalendar.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
             ]),
             APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [
-                .make(assignment_group_id: "AG2", due_at: Clock.now.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
+                .make(assignment_group_id: "AG2", due_at: Clock.now.inCalendar.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
             ]),
             APIAssignmentGroup.make(id: "AG3", name: "AGroup3", position: 3, assignments: [
                 .make(assignment_group_id: "AG3", id: "3", name: "Undated Assignment", submission_types: [.external_tool]),
@@ -217,10 +217,10 @@ class AssignmentListViewModelTests: CoreTestCase {
 
         let assignmentGroups = [
             APIAssignmentGroup.make(id: "AG1", name: "AGroup1", position: 1, assignments: [
-                .make(assignment_group_id: "AG1", due_at: Clock.now.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
+                .make(assignment_group_id: "AG1", due_at: Clock.now.inCalendar.addDays(1), id: "1", name: "Upcoming Assignment", submission_types: [.discussion_topic])
             ]),
             APIAssignmentGroup.make(id: "AG2", name: "AGroup2", position: 2, assignments: [
-                .make(assignment_group_id: "AG2", due_at: Clock.now.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
+                .make(assignment_group_id: "AG2", due_at: Clock.now.inCalendar.addDays(-1), id: "2", name: "Overdue Assignment", quiz_id: "1")
             ]),
             APIAssignmentGroup.make(id: "AG3", name: "AGroup3", position: 3, assignments: [
                 .make(assignment_group_id: "AG3", id: "3", name: "Undated Assignment", submission_types: [.external_tool]),
@@ -305,8 +305,8 @@ class AssignmentListViewModelTests: CoreTestCase {
         api.mock(
             GetGradingPeriods(courseID: "1"),
             value: [
-                .make(id: "1", title: "Past GP", start_date: Clock.now.addMonths(-2), end_date: Clock.now.addMonths(-1)),
-                .make(id: "2", title: "Current GP", start_date: Clock.now.addMonths(-1), end_date: Clock.now.addMonths(1))
+                .make(id: "1", title: "Past GP", start_date: Clock.now.inCalendar.addMonths(-2), end_date: Clock.now.inCalendar.addMonths(-1)),
+                .make(id: "2", title: "Current GP", start_date: Clock.now.inCalendar.addMonths(-1), end_date: Clock.now.inCalendar.addMonths(1))
             ]
         )
         let gradingPeriods = environment.subscribe(GetGradingPeriods(courseID: "1"))
@@ -329,8 +329,8 @@ class AssignmentListViewModelTests: CoreTestCase {
         api.mock(
             GetGradingPeriods(courseID: "1"),
             value: [
-                .make(id: "1", title: "GP1", start_date: .now.addMonths(-9), end_date: .now.addMonths(-3)),
-                .make(id: "2", title: "GP2", start_date: .now.addMonths(-3), end_date: .now.addMonths(3))
+                .make(id: "1", title: "GP1", start_date: .now.inCalendar.addMonths(-9), end_date: .now.inCalendar.addMonths(-3)),
+                .make(id: "2", title: "GP2", start_date: .now.inCalendar.addMonths(-3), end_date: .now.inCalendar.addMonths(3))
             ]
         )
         let testee = AssignmentListViewModel(env: environment, context: .course("1"))

@@ -26,7 +26,7 @@ class ToDoTests: E2ETestCase {
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
         seeder.enrollTeacher(teacher, in: course)
-        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
+        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.inCalendar.addMinutes(30))
         let submission = GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
 
         // MARK: Get the user logged in and check ToDo tab bar

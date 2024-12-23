@@ -26,8 +26,8 @@ class SyllabusTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Seed an assignment and a calendar event
-        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
-        let calendarEvent = CalendarHelper.createCalendarEvent(course: course, endDate: Date.now.addMinutes(30))
+        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.inCalendar.addMinutes(30))
+        let calendarEvent = CalendarHelper.createCalendarEvent(course: course, endDate: Date.now.inCalendar.addMinutes(30))
 
         // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
         logInDSUser(student)
@@ -74,8 +74,8 @@ class SyllabusTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Seed an assignment and a calendar event
-        AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
-        CalendarHelper.createCalendarEvent(course: course, endDate: Date.now.addMinutes(30))
+        AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.inCalendar.addMinutes(30))
+        CalendarHelper.createCalendarEvent(course: course, endDate: Date.now.inCalendar.addMinutes(30))
 
         // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
         logInDSUser(student)

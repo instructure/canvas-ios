@@ -317,7 +317,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 
     func testGradesSectionNotHiddenAfterAvailability() {
-        Assignment.make(from: .make(locked_for_user: true, lock_explanation: "this is locked", submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1)))
+        Assignment.make(from: .make(locked_for_user: true, lock_explanation: "this is locked", submission: APISubmission.make(workflow_state: .graded), unlock_at: Date.now.inCalendar.addYears(-1)))
         XCTAssertFalse( presenter.gradesSectionIsHidden() )
     }
 
@@ -337,7 +337,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
             lock_explanation: "this is locked",
             score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 1.0, max: 3.0),
             submission: APISubmission.make(workflow_state: .graded),
-            unlock_at: Date().addYears(-1)
+            unlock_at: Date.now.inCalendar.addYears(-1)
         ))
         XCTAssertFalse( presenter.statisticsIsHidden() )
     }
@@ -459,7 +459,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
                 locked_for_user: lockedForUser,
                 lock_explanation: "this is locked",
                 submission_types: [ .online_upload ],
-                unlock_at: Date().addYears(1)
+                unlock_at: Date.now.inCalendar.addYears(1)
             ))
         case .after:
             Assignment.make(from: .make(
@@ -467,7 +467,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
                 locked_for_user: lockedForUser,
                 lock_explanation: "this is locked",
                 submission_types: [ .online_upload ],
-                unlock_at: Date().addYears(-1)
+                unlock_at: Date.now.inCalendar.addYears(-1)
             ))
         }
     }
@@ -542,7 +542,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: APIAssignment.make(
             locked_for_user: true,
             lock_explanation: "This doesn't update with the phone's timezone",
-            unlock_at: Date().addDays(1)
+            unlock_at: Date.now.inCalendar.addDays(1)
         ))
         XCTAssertTrue(presenter.lockExplanation.hasPrefix("This assignment is locked until "))
     }
@@ -550,7 +550,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     func testLockExplanationAfterLockDate() {
         Assignment.make(from: APIAssignment.make(
             locked_for_user: true,
-            lock_at: Date().addDays(-1),
+            lock_at: Date.now.inCalendar.addDays(-1),
             lock_explanation: "This doesn't update with the phone's timezone"
         ))
         XCTAssertTrue(presenter.lockExplanation.hasPrefix("This assignment was locked "))

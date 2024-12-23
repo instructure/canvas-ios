@@ -94,7 +94,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     func testHideDescription() {
         mockCourse()
-        let a = APIAssignment.make( locked_for_user: true, unlock_at: Date().addDays(1) )
+        let a = APIAssignment.make( locked_for_user: true, unlock_at: Date.now.inCalendar.addDays(1) )
         api.mock(viewController.presenter!.assignments, value: a)
 
         load()

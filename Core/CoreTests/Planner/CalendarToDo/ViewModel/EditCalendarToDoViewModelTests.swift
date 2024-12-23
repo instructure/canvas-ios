@@ -67,7 +67,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.shouldShowSaveError, false)
 
         XCTAssertEqual(testee.title, "")
-        XCTAssertEqual(testee.date, TestConstants.dateNow.endOfDay())
+        XCTAssertEqual(testee.date, TestConstants.dateNow.inCalendar.endOfDay())
         XCTAssertEqual(testee.calendarName, "User 42") // first user calendar in TestConstants.calendars
         XCTAssertEqual(testee.details, "")
     }
@@ -76,10 +76,10 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         var testee: EditCalendarToDoViewModel
 
         testee = makeAddViewModel()
-        XCTAssertEqual(testee.date, TestConstants.dateNow.endOfDay())
+        XCTAssertEqual(testee.date, TestConstants.dateNow.inCalendar.endOfDay())
 
         testee = makeAddViewModel(selectedDate: TestConstants.dateEarlier)
-        XCTAssertEqual(testee.date, TestConstants.dateEarlier.endOfDay())
+        XCTAssertEqual(testee.date, TestConstants.dateEarlier.inCalendar.endOfDay())
     }
 
     func testEditModeInitialValues() {

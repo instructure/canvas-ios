@@ -169,10 +169,10 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
-        let yesterdaysDate = Date.now.addDays(-1)
+        let yesterdaysDate = Date.now.inCalendar.addDays(-1)
         let yesterdaysAssignment = Helper.createAssignment(course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
 
-        let tomorrowsDate = Date.now.addDays(1)
+        let tomorrowsDate = Date.now.inCalendar.addDays(1)
         let tomorrowsAssignment = Helper.createAssignment(course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
 
         // MARK: Get the user logged in
@@ -204,7 +204,7 @@ class AssignmentsTests: E2ETestCase {
         let lockedAssignment = Helper.createAssignment(
             course: course,
             name: "Locked Assignment",
-            dueDate: Date.now.addDays(-1),
+            dueDate: Date.now.inCalendar.addDays(-1),
             lockAt: Date.now)
 
         // MARK: Get the user logged in
@@ -237,8 +237,8 @@ class AssignmentsTests: E2ETestCase {
         let futureAssignment = Helper.createAssignment(
             course: course,
             name: "Future Assignment",
-            dueDate: Date.now.addDays(3),
-            unlockAt: Date.now.addDays(1))
+            dueDate: Date.now.inCalendar.addDays(3),
+            unlockAt: Date.now.inCalendar.addDays(1))
 
         // MARK: Get the user logged in
         logInDSUser(student)
