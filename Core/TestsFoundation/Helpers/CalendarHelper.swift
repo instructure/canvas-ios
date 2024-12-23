@@ -244,29 +244,29 @@ public class CalendarHelper: BaseHelper {
             result.yesterdays = createCalendarEvent(
                 course: course,
                 title: "Yesterdays Event",
-                startDate: Date.now.addDays(-1),
-                endDate: Date.now.addDays(-1).addMinutes(30))
+                startDate: Date.now.inCalendar.addDays(-1),
+                endDate: Date.now.inCalendar.addingDays(-1).addMinutes(30))
         }
         if eventTypes.contains(.todays) {
             result.todays = createCalendarEvent(
                 course: course,
                 title: "Todays Event",
                 startDate: Date.now,
-                endDate: Date.now.addMinutes(30))
+                endDate: Date.now.inCalendar.addMinutes(30))
         }
         if eventTypes.contains(.tomorrows) {
             result.tomorrows = createCalendarEvent(
                 course: course,
                 title: "Tomorrows Event",
-                startDate: Date.now.addDays(1),
-                endDate: Date.now.addDays(1).addMinutes(30))
+                startDate: Date.now.inCalendar.addDays(1),
+                endDate: Date.now.inCalendar.addingDays(1).addMinutes(30))
         }
         if eventTypes.contains(.recurring) {
             result.recurring = createCalendarEvent(
                 course: course,
                 title: "Recurring Event",
                 startDate: Date.now,
-                endDate: Date.now.addDays(70),
+                endDate: Date.now.inCalendar.addDays(70),
                 allDay: true,
                 weekly: true)
         }
@@ -274,8 +274,8 @@ public class CalendarHelper: BaseHelper {
             result.nextYears = createCalendarEvent(
                 course: course,
                 title: "Next Years Event",
-                startDate: Date.now.addYears(1),
-                endDate: Date.now.addYears(1).addMinutes(30),
+                startDate: Date.now.inCalendar.addYears(1),
+                endDate: Date.now.inCalendar.addingYears(1).addMinutes(30),
                 allDay: true)
         }
         return result

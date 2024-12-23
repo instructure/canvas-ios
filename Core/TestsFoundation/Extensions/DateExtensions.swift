@@ -24,7 +24,7 @@ extension Date {
     public var day: Int { Calendar.current.component(.day, from: self) }
     public var month: Int { Calendar.current.component(.month, from: self) }
     public var year: Int { Calendar.current.component(.year, from: self) }
-    public var isFutureDate: Bool { self.startOfDay() > Date.now.startOfDay() }
+    public var isFutureDate: Bool { self.inCalendar.startOfDay() > Date.now.inCalendar.startOfDay() }
 
     // MARK: Functions
     public func add(_ calendarComponent: Calendar.Component, number: Int) -> Date {

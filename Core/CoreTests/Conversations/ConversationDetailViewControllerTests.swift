@@ -37,7 +37,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
             messages: [
                 APIConversationMessage.make(
                     id: "1",
-                    created_at: Clock.now.addDays(-1),
+                    created_at: Clock.now.inCalendar.addDays(-1),
                     body: "hello world",
                     author_id: "2",
                     media_comment: .make(url: URL(string: "data:text/plain,")!),
@@ -50,7 +50,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
                 ),
                 APIConversationMessage.make(
                     id: "2",
-                    created_at: Clock.now.addDays(-4),
+                    created_at: Clock.now.inCalendar.addDays(-4),
                     body: "foo bar",
                     author_id: "1",
                     participating_user_ids: [ "1", "4" ]
@@ -77,7 +77,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
         XCTAssertEqual(first?.fromLabel.text, "user 2")
         XCTAssertEqual(first?.toLabel.text, "to me")
         XCTAssertEqual(first?.messageLabel.text, "hello world")
-        XCTAssertEqual(first?.dateLabel.text, DateFormatter.localizedString(from: Clock.now.addDays(-1), dateStyle: .medium, timeStyle: .short))
+        XCTAssertEqual(first?.dateLabel.text, DateFormatter.localizedString(from: Clock.now.inCalendar.addDays(-1), dateStyle: .medium, timeStyle: .short))
         XCTAssertEqual(first?.attachmentsController.attachments.count, 3)
 
         var actions = controller.tableView.delegate?.tableView?(
@@ -115,7 +115,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
             messages: [
                 APIConversationMessage.make(
                     id: "2",
-                  created_at: Clock.now.addDays(-2),
+                    created_at: Clock.now.inCalendar.addDays(-2),
                   body: "older",
                   author_id: "2",
                   participating_user_ids: [ "1", "2", "3" ]

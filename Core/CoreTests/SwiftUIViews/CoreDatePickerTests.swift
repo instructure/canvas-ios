@@ -43,20 +43,20 @@ class CoreDatePickerTests: CoreTestCase {
         let now = Clock.now
         Clock.mockNow(now)
         // no date range is set
-        XCTAssertEqual(dateRange, now.addYears(-1)...now.addYears(1))
+        XCTAssertEqual(dateRange, now.inCalendar.addYears(-1)...now.inCalendar.addYears(1))
         minDate = now
         // there is a minDate but no maxDate
-        XCTAssertEqual(dateRange, now...now.addYears(2))
-        maxDate = now.addDays(1)
+        XCTAssertEqual(dateRange, now...now.inCalendar.addYears(2))
+        maxDate = now.inCalendar.addDays(1)
         // a proper date range is set
-        XCTAssertEqual(dateRange, now...now.addDays(1))
+        XCTAssertEqual(dateRange, now...now.inCalendar.addDays(1))
         minDate = nil
         // there is a maxDate but no minDate
-        XCTAssertEqual(dateRange, now.addDays(1).addYears(-2)...now.addDays(1))
-        minDate = now.addDays(1)
-        maxDate = now.addDays(-1)
+        XCTAssertEqual(dateRange, now.inCalendar.addingDays(1).addYears(-2)...now.inCalendar.addDays(1))
+        minDate = now.inCalendar.addDays(1)
+        maxDate = now.inCalendar.addDays(-1)
         // maxDate is before minDate (invalid date range)
-        XCTAssertEqual(dateRange, now.addYears(-1)...now.addYears(1))
+        XCTAssertEqual(dateRange, now.inCalendar.addYears(-1)...now.inCalendar.addYears(1))
 
         Clock.reset()
     }

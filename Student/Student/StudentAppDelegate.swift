@@ -99,8 +99,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
             PageViewEventController.instance.userDidChange()
 
-            print(apiProfile)
-
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 self.userDidLogout(session: session)
                 LoginViewModel().showLoginView(on: self.window!, loginDelegate: self, app: .student)
