@@ -56,13 +56,13 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
                     id: "1",
                     author: .make(display_name: "Jane Doe (She/Her)", pronouns: nil),
                     comment: "This is a comment",
-                    created_at: Clock.now.addDays(-1)
+                    created_at: Clock.now.inCalendar.addDays(-1)
                 ),
                 .make(
                     id: "2",
                     author: .make(display_name: "Ron Burgandy", pronouns: nil),
                     comment: "This is a comment",
-                    created_at: Clock.now.addDays(-2)
+                    created_at: Clock.now.inCalendar.addDays(-2)
                 )
             ],
             submission_type: .online_upload,

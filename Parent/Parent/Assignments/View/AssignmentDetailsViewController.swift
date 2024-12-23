@@ -226,11 +226,13 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         guard let assignment = assignment.first else { return }
         if reminderSwitch.isOn {
             reminderDateButton.isHidden = false
-            minDate = Clock.now.addMinutes(1)
-            maxDate = Clock.now.addYears(1)
-            let defaultDate = max(minDate, min(maxDate,
-                assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
-            ))
+            minDate = Clock.now.inCalendar.addMinutes(1)
+            maxDate = Clock.now.inCalendar.addYears(1)
+            let defaultDate = max(
+                minDate,
+                min(maxDate, assignment.dueAt?.inCalendar.addDays(-1)
+                    ?? Clock.now.inCalendar.addDays(1))
+            )
             userNotificationCenter
                 .requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {

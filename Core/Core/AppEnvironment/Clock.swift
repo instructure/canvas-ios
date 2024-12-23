@@ -38,7 +38,9 @@ public class Cal {
             return mock
         }
         #endif
-        return Calendar.current
+        var calendar = Calendar.current
+        calendar.locale = Locale.managed ?? .autoupdatingCurrent
+        return calendar
     }
 }
 

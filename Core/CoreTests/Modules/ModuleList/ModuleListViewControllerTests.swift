@@ -524,7 +524,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         Clock.mockNow(now)
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "Module 1", position: 0, state: .unlocked),
-            .make(id: "2", position: 1, state: .locked, unlock_at: now.addDays(1))
+            .make(id: "2", position: 1, state: .locked, unlock_at: now.inCalendar.addDays(1))
         ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make(id: "2")])
@@ -536,7 +536,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         header2.lockedButton.sendActions(for: .primaryActionTriggered)
         let alert = router.presented as! UIAlertController
         XCTAssertEqual(alert.title, "Locked")
-        XCTAssertEqual(alert.message, "Will unlock " + now.addDays(1).dateTimeString)
+        XCTAssertEqual(alert.message, "Will unlock " + now.inCalendar.addDays(1).dateTimeString)
         Clock.reset()
     }
 

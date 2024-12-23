@@ -149,7 +149,7 @@ class K5GradesViewModelTests: CoreTestCase {
 
     func testShowsEnrollmentLetterGradeWhenQuantitativeDataEnabled() {
         let gradingPeriods: [APIGradingPeriod] = [
-            .make(id: "1", title: "grading period 1", start_date: Clock.now.addDays(-7))
+            .make(id: "1", title: "grading period 1", start_date: Clock.now.inCalendar.addDays(-7))
         ]
         api.mock(GetUserCourses(userID: "1"), value: [
             .make(
@@ -189,7 +189,7 @@ class K5GradesViewModelTests: CoreTestCase {
     private func mockCourses() {
         let gradingPeriods: [APIGradingPeriod] = [
             .make(id: "1", title: "grading period 1", start_date: Clock.now),
-            .make(id: "2", title: "grading period 2", start_date: Clock.now.addDays(-7))
+            .make(id: "2", title: "grading period 2", start_date: Clock.now.inCalendar.addDays(-7))
         ]
         api.mock(GetUserCourses(userID: "1"), value: [
             .make(

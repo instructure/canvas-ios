@@ -35,8 +35,8 @@ public class PlannerListViewController: UIViewController {
 
     weak var delegate: PlannerListDelegate?
     let env = AppEnvironment.shared
-    var start: Date = Clock.now.startOfDay() // inclusive
-    var end: Date = Clock.now.startOfDay().addDays(1) // exclusive
+    var start: Date = Clock.now.inCalendar.startOfDay() // inclusive
+    var end: Date = Clock.now.inCalendar.startOfDay().addDays(1) // exclusive
     private var selectedPlannableId: String?
 
     var plannables: Store<GetPlannables>?

@@ -99,7 +99,7 @@ public final class Conference: NSManagedObject {
         model.id = item.id.value
         model.isConcluded = item.ended_at != nil
         model.isLive = (
-            (item.started_at.map { $0 > Clock.now.addDays(-1) && $0 < Clock.now } ?? false) &&
+            (item.started_at.map { $0 > Clock.now.inCalendar.addDays(-1) && $0 < Clock.now } ?? false) &&
             (item.ended_at ?? .distantFuture) > Clock.now
         )
         model.isLongRunning = item.long_running

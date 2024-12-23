@@ -46,7 +46,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
 
     func testEventDateFormatting() {
         let startDate = Date(timeIntervalSince1970: 0)
-        let endDate = startDate.addMinutes(60)
+        let endDate = startDate.inCalendar.addMinutes(60)
 
         event.isAllDay = true
         event.startAt = startDate

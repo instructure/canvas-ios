@@ -66,7 +66,7 @@ enum FrequencyPreset: Equatable {
                 end: .occurrenceCount(365)
             )
         case .weeklyOnThatDay:
-            let weekday = RecurrenceRule.DayOfWeek(date.weekday)
+            let weekday = RecurrenceRule.DayOfWeek(date.inCalendar.weekday)
             return RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 1,
@@ -77,15 +77,15 @@ enum FrequencyPreset: Equatable {
             return RecurrenceRule(
                 recurrenceWith: .monthly,
                 interval: 1,
-                daysOfTheWeek: [date.monthWeekday],
+                daysOfTheWeek: [date.inCalendar.monthWeekday],
                 end: .occurrenceCount(12)
             )
         case .yearlyOnThatMonth:
             return RecurrenceRule(
                 recurrenceWith: .yearly,
                 interval: 1,
-                daysOfTheMonth: [date.daysOfMonth],
-                monthsOfTheYear: [date.months],
+                daysOfTheMonth: [date.inCalendar.daysOfMonth],
+                monthsOfTheYear: [date.inCalendar.months],
                 end: .occurrenceCount(5)
             )
         case .everyWeekday:

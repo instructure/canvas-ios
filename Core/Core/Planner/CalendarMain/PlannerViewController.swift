@@ -117,8 +117,8 @@ public class PlannerViewController: UIViewController {
         listPageController.dataSource = self
         listPageController.delegate = self
         listPageController.setCurrentPage(PlannerListViewController.create(
-            start: selectedDate.startOfDay(),
-            end: selectedDate.startOfDay().addDays(1),
+            start: selectedDate.inCalendar.startOfDay(),
+            end: selectedDate.inCalendar.startOfDay().addDays(1),
             delegate: self
         ))
 
@@ -198,14 +198,14 @@ public class PlannerViewController: UIViewController {
     }
 
     @objc func selectToday() {
-        let date = Clock.now.startOfDay()
+        let date: Date = Clock.now.inCalendar.startOfDay()
         selectedDate = date
         calendar.showDate(date)
         updateList(date)
     }
 
     private func updateTodayButton() {
-        let date = Clock.now.startOfDay()
+        let date: Date = Clock.now.inCalendar.startOfDay()
         guard currentlyDisplayedToday != date else { return }
 
         currentlyDisplayedToday = date
@@ -243,8 +243,8 @@ public class PlannerViewController: UIViewController {
     func updateList(_ date: Date) {
         guard !calendar.calendar.isDate(date, inSameDayAs: list.start) else { return }
         let newList = PlannerListViewController.create(
-            start: date.startOfDay(),
-            end: date.startOfDay().addDays(1),
+            start: date.inCalendar.startOfDay(),
+            end: date.inCalendar.startOfDay().addDays(1),
             delegate: self
         )
         newList.loadViewIfNeeded()
@@ -309,8 +309,8 @@ extension PlannerViewController: PagesViewControllerDataSource, PagesViewControl
 
     func listPageDelta(_ delta: Int, from list: PlannerListViewController) -> PlannerListViewController {
         let newList = PlannerListViewController.create(
-            start: list.start.addDays(delta),
-            end: list.end.addDays(delta),
+            start: list.start.inCalendar.addDays(delta),
+            end: list.end.inCalendar.addDays(delta),
             delegate: self
         )
         newList.loadViewIfNeeded()

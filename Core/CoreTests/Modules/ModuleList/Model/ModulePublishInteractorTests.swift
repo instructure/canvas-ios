@@ -81,8 +81,8 @@ class ModulePublishInteractorTests: CoreTestCase {
 
     func testChangeFilePublishState() {
         let testee = ModulePublishInteractorLive(app: .teacher, courseId: "testCourseId")
-        let unlockAt = Date().addDays(1)
-        let lockAt = unlockAt.addDays(2)
+        let unlockAt = Date.now.inCalendar.addDays(1)
+        let lockAt = unlockAt.inCalendar.addDays(2)
         let mockFileUpdateRequest = PutFileRequest(
             fileID: "testFileId",
             visibility: .courseMembers,
@@ -137,8 +137,8 @@ class ModulePublishInteractorTests: CoreTestCase {
             fileID: "testFileId",
             include: []
         )
-        let unlockAt = Date().addDays(1)
-        let lockAt = unlockAt.addDays(2)
+        let unlockAt = Date.now.inCalendar.addDays(1)
+        let lockAt = unlockAt.inCalendar.addDays(2)
         let getFileMock = api.mock(
             mockGetFileRequest,
             value: .make(

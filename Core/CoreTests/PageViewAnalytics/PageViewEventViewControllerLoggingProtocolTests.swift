@@ -34,7 +34,7 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
     override func setUp() {
         super.setUp()
         end = Date()
-        start = end.addMinutes(-1)
+        start = end.inCalendar.addMinutes(-1)
 
         LoginSession.clearAll()
 

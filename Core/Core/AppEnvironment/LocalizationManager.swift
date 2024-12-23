@@ -22,16 +22,26 @@ public class LocalizationManager {
     private static let instUserLocale = "InstUserLocale"
     static var suspend = #selector(NSXPCConnection.suspend)
 
-    private static var effectiveLocale: String? {
+    private static var effectiveLocaleID: String? {
         return Bundle.main.preferredLocalizations.first
     }
 
-    public static var currentLocale: String? {
-        return UserDefaults.standard.string(forKey: instUserLocale) ?? effectiveLocale
+    public static var currentLocaleID: String? {
+        return UserDefaults.standard.string(forKey: instUserLocale) ?? effectiveLocaleID
+    }
+
+    public static var currentLocale: Locale? {
+        guard let localeID = currentLocaleID else { return nil }
+        return Locale(components: Locale.Components(identifier: localeID))
+    }
+
+    public static var effectiveLocale: Locale? {
+        guard let localeID = effectiveLocaleID else { return nil }
+        return Locale(components: Locale.Components(identifier: localeID))
     }
 
     public static var needsRestart: Bool {
-        return currentLocale != effectiveLocale
+        return currentLocaleID != effectiveLocaleID
     }
 
     static func convertCustomLocale(_ locale: String?) -> String {
@@ -76,5 +86,11 @@ public class LocalizationManager {
         } else {
             env.router.show(alert, from: root, options: .modal())
         }
+    }
+}
+
+extension Locale {
+    static var managed: Locale? {
+        LocalizationManager.currentLocale
     }
 }

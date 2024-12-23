@@ -222,8 +222,8 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testSortOrderByDueDate2() {
-        let dateC = Date().addDays(2)
-        let dateD = Date().addDays(3)
+        let dateC = Date.now.inCalendar.addDays(2)
+        let dateD = Date.now.inCalendar.addDays(3)
 
         let api2 = APIAssignment.make(course_id: "1", due_at: nil, id: "2", name: "api2")
         let api3 = APIAssignment.make(course_id: "1", due_at: nil, id: "3", name: "api3")

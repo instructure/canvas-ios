@@ -124,36 +124,36 @@ private enum TestConstants {
         ),
         UseCase(
             preset: .weeklyOnThatDay,
-            raw: "FREQ=WEEKLY;INTERVAL=1;BYDAY=\(date.weekday.rawValue);COUNT=52",
+            raw: "FREQ=WEEKLY;INTERVAL=1;BYDAY=\(date.inCalendar.weekday.rawValue);COUNT=52",
             expected: RecurrenceRule(
                 recurrenceWith: .weekly,
                 interval: 1,
                 daysOfTheWeek: [
-                    DayOfWeek(date.weekday)
+                    DayOfWeek(date.inCalendar.weekday)
                 ],
                 end: .occurrenceCount(52)
             )
         ),
         UseCase(
             preset: .monthlyOnThatWeekday,
-            raw: "FREQ=MONTHLY;INTERVAL=1;BYDAY=\(date.monthWeekday.rruleString);COUNT=12",
+            raw: "FREQ=MONTHLY;INTERVAL=1;BYDAY=\(date.inCalendar.monthWeekday.rruleString);COUNT=12",
             expected: RecurrenceRule(
                 recurrenceWith: .monthly,
                 interval: 1,
                 daysOfTheWeek: [
-                    date.monthWeekday
+                    date.inCalendar.monthWeekday
                 ],
                 end: .occurrenceCount(12)
             )
         ),
         UseCase(
             preset: .yearlyOnThatMonth,
-            raw: "FREQ=YEARLY;INTERVAL=1;BYMONTH=\(date.months);BYMONTHDAY=\(date.daysOfMonth);COUNT=5",
+            raw: "FREQ=YEARLY;INTERVAL=1;BYMONTH=\(date.inCalendar.months);BYMONTHDAY=\(date.inCalendar.daysOfMonth);COUNT=5",
             expected: RecurrenceRule(
                 recurrenceWith: .yearly,
                 interval: 1,
-                daysOfTheMonth: [date.daysOfMonth],
-                monthsOfTheYear: [date.months],
+                daysOfTheMonth: [date.inCalendar.daysOfMonth],
+                monthsOfTheYear: [date.inCalendar.months],
                 end: .occurrenceCount(5)
             )
         ),

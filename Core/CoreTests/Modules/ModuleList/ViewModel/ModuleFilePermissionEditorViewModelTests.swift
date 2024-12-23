@@ -74,12 +74,12 @@ class ModuleFilePermissionEditorViewModelTests: CoreTestCase {
         XCTAssertTrue(testee.isScheduleDateSectionVisible)
         XCTAssertEqual(
             testee.defaultFromDate.timeIntervalSince1970,
-            unlockAt.addDays(-1).timeIntervalSince1970,
+            unlockAt.inCalendar.addDays(-1).timeIntervalSince1970,
             accuracy: 0.1
         )
         XCTAssertEqual(
             testee.defaultUntilDate.timeIntervalSince1970,
-            unlockAt.addDays(1).timeIntervalSince1970,
+            unlockAt.inCalendar.addDays(1).timeIntervalSince1970,
             accuracy: 0.1
         )
         XCTAssertFalse(testee.isUploading)

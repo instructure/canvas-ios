@@ -45,8 +45,8 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         GetPlannablesRequest(startDate: from, endDate: to, contextCodes: contextCodes)
     }
 
-    var start = Clock.now.startOfDay()
-    var end = Clock.now.startOfDay().addDays(1)
+    var start = Clock.now.inCalendar.startOfDay() as Date
+    var end = Clock.now.inCalendar.startOfDay().addDays(1)
     var userID: String?
     var contextCodes = ["course_1"]
     lazy var controller = PlannerListViewController.create(start: start, end: end, delegate: self)
@@ -62,7 +62,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             course_id: nil, context_type: nil,
             plannable_id: "2", plannable_type: "planner_note",
             plannable: .init(details: "deets", title: "note"),
-            plannable_date: date.addMinutes(60)
+            plannable_date: date.inCalendar.addMinutes(60)
         )
         api.mock(getPlannablesRequest(from: start, to: end), value: [ assignment, note ])
         controller.view.layoutIfNeeded()

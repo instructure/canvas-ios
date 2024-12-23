@@ -54,11 +54,11 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.calendar.delegate?.calendarDidSelectDate(selected)
         XCTAssertEqual(controller.calendar.selectedDate, selected)
         XCTAssertEqual(controller.list.start, selected)
-        XCTAssertEqual(controller.list.end, selected.addDays(1))
-        controller.calendar.delegate?.calendarDidTransitionToDate(selected.addMonths(1))
-        let transitionTo = selected.addMonths(1)
+        XCTAssertEqual(controller.list.end, selected.inCalendar.addDays(1))
+        controller.calendar.delegate?.calendarDidTransitionToDate(selected.inCalendar.addMonths(1))
+        let transitionTo = selected.inCalendar.addMonths(1)
         XCTAssertEqual(controller.list.start, transitionTo)
-        XCTAssertEqual(controller.list.end, transitionTo.addDays(1))
+        XCTAssertEqual(controller.list.end, transitionTo.inCalendar.addDays(1))
         XCTAssertEqual(controller.calendar.selectedDate, transitionTo)
         controller.calendar.delegate?.calendarDidSelectDate(Clock.now)
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now)
@@ -137,8 +137,8 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.calendar.selectedDate, next?.start)
 
         _ = controller.todayButton.target?.perform(controller.todayButton.action)
-        XCTAssertEqual(controller.calendar.selectedDate, Clock.now.startOfDay())
-        XCTAssertEqual(controller.list.start, Clock.now.startOfDay())
+        XCTAssertEqual(controller.calendar.selectedDate, Clock.now.inCalendar.startOfDay())
+        XCTAssertEqual(controller.list.start, Clock.now.inCalendar.startOfDay())
 
         Clock.reset()
     }

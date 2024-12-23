@@ -35,9 +35,9 @@ class LocalizationManagerTests: CoreTestCase {
 
     func testCurrentLocale() {
         UserDefaults.standard.set("en", forKey: "InstUserLocale")
-        XCTAssertEqual(LocalizationManager.currentLocale, "en")
+        XCTAssertEqual(LocalizationManager.currentLocaleID, "en")
         UserDefaults.standard.removeObject(forKey: "InstUserLocale")
-        XCTAssertEqual(LocalizationManager.currentLocale, Bundle.main.preferredLocalizations.first)
+        XCTAssertEqual(LocalizationManager.currentLocaleID, Bundle.main.preferredLocalizations.first)
     }
 
     func testNeedsRestart() {
@@ -72,23 +72,23 @@ class LocalizationManagerTests: CoreTestCase {
         try XCTSkipIf(true, "This test is disabled, because Language & Region are fixed (en & US) for tests, and it would always fail.")
 
         LocalizationManager.setCurrentLocale("pt-BR")
-        XCTAssertEqual(LocalizationManager.currentLocale, "pt-BR")
+        XCTAssertEqual(LocalizationManager.currentLocaleID, "pt-BR")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "pt-BR" ])
 
         LocalizationManager.setCurrentLocale("en-AU-x-unimelb")
-        XCTAssertEqual(LocalizationManager.currentLocale, "en-AU-unimelb")
+        XCTAssertEqual(LocalizationManager.currentLocaleID, "en-AU-unimelb")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "en-AU-unimelb" ])
 
         LocalizationManager.setCurrentLocale("da-x-k12")
-        XCTAssertEqual(LocalizationManager.currentLocale, "da-instk12")
+        XCTAssertEqual(LocalizationManager.currentLocaleID, "da-instk12")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "da-instk12" ])
 
         LocalizationManager.setCurrentLocale("tlh") // unsupported
-        XCTAssertEqual(LocalizationManager.currentLocale, "da-instk12")
+        XCTAssertEqual(LocalizationManager.currentLocaleID, "da-instk12")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "da-instk12" ])
 
         LocalizationManager.setCurrentLocale(nil)
-        XCTAssertEqual(LocalizationManager.currentLocale, "da-instk12")
+        XCTAssertEqual(LocalizationManager.currentLocaleID, "da-instk12")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "da-instk12" ])
     }
 

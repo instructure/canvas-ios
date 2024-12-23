@@ -59,8 +59,8 @@ class K5Tests: K5E2ETestCase {
         let student = seeder.createK5User()
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
-        let todaysAssignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
-        let tomorrowsQuiz = QuizzesHelper.createTestQuizWith2Questions(course: course, due_at: Date.now.addDays(1))
+        let todaysAssignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.inCalendar.addMinutes(30))
+        let tomorrowsQuiz = QuizzesHelper.createTestQuizWith2Questions(course: course, due_at: Date.now.inCalendar.addDays(1))
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
 
@@ -85,7 +85,7 @@ class K5Tests: K5E2ETestCase {
         let student = seeder.createK5User()
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
-        let assignment = AssignmentsHelper.createAssignment(course: course, gradingType: .letter_grade, dueDate: Date.now.addMinutes(30))
+        let assignment = AssignmentsHelper.createAssignment(course: course, gradingType: .letter_grade, dueDate: Date.now.inCalendar.addMinutes(30))
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
@@ -202,7 +202,7 @@ class K5Tests: K5E2ETestCase {
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
         let assignmentsCount = 12
-        AssignmentsHelper.createAssignments(in: course, count: assignmentsCount, dueDate: .now.addDays(-1))
+        AssignmentsHelper.createAssignments(in: course, count: assignmentsCount, dueDate: .now.inCalendar.addDays(-1))
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
 

@@ -135,8 +135,8 @@ public class GradesHelper: BaseHelper {
 
     public static func createEnrollmentTerm(
         name: String = "Test Enrollment Term",
-        startAt: Date = Date.now.addMonths(-1),
-        endAt: Date = Date.now.addMonths(1)
+        startAt: Date = Date.now.inCalendar.addMonths(-1),
+        endAt: Date = Date.now.inCalendar.addMonths(1)
     ) -> DSEnrollmentTerm {
         return seeder.createEnrollmentTerm(name: name, startAt: startAt, endAt: endAt)
     }
@@ -151,9 +151,9 @@ public class GradesHelper: BaseHelper {
     public static func addGradingPeriod(
         gradingPeriodSet: DSGradingPeriodSet,
         title: String = "Test Grading Period",
-        startDate: Date = Date.now.addDays(-1),
-        endDate: Date = Date.now.addDays(1),
-        closeDate: Date = Date.now.addDays(1)
+        startDate: Date = Date.now.inCalendar.addDays(-1),
+        endDate: Date = Date.now.inCalendar.addDays(1),
+        closeDate: Date = Date.now.inCalendar.addDays(1)
     ) -> DSGradingPeriod {
         return seeder.addGradingPeriod(
             gradingPeriodSet: gradingPeriodSet,
@@ -171,15 +171,15 @@ public class GradesHelper: BaseHelper {
             gradingPeriodSet: gradingPeriodSet,
             title: "First GP",
             startDate: Date.now,
-            endDate: Date.now.addSeconds(120),
-            closeDate: Date.now.addSeconds(120)
+            endDate: Date.now.inCalendar.addSeconds(120),
+            closeDate: Date.now.inCalendar.addSeconds(120)
         )
         let secondGP = addGradingPeriod(
             gradingPeriodSet: gradingPeriodSet,
             title: "Second GP",
-            startDate: Date.now.addSeconds(240),
-            endDate: Date.now.addSeconds(360),
-            closeDate: Date.now.addSeconds(360)
+            startDate: Date.now.inCalendar.addSeconds(240),
+            endDate: Date.now.inCalendar.addSeconds(360),
+            closeDate: Date.now.inCalendar.addSeconds(360)
         )
         return [firstGP, secondGP]
     }

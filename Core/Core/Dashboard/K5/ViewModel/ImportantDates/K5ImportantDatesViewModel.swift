@@ -74,7 +74,7 @@ public class K5ImportantDatesViewModel: ObservableObject {
     }
 
     func addImportantDate(from event: CalendarEvent) {
-        guard let startDate = event.startAt, startDate >= Clock.now.startOfDay(), let course = courses.filter({ $0.id == event.context.id }).first else { return }
+        guard let startDate = event.startAt, startDate >= Clock.now.inCalendar.startOfDay(), let course = courses.filter({ $0.id == event.context.id }).first else { return }
         let courseColor = Color(course.color)
         if let existingDate = importantDates.first(where: { $0.date.dateOnlyString == startDate.dateOnlyString }) {
             existingDate.addEvent(event, color: courseColor)

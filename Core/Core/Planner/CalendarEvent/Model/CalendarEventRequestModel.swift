@@ -39,21 +39,26 @@ extension CalendarEventRequestModel {
 
     var processedStartTime: Date {
         if isAllDay {
-            date.startOfDay()
+            date.inCalendar.startOfDay()
         } else {
-            date.startOfDay()
-                .addHours(startTime.hours)
-                .addMinutes(startTime.minutes)
+            date.inCalendar
+                .startOfDay()
+                .addingHours(startTime.inCalendar.hours)
+                .addingMinutes(startTime.inCalendar.minutes)
+                .date
         }
     }
 
     var processedEndTime: Date {
         if isAllDay {
-            date.startOfDay()
+            date.inCalendar.startOfDay()
         } else {
-            date.startOfDay()
-                .addHours(endTime.hours)
-                .addMinutes(endTime.minutes)
+            date
+                .inCalendar
+                .startOfDay()
+                .addingHours(endTime.inCalendar.hours)
+                .addingMinutes(endTime.inCalendar.minutes)
+                .date
         }
     }
 
@@ -66,10 +71,10 @@ extension CalendarEventRequestModel {
 extension CalendarEventRequestModel {
     static func make(
         title: String = "",
-        date: Date =  Clock.now.startOfDay(),
+        date: Date =  Clock.now.inCalendar.startOfDay(),
         isAllDay: Bool = false,
-        startTime: Date = Clock.now.startOfDay(),
-        endTime: Date = Clock.now.startOfDay(),
+        startTime: Date = Clock.now.inCalendar.startOfDay(),
+        endTime: Date = Clock.now.inCalendar.startOfDay(),
         contextCode: String = "",
         location: String? = nil,
         address: String? = nil,
