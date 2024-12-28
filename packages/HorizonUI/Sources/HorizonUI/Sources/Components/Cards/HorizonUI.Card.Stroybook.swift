@@ -18,36 +18,30 @@
 
 import SwiftUI
 
-// TODO: Make it #if DEBUG later
-public extension HorizonUI.Typography {
+public extension HorizonUI.Cards {
     struct Storybook: View {
-        private let text = "This is an example text."
-
         public var body: some View {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 16) {
-                    ForEach(HorizonUI.Typography.Name.allCases) { typography in
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("\(typography)")
-                                .font(typography.font)                           
-                            Text(text)
-                                .huiTypography(typography.id)
-                        }
+            ScrollView {
+                VStack {
+                    Text("Module Container")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    }
+                    HorizonUI.ModuleContainer.Storybook()
+                    Text("Module Item Card")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HorizonUI.ModuleItemCard.Storybook()
                 }
             }
-            .padding(.all, 16)
-            .navigationTitle("Typography")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("Cards")
+            .padding()
+            .background(Color.black.opacity(0.1))
         }
     }
 }
 
-extension HorizonUI.Typography.Name: Identifiable {
-    public var id: Self { self }
+#Preview {
+    HorizonUI.Cards.Storybook()
 }
 
-#Preview {
-    HorizonUI.Typography.Storybook()
+public extension HorizonUI {
+    struct Cards { }
 }

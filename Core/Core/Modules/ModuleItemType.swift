@@ -139,7 +139,7 @@ public enum ModuleItemType: Equatable, Codable {
         }
     }
 
-    var assetType: GetModuleItemSequenceRequest.AssetType {
+    public var assetType: GetModuleItemSequenceRequest.AssetType {
         switch self {
         case .file: return .file
         case .discussion: return .discussion

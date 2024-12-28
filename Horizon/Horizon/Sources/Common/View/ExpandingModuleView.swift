@@ -18,107 +18,91 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct ExpandingModuleView: View {
     let module: HModule
     let routeToURL: (URL) -> Void
     @State private var isExpanded = false
-    @State private var firstItemHeight: CGFloat = 0
-    @State private var lastItemHeight: CGFloat = 0
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Button {
-                isExpanded.toggle()
-            } label: {
-                HStack(alignment: .top) {
-                    ModuleCheckMarkIcon(isCompleted: module.isCompleted)
-                    Size14RegularTextDarkestTitle(title: module.name.uppercased())
-                    Spacer()
-                    if module.isInProgress {
-                        Text("INCOMPLETE ITEM", bundle: .horizon)
-                            .foregroundStyle(Color.textDanger)
-                            .font(.regular12)
-                            .padding(5)
-                            .overlay(Capsule().stroke(Color.backgroundDanger, lineWidth: 1))
-                    }
-
-                    Image(systemName: "chevron.down")
-                        .tint(Color.textDark)
-                        .frame(width: 18, height: 18)
-                        .rotationEffect(isExpanded ? .degrees(-180) : .degrees(0))
-                }
-                .padding(.vertical, 16)
-            }
+        VStack(alignment: .leading, spacing: .zero) {
+            header
 
             if isExpanded {
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(module.items) { item in
-                        let isFirstItem = item == module.items.first
-                        let isLastItem = item == module.items.last
+                Divider()
+                    .background(Color.huiColors.lineAndBorders.lineStroke)
+                    .padding(.bottom, .huiSpaces.primitives.mediumSmall)
 
-                        HStack {
-                            moduleItemState(
-                                isFirstItem: isFirstItem,
-                                isLastItem: isLastItem,
-                                firstItemLineHeight: firstItemHeight,
-                                lastItemLineHeight: lastItemHeight,
-                                isCompleted: item.isCompleted
-                            )
-                            moduleItemButton(item: item)
-                                .readingFrame { frame in
-                                    if isFirstItem { firstItemHeight = frame.height }
-                                    if isLastItem { lastItemHeight = frame.height }
-                                }
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 23)
-                }
-                .padding(.bottom, 24)
+                expandedContent
+                    .padding(.bottom, .huiSpaces.primitives.large)
             }
         }
-        .padding(.horizontal, 16)
+        .animation(.smooth, value: isExpanded)
         .onFirstAppear { if module.isInProgress { isExpanded = true } }
     }
 
-    private func moduleItemButton(item: HModuleItem) -> some View {
-        Button {
-            if let url = item.htmlURL {
-                routeToURL(url)
+    private var header: some View {
+        Button(action: toggleExpansion) {
+            HorizonUI.ModuleContainer(
+                title: module.name,
+                numberOfItems: module.items.count,
+                numberOfPastDueItems: module.dueItemsCount,
+                duration: "76 mins", // TODO: Set actual value
+                isCompleted: module.isCompleted,
+                isCollapsed: isExpanded
+            )
+        }
+    }
+
+    private var expandedContent: some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
+            ForEach(module.items) { item in
+                if let type = item.type {
+                    moduleItemRow(for: item, type: type)
+                }
             }
-        } label: {
-            ModuleItemView(item: item)
-                .padding(.all, 12)
-                .background(RoundedRectangle(cornerRadius: 12).fill(Color.backgroundLightest))
-                .padding(.vertical, 10)
-                .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, .huiSpaces.primitives.mediumSmall)
+        }
+    }
+
+    private func moduleItemRow(for item: HModuleItem, type: ModuleItemType) -> some View {
+        HStack(spacing: .huiSpaces.primitives.xSmall) {
+            completedImage(isCompleted: item.isCompleted)
+                .foregroundStyle(Color.huiColors.surface.institution)
+
+            moduleItemButton(item: item, type: type)
+        }
+    }
+
+    private func completedImage(isCompleted: Bool) -> some View {
+        isCompleted ? Image.huiIcons.checkCircleFull : Image.huiIcons.radioButtonUnchecked
+    }
+
+    private func moduleItemButton(item: HModuleItem, type: ModuleItemType) -> some View {
+        Button(action: { handleItemTap(item) }) {
+            if let itemType = HorizonUI.ModuleItemCard.ItemType(rawValue: type.assetType.rawValue) {
+                HorizonUI.ModuleItemCard(
+                    name: item.title,
+                    type: itemType,
+                    duration: "20 Mins", // TODO: Set correct value
+                    dueDate: item.dueAt?.dateOnlyString,
+                    points: item.points,
+                    isOverdue: item.isOverDue
+                )
+            }
         }
         .disableWithOpacity(item.isLocked, disabledOpacity: 0.6)
     }
 
-    private func moduleItemState(
-        isFirstItem: Bool,
-        isLastItem: Bool,
-        firstItemLineHeight: CGFloat,
-        lastItemLineHeight: CGFloat,
-        isCompleted: Bool
-    ) -> some View {
-        ZStack {
-            if module.isSequentialProgressRequired {
-                ModulePrerequisiteLine(
-                    isFirstItem: isFirstItem,
-                    isLastItem: isLastItem,
-                    firstItemLineHeight: firstItemHeight,
-                    lastItemLineHeight: lastItemHeight,
-                    hasMultipleItems: module.items.count > 1
-                )
-            }
-            Circle()
-                .fill(Color.backgroundLightest)
-                .frame(width: 25, height: 25)
-            ModuleCheckMarkIcon(isCompleted: isCompleted)
+    private func toggleExpansion() {
+        isExpanded.toggle()
+    }
 
+    private func handleItemTap(_ item: HModuleItem) {
+        if let url = item.htmlURL {
+            routeToURL(url)
         }
     }
 }
@@ -127,7 +111,7 @@ struct ExpandingModuleView: View {
     ExpandingModuleView(
         module: .init(
             id: "13",
-            name: "Assginemts",
+            name: "Assignments",
             courseID: "2",
             items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)]
         ),

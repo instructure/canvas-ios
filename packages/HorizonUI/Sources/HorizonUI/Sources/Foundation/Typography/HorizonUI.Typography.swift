@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension HorizonUI {
     struct Typography: ViewModifier {
-        enum Name: CaseIterable {
+        public enum Name: CaseIterable {
             case h1
             case h2
             case h3
@@ -100,14 +100,14 @@ public extension HorizonUI {
         public func body(content: Content) -> some View{
             content
                 .font(name.font)
-                .lineSpacing(name.lineSpacing)
+//                .lineSpacing(name.lineSpacing)
                 .tracking(name.letterSpacing)
         }
     }
 }
 
 extension View {
-    func huiTypography(_ name: HorizonUI.Typography.Name) -> some View {
+    public func huiTypography(_ name: HorizonUI.Typography.Name) -> some View {
         modifier(HorizonUI.Typography(name))
     }
 }

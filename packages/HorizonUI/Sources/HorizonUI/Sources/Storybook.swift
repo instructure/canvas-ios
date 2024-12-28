@@ -95,13 +95,17 @@ public struct Storybook: View {
                     }
                 }
                 Section(header: Text("Components: Organisms")) {
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Tabs.Storybook()
+                    } label: {
                         Text("Controls").tint(Color.black)
                     }
                     NavigationLink {} label: {
                         Text("Inputs and Interactive Fields").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Cards.Storybook()
+                    } label: {
                         Text("Cards").tint(Color.black)
                     }
                     NavigationLink {} label: {

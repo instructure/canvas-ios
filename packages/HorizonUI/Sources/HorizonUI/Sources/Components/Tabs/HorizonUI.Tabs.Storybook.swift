@@ -17,31 +17,17 @@
 //
 
 import SwiftUI
+public extension HorizonUI.Tabs {
+    struct Storybook: View {
+        @State private var selectedTabIndex: Int? = 0
+        private let tabs = ["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5"]
 
-struct ModuleCheckMarkIcon: View {
-    let isCompleted: Bool
-
-    var body: some View {
-        ZStack {
-            if isCompleted {
-                Circle()
-                    .fill(Color.green)
-                    .frame(width: 20, height: 20)
-
-                Image(systemName: "checkmark")
-                    .font(.regular10)
-                    .foregroundColor(.backgroundLightest)
-            } else {
-                Circle()
-                    .stroke(Color.backgroundDark, lineWidth: 1)
-                    .frame(width: 20, height: 20)
-            }
+        public var body: some View {
+            HorizonUI.Tabs(tabs: tabs, selectTabIndex: $selectedTabIndex)
         }
     }
 }
 
-#if DEBUG
 #Preview {
-    ModuleCheckMarkIcon(isCompleted: true)
+    HorizonUI.Tabs.Storybook()
 }
-#endif

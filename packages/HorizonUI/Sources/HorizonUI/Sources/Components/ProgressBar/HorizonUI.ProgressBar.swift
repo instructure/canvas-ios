@@ -57,7 +57,7 @@ public extension HorizonUI {
             self.size = size
             self.progressColor = progressColor
             self.numberPosition = numberPosition
-            self.textColor = textColor
+            self.textColor = progress == 0 ? progressColor : textColor
         }
 
         public var body: some View {
