@@ -104,7 +104,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 userID: currentSession.userID,
                 gradingPeriodID: gradingPeriodID,
                 types: ["StudentEnrollment"],
-                states: [.active]
+                states: [.active, .completed]
             ),
             value: [
                 .make(
@@ -686,7 +686,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 userID: currentSession.userID,
                 gradingPeriodID: gradingPeriodID,
                 types: ["StudentEnrollment"],
-                states: [.active]
+                states: [.active, .completed]
             ),
             value: [
                 .make(
