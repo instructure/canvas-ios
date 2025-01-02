@@ -38,8 +38,6 @@ extension HorizonUI.Controllers {
                 .padding(16)
                 .navigationTitle("Controllers")
             }
-
-
         }
 
         private func titleView(_ title: String) -> some View {
@@ -53,7 +51,6 @@ extension HorizonUI.Controllers {
        }
     }
 }
-
 
 #Preview {
     HorizonUI.Controllers.Storybook()
