@@ -24,7 +24,6 @@ struct CourseDetailsView: View {
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
     @State private var selectedTabIndex: Int?
-    @State private var selectedTabDetailsIndex = 0
 
     init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
@@ -32,81 +31,51 @@ struct CourseDetailsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Size24BoldTextDarkestTitle(title: viewModel.course.name)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 4)
-            Size12RegularTextDarkTitle(title: viewModel.course.institutionName)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 4)
-            Size12RegularTextDarkTitle(title: viewModel.course.targetCompletion)
-                .padding(.horizontal, 16)
-            CertificateProgressBar(
-                progress: viewModel.course.progress,
-                progressString: viewModel.course.progressString
-            )
-            .padding([.horizontal, .bottom], 16)
+        VStack(alignment: .leading, spacing: .zero) {
+            headerView
             learningContentView(course: viewModel.course)
         }
-        .containerRelativeFrame(.vertical)
-        .safeAreaPadding(.bottom, 16)
-        .padding(.top, 16)
-        .background(Color.backgroundLight)
-        .onFirstAppear {
-            selectedTabIndex = 0
+        .padding(.top, .huiSpaces.primitives.small)
+        .background(Color.huiColors.surface.pagePrimary)
+        .onFirstAppear { selectedTabIndex = 0 }
+    }
+
+    private var headerView: some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.primitives.mediumSmall) {
+            Text(viewModel.course.name)
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.primitives.black174)
+
+            HorizonUI.ProgressBar(
+                progress: viewModel.course.progress,
+                size: .medium,
+                textColor: .huiColors.primitives.white10
+            )
         }
+        .padding([.horizontal, .bottom], .huiSpaces.primitives.medium)
     }
 
     private func learningContentView(course: HCourse) -> some View {
-        VStack {
+        VStack(spacing: .huiSpaces.primitives.medium) {
             tabSelectorView
             tabDetailsView(course: course)
         }
-        .background(Color.backgroundLight)
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var tabSelectorView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
-                    Button {
-                        selectedTabIndex = index
-                        selectedTabDetailsIndex = index
-                    } label: {
-                        VStack {
-                            Size14RegularTextDarkestTitle(title: tab.localizedString)
-                            if index == selectedTabIndex {
-                                Rectangle()
-                                    .foregroundColor(Color.red)
-                                    .frame(height: 2)
-                            }
-                        }
-                        .frame(maxHeight: 44)
-                    }
-                    .id(index)
-                }
-            }
-            .scrollTargetLayout()
-            .scrollTargetBehavior(.viewAligned)
-        }
-        .simultaneousGesture(DragGesture(minimumDistance: 0), including: .all)
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollPosition(id: $selectedTabIndex, anchor: .center)
-        .animation(.smooth, value: selectedTabIndex)
-        .padding(.horizontal, 16)
-
-        // Re-enable if ScrollView drag gesture is needed.
-        /*
-         .onChange(of: selectedCourseIndex) {
-             if let selectedCourseIndex, selectedCourseIndex != selectedCourseDetailsIndex {
-                 selectedCourseDetailsIndex = selectedCourseIndex
-             }
-         }
-         */
+        HorizonUI.Tabs(
+            tabs: Tabs.titles,
+            selectTabIndex: $selectedTabIndex
+        )
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private func tabDetailsView(course: HCourse) -> some View {
-        TabView(selection: $selectedTabDetailsIndex) {
+        TabView(selection: Binding(
+            get: { selectedTabIndex ?? 0 },
+            set: { selectedTabIndex = $0 }
+        )) {
             ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
                     switch tab {
@@ -127,25 +96,22 @@ struct CourseDetailsView: View {
                 }
             }
         }
+        .padding(.horizontal, .huiSpaces.primitives.medium)
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .onChange(of: selectedTabDetailsIndex) {
-            selectedTabIndex = selectedTabDetailsIndex
-        }
-        .animation(.smooth, value: selectedTabDetailsIndex)
+        .animation(.smooth, value: selectedTabIndex)
     }
 
     private func modulesView(modules: [HModule]) -> some View {
-        VStack(spacing: 16) {
+        VStack(spacing: .huiSpaces.primitives.xSmall) {
             ForEach(modules) { module in
                 ExpandingModuleView(module: module) { url in
                     viewModel.moduleItemDidTap(url: url, from: viewController)
                 }
                 .frame(minHeight: 44)
-                .background(Color.backgroundLightest)
-                .cornerRadius(8)
+                .background(Color.huiColors.surface.cardPrimary)
+                .huiCornerRadius(level: .level2)
             }
         }
-        .padding(.horizontal, 16)
     }
 
     @ViewBuilder
@@ -190,6 +156,10 @@ extension CourseDetailsView {
 
         var id: Self {
             self
+        }
+
+        static var titles: [String] {
+            Tabs.allCases.map(\.localizedString)
         }
     }
 }
