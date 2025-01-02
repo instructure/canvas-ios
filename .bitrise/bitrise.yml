@@ -72,8 +72,8 @@ workflows:
       one).
 meta:
   bitrise.io:
-    stack: osx-xcode-16.0.x
     machine_type_id: g2-m1.8core
+    stack: osx-xcode-16.2.x
 app:
   envs:
   - BITRISE_PROJECT_PATH: Canvas.xcworkspace
