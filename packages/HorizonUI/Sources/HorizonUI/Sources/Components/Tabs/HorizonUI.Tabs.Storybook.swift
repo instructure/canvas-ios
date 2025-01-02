@@ -24,6 +24,7 @@ public extension HorizonUI.Tabs {
 
         public var body: some View {
             HorizonUI.Tabs(tabs: tabs, selectTabIndex: $selectedTabIndex)
+                .navigationTitle("Tabs")
         }
     }
 }

@@ -93,11 +93,14 @@ public struct Storybook: View {
                     } label: {
                         Text("Tooltip").tint(Color.black)
                     }
-                }
-                Section(header: Text("Components: Organisms")) {
                     NavigationLink {
                         HorizonUI.Tabs.Storybook()
                     } label: {
+                        Text("Tabs").tint(Color.black)
+                    }
+                }
+                Section(header: Text("Components: Organisms")) {
+                    NavigationLink {} label: {
                         Text("Controls").tint(Color.black)
                     }
                     NavigationLink {} label: {
