@@ -112,11 +112,11 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
            nav.viewControllers.count > 1,
            let defaultViewProvider = nav.viewControllers.last as? DefaultViewProvider,
            let defaultRoute = defaultViewProvider.defaultViewRoute,
-           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute, userInfo: nil) {
+           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute.url, userInfo: defaultRoute.userInfo) {
             let detailNavController = CoreNavigationController(rootViewController: defaultViewController)
             detailNavController.syncStyles(from: nav, to: detailNavController)
 
-            if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute) {
+            if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute.url) {
                 RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: defaultViewController)
             }
 

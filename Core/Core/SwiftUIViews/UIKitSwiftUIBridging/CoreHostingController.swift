@@ -52,7 +52,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
 
     // MARK: - Public Properties
     public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
-    public var defaultViewRoute: String? {
+    public var defaultViewRoute: DefaultViewRouteParameters? {
         didSet {
             showDefaultDetailViewIfNeeded()
         }

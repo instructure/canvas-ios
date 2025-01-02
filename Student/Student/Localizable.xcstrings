@@ -60617,7 +60617,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "المساعدة"
+            "value" : "التعليمات"
           }
         },
         "ca" : {
@@ -60773,7 +60773,7 @@
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bantuan"
+            "value" : "Bantu"
           }
         },
         "nb" : {
@@ -87988,7 +87988,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eile"
+            "value" : "Other"
           }
         },
         "hi" : {
@@ -111687,6 +111687,7 @@
     },
     "Submission text" : {
       "comment" : "Text submission editor accessibility label",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -117267,7 +117268,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tóg Quiz"
+            "value" : "Déan an Quiz"
           }
         },
         "hi" : {
@@ -120037,6 +120038,7 @@
       }
     },
     "Text Entry" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -140982,6 +140984,7 @@
     },
     "Write..." : {
       "comment" : "Text submission editor placeholder",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

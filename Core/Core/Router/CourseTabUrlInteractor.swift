@@ -95,6 +95,13 @@ public final class CourseTabUrlInteractor {
         }
     }
 
+    /// Check for any tabs which match the Home format: "/courses/:courseID"
+    /// For example K5Subject tabs: "/courses/:courseID#schedule"
+    private func isHomeFormat(_ path: String) -> Bool {
+        let parts = path.split(separator: "/").map { String($0) }
+        return parts.count == 2 && parts[0] == "courses"
+    }
+
     private func updateEnabledTabs(with tabs: [Tab]) {
         let courseTabs = tabs.filter { $0.context.contextType == .course }
         let tabsPerCourse = Dictionary(grouping: courseTabs, by: { $0.context })
@@ -164,7 +171,10 @@ public final class CourseTabUrlInteractor {
     }
 
     private func logPathFormatIfUnknown(for tab: TabModel) {
-        guard tab.id != "home" && !isKnownPathFormat(tab.htmlUrl) else { return }
+        guard tab.id != "home"
+                && !isHomeFormat(tab.htmlUrl)
+                && !isKnownPathFormat(tab.htmlUrl)
+        else { return }
 
         RemoteLogger.shared.logError(
             name: "Unexpected Course Tab path format",
