@@ -117,6 +117,8 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         textField.text = "Example"
         _ = textField.delegate?.textFieldShouldReturn?(textField)
 
+        drainMainQueue(thoroughness: 10)
+
         XCTAssertEqual(controller.searchContext.searchText.value, "Example")
         XCTAssertSingleOutputEquals(submitted, "Example")
 

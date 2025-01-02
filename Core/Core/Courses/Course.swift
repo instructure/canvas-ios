@@ -256,12 +256,22 @@ extension Course {
         return enrollments?.contains { $0.isTeacher } == true
     }
 
-    func enrollmentForGrades(userId: String?) -> Enrollment? {
-        enrollments?.first {
-            $0.state == .active &&
-            $0.userID == userId &&
-            $0.type.lowercased().contains("student") &&
-            $0.id == nil
+    func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {
+        func first(of state: EnrollmentState) -> Enrollment? {
+            enrollments?.first {
+                $0.state == state &&
+                $0.userID == userId &&
+                $0.type.lowercased().contains("student") &&
+                $0.id == nil
+            }
+        }
+
+        if let enrollment = first(of: .active) {
+            return enrollment
+        } else if includingCompleted {
+            return first(of: .completed)
+        } else {
+            return nil
         }
     }
 }
