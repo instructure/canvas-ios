@@ -1,0 +1,190 @@
+---
+format_version: '13'
+workflows:
+  pr_adhoc_builds:
+    status_report_name: Ad-Hoc Builds
+    after_run:
+    - _common_save_spm_cache
+    before_run:
+    - _common_prepare_workspace
+    - _pr_adhoc_build_discovery
+    steps:
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Student
+            envman add --key INST_XCODE_APPICON_PATH --value Student/Student/Assets.xcassets/AppIcon.appiconset
+        title: Setup Student Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_STUDENT" "true"}}'
+        title: Build Student
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Teacher
+            envman add --key INST_XCODE_APPICON_PATH --value Teacher/Teacher/Assets.xcassets/AppIcon.appiconset
+        title: Setup Teacher Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_TEACHER" "true"}}'
+        title: Build Teacher
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Parent
+            envman add --key INST_XCODE_APPICON_PATH --value Parent/Parent/Assets.xcassets/AppIcon.appiconset
+        title: Setup Parent Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_PARENT" "true"}}'
+        title: Build Parent
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Horizon
+            envman add --key INST_XCODE_APPICON_PATH --value Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset
+        title: Setup Horizon Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
+        title: Build Horizon
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/create_pr_comment.sh
+        - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
+        title: Create PR Comment
+    - comment-on-github-pull-request@0:
+        inputs:
+        - body: $PR_BUILDS_COMMENT
+        - personal_access_token: $GITHUB_API_TOKEN
+        - update_comment_tag: bitrise_adhoc_builds
+        is_always_run: false
+  pr_adhoc_build:
+    summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
+    description: "This step expects the following environment variables: \n$INST_XCODE_SCHEME (e.g., Horizon)\n$INST_XCODE_APPICON_PATH (e.g., Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset)\n\nThe output will be an environment variable called BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL_$INST_XCODE_SCHEME that'll contain the image url of the QR code pointing to the created application."
+    steps:
+    - set-xcode-build-number@2:
+        inputs:
+        - scheme: $INST_XCODE_SCHEME
+    - bitrise-step-stamp-appicon-with-version-number@1:
+        inputs:
+        - stamp_version: PR
+        - stamp_build_number: $PR_NUMBER
+        - stamp_path_to_icons: $INST_XCODE_APPICON_PATH
+    - xcode-archive@5:
+        inputs:
+        - distribution_method: ad-hoc
+        - automatic_code_signing: api-key
+        - icloud_container_environment: Production
+        - scheme: $INST_XCODE_SCHEME
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: none
+    - create-install-page-qr-code@1: {}
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/write_qr_url_to_file.sh
+        - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
+        title: Write QR URL To File
+  _pr_adhoc_build_discovery:
+    steps:
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # Assuming our commit message is in the correct format, we decide which tests to go on with
+            # $GIT_CLONE_COMMIT_MESSAGE_BODY
+            echo "Git msg: ${GIT_CLONE_COMMIT_MESSAGE_BODY}"
+            echo "Bitrise Pull Request: "
+            echo $BITRISE_PULL_REQUEST
+            echo "Bitrise Git Message: "
+            echo $BITRISE_GIT_MESSAGE
+
+            if [[ ! -z $BITRISE_PULL_REQUEST ]]; then
+              envman add --key PR_NUMBER --value $BITRISE_PULL_REQUEST
+            else
+              envman add --key PR_NUMBER --value "NOT_PR"
+            fi
+            if [[ $BITRISE_GIT_MESSAGE == *"Student"* ]]; then
+              envman add --key REQUIRE_STUDENT --value "true"
+            fi
+
+            if [[ $BITRISE_GIT_MESSAGE == *"Teacher"* ]]; then
+              envman add --key REQUIRE_TEACHER --value "true"
+            fi
+
+            if [[ $BITRISE_GIT_MESSAGE == *"Parent"* ]]; then
+              envman add --key REQUIRE_PARENT --value "true"
+            fi
+
+            if [[ $BITRISE_GIT_MESSAGE == *"Horizon"* ]]; then
+              envman add --key REQUIRE_HORIZON --value "true"
+            fi
+
+            if [[ $BITRISE_GIT_MESSAGE == *"affects: All"* ]]; then
+              envman add --key REQUIRE_PARENT --value "true" &&
+              envman add --key REQUIRE_TEACHER --value "true" &&
+              envman add --key REQUIRE_STUDENT --value "true" &&
+              envman add --key REQUIRE_HORIZON --value "true"
+            fi
+        title: Discover Which Apps To Build
+    summary: |-
+      This step analyzes the pull request's description and decides which apps to build.
+
+      Outputs if conditions are met for each app:
+      - $REQUIRE_PARENT=true
+      - $REQUIRE_TEACHER=true
+      - $REQUIRE_STUDENT=true
+      - $REQUIRE_HORIZON=true
+trigger_map:
+- pull_request_target_branch:
+    regex: .*
+  type: pull_request
+  workflow: pr_adhoc_builds
+  
