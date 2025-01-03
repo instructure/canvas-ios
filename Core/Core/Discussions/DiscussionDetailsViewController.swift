@@ -158,19 +158,6 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
         webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
         webView.handle("ready") { [weak self] _ in self?.ready() }
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: env.currentSession?.uniqueID ?? "",
-            courseId: course.first?.id ?? "",
-            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
-            resourceId: topicID
-        )
-        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-        webView.loadHTMLString(
-            "<style>\(DiscussionHTML.css)</style>",
-            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
-                rootURL :
-                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
-        )
 
         if showRepliesToEntryID != nil {
             titleSubtitleView.title = isAnnouncement
@@ -189,6 +176,26 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         entries.refresh()
         permissions.refresh()
         groups.exhaust(force: true)
+
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topicID
+        )
+        webView.loadFileURL(
+            URL.Directories.documents,
+            allowingReadAccessTo: URL.Directories.documents
+        ) { [weak self] in
+            guard let self else { return }
+
+            webView.loadHTMLString(
+                "<style>\(DiscussionHTML.css)</style>",
+                baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
+                    rootURL :
+                    env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            )
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -331,19 +338,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         topicID = childID
         isReady = false
         isRendered = false
-        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: env.currentSession?.uniqueID ?? "",
-            courseId: course.first?.id ?? "",
-            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
-            resourceId: topic.id
-        )
-        webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-        webView.loadHTMLString(
-            "<style>\(DiscussionHTML.css)</style>",
-            baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
-                rootURL :
-                env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
-        )
+
         entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
             self?.update()
         }
@@ -360,6 +355,26 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         group.refresh()
         permissions.refresh()
         self.topic.refresh(force: true)
+
+        let rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: env.currentSession?.uniqueID ?? "",
+            courseId: course.first?.id ?? "",
+            sectionName: isAnnouncement ? OfflineFolderPrefix.announcements.rawValue : OfflineFolderPrefix.discussions.rawValue,
+            resourceId: topic.id
+        )
+        webView.loadFileURL(
+            URL.Directories.documents,
+            allowingReadAccessTo: URL.Directories.documents
+        ) { [weak self] in
+            guard let self else { return }
+
+            webView.loadHTMLString(
+                "<style>\(DiscussionHTML.css)</style>",
+                baseURL: offlineModeInteractor?.isOfflineModeEnabled() == true ?
+                    rootURL :
+                    env.api.baseURL.appendingPathComponent("\(context.pathComponent)/discussion_topics/\(topicID)")
+            )
+        }
         return false
     }
 

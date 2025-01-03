@@ -324,10 +324,41 @@ open class CoreWebView: WKWebView {
     public func activateFullScreenSupport() {
         fullScreenVideoSupport = .init(webView: self)
     }
+
+    // MARK: - File URL Load
+
+    private var fileLoadNavigation: WKNavigation?
+    private var fileLoadCompletion: (() -> Void)?
+
+    /// This method is an alternative to the built-in method with the same name but this
+    /// one executes a callback block when the navigation is finished.
+    public func loadFileURL(
+        _ url: URL,
+        allowingReadAccessTo urlDirectory: URL,
+        completion: @escaping () -> Void
+    ) {
+        fileLoadCompletion = completion
+        fileLoadNavigation = loadFileURL(url, allowingReadAccessTo: urlDirectory)
+    }
+
+
+    private func checkFileLoadNavigationAndExecuteCallback(finishedNavigation: WKNavigation) {
+        if finishedNavigation == fileLoadNavigation {
+            fileLoadNavigation = nil
+            fileLoadCompletion?()
+        }
+    }
 }
 
+// MARK: - WKNavigationDelegate
+
 extension CoreWebView: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+    public func webView(
+        _ webView: WKWebView,
+        decidePolicyFor action: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
         if action.navigationType == .linkActivated && !isLinkNavigationEnabled {
             decisionHandler(.cancel)
             return
@@ -390,7 +421,12 @@ extension CoreWebView: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    public func webView(
+        _ webView: WKWebView,
+        didFinish navigation: WKNavigation!
+    ) {
+        checkFileLoadNavigationAndExecuteCallback(finishedNavigation: navigation)
+
         linkDelegate?.finishedNavigation()
         if let fragment = url?.fragment {
             scrollIntoView(fragment: fragment)
@@ -399,13 +435,29 @@ extension CoreWebView: WKNavigationDelegate {
         features.forEach { $0.webView(webView, didFinish: navigation) }
     }
 
+    public func webView(
+        _ webView: WKWebView,
+        didFail navigation: WKNavigation!,
+        withError error: any Error
+    ) {
+        checkFileLoadNavigationAndExecuteCallback(finishedNavigation: navigation)
+    }
+
+    public func webView(
+        _ webView: WKWebView,
+        didFailProvisionalNavigation navigation: WKNavigation!,
+        withError error: any Error
+    ) {
+        checkFileLoadNavigationAndExecuteCallback(finishedNavigation: navigation)
+    }
+
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         RemoteLogger.shared.logError(name: "WebKit process terminated", reason: nil)
         CoreWebViewContentErrorViewEmbed.embed(errorDelegate: errorDelegate)
     }
 }
 
-// MARK: - WKUIDelegate Delegate
+// MARK: - WKUIDelegate
 
 extension CoreWebView: WKUIDelegate {
     public func webView(
