@@ -93,6 +93,11 @@ public struct Storybook: View {
                     } label: {
                         Text("Tooltip").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.FileDropUploader.Storybook()
+                    } label: {
+                        Text("FileDropUploader").tint(Color.black)
+                    }
                 }
                 Section(header: Text("Components: Organisms")) {
                     NavigationLink {} label: {
