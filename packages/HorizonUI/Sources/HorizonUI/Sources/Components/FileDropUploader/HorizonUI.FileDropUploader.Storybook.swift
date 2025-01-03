@@ -25,9 +25,7 @@ public extension HorizonUI.FileDropUploader {
                 VStack {
                     Text("Default")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.FileDropUploader(style: .default, onTap: {
-                        print("Tappped")
-                    })
+                    HorizonUI.FileDropUploader(style: .default) {}
                     Text("Disabled")
                         .frame(maxWidth: .infinity, alignment: .leading)
                     HorizonUI.FileDropUploader(style: .disabled, onTap: {})
