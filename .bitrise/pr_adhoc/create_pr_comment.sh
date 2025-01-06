@@ -39,18 +39,18 @@ declare -a APP_NAMES=(
 COLUMNS=""
 
 for APP_NAME in "${APP_NAMES[@]}"; do
-	FILE_NAME="${APP_NAME}_qr_url"
+    FILE_NAME="${APP_NAME}_qr_url"
 
-	if [[ -f "${FILE_NAME}" ]]; then
-		QR_URL=$(<"${FILE_NAME}")
-		echo "${APP_NAME}'s QR url is ${QR_URL}."
+    if [[ -f "${FILE_NAME}" ]]; then
+        QR_URL=$(<"${FILE_NAME}")
+        echo "${APP_NAME}'s QR url is ${QR_URL}."
         COLUMNS+="<td><details>"
         COLUMNS+="<summary>${APP_NAME}</summary>"
         COLUMNS+="<img src=\"${QR_URL}\" />"
         COLUMNS+="</details></td>"
     else
-		echo "File ${FILE_NAME} not found."
-	fi
+        echo "File ${FILE_NAME} not found."
+    fi
 
 done
 

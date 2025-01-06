@@ -34,30 +34,30 @@ set -o pipefail
 # - $REQUIRE_HORIZON=true
 
 if [[ ! -z $BITRISE_PULL_REQUEST ]]; then
-  envman add --key PR_NUMBER --value $BITRISE_PULL_REQUEST
+    envman add --key PR_NUMBER --value $BITRISE_PULL_REQUEST
 else
-  envman add --key PR_NUMBER --value "NOT_PR"
+    envman add --key PR_NUMBER --value "NOT_PR"
 fi
 
 if [[ $BITRISE_GIT_MESSAGE == *"Student"* ]]; then
-  envman add --key REQUIRE_STUDENT --value "true"
+    envman add --key REQUIRE_STUDENT --value "true"
 fi
 
 if [[ $BITRISE_GIT_MESSAGE == *"Teacher"* ]]; then
-  envman add --key REQUIRE_TEACHER --value "true"
+    envman add --key REQUIRE_TEACHER --value "true"
 fi
 
 if [[ $BITRISE_GIT_MESSAGE == *"Parent"* ]]; then
-  envman add --key REQUIRE_PARENT --value "true"
+    envman add --key REQUIRE_PARENT --value "true"
 fi
 
 if [[ $BITRISE_GIT_MESSAGE == *"Horizon"* ]]; then
-  envman add --key REQUIRE_HORIZON --value "true"
+    envman add --key REQUIRE_HORIZON --value "true"
 fi
 
 if [[ $BITRISE_GIT_MESSAGE == *"affects: All"* ]]; then
-  envman add --key REQUIRE_PARENT --value "true" &&
-  envman add --key REQUIRE_TEACHER --value "true" &&
-  envman add --key REQUIRE_STUDENT --value "true" &&
-  envman add --key REQUIRE_HORIZON --value "true"
+    envman add --key REQUIRE_PARENT --value "true" &&
+    envman add --key REQUIRE_TEACHER --value "true" &&
+    envman add --key REQUIRE_STUDENT --value "true" &&
+    envman add --key REQUIRE_HORIZON --value "true"
 fi
