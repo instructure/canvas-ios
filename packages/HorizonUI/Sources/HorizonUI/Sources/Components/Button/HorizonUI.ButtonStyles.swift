@@ -86,7 +86,7 @@ extension HorizonUI {
             if icon != nil {
                 iconButton(configuration)
             }
-            standardButton(configuration)
+            primaryButton(configuration)
         }
 
         private func iconButton(_ configuration: Configuration) -> some View {
@@ -112,7 +112,7 @@ extension HorizonUI {
             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
         }
 
-        private func standardButton(_ configuration: Configuration) -> some View {
+        private func primaryButton(_ configuration: Configuration) -> some View {
             HStack {
                 leading?
                     .renderingMode(.template)
