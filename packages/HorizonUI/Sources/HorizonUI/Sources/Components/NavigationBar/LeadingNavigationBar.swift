@@ -20,23 +20,26 @@ import SwiftUI
 
 public extension HorizonUI.NavigationBar {
     struct Leading: View {
-        let title: String
+        let logoURL: String
 
-        public init(title: String) {
-            self.title = title
+        public init(logoURL: String) {
+            self.logoURL = logoURL
         }
 
         public var body: some View {
-            Text(title)
-                .foregroundStyle(Color.huiColors.text.title)
-                .huiTypography(.p3)
-                .padding(.huiSpaces.primitives.mediumSmall)
-                .background(Color.huiColors.surface.pageTertiary)
+            AsyncImage(url: URL(string: logoURL)) { image in
+                image
+                    .image?
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 118, height: 44)
+                    .background(Color.huiColors.surface.pageTertiary)
+            }
         }
     }
 }
 
 #Preview {
-    HorizonUI.NavigationBar.Leading(title: "HorizonUI")
+    HorizonUI.NavigationBar.Leading(logoURL: "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png")
 }
 

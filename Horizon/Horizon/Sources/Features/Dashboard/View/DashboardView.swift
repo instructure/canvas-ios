@@ -24,6 +24,9 @@ struct DashboardView: View {
     @ObservedObject private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
 
+    // TODO: - Set with correct url later
+    private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
+
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
     }
@@ -51,11 +54,19 @@ struct DashboardView: View {
                 }
             }
         }
-        .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(title: "Hi, Horizon App"))
-        .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing(onEvent: viewModel.onEvent))
+        .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: logoURL))
+        .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing { event in
+            switch event {
+            case .mail:
+                viewModel.mailDidTap()
+            case .notebook:
+                viewModel.notebookDidTap(controller: viewController)
+            case .notification:
+                viewModel.notificationsDidTap()
+            }
+        })
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.backgroundLight)
-        .onFirstAppear { viewModel.viewController =  viewController}
     }
 
     private var nameLabel: some View {
