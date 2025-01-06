@@ -52,3 +52,10 @@ public extension Result {
 extension Result where Success == Void {
     public static var success: Result { .success(()) }
 }
+
+extension Result where Success == Void {
+
+    public init(error: Failure?) {
+        self = (error == nil) ? .success(()) : .failure(error!)
+    }
+}

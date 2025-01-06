@@ -32,9 +32,10 @@ class CoreWebViewFileURLLoadTests: CoreTestCase {
         testee.loadFileURL(
             workingDirectory,
             allowingReadAccessTo: workingDirectory
-        ) {
+        ) { result in
             completionExpectation.fulfill()
             XCTAssertTrue(Thread.isMainThread)
+            XCTAssertEqual(result.error as NSError?, NSError.internalError())
         }
 
         // WHEN
@@ -53,9 +54,10 @@ class CoreWebViewFileURLLoadTests: CoreTestCase {
         testee.loadFileURL(
             workingDirectory,
             allowingReadAccessTo: workingDirectory
-        ) {
+        ) { result in
             completionExpectation.fulfill()
             XCTAssertTrue(Thread.isMainThread)
+            XCTAssertEqual(result.error as NSError?, NSError.internalError())
         }
 
         // WHEN
@@ -74,9 +76,11 @@ class CoreWebViewFileURLLoadTests: CoreTestCase {
         testee.loadFileURL(
             workingDirectory,
             allowingReadAccessTo: workingDirectory
-        ) {
+        ) { result in
             completionExpectation.fulfill()
             XCTAssertTrue(Thread.isMainThread)
+            XCTAssertNil(result.error)
+            XCTAssertNotNil(result.value)
         }
 
         // WHEN
@@ -95,8 +99,9 @@ class CoreWebViewFileURLLoadTests: CoreTestCase {
         testee.loadFileURL(
             workingDirectory,
             allowingReadAccessTo: workingDirectory
-        ) {
+        ) { result in
             noCallbackExpectation.fulfill()
+            XCTAssertEqual(result.error as NSError?, NSError.internalError())
         }
 
         // WHEN
@@ -124,9 +129,10 @@ class CoreWebViewFileURLLoadTests: CoreTestCase {
         testee.loadFileURL(
             workingDirectory,
             allowingReadAccessTo: workingDirectory
-        ) {
+        ) { result in
             completionExpectation.fulfill()
             XCTAssertTrue(Thread.isMainThread)
+            XCTAssertEqual(result.error as NSError?, NSError.internalError())
         }
 
         // WHEN

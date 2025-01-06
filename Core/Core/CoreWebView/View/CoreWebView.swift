@@ -328,23 +328,23 @@ open class CoreWebView: WKWebView {
     // MARK: - File URL Load
 
     private var fileLoadNavigation: WKNavigation?
-    private var fileLoadCompletion: (() -> Void)?
+    private var fileLoadCompletion: ((Result<Void, Error>) -> Void)?
 
     /// This method is an alternative to the built-in method with the same name but this
     /// one executes a callback block when the navigation is finished.
     public func loadFileURL(
         _ url: URL,
         allowingReadAccessTo urlDirectory: URL,
-        completion: @escaping () -> Void
+        completion: @escaping (Result<Void, Error>) -> Void
     ) {
         fileLoadCompletion = completion
         fileLoadNavigation = loadFileURL(url, allowingReadAccessTo: urlDirectory)
     }
 
-    private func checkFileLoadNavigationAndExecuteCallback(finishedNavigation: WKNavigation) {
-        if finishedNavigation == fileLoadNavigation {
+    private func checkFileLoadNavigationAndExecuteCallback(navigation: WKNavigation, error: (any Error)?) {
+        if navigation == fileLoadNavigation {
             fileLoadNavigation = nil
-            fileLoadCompletion?()
+            fileLoadCompletion?(.init(error: error))
         }
     }
 }
@@ -424,7 +424,7 @@ extension CoreWebView: WKNavigationDelegate {
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {
-        checkFileLoadNavigationAndExecuteCallback(finishedNavigation: navigation)
+        checkFileLoadNavigationAndExecuteCallback(navigation: navigation, error: nil)
 
         linkDelegate?.finishedNavigation()
         if let fragment = url?.fragment {
@@ -439,7 +439,7 @@ extension CoreWebView: WKNavigationDelegate {
         didFail navigation: WKNavigation!,
         withError error: any Error
     ) {
-        checkFileLoadNavigationAndExecuteCallback(finishedNavigation: navigation)
+        checkFileLoadNavigationAndExecuteCallback(navigation: navigation, error: error)
     }
 
     public func webView(
@@ -447,7 +447,7 @@ extension CoreWebView: WKNavigationDelegate {
         didFailProvisionalNavigation navigation: WKNavigation!,
         withError error: any Error
     ) {
-        checkFileLoadNavigationAndExecuteCallback(finishedNavigation: navigation)
+        checkFileLoadNavigationAndExecuteCallback(navigation: navigation, error: error)
     }
 
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {

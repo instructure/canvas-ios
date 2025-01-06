@@ -186,7 +186,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.loadFileURL(
             URL.Directories.documents,
             allowingReadAccessTo: URL.Directories.documents
-        ) { [weak self] in
+        ) { [weak self] _ in
             guard let self else { return }
 
             webView.loadHTMLString(
@@ -365,7 +365,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.loadFileURL(
             URL.Directories.documents,
             allowingReadAccessTo: URL.Directories.documents
-        ) { [weak self] in
+        ) { [weak self] _ in
             guard let self else { return }
 
             webView.loadHTMLString(
