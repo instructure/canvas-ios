@@ -85,4 +85,5 @@ screenlog.0
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset
+!**/*.xcassets/Secrets/testSecret.dataset
 .bitrise.secrets.yml
