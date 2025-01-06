@@ -85,8 +85,9 @@ extension HorizonUI {
         public func makeBody(configuration: Configuration) -> some View {
             if icon != nil {
                 iconButton(configuration)
+            } else {
+                primaryButton(configuration)
             }
-            primaryButton(configuration)
         }
 
         private func iconButton(_ configuration: Configuration) -> some View {
