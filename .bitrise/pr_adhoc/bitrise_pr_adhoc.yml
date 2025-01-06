@@ -7,8 +7,11 @@ workflows:
     - _common_save_spm_cache
     before_run:
     - _common_prepare_workspace
-    - _pr_adhoc_build_discovery
     steps:
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/discover_apps_to_build.sh
+        title: Discover Which Apps To Build
     - script@1:
         inputs:
         - content: |-
@@ -127,61 +130,6 @@ workflows:
         - file_path: ./.bitrise/pr_adhoc/write_qr_url_to_file.sh
         - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
         title: Write QR URL To File
-  _pr_adhoc_build_discovery:
-    steps:
-    - script@1:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # Assuming our commit message is in the correct format, we decide which tests to go on with
-            # $GIT_CLONE_COMMIT_MESSAGE_BODY
-            echo "Git msg: ${GIT_CLONE_COMMIT_MESSAGE_BODY}"
-            echo "Bitrise Pull Request: "
-            echo $BITRISE_PULL_REQUEST
-            echo "Bitrise Git Message: "
-            echo $BITRISE_GIT_MESSAGE
-
-            if [[ ! -z $BITRISE_PULL_REQUEST ]]; then
-              envman add --key PR_NUMBER --value $BITRISE_PULL_REQUEST
-            else
-              envman add --key PR_NUMBER --value "NOT_PR"
-            fi
-            if [[ $BITRISE_GIT_MESSAGE == *"Student"* ]]; then
-              envman add --key REQUIRE_STUDENT --value "true"
-            fi
-
-            if [[ $BITRISE_GIT_MESSAGE == *"Teacher"* ]]; then
-              envman add --key REQUIRE_TEACHER --value "true"
-            fi
-
-            if [[ $BITRISE_GIT_MESSAGE == *"Parent"* ]]; then
-              envman add --key REQUIRE_PARENT --value "true"
-            fi
-
-            if [[ $BITRISE_GIT_MESSAGE == *"Horizon"* ]]; then
-              envman add --key REQUIRE_HORIZON --value "true"
-            fi
-
-            if [[ $BITRISE_GIT_MESSAGE == *"affects: All"* ]]; then
-              envman add --key REQUIRE_PARENT --value "true" &&
-              envman add --key REQUIRE_TEACHER --value "true" &&
-              envman add --key REQUIRE_STUDENT --value "true" &&
-              envman add --key REQUIRE_HORIZON --value "true"
-            fi
-        title: Discover Which Apps To Build
-    summary: |-
-      This step analyzes the pull request's description and decides which apps to build.
-
-      Outputs if conditions are met for each app:
-      - $REQUIRE_PARENT=true
-      - $REQUIRE_TEACHER=true
-      - $REQUIRE_STUDENT=true
-      - $REQUIRE_HORIZON=true
 trigger_map:
 - pull_request_target_branch:
     regex: .*

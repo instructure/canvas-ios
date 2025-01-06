@@ -24,7 +24,7 @@ set -o pipefail
 # debug log
 # set -x
 
-# Writes the contents of the$BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL variable
+# Writes the contents of the $BITRISE_PUBLIC_INSTALL_PAGE_QR_CODE_IMAGE_URL variable
 # to a file named $INST_XCODE_SCHEME_qr_url to the working directory.
 # We do this because we can't export variables with envman if the workflow is triggered
 # via the "Bitrise Run" step.
