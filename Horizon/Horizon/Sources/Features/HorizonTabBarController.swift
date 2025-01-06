@@ -19,6 +19,7 @@
 import Core
 import HorizonUI
 import UIKit
+import SwiftUI
 
 final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Properties
@@ -73,7 +74,8 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         vc.navigationBar.scrollEdgeAppearance = appearance
 
         vc.tabBarItem.title = String(localized: "Home", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "house")
+        vc.tabBarItem.image = getHorizonImage(name: "home")
+        vc.tabBarItem.selectedImage = getHorizonImage(name: "home_filled")
         return vc
     }
 
@@ -82,7 +84,8 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
             rootViewController: CoreHostingController(LearnAssembly.makeCoursesView())
         )
         vc.tabBarItem.title = String(localized: "Learn", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "list.bullet")
+        vc.tabBarItem.image = getHorizonImage(name: "book_2")
+        vc.tabBarItem.selectedImage = getHorizonImage(name: "book_2_filled")
         return vc
     }
 
@@ -95,8 +98,9 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
             rootViewController: CoreHostingController(Storybook())
         )
         vc.navigationBar.prefersLargeTitles = true
-        vc.tabBarItem.title = String(localized: "Career", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "point.bottomleft.filled.forward.to.point.topright.scurvepath")
+        vc.tabBarItem.title = String(localized: "Skillspace", bundle: .horizon)
+        vc.tabBarItem.image = getHorizonImage(name: "hub")
+        vc.tabBarItem.selectedImage = getHorizonImage(name: "hub_filled")
         return vc
     }
 
@@ -116,6 +120,10 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         inboxSplit.extendedLayoutIncludesOpaqueBars = true
         TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
         return inboxSplit
+    }
+
+    private func getHorizonImage(name: String) -> UIImage? {
+        UIImage(named: name, in: Bundle.horizonUI, with: nil)
     }
 }
 
