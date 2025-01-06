@@ -81,47 +81,57 @@ extension HorizonUI {
             self.trailing = nil
         }
 
+        @ViewBuilder
         public func makeBody(configuration: Configuration) -> some View {
+            if icon != nil {
+                iconButton(configuration)
+            }
+            standardButton(configuration)
+        }
+
+        private func iconButton(_ configuration: Configuration) -> some View {
             ZStack {
                 if let icon = icon {
-                    ZStack {
-                        icon
-                            .renderingMode(.template)
-                            .frame(width: isSmall ? smallButtonSize : largeButtonSize,
-                                   height: isSmall ? smallButtonSize : largeButtonSize)
-                            .background(backgroundColor)
-                            .foregroundStyle(foregroundColor)
-                            .huiCornerRadius(level: .level6)
-                            .foregroundColor(foregroundColor)
-                            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
+                    icon
+                        .renderingMode(.template)
+                        .frame(
+                            width: isSmall ? smallButtonSize : largeButtonSize,
+                            height: isSmall ? smallButtonSize : largeButtonSize
+                        )
+                        .background(backgroundColor)
+                        .foregroundStyle(foregroundColor)
+                        .huiCornerRadius(level: .level6)
+                        .foregroundColor(foregroundColor)
 
-                        if let badgeNumber = badgeNumber, let badgeStyle = badgeStyle {
-                            HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
-                                .offset(x: 15, y: -15)
-                        }
+                    if let badgeNumber = badgeNumber, let badgeStyle = badgeStyle {
+                        HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
+                            .offset(x: 15, y: -15)
                     }
-                } else {
-                    HStack {
-                        leading?
-                            .renderingMode(.template)
-                            .foregroundColor(foregroundColor)
-
-                        configuration.label
-
-                        trailing?
-                            .renderingMode(.template)
-                            .foregroundColor(foregroundColor)
-                    }
-                    .huiTypography(.buttonTextLarge)
-                    .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
-                    .frame(height: isSmall ? smallButtonSize : largeButtonSize)
-                    .frame(maxWidth: fillsWidth ? .infinity : nil)
-                    .background(backgroundColor)
-                    .foregroundStyle(foregroundColor)
-                    .huiCornerRadius(level: .level6)
-                    .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
                 }
             }
+            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
+        }
+
+        private func standardButton(_ configuration: Configuration) -> some View {
+            HStack {
+                leading?
+                    .renderingMode(.template)
+                    .foregroundColor(foregroundColor)
+
+                configuration.label
+
+                trailing?
+                    .renderingMode(.template)
+                    .foregroundColor(foregroundColor)
+            }
+            .huiTypography(.buttonTextLarge)
+            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .frame(height: isSmall ? smallButtonSize : largeButtonSize)
+            .frame(maxWidth: fillsWidth ? .infinity : nil)
+            .background(backgroundColor)
+            .foregroundStyle(foregroundColor)
+            .huiCornerRadius(level: .level6)
+            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
         }
     }
 }
@@ -142,7 +152,7 @@ extension HorizonUI.ButtonStyles {
                 return LinearGradient(
                     gradient: Gradient(colors: [
                         .huiColors.surface.institution,
-                        .huiColors.primitives.green70
+                        .huiColors.primitives.green70,
                     ]),
                     startPoint: .top,
                     endPoint: .bottom
