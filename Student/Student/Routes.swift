@@ -103,12 +103,20 @@ let router = Router(routes: [
 
     RouteHandler("/:context/:contextID/announcements/new") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: true))
+        return DiscussionsAssembly.makeDiscussionEditor(
+            context: context,
+            topicID: nil,
+            isAnnouncement: true
+        )
     },
 
     RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
+        return DiscussionsAssembly.makeDiscussionEditor(
+            context: context,
+            topicID: topicID,
+            isAnnouncement: true
+        )
     },
 
     RouteHandler("/:context/:contextID/announcements/:announcementID", factory: discussionViewController),
@@ -207,11 +215,19 @@ let router = Router(routes: [
 
     RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: false))
+        return DiscussionsAssembly.makeDiscussionEditor(
+            context: context,
+            topicID: nil,
+            isAnnouncement: false
+        )
     },
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: false))
+        return DiscussionsAssembly.makeDiscussionEditor(
+            context: context,
+            topicID: topicID,
+            isAnnouncement: false
+        )
     },
 
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/reply") { url, params, _, env in
