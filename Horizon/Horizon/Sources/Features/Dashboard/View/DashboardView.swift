@@ -55,15 +55,12 @@ struct DashboardView: View {
             }
         }
         .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: logoURL))
-        .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing { event in
-            switch event {
-            case .mail:
-                viewModel.mailDidTap()
-            case .notebook:
-                viewModel.notebookDidTap(controller: viewController)
-            case .notification:
-                viewModel.notificationsDidTap()
-            }
+        .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing {
+            viewModel.notebookDidTap(controller: viewController)
+        } onNotificationDidTap: {
+            viewModel.notificationsDidTap()
+        } onMailDidTap: {
+            viewModel.mailDidTap()
         })
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.backgroundLight)

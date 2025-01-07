@@ -20,36 +20,42 @@ import SwiftUI
 
 public extension HorizonUI.NavigationBar {
     struct Trailing: View {
-        public enum Event {
-            case mail
-            case notebook
-            case notification
-        }
+        // MARK: - Dependencies
 
-        private let onEvent: (Event) -> Void
+        private let onNotebookDidTap: () -> Void
+        private let onNotificationDidTap: () -> Void
+        private let onMailDidTap: () -> Void
 
-        public init(onEvent: @escaping (Event) -> Void) {
-            self.onEvent = onEvent
+        // MARK: - Init
+
+        public init(
+            onNotebookDidTap: @escaping () -> Void,
+            onNotificationDidTap: @escaping () -> Void,
+            onMailDidTap: @escaping () -> Void
+        ) {
+            self.onNotebookDidTap = onNotebookDidTap
+            self.onNotificationDidTap = onNotificationDidTap
+            self.onMailDidTap = onMailDidTap
         }
 
         public var body: some View {
             HStack(spacing: .zero) {
                 Button {
-                    onEvent(.notebook)
+                    onNotebookDidTap()
                 } label: {
                     Image.huiIcons.menuBookNotebook
                         .dropShadow()
                 }
 
                 Button {
-                    onEvent(.notification)
+                    onNotificationDidTap()
                 } label: {
                     Image.huiIcons.notificationsUnread
                         .dropShadow()
                 }
 
                 Button {
-                    onEvent(.mail)
+                    onMailDidTap()
                 } label: {
                     Image.huiIcons.mail
                         .dropShadow()
@@ -60,7 +66,7 @@ public extension HorizonUI.NavigationBar {
 }
 
 #Preview {
-    HorizonUI.NavigationBar.Trailing { _ in }
+    HorizonUI.NavigationBar.Trailing(onNotebookDidTap: {}, onNotificationDidTap: {}, onMailDidTap: {})
 }
 
 fileprivate extension HorizonUI.NavigationBar.Trailing {
