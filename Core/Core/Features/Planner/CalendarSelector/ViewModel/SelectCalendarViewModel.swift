@@ -59,7 +59,7 @@ final class SelectCalendarViewModel: ObservableObject {
         self.selectedCalendarOption.value = selectedCalendar.value?.optionItem
 
         selectedCalendarOption
-            .map { [weak self] optionItem in
+            .compactMap { [weak self] optionItem in
                 return self?.calendars.first { $0.isMatch(for: optionItem) }
             }
             .sink(receiveValue: { [weak selectedCalendar] filter in

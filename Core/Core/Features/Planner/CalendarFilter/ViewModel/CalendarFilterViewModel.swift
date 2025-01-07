@@ -32,7 +32,6 @@ public class CalendarFilterViewModel: ObservableObject {
     public let snackbarViewModel = SnackBarViewModel()
 
     // MARK: - Inputs
-    public let didToggleSelection = PassthroughSubject<(context: Context, isSelected: Bool), Never>()
     public let didTapSelectAllButton = PassthroughSubject<Void, Never>()
     public let didTapDoneButton = PassthroughSubject<UIViewController, Never>()
 
@@ -117,15 +116,16 @@ public class CalendarFilterViewModel: ObservableObject {
 
     private func handleSelectAllActions() {
         didTapSelectAllButton
-            .compactMap { [weak self] _ -> ([Context], Bool)? in
+            .compactMap { [weak self] _ -> (Set<Context>, Bool)? in
                 guard let self else { return nil }
 
-                let allContexts = allOptions.compactMap { Context(canvasContextID: $0.id) }
-                return (allContexts, selectedOptions.value.isEmpty)
+                let isSelect = selectedOptions.value.isEmpty
+                let allContexts = isSelect ? Set(allOptions.compactMap { Context(canvasContextID: $0.id) }) : []
+                return (allContexts, isSelect)
             }
             .flatMap { [interactor] (contexts, isSelect) in
                 interactor
-                    .updateFilteredContexts(contexts, isSelected: isSelect)
+                    .updateFilteredContexts(contexts)
                     .mapToValue(isSelect)
             }
             .sink(receiveCompletion: { _ in

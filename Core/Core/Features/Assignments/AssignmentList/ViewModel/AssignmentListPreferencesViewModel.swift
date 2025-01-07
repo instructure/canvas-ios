@@ -266,6 +266,8 @@ public final class AssignmentListPreferencesViewModel: ObservableObject {
     }
 }
 
+// MARK: - OptionItem helpers
+
 private extension AssignmentFilterOptionStudent {
     var optionItem: OptionItem {
         .init(id: id, title: title)

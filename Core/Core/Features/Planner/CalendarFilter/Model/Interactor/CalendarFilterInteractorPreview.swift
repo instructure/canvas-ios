@@ -56,12 +56,6 @@ public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
         return loadFilters(with: mockedFilters)
     }
 
-    public func updateFilteredContexts(_ contexts: [Context], isSelected: Bool) -> AnyPublisher<Void, Error> {
-        Just(())
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
     public func updateFilteredContexts(_ contexts: Set<Context>) -> AnyPublisher<Void, Error> {
         Just(())
             .setFailureType(to: Error.self)

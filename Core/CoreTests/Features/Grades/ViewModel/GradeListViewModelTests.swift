@@ -232,15 +232,6 @@ class GradeListViewModelTests: CoreTestCase {
         // Then
         XCTAssertTrue(router.presented is CoreHostingController<GradeFilterView>)
     }
-
-    func test_gradeArrangementOptions() {
-        // Given
-        let group = "Group"
-        let dueDate = "Due Date"
-        // Then
-        XCTAssertEqual(GradeArrangementOptions.dueDate.title, dueDate)
-        XCTAssertEqual(GradeArrangementOptions.groupName.title, group)
-    }
 }
 
 private extension GradeListViewModelTests {

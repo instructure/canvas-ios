@@ -629,7 +629,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
 
         let hasSpecificCalendar = {
             vm.sections.contains {
-                $0.items.contains { calendar in calendar.name == "User 42" }
+                $0.items.contains { item in item.id == "user_42" }
             }
         }
 
@@ -645,19 +645,9 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         testee = makeAddViewModel()
         let vm = testee.selectCalendarViewModel
 
-        let hasUserCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .user }
-        }
-        let hasCourseCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .course }
-        }
-        let hasGroupCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .group }
-        }
-
-        XCTAssertEqual(hasUserCalendars, true)
-        XCTAssertEqual(hasCourseCalendars, false)
-        XCTAssertEqual(hasGroupCalendars, true)
+        XCTAssertEqual(vm.hasCalendarsOfType(.user), true)
+        XCTAssertEqual(vm.hasCalendarsOfType(.course), false)
+        XCTAssertEqual(vm.hasCalendarsOfType(.group), true)
     }
 
     func testSelectCalendarViewModel_Teachers() {
@@ -668,20 +658,10 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         let testee = makeAddViewModel()
         let vm = testee.selectCalendarViewModel
 
-        let hasUserCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .user }
-        }
-        let hasCourseCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .course }
-        }
-        let hasGroupCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .group }
-        }
-
         // Then
-        XCTAssertEqual(hasUserCalendars, true)
-        XCTAssertEqual(hasCourseCalendars, true)
-        XCTAssertEqual(hasGroupCalendars, true)
+        XCTAssertEqual(vm.hasCalendarsOfType(.user), true)
+        XCTAssertEqual(vm.hasCalendarsOfType(.course), true)
+        XCTAssertEqual(vm.hasCalendarsOfType(.group), true)
     }
 
     func testShowCalendarScreen() {
@@ -765,7 +745,7 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
     @discardableResult
     private func triggerCalendarSelection(at index: Int = 1) -> CDCalendarFilterEntry {
         let selectedCalendar = calendarListProviderInteractor.filters.value[index]
-        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        testee.selectCalendarViewModel.selectedCalendarOption.send(.make(id: selectedCalendar.id))
         return selectedCalendar
     }
 }

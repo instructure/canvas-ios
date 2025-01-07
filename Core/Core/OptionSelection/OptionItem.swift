@@ -52,3 +52,18 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
         hasher.combine(id)
     }
 }
+
+#if DEBUG
+extension OptionItem {
+    static func make(
+        id: String = "",
+        title: String = "",
+        subtitle: String? = nil,
+        color: Color? = nil,
+        accessoryIcon: Image? = nil
+    ) -> OptionItem {
+        return OptionItem(id: id, title: title, subtitle: subtitle, color: color, accessoryIcon: accessoryIcon)
+    }
+}
+#endif
+
