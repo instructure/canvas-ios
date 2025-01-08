@@ -38,7 +38,8 @@ extension HorizonUI.ButtonStyles {
                                 isDisabled: false,
                                 title: "Regular Height - Relative Width Buttons"
                             ),
-                            StorybookConfiguration(isSmall: true, isDisabled: false, title: "Small Height - Block Width Buttons"),
+                            StorybookConfiguration(
+                                isSmall: true, isDisabled: false, title: "Small Height - Block Width Buttons"),
                             StorybookConfiguration(isSmall: false, isDisabled: true, title: "Disabled Buttons"),
                         ]
                     ) { storybookConfiguration in
@@ -56,7 +57,9 @@ extension HorizonUI.ButtonStyles {
             Section(header: header(storybookConfiguration.title)) {
                 VStack(alignment: .leading, spacing: 16) {
                     ForEach(HorizonUI.ButtonStyles.ButtonType.allCases) { type in
-                        row(type: type, isSmall: storybookConfiguration.isSmall, isDisabled: storybookConfiguration.isDisabled)
+                        row(
+                            type: type, isSmall: storybookConfiguration.isSmall,
+                            isDisabled: storybookConfiguration.isDisabled)
                     }
                 }
             }
@@ -68,17 +71,18 @@ extension HorizonUI.ButtonStyles {
             isDisabled: Bool
         ) -> some View {
             HStack(spacing: 16) {
-                Button("\(type.rawValue) Icon Button") {}
-                    .buttonStyle(
-                        HorizonUI.ButtonStyles.icon(type, isSmall: isSmall, badgeNumber: "99")
-                    )
-                    .disabled(isDisabled)
+                HorizonUI.IconButton(
+                    HorizonUI.icons.add,
+                    type: type,
+                    isSmall: isSmall
+                ) {}
+                .disabled(isDisabled)
 
-                Button("\(type.rawValue) Button") {}
-                    .buttonStyle(
-                        HorizonUI.ButtonStyles.primary(type, isSmall: isSmall, fillsWidth: isSmall)
-                    )
-                    .disabled(isDisabled)
+                HorizonUI.PrimaryButton("\(type.rawValue) Button",
+                                        type: type,
+                                        isSmall: isSmall,
+                                        fillsWidth: isSmall) {}
+                .disabled(isDisabled)
             }
         }
 

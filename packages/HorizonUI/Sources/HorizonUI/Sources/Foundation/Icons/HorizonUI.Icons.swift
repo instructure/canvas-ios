@@ -429,3 +429,7 @@ extension HorizonUI {
 extension Image {
     public static let huiIcons = HorizonUI.icons
 }
+
+public extension Bundle {
+    static let horizonUI = Bundle.module
+}
