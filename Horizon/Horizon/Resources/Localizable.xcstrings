@@ -35,9 +35,6 @@
     "Are you sure you want to proceed?" : {
 
     },
-    "Career" : {
-
-    },
     "Check Answer" : {
 
     },
@@ -45,9 +42,6 @@
 
     },
     "Confusing" : {
-
-    },
-    "Continue learning" : {
 
     },
     "Edit" : {
@@ -84,6 +78,9 @@
 
     },
     "My Progress" : {
+
+    },
+    "Next Up" : {
 
     },
     "Note" : {
@@ -123,6 +120,9 @@
 
     },
     "Search" : {
+
+    },
+    "Skillspace" : {
 
     },
     "Submit Assignment" : {

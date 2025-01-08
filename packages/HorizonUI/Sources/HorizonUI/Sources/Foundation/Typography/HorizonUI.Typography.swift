@@ -100,14 +100,15 @@ public extension HorizonUI {
         public func body(content: Content) -> some View{
             content
                 .font(name.font)
+            // TODO: Research line height implementation
 //                .lineSpacing(name.lineSpacing)
                 .tracking(name.letterSpacing)
         }
     }
 }
 
-extension View {
-    public func huiTypography(_ name: HorizonUI.Typography.Name) -> some View {
+public extension View {
+    func huiTypography(_ name: HorizonUI.Typography.Name) -> some View {
         modifier(HorizonUI.Typography(name))
     }
 }

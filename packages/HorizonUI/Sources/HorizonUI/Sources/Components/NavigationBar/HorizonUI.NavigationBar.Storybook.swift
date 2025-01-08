@@ -17,34 +17,19 @@
 //
 
 import SwiftUI
-
-public extension HorizonUI.Cards {
+public extension HorizonUI.NavigationBar {
     struct Storybook: View {
         public var body: some View {
-            ScrollView {
-                VStack {
-                    Text("Module Container")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.ModuleContainer.Storybook()
-                    Text("Module Item Card")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.ModuleItemCard.Storybook()
-                    Text("Learning Object Card")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.LearningObjectCard.Storybook()
-                }
+            VStack {
+                
             }
-            .navigationTitle("Cards")
-            .padding()
-            .background(Color.black.opacity(0.1))
+            .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"))
+            .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing(onNotebookDidTap: {}, onNotificationDidTap: {}, onMailDidTap: {}))
+            .navigationTitle("NavigationBar")
         }
     }
 }
 
 #Preview {
-    HorizonUI.Cards.Storybook()
-}
-
-public extension HorizonUI {
-    struct Cards { }
+    HorizonUI.NavigationBar.Storybook()
 }

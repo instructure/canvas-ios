@@ -19,6 +19,7 @@
 import Core
 import HorizonUI
 import UIKit
+import SwiftUI
 
 final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Properties
@@ -54,6 +55,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
     private func presentChatBot() {
         let vc = CoreHostingController(AIAssembly.makeChatBotView())
+        vc.modalPresentationStyle = .pageSheet
         router.show(vc, from: self, options: .modal(isDismissable: false))
     }
 
@@ -63,7 +65,8 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         )
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .backgroundLight
+
+        appearance.backgroundColor = UIColor(Color.huiColors.surface.pagePrimary)
         appearance.shadowImage = UIImage()
         appearance.shadowColor = nil
 
@@ -73,7 +76,8 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         vc.navigationBar.scrollEdgeAppearance = appearance
 
         vc.tabBarItem.title = String(localized: "Home", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "house")
+        vc.tabBarItem.image = getHorizonImage(name: "home")
+        vc.tabBarItem.selectedImage = getHorizonImage(name: "home_filled")
         return vc
     }
 
@@ -82,12 +86,19 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
             rootViewController: CoreHostingController(LearnAssembly.makeCoursesView())
         )
         vc.tabBarItem.title = String(localized: "Learn", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "list.bullet")
+        vc.tabBarItem.image = getHorizonImage(name: "book_2")
+        vc.tabBarItem.selectedImage = getHorizonImage(name: "book_2_filled")
         return vc
     }
 
     private func fakeTab() -> UIViewController {
-        .init()
+        if shouldPresentChatBot {
+            let vc = UIViewController()
+            vc.tabBarItem.image = UIImage(resource: .chatBot)
+            return vc
+        } else {
+            return .init()
+        }
     }
 
     private func careerTab() -> UIViewController {
@@ -95,8 +106,9 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
             rootViewController: CoreHostingController(Storybook())
         )
         vc.navigationBar.prefersLargeTitles = true
-        vc.tabBarItem.title = String(localized: "Career", bundle: .horizon)
-        vc.tabBarItem.image = UIImage(systemName: "point.bottomleft.filled.forward.to.point.topright.scurvepath")
+        vc.tabBarItem.title = String(localized: "Skillspace", bundle: .horizon)
+        vc.tabBarItem.image = getHorizonImage(name: "hub")
+        vc.tabBarItem.selectedImage = getHorizonImage(name: "hub_filled")
         return vc
     }
 
@@ -117,6 +129,10 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
         return inboxSplit
     }
+
+    private func getHorizonImage(name: String) -> UIImage? {
+        UIImage(named: name, in: Bundle.horizonUI, with: nil)
+    }
 }
 
 extension HorizonTabBarController {
@@ -127,7 +143,17 @@ extension HorizonTabBarController {
         guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
             return true
         }
-        if selectedIndex == 2 { return false }
+        if selectedIndex == 2, shouldPresentChatBot {
+            presentChatBot()
+            return false
+        }
         return true
+    }
+
+    private var shouldPresentChatBot: Bool {
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            return true
+        }
+        return false
     }
 }
