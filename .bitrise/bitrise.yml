@@ -3,7 +3,7 @@ format_version: '13'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: ios
 include:
-  - path: .bitrise/pr_adhoc/bitrise_pr_adhoc.yml
+  - path: .bitrise/pr_adhoc/workflow_pr_adhoc_builds.yml
 workflows:
   _common_prepare_workspace:
     steps:
@@ -30,8 +30,6 @@ workflows:
         - content: |-
             #!/usr/bin/env bash
             sudo systemsetup -settimezone America/Denver
-            envman add --key BITRISE_CONFIGURATION --value Adhoc
-            envman add --key BITRISE_SCHEME --value Student
         title: Update timezone to MST
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
