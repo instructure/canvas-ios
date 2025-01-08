@@ -416,6 +416,7 @@ public extension HorizonUI {
         let circle = Image(.circle)
         let ai = Image(.ai)
         let aiFilled = Image(.aiFilled)
+        let menuBookNotebook = Image(.menuBookNotebook)
 
         func allImages() -> [Image] {
             let mirror = Mirror(reflecting: self)
@@ -428,4 +429,8 @@ public extension HorizonUI {
 
 extension Image {
     static let huiIcons = HorizonUI.icons
+}
+
+public extension Bundle {
+    static let horizonUI = Bundle.module
 }

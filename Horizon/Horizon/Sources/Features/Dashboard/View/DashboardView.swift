@@ -24,6 +24,9 @@ struct DashboardView: View {
     @ObservedObject private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
 
+    // TODO: - Set with correct url later
+    private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
+
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
     }
@@ -79,8 +82,14 @@ struct DashboardView: View {
             }
             .padding(.bottom, .huiSpaces.primitives.mediumSmall)
         }
-        .navigationBarItems(leading: nameLabel)
-        .navigationBarItems(trailing: navBarIcons)
+        .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: logoURL))
+        .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing {
+            viewModel.notebookDidTap(controller: viewController)
+        } onNotificationDidTap: {
+            viewModel.notificationsDidTap()
+        } onMailDidTap: {
+            viewModel.mailDidTap()
+        })
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)
     }
@@ -88,44 +97,6 @@ struct DashboardView: View {
     private var nameLabel: some View {
         Size16RegularTextDarkestTitle(title: viewModel.title)
     }
-
-    private var navBarIcons: some View {
-        HStack(spacing: 0) {
-            Button {
-                viewModel.notebookDidTap(viewController)
-            } label: {
-                Image(systemName: "book.closed")
-                    .tint(.backgroundDark)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backgroundLightest)
-                    .clipShape(.circle)
-                    .shadow(color: .backgroundDark, radius: 2)
-            }
-
-            Button {
-                viewModel.notificationsDidTap()
-            } label: {
-                Image(systemName: "bell.badge")
-                    .tint(.backgroundDark)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backgroundLightest)
-                    .clipShape(.circle)
-                    .shadow(color: .backgroundDark, radius: 2)
-            }
-
-            Button {
-                viewModel.profileDidTap()
-            } label: {
-                Image(systemName: "person")
-                    .tint(.backgroundDark)
-                    .frame(width: 40, height: 40)
-                    .background(Color.backgroundLightest)
-                    .clipShape(.circle)
-                    .shadow(color: .backgroundDark, radius: 2)
-            }
-        }
-    }
-
 }
 
 #if DEBUG
