@@ -20,38 +20,80 @@ import SwiftUI
 
 public extension HorizonUI {
     struct Fonts: Sendable {
+        // MARK: Private
+        
         fileprivate init() {}
 
-        enum Variants: String, CaseIterable {
+        private struct VariantAndSize : Sendable{
+            let variant: Variants
+            let size: Double
+
+            func scaledFont() -> Font {
+                let scaledSize = UIFontMetrics.default.scaledValue(for: size)
+                return Font.custom(variant.rawValue, size: scaledSize)
+            }
+
+            func uiFont() -> UIFont {
+                let font = UIFont(name: variant.rawValue, size: size) ?? UIFont.systemFont(ofSize: size)
+                return UIFontMetrics.default.scaledFont(for: font)
+            }
+        }
+
+        private static let manropeR12: VariantAndSize = .init(variant: .manropeRegular, size: 12)
+
+        private static let manropeB28: VariantAndSize = .init(variant: .manropeBold, size: 28)
+        private static let manropeB24: VariantAndSize = .init(variant: .manropeBold, size: 24)
+        private static let manropeB20: VariantAndSize = .init(variant: .manropeBold, size: 20)
+
+        private static let figtreeR16: VariantAndSize = .init(variant: .figreeRegular, size: 16)
+        private static let figtreeR14: VariantAndSize = .init(variant: .figreeRegular, size: 14)
+        private static let figtreeR12: VariantAndSize = .init(variant: .figreeRegular, size: 12)
+
+        private static let figtreeSB16: VariantAndSize = .init(variant: .figreeSemiBold, size: 16)
+        private static let figtreeSB14: VariantAndSize = .init(variant: .figreeSemiBold, size: 14)
+        private static let figtreeSB12: VariantAndSize = .init(variant: .figreeSemiBold, size: 12)
+
+        // MARK: Public
+
+        enum Variants: String, CaseIterable, Sendable {
             case figreeRegular = "Figree-Regular"
             case figreeSemiBold = "Figtree-SemiBold"
             case manropeRegular = "Manrope-Regular"
             case manropeBold = "Manrope-Bold"
         }
 
-        let manropeRegular12: Font = .scaledFont(name: .manropeRegular, size: 12)
+        let manropeRegular12: Font = HorizonUI.Fonts.manropeR12.scaledFont()
 
-        let manropeBold28: Font = .scaledFont(name: .manropeBold, size: 28)
-        let manropeBold24: Font = .scaledFont(name: .manropeBold, size: 24)
-        let manropeBold20: Font = .scaledFont(name: .manropeBold, size: 20)
+        let manropeBold28: Font = HorizonUI.Fonts.manropeB28.scaledFont()
+        let manropeBold24: Font = HorizonUI.Fonts.manropeB24.scaledFont()
+        let manropeBold20: Font = HorizonUI.Fonts.manropeB20.scaledFont()
 
-        let figtreeRegular16: Font = .scaledFont(name: .figreeRegular, size: 16)
-        let figtreeRegular14: Font = .scaledFont(name: .figreeRegular, size: 14)
-        let figtreeRegular12: Font = .scaledFont(name: .figreeRegular, size: 12)
+        let figtreeRegular16: Font = HorizonUI.Fonts.figtreeR16.scaledFont()
+        let figtreeRegular14: Font = HorizonUI.Fonts.figtreeR14.scaledFont()
+        let figtreeRegular12: Font = HorizonUI.Fonts.figtreeR12.scaledFont()
 
-        let figtreeSemibold16: Font = .scaledFont(name: .figreeSemiBold, size: 16)
-        let figtreeSemibolt14: Font = .scaledFont(name: .figreeSemiBold, size: 14)
-        let figtreeSemibold12: Font = .scaledFont(name: .figreeSemiBold, size: 12)
+        let figtreeSemibold16: Font = HorizonUI.Fonts.figtreeSB16.scaledFont()
+        let figtreeSemibold14: Font = HorizonUI.Fonts.figtreeSB14.scaledFont()
+        let figtreeSemibold12: Font = HorizonUI.Fonts.figtreeSB12.scaledFont()
+
+        func uiFont(font: Font) -> UIFont {
+            switch font {
+            case manropeRegular12: return HorizonUI.Fonts.manropeR12.uiFont()
+            case manropeBold28: return HorizonUI.Fonts.manropeB28.uiFont()
+            case manropeBold24: return HorizonUI.Fonts.manropeB24.uiFont()
+            case manropeBold20: return HorizonUI.Fonts.manropeB20.uiFont()
+            case figtreeRegular16: return HorizonUI.Fonts.figtreeR16.uiFont()
+            case figtreeRegular14: return HorizonUI.Fonts.figtreeR14.uiFont()
+            case figtreeRegular12: return HorizonUI.Fonts.figtreeR12.uiFont()
+            case figtreeSemibold16: return HorizonUI.Fonts.figtreeSB16.uiFont()
+            case figtreeSemibold14: return HorizonUI.Fonts.figtreeSB14.uiFont()
+            default: return HorizonUI.Fonts.figtreeSB12.uiFont()
+            }
+        }
     }
 
     static let fonts = HorizonUI.Fonts()
 }
-
 extension Font {
     static let huiFonts = HorizonUI.fonts
-
-    fileprivate static func scaledFont(name: HorizonUI.Fonts.Variants, size: Double) -> Font {
-        let scaledSize = UIFontMetrics.default.scaledValue(for: size)
-        return Font.custom(name.rawValue, size: scaledSize)
-    }
 }

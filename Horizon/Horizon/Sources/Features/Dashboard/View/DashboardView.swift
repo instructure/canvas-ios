@@ -18,6 +18,7 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct DashboardView: View {
     @ObservedObject private var viewModel: DashboardViewModel
@@ -36,6 +37,7 @@ struct DashboardView: View {
                 ForEach(viewModel.courses) { course in
                     if course.currentModuleItem != nil, !course.upcomingModuleItems.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
+                            NoteableTextView("Hey, here's some text for you to select from and try to make highlights. Hey, here's some text for you to select from and try to make highlights. Hey, here's some text for you to select from and try to make highlights", key: "Test2")
                             Size24BoldTextDarkestTitle(title: course.name)
                                 .padding(.top, 16)
                             CertificateProgressBar(

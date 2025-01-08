@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension HorizonUI {
     struct Typography: ViewModifier {
-        enum Name: CaseIterable {
+        public enum Name: CaseIterable {
             case h1
             case h2
             case h3
@@ -45,7 +45,7 @@ public extension HorizonUI {
                 case .p3: return .huiFonts.figtreeRegular12
                 case .tag: return .huiFonts.manropeRegular12
                 case .labelLargeBold: return .huiFonts.figtreeSemibold16
-                case .labelMediumBold: return .huiFonts.figtreeSemibolt14
+                case .labelMediumBold: return .huiFonts.figtreeSemibold14
                 case .labelSmallBold: return .huiFonts.figtreeSemibold12
                 case .labelSmall: return .huiFonts.figtreeRegular12
                 case .buttonTextLarge: return .huiFonts.figtreeRegular16
