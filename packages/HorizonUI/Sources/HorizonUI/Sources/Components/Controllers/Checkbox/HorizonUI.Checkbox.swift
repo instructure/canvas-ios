@@ -96,10 +96,14 @@ fileprivate extension HorizonUI.Checkbox {
                 .foregroundStyle(
                     style == .error
                     ? Color.huiColors.icon.error
-                    : Color.huiColors.lineAndBorders.containerStroke
+                    : toggleColor
                 )
 
                 configuration.label
+            }
+
+            var toggleColor: Color {
+                configuration.isOn ? .huiColors.icon.default : .huiColors.lineAndBorders.containerStroke
             }
         }
 

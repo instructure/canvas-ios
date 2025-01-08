@@ -20,80 +20,78 @@ import SwiftUI
 
 public extension HorizonUI.ToggleItem {
     struct Storybook: View {
+        @State private var toggleStates: [Bool] = [false, true, false, true, false, true, false, false, false, true]
 
         public var body: some View {
-                Grid(alignment: .leading) {
-                    GridRow {
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(false),
-                            title: "Content",
-                            description: "Description"
-                        )
+            Grid(alignment: .leading) {
+                GridRow {
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[0],
+                        title: "Content",
+                        description: "Description"
+                    )
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[1],
+                        title: "Content",
+                        description: "Description"
+                    )
+                }
 
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(true),
-                            title: "Content",
-                            description: "Description"
-                        )
-                    }
+                GridRow {
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[2],
+                        title: "Content"
+                    )
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[3],
+                        title: "Content"
+                    )
+                }
 
-                    GridRow {
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(false),
-                            title: "Content"
-                        )
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(true),
-                            title: "Content"
-                        )
-                    }
+                GridRow {
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[4],
+                        title: "Content",
+                        description: "Description",
+                        isRequired: true
+                    )
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[5],
+                        title: "Content",
+                        description: "Description",
+                        isRequired: true
+                    )
+                }
 
-                    GridRow {
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(false),
-                            title: "Content",
-                            description: "Description",
-                            isRequired: true
-                        )
-
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(true),
-                            title: "Content",
-                            description: "Description",
-                            isRequired: true
-                        )
-                    }
-
-                    GridRow(alignment: .top) {
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(false),
-                            title: "Content",
-                            errorMessage: "Error Text"
-                        )
-
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(false),
-                            title: "Content",
-                            description: "Description",
-                            errorMessage: "Error Text"
-                        )
-                    }
-
-                    GridRow {
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(false),
-                            title: "Content",
-                            isDisabled: true
-                        )
-
-                        HorizonUI.ToggleItem(
-                            isOn: .constant(true),
-                            title: "Content",
-                            isDisabled: true
-                        )
-                    }
+                GridRow(alignment: .top) {
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[6],
+                        title: "Content",
+                        errorMessage: "Error Text"
+                    )
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[7],
+                        title: "Content",
+                        description: "Description",
+                        errorMessage: "Error Text"
+                    )
+                }
+                
+                GridRow {
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[8],
+                        title: "Content",
+                        isDisabled: true
+                    )
+                    HorizonUI.ToggleItem(
+                        isOn: $toggleStates[9],
+                        title: "Content",
+                        isDisabled: true
+                    )
                 }
             }
+        }
+
     }
 }
 

@@ -20,94 +20,86 @@ import SwiftUI
 
 extension HorizonUI.Radio {
     struct Storybook: View {
+        @State private var selectedOptions: [Bool] = Array(repeating: false, count: 12)
+
         var body: some View {
             Grid(alignment: .leading) {
                 GridRow {
                     HorizonUI.Radio(
-                        isOn: .constant(false),
+                        isOn: $selectedOptions[0],
                         title: "Content"
                     )
-
                     HorizonUI.Radio(
-                        isOn: .constant(true),
+                        isOn: $selectedOptions[1],
                         title: "Content"
                     )
                 }
-
                 GridRow {
                     HorizonUI.Radio(
-                        isOn: .constant(false),
+                        isOn: $selectedOptions[2],
                         title: "Content",
                         isRequired: true
                     )
-
                     HorizonUI.Radio(
-                        isOn: .constant(true),
+                        isOn: $selectedOptions[3],
                         title: "Content",
                         isRequired: false
                     )
                 }
-
                 GridRow {
                     HorizonUI.Radio(
-                        isOn: .constant(false),
+                        isOn: $selectedOptions[4],
                         title: "Content",
                         description: "Description"
                     )
-
                     HorizonUI.Radio(
-                        isOn: .constant(true),
+                        isOn: $selectedOptions[5],
                         title: "Content",
                         description: "Description"
                     )
                 }
-
                 GridRow {
                     HorizonUI.Radio(
-                        isOn: .constant(false),
+                        isOn: $selectedOptions[6],
                         title: "Content",
                         description: "Description",
                         isRequired: true
                     )
-
                     HorizonUI.Radio(
-                        isOn: .constant(true),
+                        isOn: $selectedOptions[7],
                         title: "Content",
                         description: "Description",
                         isRequired: true
                     )
                 }
-
                 GridRow(alignment: .top) {
                     HorizonUI.Radio(
-                        isOn: .constant(false),
+                        isOn: $selectedOptions[8],
                         title: "Content",
                         errorMessage: "Error Text"
                     )
-
                     HorizonUI.Radio(
-                        isOn: .constant(false),
+                        isOn: $selectedOptions[9],
                         title: "Content",
                         description: "Description",
                         errorMessage: "Error Text"
                     )
                 }
-
                 GridRow {
                     HorizonUI.Radio(
-                        isOn: .constant(false),
+                        isOn: $selectedOptions[10],
                         title: "Content",
                         isDisabled: true
                     )
-                    
                     HorizonUI.Radio(
-                        isOn: .constant(true),
+                        isOn: $selectedOptions[11],
                         title: "Content",
                         isDisabled: true
                     )
                 }
             }
         }
+
     }
 }
 
