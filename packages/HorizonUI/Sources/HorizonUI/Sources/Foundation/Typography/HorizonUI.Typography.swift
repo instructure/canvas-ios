@@ -100,8 +100,7 @@ public extension HorizonUI {
         public func body(content: Content) -> some View{
             content
                 .font(name.font)
-            // TODO: Need to check with Szabolcs
-//                .lineSpacing(name.lineSpacing)
+                .lineSpacing(name.lineSpacing)
                 .tracking(name.letterSpacing)
         }
     }
