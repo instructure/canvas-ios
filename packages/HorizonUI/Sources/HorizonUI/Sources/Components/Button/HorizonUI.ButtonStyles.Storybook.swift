@@ -71,14 +71,18 @@ extension HorizonUI.ButtonStyles {
             isDisabled: Bool
         ) -> some View {
             HStack(spacing: 16) {
-                HorizonUI.IconButton(type, isSmall: isSmall) {}
-                    .disabled(isDisabled)
+                HorizonUI.IconButton(
+                    HorizonUI.icons.add,
+                    type: type,
+                    isSmall: isSmall
+                ) {}
+                .disabled(isDisabled)
 
                 HorizonUI.PrimaryButton("\(type.rawValue) Button",
                                         type: type,
                                         isSmall: isSmall,
                                         fillsWidth: isSmall) {}
-                    .disabled(isDisabled)
+                .disabled(isDisabled)
             }
         }
 

@@ -30,7 +30,7 @@ extension HorizonUI {
 
         init(
             _ label: String,
-            type: HorizonUI.ButtonStyles.ButtonType,
+            type: HorizonUI.ButtonStyles.ButtonType = .blue,
             isSmall: Bool = false,
             fillsWidth: Bool = false,
             leading: Image? = nil,
@@ -68,10 +68,10 @@ extension HorizonUI {
         private let action: () -> Void
 
         init(
-            _ type: HorizonUI.ButtonStyles.ButtonType = .blue,
+            _ icon: Image?,
+            type: HorizonUI.ButtonStyles.ButtonType = .blue,
             isSmall: Bool = false,
             badgeNumber: String? = nil,
-            icon: Image? = nil,
             action: @escaping () -> Void
         ) {
             self.type = type
