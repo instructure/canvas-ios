@@ -57,6 +57,13 @@ public extension HorizonUI {
                     return inline.textColor
                 }
             }
+
+            var drawBorder: Bool {
+                switch self {
+                case .outline: return true
+                default: return false
+                }
+            }
         }
 
         private let title: String
@@ -65,8 +72,10 @@ public extension HorizonUI {
         private let isUppercased: Bool
         private let icon: Image?
         private let cornerRadius: CornerRadius = .level4
-        private let drawBorder: Bool
-        
+        private let horizontalPadding: CGFloat
+        private let verticalPadding: CGFloat
+        private let minHeight: CGFloat
+
         public init(
             title: String,
             style: Pill.Style = .outline(Style.Outline.default),
@@ -79,11 +88,15 @@ public extension HorizonUI {
             self.isSmall = isSmall
             self.isUppercased = isUppercased
             self.icon = icon
-            
-            if case .outline = style {
-                drawBorder = true
+
+            if case .inline = style {
+                horizontalPadding = 0
+                verticalPadding = 0
+                minHeight = 17
             } else {
-                drawBorder = false
+                horizontalPadding = isSmall ? .huiSpaces.primitives.xSmall : .huiSpaces.primitives.small
+                verticalPadding = isSmall ? .huiSpaces.primitives.xxSmall : .huiSpaces.primitives.xSmall
+                minHeight = isSmall ? 25 : 33
             }
         }
 
@@ -99,16 +112,17 @@ public extension HorizonUI {
                     .huiTypography(isUppercased ? .tag : .labelSmall)
                     .foregroundStyle(style.textColor)
             }
-            .padding(.horizontal, isSmall ? .huiSpaces.primitives.xSmall : .huiSpaces.primitives.small)
-            .padding(.vertical, isSmall ? .huiSpaces.primitives.xxSmall : .huiSpaces.primitives.xSmall)
+
+            .padding(.horizontal, horizontalPadding)
+            .padding(.vertical, verticalPadding)
             .background(style.backgroundColor)
             .huiCornerRadius(level: cornerRadius)
             .huiBorder(
-                level: drawBorder ? .level1 : nil,
+                level: style.drawBorder ? .level1 : nil,
                 color: style.borderColor,
                 radius: cornerRadius.attributes.radius
             )
-            .frame(minHeight: isSmall ? 25 : 33)
+            .frame(minHeight: minHeight)
         }
     }
 }

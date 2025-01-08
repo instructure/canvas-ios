@@ -66,4 +66,8 @@ final class DashboardViewModel: ObservableObject {
     func notificationsDidTap() {}
 
     func mailDidTap() {}
+
+    func navigateToCourseDetails(url: URL, viewController: WeakViewController) {
+        router.route(to: url, from: viewController)
+    }
 }
