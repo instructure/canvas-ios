@@ -79,7 +79,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 userID: userID,
                 gradingPeriodID: nil,
                 types: ["StudentEnrollment"],
-                states: [.active]
+                states: [.active, .completed]
             )
         )
 
@@ -127,7 +127,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
             let gradingPeriods = params.0.2
             let assignments = params.1
             let enrollments = params.2
-            let courseEnrollment = course.enrollmentForGrades(userId: userID)
+            let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
             if !isInitialGradingPeriodSet {
                 isInitialGradingPeriodSet = true
@@ -193,7 +193,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 userID: userID,
                 gradingPeriodID: gradingPeriodID,
                 types: ["StudentEnrollment"],
-                states: [.active]
+                states: [.active, .completed]
             )
         )
 
@@ -307,13 +307,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
         enrollments: [Enrollment],
         baseOnGradedAssignments: Bool
     ) -> AnyPublisher<String?, Never> {
-        let courseEnrollment = course.enrollmentForGrades(userId: userID)
-        let gradeEnrollment = enrollments.first {
-            $0.id != nil &&
-            $0.state == .active &&
-            $0.userID == userID &&
-            $0.type.lowercased().contains("student")
-        }
+        let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
+        let gradeEnrollment = gradeEnrollment(from: enrollments)
         let hideQuantitativeData = course.hideQuantitativeData == true
 
         // When these conditions are met we don't show any grade, instead we display a lock icon.
@@ -435,6 +430,18 @@ public final class GradeListInteractorLive: GradeListInteractor {
     }
 
     private func courseEnrollment(_ course: Course, userId: String?) -> Enrollment? {
-        course.enrollmentForGrades(userId: userId)
+        course.enrollmentForGrades(userId: userId, includingCompleted: true)
+    }
+
+    private func gradeEnrollment(from list: [Enrollment]) -> Enrollment? {
+        func first(of state: EnrollmentState) -> Enrollment? {
+            return list.first(where: {
+                $0.id != nil &&
+                $0.state == state &&
+                $0.userID == userID &&
+                $0.type.lowercased().contains("student")
+            })
+        }
+        return first(of: .active) ?? first(of: .completed)
     }
 }
