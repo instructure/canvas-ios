@@ -49,7 +49,10 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
     func waitForWebView() {
         let webView = self.webView
-        let exp = expectation(for: NSPredicate(key: #keyPath(MockWebView.runningCount), equals: 0), evaluatedWith: webView) { () -> Bool in
+        let exp = expectation(
+            for: NSPredicate(key: #keyPath(MockWebView.runningCount), equals: 0),
+            evaluatedWith: webView
+        ) {
             webView.url != nil && !webView.isLoading
         }
         wait(for: [exp], timeout: 9)

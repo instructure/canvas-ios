@@ -149,8 +149,8 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testMakesRelativePath() throws {
-        var testee = URL(string: "folder/file")!
-        var result = try testee.makeRelativePath(toBaseUrl: URL(string: "folder")!)
+        let testee = URL(string: "folder/file")!
+        let result = try testee.makeRelativePath(toBaseUrl: URL(string: "folder")!)
         XCTAssertEqual(result, "file")
 
         XCTAssertThrowsError(try testee.makeRelativePath(toBaseUrl: URL(string: "anotherFolder")!)) { error in

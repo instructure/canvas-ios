@@ -36,17 +36,17 @@ public extension UIColor {
 }
 
 public extension Color {
-    static let textDanger = Color(.textDanger)
-    static let textDark = Color(.textDark)
-    static let textDarkest = Color(.textDarkest)
-    static let textInfo = Color(.textInfo)
-    static let textLight = Color(.textLight)
-    static let textLightest = Color(.textLightest)
-    static let textLink = Color(.textLink)
-    static let textMasquerade = Color(.textMasquerade)
-    static let textPlaceholder = Color(.textPlaceholder)
-    static let textSuccess = Color(.textSuccess)
-    static let textWarning = Color(.textWarning)
+    static let textDanger = Color(uiColor: .textDanger)
+    static let textDark = Color(uiColor: .textDark)
+    static let textDarkest = Color(uiColor: .textDarkest)
+    static let textInfo = Color(uiColor: .textInfo)
+    static let textLight = Color(uiColor: .textLight)
+    static let textLightest = Color(uiColor: .textLightest)
+    static let textLink = Color(uiColor: .textLink)
+    static let textMasquerade = Color(uiColor: .textMasquerade)
+    static let textPlaceholder = Color(uiColor: .textPlaceholder)
+    static let textSuccess = Color(uiColor: .textSuccess)
+    static let textWarning = Color(uiColor: .textWarning)
 }
 
 // MARK: - Background Colors
@@ -68,19 +68,19 @@ public extension UIColor {
 }
 
 public extension Color {
-    static let backgroundDanger = Color(.backgroundDanger)
-    static let backgroundDark = Color(.backgroundDark)
-    static let backgroundDarkest = Color(.backgroundDarkest)
-    static let backgroundGrouped = Color(.backgroundGrouped)
-    static let backgroundGroupedCell = Color(.backgroundGroupedCell)
-    static let backgroundInfo = Color(.backgroundInfo)
-    static let backgroundLight = Color(.backgroundLight)
-    static let backgroundLightest = Color(.backgroundLightest)
-    static let backgroundLightestElevated = Color(.backgroundLightestElevated)
-    static let backgroundMasquerade = Color(.backgroundMasquerade)
-    static let backgroundMedium = Color(.backgroundMedium)
-    static let backgroundSuccess = Color(.backgroundSuccess)
-    static let backgroundWarning = Color(.backgroundWarning)
+    static let backgroundDanger = Color(uiColor: .backgroundDanger)
+    static let backgroundDark = Color(uiColor: .backgroundDark)
+    static let backgroundDarkest = Color(uiColor: .backgroundDarkest)
+    static let backgroundGrouped = Color(uiColor: .backgroundGrouped)
+    static let backgroundGroupedCell = Color(uiColor: .backgroundGroupedCell)
+    static let backgroundInfo = Color(uiColor: .backgroundInfo)
+    static let backgroundLight = Color(uiColor: .backgroundLight)
+    static let backgroundLightest = Color(uiColor: .backgroundLightest)
+    static let backgroundLightestElevated = Color(uiColor: .backgroundLightestElevated)
+    static let backgroundMasquerade = Color(uiColor: .backgroundMasquerade)
+    static let backgroundMedium = Color(uiColor: .backgroundMedium)
+    static let backgroundSuccess = Color(uiColor: .backgroundSuccess)
+    static let backgroundWarning = Color(uiColor: .backgroundWarning)
 }
 
 // MARK: - Border Colors
@@ -100,17 +100,17 @@ public extension UIColor {
 }
 
 public extension Color {
-    static let borderDanger = Color(.borderDanger)
-    static let borderDark = Color(.borderDark)
-    static let borderDarkest = Color(.borderDarkest)
-    static let borderDebug = Color(.borderDebug)
-    static let borderInfo = Color(.borderInfo)
-    static let borderLight = Color(.borderLight)
-    static let borderLightest = Color(.borderLightest)
-    static let borderMasquerade = Color(.borderMasquerade)
-    static let borderMedium = Color(.borderMedium)
-    static let borderSuccess = Color(.borderSuccess)
-    static let borderWarning = Color(.borderWarning)
+    static let borderDanger = Color(uiColor: .borderDanger)
+    static let borderDark = Color(uiColor: .borderDark)
+    static let borderDarkest = Color(uiColor: .borderDarkest)
+    static let borderDebug = Color(uiColor: .borderDebug)
+    static let borderInfo = Color(uiColor: .borderInfo)
+    static let borderLight = Color(uiColor: .borderLight)
+    static let borderLightest = Color(uiColor: .borderLightest)
+    static let borderMasquerade = Color(uiColor: .borderMasquerade)
+    static let borderMedium = Color(uiColor: .borderMedium)
+    static let borderSuccess = Color(uiColor: .borderSuccess)
+    static let borderWarning = Color(uiColor: .borderWarning)
 }
 
 // MARK: - Course Colors
@@ -131,18 +131,18 @@ public extension UIColor {
 }
 
 public extension Color {
-    static let course1 = Color(.course1)
-    static let course2 = Color(.course2)
-    static let course3 = Color(.course3)
-    static let course4 = Color(.course4)
-    static let course5 = Color(.course5)
-    static let course6 = Color(.course6)
-    static let course7 = Color(.course7)
-    static let course8 = Color(.course8)
-    static let course9 = Color(.course9)
-    static let course10 = Color(.course10)
-    static let course11 = Color(.course11)
-    static let course12 = Color(.course12)
+    static let course1 = Color(uiColor: .course1)
+    static let course2 = Color(uiColor: .course2)
+    static let course3 = Color(uiColor: .course3)
+    static let course4 = Color(uiColor: .course4)
+    static let course5 = Color(uiColor: .course5)
+    static let course6 = Color(uiColor: .course6)
+    static let course7 = Color(uiColor: .course7)
+    static let course8 = Color(uiColor: .course8)
+    static let course9 = Color(uiColor: .course9)
+    static let course10 = Color(uiColor: .course10)
+    static let course11 = Color(uiColor: .course11)
+    static let course12 = Color(uiColor: .course12)
 }
 
 // MARK: - iOS Specific Colors
@@ -152,5 +152,5 @@ public extension UIColor {
 }
 
 public extension Color {
-    static let disabledGray = Color(.disabledGray)
+    static let disabledGray = Color(uiColor: .disabledGray)
 }
