@@ -19,109 +19,71 @@
 import SwiftUI
 
 extension HorizonUI.ButtonStyles {
+    private struct StorybookConfiguration: Identifiable {
+        var id: String { title }
+
+        let isSmall: Bool
+        let isDisabled: Bool
+        let title: String
+    }
+
     struct Storybook: View {
         var body: some View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    Section(header: header("Regular Height - Relative Width Buttons")) {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Button("Black Button") {}
-                                .buttonStyle(
-                                    HorizonUI.ButtonStyles.black(
-                                        leading: HorizonUI.icons.addCircle,
-                                        trailing: HorizonUI.icons.addCircle
-                                    )
-                                )
-
-                            Button("White Button") {}
-                                .buttonStyle(
-                                    HorizonUI.ButtonStyles.white(
-                                        leading: HorizonUI.icons.addCircle,
-                                        trailing: HorizonUI.icons.addCircle
-                                    )
-                                )
-                                .huiElevation(level: .level3)
-
-                            Button("AI Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.ai())
-
-                            Button("Blue Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.blue())
-
-                            Button("Beige Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.beige())
-                                .huiElevation(level: .level3)
-                        }
+                    ForEach(
+                        [
+                            StorybookConfiguration(
+                                isSmall: false,
+                                isDisabled: false,
+                                title: "Regular Height - Relative Width Buttons"
+                            ),
+                            StorybookConfiguration(
+                                isSmall: true, isDisabled: false, title: "Small Height - Block Width Buttons"),
+                            StorybookConfiguration(isSmall: false, isDisabled: true, title: "Disabled Buttons"),
+                        ]
+                    ) { storybookConfiguration in
+                        section(storybookConfiguration)
                     }
+                    .padding(16)
+                }
+                .background(Color(red: 88 / 100, green: 88 / 100, blue: 88 / 100))
+                .navigationTitle("Buttons")
+                .navigationBarTitleDisplayMode(.large)
+            }
+        }
 
-                    Section(header: header("Small Height - Block Width Buttons")) {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Button("Small Black Button") {}
-                                .buttonStyle(
-                                    HorizonUI.ButtonStyles.black(
-                                        isSmall: true,
-                                        fillsWidth: true
-                                    )
-                                )
-                            Button("Small White Button") {}
-                                .buttonStyle(
-                                    HorizonUI.ButtonStyles.white(
-                                        isSmall: true,
-                                        fillsWidth: true
-                                    )
-                                )
-                                .huiElevation(level: .level3)
-                            Button("Small AI Button") {}
-                                .buttonStyle(
-                                    HorizonUI.ButtonStyles.ai(
-                                        isSmall: true,
-                                        fillsWidth: true
-                                    )
-                                )
-                            Button("Small Blue Button") {}
-                                .buttonStyle(
-                                    HorizonUI.ButtonStyles.blue(
-                                        isSmall: true,
-                                        fillsWidth: true
-                                    )
-                                )
-                            Button("Small Beige Button") {}
-                                .buttonStyle(
-                                    HorizonUI.ButtonStyles.beige(
-                                        isSmall: true,
-                                        fillsWidth: true
-                                    )
-                                )
-                                .huiElevation(level: .level3)
-                        }
-                    }
-
-                    Section(header: header("Disabled Buttons")) {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Button("Disabled Black Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.black())
-                                .disabled(true)
-                            Button("Disabled White Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.white())
-                                .disabled(true)
-                                .huiElevation(level: .level3)
-                            Button("Disabled AI Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.ai())
-                                .disabled(true)
-                            Button("Disabled Blue Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.blue())
-                                .disabled(true)
-                            Button("Disabled Beige Button") {}
-                                .buttonStyle(HorizonUI.ButtonStyles.beige())
-                                .disabled(true)
-                                .huiElevation(level: .level3)
-                        }
+        private func section(_ storybookConfiguration: StorybookConfiguration) -> some View {
+            Section(header: header(storybookConfiguration.title)) {
+                VStack(alignment: .leading, spacing: 16) {
+                    ForEach(HorizonUI.ButtonStyles.ButtonType.allCases) { type in
+                        row(
+                            type: type, isSmall: storybookConfiguration.isSmall,
+                            isDisabled: storybookConfiguration.isDisabled)
                     }
                 }
-                .padding(16)
             }
-            .navigationTitle("Buttons")
-            .navigationBarTitleDisplayMode(.large)
+        }
+
+        private func row(
+            type: HorizonUI.ButtonStyles.ButtonType,
+            isSmall: Bool,
+            isDisabled: Bool
+        ) -> some View {
+            HStack(spacing: 16) {
+                HorizonUI.IconButton(
+                    HorizonUI.icons.add,
+                    type: type,
+                    isSmall: isSmall
+                ) {}
+                .disabled(isDisabled)
+
+                HorizonUI.PrimaryButton("\(type.rawValue) Button",
+                                        type: type,
+                                        isSmall: isSmall,
+                                        fillsWidth: isSmall) {}
+                .disabled(isDisabled)
+            }
         }
 
         private func header(_ title: String) -> some View {
