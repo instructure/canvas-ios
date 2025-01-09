@@ -66,6 +66,8 @@ public class PlannerViewController: UIViewController {
 
         view.backgroundColor = .backgroundLightest
         navigationItem.titleView = Brand.shared.headerImageView()
+        navigationItem.titleView?.isAccessibilityElement = true
+        navigationItem.titleView?.accessibilityTraits = .image
 
         profileButton.accessibilityIdentifier = "PlannerCalendar.profileButton"
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
