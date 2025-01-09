@@ -18,19 +18,11 @@
 
 import SwiftUI
 
-public extension HorizonUI {
-    struct Checkbox: View {
-
-        public enum Style {
-            case `default`
-            case partial
-            case error
-        }
-
+public extension HorizonUI.Controls {
+    struct Radio: View {
         // MARK: - Dependencies
 
         @Binding private var isOn: Bool
-        private let style: Style
         private let title: String
         private let description: String?
         private let errorMessage: String?
@@ -39,7 +31,6 @@ public extension HorizonUI {
 
         public init(
             isOn: Binding<Bool>,
-            style: Style,
             title: String,
             description: String? = nil,
             errorMessage: String? = nil,
@@ -47,24 +38,23 @@ public extension HorizonUI {
             isDisabled: Bool = false
         ) {
             self._isOn = isOn
-            self.style = style
             self.title = title
             self.description = description
             self.errorMessage = errorMessage
             self.isRequired = isRequired
             self.isDisabled = isDisabled
         }
-        
+
         public var body: some View {
             Toggle(isOn: $isOn) {
-                HorizonUI.ToggleDescriptionView(
+                HorizonUI.Controls.ToggleDescriptionView(
                     title: title,
                     description: description,
                     errorMessage: errorMessage,
                     isRequired: isRequired
                 )
             }
-            .toggleStyle(CheckboxStyle(style: style))
+            .toggleStyle(HorizonUI.Controls.RadioButtonStyle())
             .disabled(isDisabled)
             .opacity(isDisabled ? 0.5 : 1)
         }
@@ -72,43 +62,30 @@ public extension HorizonUI {
 }
 
 #Preview {
-    HorizonUI.Checkbox(
-        isOn: .constant(true),
-        style: .default,
-        title: "Title",
-        description: "Description",
-        isRequired: true,
-        isDisabled: true
-    )
+    HorizonUI.Controls.Radio(isOn: .constant(true), title: "Content")
 }
 
-fileprivate extension HorizonUI.Checkbox {
-    struct CheckboxStyle: ToggleStyle {
-        let style: Style
-
+private extension HorizonUI.Controls {
+    struct RadioButtonStyle: ToggleStyle {
         func makeBody(configuration: Configuration) -> some View {
             HStack(alignment: .top, spacing: .huiSpaces.primitives.xxSmall) {
                 Button {
                     configuration.isOn.toggle()
                 } label: {
-                    configuration.isOn ? checkedImage : Image.huiIcons.checkBoxOutlineBlank
+                    radioIcon
                 }
                 .foregroundStyle(
-                    style == .error
-                    ? Color.huiColors.icon.error
-                    : toggleColor
+                    configuration.isOn
+                        ? Color.huiColors.icon.default
+                        : Color.huiColors.lineAndBorders.containerStroke
                 )
 
                 configuration.label
             }
 
-            var toggleColor: Color {
-                configuration.isOn ? .huiColors.icon.default : .huiColors.lineAndBorders.containerStroke
+            var radioIcon: Image {
+                configuration.isOn ? Image.huiIcons.radioButtonChecked : Image.huiIcons.radioButtonUnchecked
             }
-        }
-
-        private var checkedImage: Image {
-            style == .default ? Image.huiIcons.checkBox : Image.huiIcons.indeterminateCheckBox
         }
     }
 }

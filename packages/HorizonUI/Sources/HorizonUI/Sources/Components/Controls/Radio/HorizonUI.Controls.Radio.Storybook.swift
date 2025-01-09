@@ -18,73 +18,81 @@
 
 import SwiftUI
 
-public extension HorizonUI.ToggleItem {
+extension HorizonUI.Controls.Radio {
     struct Storybook: View {
-        @State private var toggleStates: [Bool] = [false, true, false, true, false, true, false, false, false, true]
+        @State private var selectedOptions: [Bool] = Array(repeating: false, count: 12)
 
-        public var body: some View {
+        var body: some View {
             Grid(alignment: .leading) {
                 GridRow {
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[0],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[0],
+                        title: "Content"
+                    )
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[1],
+                        title: "Content"
+                    )
+                }
+                GridRow {
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[2],
+                        title: "Content",
+                        isRequired: true
+                    )
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[3],
+                        title: "Content",
+                        isRequired: false
+                    )
+                }
+                GridRow {
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[4],
                         title: "Content",
                         description: "Description"
                     )
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[1],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[5],
                         title: "Content",
                         description: "Description"
                     )
                 }
-
                 GridRow {
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[2],
-                        title: "Content"
-                    )
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[3],
-                        title: "Content"
-                    )
-                }
-
-                GridRow {
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[4],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[6],
                         title: "Content",
                         description: "Description",
                         isRequired: true
                     )
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[5],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[7],
                         title: "Content",
                         description: "Description",
                         isRequired: true
                     )
                 }
-
                 GridRow(alignment: .top) {
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[6],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[8],
                         title: "Content",
                         errorMessage: "Error Text"
                     )
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[7],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[9],
                         title: "Content",
                         description: "Description",
                         errorMessage: "Error Text"
                     )
                 }
-                
                 GridRow {
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[8],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[10],
                         title: "Content",
                         isDisabled: true
                     )
-                    HorizonUI.ToggleItem(
-                        isOn: $toggleStates[9],
+                    HorizonUI.Controls.Radio(
+                        isOn: $selectedOptions[11],
                         title: "Content",
                         isDisabled: true
                     )
@@ -96,5 +104,6 @@ public extension HorizonUI.ToggleItem {
 }
 
 #Preview {
-    HorizonUI.ToggleItem.Storybook()
+    HorizonUI.Controls.Radio.Storybook()
 }
+

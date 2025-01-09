@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension HorizonUI {
+public extension HorizonUI.Controls {
     struct ToggleItem: View {
         // MARK: - Dependencies
 
@@ -48,7 +48,7 @@ public extension HorizonUI {
         public var body: some View {
             VStack {
                 Toggle(isOn: $isOn) {
-                    HorizonUI.ToggleDescriptionView(
+                    HorizonUI.Controls.ToggleDescriptionView(
                         title: title,
                         description: description,
                         errorMessage: errorMessage,
@@ -68,7 +68,7 @@ public extension HorizonUI {
 }
 
 #Preview {
-    HorizonUI.ToggleItem(isOn: .constant(true),
+    HorizonUI.Controls.ToggleItem(isOn: .constant(true),
                          title: "Title",
                          description: "Description",
                          isRequired: true,
@@ -76,7 +76,7 @@ public extension HorizonUI {
 }
 
 
-fileprivate extension HorizonUI.ToggleItem {
+fileprivate extension HorizonUI.Controls {
     struct ToggleItemStyle: ToggleStyle {
         let alignment: VerticalAlignment
 
@@ -94,7 +94,7 @@ fileprivate extension HorizonUI.ToggleItem {
                             }
                             .offset(x: configuration.isOn ? 8 : -8)
                     }
-                    .animation(.smooth, value: configuration.isOn)
+                    .animation(.easeInOut, value: configuration.isOn)
                     .frame(width: 40, height: 24)
                     .foregroundStyle(contentColor)
                     .onTapGesture {

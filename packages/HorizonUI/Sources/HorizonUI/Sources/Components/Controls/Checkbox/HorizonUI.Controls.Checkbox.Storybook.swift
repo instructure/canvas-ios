@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-extension HorizonUI.Checkbox {
+extension HorizonUI.Controls.Checkbox {
     struct Storybook: View {
         @State private var checkboxStates: [Bool] = [false, true, true, false, true, true, false, true, true, false, false, false, true, true, true, true]
 
@@ -34,17 +34,17 @@ extension HorizonUI.Checkbox {
 
         private var notRequiredView: some View {
             GridRow {
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[0],
                     style: .default,
                     title: "Title"
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[1],
                     style: .default,
                     title: "Title"
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[2],
                     style: .partial,
                     title: "Title"
@@ -54,19 +54,19 @@ extension HorizonUI.Checkbox {
 
         private var requiredView: some View {
             GridRow {
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[3],
                     style: .default,
                     title: "Title",
                     isRequired: true
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[4],
                     style: .default,
                     title: "Title",
                     isRequired: true
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[5],
                     style: .partial,
                     title: "Title",
@@ -77,21 +77,21 @@ extension HorizonUI.Checkbox {
 
         private var descriptionView: some View {
             GridRow {
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[6],
                     style: .default,
                     title: "Title",
                     description: "Description",
                     isRequired: true
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[7],
                     style: .default,
                     title: "Title",
                     description: "Description",
                     isRequired: true
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[8],
                     style: .partial,
                     title: "Title",
@@ -103,7 +103,7 @@ extension HorizonUI.Checkbox {
 
         private var errorView: some View {
             GridRow(alignment: .top) {
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[9],
                     style: .error,
                     title: "Title",
@@ -111,7 +111,7 @@ extension HorizonUI.Checkbox {
                     errorMessage: "Error Text",
                     isRequired: false
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[10],
                     style: .error,
                     title: "Title",
@@ -123,7 +123,7 @@ extension HorizonUI.Checkbox {
 
         private var disDisabledView: some View {
             GridRow {
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[11],
                     style: .default,
                     title: "Title",
@@ -131,7 +131,7 @@ extension HorizonUI.Checkbox {
                     isRequired: true,
                     isDisabled: true
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[12],
                     style: .default,
                     title: "Title",
@@ -139,7 +139,7 @@ extension HorizonUI.Checkbox {
                     isRequired: true,
                     isDisabled: true
                 )
-                HorizonUI.Checkbox(
+                HorizonUI.Controls.Checkbox(
                     isOn: $checkboxStates[13],
                     style: .partial,
                     title: "Title",
@@ -153,5 +153,5 @@ extension HorizonUI.Checkbox {
 }
 
 #Preview {
-    HorizonUI.Checkbox.Storybook()
+    HorizonUI.Controls.Checkbox.Storybook()
 }

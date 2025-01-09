@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-extension HorizonUI {
+extension HorizonUI.Controls {
     struct ToggleDescriptionView: View {
         // MARK: - Dependencies
 
@@ -78,7 +78,7 @@ extension HorizonUI {
 }
 
 #Preview {
-    HorizonUI.ToggleDescriptionView(
+    HorizonUI.Controls.ToggleDescriptionView(
         title: "Content",
         description: "Description",
         isRequired: true

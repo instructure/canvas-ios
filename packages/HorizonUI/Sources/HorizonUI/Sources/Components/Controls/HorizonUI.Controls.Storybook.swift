@@ -18,40 +18,33 @@
 
 import SwiftUI
 
-extension HorizonUI {
-    struct Controllers { }
-}
-
-extension HorizonUI.Controllers {
+extension HorizonUI.Controls {
     struct Storybook: View {
         public var body: some View {
             ScrollView(showsIndicators: false) {
                 VStack {
                     titleView("Checkbox")
-                    HorizonUI.Checkbox.Storybook()
+                    HorizonUI.Controls.Checkbox.Storybook()
                     titleView("ToggleItem")
 
-                    HorizonUI.ToggleItem.Storybook()
+                    HorizonUI.Controls.ToggleItem.Storybook()
                     titleView("Radio")
-                    HorizonUI.Radio.Storybook()
+                    HorizonUI.Controls.Radio.Storybook()
                 }
                 .padding(16)
-                .navigationTitle("Controllers")
+                .navigationTitle("Controls")
             }
         }
 
         private func titleView(_ title: String) -> some View {
-           Text(title)
-               .frame(maxWidth: .infinity, alignment: .leading)
-               .padding(.leading)
-               .frame(maxWidth: .infinity, alignment: .leading)
-               .frame(height: 50)
-               .background(.gray.opacity(0.4))
-               .padding(.vertical)
-       }
+            Text(title)
+                .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, 8)
+        }
     }
 }
 
 #Preview {
-    HorizonUI.Controllers.Storybook()
+    HorizonUI.Controls.Storybook()
 }
