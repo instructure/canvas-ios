@@ -59,7 +59,9 @@ extension HorizonUI {
                 )
         }
     }
+}
 
+public extension HorizonUI {
     struct IconButton: View {
         private let type: HorizonUI.ButtonStyles.ButtonType
         private let isSmall: Bool
@@ -67,7 +69,7 @@ extension HorizonUI {
         private let icon: Image?
         private let action: () -> Void
 
-        init(
+        public init(
             _ icon: Image?,
             type: HorizonUI.ButtonStyles.ButtonType = .blue,
             isSmall: Bool = false,
@@ -81,7 +83,7 @@ extension HorizonUI {
             self.action = action
         }
 
-        var body: some View {
+        public var body: some View {
             Button("", action: action)
                 .labelStyle(.iconOnly)
                 .buttonStyle(
