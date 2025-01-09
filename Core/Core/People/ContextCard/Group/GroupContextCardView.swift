@@ -55,7 +55,7 @@ public struct GroupContextCardView: View {
                 VStack(spacing: 10) {
                     Avatar(name: user.name, url: user.avatarURL, size: 80)
                         .padding(20)
-                    Text(User.displayName(user.name, pronouns: user.pronouns))
+                    Text(User.displayName(user.shortName, pronouns: user.pronouns))
                         .font(.bold20)
                         .foregroundColor(.textDarkest)
                         .identifier("ContextCard.userNameLabel")
