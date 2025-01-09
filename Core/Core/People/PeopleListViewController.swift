@@ -274,7 +274,7 @@ class PeopleListCell: UITableViewCell {
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         avatarView.name = user?.name ?? ""
         avatarView.url = isOffline ? nil : user?.avatarURL
-        let nameText = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
+        let nameText = user.flatMap { User.displayName($0.shortName, pronouns: $0.pronouns) }
         nameLabel.setText(nameText, style: .textCellTitle)
         nameLabel.accessibilityIdentifier = "\(self.accessibilityIdentifier ?? "").name-label"
         let courseEnrollments = user?.enrollments.filter {
