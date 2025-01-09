@@ -95,7 +95,9 @@ public struct Storybook: View {
                     }
                 }
                 Section(header: Text("Components: Organisms")) {
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Controls.Storybook()
+                    } label: {
                         Text("Controls").tint(Color.black)
                     }
                     NavigationLink {} label: {
