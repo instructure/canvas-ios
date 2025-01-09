@@ -423,24 +423,27 @@ let router = Router(routes: [
     }
 ])
 
-private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    guard let context = Context(path: url.path) else { return nil }
-
-    var webPageType: EmbeddedWebPageViewModelLive.EmbeddedWebPageType
-    if let discussionID = params["discussionID"] {
-        webPageType = .discussion(id: discussionID)
-    } else if let announcementID = params["announcementID"] {
-        webPageType = .announcement(id: announcementID)
-    } else {
-        return nil
-    }
+private func discussionDetails(
+    url: URLComponents,
+    params: [String: String],
+    userInfo: [String: Any]?
+) -> UIViewController? {
+    guard
+        let context = Context(path: url.path),
+        let discussionId = params["discussionID"] ?? params["announcementID"]
+    else { return nil }
 
     if OfflineModeAssembly.make().isOfflineModeEnabled() {
-        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
+        return DiscussionDetailsViewController.create(context: context, topicID: discussionId)
     } else {
+        let isAnnouncement = (params["announcementID"] != nil)
+        let webPage = DiscussionDetailsWebPage(
+            discussionId: discussionId,
+            isAnnouncement: isAnnouncement
+        )
         let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
-            webPageType: webPageType
+            webPageType: webPage
         )
         return CoreHostingController(
             EmbeddedWebPageView(

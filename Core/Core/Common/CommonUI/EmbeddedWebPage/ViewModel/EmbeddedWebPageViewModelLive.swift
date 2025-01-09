@@ -19,19 +19,14 @@
 import Foundation
 import WebKit
 
+public protocol EmbeddedWebPage {
+    var urlPathComponent: String { get }
+    var navigationBarTitle: String { get }
+    var queryItems: [URLQueryItem] { get }
+    var assetID: String? { get }
+}
+
 public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
-    public enum EmbeddedWebPageType {
-        case announcement(id: String)
-        case discussion(id: String)
-
-        public var assetID: String {
-            switch self {
-            case .announcement(let id): return id
-            case .discussion(let id): return id
-            }
-        }
-    }
-
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
 
@@ -61,23 +56,12 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
 
     public init(
         context: Context,
-        webPageType: EmbeddedWebPageType,
+        webPageType: EmbeddedWebPage,
         environment: AppEnvironment = .shared
     ) {
         self.context = context
         self.isMasqueradingUser = environment.currentSession?.actAsUserID != nil
-
-        var urlPathComponent: String
-        switch webPageType {
-        case .announcement(let id):
-            // announcements/\(id) shows a navigation bar at the top
-            // so we need to use discussion topics
-            urlPathComponent = "discussion_topics/\(id)"
-            navTitle = String(localized: "Announcement Details", bundle: .core)
-        case .discussion(let id):
-            urlPathComponent = "discussion_topics/\(id)"
-            navTitle = String(localized: "Discussion Details", bundle: .core)
-        }
+        self.navTitle = webPageType.navigationBarTitle
 
         self.url = {
             guard var baseURL = AppEnvironment.shared.currentSession?.baseURL else {
@@ -85,12 +69,13 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
             }
 
             baseURL.appendPathComponent(context.pathComponent)
-            baseURL.appendPathComponent(urlPathComponent)
-            baseURL = baseURL.appendingQueryItems(
+            baseURL.appendPathComponent(webPageType.urlPathComponent)
+            baseURL.append(queryItems: webPageType.queryItems)
+            baseURL.append(queryItems: [
                 URLQueryItem(name: "embed", value: "true"),
                 URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
                 URLQueryItem(name: "session_locale", value: Locale.current.identifier.replacingOccurrences(of: "_", with: "-"))
-            )
+            ])
 
             return baseURL
         }()

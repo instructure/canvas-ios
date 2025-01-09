@@ -16,29 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum DiscussionsAssembly {
+public struct DiscussionEditWebPage: EmbeddedWebPage {
+    public let urlPathComponent: String
+    public let navigationBarTitle: String
+    public let queryItems: [URLQueryItem] = []
+    public let assetID: String?
 
-    public static func makeDiscussionEditor(
-        context: Context,
-        topicID: String?,
+    public init(
+        discussionId: String,
         isAnnouncement: Bool
-    ) -> UIViewController {
-        let webPageType: EmbeddedWebPage = {
-            if let topicID {
-                return DiscussionEditWebPage(discussionId: topicID, isAnnouncement: isAnnouncement)
-            } else {
-                return DiscussionCreateWebPage(isAnnouncement: isAnnouncement)
-            }
-        }()
-        let viewModel = EmbeddedWebPageViewModelLive(
-            context: context,
-            webPageType: webPageType
-        )
-        return CoreHostingController(
-            EmbeddedWebPageView(
-                viewModel: viewModel,
-                isPullToRefreshEnabled: true
-            )
-        )
+    ) {
+        urlPathComponent = "/discussion_topics/\(discussionId)/edit"
+        navigationBarTitle = isAnnouncement ? String(localized: "Edit Announcement", bundle: .core)
+                                            : String(localized: "Edit Discussion", bundle: .core)
+        assetID = discussionId
     }
 }
