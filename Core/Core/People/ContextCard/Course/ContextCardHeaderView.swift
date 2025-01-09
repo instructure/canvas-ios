@@ -27,14 +27,19 @@ struct ContextCardHeaderView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            Avatar(name: user.name, url: user.avatar_url?.rawValue, size: 80)
+            // Show short name (nickname) if user is not a teacher
+            let nameToUse = (user.email ?? "").isEmpty ? user.short_name : user.name
+
+            Avatar(name: nameToUse, url: user.avatar_url?.rawValue, size: 80)
                 .padding(20)
-            Text(User.displayName(user.shortName, pronouns: user.pronouns))
+            Text(User.displayName(nameToUse, pronouns: user.pronouns))
                 .font(.bold20)
                 .foregroundColor(.textDarkest)
                 .identifier("ContextCard.userNameLabel")
             // Only teachers can see user email addresses
             if let email = user.email {
+
+
                 Text(email)
                     .font(.regular14)
                     .foregroundColor(.textDarkest)

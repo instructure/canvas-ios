@@ -27,9 +27,13 @@ public struct GroupContextCardView: View {
     }
 
     public var body: some View {
+        // Show short name (nickname) if user is not a teacher
+        let user = model.user.first
+        let nameToUse = (user?.email ?? "").isEmpty ? user?.short_name : user?.name
+
         contextCard
             .navigationBarItems(trailing: emailButton)
-            .navigationTitle(model.user.first?.name ?? "", subtitle: model.group.first?.name)
+            .navigationTitle(nameToUse ?? "", subtitle: model.group.first?.name)
             .onAppear {
                 model.viewAppeared()
             }
@@ -53,9 +57,12 @@ public struct GroupContextCardView: View {
         } else {
             if let user = model.user.first, let group = model.group.first {
                 VStack(spacing: 10) {
-                    Avatar(name: user.name, url: user.avatarURL, size: 80)
+                    // Show short name (nickname) if user is not a teacher
+                    let nameToUse = (user.email ?? "").isEmpty ? user.short_name : user.name
+
+                    Avatar(name: nameToUse, url: user.avatarURL, size: 80)
                         .padding(20)
-                    Text(User.displayName(user.shortName, pronouns: user.pronouns))
+                    Text(User.displayName(nameToUse, pronouns: user.pronouns))
                         .font(.bold20)
                         .foregroundColor(.textDarkest)
                         .identifier("ContextCard.userNameLabel")
