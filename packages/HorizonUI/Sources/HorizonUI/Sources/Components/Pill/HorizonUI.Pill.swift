@@ -58,6 +58,17 @@ public extension HorizonUI {
                 }
             }
 
+            var iconColor: Color {
+                switch self {
+                case .outline(let outline):
+                    return outline.iconColor
+                case .solid(let solid):
+                    return solid.iconColor
+                case .inline(let inline):
+                    return inline.iconColor
+                }
+            }
+
             var drawBorder: Bool {
                 switch self {
                 case .outline: return true
@@ -106,7 +117,7 @@ public extension HorizonUI {
                     icon
                         .resizable()
                         .frame(width: 18, height: 18)
-                        .foregroundStyle(style.textColor)
+                        .foregroundStyle(style.iconColor)
                 }
                 Text(isUppercased ? title.uppercased() : title.capitalized)
                     .huiTypography(isUppercased ? .tag : .labelSmall)

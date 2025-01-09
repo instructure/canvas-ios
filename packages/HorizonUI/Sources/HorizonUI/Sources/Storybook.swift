@@ -93,6 +93,11 @@ public struct Storybook: View {
                     } label: {
                         Text("Tooltip").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.Tabs.Storybook()
+                    } label: {
+                        Text("Tabs").tint(Color.black)
+                    }
                 }
                 Section(header: Text("Components: Organisms")) {
                     NavigationLink {
@@ -104,7 +109,7 @@ public struct Storybook: View {
                         Text("Inputs and Interactive Fields").tint(Color.black)
                     }
                     NavigationLink {
-                        HorizonUI.LearningObjectCard.Storybook()
+                        HorizonUI.Cards.Storybook()
                     } label: {
                         Text("Cards").tint(Color.black)
                     }
