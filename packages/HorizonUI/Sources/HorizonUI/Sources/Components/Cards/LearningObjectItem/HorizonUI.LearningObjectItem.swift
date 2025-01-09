@@ -19,7 +19,7 @@
 import SwiftUI
 
 public extension HorizonUI {
-    struct ModuleItemCard: View {
+    struct LearningObjectItem: View {
 
         // MARK: - Properties
 
@@ -28,7 +28,7 @@ public extension HorizonUI {
         // MARK: - Dependencies
 
         private let name: String
-        private let type : ModuleItemCard.ItemType
+        private let type : LearningObjectItem.ItemType
         private let duration: String
         private let dueDate: String?
         private let points: Double?
@@ -38,7 +38,7 @@ public extension HorizonUI {
 
         public init(
             name: String,
-            type: ModuleItemCard.ItemType,
+            type: LearningObjectItem.ItemType,
             duration: String,
             dueDate: String? = nil,
             points: Double? = nil,
@@ -61,16 +61,13 @@ public extension HorizonUI {
                     .huiTypography(.p2)
 
                 HStack(spacing: .huiSpaces.primitives.xxSmall) {
-                    // TODO: use pill after check pill padding  & icon colors
-                    type.icon
-                        .resizable()
-                        .foregroundStyle(Color.huiColors.surface.institution)
-                        .frame(width: 18, height: 18)
-
-                    Text(type.name)
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.p3)
-                        .foregroundStyle(Color.huiColors.text.timestamp)
+                    HorizonUI.Pill(
+                        title: type.name,
+                        style: .inline(.init(textColor: Color.huiColors.text.body, iconColor: Color.huiColors.surface.institution)),
+                        isSmall: false,
+                        isUppercased: true,
+                        icon: type.icon
+                    )
 
                     Text(duration)
                         .foregroundStyle(Color.huiColors.text.timestamp)
@@ -117,7 +114,7 @@ public extension HorizonUI {
 }
 
 #Preview {
-    HorizonUI.ModuleItemCard(
+    HorizonUI.LearningObjectItem(
         name: "Module Item Name",
         type: .externalLink,
         duration: "XX Mins",

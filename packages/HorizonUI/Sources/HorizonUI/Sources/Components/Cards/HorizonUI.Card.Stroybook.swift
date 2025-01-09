@@ -28,7 +28,7 @@ public extension HorizonUI.Cards {
                     HorizonUI.ModuleContainer.Storybook()
                     Text("Module Item Card")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.ModuleItemCard.Storybook()
+                    HorizonUI.LearningObjectItem.Storybook()
                     Text("Learning Object Card")
                         .frame(maxWidth: .infinity, alignment: .leading)
                     HorizonUI.LearningObjectCard.Storybook()

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension HorizonUI.ModuleItemCard {
+public extension HorizonUI.LearningObjectItem {
 
     enum ItemType: String {
         case page = "Page"
@@ -26,9 +26,7 @@ public extension HorizonUI.ModuleItemCard {
         case externalLink = "ModuleItem"
         case file = "File"
         case externalTool = "ExternalTool"
-        // TODO:  Need to check is the ok or not ???
         case assessment = "Quiz"
-        // TODO: discussion was missed, i add it but need to check the icon
         case discussion = "Discussion"
 
         var icon: Image {
@@ -45,13 +43,13 @@ public extension HorizonUI.ModuleItemCard {
 
         var name: String {
             switch self {
-            case .page: return "Page"
-            case .assignment: return "Assignment"
-            case .externalLink: return "External Link"
-            case .file: return "File"
-            case .externalTool: return "External Tool"
-            case .assessment: return "Assessment"
-            case .discussion: return "Discussion"
+            case .page: return String(localized: "Page")
+            case .assignment: return String(localized: "Assignment")
+            case .externalLink: return String(localized: "External Link")
+            case .file: return String(localized: "File")
+            case .externalTool: return String(localized: "External Tool")
+            case .assessment: return String(localized: "Assessment")
+            case .discussion: return String(localized: "Discussion")
             }
         }
     }

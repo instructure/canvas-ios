@@ -35,10 +35,10 @@ struct HModuleItem: Equatable {
         htmlURL: URL?,
         isCompleted: Bool = false,
         dueAt: Date? = Date(),
-        type: ModuleItemType? = .file(""),
+        type: ModuleItemType? = nil,
         isLocked: Bool = false,
-        moduleState: ModuleState? = .completed,
-        points: Double? = 10
+        moduleState: ModuleState? = nil,
+        points: Double? = nil
     ) {
         self.id = id
         self.title = title

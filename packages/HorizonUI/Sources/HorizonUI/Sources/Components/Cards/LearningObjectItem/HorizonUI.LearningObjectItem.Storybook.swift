@@ -18,19 +18,19 @@
 
 import SwiftUI
 
-public extension HorizonUI.ModuleItemCard {
+public extension HorizonUI.LearningObjectItem {
     struct Storybook: View {
 
         public var body: some View {
             ScrollView {
                 VStack {
-                    HorizonUI.ModuleItemCard(
+                    HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
                         type: .externalLink,
                         duration: "XX Mins"
                     )
 
-                    HorizonUI.ModuleItemCard(
+                    HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
                         type: .externalLink,
                         duration: "XX Mins",
@@ -38,7 +38,7 @@ public extension HorizonUI.ModuleItemCard {
                         points: 22
                     )
 
-                    HorizonUI.ModuleItemCard(
+                    HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
                         type: .externalLink,
                         duration: "XX Mins",
@@ -54,15 +54,5 @@ public extension HorizonUI.ModuleItemCard {
 }
 
 #Preview {
-    HorizonUI.ModuleItemCard.Storybook()
-}
-
-struct DummyDemo: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Hello, World!")
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .background(.red)
-    }
+    HorizonUI.LearningObjectItem.Storybook()
 }

@@ -69,21 +69,21 @@ struct ExpandingModuleView: View {
 
     private func moduleItemRow(for item: HModuleItem, type: ModuleItemType) -> some View {
         HStack(spacing: .huiSpaces.primitives.xSmall) {
-//            completedImage(isCompleted: item.isCompleted)
-//                .foregroundStyle(Color.huiColors.surface.institution)
+            completedImage(isCompleted: item.isCompleted)
+                .foregroundStyle(Color.huiColors.surface.institution)
 
             moduleItemButton(item: item, type: type)
         }
     }
 
-//    private func completedImage(isCompleted: Bool) -> some View {
-//        isCompleted ? Image.huiIcons.checkCircleFull : Image.huiIcons.radioButtonUnchecked
-//    }
+    private func completedImage(isCompleted: Bool) -> some View {
+        isCompleted ? Image.huiIcons.checkCircleFull : Image.huiIcons.radioButtonUnchecked
+    }
 
     private func moduleItemButton(item: HModuleItem, type: ModuleItemType) -> some View {
         Button(action: { handleItemTap(item) }) {
-            if let itemType = HorizonUI.ModuleItemCard.ItemType(rawValue: type.assetType.rawValue) {
-                HorizonUI.ModuleItemCard(
+            if let itemType = HorizonUI.LearningObjectItem.ItemType(rawValue: type.assetType.rawValue) {
+                HorizonUI.LearningObjectItem(
                     name: item.title,
                     type: itemType,
                     duration: "20 Mins", // TODO: Set correct value
