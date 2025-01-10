@@ -26,20 +26,43 @@ public extension HorizonUI.LearningObjectItem {
                 VStack {
                     HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
+                        isSelected: true,
+                        requirement: .required,
+                        status: .completed,
                         type: .externalLink,
-                        duration: "XX Mins"
+                        duration: "XX Mins",
+                        points: 22,
+                        isOverdue: false
                     )
 
                     HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
+                        isSelected: false,
+                        requirement: .optional,
+                        status: .completed,
                         type: .externalLink,
                         duration: "XX Mins",
                         dueDate: "22/12",
-                        points: 22
+                        points: 22,
+                        isOverdue: false
                     )
 
                     HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
+                        isSelected: true,
+                        requirement: .required,
+                        status: .locked,
+                        type: .externalLink,
+                        duration: "XX Mins",
+                        dueDate: "22/12",
+                        points: 22,
+                        isOverdue: true
+                    )
+
+                    HorizonUI.LearningObjectItem(
+                        name: "Module Item Name",
+                        isSelected: false,
+                        requirement: .required,
                         type: .externalLink,
                         duration: "XX Mins",
                         dueDate: "22/12",

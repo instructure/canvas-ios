@@ -28,9 +28,13 @@ public extension HorizonUI {
         // MARK: - Dependencies
 
         private let name: String
-        private let type : LearningObjectItem.ItemType
+        private let isSelected: Bool
+        private let requirement: RequirementType
+        private let status: Status?
+        private let type: LearningObjectItem.ItemType
         private let duration: String
         private let dueDate: String?
+        private let lockedDate: String?
         private let points: Double?
         private let isOverdue: Bool
 
@@ -38,21 +42,53 @@ public extension HorizonUI {
 
         public init(
             name: String,
+            isSelected: Bool,
+            requirement: RequirementType,
+            status: Status? = nil,
             type: LearningObjectItem.ItemType,
             duration: String,
             dueDate: String? = nil,
+            lockedDate: String? = nil,
             points: Double? = nil,
             isOverdue: Bool = false
         ) {
             self.name = name
+            self.isSelected = isSelected
+            self.requirement = requirement
+            self.status = status
             self.type = type
             self.duration = duration
             self.dueDate = dueDate
+            self.lockedDate = lockedDate
             self.points = points
             self.isOverdue = isOverdue
         }
 
         public var body: some View {
+            HStack {
+                contentView
+                Spacer()
+                StatusView(
+                    status: status,
+                    requirement: requirement,
+                    dueDate: lockedDate
+                )
+            }
+            .padding(.vertical, .huiSpaces.primitives.small)
+            .padding(.horizontal, .huiSpaces.primitives.smallMedium)
+            .background {
+                Rectangle()
+                    .fill(Color.huiColors.surface.cardPrimary)
+                    .huiCornerRadius(level: .level2)
+            }
+            .huiBorder(
+                level: isSelected ? .level2 : .level1,
+                color: isSelected ? .huiColors.surface.institution : .huiColors.lineAndBorders.lineStroke,
+                radius: cornerRadius.attributes.radius
+            )
+        }
+
+        private var contentView: some View {
             VStack(alignment: .leading) {
                 Text(name)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -60,14 +96,23 @@ public extension HorizonUI {
                     .multilineTextAlignment(.leading)
                     .huiTypography(.p2)
 
-                HStack(spacing: .huiSpaces.primitives.xxSmall) {
+                HStack(spacing: .huiSpaces.primitives.mediumSmall) {
                     HorizonUI.Pill(
                         title: type.name,
-                        style: .inline(.init(textColor: Color.huiColors.text.body, iconColor: Color.huiColors.surface.institution)),
+                        style:.inline(
+                            .init(
+                                textColor: Color.huiColors.text.body,
+                                iconColor: Color.huiColors.surface.institution
+                            )
+                        ),
                         isSmall: false,
                         isUppercased: true,
                         icon: type.icon
                     )
+                    Text(itemStatusText)
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .huiTypography(.p3)
+                        .foregroundStyle(Color.huiColors.text.timestamp)
 
                     Text(duration)
                         .foregroundStyle(Color.huiColors.text.timestamp)
@@ -87,28 +132,20 @@ public extension HorizonUI {
                 }
                 .huiTypography(.p3)
             }
-            .padding(.vertical, .huiSpaces.primitives.small)
-            .padding(.horizontal, .huiSpaces.primitives.smallMedium)
-            .background {
-                Rectangle()
-                    .fill(Color.huiColors.surface.cardPrimary)
-                    .huiCornerRadius(level: .level2)
-            }
-            .huiBorder(level: .level1, color: .huiColors.lineAndBorders.lineStroke, radius: cornerRadius.attributes.radius)
         }
 
-        private func dueDateView(_ date: String) -> some View {
-            HStack(spacing: .huiSpaces.primitives.xxSmall) {
-                if isOverdue {
-                    Image.huiIcons.calendarToday
-                        .resizable()
-                        .frame(width: 18, height: 18)
-                        .foregroundStyle(Color.huiColors.text.error)
-                }
-
-                Text("Past Due \(date)")
-                    .foregroundStyle(isOverdue ? Color.huiColors.text.error : Color.huiColors.text.timestamp)
+        private var itemStatusText: String {
+            if status == .completed, requirement == .required {
+                return type.status
             }
+            return requirement.title
+        }
+
+        @ViewBuilder
+        private func dueDateView(_ date: String) -> some View {
+            let dueText = isOverdue ? String(localized: "Past Due") : String(localized: "Due")
+            Text("\(dueText) \(date)")
+                .foregroundStyle(isOverdue ? Color.huiColors.text.error : Color.huiColors.text.timestamp)
         }
     }
 }
@@ -116,6 +153,9 @@ public extension HorizonUI {
 #Preview {
     HorizonUI.LearningObjectItem(
         name: "Module Item Name",
+        isSelected: true,
+        requirement: .required,
+        status: .completed,
         type: .externalLink,
         duration: "XX Mins",
         dueDate: "22/12",

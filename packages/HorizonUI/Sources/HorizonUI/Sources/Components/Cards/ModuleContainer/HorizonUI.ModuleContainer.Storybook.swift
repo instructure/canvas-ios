@@ -23,20 +23,31 @@ public extension HorizonUI.ModuleContainer {
             ScrollView {
                 VStack {
                     HorizonUI.ModuleContainer(
-                        title: "[Module name]",
+                        title: "Introduction this could be a very long name for a module so keep that in mind lol ",
+                        status: .completed,
+                        numberOfItems: 4
+                    )
+
+                    HorizonUI.ModuleContainer(
+                        title: "Introduction this could be a very long name for a module so keep that in mind lol ",
+                        status: .optional,
                         numberOfItems: 4,
-                        isCompleted: false
+                        duration: "10 mins",
+                        isCollapsed: true
                     )
 
                     HorizonUI.ModuleContainer(
                         title: "[Module name]",
+                        subtitle: "Choose and complete one of the required items.",
+                        status: .inProgress,
                         numberOfItems: 4,
                         duration: "XX Min",
-                        isCompleted: true
+                        isCollapsed: true
                     )
 
                     HorizonUI.ModuleContainer(
                         title: "[Module name]",
+                        status: .notStarted,
                         numberOfItems: 4,
                         numberOfPastDueItems: 3,
                         duration: "XX Min"
@@ -44,12 +55,15 @@ public extension HorizonUI.ModuleContainer {
 
                     HorizonUI.ModuleContainer(
                         title: "[Module name]",
+                        status: .locked,
                         numberOfItems: 4,
                         numberOfPastDueItems: 32
                     )
                 }
                 .padding()
             }
+            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(0.2))
         }
     }
 }

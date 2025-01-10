@@ -27,7 +27,6 @@ public extension HorizonUI.LearningObjectItem {
         case file = "File"
         case externalTool = "ExternalTool"
         case assessment = "Quiz"
-        case discussion = "Discussion"
 
         var icon: Image {
             switch self {
@@ -37,19 +36,25 @@ public extension HorizonUI.LearningObjectItem {
             case .file: return .huiIcons.attachFile
             case .externalTool: return .huiIcons.noteAlt
             case .assessment: return .huiIcons.factCheck
-            case .discussion: return .huiIcons.chat
             }
         }
 
         var name: String {
             switch self {
             case .page: return String(localized: "Page")
-            case .assignment: return String(localized: "Assignment")
+            case .assignment: return  String(localized: "Assignment")
             case .externalLink: return String(localized: "External Link")
             case .file: return String(localized: "File")
             case .externalTool: return String(localized: "External Tool")
             case .assessment: return String(localized: "Assessment")
-            case .discussion: return String(localized: "Discussion")
+            }
+        }
+
+        var status: String {
+            switch self {
+            case .page: return String(localized: "Viewed")
+            case .assignment, .assessment: return String(localized: "Submitted")
+            default: return String(localized: "Viewed")
             }
         }
     }
