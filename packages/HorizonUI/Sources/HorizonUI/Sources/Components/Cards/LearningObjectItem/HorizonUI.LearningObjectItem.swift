@@ -34,7 +34,7 @@ public extension HorizonUI {
         private let type: LearningObjectItem.ItemType
         private let duration: String
         private let dueDate: String?
-        private let lockedDate: String?
+        private let lockedMessage: String?
         private let points: Double?
         private let isOverdue: Bool
 
@@ -48,7 +48,7 @@ public extension HorizonUI {
             type: LearningObjectItem.ItemType,
             duration: String,
             dueDate: String? = nil,
-            lockedDate: String? = nil,
+            lockedMessage: String? = nil,
             points: Double? = nil,
             isOverdue: Bool = false
         ) {
@@ -59,7 +59,7 @@ public extension HorizonUI {
             self.type = type
             self.duration = duration
             self.dueDate = dueDate
-            self.lockedDate = lockedDate
+            self.lockedMessage = lockedMessage
             self.points = points
             self.isOverdue = isOverdue
         }
@@ -71,7 +71,7 @@ public extension HorizonUI {
                 StatusView(
                     status: status,
                     requirement: requirement,
-                    dueDate: lockedDate
+                    lockedMessage: lockedMessage
                 )
             }
             .padding(.vertical, .huiSpaces.primitives.small)

@@ -44,7 +44,7 @@ extension HorizonUI.LearningObjectItem {
         @State private var isTooltipVisible = false
         // MARK: - Dependencies
 
-        let dueDate: String?
+        let lockedMessage: String?
         let status: Status?
         let requirement: RequirementType
 
@@ -53,9 +53,9 @@ extension HorizonUI.LearningObjectItem {
         init(
             status: Status?,
             requirement: RequirementType,
-            dueDate: String?
+            lockedMessage: String?
         ) {
-            self.dueDate = dueDate
+            self.lockedMessage = lockedMessage
             self.requirement = requirement
             self.status = status
         }
@@ -101,7 +101,7 @@ extension HorizonUI.LearningObjectItem {
                 lockIcon
             }
             .huiTooltip(isPresented: $isTooltipVisible, arrowEdge: .bottom, style: .primary) {
-                Text(dueDate ?? "")
+                Text(lockedMessage ?? "")
                     .foregroundStyle(Color.huiColors.text.surfaceColored)
                     .huiTypography(.p2)
             }
@@ -120,6 +120,6 @@ extension HorizonUI.LearningObjectItem {
     HorizonUI.LearningObjectItem.StatusView(
         status: .locked,
         requirement: .required,
-        dueDate: "Jan XX at XX:XX."
+        lockedMessage: "Jan XX at XX:XX."
     )
 }

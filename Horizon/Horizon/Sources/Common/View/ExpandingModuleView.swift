@@ -90,7 +90,7 @@ struct ExpandingModuleView: View {
                     type: itemType,
                     duration: "20 Mins", // TODO: Set correct value
                     dueDate: item.dueAt?.dateOnlyString,
-                    lockedDate: item.lockedDate,
+                    lockedMessage: item.lockedMessage,
                     points: item.points,
                     isOverdue: item.isOverDue
                 )

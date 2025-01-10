@@ -30,7 +30,7 @@ struct HModuleItem: Equatable {
     let moduleState: ModuleState?
     let points: Double?
     let isOptional: Bool
-    var lockedDate: String?
+    var lockedMessage: String?
 
     init(
         id: String,
@@ -54,7 +54,7 @@ struct HModuleItem: Equatable {
         self.moduleState = moduleState
         self.points = points
         self.isOptional = false
-        self.lockedDate = lockedDate
+        self.lockedMessage = lockedDate
     }
 
     init(from entity: ModuleItem) {
@@ -68,7 +68,7 @@ struct HModuleItem: Equatable {
         self.moduleState = entity.module?.state
         self.points = entity.pointsPossible
         self.isOptional = entity.completionRequirement == nil
-        self.lockedDate = HModuleItemLockMessage(html: entity.lockExplanation ?? "").generate()
+        self.lockedMessage = HModuleItemLockMessage(html: entity.lockExplanation ?? "").generate()
     }
 
     var isOverDue: Bool {
