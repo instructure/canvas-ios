@@ -94,3 +94,33 @@ public struct SingleSelectionView: View {
             .joined(separator: ".")
     }
 }
+
+#if DEBUG
+
+#Preview {
+    VStack(spacing: 0) {
+        InstUI.Divider()
+        SingleSelectionView(
+            title: "Section 1 title",
+            accessibilityIdentifier: nil,
+            allOptions: [
+                .make(id: "1", title: "Option 1"),
+                .make(id: "2", title: "Option 2"),
+                .make(id: "3", title: "Option 3"),
+            ],
+            selectedOption: .init(nil)
+        )
+        SingleSelectionView(
+            title: "Section 2 title",
+            accessibilityIdentifier: nil,
+            allOptions: [
+                .make(id: "A", title: "Option A", color: .textDanger),
+                .make(id: "B", title: "Option B", color: .textSuccess),
+                .make(id: "C", title: "Option C", color: .textInfo)
+            ],
+            selectedOption: .init(nil)
+        )
+    }
+}
+
+#endif

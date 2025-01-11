@@ -54,7 +54,11 @@ extension InstUI {
                         if let buttonLabel {
                             Button(
                                 action: buttonAction ?? { },
-                                label: { buttonLabel.font(.semibold14) }
+                                label: {
+                                    buttonLabel
+                                        .font(.semibold14)
+                                        .multilineTextAlignment(.trailing)
+                                }
                             )
                             .paddingStyle(.leading, .cellAccessoryPadding)
                         }
@@ -73,7 +77,13 @@ extension InstUI {
 #if DEBUG
 
 #Preview {
-    InstUI.ListSectionHeader(title: "Section Header Cell")
+    VStack(spacing: 0) {
+        InstUI.Divider()
+        InstUI.ListSectionHeader(title: "Section Header Cell")
+        InstUI.ListSectionHeader(title: "Section Header with Button", buttonLabel: Text("Select all"))
+        InstUI.ListSectionHeader(title: "Section Header with red Button", buttonLabel: Text("Delete all").foregroundStyle(Color.textDanger))
+        InstUI.ListSectionHeader(title: "Section Header with custom styled Button", buttonLabel: Text("This is a big button").textStyle(.heading))
+    }
 }
 
 #endif
