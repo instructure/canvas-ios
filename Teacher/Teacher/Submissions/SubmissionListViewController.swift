@@ -74,6 +74,7 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: String(localized: "Submissions", bundle: .teacher))
+        titleSubtitleView.accessibilityTraits = .header
 
         emptyMessageLabel.text = String(localized: "It seems there aren't any valid submissions to grade.", bundle: .teacher)
         emptyTitleLabel.text = String(localized: "No Submissions", bundle: .teacher)
