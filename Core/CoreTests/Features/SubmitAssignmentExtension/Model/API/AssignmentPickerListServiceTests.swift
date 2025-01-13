@@ -106,7 +106,16 @@ class AssignmentPickerListServiceTests: CoreTestCase {
     }
 
     private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
-        return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
+        return AssignmentPickerListRequest.Response(
+            data: .init(
+                course: .init(
+                    assignmentsConnection: .init(
+                        nodes: assignments,
+                        pageInfo: nil
+                    )
+                )
+            )
+        )
     }
 
     private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = [], gradeAsGroup: Bool = false) -> AssignmentPickerListResponse.Assignment {

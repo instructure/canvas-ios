@@ -144,6 +144,7 @@ public typealias APICodable = Codable & Equatable
 public protocol APIRequestable {
     associatedtype Response: Codable
     associatedtype Body: Encodable = String
+    associatedtype NextRequest = Self
 
     var method: APIMethod { get }
     var headers: [String: String?] { get }
@@ -172,6 +173,7 @@ public protocol APIRequestable {
     func decode(_ data: Data) throws -> Response
     func encode(_ body: Body) throws -> Data
     func encode(response: Response) throws -> Data
+    func getNext(from response: Response) -> NextRequest?
 }
 
 extension APIRequestable {
@@ -262,6 +264,8 @@ extension APIRequestable {
         }
         return nil
     }
+
+    public func getNext(from response: Response) -> NextRequest? { nil }
 
     public func decode(_ data: Data) throws -> Response {
         try APIJSONDecoder().decode(Response.self, from: data)

@@ -36,6 +36,7 @@ public struct AssignmentPickerListResponse: Codable, Equatable {
         struct Course: Codable, Equatable {
             struct AssignmentsConnection: Codable, Equatable {
                 let nodes: [Assignment]
+                let pageInfo: APIPageInfo?
             }
             let assignmentsConnection: AssignmentsConnection
         }

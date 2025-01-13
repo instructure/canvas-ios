@@ -52,6 +52,7 @@ public struct APIPostPolicyInfo: Codable {
 
     struct Sections: Codable {
         var nodes: [APIPostPolicyInfo.SectionNode]
+        let pageInfo: APIPageInfo?
     }
 
     struct PostPolicyData: Codable {
@@ -99,7 +100,7 @@ extension APIPostPolicyInfo {
         submissions: [APIPostPolicyInfo.SubmissionNode] = [.make()]
     ) -> Self {
         Self(data: PostPolicyData(
-            course: Course(sections: Sections(nodes: sections)),
+            course: Course(sections: Sections(nodes: sections, pageInfo: nil)),
             assignment: Assignment(submissions: Submissions(nodes: submissions))
         ))
     }
@@ -224,25 +225,43 @@ public class HideAssignmentGradesForSectionsPostPolicyRequest: HideAssignmentGra
         """ }
 }
 
+// TODO: We need to 
 public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
     public typealias Response = APIPostPolicyInfo
     public struct Variables: Codable, Equatable {
         public let courseID: String
         public let assignmentID: String
+
+        public let sectionsCursor: String?
+        public let sectionsPageSize: Int
     }
     public let variables: Variables
 
-    public init(courseID: String, assignmentID: String) {
-        variables = Variables(courseID: courseID, assignmentID: assignmentID)
+    public init(
+        courseID: String,
+        assignmentID: String,
+        sectionsPageSize: Int = 10,
+        sectionsCursor: String? = nil
+    ) {
+        variables = Variables(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            sectionsCursor: sectionsCursor,
+            sectionsPageSize: sectionsPageSize
+        )
     }
 
     public static let query = """
-        query \(operationName)($courseID: ID!, $assignmentID: ID!) {
+        query \(operationName)($courseID: ID!, $assignmentID: ID!, $sectionsPageSize: Int!, $sectionsCursor: String) {
           course(id: $courseID) {
-            sections: sectionsConnection {
+            sections: sectionsConnection(first: $sectionsPageSize, after: $sectionsCursor) {
               nodes {
                 id
                 name
+              }
+              pageInfo {
+                endCursor
+                hasNextPage
               }
             }
           }
@@ -258,4 +277,15 @@ public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
           }
         }
         """
+
+    public func getNext(from response: APIPostPolicyInfo) -> GetAssignmentPostPolicyInfoRequest? {
+        guard let info = response.data.course.sections.pageInfo, info.hasNextPage else { return nil }
+
+        return GetAssignmentPostPolicyInfoRequest(
+            courseID: variables.courseID,
+            assignmentID: variables.assignmentID,
+            sectionsPageSize: variables.sectionsPageSize,
+            sectionsCursor: info.endCursor
+        )
+    }
 }

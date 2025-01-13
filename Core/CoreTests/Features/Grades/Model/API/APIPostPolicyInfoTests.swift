@@ -190,7 +190,12 @@ class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {
         req.assertBodyEquals(GraphQLBody(
             query: GetAssignmentPostPolicyInfoRequest.query,
             operationName: "GetAssignmentPostPolicyInfoRequest",
-            variables: .init(courseID: "1", assignmentID: "2")
+            variables: .init(
+                courseID: "1",
+                assignmentID: "2",
+                sectionsCursor: nil,
+                sectionsPageSize: 10
+            )
         ))
     }
 }

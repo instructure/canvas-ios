@@ -193,6 +193,10 @@ public class API {
                 self.exhaust(next, result: result, callback: callback)
                 return
             }
+            if let next = requestable.getNext(from: response) as? R {
+                self.exhaust(next, result: result, callback: callback)
+                return
+            }
             callback(result, urlResponse, error)
         }
     }

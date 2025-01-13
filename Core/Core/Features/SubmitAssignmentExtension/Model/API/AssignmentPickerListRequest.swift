@@ -22,9 +22,9 @@ public struct AssignmentPickerListRequest: APIGraphQLRequestable {
     static let operationName = "AssignmentPickerList"
     /**`gradingPeriodId: null` is to return all assignments irrespective of their grading period in the course. */
     static let query = """
-        query \(operationName)($courseID: ID!) {
+        query \(operationName)($courseID: ID!, $pageSize: Int!, $cursor: String) {
           course(id: $courseID) {
-            assignmentsConnection(filter: { gradingPeriodId: null }) {
+            assignmentsConnection(filter: { gradingPeriodId: null }, first: $pageSize, after: $cursor) {
               nodes {
                 name
                 _id
@@ -35,6 +35,10 @@ public struct AssignmentPickerListRequest: APIGraphQLRequestable {
                   isLocked
                 }
               }
+              pageInfo {
+                endCursor
+                hasNextPage
+              }
             }
           }
         }
@@ -42,11 +46,25 @@ public struct AssignmentPickerListRequest: APIGraphQLRequestable {
 
     public struct Variables: Codable, Equatable {
         public let courseID: String
+        public let cursor: String?
+        public let pageSize: Int
     }
 
     public let variables: Variables
 
-    public init(courseID: String) {
-        variables = Variables(courseID: courseID)
+    public init(courseID: String, pageSize: Int = 10, cursor: String? = nil) {
+        variables = Variables(courseID: courseID, cursor: cursor, pageSize: pageSize)
+    }
+
+    public func getNext(from response: AssignmentPickerListResponse) -> AssignmentPickerListRequest? {
+        guard let pageInfo = response.data.course.assignmentsConnection.pageInfo,
+              pageInfo.hasNextPage
+        else { return nil }
+
+        return AssignmentPickerListRequest(
+            courseID: variables.courseID,
+            pageSize: variables.pageSize,
+            cursor: variables.courseID
+        )
     }
 }

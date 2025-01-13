@@ -29,6 +29,7 @@ public struct APICommentLibraryResponse: Codable, Equatable {
 
     struct CommentBankConnection: Codable, Equatable {
         let nodes: [CommentBankItem]
+        let pageInfo: APIPageInfo?
     }
 
     struct CommentBankItem: Codable, Equatable {
@@ -40,3 +41,16 @@ public struct APICommentLibraryResponse: Codable, Equatable {
 
     public var comments: [(id: String, comment: String)] { data.user.commentBankItems.nodes.map { ($0.id, $0.comment) } }
 }
+
+public struct APIPageInfo: Codable, Equatable {
+    public let endCursor: String?
+    public let hasNextPage: Bool
+}
+
+#if DEBUG
+extension APIPageInfo {
+    public static func make(endCursor: String? = nil, hasNextPage: Bool = false) -> APIPageInfo {
+        return APIPageInfo(endCursor: endCursor, hasNextPage: hasNextPage)
+    }
+}
+#endif

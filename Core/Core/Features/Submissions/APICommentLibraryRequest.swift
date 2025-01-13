@@ -22,13 +22,17 @@ public struct APICommentLibraryRequest: APIGraphQLRequestable {
     static let operationName = "CommentLibraryQuery"
     static let query = """
         query \(operationName)($userId: ID!) {
-            user: legacyNode(_id: $userId, type: User) {
+            user: legacyNode(_id: $userId, type: User, $pageSize: Int!, $cursor: String) {
                 ... on User {
                     id: _id
-                    commentBankItems: commentBankItemsConnection(query: "") {
+                    commentBankItems: commentBankItemsConnection(query: "", first: $pageSize, after: $cursor) {
                         nodes {
                             comment: comment
                             id: _id
+                        }
+                        pageInfo {
+                            endCursor
+                            hasNextPage
                         }
                     }
                 }
@@ -38,11 +42,25 @@ public struct APICommentLibraryRequest: APIGraphQLRequestable {
 
     public struct Variables: Codable, Equatable {
         public let userId: String
+        public let cursor: String?
+        public let pageSize: Int
     }
 
     public let variables: Variables
 
-    public init(userId: String) {
-        variables = Variables(userId: userId)
+    public init(userId: String, pageSize: Int = 10, cursor: String? = nil) {
+        variables = Variables(userId: userId, cursor: cursor, pageSize: pageSize)
+    }
+
+    public func getNext(from response: APICommentLibraryResponse) -> APICommentLibraryRequest? {
+        guard let pageInfo = response.data.user.commentBankItems.pageInfo,
+              pageInfo.hasNextPage
+        else { return nil }
+
+        return APICommentLibraryRequest(
+            userId: variables.userId,
+            pageSize: variables.pageSize,
+            cursor: pageInfo.endCursor
+        )
     }
 }
