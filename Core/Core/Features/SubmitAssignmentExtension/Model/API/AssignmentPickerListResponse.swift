@@ -16,7 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct AssignmentPickerListResponse: Codable, Equatable {
+public struct AssignmentPickerListResponse: PagedResponse, Equatable {
+    public typealias Page = [Assignment]
     public struct Assignment: Codable, Equatable {
         struct LockInfo: Codable, Equatable {
             let isLocked: Bool
@@ -43,7 +44,8 @@ public struct AssignmentPickerListResponse: Codable, Equatable {
         let course: Course
     }
 
-    public var assignments: [Assignment] { data.course.assignmentsConnection.nodes.map { $0 } }
-
     let data: Self.Data
+
+    var assignments: [Assignment] { return data.course.assignmentsConnection.nodes }
+    public var page: [Assignment] { assignments }
 }

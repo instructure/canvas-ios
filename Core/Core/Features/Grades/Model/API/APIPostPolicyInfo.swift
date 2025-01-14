@@ -18,7 +18,9 @@
 
 import Foundation
 
-public struct APIPostPolicyInfo: Codable {
+public struct APIPostPolicyInfo: PagedResponse {
+    public typealias Page = [SectionNode]
+
     public var sections: [SectionNode] {
         return data.course.sections.nodes
     }
@@ -70,6 +72,10 @@ public struct APIPostPolicyInfo: Codable {
 
     struct Submissions: Codable {
         var nodes: [APIPostPolicyInfo.SubmissionNode]
+    }
+
+    public var page: [SectionNode] {
+        data.course.sections.nodes
     }
 }
 
@@ -225,8 +231,7 @@ public class HideAssignmentGradesForSectionsPostPolicyRequest: HideAssignmentGra
         """ }
 }
 
-// TODO: We need to 
-public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
+public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLPagedRequestable {
     public typealias Response = APIPostPolicyInfo
     public struct Variables: Codable, Equatable {
         public let courseID: String
@@ -278,7 +283,7 @@ public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
         }
         """
 
-    public func getNext(from response: APIPostPolicyInfo) -> GetAssignmentPostPolicyInfoRequest? {
+    public func nextPageRequest(from response: APIPostPolicyInfo) -> GetAssignmentPostPolicyInfoRequest? {
         guard let info = response.data.course.sections.pageInfo, info.hasNextPage else { return nil }
 
         return GetAssignmentPostPolicyInfoRequest(

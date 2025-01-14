@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct AssignmentPickerListRequest: APIGraphQLRequestable {
+public struct AssignmentPickerListRequest: APIGraphQLPagedRequestable {
     public typealias Response = AssignmentPickerListResponse
 
     static let operationName = "AssignmentPickerList"
@@ -56,7 +56,7 @@ public struct AssignmentPickerListRequest: APIGraphQLRequestable {
         variables = Variables(courseID: courseID, cursor: cursor, pageSize: pageSize)
     }
 
-    public func getNext(from response: AssignmentPickerListResponse) -> AssignmentPickerListRequest? {
+    public func nextPageRequest(from response: AssignmentPickerListResponse) -> AssignmentPickerListRequest? {
         guard let pageInfo = response.data.course.assignmentsConnection.pageInfo,
               pageInfo.hasNextPage
         else { return nil }
@@ -64,7 +64,7 @@ public struct AssignmentPickerListRequest: APIGraphQLRequestable {
         return AssignmentPickerListRequest(
             courseID: variables.courseID,
             pageSize: variables.pageSize,
-            cursor: variables.courseID
+            cursor: pageInfo.endCursor
         )
     }
 }

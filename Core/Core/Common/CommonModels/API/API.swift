@@ -193,7 +193,22 @@ public class API {
                 self.exhaust(next, result: result, callback: callback)
                 return
             }
-            if let next = requestable.getNext(from: response) as? R {
+            callback(result, urlResponse, error)
+        }
+    }
+
+    public func exhaust<R>(_ requestable: R, callback: @escaping (R.Response.Page?, URLResponse?, Error?) -> Void) where R: APIPagedRequestable {
+        exhaust(requestable, result: nil, callback: callback)
+    }
+
+    private func exhaust<R>(_ requestable: R, result: R.Response.Page?, callback: @escaping (R.Response.Page?, URLResponse?, Error?) -> Void) where R: APIPagedRequestable {
+        makeRequest(requestable) { response, urlResponse, error in
+            guard let response = response else {
+                callback(nil, urlResponse, error)
+                return
+            }
+            let result = result == nil ? response.page : result! + response.page
+            if let next = requestable.nextPageRequest(from: response) as? R {
                 self.exhaust(next, result: result, callback: callback)
                 return
             }

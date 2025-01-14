@@ -16,13 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct APICommentLibraryRequest: APIGraphQLRequestable {
+public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
     public typealias Response = APICommentLibraryResponse
 
     static let operationName = "CommentLibraryQuery"
     static let query = """
-        query \(operationName)($userId: ID!) {
-            user: legacyNode(_id: $userId, type: User, $pageSize: Int!, $cursor: String) {
+        query \(operationName)($userId: ID!, $pageSize: Int!, $cursor: String) {
+            user: legacyNode(_id: $userId, type: User) {
                 ... on User {
                     id: _id
                     commentBankItems: commentBankItemsConnection(query: "", first: $pageSize, after: $cursor) {
@@ -52,7 +52,7 @@ public struct APICommentLibraryRequest: APIGraphQLRequestable {
         variables = Variables(userId: userId, cursor: cursor, pageSize: pageSize)
     }
 
-    public func getNext(from response: APICommentLibraryResponse) -> APICommentLibraryRequest? {
+    public func nextPageRequest(from response: APICommentLibraryResponse) -> APICommentLibraryRequest? {
         guard let pageInfo = response.data.user.commentBankItems.pageInfo,
               pageInfo.hasNextPage
         else { return nil }
