@@ -63,15 +63,28 @@ extension InstUI {
         public var body: some View {
             VStack(spacing: 0) {
                 HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    label
-                        .textStyle(.cellLabel)
+                    if dynamicTypeSize > .accessibility3 {
+                        VStack(alignment: .leading) {
+                            label
+                                .textStyle(.cellLabel)
 
-                    if date != nil {
-                        datePicker
-                    } else {
-                        placeholderButtons
+                            if date != nil {
+                                datePicker
+                            } else {
+                                placeholderButtons
+                            }
+                        }
                     }
+                    else {
+                        label
+                            .textStyle(.cellLabel)
 
+                        if date != nil {
+                            datePicker
+                        } else {
+                            placeholderButtons
+                        }
+                    }
                     if isClearable {
                         clearButton
                     }
@@ -105,7 +118,7 @@ extension InstUI {
                 in: validFrom...validUntil,
                 displayedComponents: components,
                 label: {}
-            )
+            ).lineLimit(0)
         }
 
         private var components: DatePicker<Label>.Components {
