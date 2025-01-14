@@ -74,8 +74,7 @@ extension InstUI {
                                 placeholderButtons
                             }
                         }
-                    }
-                    else {
+                    } else {
                         label
                             .textStyle(.cellLabel)
 
