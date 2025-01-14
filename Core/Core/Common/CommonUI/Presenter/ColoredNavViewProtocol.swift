@@ -31,6 +31,7 @@ extension ColoredNavViewProtocol {
     public func setupTitleViewInNavbar(title: String) {
         navigationItem.titleView = titleSubtitleView
         titleSubtitleView.title = title
+        titleSubtitleView.accessibilityTraits = .header
     }
 
     public func updateNavBar(subtitle: String?, color: UIColor?) {
