@@ -44,7 +44,9 @@ public struct APICommentLibraryResponse: PagedResponse, Equatable {
         data.user.commentBankItems.nodes.map { ($0.id, $0.comment) }
     }
 
-    public var page: [CommentBankItem] { data.user.commentBankItems.nodes }
+    public var page: [CommentBankItem] {
+        data.user.commentBankItems.nodes
+    }
 }
 
 public struct APIPageInfo: Codable, Equatable {
