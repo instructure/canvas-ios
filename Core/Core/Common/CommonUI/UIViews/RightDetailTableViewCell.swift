@@ -35,7 +35,6 @@ public class RightDetailTableViewCell: UITableViewCell {
         detailTextLabel?.textColor = .textDark
         detailTextLabel?.font = .scaledNamedFont(.medium16)
         directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
-        // heightAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
         textLabel?.textColor = .textDarkest
         textLabel?.font = .scaledNamedFont(.semibold16)
         textLabel?.numberOfLines = 2
