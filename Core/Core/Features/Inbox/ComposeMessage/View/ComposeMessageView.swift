@@ -339,7 +339,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .focused($focusedInput, equals: .subject)
                 .submitLabel(.done)
                 .accessibilityLabel(Text("Subject Input", bundle: .core))
-                .accessibilityHint(Text("Enter a subject for your message.", bundle: .core))
+                .accessibilityHint(Text("Enter a subject for your message", bundle: .core))
                 .accessibilityIdentifier("ComposeMessage.subjectInput")
         }
         .disabled(model.isSubjectDisabled)
