@@ -49,6 +49,8 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
             }
         }
     }
+
+    private var pageInfo: APIPageInfo?
     private var comments: [LibraryComment] = [] {
         didSet {
             updateFilteredComments()
@@ -70,6 +72,12 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
             if let range = $0.range(of: rangeString.wrappedValue, options: .caseInsensitive) {
                 $0[range].setAttributes(attributes)
             }
+        }
+    }
+
+    func loadNextPage() {
+        Task {
+            await self.fetchNextPage()
         }
     }
 
@@ -109,9 +117,25 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
                 performUIUpdate {
                     defer { continuation.resume() }
                     guard let response, let self else { return }
+                    self.pageInfo = response.pageInfo
                     self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
                 }
             }
+        }
+    }
+
+    @MainActor
+    public func fetchNextPage() async {
+        guard let endCursor = pageInfo?.endCursor else { return }
+
+        let userId = env.currentSession?.userID ?? ""
+        let requestable = APICommentLibraryRequest(userId: userId, cursor: endCursor)
+
+        if let response = try? await env.api.makeRequest(requestable) {
+            let newComments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+            let allComments = self.comments + newComments
+            self.pageInfo = response.pageInfo
+            self.comments = allComments
         }
     }
 }

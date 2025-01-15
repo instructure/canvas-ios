@@ -34,7 +34,7 @@ class PostGradesViewController: UIViewController {
     private var sectionToggles: [Bool] = []
     private var postPolicy: PostGradePolicy = .everyone
     var presenter: PostGradesPresenter!
-    var viewModel: APIPostPolicyInfo?
+    var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
     static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
@@ -65,18 +65,23 @@ class PostGradesViewController: UIViewController {
     }
 
     func setupSections() {
-        sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
+        sectionToggles = Array(repeating: false, count: viewModel.sectionsCount)
     }
 
     @IBAction func actionUserDidClickPostGrades(_ sender: Any) {
-        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
+        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel.sections?[i].id : nil }
         presenter.postGrades(postPolicy: postPolicy, sectionIDs: sectionIDs)
     }
 }
 
 extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
+
+    private var rowsCount: Int {
+        return Row.allCases.count +  (showSections ? viewModel.sectionsCount : 0)
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Row.allCases.count +  (showSections ? (viewModel?.sections.count ?? 0) : 0)
+        return rowsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,13 +115,13 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {    //  sections
             let index = abs(indexPath.row - Row.allCases.count)
-            cell.textLabel?.text = viewModel?.sections[index].name
+            cell.textLabel?.text = viewModel.sections?[index].name
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
                 cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
-                cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel?.sections[index].id ?? "")"
+                cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel.sections?[index].id ?? "")"
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
             }
         }
@@ -127,7 +132,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localizedFormat = String(localized: "grades_currently_hidden", bundle: .teacher, comment: "number of grades hidden")
-            return String(format: localizedFormat, viewModel?.submissions.hiddenCount ?? 0)
+            return String(format: localizedFormat, viewModel.submissions?.hiddenCount ?? 0)
         }
         return nil
     }
@@ -147,6 +152,11 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 delegate: self
             ), sender: self)
         }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard showSections, indexPath.row == (rowsCount - 1) else { return }
+        presenter.fetchNextPage(to: viewModel)
     }
 
     @objc
@@ -200,9 +210,16 @@ extension PostGradesViewController: ItemPickerDelegate {
 }
 
 extension PostGradesViewController: PostGradesViewProtocol {
-    func update(_ viewModel: APIPostPolicyInfo) {
+    func update(_ viewModel: APIPostPolicy) {
         self.viewModel = viewModel
         setupSections()
+        tableView.reloadData()
+    }
+
+    func nextPageLoaded(_ viewModel: APIPostPolicy) {
+        let newSectionsCount = max(viewModel.sectionsCount - self.viewModel.sectionsCount, 0)
+        sectionToggles.append(contentsOf: Array(repeating: false, count: newSectionsCount))
+        self.viewModel = viewModel
         tableView.reloadData()
     }
 

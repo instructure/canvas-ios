@@ -90,6 +90,9 @@ public struct AssignmentPickerView: View {
 
                     Divider()
                 }
+                Color.clear.onAppear {
+                    viewModel.loadNextPage()
+                }
             }
         }
     }

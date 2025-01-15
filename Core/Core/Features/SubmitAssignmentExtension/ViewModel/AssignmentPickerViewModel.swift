@@ -87,6 +87,11 @@ public class AssignmentPickerViewModel: ObservableObject {
         }
     }
 
+    public func loadNextPage() {
+        Analytics.shared.logEvent("assignment_picker_load_next_page")
+        service.loadNextPage()
+    }
+
     private func courseIdWillChange(to newValue: String?) {
         // If the same course was selected we don't reload
         if courseID == newValue { return }

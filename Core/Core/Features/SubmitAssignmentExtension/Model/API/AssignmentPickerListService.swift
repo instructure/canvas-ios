@@ -22,6 +22,8 @@ public protocol AssignmentPickerListServiceProtocol: AnyObject {
     typealias APIResult = Result<[APIAssignmentPickerListItem], AssignmentPickerListServiceError>
     var result: AnyPublisher<APIResult, Never> { get }
     var courseID: String? { get set }
+
+    func loadNextPage()
 }
 
 public enum AssignmentPickerListServiceError: String, Error {
@@ -35,7 +37,8 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
     }
 
     private var requestedCourseID: String?
-    private let resultSubject = PassthroughSubject<APIResult, Never>()
+    private var pageInfo: APIPageInfo?
+    private let resultSubject = CurrentValueSubject<APIResult, Never>(.success([]))
 
     public init() {
     }
@@ -52,6 +55,17 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         }
     }
 
+    public func loadNextPage() {
+        guard let courseID,
+              let endCursor = pageInfo?.endCursor
+        else { return }
+
+        let request = AssignmentPickerListRequest(courseID: courseID, cursor: endCursor)
+        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, _, error in
+            self?.handleNextPageResponse(response, error: error, completedCourseID: courseID)
+        }
+    }
+
     private func handleResponse(_ response: AssignmentPickerListRequest.Response?, error: Error?, completedCourseID: String) {
         // If the finished request was for an older fetch we ignore its results
         if self.requestedCourseID != completedCourseID {
@@ -64,6 +78,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
             let assignments = Self.filterAssignments(response.assignments)
             Analytics.shared.logEvent("assignments_loaded", parameters: ["count": assignments.count])
             result = .success(assignments)
+            pageInfo = response.pageInfo
         } else {
             let errorMessage = error?.localizedDescription ?? String(localized: "Something went wrong", bundle: .core)
             Analytics.shared.logEvent("error_loading_assignments", parameters: ["error": errorMessage])
@@ -72,6 +87,27 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         }
 
         resultSubject.send(result)
+    }
+
+    private func handleNextPageResponse(_ response: AssignmentPickerListRequest.Response?, error: Error?, completedCourseID: String) {
+        // If the finished request was for an older fetch we ignore its results
+        if self.requestedCourseID != completedCourseID {
+            return
+        }
+
+        var currentResult: APIResult = resultSubject.value
+
+        if let response = response {
+            let newAssignments = Self.filterAssignments(response.assignments)
+            Analytics.shared.logEvent("assignments_next_page_loaded", parameters: ["count": newAssignments.count])
+
+            resultSubject.send(.success(currentResult.value ?? [] + newAssignments))
+
+        } else {
+            let errorMessage = error?.localizedDescription ?? String(localized: "Something went wrong", bundle: .core)
+            Analytics.shared.logEvent("error_loading_assignments_page", parameters: ["error": errorMessage])
+            RemoteLogger.shared.logError(name: "Assignment list next page load failed", reason: error?.localizedDescription)
+        }
     }
 
     private static func filterAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> [APIAssignmentPickerListItem] {

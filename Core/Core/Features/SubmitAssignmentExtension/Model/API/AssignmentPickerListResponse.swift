@@ -46,6 +46,7 @@ public struct AssignmentPickerListResponse: PagedResponse, Equatable {
 
     let data: Self.Data
 
-    var assignments: [Assignment] { return data.course.assignmentsConnection.nodes }
+    var pageInfo: APIPageInfo? { data.course.assignmentsConnection.pageInfo }
+    var assignments: [Assignment] { data.course.assignmentsConnection.nodes }
     public var page: [Assignment] { assignments }
 }

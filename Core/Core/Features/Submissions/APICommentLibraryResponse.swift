@@ -40,6 +40,7 @@ public struct APICommentLibraryResponse: PagedResponse, Equatable {
 
     let data: Self.Data
 
+    public var pageInfo: APIPageInfo? { data.user.commentBankItems.pageInfo }
     public var comments: [(id: String, comment: String)] {
         data.user.commentBankItems.nodes.map { ($0.id, $0.comment) }
     }

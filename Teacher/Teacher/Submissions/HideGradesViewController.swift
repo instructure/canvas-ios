@@ -22,7 +22,6 @@ import Core
 class HideGradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hideGradesButton: DynamicButton!
-    private var sections: [String] = []
     private var sectionToggles: [Bool] = []
     private var gradesCurrentlyPosted = 0
     private var showSections = false
@@ -30,7 +29,7 @@ class HideGradesViewController: UIViewController {
     @IBOutlet weak var allHiddenLabel: DynamicLabel!
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
-    var viewModel: APIPostPolicyInfo?
+    var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
     static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
@@ -60,19 +59,24 @@ class HideGradesViewController: UIViewController {
     }
 
     func setupSections() {
-        sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
+        sectionToggles = Array(repeating: false, count: viewModel.sectionsCount)
     }
 
     @IBAction func actionUserDidClickHideGrades(_ sender: Any) {
-        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
+        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel.sections?[i].id : nil }
         presenter.hideGrades(sectionIDs: sectionIDs)
 
     }
 }
 
 extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
+
+    private var rowsCount: Int {
+        return (showSections ? viewModel.sectionsCount : 0) + 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (showSections ? (viewModel?.sections.count ?? 0) : 0) + 1
+        return rowsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,8 +91,8 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
         } else {    //  sections
             let index = abs(indexPath.row - 1)
-            cell.textLabel?.text = viewModel?.sections[index].name
-            cell.toggle.accessibilityIdentifier = "PostPolicy.hide.section.toggle.\(viewModel?.sections[index].id ?? "")"
+            cell.textLabel?.text = viewModel.sections?[index].name
+            cell.toggle.accessibilityIdentifier = "PostPolicy.hide.section.toggle.\(viewModel.sections?[index].id ?? "")"
             cell.selectionStyle = .none
             cell.toggle.isOn = sectionToggles[index]
             cell.toggle.tag = index
@@ -101,9 +105,14 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localizedFormat = String(localized: "grades_currently_posted", bundle: .teacher, comment: "number of grades hidden")
-            return String(format: localizedFormat, viewModel?.submissions.postedCount ?? 0)
+            return String(format: localizedFormat, viewModel.submissions?.postedCount ?? 0)
         }
         return nil
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard showSections, indexPath.row == (rowsCount - 1) else { return }
+        presenter.fetchNextPage(to: viewModel)
     }
 
     @objc
@@ -119,9 +128,16 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HideGradesViewController: PostGradesViewProtocol {
-    func update(_ viewModel: APIPostPolicyInfo) {
-        self.viewModel = viewModel
+    func update(_ newModel: APIPostPolicy) {
+        self.viewModel = newModel
         setupSections()
+        tableView.reloadData()
+    }
+
+    func nextPageLoaded(_ newModel: APIPostPolicy) {
+        let newSectionsCount = max(newModel.sectionsCount - self.viewModel.sectionsCount, 0)
+        sectionToggles.append(contentsOf: Array(repeating: false, count: newSectionsCount))
+        self.viewModel = newModel
         tableView.reloadData()
     }
 

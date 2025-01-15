@@ -128,6 +128,9 @@ struct SubmissionCommentList: View {
             )
                 .scaleEffect(y: -1)
         }
+        Color.clear.onAppear {
+            commentLibrary.loadNextPage()
+        }
     }
 
     private func submissionForComment(_ comment: SubmissionComment) -> Submission {

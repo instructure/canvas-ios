@@ -48,7 +48,7 @@ public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
 
     public let variables: Variables
 
-    public init(userId: String, pageSize: Int = 10, cursor: String? = nil) {
+    public init(userId: String, pageSize: Int = 50, cursor: String? = nil) {
         variables = Variables(userId: userId, cursor: cursor, pageSize: pageSize)
     }
 

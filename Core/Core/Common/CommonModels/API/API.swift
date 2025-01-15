@@ -94,6 +94,24 @@ public class API {
     }
 
     @discardableResult
+    public func makeRequest<Request: APIRequestable>(
+        _ requestable: Request,
+        refreshToken: Bool = true
+    ) async throws -> Request.Response {
+        return try await withCheckedThrowingContinuation { continuation in
+            makeRequest(requestable) { result, response, error in
+                if let error {
+                    continuation.resume(throwing: APIError.from(data: nil, response: response, error: error))
+                } else if let result {
+                    continuation.resume(returning: result)
+                } else {
+                    continuation.resume(throwing: APIAsyncError.invalidResponse)
+                }
+            }
+        }
+    }
+
+    @discardableResult
     public func makeDownloadRequest(_ url: URL,
                                     method: APIMethod? = nil,
                                     callback: ((URL?, URLResponse?, Error?) -> Void)? = nil)
@@ -265,4 +283,8 @@ public class FollowRedirect: NSObject, URLSessionTaskDelegate {
         }
         completionHandler(newRequest)
     }
+}
+
+public enum APIAsyncError: Error {
+    case invalidResponse
 }
