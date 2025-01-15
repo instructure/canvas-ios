@@ -338,7 +338,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .textInputAutocapitalization(.sentences)
                 .focused($focusedInput, equals: .subject)
                 .submitLabel(.done)
-                .accessibility(label: Text("Subject", bundle: .core))
+                .accessibilityLabel(Text("Subject Input", bundle: .core))
+                .accessibilityHint(Text("Enter a subject for your message.", bundle: .core))
                 .accessibilityIdentifier("ComposeMessage.subjectInput")
         }
         .disabled(model.isSubjectDisabled)
@@ -415,7 +416,8 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .foregroundColor(.textDarkest)
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .frame(minHeight: 60)
-            .accessibility(label: Text("Message", bundle: .core))
+            .accessibilityLabel(Text("Message Input", bundle: .core))
+            .accessibilityHint(Text("Write your message here", bundle: .core))
             .accessibilityIdentifier("ComposeMessage.body")
         }
         .disabled(model.isMessageDisabled)
