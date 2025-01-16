@@ -20,11 +20,10 @@ import Combine
 import Foundation
 
 protocol CourseNotesRepository {
-    func add(courseId: String,
-             highlightedText: String,
+    func add(index: NotebookNoteIndex,
              content: String?,
              labels: [CourseNoteLabel]?
-    ) -> Future<Void, Error>
+    ) -> Future<CourseNote?, Error>
     func delete(id: String) -> Future<Void, Error>
     func get() -> AnyPublisher<[CourseNote], Error>
     func get(id: String) -> AnyPublisher<CourseNote?, Error>
@@ -37,13 +36,23 @@ struct RepositoryCourse {
     let institution: String
 }
 
+/// id: The unique identifier of the note.
+/// date: The date when the note was created.
+/// content: The user written content of the note.
+/// courseId: The id of the course where the note was taken.
+/// highlightKey: globally unique key belonging to the block of text in which this highlight was made.
+/// labels: The labels assigned to the note. (e.g., important, confusing)
+/// length: The length of the highlighted text.
+/// startIndex: The start index of the highlighted text.
 struct RepositoryNote {
     let id: String
     let date: Date
     let content: String
     let courseId: String
-    let highlightedText: String
+    let highlightKey: String
     let labels: [String]
+    let length: Int
+    let startIndex: Int
 }
 
 extension RepositoryNote {
@@ -55,6 +64,9 @@ extension RepositoryNote {
             institution: course.institution,
             courseId: self.courseId,
             course: course.name,
+            highlightKey: self.highlightKey,
+            highlightStart: self.startIndex,
+            highlightLength: self.length,
             labels: self.labels.map { CourseNoteLabel(rawValue: $0) ?? .other }
         )
     }
@@ -94,14 +106,16 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
 
     // MARK: - Public Methods
 
-    func add(courseId: String,
-             highlightedText: String,
+    func add(index: NotebookNoteIndex,
              content: String?,
              labels: [CourseNoteLabel]?
-    ) -> Future<Void, Error> {
+    ) -> Future<CourseNote?, Error> {
         Future { [weak self] promise in
             guard let self = self else {
-                return promise(.success(()))
+                return promise(.success(nil))
+            }
+            guard let course = self.courses.first(where: { $0.id == index.groupId }) else {
+                return promise(.success(nil))
             }
 
             // Generate a new unique ID (in this case, we'll use a timestamp-based approach)
@@ -113,9 +127,11 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
                 id: newId,
                 date: date,
                 content: content ?? "",
-                courseId: courseId,
-                highlightedText: highlightedText,
-                labels: labels?.map { $0.rawValue } ?? []
+                courseId: index.groupId,
+                highlightKey: index.highlightKey,
+                labels: labels?.map { $0.rawValue } ?? [],
+                length: index.length,
+                startIndex: index.startIndex
             )
 
             // Add the note to our collection
@@ -124,7 +140,8 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
             // Notify subscribers about the change
             self.notify()
 
-            promise(.success(()))
+            let courseNote = newNote.toCourseNote(withCourse: course)
+            promise(.success(courseNote))
         }
     }
 
@@ -167,8 +184,10 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
                     date: oldNote.date,
                     content: content ?? oldNote.content,
                     courseId: oldNote.courseId,
-                    highlightedText: oldNote.highlightedText,
-                    labels: labels?.map { $0.rawValue } ?? oldNote.labels
+                    highlightKey: oldNote.highlightKey,
+                    labels: labels?.map { $0.rawValue } ?? oldNote.labels,
+                    length: oldNote.length,
+                    startIndex: oldNote.startIndex
                 )
                 self.notes[index] = repositoryNote
                 self.notify(id: id)
@@ -212,219 +231,10 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
         RepositoryCourse(id: "10", name: "CS221", institution: "Brigham Young University"),
         RepositoryCourse(id: "11", name: "CS229", institution: "Brigham Young University"),
         RepositoryCourse(id: "12", name: "6.864", institution: "Snow College"),
-        RepositoryCourse(id: "13", name: "STAT135", institution: "Utah Valley University"),
+        RepositoryCourse(id: "13", name: "STAT135", institution: "Utah Valley University")
     ]
 
     private static var defaultNotes: [RepositoryNote] {
-        [
-            RepositoryNote(
-                id: "1",
-                date: Date(timeIntervalSinceNow: -10000),
-                content: "This is going to be an example of a very long note...",
-                courseId: "1",
-                highlightedText: "example of a very long note",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "2",
-                date: Date(timeIntervalSinceNow: -50000),
-                content: "This is a note 2",
-                courseId: "1",
-                highlightedText: "note 2",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "3",
-                date: Date(timeIntervalSinceNow: -30000),
-                content: "This is a note 3",
-                courseId: "1",
-                highlightedText: "note 3",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "4",
-                date: Date(timeIntervalSinceNow: -70000),
-                content: "This is a note 4",
-                courseId: "1",
-                highlightedText: "note 4",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "5",
-                date: Date(timeIntervalSinceNow: -100000),
-                content: "This is a note 5",
-                courseId: "1",
-                highlightedText: "note 5",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "6",
-                date: Date(timeIntervalSinceNow: -200000),
-                content: "This is a note 6",
-                courseId: "1",
-                highlightedText: "note 6",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "7",
-                date: Date(timeIntervalSinceNow: -150000),
-                content: "This is a note 7",
-                courseId: "1",
-                highlightedText: "note 7",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "8",
-                date: Date(),
-                content: "This is a note 8",
-                courseId: "1",
-                highlightedText: "note 8",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "9",
-                date: Date(),
-                content: "Exploring advanced Swift features",
-                courseId: "2",
-                highlightedText: "advanced Swift features",
-                labels: ["Important", "Complex"]
-            ),
-            RepositoryNote(
-                id: "10",
-                date: Date(),
-                content: "Data structures and algorithms overview",
-                courseId: "2",
-                highlightedText: "Data structures and algorithms",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "11",
-                date: Date(),
-                content: "Object-oriented programming concepts",
-                courseId: "3",
-                highlightedText: "Object-oriented programming",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "12",
-                date: Date(),
-                content: "Introduction to Machine Learning",
-                courseId: "4",
-                highlightedText: "Machine Learning",
-                labels: ["Important", "Confusing"]
-            ),
-            RepositoryNote(
-                id: "13",
-                date: Date(),
-                content: "Linear Algebra fundamentals",
-                courseId: "5",
-                highlightedText: "Linear Algebra",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "14",
-                date: Date(),
-                content: "Multivariable Calculus review",
-                courseId: "5",
-                highlightedText: "Multivariable Calculus",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "15",
-                date: Date(),
-                content: "Basics of Probability and Statistics",
-                courseId: "6",
-                highlightedText: "Probability and Statistics",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "16",
-                date: Date(),
-                content: "Statistical Modeling Techniques",
-                courseId: "6",
-                highlightedText: "Statistical Modeling",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "17",
-                date: Date(),
-                content: "Introduction to Databases",
-                courseId: "7",
-                highlightedText: "Databases",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "18",
-                date: Date(),
-                content: "SQL and NoSQL Databases",
-                courseId: "7",
-                highlightedText: "SQL and NoSQL",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "19",
-                date: Date(),
-                content: "Basic Operating Systems concepts",
-                courseId: "8",
-                highlightedText: "Operating Systems",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "20",
-                date: Date(),
-                content: "Concurrency in Operating Systems",
-                courseId: "8",
-                highlightedText: "Concurrency",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "21",
-                date: Date(),
-                content: "Network protocols and architectures",
-                courseId: "9",
-                highlightedText: "Network protocols",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "22",
-                date: Date(),
-                content: "Computer Security fundamentals",
-                courseId: "9",
-                highlightedText: "Computer Security",
-                labels: ["Important", "Confusing"]
-            ),
-            RepositoryNote(
-                id: "23",
-                date: Date(),
-                content: "Introduction to Artificial Intelligence",
-                courseId: "10",
-                highlightedText: "Artificial Intelligence",
-                labels: ["Important"]
-            ),
-            RepositoryNote(
-                id: "24",
-                date: Date(),
-                content: "Deep Learning basics",
-                courseId: "11",
-                highlightedText: "Deep Learning",
-                labels: ["Confusing"]
-            ),
-            RepositoryNote(
-                id: "25",
-                date: Date(),
-                content: "Natural Language Processing",
-                courseId: "12",
-                highlightedText: "Natural Language Processing",
-                labels: ["Important", "Complex"]
-            ),
-            RepositoryNote(
-                id: "26",
-                date: Date(),
-                content: "Advanced Data Analysis techniques",
-                courseId: "13",
-                highlightedText: "Data Analysis",
-                labels: ["Important"]
-            )
-        ]
+        []
     }
 }

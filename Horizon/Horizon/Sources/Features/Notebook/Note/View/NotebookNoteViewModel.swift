@@ -135,11 +135,13 @@ final class NotebookNoteViewModel {
 
     func onToggleConfusing() {
         isEditing = true
+        if !isConfusing && isImportant { isImportant = false }
         isConfusing.toggle()
     }
 
     func onToggleImportant() {
         isEditing = true
+        if isConfusing && !isImportant { isConfusing = false }
         isImportant.toggle()
     }
 
@@ -172,15 +174,6 @@ final class NotebookNoteViewModel {
 
             notebookNoteInteractor
                 .update(noteId: noteId, content: note, labels: labels)
-                .sink { _ in }
-                .store(in: &subscriptions)
-        } else if let courseId = courseId,
-                  let highlightedText = highlightedText {
-            notebookNoteInteractor
-                .add(courseId: courseId,
-                     highlightedText: highlightedText,
-                     content: note,
-                     labels: getCourseNoteLabels)
                 .sink { _ in }
                 .store(in: &subscriptions)
         }

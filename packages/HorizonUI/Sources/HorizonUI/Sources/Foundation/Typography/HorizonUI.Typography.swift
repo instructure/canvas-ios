@@ -35,7 +35,7 @@ public extension HorizonUI {
             case buttonTextLarge
             case buttonTextMedium
 
-            var font: Font {
+            public var font: Font {
                 switch self {
                 case .h1: return .huiFonts.manropeBold28
                 case .h2: return .huiFonts.manropeBold24
@@ -53,7 +53,7 @@ public extension HorizonUI {
                 }
             }
 
-            var letterSpacing: CGFloat {
+            public var letterSpacing: CGFloat {
                 switch self {
                 case .h1: return 0
                 case .h2: return 0
@@ -71,7 +71,7 @@ public extension HorizonUI {
                 }
             }
 
-            var lineSpacing: CGFloat {
+            public var lineSpacing: CGFloat {
                 switch self {
                 case .h1: return 39.2
                 case .h2: return 33.6

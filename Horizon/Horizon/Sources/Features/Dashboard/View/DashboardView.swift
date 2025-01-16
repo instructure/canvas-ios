@@ -21,11 +21,13 @@ import SwiftUI
 import HorizonUI
 
 struct DashboardView: View {
+    private let noteableTextViewModel: NoteableTextViewModel
     @ObservedObject private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
 
-    init(viewModel: DashboardViewModel) {
+    init(viewModel: DashboardViewModel, noteableTextViewModel: NoteableTextViewModel) {
         self.viewModel = viewModel
+        self.noteableTextViewModel = noteableTextViewModel
     }
 
     var body: some View {
@@ -37,7 +39,12 @@ struct DashboardView: View {
                 ForEach(viewModel.courses) { course in
                     if course.currentModuleItem != nil, !course.upcomingModuleItems.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
-                            NoteableTextView("Hey, here's some text for you to select from and try to make highlights. Hey, here's some text for you to select from and try to make highlights. Hey, here's some text for you to select from and try to make highlights", key: "Test2")
+                            NoteableTextView(
+                                "Hey, here's some text for you to select from and try to make highlights. Hey, here's some text for you to select from and try to make highlights. Hey, here's some text for you to select from and try to make highlights",
+                                highlightsKey: "Test",
+                                courseId: "1",
+                                viewModel: noteableTextViewModel
+                            )
                             Size24BoldTextDarkestTitle(title: course.name)
                                 .padding(.top, 16)
                             CertificateProgressBar(

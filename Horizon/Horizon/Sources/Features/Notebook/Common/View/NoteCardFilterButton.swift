@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
 struct NoteCardFilterButton: View {
@@ -37,7 +38,7 @@ struct NoteCardFilterButton: View {
         .background(
             RoundedRectangle(cornerRadius: 15.5)
                 .fill(Color.white)
-                .stroke(type.color, lineWidth: selected ? 2 : 0)
+                .stroke(type.color ?? .huiColors.surface.inversePrimary, lineWidth: selected ? 2 : 0)
         )
         .cornerRadius(16)
         .huiElevation(level: selected ? .level0 : .level4)

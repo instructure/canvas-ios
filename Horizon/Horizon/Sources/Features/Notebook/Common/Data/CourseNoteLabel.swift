@@ -17,16 +17,19 @@
 //
 
 import SwiftUI
+import HorizonUI
 
 enum CourseNoteLabel: String, CaseIterable {
     case confusing = "Confusing"
     case important = "Important"
     case other = "Other"
 
-    var color: Color {
-        self == .confusing ?
-            Color(red: 0.682, green: 0.106, blue: 0.122) :
-            Color(red: 0.055, green: 0.408, blue: 0.702)
+    var color: Color? {
+        switch self {
+        case .confusing: Color(red: 0.682, green: 0.106, blue: 0.122)
+        case .important: Color(red: 0.055, green: 0.408, blue: 0.702)
+        default: nil
+        }
     }
 
     var label: String {
@@ -37,7 +40,11 @@ enum CourseNoteLabel: String, CaseIterable {
 
     var image: some View {
         self == .confusing ?
-            Image.huiIcons.help.foregroundStyle(self.color) :
-            Image.huiIcons.flag2.foregroundStyle(self.color)
+        Image.huiIcons.help.foregroundStyle(self.color ?? .huiColors.icon.default) :
+        Image.huiIcons.flag2.foregroundStyle(self.color ?? .huiColors.icon.default)
+    }
+
+    static func color(_ label: CourseNoteLabel) -> Color? {
+        label.color
     }
 }

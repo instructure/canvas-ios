@@ -50,13 +50,13 @@ struct NoteCardView: View {
             type.image
             Text(type.label)
                 .font(.regular12)
-                .foregroundStyle(type.color)
+                .foregroundStyle(type.color ?? .huiColors.text.body)
         }
         .padding()
         .frame(height: 31)
         .background(
             RoundedRectangle(cornerRadius: 15.5)
-                .stroke(type.color, lineWidth: 2)
+                .stroke(type.color ?? .huiColors.surface.inversePrimary, lineWidth: 2)
         )
         .huiCornerRadius(level: .level3)
     }

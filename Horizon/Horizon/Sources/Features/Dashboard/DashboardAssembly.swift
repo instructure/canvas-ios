@@ -34,6 +34,10 @@ final class DashboardAssembly {
                 getCoursesInteractor: makeGetCoursesInteractor(),
                 getUserInteractor: makeGetUserInteractor(),
                 router: AppEnvironment.shared.router
+            ),
+            noteableTextViewModel: NoteableTextViewModel(
+                notebookNoteInteractor: NotebookNoteInteractor(courseNotesRepository: CourseNotesRepositoryPreview.instance),
+                router: AppEnvironment.shared.router
             )
         )
     }
@@ -47,7 +51,11 @@ final class DashboardAssembly {
             getUserInteractor: getUserInteractorPreview,
             router: AppEnvironment.shared.router
         )
-        return DashboardView(viewModel: viewModel)
+        let noteableTextViewModel = NoteableTextViewModel(
+            notebookNoteInteractor: NotebookNoteInteractor(courseNotesRepository: CourseNotesRepositoryPreview.instance),
+            router: AppEnvironment.shared.router
+        )
+        return DashboardView(viewModel: viewModel, noteableTextViewModel: noteableTextViewModel)
     }
     #endif
 }

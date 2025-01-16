@@ -73,7 +73,7 @@ struct NotebookNoteView: View {
                         .frame(minHeight: 112, alignment: .topLeading)
                         .frame(maxWidth: .infinity)
                         .scrollDisabled(true)
-                        .background(viewModel.isTextEditorDisabled ? .clear : .white)
+                        .background(.white)
                         .cornerRadius(.huiSpaces.primitives.xSmall)
                         .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
 

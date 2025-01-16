@@ -26,5 +26,8 @@ struct CourseNote {
     let institution: String
     let courseId: String
     let course: String
+    let highlightKey: String
+    let highlightStart: Int
+    let highlightLength: Int
     let labels: [CourseNoteLabel]
 }

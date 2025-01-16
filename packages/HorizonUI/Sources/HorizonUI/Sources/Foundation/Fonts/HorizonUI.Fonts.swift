@@ -76,7 +76,7 @@ public extension HorizonUI {
         let figtreeSemibold14: Font = HorizonUI.Fonts.figtreeSB14.scaledFont()
         let figtreeSemibold12: Font = HorizonUI.Fonts.figtreeSB12.scaledFont()
 
-        func uiFont(font: Font) -> UIFont {
+        public func uiFont(font: Font) -> UIFont {
             switch font {
             case manropeRegular12: return HorizonUI.Fonts.manropeR12.uiFont()
             case manropeBold28: return HorizonUI.Fonts.manropeB28.uiFont()
