@@ -29,16 +29,14 @@ struct NotebookCourseView: View {
         NotesBody(
             title: viewModel.title,
             leading: {
-                Button("Back") {
+                HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
                     viewModel.onBack(viewController: viewController)
                 }
-                .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.arrowBack))
             },
             trailing: {
-                Button("Add Note") {
+                HorizonUI.IconButton(.huiIcons.add, type: .white) {
                     viewModel.onAdd(viewController: viewController)
                 }
-                .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.add))
             }
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.top, .huiSpaces.primitives.medium)
@@ -47,7 +45,7 @@ struct NotebookCourseView: View {
                 .padding(.top, .huiSpaces.primitives.mediumSmall)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            HStack(spacing: 8) {
+            HStack(spacing: .huiSpaces.primitives.xSmall) {
                 NoteCardFilterButton(type: .confusing, selected: viewModel.isConfusingEnabled)
                     .onTapGesture {
                         viewModel.filter = .confusing

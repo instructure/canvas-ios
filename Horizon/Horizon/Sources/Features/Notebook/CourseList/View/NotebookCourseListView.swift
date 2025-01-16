@@ -34,10 +34,9 @@ struct NotebookCourseListView: View {
         NotesBody(
             title: String(localized: "Notebook", bundle: .horizon),
             leading: {
-                Button("Back") {
+                HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
                     viewModel.onBack(viewController: viewController)
                 }
-                .buttonStyle(.icon(.white, icon: .huiIcons.arrowBack))
             },
             trailing: {}
         ) {

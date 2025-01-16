@@ -20,6 +20,8 @@ import SwiftUI
 import UIKit
 
 extension HorizonUI {
+
+    /// Wraps the custom UITextView in UIViewRepresentable to make it available for SwiftUI
     public struct MenuActionsTextView: UIViewRepresentable {
         private let attributedText: NSAttributedString
         private let delegate: HorizonUI.MenuActionsTextView.Delegate
@@ -43,18 +45,22 @@ extension HorizonUI {
     }
 }
 
+/// Methods that our custom UITextView depends on having implemented
 extension HorizonUI.MenuActionsTextView {
     public protocol Delegate {
+        /// Gets the buttons to be displayed to the user when a body of text is selected
         func getMenu(
             textView: UITextView,
             range: UITextRange,
             suggestedActions: [UIMenuElement]
         ) -> UIMenu
 
+        /// Called when the user taps on the text view
         func onTap(gesture: UITapGestureRecognizer)
     }
 }
 
+/// A custom UITextView for adding the custom buttons when highlighting text
 private class MenuActionsUITextView: UITextView {
 
     private let menuActionsUITextViewDelegate: HorizonUI.MenuActionsTextView.Delegate?
@@ -63,7 +69,6 @@ private class MenuActionsUITextView: UITextView {
         self.menuActionsUITextViewDelegate = delegate
 
         super.init(frame: .zero, textContainer: nil)
-
 
         self.setContentHuggingPriority(.required, for: .horizontal)
         self.setContentHuggingPriority(.required, for: .vertical)

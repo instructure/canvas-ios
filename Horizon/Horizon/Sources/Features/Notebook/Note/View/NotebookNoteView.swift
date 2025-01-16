@@ -30,12 +30,11 @@ struct NotebookNoteView: View {
             leading: {},
             trailing: {}
         ) {
-            VStack(spacing: 32) {
+            VStack(spacing: .huiSpaces.primitives.large) {
                 HStack {
-                    Button("Back") {
+                    HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
                         viewModel.onClose(viewController: viewController)
                     }
-                    .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.arrowBack))
                     .hidden(viewModel.isBackButtonHidden)
 
                     Text(viewModel.title)
@@ -44,13 +43,12 @@ struct NotebookNoteView: View {
                         .font(.bold22)
                         .foregroundColor(.textDarkest)
 
-                    Button("Close") {}
-                        .buttonStyle(HorizonUI.ButtonStyles.icon(.white, icon: .huiIcons.close))
+                    HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {}
                         .hidden()
                 }
                 .background(HorizonUI.colors.surface.pagePrimary)
 
-                HStack(spacing: 8) {
+                HStack(spacing: .huiSpaces.primitives.xSmall) {
                     NoteCardFilterButton(
                         type: .confusing,
                         selected: viewModel.isConfusing
@@ -83,7 +81,7 @@ struct NotebookNoteView: View {
                     }
                 }
 
-                VStack(spacing: 16) {
+                VStack(spacing: .huiSpaces.primitives.mediumSmall) {
                     if viewModel.isSaveVisible {
                         Button {
                             viewModel.onSave(viewController: viewController)
@@ -108,22 +106,19 @@ struct NotebookNoteView: View {
 
                 if viewModel.isActionButtonsVisible {
                     HStack {
-                        Button("Delete Note") {
+                        HorizonUI.IconButton(.huiIcons.delete, type: .red) {
                             viewModel.onDelete()
                         }
-                        .buttonStyle(.icon(.red, icon: .huiIcons.delete))
 
-                        Button("AI Assistant") { }
-                            .buttonStyle(.icon(.ai))
+                        HorizonUI.IconButton(.huiIcons.ai, type: .ai) { }
 
-                        Button("Edit Note") {
+                        HorizonUI.IconButton(.huiIcons.edit, type: .white) {
                             viewModel.onEdit()
                         }
-                        .buttonStyle(.icon(.white, icon: .huiIcons.edit))
                     }
                 }
             }
-            .padding(.vertical, 32)
+            .padding(.vertical, .huiSpaces.primitives.large)
         }
         .alert(isPresented: $viewModel.isDeleteAlertPresented) {
             Alert(
@@ -147,7 +142,7 @@ struct NotebookNoteView: View {
                 ),
                 router: AppEnvironment.shared.router,
                 noteId: "1",
-                isEditing: true
+                isEditing: false
             )
         )
     }

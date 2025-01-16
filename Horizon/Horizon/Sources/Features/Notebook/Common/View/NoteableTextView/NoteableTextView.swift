@@ -19,6 +19,9 @@ import HorizonUI
 import SwiftUI
 import Core
 
+/// Part of the Horizon notebook feature, the NoteableTextView encapsulates a block of text
+/// That can be highlighted and annotated.
+/// It requires a view model for managing  logic associated with highlighting and annotation.
 struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
     let courseId: String
     let highlightsKey: String

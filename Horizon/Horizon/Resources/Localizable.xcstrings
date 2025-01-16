@@ -14,19 +14,13 @@
         }
       }
     },
-    "Add Note" : {
+    "Add a Note" : {
 
     },
     "Add your text" : {
 
     },
-    "Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it?" : {
-
-    },
     "AI Assist" : {
-
-    },
-    "AI Assistant" : {
 
     },
     "AI Learning Assist" : {
@@ -44,16 +38,10 @@
     "Are you sure you want to proceed?" : {
 
     },
-    "Back" : {
-
-    },
     "Cancel" : {
 
     },
     "Check Answer" : {
-
-    },
-    "Close" : {
 
     },
     "Confirmation" : {
@@ -62,13 +50,7 @@
     "Confusing" : {
 
     },
-    "Delete Note" : {
-
-    },
     "Edit" : {
-
-    },
-    "Edit Note" : {
 
     },
     "Error" : {
@@ -156,9 +138,6 @@
 
     },
     "Tell me more about this topic" : {
-
-    },
-    "This text is not selectable. This text is not selectable. This text is not selectable." : {
 
     },
     "Try Again" : {

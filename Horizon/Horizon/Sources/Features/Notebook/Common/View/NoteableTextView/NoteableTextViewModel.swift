@@ -36,6 +36,7 @@ public class NoteableTextViewModel {
         self.router = router
     }
 
+    /// loads the text and highlights for the text view
     public func load(text: String, highlightsKey: String, typography: HorizonUI.Typography.Name) {
         // if the text hasn't changed, no need to reload
         if text == self.text {
@@ -52,6 +53,7 @@ public class NoteableTextViewModel {
         ).store(in: &subscriptions)
     }
 
+    /// dynamically computes the list of menu options available when a block of text is selected
     public func getMenu(
         highlightsKey: String,
         courseId: String,
@@ -67,7 +69,7 @@ public class NoteableTextViewModel {
         }
 
         let actions: [UIMenuElement] = [
-            UIAction(title: "Confusing") {_ in
+            UIAction(title: String(localized: "Confusing", bundle: .horizon)) {_ in
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
@@ -77,7 +79,7 @@ public class NoteableTextViewModel {
                     viewController: viewController
                 )
             },
-            UIAction(title: "Important") {_ in
+            UIAction(title: String(localized: "Important", bundle: .horizon)) {_ in
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
@@ -87,7 +89,7 @@ public class NoteableTextViewModel {
                     viewController: viewController
                 )
             },
-            UIAction(title: "Add a Note") {_ in
+            UIAction(title: String(localized: "Add a Note", bundle: .horizon)) {_ in
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
@@ -102,6 +104,7 @@ public class NoteableTextViewModel {
         return UIMenu(title: "", children: actions + suggestedActions)
     }
 
+    /// finds the block of text highlighted within a text view (if any) and navigates to the note page if found
     public func onTap(viewController: WeakViewController, gesture: UITapGestureRecognizer) {
         guard let textView = gesture.view as? UITextView else {
             return
@@ -119,6 +122,8 @@ public class NoteableTextViewModel {
         }
     }
 
+    /// Given the highlight and the type of label for a highlight, creates a new notebook note
+    /// If it's chosen to add a note, then it navigates to the note page
     private func onSelection(
         highlightsKey: String,
         courseId: String,
@@ -152,6 +157,7 @@ public class NoteableTextViewModel {
         }).store(in: &subscriptions)
     }
 
+    /// Finds the first instance of a highlight that overlaps with the start and end values passed in
     private func firstOverlappingNotebookCourseNote(start: Int, end: Int) -> NotebookCourseNote? {
         notebookCourseNotes.first { notebookCourseNote in
             let selectionStart = notebookCourseNote.highlightStart
@@ -161,6 +167,7 @@ public class NoteableTextViewModel {
         }
     }
 
+    /// Creates the attributed string given the text and typography, with the highlights applied
     private func getAttributedText(_ text: String, typography: HorizonUI.Typography.Name) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: text)
 

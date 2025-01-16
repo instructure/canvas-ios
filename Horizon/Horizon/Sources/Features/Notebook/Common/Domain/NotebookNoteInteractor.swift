@@ -23,7 +23,7 @@ struct NotebookNoteIndex {
     /// The highlightKey is globally unique to the block of text that's being highlighted. This for example might be a single paragraph. It may have multiple highlights.
     /// The startIndex is the index of the first character in the highlight
     /// The length is the number of characters in the highlight
-    /// The courseId indicates that this highlight is part of a larger group of highlights (e.g., a course, a page, etc.)
+    /// The groupId indicates that this highlight is part of a larger group of highlights (e.g., a course)
     let highlightKey: String
     let startIndex: Int
     let length: Int
