@@ -209,6 +209,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         HStack(alignment: .center) {
             Text(model.subject.isEmpty ? model.title : model.subject)
                 .accessibilityIdentifier("ComposeMessage.subjectLabel")
+                .accessibilityAddTraits(.isHeader)
                 .multilineTextAlignment(.leading)
                 .font(.semibold22)
                 .foregroundColor(.textDarkest)
