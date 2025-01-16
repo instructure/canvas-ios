@@ -24,7 +24,7 @@ import Core
 final class NotebookNoteViewModel {
 
     // MARK: - Outputs
-
+    var highlightedText: String = ""
     var isActionButtonsVisible: Bool { !isEditing && !isAdding }
     var isBackButtonHidden: Bool { isEditing }
     var isCancelVisible: Bool { isEditing && !isAdding }
@@ -133,6 +133,7 @@ final class NotebookNoteViewModel {
 
     private func whenNotebookCourseNoteUpdated(notebookCourseNote: NotebookCourseNote?) {
         note = notebookCourseNote?.note ?? ""
+        highlightedText = notebookCourseNote?.highlightedText ?? ""
         noteSaved = note
 
         isConfusing = notebookCourseNote?.types.contains(.confusing) ?? false

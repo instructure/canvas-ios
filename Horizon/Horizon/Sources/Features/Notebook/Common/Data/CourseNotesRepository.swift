@@ -21,6 +21,7 @@ import Foundation
 
 protocol CourseNotesRepository {
     func add(index: NotebookNoteIndex,
+             highlightedText: String,
              content: String?,
              labels: [CourseNoteLabel]?
     ) -> Future<CourseNote?, Error>
@@ -50,6 +51,7 @@ struct RepositoryNote {
     let content: String
     let courseId: String?
     let highlightKey: String
+    let highlightedText: String
     let labels: [String]
     let length: Int
     let startIndex: Int
@@ -64,6 +66,7 @@ extension RepositoryNote {
             institution: course?.institution,
             courseId: self.courseId,
             course: course?.name,
+            highlightedText: self.highlightedText,
             highlightKey: self.highlightKey,
             highlightStart: self.startIndex,
             highlightLength: self.length,
@@ -104,8 +107,9 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
     // MARK: - Public Methods
 
     func add(index: NotebookNoteIndex,
-             content: String?,
-             labels: [CourseNoteLabel]?
+             highlightedText: String,
+             content: String? = nil,
+             labels: [CourseNoteLabel]? = nil
     ) -> Future<CourseNote?, Error> {
         Future { [weak self] promise in
             guard let self = self else {
@@ -123,6 +127,7 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
                 content: content ?? "",
                 courseId: index.groupId,
                 highlightKey: index.highlightKey,
+                highlightedText: highlightedText,
                 labels: labels?.map { $0.rawValue } ?? [],
                 length: index.length,
                 startIndex: index.startIndex
@@ -179,6 +184,7 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
                     content: content ?? oldNote.content,
                     courseId: oldNote.courseId,
                     highlightKey: oldNote.highlightKey,
+                    highlightedText: oldNote.highlightedText,
                     labels: labels?.map { $0.rawValue } ?? oldNote.labels,
                     length: oldNote.length,
                     startIndex: oldNote.startIndex

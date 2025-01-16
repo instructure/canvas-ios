@@ -30,10 +30,15 @@ struct NoteCardView: View {
                 Text(note.title)
                     .font(.regular12)
                     .padding(.bottom, .huiSpaces.primitives.xSmall)
-                Text(note.note)
-                    .lineLimit(3)
-                    .font(.regular16)
+                Text(note.highlightedText)
+                    .font(.regular14Italic)
                     .padding(.bottom, .huiSpaces.primitives.xSmall)
+                if !note.note.isEmpty {
+                    Text(note.note)
+                        .lineLimit(3)
+                        .font(.regular16)
+                        .padding(.bottom, .huiSpaces.primitives.xSmall)
+                }
                 HStack(spacing: .huiSpaces.primitives.xSmall) {
                     ForEach(note.types, id: \.self) { type in
                         noteCardLabelView(type: type)
@@ -67,33 +72,37 @@ struct NoteCardView: View {
         NoteCardView(
             note: .init(
                 id: "1",
-                types: [],
+                highlightedText: "This is some highlighted text",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: []
             )
         )
         NoteCardView(
             note: .init(
                 id: "1",
-                types: [.important],
+                highlightedText: "This is some highlighted text again",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: [.important]
             )
         )
         NoteCardView(
             note: .init(
                 id: "2",
-                types: [.confusing],
+                highlightedText: "This is some highlighted text again again",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: [.confusing]
             )
         )
         NoteCardView(
             note: .init(
                 id: "2",
-                types: [.important, .confusing],
+                highlightedText: "This is some highlighted text again again again",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: [.important, .confusing]
             )
         )
     }

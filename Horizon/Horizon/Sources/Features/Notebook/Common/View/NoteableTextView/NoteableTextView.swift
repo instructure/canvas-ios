@@ -27,18 +27,20 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
     let highlightsKey: String
     @Environment(\.viewController) var viewController
     let viewModel: NoteableTextViewModel
-    
+
     init(
         _ text: String,
         highlightsKey: String,
         courseId: String? = nil,
-        typography: HorizonUI.Typography.Name = .p1,
-        viewModel: NoteableTextViewModel = NoteableTextViewModel.instance
+        typography: HorizonUI.Typography.Name = .p1
     ) {
         self.highlightsKey = highlightsKey
         self.courseId = courseId
-        self.viewModel = viewModel
-        self.viewModel.load(text: text, highlightsKey: highlightsKey, typography: typography)
+        self.viewModel = NoteableTextViewModel.build(
+            text: text,
+            highlightsKey: highlightsKey,
+            typography: typography
+        )
     }
 
     var body: some View {
@@ -74,10 +76,7 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
         NoteableTextView(
             "This is some text. You may select some of this text. This is some text. You may select some of this text. This is some text. You may select some of this text.",
             highlightsKey: "Test",
-            courseId: "1",
-            viewModel: NoteableTextViewModel(
-                notebookNoteInteractor: NotebookNoteInteractor(courseNotesRepository: CourseNotesRepositoryPreview.instance)
-            )
+            courseId: "1"
         )
         Text(
             "Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it?"

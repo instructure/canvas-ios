@@ -49,9 +49,11 @@ final class NotebookNoteInteractor {
 
     func add(index: NotebookNoteIndex,
              content: String? = nil,
+             highlightedText: String,
              labels: [CourseNoteLabel]? = nil) -> Future<CourseNote?, Error> {
         courseNotesRepository.add(
             index: index,
+            highlightedText: highlightedText,
             content: content,
             labels: labels
         )

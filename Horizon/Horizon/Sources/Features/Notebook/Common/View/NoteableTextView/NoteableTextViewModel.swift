@@ -31,24 +31,38 @@ public class NoteableTextViewModel {
 
     var attributedText: NSAttributedString = NSAttributedString("")
 
-    static let instance = NoteableTextViewModel()
+    private static var viewModels = [String: NoteableTextViewModel]()
 
-    init(
+    static func build(
+        text: String,
+        highlightsKey: String,
+        typography: HorizonUI.Typography.Name,
         notebookNoteInteractor: NotebookNoteInteractor = NotebookNoteInteractor(),
         router: Router = AppEnvironment.shared.router
-    ) {
-        self.notebookNoteInteractor = notebookNoteInteractor
-        self.router = router
+    ) -> NoteableTextViewModel {
+        let viewModel = viewModels[highlightsKey] ?? NoteableTextViewModel(
+            text: text,
+            highlightsKey: highlightsKey,
+            typography: typography,
+            notebookNoteInteractor: notebookNoteInteractor,
+            router: router
+        )
+        viewModels[highlightsKey] = viewModel
+        return viewModel
     }
 
-    /// loads the text and highlights for the text view
-    public func load(text: String, highlightsKey: String, typography: HorizonUI.Typography.Name) {
-        // if the text hasn't changed, no need to reload
-        if text == self.text {
-            return
-        }
+    private init(
+        text: String,
+        highlightsKey: String,
+        typography: HorizonUI.Typography.Name,
+        notebookNoteInteractor: NotebookNoteInteractor,
+        router: Router?
+    ) {
         self.text = text
-        self.notebookNoteInteractor.get(highlightsKey: highlightsKey).sink(
+        self.notebookNoteInteractor = notebookNoteInteractor
+        self.router = router
+
+        notebookNoteInteractor.get(highlightsKey: highlightsKey).sink(
             receiveCompletion: { _ in },
             receiveValue: { [weak self] notebookCourseNotes in
                 guard let self = self else { return }
@@ -145,6 +159,8 @@ public class NoteableTextViewModel {
             return
         }
 
+        let highlightedText = textView.text(in: textRange) ?? ""
+
         notebookNoteInteractor.add(
             index: NotebookNoteIndex(
                 highlightKey: highlightsKey,
@@ -152,6 +168,7 @@ public class NoteableTextViewModel {
                 length: end - start,
                 groupId: courseId
             ),
+            highlightedText: highlightedText,
             labels: [courseNoteLabel]
         ).sink(
             receiveCompletion: { _ in },

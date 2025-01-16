@@ -79,9 +79,10 @@ final class NotebookCourseViewModel {
                     .map { note in
                         NotebookNote(
                             id: note.id,
-                            types: note.types,
+                            highlightedText: note.highlightedText,
+                            note: note.note,
                             title: weakSelf?.formatter.string(from: note.date) ?? "",
-                            note: note.note
+                            types: note.types
                         )
                     }
                     .collect()
@@ -109,7 +110,8 @@ final class NotebookCourseViewModel {
 
 struct NotebookNote: Identifiable {
     let id: String
-    let types: [CourseNoteLabel]
-    let title: String
+    let highlightedText: String
     let note: String
+    let title: String
+    let types: [CourseNoteLabel]
 }

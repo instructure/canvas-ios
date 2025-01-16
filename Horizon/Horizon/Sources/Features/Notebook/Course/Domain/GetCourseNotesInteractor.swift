@@ -21,6 +21,7 @@ import Foundation
 
 struct NotebookCourseNote {
     let date: Date
+    let highlightedText: String
     let highlightStart: Int
     let highlightLength: Int
     let id: String
@@ -29,6 +30,7 @@ struct NotebookCourseNote {
 
     init(from courseNote: CourseNote) {
         date = courseNote.date
+        highlightedText = courseNote.highlightedText
         highlightStart = courseNote.highlightStart
         highlightLength = courseNote.highlightLength
         id = courseNote.id

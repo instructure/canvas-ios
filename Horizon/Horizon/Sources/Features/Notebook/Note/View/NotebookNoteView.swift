@@ -30,7 +30,7 @@ struct NotebookNoteView: View {
             leading: {},
             trailing: {}
         ) {
-            VStack(spacing: .huiSpaces.primitives.large) {
+            VStack(spacing: .huiSpaces.primitives.medium) {
                 HStack {
                     HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
                         viewModel.onClose(viewController: viewController)
@@ -62,6 +62,10 @@ struct NotebookNoteView: View {
                         viewModel.onToggleImportant()
                     }
                 }
+
+                Text(viewModel.highlightedText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.regular14Italic)
 
                 ZStack {
                     TextField("", text: $viewModel.note, axis: .vertical)
