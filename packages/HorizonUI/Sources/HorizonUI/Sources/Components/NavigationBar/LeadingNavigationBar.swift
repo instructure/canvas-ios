@@ -18,33 +18,28 @@
 
 import SwiftUI
 
-struct ModuleItemOverdueView: View {
-    let dueDate: String
+public extension HorizonUI.NavigationBar {
+    struct Leading: View {
+        let logoURL: String
 
-    var body: some View {
-        HStack {
-            HStack(spacing: 4) {
-                Image.calendarMonthLine
+        public init(logoURL: String) {
+            self.logoURL = logoURL
+        }
+
+        public var body: some View {
+            AsyncImage(url: URL(string: logoURL)) { image in
+                image
+                    .image?
                     .resizable()
-                    .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
-                    .foregroundStyle(Color.textDark)
-                    .frame(width: 18, height: 18)
-                let dueText = String(localized: "Due", bundle: .horizon)
-                Size12RegularTextDarkTitle(title: "\(dueText) \(dueDate)")
+                    .frame(width: 118, height: 44)
+                    .background(Color.huiColors.surface.pageTertiary)
             }
-
-            Spacer()
-
-            Text("OVERDUE", bundle: .horizon)
-                .font(.regular12)
-                .foregroundColor(Color.textDanger)
-                .padding(5)
-                .overlay(Capsule().stroke(Color.backgroundDanger, lineWidth: 1))
         }
     }
 }
 
 #Preview {
-    ModuleItemOverdueView(dueDate: "20-03-2025")
+    HorizonUI.NavigationBar.Leading(logoURL: "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png")
 }
+

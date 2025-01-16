@@ -104,13 +104,16 @@
     "Important" : {
 
     },
-    "INCOMPLETE ITEM" : {
-
-    },
     "Learn" : {
 
     },
     "My Progress" : {
+
+    },
+    "Next Up" : {
+
+    },
+    "Note" : {
 
     },
     "Notebook" : {
@@ -126,9 +129,6 @@
 
     },
     "OK" : {
-
-    },
-    "OVERDUE" : {
 
     },
     "Overview" : {

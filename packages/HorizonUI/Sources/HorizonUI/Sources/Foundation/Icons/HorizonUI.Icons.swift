@@ -18,9 +18,9 @@
 
 import SwiftUI
 
-extension HorizonUI {
+public extension HorizonUI {
 
-    public struct Icons: Sendable {
+    struct Icons: Sendable {
         fileprivate init() {}
 
         public let accessibilityNew = Image(.accessibilityNew)
@@ -416,18 +416,19 @@ extension HorizonUI {
         public let circle = Image(.circle)
         public let ai = Image(.ai)
         public let aiFilled = Image(.aiFilled)
+        public let menuBookNotebook = Image(.menuBookNotebook)
 
-        func allImages() -> [(image: Image?, label: String?)] {
+        func allImages() -> [Image] {
             let mirror = Mirror(reflecting: self)
-            return mirror.children.compactMap { (image: $0.value as? Image, label: $0.label) }
+            return mirror.children.compactMap { $0.value as? Image }
         }
     }
 
-    public static let icons = HorizonUI.Icons()
+    static let icons = HorizonUI.Icons()
 }
 
 extension Image {
-    public static let huiIcons = HorizonUI.icons
+    static public let huiIcons = HorizonUI.icons
 }
 
 public extension Bundle {

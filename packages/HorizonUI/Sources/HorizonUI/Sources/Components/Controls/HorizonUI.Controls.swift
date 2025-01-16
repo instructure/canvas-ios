@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,16 +18,6 @@
 
 import Foundation
 
-public extension HorizonUI.Spaces {
-    struct Primitives: Sendable {
-        public let xxxSmall: CGFloat = 2
-        public let xxSmall: CGFloat = 4
-        public let xSmall: CGFloat = 8
-        public let smallMedium: CGFloat = 10
-        public let small: CGFloat = 12
-        public let mediumSmall: CGFloat = 16
-        public let medium: CGFloat = 24
-        public let large: CGFloat = 36
-        public let xLarge: CGFloat = 48
-    }
+public extension HorizonUI {
+    struct Controls { }
 }

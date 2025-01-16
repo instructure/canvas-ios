@@ -17,31 +17,19 @@
 //
 
 import SwiftUI
-
-struct ModuleCheckMarkIcon: View {
-    let isCompleted: Bool
-
-    var body: some View {
-        ZStack {
-            if isCompleted {
-                Circle()
-                    .fill(Color.green)
-                    .frame(width: 20, height: 20)
-
-                Image(systemName: "checkmark")
-                    .font(.regular10)
-                    .foregroundColor(.backgroundLightest)
-            } else {
-                Circle()
-                    .stroke(Color.backgroundDark, lineWidth: 1)
-                    .frame(width: 20, height: 20)
+public extension HorizonUI.NavigationBar {
+    struct Storybook: View {
+        public var body: some View {
+            VStack {
+                
             }
+            .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"))
+            .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing(onNotebookDidTap: {}, onNotificationDidTap: {}, onMailDidTap: {}))
+            .navigationTitle("NavigationBar")
         }
     }
 }
 
-#if DEBUG
 #Preview {
-    ModuleCheckMarkIcon(isCompleted: true)
+    HorizonUI.NavigationBar.Storybook()
 }
-#endif

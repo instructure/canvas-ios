@@ -55,6 +55,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
     private func presentChatBot() {
         let vc = CoreHostingController(AIAssembly.makeChatBotView())
+        vc.modalPresentationStyle = .pageSheet
         router.show(vc, from: self, options: .modal(isDismissable: false))
     }
 
@@ -64,7 +65,8 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         )
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .backgroundLight
+
+        appearance.backgroundColor = UIColor(Color.huiColors.surface.pagePrimary)
         appearance.shadowImage = UIImage()
         appearance.shadowColor = nil
 
@@ -90,7 +92,13 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
     }
 
     private func fakeTab() -> UIViewController {
-        .init()
+        if shouldPresentChatBot {
+            let vc = UIViewController()
+            vc.tabBarItem.image = UIImage(resource: .chatBot)
+            return vc
+        } else {
+            return .init()
+        }
     }
 
     private func careerTab() -> UIViewController {
@@ -135,7 +143,17 @@ extension HorizonTabBarController {
         guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
             return true
         }
-        if selectedIndex == 2 { return false }
+        if selectedIndex == 2, shouldPresentChatBot {
+            presentChatBot()
+            return false
+        }
         return true
+    }
+
+    private var shouldPresentChatBot: Bool {
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            return true
+        }
+        return false
     }
 }
