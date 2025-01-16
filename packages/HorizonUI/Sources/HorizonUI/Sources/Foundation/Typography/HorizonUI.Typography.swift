@@ -71,22 +71,10 @@ public extension HorizonUI {
                 }
             }
 
-            public var lineSpacing: CGFloat {
+            public var lineHeightMultiple: CGFloat {
                 switch self {
-                case .h1: return 39.2
-                case .h2: return 33.6
-                case .h3: return 28
-                case .p1: return 22.4
-                case .p2: return 19.6
-                case .p3: return 16.8
-                // TODO: Need to check with the team
-                case .tag: return 16.8
-                case .labelLargeBold: return 22.4
-                case .labelMediumBold: return 19.6
-                case .labelSmallBold: return 16.8
-                case .labelSmall: return 16.8
-                case .buttonTextLarge: return 22.4
-                case .buttonTextMedium: return 19.6
+                case .tag: return 0.0
+                default: return 1.4
                 }
             }
         }

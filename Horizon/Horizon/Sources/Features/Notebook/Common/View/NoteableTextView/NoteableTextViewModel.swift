@@ -172,7 +172,7 @@ public class NoteableTextViewModel {
         let attributedText = NSMutableAttributedString(string: text)
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = typography.lineSpacing
+        paragraphStyle.lineHeightMultiple = typography.lineHeightMultiple
 
         attributedText.addAttributes(
             [
