@@ -31,7 +31,12 @@ public class NoteableTextViewModel {
 
     var attributedText: NSAttributedString = NSAttributedString("")
 
-    init(notebookNoteInteractor: NotebookNoteInteractor, router: Router? = nil) {
+    static let instance = NoteableTextViewModel()
+
+    init(
+        notebookNoteInteractor: NotebookNoteInteractor = NotebookNoteInteractor(),
+        router: Router = AppEnvironment.shared.router
+    ) {
         self.notebookNoteInteractor = notebookNoteInteractor
         self.router = router
     }
@@ -56,7 +61,7 @@ public class NoteableTextViewModel {
     /// dynamically computes the list of menu options available when a block of text is selected
     public func getMenu(
         highlightsKey: String,
-        courseId: String,
+        courseId: String?,
         textView: UITextView,
         range: UITextRange,
         suggestedActions: [UIMenuElement],
@@ -126,7 +131,7 @@ public class NoteableTextViewModel {
     /// If it's chosen to add a note, then it navigates to the note page
     private func onSelection(
         highlightsKey: String,
-        courseId: String,
+        courseId: String?,
         textView: UITextView,
         textRange: UITextRange,
         courseNoteLabel: CourseNoteLabel,

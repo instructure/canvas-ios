@@ -48,7 +48,7 @@ struct RepositoryNote {
     let id: String
     let date: Date
     let content: String
-    let courseId: String
+    let courseId: String?
     let highlightKey: String
     let labels: [String]
     let length: Int
@@ -56,14 +56,14 @@ struct RepositoryNote {
 }
 
 extension RepositoryNote {
-    func toCourseNote(withCourse course: RepositoryCourse) -> CourseNote {
+    func toCourseNote(withCourse course: RepositoryCourse?) -> CourseNote {
         CourseNote(
             id: self.id,
             date: self.date,
             content: self.content,
-            institution: course.institution,
+            institution: course?.institution,
             courseId: self.courseId,
-            course: course.name,
+            course: course?.name,
             highlightKey: self.highlightKey,
             highlightStart: self.startIndex,
             highlightLength: self.length,
@@ -76,9 +76,6 @@ extension Array where Element == RepositoryNote {
     func toCourseNotes(withCourses courses: [RepositoryCourse]) -> [CourseNote] {
         self.map { note in
             let course = courses.first { $0.id == note.courseId }
-            guard let course = course else {
-                return nil
-            }
             return note.toCourseNote(withCourse: course)
         }.compactMap { $0 }
     }
@@ -114,10 +111,7 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
             guard let self = self else {
                 return promise(.success(nil))
             }
-            guard let course = self.courses.first(where: { $0.id == index.groupId }) else {
-                return promise(.success(nil))
-            }
-
+            let course = self.courses.first(where: { $0.id == index.groupId })
             // Generate a new unique ID (in this case, we'll use a timestamp-based approach)
             let date = Date()
             let newId = String(date.timeIntervalSince1970)
@@ -208,9 +202,7 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
         }
 
         let courseNotes: [CourseNote] = notes.map { note in
-            guard let course = courses.first(where: { $0.id == note.courseId }) else {
-                return nil
-            }
+            let course = courses.first { $0.id == note.courseId }
             return note.toCourseNote(withCourse: course)
         }.compactMap { $0 }
         self.courseNotesPublisher.send(courseNotes)

@@ -27,7 +27,7 @@ struct NotebookNoteIndex {
     let highlightKey: String
     let startIndex: Int
     let length: Int
-    let groupId: String
+    let groupId: String?
 }
 
 final class NotebookNoteInteractor {
@@ -41,7 +41,7 @@ final class NotebookNoteInteractor {
 
     // MARK: - Init
 
-    init(courseNotesRepository: CourseNotesRepository) {
+    init(courseNotesRepository: CourseNotesRepository = CourseNotesRepositoryPreview.instance) {
         self.courseNotesRepository = courseNotesRepository
     }
 

@@ -32,12 +32,6 @@ final class NotebookCourseListAssembly {
                 viewModel: NotebookCourseListViewModel(
                     router: AppEnvironment.shared.router,
                     getCoursesInteractor: makeGetNotebookCoursesInteractor()
-                ),
-                noteableTextViewModel: NoteableTextViewModel(
-                    notebookNoteInteractor: NotebookNoteInteractor(
-                        courseNotesRepository: CourseNotesRepositoryPreview.instance
-                    ),
-                    router: AppEnvironment.shared.router
                 )
             )
         )

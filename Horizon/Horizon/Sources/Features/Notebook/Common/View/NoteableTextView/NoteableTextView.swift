@@ -23,17 +23,17 @@ import Core
 /// That can be highlighted and annotated.
 /// It requires a view model for managing  logic associated with highlighting and annotation.
 struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
-    let courseId: String
+    let courseId: String?
     let highlightsKey: String
     @Environment(\.viewController) var viewController
     let viewModel: NoteableTextViewModel
-
+    
     init(
         _ text: String,
         highlightsKey: String,
-        courseId: String,
+        courseId: String? = nil,
         typography: HorizonUI.Typography.Name = .p1,
-        viewModel: NoteableTextViewModel
+        viewModel: NoteableTextViewModel = NoteableTextViewModel.instance
     ) {
         self.highlightsKey = highlightsKey
         self.courseId = courseId

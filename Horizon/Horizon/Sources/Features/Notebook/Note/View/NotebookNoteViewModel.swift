@@ -44,8 +44,6 @@ final class NotebookNoteViewModel {
     private var isEditing = false
     private let notebookNoteInteractor: NotebookNoteInteractor
     private let noteId: String?
-    private let courseId: String?
-    private let highlightedText: String?
     private let router: Router
 
     private var isConfusingSaved: Bool = false
@@ -66,25 +64,11 @@ final class NotebookNoteViewModel {
         self.router = router
         self.noteId = noteId
         self.isEditing = isEditing
-        self.courseId = nil
-        self.highlightedText = nil
 
         notebookNoteInteractor.get(noteId: noteId)
             .sink(receiveCompletion: { _ in },
                   receiveValue: whenNotebookCourseNoteUpdated)
             .store(in: &subscriptions)
-    }
-
-    init(notebookNoteInteractor: NotebookNoteInteractor,
-         router: Router,
-         courseId: String,
-         highlightedText: String) {
-        self.notebookNoteInteractor = notebookNoteInteractor
-        self.router = router
-        self.courseId = courseId
-        self.noteId = nil
-        self.isEditing = true
-        self.highlightedText = highlightedText
     }
 
     // MARK: - Inputs
