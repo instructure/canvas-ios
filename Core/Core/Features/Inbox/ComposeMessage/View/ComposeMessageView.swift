@@ -201,7 +201,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 .padding(.vertical, 12)
         }
         .accessibilityLabel(Text("Add recipient", bundle: .core))
-        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("ComposeMessage.addRecipient")
     }
 
@@ -284,7 +284,9 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     .frame(minHeight: 50)
                     .frame(maxHeight: .infinity, alignment: .center)
                     .padding(.leading, 5)
-                    .accessibilityHidden(true)
+                    .accessibilityHidden(false)
+                    .accessibilityLabel(Text("Search for recipients", bundle: .core))
+                    .accessibilityAddTraits(.isSearchField)
                     .readingFrame { frame in
                         searchTextFieldHeight = frame.height - 5
                     }
@@ -293,7 +295,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
             addRecipientButton
                 .frame(maxHeight: .infinity, alignment: .top)
-                .accessibilitySortPriority(2)
         }
         .animation(.easeInOut, value: model.recipients.isEmpty)
         .accessibilityElement(children: .contain)
