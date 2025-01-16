@@ -23,9 +23,11 @@ import SwiftUI
 struct NotebookCourseListView: View {
     @Bindable var viewModel: NotebookCourseListViewModel
     @Environment(\.viewController) var viewController
+    let noteableTextViewModel: NoteableTextViewModel
 
-    init(viewModel: NotebookCourseListViewModel) {
+    init(viewModel: NotebookCourseListViewModel, noteableTextViewModel: NoteableTextViewModel) {
         self.viewModel = viewModel
+        self.noteableTextViewModel = noteableTextViewModel
     }
 
     var body: some View {
@@ -41,7 +43,12 @@ struct NotebookCourseListView: View {
         ) {
             NotebookSearchBar(term: $viewModel.term)
                 .padding(.vertical, .huiSpaces.primitives.medium)
-
+            NoteableTextView(
+                "This is some text for you to highlight and annotate. It should be long enough that it forces some items below to be pushed down and the text to wrap.",
+                highlightsKey: "highlights",
+                courseId: "1",
+                viewModel: noteableTextViewModel
+            )
             ListViewItems(listItems: viewModel.listItems,
                           onTap: viewModel.onTap,
                           viewController: viewController)
@@ -89,6 +96,12 @@ struct NotebookCourseListView: View {
             getCoursesInteractor: GetNotebookCoursesInteractor(
                 courseNotesRepository: CourseNotesRepositoryPreview.instance
             )
+        ),
+        noteableTextViewModel: NoteableTextViewModel(
+            notebookNoteInteractor: NotebookNoteInteractor(
+                courseNotesRepository: CourseNotesRepositoryPreview.instance
+            ),
+            router: AppEnvironment.shared.router
         )
     )
 }

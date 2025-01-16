@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import Core
+import UIKit
 
 final class NotebookCourseListAssembly {
     static func makeGetNotebookCoursesInteractor() -> GetNotebookCoursesInteractor {
@@ -32,6 +32,12 @@ final class NotebookCourseListAssembly {
                 viewModel: NotebookCourseListViewModel(
                     router: AppEnvironment.shared.router,
                     getCoursesInteractor: makeGetNotebookCoursesInteractor()
+                ),
+                noteableTextViewModel: NoteableTextViewModel(
+                    notebookNoteInteractor: NotebookNoteInteractor(
+                        courseNotesRepository: CourseNotesRepositoryPreview.instance
+                    ),
+                    router: AppEnvironment.shared.router
                 )
             )
         )

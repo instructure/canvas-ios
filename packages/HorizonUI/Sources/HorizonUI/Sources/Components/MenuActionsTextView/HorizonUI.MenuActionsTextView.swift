@@ -64,17 +64,23 @@ private class MenuActionsUITextView: UITextView {
 
         super.init(frame: .zero, textContainer: nil)
 
+
+        self.setContentHuggingPriority(.required, for: .horizontal)
+        self.setContentHuggingPriority(.required, for: .vertical)
+        self.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        self.contentInset = .zero
+        self.textContainer.lineFragmentPadding = 0
+        self.backgroundColor = .clear
+
         self.isEditable = false
         self.isSelectable = true
-        self.attributedText = NSAttributedString(string: text)
-        self.backgroundColor = .clear
-        self.isScrollEnabled = false
-        self.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        self.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        self.textContainer.maximumNumberOfLines = 0
-        self.textContainer.lineBreakMode = .byWordWrapping
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
-        self.sizeToFit()
+
+        DispatchQueue.main.async {
+            //on the first pass, the contentSize is incorrect
+            //we invalidate the intrinsic content size to cause a recalculation
+            self.invalidateIntrinsicContentSize()
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -88,5 +94,9 @@ private class MenuActionsUITextView: UITextView {
 
     override func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
         menuActionsUITextViewDelegate?.getMenu(textView: self, range: textRange, suggestedActions: suggestedActions)
+    }
+
+    override var intrinsicContentSize: CGSize {
+        return frame.height > 0 ? contentSize : super.intrinsicContentSize
     }
 }
