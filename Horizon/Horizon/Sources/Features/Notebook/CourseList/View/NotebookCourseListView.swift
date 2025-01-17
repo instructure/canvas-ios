@@ -40,15 +40,6 @@ struct NotebookCourseListView: View {
         ) {
             NotebookSearchBar(term: $viewModel.term)
                 .padding(.vertical, .huiSpaces.primitives.medium)
-            NoteableTextView(
-                "This text does belong to a course, so when it's annotated, it'll be associated with the course",
-                highlightsKey: "no course",
-                courseId: "1"
-            )
-            NoteableTextView(
-                "This is a body of text that does not belong to any course. But it's still highlightable.",
-                highlightsKey: "highlights"
-            )
             ListViewItems(listItems: viewModel.listItems,
                           onTap: viewModel.onTap,
                           viewController: viewController)

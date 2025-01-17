@@ -79,7 +79,7 @@ final class NotebookCourseViewModel {
                     .map { note in
                         NotebookNote(
                             id: note.id,
-                            highlightedText: note.highlightedText,
+                            highlightedText: "\"\(note.highlightedText)\"",
                             note: note.note,
                             title: weakSelf?.formatter.string(from: note.date) ?? "",
                             types: note.types

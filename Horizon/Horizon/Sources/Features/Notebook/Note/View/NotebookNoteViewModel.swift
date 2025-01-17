@@ -133,7 +133,7 @@ final class NotebookNoteViewModel {
 
     private func whenNotebookCourseNoteUpdated(notebookCourseNote: NotebookCourseNote?) {
         note = notebookCourseNote?.note ?? ""
-        highlightedText = notebookCourseNote?.highlightedText ?? ""
+        highlightedText = "\"\(notebookCourseNote?.highlightedText ?? "")\""
         noteSaved = note
 
         isConfusing = notebookCourseNote?.types.contains(.confusing) ?? false
