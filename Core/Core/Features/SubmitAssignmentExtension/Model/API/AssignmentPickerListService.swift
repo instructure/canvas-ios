@@ -20,10 +20,13 @@ import Combine
 
 public protocol AssignmentPickerListServiceProtocol: AnyObject {
     typealias APIResult = Result<[APIAssignmentPickerListItem], AssignmentPickerListServiceError>
+    typealias PageLoadingCompletion = () -> Void
+
     var result: AnyPublisher<APIResult, Never> { get }
+    var pageInfo: AnyPublisher<APIPageInfo?, Never> { get }
     var courseID: String? { get set }
 
-    func loadNextPage()
+    func loadNextPage(completion: PageLoadingCompletion?)
 }
 
 public enum AssignmentPickerListServiceError: String, Error {
@@ -32,12 +35,15 @@ public enum AssignmentPickerListServiceError: String, Error {
 
 public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
     public private(set) lazy var result: AnyPublisher<APIResult, Never> = resultSubject.eraseToAnyPublisher()
+    public private(set) lazy var pageInfo: AnyPublisher<APIPageInfo?, Never> = pageInfoSubject.eraseToAnyPublisher()
+
     public var courseID: String? {
         didSet { fetchAssignments() }
     }
 
     private var requestedCourseID: String?
-    private var pageInfo: APIPageInfo?
+
+    private let pageInfoSubject = CurrentValueSubject<APIPageInfo?, Never>(nil)
     private let resultSubject = CurrentValueSubject<APIResult, Never>(.success([]))
 
     public init() {
@@ -55,14 +61,15 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         }
     }
 
-    public func loadNextPage() {
+    public func loadNextPage(completion: (() -> Void)? = nil) {
         guard let courseID,
-              let endCursor = pageInfo?.endCursor
+              let endCursor = pageInfoSubject.value?.endCursor
         else { return }
 
         let request = AssignmentPickerListRequest(courseID: courseID, cursor: endCursor)
         AppEnvironment.shared.api.makeRequest(request) { [weak self] response, _, error in
             self?.handleNextPageResponse(response, error: error, completedCourseID: courseID)
+            completion?()
         }
     }
 
@@ -73,6 +80,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         }
 
         let result: APIResult
+        var pageInfo: APIPageInfo?
 
         if let response = response {
             let assignments = Self.filterAssignments(response.assignments)
@@ -87,6 +95,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         }
 
         resultSubject.send(result)
+        pageInfoSubject.send(pageInfo)
     }
 
     private func handleNextPageResponse(_ response: AssignmentPickerListRequest.Response?, error: Error?, completedCourseID: String) {
@@ -95,12 +104,13 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
             return
         }
 
-        var currentResult: APIResult = resultSubject.value
+        let currentResult: APIResult = resultSubject.value
 
         if let response = response {
             let newAssignments = Self.filterAssignments(response.assignments)
             Analytics.shared.logEvent("assignments_next_page_loaded", parameters: ["count": newAssignments.count])
 
+            pageInfoSubject.send(response.pageInfo)
             resultSubject.send(.success(currentResult.value ?? [] + newAssignments))
 
         } else {

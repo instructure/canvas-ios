@@ -33,6 +33,7 @@ class PostGradesViewController: UIViewController {
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
     private var postPolicy: PostGradePolicy = .everyone
+    lazy var paging = Paging(controller: self)
     var presenter: PostGradesPresenter!
     var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
@@ -62,6 +63,8 @@ class PostGradesViewController: UIViewController {
         tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(SectionCell.self)
         tableView.registerCell(PostToCell.self)
+        tableView.registerCell(LoadingCell.self)
+        tableView.registerCell(UITableViewCell.self)
     }
 
     func setupSections() {
@@ -84,7 +87,24 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         return rowsCount
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return showSections ? (paging.hasMore ? 2 : 1) : 1
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.section == 0 else {
+            if paging.isLoadingMore {
+                return tableView.dequeue(LoadingCell.self, for: indexPath)
+            } else {
+                let cell = tableView.dequeue(for: indexPath)
+                var config = UIListContentConfiguration.cell()
+                config.text = String(localized: "Load Next Page", bundle: .teacher)
+                config.textProperties.color = .systemBlue
+                config.textProperties.alignment = .center
+                return cell
+            }
+        }
+
         let cell: UITableViewCell
         if indexPath.row == 0 {
             cell = tableView.dequeue(for: indexPath) as PostToCell
@@ -155,8 +175,12 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard showSections, indexPath.row == (rowsCount - 1) else { return }
-        presenter.fetchNextPage(to: viewModel)
+        paging.willDisplayRow(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        paging.willSelectRow(at: indexPath)
+        return nil
     }
 
     @objc
@@ -200,6 +224,26 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("init(coder:) has not been implemented")
         }
     }
+
+    class LoadingCell: UITableViewCell {
+        public let progressView = CircleProgressView()
+
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
+            contentView.addSubview(progressView)
+
+            progressView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                progressView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+                progressView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            ])
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
 }
 
 extension PostGradesViewController: ItemPickerDelegate {
@@ -212,6 +256,7 @@ extension PostGradesViewController: ItemPickerDelegate {
 extension PostGradesViewController: PostGradesViewProtocol {
     func update(_ viewModel: APIPostPolicy) {
         self.viewModel = viewModel
+        self.paging.onPageLoaded(viewModel)
         setupSections()
         tableView.reloadData()
     }
@@ -220,6 +265,7 @@ extension PostGradesViewController: PostGradesViewProtocol {
         let newSectionsCount = max(viewModel.sectionsCount - self.viewModel.sectionsCount, 0)
         sectionToggles.append(contentsOf: Array(repeating: false, count: newSectionsCount))
         self.viewModel = viewModel
+        self.paging.onPageLoaded(viewModel)
         tableView.reloadData()
     }
 
@@ -254,5 +300,21 @@ extension PostGradePolicy {
         case .graded:
             return String(localized: "Grades will be made visible to students with graded submissions", bundle: .teacher)
         }
+    }
+}
+
+extension PostGradesViewController: PagingViewController {
+    typealias Page = APIPostPolicy
+
+    func isMoreRow(at indexPath: IndexPath) -> Bool {
+        indexPath.section == 1 && indexPath.row == 0
+    }
+
+    func reloadMorePageRow() {
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+    }
+
+    func loadNextPage() {
+        presenter.fetchNextPage(to: viewModel)
     }
 }

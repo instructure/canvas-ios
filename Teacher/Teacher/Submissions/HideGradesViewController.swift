@@ -19,16 +19,70 @@
 import UIKit
 import Core
 
+protocol PagingViewController: UIViewController {
+    associatedtype Page: PageModel
+
+    func isMoreRow(at indexPath: IndexPath) -> Bool
+    func reloadMorePageRow()
+    func loadNextPage()
+}
+
+protocol PageModel {
+    var endCursor: String? { get }
+}
+
+class Paging<Controller: PagingViewController> {
+    var endCursor: String?
+
+    private(set) var isLoadingMore: Bool = false
+    private var loadedCursor: String?
+
+    private unowned let controller: Controller
+
+    init(controller: Controller) {
+        self.controller = controller
+    }
+
+    var hasMore: Bool { endCursor != nil }
+
+    func onPageLoaded(_ page: Controller.Page) {
+        isLoadingMore = false
+        endCursor = page.endCursor
+    }
+
+    func willDisplayRow(at indexPath: IndexPath) {
+        guard controller.isMoreRow(at: indexPath), isLoadingMore == false else { return }
+        guard let endCursor, endCursor != loadedCursor else { return }
+        loadMore()
+    }
+
+    func willSelectRow(at indexPath: IndexPath) {
+        guard controller.isMoreRow(at: indexPath), isLoadingMore == false else { return }
+        loadMore()
+    }
+
+    private func loadMore() {
+        guard let endCursor else { return }
+
+        loadedCursor = endCursor
+        isLoadingMore = true
+
+        controller.reloadMorePageRow()
+        controller.loadNextPage()
+    }
+}
+
 class HideGradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hideGradesButton: DynamicButton!
     private var sectionToggles: [Bool] = []
     private var gradesCurrentlyPosted = 0
-    private var showSections = false
+    fileprivate var showSections = false
     @IBOutlet weak var allGradesHiddenView: UIView!
     @IBOutlet weak var allHiddenLabel: DynamicLabel!
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
+    private lazy var paging = Paging(controller: self)
     var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
@@ -56,6 +110,8 @@ class HideGradesViewController: UIViewController {
     func setupTableView() {
         tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(PostGradesViewController.SectionCell.self)
+        tableView.registerCell(PostGradesViewController.LoadingCell.self)
+        tableView.registerCell(UITableViewCell.self)
     }
 
     func setupSections() {
@@ -75,11 +131,28 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
         return (showSections ? viewModel.sectionsCount : 0) + 1
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return showSections ? (paging.hasMore ? 2 : 1) : 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rowsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.section == 0 else {
+            if paging.isLoadingMore {
+                return tableView.dequeue(PostGradesViewController.LoadingCell.self, for: indexPath)
+            } else {
+                let cell = tableView.dequeue(for: indexPath)
+                var config = UIListContentConfiguration.cell()
+                config.text = String(localized: "Load Next Page", bundle: .teacher)
+                config.textProperties.color = .systemBlue
+                config.textProperties.alignment = .center
+                return cell
+            }
+        }
+
         let cell: PostGradesViewController.SectionCell = tableView.dequeue(for: indexPath)
         cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
 
@@ -111,8 +184,12 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard showSections, indexPath.row == (rowsCount - 1) else { return }
-        presenter.fetchNextPage(to: viewModel)
+        paging.willDisplayRow(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        paging.willSelectRow(at: indexPath)
+        return nil
     }
 
     @objc
@@ -130,6 +207,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 extension HideGradesViewController: PostGradesViewProtocol {
     func update(_ newModel: APIPostPolicy) {
         self.viewModel = newModel
+        self.paging.onPageLoaded(newModel)
         setupSections()
         tableView.reloadData()
     }
@@ -138,6 +216,7 @@ extension HideGradesViewController: PostGradesViewProtocol {
         let newSectionsCount = max(newModel.sectionsCount - self.viewModel.sectionsCount, 0)
         sectionToggles.append(contentsOf: Array(repeating: false, count: newSectionsCount))
         self.viewModel = newModel
+        self.paging.onPageLoaded(newModel)
         tableView.reloadData()
     }
 
@@ -151,5 +230,25 @@ extension HideGradesViewController: PostGradesViewProtocol {
 
     func showAllHiddenView() {
         allGradesHiddenView.isHidden = false
+    }
+}
+
+extension APIPostPolicy: PageModel {
+    var endCursor: String? { course?.pageInfo?.endCursor }
+}
+
+extension HideGradesViewController: PagingViewController {
+    typealias Page = APIPostPolicy
+
+    func isMoreRow(at indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1 && indexPath.row == 0
+    }
+    
+    func reloadMorePageRow() {
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+    }
+    
+    func loadNextPage() {
+        presenter.fetchNextPage(to: viewModel)
     }
 }

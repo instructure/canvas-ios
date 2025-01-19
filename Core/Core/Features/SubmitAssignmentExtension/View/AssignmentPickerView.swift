@@ -90,8 +90,9 @@ public struct AssignmentPickerView: View {
 
                     Divider()
                 }
-                Color.clear.onAppear {
-                    viewModel.loadNextPage()
+
+                PagingButton(endCursor: $viewModel.endCursor) { _, finished in
+                    viewModel.loadNextPage(completion: finished)
                 }
             }
         }
@@ -136,3 +137,50 @@ struct AssignmentPickerView_Previews: PreviewProvider {
 }
 
 #endif
+
+public struct PagingButton: View {
+
+    @Binding var endCursor: String?
+    @State private var isLoadingMore: Bool = false
+
+    var loadNextPage: (String?, _ finished: @escaping () -> Void) -> Void
+
+    public init(
+        endCursor: Binding<String?>,
+        loadNextPage: @escaping (String?, _: @escaping () -> Void) -> Void
+    ) {
+        self._endCursor = endCursor
+        self.loadNextPage = loadNextPage
+    }
+
+    public var body: some View {
+        if isLoadingMore {
+            HStack {
+                Spacer()
+                Text("Loading ...")
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+                Spacer()
+            }
+            .listRowBackground(Color.clear)
+        }
+
+        if endCursor != nil, isLoadingMore == false {
+            Button("Load More") {
+                loadMore()
+            }
+            .onAppearOnceReferring(endCursor) {
+                loadMore()
+            }
+        }
+    }
+
+    private func loadMore() {
+        guard let endCursor else { return }
+
+        isLoadingMore = true
+        loadNextPage(endCursor) {
+            isLoadingMore = false
+        }
+    }
+}

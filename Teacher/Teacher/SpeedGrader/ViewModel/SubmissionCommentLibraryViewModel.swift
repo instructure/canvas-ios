@@ -28,6 +28,8 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     }
 
     @Published public private(set) var state: ViewModelState<[LibraryComment]> = .loading
+    @Published public var endCursor: String?
+
     private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
     public var shouldShow: Bool {
         settings.first?.commentLibrarySuggestionsEnabled ?? false
@@ -75,9 +77,10 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
         }
     }
 
-    func loadNextPage() {
-        Task {
+    func loadNextPage(completion: @escaping () -> Void) {
+        Task { @MainActor in
             await self.fetchNextPage()
+            completion()
         }
     }
 

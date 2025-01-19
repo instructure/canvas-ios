@@ -22,9 +22,13 @@ extension View {
     func onFirstAppear(perform action: (() -> Void)? = nil) -> some View {
         modifier(FirstAppearViewModifier(action: action))
     }
+
+    func onAppearOnceReferring<Value>(_ reference: Value, perform action: @escaping () -> Void) -> some View where Value: Equatable {
+        modifier(ReferrableAppearOnceViewModifier(reference, action: action))
+    }
 }
 
-struct FirstAppearViewModifier: ViewModifier {
+private struct FirstAppearViewModifier: ViewModifier {
     @State private var didAppearOnce = false
     private let action: (() -> Void)?
 
@@ -39,6 +43,28 @@ struct FirstAppearViewModifier: ViewModifier {
             }
             didAppearOnce = true
             action?()
+        }
+    }
+}
+
+private struct ReferrableAppearOnceViewModifier<Value>: ViewModifier where Value: Equatable {
+
+    let reference: Value
+    @State private var called: Value?
+
+    private let action: () -> Void
+
+    init(_ reference: Value, action: @escaping () -> Void) {
+        self.reference = reference
+        self.action = action
+    }
+
+    func body(content: Content) -> some View {
+        content.onAppear {
+            if let called, called == reference { return }
+
+            action()
+            called = reference
         }
     }
 }
