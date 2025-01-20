@@ -243,11 +243,11 @@ extension HideGradesViewController: PagingViewController {
     func isMoreRow(at indexPath: IndexPath) -> Bool {
         return indexPath.section == 1 && indexPath.row == 0
     }
-    
+
     func reloadMorePageRow() {
         tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
     }
-    
+
     func loadNextPage() {
         presenter.fetchNextPage(to: viewModel)
     }
