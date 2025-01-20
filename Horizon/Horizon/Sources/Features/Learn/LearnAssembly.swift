@@ -36,7 +36,7 @@ final class LearnAssembly {
         CoreHostingController(
             CourseDetailsView(
                 viewModel: .init(
-                    router: AppEnvironment.shared.router,
+                    environment: AppEnvironment.shared,
                     course: course
                 )
             )

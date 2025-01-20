@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,31 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
+import Core
 
-public extension HorizonUI.Spinner {
-    enum Size {
-        case xSmall
-        case small
-        case medium
-        case large
+enum ModuleItemSequenceViewState {
+    case externalURL(url: URL, environment: AppEnvironment, name: String, courseID: String)
+    case externalTool(environment: AppEnvironment, tools: LTITools, name: String?)
+    case moduleItem(controller: UIViewController, id: String)
+    case error
+    case locked(title: String, lockExplanation: String)
 
-        var dimension: CGFloat {
-            switch self {
-            case .xSmall: return 20
-            case .small: return 42
-            case .medium: return 70
-            case .large: return 96
-            }
-        }
-
-        var strokeWidth: CGFloat {
-            switch self {
-            case .xSmall: return 2
-            case .small: return 4
-            case .medium: return 6
-            case .large: return 8
-            }
+    var isModuleItem: Bool {
+        switch self {
+        case .moduleItem:
+            return true
+        default:
+            return false
         }
     }
 }

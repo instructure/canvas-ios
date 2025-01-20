@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,40 +16,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import SwiftUI
 import Core
-import Foundation
 
-final class CourseDetailsViewModel: ObservableObject {
-    // MARK: - Outputs
-
-    @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var course: HCourse
-
-    // MARK: - Private
+struct LTIViewRepresentable: UIViewControllerRepresentable {
+    // MARK: - Dependencies
 
     private let environment: AppEnvironment
-    private var subscriptions = Set<AnyCancellable>()
-
-    // MARK: - Init
+    private let tools: LTITools
+    private let name: String?
 
     init(
         environment: AppEnvironment,
-        course: HCourse
+        tools: LTITools,
+        name: String?
     ) {
         self.environment = environment
-        self.course = course
-        self.state = .data
+        self.tools = tools
+        self.name = name
     }
 
-    // MARK: - Inputs
-
-    func moduleItemDidTap(url: URL, from: WeakViewController) {
-        environment.router.route(to: url, from: from)
+    func makeUIViewController(context: Self.Context) -> LTIViewController {
+        LTIViewController.create(
+            env: environment,
+            tools: tools,
+            name: name
+        )
     }
 
-    func showTabBar() {
-        environment.tabBar(isVisible: true)
-    }
+    func updateUIViewController(
+        _ uiViewController: LTIViewController,
+        context: Self.Context
+    ) { }
 }

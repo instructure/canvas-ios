@@ -27,7 +27,7 @@ public struct GetPage: UseCase {
 
     var isFrontPage: Bool { url == "front_page" }
 
-    init(context: Context, url: String) {
+    public init(context: Context, url: String) {
         self.context = context
         self.url = url.removingPercentEncoding ?? ""
     }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,40 +16,40 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import SwiftUI
 import Core
-import Foundation
 
-final class CourseDetailsViewModel: ObservableObject {
-    // MARK: - Outputs
-
-    @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var course: HCourse
-
-    // MARK: - Private
+struct ExternalURLViewRepresentable: UIViewControllerRepresentable {
+    // MARK: - Dependencies
 
     private let environment: AppEnvironment
-    private var subscriptions = Set<AnyCancellable>()
-
-    // MARK: - Init
+    private let name: String
+    private let url: URL
+    private let courseID: String?
 
     init(
         environment: AppEnvironment,
-        course: HCourse
+        name: String,
+        url: URL,
+        courseID: String?
     ) {
         self.environment = environment
-        self.course = course
-        self.state = .data
+        self.name = name
+        self.url = url
+        self.courseID = courseID
     }
 
-    // MARK: - Inputs
-
-    func moduleItemDidTap(url: URL, from: WeakViewController) {
-        environment.router.route(to: url, from: from)
+    func makeUIViewController(context: Self.Context) -> ExternalURLViewController {
+        ExternalURLViewController.create(
+            env: environment,
+            name: name,
+            url: url,
+            courseID: courseID
+        )
     }
 
-    func showTabBar() {
-        environment.tabBar(isVisible: true)
-    }
+    func updateUIViewController(
+        _ uiViewController: ExternalURLViewController,
+        context: Self.Context
+    ) { }
 }

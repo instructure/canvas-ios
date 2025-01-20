@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-extension HorizonUI {
+public extension HorizonUI {
     struct Spinner: View {
         // MARK: - Dependencies
 
@@ -35,12 +35,12 @@ extension HorizonUI {
 
         // MARK: - Init
 
-        init(size: HorizonUI.Spinner.Size = .medium, showBackground: Bool = false) {
+        public init(size: HorizonUI.Spinner.Size = .medium, showBackground: Bool = false) {
             self.size = size
             self.showBackground = showBackground
         }
 
-        var body: some View {
+        public var body: some View {
             ZStack {
                 if self.showBackground {
                     SpinnerCircle(

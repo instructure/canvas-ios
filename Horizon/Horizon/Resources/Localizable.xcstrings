@@ -35,6 +35,9 @@
     "Are you sure you want to proceed?" : {
 
     },
+    "Cancel" : {
+
+    },
     "Check Answer" : {
 
     },
@@ -77,6 +80,15 @@
     "Learn" : {
 
     },
+    "Locked" : {
+
+    },
+    "Mark as Done" : {
+
+    },
+    "Mark as Undone" : {
+
+    },
     "My Progress" : {
 
     },
@@ -98,6 +110,9 @@
     "of" : {
 
     },
+    "Ok" : {
+
+    },
     "OK" : {
 
     },
@@ -114,6 +129,9 @@
 
     },
     "Regenerate" : {
+
+    },
+    "Retry" : {
 
     },
     "Save" : {
@@ -137,7 +155,13 @@
     "Tell me more about this topic" : {
 
     },
+    "There was an error. please try again." : {
+
+    },
     "Try Again" : {
+
+    },
+    "Unsupported Item" : {
 
     },
     "Yes" : {

@@ -51,8 +51,8 @@ enum HorizonRoutes {
         [
             RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _, env in
                 guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-                return ModuleItemSequenceViewController.create(
-                    env: env,
+                return ModuleItemSequenceAssembly.makeItemSequenceView(
+                    environment: env,
                     courseID: courseID,
                     assetType: .moduleItem,
                     assetID: itemID,
@@ -61,8 +61,8 @@ enum HorizonRoutes {
             },
             RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
                 guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-                return ModuleItemSequenceViewController.create(
-                    env: env,
+                return ModuleItemSequenceAssembly.makeItemSequenceView(
+                    environment: env,
                     courseID: courseID,
                     assetType: .moduleItem,
                     assetID: itemID,
@@ -71,8 +71,8 @@ enum HorizonRoutes {
             },
             RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
                 guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-                return ModuleItemSequenceViewController.create(
-                    env: env,
+                return ModuleItemSequenceAssembly.makeItemSequenceView(
+                    environment: env,
                     courseID: courseID,
                     assetType: .moduleItem,
                     assetID: itemID,
@@ -132,8 +132,8 @@ enum HorizonRoutes {
             RouteHandler("/courses/:courseID/quizzes/:quizID") { url, params, _, env in
                 guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
                 if !url.originIsModuleItemDetails {
-                    return ModuleItemSequenceViewController.create(
-                        env: env,
+                    return ModuleItemSequenceAssembly.makeItemSequenceView(
+                        environment: env,
                         courseID: courseID,
                         assetType: .quiz,
                         assetID: quizID,
@@ -153,8 +153,8 @@ enum HorizonRoutes {
                     return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
                 }
                 if !url.originIsModuleItemDetails {
-                    return ModuleItemSequenceViewController.create(
-                        env: env,
+                    return ModuleItemSequenceAssembly.makeItemSequenceView(
+                        environment: env,
                         courseID: ID.expandTildeID(courseID),
                         assetType: .assignment,
                         assetID: ID.expandTildeID(assignmentID),
@@ -265,8 +265,8 @@ extension HorizonRoutes {
         }
         let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
         if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
-            return ModuleItemSequenceViewController.create(
-                env: environment,
+            return ModuleItemSequenceAssembly.makeItemSequenceView(
+                environment: environment,
                 courseID: context.id,
                 assetType: .file,
                 assetID: fileID,
@@ -289,8 +289,8 @@ extension HorizonRoutes {
     ) -> UIViewController? {
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
         if !url.originIsModuleItemDetails, context.contextType == .course {
-            return ModuleItemSequenceViewController.create(
-                env: environment,
+            return ModuleItemSequenceAssembly.makeItemSequenceView(
+                environment: environment,
                 courseID: context.id,
                 assetType: .page,
                 assetID: pageURL,
