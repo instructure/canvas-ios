@@ -52,7 +52,7 @@ public struct AssignmentPickerListRequest: APIGraphQLPagedRequestable {
 
     public let variables: Variables
 
-    public init(courseID: String, pageSize: Int = 10, cursor: String? = nil) {
+    public init(courseID: String, pageSize: Int = 20, cursor: String? = nil) {
         variables = Variables(courseID: courseID, cursor: cursor, pageSize: pageSize)
     }
 
