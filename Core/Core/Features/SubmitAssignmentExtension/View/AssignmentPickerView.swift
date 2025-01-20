@@ -157,11 +157,11 @@ public struct PagingButton: View {
         if isLoadingMore {
             HStack {
                 Spacer()
-                Text("Loading ...")
                 ProgressView()
                     .progressViewStyle(.indeterminateCircle())
                 Spacer()
             }
+            .padding(.vertical)
             .listRowBackground(Color.clear)
         }
 

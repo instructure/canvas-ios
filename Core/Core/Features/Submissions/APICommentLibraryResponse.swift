@@ -53,6 +53,10 @@ public struct APICommentLibraryResponse: PagedResponse, Equatable {
 public struct APIPageInfo: Codable, Equatable {
     public let endCursor: String?
     public let hasNextPage: Bool
+
+    public var nextCursor: String? {
+        hasNextPage ? endCursor : nil
+    }
 }
 
 #if DEBUG
