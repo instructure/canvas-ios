@@ -19,59 +19,6 @@
 import UIKit
 import Core
 
-protocol PagingViewController: UIViewController {
-    associatedtype Page: PageModel
-
-    func isMoreRow(at indexPath: IndexPath) -> Bool
-    func reloadMorePageRow()
-    func loadNextPage()
-}
-
-protocol PageModel {
-    var endCursor: String? { get }
-}
-
-class Paging<Controller: PagingViewController> {
-    var endCursor: String?
-
-    private(set) var isLoadingMore: Bool = false
-    private var loadedCursor: String?
-
-    private unowned let controller: Controller
-
-    init(controller: Controller) {
-        self.controller = controller
-    }
-
-    var hasMore: Bool { endCursor != nil }
-
-    func onPageLoaded(_ page: Controller.Page) {
-        isLoadingMore = false
-        endCursor = page.endCursor
-    }
-
-    func willDisplayRow(at indexPath: IndexPath) {
-        guard controller.isMoreRow(at: indexPath), isLoadingMore == false else { return }
-        guard let endCursor, endCursor != loadedCursor else { return }
-        loadMore()
-    }
-
-    func willSelectRow(at indexPath: IndexPath) {
-        guard controller.isMoreRow(at: indexPath), isLoadingMore == false else { return }
-        loadMore()
-    }
-
-    private func loadMore() {
-        guard let endCursor else { return }
-
-        loadedCursor = endCursor
-        isLoadingMore = true
-
-        controller.reloadMorePageRow()
-        controller.loadNextPage()
-    }
-}
-
 class HideGradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hideGradesButton: DynamicButton!
@@ -110,8 +57,7 @@ class HideGradesViewController: UIViewController {
     func setupTableView() {
         tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(PostGradesViewController.SectionCell.self)
-        tableView.registerCell(PostGradesViewController.LoadingCell.self)
-        tableView.registerCell(UITableViewCell.self)
+        tableView.registerCell(PageLoadingCell.self)
     }
 
     func setupSections() {
@@ -136,21 +82,12 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowsCount
+        return section == 0 ? rowsCount : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard indexPath.section == 0 else {
-            if paging.isLoadingMore {
-                return tableView.dequeue(PostGradesViewController.LoadingCell.self, for: indexPath)
-            } else {
-                let cell = tableView.dequeue(for: indexPath)
-                var config = UIListContentConfiguration.cell()
-                config.text = String(localized: "Load Next Page", bundle: .teacher)
-                config.textProperties.color = .systemBlue
-                config.textProperties.alignment = .center
-                return cell
-            }
+            return paging.setup(in: tableView.dequeue(for: indexPath))
         }
 
         let cell: PostGradesViewController.SectionCell = tableView.dequeue(for: indexPath)
@@ -212,6 +149,10 @@ extension HideGradesViewController: PostGradesViewProtocol {
         tableView.reloadData()
     }
 
+    func nextPageLoadingFailed(_ error: any Error) {
+        self.paging.onPageLoadingFailed()
+    }
+
     func nextPageLoaded(_ newModel: APIPostPolicy) {
         let newSectionsCount = max(newModel.sectionsCount - self.viewModel.sectionsCount, 0)
         sectionToggles.append(contentsOf: Array(repeating: false, count: newSectionsCount))
@@ -233,19 +174,11 @@ extension HideGradesViewController: PostGradesViewProtocol {
     }
 }
 
-extension APIPostPolicy: PageModel {
-    var endCursor: String? { course?.pageInfo?.endCursor }
-}
-
 extension HideGradesViewController: PagingViewController {
     typealias Page = APIPostPolicy
 
     func isMoreRow(at indexPath: IndexPath) -> Bool {
         return indexPath.section == 1 && indexPath.row == 0
-    }
-
-    func reloadMorePageRow() {
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
     }
 
     func loadNextPage() {

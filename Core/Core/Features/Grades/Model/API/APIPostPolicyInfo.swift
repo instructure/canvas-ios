@@ -127,6 +127,10 @@ public enum PostGradePolicy: String, CaseIterable {
     case everyone, graded
 }
 
+extension APIPostPolicy: PageModel {
+    public var nextCursor: String? { course?.pageInfo?.nextCursor }
+}
+
 #if DEBUG
 extension APIPostPolicy.CourseInfo {
     public static func make(
@@ -297,7 +301,7 @@ public struct GetPostPolicyCourseSectionsRequest: APIGraphQLPagedRequestable {
 
     public init(
         courseID: String,
-        pageSize: Int = 50,
+        pageSize: Int = 20,
         cursor: String? = nil
     ) {
         variables = Variables(

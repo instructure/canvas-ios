@@ -23,6 +23,7 @@ import Combine
 protocol PostGradesViewProtocol: ErrorViewController {
     func update(_ viewModel: APIPostPolicy)
     func nextPageLoaded(_ viewModel: APIPostPolicy)
+    func nextPageLoadingFailed(_ error: Error)
     func updateCourseColor(_ color: UIColor)
     func didHideGrades()
     func didPostGrades()
@@ -100,12 +101,12 @@ class PostGradesPresenter {
 
     func fetchNextPage(to data: APIPostPolicy) {
         guard let course = data.course,
-              let pageInfo = course.pageInfo
+              let nextCursor = course.pageInfo?.nextCursor
         else { return }
 
         env.api
             .makeRequest(
-                GetPostPolicyCourseSectionsRequest(courseID: courseID, cursor: pageInfo.endCursor)
+                GetPostPolicyCourseSectionsRequest(courseID: courseID, cursor: nextCursor)
             )
             .map { result in
                 var courseCopy = course
@@ -120,7 +121,7 @@ class PostGradesPresenter {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
-                    self?.view?.showError(error)
+                    self?.view?.nextPageLoadingFailed(error)
                 }
             } receiveValue: { [weak self] policy in
                 self?.view?.nextPageLoaded(policy)

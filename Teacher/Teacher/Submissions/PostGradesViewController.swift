@@ -63,8 +63,7 @@ class PostGradesViewController: UIViewController {
         tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(SectionCell.self)
         tableView.registerCell(PostToCell.self)
-        tableView.registerCell(LoadingCell.self)
-        tableView.registerCell(UITableViewCell.self)
+        tableView.registerCell(PageLoadingCell.self)
     }
 
     func setupSections() {
@@ -84,7 +83,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowsCount
+        return section == 0 ? rowsCount : 1
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,16 +92,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard indexPath.section == 0 else {
-            if paging.isLoadingMore {
-                return tableView.dequeue(LoadingCell.self, for: indexPath)
-            } else {
-                let cell = tableView.dequeue(for: indexPath)
-                var config = UIListContentConfiguration.cell()
-                config.text = String(localized: "Load Next Page", bundle: .teacher)
-                config.textProperties.color = .systemBlue
-                config.textProperties.alignment = .center
-                return cell
-            }
+            return paging.setup(in: tableView.dequeue(for: indexPath))
         }
 
         let cell: UITableViewCell
@@ -224,26 +214,6 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("init(coder:) has not been implemented")
         }
     }
-
-    class LoadingCell: UITableViewCell {
-        public let progressView = CircleProgressView()
-
-        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: .default, reuseIdentifier: reuseIdentifier)
-
-            contentView.addSubview(progressView)
-
-            progressView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                progressView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-                progressView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ])
-        }
-
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-    }
 }
 
 extension PostGradesViewController: ItemPickerDelegate {
@@ -259,6 +229,10 @@ extension PostGradesViewController: PostGradesViewProtocol {
         self.paging.onPageLoaded(viewModel)
         setupSections()
         tableView.reloadData()
+    }
+
+    func nextPageLoadingFailed(_ error: any Error) {
+        self.paging.onPageLoadingFailed()
     }
 
     func nextPageLoaded(_ viewModel: APIPostPolicy) {
@@ -311,7 +285,7 @@ extension PostGradesViewController: PagingViewController {
     }
 
     func reloadMorePageRow() {
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .none)
     }
 
     func loadNextPage() {
