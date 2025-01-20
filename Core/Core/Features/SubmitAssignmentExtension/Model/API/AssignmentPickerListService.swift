@@ -23,7 +23,7 @@ public protocol AssignmentPickerListServiceProtocol: AnyObject {
     typealias PageLoadingCompletion = () -> Void
 
     var result: AnyPublisher<APIResult, Never> { get }
-    var pageInfo: AnyPublisher<APIPageInfo?, Never> { get }
+    var endCursor: AnyPublisher<String?, Never> { get }
     var courseID: String? { get set }
 
     func loadNextPage(completion: PageLoadingCompletion?)
@@ -35,7 +35,9 @@ public enum AssignmentPickerListServiceError: String, Error {
 
 public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
     public private(set) lazy var result: AnyPublisher<APIResult, Never> = resultSubject.eraseToAnyPublisher()
-    public private(set) lazy var pageInfo: AnyPublisher<APIPageInfo?, Never> = pageInfoSubject.eraseToAnyPublisher()
+    public private(set) lazy var endCursor: AnyPublisher<String?, Never> = pageInfoSubject
+        .map({ $0?.nextCursor })
+        .eraseToAnyPublisher()
 
     public var courseID: String? {
         didSet { fetchAssignments() }
@@ -63,8 +65,11 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
 
     public func loadNextPage(completion: (() -> Void)? = nil) {
         guard let courseID,
-              let endCursor = pageInfoSubject.value?.endCursor
-        else { return }
+              let endCursor = pageInfoSubject.value?.nextCursor
+        else {
+            completion?()
+            return
+        }
 
         let request = AssignmentPickerListRequest(courseID: courseID, cursor: endCursor)
         AppEnvironment.shared.api.makeRequest(request) { [weak self] response, _, error in
@@ -110,8 +115,8 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
             let newAssignments = Self.filterAssignments(response.assignments)
             Analytics.shared.logEvent("assignments_next_page_loaded", parameters: ["count": newAssignments.count])
 
+            resultSubject.send(.success((currentResult.value ?? []) + newAssignments))
             pageInfoSubject.send(response.pageInfo)
-            resultSubject.send(.success(currentResult.value ?? [] + newAssignments))
 
         } else {
             let errorMessage = error?.localizedDescription ?? String(localized: "Something went wrong", bundle: .core)
