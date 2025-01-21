@@ -61,7 +61,7 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
         XCTAssertEqual(loaded[1].text, "Second comment")
 
         // MARK: - Loading Next Page
-        
+
         // Given
         let nextPage = [APICommentLibraryResponse.CommentBankItem(id: "3", comment: "Third comment"),
                         APICommentLibraryResponse.CommentBankItem(id: "4", comment: "Fourth comment") ]

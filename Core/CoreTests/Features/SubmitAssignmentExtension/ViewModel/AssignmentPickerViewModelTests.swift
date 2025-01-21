@@ -91,7 +91,6 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data(lastExpected))
     }
 
-
     func testAssignmentFetchSuccessfulButSharedFilesArentReady() {
         testee.sharedFileExtensions.send(nil)
         mockService.mockResult = .success([
