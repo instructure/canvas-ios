@@ -60,19 +60,6 @@ public class AssignmentPickerViewModel: ObservableObject {
     public init(service: AssignmentPickerListServiceProtocol = AssignmentPickerListService()) {
         self.service = service
         self.serviceSubscription = service.result
-            .map({ result in
-
-
-                switch result {
-                case .success(let items):
-                    print("\(items.count) items loaded ..")
-                    print(items.map { $0.name })
-                case .failure(let error):
-                    print(error)
-                }
-
-                return result
-            })
             .combineLatest(sharedFileExtensions) { result, sharedExtensions -> State in
                 guard var sharedExtensions = sharedExtensions else { return .loading }
                 sharedExtensions = Set(sharedExtensions.map { $0.lowercased() })

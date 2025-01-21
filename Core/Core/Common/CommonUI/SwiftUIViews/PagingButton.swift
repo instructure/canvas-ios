@@ -68,22 +68,24 @@ public struct PagingButton: View {
 }
 
 #Preview {
+
     func probableTrue() -> Bool {
         return [true, true, false].randomElement() ?? false
     }
 
-    struct PagingButton_Preview: View {
+    struct PagingButtonPreview: View {
         @State private var count: Int = 50
         @State private var cursor: String? = "next"
 
         var body: some View {
             List {
+
                 ForEach(0 ..< count, id: \.self) { i in
                     Text("Row \(i + 1)")
                 }
 
                 Section {
-                    PagingButton(endCursor: $cursor) { cursor, finished in
+                    PagingButton(endCursor: $cursor) { _, finished in
                         loadNextPage(completion: finished)
                     }
                 }
@@ -113,5 +115,5 @@ public struct PagingButton: View {
         }
     }
 
-    return PagingButton_Preview()
+    return PagingButtonPreview()
 }
