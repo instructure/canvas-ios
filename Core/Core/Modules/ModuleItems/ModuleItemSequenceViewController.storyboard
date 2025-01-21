@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -79,7 +79,6 @@
                         <outlet property="buttonsHeightConstraint" destination="ZAv-eD-KKl" id="MIx-pI-9BZ"/>
                         <outlet property="nextButton" destination="ywu-lr-3Bv" id="uNj-xQ-3iH"/>
                         <outlet property="pagesContainer" destination="Xc1-o8-iDS" id="pkP-cz-if5"/>
-                        <outlet property="pagesContainerBottomConstraint" destination="VRJ-xc-0QM" id="8s3-RF-X2u"/>
                         <outlet property="previousButton" destination="lE8-Sf-NiN" id="2lH-2E-P0x"/>
                     </connections>
                 </viewController>
@@ -88,9 +87,17 @@
             <point key="canvasLocation" x="-275.36231884057975" y="-218.30357142857142"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="lE8-Sf-NiN">
+            <size key="intrinsicContentSize" width="59" height="30"/>
+        </designable>
+        <designable name="ywu-lr-3Bv">
+            <size key="intrinsicContentSize" width="32" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="backgroundLight">
-            <color red="0.94901960784313721" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
