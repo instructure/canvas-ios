@@ -98,6 +98,11 @@ public struct Storybook: View {
                     } label: {
                         Text("Tabs").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.MenuActionsTextView.Storybook()
+                    } label: {
+                        Text("Custom Menu Actions").tint(Color.black)
+                    }
                 }
                 Section(header: Text("Components: Organisms")) {
                     NavigationLink {

@@ -47,6 +47,7 @@ extension HorizonUI {
 
 /// Methods that our custom UITextView depends on having implemented
 extension HorizonUI.MenuActionsTextView {
+    @MainActor
     public protocol Delegate {
         /// Gets the buttons to be displayed to the user when a body of text is selected
         func getMenu(
