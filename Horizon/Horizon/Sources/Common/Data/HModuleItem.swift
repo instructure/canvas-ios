@@ -64,7 +64,7 @@ struct HModuleItem: Equatable {
         self.isCompleted = entity.completed ?? false
         self.dueAt = entity.dueAt
         self.type = entity.type
-        self.isLocked = entity.lockExplanation != nil
+        self.isLocked = entity.visibleWhenLocked == false && entity.lockedForUser == true
         self.moduleState = entity.module?.state
         self.points = entity.pointsPossible
         self.isOptional = entity.completionRequirement == nil

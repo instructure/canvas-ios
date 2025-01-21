@@ -100,7 +100,7 @@ struct ExpandingModuleView: View {
     }
 
     private func handleItemTap(_ item: HModuleItem) {
-        if let url = item.htmlURL, !item.isLocked {
+        if let url = item.htmlURL {
             routeToURL(url)
             selectedModuleItem = item
         }

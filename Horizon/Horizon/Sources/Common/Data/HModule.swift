@@ -39,7 +39,12 @@ struct HModule {
         self.name = name
         self.courseID = courseID
         self.items = items
-        self.moduleStatus = .init(items: items, state: state, lockMessage: lockMessage, countOfPrerequisite: countOfPrerequisite)
+        self.moduleStatus = .init(
+            items: items,
+            state: state,
+            lockMessage: lockMessage,
+            countOfPrerequisite: countOfPrerequisite
+        )
     }
 
     init(from entity: Module) {

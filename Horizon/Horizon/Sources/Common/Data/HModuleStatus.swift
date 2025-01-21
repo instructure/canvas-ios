@@ -49,7 +49,7 @@ struct HModuleStatus {
         self.areAllItemsOptional = items.allSatisfy { $0.isOptional }
         self.areAllItemsRequired = items.allSatisfy { !$0.isOptional }
         self.hasOptionalItems = items.contains { $0.isOptional }
-        self.hasRequiredItems =  items.contains { !$0.isOptional }
+        self.hasRequiredItems = items.contains { !$0.isOptional }
     }
 
     var status: HorizonUI.ModuleContainer.Status {
