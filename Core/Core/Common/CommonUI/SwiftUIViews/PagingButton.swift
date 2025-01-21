@@ -48,8 +48,10 @@ public struct PagingButton: View {
         }
 
         if let cursor = endCursor, isLoadingMore == false {
-            Button("Load More") {
+            Button {
                 loadMore(from: cursor)
+            } label: {
+                Text("Load More", bundle: .core)
             }
             .onAppear(perform: {
                 if let loadedCursor, loadedCursor == cursor { return }
@@ -81,7 +83,7 @@ public struct PagingButton: View {
             List {
 
                 ForEach(0 ..< count, id: \.self) { i in
-                    Text("Row \(i + 1)")
+                    Text(verbatim: "Row \(i + 1)")
                 }
 
                 Section {
