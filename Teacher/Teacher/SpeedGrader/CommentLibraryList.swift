@@ -58,6 +58,9 @@ struct CommentLibraryList: View {
             PagingButton(endCursor: $viewModel.endCursor) { _, finished in
                 viewModel.loadNextPage(completion: finished)
             }
+            .font(.regular15)
+            .foregroundColor(.blue)
+            .listRowSeparator(.hidden, edges: .bottom)
         }
         .listStyle(.plain)
         .refreshable {

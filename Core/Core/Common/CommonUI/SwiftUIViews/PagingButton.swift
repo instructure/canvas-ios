@@ -52,7 +52,9 @@ public struct PagingButton: View {
                 loadMore(from: cursor)
             } label: {
                 Text("Load More", bundle: .core)
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
+            .padding(.vertical)
             .onAppear(perform: {
                 if let loadedCursor, loadedCursor == cursor { return }
                 loadMore(from: cursor)

@@ -94,6 +94,7 @@ public struct AssignmentPickerView: View {
                 PagingButton(endCursor: $viewModel.endCursor) { _, finished in
                     viewModel.loadNextPage(completion: finished)
                 }
+                .font(.regular16)
             }
         }
     }
