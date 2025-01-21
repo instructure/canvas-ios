@@ -27,6 +27,7 @@ struct HModuleItem: Equatable {
     let type: ModuleItemType?
     let isLocked: Bool
     let moduleState: ModuleState?
+    let points: Double?
 
     init(
         id: String,
@@ -34,9 +35,10 @@ struct HModuleItem: Equatable {
         htmlURL: URL?,
         isCompleted: Bool = false,
         dueAt: Date? = Date(),
-        type: ModuleItemType? = .file(""),
+        type: ModuleItemType? = nil,
         isLocked: Bool = false,
-        moduleState: ModuleState? = .completed
+        moduleState: ModuleState? = nil,
+        points: Double? = nil
     ) {
         self.id = id
         self.title = title
@@ -46,6 +48,7 @@ struct HModuleItem: Equatable {
         self.type = type
         self.isLocked = isLocked
         self.moduleState = moduleState
+        self.points = points
     }
 
     init(from entity: ModuleItem) {
@@ -57,6 +60,7 @@ struct HModuleItem: Equatable {
         self.type = entity.type
         self.isLocked = entity.isLocked
         self.moduleState = entity.module?.state
+        self.points = entity.pointsPossible
     }
 
     var isOverDue: Bool {

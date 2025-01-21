@@ -18,135 +18,28 @@
 
 import SwiftUI
 
-fileprivate let smallButtonSize = 40.0
-fileprivate let largeButtonSize = 44.0
-
 extension HorizonUI {
-    struct ButtonStyles {
-        public enum ButtonType: String, CaseIterable, Identifiable {
-            case ai = "AI"
-            case beige = "Beige"
-            case blue = "Blue"
-            case black = "Black"
-            case white = "White"
-
-            public var id: String { rawValue }
-
-            var background: any ShapeStyle {
-                switch self {
-                case .ai:
-                    return LinearGradient(
-                        gradient: Gradient(colors: [
-                            .huiColors.surface.institution,
-                            .huiColors.primitives.green70,
-                        ]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                case .beige:
-                    return Color.huiColors.surface.pagePrimary
-                case .blue:
-                    return Color.huiColors.surface.institution
-                case .black:
-                    return Color.huiColors.surface.inversePrimary
-                case .white:
-                    return Color.huiColors.surface.pageSecondary
-                }
-            }
-
-            var foregroundColor: Color {
-                switch self {
-                case .ai:
-                    return Color.huiColors.text.surfaceColored
-                case .beige:
-                    return Color.huiColors.text.title
-                case .blue:
-                    return Color.huiColors.text.surfaceColored
-                case .black:
-                    return Color.huiColors.text.surfaceColored
-                case .white:
-                    return Color.huiColors.text.title
-                }
-            }
-
-            var badgeStyle: HorizonUI.Badge.Style {
-                switch self {
-                case .ai:
-                    return .primaryWhite
-                case .beige:
-                    return .primary
-                case .blue:
-                    return .primaryWhite
-                case .black:
-                    return .primaryWhite
-                case .white:
-                    return .primary
-                }
-            }
-        }
-    }
-}
-
-extension HorizonUI.ButtonStyles {
-    struct Icon: ButtonStyle {
-        // MARK: - Dependencies
+    public struct ButtonStyles: ButtonStyle {
+        // MARK: - Common Dependencies
 
         @Environment(\.isEnabled) private var isEnabled
         private let backgroundColor: AnyShapeStyle
         private let foregroundColor: Color
         private let isSmall: Bool
-        private let badgeNumber: String?
-        private let badgeStyle: HorizonUI.Badge.Style?
-        private let icon: Image
 
-        fileprivate init(
-            backgroundColor: any ShapeStyle,
-            foregroundColor: Color,
-            badgeStyle: HorizonUI.Badge.Style,
-            isSmall: Bool = false,
-            icon: Image,
-            badgeNumber: String? = nil
-        ) {
-            self.backgroundColor = AnyShapeStyle(backgroundColor)
-            self.badgeNumber = badgeNumber
-            self.badgeStyle = badgeStyle
-            self.foregroundColor = foregroundColor
-            self.icon = icon
-            self.isSmall = isSmall
-        }
+        // MARK: - Primary and Secondary Button Dependencies
 
-        public func makeBody(configuration: Configuration) -> some View {
-            icon
-                .renderingMode(.template)
-                .frame(
-                    width: isSmall ? smallButtonSize : largeButtonSize,
-                    height: isSmall ? smallButtonSize : largeButtonSize
-                )
-                .background(backgroundColor)
-                .foregroundStyle(foregroundColor)
-                .huiCornerRadius(level: .level6)
-                .foregroundColor(foregroundColor)
-                .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
-
-            if let badgeNumber = badgeNumber, let badgeStyle = badgeStyle {
-                HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
-                    .offset(x: 15, y: -15)
-            }
-        }
-    }
-}
-
-extension HorizonUI.ButtonStyles {
-    struct Primary: ButtonStyle {
-        // MARK: - Dependencies
-
-        @Environment(\.isEnabled) private var isEnabled
-        private let backgroundColor: AnyShapeStyle
-        private let foregroundColor: Color
-        private let isSmall: Bool
         private let fillsWidth: Bool
         private let leading: Image?
         private let trailing: Image?
+        private let smallButtonSize = 40.0
+        private let largeButtonSize = 44.0
+
+        // MARK: - Icon Button Dependencies
+
+        private let badgeNumber: String?
+        private let badgeStyle: HorizonUI.Badge.Style?
+        private let icon: Image?
 
         fileprivate init(
             backgroundColor: any ShapeStyle,
@@ -162,9 +55,65 @@ extension HorizonUI.ButtonStyles {
             self.fillsWidth = fillsWidth
             self.leading = leading
             self.trailing = trailing
+
+            self.badgeNumber = nil
+            self.badgeStyle = nil
+            self.icon = nil
         }
 
+        fileprivate init(
+            backgroundColor: any ShapeStyle,
+            foregroundColor: Color,
+            badgeStyle: HorizonUI.Badge.Style,
+            isSmall: Bool = false,
+            icon: Image,
+            badgeNumber: String? = nil
+        ) {
+            self.backgroundColor = AnyShapeStyle(backgroundColor)
+            self.badgeNumber = badgeNumber
+            self.badgeStyle = badgeStyle
+            self.foregroundColor = foregroundColor
+            self.icon = icon
+            self.isSmall = isSmall
+
+            self.fillsWidth = false
+            self.leading = nil
+            self.trailing = nil
+        }
+
+        @ViewBuilder
         public func makeBody(configuration: Configuration) -> some View {
+            if icon != nil {
+                iconButton(configuration)
+            } else {
+                primaryButton(configuration)
+            }
+        }
+
+        private func iconButton(_ configuration: Configuration) -> some View {
+            ZStack {
+                if let icon = icon {
+                    icon
+                        .renderingMode(.template)
+                        .frame(
+                            width: isSmall ? smallButtonSize : largeButtonSize,
+                            height: isSmall ? smallButtonSize : largeButtonSize
+                        )
+                        .background(backgroundColor)
+                        .foregroundStyle(foregroundColor)
+                        .huiCornerRadius(level: .level6)
+                        .foregroundColor(foregroundColor)
+
+                    if let badgeNumber = badgeNumber, let badgeStyle = badgeStyle {
+                        HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
+                            .offset(x: 15, y: -15)
+                    }
+                }
+            }
+            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
+        }
+
+        private func primaryButton(_ configuration: Configuration) -> some View {
             HStack {
                 leading?
                     .renderingMode(.template)
@@ -189,14 +138,78 @@ extension HorizonUI.ButtonStyles {
 }
 
 extension HorizonUI.ButtonStyles {
-    @MainActor public static func primary(
+    public enum ButtonType: String, CaseIterable, Identifiable {
+        case ai = "AI"
+        case beige = "Beige"
+        case blue = "Blue"
+        case black = "Black"
+        case white = "White"
+
+        public var id: String { rawValue }
+
+        var background: any ShapeStyle {
+            switch self {
+            case .ai:
+                return LinearGradient(
+                    gradient: Gradient(colors: [
+                        .huiColors.surface.institution,
+                        .huiColors.primitives.green70,
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            case .beige:
+                return Color.huiColors.surface.pagePrimary
+            case .blue:
+                return Color.huiColors.surface.institution
+            case .black:
+                return Color.huiColors.surface.inversePrimary
+            case .white:
+                return Color.huiColors.surface.pageSecondary
+            }
+        }
+
+        var foregroundColor: Color {
+            switch self {
+            case .ai:
+                return Color.huiColors.text.surfaceColored
+            case .beige:
+                return Color.huiColors.text.title
+            case .blue:
+                return Color.huiColors.text.surfaceColored
+            case .black:
+                return Color.huiColors.text.surfaceColored
+            case .white:
+                return Color.huiColors.text.title
+            }
+        }
+
+        var badgeStyle: HorizonUI.Badge.Style {
+            switch self {
+            case .ai:
+                return .primaryWhite
+            case .beige:
+                return .primary
+            case .blue:
+                return .primaryWhite
+            case .black:
+                return .primaryWhite
+            case .white:
+                return .primary
+            }
+        }
+    }
+}
+
+extension HorizonUI.ButtonStyles {
+    public static func primary(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,
         trailing: Image? = nil
-    ) -> HorizonUI.ButtonStyles.Primary {
-        HorizonUI.ButtonStyles.Primary.init(
+    ) -> HorizonUI.ButtonStyles {
+        .init(
             backgroundColor: type.background,
             foregroundColor: type.foregroundColor,
             isSmall: isSmall,
@@ -206,13 +219,13 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    @MainActor public static func icon(
+    public static func icon(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         badgeNumber: String? = nil,
         icon: Image? = nil
-    ) -> HorizonUI.ButtonStyles.Icon {
-        HorizonUI.ButtonStyles.Icon.init(
+    ) -> HorizonUI.ButtonStyles {
+        .init(
             backgroundColor: type.background,
             foregroundColor: type.foregroundColor,
             badgeStyle: type.badgeStyle,

@@ -16,18 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
+public extension HorizonUI.Tabs {
+    struct Storybook: View {
+        @State private var selectedTabIndex: Int? = 0
+        private let tabs = ["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5", "Tab 6"]
 
-public extension HorizonUI.Spaces {
-    struct Primitives: Sendable {
-        public let xxxSmall: CGFloat = 2
-        public let xxSmall: CGFloat = 4
-        public let xSmall: CGFloat = 8
-        public let smallMedium: CGFloat = 10
-        public let small: CGFloat = 12
-        public let mediumSmall: CGFloat = 16
-        public let medium: CGFloat = 24
-        public let large: CGFloat = 36
-        public let xLarge: CGFloat = 48
+        public var body: some View {
+            VStack {
+                HorizonUI.Tabs(tabs: tabs, selectTabIndex: $selectedTabIndex)
+                Spacer()
+            }
+            .padding(16)
+            .navigationTitle("Tabs")
+        }
     }
+}
+
+#Preview {
+    HorizonUI.Tabs.Storybook()
 }

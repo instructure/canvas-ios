@@ -58,6 +58,10 @@ struct HModule {
     var isInProgress: Bool {
         state == .started
     }
+
+    var dueItemsCount: Int {
+        items.filter { $0.isOverDue }.count
+    }
 }
 
 extension HModule: Identifiable {}
