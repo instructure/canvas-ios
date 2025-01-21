@@ -25,13 +25,18 @@ class AssignmentPickerListServiceTests: CoreTestCase {
     private var receivedResult: Result<[APIAssignmentPickerListItem], AssignmentPickerListServiceError>?
     private var resultSubscription: AnyCancellable?
 
+    private var expectation: XCTestExpectation?
+
+    private func expect() {
+        expectation = expectation(description: "result received")
+    }
+
     override func setUp() {
         super.setUp()
         testee = AssignmentPickerListService()
 
-        let resultExpectation = expectation(description: "result received")
         resultSubscription = testee.result.sink { [weak self] result in
-            resultExpectation.fulfill()
+            self?.expectation?.fulfill()
             self?.receivedResult = result
         }
     }
@@ -43,7 +48,10 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
     func testAPIError() {
         api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
+
+        expect()
         testee.courseID = "failingID"
+
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(receivedResult, .failure(.failedToGetAssignments))
     }
@@ -55,7 +63,10 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
             mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
+
+        expect()
         testee.courseID = "successID"
+
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
@@ -69,7 +80,10 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
             mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
+
+        expect()
         testee.courseID = "successID"
+
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
@@ -84,9 +98,11 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
             mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload])
         ]))
-        testee.courseID = "successID"
-        waitForExpectations(timeout: 0.1)
 
+        expect()
+        testee.courseID = "successID"
+
+        waitForExpectations(timeout: 0.1)
         XCTAssertEqual(analyticsHandler.totalEventCount, 1)
         XCTAssertEqual(analyticsHandler.lastEvent, "assignments_loaded")
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
@@ -97,6 +113,8 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         Analytics.shared.handler = analyticsHandler
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), error: NSError.instructureError("custom error"))
+
+        expect()
         testee.courseID = "failureID"
         waitForExpectations(timeout: 0.1)
 

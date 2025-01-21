@@ -27,14 +27,18 @@ class APICommentLibraryTests: CoreTestCase {
     func testRequest() {
         let operationName = "CommentLibraryQuery"
         let query = """
-            query \(operationName)($userId: ID!) {
+            query \(operationName)($userId: ID!, $pageSize: Int!, $cursor: String) {
                 user: legacyNode(_id: $userId, type: User) {
                     ... on User {
                         id: _id
-                        commentBankItems: commentBankItemsConnection(query: "") {
+                        commentBankItems: commentBankItemsConnection(query: "", first: $pageSize, after: $cursor) {
                             nodes {
                                 comment: comment
                                 id: _id
+                            }
+                            pageInfo {
+                                endCursor
+                                hasNextPage
                             }
                         }
                     }
@@ -43,6 +47,8 @@ class APICommentLibraryTests: CoreTestCase {
             """
         XCTAssertEqual(request.body?.query, query)
         XCTAssertEqual(request.variables.userId, "1")
+        XCTAssertEqual(request.variables.pageSize, 20)
+        XCTAssertNil(request.variables.cursor)
     }
 
     func testResponse() {

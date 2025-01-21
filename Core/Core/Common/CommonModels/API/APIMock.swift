@@ -180,7 +180,20 @@ class MockAPITask: APITask {
 }
 
 extension URLRequest {
-    var key: String { "\(httpMethod ?? ""):\(url?.withCanonicalQueryParams?.absoluteString ?? "")" }
+    var key: String {
+        let basicKey = "\(httpMethod ?? ""):\(url?.withCanonicalQueryParams?.absoluteString ?? "")"
+
+        struct BodyHeader: Codable, Equatable {
+            let operationName: String
+        }
+
+        guard
+            let body = httpBody,
+            let header = try? APIJSONDecoder().decode(BodyHeader.self, from: body)
+        else { return basicKey }
+
+        return basicKey + ":\(header.operationName)"
+    }
 }
 
 class APIMock {

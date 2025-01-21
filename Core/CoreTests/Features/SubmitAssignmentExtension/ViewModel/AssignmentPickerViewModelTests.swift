@@ -63,6 +63,35 @@ class AssignmentPickerViewModelTests: CoreTestCase {
         ]))
     }
 
+    func testGroupAssignmentPageFetchingSuccessful() {
+        let firstItem: APIAssignmentPickerListItem = .init(
+            id: "A1", name: "online upload", allowedExtensions: [], gradeAsGroup: true
+        )
+
+        mockService.mockResult = .success([firstItem])
+        testee.courseID = "successID"
+        drainMainQueue()
+
+        let firstExpected = [AssignmentPickerItem(apiItem: firstItem, sharedFileExtensions: [])]
+        XCTAssertEqual(testee.state, .data(firstExpected))
+
+        let nextPageList: [APIAssignmentPickerListItem] = [
+            .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true),
+            .init(id: "A3", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
+        ]
+
+        mockService.mockPageInfo = APIPageInfo(endCursor: "next_cursor", hasNextPage: true)
+        mockService.mockNextPageResult = .success(nextPageList)
+
+        testee.loadNextPage()
+        drainMainQueue()
+
+        let lastExpected = firstExpected + nextPageList.map { AssignmentPickerItem(apiItem: $0, sharedFileExtensions: []) }
+        XCTAssertEqual(testee.endCursor, "next_cursor")
+        XCTAssertEqual(testee.state, .data(lastExpected))
+    }
+
+
     func testAssignmentFetchSuccessfulButSharedFilesArentReady() {
         testee.sharedFileExtensions.send(nil)
         mockService.mockResult = .success([
@@ -171,11 +200,33 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 }
 
 class MockAssignmentPickerListService: AssignmentPickerListServiceProtocol {
+
     public private(set) lazy var result: AnyPublisher<APIResult, Never> = resultSubject.eraseToAnyPublisher()
     public var courseID: String? {
         didSet { resultSubject.send(mockResult ?? .failure(.failedToGetAssignments)) }
     }
 
     var mockResult: APIResult?
-    private let resultSubject = PassthroughSubject<APIResult, Never>()
+    private let resultSubject = CurrentValueSubject<APIResult, Never>(.success([]))
+
+    var mockPageInfo: APIPageInfo?
+    var mockNextPageResult: APIResult?
+
+    private let endCursorSubject = CurrentValueSubject<String?, Never>(nil)
+    public private(set) lazy var endCursor: AnyPublisher<String?, Never> = endCursorSubject.eraseToAnyPublisher()
+
+    func loadNextPage(completion: PageLoadingCompletion?) {
+        let nextResult = mockNextPageResult ?? .failure(.failedToGetAssignments)
+
+        switch nextResult {
+        case .success(let list):
+            let newList = (resultSubject.value.value ?? []) + list
+            resultSubject.send(.success(newList))
+            endCursorSubject.send(mockPageInfo?.nextCursor)
+        case .failure(let error):
+            print(error)
+        }
+
+        completion?()
+    }
 }
