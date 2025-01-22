@@ -24,7 +24,8 @@ final class AIAssembly {
 
     static func makeChatBotView() -> ChatBotView {
         let router = AppEnvironment.shared.router
-        let viewModel = ChatBotViewModel(router: router)
+        let chatbotInteractor = ChatBotInteractor()
+        let viewModel = ChatBotViewModel(chatbotInteractor: chatbotInteractor, router: router)
         return ChatBotView(viewModel: viewModel)
     }
 

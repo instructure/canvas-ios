@@ -30,7 +30,7 @@ final class ChatBotViewModel {
 
     private(set) var state: InstUI.ScreenState = .data
     private(set) var messages: [ChatBotMessageModel] = [
-        .init(content: "How can I help you?", isMine: false)
+        .init(content: "Please give me a prompt", isMine: false)
    ]
 
     var isDisableSendButton: Bool {
@@ -39,11 +39,13 @@ final class ChatBotViewModel {
 
     // MARK: - Dependencies
 
+    private let chatbotInteractor: ChatBotInteractor
     private let router: Router
 
     // MARK: - Init
-    init(router: Router) {
+    init(chatbotInteractor: ChatBotInteractor, router: Router) {
         self.router = router
+        self.chatbotInteractor = chatbotInteractor
     }
 
     func dismiss(controller: WeakViewController) {
@@ -51,20 +53,49 @@ final class ChatBotViewModel {
     }
 
     func sendMessage() {
+        let newChatBotMessageModel = ChatBotMessageModel(content: message, isMine: true)
+        let newChatBotMessage = newChatBotMessageModel.toChatBotMessage()
+
         messages.append(.init(content: message, isMine: true))
+
         message = ""
         let loaderMessage = ChatBotMessageModel(isMine: false, isLoading: true)
         messages.append(loaderMessage)
 
-        // Simulate a delay, then replace loader with actual response
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            if let index = self.messages.firstIndex(where: { $0.id == loaderMessage.id }) {
-                self.messages[index] = ChatBotMessageModel(
-                    content: "Here's my response.",
-                    isMine: false,
-                    isLoading: false
-                )
+        Task {
+            let response = await chatbotInteractor.send(message: newChatBotMessage)
+            guard let message = response.value else {
+                messages.removeLast()
+                return
             }
+
+            let messageModel = ChatBotMessageModel(content: message, isMine: false)
+
+            self.messages = messages.dropLast() + [messageModel]
         }
+    }
+}
+
+extension Array where Element == ChatBotMessageModel {
+    var chatBotMessages: [ChatBotMessage] {
+        map { $0.toChatBotMessage() }
+    }
+}
+
+extension Array where Element == ChatBotMessage {
+    var chatBotMessageModels: [ChatBotMessageModel] {
+        map { $0.toChatBotMessageModel() }
+    }
+}
+
+extension ChatBotMessageModel {
+    func toChatBotMessage() -> ChatBotMessage {
+        .init(text: content, role: isMine ? .user : .assistant)
+    }
+}
+
+extension ChatBotMessage {
+    func toChatBotMessageModel() -> ChatBotMessageModel {
+        .init(content: text, isMine: role == .user)
     }
 }

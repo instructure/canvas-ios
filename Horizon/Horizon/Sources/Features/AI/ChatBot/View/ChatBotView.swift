@@ -107,6 +107,6 @@ struct ChatBotView: View {
 
 #if DEBUG
 #Preview {
-    ChatBotView(viewModel: .init(router: AppEnvironment.shared.router))
+    ChatBotView(viewModel: .init(chatbotInteractor: ChatBotInteractor(), router: AppEnvironment.shared.router))
 }
 #endif
