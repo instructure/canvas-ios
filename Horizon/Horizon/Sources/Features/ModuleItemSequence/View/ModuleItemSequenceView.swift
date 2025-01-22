@@ -140,7 +140,8 @@ public struct ModuleItemSequenceView: View {
         .frame(height: 56)
     }
 }
-
+#if DEBUG
 #Preview {
     ModuleItemSequenceAssembly.makeItemSequencePreview()
 }
+#endif
