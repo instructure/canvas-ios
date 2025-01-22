@@ -24,51 +24,61 @@ public extension HorizonUI {
         // MARK: - Dependencies
 
         private let title: String
+        private let subtitle: String?
+        private let status: ModuleContainer.Status
         private let numberOfItems: Int
         private let numberOfPastDueItems: Int
         private let duration: String?
-        private let isCompleted: Bool
         private let isCollapsed: Bool
 
         // MARK: - Init
 
         public init(
             title: String,
+            subtitle: String? = nil,
+            status: ModuleContainer.Status,
             numberOfItems: Int,
             numberOfPastDueItems: Int = 0,
             duration: String? = nil,
-            isCompleted: Bool = false,
             isCollapsed: Bool = false
         ) {
             self.title = title
+            self.subtitle = subtitle
+            self.status = status
             self.numberOfItems = numberOfItems
             self.numberOfPastDueItems = numberOfPastDueItems
             self.duration = duration
-            self.isCompleted = isCompleted
             self.isCollapsed = isCollapsed
         }
 
         public var body: some View {
-            HStack(alignment: .top, spacing: .huiSpaces.primitives.small) {
-                completedImage
-                    .foregroundStyle(Color.huiColors.surface.institution)
-                VStack(alignment: .leading, spacing: .huiSpaces.primitives.xxSmall) {
-                    headerView
-                    moduleOverview
-                }
+            VStack(spacing: .zero) {
+                contentView
+                subtitleView
             }
             .padding(.huiSpaces.primitives.mediumSmall)
             .background(Color.huiColors.surface.cardPrimary)
             .huiCornerRadius(level: .level2)
         }
 
-        private var completedImage: some View {
-            isCompleted ? Image.huiIcons.checkCircleFull : Image.huiIcons.radioButtonUnchecked
+        private var contentView: some View {
+            HStack(alignment: .top, spacing: .huiSpaces.primitives.xSmall) {
+                collapsedImage
+                    .foregroundStyle(Color.huiColors.icon.default)
+                VStack(alignment: .leading, spacing: .huiSpaces.primitives.xxSmall) {
+                    StatusView(status: status)
+                    headerView
+                    moduleOverview
+                }
+            }
         }
 
         private var collapsedImage: some View {
             Image.huiIcons
                 .keyboardArrowDown
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 24, height: status.imageHeight)
                 .rotationEffect(isCollapsed ? .degrees(-180) : .degrees(0))
         }
 
@@ -78,10 +88,9 @@ public extension HorizonUI {
                     .foregroundStyle(Color.huiColors.text.body)
                     .huiTypography(.labelLargeBold)
                     .multilineTextAlignment(.leading)
+                    .lineLimit(isCollapsed ? nil : 2)
 
                 Spacer()
-                collapsedImage
-                    .foregroundStyle(Color.huiColors.surface.institution)
             }
         }
 
@@ -102,13 +111,27 @@ public extension HorizonUI {
             }
             .huiTypography(.labelSmall)
         }
+
+        @ViewBuilder
+        private var subtitleView: some View {
+            if isCollapsed, let subtitle {
+                Text(subtitle)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .huiTypography(.p2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, .huiSpaces.primitives.medium)
+            }
+        }
     }
 }
 
 #Preview {
     HorizonUI.ModuleContainer(
         title: "[Module name]",
+        subtitle: "subtitle",
+        status: .completed,
         numberOfItems: 4,
         numberOfPastDueItems: 32
     )
 }
+
