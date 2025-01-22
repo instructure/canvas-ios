@@ -151,6 +151,14 @@ public enum ModuleItemType: Equatable, Codable {
         case .subHeader: return .moduleItem
         }
     }
+
+    public var isContentItem: Bool {
+        switch self {
+        case .subHeader: return false
+        case .discussion: return false
+        default: return true
+        }
+    }
 }
 
 public extension Optional where Wrapped == ModuleItemType {

@@ -23,8 +23,8 @@ struct HModule {
     let name: String
     let courseID: String
     let items: [HModuleItem]
-    let state: ModuleState?
-    let isSequentialProgressRequired: Bool
+    let moduleStatus: HModuleStatus
+    var contentItems: [HModuleItem]  = []
 
     init(
         id: String,
@@ -32,14 +32,19 @@ struct HModule {
         courseID: String,
         items: [HModuleItem],
         state: ModuleState? = .completed,
-        isSequentialProgressRequired: Bool = false
+        lockMessage: String? = nil,
+        countOfPrerequisite: Int = 0
     ) {
         self.id = id
         self.name = name
         self.courseID = courseID
         self.items = items
-        self.state = state
-        self.isSequentialProgressRequired = isSequentialProgressRequired
+        self.moduleStatus = .init(
+            items: items,
+            state: state,
+            lockMessage: lockMessage,
+            countOfPrerequisite: countOfPrerequisite
+        )
     }
 
     init(from entity: Module) {
@@ -47,16 +52,13 @@ struct HModule {
         self.name = entity.name
         self.courseID = entity.courseID
         self.items = entity.items.map { HModuleItem(from: $0) }
-        self.state = entity.state
-        self.isSequentialProgressRequired = entity.requireSequentialProgress ?? false
-    }
-
-    var isCompleted: Bool {
-        state == .completed
-    }
-
-    var isInProgress: Bool {
-        state == .started
+        contentItems = items.filter { $0.type?.isContentItem == true  }
+        moduleStatus = .init(
+            items: contentItems,
+            state: entity.state,
+            lockMessage: entity.lockedMessage,
+            countOfPrerequisite: entity.prerequisiteModuleIDs.count
+        )
     }
 
     var dueItemsCount: Int {

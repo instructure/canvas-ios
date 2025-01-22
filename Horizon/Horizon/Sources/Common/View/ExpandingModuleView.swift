@@ -24,11 +24,11 @@ struct ExpandingModuleView: View {
     let module: HModule
     let routeToURL: (URL) -> Void
     @State private var isExpanded = false
+    @State private var selectedModuleItem: HModuleItem?
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             header
-
             if isExpanded {
                 Divider()
                     .background(Color.huiColors.lineAndBorders.lineStroke)
@@ -38,46 +38,45 @@ struct ExpandingModuleView: View {
                     .padding(.bottom, .huiSpaces.primitives.large)
             }
         }
-        .animation(.smooth, value: isExpanded)
-        .onFirstAppear { if module.isInProgress { isExpanded = true } }
     }
 
     private var header: some View {
-        Button(action: toggleExpansion) {
+        Button {
+            withAnimation { isExpanded.toggle() }
+        } label: {
             HorizonUI.ModuleContainer(
                 title: module.name,
-                numberOfItems: module.items.count,
+                subtitle: module.moduleStatus.subHeader,
+                status: module.moduleStatus.status,
+                numberOfItems: module.contentItems.count,
                 numberOfPastDueItems: module.dueItemsCount,
                 duration: "76 mins", // TODO: Set actual value
-                isCompleted: module.isCompleted,
-                isCollapsed: isExpanded
-            )
+                isCollapsed: isExpanded)
         }
+        .buttonStyle(.plain)
     }
 
     private var expandedContent: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
             ForEach(module.items) { item in
                 if let type = item.type {
-                    moduleItemRow(for: item, type: type)
+                    if type == .subHeader {
+                        subHeaderText(for: item)
+                    } else {
+                        moduleItemButton(item: item, type: type)
+                    }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, .huiSpaces.primitives.mediumSmall)
+            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
         }
     }
 
-    private func moduleItemRow(for item: HModuleItem, type: ModuleItemType) -> some View {
-        HStack(spacing: .huiSpaces.primitives.xSmall) {
-            completedImage(isCompleted: item.isCompleted)
-                .foregroundStyle(Color.huiColors.surface.institution)
-
-            moduleItemButton(item: item, type: type)
-        }
-    }
-
-    private func completedImage(isCompleted: Bool) -> some View {
-        isCompleted ? Image.huiIcons.checkCircleFull : Image.huiIcons.radioButtonUnchecked
+    private func subHeaderText(for item: HModuleItem) -> some View {
+        Text(item.title)
+            .huiTypography(.labelMediumBold)
+            .foregroundStyle(Color.huiColors.text.body)
+            .padding(.top, .huiSpaces.primitives.small)
     }
 
     private func moduleItemButton(item: HModuleItem, type: ModuleItemType) -> some View {
@@ -85,24 +84,25 @@ struct ExpandingModuleView: View {
             if let itemType = HorizonUI.LearningObjectItem.ItemType(rawValue: type.assetType.rawValue) {
                 HorizonUI.LearningObjectItem(
                     name: item.title,
+                    isSelected: selectedModuleItem == item,
+                    requirement: item.isOptional ? .optional : .required,
+                    status: item.status,
                     type: itemType,
                     duration: "20 Mins", // TODO: Set correct value
                     dueDate: item.dueAt?.dateOnlyString,
+                    lockedMessage: item.lockedMessage,
                     points: item.points,
                     isOverdue: item.isOverDue
                 )
             }
         }
-        .disableWithOpacity(item.isLocked, disabledOpacity: 0.6)
-    }
-
-    private func toggleExpansion() {
-        isExpanded.toggle()
+        .buttonStyle(.plain)
     }
 
     private func handleItemTap(_ item: HModuleItem) {
         if let url = item.htmlURL {
             routeToURL(url)
+            selectedModuleItem = item
         }
     }
 }

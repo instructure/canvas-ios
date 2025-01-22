@@ -98,7 +98,7 @@ public extension HorizonUI {
                 if let duration {
                     HorizonUI.Pill(
                         title: duration,
-                        style: .inline(.init(textColor: Color.huiColors.surface.institution)),
+                        style: .inline(.init(textColor: .huiColors.text.body, iconColor: .huiColors.surface.institution)),
                         isSmall: true,
                         isUppercased: false,
                         icon: Image.huiIcons.schedule
@@ -108,7 +108,7 @@ public extension HorizonUI {
                 if let type {
                     HorizonUI.Pill(
                         title: type,
-                        style: .inline(.init(textColor: Color.huiColors.surface.institution)),
+                        style: .inline(.init(textColor: .huiColors.text.body, iconColor: .huiColors.surface.institution)),
                         isSmall: true,
                         isUppercased: false,
                         icon: Image.huiIcons.textSnippet
@@ -118,7 +118,7 @@ public extension HorizonUI {
                 if let dueDate {
                     HorizonUI.Pill(
                         title: "Due \(dueDate)",
-                        style: .inline(.init(textColor: Color.huiColors.surface.institution)),
+                        style: .inline(.init(textColor: .huiColors.text.body, iconColor: .huiColors.surface.institution)),
                         isSmall: true,
                         isUppercased: false,
                         icon: Image.huiIcons.calendarToday

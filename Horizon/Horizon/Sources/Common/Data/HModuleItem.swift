@@ -17,6 +17,7 @@
 //
 
 import Core
+import HorizonUI
 
 struct HModuleItem: Equatable {
     let id: String
@@ -28,6 +29,8 @@ struct HModuleItem: Equatable {
     let isLocked: Bool
     let moduleState: ModuleState?
     let points: Double?
+    let isOptional: Bool
+    var lockedMessage: String?
 
     init(
         id: String,
@@ -38,7 +41,8 @@ struct HModuleItem: Equatable {
         type: ModuleItemType? = nil,
         isLocked: Bool = false,
         moduleState: ModuleState? = nil,
-        points: Double? = nil
+        points: Double? = nil,
+        lockedDate: String? = nil
     ) {
         self.id = id
         self.title = title
@@ -49,6 +53,8 @@ struct HModuleItem: Equatable {
         self.isLocked = isLocked
         self.moduleState = moduleState
         self.points = points
+        self.isOptional = false
+        self.lockedMessage = lockedDate
     }
 
     init(from entity: ModuleItem) {
@@ -58,9 +64,11 @@ struct HModuleItem: Equatable {
         self.isCompleted = entity.completed ?? false
         self.dueAt = entity.dueAt
         self.type = entity.type
-        self.isLocked = entity.isLocked
+        self.isLocked = entity.visibleWhenLocked == false && entity.lockedForUser == true
         self.moduleState = entity.module?.state
         self.points = entity.pointsPossible
+        self.isOptional = entity.completionRequirement == nil
+        self.lockedMessage = HModuleItemLockMessage(html: entity.lockExplanation ?? "").generate()
     }
 
     var isOverDue: Bool {
@@ -69,6 +77,10 @@ struct HModuleItem: Equatable {
         }
         let rightNow = Clock.now
         return (dueAt ?? Date.distantFuture) < rightNow
+    }
+
+    var status: HorizonUI.LearningObjectItem.Status? {
+        isLocked ? .locked : (isCompleted ? .completed : nil)
     }
 }
 
