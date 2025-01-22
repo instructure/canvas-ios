@@ -21,8 +21,8 @@ import Core
 
 protocol ModuleItemStateInteractor {
     func getModuleItemState(
-        sequence: ModuleItemSequence?,
-        item: ModuleItem?,
+        sequence: HModuleItemSequence?,
+        item: HModuleItem?,
         moduleID: String?,
         itemID: String?
     ) -> ModuleItemSequenceViewState?
@@ -53,8 +53,8 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
     }
 
     func getModuleItemState(
-        sequence: ModuleItemSequence?,
-        item: ModuleItem?,
+        sequence: HModuleItemSequence?,
+        item: HModuleItem?,
         moduleID: String?,
         itemID: String?
     ) -> ModuleItemSequenceViewState? {
@@ -74,7 +74,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
     }
 
    private func getModuleItemDetailsState(
-        item: ModuleItem?,
+        item: HModuleItem?,
         moduleID: String?,
         itemID: String?
     ) -> ModuleItemSequenceViewState? {

@@ -24,7 +24,6 @@ struct ModuleNavBarView: View {
     // MARK: - Private Properties
 
     @Environment(\.viewController) private var controller
-    private let contentButtons = ModuleNavBarButtons.contentButtons
 
     // MARK: - Dependencies
 
@@ -55,13 +54,20 @@ struct ModuleNavBarView: View {
             } label: {
                 iconView(type: .previous)
             }
-            .disableWithOpacity(!isPreviousButtonEnabled)
+            .hidden(!isPreviousButtonEnabled)
 
             Spacer()
             HStack(spacing: 8) {
-                ForEach(contentButtons, id: \.self) { button in
-                    buttonView(type: button)
+                buttonView(type: .volume)
+                Button {
+                    navigateToTutor()
+                } label: {
+                    ModuleNavBarButtons.chatBot.image
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .huiElevation(level: .level2)
                 }
+                buttonView(type: .notebook)
             }
             Spacer()
             Button {
@@ -69,7 +75,7 @@ struct ModuleNavBarView: View {
             } label: {
                 iconView(type: .next)
             }
-            .disableWithOpacity(!isNextButtonEnabled)
+            .hidden(!isNextButtonEnabled)
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
@@ -78,18 +84,23 @@ struct ModuleNavBarView: View {
 
     private func buttonView(type: ModuleNavBarButtons) -> some View {
         Button {
-            router.route(to: "/tutor", from: controller, options: .modal())
+            navigateToTutor()
         } label: {
             iconView(type: type)
         }
     }
 
+    private func navigateToTutor() {
+        router.route(to: "/tutor", from: controller, options: .modal())
+    }
+
     private func iconView(type: ModuleNavBarButtons) -> some View {
         Circle()
-            .fill(Color.disabledGray.opacity(0.2))
+            .fill(Color.huiColors.icon.surfaceColored)
             .frame(width: 50, height: 50)
             .overlay(
                 type.image.foregroundStyle(Color.textDarkest)
             )
+            .huiElevation(level: .level2)
     }
 }

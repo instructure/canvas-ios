@@ -30,7 +30,7 @@ public struct ModuleItemSequenceView: View {
                 mainContent
                     .offset(x: viewModel.offsetX)
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxHeight: .infinity)
             .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .medium, showBackground: true)
@@ -48,7 +48,7 @@ public struct ModuleItemSequenceView: View {
             ToolbarItem(placement: .navigationBarTrailing) { makeAsDoneButton }
             ToolbarItem(placement: .principal) {
                 VStack(spacing: .huiSpaces.primitives.xxxSmall) {
-                    Text(viewModel.item?.title ?? "")
+                    Text(viewModel.moduleItem?.title ?? "")
                         .foregroundStyle(Color.huiColors.text.body)
                         .huiTypography(.labelLargeBold)
                     Text(viewModel.courseName)
@@ -61,7 +61,7 @@ public struct ModuleItemSequenceView: View {
 
     @ViewBuilder
     private var makeAsDoneSheetButtons: some View {
-        let title = viewModel.item?.completed == true
+        let title = viewModel.moduleItem?.completed == true
         ? String(localized: "Mark as Undone", bundle: .core)
         : String(localized: "Mark as Done", bundle: .core)
         Button(title) { viewModel.markAsDone()}
@@ -70,7 +70,7 @@ public struct ModuleItemSequenceView: View {
 
     @ViewBuilder
     private var makeAsDoneButton: some View {
-        if viewModel.item?.completionRequirementType == .must_mark_done {
+        if viewModel.moduleItem?.completionRequirementType == .must_mark_done {
             Button(action: {
                 isShowMakeAsDoneSheet = true
             }) {
@@ -139,4 +139,8 @@ public struct ModuleItemSequenceView: View {
         }
         .frame(height: 56)
     }
+}
+
+#Preview {
+    ModuleItemSequenceAssembly.makeItemSequencePreview()
 }

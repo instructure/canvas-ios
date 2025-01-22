@@ -16,28 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import HorizonUI
+#if DEBUG
+import Foundation
 
-enum ModuleNavBarButtons {
-    case previous
-    case volume
-    case chatBot
-    case notebook
-    case next
-
-    var image: Image {
-        switch self {
-        case .previous:
-            Image.huiIcons.chevronLeft
-        case .volume:
-            Image.huiIcons.volumeUp
-        case .chatBot:
-            Image(.chatBot)
-        case .notebook:
-            Image.huiIcons.menuBookNotebook
-        case .next:
-            Image.huiIcons.chevronRight
-        }
+final class ModuleItemStateInteractorPreview: ModuleItemStateInteractor {
+    func getModuleItemState(
+        sequence: HModuleItemSequence?,
+        item: HModuleItem?,
+        moduleID: String?,
+        itemID: String?
+    ) -> ModuleItemSequenceViewState? {
+        return .error
     }
 }
+#endif

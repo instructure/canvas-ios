@@ -16,28 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import HorizonUI
+import Core
 
-enum ModuleNavBarButtons {
-    case previous
-    case volume
-    case chatBot
-    case notebook
-    case next
+struct HModuleItemSequenceNode: Equatable {
+    let id: String
+    let moduleID: String
 
-    var image: Image {
-        switch self {
-        case .previous:
-            Image.huiIcons.chevronLeft
-        case .volume:
-            Image.huiIcons.volumeUp
-        case .chatBot:
-            Image(.chatBot)
-        case .notebook:
-            Image.huiIcons.menuBookNotebook
-        case .next:
-            Image.huiIcons.chevronRight
+    init(id: String, moduleID: String) {
+        self.id = id
+        self.moduleID = moduleID
+    }
+
+    init?(entity: ModuleItemSequenceNode?) {
+        guard let entity else {
+            return nil
         }
+        self.id = entity.id
+        self.moduleID = entity.moduleID
     }
 }

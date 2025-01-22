@@ -24,17 +24,17 @@ protocol ModuleItemSequenceInteractor {
         assetId: String,
         moduleID: String?,
         itemID: String?
-    ) -> AnyPublisher<(GetModuleItemSequence.Model?, GetModuleItem.Model?), Never>
+    ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never>
 
     func markAsViewed(moduleID: String,
                       itemID: String
-    ) -> AnyPublisher<[MarkModuleItemRead.Model], Error>
+    ) -> AnyPublisher<[HModuleItem], Error>
 
     func markAsDone(
-        item: ModuleItem?,
+        item: HModuleItem?,
         moduleID: String,
         itemID: String
-    ) -> AnyPublisher<[MarkModuleItemDone.Model], Error>
+    ) -> AnyPublisher<[HModuleItem], Error>
 
     func getCourseName() -> AnyPublisher<String, Never>
     func setOfflineMode(assetID: String) -> String?
@@ -66,14 +66,17 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
         assetId: String,
         moduleID: String?,
         itemID: String?
-    ) -> AnyPublisher<(GetModuleItemSequence.Model?, GetModuleItem.Model?), Never> {
+    ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never> {
         let sequenceUseCase = GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetId)
         let sequencePublisher = ReactiveStore(useCase: sequenceUseCase)
             .getEntities()
             .replaceError(with: [])
+            .flatMap { Publishers.Sequence(sequence: $0) }
+            .map { HModuleItemSequence(entity: $0) }
+            .collect()
 
         return sequencePublisher
-            .flatMap { [weak self] moduleItemSequence -> AnyPublisher<([GetModuleItemSequence.Model], [GetModuleItem.Model]), Never> in
+            .flatMap { [weak self] moduleItemSequence -> AnyPublisher<([HModuleItemSequence], [HModuleItem]), Never> in
                 guard let self else {
                     return Just(([], [])).eraseToAnyPublisher()
                 }
@@ -82,14 +85,16 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
                     return Just(([], [])).eraseToAnyPublisher()
                 }
 
-                let moduleId = moduleID ?? firstSequence.current?.moduleID
-                let itemId = itemID ?? firstSequence.current?.id
-
+                let moduleId = moduleID ?? firstSequence.moduleID
+                let itemId = itemID ?? firstSequence.itemID
                 if let moduleId, let itemId {
                     let getModuleItemUseCase = GetModuleItem(courseID: courseID, moduleID: moduleId, itemID: itemId)
                     let moduleItemPublisher = ReactiveStore(useCase: getModuleItemUseCase)
                         .getEntities()
                         .replaceError(with: [])
+                        .flatMap { Publishers.Sequence(sequence: $0) }
+                        .map { HModuleItem(from: $0) }
+                        .collect()
 
                     return moduleItemPublisher
                         .map { moduleItems in (moduleItemSequence, moduleItems) }
@@ -100,7 +105,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             }
             .removeDuplicates(by: { $0.0 == $1.0 && $0.1 == $1.1 })
             .receive(on: DispatchQueue.main)
-            .compactMap { (moduleItemSequence, moduleItems) -> (GetModuleItemSequence.Model?, GetModuleItem.Model?) in
+            .compactMap { (moduleItemSequence, moduleItems) -> (HModuleItemSequence?, HModuleItem?) in
                 (moduleItemSequence.first, moduleItems.first)
             }
             .eraseToAnyPublisher()
@@ -113,19 +118,22 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
         return firstItem?.id
     }
 
-    func markAsViewed(moduleID: String, itemID: String) -> AnyPublisher<[MarkModuleItemRead.Model], Error> {
+    func markAsViewed(moduleID: String, itemID: String) -> AnyPublisher<[HModuleItem], Error> {
         let useCase = MarkModuleItemRead(courseID: courseID, moduleID: moduleID, moduleItemID: itemID)
         return ReactiveStore(useCase: useCase)
             .getEntities()
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+            .map { HModuleItem(from: $0) }
+            .collect()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
     func markAsDone(
-        item: ModuleItem?,
+        item: HModuleItem?,
         moduleID: String,
         itemID: String
-    ) -> AnyPublisher<[MarkModuleItemDone.Model], Error> {
+    ) -> AnyPublisher<[HModuleItem], Error> {
 
         let useCase = MarkModuleItemDone(
             courseID: courseID,
@@ -135,6 +143,9 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
         )
         return ReactiveStore(useCase: useCase)
             .getEntities()
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+            .map { HModuleItem(from: $0) }
+            .collect()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

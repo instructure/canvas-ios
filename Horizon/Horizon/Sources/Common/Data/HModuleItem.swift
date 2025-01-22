@@ -28,6 +28,15 @@ struct HModuleItem: Equatable {
     let isLocked: Bool
     let moduleState: ModuleState?
     let points: Double?
+    let moduleID: String
+    let url: URL?
+    let visibleWhenLocked: Bool
+    let lockedForUser: Bool
+    let lockExplanation: String?
+    let courseID: String
+    let isQuizLTI: Bool
+    let completed: Bool?
+    let completionRequirementType: CompletionRequirementType?
 
     init(
         id: String,
@@ -38,7 +47,17 @@ struct HModuleItem: Equatable {
         type: ModuleItemType? = nil,
         isLocked: Bool = false,
         moduleState: ModuleState? = nil,
-        points: Double? = nil
+        points: Double? = nil,
+        url: URL? = nil,
+        visibleWhenLocked: Bool = false,
+        lockedForUser: Bool = false,
+        lockExplanation: String? = nil,
+        courseID: String = "courseID",
+        moduleID: String = "moduleID",
+        isQuizLTI: Bool = false,
+        completed: Bool? = false,
+        completionRequirementType: CompletionRequirementType? = nil
+
     ) {
         self.id = id
         self.title = title
@@ -49,6 +68,15 @@ struct HModuleItem: Equatable {
         self.isLocked = isLocked
         self.moduleState = moduleState
         self.points = points
+        self.url = url
+        self.moduleID = moduleID
+        self.visibleWhenLocked = visibleWhenLocked
+        self.lockedForUser = lockedForUser
+        self.lockExplanation = lockExplanation
+        self.courseID = courseID
+        self.isQuizLTI = isQuizLTI
+        self.completed = completed
+        self.completionRequirementType = completionRequirementType
     }
 
     init(from entity: ModuleItem) {
@@ -61,6 +89,15 @@ struct HModuleItem: Equatable {
         self.isLocked = entity.isLocked
         self.moduleState = entity.module?.state
         self.points = entity.pointsPossible
+        self.moduleID = entity.moduleID
+        self.url = entity.url
+        self.visibleWhenLocked = entity.visibleWhenLocked
+        self.lockedForUser = entity.lockedForUser
+        self.lockExplanation = entity.lockExplanation
+        self.courseID = entity.courseID
+        self.isQuizLTI = entity.isQuizLTI
+        self.completed = entity.completed
+        self.completionRequirementType = entity.completionRequirementType
     }
 
     var isOverDue: Bool {

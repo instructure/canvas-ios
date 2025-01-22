@@ -49,10 +49,12 @@ enum ModuleItemSequenceAssembly {
         return CoreHostingController(view)
     }
 
-    static func makeModuleNavBarView(isNextButtonEnabled: Bool,
-                                     isPreviousButtonEnabled: Bool,
-                                     didTapNext: @escaping () -> Void,
-                                     didTapPrevious: @escaping () -> Void) -> ModuleNavBarView {
+    static func makeModuleNavBarView(
+        isNextButtonEnabled: Bool,
+        isPreviousButtonEnabled: Bool,
+        didTapNext: @escaping () -> Void,
+        didTapPrevious: @escaping () -> Void
+    ) -> ModuleNavBarView {
         let router = AppEnvironment.shared.router
         return ModuleNavBarView(
             router: router,
@@ -71,22 +73,25 @@ enum ModuleItemSequenceAssembly {
         ModuleItemLockedView(title: title, lockExplanation: lockExplanation)
     }
 
-    static func makeExternalURLView(environment: AppEnvironment,
-                                    name: String,
-                                    url: URL,
-                                    courseID: String?) -> ExternalURLViewRepresentable {
+    static func makeExternalURLView(
+        environment: AppEnvironment,
+        name: String,
+        url: URL,
+        courseID: String?
+    ) -> ExternalURLViewRepresentable {
         ExternalURLViewRepresentable(
             environment: environment,
             name: name,
             url: url,
             courseID: courseID
         )
-
     }
 
-    static func makeLTIView(environment: AppEnvironment,
-                            tools: LTITools,
-                            name: String?) -> LTIViewRepresentable {
+    static func makeLTIView(
+        environment: AppEnvironment,
+        tools: LTITools,
+        name: String?
+    ) -> LTIViewRepresentable {
         LTIViewRepresentable(
             environment: environment,
             tools: tools,
@@ -97,4 +102,17 @@ enum ModuleItemSequenceAssembly {
     static func makeModuleItemView(viewController: UIViewController) -> ModuleItemViewRepresentable {
         ModuleItemViewRepresentable(viewController: viewController)
     }
+
+#if DEBUG
+    static func makeItemSequencePreview() -> ModuleItemSequenceView {
+        let viewModel = ModuleItemSequenceViewModel(
+            moduleItemInteractor: ModuleItemSequenceInteractorPreview(),
+            moduleItemStateInteractor: ModuleItemStateInteractorPreview(),
+            assetType: .moduleItem,
+            assetID: "assetID"
+        )
+        let view = ModuleItemSequenceView(viewModel: viewModel)
+        return view
+    }
+#endif
 }

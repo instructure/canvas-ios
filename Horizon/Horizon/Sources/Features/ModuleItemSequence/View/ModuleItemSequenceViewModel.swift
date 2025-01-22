@@ -26,12 +26,12 @@ final class ModuleItemSequenceViewModel {
     // MARK: - Output
 
     private(set) var viewState: ModuleItemSequenceViewState?
-    private(set) var isNextButtonEnabled: Bool = true
-    private(set) var isPreviousButtonEnabled: Bool = true
+    private(set) var isNextButtonEnabled: Bool = false
+    private(set) var isPreviousButtonEnabled: Bool = false
     private(set) var isLoaderVisible: Bool = false
     private(set) var errorMessage = ""
     private(set) var courseName = ""
-    private(set) var item: ModuleItem?
+    private(set) var moduleItem: HModuleItem?
 
     // MARK: - Input / Output
 
@@ -42,7 +42,7 @@ final class ModuleItemSequenceViewModel {
     private var moduleID: String?
     private var itemID: String?
     private var subscriptions = Set<AnyCancellable>()
-    private var sequence: ModuleItemSequence?
+    private var sequence: HModuleItemSequence?
 
     // MARK: - Dependencies
 
@@ -94,17 +94,17 @@ final class ModuleItemSequenceViewModel {
             let firstSequence = result.0
             self?.sequence = firstSequence
             self?.isNextButtonEnabled = firstSequence?.next != nil
-            self?.isPreviousButtonEnabled = firstSequence?.prev != nil
-            self?.item = result.1
+            self?.isPreviousButtonEnabled = firstSequence?.previous != nil
+            self?.moduleItem = result.1
             self?.updateModuleItemDetails()
         }
         .store(in: &subscriptions)
     }
 
     private func updateModuleItemDetails() {
-        moduleID = item?.moduleID
-        itemID = item?.id
-        var currentState = getCurrentState(item: item)
+        moduleID = moduleItem?.moduleID
+        itemID = moduleItem?.id
+        var currentState = getCurrentState(item: moduleItem)
 
         if currentState == nil {
             currentState = .error
@@ -113,7 +113,7 @@ final class ModuleItemSequenceViewModel {
         offsetX = 0
     }
 
-    private func getCurrentState(item: ModuleItem?) -> ModuleItemSequenceViewState? {
+    private func getCurrentState(item: HModuleItem?) -> ModuleItemSequenceViewState? {
         let state = moduleItemStateInteractor.getModuleItemState(
             sequence: sequence,
             item: item,
@@ -127,7 +127,7 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func markAsViewed() {
-        guard let moduleID, let itemID, let item  else {
+        guard let moduleID, let itemID, let moduleItem  else {
             return
         }
 
@@ -136,9 +136,9 @@ final class ModuleItemSequenceViewModel {
             "itemID": itemID
         ])
 
-        guard item.completionRequirementType == .must_view,
-              item.completed == false,
-              item.lockedForUser == false else {
+        guard moduleItem.completionRequirementType == .must_view,
+              moduleItem.completed == false,
+              moduleItem.lockedForUser == false else {
             return
         }
         moduleItemInteractor
@@ -153,7 +153,7 @@ final class ModuleItemSequenceViewModel {
         }
         isLoaderVisible = true
         moduleItemInteractor.markAsDone(
-            item: item,
+            item: moduleItem,
             moduleID: moduleID,
             itemID: itemID
         )
@@ -168,7 +168,7 @@ final class ModuleItemSequenceViewModel {
     }
 
     func retry() {
-        fetchModuleItemSequence(assetId: item?.id ?? assetID)
+        fetchModuleItemSequence(assetId: moduleItem?.id ?? assetID)
     }
 
     func goNext() {
@@ -179,15 +179,18 @@ final class ModuleItemSequenceViewModel {
     }
 
     func goPervious() {
-        guard let prev = sequence?.prev else { return }
-        moduleID = prev.moduleID
-        itemID = prev.id
-        update(item: prev)
+        guard let previous = sequence?.previous else { return }
+        moduleID = previous.moduleID
+        itemID = previous.id
+        update(item: previous)
     }
 
-    private func update(item: ModuleItemSequenceNode) {
+    private func update(item: HModuleItemSequenceNode) {
         moduleID = item.moduleID
         itemID = item.id
-        fetchModuleItemSequence(assetId: item.id)
+        guard let itemID else {
+            return
+        }
+        fetchModuleItemSequence(assetId: itemID)
     }
 }
