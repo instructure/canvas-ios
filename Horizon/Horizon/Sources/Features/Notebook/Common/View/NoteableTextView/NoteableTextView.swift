@@ -79,7 +79,7 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
             courseId: "1"
         )
         Text(
-            "Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it? Again this is not selectable. Where is it?"
+            "Again this is not selectable. This is to show that the NoteableTextView expands correctly."
         )
     }
 }
