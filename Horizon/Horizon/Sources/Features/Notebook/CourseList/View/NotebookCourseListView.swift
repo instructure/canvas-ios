@@ -41,7 +41,7 @@ struct NotebookCourseListView: View {
             NotebookSearchBar(term: $viewModel.term)
                 .padding(.vertical, .huiSpaces.primitives.medium)
             NoteableTextView(
-                "This is some text that belongs to a course. When highlighted, a note will be associated with the course. The highlight key is used to uniquely identify a block of text so that we can save and recall the highlighted location.",
+                "This text belongs to a course. When highlighted, a note will be associated with the course. The highlight key is used to uniquely identify a block of text.",
                 highlightsKey: "highlightKey1",
                 courseId: "1"
             )
