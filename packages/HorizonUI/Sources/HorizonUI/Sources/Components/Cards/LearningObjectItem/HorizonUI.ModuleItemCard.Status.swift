@@ -42,6 +42,7 @@ extension HorizonUI.LearningObjectItem {
         // MARK: - Properties
 
         @State private var isTooltipVisible = false
+
         // MARK: - Dependencies
 
         let lockedMessage: String?
@@ -75,7 +76,6 @@ extension HorizonUI.LearningObjectItem {
             case .locked: lockedButton
             }
         }
-
 
         private var requiredImage: some View {
             Image.huiIcons.circle

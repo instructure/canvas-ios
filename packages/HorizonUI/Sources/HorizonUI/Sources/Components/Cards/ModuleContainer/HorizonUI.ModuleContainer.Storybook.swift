@@ -63,7 +63,6 @@ public extension HorizonUI.ModuleContainer {
                 .padding()
             }
             .frame(maxWidth: .infinity)
-            .background(Color.gray.opacity(0.2))
         }
     }
 }

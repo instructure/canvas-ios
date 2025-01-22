@@ -76,7 +76,7 @@ struct ExpandingModuleView: View {
         Text(item.title)
             .huiTypography(.labelMediumBold)
             .foregroundStyle(Color.huiColors.text.body)
-            .padding(.top, 12)
+            .padding(.top, .huiSpaces.primitives.small)
     }
 
     private func moduleItemButton(item: HModuleItem, type: ModuleItemType) -> some View {
