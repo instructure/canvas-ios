@@ -253,6 +253,9 @@ extension APIRequestable {
 
         request.httpShouldHandleCookies = shouldHandleCookies
 
+        print("API Request: \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
+        request.allHTTPHeaderFields?.forEach { print("\($0): \($1)") }
+
         return request
     }
 

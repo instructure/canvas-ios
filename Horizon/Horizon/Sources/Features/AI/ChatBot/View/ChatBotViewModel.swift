@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import Core
+import Foundation
 import Observation
 
 @Observable
@@ -31,7 +32,7 @@ final class ChatBotViewModel {
     private(set) var state: InstUI.ScreenState = .data
     private(set) var messages: [ChatBotMessageModel] = [
         .init(content: "Please give me a prompt", isMine: false)
-   ]
+    ]
 
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty
@@ -41,6 +42,10 @@ final class ChatBotViewModel {
 
     private let chatbotInteractor: ChatBotInteractor
     private let router: Router
+
+    // MARK: - Private
+
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
     init(chatbotInteractor: ChatBotInteractor, router: Router) {
@@ -62,17 +67,26 @@ final class ChatBotViewModel {
         let loaderMessage = ChatBotMessageModel(isMine: false, isLoading: true)
         messages.append(loaderMessage)
 
-        Task {
-            let response = await chatbotInteractor.send(message: newChatBotMessage)
-            guard let message = response.value else {
-                messages.removeLast()
-                return
-            }
-
-            let messageModel = ChatBotMessageModel(content: message, isMine: false)
-
-            self.messages = messages.dropLast() + [messageModel]
-        }
+        chatbotInteractor
+            .send(message: newChatBotMessage)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    guard let self = self else { return }
+                    switch completion {
+                        // TODO: improve displaying errors
+                    case .finished:
+                        break
+                    case .failure:
+                        messages = messages.dropLast()
+                    }
+                },
+                receiveValue: { [weak self] message in
+                    guard let self = self else { return }
+                    let messageModel = ChatBotMessageModel(content: message, isMine: false)
+                    self.messages = self.messages.dropLast() + [messageModel]
+                }
+            )
+            .store(in: &subscriptions)
     }
 }
 
