@@ -33,7 +33,7 @@ class PostGradesViewController: UIViewController {
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
     private var postPolicy: PostGradePolicy = .everyone
-    lazy var paging = Paging(controller: self)
+    lazy var paging = PagingPresenter(controller: self)
     var presenter: PostGradesPresenter!
     var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo

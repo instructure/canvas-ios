@@ -30,7 +30,7 @@ public protocol PageModel {
     var nextCursor: String? { get }
 }
 
-public class Paging<Controller: PagingViewController> {
+public class PagingPresenter<Controller: PagingViewController> {
 
     private var endCursor: String?
     private var isLoadingMoreSubject = CurrentValueSubject<Bool, Never>(false)
@@ -42,6 +42,7 @@ public class Paging<Controller: PagingViewController> {
     }
 
     public var hasMore: Bool { endCursor != nil }
+    public var isLoadingMore: Bool { isLoadingMoreSubject.value }
 
     public func onPageLoaded(_ page: Controller.Page) {
         endCursor = page.nextCursor

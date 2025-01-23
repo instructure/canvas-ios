@@ -29,7 +29,7 @@ class HideGradesViewController: UIViewController {
     @IBOutlet weak var allHiddenLabel: DynamicLabel!
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
-    private lazy var paging = Paging(controller: self)
+    private lazy var paging = PagingPresenter(controller: self)
     var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
