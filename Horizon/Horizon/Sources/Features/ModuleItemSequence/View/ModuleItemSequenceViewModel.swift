@@ -68,8 +68,6 @@ final class ModuleItemSequenceViewModel {
         self.assetType = assetType
         self.assetID = assetID
 
-        offlineMode()
-
         fetchModuleItemSequence(assetId: assetID)
 
         moduleItemInteractor.getCourseName()
@@ -79,11 +77,6 @@ final class ModuleItemSequenceViewModel {
             .store(in: &subscriptions)
     }
 
-    private func offlineMode() {
-        if let id = moduleItemInteractor.setOfflineMode(assetID: assetID) {
-            fetchModuleItemSequence(assetId: id)
-        }
-    }
     private func fetchModuleItemSequence(assetId: String) {
         moduleItemInteractor.fetchModuleItems(
             assetId: assetId,
@@ -164,7 +157,7 @@ final class ModuleItemSequenceViewModel {
             }
             self?.isLoaderVisible = false
         } receiveValue: { _ in}
-        .store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
 
     func retry() {

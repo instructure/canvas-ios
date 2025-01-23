@@ -33,11 +33,13 @@ final class LearnAssembly {
     }
 
     static func makeCourseDetailsViewController(course: HCourse) -> UIViewController {
-        CoreHostingController(
+        let appEnvironment = AppEnvironment.shared
+        return CoreHostingController(
             CourseDetailsView(
                 viewModel: .init(
-                    environment: AppEnvironment.shared,
-                    course: course
+                    router: appEnvironment.router,
+                    course: course,
+                    onTabBarVisibility: appEnvironment.tabBar(isVisible:)
                 )
             )
         )

@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import CombineSchedulers
 
 protocol ModuleItemSequenceInteractor {
     func fetchModuleItems(
@@ -37,7 +38,6 @@ protocol ModuleItemSequenceInteractor {
     ) -> AnyPublisher<[HModuleItem], Error>
 
     func getCourseName() -> AnyPublisher<String, Never>
-    func setOfflineMode(assetID: String) -> String?
 }
 
 final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
@@ -47,18 +47,18 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
 
     private let courseID: String
     private let assetType: AssetType
-    private let environment: AppEnvironment
     private let offlineModeInteractor: OfflineModeInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         courseID: String,
         assetType: AssetType,
-        environment: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) {
         self.courseID = courseID
         self.assetType = assetType
-        self.environment = environment
+        self.scheduler = scheduler
         self.offlineModeInteractor = offlineModeInteractor
     }
 
@@ -104,19 +104,19 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
                 }
             }
             .removeDuplicates(by: { $0.0 == $1.0 && $0.1 == $1.1 })
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .compactMap { (moduleItemSequence, moduleItems) -> (HModuleItemSequence?, HModuleItem?) in
                 (moduleItemSequence.first, moduleItems.first)
             }
             .eraseToAnyPublisher()
     }
 
-    func setOfflineMode(assetID: String) -> String? {
-        guard offlineModeInteractor.isOfflineModeEnabled(), Int(assetID) == nil else { return nil }
-        let moduleItems: [ModuleItem] = environment.database.viewContext.fetch(scope: .where(#keyPath(ModuleItem.pageId), equals: assetID))
-        let firstItem = moduleItems.first
-        return firstItem?.id
-    }
+//    func setOfflineMode(assetID: String) -> String? {
+//        guard offlineModeInteractor.isOfflineModeEnabled(), Int(assetID) == nil else { return nil }
+//        let moduleItems: [ModuleItem] = environment.database.viewContext.fetch(scope: .where(#keyPath(ModuleItem.pageId), equals: assetID))
+//        let firstItem = moduleItems.first
+//        return firstItem?.id
+//    }
 
     func markAsViewed(moduleID: String, itemID: String) -> AnyPublisher<[HModuleItem], Error> {
         let useCase = MarkModuleItemRead(courseID: courseID, moduleID: moduleID, moduleItemID: itemID)
@@ -125,7 +125,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .map { HModuleItem(from: $0) }
             .collect()
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
@@ -146,7 +146,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .map { HModuleItem(from: $0) }
             .collect()
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
@@ -155,7 +155,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             .getEntities()
             .replaceError(with: [])
             .map { $0.first?.name ?? "" }
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 }

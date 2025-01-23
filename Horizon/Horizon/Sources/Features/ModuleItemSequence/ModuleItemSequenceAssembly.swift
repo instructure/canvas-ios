@@ -29,8 +29,7 @@ enum ModuleItemSequenceAssembly {
     ) -> UIViewController {
         let interactor = ModuleItemSequenceInteractorLive(
             courseID: courseID,
-            assetType: assetType,
-            environment: environment
+            assetType: assetType
         )
         let stateInteractor = ModuleItemStateInteractorLive(
             environment: environment,

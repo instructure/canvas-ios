@@ -29,27 +29,30 @@ final class CourseDetailsViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let environment: AppEnvironment
+    private let router: Router
+    private let onTabBarVisibility: (Bool) -> Void
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
-        environment: AppEnvironment,
-        course: HCourse
+        router: Router,
+        course: HCourse,
+        onTabBarVisibility: @escaping (Bool) -> Void
     ) {
-        self.environment = environment
+        self.router = router
         self.course = course
+        self.onTabBarVisibility = onTabBarVisibility
         self.state = .data
     }
 
     // MARK: - Inputs
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
-        environment.router.route(to: url, from: from)
+        router.route(to: url, from: from)
     }
 
     func showTabBar() {
-        environment.tabBar(isVisible: true)
+        onTabBarVisibility(true)
     }
 }

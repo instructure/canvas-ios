@@ -21,7 +21,7 @@ import HorizonUI
 
 enum ModuleNavBarButtons {
     case previous
-    case volume
+    case tts
     case chatBot
     case notebook
     case next
@@ -30,7 +30,7 @@ enum ModuleNavBarButtons {
         switch self {
         case .previous:
             Image.huiIcons.chevronLeft
-        case .volume:
+        case .tts:
             Image.huiIcons.volumeUp
         case .chatBot:
             Image(.chatBot)

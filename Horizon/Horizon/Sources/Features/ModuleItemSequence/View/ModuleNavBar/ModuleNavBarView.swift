@@ -49,58 +49,66 @@ struct ModuleNavBarView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Button {
-                didTapPrevious()
-            } label: {
-                iconView(type: .previous)
-            }
-            .hidden(!isPreviousButtonEnabled)
+            perviousButton
 
             Spacer()
             HStack(spacing: 8) {
-                buttonView(type: .volume)
-                Button {
-                    navigateToTutor()
-                } label: {
-                    ModuleNavBarButtons.chatBot.image
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .huiElevation(level: .level2)
-                }
+                buttonView(type: .tts)
+                chatBotButton
                 buttonView(type: .notebook)
             }
             Spacer()
-            Button {
-                didTapNext()
-            } label: {
-                iconView(type: .next)
-            }
-            .hidden(!isNextButtonEnabled)
+            nextButton
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
         .background(Color.huiColors.surface.pagePrimary)
     }
 
+    private var perviousButton: some View {
+        HorizonUI.IconButton(
+            ModuleNavBarButtons.previous.image,
+            type: .white
+        ) {
+            didTapPrevious()
+        }
+        .huiElevation(level: .level2)
+        .hidden(!isPreviousButtonEnabled)
+    }
+
+    private var nextButton: some View {
+        HorizonUI.IconButton(
+            ModuleNavBarButtons.next.image,
+            type: .white
+        ) {
+            didTapNext()
+        }
+        .huiElevation(level: .level2)
+        .hidden(!isNextButtonEnabled)
+    }
+
     private func buttonView(type: ModuleNavBarButtons) -> some View {
+        HorizonUI.IconButton(
+            type.image,
+            type: .white
+        ) {
+            navigateToTutor()
+        }
+        .huiElevation(level: .level2)
+    }
+
+    private var chatBotButton: some View {
         Button {
             navigateToTutor()
         } label: {
-            iconView(type: type)
+            ModuleNavBarButtons.chatBot.image
+                .resizable()
+                .frame(width: 44, height: 44)
+                .huiElevation(level: .level2)
         }
     }
 
     private func navigateToTutor() {
         router.route(to: "/tutor", from: controller, options: .modal())
-    }
-
-    private func iconView(type: ModuleNavBarButtons) -> some View {
-        Circle()
-            .fill(Color.huiColors.icon.surfaceColored)
-            .frame(width: 50, height: 50)
-            .overlay(
-                type.image.foregroundStyle(Color.textDarkest)
-            )
-            .huiElevation(level: .level2)
     }
 }
