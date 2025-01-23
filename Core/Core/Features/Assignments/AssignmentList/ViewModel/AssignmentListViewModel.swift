@@ -135,7 +135,7 @@ public class AssignmentListViewModel: ObservableObject {
         loadAssignmentListPreferences()
         featureFlags.refresh()
         course.refresh()
-        gradingPeriods.refresh(force: true)
+        gradingPeriods.refresh()
     }
 
     // MARK: - Functions

@@ -31,7 +31,12 @@ public final class GradingPeriod: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APIGradingPeriod, courseID: String, in context: NSManagedObjectContext) -> GradingPeriod {
-        let predicate = NSPredicate(format: "%K == %@", (\GradingPeriod.id).string, item.id.value)
+
+        let predicate = NSCompoundPredicate(type: .and, subpredicates: [
+            NSPredicate(format: "%K == %@", (\GradingPeriod.id).string, item.id.value),
+            NSPredicate(format: "%K == %@", (\GradingPeriod.courseID).string, courseID)
+        ])
+
         let model: GradingPeriod = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.title = item.title
