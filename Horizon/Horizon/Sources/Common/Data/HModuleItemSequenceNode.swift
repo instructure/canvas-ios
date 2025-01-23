@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,31 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
 
-public extension HorizonUI.Spinner {
-    enum Size {
-        case xSmall
-        case small
-        case medium
-        case large
+struct HModuleItemSequenceNode: Equatable {
+    let id: String
+    let moduleID: String
 
-        var dimension: CGFloat {
-            switch self {
-            case .xSmall: return 20
-            case .small: return 42
-            case .medium: return 70
-            case .large: return 96
-            }
+    init(id: String, moduleID: String) {
+        self.id = id
+        self.moduleID = moduleID
+    }
+
+    init?(entity: ModuleItemSequenceNode?) {
+        guard let entity else {
+            return nil
         }
-
-        var strokeWidth: CGFloat {
-            switch self {
-            case .xSmall: return 2
-            case .small: return 4
-            case .medium: return 6
-            case .large: return 8
-            }
-        }
+        self.id = entity.id
+        self.moduleID = entity.moduleID
     }
 }

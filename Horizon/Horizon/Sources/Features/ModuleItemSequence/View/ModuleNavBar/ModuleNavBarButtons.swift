@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,36 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import SwiftUI
+import HorizonUI
 
-enum ModuleNavBarButtons: CaseIterable {
+enum ModuleNavBarButtons {
     case previous
     case tts
-    case assist
+    case chatBot
     case notebook
     case next
-
-    static var contentButtons: [ModuleNavBarButtons] {
-        [
-            .tts,
-            .assist,
-            .notebook
-        ]
-    }
 
     var image: Image {
         switch self {
         case .previous:
-            Image(systemName: "arrow.left")
+            Image.huiIcons.chevronLeft
         case .tts:
-            Image(systemName: "speaker.wave.2")
-        case .assist:
-            Image("chatBot")
+            Image.huiIcons.volumeUp
+        case .chatBot:
+            Image(.chatBot)
         case .notebook:
-            Image(systemName: "bookmark")
+            Image.huiIcons.menuBookNotebook
         case .next:
-            Image(systemName: "arrow.right")
+            Image.huiIcons.chevronRight
         }
     }
 }

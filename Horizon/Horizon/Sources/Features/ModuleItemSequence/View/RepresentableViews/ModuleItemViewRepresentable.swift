@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,30 +17,23 @@
 //
 
 import SwiftUI
+import Core
 
-public extension HorizonUI.Spinner {
-    enum Size {
-        case xSmall
-        case small
-        case medium
-        case large
+struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
+    // MARK: - Dependencies
 
-        var dimension: CGFloat {
-            switch self {
-            case .xSmall: return 20
-            case .small: return 42
-            case .medium: return 70
-            case .large: return 96
-            }
-        }
+    private let viewController: UIViewController
 
-        var strokeWidth: CGFloat {
-            switch self {
-            case .xSmall: return 2
-            case .small: return 4
-            case .medium: return 6
-            case .large: return 8
-            }
-        }
+    init(viewController: UIViewController) {
+        self.viewController = viewController
     }
+
+    func makeUIViewController(context: Self.Context) -> UIViewController {
+         viewController
+    }
+
+    func updateUIViewController(
+        _ uiViewController: UIViewController,
+        context: Self.Context
+    ) { }
 }
