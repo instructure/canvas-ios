@@ -33,7 +33,7 @@ struct NotebookNoteView: View {
             VStack(spacing: .huiSpaces.primitives.medium) {
                 HStack {
                     HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
-                        viewModel.onClose(viewController: viewController)
+                        viewModel.close(viewController: viewController)
                     }
                     .hidden(viewModel.isBackButtonHidden)
 
@@ -53,13 +53,13 @@ struct NotebookNoteView: View {
                         type: .confusing,
                         selected: viewModel.isConfusing
                     ).onTapGesture {
-                        viewModel.onToggleConfusing()
+                        viewModel.toggleConfusing()
                     }
                     NoteCardFilterButton(
                         type: .important,
                         selected: viewModel.isImportant
                     ).onTapGesture {
-                        viewModel.onToggleImportant()
+                        viewModel.toggleImportant()
                     }
                 }
 
@@ -70,7 +70,7 @@ struct NotebookNoteView: View {
                 ZStack {
                     TextField("", text: $viewModel.note, axis: .vertical)
                         .disabled(viewModel.isTextEditorDisabled)
-                        .onTapGesture { viewModel.onTapTextEditor() }
+                        .onTapGesture { viewModel.edit() }
                         .padding(.huiSpaces.primitives.small)
                         .frame(minHeight: 112, alignment: .topLeading)
                         .frame(maxWidth: .infinity)
@@ -81,14 +81,14 @@ struct NotebookNoteView: View {
 
                     if viewModel.isTextEditorDisabled {
                         Color.clear.contentShape(Rectangle())
-                            .onTapGesture { viewModel.onTapTextEditor() }
+                            .onTapGesture { viewModel.edit() }
                     }
                 }
 
                 VStack(spacing: .huiSpaces.primitives.mediumSmall) {
                     if viewModel.isSaveVisible {
                         Button {
-                            viewModel.onSave(viewController: viewController)
+                            viewModel.saveAndDismiss(viewController: viewController)
                         } label: {
                             Text(String(localized: "Save", bundle: .horizon))
                         }
@@ -100,7 +100,7 @@ struct NotebookNoteView: View {
 
                     if viewModel.isCancelVisible {
                         Button {
-                            viewModel.onCancel()
+                            viewModel.cancelEditingAndReset()
                         } label: {
                             Text(String(localized: "Cancel", bundle: .horizon))
                         }
@@ -111,13 +111,13 @@ struct NotebookNoteView: View {
                 if viewModel.isActionButtonsVisible {
                     HStack {
                         HorizonUI.IconButton(.huiIcons.delete, type: .red) {
-                            viewModel.onDelete()
+                            viewModel.presentDeleteAlert()
                         }
 
                         HorizonUI.IconButton(.huiIcons.ai, type: .ai) { }
 
                         HorizonUI.IconButton(.huiIcons.edit, type: .white) {
-                            viewModel.onEdit()
+                            viewModel.beginEditing()
                         }
                     }
                 }
@@ -129,7 +129,7 @@ struct NotebookNoteView: View {
                 title: Text(String(localized: "Confirmation", bundle: .horizon)),
                 message: Text(String(localized: "Are you sure you want to proceed?", bundle: .horizon)),
                 primaryButton: .default(Text(String(localized: "Yes", bundle: .horizon))) {
-                    viewModel.onDeleteConfirmed(viewController: viewController)
+                    viewModel.deleteNoteAndDismiss(viewController: viewController)
                 },
                 secondaryButton: .cancel()
             )

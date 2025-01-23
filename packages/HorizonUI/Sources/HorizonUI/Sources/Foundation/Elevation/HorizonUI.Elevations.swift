@@ -28,8 +28,12 @@ extension HorizonUI {
         case level5
 
         var attributes: ElevationAttributes {
+
+            let shadowColor: Color = .huiColors.primitives.grey125.opacity(0.18)
+
             switch self {
             case .level0:
+                // When we want toggle between having no elevation and one of the other elevation levels
                 return ElevationAttributes(
                     x: 0,
                     y: 0,
@@ -43,8 +47,7 @@ extension HorizonUI {
                     y: 2,
                     blur: 3,
                     spread: 0,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level2:
                 return ElevationAttributes(
@@ -52,8 +55,7 @@ extension HorizonUI {
                     y: 2,
                     blur: 5,
                     spread: 0,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level3:
                 return ElevationAttributes(
@@ -61,8 +63,7 @@ extension HorizonUI {
                     y: 2,
                     blur: 9,
                     spread: 1,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level4:
                 return ElevationAttributes(
@@ -70,7 +71,7 @@ extension HorizonUI {
                     y: 2,
                     blur: 8,
                     spread: 0,
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level5:
                 return ElevationAttributes(
@@ -78,8 +79,7 @@ extension HorizonUI {
                     y: 2,
                     blur: 12,
                     spread: 0,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             }
         }

@@ -26,8 +26,8 @@ enum CourseNoteLabel: String, CaseIterable {
 
     var color: Color? {
         switch self {
-        case .confusing: Color(red: 0.682, green: 0.106, blue: 0.122)
-        case .important: Color(red: 0.055, green: 0.408, blue: 0.702)
+        case .confusing: .huiColors.icon.error
+        case .important: .huiColors.icon.action
         default: nil
         }
     }

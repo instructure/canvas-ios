@@ -226,9 +226,3 @@ extension CourseNoteLabel {
         color?.opacity(0.10) ?? Color(red: 96.1/100, green: 91.4/100, blue: 79.2/100)
     }
 }
-
-extension Color {
-    var uiColor: UIColor {
-        UIColor(self)
-    }
-}

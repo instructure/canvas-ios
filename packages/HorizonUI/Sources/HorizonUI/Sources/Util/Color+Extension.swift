@@ -43,4 +43,8 @@ public extension Color {
             opacity: Double(a) / 255
         )
     }
+
+    var uiColor: UIColor {
+        UIColor(self)
+    }
 }

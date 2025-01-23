@@ -73,22 +73,24 @@ final class NotebookNoteViewModel {
 
     // MARK: - Inputs
 
-    func onCancel() {
+    func beginEditing() {
+        if !isEditing {
+            isEditing = true
+        }
+    }
+
+    func cancelEditingAndReset() {
         isEditing = false
         note = noteSaved
         isConfusing = isConfusingSaved
         isImportant = isImportantSaved
     }
 
-    func onClose(viewController: WeakViewController) {
+    func close(viewController: WeakViewController) {
         router.dismiss(viewController)
     }
 
-    func onDelete() {
-        isDeleteAlertPresented = true
-    }
-
-    func onDeleteConfirmed(viewController: WeakViewController) {
+    func deleteNoteAndDismiss(viewController: WeakViewController) {
         guard let noteId = noteId else { return }
 
         notebookNoteInteractor.delete(noteId: noteId)
@@ -98,11 +100,15 @@ final class NotebookNoteViewModel {
             .store(in: &subscriptions)
     }
 
-    func onEdit() {
+    func edit() {
         isEditing = true
     }
 
-    func onSave(viewController: WeakViewController) {
+    func presentDeleteAlert() {
+        isDeleteAlertPresented = true
+    }
+
+    func saveAndDismiss(viewController: WeakViewController) {
         saveContent()
         if isAdding {
             router.dismiss(viewController)
@@ -111,19 +117,13 @@ final class NotebookNoteViewModel {
         }
     }
 
-    func onTapTextEditor() {
-        if !isEditing {
-            isEditing = true
-        }
-    }
-
-    func onToggleConfusing() {
+    func toggleConfusing() {
         isEditing = true
         if !isConfusing && isImportant { isImportant = false }
         isConfusing.toggle()
     }
 
-    func onToggleImportant() {
+    func toggleImportant() {
         isEditing = true
         if isConfusing && !isImportant { isConfusing = false }
         isImportant.toggle()
