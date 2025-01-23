@@ -30,7 +30,7 @@ final class CourseDetailsViewModel: ObservableObject {
     // MARK: - Private
 
     private let router: Router
-    private let onTabBarVisibility: (Bool) -> Void
+    private let onShowTabBar: (Bool) -> Void
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -38,11 +38,11 @@ final class CourseDetailsViewModel: ObservableObject {
     init(
         router: Router,
         course: HCourse,
-        onTabBarVisibility: @escaping (Bool) -> Void
+        onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
         self.course = course
-        self.onTabBarVisibility = onTabBarVisibility
+        self.onShowTabBar = onShowTabBar
         self.state = .data
     }
 
@@ -53,6 +53,6 @@ final class CourseDetailsViewModel: ObservableObject {
     }
 
     func showTabBar() {
-        onTabBarVisibility(true)
+        onShowTabBar(true)
     }
 }

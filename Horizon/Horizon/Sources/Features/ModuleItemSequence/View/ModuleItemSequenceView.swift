@@ -88,11 +88,11 @@ public struct ModuleItemSequenceView: View {
         }
     }
 
-    private func goPervious() {
+    private func goPrevious() {
         withAnimation {
             viewModel.offsetX = UIScreen.main.bounds.width * 2
         } completion: {
-            viewModel.goPervious()
+            viewModel.goPrevious()
         }
     }
 
@@ -135,7 +135,7 @@ public struct ModuleItemSequenceView: View {
         ) {
             goNext()
         } didTapPrevious: {
-            goPervious()
+            goPrevious()
         }
         .frame(height: 56)
     }

@@ -49,7 +49,7 @@ struct ModuleNavBarView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            perviousButton
+            previousButton
 
             Spacer()
             HStack(spacing: 8) {
@@ -65,7 +65,7 @@ struct ModuleNavBarView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    private var perviousButton: some View {
+    private var previousButton: some View {
         HorizonUI.IconButton(
             ModuleNavBarButtons.previous.image,
             type: .white

@@ -39,7 +39,7 @@ final class LearnAssembly {
                 viewModel: .init(
                     router: appEnvironment.router,
                     course: course,
-                    onTabBarVisibility: appEnvironment.tabBar(isVisible:)
+                    onShowTabBar: appEnvironment.tabBar(isVisible:)
                 )
             )
         )

@@ -171,7 +171,7 @@ final class ModuleItemSequenceViewModel {
         update(item: next)
     }
 
-    func goPervious() {
+    func goPrevious() {
         guard let previous = sequence?.previous else { return }
         moduleID = previous.moduleID
         itemID = previous.id
