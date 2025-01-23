@@ -50,6 +50,9 @@ class HideGradesViewController: UIViewController {
         allHiddenSubHeader.text = String(localized: "All grades are currently hidden.", bundle: .teacher)
 
         hideGradesButton.setTitle(String(localized: "Hide Grades", bundle: .teacher), for: .normal)
+        hideGradesButton.setTitleColor(.textLightest, for: .normal)
+        hideGradesButton.textStyle = UIFont.Name.semibold16.rawValue
+        hideGradesButton.backgroundColor = .textInfo
 
         presenter.viewIsReady()
     }

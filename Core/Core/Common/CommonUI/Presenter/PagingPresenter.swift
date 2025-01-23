@@ -114,6 +114,8 @@ public class PageLoadingCell: UITableViewCell {
 
         label.text = String(localized: "Load More", bundle: .core)
         label.textColor = .systemBlue
+        label.font = .scaledNamedFont(.semibold16)
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -145,7 +147,7 @@ public class PageLoadingCell: UITableViewCell {
     }
 
     private func setupAsButton() {
-        backgroundConfiguration = nil
+        backgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
         progressView.isHidden = true
         label.isHidden = false
     }

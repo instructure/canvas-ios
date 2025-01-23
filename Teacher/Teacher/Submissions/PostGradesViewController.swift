@@ -51,6 +51,9 @@ class PostGradesViewController: UIViewController {
 
         view.backgroundColor = .backgroundLightest
         postGradesButton.setTitle(String(localized: "Post Grades", bundle: .teacher), for: .normal)
+        postGradesButton.setTitleColor(.textLightest, for: .normal)
+        postGradesButton.textStyle = UIFont.Name.semibold16.rawValue
+        postGradesButton.backgroundColor = .textInfo
 
         allGradesPostedView.backgroundColor = .backgroundLightest
         allGradesPostedView.isHidden = true
