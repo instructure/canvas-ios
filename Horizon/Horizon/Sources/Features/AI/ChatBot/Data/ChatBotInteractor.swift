@@ -57,7 +57,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
 
     private func getCedarJWTToken() -> AnyPublisher<String, Error> {
         canvasApi
-            .makeRequest(GetCedarJWTToken())
+            .makeRequest(GetCedarJWTTokenRequest())
             .tryMap(tokenResponseToUtf8String)
             .eraseToAnyPublisher()
     }
@@ -80,7 +80,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func tokenResponseToUtf8String(tokenResponse: TokenResponse, urlResponse _: HTTPURLResponse?) throws -> String {
+    private func tokenResponseToUtf8String(tokenResponse: GetCedarJWTTokenResponse, urlResponse _: HTTPURLResponse?) throws -> String {
         guard let decodedToken = Data(base64Encoded: tokenResponse.token) else {
             throw ChatBotInteractorError.unableToGetCedarToken
         }
@@ -95,62 +95,6 @@ class ChatBotInteractorLive: ChatBotInteractor {
     }
 }
 
-private struct GetCedarJWTToken: APIRequestable {
-    typealias Response = TokenResponse
-
-    var path = "/api/v1/jwts?audience=cedar-api-dev.domain-svcs.nonprod.inseng.io&workflows[]=cedar"
-
-    var method: APIMethod { .post }
-}
-
-private class CedarAnswerPromptMutation: APIGraphQLRequestable {
-    let variables: Input
-
-    private let cedarJwtToken: String
-
-    var path: String {
-        "/graphql"
-    }
-
-    var headers: [String: String?] {
-        [
-            "x-apollo-operation-name": "AnswerPrompt",
-            HttpHeader.accept: "application/json"
-        ]
-    }
-
-    public init(
-        cedarJwtToken: String,
-        prompt: String,
-        model: AIModel = .claude3Sonnet20240229V10
-    ) {
-        self.variables = Variables(model: model.rawValue, prompt: prompt)
-        self.cedarJwtToken = cedarJwtToken
-    }
-
-    public static let operationName: String = "AnswerPrompt"
-    public static var query: String = """
-        mutation \(operationName)($model: String!, $prompt: String!) {
-            answerPrompt(input: { model: $model, prompt: $prompt })
-        }
-    """
-
-    typealias Response = GraphQLResponse
-
-    struct Input: Codable, Equatable {
-        let model: String
-        let prompt: String
-    }
-}
-
-class ChatBotInteractorPreview: ChatBotInteractor {
-    func send(message _: ChatBotMessage) -> AnyPublisher<String, Error> {
-        Just("Hello, world!")
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-}
-
 // MARK: - Enums
 
 enum ChatBotInteractorError: Error {
@@ -162,20 +106,6 @@ enum ChatBotInteractorError: Error {
 
 enum AIModel: String {
     case claude3Sonnet20240229V10 = "anthropic.claude-3-sonnet-20240229-v1:0"
-}
-
-// MARK: - Codeables
-
-struct TokenResponse: Codable {
-    let token: String
-}
-
-struct GraphQLResponse: Codable {
-    let data: GraphQLData
-}
-
-struct GraphQLData: Codable {
-    let answerPrompt: String
 }
 
 // MARK: - Extensions
