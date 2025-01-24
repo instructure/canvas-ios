@@ -60617,7 +60617,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "المساعدة"
+            "value" : "التعليمات"
           }
         },
         "ca" : {
@@ -60773,7 +60773,7 @@
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bantuan"
+            "value" : "Bantu"
           }
         },
         "nb" : {
@@ -87988,7 +87988,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eile"
+            "value" : "Other"
           }
         },
         "hi" : {
