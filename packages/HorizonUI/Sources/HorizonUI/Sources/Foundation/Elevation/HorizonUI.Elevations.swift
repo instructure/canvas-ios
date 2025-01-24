@@ -18,8 +18,9 @@
 
 import SwiftUI
 
-public extension HorizonUI {
-    enum Elevations: CaseIterable {
+extension HorizonUI {
+    public enum Elevations: CaseIterable {
+        case level0
         case level1
         case level2
         case level3
@@ -27,15 +28,26 @@ public extension HorizonUI {
         case level5
 
         var attributes: ElevationAttributes {
+
+            let shadowColor: Color = .huiColors.primitives.grey125.opacity(0.18)
+
             switch self {
+            case .level0:
+                // When we want toggle between having no elevation and one of the other elevation levels
+                return ElevationAttributes(
+                    x: 0,
+                    y: 0,
+                    blur: 0,
+                    spread: 0,
+                    color: Color.clear
+                )
             case .level1:
                 return ElevationAttributes(
                     x: 0,
                     y: 2,
                     blur: 3,
                     spread: 0,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level2:
                 return ElevationAttributes(
@@ -43,8 +55,7 @@ public extension HorizonUI {
                     y: 2,
                     blur: 5,
                     spread: 0,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level3:
                 return ElevationAttributes(
@@ -52,8 +63,7 @@ public extension HorizonUI {
                     y: 2,
                     blur: 9,
                     spread: 1,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level4:
                 return ElevationAttributes(
@@ -61,7 +71,7 @@ public extension HorizonUI {
                     y: 2,
                     blur: 8,
                     spread: 0,
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             case .level5:
                 return ElevationAttributes(
@@ -69,8 +79,7 @@ public extension HorizonUI {
                     y: 2,
                     blur: 12,
                     spread: 0,
-                    // TODO: Use predefined color
-                    color: Color(hexString: "#2735401A")
+                    color: shadowColor
                 )
             }
         }
@@ -85,8 +94,8 @@ public extension HorizonUI {
     }
 }
 
-public extension View {
-    func huiElevation(level: HorizonUI.Elevations) -> some View {
+extension View {
+    public func huiElevation(level: HorizonUI.Elevations) -> some View {
         let spreadModifier = level.attributes.spread > 0 ? level.attributes.spread : 0
 
         return padding(spreadModifier)

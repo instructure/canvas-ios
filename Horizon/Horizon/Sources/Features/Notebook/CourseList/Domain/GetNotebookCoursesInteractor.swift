@@ -44,7 +44,7 @@ final class GetNotebookCoursesInteractor {
     func get() -> AnyPublisher<[NotebookCourse], Error> {
         courseNotesRepository
             .get()
-            .map({ notes in notes.map({ NotebookCourse(from: $0) }) })
+            .map { notes in notes.map { NotebookCourse.from($0) }.compactMap { $0 } }
             .map(filterToUnique)
             .combineLatest(termPublisher.map({ $0.lowercased() }))
             .map(filterByText)

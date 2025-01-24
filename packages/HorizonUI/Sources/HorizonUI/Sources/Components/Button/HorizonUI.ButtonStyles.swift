@@ -144,6 +144,7 @@ extension HorizonUI.ButtonStyles {
         case blue = "Blue"
         case black = "Black"
         case white = "White"
+        case red = "Red"
 
         public var id: String { rawValue }
 
@@ -166,6 +167,8 @@ extension HorizonUI.ButtonStyles {
                 return Color.huiColors.surface.inversePrimary
             case .white:
                 return Color.huiColors.surface.pageSecondary
+            case .red:
+                return Color.huiColors.surface.pageSecondary
             }
         }
 
@@ -181,6 +184,8 @@ extension HorizonUI.ButtonStyles {
                 return Color.huiColors.text.surfaceColored
             case .white:
                 return Color.huiColors.text.title
+            case .red:
+                return Color.huiColors.text.warning
             }
         }
 
@@ -195,6 +200,8 @@ extension HorizonUI.ButtonStyles {
             case .black:
                 return .primaryWhite
             case .white:
+                return .primary
+            case .red:
                 return .primary
             }
         }
@@ -226,6 +233,41 @@ extension HorizonUI.ButtonStyles {
         icon: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
+            backgroundColor: type.background,
+            foregroundColor: type.foregroundColor,
+            badgeStyle: type.badgeStyle,
+            isSmall: isSmall,
+            icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add),
+            badgeNumber: badgeNumber
+        )
+    }
+}
+
+extension ButtonStyle where Self == HorizonUI.ButtonStyles {
+    public static func primary(
+        _ type: HorizonUI.ButtonStyles.ButtonType,
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: Image? = nil,
+        trailing: Image? = nil
+    ) -> HorizonUI.ButtonStyles {
+        HorizonUI.ButtonStyles.init(
+            backgroundColor: type.background,
+            foregroundColor: type.foregroundColor,
+            isSmall: isSmall,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing
+        )
+    }
+
+    public static func icon(
+        _ type: HorizonUI.ButtonStyles.ButtonType,
+        isSmall: Bool = false,
+        badgeNumber: String? = nil,
+        icon: Image? = nil
+    ) -> HorizonUI.ButtonStyles {
+        HorizonUI.ButtonStyles.init(
             backgroundColor: type.background,
             foregroundColor: type.foregroundColor,
             badgeStyle: type.badgeStyle,

@@ -17,6 +17,7 @@
 //
 
 import Core
+import HorizonUI
 import SwiftUI
 
 struct NotebookNoteView: View {
@@ -29,93 +30,106 @@ struct NotebookNoteView: View {
             leading: {},
             trailing: {}
         ) {
-            VStack(spacing: 32) {
+            VStack(spacing: .huiSpaces.primitives.medium) {
                 HStack {
-                    NotesIconButton(systemName: "arrow.left") {
-                        viewModel.onClose(viewController: viewController)
+                    HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
+                        viewModel.close(viewController: viewController)
                     }
+                    .hidden(viewModel.isBackButtonHidden)
+
                     Text(viewModel.title)
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
                         .font(.bold22)
                         .foregroundColor(.textDarkest)
-                    NotesIconButton(systemName: "xmark") {}.hidden()
-                }
 
-                HStack(spacing: 8) {
+                    HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {}
+                        .hidden()
+                }
+                .background(HorizonUI.colors.surface.pagePrimary)
+
+                HStack(spacing: .huiSpaces.primitives.xSmall) {
                     NoteCardFilterButton(
                         type: .confusing,
                         selected: viewModel.isConfusing
                     ).onTapGesture {
-                        viewModel.onToggleConfusing()
+                        viewModel.toggleConfusing()
                     }
                     NoteCardFilterButton(
                         type: .important,
                         selected: viewModel.isImportant
                     ).onTapGesture {
-                        viewModel.onToggleImportant()
+                        viewModel.toggleImportant()
                     }
                 }
+
+                Text(viewModel.highlightedText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.regular14Italic)
 
                 ZStack {
                     TextField("", text: $viewModel.note, axis: .vertical)
                         .disabled(viewModel.isTextEditorDisabled)
-                        .onTapGesture { viewModel.onTapTextEditor() }
-                        .padding(12)
+                        .onTapGesture { viewModel.edit() }
+                        .padding(.huiSpaces.primitives.small)
+                        .frame(minHeight: 112, alignment: .topLeading)
                         .frame(maxWidth: .infinity)
                         .scrollDisabled(true)
-                        .background(viewModel.isTextEditorDisabled ? .clear : .white)
-                        .cornerRadius(16)
-                        .shadow(
-                            color: viewModel.isTextEditorDisabled ? .clear : .black.opacity(0.12),
-                            radius: 8,
-                            x: 1,
-                            y: 2
-                        )
+                        .background(.white)
+                        .cornerRadius(.huiSpaces.primitives.xSmall)
+                        .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
 
                     if viewModel.isTextEditorDisabled {
                         Color.clear.contentShape(Rectangle())
-                            .onTapGesture { viewModel.onTapTextEditor() }
+                            .onTapGesture { viewModel.edit() }
                     }
                 }
 
-                if viewModel.isSaveVisible {
-                    Button {
-                        viewModel.onSave()
-                    } label: {
-                        Text(String(localized: "Save", bundle: .horizon))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                VStack(spacing: .huiSpaces.primitives.mediumSmall) {
+                    if viewModel.isSaveVisible {
+                        Button {
+                            viewModel.saveAndDismiss(viewController: viewController)
+                        } label: {
+                            Text(String(localized: "Save", bundle: .horizon))
+                        }
+                        .buttonStyle(
+                            HorizonUI.ButtonStyles.primary(.blue, fillsWidth: true)
+                        )
+                        .disabled(viewModel.isSaveDisabled)
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
-                    .background(Color(red: 14/255, green: 104/255, blue: 179/255))
-                    .foregroundColor(.white)
-                    .cornerRadius(22)
+
+                    if viewModel.isCancelVisible {
+                        Button {
+                            viewModel.cancelEditingAndReset()
+                        } label: {
+                            Text(String(localized: "Cancel", bundle: .horizon))
+                        }
+                        .buttonStyle(.primary(.white, fillsWidth: true))
+                    }
                 }
 
                 if viewModel.isActionButtonsVisible {
                     HStack {
-                        NotesIconButton(
-                            systemName: "trash",
-                            tint: .textDanger
-                        ) {
-                            viewModel.onDelete()
+                        HorizonUI.IconButton(.huiIcons.delete, type: .red) {
+                            viewModel.presentDeleteAlert()
                         }
-                        NotesIconButton(resource: .chatBot) {}
-                        NotesIconButton(systemName: "pencil") {
-                            viewModel.onEdit()
+
+                        HorizonUI.IconButton(.huiIcons.ai, type: .ai) { }
+
+                        HorizonUI.IconButton(.huiIcons.edit, type: .white) {
+                            viewModel.beginEditing()
                         }
                     }
                 }
             }
-            .padding(.vertical, 32)
+            .padding(.vertical, .huiSpaces.primitives.large)
         }
         .alert(isPresented: $viewModel.isDeleteAlertPresented) {
             Alert(
                 title: Text(String(localized: "Confirmation", bundle: .horizon)),
                 message: Text(String(localized: "Are you sure you want to proceed?", bundle: .horizon)),
                 primaryButton: .default(Text(String(localized: "Yes", bundle: .horizon))) {
-                    viewModel.onDeleteConfirmed(viewController: viewController)
+                    viewModel.deleteNoteAndDismiss(viewController: viewController)
                 },
                 secondaryButton: .cancel()
             )
@@ -130,8 +144,8 @@ struct NotebookNoteView: View {
                 notebookNoteInteractor: NotebookNoteInteractor(
                     courseNotesRepository: CourseNotesRepositoryPreview.instance
                 ),
-                noteId: "1",
                 router: AppEnvironment.shared.router,
+                noteId: "1",
                 isEditing: false
             )
         )

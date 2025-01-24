@@ -17,13 +17,14 @@
 //
 
 import Core
+import HorizonUI
 import SwiftUI
 
-struct NotebookView: View {
-    @Bindable var viewModel: NotebookViewModel
+struct NotebookCourseListView: View {
+    @Bindable var viewModel: NotebookCourseListViewModel
     @Environment(\.viewController) var viewController
 
-    init(viewModel: NotebookViewModel) {
+    init(viewModel: NotebookCourseListViewModel) {
         self.viewModel = viewModel
     }
 
@@ -31,24 +32,37 @@ struct NotebookView: View {
         NotesBody(
             title: String(localized: "Notebook", bundle: .horizon),
             leading: {
-                NotesIconButton(systemName: "arrow.left") {
+                HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
                     viewModel.onBack(viewController: viewController)
                 }
             },
-            trailing: { }
+            trailing: {}
         ) {
-            NotebookSearchBar(term: $viewModel.term).padding(.vertical, 24)
-            ListViewItems(listItems: viewModel.listItems, onTap: viewModel.onTap, viewController: viewController)
+            NotebookSearchBar(term: $viewModel.term)
+                .padding(.vertical, .huiSpaces.primitives.medium)
+            NoteableTextView(
+                "This text belongs to a course. When highlighted, a note will be associated with the course. The highlight key is used to uniquely identify a block of text.",
+                highlightsKey: "highlightKey1",
+                courseId: "1"
+            )
+            NoteableTextView(
+                "This is still highlightable text, but is not associated with a course. The highlight can still be saved, but won't be associated with the notebook. This has a different typography",
+                highlightsKey: "highlightKey2",
+                typography: .h3
+            )
+            ListViewItems(listItems: viewModel.listItems,
+                          onTap: viewModel.onTap,
+                          viewController: viewController)
         }
     }
 
     struct ListViewItems: View {
         var listItems: [NotebookListItem]
-        let onTap: ((NotebookListItem, WeakViewController) -> Void)
+        let onTap: (NotebookListItem, WeakViewController) -> Void
         let viewController: WeakViewController
 
         var body: some View {
-            VStack(spacing: 16) {
+            VStack(spacing: .huiSpaces.primitives.smallMedium) {
                 ForEach(listItems, id: \.id) { listItem in
                     ListViewItem(onTap: onTap, item: listItem, viewController: viewController)
                 }
@@ -58,7 +72,7 @@ struct NotebookView: View {
     }
 
     struct ListViewItem: View {
-        let onTap: ((NotebookListItem, WeakViewController) -> Void)
+        let onTap: (NotebookListItem, WeakViewController) -> Void
         let item: NotebookListItem
         let viewController: WeakViewController
 
@@ -77,7 +91,7 @@ struct NotebookView: View {
 }
 
 #Preview {
-    NotebookView(
+    NotebookCourseListView(
         viewModel: .init(
             router: AppEnvironment.shared.router,
             getCoursesInteractor: GetNotebookCoursesInteractor(

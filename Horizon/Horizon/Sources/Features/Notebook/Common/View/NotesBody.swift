@@ -18,9 +18,10 @@
 
 import SwiftUI
 import Core
+import HorizonUI
 
 struct NotesBody<Content: View, Leading: View, Trailing: View>: View {
-    private let backgroundColor = Color(hexString: "#FBF5ED")!
+    private let backgroundColor = HorizonUI.colors.surface.pagePrimary
     private let content: Content
     private let leading: Leading?
     @State private var title: String
@@ -41,8 +42,8 @@ struct NotesBody<Content: View, Leading: View, Trailing: View>: View {
     var body: some View {
         ScrollView {
             VStack { content }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 24)
+                .padding(.horizontal, .huiSpaces.primitives.medium)
+                .padding(.bottom, .huiSpaces.primitives.medium)
         }
         .frame(maxWidth: .infinity)
         .navigationBarBackButtonHidden(true)
