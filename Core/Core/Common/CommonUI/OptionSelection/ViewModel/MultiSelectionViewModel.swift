@@ -57,14 +57,19 @@ final class MultiSelectionViewModel: ObservableObject {
         didTapAllSelectionButton
             .sink { [weak self] in
                 guard let self else { return }
-
-                if isAllSelected {
-                    selectedOptions.value = []
-                } else {
-                    selectedOptions.value = Set(allOptions)
-                }
+                isAllSelected ? deselectAll() : selectAll()
             }
             .store(in: &subscriptions)
+    }
+
+    private func selectAll() {
+        selectedOptions.value = Set(allOptions)
+        UIAccessibility.announce(String(localized: "All options selected", bundle: .core))
+    }
+
+    private func deselectAll() {
+        selectedOptions.value = []
+        UIAccessibility.announce(String(localized: "All options deselected", bundle: .core))
     }
 
     func isOptionSelected(_ option: OptionItem) -> Bool {
