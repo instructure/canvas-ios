@@ -31,7 +31,7 @@ public extension HorizonUI {
 
         // MARK: - Init
 
-        init(
+        public init(
             moduleName: String,
             moduleItemName: String,
             duration: String,
