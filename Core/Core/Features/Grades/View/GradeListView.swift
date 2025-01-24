@@ -388,7 +388,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 ) {
                     isScoreEditorPresented.toggle()
                 }
-                // TODO: Fix me (onSwipe gesture interferes with scrolling on ios18)
+                // TODO: Fix me (onSwipe gesture interferes with scrolling, only on ios18)
                 .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
             }
             .background(Color.backgroundLightest)
