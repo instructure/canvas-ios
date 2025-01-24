@@ -209,6 +209,4 @@ extension UIColor {
         }
         return color
     }
-
-    public var asColor: Color { Color(self) }
 }
