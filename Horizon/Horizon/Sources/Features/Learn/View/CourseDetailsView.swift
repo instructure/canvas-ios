@@ -38,6 +38,7 @@ struct CourseDetailsView: View {
         .padding(.top, .huiSpaces.primitives.small)
         .background(Color.huiColors.surface.pagePrimary)
         .onFirstAppear { selectedTabIndex = 0 }
+        .onAppear { viewModel.showTabBar() }
     }
 
     private var headerView: some View {

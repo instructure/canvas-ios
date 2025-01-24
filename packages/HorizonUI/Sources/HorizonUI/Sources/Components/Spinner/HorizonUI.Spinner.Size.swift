@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-extension HorizonUI.Spinner {
+public extension HorizonUI.Spinner {
     enum Size {
         case xSmall
         case small

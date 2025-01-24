@@ -21,12 +21,18 @@ import Foundation
 
 struct NotebookCourseNote {
     let date: Date
+    let highlightedText: String
+    let highlightStart: Int
+    let highlightLength: Int
     let id: String
     let note: String
     let types: [CourseNoteLabel]
 
     init(from courseNote: CourseNote) {
         date = courseNote.date
+        highlightedText = courseNote.highlightedText
+        highlightStart = courseNote.highlightStart
+        highlightLength = courseNote.highlightLength
         id = courseNote.id
         note = courseNote.content
         types = courseNote.labels

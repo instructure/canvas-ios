@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,24 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
+import SwiftUI
 import Core
 
-final class NotebookAssembly {
-    static func makeGetNotebookCoursesInteractor() -> GetNotebookCoursesInteractor {
-        GetNotebookCoursesInteractor(
-            courseNotesRepository: CourseNotesRepositoryPreview.instance
-        )
+struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
+    // MARK: - Dependencies
+
+    private let viewController: UIViewController
+
+    init(viewController: UIViewController) {
+        self.viewController = viewController
     }
 
-    static func makeView() -> CoreHostingController<NotebookView> {
-        CoreHostingController(
-            NotebookView(
-                viewModel: NotebookViewModel(
-                    router: AppEnvironment.shared.router,
-                    getCoursesInteractor: makeGetNotebookCoursesInteractor()
-                )
-            )
-        )
+    func makeUIViewController(context: Self.Context) -> UIViewController {
+         viewController
     }
+
+    func updateUIViewController(
+        _ uiViewController: UIViewController,
+        context: Self.Context
+    ) { }
 }

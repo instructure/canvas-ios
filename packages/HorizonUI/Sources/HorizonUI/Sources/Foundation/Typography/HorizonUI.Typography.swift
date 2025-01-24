@@ -35,7 +35,7 @@ public extension HorizonUI {
             case buttonTextLarge
             case buttonTextMedium
 
-            var font: Font {
+            public var font: Font {
                 switch self {
                 case .h1: return .huiFonts.manropeBold28
                 case .h2: return .huiFonts.manropeBold24
@@ -45,7 +45,7 @@ public extension HorizonUI {
                 case .p3: return .huiFonts.figtreeRegular12
                 case .tag: return .huiFonts.manropeRegular12
                 case .labelLargeBold: return .huiFonts.figtreeSemibold16
-                case .labelMediumBold: return .huiFonts.figtreeSemibolt14
+                case .labelMediumBold: return .huiFonts.figtreeSemibold14
                 case .labelSmallBold: return .huiFonts.figtreeSemibold12
                 case .labelSmall: return .huiFonts.figtreeRegular12
                 case .buttonTextLarge: return .huiFonts.figtreeRegular16
@@ -53,7 +53,7 @@ public extension HorizonUI {
                 }
             }
 
-            var letterSpacing: CGFloat {
+            public var letterSpacing: CGFloat {
                 switch self {
                 case .h1: return 0
                 case .h2: return 0
@@ -71,22 +71,10 @@ public extension HorizonUI {
                 }
             }
 
-            var lineSpacing: CGFloat {
+            public var lineHeightMultiple: CGFloat {
                 switch self {
-                case .h1: return 39.2
-                case .h2: return 33.6
-                case .h3: return 28
-                case .p1: return 22.4
-                case .p2: return 19.6
-                case .p3: return 16.8
-                // TODO: Need to check with the team
-                case .tag: return 16.8
-                case .labelLargeBold: return 22.4
-                case .labelMediumBold: return 19.6
-                case .labelSmallBold: return 16.8
-                case .labelSmall: return 16.8
-                case .buttonTextLarge: return 22.4
-                case .buttonTextMedium: return 19.6
+                case .tag: return 0.0
+                default: return 1.4
                 }
             }
         }

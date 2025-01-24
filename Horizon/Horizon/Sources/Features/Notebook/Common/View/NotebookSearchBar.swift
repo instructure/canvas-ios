@@ -18,6 +18,7 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct NotebookSearchBar: View {
 
@@ -32,11 +33,12 @@ struct NotebookSearchBar: View {
                 .frame(height: 48)
                 .padding(.leading, 48)
                 .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 32))
-                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 1, y: 2)
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.textDarkest)
-                .padding(.leading, 16)
+                .huiCornerRadius(level: .level5)
+                .huiElevation(level: .level4)
+
+            Image.huiIcons.search
+                    .foregroundColor(.textDarkest)
+                    .padding(.leading, .huiSpaces.primitives.mediumSmall)
         }
     }
 }

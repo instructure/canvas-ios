@@ -14,6 +14,9 @@
         }
       }
     },
+    "Add a Note" : {
+
+    },
     "Add your text" : {
 
     },
@@ -33,6 +36,9 @@
 
     },
     "Are you sure you want to proceed?" : {
+
+    },
+    "Cancel" : {
 
     },
     "Check Answer" : {
@@ -86,13 +92,19 @@
     "Learn" : {
 
     },
+    "Locked" : {
+
+    },
+    "Mark as Done" : {
+
+    },
+    "Mark as Undone" : {
+
+    },
     "My Progress" : {
 
     },
     "Next Up" : {
-
-    },
-    "Note" : {
 
     },
     "Notebook" : {
@@ -105,6 +117,9 @@
 
     },
     "of" : {
+
+    },
+    "Ok" : {
 
     },
     "OK" : {
@@ -123,6 +138,9 @@
 
     },
     "Regenerate" : {
+
+    },
+    "Retry" : {
 
     },
     "Save" : {
@@ -146,7 +164,13 @@
     "Tell me more about this topic" : {
 
     },
+    "There was an error. please try again." : {
+
+    },
     "Try Again" : {
+
+    },
+    "Unsupported Item" : {
 
     },
     "Yes" : {

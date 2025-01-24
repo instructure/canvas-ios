@@ -20,33 +20,67 @@ import Combine
 import Foundation
 
 protocol CourseNotesRepository {
+    func add(index: NotebookNoteIndex,
+             highlightedText: String,
+             content: String?,
+             labels: [CourseNoteLabel]?
+    ) -> Future<CourseNote?, Error>
     func delete(id: String) -> Future<Void, Error>
     func get() -> AnyPublisher<[CourseNote], Error>
     func get(id: String) -> AnyPublisher<CourseNote?, Error>
     func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> Future<Void, Error>
 }
 
+struct RepositoryCourse {
+    let id: String
+    let name: String
+    let institution: String
+}
+
+/// id: The unique identifier of the note.
+/// date: The date when the note was created.
+/// content: The user written content of the note.
+/// courseId: The id of the course where the note was taken.
+/// highlightKey: globally unique key belonging to the block of text in which this highlight was made.
+/// labels: The labels assigned to the note. (e.g., important, confusing)
+/// length: The length of the highlighted text.
+/// startIndex: The start index of the highlighted text.
 struct RepositoryNote {
     let id: String
     let date: Date
     let content: String
-    let institution: String
-    let courseId: String
-    let course: String
+    let courseId: String?
+    let highlightKey: String
+    let highlightedText: String
     let labels: [String]
+    let length: Int
+    let startIndex: Int
 }
 
 extension RepositoryNote {
-    func toCourseNote() -> CourseNote {
+    func toCourseNote(withCourse course: RepositoryCourse?) -> CourseNote {
         CourseNote(
             id: self.id,
             date: self.date,
             content: self.content,
-            institution: self.institution,
+            institution: course?.institution,
             courseId: self.courseId,
-            course: self.course,
+            course: course?.name,
+            highlightedText: self.highlightedText,
+            highlightKey: self.highlightKey,
+            highlightStart: self.startIndex,
+            highlightLength: self.length,
             labels: self.labels.map { CourseNoteLabel(rawValue: $0) ?? .other }
-       )
+        )
+    }
+}
+
+extension Array where Element == RepositoryNote {
+    func toCourseNotes(withCourses courses: [RepositoryCourse]) -> [CourseNote] {
+        self.map { note in
+            let course = courses.first { $0.id == note.courseId }
+            return note.toCourseNote(withCourse: course)
+        }.compactMap { $0 }
     }
 }
 
@@ -60,11 +94,55 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
     private let courseNotesPublisher = CurrentValueSubject<[CourseNote], Error>([])
     private var courseNotePublisher: [String: CurrentValueSubject<CourseNote?, Error>] = [:]
 
+    private var courses: [RepositoryCourse]
+    private var notes: [RepositoryNote]
+
     // MARK: - Init
 
-    private init() {}
+    private init() {
+        self.courses = Self.defaultCourses
+        self.notes = Self.defaultNotes
+    }
 
-    // MARK: - Public
+    // MARK: - Public Methods
+
+    func add(index: NotebookNoteIndex,
+             highlightedText: String,
+             content: String? = nil,
+             labels: [CourseNoteLabel]? = nil
+    ) -> Future<CourseNote?, Error> {
+        Future { [weak self] promise in
+            guard let self = self else {
+                return promise(.success(nil))
+            }
+            let course = self.courses.first(where: { $0.id == index.groupId })
+            // Generate a new unique ID (in this case, we'll use a timestamp-based approach)
+            let date = Date()
+            let newId = String(date.timeIntervalSince1970)
+
+            // Create the new note
+            let newNote = RepositoryNote(
+                id: newId,
+                date: date,
+                content: content ?? "",
+                courseId: index.groupId,
+                highlightKey: index.highlightKey,
+                highlightedText: highlightedText,
+                labels: labels?.map { $0.rawValue } ?? [],
+                length: index.length,
+                startIndex: index.startIndex
+            )
+
+            // Add the note to our collection
+            self.notes.append(newNote)
+
+            // Notify subscribers about the change
+            self.notify()
+
+            let courseNote = newNote.toCourseNote(withCourse: course)
+            promise(.success(courseNote))
+        }
+    }
 
     func delete(id: String) -> Future<Void, Error> {
         Future { [weak self] promise in
@@ -80,14 +158,12 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
     }
 
     func get() -> AnyPublisher<[CourseNote], Error> {
-        courseNotesPublisher.send(notes.toCourseNotes())
+        courseNotesPublisher.send(notes.toCourseNotes(withCourses: self.courses))
         return courseNotesPublisher.eraseToAnyPublisher()
     }
 
     func get(id: String) -> AnyPublisher<CourseNote?, Error> {
-        let courseNote = notes
-            .first { $0.id == id }?
-            .toCourseNote()
+        let courseNote = notes.toCourseNotes(withCourses: self.courses).first { $0.id == id }
         let publisher = courseNotePublisher[id, default: CurrentValueSubject(courseNote)]
         courseNotePublisher[id] = publisher
         publisher.send(courseNote)
@@ -95,17 +171,23 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
     }
 
     func set(id: String, content: String? = nil, labels: [CourseNoteLabel]? = nil) -> Future<Void, Error> {
-        Future { promise in
+        Future { [weak self] promise in
+            guard let self = self else {
+                return promise(.success(()))
+            }
+
             if let index = self.notes.firstIndex(where: { $0.id == id }) {
                 let oldNote = self.notes[index]
                 let repositoryNote = RepositoryNote(
                     id: oldNote.id,
                     date: oldNote.date,
                     content: content ?? oldNote.content,
-                    institution: oldNote.institution,
                     courseId: oldNote.courseId,
-                    course: oldNote.course,
-                    labels: labels?.map { $0.rawValue } ?? oldNote.labels
+                    highlightKey: oldNote.highlightKey,
+                    highlightedText: oldNote.highlightedText,
+                    labels: labels?.map { $0.rawValue } ?? oldNote.labels,
+                    length: oldNote.length,
+                    startIndex: oldNote.startIndex
                 )
                 self.notes[index] = repositoryNote
                 self.notify(id: id)
@@ -114,200 +196,43 @@ class CourseNotesRepositoryPreview: CourseNotesRepository {
         }
     }
 
-    // MARK: - Private
+    // MARK: - Private Methods
 
     private func notify(id: String? = nil) {
         if let id = id,
             let courseNotePublisher = self.courseNotePublisher[id],
-            let courseNote = notes.first(where: { $0.id == id })?.toCourseNote() {
-            courseNotePublisher.send(courseNote)
+            let note = notes.first(where: { $0.id == id }) {
+            if let course = courses.first(where: { $0.id == note.courseId }) {
+                courseNotePublisher.send(note.toCourseNote(withCourse: course))
+            }
         }
-        let courseNotes = notes.toCourseNotes()
+
+        let courseNotes: [CourseNote] = notes.map { note in
+            let course = courses.first { $0.id == note.courseId }
+            return note.toCourseNote(withCourse: course)
+        }.compactMap { $0 }
         self.courseNotesPublisher.send(courseNotes)
     }
 
-    private var notes: [RepositoryNote] = [
-        RepositoryNote(id: "1",
-                   date: Date(timeIntervalSinceNow: -10000),
-                   // swiftlint:disable:next line_length
-                   content: "This is going to be an example of a very long note. The full user-generated note here. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit. Lorem ipsum dolor sit amet adipiscing so do eed at leo magna. Nunc sit amet velit faucibus, tristique orci ut, posuere odio. Pellentesque venenatis neque ipsum, in malesuada elit egestas hendrerit.",
-                   institution: "Brigham Young University",
-                   courseId: "1", course: "CS193P",
-                   labels: ["Important"]),
-        RepositoryNote(id: "2",
-                   date: Date(timeIntervalSinceNow: -50000),
-                   content: "This is a note 2",
-                   institution: "Brigham Young University",
-                   courseId: "1", course: "CS193P",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "3",
-                   date: Date(timeIntervalSinceNow: -30000),
-                   content: "This is a note 3",
-                   institution: "Brigham Young University",
-                   courseId: "1", course: "CS193P",
-                   labels: ["Important"]),
-        RepositoryNote(id: "4",
-                   date: Date(timeIntervalSinceNow: -70000),
-                   content: "This is a note 4",
-                   institution: "Brigham Young University",
-                   courseId: "1", course: "CS193P",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "5",
-                   date: Date(timeIntervalSinceNow: -100000),
-                   content: "This is a note 5",
-                   institution: "Brigham Young University",
-                   courseId: "1", course: "CS193P",
-                   labels: ["Important"]),
-        RepositoryNote(id: "6",
-                   date: Date(timeIntervalSinceNow: -200000),
-                   content: "This is a note 6",
-                   institution: "Brigham Young University",
-                   courseId: "1", course: "CS193P",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "7",
-                   date: Date(timeIntervalSinceNow: -150000),
-                   content: "This is a note 7",
-                   institution: "Brigham Young University",
-                   courseId: "1", course: "CS193P",
-                   labels: ["Important"]),
-        RepositoryNote(id: "8",
-                   date: Date(),
-                   content: "This is a note 8",
-                   institution: "Brigham Young University",
-                   courseId: "1",
-                   course: "CS193P",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "9",
-                   date: Date(),
-                   content: "Exploring advanced Swift features",
-                   institution: "Snow College",
-                   courseId: "2",
-                   course: "6.006",
-                   labels: ["Important", "Complex"]),
-        RepositoryNote(id: "10",
-                   date: Date(),
-                   content: "Data structures and algorithms overview",
-                   institution: "Snow College",
-                   courseId: "2",
-                   course: "6.006",
-                   labels: ["Important"]),
-        RepositoryNote(id: "11",
-                   date: Date(),
-                   content: "Object-oriented programming concepts",
-                   institution: "University of Utah",
-                   courseId: "3",
-                   course: "CS50",
-                   labels: ["Important"]),
-        RepositoryNote(id: "12",
-                   date: Date(),
-                   content: "Introduction to Machine Learning",
-                   institution: "University of Utah",
-                   courseId: "4",
-                   course: "CS50",
-                   labels: ["Important", "Confusing"]),
-        RepositoryNote(id: "13",
-                   date: Date(),
-                   content: "Linear Algebra fundamentals",
-                   institution: "Brigham Young University",
-                   courseId: "5",
-                   course: "MATH51",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "14",
-                   date: Date(),
-                   content: "Multivariable Calculus review",
-                   institution: "Brigham Young University",
-                   courseId: "5",
-                   course: "MATH51",
-                   labels: ["Important"]),
-        RepositoryNote(id: "15",
-                   date: Date(),
-                   content: "Basics of Probability and Statistics",
-                   institution: "Utah Valley University",
-                   courseId: "6",
-                   course: "STAT134",
-                   labels: ["Important"]),
-        RepositoryNote(id: "16",
-                   date: Date(),
-                   content: "Statistical Modeling Techniques",
-                   institution: "Utah Valley University",
-                   courseId: "6",
-                   course: "STAT134",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "17",
-                   date: Date(),
-                   content: "Introduction to Databases",
-                   institution: "Southern Utah University",
-                   courseId: "7",
-                   course: "CS411",
-                   labels: ["Important"]),
-        RepositoryNote(id: "18",
-                   date: Date(),
-                   content: "SQL and NoSQL Databases",
-                   institution: "Southern Utah University",
-                   courseId: "7",
-                   course: "CS411",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "19",
-                   date: Date(),
-                   content: "Basic Operating Systems concepts",
-                   institution: "Utah State University",
-                   courseId: "8",
-                   course: "15-213",
-                   labels: ["Important"]),
-        RepositoryNote(id: "20",
-                   date: Date(),
-                   content: "Concurrency in Operating Systems",
-                   institution: "Utah State University",
-                   courseId: "8",
-                   course: "15-213",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "21",
-                   date: Date(),
-                   content: "Network protocols and architectures",
-                   institution: "University of Washington",
-                   courseId: "9",
-                   course: "CSE461",
-                   labels: ["Important"]),
-        RepositoryNote(id: "22",
-                   date: Date(),
-                   content: "Computer Security fundamentals",
-                   institution: "University of Washington",
-                   courseId: "9",
-                   course: "CSE461",
-                   labels: ["Important", "Confusing"]),
-        RepositoryNote(id: "23",
-                   date: Date(),
-                   content: "Introduction to Artificial Intelligence",
-                   institution: "Brigham Young University",
-                   courseId: "10",
-                   course: "CS221",
-                   labels: ["Important"]),
-        RepositoryNote(id: "24",
-                   date: Date(),
-                   content: "Deep Learning basics",
-                   institution: "Brigham Young University",
-                   courseId: "11",
-                   course: "CS229",
-                   labels: ["Confusing"]),
-        RepositoryNote(id: "25",
-                   date: Date(),
-                   content: "Natural Language Processing",
-                   institution: "Snow College",
-                   courseId: "12",
-                   course: "6.864",
-                   labels: ["Important", "Complex"]),
-        RepositoryNote(id: "26",
-                   date: Date(),
-                   content: "Advanced Data Analysis techniques",
-                   institution: "Utah Valley University",
-                   courseId: "13",
-                   course: "STAT135",
-                   labels: ["Important"])
-    ]
-}
+    // MARK: - Default Data
 
-extension [RepositoryNote] {
-    func toCourseNotes() -> [CourseNote] {
-        self.map { $0.toCourseNote() }
+    private static var defaultCourses: [RepositoryCourse] = [
+        RepositoryCourse(id: "1", name: "CS193P", institution: "Brigham Young University"),
+        RepositoryCourse(id: "2", name: "6.006", institution: "Snow College"),
+        RepositoryCourse(id: "3", name: "CS50", institution: "University of Utah"),
+        RepositoryCourse(id: "4", name: "CS50", institution: "University of Utah"),
+        RepositoryCourse(id: "5", name: "MATH51", institution: "Brigham Young University"),
+        RepositoryCourse(id: "6", name: "STAT134", institution: "Utah Valley University"),
+        RepositoryCourse(id: "7", name: "CS411", institution: "Southern Utah University"),
+        RepositoryCourse(id: "8", name: "15-213", institution: "Utah State University"),
+        RepositoryCourse(id: "9", name: "CSE461", institution: "University of Washington"),
+        RepositoryCourse(id: "10", name: "CS221", institution: "Brigham Young University"),
+        RepositoryCourse(id: "11", name: "CS229", institution: "Brigham Young University"),
+        RepositoryCourse(id: "12", name: "6.864", institution: "Snow College"),
+        RepositoryCourse(id: "13", name: "STAT135", institution: "Utah Valley University")
+    ]
+
+    private static var defaultNotes: [RepositoryNote] {
+        []
     }
 }

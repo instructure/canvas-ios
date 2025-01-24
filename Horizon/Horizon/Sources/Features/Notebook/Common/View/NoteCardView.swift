@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import HorizonUI
 
 struct NoteCardView: View {
     // MARK: - Properties
@@ -25,21 +26,44 @@ struct NoteCardView: View {
 
     var body: some View {
         NotebookCard {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
                 Text(note.title)
                     .font(.regular12)
-                    .padding(.bottom, 8)
-                Text(note.note)
-                    .lineLimit(3)
-                    .font(.regular16)
-                    .padding(.bottom, 8)
-                HStack(spacing: 8) {
+                    .padding(.bottom, .huiSpaces.primitives.xSmall)
+                Text(note.highlightedText)
+                    .font(.regular14Italic)
+                    .padding(.bottom, .huiSpaces.primitives.xSmall)
+                if !note.note.isEmpty {
+                    Text(note.note)
+                        .lineLimit(3)
+                        .font(.regular16)
+                        .padding(.bottom, .huiSpaces.primitives.xSmall)
+                }
+                HStack(spacing: .huiSpaces.primitives.xSmall) {
                     ForEach(note.types, id: \.self) { type in
-                        NoteCardLabelView(type: type)
+                        noteCardLabelView(type: type)
                     }
                 }
             }
         }
+    }
+
+    // MARK: - Private
+
+    private func noteCardLabelView(type: CourseNoteLabel) -> some View {
+        HStack {
+            type.image
+            Text(type.label)
+                .font(.regular12)
+                .foregroundStyle(type.color ?? .huiColors.text.body)
+        }
+        .padding()
+        .frame(height: 31)
+        .background(
+            RoundedRectangle(cornerRadius: 15.5)
+                .stroke(type.color ?? .huiColors.surface.inversePrimary, lineWidth: 2)
+        )
+        .huiCornerRadius(level: .level3)
     }
 }
 
@@ -48,33 +72,37 @@ struct NoteCardView: View {
         NoteCardView(
             note: .init(
                 id: "1",
-                types: [],
+                highlightedText: "This is some highlighted text",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: []
             )
         )
         NoteCardView(
             note: .init(
                 id: "1",
-                types: [.important],
+                highlightedText: "This is some highlighted text again",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: [.important]
             )
         )
         NoteCardView(
             note: .init(
                 id: "2",
-                types: [.confusing],
+                highlightedText: "This is some highlighted text again again",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: [.confusing]
             )
         )
         NoteCardView(
             note: .init(
                 id: "2",
-                types: [.important, .confusing],
+                highlightedText: "This is some highlighted text again again again",
+                note: "Note",
                 title: "Title",
-                note: "Note"
+                types: [.important, .confusing]
             )
         )
     }

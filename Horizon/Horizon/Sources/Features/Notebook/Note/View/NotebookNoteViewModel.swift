@@ -24,26 +24,31 @@ import Core
 final class NotebookNoteViewModel {
 
     // MARK: - Outputs
-
-    var isActionButtonsVisible: Bool { !isEditing }
+    var highlightedText: String = ""
+    var isActionButtonsVisible: Bool { !isEditing && !isAdding }
+    var isBackButtonHidden: Bool { isEditing }
+    var isCancelVisible: Bool { isEditing && !isAdding }
     var isConfusing: Bool = false
     var isDeleteAlertPresented: Bool = false
     var isImportant: Bool = false
-    var isSaveVisible: Bool { isEditing }
+    var isSaveDisabled: Bool { !isConfusing && !isImportant && note.isEmpty }
+    var isSaveVisible: Bool { isEditing || isAdding }
     var isTextEditorDisabled: Bool { !isEditing }
     var note: String = ""
     var title: String {
-        isEditing ?
-            String(localized: "Edit", bundle: .horizon) :
-            String(localized: "Note", bundle: .horizon)
+        String(localized: isEditing && !isAdding ? "Edit" : "Note", bundle: .horizon)
     }
 
     // MARK: - Dependencies
 
     private var isEditing = false
     private let notebookNoteInteractor: NotebookNoteInteractor
-    private let noteId: String
+    private let noteId: String?
     private let router: Router
+
+    private var isConfusingSaved: Bool = false
+    private var isImportantSaved: Bool = false
+    private var noteSaved: String = ""
 
     // MARK: - Private
 
@@ -52,35 +57,42 @@ final class NotebookNoteViewModel {
     // MARK: - Init
 
     init(notebookNoteInteractor: NotebookNoteInteractor,
-         noteId: String,
          router: Router,
-         isEditing: Bool = false
-    ) {
+         noteId: String,
+         isEditing: Bool = false) {
         self.notebookNoteInteractor = notebookNoteInteractor
-        self.noteId = noteId
         self.router = router
+        self.noteId = noteId
         self.isEditing = isEditing
 
         notebookNoteInteractor.get(noteId: noteId)
-            .sink { _ in }
-            receiveValue: { [weak self] note in
-                self?.note = note?.note ?? ""
-                self?.isConfusing = note?.types.contains(.confusing) ?? false
-                self?.isImportant = note?.types.contains(.important) ?? false
-            }.store(in: &subscriptions)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: whenNotebookCourseNoteUpdated)
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
 
-    func onClose(viewController: WeakViewController) {
+    func beginEditing() {
+        if !isEditing {
+            isEditing = true
+        }
+    }
+
+    func cancelEditingAndReset() {
+        isEditing = false
+        note = noteSaved
+        isConfusing = isConfusingSaved
+        isImportant = isImportantSaved
+    }
+
+    func close(viewController: WeakViewController) {
         router.dismiss(viewController)
     }
 
-    func onDelete() {
-        isDeleteAlertPresented = true
-    }
+    func deleteNoteAndDismiss(viewController: WeakViewController) {
+        guard let noteId = noteId else { return }
 
-    func onDeleteConfirmed(viewController: WeakViewController) {
         notebookNoteInteractor.delete(noteId: noteId)
             .sink { _ in
                 self.router.dismiss(viewController)
@@ -88,55 +100,78 @@ final class NotebookNoteViewModel {
             .store(in: &subscriptions)
     }
 
-    func onEdit() {
+    func edit() {
         isEditing = true
     }
 
-    func onSave() {
-        isEditing = false
-        onTextChange()
+    func presentDeleteAlert() {
+        isDeleteAlertPresented = true
     }
 
-    func onTapTextEditor() {
-        if !isEditing {
-            isEditing = true
+    func saveAndDismiss(viewController: WeakViewController) {
+        saveContent()
+        if isAdding {
+            router.dismiss(viewController)
+        } else {
+            isEditing = false
         }
     }
 
-    func onToggleConfusing() {
+    func toggleConfusing() {
+        isEditing = true
+        if !isConfusing && isImportant { isImportant = false }
+        isConfusing.toggle()
+    }
+
+    func toggleImportant() {
+        isEditing = true
+        if isConfusing && !isImportant { isConfusing = false }
+        isImportant.toggle()
+    }
+
+    // MARK: - Private
+
+    private func whenNotebookCourseNoteUpdated(notebookCourseNote: NotebookCourseNote?) {
+        note = notebookCourseNote?.note ?? ""
+        highlightedText = "\"\(notebookCourseNote?.highlightedText ?? "")\""
+        noteSaved = note
+
+        isConfusing = notebookCourseNote?.types.contains(.confusing) ?? false
+        isConfusingSaved = isConfusing
+
+        isImportant = notebookCourseNote?.types.contains(.important) ?? false
+        isImportantSaved = isImportant
+    }
+
+    private var isAdding: Bool {
+        noteId == nil
+    }
+
+    private func saveContent() {
+        if let noteId = noteId {
+            var labels: [CourseNoteLabel] = []
+            if isConfusing {
+                labels.append(.confusing)
+            }
+            if isImportant {
+                labels.append(.important)
+            }
+
+            notebookNoteInteractor
+                .update(noteId: noteId, content: note, labels: labels)
+                .sink { _ in }
+                .store(in: &subscriptions)
+        }
+    }
+
+    private var getCourseNoteLabels: [CourseNoteLabel] {
         var labels: [CourseNoteLabel] = []
-        if !isConfusing {
+        if isConfusing {
             labels.append(.confusing)
         }
         if isImportant {
             labels.append(.important)
         }
-        notebookNoteInteractor
-            .update(noteId: noteId, labels: labels)
-            .sink { _ in }
-            .store(in: &subscriptions)
-    }
-
-    func onToggleImportant() {
-        var labels: [CourseNoteLabel] = []
-        if isConfusing {
-            labels.append(.confusing)
-        }
-        if !isImportant {
-            labels.append(.important)
-        }
-        notebookNoteInteractor
-            .update(noteId: noteId, labels: labels)
-            .sink { _ in }
-            .store(in: &subscriptions)
-    }
-
-    // MARK: - Private
-
-    private func onTextChange() {
-        notebookNoteInteractor
-            .update(noteId: noteId, content: note)
-            .sink { _ in }
-            .store(in: &subscriptions)
+        return labels
     }
 }

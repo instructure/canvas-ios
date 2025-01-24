@@ -30,16 +30,19 @@ final class CourseDetailsViewModel: ObservableObject {
     // MARK: - Private
 
     private let router: Router
+    private let onShowTabBar: (Bool) -> Void
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
         router: Router,
-        course: HCourse
+        course: HCourse,
+        onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
         self.course = course
+        self.onShowTabBar = onShowTabBar
         self.state = .data
     }
 
@@ -47,5 +50,9 @@ final class CourseDetailsViewModel: ObservableObject {
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
         router.route(to: url, from: from)
+    }
+
+    func showTabBar() {
+        onShowTabBar(true)
     }
 }

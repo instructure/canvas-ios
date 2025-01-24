@@ -18,6 +18,18 @@
 
 import Combine
 
+struct NotebookNoteIndex {
+    /// The NotebookNoteIndex is used to index where an annotation belongs
+    /// The highlightKey is globally unique to the block of text that's being highlighted. This for example might be a single paragraph. It may have multiple highlights.
+    /// The startIndex is the index of the first character in the highlight
+    /// The length is the number of characters in the highlight
+    /// The groupId indicates that this highlight is part of a larger group of highlights (e.g., a course)
+    let highlightKey: String
+    let startIndex: Int
+    let length: Int
+    let groupId: String?
+}
+
 final class NotebookNoteInteractor {
     // MARK: - Dependencies
 
@@ -29,14 +41,33 @@ final class NotebookNoteInteractor {
 
     // MARK: - Init
 
-    init(courseNotesRepository: CourseNotesRepository) {
+    init(courseNotesRepository: CourseNotesRepository = CourseNotesRepositoryPreview.instance) {
         self.courseNotesRepository = courseNotesRepository
     }
 
     // MARK: - Public
 
+    func add(index: NotebookNoteIndex,
+             content: String? = nil,
+             highlightedText: String,
+             labels: [CourseNoteLabel]? = nil) -> Future<CourseNote?, Error> {
+        courseNotesRepository.add(
+            index: index,
+            highlightedText: highlightedText,
+            content: content,
+            labels: labels
+        )
+    }
+
     func delete(noteId: String) -> Future<Void, Error> {
         courseNotesRepository.delete(id: noteId)
+    }
+
+    func get(highlightsKey: String) -> AnyPublisher<[NotebookCourseNote], Error> {
+        courseNotesRepository.get()
+            .map { notes in notes.filter { $0.highlightKey == highlightsKey }}
+            .map { notes in notes.map { NotebookCourseNote(from: $0) }}
+            .eraseToAnyPublisher()
     }
 
     func get(noteId: String) -> AnyPublisher<NotebookCourseNote?, Error> {

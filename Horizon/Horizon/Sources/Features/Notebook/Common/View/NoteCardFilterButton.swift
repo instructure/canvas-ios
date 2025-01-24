@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
 struct NoteCardFilterButton: View {
@@ -27,7 +28,7 @@ struct NoteCardFilterButton: View {
 
     var body: some View {
         HStack {
-            NotebookLabelIcon(type: type)
+            type.image
                 .frame(width: 24, height: 24)
             Text(type.label)
                 .font(.regular16)
@@ -37,15 +38,9 @@ struct NoteCardFilterButton: View {
         .background(
             RoundedRectangle(cornerRadius: 15.5)
                 .fill(Color.white)
-                .stroke(type.color, lineWidth: selected ? 2 : 0)
+                .stroke(type.color ?? .huiColors.surface.inversePrimary, lineWidth: selected ? 2 : 0)
         )
         .cornerRadius(16)
-        .shadow(
-            color: Color(red: 66/100,
-                         green: 54/100,
-                         blue: 36/100)
-                .opacity(0.12),
-            radius: selected ? 0 : 8
-        )
+        .huiElevation(level: selected ? .level0 : .level4)
     }
 }

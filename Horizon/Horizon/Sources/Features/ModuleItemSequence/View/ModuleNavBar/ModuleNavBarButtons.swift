@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,24 +17,27 @@
 //
 
 import SwiftUI
+import HorizonUI
 
-struct NoteCardLabelView: View {
-    // MARK: - Properties
-    let type: CourseNoteLabel
+enum ModuleNavBarButtons {
+    case previous
+    case tts
+    case chatBot
+    case notebook
+    case next
 
-    var body: some View {
-        HStack {
-            NotebookLabelIcon(type: type)
-            Text(type.label)
-                .font(.regular12)
-                .foregroundStyle(type.color)
+    var image: Image {
+        switch self {
+        case .previous:
+            Image.huiIcons.chevronLeft
+        case .tts:
+            Image.huiIcons.volumeUp
+        case .chatBot:
+            Image(.chatBot)
+        case .notebook:
+            Image.huiIcons.menuBookNotebook
+        case .next:
+            Image.huiIcons.chevronRight
         }
-        .padding()
-        .frame(height: 31)
-        .background(
-            RoundedRectangle(cornerRadius: 15.5)
-                .stroke(type.color, lineWidth: 2)
-        )
-        .cornerRadius(15.5)
     }
 }
