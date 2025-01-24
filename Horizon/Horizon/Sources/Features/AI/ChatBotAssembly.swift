@@ -20,12 +20,17 @@ import UIKit
 import SwiftUI
 import Core
 
-final class AIAssembly {
+final class ChatBotAssembly {
 
     static func makeChatBotView() -> ChatBotView {
         let router = AppEnvironment.shared.router
-        let viewModel = ChatBotViewModel(router: router)
+        let chatbotInteractor = makeChatBotInteractor()
+        let viewModel = ChatBotViewModel(chatbotInteractor: chatbotInteractor, router: router)
         return ChatBotView(viewModel: viewModel)
+    }
+
+    static func makeChatBotInteractor() -> ChatBotInteractor {
+        ChatBotInteractorLive()
     }
 
     static func makeAITutorView() -> UIViewController {

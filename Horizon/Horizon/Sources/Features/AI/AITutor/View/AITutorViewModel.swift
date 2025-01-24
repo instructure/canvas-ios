@@ -41,7 +41,7 @@ final class AITutorViewModel {
     }
 
     func presentChatBot() {
-        let vc = CoreHostingController(AIAssembly.makeChatBotView())
+        let vc = CoreHostingController(ChatBotAssembly.makeChatBotView())
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
 
@@ -73,12 +73,12 @@ final class AITutorViewModel {
     }
 
     private func presentAIQuiz() {
-        let vc = CoreHostingController(AIAssembly.makeAIQuizView())
+        let vc = CoreHostingController(ChatBotAssembly.makeAIQuizView())
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
 
     private func presentFlashCard() {
-        let vc = CoreHostingController(AIAssembly.makeAIFlashCardView())
+        let vc = CoreHostingController(ChatBotAssembly.makeAIFlashCardView())
         router.show(vc, from: controller, options: .modal(isDismissable: false))
     }
 }
