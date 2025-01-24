@@ -16,16 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
-import Combine
 
 protocol ChatBotInteractor {
     func send(message: ChatBotMessage) -> AnyPublisher<String, Error>
 }
 
 class ChatBotInteractorLive: ChatBotInteractor {
-
     // MARK: - Dependencies
 
     private let canvasApi: API
@@ -76,12 +75,12 @@ class ChatBotInteractorLive: ChatBotInteractor {
             ),
             baseURL: baseUrl
         )
-            .makeRequest(CedarAnswerPromptMutation(cedarJwtToken: cedarJwtToken, prompt: prompt))
-            .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
-            .eraseToAnyPublisher()
+        .makeRequest(CedarAnswerPromptMutation(cedarJwtToken: cedarJwtToken, prompt: prompt))
+        .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
+        .eraseToAnyPublisher()
     }
 
-    private func tokenResponseToUtf8String(tokenResponse: TokenResponse, urlResponse: HTTPURLResponse?) throws -> String {
+    private func tokenResponseToUtf8String(tokenResponse: TokenResponse, urlResponse _: HTTPURLResponse?) throws -> String {
         guard let decodedToken = Data(base64Encoded: tokenResponse.token) else {
             throw ChatBotInteractorError.unableToGetCedarToken
         }
@@ -125,7 +124,7 @@ private class CedarAnswerPromptMutation: APIGraphQLRequestable {
         prompt: String,
         model: AIModel = .claude3Sonnet20240229V10
     ) {
-        variables = Variables(model: model.rawValue, prompt: prompt)
+        self.variables = Variables(model: model.rawValue, prompt: prompt)
         self.cedarJwtToken = cedarJwtToken
     }
 
@@ -145,7 +144,7 @@ private class CedarAnswerPromptMutation: APIGraphQLRequestable {
 }
 
 class ChatBotInteractorPreview: ChatBotInteractor {
-    func send(message: ChatBotMessage) -> AnyPublisher<String, Error> {
+    func send(message _: ChatBotMessage) -> AnyPublisher<String, Error> {
         Just("Hello, world!")
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
