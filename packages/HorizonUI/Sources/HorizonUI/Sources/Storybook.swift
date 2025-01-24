@@ -117,10 +117,17 @@ public struct Storybook: View {
                         HorizonUI.NavigationBar.Storybook()
                     } label: {
                         Text("Navigation").tint(Color.black)
-                    }         
+                    }
+
+                    NavigationLink {
+                        HorizonUI.IntroBlock.Storybook()
+                    } label: {
+                        Text("Intro Block").tint(Color.black)
+                    }
                 }
             }
             .listStyle(.sidebar)
+            .navigationBarHidden(false)
         }
         .navigationTitle("Design System")
         .navigationBarTitleDisplayMode(.large)
