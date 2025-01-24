@@ -57,7 +57,11 @@ final class MultiSelectionViewModel: ObservableObject {
         didTapAllSelectionButton
             .sink { [weak self] in
                 guard let self else { return }
-                isAllSelected ? deselectAll() : selectAll()
+                if isAllSelected {
+                    deselectAll()
+                } else {
+                    selectAll()
+                }
             }
             .store(in: &subscriptions)
     }

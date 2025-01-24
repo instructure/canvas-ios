@@ -102,12 +102,6 @@ public struct MultiSelectionView: View {
         }
     }
 
-    private var allSelectionButton: Button<Text> {
-        Button(viewModel.allSelectionButtonTitle) {
-            viewModel.didTapAllSelectionButton.send()
-        }
-    }
-
     private func accessibilityIdentifier(for item: OptionItem) -> String {
         [accessibilityIdentifier ?? "", item.id]
             .compactMap { $0 }
@@ -126,7 +120,7 @@ public struct MultiSelectionView: View {
             allOptions: [
                 .make(id: "1", title: "Option 1"),
                 .make(id: "2", title: "Option 2"),
-                .make(id: "3", title: "Option 3"),
+                .make(id: "3", title: "Option 3")
             ],
             selectedOptions: .init([])
         )

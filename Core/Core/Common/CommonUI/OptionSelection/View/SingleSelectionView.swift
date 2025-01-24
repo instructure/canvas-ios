@@ -106,7 +106,7 @@ public struct SingleSelectionView: View {
             allOptions: [
                 .make(id: "1", title: "Option 1"),
                 .make(id: "2", title: "Option 2"),
-                .make(id: "3", title: "Option 3"),
+                .make(id: "3", title: "Option 3")
             ],
             selectedOption: .init(nil)
         )
