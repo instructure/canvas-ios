@@ -377,26 +377,40 @@ public struct GradeListView: View, ScreenViewTrackable {
         userID: String,
         courseColor _: UIColor?
     ) -> some View {
-        Button {
-            viewModel.didSelectAssignment.accept((viewController, assignment))
-        } label: {
-            GradeRowView(
-                assignment: assignment,
-                userID: userID,
-                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
-            ) {
+        if viewModel.isWhatIfScoreFlagEnabled && viewModel.isWhatIfScoreModeOn {
+            Button {
+                viewModel.didSelectAssignment.accept((viewController, assignment))
+            } label: {
+                GradeRowView(
+                    assignment: assignment,
+                    userID: userID,
+                    isWhatIfScoreModeOn: true
+                ) {
+                    isScoreEditorPresented.toggle()
+                }
+                // TODO: Fix me (onSwipe gesture interferes with scrolling on ios18)
+                .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
+            }
+            .background(Color.backgroundLightest)
+            .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+            .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
                 isScoreEditorPresented.toggle()
             }
-            .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
-            .contentShape(Rectangle())
-        }
-        .background(Color.backgroundLightest)
-        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
-        .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
-            isScoreEditorPresented.toggle()
-        }
-        .accessibilityAction(named: Text("Revert to official score", bundle: .core)) {
-            viewModel.isShowingRevertDialog = true
+            .accessibilityAction(named: Text("Revert to official score", bundle: .core)) {
+                viewModel.isShowingRevertDialog = true
+            }
+        } else {
+            Button {
+                viewModel.didSelectAssignment.accept((viewController, assignment))
+            } label: {
+                GradeRowView(
+                    assignment: assignment,
+                    userID: userID,
+                    isWhatIfScoreModeOn: false
+                ) { }
+            }
+            .background(Color.backgroundLightest)
+            .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
         }
     }
 
@@ -421,9 +435,9 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     private func revertWhatIfScoreSwipeButton(id: String) -> [SwipeModel] {
         let slot = SwipeModel(id: id,
-                        image: { Image(uiImage: .replyLine)},
-                        action: { viewModel.isShowingRevertDialog = true },
-                        style: .init(background: Color.backgroundDark))
+                              image: { Image(uiImage: .replyLine)},
+                              action: { viewModel.isShowingRevertDialog = true },
+                              style: .init(background: Color.backgroundDark))
        return viewModel.isWhatIfScoreModeOn ? [slot] : []
     }
 }
