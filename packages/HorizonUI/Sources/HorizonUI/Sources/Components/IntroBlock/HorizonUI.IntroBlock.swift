@@ -26,6 +26,8 @@ public extension HorizonUI {
         let moduleItemName: String
         let duration: String
         let dueDate: String
+        let backgroundColor: Color
+        let foregroundColor: Color
         let onBack: () -> Void
         let onMenu: () -> Void
 
@@ -36,6 +38,8 @@ public extension HorizonUI {
             moduleItemName: String,
             duration: String,
             dueDate: String,
+            backgroundColor: Color = Color.huiColors.surface.institution,
+             foregroundColor: Color = Color.huiColors.text.surfaceColored,
             onBack: @escaping () -> Void,
             onMenu: @escaping () -> Void
         ) {
@@ -43,6 +47,8 @@ public extension HorizonUI {
             self.moduleItemName = moduleItemName
             self.duration = duration
             self.dueDate = dueDate
+            self.backgroundColor = backgroundColor
+            self.foregroundColor = foregroundColor
             self.onBack = onBack
             self.onMenu = onMenu
         }
@@ -62,7 +68,7 @@ public extension HorizonUI {
             .padding(.bottom, .huiSpaces.primitives.medium)
             .background {
                 Rectangle()
-                    .fill(Color.huiColors.surface.institution)
+                    .fill(backgroundColor)
             }
         }
 
@@ -76,14 +82,14 @@ public extension HorizonUI {
                     .huiTypography(.labelLargeBold)
                     .lineLimit(2)
             }
-            .foregroundColor(Color.huiColors.text.surfaceColored)
+            .foregroundColor(foregroundColor)
             .multilineTextAlignment(.center)
         }
 
         private var backButton: some View {
             Button(action: onBack) {
                 Image.huiIcons.arrowLeftAlt
-                    .foregroundColor(Color.huiColors.icon.surfaceColored)
+                    .foregroundColor(foregroundColor)
             }
             .frame(width: 24, height: 24)
         }
@@ -91,7 +97,7 @@ public extension HorizonUI {
         private var menuButton: some View {
             Button(action: onMenu) {
                 Image.huiIcons.listAlt
-                    .foregroundColor(Color.huiColors.icon.surfaceColored)
+                    .foregroundColor(foregroundColor)
             }
             .frame(width: 24, height: 24)
         }
@@ -102,7 +108,7 @@ public extension HorizonUI {
                 Spacer()
                 Text(dueDate)
             }
-            .foregroundStyle(Color.huiColors.text.surfaceColored)
+            .foregroundStyle(foregroundColor)
             .huiTypography(.p2)
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
         }
