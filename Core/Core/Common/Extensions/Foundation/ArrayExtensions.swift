@@ -51,9 +51,9 @@ public extension Array where Element: Equatable {
 
     func removingDuplicates() -> Self {
         var copy = [Element]()
-        for elm in self {
-            if copy.contains(elm) { continue }
-            copy.append(elm)
+        for element in self {
+            if copy.contains(element) { continue }
+            copy.append(element)
         }
         return copy
     }
