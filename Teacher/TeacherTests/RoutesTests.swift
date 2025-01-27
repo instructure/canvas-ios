@@ -128,8 +128,8 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
-        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageScreen>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageScreen>)
     }
 
     func testNativeAnnouncementDiscussionDetailsRouteWhenDeviceIsOffline() throws {
@@ -143,6 +143,6 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/courses/2/announcements/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/announcements/3") is CoreHostingController<EmbeddedWebPageScreen>)
     }
 }

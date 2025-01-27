@@ -61,6 +61,7 @@ extension String {
         return result
     }
 
+    /// - returns: True if the receiver string only contains decimal digits.
     public var containsNumber: Bool {
         return unicodeScalars.contains { char in
             CharacterSet.decimalDigits.contains(char)

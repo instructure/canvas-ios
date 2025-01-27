@@ -450,6 +450,10 @@ extension CoreWebView: WKNavigationDelegate {
         checkFileLoadNavigationAndExecuteCallback(navigation: navigation, error: error)
     }
 
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        linkDelegate?.coreWebView(self, didStartProvisionalNavigation: navigation)
+    }
+
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         RemoteLogger.shared.logError(name: "WebKit process terminated", reason: nil)
         CoreWebViewContentErrorViewEmbed.embed(errorDelegate: errorDelegate)

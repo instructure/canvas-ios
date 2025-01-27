@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,13 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import WebKit
 
-public protocol EmbeddedWebPageViewModel: ObservableObject {
-    var url: URL { get }
-    var navTitle: String { get }
-    var subTitle: String? { get }
-    var contextColor: UIColor? { get }
-    var webViewConfig: WKWebViewConfiguration { get }
+public protocol EmbeddedWebPageViewModel {
+    var urlPathComponent: String { get }
+    var navigationBarTitle: String { get }
+    var queryItems: [URLQueryItem] { get }
+    var assetID: String? { get }
+
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
+}
+
+public extension EmbeddedWebPageViewModel {
+
+    func webView(
+        _ webView: WKWebView,
+        didStartProvisionalNavigation navigation: WKNavigation!
+    ) {}
 }

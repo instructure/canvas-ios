@@ -31,6 +31,11 @@ class CoreWebViewTests: CoreTestCase {
             return handle(url)
         }
         let routeLinksFrom = UIViewController()
+
+        var navigationStartHandler: ((CoreWebView) -> Void)?
+        func coreWebView(_ webView: CoreWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            navigationStartHandler?(webView)
+        }
     }
 
     func testSetup() {
@@ -244,5 +249,20 @@ class CoreWebViewTests: CoreTestCase {
     func testEmptyInitializerCallsSetup() {
         let testee = CoreWebView()
         XCTAssertEqual(testee.customUserAgent, UserAgent.safari.description)
+    }
+
+    func testDidStartProvisionalNavigationCallback() {
+        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let navigationStartExpectation = expectation(description: "Navigation callback invoked")
+        let delegate = LinkDelegate()
+        delegate.navigationStartHandler = { webView in
+            navigationStartExpectation.fulfill()
+            XCTAssertEqual(webView.url, URL(string: "https>//instructure.com")!)
+        }
+        view.linkDelegate = delegate
+
+        view.load(URLRequest(url: URL(string: "https>//instructure.com")!))
+
+        waitForExpectations(timeout: 10)
     }
 }

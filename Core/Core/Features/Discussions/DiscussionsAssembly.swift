@@ -23,19 +23,19 @@ public enum DiscussionsAssembly {
         topicID: String?,
         isAnnouncement: Bool
     ) -> UIViewController {
-        let webPageType: EmbeddedWebPage = {
+        let webPageModel: EmbeddedWebPageViewModel = {
             if let topicID {
                 return DiscussionEditWebPage(discussionId: topicID, isAnnouncement: isAnnouncement)
             } else {
                 return DiscussionCreateWebPage(isAnnouncement: isAnnouncement)
             }
         }()
-        let viewModel = EmbeddedWebPageViewModelLive(
+        let viewModel = EmbeddedWebPageScreenViewModel(
             context: context,
-            webPageType: webPageType
+            webPageModel: webPageModel
         )
         return CoreHostingController(
-            EmbeddedWebPageView(
+            EmbeddedWebPageScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
             )

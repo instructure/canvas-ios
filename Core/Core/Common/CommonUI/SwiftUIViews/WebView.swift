@@ -24,6 +24,7 @@ public struct WebView: UIViewRepresentable {
     private var handleLink: ((URL) -> Bool)?
     private var handleSize: ((CGFloat) -> Void)?
     private var handleNavigationFinished: (() -> Void)?
+    private var handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation) -> Void)?
     private let source: Source?
     private var canToggleTheme: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
@@ -90,6 +91,14 @@ public struct WebView: UIViewRepresentable {
     public func onNavigationFinished(_ handleNavigationFinished: (() -> Void)?) -> Self {
         var modified = self
         modified.handleNavigationFinished = handleNavigationFinished
+        return modified
+    }
+
+    public func onProvisionalNavigationStarted(
+        _ handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation) -> Void)?
+    ) -> Self {
+        var modified = self
+        modified.handleProvisionalNavigationStarted = handleProvisionalNavigationStarted
         return modified
     }
 
@@ -185,6 +194,20 @@ extension WebView {
             self.view = view
         }
 
+        public func reload(
+            webView: CoreWebView,
+            on trigger: AnyPublisher<Void, Never>?
+        ) {
+            reloadObserver?.cancel()
+            reloadObserver = trigger?.sink {
+                webView.reload()
+            }
+        }
+
+        // MARK: CoreWebViewLinkDelegate
+
+        public var routeLinksFrom: UIViewController { view.controller.value }
+
         public func handleLink(_ url: URL) -> Bool {
             if let handleLink = view.handleLink {
                 return handleLink(url)
@@ -193,22 +216,25 @@ extension WebView {
             return true
         }
 
-        public var routeLinksFrom: UIViewController { view.controller.value }
-
-        public func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat) {
-            let toggleHeight = view.canToggleTheme ? webView.themeSwitcherHeight : 0
-            view.handleSize?(height + toggleHeight)
-        }
-
         public func finishedNavigation() {
             view.handleNavigationFinished?()
         }
 
-        public func reload(webView: CoreWebView, on trigger: AnyPublisher<Void, Never>?) {
-            reloadObserver?.cancel()
-            reloadObserver = trigger?.sink {
-                webView.reload()
-            }
+        public func coreWebView(
+            _ webView: CoreWebView,
+            didStartProvisionalNavigation navigation: WKNavigation!
+        ) {
+            view.handleProvisionalNavigationStarted?(webView, navigation)
+        }
+
+        // MARK: CoreWebViewSizeDelegate
+
+        public func coreWebView(
+            _ webView: CoreWebView,
+            didChangeContentHeight height: CGFloat
+        ) {
+            let toggleHeight = view.canToggleTheme ? webView.themeSwitcherHeight : 0
+            view.handleSize?(height + toggleHeight)
         }
     }
 }

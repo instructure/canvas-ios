@@ -16,16 +16,52 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DiscussionCreateWebPage: EmbeddedWebPage {
+import WebKit
+
+public struct DiscussionCreateWebPage: EmbeddedWebPageViewModel {
     public let urlPathComponent: String = "/discussion_topics/new"
     public let navigationBarTitle: String
     public let queryItems: [URLQueryItem]
     public let assetID: String? = nil
 
-    public init(isAnnouncement: Bool) {
+    private let router: Router
+
+    public init(
+        isAnnouncement: Bool,
+        router: Router = AppEnvironment.shared.router
+    ) {
         navigationBarTitle = isAnnouncement ? String(localized: "New Announcement", bundle: .core)
                                             : String(localized: "New Discussion", bundle: .core)
         queryItems = isAnnouncement ? [URLQueryItem(name: "is_announcement", value: "true")]
                                     : []
+        self.router = router
+    }
+
+    public func webView(
+        _ webView: WKWebView,
+        didStartProvisionalNavigation navigation: WKNavigation!
+    ) {
+        let isNavigatingToNewDiscussionTopic: Bool = {
+            guard
+                let pathComponents = webView.url?.pathComponents,
+                pathComponents.count > 2,
+                pathComponents[pathComponents.count - 2] == "discussion_topics",
+                let topicIdString = pathComponents.last,
+                topicIdString.containsNumber
+            else {
+                return false
+            }
+
+            return true
+        }()
+
+        guard
+            isNavigatingToNewDiscussionTopic,
+            let webViewController = webView.viewController
+        else {
+            return
+        }
+
+        router.dismiss(webViewController)
     }
 }

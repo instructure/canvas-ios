@@ -437,16 +437,16 @@ private func discussionDetails(
         return DiscussionDetailsViewController.create(context: context, topicID: discussionId)
     } else {
         let isAnnouncement = (params["announcementID"] != nil)
-        let webPage = DiscussionDetailsWebPage(
+        let webPageModel = DiscussionDetailsWebPage(
             discussionId: discussionId,
             isAnnouncement: isAnnouncement
         )
-        let viewModel = EmbeddedWebPageViewModelLive(
+        let viewModel = EmbeddedWebPageScreenViewModel(
             context: context,
-            webPageType: webPage
+            webPageModel: webPageModel
         )
         return CoreHostingController(
-            EmbeddedWebPageView(
+            EmbeddedWebPageScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
             )

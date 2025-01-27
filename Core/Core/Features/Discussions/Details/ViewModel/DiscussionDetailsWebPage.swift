@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DiscussionDetailsWebPage: EmbeddedWebPage {
+public struct DiscussionDetailsWebPage: EmbeddedWebPageViewModel {
     public let urlPathComponent: String
     public let navigationBarTitle: String
     public let queryItems: [URLQueryItem] = []

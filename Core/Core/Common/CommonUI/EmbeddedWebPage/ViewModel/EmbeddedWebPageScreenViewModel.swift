@@ -19,14 +19,8 @@
 import Foundation
 import WebKit
 
-public protocol EmbeddedWebPage {
-    var urlPathComponent: String { get }
-    var navigationBarTitle: String { get }
-    var queryItems: [URLQueryItem] { get }
-    var assetID: String? { get }
-}
-
-public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
+public class EmbeddedWebPageScreenViewModel: ObservableObject {
+    // MARK: - SwiftUI Interface
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
 
@@ -40,8 +34,11 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         result.websiteDataStore = WKWebsiteDataStore.nonPersistent()
         return result
     }
-    private let isMasqueradingUser: Bool
 
+    // MARK: - Private Properties
+
+    private let webPageModel: EmbeddedWebPageViewModel
+    private let isMasqueradingUser: Bool
     private let context: Context
     private let env = AppEnvironment.shared
     private lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -54,14 +51,17 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         self?.update()
     }
 
+    // MARK: - Public Methods
+
     public init(
         context: Context,
-        webPageType: EmbeddedWebPage,
+        webPageModel: EmbeddedWebPageViewModel,
         environment: AppEnvironment = .shared
     ) {
+        self.webPageModel = webPageModel
         self.context = context
         self.isMasqueradingUser = environment.currentSession?.actAsUserID != nil
-        self.navTitle = webPageType.navigationBarTitle
+        self.navTitle = webPageModel.navigationBarTitle
 
         self.url = {
             guard var baseURL = AppEnvironment.shared.currentSession?.baseURL else {
@@ -69,8 +69,8 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
             }
 
             baseURL.appendPathComponent(context.pathComponent)
-            baseURL.appendPathComponent(webPageType.urlPathComponent)
-            baseURL.append(queryItems: webPageType.queryItems)
+            baseURL.appendPathComponent(webPageModel.urlPathComponent)
+            baseURL.append(queryItems: webPageModel.queryItems)
             baseURL.append(queryItems: [
                 URLQueryItem(name: "embed", value: "true"),
                 URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
@@ -88,6 +88,20 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
             group.refresh()
         }
     }
+
+    // MARK: WebView Callbacks
+
+    public func webView(
+        _ webView: WKWebView,
+        didStartProvisionalNavigation navigation: WKNavigation!
+    ) {
+        webPageModel.webView(
+            webView,
+            didStartProvisionalNavigation: navigation
+        )
+    }
+
+    // MARK: - Private Methods
 
     private func update() {
         guard
