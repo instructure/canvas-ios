@@ -238,6 +238,7 @@ class SubmissionListCell: UITableViewCell {
     }
 
     func update(_ assignment: Assignment?, submission: Submission?, row: Int) {
+        accessibilityTraits = .button
         accessibilityIdentifier = "SubmissionListCell.\(submission?.userID ?? "")"
         backgroundColor = .backgroundLightest
         if assignment?.anonymizeStudents != false {

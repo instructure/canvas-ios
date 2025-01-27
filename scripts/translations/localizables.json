@@ -1,10 +1,9 @@
 [
-  "Core/Core/Localizable.xcstrings",
-  "CanvasCore/CanvasCore/Localizable.xcstrings",
+  "Core/Core/Resources/Localizable.xcstrings",
   "Parent/Parent/InfoPlist.xcstrings",
   "Parent/Parent/Localizable.xcstrings",
-  "rn/Teacher/ios/Teacher/InfoPlist.xcstrings",
-  "rn/Teacher/ios/Teacher/Localizable.xcstrings",
+  "Teacher/Teacher/InfoPlist.xcstrings",
+  "Teacher/Teacher/Localizable.xcstrings",
   "Student/Student/InfoPlist.xcstrings",
   "Student/Student/Localizable.xcstrings",
   "Student/SubmitAssignment/InfoPlist.xcstrings",
