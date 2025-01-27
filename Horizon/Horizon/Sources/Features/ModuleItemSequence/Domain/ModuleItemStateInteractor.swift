@@ -100,6 +100,9 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
                 moduleItemID: itemID
             )
             return .externalTool(environment: environment, tools: tools, name: item.title)
+
+        case .assignment(let id):
+            return .assignment(courseID: courseID, assignmentID: id)
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")

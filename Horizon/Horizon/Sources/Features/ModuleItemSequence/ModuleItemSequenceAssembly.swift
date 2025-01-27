@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Core
 
 enum ModuleItemSequenceAssembly {
@@ -40,11 +41,21 @@ enum ModuleItemSequenceAssembly {
         let viewModel = ModuleItemSequenceViewModel(
             moduleItemInteractor: interactor,
             moduleItemStateInteractor: stateInteractor,
+            router: environment.router,
             assetType: assetType,
             assetID: assetID
         )
-        let view = ModuleItemSequenceView(viewModel: viewModel)
+
+        let showTabBarAndNavigationBar: () -> Void = {
+            environment.tabBar(isVisible: true)
+            environment.navigationBar(isVisible: true)
+        }
+        let view = ModuleItemSequenceView(
+            viewModel: viewModel,
+            onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
+        )
         environment.tabBar(isVisible: false)
+        environment.navigationBar(isVisible: false)
         return CoreHostingController(view)
     }
 
@@ -98,8 +109,11 @@ enum ModuleItemSequenceAssembly {
         )
     }
 
-    static func makeModuleItemView(viewController: UIViewController) -> ModuleItemViewRepresentable {
-        ModuleItemViewRepresentable(viewController: viewController)
+    static func makeModuleItemView(
+        isScrollTopReached: Binding<Bool>,
+        viewController: UIViewController
+    ) -> ModuleItemViewRepresentable {
+        ModuleItemViewRepresentable(viewController: viewController, isScrollTopReached: isScrollTopReached)
     }
 
 #if DEBUG
@@ -107,10 +121,11 @@ enum ModuleItemSequenceAssembly {
         let viewModel = ModuleItemSequenceViewModel(
             moduleItemInteractor: ModuleItemSequenceInteractorPreview(),
             moduleItemStateInteractor: ModuleItemStateInteractorPreview(),
+            router: AppEnvironment.shared.router,
             assetType: .moduleItem,
             assetID: "assetID"
         )
-        let view = ModuleItemSequenceView(viewModel: viewModel)
+        let view = ModuleItemSequenceView(viewModel: viewModel, onShowNavigationBarAndTabBar: {})
         return view
     }
 #endif

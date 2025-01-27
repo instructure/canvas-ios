@@ -36,7 +36,7 @@ final class AssignmentDetailsViewModel {
     // MARK: - Output
 
     private(set) var assignment: HAssignment?
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var isLoaderVisible = true
     private(set) var didSubmitAssignment = false
     private(set) var attachments: [File] = []
     private(set) var errorMessage = ""
@@ -99,8 +99,9 @@ final class AssignmentDetailsViewModel {
 
     private func fetchAssignmentDetails() {
         interactor.getAssignmentDetails()
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] response in
-                self?.state = .data
+                self?.isLoaderVisible = false
                 self?.assignment = response
             }
             .store(in: &subscriptions)
@@ -117,7 +118,7 @@ final class AssignmentDetailsViewModel {
             case .uploadFile(url: let url):
                 interactor.addFile(url: url)
             case .sendFileTapped:
-                state = .loading
+                isLoaderVisible = true
                 interactor.uploadFiles()
             case .deleteFile(file: let file):
                 interactor.cancelFile(file)
@@ -138,10 +139,10 @@ final class AssignmentDetailsViewModel {
             .sink { [weak self] result in
                 switch result {
                 case .success:
-                    self?.state = .data
+                    self?.isLoaderVisible = false
                     self?.didSubmitAssignment = true
                 case .failure(let error):
-                    self?.state = .data
+                    self?.isLoaderVisible = false
                     self?.isAlertVisible = true
                     self?.errorMessage = error.localizedDescription
                 }
@@ -150,10 +151,10 @@ final class AssignmentDetailsViewModel {
     }
 
     private func submitTextEntry() {
-        state = .loading
+        isLoaderVisible = true
         interactor.submitTextEntry(with: htmlContent)
             .sink { [weak self] completion in
-                self?.state = .data
+                self?.isLoaderVisible = false
                 if case .failure(let error) = completion {
                     self?.isAlertVisible = true
                     self?.errorMessage = error.localizedDescription

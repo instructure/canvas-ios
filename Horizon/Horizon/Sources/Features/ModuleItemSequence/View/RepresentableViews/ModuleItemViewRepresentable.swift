@@ -22,18 +22,60 @@ import Core
 struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Dependencies
 
+    @Binding private var isScrollTopReached: Bool
     private let viewController: UIViewController
 
-    init(viewController: UIViewController) {
+    init(
+        viewController: UIViewController,
+        isScrollTopReached: Binding<Bool>
+    ) {
         self.viewController = viewController
+        self._isScrollTopReached = isScrollTopReached
     }
 
     func makeUIViewController(context: Self.Context) -> UIViewController {
-         viewController
+        if let scrollView = findScrollView(in: viewController.view) {
+            scrollView.delegate = context.coordinator
+        }
+        return viewController
     }
 
     func updateUIViewController(
         _ uiViewController: UIViewController,
         context: Self.Context
     ) { }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator { value in
+            isScrollTopReached = !value
+        }
+    }
+
+    private func findScrollView(in view: UIView) -> UIScrollView? {
+        if let scrollView = view as? UIScrollView {
+            return scrollView
+        }
+        for subview in view.subviews {
+            if let scrollView = findScrollView(in: subview) {
+                return scrollView
+            }
+        }
+        return nil
+    }
+
+    // MARK: - Coordinator
+
+    final class Coordinator: NSObject, UIScrollViewDelegate {
+        let didScroll: (Bool) -> Void
+        private let threshold: CGFloat = 100
+
+        init(didScroll: @escaping (Bool) -> Void) {
+            self.didScroll = didScroll
+        }
+
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let yOffset = scrollView.contentOffset.y
+            didScroll(yOffset > threshold)
+        }
+    }
 }

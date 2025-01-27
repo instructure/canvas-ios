@@ -38,8 +38,7 @@ final class LearnAssembly {
             CourseDetailsView(
                 viewModel: .init(
                     router: appEnvironment.router,
-                    course: course,
-                    onShowTabBar: appEnvironment.tabBar(isVisible:)
+                    course: course
                 )
             )
         )
