@@ -307,6 +307,11 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(remoteLogHandler.lastErrorName, nil)
     }
 
+    func test_setupEnabledTabs_whenTabIsSettings_shouldNotLogIt() {
+        saveTab(id: "settings", htmlUrl: "/courses/42/settings", context: .course("42"))
+        XCTAssertEqual(remoteLogHandler.lastErrorName, nil)
+    }
+
     // MARK: - Cancel subscription
 
     func test_cancelTabSubscription_shouldNotReactToTabObjectChanges() {

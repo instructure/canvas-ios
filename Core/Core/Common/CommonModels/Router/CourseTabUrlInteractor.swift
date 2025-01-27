@@ -172,6 +172,7 @@ public final class CourseTabUrlInteractor {
 
     private func logPathFormatIfUnknown(for tab: TabModel) {
         guard tab.id != "home"
+                && tab.id != "settings" // Teachers logging into Student app have this enabled tab, no need to log it
                 && !isHomeFormat(tab.htmlUrl)
                 && !isKnownPathFormat(tab.htmlUrl)
         else { return }
