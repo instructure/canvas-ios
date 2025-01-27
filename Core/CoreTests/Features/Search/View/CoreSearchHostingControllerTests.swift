@@ -115,6 +115,10 @@ class CoreSearchHostingControllerTests: CoreTestCase {
         )
 
         textField.text = "Example"
+        /// `controller.searchContext.searchText` only updates when the text is changed or the text field resignes being a first responder.
+        /// None of these happen in the test reliably so we simulate the resign first responder action that is triggered
+        /// by the `textFieldShouldReturn` delegate method.
+        textField.delegate?.textFieldDidEndEditing?(textField)
         _ = textField.delegate?.textFieldShouldReturn?(textField)
 
         XCTAssertEqual(controller.searchContext.searchText.value, "Example")

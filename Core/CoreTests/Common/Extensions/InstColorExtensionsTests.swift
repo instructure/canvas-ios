@@ -36,17 +36,17 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.textPlaceholder, UIColor(resource: .textPlaceholder))
         XCTAssertEqual(UIColor.textLink, UIColor(resource: .textLink))
 
-        XCTAssertEqual(Color.textMasquerade, Color(.textMasquerade))
-        XCTAssertEqual(Color.textDanger, Color(.textDanger))
-        XCTAssertEqual(Color.textDark, Color(.textDark))
-        XCTAssertEqual(Color.textDarkest, Color(.textDarkest))
-        XCTAssertEqual(Color.textInfo, Color(.textInfo))
-        XCTAssertEqual(Color.textLight, Color(.textLight))
-        XCTAssertEqual(Color.textLightest, Color(.textLightest))
-        XCTAssertEqual(Color.textSuccess, Color(.textSuccess))
-        XCTAssertEqual(Color.textWarning, Color(.textWarning))
-        XCTAssertEqual(Color.textPlaceholder, Color(.textPlaceholder))
-        XCTAssertEqual(Color.textLink, Color(.textLink))
+        testHexColorEquality(UIColor.textMasquerade, Color.textMasquerade)
+        testHexColorEquality(UIColor.textDanger, Color.textDanger)
+        testHexColorEquality(UIColor.textDark, Color.textDark)
+        testHexColorEquality(UIColor.textDarkest, Color.textDarkest)
+        testHexColorEquality(UIColor.textInfo, Color.textInfo)
+        testHexColorEquality(UIColor.textLight, Color.textLight)
+        testHexColorEquality(UIColor.textLightest, Color.textLightest)
+        testHexColorEquality(UIColor.textSuccess, Color.textSuccess)
+        testHexColorEquality(UIColor.textWarning, Color.textWarning)
+        testHexColorEquality(UIColor.textPlaceholder, Color.textPlaceholder)
+        testHexColorEquality(UIColor.textLink, Color.textLink)
     }
 
     func testBackgroundColors() {
@@ -64,19 +64,19 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.backgroundSuccess, UIColor(resource: .backgroundSuccess))
         XCTAssertEqual(UIColor.backgroundWarning, UIColor(resource: .backgroundWarning))
 
-        XCTAssertEqual(Color.backgroundDanger, Color(.backgroundDanger))
-        XCTAssertEqual(Color.backgroundDark, Color(.backgroundDark))
-        XCTAssertEqual(Color.backgroundDarkest, Color(.backgroundDarkest))
-        XCTAssertEqual(Color.backgroundGrouped, Color(.backgroundGrouped))
-        XCTAssertEqual(Color.backgroundGroupedCell, Color(.backgroundGroupedCell))
-        XCTAssertEqual(Color.backgroundInfo, Color(.backgroundInfo))
-        XCTAssertEqual(Color.backgroundLight, Color(.backgroundLight))
-        XCTAssertEqual(Color.backgroundLightest, Color(.backgroundLightest))
-        XCTAssertEqual(Color.backgroundLightestElevated, Color(.backgroundLightestElevated))
-        XCTAssertEqual(Color.backgroundMasquerade, Color(.backgroundMasquerade))
-        XCTAssertEqual(Color.backgroundMedium, Color(.backgroundMedium))
-        XCTAssertEqual(Color.backgroundSuccess, Color(.backgroundSuccess))
-        XCTAssertEqual(Color.backgroundWarning, Color(.backgroundWarning))
+        testHexColorEquality(UIColor.backgroundDanger, Color.backgroundDanger)
+        testHexColorEquality(UIColor.backgroundDark, Color.backgroundDark)
+        testHexColorEquality(UIColor.backgroundDarkest, Color.backgroundDarkest)
+        testHexColorEquality(UIColor.backgroundGrouped, Color.backgroundGrouped)
+        testHexColorEquality(UIColor.backgroundGroupedCell, Color.backgroundGroupedCell)
+        testHexColorEquality(UIColor.backgroundInfo, Color.backgroundInfo)
+        testHexColorEquality(UIColor.backgroundLight, Color.backgroundLight)
+        testHexColorEquality(UIColor.backgroundLightest, Color.backgroundLightest)
+        testHexColorEquality(UIColor.backgroundLightestElevated, Color.backgroundLightestElevated)
+        testHexColorEquality(UIColor.backgroundMasquerade, Color.backgroundMasquerade)
+        testHexColorEquality(UIColor.backgroundMedium, Color.backgroundMedium)
+        testHexColorEquality(UIColor.backgroundSuccess, Color.backgroundSuccess)
+        testHexColorEquality(UIColor.backgroundWarning, Color.backgroundWarning)
     }
 
     func testBorderColors() {
@@ -92,17 +92,17 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.borderSuccess, UIColor(resource: .borderSuccess))
         XCTAssertEqual(UIColor.borderWarning, UIColor(resource: .borderWarning))
 
-        XCTAssertEqual(Color.borderDanger, Color(.borderDanger))
-        XCTAssertEqual(Color.borderDark, Color(.borderDark))
-        XCTAssertEqual(Color.borderDarkest, Color(.borderDarkest))
-        XCTAssertEqual(Color.borderDebug, Color(.borderDebug))
-        XCTAssertEqual(Color.borderInfo, Color(.borderInfo))
-        XCTAssertEqual(Color.borderLight, Color(.borderLight))
-        XCTAssertEqual(Color.borderLightest, Color(.borderLightest))
-        XCTAssertEqual(Color.borderMasquerade, Color(.borderMasquerade))
-        XCTAssertEqual(Color.borderMedium, Color(.borderMedium))
-        XCTAssertEqual(Color.borderSuccess, Color(.borderSuccess))
-        XCTAssertEqual(Color.borderWarning, Color(.borderWarning))
+        testHexColorEquality(UIColor.borderDanger, Color.borderDanger)
+        testHexColorEquality(UIColor.borderDark, Color.borderDark)
+        testHexColorEquality(UIColor.borderDarkest, Color.borderDarkest)
+        testHexColorEquality(UIColor.borderDebug, Color.borderDebug)
+        testHexColorEquality(UIColor.borderInfo, Color.borderInfo)
+        testHexColorEquality(UIColor.borderLight, Color.borderLight)
+        testHexColorEquality(UIColor.borderLightest, Color.borderLightest)
+        testHexColorEquality(UIColor.borderMasquerade, Color.borderMasquerade)
+        testHexColorEquality(UIColor.borderMedium, Color.borderMedium)
+        testHexColorEquality(UIColor.borderSuccess, Color.borderSuccess)
+        testHexColorEquality(UIColor.borderWarning, Color.borderWarning)
     }
 
     func testCourseColors() {
@@ -119,22 +119,35 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.course11, UIColor(resource: .course11))
         XCTAssertEqual(UIColor.course12, UIColor(resource: .course12))
 
-        XCTAssertEqual(Color.course1, Color(.course1))
-        XCTAssertEqual(Color.course2, Color(.course2))
-        XCTAssertEqual(Color.course3, Color(.course3))
-        XCTAssertEqual(Color.course4, Color(.course4))
-        XCTAssertEqual(Color.course5, Color(.course5))
-        XCTAssertEqual(Color.course6, Color(.course6))
-        XCTAssertEqual(Color.course7, Color(.course7))
-        XCTAssertEqual(Color.course8, Color(.course8))
-        XCTAssertEqual(Color.course9, Color(.course9))
-        XCTAssertEqual(Color.course10, Color(.course10))
-        XCTAssertEqual(Color.course11, Color(.course11))
-        XCTAssertEqual(Color.course12, Color(.course12))
+        testHexColorEquality(UIColor.course1, Color.course1)
+        testHexColorEquality(UIColor.course2, Color.course2)
+        testHexColorEquality(UIColor.course3, Color.course3)
+        testHexColorEquality(UIColor.course4, Color.course4)
+        testHexColorEquality(UIColor.course5, Color.course5)
+        testHexColorEquality(UIColor.course6, Color.course6)
+        testHexColorEquality(UIColor.course7, Color.course7)
+        testHexColorEquality(UIColor.course8, Color.course8)
+        testHexColorEquality(UIColor.course9, Color.course9)
+        testHexColorEquality(UIColor.course10, Color.course10)
+        testHexColorEquality(UIColor.course11, Color.course11)
+        testHexColorEquality(UIColor.course12, Color.course12)
     }
 
     func testIOSSpecificColors() {
         XCTAssertEqual(UIColor.disabledGray, UIColor(resource: .disabledGray))
-        XCTAssertEqual(Color.disabledGray, Color(.disabledGray))
+        testHexColorEquality(UIColor.disabledGray, Color.disabledGray)
+    }
+
+    func testHexColorEquality(_ uiColor: UIColor, _ color: Color) {
+        XCTAssertEqual(
+            uiColor.variantForLightMode.hexString,
+            color.variantForLightMode.hexString,
+            "\(uiColor)"
+        )
+        XCTAssertEqual(
+            uiColor.variantForDarkMode.hexString,
+            color.variantForDarkMode.hexString,
+            "\(uiColor)"
+        )
     }
 }

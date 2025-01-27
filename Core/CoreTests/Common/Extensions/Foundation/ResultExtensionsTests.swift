@@ -48,4 +48,14 @@ class ResultExtensionsTests: XCTestCase {
 
         XCTAssertEqual(testee.isSuccess, true)
     }
+
+    func testErrorInitializer() {
+        var testee: Result<Void, Error> = .init(error: nil)
+        XCTAssertEqual(testee.isSuccess, true)
+        XCTAssertNil(testee.error)
+
+        testee = .init(error: TestConstants.error)
+        XCTAssertEqual(testee.isFailure, true)
+        XCTAssertEqual(testee.error as NSError?, TestConstants.error)
+    }
 }

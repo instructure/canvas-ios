@@ -98,7 +98,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
 
         filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
         filterButton.titleLabel?.font = .scaledNamedFont(.regular16)
-        filterButton.accessibilityLabel = String(localized: "Filter events", bundle: .core)
+        filterButton.accessibilityLabel = String(localized: "Filter events by Calendars", bundle: .core)
 
         dropdownView.transform = CGAffineTransform(rotationAngle: 4 * .pi)
 

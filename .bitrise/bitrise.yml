@@ -1,0 +1,79 @@
+---
+format_version: '13'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+include:
+  - path: .bitrise/pr_adhoc/workflow_pr_adhoc_builds.yml
+workflows:
+  _common_prepare_workspace:
+    steps:
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # write your script here
+            sudo systemsetup -settimezone America/Denver
+        title: Set System Time to America
+    - activate-ssh-key: {}
+    - git::https://github.com/instructure/steps-verify-pr.git@master:
+        title: Verify PR
+    - git-clone:
+        inputs:
+        - reset_repository: 'Yes'
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            sudo systemsetup -settimezone America/Denver
+        title: Update timezone to MST
+    - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
+        title: Canvas iOS Secrets
+    - script@1:
+        title: Install XcodeGen
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+
+            cd $BITRISE_SOURCE_DIR
+            make provision-ci
+    - script@1:
+        title: Run make sync
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+
+            cd $BITRISE_SOURCE_DIR
+            make sync-ci
+    - restore-spm-cache@2: {}
+    summary: 'This step contains all the necessary steps to prepare the Xcode workspace
+      for building/testing.'
+  _common_save_spm_cache:
+    steps:
+    - save-spm-cache@1:
+        inputs:
+        - compression_level: 1
+    summary: This workflow's only task is to save resolved SPM dependencies to the
+      cache to be re-used later by other workflows (mainly the _common_prepare_workspace
+      one).
+meta:
+  bitrise.io:
+    machine_type_id: g2-m1.8core
+    stack: osx-xcode-16.2.x
+app:
+  envs:
+  - BITRISE_PROJECT_PATH: Canvas.xcworkspace
+    opts:
+      is_expand: false
