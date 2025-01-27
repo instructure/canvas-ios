@@ -111,7 +111,7 @@ public final class CourseTabUrlInteractor {
                 guard let htmlURL = tab.htmlURL else { return nil }
                 return TabModel(
                     id: tab.id,
-                    htmlUrl: htmlURL.absoluteString,
+                    htmlUrl: htmlURL.removingQueryAndFragment().absoluteString,
                     apiBaseUrlHost: tab.apiBaseURL?.host()
                 )
             }
@@ -232,5 +232,18 @@ private enum CourseTabFormat: CaseIterable {
             // example: "/courses/42/external_tools/1234"
             return parts.count == 4 && parts[2] == "external_tools"
         }
+    }
+}
+
+private extension URL {
+    func removingQueryAndFragment() -> URL {
+        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+            return self
+        }
+
+        components.query = nil
+        components.fragment = nil
+
+        return components.url ?? self
     }
 }
