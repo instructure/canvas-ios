@@ -388,6 +388,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 isScoreEditorPresented.toggle()
             }
             .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
+            .contentShape(Rectangle())
         }
         .background(Color.backgroundLightest)
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
@@ -420,9 +421,9 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     private func revertWhatIfScoreSwipeButton(id: String) -> [SwipeModel] {
         let slot = SwipeModel(id: id,
-                              image: { Image(uiImage: .replyLine)},
-                              action: { viewModel.isShowingRevertDialog = true },
-                              style: .init(background: Color.backgroundDark))
+                          image: { Image(uiImage: .replyLine)},
+                          action: { viewModel.isShowingRevertDialog = true },
+                          style: .init(background: Color.backgroundDark))
        return viewModel.isWhatIfScoreModeOn ? [slot] : []
     }
 }
