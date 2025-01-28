@@ -94,14 +94,15 @@ extension InstUI {
         private var dateRow: some View {
             label
                 .textStyle(.cellLabel)
-
-            if date != nil {
-                datePicker
-            } else {
-                placeholderButtons
-            }
-            if isClearable {
-                clearButton
+            HStack {
+                if date != nil {
+                    datePicker
+                } else {
+                    placeholderButtons
+                }
+                if isClearable {
+                    clearButton
+                }
             }
         }
 
