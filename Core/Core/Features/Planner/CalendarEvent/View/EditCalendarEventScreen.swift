@@ -139,7 +139,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                             focusedInput = .details
                         }
                 }
-                .frame(minHeight: geometry.size.height)
+                .frame(maxWidth: geometry.size.width, minHeight: geometry.size.height)
             }
         }
         .navigationTitle(viewModel.pageTitle)
