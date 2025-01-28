@@ -82,44 +82,31 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                 ... on User {
                     enrollments(currentOnly: true) {
                         course {
-                            _id
+                            _id: id
                             name
-                            imageUrl
-                            syllabusBody
+                            imageUrl: image_download_url
+                            syllabusBody: syllabus_body
                             account {
                               name
-                            }
-                            modulesConnection(first: 1) {
-                                nodes {
-                                    _id
-                                    name
-                                    position
-                                    moduleItems {
-                                        \(content)
-                                    }
-                                }
                             }
                             usersConnection(filter: {userIds: [$id]}) {
                                 nodes {
                                     courseProgression {
                                         requirements {
-                                            completed
                                             completionPercentage
-                                            total
                                         }
                                         incompleteModulesConnection {
                                             nodes {
                                                 module {
+                                                    _id: id
                                                     name
+                                                    position
                                                 }
                                                 incompleteItemsConnection(first: 1) {
                                                     nodes {
-                                                        _id
-                                                        nextItemsConnection(first: 1) {
-                                                            nodes {
-                                                                \(content)
-                                                            }
-                                                        }
+                                                        _id: id
+                                                        name
+                                                        \(content)
                                                     }
                                                 }
                                             }

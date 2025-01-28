@@ -35,26 +35,17 @@ public struct GetCoursesProgressionResponse: Codable {
 
     struct CourseModel: Codable {
         let id, name: String
+        let account: AccountModel?
         let imageUrl, syllabusBody: String?
-        let modulesConnection: ModulesConnection?
         let usersConnection: UsersConnection?
+    }
 
-        enum CodingKeys: String, CodingKey {
-            case id = "_id"
-            case imageUrl
-            case modulesConnection
-            case name
-            case syllabusBody
-            case usersConnection
-        }
+    struct AccountModel: Codable {
+        let name: String
     }
 
     struct UsersConnection: Codable {
         public  let nodes: [NodeModel]?
-    }
-
-    struct ModulesConnection: Codable {
-        public let nodes: [Module]?
     }
 
     struct Module: Codable {
@@ -62,13 +53,6 @@ public struct GetCoursesProgressionResponse: Codable {
         public let name: String
         public let position: Int?
         public let moduleItems: [ModuleItem]?
-
-        enum CodingKeys: String, CodingKey {
-            case id = "_id"
-            case name
-            case position
-            case moduleItems
-        }
     }
 
     struct ModuleItem: Codable {
@@ -78,29 +62,28 @@ public struct GetCoursesProgressionResponse: Codable {
     struct ModuleContent: Codable {
         public let id: String
         public let name: String?
-
-        enum CodingKeys: String, CodingKey {
-            case id = "_id"
-            case name
-        }
     }
 
     struct NodeModel: Codable {
         public let courseProgression: CourseProgression?
-        public let incompleteModulesConnection: IncompleteModulesConnection?
     }
 
     struct CourseProgression: Codable {
         public let requirements: Requirements?
-    }
-
-    struct Requirements: Codable {
-        let completed: Int?
-        public   let completionPercentage: Double?
-        let total: Int?
+        public let incompleteModulesConnection: IncompleteModulesConnection?
     }
 
     struct IncompleteModulesConnection: Codable {
-        public let nodes: [ModulesConnection]?
+        public let nodes: [IncompleteModule]?
+    }
+
+    struct IncompleteModule: Codable {
+        public let id: String
+        public let name: String
+        public let position: Int?
+    }
+
+    struct Requirements: Codable {
+        public   let completionPercentage: Double?
     }
 }

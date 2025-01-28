@@ -25,11 +25,19 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
 
     // MARK: - Properties
-    @NSManaged public var courseID: String
-    @NSManaged public var courseName: String?
-    @NSManaged public var imageUrl: String?
-    @NSManaged public var overviewDescription: String?
     @NSManaged public var completionPercentage: Double
+    @NSManaged public var course: Course
+    @NSManaged public var courseID: String
+    @NSManaged public var incompleteModules: [Module]
+    @NSManaged public var institutionName: String?
+
+    @discardableResult
+    public static func save(
+        _ items: [GetCoursesProgressionResponse.EnrollmentModel],
+        in context: NSManagedObjectContext
+    ) -> [CDCourseProgression] {
+        items.map { save($0, in: context) }
+    }
 
     @discardableResult
     public static func save(
@@ -38,6 +46,12 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     ) -> CDCourseProgression {
         let itemCourse = item.course
         let courseId = itemCourse.id
+        let courseProgression = itemCourse
+            .usersConnection?
+            .nodes?
+            .first?
+            .courseProgression
+
         var image: URL?
         if let imageUrl = item.course.imageUrl {
             image = URL(string: imageUrl)
@@ -46,36 +60,33 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
         let course: Course = context.first(where: #keyPath(Course.id), equals: courseId) ?? context.insert()
         course.id = courseId
         course.name = item.course.name
-        course.imageDownloadURL = image
+        course.imageDownloadURL = image //imageDownloadURL or bannerImageDownloadURL?
         course.syllabusBody = item.course.syllabusBody
-
-        itemCourse.modulesConnection?.nodes?.forEach { module in
-            let newModule: Module = context.first(where: #keyPath(Module.id), equals: module.id) ?? context.insert()
-            newModule.id = module.id
-            newModule.name = module.name
-            newModule.position = module.position ?? 0
-            newModule.courseID = courseId
-
-            module.moduleItems?.forEach { moduleItem in
-                let content = moduleItem.content
-
-                let newModuleItem: ModuleItem = context.first(where: #keyPath(ModuleItem.id), equals: content.id) ?? context.insert()
-                newModuleItem.id = content.id
-                newModuleItem.courseID = courseId
-            }
-        }
 
         let model: CDCourseProgression = context.first(where: #keyPath(CDCourseProgression.courseID), equals: courseId) ?? context.insert()
 
+        model.course = course
         model.courseID = courseId
-        model.completionPercentage = item
-            .course
-            .usersConnection?
-            .nodes?
-            .first?
-            .courseProgression?
+        model.institutionName = itemCourse.account?.name
+        model.incompleteModules = courseProgression?.incompleteModulesConnection?.nodes?.map { node in
+            Module.save(node, forCourse: courseId, in: context)
+        } ?? []
+        model.completionPercentage = courseProgression?
             .requirements?
             .completionPercentage ?? 0.0
+
         return model
+    }
+}
+
+extension Module {
+    static func save(_ item: GetCoursesProgressionResponse.IncompleteModule, forCourse courseID: String, in context: NSManagedObjectContext) -> Module {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id)
+        let module: Module = context.fetch(predicate).first ?? context.insert()
+        module.id = item.id
+        module.courseID = courseID
+        module.name = item.name
+        module.position = item.position ?? 0
+        return module
     }
 }
