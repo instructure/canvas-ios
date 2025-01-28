@@ -50,3 +50,27 @@ public struct AssignmentPickerListResponse: PagedResponse, Equatable {
     var assignments: [Assignment] { data.course.assignmentsConnection.nodes }
     public var page: [Assignment] { assignments }
 }
+
+#if DEBUG
+
+extension AssignmentPickerListResponse.Assignment {
+    public static func make(
+        id: String,
+        name: String,
+        submission_types: [SubmissionType] = [],
+        allowedExtensions: [String]? = [],
+        isLocked: Bool = false,
+        gradeAsGroup: Bool = false
+    ) -> AssignmentPickerListResponse.Assignment {
+        AssignmentPickerListResponse.Assignment(
+            name: name,
+            _id: id,
+            submissionTypes: submission_types,
+            allowedExtensions: allowedExtensions,
+            lockInfo: LockInfo(isLocked: isLocked),
+            gradeAsGroup: gradeAsGroup
+        )
+    }
+}
+
+#endif

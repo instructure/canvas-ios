@@ -58,10 +58,10 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
     func testAssignmentFetchSuccessful() {
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "unknown submission type"),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
-            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
+            .make(id: "A1", name: "unknown submission type"),
+            .make(id: "A2", name: "online upload", submission_types: [.online_upload]),
+            .make(id: "A3", name: "online upload, locked", submission_types: [.online_upload], isLocked: true),
+            .make(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
 
         expect()
@@ -79,8 +79,8 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             AssignmentPickerListRequest(courseID: "successID"),
             value: mockAssignments(
                 [
-                    mockAssignment(id: "A1", name: "Assignment 1", submission_types: [.online_upload]),
-                    mockAssignment(id: "A2", name: "Assignment 2", submission_types: [.online_upload])
+                    .make(id: "A1", name: "Assignment 1", submission_types: [.online_upload]),
+                    .make(id: "A2", name: "Assignment 2", submission_types: [.online_upload])
                 ],
                 pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: true)
             )
@@ -100,8 +100,8 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             AssignmentPickerListRequest(courseID: "successID", cursor: "next_cursor"),
             value: mockAssignments(
                 [
-                    mockAssignment(id: "A3", name: "Assignment 3", submission_types: [.online_upload]),
-                    mockAssignment(id: "A4", name: "Assignment 4", submission_types: [.online_upload])
+                    .make(id: "A3", name: "Assignment 3", submission_types: [.online_upload]),
+                    .make(id: "A4", name: "Assignment 4", submission_types: [.online_upload])
                 ],
                 pageInfo: APIPageInfo(endCursor: "final_cursor", hasNextPage: false)
             )
@@ -143,10 +143,10 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
     func testGroupGradedAssignmentFetchSuccessful() {
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "unknown submission type"),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload], gradeAsGroup: true),
-            mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
-            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
+            .make(id: "A1", name: "unknown submission type"),
+            .make(id: "A2", name: "online upload", submission_types: [.online_upload], gradeAsGroup: true),
+            .make(id: "A3", name: "online upload, locked", submission_types: [.online_upload], isLocked: true),
+            .make(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
 
         expect()
@@ -163,8 +163,8 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         Analytics.shared.handler = analyticsHandler
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload])
+            .make(id: "A1", name: "online upload", submission_types: [.online_upload]),
+            .make(id: "A2", name: "online upload", submission_types: [.online_upload])
         ]))
 
         expect()
@@ -202,9 +202,5 @@ class AssignmentPickerListServiceTests: CoreTestCase {
                 )
             )
         )
-    }
-
-    private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = [], gradeAsGroup: Bool = false) -> AssignmentPickerListResponse.Assignment {
-        .init(name: name, _id: id, submissionTypes: submission_types, allowedExtensions: [], lockInfo: .init(isLocked: isLocked), gradeAsGroup: gradeAsGroup)
     }
 }
