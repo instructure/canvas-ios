@@ -123,7 +123,6 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                         .id("details")
                         .focused($focusedInput, equals: .details)
                     }
-                    .frame(maxWidth: geometry.size.width)
                     .animation(.default, value: viewModel.isAllDay)
 
                     // defocus inputs when otherwise non-tappable area is tapped
