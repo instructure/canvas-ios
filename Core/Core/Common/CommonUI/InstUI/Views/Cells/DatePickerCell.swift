@@ -66,13 +66,11 @@ extension InstUI {
                     HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
                         dateRow
                     }
-                    .frame(minHeight: 36) // To always have the same height despite datepicker visibility
-
                     VStack(alignment: .leading) {
                         dateRow
                     }
-                    .frame(minHeight: 36) // To always have the same height despite datepicker visibility
                 }
+                .frame(minHeight: 36) // To always have the same height despite datepicker visibility
 
                 if let errorMessage {
                     Text(errorMessage)
