@@ -104,8 +104,7 @@ class AssignmentPickerListRequestTests: CoreTestCase {
                     assignmentsConnection: .init(
                         nodes: [
                             .make(id: "A1", name: "Assignment 1", submission_types: [.online_upload]),
-                            .make(id: "A2", name: "Assignment 2", submission_types: [.online_upload]),
-
+                            .make(id: "A2", name: "Assignment 2", submission_types: [.online_upload])
                         ],
                         pageInfo: pageInfo
                     )
