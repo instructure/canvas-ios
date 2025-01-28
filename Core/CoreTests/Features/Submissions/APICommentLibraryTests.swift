@@ -22,8 +22,6 @@ import XCTest
 
 class APICommentLibraryTests: CoreTestCase {
 
-    let request = APICommentLibraryRequest(userId: "1")
-
     func testRequest() {
         let operationName = "CommentLibraryQuery"
         let query = """
@@ -45,6 +43,9 @@ class APICommentLibraryTests: CoreTestCase {
                 }
             }
             """
+
+        let request = APICommentLibraryRequest(userId: "1")
+
         XCTAssertEqual(request.body?.query, query)
         XCTAssertEqual(request.variables.userId, "1")
         XCTAssertEqual(request.variables.pageSize, 20)
@@ -52,6 +53,48 @@ class APICommentLibraryTests: CoreTestCase {
     }
 
     func testResponse() {
+        let mockedResponse = makeResponse(pageInfo: nil)
+        let request = APICommentLibraryRequest(userId: "1")
+
+        api.mock(request, value: mockedResponse)
+        api.makeRequest(request) { response, _, _  in
+            XCTAssertEqual(response?.data, mockedResponse.data)
+            XCTAssertEqual(response?.comments[0].id, "1")
+            XCTAssertEqual(response?.comments[0].comment, "First comment")
+            XCTAssertEqual(response?.comments[1].id, "2")
+            XCTAssertEqual(response?.comments[1].comment, "Second comment")
+        }
+    }
+
+    func test_next_page() throws {
+        let response = makeResponse(
+            pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: true)
+        )
+
+        let nextRequest = try XCTUnwrap(
+            APICommentLibraryRequest(userId: "1").nextPageRequest(from: response)
+        )
+
+        XCTAssertEqual(nextRequest.variables.cursor, "next_cursor")
+    }
+
+    func test_no_next_page() throws {
+        // Case 1
+        var response = makeResponse(
+            pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: false)
+        )
+        var nextRequest = APICommentLibraryRequest(userId: "1")
+            .nextPageRequest(from: response)
+        XCTAssertNil(nextRequest)
+
+        // Case 2
+        response = makeResponse(pageInfo: nil)
+        nextRequest = APICommentLibraryRequest(userId: "1")
+            .nextPageRequest(from: response)
+        XCTAssertNil(nextRequest)
+    }
+
+    private func makeResponse(pageInfo: APIPageInfo?) -> APICommentLibraryResponse {
         let comments = [APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
                         APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment") ]
         let data = APICommentLibraryResponse.Data
@@ -60,18 +103,10 @@ class APICommentLibraryTests: CoreTestCase {
                     id: "1",
                     commentBankItems: .init(
                         nodes: comments,
-                        pageInfo: nil
+                        pageInfo: pageInfo
                     )
                 )
             )
-        let response =  APICommentLibraryResponse(data: data)
-        api.mock(APICommentLibraryRequest(userId: "1"), value: response)
-        api.makeRequest(request) { response, _, _  in
-            XCTAssertEqual(response?.data, data)
-            XCTAssertEqual(response?.comments[0].id, "1")
-            XCTAssertEqual(response?.comments[0].comment, "First comment")
-            XCTAssertEqual(response?.comments[1].id, "2")
-            XCTAssertEqual(response?.comments[1].comment, "Second comment")
-        }
+        return APICommentLibraryResponse(data: data)
     }
 }

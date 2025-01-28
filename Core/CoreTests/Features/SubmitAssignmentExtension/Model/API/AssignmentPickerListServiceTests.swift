@@ -73,6 +73,74 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         ]))
     }
 
+    func testAssignment_NextPage_Fetch() {
+        // First Fetch
+        api.mock(
+            AssignmentPickerListRequest(courseID: "successID"),
+            value: mockAssignments(
+                [
+                    mockAssignment(id: "A1", name: "Assignment 1", submission_types: [.online_upload]),
+                    mockAssignment(id: "A2", name: "Assignment 2", submission_types: [.online_upload])
+                ],
+                pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: true)
+            )
+        )
+
+        expect()
+        testee.courseID = "successID"
+
+        waitForExpectations(timeout: 5)
+        XCTAssertEqual(receivedResult, .success([
+            .init(id: "A1", name: "Assignment 1", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A2", name: "Assignment 2", allowedExtensions: [], gradeAsGroup: false)
+        ]))
+
+        // Next Page Fetch
+        api.mock(
+            AssignmentPickerListRequest(courseID: "successID", cursor: "next_cursor"),
+            value: mockAssignments(
+                [
+                    mockAssignment(id: "A3", name: "Assignment 3", submission_types: [.online_upload]),
+                    mockAssignment(id: "A4", name: "Assignment 4", submission_types: [.online_upload])
+                ],
+                pageInfo: APIPageInfo(endCursor: "final_cursor", hasNextPage: false)
+            )
+        )
+
+        expect()
+        testee.loadNextPage()
+
+        waitForExpectations(timeout: 5)
+        XCTAssertEqual(receivedResult, .success([
+            .init(id: "A1", name: "Assignment 1", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A2", name: "Assignment 2", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A3", name: "Assignment 3", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A4", name: "Assignment 4", allowedExtensions: [], gradeAsGroup: false)
+        ]))
+
+        // Final Fetch
+        api.mock(
+            AssignmentPickerListRequest(courseID: "successID", cursor: "final_cursor"),
+            value: mockAssignments(
+                [],
+                pageInfo: nil
+            )
+        )
+
+        expect()
+        testee.loadNextPage { [weak self] in
+            self?.expectation?.fulfill()
+        }
+
+        waitForExpectations(timeout: 5)
+        XCTAssertEqual(receivedResult, .success([
+            .init(id: "A1", name: "Assignment 1", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A2", name: "Assignment 2", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A3", name: "Assignment 3", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A4", name: "Assignment 4", allowedExtensions: [], gradeAsGroup: false)
+        ]))
+    }
+
     func testGroupGradedAssignmentFetchSuccessful() {
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
             mockAssignment(id: "A1", name: "unknown submission type"),
@@ -123,13 +191,13 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
     }
 
-    private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
+    private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment], pageInfo: APIPageInfo? = nil) -> AssignmentPickerListRequest.Response {
         return AssignmentPickerListRequest.Response(
             data: .init(
                 course: .init(
                     assignmentsConnection: .init(
                         nodes: assignments,
-                        pageInfo: nil
+                        pageInfo: pageInfo
                     )
                 )
             )
