@@ -377,40 +377,25 @@ public struct GradeListView: View, ScreenViewTrackable {
         userID: String,
         courseColor _: UIColor?
     ) -> some View {
-        if viewModel.isWhatIfScoreFlagEnabled && viewModel.isWhatIfScoreModeOn {
-            Button {
-                viewModel.didSelectAssignment.accept((viewController, assignment))
-            } label: {
-                GradeRowView(
-                    assignment: assignment,
-                    userID: userID,
-                    isWhatIfScoreModeOn: true
-                ) {
-                    isScoreEditorPresented.toggle()
-                }
-                // TODO: Fix me (onSwipe gesture interferes with scrolling, only on ios18)
-                .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
-            }
-            .background(Color.backgroundLightest)
-            .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
-            .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
+        Button {
+            viewModel.didSelectAssignment.accept((viewController, assignment))
+        } label: {
+            GradeRowView(
+                assignment: assignment,
+                userID: userID,
+                isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn
+            ) {
                 isScoreEditorPresented.toggle()
             }
-            .accessibilityAction(named: Text("Revert to official score", bundle: .core)) {
-                viewModel.isShowingRevertDialog = true
-            }
-        } else {
-            Button {
-                viewModel.didSelectAssignment.accept((viewController, assignment))
-            } label: {
-                GradeRowView(
-                    assignment: assignment,
-                    userID: userID,
-                    isWhatIfScoreModeOn: false
-                ) { }
-            }
-            .background(Color.backgroundLightest)
-            .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+            .onSwipe(trailing: revertWhatIfScoreSwipeButton(id: assignment.id))
+        }
+        .background(Color.backgroundLightest)
+        .buttonStyle(ContextButton(contextColor: viewModel.courseColor))
+        .accessibilityAction(named: Text("Edit What-if score", bundle: .core)) {
+            isScoreEditorPresented.toggle()
+        }
+        .accessibilityAction(named: Text("Revert to official score", bundle: .core)) {
+            viewModel.isShowingRevertDialog = true
         }
     }
 
