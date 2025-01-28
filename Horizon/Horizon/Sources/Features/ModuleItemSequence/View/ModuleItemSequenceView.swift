@@ -24,7 +24,6 @@ public struct ModuleItemSequenceView: View {
     // MARK: - Private Properties
 
     @State private var isShowMakeAsDoneSheet = false
-//    @Environment(\.dismiss) private var dismiss
     @State private var isShowHeader = true
     @Environment(\.viewController) private var viewController
 
@@ -168,7 +167,6 @@ public struct ModuleItemSequenceView: View {
                     assignmentID: assignmentID,
                     isShowHeader: $isShowHeader
                 )
-//                .id(assignmentID)
             }
         }
     }
