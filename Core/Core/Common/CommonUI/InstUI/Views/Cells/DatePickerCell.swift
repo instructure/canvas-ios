@@ -117,7 +117,7 @@ extension InstUI {
                 in: validFrom...validUntil,
                 displayedComponents: components,
                 label: {}
-            ).lineLimit(0)
+            )
         }
 
         private var components: DatePicker<Label>.Components {

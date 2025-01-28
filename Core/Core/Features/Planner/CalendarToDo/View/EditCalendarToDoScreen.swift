@@ -85,7 +85,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                         focusedInput = .details
                     }
             }
-            .frame(maxWidth: geometry.size.width, minHeight: geometry.size.height)
+            .frame(minHeight: geometry.size.height)
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
