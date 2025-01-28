@@ -48,7 +48,7 @@ public class GetCoursesProgressionUseCase: APIUseCase {
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        let enrollments = response?.data?.user?.enrollments ?? []
+        let enrollments = response?.data?.legacyNode?.enrollments ?? []
         enrollments.forEach { item in
             CDCourseProgression.save(item, in: client)
         }

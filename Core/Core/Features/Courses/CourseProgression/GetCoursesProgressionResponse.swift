@@ -22,24 +22,29 @@ public struct GetCoursesProgressionResponse: Codable {
     let data: DataModel?
 
     struct DataModel: Codable {
-        let user: UserModel?
+        let legacyNode: LegacyNodeModel?
     }
 
-    struct UserModel: Codable {
+    struct LegacyNodeModel: Codable {
         let enrollments: [EnrollmentModel]?
     }
 
     public struct EnrollmentModel: Codable {
-        let course: CourseModel?
+        let course: CourseModel
     }
 
     struct CourseModel: Codable {
-        let id, name: String?
+        let id, name: String
+        let imageUrl, syllabusBody: String?
+        let modulesConnection: ModulesConnection?
         let usersConnection: UsersConnection?
 
         enum CodingKeys: String, CodingKey {
             case id = "_id"
+            case imageUrl
+            case modulesConnection
             case name
+            case syllabusBody
             case usersConnection
         }
     }
@@ -48,8 +53,41 @@ public struct GetCoursesProgressionResponse: Codable {
         public  let nodes: [NodeModel]?
     }
 
+    struct ModulesConnection: Codable {
+        public let nodes: [Module]?
+    }
+
+    struct Module: Codable {
+        public let id: String
+        public let name: String
+        public let position: Int?
+        public let moduleItems: [ModuleItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "_id"
+            case name
+            case position
+            case moduleItems
+        }
+    }
+
+    struct ModuleItem: Codable {
+        public let content: ModuleContent
+    }
+
+    struct ModuleContent: Codable {
+        public let id: String
+        public let name: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "_id"
+            case name
+        }
+    }
+
     struct NodeModel: Codable {
         public let courseProgression: CourseProgression?
+        public let incompleteModulesConnection: IncompleteModulesConnection?
     }
 
     struct CourseProgression: Codable {
@@ -60,5 +98,9 @@ public struct GetCoursesProgressionResponse: Codable {
         let completed: Int?
         public   let completionPercentage: Double?
         let total: Int?
+    }
+
+    struct IncompleteModulesConnection: Codable {
+        public let nodes: [ModulesConnection]?
     }
 }

@@ -81,14 +81,6 @@ struct HCourse: Identifiable {
         self.overviewDescription = overviewDescription
         self.modules = modules
     }
-
-    init(from entity: Course, modulesEntity: [Module]) {
-        self.id = entity.id
-        self.name = entity.name ?? ""
-        self.imageURL = entity.imageDownloadURL
-        self.overviewDescription = entity.syllabusBody
-        self.modules = modulesEntity.map { HModule(from: $0) }
-    }
 }
 
 extension HCourse {

@@ -44,54 +44,36 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     // MARK: - Functions
 
     func getCourses() -> AnyPublisher<[HCourse], Never> {
-        Publishers.Zip(fetchCourses(), fetchCourseProgression())
+        fetchCourseProgression()
             .receive(on: scheduler)
-            .map { courses, coursesProgression in
-                courses.map { course in
-                    guard let progression = coursesProgression.first(
-                        where: { $0.courseID == course.id }) else {
-                        return course
-                    }
-
-                    var updatedCourse = course
-                    let completionPercentage = progression.completionPercentage
-                    updatedCourse.percentage = completionPercentage
-                    updatedCourse.progressState = HCourse.ProgressState(from: completionPercentage)
-                    return updatedCourse
+            .map { coursesProgressions in
+                coursesProgressions.map { coursesProgression in
+                    HCourse(from: coursesProgression)
                 }
-            }
-            .eraseToAnyPublisher()
-    }
-
-    private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
-        ReactiveStore(useCase: GetCourses())
-            .getEntities()
-            .replaceError(with: [])
-            .flatMap {
-                $0.publisher
-                    .flatMap { course in
-                        ReactiveStore(
-                            useCase: GetModules(courseID: course.id)
-                        )
-                        .getEntities()
-                        .replaceError(with: [])
-                        .map {
-                            HCourse(
-                                from: course,
-                                modulesEntity: $0
-                            )
-                        }
-                    }
-                    .collect()
             }
             .eraseToAnyPublisher()
     }
 
     private func fetchCourseProgression() -> AnyPublisher<[CDCourseProgression], Never> {
         let userId = appEnvironment.currentSession?.userID ?? ""
+
         return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
             .getEntities()
             .replaceError(with: [])
             .eraseToAnyPublisher()
+    }
+}
+
+extension HCourse {
+    init(from courseProgression: CDCourseProgression) {
+        self.id = courseProgression.courseID
+        self.name = courseProgression.courseName ?? ""
+        if let imageUrl = courseProgression.imageUrl {
+            self.imageURL = URL(string: imageUrl)
+        } else {
+            self.imageURL = nil
+        }
+        self.overviewDescription = courseProgression.overviewDescription
+        self.modules = []
     }
 }

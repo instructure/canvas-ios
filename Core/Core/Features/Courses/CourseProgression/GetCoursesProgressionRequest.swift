@@ -24,37 +24,113 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
     public let variables: Input
 
     public struct Input: Codable, Equatable {
-        var userId: String
+        var id: String
     }
 
     public init(userId: String) {
-        variables = Input(userId: userId)
+        variables = Input(id: userId)
     }
-    public static let operationName = "courseProgressionQuery"
+    public static let operationName = "GetUserCourses"
 
-    public static var query: String = """
-            query \(operationName)($userId: ID!) {
-              user: legacyNode(_id: $userId, type: User) {
-                ... on User {
-                  enrollments(currentOnly: true) {
-                    course {
-                      _id
-                      name
-                      usersConnection(filter: { userIds: [$userId] }) {
-                        nodes {
-                          courseProgression {
-                            requirements {
-                              completed
-                              completionPercentage
-                              total
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+    public static let content = """
+        content {
+            ... on SubHeader {
+                __typename
+                id
+                name: title
             }
-"""
+            ... on Page {
+                __typename
+                id
+                name: title
+            }
+            ... on ModuleExternalTool {
+                __typename
+                id
+                createdAt
+                updatedAt
+                name: url
+            }
+            ... on File {
+                __typename
+                id
+                name: displayName
+            }
+            ... on ExternalUrl {
+                __typename
+                id
+                createdAt
+                name: title
+            }
+            ... on ExternalTool {
+                __typename
+                id
+                createdAt
+                name: description
+            }
+            ... on Assignment {
+                __typename
+                id
+                name
+                dueAt
+            }
+        }
+    """
+    public static let query = """
+        query \(operationName)($id: ID!) {
+            legacyNode(_id: $id, type: User) {
+                ... on User {
+                    enrollments(currentOnly: true) {
+                        course {
+                            _id
+                            name
+                            imageUrl
+                            syllabusBody
+                            account {
+                              name
+                            }
+                            modulesConnection(first: 1) {
+                                nodes {
+                                    _id
+                                    name
+                                    position
+                                    moduleItems {
+                                        \(content)
+                                    }
+                                }
+                            }
+                            usersConnection(filter: {userIds: [$id]}) {
+                                nodes {
+                                    courseProgression {
+                                        requirements {
+                                            completed
+                                            completionPercentage
+                                            total
+                                        }
+                                        incompleteModulesConnection {
+                                            nodes {
+                                                module {
+                                                    name
+                                                }
+                                                incompleteItemsConnection(first: 1) {
+                                                    nodes {
+                                                        _id
+                                                        nextItemsConnection(first: 1) {
+                                                            nodes {
+                                                                \(content)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    """
 }
