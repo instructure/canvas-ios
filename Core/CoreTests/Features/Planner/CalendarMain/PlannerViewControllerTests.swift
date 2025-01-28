@@ -72,7 +72,7 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
 
         // Simulate filter change
-        XCTAssertFinish(controller.calendarFilterInteractor.updateFilteredContexts([.course("2"), .user("1")], isSelected: true))
+        XCTAssertFinish(controller.calendarFilterInteractor.updateFilteredContexts([.course("2"), .user("1")]))
         controller.plannerListWillRefresh()
 
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
@@ -83,7 +83,7 @@ class PlannerViewControllerTests: CoreTestCase {
 
         // select no (all) calendars
         // Simulate filter change
-        XCTAssertFinish(controller.calendarFilterInteractor.updateFilteredContexts([.course("2"), .user("1")], isSelected: false))
+        XCTAssertFinish(controller.calendarFilterInteractor.updateFilteredContexts([]))
         controller.plannerListWillRefresh()
 
         XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, []) // all selected

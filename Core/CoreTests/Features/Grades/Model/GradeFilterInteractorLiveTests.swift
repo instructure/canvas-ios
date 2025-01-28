@@ -75,20 +75,19 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.selectedGradingId, "-1")
     }
 
-    func test_saveSortByOptionForFistTime() {
+    func test_saveSortByOptionForFirstTime() {
         // Given
-        let id = 1
         environment.userDefaults?.selectedSortByOptionIDs = nil
         // When
         testee.saveSortByOption(type: .groupName)
         // Then
-        XCTAssertEqual(testee.selectedSortById, id)
+        XCTAssertEqual(testee.selectedSortById, "groupName")
     }
 
     func test_saveSortByOptionChangeValue() {
         // Given
-        let oldId = 1
-        let newId = 2
+        let oldId = "groupName"
+        let newId = "dueDate"
         environment.userDefaults?.selectedSortByOptionIDs = [courseId: oldId]
         // When
         testee.saveSortByOption(type: .dueDate)

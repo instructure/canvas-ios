@@ -41,60 +41,28 @@ final class CourseSearchFilterEditorViewModelTests: CoreTestCase {
         )
     }
 
-    func test_all_selection_tapped() throws {
-        // Given
-        let model = CourseSearchFilterEditorViewModel(selection: selectionBinding())
-
-        // Initially all should be selected
-        XCTAssertTrue(model.resultTypes.allSatisfy({ $0.checked }))
-        XCTAssertEqual(model.allSelectionMode, .deselect)
-
-        // When - unchecking few of them
-        model.resultTypes[0].checked = false
-        model.resultTypes[2].checked = false
-
-        // Then
-        XCTAssertEqual(model.allSelectionMode, .select)
-
-        // When
-        model.allSelectionButtonTapped()
-
-        // Then - select all
-        XCTAssertTrue(model.resultTypes.allSatisfy({ $0.checked }))
-        XCTAssertEqual(model.allSelectionMode, .deselect)
-
-        // When
-        model.allSelectionButtonTapped()
-
-        // Then - unselect all
-        XCTAssertTrue(model.resultTypes.allSatisfy({ $0.checked == false }))
-        XCTAssertEqual(model.allSelectionMode, .select)
-    }
-
     func test_filter_submission() throws {
         // Given
-        let model = CourseSearchFilterEditorViewModel(selection: selectionBinding())
+        let model = CourseSearchFilterEditorViewModel(selection: selectionBinding(), accentColor: nil)
 
         // When - selecting only sort
-        model.sortMode = .type
+        model.sortModeOptions.selected.send(.make(id: "type"))
         waitForMainAsync()
 
         // Then
         var selected = try XCTUnwrap(selectedFilter)
         XCTAssertEqual(selected.sortMode, .type)
-        XCTAssertEqual(selected.includedTypes, CourseSmartSearchResultType.filterableTypes)
+        XCTAssertEqual(Set(selected.includedTypes), Set(CourseSmartSearchResultType.filterableTypes))
 
         // When - some filters
-        model.allSelectionButtonTapped() // Uncheck all
-        model.sortMode = .relevance
-        model.resultTypes[0].checked = true
-        model.resultTypes[1].checked = true
+        model.sortModeOptions.selected.send(.make(id: "relevance"))
+        model.resultTypeOptions.selected.send([.make(id: "Assignment"), .make(id: "Announcement")])
         waitForMainAsync()
 
         // Then
         selected = try XCTUnwrap(selectedFilter)
-        let expected = model.resultTypes.prefix(2).map({ $0.type })
+        let expected: [CourseSmartSearchResult.ContentType] = [.assignment, .announcement]
         XCTAssertEqual(selected.sortMode, .relevance)
-        XCTAssertEqual(selected.includedTypes, expected)
+        XCTAssertEqual(Set(selected.includedTypes), Set(expected))
     }
 }

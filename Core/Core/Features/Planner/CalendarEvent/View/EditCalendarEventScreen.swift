@@ -45,7 +45,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                     VStack(spacing: 0) {
                         InstUI.TextFieldCell(
                             label: Text("Title", bundle: .core),
-                            placeholder: String(localized: "Add title", bundle: .core),
+                            placeholder: String(localized: "Add title (required)", bundle: .core),
                             text: $viewModel.title
                         )
                         .focused($focusedInput, equals: .title)
