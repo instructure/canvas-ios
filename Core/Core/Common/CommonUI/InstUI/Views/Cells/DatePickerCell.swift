@@ -62,18 +62,12 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    label
-                        .textStyle(.cellLabel)
-
-                    if date != nil {
-                        datePicker
-                    } else {
-                        placeholderButtons
+                ViewThatFits {
+                    HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+                        dateRow
                     }
-
-                    if isClearable {
-                        clearButton
+                    VStack(alignment: .leading) {
+                        dateRow
                     }
                 }
                 .frame(minHeight: 36) // To always have the same height despite datepicker visibility
@@ -92,6 +86,22 @@ extension InstUI {
             .padding(.bottom, 7)
 
             InstUI.Divider()
+        }
+
+        @ViewBuilder
+        private var dateRow: some View {
+            label
+                .textStyle(.cellLabel)
+            HStack {
+                if date != nil {
+                    datePicker
+                } else {
+                    placeholderButtons
+                }
+                if isClearable {
+                    clearButton
+                }
+            }
         }
 
         @ViewBuilder
