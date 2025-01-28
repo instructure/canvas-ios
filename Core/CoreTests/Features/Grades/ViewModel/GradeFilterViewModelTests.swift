@@ -65,10 +65,11 @@ final class GradeFilterViewModelTests: CoreTestCase {
             gradeFilterInteractor: gradeFilterInteractor
         )
         // Then
-        XCTAssertEqual(testee.gradingPeriods.first?.title, "All")
-        XCTAssertEqual(testee.gradingPeriods.count, 5)
-        XCTAssertTrue(testee.isShowGradingPeriodsView)
-        XCTAssertEqual(testee.selectedGradingPeriod?.title, "All")
+        XCTAssertEqual(testee.gradingPeriodOptions.all.count, 5)
+        XCTAssertEqual(testee.gradingPeriodOptions.all.first?.title.contains("All"), true)
+        XCTAssertEqual(testee.gradingPeriodOptions.all.dropFirst().map(\.id), listGradingPeriods.map(\.id))
+        XCTAssertEqual(testee.gradingPeriodOptions.selected.value?.title.contains("All"), true)
+        XCTAssertEqual(testee.isShowGradingPeriodsView, true)
     }
 
     func test_mapGradingPeriod_hasSelectedGradingPeriods() {
@@ -87,9 +88,9 @@ final class GradeFilterViewModelTests: CoreTestCase {
             gradeFilterInteractor: gradeFilterInteractor
         )
         // Then
-        XCTAssertEqual(testee.gradingPeriods.count, 5)
-        XCTAssertTrue(testee.isShowGradingPeriodsView)
-        XCTAssertEqual(testee.selectedGradingPeriod?.title, listGradingPeriods.last?.title)
+        XCTAssertEqual(testee.gradingPeriodOptions.all.count, 5)
+        XCTAssertEqual(testee.isShowGradingPeriodsView, true)
+        XCTAssertEqual(testee.gradingPeriodOptions.selected.value?.id, "4")
     }
 
     func test_mapGradingPeriod_notHasGradingPeriods_hideGradingPeriodSection() {
@@ -106,15 +107,15 @@ final class GradeFilterViewModelTests: CoreTestCase {
             gradeFilterInteractor: gradeFilterInteractor
         )
         // Then
-        XCTAssertTrue(testee.gradingPeriods.isEmpty)
-        XCTAssertFalse(testee.isShowGradingPeriodsView)
+        XCTAssertEqual(testee.gradingPeriodOptions.all, [])
+        XCTAssertEqual(testee.isShowGradingPeriodsView, false)
     }
 
     func test_mapSortByOptions() {
         // Given
         let sortByOptions = GradeArrangementOptions.allCases
         let selectedSortBy = GradeArrangementOptions.dueDate
-        gradeFilterInteractor.currentSortById = 2
+        gradeFilterInteractor.currentSortById = selectedSortBy.rawValue
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: false,
@@ -126,8 +127,8 @@ final class GradeFilterViewModelTests: CoreTestCase {
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
         )
-        XCTAssertEqual(testee.sortByOptions.count, 2)
-        XCTAssertEqual(testee.selectedSortByOption, selectedSortBy)
+        XCTAssertEqual(testee.sortModeOptions.all.map(\.id), sortByOptions.map(\.rawValue))
+        XCTAssertEqual(testee.sortModeOptions.selected.value?.id, selectedSortBy.rawValue)
     }
 
     func test_bindSaveButtonStates_statesNotChanged_saveButtonIsDisabled() {
@@ -145,13 +146,13 @@ final class GradeFilterViewModelTests: CoreTestCase {
             gradeFilterInteractor: gradeFilterInteractor
         )
         // Then
-        XCTAssertFalse(testee.saveButtonIsEnabled)
+        XCTAssertEqual(testee.saveButtonIsEnabled, false)
     }
 
     func test_bindSaveButtonStates_statsIsChanged_saveButtonIsEnabled() {
         // Given
         let listGradingPeriods = getListGradingPeriods()
-        gradeFilterInteractor.currentSortById = 2
+        gradeFilterInteractor.currentSortById = "dueDate"
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
@@ -163,9 +164,9 @@ final class GradeFilterViewModelTests: CoreTestCase {
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
         )
-        testee.selectedSortByOption = .groupName
+        testee.sortModeOptions.selected.send(.make(id: "groupName"))
         // Then
-        XCTAssertTrue(testee.saveButtonIsEnabled)
+        XCTAssertEqual(testee.saveButtonIsEnabled, true)
     }
 
     func test_saveButtonTapped() {
@@ -190,8 +191,8 @@ final class GradeFilterViewModelTests: CoreTestCase {
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
         )
-        testee.selectedSortByOption = .groupName
-        testee.selectedGradingPeriod = nil
+        testee.sortModeOptions.selected.send(.make(id: "groupName"))
+        testee.gradingPeriodOptions.selected.send(nil)
         selectedGradingPeriodPublisher.sink { _ in
             isSelectedGradingPeriodPublisherFired = true
         }
