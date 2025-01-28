@@ -39,12 +39,15 @@ public extension InstUI.Styles.Padding {
 
     static let cellTop = value(12)
     static let cellBottom = value(14)
+
     /// The horizontal padding before a cell's leading icon
     static let cellIconLeading = value(22)
     /// The horizontal padding between a cell's leading icon and its text
     static let cellIconText = value(18)
 
     static let cellAccessoryPadding = value(12)
+
+    static let sectionHeaderVertical = value(8)
 
     static let paragraphTop = value(24)
     static let paragraphBottom = value(28)
@@ -59,9 +62,8 @@ public extension InstUI.Styles.Padding {
 
     static let dropDownOption = value(12)
 
-    static let selectionLabelHorizontal = value(12)
-
     static let selectionLabelVertical = value(6)
+    static let selectionLabelHorizontal = value(12)
 }
 
 // MARK: - PaddingSet
@@ -73,6 +75,8 @@ extension InstUI.Styles {
         case standardCell
         /// Paddings for cells with leading icon
         case iconCell
+        /// Paddings for list section headers
+        case sectionHeader
         /// Paddings to negate TextEditor insets
         case textEditorCorrection
 
@@ -94,6 +98,13 @@ extension InstUI.Styles {
                     top: .cellTop,
                     bottom: .cellBottom,
                     leading: .cellIconLeading,
+                    trailing: .standard
+                )
+            case .sectionHeader:
+                Config(
+                    top: .sectionHeaderVertical,
+                    bottom: .sectionHeaderVertical,
+                    leading: .standard,
                     trailing: .standard
                 )
             case .textEditorCorrection:
