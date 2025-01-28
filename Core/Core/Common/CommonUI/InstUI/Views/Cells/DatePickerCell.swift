@@ -62,33 +62,17 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    if dynamicTypeSize > .accessibility3 {
-                        VStack(alignment: .leading) {
-                            label
-                                .textStyle(.cellLabel)
-
-                            if date != nil {
-                                datePicker
-                            } else {
-                                placeholderButtons
-                            }
-                        }
-                    } else {
-                        label
-                            .textStyle(.cellLabel)
-
-                        if date != nil {
-                            datePicker
-                        } else {
-                            placeholderButtons
-                        }
+                ViewThatFits {
+                    HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+                        dateRow
                     }
-                    if isClearable {
-                        clearButton
+                    .frame(minHeight: 36) // To always have the same height despite datepicker visibility
+
+                    VStack(alignment: .leading) {
+                        dateRow
                     }
+                    .frame(minHeight: 36) // To always have the same height despite datepicker visibility
                 }
-                .frame(minHeight: 36) // To always have the same height despite datepicker visibility
 
                 if let errorMessage {
                     Text(errorMessage)
@@ -104,6 +88,21 @@ extension InstUI {
             .padding(.bottom, 7)
 
             InstUI.Divider()
+        }
+
+        @ViewBuilder
+        private var dateRow: some View {
+            label
+                .textStyle(.cellLabel)
+
+            if date != nil {
+                datePicker
+            } else {
+                placeholderButtons
+            }
+            if isClearable {
+                clearButton
+            }
         }
 
         @ViewBuilder
