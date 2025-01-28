@@ -20,11 +20,17 @@ import SwiftUI
 
 /// onSwipe a way for using swipe actions on scrollView
 public extension View {
+    @ViewBuilder
     func onSwipe(
         leading: [SwipeModel] = [],
         trailing: [SwipeModel] = []
     ) -> some View {
-        return self.modifier(SlidableModifier(leading: leading, trailing: trailing))
+        let hasAction: Bool = !leading.isEmpty || !trailing.isEmpty
+        if hasAction {
+            self.modifier(SlidableModifier(leading: leading, trailing: trailing))
+        } else {
+            self
+        }
     }
 }
 
