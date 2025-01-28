@@ -61,12 +61,17 @@ public class K5GradesViewModel: ObservableObject {
                                         courseID: $0.id,
                                         hideGradeBar: hideQuantitativeData)
         }
-        var gradingPeriodModels = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
-        gradingPeriodModels.sort(by: {
-            guard let date0 = $0.startDate, let date1 = $1.startDate else { return false }
-            return date0 < date1
-        })
-        gradingPeriods.append(contentsOf: gradingPeriodModels.map { K5GradingPeriod(periodID: $0.id, title: $0.title) })
+        var courseGradingPeriods = courses
+            .compactMap { $0.gradingPeriods }
+            .flatMap { $0 }
+            .sorted(by: {
+                guard let date0 = $0.startDate, let date1 = $1.startDate else { return false }
+                return date0 < date1
+            })
+            .map { K5GradingPeriod(periodID: $0.id, title: $0.title) }
+            .removingDuplicates()
+
+        gradingPeriods.append(contentsOf: courseGradingPeriods)
         finishRefresh()
     }
 

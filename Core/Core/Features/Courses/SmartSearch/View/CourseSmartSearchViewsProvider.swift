@@ -21,17 +21,17 @@ import Combine
 
 public class CourseSmartSearchViewsProvider: SearchViewsProvider {
 
-    let interactor: CourseSmartSearchInteractor
+    private let interactor: CourseSmartSearchInteractor
+    private let accentColor: Color?
 
-    public init(interactor: CourseSmartSearchInteractor) {
+    public init(interactor: CourseSmartSearchInteractor, accentColor: Color?) {
         self.interactor = interactor
+        self.accentColor = accentColor
     }
 
     public func filterEditorView(_ filter: Binding<CourseSmartSearchFilter?>) -> some View {
         CourseSmartSearchFilterEditorView(
-            model: CourseSearchFilterEditorViewModel(
-                selection: filter
-            )
+            model: CourseSearchFilterEditorViewModel(selection: filter, accentColor: accentColor)
         )
     }
 
