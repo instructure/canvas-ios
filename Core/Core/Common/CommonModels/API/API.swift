@@ -70,7 +70,6 @@ public class API {
                     return callback(nil, response, error)
                 }
                 do {
-                    print(String(data: data, encoding: .utf8) ?? "")
                     callback(try requestable.decode(data), response, error)
                 } catch let error {
                     #if DEBUG

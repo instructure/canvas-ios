@@ -70,7 +70,7 @@ extension HCourse {
         self.id = courseProgression.courseID
         self.name = courseProgression.course.name ?? ""
         self.overviewDescription = ""
-        self.progress = courseProgression.completionPercentage
+        self.progress = courseProgression.completionPercentage / 100.0
         self.modules = courseProgression.modules.map { .init($0) }
     }
 }

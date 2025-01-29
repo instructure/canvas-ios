@@ -47,11 +47,13 @@ struct DashboardView: View {
                             .foregroundStyle(Color.huiColors.text.title)
                             .padding(.top, .huiSpaces.primitives.medium)
                             .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+
                         HorizonUI.ProgressBar(
                             progress: nextUpViewModel.progress,
                             size: .medium,
                             numberPosition: .outside
                         )
+
                         if let learningObjectCardViewModel = nextUpViewModel.learningObjectCardViewModel {
                             Text("Next Up", bundle: .horizon)
                                 .huiTypography(.h3)

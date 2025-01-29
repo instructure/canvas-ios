@@ -49,7 +49,7 @@ final class CourseListViewModel: ObservableObject {
                         id: $0.courseID,
                         institutionName: $0.institutionName ?? "",
                         name: $0.course.name ?? "",
-                        progress: $0.completionPercentage,
+                        progress: $0.completionPercentage / 100.0,
                         progressString: $0.completionPercentage.progressString,
                         progressState: $0.completionPercentage.progressState
                     )

@@ -60,16 +60,16 @@ class DashboardViewModel {
 
     private func toNextUpViewModels(_ courseProgressions: [CDCourseProgression]) -> [NextUpViewModel] {
         courseProgressions
-            .filter { $0.incompleteModules.isEmpty == false }
+            .filter { $0.modules.isEmpty == false }
             .map(toNextUpViewModel)
     }
 
     private func toNextUpViewModel(_ courseProgression: CDCourseProgression) -> NextUpViewModel {
         .init(
             name: courseProgression.course.name ?? "",
-            progress: courseProgression.completionPercentage,
+            progress: courseProgression.completionPercentage / 100.0,
             learningObjectCardViewModel: courseProgression
-                .incompleteModules
+                .modules
                 .first
                 .flatMap(toLearningObjectCardViewModel)
         )
