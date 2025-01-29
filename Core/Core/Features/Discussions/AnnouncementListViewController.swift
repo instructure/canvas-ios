@@ -134,10 +134,16 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     }
 
     @objc func add() {
-        env.router.route(
-            to: "\(context.pathComponent)/announcements/new",
+        let createDiscussionController = DiscussionsAssembly.makeDiscussionCreateViewController(
+            context: context,
+            isAnnouncement: true,
+            discussionListViewController: self
+        )
+        env.router.show(
+            createDiscussionController,
             from: self,
-            options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true)
+            options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true),
+            analyticsRoute: "/:context/:contextID/announcements/new"
         )
     }
 

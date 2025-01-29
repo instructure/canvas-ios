@@ -25,43 +25,83 @@ public struct DiscussionCreateWebPage: EmbeddedWebPageViewModel {
     public let assetID: String? = nil
 
     private let router: Router
+    private let discussionListViewController: UIViewController
 
     public init(
         isAnnouncement: Bool,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        discussionListViewController: UIViewController
     ) {
         navigationBarTitle = isAnnouncement ? String(localized: "New Announcement", bundle: .core)
                                             : String(localized: "New Discussion", bundle: .core)
         queryItems = isAnnouncement ? [URLQueryItem(name: "is_announcement", value: "true")]
                                     : []
         self.router = router
+        self.discussionListViewController = discussionListViewController
     }
 
     public func webView(
         _ webView: WKWebView,
         didStartProvisionalNavigation navigation: WKNavigation!
     ) {
-        let isNavigatingToNewDiscussionTopic: Bool = {
-            guard
-                let pathComponents = webView.url?.pathComponents,
-                pathComponents.count > 2,
-                pathComponents[pathComponents.count - 2] == "discussion_topics",
-                let topicIdString = pathComponents.last,
-                topicIdString.containsNumber
-            else {
-                return false
-            }
-
-            return true
-        }()
-
-        guard
-            isNavigatingToNewDiscussionTopic,
-            let webViewController = webView.viewController
-        else {
+        guard let discussionTopicId = webView.url?.discussionTopicId else {
             return
         }
 
-        router.dismiss(webViewController)
+        // At this point we are pretty sure that we are navigating to the new discussion
+
+        guard let discussionUrl = webView.url else {
+            return
+        }
+
+        fetchNewDiscussion(
+            discussionUrl: discussionUrl,
+            topicId: discussionTopicId
+        )
+        dismissCreateScreenAndShowNewDiscussion(
+            discussionUrl: discussionUrl,
+            webView: webView
+        )
+    }
+
+    /// Saves the new discussion so it will appear in the discussion list.
+    private func fetchNewDiscussion(
+        discussionUrl: URL,
+        topicId: String
+    ) {
+        guard let context = Context(url: discussionUrl) else {
+            return
+        }
+        let useCase = GetDiscussionTopic(context: context, topicID: topicId)
+        useCase.fetch()
+    }
+
+    private func dismissCreateScreenAndShowNewDiscussion(
+        discussionUrl: URL,
+        webView: WKWebView
+    ) {
+        guard let webViewController = webView.viewController else {
+            return
+        }
+
+        router.dismiss(webViewController) { [router, discussionListViewController] in
+            router.route(to: discussionUrl, from: discussionListViewController)
+        }
+    }
+}
+
+extension URL {
+
+    internal var discussionTopicId: String? {
+        guard
+            self.pathComponents.count > 2,
+            self.pathComponents[self.pathComponents.count - 2] == "discussion_topics",
+            let topicIdString = self.pathComponents.last,
+            topicIdString.containsNumber
+        else {
+            return nil
+        }
+
+        return topicIdString
     }
 }

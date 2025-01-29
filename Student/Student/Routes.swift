@@ -101,15 +101,6 @@ let router = Router(routes: [
         return AnnouncementListViewController.create(context: context)
     },
 
-    RouteHandler("/:context/:contextID/announcements/new") { url, _, _ in
-        guard let context = Context(path: url.path) else { return nil }
-        return DiscussionsAssembly.makeDiscussionEditor(
-            context: context,
-            topicID: nil,
-            isAnnouncement: true
-        )
-    },
-
     RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
         return DiscussionsAssembly.makeDiscussionEditor(
@@ -213,14 +204,6 @@ let router = Router(routes: [
         return DiscussionListViewController.create(context: context)
     },
 
-    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, _ in
-        guard let context = Context(path: url.path) else { return nil }
-        return DiscussionsAssembly.makeDiscussionEditor(
-            context: context,
-            topicID: nil,
-            isAnnouncement: false
-        )
-    },
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
         return DiscussionsAssembly.makeDiscussionEditor(

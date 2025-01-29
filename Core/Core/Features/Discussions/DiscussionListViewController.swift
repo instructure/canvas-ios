@@ -145,10 +145,16 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
 
-        env.router.route(
-            to: "\(context.pathComponent)/discussion_topics/new",
+        let createDiscussionController = DiscussionsAssembly.makeDiscussionCreateViewController(
+            context: context,
+            isAnnouncement: false,
+            discussionListViewController: self
+        )
+        env.router.show(
+            createDiscussionController,
             from: self,
-            options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true)
+            options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true),
+            analyticsRoute: "/:context/:contextID/discussion_topics/new"
         )
     }
 

@@ -18,18 +18,40 @@
 
 public enum DiscussionsAssembly {
 
+    public static func makeDiscussionCreateViewController(
+        context: Context,
+        isAnnouncement: Bool,
+        discussionListViewController: UIViewController
+    ) -> UIViewController {
+        let webPageModel = DiscussionCreateWebPage(
+            isAnnouncement: isAnnouncement,
+            discussionListViewController: discussionListViewController
+        )
+        return makeEmbeddedWebPage(
+            context: context,
+            webPageModel: webPageModel
+        )
+    }
+
     public static func makeDiscussionEditor(
         context: Context,
-        topicID: String?,
+        topicID: String,
         isAnnouncement: Bool
     ) -> UIViewController {
-        let webPageModel: EmbeddedWebPageViewModel = {
-            if let topicID {
-                return DiscussionEditWebPage(discussionId: topicID, isAnnouncement: isAnnouncement)
-            } else {
-                return DiscussionCreateWebPage(isAnnouncement: isAnnouncement)
-            }
-        }()
+        let webPageModel = DiscussionEditWebPage(
+            discussionId: topicID,
+            isAnnouncement: isAnnouncement
+        )
+        return makeEmbeddedWebPage(
+            context: context,
+            webPageModel: webPageModel
+        )
+    }
+
+    private static func makeEmbeddedWebPage(
+        context: Context,
+        webPageModel: EmbeddedWebPageViewModel
+    ) -> UIViewController {
         let viewModel = EmbeddedWebPageScreenViewModel(
             context: context,
             webPageModel: webPageModel
