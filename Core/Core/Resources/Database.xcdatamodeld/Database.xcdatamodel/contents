@@ -173,7 +173,8 @@
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="institutionName" optional="YES" attributeType="String"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course"/>
-        <relationship name="incompleteModules" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module"/>
+        <relationship name="incompleteModulesRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Module"/>
+        <relationship name="modulesRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Module"/>
     </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

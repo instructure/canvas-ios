@@ -238,7 +238,6 @@ extension APIRequestable {
                 request.httpBody = try form.encode(using: boundary)
             }
         } else if let body = self.body {
-            print(body)
             request.httpBody = try encode(body)
             request.setValue("application/json", forHTTPHeaderField: HttpHeader.contentType)
         }

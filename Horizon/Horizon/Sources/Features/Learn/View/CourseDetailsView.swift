@@ -33,7 +33,7 @@ struct CourseDetailsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             headerView
-            learningContentView(course: viewModel.course)
+            learningContentView()
         }
         .padding(.top, .huiSpaces.primitives.small)
         .background(Color.huiColors.surface.pagePrimary)
@@ -56,10 +56,10 @@ struct CourseDetailsView: View {
         .padding([.horizontal, .bottom], .huiSpaces.primitives.medium)
     }
 
-    private func learningContentView(course: HCourse) -> some View {
+    private func learningContentView() -> some View {
         VStack(spacing: .huiSpaces.primitives.medium) {
             tabSelectorView
-            tabDetailsView(course: course)
+            tabDetailsView()
         }
         .background(Color.huiColors.surface.pagePrimary)
     }
@@ -72,18 +72,15 @@ struct CourseDetailsView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    private func tabDetailsView(course: HCourse) -> some View {
-        TabView(selection: Binding(
-            get: { selectedTabIndex ?? 0 },
-            set: { selectedTabIndex = $0 }
-        )) {
+    private func tabDetailsView() -> some View {
+        TabView(selection: $viewModel.selectedTabIndex) {
             ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
                     switch tab {
                     case .myProgress:
-                        modulesView(modules: course.modules).id(index)
+                        modulesView(modules: viewModel.course.modules).id(index)
                     case .overview:
-                        overview(htmlString: course.overviewDescription).id(index)
+                        overview(htmlString: viewModel.course.overviewDescription).id(index)
                     case .grades:
                         Text(verbatim: "Grades")
                             .id(index)

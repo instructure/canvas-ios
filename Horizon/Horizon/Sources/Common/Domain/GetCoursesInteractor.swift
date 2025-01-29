@@ -21,59 +21,50 @@ import CombineSchedulers
 import Core
 
 protocol GetCoursesInteractor {
-    func getCourses() -> AnyPublisher<[HCourse], Never>
+    func getCourses() -> AnyPublisher<[CDCourseProgression], Never>
+    func getCourse(id: String) -> AnyPublisher<CDCourseProgression?, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
     // MARK: - Properties
 
-    private let appEnvironment: AppEnvironment
+    private let userId: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
-        appEnvironment: AppEnvironment,
+        userId: String = AppEnvironment.shared.currentSession?.userID ?? "",
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.appEnvironment = appEnvironment
+        self.userId = userId
         self.scheduler = scheduler
     }
 
     // MARK: - Functions
 
-    func getCourses() -> AnyPublisher<[HCourse], Never> {
+    func getCourses() -> AnyPublisher<[CDCourseProgression], Never> {
         fetchCourseProgression()
             .receive(on: scheduler)
-            .map { coursesProgressions in
-                coursesProgressions.map { coursesProgression in
-                    HCourse(from: coursesProgression)
-                }
-            }
             .eraseToAnyPublisher()
     }
+
+    func getCourse(id: String) -> AnyPublisher<CDCourseProgression?, Never> {
+        fetchCourseProgression()
+            .receive(on: scheduler)
+            .map { $0.first { $0.courseID == id } }
+            .eraseToAnyPublisher()
+    }
+
+    // MARK: - Private
 
     private func fetchCourseProgression() -> AnyPublisher<[CDCourseProgression], Never> {
-        let userId = appEnvironment.currentSession?.userID ?? ""
-
-        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
-            .getEntities()
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
-    }
-}
-
-extension HCourse {
-    init(from courseProgression: CDCourseProgression) {
-        self.id = courseProgression.courseID
-        self.name = courseProgression.courseName ?? ""
-        if let imageUrl = courseProgression.imageUrl {
-            self.imageURL = URL(string: imageUrl)
-        } else {
-            self.imageURL = nil
-        }
-        self.overviewDescription = courseProgression.overviewDescription
-        self.modules = []
+        ReactiveStore(
+            useCase: GetCoursesProgressionUseCase(userId: userId)
+        )
+        .getEntities()
+        .replaceError(with: [])
+        .eraseToAnyPublisher()
     }
 }

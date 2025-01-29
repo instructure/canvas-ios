@@ -23,7 +23,7 @@ public class GetCoursesProgressionUseCase: APIUseCase {
 
     // MARK: - Typealias
 
-    public typealias Model = Course
+    public typealias Model = CDCourseProgression
     public typealias Request = GetCoursesProgressionRequest
 
     // MARK: - Properties

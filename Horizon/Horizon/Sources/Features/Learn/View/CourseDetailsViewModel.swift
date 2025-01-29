@@ -25,7 +25,8 @@ final class CourseDetailsViewModel: ObservableObject {
 
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var course: HCourse
+    @Published private(set) var course: HCourse = .init()
+    @Published var selectedTabIndex: Int = 0
 
     // MARK: - Private
 
@@ -37,13 +38,20 @@ final class CourseDetailsViewModel: ObservableObject {
 
     init(
         router: Router,
-        course: HCourse,
-        onShowTabBar: @escaping (Bool) -> Void
+        courseId: String,
+        onShowTabBar: @escaping (Bool) -> Void,
+        getCoursesInteractor: GetCoursesInteractor = GetCoursesInteractorLive()
     ) {
         self.router = router
-        self.course = course
         self.onShowTabBar = onShowTabBar
         self.state = .data
+
+        getCoursesInteractor.getCourse(id: courseId)
+            .sink { courseProgression in
+                guard let courseProgression = courseProgression else { return }
+                self.course = .init(courseProgression)
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -54,5 +62,41 @@ final class CourseDetailsViewModel: ObservableObject {
 
     func showTabBar() {
         onShowTabBar(true)
+    }
+}
+
+extension HCourse {
+    init(_ courseProgression: CDCourseProgression) {
+        self.id = courseProgression.courseID
+        self.name = courseProgression.course.name ?? ""
+        self.overviewDescription = ""
+        self.progress = courseProgression.completionPercentage
+        self.modules = courseProgression.modules.map { .init($0) }
+    }
+}
+
+extension HModule {
+    init(_ module: Module) {
+        let moduleItems = module.items.map { HModuleItem($0) }
+
+        self.id = module.id
+        self.name = module.name
+        self.courseID = module.courseID
+        self.items = moduleItems
+        self.moduleStatus = .init(
+            items: moduleItems,
+            state: module.state,
+            lockMessage: nil,
+            countOfPrerequisite: 0
+        )
+    }
+}
+
+extension HModuleItem {
+    init(_ moduleItem: ModuleItem) {
+        self.init(
+            id: moduleItem.id,
+            title: moduleItem.title
+        )
     }
 }

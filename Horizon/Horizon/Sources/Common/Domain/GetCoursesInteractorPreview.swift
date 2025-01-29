@@ -19,34 +19,27 @@
 #if DEBUG
 import Combine
 import Foundation
+import Core
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourses() -> AnyPublisher<[HCourse], Never> {
+    func getCourses() -> AnyPublisher<[CDCourseProgression], Never> {
         Just([course])
             .eraseToAnyPublisher()
     }
 
-    private var course: HCourse {
-        .init(
-            id: "1",
-            name: "learning AI for business",
-            imageURL: URL(
-                string: "https://www.mbaandbeyond.com/wp-content/uploads/2024/05/How-is-AI-revolutionizing-MBA-programs-and-shaping-the-future-of-business-education.png"
-            ),
-            overviewDescription: "String",
-            modules: [
-                .init(
-                    id: "12",
-                    name: "Introduction",
-                    courseID: "1",
-                    items: [
-                        .init(id: "15", title: "Sub title", htmlURL: nil),
-                        .init(id: "20", title: "Sub title 44", htmlURL: nil)
-                    ]
-                ),
-                .init(id: "13", name: "Assginemts", courseID: "2", items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)])
-            ]
-        )
+    func getCourse(id: String) -> AnyPublisher<CDCourseProgression?, Never> {
+        Just(course)
+            .eraseToAnyPublisher()
+    }
+
+    private var course: CDCourseProgression {
+        let courseProgression: CDCourseProgression = .init()
+        courseProgression.completionPercentage = 0.5
+        courseProgression.course = .init()
+        courseProgression.courseID = "123"
+        courseProgression.incompleteModules = []
+        courseProgression.institutionName = "Instructure"
+        return courseProgression
     }
 }
 #endif

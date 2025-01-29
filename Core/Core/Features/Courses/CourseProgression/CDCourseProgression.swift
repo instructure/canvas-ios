@@ -28,7 +28,19 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     @NSManaged public var completionPercentage: Double
     @NSManaged public var course: Course
     @NSManaged public var courseID: String
-    @NSManaged public var incompleteModules: [Module]
+    @NSManaged public var modulesRaw: NSOrderedSet?
+    @NSManaged private var incompleteModulesRaw: NSOrderedSet?
+
+    public var modules: [Module] {
+        get { modulesRaw?.array as? [Module] ?? [] }
+        set { modulesRaw = NSOrderedSet(array: newValue) }
+    }
+
+    public var incompleteModules: [Module] {
+        get { incompleteModulesRaw?.array as? [Module] ?? [] }
+        set { incompleteModulesRaw = NSOrderedSet(array: newValue) }
+    }
+
     @NSManaged public var institutionName: String?
 
     @discardableResult
@@ -65,12 +77,17 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
 
         let model: CDCourseProgression = context.first(where: #keyPath(CDCourseProgression.courseID), equals: courseId) ?? context.insert()
 
-        model.course = course
-        model.courseID = courseId
-        model.institutionName = itemCourse.account?.name
+        model.modules = itemCourse.modulesConnection?.nodes.map { module in
+            Module.save(module.asIncompleteModule, forCourse: courseId, in: context)
+        } ?? []
+
         model.incompleteModules = courseProgression?.incompleteModulesConnection?.nodes?.map { node in
             Module.save(node, forCourse: courseId, in: context)
         } ?? []
+
+        model.course = course
+        model.courseID = courseId
+        model.institutionName = itemCourse.account?.name
         model.completionPercentage = courseProgression?
             .requirements?
             .completionPercentage ?? 0.0
@@ -84,9 +101,20 @@ extension Module {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id)
         let module: Module = context.fetch(predicate).first ?? context.insert()
         module.id = item.id
-        module.courseID = courseID
         module.name = item.name
         module.position = item.position ?? 0
+        module.courseID = courseID
+        module.prerequisiteModuleIDsRaw = ""
         return module
+    }
+}
+
+extension GetCoursesProgressionResponse.Module {
+    var asIncompleteModule: GetCoursesProgressionResponse.IncompleteModule {
+        .init(
+            id: id,
+            name: name,
+            position: position
+        )
     }
 }

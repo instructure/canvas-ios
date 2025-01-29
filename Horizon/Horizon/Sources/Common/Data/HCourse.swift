@@ -21,83 +21,21 @@ import Core
 struct HCourse: Identifiable {
     let id: String
     let name: String
-    let imageURL: URL?
-    let overviewDescription: String?
+    let overviewDescription: String
+    let progress: Double
     let modules: [HModule]
 
-    var percentage: Double = 0.0
-    var progressState: ProgressState = .notStarted
-
-    var progress: Double {
-        percentage / 100
-    }
-
-    var progressString: String {
-        let percentageRound = round(percentage * 100) / 100.0
-        return "\(percentageRound)%"
-    }
-
-    var institutionName: String {
-        "Community College"
-    }
-
-    var targetCompletion: String {
-        "Target Completion: 2024/11/27"
-    }
-
-    var currentModule: HModule? {
-        modules.first
-    }
-
-    var currentModuleItem: HModuleItem? {
-        if let firstModule = modules.first,
-           let currentModuleItem = firstModule.items.first {
-            return currentModuleItem
-        } else {
-            return nil
-        }
-    }
-
-    var upcomingModuleItems: [HModuleItem] {
-        if let firstModule = modules.first {
-            var cpy = firstModule.items
-            _ = cpy.removeFirst()
-            return cpy
-        } else {
-            return []
-        }
-    }
-
     init(
-        id: String,
-        name: String,
-        imageURL: URL?,
-        overviewDescription: String?,
-        modules: [HModule]
+        id: String = "",
+        name: String = "",
+        overviewDescription: String? = nil,
+        progress: Double = 0,
+        modules: [HModule] = []
     ) {
         self.id = id
         self.name = name
-        self.imageURL = imageURL
-        self.overviewDescription = overviewDescription
+        self.overviewDescription = overviewDescription ?? ""
+        self.progress = progress
         self.modules = modules
-    }
-}
-
-extension HCourse {
-    enum ProgressState: String, CaseIterable {
-        case onTrack = "On Track"
-        case notStarted = "Not Started"
-        case completed = "Completed"
-
-        init(from value: Double) {
-            switch value {
-            case 0:
-                self = .notStarted
-            case 100:
-                self = .completed
-            default:
-                self = .onTrack
-            }
-        }
     }
 }

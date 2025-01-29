@@ -33,10 +33,10 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
     public static let operationName = "GetUserCourses"
 
     public static let content = """
+        id: _id
         content {
             ... on SubHeader {
                 __typename
-                id
                 name: title
             }
             ... on Page {
@@ -46,7 +46,6 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
             }
             ... on ModuleExternalTool {
                 __typename
-                id
                 createdAt
                 updatedAt
                 name: url
@@ -58,13 +57,11 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
             }
             ... on ExternalUrl {
                 __typename
-                id
                 createdAt
                 name: title
             }
             ... on ExternalTool {
                 __typename
-                id
                 createdAt
                 name: description
             }
@@ -82,12 +79,22 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                 ... on User {
                     enrollments(currentOnly: true) {
                         course {
-                            _id: id
+                            id: _id
                             name
-                            imageUrl: image_download_url
-                            syllabusBody: syllabus_body
+                            image_download_url: imageUrl 
+                            syllabus_body: syllabusBody
                             account {
                               name
+                            }
+                            modulesConnection(first: 1) {
+                                nodes {
+                                    id: _id
+                                    name
+                                    position
+                                    moduleItems {
+                                        \(content)
+                                    }
+                                }
                             }
                             usersConnection(filter: {userIds: [$id]}) {
                                 nodes {
@@ -98,14 +105,12 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                         incompleteModulesConnection {
                                             nodes {
                                                 module {
-                                                    _id: id
+                                                    id: _id
                                                     name
                                                     position
                                                 }
                                                 incompleteItemsConnection(first: 1) {
                                                     nodes {
-                                                        _id: id
-                                                        name
                                                         \(content)
                                                     }
                                                 }

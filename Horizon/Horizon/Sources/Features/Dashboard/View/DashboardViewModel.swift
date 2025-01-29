@@ -18,14 +18,14 @@
 
 import Combine
 import Core
-import Foundation
 
-final class DashboardViewModel: ObservableObject {
+@Observable
+class DashboardViewModel {
     // MARK: - Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Hi, John"
-    @Published private(set) var courses: [HCourse] = []
+    private(set) var state: InstUI.ScreenState = .loading
+    var title: String = "Hi, John"
+    var nextUpViewModels: [NextUpViewModel] = []
 
     // MARK: - Private variables
 
@@ -41,25 +41,54 @@ final class DashboardViewModel: ObservableObject {
     ) {
         self.router = router
 
-        unowned let unownedSelf = self
-
         getCoursesInteractor.getCourses()
-            .sink { courses in
-                unownedSelf.courses = courses
-                unownedSelf.state = .data
-            }
+            .sink(receiveValue: onGetCoursesResponse(courseProgressions:))
             .store(in: &subscriptions)
 
         getUserInteractor.getUser()
             .map { $0.name }
             .map { "Hi, \($0)" }
             .replaceError(with: "")
-            .assign(to: &$title)
+            .assign(to: \.title, on: self)
+            .store(in: &subscriptions)
+    }
+
+    private func onGetCoursesResponse(courseProgressions: [CDCourseProgression]) {
+        self.nextUpViewModels = toNextUpViewModels(courseProgressions)
+        self.state = .data
+    }
+
+    private func toNextUpViewModels(_ courseProgressions: [CDCourseProgression]) -> [NextUpViewModel] {
+        courseProgressions
+            .filter { $0.incompleteModules.isEmpty == false }
+            .map(toNextUpViewModel)
+    }
+
+    private func toNextUpViewModel(_ courseProgression: CDCourseProgression) -> NextUpViewModel {
+        .init(
+            name: courseProgression.course.name ?? "",
+            progress: courseProgression.completionPercentage,
+            learningObjectCardViewModel: courseProgression
+                .incompleteModules
+                .first
+                .flatMap(toLearningObjectCardViewModel)
+        )
+    }
+
+    private func toLearningObjectCardViewModel(_ module: Module) -> LearningObjectCardViewModel {
+        let firstLearningObject = module.items.first
+        return LearningObjectCardViewModel(
+            moduleTitle: module.name,
+            learningObjectName: firstLearningObject?.title ?? "",
+            type: firstLearningObject?.type?.label,
+            dueDate: firstLearningObject?.dueAt?.relativeShortDateOnlyString,
+            url: firstLearningObject?.htmlURL
+        )
     }
 
     // MARK: - Inputs
 
-    func notebookDidTap(controller: WeakViewController ) {
+    func notebookDidTap(controller: WeakViewController) {
         router.route(to: "/notebook", from: controller)
     }
 
@@ -69,5 +98,21 @@ final class DashboardViewModel: ObservableObject {
 
     func navigateToCourseDetails(url: URL, viewController: WeakViewController) {
         router.route(to: url, from: viewController)
+    }
+
+    struct NextUpViewModel: Identifiable {
+        let name: String
+        let progress: Double
+        let learningObjectCardViewModel: LearningObjectCardViewModel?
+
+        var id: String { name }
+    }
+
+    struct LearningObjectCardViewModel {
+        let moduleTitle: String
+        let learningObjectName: String
+        let type: String?
+        let dueDate: String?
+        let url: URL?
     }
 }
