@@ -19,7 +19,7 @@
 import Foundation
 
 public struct CourseSmartSearchFilter: Equatable, SearchPreference {
-    public enum SortMode {
+    public enum SortMode: String, CaseIterable {
         case relevance
         case type
     }

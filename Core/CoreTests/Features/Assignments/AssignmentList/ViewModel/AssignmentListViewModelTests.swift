@@ -318,13 +318,6 @@ class AssignmentListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.selectedGradingPeriodId, gradingPeriods[0]?.id)
     }
 
-    func testAssignmentArrangementOptions() {
-        XCTAssertEqual(AssignmentListViewModel.AssignmentArrangementOptions.dueDate.title, "Due Date")
-        XCTAssertEqual(AssignmentListViewModel.AssignmentArrangementOptions.groupName.title, "Group")
-        XCTAssertEqual(AssignmentListViewModel.AssignmentArrangementOptions.assignmentGroup.title, "Assignment Group")
-        XCTAssertEqual(AssignmentListViewModel.AssignmentArrangementOptions.assignmentType.title, "Assignment Type")
-    }
-
     func testFilterOptionsDidUpdate() {
         api.mock(
             GetGradingPeriods(courseID: "1"),

@@ -30,8 +30,8 @@ extension InstUI {
         private let subtitle: String?
         @Binding private var isSelected: Bool
         private let color: Color
-        private let hasDivider: Bool
         private let accessoryView: (() -> Accessory)?
+        private let dividerStyle: InstUI.Divider.Style
 
         // MARK: Initializers
 
@@ -40,15 +40,15 @@ extension InstUI {
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
             color: Color,
-            hasDivider: Bool = true,
-            accessory: (() -> Accessory)?
+            accessoryView: (() -> Accessory)?,
+            dividerStyle: InstUI.Divider.Style = .full
         ) {
             self.title = title
             self.subtitle = subtitle
             self._isSelected = isSelected
             self.color = color
-            self.hasDivider = hasDivider
-            self.accessoryView = accessory
+            self.accessoryView = accessoryView
+            self.dividerStyle = dividerStyle
         }
 
         public init(
@@ -56,15 +56,15 @@ extension InstUI {
             subtitle: String? = nil,
             isSelected: Binding<Bool>,
             color: Color,
-            hasDivider: Bool = true
+            dividerStyle: InstUI.Divider.Style = .full
         ) where Accessory == SwiftUI.EmptyView {
             self.init(
                 title: title,
                 subtitle: subtitle,
                 isSelected: isSelected,
                 color: color,
-                hasDivider: hasDivider,
-                accessory: nil
+                accessoryView: nil,
+                dividerStyle: dividerStyle
             )
         }
 
@@ -75,38 +75,35 @@ extension InstUI {
                 Button {
                     isSelected.toggle()
                 } label: {
-                    HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+                    HStack(spacing: 0) {
                         InstUI.Checkbox(
                             isSelected: isSelected,
                             color: color
                         )
+                        .paddingStyle(.trailing, .cellIconText)
                         .animation(.default, value: isSelected)
 
                         VStack(spacing: 2) {
                             Text(title)
-                                .font(.regular16, lineHeight: .fit)
+                                .textStyle(.cellLabel)
                                 .multilineTextAlignment(.leading)
-                                .foregroundStyle(Color.textDarkest)
-                                .frame(maxWidth: .infinity,
-                                       alignment: .leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             if let subtitle {
                                 Text(subtitle)
-                                    .font(.regular14, lineHeight: .fit)
+                                    .textStyle(.cellLabelSubtitle)
                                     .multilineTextAlignment(.leading)
-                                    .foregroundStyle(Color.textDark)
-                                    .frame(maxWidth: .infinity,
-                                           alignment: .leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
 
                         if let accessoryView {
-                            Spacer()
                             accessoryView()
+                                .paddingStyle(.leading, .cellAccessoryPadding)
                         }
                     }
                     .paddingStyle(set: .iconCell)
                 }
-                if hasDivider { InstUI.Divider() }
+                InstUI.Divider(dividerStyle)
             }
             .accessibilityRepresentation {
                 Toggle(isOn: $isSelected) {

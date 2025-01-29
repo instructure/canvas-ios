@@ -106,7 +106,6 @@ workflows:
         - update_comment_tag: bitrise_adhoc_builds
         is_always_run: false
 trigger_map:
-- pull_request_target_branch:
-    regex: .*
+- pull_request_target_branch: '*'
   type: pull_request
   workflow: pr_adhoc_builds

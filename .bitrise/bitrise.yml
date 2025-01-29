@@ -70,7 +70,7 @@ workflows:
       one).
 meta:
   bitrise.io:
-    machine_type_id: g2-m1.8core
+    machine_type_id: g2.mac.medium
     stack: osx-xcode-16.2.x
 app:
   envs:

@@ -111,7 +111,7 @@ public final class CourseTabUrlInteractor {
                 guard let htmlURL = tab.htmlURL else { return nil }
                 return TabModel(
                     id: tab.id,
-                    htmlUrl: htmlURL.absoluteString,
+                    htmlUrl: htmlURL.removingQueryAndFragment().absoluteString,
                     apiBaseUrlHost: tab.apiBaseURL?.host()
                 )
             }
@@ -172,6 +172,7 @@ public final class CourseTabUrlInteractor {
 
     private func logPathFormatIfUnknown(for tab: TabModel) {
         guard tab.id != "home"
+                && tab.id != "settings" // Teachers logging into Student app have this enabled tab, no need to log it
                 && !isHomeFormat(tab.htmlUrl)
                 && !isKnownPathFormat(tab.htmlUrl)
         else { return }
@@ -232,5 +233,18 @@ private enum CourseTabFormat: CaseIterable {
             // example: "/courses/42/external_tools/1234"
             return parts.count == 4 && parts[2] == "external_tools"
         }
+    }
+}
+
+private extension URL {
+    func removingQueryAndFragment() -> URL {
+        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+            return self
+        }
+
+        components.query = nil
+        components.fragment = nil
+
+        return components.url ?? self
     }
 }

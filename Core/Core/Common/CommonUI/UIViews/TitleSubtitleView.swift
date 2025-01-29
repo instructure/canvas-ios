@@ -48,8 +48,8 @@ public class TitleSubtitleView: UIView {
         let view = loadFromXib()
         view.titleLabel.text = ""
         view.subtitleLabel.text = ""
-        view.titleLabel.accessibilityElementsHidden = false
-        view.subtitleLabel.accessibilityElementsHidden = false
+        view.titleLabel.accessibilityElementsHidden = true
+        view.subtitleLabel.accessibilityElementsHidden = true
         view.accessibilityTraits = [.header]
         return view
     }

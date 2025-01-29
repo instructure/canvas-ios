@@ -92,7 +92,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.selectedContexts.value, Set([.course("c1")]))
 
         // WHEN
-        XCTAssertFinish(testee.updateFilteredContexts([.course("c1")], isSelected: false))
+        XCTAssertFinish(testee.updateFilteredContexts([]))
 
         // THEN
         XCTAssertEqual(environment.userDefaults!.calendarSelectedContexts(observedStudentId: nil), Set())
@@ -117,7 +117,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
         XCTAssertEqual(testee2.selectedContexts.value, Set())
 
         // WHEN
-        XCTAssertFinish(testee1.updateFilteredContexts([.course("c1")], isSelected: true))
+        XCTAssertFinish(testee1.updateFilteredContexts([.course("c1")]))
 
         // THEN
         XCTAssertEqual(testee1.selectedContexts.value, Set([.course("c1")]))
