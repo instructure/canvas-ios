@@ -39,4 +39,9 @@ public class RightDetailTableViewCell: UITableViewCell {
         textLabel?.font = .scaledNamedFont(.semibold16)
         textLabel?.numberOfLines = 0
     }
+
+    override public func prepareForReuse() {
+        super.prepareForReuse()
+        accessibilityTraits = .none
+    }
 }
