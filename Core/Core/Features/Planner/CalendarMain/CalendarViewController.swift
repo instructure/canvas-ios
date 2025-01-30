@@ -95,6 +95,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
         // trailing = 8 (text-image spacing) + 20 (image width) + 4 (image right padding)
         monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32)
         monthButton.accessibilityLabel = String(localized: "Show a month at a time", bundle: .core)
+        monthButton.accessibilityValue = { isExpanded ? "Expanded" : "Collapsed" }()
 
         filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
         filterButton.titleLabel?.font = .scaledNamedFont(.regular16)
@@ -146,6 +147,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
 
     @IBAction func toggleExpanded() {
         setExpanded(!isExpanded)
+        monthButton.accessibilityValue = { isExpanded ? "Expanded" : "Collapsed" }()
     }
 
     func setExpanded(_ flag: Bool) {
