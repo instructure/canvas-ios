@@ -333,7 +333,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline
             cell.contentView.alpha = isAvailable ? 1 : 0.5
             if let accessibilityTraits = row.accessibilityTraits {
-                cell.accessibilityTraits = accessibilityTraits
+                cell.accessibilityTraitsOverride = accessibilityTraits
             }
             return cell
         } else if let switchRow = row as? Switch {
