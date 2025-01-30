@@ -23,7 +23,7 @@ public enum DiscussionsAssembly {
         isAnnouncement: Bool,
         discussionListViewController: UIViewController
     ) -> UIViewController {
-        let webPageModel = DiscussionCreateWebPage(
+        let webPageModel = DiscussionCreateWebViewModel(
             isAnnouncement: isAnnouncement,
             discussionListViewController: discussionListViewController
         )
@@ -38,7 +38,7 @@ public enum DiscussionsAssembly {
         topicID: String,
         isAnnouncement: Bool
     ) -> UIViewController {
-        let webPageModel = DiscussionEditWebPage(
+        let webPageModel = DiscussionEditWebViewModel(
             discussionId: topicID,
             isAnnouncement: isAnnouncement
         )
