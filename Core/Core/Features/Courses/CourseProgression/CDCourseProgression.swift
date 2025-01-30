@@ -16,9 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 public final class CDCourseProgression: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
@@ -50,15 +49,6 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     ) -> CDCourseProgression {
         let enrollmentModelCourse = enrollmentModel.course
         let courseId = enrollmentModelCourse.id
-        let courseProgression = enrollmentModelCourse
-            .usersConnection?
-            .nodes?
-            .first?
-            .courseProgression
-        let completionPercentage = courseProgression?
-            .requirements?
-            .completionPercentage
-        let incompleteModules = courseProgression?.incompleteModulesConnection?.nodes ?? []
 
         let course = saveCourse(
             enrollmentModelCourse: enrollmentModelCourse,
@@ -93,17 +83,20 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
             .requirements?
             .completionPercentage
 
-        let incompleteModules = courseProgression?
+        let incompleteModules =
+            courseProgression?
             .incompleteModulesConnection?
             .nodes ?? []
 
-        let model: CDCourseProgression = context.first(where: #keyPath(CDCourseProgression.courseID), equals: courseId) ?? context.insert()
+        let model: CDCourseProgression =
+            context.first(where: #keyPath(CDCourseProgression.courseID), equals: courseId) ?? context.insert()
 
         model.course = course
         model.courseID = courseId
         model.institutionName = institutionName
         model.completionPercentage = completionPercentage ?? 100.0
-        model.incompleteModules = incompleteModules
+        model.incompleteModules =
+            incompleteModules
             .compactMap { $0.module }
             .map { Module.save($0!, for: courseId, in: context) }
 
@@ -113,8 +106,8 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     private static func saveCourse(
         enrollmentModelCourse: GetCoursesProgressionResponse.CourseModel,
         id courseId: String,
-        in context: NSManagedObjectContext) -> Course
-    {
+        in context: NSManagedObjectContext
+    ) -> Course {
         let course: Course = context.first(where: #keyPath(Course.id), equals: courseId) ?? context.insert()
         course.id = courseId
         course.name = enrollmentModelCourse.name
@@ -124,7 +117,9 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
 }
 
 extension Module {
-    static func save(_ item: GetCoursesProgressionResponse.Module, for courseID: String, in context: NSManagedObjectContext) -> Module {
+    static func save(
+        _ item: GetCoursesProgressionResponse.Module, for courseID: String, in context: NSManagedObjectContext
+    ) -> Module {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id)
         let module: Module = context.fetch(predicate).first ?? context.insert()
         module.id = item.id
