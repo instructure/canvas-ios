@@ -30,6 +30,7 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
     public init(userId: String) {
         variables = Input(id: userId)
     }
+
     public static let operationName = "GetUserCourses"
 
     public static let content = """
@@ -81,7 +82,7 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                             course {
                                 id: _id
                                 name
-                                image_download_url: imageUrl 
+                                image_download_url: imageUrl
                                 syllabus_body: syllabusBody
                                 account {
                                   name
