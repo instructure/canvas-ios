@@ -21,13 +21,12 @@ import HorizonUI
 import SwiftUI
 
 struct CourseDetailsView: View {
-    @ObservedObject private var viewModel: CourseDetailsViewModel
+    @Bindable private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
-    @State private var selectedTabIndex: Int?
+    @State var selectedTabIndex: Int = 0
 
     init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
-        self.selectedTabIndex = 0
     }
 
     var body: some View {
@@ -37,7 +36,6 @@ struct CourseDetailsView: View {
         }
         .padding(.top, .huiSpaces.primitives.small)
         .background(Color.huiColors.surface.pagePrimary)
-        .onFirstAppear { selectedTabIndex = 0 }
         .onAppear { viewModel.showTabBar() }
     }
 
@@ -67,13 +65,16 @@ struct CourseDetailsView: View {
     private var tabSelectorView: some View {
         HorizonUI.Tabs(
             tabs: Tabs.titles,
-            selectTabIndex: $selectedTabIndex
+            selectTabIndex: Binding(
+                get: { selectedTabIndex },
+                set: { selectedTabIndex = $0 ?? 0 }
+            )
         )
         .background(Color.huiColors.surface.pagePrimary)
     }
 
     private func tabDetailsView() -> some View {
-        TabView(selection: $viewModel.selectedTabIndex) {
+        TabView(selection: $selectedTabIndex) {
             ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
                     switch tab {
@@ -92,6 +93,7 @@ struct CourseDetailsView: View {
                             .id(index)
                     }
                 }
+                .tag(index)
             }
         }
         .padding(.horizontal, .huiSpaces.primitives.medium)

@@ -27,7 +27,7 @@ struct HCourse: Identifiable {
 
     init(
         id: String = "",
-        name: String = "",
+        name: String = " ",
         overviewDescription: String? = nil,
         progress: Double = 0,
         modules: [HModule] = []

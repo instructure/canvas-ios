@@ -20,13 +20,13 @@ import Combine
 import Core
 import Foundation
 
-final class CourseDetailsViewModel: ObservableObject {
+@Observable
+final class CourseDetailsViewModel {
     // MARK: - Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var course: HCourse = .init()
-    @Published var selectedTabIndex: Int = 0
+    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var title: String = "Biology certificate"
+    private(set) var course: HCourse = .init()
 
     // MARK: - Private
 

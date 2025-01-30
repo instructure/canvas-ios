@@ -20,7 +20,6 @@ import Foundation
 import CoreData
 
 
-// TODO: Rename to CDEnrollment
 public final class CDCourseProgression: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
 
