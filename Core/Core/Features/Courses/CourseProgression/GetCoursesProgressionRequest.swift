@@ -86,16 +86,6 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                             account {
                               name
                             }
-                            modulesConnection(first: 1) {
-                                nodes {
-                                    id: _id
-                                    name
-                                    position
-                                    moduleItems {
-                                        \(content)
-                                    }
-                                }
-                            }
                             usersConnection(filter: {userIds: [$id]}) {
                                 nodes {
                                     courseProgression {
@@ -108,11 +98,6 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                     id: _id
                                                     name
                                                     position
-                                                }
-                                                incompleteItemsConnection(first: 1) {
-                                                    nodes {
-                                                        \(content)
-                                                    }
                                                 }
                                             }
                                         }

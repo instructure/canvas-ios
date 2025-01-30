@@ -44,7 +44,7 @@ struct HModuleItem: Equatable {
     init(
         id: String,
         title: String,
-        htmlURL: URL? = nil,
+        htmlURL: URL?,
         isCompleted: Bool = false,
         dueAt: Date? = Date(),
         type: ModuleItemType? = nil,

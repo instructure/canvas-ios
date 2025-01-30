@@ -22,7 +22,7 @@ public struct GetCoursesProgressionResponse: Codable {
     let data: DataModel?
 
     struct DataModel: Codable {
-        let legacyNode: LegacyNodeModel?
+        let user: LegacyNodeModel?
     }
 
     struct LegacyNodeModel: Codable {

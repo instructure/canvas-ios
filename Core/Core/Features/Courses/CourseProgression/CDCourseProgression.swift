@@ -24,9 +24,9 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
 
     // MARK: - Properties
+    @NSManaged public var courseID: String
     @NSManaged public var completionPercentage: Double
     @NSManaged public var course: Course
-    @NSManaged public var courseID: String
     @NSManaged public var institutionName: String?
     @NSManaged public var incompleteModulesRaw: NSOrderedSet?
 
@@ -60,22 +60,66 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
             .completionPercentage
         let incompleteModules = courseProgression?.incompleteModulesConnection?.nodes ?? []
 
-        let course: Course = context.first(where: #keyPath(Course.id), equals: courseId) ?? context.insert()
-        course.id = courseId
-        course.name = enrollmentModelCourse.name
-        course.syllabusBody = enrollmentModelCourse.syllabusBody
+        let course = saveCourse(
+            enrollmentModelCourse: enrollmentModelCourse,
+            id: courseId,
+            in: context
+        )
+
+        return saveCourseProgression(
+            enrollmentModel: enrollmentModel,
+            course: course,
+            in: context
+        )
+    }
+
+    // MARK: - Private
+
+    private static func saveCourseProgression(
+        enrollmentModel: GetCoursesProgressionResponse.EnrollmentModel,
+        course: Course,
+        in context: NSManagedObjectContext
+    ) -> CDCourseProgression {
+
+        let courseId = enrollmentModel.course.id
+        let institutionName = enrollmentModel.course.account?.name
+        let courseProgression = enrollmentModel
+            .course
+            .usersConnection?
+            .nodes?
+            .first?
+            .courseProgression
+        let completionPercentage = courseProgression?
+            .requirements?
+            .completionPercentage
+
+        let incompleteModules = courseProgression?
+            .incompleteModulesConnection?
+            .nodes ?? []
 
         let model: CDCourseProgression = context.first(where: #keyPath(CDCourseProgression.courseID), equals: courseId) ?? context.insert()
 
         model.course = course
         model.courseID = courseId
-        model.institutionName = enrollmentModelCourse.account?.name
-        model.completionPercentage = completionPercentage ?? 100
+        model.institutionName = institutionName
+        model.completionPercentage = completionPercentage ?? 100.0
         model.incompleteModules = incompleteModules
             .compactMap { $0.module }
             .map { Module.save($0!, for: courseId, in: context) }
 
         return model
+    }
+
+    private static func saveCourse(
+        enrollmentModelCourse: GetCoursesProgressionResponse.CourseModel,
+        id courseId: String,
+        in context: NSManagedObjectContext) -> Course
+    {
+        let course: Course = context.first(where: #keyPath(Course.id), equals: courseId) ?? context.insert()
+        course.id = courseId
+        course.name = enrollmentModelCourse.name
+        course.syllabusBody = enrollmentModelCourse.syllabusBody
+        return course
     }
 }
 
