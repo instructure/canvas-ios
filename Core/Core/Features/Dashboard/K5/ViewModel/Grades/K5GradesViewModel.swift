@@ -61,7 +61,7 @@ public class K5GradesViewModel: ObservableObject {
                                         courseID: $0.id,
                                         hideGradeBar: hideQuantitativeData)
         }
-        var courseGradingPeriods = courses
+        let courseGradingPeriods = courses
             .compactMap { $0.gradingPeriods }
             .flatMap { $0 }
             .sorted(by: {

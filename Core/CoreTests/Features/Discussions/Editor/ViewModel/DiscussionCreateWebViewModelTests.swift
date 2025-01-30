@@ -38,7 +38,6 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.urlPathComponent, "/discussion_topics/new")
         XCTAssertEqual(testee.navigationBarTitle, String(localized: "New Discussion", bundle: .core))
         XCTAssertEqual(testee.queryItems, [])
-        XCTAssertNil(testee.assetID)
     }
 
     func test_init_announcement() {
@@ -50,7 +49,6 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.urlPathComponent, "/discussion_topics/new")
         XCTAssertEqual(testee.navigationBarTitle, String(localized: "New Announcement", bundle: .core))
         XCTAssertEqual(testee.queryItems, [URLQueryItem(name: "is_announcement", value: "true")])
-        XCTAssertNil(testee.assetID)
     }
 
     func test_dismissesCreateScreen_andFetchesNewDiscussion_whenDiscussionIsCreated() {

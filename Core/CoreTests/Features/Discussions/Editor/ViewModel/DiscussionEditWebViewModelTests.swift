@@ -31,7 +31,6 @@ class DiscussionEditWebViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.urlPathComponent, "/discussion_topics/\(discussionId)/edit")
         XCTAssertEqual(viewModel.navigationBarTitle, String(localized: "Edit Discussion", bundle: .core))
         XCTAssertEqual(viewModel.queryItems, [])
-        XCTAssertEqual(viewModel.assetID, discussionId)
     }
 
     func test_init_announcement() {
@@ -43,6 +42,5 @@ class DiscussionEditWebViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.urlPathComponent, "/discussion_topics/\(discussionId)/edit")
         XCTAssertEqual(viewModel.navigationBarTitle, String(localized: "Edit Announcement", bundle: .core))
         XCTAssertEqual(viewModel.queryItems, [])
-        XCTAssertEqual(viewModel.assetID, discussionId)
     }
 }

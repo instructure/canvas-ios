@@ -22,7 +22,6 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
     public let urlPathComponent: String = "/discussion_topics/new"
     public let navigationBarTitle: String
     public let queryItems: [URLQueryItem]
-    public let assetID: String? = nil
 
     private let router: Router
     private let discussionListViewController: UIViewController?

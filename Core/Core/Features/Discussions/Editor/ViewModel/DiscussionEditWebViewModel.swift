@@ -20,7 +20,6 @@ public struct DiscussionEditWebViewModel: EmbeddedWebPageViewModel {
     public let urlPathComponent: String
     public let navigationBarTitle: String
     public let queryItems: [URLQueryItem] = []
-    public let assetID: String?
 
     public init(
         discussionId: String,
@@ -29,6 +28,5 @@ public struct DiscussionEditWebViewModel: EmbeddedWebPageViewModel {
         urlPathComponent = "/discussion_topics/\(discussionId)/edit"
         navigationBarTitle = isAnnouncement ? String(localized: "Edit Announcement", bundle: .core)
                                             : String(localized: "Edit Discussion", bundle: .core)
-        assetID = discussionId
     }
 }

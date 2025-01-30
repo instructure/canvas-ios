@@ -22,7 +22,6 @@ public protocol EmbeddedWebPageViewModel {
     var urlPathComponent: String { get }
     var navigationBarTitle: String { get }
     var queryItems: [URLQueryItem] { get }
-    var assetID: String? { get }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
 }

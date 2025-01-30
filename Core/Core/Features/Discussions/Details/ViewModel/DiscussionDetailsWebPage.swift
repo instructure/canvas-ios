@@ -20,12 +20,10 @@ public struct DiscussionDetailsWebPage: EmbeddedWebPageViewModel {
     public let urlPathComponent: String
     public let navigationBarTitle: String
     public let queryItems: [URLQueryItem] = []
-    public let assetID: String?
 
     public init(discussionId: String, isAnnouncement: Bool) {
         urlPathComponent = "/discussion_topics/\(discussionId)"
         navigationBarTitle = isAnnouncement ? String(localized: "Announcement Details", bundle: .core)
                                             : String(localized: "Discussion Details", bundle: .core)
-        assetID = discussionId
     }
 }
