@@ -40,7 +40,10 @@ public class DashboardContainerViewController: CoreNavigationController {
     }
 
     override public func show(_ vc: UIViewController, sender: Any?) {
-        vc.addNavigationButton(.back(target: self, action: #selector(pop)), side: .left)
+        vc.addNavigationButton(
+            .back { [weak self] in self?.popViewController(animated: true) },
+            side: .left
+        )
 
         let split = makeSplitViewController(masterViewController: vc)
         let container = UIViewController()
@@ -72,11 +75,6 @@ public class DashboardContainerViewController: CoreNavigationController {
     }
 
     // MARK: - Private Methods
-
-    @objc
-    private func pop() {
-        popViewController(animated: true)
-    }
 
     private func makeSplitViewController(masterViewController: UIViewController) -> UIViewController {
         let split = splitViewControllerFactory()

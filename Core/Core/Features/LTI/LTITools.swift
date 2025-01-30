@@ -185,6 +185,7 @@ public class LTITools: NSObject {
                 controller.webView.load(URLRequest(url: url))
                 controller.title = String(localized: "Quiz", bundle: .core)
                 controller.addDoneButton(side: .right)
+                controller.setupBackToolbarButton()
                 env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true)) {
                     completionHandler(true)
                 }
