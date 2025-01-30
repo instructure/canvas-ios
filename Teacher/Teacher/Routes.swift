@@ -92,6 +92,15 @@ let router = Router(routes: [
         return AnnouncementListViewController.create(context: context)
     },
 
+    RouteHandler("/:context/:contextID/announcements/new") { url, _, userInfo in
+        guard let context = Context(path: url.path) else { return nil }
+        return DiscussionsAssembly.makeDiscussionCreateViewController(
+            context: context,
+            isAnnouncement: true,
+            routeUserInfo: userInfo
+        )
+    },
+
     RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
         return DiscussionsAssembly.makeDiscussionEditor(
@@ -183,6 +192,15 @@ let router = Router(routes: [
     RouteHandler("/:context/:contextID/discussion_topics") { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         return DiscussionListViewController.create(context: context)
+    },
+
+    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, userInfo in
+        guard let context = Context(path: url.path) else { return nil }
+        return DiscussionsAssembly.makeDiscussionCreateViewController(
+            context: context,
+            isAnnouncement: false,
+            routeUserInfo: userInfo
+        )
     },
 
     RouteHandler("/:context/:contextID/discussions/:discussionID", factory: discussionDetails),

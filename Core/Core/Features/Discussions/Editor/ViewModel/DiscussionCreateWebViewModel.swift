@@ -25,12 +25,14 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
     public let assetID: String? = nil
 
     private let router: Router
-    private let discussionListViewController: UIViewController
+    private let discussionListViewController: UIViewController?
 
+    /// - parameters:
+    ///   - discussionListViewController: If this variable is present then after creating a discussion the newly created discussion will be pushed using this view controller. If this variable is nil then only the create modal will be dismissed.
     public init(
         isAnnouncement: Bool,
         router: Router = AppEnvironment.shared.router,
-        discussionListViewController: UIViewController
+        discussionListViewController: UIViewController?
     ) {
         navigationBarTitle = isAnnouncement ? String(localized: "New Announcement", bundle: .core)
                                             : String(localized: "New Discussion", bundle: .core)
@@ -85,7 +87,9 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
         }
 
         router.dismiss(webViewController) { [router, discussionListViewController] in
-            router.route(to: discussionUrl, from: discussionListViewController)
+            if let discussionListViewController {
+                router.route(to: discussionUrl, from: discussionListViewController)
+            }
         }
     }
 }

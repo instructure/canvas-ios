@@ -235,7 +235,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
 
         _ = controller.addButton.target?.perform(controller.addButton.action)
-        XCTAssert(router.lastRoutedTo("groups/1/discussion_topics/new", withOptions: .modal(isDismissable: false, embedInNav: true)))
+        XCTAssert(router.lastRoutedTo("groups/1/discussion_topics/new", withOptions: .modal(isDismissable: false, embedInNav: true, addDoneButton: true)))
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
         let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
