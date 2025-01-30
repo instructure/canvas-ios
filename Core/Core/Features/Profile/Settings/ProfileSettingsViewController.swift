@@ -399,7 +399,15 @@ private struct Row {
     let accessibilityTraits: UIAccessibilityTraits?
     let onSelect: () -> Void
 
-    init(_ title: String, detail: String? = nil, style: UITableViewCell.CellStyle = .value1, hasDisclosure: Bool = true, isSupportedOffline: Bool, accessibilityTraits: UIAccessibilityTraits? = nil, onSelect: @escaping () -> Void) {
+    init(
+        _ title: String,
+        detail: String? = nil,
+        style: UITableViewCell.CellStyle = .value1,
+        hasDisclosure: Bool = true,
+        isSupportedOffline: Bool,
+        accessibilityTraits: UIAccessibilityTraits? = nil,
+        onSelect: @escaping () -> Void
+    ) {
         self.title = title
         self.detail = detail
         self.style = style
