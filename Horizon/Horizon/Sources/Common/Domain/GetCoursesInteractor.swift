@@ -21,8 +21,8 @@ import CombineSchedulers
 import Core
 
 protocol GetCoursesInteractor {
-    func getCourses() -> AnyPublisher<[CDCourseProgression], Never>
-    func getCourse(id: String) -> AnyPublisher<CDCourseProgression?, Never>
+    func getCourses() -> AnyPublisher<[HCourse], Never>
+    func getCourse(id: String) -> AnyPublisher<HCourse?, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -44,27 +44,72 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     // MARK: - Functions
 
-    func getCourses() -> AnyPublisher<[CDCourseProgression], Never> {
-        fetchCourseProgression()
+    func getCourses() -> AnyPublisher<[HCourse], Never> {
+        fetchCourses()
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
-    func getCourse(id: String) -> AnyPublisher<CDCourseProgression?, Never> {
-        fetchCourseProgression()
+    func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
+        fetchCourses()
+            .map { $0.first { $0.id == id } }
             .receive(on: scheduler)
-            .map { $0.first { $0.courseID == id } }
             .eraseToAnyPublisher()
     }
 
     // MARK: - Private
 
-    private func fetchCourseProgression() -> AnyPublisher<[CDCourseProgression], Never> {
-        ReactiveStore(
-            useCase: GetCoursesProgressionUseCase(userId: userId)
+    private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
+        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
+            .getEntities()
+            .replaceError(with: [])
+            .flatMap {
+                $0.publisher
+                    .flatMap { courseProgression in
+                        ReactiveStore(useCase: GetModules(courseID: courseProgression.courseID))
+                        .getEntities()
+                        .replaceError(with: [])
+                        .map {
+                            .init(
+                                from: courseProgression,
+                                modules: $0
+                            )
+                        }
+                    }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension HCourse {
+    init(
+        from courseProgression: CDCourseProgression,
+        modules: [Module]
+    ) {
+        self.init(
+            id: courseProgression.courseID,
+            name: courseProgression.course.name ?? "",
+            overviewDescription: courseProgression.course.syllabusBody,
+            progress: courseProgression.completionPercentage,
+            modules: modules.map { .init($0) },
+            incompleteModules: courseProgression.incompleteModules.map { .init($0) }
         )
-        .getEntities()
-        .replaceError(with: [])
-        .eraseToAnyPublisher()
+    }
+}
+
+extension HModule {
+    init(_ entity: Module) {
+        self.id = entity.id
+        self.name = entity.name
+        self.courseID = entity.courseID
+        self.items = entity.items.map { HModuleItem(from: $0) }
+        self.contentItems = items.filter { $0.type?.isContentItem == true  }
+        self.moduleStatus = .init(
+            items: contentItems,
+            state: entity.state,
+            lockMessage: entity.lockedMessage,
+            countOfPrerequisite: entity.prerequisiteModuleIDs.count
+        )
     }
 }

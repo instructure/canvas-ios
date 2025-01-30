@@ -37,12 +37,7 @@ public struct GetCoursesProgressionResponse: Codable {
         let id, name: String
         let account: AccountModel?
         let imageUrl, syllabusBody: String?
-        let modulesConnection: ModulesConnection?
         let usersConnection: UsersConnection?
-    }
-
-    struct ModulesConnection: Codable {
-        let nodes: [Module]
     }
 
     struct AccountModel: Codable {
@@ -51,22 +46,6 @@ public struct GetCoursesProgressionResponse: Codable {
 
     struct UsersConnection: Codable {
         public let nodes: [NodeModel]?
-    }
-
-    struct Module: Codable {
-        public let id: String
-        public let name: String
-        public let position: Int?
-        public let moduleItems: [ModuleItem]?
-    }
-
-    struct ModuleItem: Codable {
-        public let content: ModuleContent
-    }
-
-    struct ModuleContent: Codable {
-        public let id: String?
-        public let name: String?
     }
 
     struct NodeModel: Codable {
@@ -78,17 +57,23 @@ public struct GetCoursesProgressionResponse: Codable {
         public let incompleteModulesConnection: IncompleteModulesConnection?
     }
 
-    struct IncompleteModulesConnection: Codable {
-        public let nodes: [IncompleteModule]?
-    }
-
-    struct IncompleteModule: Codable {
-        public let id: String
-        public let name: String
-        public let position: Int?
-    }
-
     struct Requirements: Codable {
         public let completionPercentage: Double?
+    }
+
+    struct IncompleteModulesConnection: Codable {
+        public let nodes: [IncompleteNode]
+    }
+
+    struct IncompleteNode: Codable {
+        public let module: Module?
+    }
+
+    struct Module: Codable {
+        public let id: String
+        public let createdAt: String
+        public let name: String
+        public let position: Int
+        public let unlockAt: Date?
     }
 }

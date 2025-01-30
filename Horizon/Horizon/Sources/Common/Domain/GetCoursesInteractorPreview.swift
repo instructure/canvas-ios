@@ -22,24 +22,25 @@ import Foundation
 import Core
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourses() -> AnyPublisher<[CDCourseProgression], Never> {
+    func getCourses() -> AnyPublisher<[HCourse], Never> {
         Just([course])
             .eraseToAnyPublisher()
     }
 
-    func getCourse(id: String) -> AnyPublisher<CDCourseProgression?, Never> {
+    func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
         Just(course)
             .eraseToAnyPublisher()
     }
 
-    private var course: CDCourseProgression {
-        let courseProgression: CDCourseProgression = .init()
-        courseProgression.completionPercentage = 0.5
-        courseProgression.course = .init()
-        courseProgression.courseID = "123"
-        courseProgression.incompleteModules = []
-        courseProgression.institutionName = "Instructure"
-        return courseProgression
+    private var course: HCourse {
+        .init(
+            id: "123",
+            institutionName: "Instructure",
+            name: "Course Name",
+            overviewDescription: "Course Description",
+            progress: 0.5,
+            modules: []
+        )
     }
 }
 #endif

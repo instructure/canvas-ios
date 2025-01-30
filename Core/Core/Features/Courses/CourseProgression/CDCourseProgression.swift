@@ -27,20 +27,13 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     @NSManaged public var completionPercentage: Double
     @NSManaged public var course: Course
     @NSManaged public var courseID: String
-    @NSManaged public var modulesRaw: NSOrderedSet?
-    @NSManaged private var incompleteModulesRaw: NSOrderedSet?
-
-    public var modules: [Module] {
-        get { modulesRaw?.array as? [Module] ?? [] }
-        set { modulesRaw = NSOrderedSet(array: newValue) }
-    }
+    @NSManaged public var institutionName: String?
+    @NSManaged public var incompleteModulesRaw: NSOrderedSet?
 
     public var incompleteModules: [Module] {
         get { incompleteModulesRaw?.array as? [Module] ?? [] }
         set { incompleteModulesRaw = NSOrderedSet(array: newValue) }
     }
-
-    @NSManaged public var institutionName: String?
 
     @discardableResult
     public static func save(
@@ -52,68 +45,49 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(
-        _ item: GetCoursesProgressionResponse.EnrollmentModel,
+        _ enrollmentModel: GetCoursesProgressionResponse.EnrollmentModel,
         in context: NSManagedObjectContext
     ) -> CDCourseProgression {
-        let itemCourse = item.course
-        let courseId = itemCourse.id
-        let courseProgression = itemCourse
+        let enrollmentModelCourse = enrollmentModel.course
+        let courseId = enrollmentModelCourse.id
+        let courseProgression = enrollmentModelCourse
             .usersConnection?
             .nodes?
             .first?
             .courseProgression
-
-        var image: URL?
-        if let imageUrl = item.course.imageUrl {
-            image = URL(string: imageUrl)
-        }
+        let completionPercentage = courseProgression?
+            .requirements?
+            .completionPercentage
+        let incompleteModules = courseProgression?.incompleteModulesConnection?.nodes ?? []
 
         let course: Course = context.first(where: #keyPath(Course.id), equals: courseId) ?? context.insert()
         course.id = courseId
-        course.name = item.course.name
-        course.imageDownloadURL = image //imageDownloadURL or bannerImageDownloadURL?
-        course.syllabusBody = item.course.syllabusBody
+        course.name = enrollmentModelCourse.name
+        course.syllabusBody = enrollmentModelCourse.syllabusBody
 
         let model: CDCourseProgression = context.first(where: #keyPath(CDCourseProgression.courseID), equals: courseId) ?? context.insert()
 
-        model.modules = itemCourse.modulesConnection?.nodes.map { module in
-            Module.save(module.asIncompleteModule, forCourse: courseId, in: context)
-        } ?? []
-
-        model.incompleteModules = courseProgression?.incompleteModulesConnection?.nodes?.map { node in
-            Module.save(node, forCourse: courseId, in: context)
-        } ?? []
-
         model.course = course
         model.courseID = courseId
-        model.institutionName = itemCourse.account?.name
-        model.completionPercentage = courseProgression?
-            .requirements?
-            .completionPercentage ?? 0.0
+        model.institutionName = enrollmentModelCourse.account?.name
+        model.completionPercentage = completionPercentage ?? 100
+        model.incompleteModules = incompleteModules
+            .compactMap { $0.module }
+            .map { Module.save($0!, for: courseId, in: context) }
 
         return model
     }
 }
 
 extension Module {
-    static func save(_ item: GetCoursesProgressionResponse.IncompleteModule, forCourse courseID: String, in context: NSManagedObjectContext) -> Module {
+    static func save(_ item: GetCoursesProgressionResponse.Module, for courseID: String, in context: NSManagedObjectContext) -> Module {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id)
         let module: Module = context.fetch(predicate).first ?? context.insert()
         module.id = item.id
-        module.name = item.name
-        module.position = item.position ?? 0
         module.courseID = courseID
-        module.prerequisiteModuleIDsRaw = ""
+        module.name = item.name
+        module.position = item.position
+        module.unlockAt = item.unlockAt
         return module
-    }
-}
-
-extension GetCoursesProgressionResponse.Module {
-    var asIncompleteModule: GetCoursesProgressionResponse.IncompleteModule {
-        .init(
-            id: id,
-            name: name,
-            position: position
-        )
     }
 }

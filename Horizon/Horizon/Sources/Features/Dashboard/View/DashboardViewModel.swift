@@ -42,7 +42,7 @@ class DashboardViewModel {
         self.router = router
 
         getCoursesInteractor.getCourses()
-            .sink(receiveValue: onGetCoursesResponse(courseProgressions:))
+            .sink(receiveValue: onGetCoursesResponse(courses:))
             .store(in: &subscriptions)
 
         getUserInteractor.getUser()
@@ -53,29 +53,25 @@ class DashboardViewModel {
             .store(in: &subscriptions)
     }
 
-    private func onGetCoursesResponse(courseProgressions: [CDCourseProgression]) {
-        self.nextUpViewModels = toNextUpViewModels(courseProgressions)
+    private func onGetCoursesResponse(courses: [HCourse]) {
+        self.nextUpViewModels = courses
+            .filter { $0.incompleteModules.count > 0 }
+            .map(toNextUpViewModel)
         self.state = .data
     }
 
-    private func toNextUpViewModels(_ courseProgressions: [CDCourseProgression]) -> [NextUpViewModel] {
-        courseProgressions
-            .filter { $0.incompleteModules.isEmpty == false }
-            .map(toNextUpViewModel)
-    }
-
-    private func toNextUpViewModel(_ courseProgression: CDCourseProgression) -> NextUpViewModel {
+    private func toNextUpViewModel(_ course: HCourse) -> NextUpViewModel {
         .init(
-            name: courseProgression.course.name ?? "",
-            progress: courseProgression.completionPercentage / 100.0,
-            learningObjectCardViewModel: courseProgression
+            name: course.name,
+            progress: course.progress / 100.0,
+            learningObjectCardViewModel: course
                 .incompleteModules
                 .first
                 .flatMap(toLearningObjectCardViewModel)
         )
     }
 
-    private func toLearningObjectCardViewModel(_ module: Module) -> LearningObjectCardViewModel {
+    private func toLearningObjectCardViewModel(_ module: HModule) -> LearningObjectCardViewModel {
         let firstLearningObject = module.items.first
         return LearningObjectCardViewModel(
             moduleTitle: module.name,

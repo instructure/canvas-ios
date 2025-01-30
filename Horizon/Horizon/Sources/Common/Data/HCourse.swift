@@ -20,22 +20,28 @@ import Core
 
 struct HCourse: Identifiable {
     let id: String
+    let institutionName: String
     let name: String
     let overviewDescription: String
     let progress: Double
     let modules: [HModule]
+    let incompleteModules: [HModule]
 
     init(
         id: String = "",
+        institutionName: String = "",
         name: String = " ",
         overviewDescription: String? = nil,
         progress: Double = 0,
-        modules: [HModule] = []
+        modules: [HModule] = [],
+        incompleteModules: [HModule] = []
     ) {
         self.id = id
+        self.institutionName = institutionName
         self.name = name
         self.overviewDescription = overviewDescription ?? ""
         self.progress = progress
         self.modules = modules
+        self.incompleteModules = incompleteModules
     }
 }

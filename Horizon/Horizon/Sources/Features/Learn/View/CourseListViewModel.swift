@@ -31,6 +31,20 @@ final class CourseListViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
+    private var hCourses: [HCourse] = [] {
+        didSet {
+            courses = hCourses.map {
+                CourseListCourse(
+                    id: $0.id,
+                    institutionName: $0.institutionName,
+                    name: $0.name,
+                    progress: $0.progress / 100.0,
+                    progressString: $0.progress.progressString,
+                    progressState: $0.progress.progressState
+                )
+            }
+        }
+    }
 
     // MARK: - Init
 
@@ -43,24 +57,19 @@ final class CourseListViewModel: ObservableObject {
         unowned let unownedSelf = self
 
         interactor.getCourses()
-            .sink { courseProgressions in
-                unownedSelf.courses = courseProgressions.map {
-                    CourseListCourse(
-                        id: $0.courseID,
-                        institutionName: $0.institutionName ?? "",
-                        name: $0.course.name ?? "",
-                        progress: $0.completionPercentage / 100.0,
-                        progressString: $0.completionPercentage.progressString,
-                        progressState: $0.completionPercentage.progressState
-                    )
-                }
+            .sink { hCourses in
+                unownedSelf.hCourses = hCourses
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
     }
 
     func routeToCourse(course: CourseListCourse, vc: WeakViewController) {
-        router.route(to: "/courses/\(course.id)", userInfo: ["course": course], from: vc)
+        var userInfo: [String: Any] = [:]
+        if let hCourse = hCourses.first(where: { $0.id == course.id }) {
+            userInfo["course"] = hCourse
+        }
+        router.route(to: "/courses/\(course.id)", userInfo: userInfo, from: vc)
     }
 
     struct CourseListCourse: Identifiable {

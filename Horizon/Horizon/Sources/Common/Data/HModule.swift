@@ -18,13 +18,13 @@
 
 import Core
 
-struct HModule {
+struct HModule: Identifiable {
     let id: String
     let name: String
     let courseID: String
     let items: [HModuleItem]
     let moduleStatus: HModuleStatus
-    var contentItems: [HModuleItem]  = []
+    var contentItems: [HModuleItem]
 
     init(
         id: String,
@@ -39,6 +39,7 @@ struct HModule {
         self.name = name
         self.courseID = courseID
         self.items = items
+        self.contentItems = []
         self.moduleStatus = .init(
             items: items,
             state: state,
@@ -47,23 +48,7 @@ struct HModule {
         )
     }
 
-    init(from entity: Module) {
-        self.id = entity.id
-        self.name = entity.name
-        self.courseID = entity.courseID
-        self.items = entity.items.map { HModuleItem(from: $0) }
-        contentItems = items.filter { $0.type?.isContentItem == true  }
-        moduleStatus = .init(
-            items: contentItems,
-            state: entity.state,
-            lockMessage: entity.lockedMessage,
-            countOfPrerequisite: entity.prerequisiteModuleIDs.count
-        )
-    }
-
     var dueItemsCount: Int {
         items.filter { $0.isOverDue }.count
     }
 }
-
-extension HModule: Identifiable {}
