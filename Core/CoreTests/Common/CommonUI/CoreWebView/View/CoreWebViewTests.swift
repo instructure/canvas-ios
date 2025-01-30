@@ -257,11 +257,11 @@ class CoreWebViewTests: CoreTestCase {
         let delegate = LinkDelegate()
         delegate.navigationStartHandler = { webView in
             navigationStartExpectation.fulfill()
-            XCTAssertEqual(webView.url, URL(string: "https>//instructure.com")!)
+            XCTAssertEqual(webView.url, URL(string: "https://instructure.com/")!)
         }
         view.linkDelegate = delegate
 
-        view.load(URLRequest(url: URL(string: "https>//instructure.com")!))
+        view.load(URLRequest(url: URL(string: "https://instructure.com/")!))
 
         waitForExpectations(timeout: 10)
     }
