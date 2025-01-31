@@ -61,7 +61,7 @@ struct ViewWillAppearHandler: UIViewControllerRepresentable {
     }
 }
 
-fileprivate struct ViewWillAppearModifier: ViewModifier {
+private struct ViewWillAppearModifier: ViewModifier {
     let callback: () -> Void
 
     func body(content: Content) -> some View {
