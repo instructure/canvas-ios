@@ -74,7 +74,8 @@ class CalendarViewController: ScreenViewTrackableViewController {
         return controller
     }
 
-    let calendar = Calendar.autoupdatingCurrent
+    var calendar: Calendar { Cal.currentCalendar }
+
     lazy var numberOfDaysInWeek: Int = calendar.maximumRange(of: .weekday)!.count
     var selectedDate = Clock.now
     var isExpanded = false

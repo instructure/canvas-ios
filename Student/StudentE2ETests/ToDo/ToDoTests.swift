@@ -25,8 +25,8 @@ class ToDoTests: E2ETestCase {
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
-        let quiz = QuizzesHelper.createTestQuizWith2Questions(course: course, due_at: Date.now.addMinutes(30))
+        let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.inCalendar.addMinutes(30))
+        let quiz = QuizzesHelper.createTestQuizWith2Questions(course: course, due_at: Date.now.inCalendar.addMinutes(30))
 
         // MARK: Get the user logged in and check ToDo tab bar
         logInDSUser(student)

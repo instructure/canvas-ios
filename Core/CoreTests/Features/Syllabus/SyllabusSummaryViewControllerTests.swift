@@ -38,14 +38,14 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
         let event = APICalendarEvent.make(
             id: "2",
             title: "event",
-            start_at: date.addDays(1),
+            start_at: date.inCalendar.addDays(1),
             type: .event,
             context_code: "course_\(courseID)"
         )
         let hiddenEvent = APICalendarEvent.make(
             id: "3",
             title: "event",
-            start_at: date.addDays(1),
+            start_at: date.inCalendar.addDays(1),
             type: .event,
             context_code: "course_\(courseID)",
             hidden: true
@@ -76,7 +76,7 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
         let eventCell = cell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(eventCell.itemNameLabel.text, "event")
         XCTAssertEqual(eventCell.iconImageView?.image, .calendarMonthLine)
-        XCTAssertEqual(eventCell.dateLabel.text, date.addDays(1).dateTimeString)
+        XCTAssertEqual(eventCell.dateLabel.text, date.inCalendar.addDays(1).dateTimeString)
 
         let nilDateCell = cell(at: IndexPath(row: 2, section: 0))
         XCTAssertEqual(nilDateCell.itemNameLabel.text, "nil date")

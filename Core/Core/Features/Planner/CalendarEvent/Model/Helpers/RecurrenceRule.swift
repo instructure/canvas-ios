@@ -452,15 +452,15 @@ extension RecurrenceRule: Codable {
 
 // MARK: - Helpers
 
-extension Date {
+extension CalendarCalculation {
 
     var weekday: Weekday {
-        let comp = Cal.currentCalendar.component(.weekday, from: self)
+        let comp = calendar.component(.weekday, from: date)
         return Weekday(component: comp) ?? .sunday
     }
 
     var monthWeekday: RecurrenceRule.DayOfWeek {
-        let weekdayOrdinal = Cal.currentCalendar.component(.weekdayOrdinal, from: self)
+        let weekdayOrdinal = calendar.component(.weekdayOrdinal, from: date)
         return RecurrenceRule.DayOfWeek(weekday, weekNumber: weekdayOrdinal)
     }
 }

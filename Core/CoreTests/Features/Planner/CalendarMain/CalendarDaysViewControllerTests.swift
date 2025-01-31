@@ -92,7 +92,7 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
 
     func testTodayNotSelected() {
         let date = Date()
-        let selectedDate = date.addDays(2)
+        let selectedDate = date.inCalendar.addDays(2)
 
         let button = CalendarDayButton(date: date, selectedDate: selectedDate, calendar: .current)
         button.activityDotCount = 2
@@ -103,8 +103,8 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
     }
 
     func testNotTodayNotSelected() {
-        let date = Date().addDays(1)
-        let selectedDate = date.addDays(1)
+        let date = Date.now.inCalendar.addDays(1)
+        let selectedDate = date.inCalendar.addDays(1)
 
         let button = CalendarDayButton(date: date, selectedDate: selectedDate, calendar: .current)
         button.activityDotCount = 2
@@ -128,7 +128,7 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
     }
 
     func testNotTodaySelected() {
-        let date = Date().addDays(1)
+        let date = Date.now.inCalendar.addDays(1)
         let selectedDate = date
 
         let button = CalendarDayButton(date: date, selectedDate: selectedDate, calendar: .current)

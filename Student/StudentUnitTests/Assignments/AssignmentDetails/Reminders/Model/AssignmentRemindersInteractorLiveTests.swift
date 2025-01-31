@@ -27,7 +27,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
                                                     assignmentId: "2",
                                                     userId: "3",
                                                     assignmentName: "test",
-                                                    dueDate: Date().addDays(2))
+                                                    dueDate: Date.now.inCalendar.addDays(2))
 
     override func setUp() {
         super.setUp()
@@ -45,7 +45,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now))
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
-        testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now.addSeconds(1)))
+        testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now.inCalendar.addSeconds(1)))
         XCTAssertTrue(testee.isRemindersSectionVisible.value)
         Clock.reset()
     }
@@ -125,7 +125,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         guard let timeTrigger = notification.trigger as? UNCalendarNotificationTrigger else {
             return XCTFail()
         }
-        XCTAssertEqual(timeTrigger.nextTriggerDate(), context.dueDate.addMinutes(-5))
+        XCTAssertEqual(timeTrigger.nextTriggerDate(), context.dueDate.inCalendar.addMinutes(-5))
     }
 
     func testRemindersForPastDateNotAllowed() {

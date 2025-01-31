@@ -93,7 +93,7 @@ public class AnnouncementsHelper: BaseHelper {
         let globalAnnouncementSubject = subject ?? "This is not a drill!"
         let globalAnnouncementMessage = message ?? "This is an account notification! Will disappear in \(durationMinutes) minutes"
         let globalAnnouncementStartAt = Date.now
-        let globalAnnouncementEndAt = Date.now.addMinutes(durationMinutes)
+                let globalAnnouncementEndAt = Date.now.inCalendar.addMinutes(durationMinutes)
 
         return seeder.postAccountNotifications(
             requestBody: .init(subject: globalAnnouncementSubject,

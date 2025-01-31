@@ -32,8 +32,8 @@ class GradingPeriodsTests: E2ETestCase {
         let assignment1 = AssignmentsHelper.createAssignment(
             course: course,
             name: "First Assignment",
-            dueDate: Date.now.addSeconds(60),
-            lockAt: Date.now.addSeconds(60)
+            dueDate: Date.now.inCalendar.addSeconds(60),
+            lockAt: Date.now.inCalendar.addSeconds(60)
         )
         Helper.submitAssignment(course: course, student: student, assignment: assignment1)
         Helper.gradeAssignment(grade: "1.0", course: course, assignment: assignment1, user: student)
@@ -41,8 +41,8 @@ class GradingPeriodsTests: E2ETestCase {
         let assignment2 = AssignmentsHelper.createAssignment(
             course: course,
             name: "Second Assignment",
-            dueDate: Date.now.addSeconds(60),
-            lockAt: Date.now.addSeconds(60)
+            dueDate: Date.now.inCalendar.addSeconds(60),
+            lockAt: Date.now.inCalendar.addSeconds(60)
         )
         Helper.submitAssignment(course: course, student: student, assignment: assignment2)
         Helper.gradeAssignment(grade: "1.0", course: course, assignment: assignment2, user: student)

@@ -102,13 +102,13 @@ struct ModuleFilePermissionEditorView: View {
             separator.padding(.leading, 16)
             DatePickerRow(date: fromBinding,
                           defaultDate: viewModel.defaultFromDate,
-                          validUntil: viewModel.availableUntil?.addMinutes(-1) ?? .distantFuture,
+                          validUntil: viewModel.availableUntil?.inCalendar.addMinutes(-1) ?? .distantFuture,
                           label: Text("From", bundle: .core))
             .animation(.default, value: viewModel.availableFrom)
             separator.padding(.leading, 16)
             DatePickerRow(date: untilBinding,
                           defaultDate: viewModel.defaultUntilDate,
-                          validFrom: viewModel.availableFrom?.addMinutes(1) ?? .distantPast,
+                          validFrom: viewModel.availableFrom?.inCalendar.addMinutes(1) ?? .distantPast,
                           label: Text("Until", bundle: .core))
             .animation(.default, value: viewModel.availableUntil)
         }

@@ -87,7 +87,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
 
     func testReminder() {
         let localNotifications = LocalNotificationsInteractor(notificationCenter: notificationCenter)
-        let prev = Clock.now.startOfDay().addDays(1)
+        let prev = Clock.now.inCalendar.startOfDay().addDays(1)
         localNotifications.setReminder(id: "1", content: UNMutableNotificationContent(), at: prev) { _ in }
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.reminderHeadingLabel.text, "Remind Me")
@@ -101,12 +101,12 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
         XCTAssertEqual(controller.selectedDate, prev)
 
-        controller.reminderDateChanged(selectedDate: prev.addDays(1))
+        controller.reminderDateChanged(selectedDate: prev.inCalendar.addDays(1))
         localNotifications.getReminder("1") { request in
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
             }
-            XCTAssertEqual(date, prev.addDays(1))
+            XCTAssertEqual(date, prev.inCalendar.addDays(1))
         }
         notificationCenter.error = NSError.internalError()
         controller.reminderDateChanged(selectedDate: controller.selectedDate)

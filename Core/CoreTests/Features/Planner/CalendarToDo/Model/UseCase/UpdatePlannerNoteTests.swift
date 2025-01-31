@@ -32,7 +32,7 @@ final class UpdatePlannerNoteTests: CoreTestCase {
         static let responseId = "response id"
         static let responseTitle = "response title"
         static let responseDetails = "response details"
-        static let responseTodoDate = Clock.now.addDays(1)
+        static let responseTodoDate = Clock.now.inCalendar.addDays(1)
         static let responseCourseId = "response courseId"
         static let responseUserId = "response userId"
     }
