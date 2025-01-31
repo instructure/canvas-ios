@@ -139,8 +139,12 @@ public struct WebView: UIViewRepresentable {
             context.coordinator.loaded = source
             switch source {
             case .html(let html):
-                webView.loadFileURL(URL.Directories.documents, allowingReadAccessTo: URL.Directories.documents)
-                webView.loadHTMLString(html, baseURL: baseURL)
+                webView.loadFileURL(
+                    URL.Directories.documents,
+                    allowingReadAccessTo: URL.Directories.documents
+                ) { _ in
+                    webView.loadHTMLString(html, baseURL: baseURL)
+                }
             case .request(let request):
                 webView.load(request)
             case nil:

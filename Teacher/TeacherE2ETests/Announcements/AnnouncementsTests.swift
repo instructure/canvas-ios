@@ -77,14 +77,17 @@ class AnnouncementsTests: E2ETestCase {
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
         let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement).waitUntil(.visible)
-        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
         XCTAssertTrue(toggleButton.isVisible)
+        XCTAssertEqual(toggleButton.label, "\(globalAnnouncement.subject), Tap to view announcement")
+        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
         XCTAssertTrue(dismissButton.isVanished)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again
         toggleButton.hit()
         dismissButton = dismissButton.waitUntil(.visible)
+        XCTAssertEqual(toggleButton.label, "Hide content for \(globalAnnouncement.subject)")
         XCTAssertTrue(dismissButton.isVisible)
+        XCTAssertEqual(dismissButton.label, "Dismiss \(globalAnnouncement.subject)")
 
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
