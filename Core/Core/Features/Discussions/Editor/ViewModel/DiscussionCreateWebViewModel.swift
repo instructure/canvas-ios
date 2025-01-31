@@ -100,7 +100,8 @@ extension URL {
             self.pathComponents.count > 2,
             self.pathComponents[self.pathComponents.count - 2] == "discussion_topics",
             let topicIdString = self.pathComponents.last,
-            topicIdString.containsNumber
+            topicIdString.isNotEmpty,
+            topicIdString.containsOnlyNumbers
         else {
             return nil
         }
