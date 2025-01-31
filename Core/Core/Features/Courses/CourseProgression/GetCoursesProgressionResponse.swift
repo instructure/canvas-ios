@@ -23,6 +23,10 @@ public struct GetCoursesProgressionResponse: Codable {
 
     struct DataModel: Codable {
         let user: LegacyNodeModel?
+
+        enum CodingKeys: String, CodingKey {
+            case user = "legacyNode"
+        }
     }
 
     struct LegacyNodeModel: Codable {

@@ -46,12 +46,12 @@ final class CourseDetailsViewModel {
         self.course = course
         self.onShowTabBar = onShowTabBar
 
-        self.state = .data
-
         getCoursesInteractor.getCourse(id: course.id)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
                 self.course = course
+
+                self.state = .data
             }
             .store(in: &subscriptions)
     }

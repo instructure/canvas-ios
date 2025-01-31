@@ -24,7 +24,7 @@ class DashboardViewModel {
     // MARK: - Outputs
 
     private(set) var state: InstUI.ScreenState = .loading
-    var title: String = "Hi, John"
+    var title: String = ""
     var nextUpViewModels: [NextUpViewModel] = []
 
     // MARK: - Private variables
@@ -54,10 +54,10 @@ class DashboardViewModel {
     }
 
     private func onGetCoursesResponse(courses: [HCourse]) {
+        self.state = .data
         self.nextUpViewModels = courses
             .filter { $0.incompleteModules.count > 0 }
             .map(toNextUpViewModel)
-        self.state = .data
     }
 
     private func toNextUpViewModel(_ course: HCourse) -> NextUpViewModel {
