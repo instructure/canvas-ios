@@ -118,6 +118,7 @@ public struct ModuleItemSequenceView: View {
             viewModel.offsetX = -UIScreen.main.bounds.width * 2
         } completion: {
             viewModel.goNext()
+            isShowHeader = true
         }
     }
 
@@ -126,6 +127,7 @@ public struct ModuleItemSequenceView: View {
             viewModel.offsetX = UIScreen.main.bounds.width * 2
         } completion: {
             viewModel.goPrevious()
+            isShowHeader = true
         }
     }
 
