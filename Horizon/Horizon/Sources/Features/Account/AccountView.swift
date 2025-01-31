@@ -1,0 +1,182 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import HorizonUI
+import SwiftUI
+
+struct AccountView: View {
+    let viewmodel: AccountViewModel
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(viewmodel.name)
+                    .huiTypography(.h1)
+                    .foregroundStyle(Color.huiColors.text.title)
+
+                Text(viewmodel.institution)
+                    .huiTypography(.h3)
+                    .foregroundStyle(Color.huiColors.surface.institution)
+
+                settingsSection
+                    .padding(.top, 40)
+                supportSection
+                    .padding(.top, .huiSpaces.primitives.medium)
+
+                logoutRow
+                    .padding(.top, 40)
+            }
+            .padding(.huiSpaces.primitives.medium)
+        }
+        .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var settingsSection: some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.primitives.small) {
+            Text("Settings")
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.text.title)
+
+            VStack(spacing: 0) {
+                AccountEntryRowView(
+                    title: String(localized: "Profile", bundle: .horizon),
+                    isFirstItem: true,
+                    didTapRow: {
+                        print("profile did tap")
+                    }
+                )
+                AccountEntryRowView(
+                    title: String(localized: "Password", bundle: .horizon),
+                    didTapRow: {
+                        print("password did tap")
+                    }
+                )
+                AccountEntryRowView(
+                    title: String(localized: "Notifications", bundle: .horizon),
+                    didTapRow: {
+                        print("notifications did tap")
+                    }
+                )
+                AccountEntryRowView(
+                    title: String(localized: "Advanced", bundle: .horizon),
+                    isLastItem: true,
+                    didTapRow: {
+                        print("advanced did tap")
+                    }
+                )
+            }
+        }
+    }
+
+    private var supportSection: some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.primitives.small) {
+            Text("Support")
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.text.title)
+
+            VStack(spacing: 0) {
+                AccountEntryRowView(
+                    title: "Beta Community",
+                    image: .huiIcons.openInNew,
+                    isFirstItem: true,
+                    didTapRow: {
+                        print("community did tap")
+                    }
+                )
+                AccountEntryRowView(
+                    title: "Give Feedback",
+                    image: .huiIcons.openInNew,
+                    isLastItem: true,
+                    didTapRow: {
+                        print("feedback did tap")
+                    }
+                )
+            }
+        }
+    }
+
+    private var logoutRow: some View {
+        AccountEntryRowView(
+            title: "Log Out",
+            image: .huiIcons.logout,
+            isFirstItem: true,
+            isLastItem: true,
+            didTapRow: {
+                print("logout did tap")
+            }
+        )
+    }
+}
+
+#Preview {
+    AccountAssembly.makePreview()
+}
+
+struct AccountEntryRowView: View {
+    private let title: String
+    private let image: Image
+    private let didTapRow: () -> Void
+    private var cornerRadiusLevel: HorizonUI.CornerRadius = .level2
+    private let roundedCorners: HorizonUI.Corners?
+
+    init(
+        title: String,
+        image: Image = .huiIcons.arrowForward,
+        isFirstItem: Bool = false,
+        isLastItem: Bool = false,
+        didTapRow: @escaping () -> Void
+    ) {
+        self.title = title
+        self.image = image
+
+        switch (isFirstItem, isLastItem) {
+        case (true, true):
+            self.roundedCorners = .all
+        case (true, false):
+            self.roundedCorners = .top
+        case (false, true):
+            self.roundedCorners = .bottom
+        default:
+            self.roundedCorners = nil
+            self.cornerRadiusLevel = .level0
+        }
+        self.didTapRow = didTapRow
+    }
+
+    var body: some View {
+        Button {
+            didTapRow()
+        } label: {
+            HStack(spacing: 0) {
+                Text(title)
+                    .huiTypography(.labelLargeBold)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .frame(minHeight: 24)
+
+                Spacer()
+
+                image
+                    .frame(width: 24, height: 24)
+                    .foregroundStyle(Color.huiColors.icon.medium)
+            }
+            .padding(.all, .huiSpaces.primitives.mediumSmall)
+        }
+        .background(Color.huiColors.surface.cardPrimary)
+        .huiCornerRadius(level: cornerRadiusLevel, corners: roundedCorners)
+    }
+}
