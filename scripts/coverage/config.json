@@ -36,7 +36,8 @@
     "makeUIView(context:",
     "var body: some View",
     "func body(content: Content) -> some View",
-    "-> some View {"
+    "-> some View {",
+    "protocol EmbeddedWebPageViewModel"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9
