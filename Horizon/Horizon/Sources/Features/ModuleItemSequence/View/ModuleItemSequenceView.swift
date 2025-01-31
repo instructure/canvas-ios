@@ -75,6 +75,7 @@ public struct ModuleItemSequenceView: View {
             HorizonUI.Spinner(size: .small, showBackground: true)
         }
     }
+
     @ViewBuilder
     private var introBlock: some View {
         if isShowHeader {
@@ -86,7 +87,7 @@ public struct ModuleItemSequenceView: View {
                 onBack: {
                     viewModel.pop(from: viewController)
                 },
-                onMenu: {}
+                onMenu: { viewModel.navigateToCourseProgress(from: viewController) }
             )
             .transition(.move(edge: .top).combined(with: .opacity))
         }
@@ -180,6 +181,9 @@ public struct ModuleItemSequenceView: View {
         } didTapPrevious: {
             goPrevious()
         }
+        .padding(.vertical, .huiSpaces.primitives.xSmall)
+        .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+        .background(Color.huiColors.surface.pagePrimary)
         .frame(height: 56)
     }
 }

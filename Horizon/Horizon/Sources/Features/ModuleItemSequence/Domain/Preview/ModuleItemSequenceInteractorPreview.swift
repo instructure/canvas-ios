@@ -50,13 +50,13 @@ final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getCourseName() -> AnyPublisher<String, Never> {
-        Just("AI Course")
-            .eraseToAnyPublisher()
-    }
-
     func setOfflineMode(assetID: String) -> String? {
         nil
+    }
+
+    func getSelectedCourse() -> AnyPublisher<HCourse, Never> {
+        Just(HCourse(id: "", name: "", imageURL: nil, overviewDescription: "", modules: []))
+            .eraseToAnyPublisher()
     }
 }
 #endif
