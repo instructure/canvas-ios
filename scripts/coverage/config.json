@@ -10,6 +10,7 @@
     ".*Assembly[.]swift",
     ".*Preview[.]swift",
     "\\/Views\\/",
+    "Core\/Common\/CommonUI\/EmbeddedWebPage\/ViewModel\/EmbeddedWebPageViewModel.swift",
     "Core\/Common\/CommonUI\/InstUI\/",
     "Core\/Common\/CommonUI\/SnackBar\/View\/SwiftUI\/SnackBarViewModifier.swift",
     "Core\/Common\/CommonUI\/SwiftUIViews\/",
@@ -36,8 +37,7 @@
     "makeUIView(context:",
     "var body: some View",
     "func body(content: Content) -> some View",
-    "-> some View {",
-    "protocol EmbeddedWebPageViewModel"
+    "-> some View {"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9
