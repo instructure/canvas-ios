@@ -18,31 +18,27 @@
 
 import SwiftUI
 
-struct WillDisappearHandler: UIViewControllerRepresentable {
+struct ViewWillDisappearHandler: UIViewControllerRepresentable {
     // MARK: - Dependencies
 
-    let onWillDisappear: () -> Void
+    private let onWillDisappear: () -> Void
 
     init(onWillDisappear: @escaping () -> Void) {
         self.onWillDisappear = onWillDisappear
     }
 
-    func makeCoordinator() -> WillDisappearHandler.Coordinator {
+    func makeCoordinator() -> Coordinator {
         Coordinator(onWillDisappear: onWillDisappear)
     }
 
-    func makeUIViewController(context: UIViewControllerRepresentableContext<WillDisappearHandler>) -> UIViewController {
+    func makeUIViewController(context: Context) -> UIViewController {
         context.coordinator
     }
 
-    func updateUIViewController(
-        _ uiViewController: UIViewController,
-        context: UIViewControllerRepresentableContext<WillDisappearHandler>
-    ) {
-    }
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 
     final class Coordinator: UIViewController {
-        let onWillDisappear: () -> Void
+        private let onWillDisappear: () -> Void
 
         init(onWillDisappear: @escaping () -> Void) {
             self.onWillDisappear = onWillDisappear
@@ -50,8 +46,7 @@ struct WillDisappearHandler: UIViewControllerRepresentable {
         }
 
         required init?(coder: NSCoder) {
-            self.onWillDisappear = {}
-            super.init(coder: coder)
+            return nil
         }
 
         override func viewWillDisappear(_ animated: Bool) {
@@ -61,17 +56,16 @@ struct WillDisappearHandler: UIViewControllerRepresentable {
     }
 }
 
-struct WillDisappearModifier: ViewModifier {
+private struct ViewWillDisappearModifier: ViewModifier {
     let callback: () -> Void
 
     func body(content: Content) -> some View {
-        content
-            .background(WillDisappearHandler(onWillDisappear: callback))
+        content.background(ViewWillDisappearHandler(onWillDisappear: callback))
     }
 }
 
 extension View {
     func onWillDisappear(_ perform: @escaping () -> Void) -> some View {
-        self.modifier(WillDisappearModifier(callback: perform))
+        modifier(ViewWillDisappearModifier(callback: perform))
     }
 }

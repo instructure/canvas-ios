@@ -30,12 +30,12 @@ public struct ModuleItemSequenceView: View {
     // MARK: - Dependencies
 
     @State var viewModel: ModuleItemSequenceViewModel
-    private let onShowNavigationBarAndTabBar: () -> Void
+    private let onShowNavigationBarAndTabBar: (Bool) -> Void
 
     // MARK: - Init
 
     init(viewModel: ModuleItemSequenceViewModel,
-         onShowNavigationBarAndTabBar: @escaping () -> Void) {
+         onShowNavigationBarAndTabBar: @escaping (Bool) -> Void) {
         self.viewModel = viewModel
         self.onShowNavigationBarAndTabBar = onShowNavigationBarAndTabBar
     }
@@ -64,9 +64,8 @@ public struct ModuleItemSequenceView: View {
         } message: {
             Text(viewModel.errorMessage)
         }
-        .onWillDisappear {
-            onShowNavigationBarAndTabBar()
-        }
+        .onWillDisappear { onShowNavigationBarAndTabBar(true) }
+        .onWillAppear { onShowNavigationBarAndTabBar(false) }
     }
 
     @ViewBuilder
@@ -75,7 +74,6 @@ public struct ModuleItemSequenceView: View {
             HorizonUI.Spinner(size: .small, showBackground: true)
         }
     }
-
     @ViewBuilder
     private var introBlock: some View {
         if isShowHeader {
@@ -120,6 +118,7 @@ public struct ModuleItemSequenceView: View {
             viewModel.offsetX = -UIScreen.main.bounds.width * 2
         } completion: {
             viewModel.goNext()
+            isShowHeader = true
         }
     }
 
@@ -128,6 +127,7 @@ public struct ModuleItemSequenceView: View {
             viewModel.offsetX = UIScreen.main.bounds.width * 2
         } completion: {
             viewModel.goPrevious()
+            isShowHeader = true
         }
     }
 

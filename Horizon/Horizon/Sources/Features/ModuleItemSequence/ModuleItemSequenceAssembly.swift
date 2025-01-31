@@ -46,16 +46,14 @@ enum ModuleItemSequenceAssembly {
             assetID: assetID
         )
 
-        let showTabBarAndNavigationBar: () -> Void = {
-            environment.tabBar(isVisible: true)
-            environment.navigationBar(isVisible: true)
+        let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
+            environment.tabBar(isVisible: isVisible)
+            environment.navigationBar(isVisible: isVisible)
         }
         let view = ModuleItemSequenceView(
             viewModel: viewModel,
             onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
         )
-        environment.tabBar(isVisible: false)
-        environment.navigationBar(isVisible: false)
         return CoreHostingController(view)
     }
 
@@ -127,7 +125,7 @@ enum ModuleItemSequenceAssembly {
             assetType: .moduleItem,
             assetID: "assetID"
         )
-        let view = ModuleItemSequenceView(viewModel: viewModel, onShowNavigationBarAndTabBar: {})
+        let view = ModuleItemSequenceView(viewModel: viewModel, onShowNavigationBarAndTabBar: { _ in })
         return view
     }
 #endif
