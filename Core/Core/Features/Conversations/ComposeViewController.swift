@@ -101,14 +101,12 @@ public class ComposeViewController: UIViewController, ErrorViewController {
         bodyView.textColor = .textDarkest
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
         bodyView.accessibilityLabel = String(localized: "Message", bundle: .core)
-        bodyView.accessibilityTraits.remove(.header)
 
         subjectField.attributedPlaceholder = NSAttributedString(
             string: String(localized: "Subject", bundle: .core),
             attributes: [ .foregroundColor: UIColor.textDark ]
         )
         subjectField.accessibilityLabel = String(localized: "Subject", bundle: .core)
-        subjectField.accessibilityTraits.remove(.header)
 
         recipientsView.editButton.addTarget(self, action: #selector(editRecipients), for: .primaryActionTriggered)
         course?.refresh()
