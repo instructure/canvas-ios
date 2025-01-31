@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
 @testable import Core
 import TestsFoundation
-import XCTest
 
 class AnalyticsTests: XCTestCase {
     private var testAnalyticsHandler: MockAnalyticsHandler!

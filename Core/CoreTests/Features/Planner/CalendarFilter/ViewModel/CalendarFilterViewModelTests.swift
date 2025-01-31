@@ -21,7 +21,7 @@ import Combine
 import XCTest
 
 class CalendarFilterViewModelTests: CoreTestCase {
-    var mockInteractor: MockCalendarFilterInteractor!
+    private var mockInteractor: MockCalendarFilterInteractor!
 
     override func setUp() {
         super.setUp()
@@ -42,9 +42,9 @@ class CalendarFilterViewModelTests: CoreTestCase {
         mockInteractor.mockLoadPublisher.send(completion: .finished)
 
         // THEN
-        XCTAssertEqual(testee.userFilter, userFilter)
-        XCTAssertEqual(testee.courseFilters, [courseFilter])
-        XCTAssertEqual(testee.groupFilters, [groupFilter])
+        XCTAssertEqual(testee.userFilterOptions.map(\.id), ["user_u1"])
+        XCTAssertEqual(testee.courseFilterOptions.map(\.id), ["course_c1"])
+        XCTAssertEqual(testee.groupFilterOptions.map(\.id), ["group_g1"])
     }
 
     func testUpdatesRightNavButtonTitle() {
@@ -93,8 +93,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
         testee.didTapSelectAllButton.send(())
 
         // THEN
-        XCTAssertEqual(mockInteractor.receivedIsSelected, false)
-        XCTAssertEqual(mockInteractor.receivedContextsForUpdateFilter, [.course("c1"), .group("g1")])
+        XCTAssertEqual(mockInteractor.receivedContextsForUpdateFilter, [])
 
         // GIVEN
         mockInteractor.selectedContexts.send(Set([]))
@@ -103,16 +102,14 @@ class CalendarFilterViewModelTests: CoreTestCase {
         testee.didTapSelectAllButton.send(())
 
         // THEN
-        XCTAssertEqual(mockInteractor.receivedIsSelected, true)
         XCTAssertEqual(mockInteractor.receivedContextsForUpdateFilter, [.course("c1"), .group("g1")])
     }
 
     func testForwardsFilterChangesToInteractor() {
         let testee = CalendarFilterViewModel(interactor: mockInteractor, didDismissPicker: {})
 
-        testee.didToggleSelection.send((context: .course("c1"), isSelected: true))
+        testee.selectedOptions.send([.make(id: "course_c1")])
 
-        XCTAssertEqual(mockInteractor.receivedIsSelected, true)
         XCTAssertEqual(mockInteractor.receivedContextsForUpdateFilter, [.course("c1")])
     }
 
@@ -123,7 +120,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
         mockInteractor.mockUpdateFilteredContextsResult = mockUpdatePublisher.eraseToAnyPublisher()
 
         // GIVEN
-        testee.didToggleSelection.send((context: .course("c1"), isSelected: true))
+        testee.selectedOptions.send([.make(id: "course_c1")])
 
         // WHEN
         mockUpdatePublisher.send(completion: .failure(NSError.internalError()))
@@ -192,7 +189,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
     }
 }
 
-class MockCalendarFilterInteractor: CalendarFilterInteractor {
+private class MockCalendarFilterInteractor: CalendarFilterInteractor {
     let filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])
     let filterCountLimit = CurrentValueSubject<CalendarFilterCountLimit, Never>(.unlimited)
     let selectedContexts = CurrentValueSubject<Set<Context>, Never>(Set())
@@ -207,14 +204,9 @@ class MockCalendarFilterInteractor: CalendarFilterInteractor {
     var mockUpdateFilteredContextsResult: AnyPublisher<Void, Error> = Just(())
         .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
-    var receivedContextsForUpdateFilter: [Context]?
-    var receivedIsSelected: Bool?
-    func updateFilteredContexts(
-        _ contexts: [Context],
-        isSelected: Bool
-    ) -> AnyPublisher<Void, Error> {
+    var receivedContextsForUpdateFilter: Set<Context>?
+    func updateFilteredContexts(_ contexts: Set<Context>) -> AnyPublisher<Void, any Error> {
         receivedContextsForUpdateFilter = contexts
-        receivedIsSelected = isSelected
         return mockUpdateFilteredContextsResult
     }
 

@@ -35,7 +35,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
+        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 InstUI.LabelCell(
                     label: Text("Repeats every", bundle: .core)
@@ -72,6 +72,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     endModeDetailsCell(endMode)
                 }
             }
+            .frame(maxWidth: geometry.size.width)
         }
         .navigationTitle(viewModel.pageTitle)
         .navBarItems(
