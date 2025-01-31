@@ -18,60 +18,60 @@
 
 import SwiftUI
 
-struct ViewWillDisappearHandler: UIViewControllerRepresentable {
+struct ViewWillAppearHandler: UIViewControllerRepresentable {
     // MARK: - Dependencies
-    
-    private let onWillDisappear: () -> Void
-    
-    init(onWillDisappear: @escaping () -> Void) {
-        self.onWillDisappear = onWillDisappear
+
+    private let onWillAppear: () -> Void
+
+    init(onWillAppear: @escaping () -> Void) {
+        self.onWillAppear = onWillAppear
     }
-    
-    func makeCoordinator() -> ViewWillDisappearHandler.Coordinator {
-        Coordinator(onWillDisappear: onWillDisappear)
+
+    func makeCoordinator() -> ViewWillAppearHandler.Coordinator {
+        Coordinator(onWillAppear: onWillAppear)
     }
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ViewWillDisappearHandler>) -> UIViewController {
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ViewWillAppearHandler>) -> UIViewController {
         context.coordinator
     }
-    
+
     func updateUIViewController(
         _ uiViewController: UIViewController,
-        context: UIViewControllerRepresentableContext<ViewWillDisappearHandler>
+        context: UIViewControllerRepresentableContext<ViewWillAppearHandler>
     ) {
     }
-    
+
     final class Coordinator: UIViewController {
-        let onWillDisappear: () -> Void
-        
-        init(onWillDisappear: @escaping () -> Void) {
-            self.onWillDisappear = onWillDisappear
+        let onWillAppear: () -> Void
+
+        init(onWillAppear: @escaping () -> Void) {
+            self.onWillAppear = onWillAppear
             super.init(nibName: nil, bundle: nil)
         }
-        
+
         required init?(coder: NSCoder) {
-            self.onWillDisappear = {}
+            self.onWillAppear = {}
             super.init(coder: coder)
         }
-        
-        override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            onWillDisappear()
+
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            onWillAppear()
         }
     }
 }
 
-fileprivate struct ViewWillDisappearModifier: ViewModifier {
+fileprivate struct ViewWillAppearModifier: ViewModifier {
     let callback: () -> Void
-    
+
     func body(content: Content) -> some View {
         content
-            .background(ViewWillDisappearHandler(onWillDisappear: callback))
+            .background(ViewWillAppearHandler(onWillAppear: callback))
     }
 }
 
 extension View {
-    func onWillDisappear(_ perform: @escaping () -> Void) -> some View {
-        self.modifier(ViewWillDisappearModifier(callback: perform))
+    func onWillAppear(_ perform: @escaping () -> Void) -> some View {
+        self.modifier(ViewWillAppearModifier(callback: perform))
     }
 }
