@@ -22,7 +22,7 @@ import Foundation
 final class GradeFilterInteractorMock: GradeFilterInteractor {
     var isParentApp: Bool = true
     var currentGradingId: String?
-    var currentSortById: Int?
+    var currentSortById: String?
     var selectedSortByIdIsCalled = false
     var saveGradingIsCalled = false
     var saveSortByOptionIsCalled = false
@@ -35,7 +35,7 @@ final class GradeFilterInteractorMock: GradeFilterInteractor {
         currentGradingId
     }
 
-    var selectedSortById: Int? {
+    var selectedSortById: String? {
         selectedSortByIdIsCalled = true
        return currentSortById
     }

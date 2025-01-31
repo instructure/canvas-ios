@@ -223,15 +223,15 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.isSaveButtonEnabled, false)
 
         // set the same value
-        testee.selectCalendarViewModel.selectedCalendar = calendars[0]
+        testee.selectCalendarViewModel.selectedCalendarOption.send(.make(id: calendars[0].id))
         XCTAssertEqual(testee.isSaveButtonEnabled, false)
 
         // set another value
-        testee.selectCalendarViewModel.selectedCalendar = calendars[1]
+        testee.selectCalendarViewModel.selectedCalendarOption.send(.make(id: calendars[1].id))
         XCTAssertEqual(testee.isSaveButtonEnabled, true)
 
         // reset to initial value
-        testee.selectCalendarViewModel.selectedCalendar = calendars[0]
+        testee.selectCalendarViewModel.selectedCalendarOption.send(.make(id: calendars[0].id))
         XCTAssertEqual(testee.isSaveButtonEnabled, true)
     }
 
@@ -277,7 +277,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         testee.details = TestConstants.details
 
         let selectedCalendar = calendarListProviderInteractor.filters.value[1]
-        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        testee.selectCalendarViewModel.selectedCalendarOption.send(.make(id: selectedCalendar.id))
 
         testee.didTapSave.send()
 
@@ -301,7 +301,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         ))
 
         let selectedCalendar = calendarListProviderInteractor.filters.value[1]
-        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        testee.selectCalendarViewModel.selectedCalendarOption.send(.make(id: selectedCalendar.id))
 
         testee.didTapSave.send()
 
@@ -366,7 +366,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
 
         let hasSpecificCalendar = {
             vm.sections.contains {
-                $0.items.contains { calendar in calendar.name == "User 42" }
+                $0.items.contains { item in item.id == "user_42" }
             }
         }
 
@@ -382,19 +382,9 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         let testee = makeAddViewModel()
         let vm = testee.selectCalendarViewModel
 
-        let hasUserCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .user }
-        }
-        let hasCourseCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .course }
-        }
-        let hasGroupCalendars = vm.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == .group }
-        }
-
-        XCTAssertEqual(hasUserCalendars, true)
-        XCTAssertEqual(hasCourseCalendars, true)
-        XCTAssertEqual(hasGroupCalendars, false)
+        XCTAssertEqual(vm.hasCalendarsOfType(.user), true)
+        XCTAssertEqual(vm.hasCalendarsOfType(.course), true)
+        XCTAssertEqual(vm.hasCalendarsOfType(.group), false)
     }
 
     func testShowCalendarScreen() {
@@ -416,7 +406,7 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.calendarName, TestConstants.calendars[3].name)
 
         let selectedCalendar = calendarListProviderInteractor.filters.value[1]
-        testee.selectCalendarViewModel.selectedCalendar = selectedCalendar
+        testee.selectCalendarViewModel.selectedCalendarOption.send(.make(id: selectedCalendar.id))
 
         XCTAssertEqual(testee.calendarName, TestConstants.calendars[1].name)
     }

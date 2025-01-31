@@ -1,0 +1,30 @@
+---
+format_version: '13'
+workflows:
+  pr_adhoc_build:
+    summary: This workflow stamps the app icon and creates a QR code installable ad-hoc build used for pull request testing.
+    description: "This step expects the following environment variables: \n$INST_XCODE_SCHEME (e.g., Horizon)\n$INST_XCODE_APPICON_PATH (e.g., Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset)\n\nThe output will be a file with the name ${INST_XCODE_SCHEME}_qr_url that will contain the image url of the QR code pointing to the created application. The file is needed because we can't export environment variables in case the workflow is run via the Bitrise Run step."
+    steps:
+    - set-xcode-build-number@2:
+        inputs:
+        - scheme: $INST_XCODE_SCHEME
+    - bitrise-step-stamp-appicon-with-version-number@1:
+        inputs:
+        - stamp_version: PR
+        - stamp_build_number: $PR_NUMBER
+        - stamp_path_to_icons: $INST_XCODE_APPICON_PATH
+    - xcode-archive@5:
+        inputs:
+        - distribution_method: ad-hoc
+        - automatic_code_signing: api-key
+        - icloud_container_environment: Production
+        - scheme: $INST_XCODE_SCHEME
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: none
+    - create-install-page-qr-code@1: {}
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/write_qr_url_to_file.sh
+        - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
+        title: Write QR URL To File

@@ -1,0 +1,111 @@
+---
+format_version: '13'
+include:
+  - path: .bitrise/pr_adhoc/workflow_pr_adhoc_build.yml
+workflows:
+  pr_adhoc_builds:
+    status_report_name: Ad-Hoc Builds
+    after_run:
+    - _common_save_spm_cache
+    before_run:
+    - _common_prepare_workspace
+    steps:
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/discover_apps_to_build.sh
+        title: Discover Which Apps To Build
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Student
+            envman add --key INST_XCODE_APPICON_PATH --value Student/Student/Assets.xcassets/AppIcon.appiconset
+        title: Setup Student Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_STUDENT" "true"}}'
+        title: Build Student
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Teacher
+            envman add --key INST_XCODE_APPICON_PATH --value Teacher/Teacher/Assets.xcassets/AppIcon.appiconset
+        title: Setup Teacher Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_TEACHER" "true"}}'
+        title: Build Teacher
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Parent
+            envman add --key INST_XCODE_APPICON_PATH --value Parent/Parent/Assets.xcassets/AppIcon.appiconset
+        title: Setup Parent Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_PARENT" "true"}}'
+        title: Build Parent
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            envman add --key INST_XCODE_SCHEME --value Horizon
+            envman add --key INST_XCODE_APPICON_PATH --value Horizon/Horizon/Resources/Assets.xcassets/AppIcon.appiconset
+        title: Setup Horizon Variables
+    - bitrise-run@0:
+        inputs:
+        - bitrise_config_path: ./.bitrise/bitrise.yml
+        - workflow_id: pr_adhoc_build
+        run_if: '{{enveq "REQUIRE_HORIZON" "true"}}'
+        title: Build Horizon
+    - script-runner@0:
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/create_pr_comment.sh
+        - working_dir: $BITRISE_SOURCE_DIR/.bitrise/pr_adhoc
+        title: Create PR Comment
+    - comment-on-github-pull-request@0:
+        inputs:
+        - body: $PR_BUILDS_COMMENT
+        - personal_access_token: $GITHUB_API_TOKEN
+        - update_comment_tag: bitrise_adhoc_builds
+        is_always_run: false
+trigger_map:
+- pull_request_target_branch: '*'
+  type: pull_request
+  workflow: pr_adhoc_builds
