@@ -34,7 +34,10 @@ struct CourseProgressAssembly {
         viewModel.onSelectModuleItem = onSelectModuleItem
         let view = CourseProgressView(viewModel: viewModel)
         let viewController = CoreHostingController(view)
-        viewController.modalPresentationStyle = .pageSheet
+        if let presentationController = viewController.sheetPresentationController {
+            presentationController.detents = [.large()]
+            presentationController.preferredCornerRadius = 32
+        }
         return viewController
     }
 
