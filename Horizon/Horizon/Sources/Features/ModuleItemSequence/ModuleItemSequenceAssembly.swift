@@ -99,11 +99,13 @@ enum ModuleItemSequenceAssembly {
         environment: AppEnvironment,
         tools: LTITools,
         name: String?
-    ) -> LTIViewRepresentable {
-        LTIViewRepresentable(
-            environment: environment,
-            tools: tools,
-            name: name
+    ) -> LTIView {
+        LTIView(
+            viewModel: LTIViewModel(
+                environment: environment,
+                tools: tools,
+                name: name
+            )
         )
     }
 
