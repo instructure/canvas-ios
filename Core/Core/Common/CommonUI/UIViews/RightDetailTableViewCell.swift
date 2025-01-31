@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 public class RightDetailTableViewCell: UITableViewCell {
-    public var accessibilityTraitsOverride: UIAccessibilityTraits? = nil
+    public var accessibilityTraitsOverride: UIAccessibilityTraits?
     public override var accessibilityTraits: UIAccessibilityTraits {
         get {
             if let accessibilityTraitsOverride {
