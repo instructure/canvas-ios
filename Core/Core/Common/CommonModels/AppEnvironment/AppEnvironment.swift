@@ -186,6 +186,13 @@ open class AppEnvironment {
         }
     }
 
+    public func navigationBar(isVisible: Bool) {
+        let currentTabBar = (window?.rootViewController as? UITabBarController)
+        if let currentNavigation = currentTabBar?.selectedViewController as? UINavigationController {
+            currentNavigation.setNavigationBarHidden(!isVisible, animated: false)
+        }
+    }
+
     public var apiHost: String? {
         currentSession?.baseURL.host()
     }

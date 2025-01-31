@@ -48,6 +48,7 @@ final class ModuleItemSequenceViewModel {
 
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let moduleItemStateInteractor: ModuleItemStateInteractor
+    private let router: Router
     private let assetType: AssetType
     private let assetID: String
 
@@ -60,11 +61,13 @@ final class ModuleItemSequenceViewModel {
     init(
         moduleItemInteractor: ModuleItemSequenceInteractor,
         moduleItemStateInteractor: ModuleItemStateInteractor,
+        router: Router,
         assetType: AssetType,
         assetID: String
     ) {
         self.moduleItemInteractor = moduleItemInteractor
         self.moduleItemStateInteractor = moduleItemStateInteractor
+        self.router = router
         self.assetType = assetType
         self.assetID = assetID
 
@@ -77,13 +80,23 @@ final class ModuleItemSequenceViewModel {
             .store(in: &subscriptions)
     }
 
+    // MARK: - Input Functions
+
+    func pop(from controller: WeakViewController) {
+        router.pop(from: controller)
+    }
+
+    // MARK: - Private Functions
+
     private func fetchModuleItemSequence(assetId: String) {
+        isLoaderVisible = true
         moduleItemInteractor.fetchModuleItems(
             assetId: assetId,
             moduleID: moduleID,
             itemID: itemID
         )
         .sink { [weak self] result in
+            self?.isLoaderVisible = false
             let firstSequence = result.0
             self?.sequence = firstSequence
             self?.isNextButtonEnabled = firstSequence?.next != nil

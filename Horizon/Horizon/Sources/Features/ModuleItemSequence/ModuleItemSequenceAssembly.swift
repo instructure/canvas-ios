@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Core
 
 enum ModuleItemSequenceAssembly {
@@ -40,11 +41,19 @@ enum ModuleItemSequenceAssembly {
         let viewModel = ModuleItemSequenceViewModel(
             moduleItemInteractor: interactor,
             moduleItemStateInteractor: stateInteractor,
+            router: environment.router,
             assetType: assetType,
             assetID: assetID
         )
-        let view = ModuleItemSequenceView(viewModel: viewModel)
-        environment.tabBar(isVisible: false)
+
+        let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
+            environment.tabBar(isVisible: isVisible)
+            environment.navigationBar(isVisible: isVisible)
+        }
+        let view = ModuleItemSequenceView(
+            viewModel: viewModel,
+            onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
+        )
         return CoreHostingController(view)
     }
 
@@ -98,8 +107,11 @@ enum ModuleItemSequenceAssembly {
         )
     }
 
-    static func makeModuleItemView(viewController: UIViewController) -> ModuleItemViewRepresentable {
-        ModuleItemViewRepresentable(viewController: viewController)
+    static func makeModuleItemView(
+        isScrollTopReached: Binding<Bool>,
+        viewController: UIViewController
+    ) -> ModuleItemViewRepresentable {
+        ModuleItemViewRepresentable(viewController: viewController, isScrollTopReached: isScrollTopReached)
     }
 
 #if DEBUG
@@ -107,10 +119,11 @@ enum ModuleItemSequenceAssembly {
         let viewModel = ModuleItemSequenceViewModel(
             moduleItemInteractor: ModuleItemSequenceInteractorPreview(),
             moduleItemStateInteractor: ModuleItemStateInteractorPreview(),
+            router: AppEnvironment.shared.router,
             assetType: .moduleItem,
             assetID: "assetID"
         )
-        let view = ModuleItemSequenceView(viewModel: viewModel)
+        let view = ModuleItemSequenceView(viewModel: viewModel, onShowNavigationBarAndTabBar: { _ in })
         return view
     }
 #endif

@@ -113,6 +113,9 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
 
     // Parent uses a different coloring logic so we prevent any update here. 
     private func updateNavBar() {
+        guard AppEnvironment.shared.app != .horizon else {
+            return
+        }
         guard
             let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
             let color = context.contextType == .course ? courses.first?.color : groups.first?.color,

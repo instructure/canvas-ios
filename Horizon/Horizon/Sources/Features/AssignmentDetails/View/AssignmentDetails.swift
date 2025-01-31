@@ -18,65 +18,86 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct AssignmentDetails: View {
     // MARK: - Properties
 
     @Bindable private var viewModel: AssignmentDetailsViewModel
+    @Binding private var isShowHeader: Bool
 
-    init(viewModel: AssignmentDetailsViewModel) {
+    init(
+        viewModel: AssignmentDetailsViewModel,
+        isShowHeader: Binding<Bool> = .constant(false)
+    ) {
         self.viewModel = viewModel
+        self._isShowHeader = isShowHeader
     }
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(refreshable: false)
-        ) { _ in
-            VStack(spacing: 10) {
-
-                VStack(spacing: 8) {
-                    Size14RegularTextDarkestTitle(title: viewModel.assignment?.dueAt ?? "")
-                    if let pointsPossible = viewModel.assignment?.pointsPossible {
-                        Size14RegularTextDarkestTitle(title: "\(pointsPossible) Points")
+            ScrollView {
+                VStack(spacing: 10) {
+                    topView
+                    if viewModel.isLoaderVisible == false {
+                        header
                     }
-                    if (viewModel.assignment?.allowedAttempts ?? 0) > 0 {
-                        Size14RegularTextDarkestTitle(title: "\(viewModel.assignment?.allowedAttempts ?? 0) attempt(s)")
-                    } else {
-                        Size14RegularTextDarkestTitle(title: "Unlimited Attempts Allowed")
+                    VStack(spacing: 8) {
+                        Size14RegularTextDarkestTitle(title: viewModel.assignment?.dueAt ?? "")
+                        if let pointsPossible = viewModel.assignment?.pointsPossible {
+                            Size14RegularTextDarkestTitle(title: "\(pointsPossible) Points")
+                        }
+                        if (viewModel.assignment?.allowedAttempts ?? 0) > 0 {
+                            Size14RegularTextDarkestTitle(title: "\(viewModel.assignment?.allowedAttempts ?? 0) attempt(s)")
+                        } else {
+                            Size14RegularTextDarkestTitle(title: "Unlimited Attempts Allowed")
+                        }
+                    }
+                    .padding(.top, 8)
+
+                    if let details = viewModel.assignment?.details {
+                        WebView(html: details)
+                            .frameToFit()
+                            .padding(.horizontal, -16)
+                    }
+                    if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
+                        Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
+                    }
+
+                    if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
+                        AssignmentSubmissionView(viewModel: viewModel)
+                            .disabled(viewModel.didSubmitAssignment)
+                            .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
+                            .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
                     }
                 }
-                .padding(.top, 8)
-
-                if let details = viewModel.assignment?.details {
-                    WebView(html: details)
-                        .frameToFit()
-                        .padding(.horizontal, -16)
-                }
-                if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
-                    Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
-                }
-
-                if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
-                    AssignmentSubmissionView(viewModel: viewModel)
-                        .disabled(viewModel.didSubmitAssignment)
-                        .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
-                        .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
-                }
+                .paddingStyle(.horizontal, .standard)
+                .padding(.bottom, 100)
             }
-            .paddingStyle(.horizontal, .standard)
-            .padding(.bottom, 100)
-        }
+        .overlay { loaderView }
         .background(Color.backgroundLightest)
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
-        .safeAreaInset(edge: .top) { if viewModel.state == .data { header } }
         .toolbarBackground(.visible, for: .navigationBar)
         .alert("Error", isPresented: $viewModel.isAlertVisible) {
             Button("OK", role: .cancel) { }
         } message: {
             Text(viewModel.errorMessage)
         }
+    }
+
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            HorizonUI.Spinner(size: .small, showBackground: true)
+        }
+    }
+
+    private var topView: some View {
+        Color.clear
+            .frame(height: 0)
+            .readingFrame { frame in
+                isShowHeader = frame.minY > -100
+            }
     }
 
     private var header: some View {
