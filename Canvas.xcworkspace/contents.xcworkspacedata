@@ -55,6 +55,9 @@
       </FileRef>
    </Group>
    <FileRef
+      location = "group:.bitrise">
+   </FileRef>
+   <FileRef
       location = "group:dangerfile.js">
    </FileRef>
    <FileRef

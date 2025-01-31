@@ -296,7 +296,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
             addRecipientButton
                 .frame(maxHeight: .infinity, alignment: .top)
-                .accessibilitySortPriority(2)
         }
         .animation(.easeInOut, value: model.recipients.isEmpty)
         .accessibilityElement(children: .contain)

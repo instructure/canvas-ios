@@ -22,7 +22,7 @@ import SwiftUI
 
 public class AssignmentListViewModel: ObservableObject {
 
-    public enum AssignmentArrangementOptions: String, CaseIterable, Identifiable {
+    public enum AssignmentArrangementOptions: String, CaseIterable {
         static let studentCases: [Self] = [.dueDate, .groupName]
         static let teacherCases: [Self] = [.assignmentGroup, .assignmentType]
 
@@ -30,21 +30,6 @@ public class AssignmentListViewModel: ObservableObject {
         case groupName
         case assignmentGroup
         case assignmentType
-
-        public var id: String { rawValue }
-
-        var title: String {
-            switch self {
-            case .dueDate:
-                return String(localized: "Due Date", bundle: .core)
-            case .groupName:
-                return String(localized: "Group", bundle: .core)
-            case .assignmentGroup:
-                return String(localized: "Assignment Group", bundle: .core)
-            case .assignmentType:
-                return String(localized: "Assignment Type", bundle: .core)
-            }
-        }
     }
 
     public struct AssignmentDateGroup {
@@ -135,7 +120,7 @@ public class AssignmentListViewModel: ObservableObject {
         loadAssignmentListPreferences()
         featureFlags.refresh()
         course.refresh()
-        gradingPeriods.refresh(force: true)
+        gradingPeriods.refresh()
     }
 
     // MARK: - Functions

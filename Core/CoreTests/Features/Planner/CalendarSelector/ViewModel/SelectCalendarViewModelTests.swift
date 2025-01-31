@@ -56,44 +56,43 @@ final class SelectCalendarViewModelTests: CoreTestCase {
     // MARK: - Selection
 
     func testIsSelectedGetsInitialValue() {
-        inputSelectedCalendar.send(calendarListProviderInteractor.filters.value[0])
+        let calendarToSelect = calendarListProviderInteractor.filters.value[0]
+        inputSelectedCalendar.send(calendarToSelect)
         testee = makeViewModel()
 
-        XCTAssertEqual(testee.selectedCalendar, calendarListProviderInteractor.filters.value[0])
+        XCTAssertEqual(testee.selectedCalendarOption.value?.id, calendarToSelect.id)
     }
 
     func testSelection() {
-        // initial state when binding has no value set behorehand
+        // initial state without selection
         XCTAssertEqual(inputSelectedCalendar.value, nil)
-        XCTAssertEqual(testee.selectedCalendar, nil)
+        XCTAssertEqual(testee.selectedCalendarOption.value, nil)
 
         var calendarToSelect = calendarListProviderInteractor.filters.value[0]
-        testee.selectedCalendar = calendarToSelect
+        testee.selectedCalendarOption.send(.make(id: calendarToSelect.id))
         XCTAssertEqual(inputSelectedCalendar.value, calendarToSelect)
-        XCTAssertEqual(testee.selectedCalendar, calendarToSelect)
 
         calendarToSelect = calendarListProviderInteractor.filters.value[1]
-        testee.selectedCalendar = calendarToSelect
+        testee.selectedCalendarOption.send(.make(id: calendarToSelect.id))
         XCTAssertEqual(inputSelectedCalendar.value, calendarToSelect)
-        XCTAssertEqual(testee.selectedCalendar, calendarToSelect)
     }
 
     // MARK: - Sections
 
     func testSectionsShowsOnlyAllowedCalendarTypes() {
-        XCTAssertEqual(hasCalendarsOfType(.user), true)
-        XCTAssertEqual(hasCalendarsOfType(.course), true)
-        XCTAssertEqual(hasCalendarsOfType(.group), true)
+        XCTAssertEqual(testee.hasCalendarsOfType(.user), true)
+        XCTAssertEqual(testee.hasCalendarsOfType(.course), true)
+        XCTAssertEqual(testee.hasCalendarsOfType(.group), true)
 
         testee = makeViewModel(calendarTypes: [.user, .course])
-        XCTAssertEqual(hasCalendarsOfType(.user), true)
-        XCTAssertEqual(hasCalendarsOfType(.course), true)
-        XCTAssertEqual(hasCalendarsOfType(.group), false)
+        XCTAssertEqual(testee.hasCalendarsOfType(.user), true)
+        XCTAssertEqual(testee.hasCalendarsOfType(.course), true)
+        XCTAssertEqual(testee.hasCalendarsOfType(.group), false)
 
         testee = makeViewModel(calendarTypes: [.group])
-        XCTAssertEqual(hasCalendarsOfType(.user), false)
-        XCTAssertEqual(hasCalendarsOfType(.course), false)
-        XCTAssertEqual(hasCalendarsOfType(.group), true)
+        XCTAssertEqual(testee.hasCalendarsOfType(.user), false)
+        XCTAssertEqual(testee.hasCalendarsOfType(.course), false)
+        XCTAssertEqual(testee.hasCalendarsOfType(.group), true)
     }
 
     func testSectionsShowsOnlyFirstUserCalendar() {
@@ -104,7 +103,7 @@ final class SelectCalendarViewModelTests: CoreTestCase {
             return
         }
 
-        XCTAssertEqual(testee.sections[0].items[0].name, "User 42")
+        XCTAssertEqual(testee.sections[0].items[0].title, "User 42")
     }
 
     func testSectionsOrdersProperly() {
@@ -117,14 +116,14 @@ final class SelectCalendarViewModelTests: CoreTestCase {
             return
         }
 
-        XCTAssertEqual(testee.sections[0].items[0].name, "User 42")
+        XCTAssertEqual(testee.sections[0].items[0].title, "User 42")
 
-        XCTAssertEqual(testee.sections[1].items[0].name, "Course 1")
-        XCTAssertEqual(testee.sections[1].items[1].name, "Course 2")
-        XCTAssertEqual(testee.sections[1].items[2].name, "Course 4")
+        XCTAssertEqual(testee.sections[1].items[0].title, "Course 1")
+        XCTAssertEqual(testee.sections[1].items[1].title, "Course 2")
+        XCTAssertEqual(testee.sections[1].items[2].title, "Course 4")
 
-        XCTAssertEqual(testee.sections[2].items[0].name, "A Group")
-        XCTAssertEqual(testee.sections[2].items[1].name, "B Group")
+        XCTAssertEqual(testee.sections[2].items[0].title, "A Group")
+        XCTAssertEqual(testee.sections[2].items[1].title, "B Group")
     }
 
     // MARK: - Private helpers
@@ -140,10 +139,12 @@ final class SelectCalendarViewModelTests: CoreTestCase {
             selectedCalendar: inputSelectedCalendar
         )
     }
+}
 
-    private func hasCalendarsOfType(_ type: ContextType) -> Bool {
-        testee.sections.contains {
-            $0.items.contains { calendar in calendar.context.contextType == type }
+extension SelectCalendarViewModel {
+    func hasCalendarsOfType(_ type: ContextType) -> Bool {
+        sections.contains {
+            $0.items.contains { item in item.id.contains(type.rawValue) }
         }
     }
 }
