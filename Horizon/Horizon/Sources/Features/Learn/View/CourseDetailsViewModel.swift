@@ -30,27 +30,27 @@ final class CourseDetailsViewModel {
 
     // MARK: - Private
 
-    private let router: Router
     private let onShowTabBar: (Bool) -> Void
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
         router: Router,
-        courseId: String,
-        onShowTabBar: @escaping (Bool) -> Void,
-        getCoursesInteractor: GetCoursesInteractor = GetCoursesInteractorLive(),
-        course: HCourse? = nil
+        getCoursesInteractor: GetCoursesInteractor,
+        course: HCourse,
+        onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
+        self.course = course
         self.onShowTabBar = onShowTabBar
-        self.state = .data
-        self.course = course ?? .init()
 
-        getCoursesInteractor.getCourse(id: courseId)
-            .sink { course in
-                guard let course = course else { return }
+        self.state = .data
+
+        getCoursesInteractor.getCourse(id: course.id)
+            .sink { [weak self] course in
+                guard let course = course, let self = self else { return }
                 self.course = course
             }
             .store(in: &subscriptions)

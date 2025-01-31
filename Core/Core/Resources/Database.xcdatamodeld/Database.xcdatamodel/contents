@@ -170,7 +170,7 @@
     </entity>
     <entity name="CDCourseProgression" representedClassName="Core.CDCourseProgression" syncable="YES">
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="courseID" attributeType="String"/>
         <attribute name="institutionName" optional="YES" attributeType="String"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course"/>
         <relationship name="incompleteModulesRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Module"/>

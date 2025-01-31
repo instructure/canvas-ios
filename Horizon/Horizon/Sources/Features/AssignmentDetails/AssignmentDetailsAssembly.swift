@@ -17,6 +17,7 @@
 //
 
 import Core
+import SwiftUI
 import Foundation
 
 final class AssignmentDetailsAssembly {
@@ -43,11 +44,18 @@ final class AssignmentDetailsAssembly {
         )
     }
 
-    static func makeViewController(
+    static func makeView(
         courseID: String,
-        assignmentID: String
-    ) -> UIViewController {
-        CoreHostingController(AssignmentDetails(viewModel: makeViewModel(courseID: courseID, assignmentID: assignmentID)))
+        assignmentID: String,
+        isShowHeader: Binding<Bool>
+    ) -> AssignmentDetails {
+        AssignmentDetails(
+            viewModel: makeViewModel(
+                courseID: courseID,
+                assignmentID: assignmentID
+            ),
+            isShowHeader: isShowHeader
+        )
     }
 
 #if DEBUG

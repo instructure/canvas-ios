@@ -51,16 +51,16 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     }
 
     func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
-        fetchCourses()
-            .map { $0.first { $0.id == id } }
+        fetchCourses(courseId: id)
+            .map { $0.first }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
     // MARK: - Private
 
-    private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
-        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
+    private func fetchCourses(courseId: String? = nil) -> AnyPublisher<[HCourse], Never> {
+        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: courseId))
             .getEntities()
             .replaceError(with: [])
             .flatMap {

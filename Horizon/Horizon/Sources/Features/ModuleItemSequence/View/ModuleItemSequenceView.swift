@@ -21,21 +21,41 @@ import HorizonUI
 import Core
 
 public struct ModuleItemSequenceView: View {
-    @State var viewModel: ModuleItemSequenceViewModel
+    // MARK: - Private Properties
+
     @State private var isShowMakeAsDoneSheet = false
+    @State private var isShowHeader = true
+    @Environment(\.viewController) private var viewController
+
+    // MARK: - Dependencies
+
+    @State var viewModel: ModuleItemSequenceViewModel
+    private let onShowNavigationBarAndTabBar: (Bool) -> Void
+
+    // MARK: - Init
+
+    init(viewModel: ModuleItemSequenceViewModel,
+         onShowNavigationBarAndTabBar: @escaping (Bool) -> Void) {
+        self.viewModel = viewModel
+        self.onShowNavigationBarAndTabBar = onShowNavigationBarAndTabBar
+    }
 
     public var body: some View {
         ZStack(alignment: .center) {
-            VStack(spacing: .zero) {
-                mainContent
-                    .offset(x: viewModel.offsetX)
-            }
-            .frame(maxHeight: .infinity)
-            .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
-            if viewModel.isLoaderVisible {
-                HorizonUI.Spinner(size: .medium, showBackground: true)
-            }
+
+            Color.huiColors.surface.institution
+                .ignoresSafeArea(edges: .top)
+            Rectangle()
+                .fill(Color.huiColors.surface.pageSecondary)
+                .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
+            mainContent
+                .offset(x: viewModel.offsetX)
+                .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
         }
+        .overlay { loaderView }
+        .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
+        .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
+        .animation(.linear, value: isShowHeader)
         .confirmationDialog("", isPresented: $isShowMakeAsDoneSheet, titleVisibility: .hidden) {
             makeAsDoneSheetButtons
         }
@@ -44,18 +64,30 @@ public struct ModuleItemSequenceView: View {
         } message: {
             Text(viewModel.errorMessage)
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) { makeAsDoneButton }
-            ToolbarItem(placement: .principal) {
-                VStack(spacing: .huiSpaces.primitives.xxxSmall) {
-                    Text(viewModel.moduleItem?.title ?? "")
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.labelLargeBold)
-                    Text(viewModel.courseName)
-                        .foregroundStyle(Color.huiColors.primitives.grey24)
-                        .huiTypography(.labelSmall)
-                }
-            }
+        .onWillDisappear { onShowNavigationBarAndTabBar(true) }
+        .onWillAppear { onShowNavigationBarAndTabBar(false) }
+    }
+
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            HorizonUI.Spinner(size: .small, showBackground: true)
+        }
+    }
+    @ViewBuilder
+    private var introBlock: some View {
+        if isShowHeader {
+            HorizonUI.IntroBlock(
+                moduleName: viewModel.moduleItem?.moduleName ?? "",
+                moduleItemName: viewModel.moduleItem?.title ?? "",
+                duration: "22 Mins", // TODO Set real value
+                dueDate: viewModel.moduleItem?.dueAt?.dateOnlyString ?? "",
+                onBack: {
+                    viewModel.pop(from: viewController)
+                },
+                onMenu: {}
+            )
+            .transition(.move(edge: .top).combined(with: .opacity))
         }
     }
 
@@ -68,23 +100,25 @@ public struct ModuleItemSequenceView: View {
         Button(String(localized: "Cancel", bundle: .core), role: .cancel) {}
     }
 
-    @ViewBuilder
-    private var makeAsDoneButton: some View {
-        if viewModel.moduleItem?.completionRequirementType == .must_mark_done {
-            Button(action: {
-                isShowMakeAsDoneSheet = true
-            }) {
-                Image.huiIcons.moreHoriz
-                    .foregroundStyle(Color.huiColors.text.body)
-            }
-        }
-    }
+    // TODO: - Set the mark done in navBar button later
+//    @ViewBuilder
+//    private var makeAsDoneButton: some View {
+//        if viewModel.moduleItem?.completionRequirementType == .must_mark_done {
+//            Button(action: {
+//                isShowMakeAsDoneSheet = true
+//            }) {
+//                Image.huiIcons.moreHoriz
+//                    .foregroundStyle(Color.huiColors.text.body)
+//            }
+//        }
+//    }
 
     private func goNext() {
         withAnimation {
             viewModel.offsetX = -UIScreen.main.bounds.width * 2
         } completion: {
             viewModel.goNext()
+            isShowHeader = true
         }
     }
 
@@ -93,6 +127,7 @@ public struct ModuleItemSequenceView: View {
             viewModel.offsetX = UIScreen.main.bounds.width * 2
         } completion: {
             viewModel.goPrevious()
+            isShowHeader = true
         }
     }
 
@@ -116,14 +151,23 @@ public struct ModuleItemSequenceView: View {
                 )
                 .id(tools.url?.absoluteString)
             case .moduleItem(controller: let controller, let id):
-                ModuleItemSequenceAssembly.makeModuleItemView(viewController: controller)
-                    .id(id)
+                ModuleItemSequenceAssembly.makeModuleItemView(
+                    isScrollTopReached: $isShowHeader,
+                    viewController: controller
+                )
+                .id(id)
             case .error:
                 ModuleItemSequenceAssembly.makeErrorView {
                     viewModel.retry()
                 }
             case .locked(title: let title, lockExplanation: let lockExplanation):
                 ModuleItemSequenceAssembly.makeLockView(title: title, lockExplanation: lockExplanation)
+            case .assignment(courseID: let courseID, assignmentID: let assignmentID):
+                AssignmentDetailsAssembly.makeView(
+                    courseID: courseID,
+                    assignmentID: assignmentID,
+                    isShowHeader: $isShowHeader
+                )
             }
         }
     }

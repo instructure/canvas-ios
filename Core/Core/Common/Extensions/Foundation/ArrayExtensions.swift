@@ -48,4 +48,13 @@ public extension Array where Element: Equatable {
             append(element)
         }
     }
+
+    func removingDuplicates() -> Self {
+        var copy = [Element]()
+        for element in self {
+            if copy.contains(element) { continue }
+            copy.append(element)
+        }
+        return copy
+    }
 }

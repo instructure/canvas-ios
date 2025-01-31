@@ -20,28 +20,53 @@ import SwiftUI
 
 extension InstUI {
 
-    public struct ListSectionHeader: View {
+    public struct ListSectionHeader<ButtonLabel: View>: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String?
+        private let buttonLabel: ButtonLabel?
+        private let buttonAction: (() -> Void)?
 
-        public init(title: String?) {
+        public init(
+            title: String?,
+            buttonLabel: ButtonLabel?,
+            buttonAction: (() -> Void)? = nil
+        ) {
             self.title = title
+            self.buttonLabel = buttonLabel
+            self.buttonAction = buttonAction
+        }
+
+        public init(title: String?) where ButtonLabel == SwiftUI.EmptyView {
+            self.init(title: title, buttonLabel: nil)
         }
 
         @ViewBuilder
         public var body: some View {
             if let title {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(title)
-                        .font(.semibold14)
-                        .foregroundStyle(Color.textDark)
-                        .paddingStyle(.all, .standard)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack(alignment: .center, spacing: 0) {
+                        Text(title)
+                            .textStyle(.sectionHeader)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .accessibilityAddTraits([.isHeader])
+
+                        if let buttonLabel {
+                            Button(
+                                action: buttonAction ?? { },
+                                label: {
+                                    buttonLabel
+                                        .font(.semibold14)
+                                        .multilineTextAlignment(.trailing)
+                                }
+                            )
+                            .paddingStyle(.leading, .cellAccessoryPadding)
+                        }
+                    }
+                    .paddingStyle(set: .sectionHeader)
+
                     InstUI.Divider()
                 }
-                .background(Color.backgroundLight)
-                .accessibilityAddTraits([.isHeader])
             } else {
                 SwiftUI.EmptyView()
             }
@@ -52,7 +77,13 @@ extension InstUI {
 #if DEBUG
 
 #Preview {
-    InstUI.ListSectionHeader(title: "Section Header Cell")
+    VStack(spacing: 0) {
+        InstUI.Divider()
+        InstUI.ListSectionHeader(title: "Section Header Cell")
+        InstUI.ListSectionHeader(title: "Section Header with Button", buttonLabel: Text("Select all"))
+        InstUI.ListSectionHeader(title: "Section Header with red Button", buttonLabel: Text("Delete all").foregroundStyle(Color.textDanger))
+        InstUI.ListSectionHeader(title: "Section Header with custom styled Button", buttonLabel: Text("This is a big button").textStyle(.heading))
+    }
 }
 
 #endif
