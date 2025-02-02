@@ -37,14 +37,10 @@ public struct PagingButton: View {
 
     public var body: some View {
         if isLoadingMore {
-            HStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(.indeterminateCircle())
-                Spacer()
-            }
-            .padding(.vertical)
-            .listRowBackground(Color.clear)
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
+                .frame(maxWidth: .infinity, alignment: .center)
+                .listRowBackground(Color.clear)
         }
 
         if let cursor = endCursor, isLoadingMore == false {
@@ -54,7 +50,6 @@ public struct PagingButton: View {
                 Text("Load More", bundle: .core)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-            .padding(.vertical)
             .onAppear(perform: {
                 if let loadedCursor, loadedCursor == cursor { return }
                 loadMore(from: cursor)

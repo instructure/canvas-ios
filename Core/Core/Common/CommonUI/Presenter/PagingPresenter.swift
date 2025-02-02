@@ -32,6 +32,9 @@ public protocol PageModel {
 
 public class PagingPresenter<Controller: PagingViewController> {
 
+    public var hasMore: Bool { endCursor != nil }
+    public var isLoadingMore: Bool { isLoadingMoreSubject.value }
+
     private var endCursor: String?
     private var isLoadingMoreSubject = CurrentValueSubject<Bool, Never>(false)
     private var loadedCursor: String?
@@ -40,9 +43,6 @@ public class PagingPresenter<Controller: PagingViewController> {
     public init(controller: Controller) {
         self.controller = controller
     }
-
-    public var hasMore: Bool { endCursor != nil }
-    public var isLoadingMore: Bool { isLoadingMoreSubject.value }
 
     public func onPageLoaded(_ page: Controller.Page) {
         endCursor = page.nextCursor
@@ -64,6 +64,11 @@ public class PagingPresenter<Controller: PagingViewController> {
         loadMore()
     }
 
+    public func setup(in cell: PageLoadingCell) -> PageLoadingCell {
+        cell.observeLoading(isLoadingMoreSubject.eraseToAnyPublisher())
+        return cell
+    }
+
     private func loadMore() {
         guard let endCursor else { return }
 
@@ -72,29 +77,13 @@ public class PagingPresenter<Controller: PagingViewController> {
 
         controller.loadNextPage()
     }
-
-    public func setup(in cell: PageLoadingCell) -> PageLoadingCell {
-        cell.observeLoading(isLoadingMoreSubject.eraseToAnyPublisher())
-        return cell
-    }
 }
 
 public class PageLoadingCell: UITableViewCell {
-    required init?(coder: NSCoder) { nil }
 
     private let progressView = CircleProgressView()
     private let label = UILabel()
-
     private var subscriptions = Set<AnyCancellable>()
-
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-
-        subviews.forEach { subview in
-            guard subview != contentView else { return }
-            subview.isHidden = true
-        }
-    }
 
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -124,6 +113,17 @@ public class PageLoadingCell: UITableViewCell {
             label.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10),
             label.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
         ])
+    }
+
+    required init?(coder: NSCoder) { nil }
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+
+        subviews.forEach { subview in
+            guard subview != contentView else { return }
+            subview.isHidden = true
+        }
     }
 
     override public func prepareForReuse() {
