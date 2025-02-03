@@ -129,9 +129,11 @@ struct AccountView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     AccountAssembly.makePreview()
 }
+#endif
 
 struct AccountEntryRowView: View {
     private let title: String
