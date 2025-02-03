@@ -84,11 +84,11 @@ struct DashboardView: View {
         }
         .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: logoURL))
         .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing {
-            viewModel.notebookDidTap(controller: viewController)
+            viewModel.notebookDidTap(viewController: viewController)
         } onNotificationDidTap: {
             viewModel.notificationsDidTap()
         } onMailDidTap: {
-            viewModel.mailDidTap()
+            viewModel.mailDidTap(viewController: viewController)
         })
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)

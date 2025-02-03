@@ -14,10 +14,16 @@
         }
       }
     },
+    "Account" : {
+
+    },
     "Add a Note" : {
 
     },
     "Add your text" : {
+
+    },
+    "Advanced" : {
 
     },
     "AI Assist" : {
@@ -116,6 +122,9 @@
     "Notes" : {
 
     },
+    "Notifications" : {
+
+    },
     "of" : {
 
     },
@@ -126,6 +135,12 @@
 
     },
     "Overview" : {
+
+    },
+    "Password" : {
+
+    },
+    "Profile" : {
 
     },
     "Question" : {
@@ -149,6 +164,9 @@
     "Search" : {
 
     },
+    "Settings" : {
+
+    },
     "Skillspace" : {
 
     },
@@ -156,6 +174,9 @@
 
     },
     "Summarize this material" : {
+
+    },
+    "Support" : {
 
     },
     "Tap to flip" : {

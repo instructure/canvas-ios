@@ -43,6 +43,7 @@ struct AccountView: View {
             }
             .padding(.huiSpaces.primitives.medium)
         }
+        .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
     }
 
