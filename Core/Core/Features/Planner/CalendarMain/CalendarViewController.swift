@@ -150,7 +150,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     private func updateMonthButtonAccessibilityValue() {
-        monthButton.accessibilityValue = isExpanded ? String(localized: "Expanded, Show a month at a time", bundle: .core) : String(localized: "Collapsed, Show a month at a time", bundle: .core)
+        monthButton.accessibilityValue = isExpanded ? String(localized: "Expanded, Showing a month at a time", bundle: .core) : String(localized: "Collapsed, Showing a week at a time", bundle: .core)
     }
 
     private func updateMonthButtonAccessibilityLabel(with label: String) {
