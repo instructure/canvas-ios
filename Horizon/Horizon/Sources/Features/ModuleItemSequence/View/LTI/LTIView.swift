@@ -23,7 +23,7 @@ import Core
 struct LTIView: View {
 
     @Environment(\.viewController) private var controller
-    @Bindable private var viewModel: LTIViewModel
+    private var viewModel: LTIViewModel
 
     init(viewModel: LTIViewModel) {
         self.viewModel = viewModel
@@ -40,15 +40,12 @@ struct LTIView: View {
     }
 
     private func launchButton() -> some View {
-        Button(String(localized: "Open in a New Tab", bundle: .horizon)) {
+        HorizonUI.TextButton(
+            String(localized: "Open in a New Tab", bundle: .horizon),
+            trailing: .huiIcons.openInNew
+        ) {
             viewModel.launchUrl(weakViewController: controller)
         }
-        .buttonStyle(
-            HorizonUI.ButtonStyles.textLink(
-                .blue,
-                trailing: .huiIcons.openInNew
-            )
-        )
     }
 }
 

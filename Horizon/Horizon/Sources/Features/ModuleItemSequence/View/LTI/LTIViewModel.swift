@@ -20,11 +20,11 @@ import Observation
 import Core
 
 @Observable
-class LTIViewModel {
+final class LTIViewModel {
 
-    // MARK: - Outlets
+    // MARK: - Outputs
 
-    var urlToDisplay: URL?
+    let urlToDisplay: URL?
 
     // MARK: - Private
 
@@ -33,7 +33,6 @@ class LTIViewModel {
     // MARK: - Init
 
     init(
-        environment: AppEnvironment = AppEnvironment.shared,
         tools: LTITools = .init(isQuizLTI: false),
         name: String? = nil
     ) {

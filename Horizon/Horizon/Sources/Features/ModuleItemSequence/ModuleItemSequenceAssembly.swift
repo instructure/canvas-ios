@@ -102,7 +102,6 @@ enum ModuleItemSequenceAssembly {
     ) -> LTIView {
         LTIView(
             viewModel: LTIViewModel(
-                environment: environment,
                 tools: tools,
                 name: name
             )

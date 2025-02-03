@@ -78,10 +78,19 @@ extension HorizonUI.ButtonStyles {
                 ) {}
                 .disabled(isDisabled)
 
-                HorizonUI.PrimaryButton("\(type.rawValue) Button",
-                                        type: type,
-                                        isSmall: isSmall,
-                                        fillsWidth: isSmall) {}
+                HorizonUI.PrimaryButton(
+                    "\(type.rawValue) Button",
+                    type: type,
+                    isSmall: isSmall,
+                    fillsWidth: isSmall
+                ) {}
+                .disabled(isDisabled)
+
+                HorizonUI.TextButton(
+                    "\(type.rawValue) Button",
+                    type: type,
+                    fillsWidth: isSmall
+                ) {}
                 .disabled(isDisabled)
             }
         }
