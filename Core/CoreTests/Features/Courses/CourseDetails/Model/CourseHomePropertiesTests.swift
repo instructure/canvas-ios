@@ -30,10 +30,10 @@ class CourseHomePropertiesTests: XCTestCase {
     }
 
     func testHomeRoute() {
-        XCTAssertEqual(CourseDefaultView.assignments.homeRoute(courseID: "123"), URL(string: "courses/123/assignments"))
-        XCTAssertEqual(CourseDefaultView.feed.homeRoute(courseID: "123"), URL(string: "courses/123/activity_stream"))
-        XCTAssertEqual(CourseDefaultView.modules.homeRoute(courseID: "123"), URL(string: "courses/123/modules"))
-        XCTAssertEqual(CourseDefaultView.syllabus.homeRoute(courseID: "123"), URL(string: "courses/123/syllabus"))
-        XCTAssertEqual(CourseDefaultView.wiki.homeRoute(courseID: "123"), URL(string: "courses/123/pages/front_page"))
+        XCTAssertEqual(CourseDefaultView.assignments.homeRoute(courseID: "123"), URL(string: "/courses/123/assignments"))
+        XCTAssertEqual(CourseDefaultView.feed.homeRoute(courseID: "123"), URL(string: "/courses/123/activity_stream"))
+        XCTAssertEqual(CourseDefaultView.modules.homeRoute(courseID: "123"), URL(string: "/courses/123/modules"))
+        XCTAssertEqual(CourseDefaultView.syllabus.homeRoute(courseID: "123"), URL(string: "/courses/123/syllabus"))
+        XCTAssertEqual(CourseDefaultView.wiki.homeRoute(courseID: "123"), URL(string: "/courses/123/pages/front_page"))
     }
 }
