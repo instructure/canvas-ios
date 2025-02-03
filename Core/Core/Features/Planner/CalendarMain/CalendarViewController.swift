@@ -151,7 +151,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     private func updateMonthButtonAccessibilityValue() {
-        monthButton.accessibilityValue = isExpanded ? String(localized: "Expanded", bundle: .core) : String(localized: "Collapsed", bundle:.core)
+        monthButton.accessibilityValue = isExpanded ? String(localized: "Expanded", bundle: .core) : String(localized: "Collapsed", bundle: .core)
     }
 
     func setExpanded(_ flag: Bool) {
