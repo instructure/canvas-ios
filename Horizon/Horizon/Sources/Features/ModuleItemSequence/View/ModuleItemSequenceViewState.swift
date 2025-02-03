@@ -21,7 +21,7 @@ import Core
 
 enum ModuleItemSequenceViewState {
     case externalURL(url: URL, environment: AppEnvironment, name: String, courseID: String)
-    case externalTool(environment: AppEnvironment, tools: LTITools, name: String?)
+    case externalTool(tools: LTITools, name: String?)
     case moduleItem(controller: UIViewController, id: String)
     case error
     case locked(title: String, lockExplanation: String)
