@@ -41,6 +41,9 @@
     "Answer" : {
 
     },
+    "Are you sure you want to log out?" : {
+
+    },
     "Are you sure you want to proceed?" : {
 
     },
@@ -101,6 +104,9 @@
     "Locked" : {
 
     },
+    "Logout" : {
+
+    },
     "Mark as Done" : {
 
     },
@@ -111,6 +117,9 @@
 
     },
     "Next Up" : {
+
+    },
+    "No" : {
 
     },
     "Notebook" : {

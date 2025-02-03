@@ -18,18 +18,19 @@
 
 import HorizonUI
 import SwiftUI
+import Core
 
 struct AccountView: View {
-    let viewmodel: AccountViewModel
+    @Bindable var viewModel: AccountViewModel
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text(viewmodel.name)
+                Text(viewModel.name)
                     .huiTypography(.h1)
                     .foregroundStyle(Color.huiColors.text.title)
 
-                Text(viewmodel.institution)
+                Text(viewModel.institution)
                     .huiTypography(.h3)
                     .foregroundStyle(Color.huiColors.surface.institution)
 
@@ -45,6 +46,10 @@ struct AccountView: View {
         }
         .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
+        .confirmationAlert(
+            isPresented: $viewModel.isShowingLogoutConfirmationAlert,
+            presenting: viewModel.confirmLogoutViewModel
+        )
     }
 
     private var settingsSection: some View {
@@ -118,7 +123,7 @@ struct AccountView: View {
             isFirstItem: true,
             isLastItem: true,
             didTapRow: {
-                print("logout did tap")
+                viewModel.logoutDidTap()
             }
         )
     }

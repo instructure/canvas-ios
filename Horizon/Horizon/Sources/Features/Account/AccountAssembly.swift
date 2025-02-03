@@ -19,17 +19,21 @@
 final class AccountAssembly {
     static func makeView() -> AccountView {
         AccountView(
-            viewmodel: AccountViewModel(
-                getUserInteractor: GetUserInteractorLive()
+            viewModel: AccountViewModel(
+                getUserInteractor: GetUserInteractorLive(),
+                sessionInteractor: SessionInteractor()
             )
         )
     }
 
     #if DEBUG
     static func makePreview() -> AccountView {
-        let interactor = GetUserInteractorPreview()
-        let viewModel = AccountViewModel(getUserInteractor: interactor)
-        return AccountView(viewmodel: viewModel)
+        let getUserInteractorPreview = GetUserInteractorPreview()
+        let viewModel = AccountViewModel(
+            getUserInteractor: getUserInteractorPreview,
+            sessionInteractor: SessionInteractor()
+        )
+        return AccountView(viewModel: viewModel)
     }
     #endif
 }

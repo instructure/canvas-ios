@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Core
 import Observation
 
 @Observable
@@ -25,19 +26,42 @@ final class AccountViewModel {
 
     private(set) var name: String = ""
     private(set) var institution: String = "Generation Me"
+    var isShowingLogoutConfirmationAlert = false
     
     // MARK: - Private properties
 
+    public let confirmLogoutViewModel = ConfirmationAlertViewModel(
+        title: String(localized: "Logout", bundle: .core),
+        message: String(localized: "Are you sure you want to log out?", bundle: .core),
+        cancelButtonTitle: String(localized: "No", bundle: .core),
+        confirmButtonTitle: String(localized: "Yes", bundle: .core),
+        isDestructive: false
+    )
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init(getUserInteractor: GetUserInteractor) {
+    init(
+        getUserInteractor: GetUserInteractor,
+        sessionInteractor: SessionInteractor
+    ) {
         getUserInteractor
             .getUser()
             .map { $0.name }
             .replaceError(with: "")
             .assign(to: \.name, on: self)
             .store(in: &subscriptions)
+        
+        confirmLogoutViewModel.userConfirmation()
+            .sink {
+                sessionInteractor.logout()
+            }
+            .store(in: &subscriptions)
+    }
+
+    // MARK: - Input functions
+
+    func logoutDidTap() {
+        isShowingLogoutConfirmationAlert = true
     }
 }
