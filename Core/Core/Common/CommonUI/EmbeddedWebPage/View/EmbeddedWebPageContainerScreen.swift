@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct EmbeddedWebPageContainerScreen: View {
     @ObservedObject private var viewModel: EmbeddedWebPageContainerViewModel
+    @Environment(\.viewController) private var viewController
     private var features: [CoreWebViewFeature] = [
         .disableZoom,
         .darkModeForWebDiscussions,
@@ -48,6 +49,10 @@ public struct EmbeddedWebPageContainerScreen: View {
             )
             .onProvisionalNavigationStarted { webView, navigation in
                 viewModel.webView(webView, didStartProvisionalNavigation: navigation)
+            }
+            .navBarItems(leading: viewModel.leadingNavigationButton)
+            .onAppear {
+                viewModel.viewController = viewController.value
             }
         }
         .navigationTitle(viewModel.navTitle, subtitle: viewModel.subTitle)

@@ -43,6 +43,12 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
         self.newDiscussionPushSource = newDiscussionPushSource
     }
 
+    public func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton? {
+        .cancel(isBackgroundContextColor: true) { [router] in
+            router.dismiss(host)
+        }
+    }
+
     public func webView(
         _ webView: WKWebView,
         didStartProvisionalNavigation navigation: WKNavigation!

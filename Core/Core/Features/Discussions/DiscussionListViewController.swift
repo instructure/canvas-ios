@@ -149,7 +149,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
             to: "\(context.pathComponent)/discussion_topics/new",
             userInfo: [DiscussionsAssembly.SourceViewKey: self],
             from: self,
-            options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true)
+            options: .modal(isDismissable: false, embedInNav: true)
         )
     }
 

@@ -138,7 +138,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
             to: "\(context.pathComponent)/announcements/new",
             userInfo: [DiscussionsAssembly.SourceViewKey: self],
             from: self,
-            options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true)
+            options: .modal(isDismissable: false, embedInNav: true)
         )
     }
 

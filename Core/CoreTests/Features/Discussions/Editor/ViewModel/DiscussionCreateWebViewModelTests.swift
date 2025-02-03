@@ -80,6 +80,22 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
         XCTAssertTrue(router.lastRoutedTo("/courses/123/discussion_topics/456", withOptions: .detail))
     }
 
+    func test_cancelButton_dismisses() {
+        let host = UIViewController()
+        let testee = DiscussionCreateWebViewModel(
+            isAnnouncement: true,
+            router: router,
+            newDiscussionPushSource: nil
+        )
+        let cancelButton = testee.leadingNavigationButton(host: host)
+
+        // WHEN
+        cancelButton?.action()
+
+        // THEN
+        XCTAssertEqual(router.dismissed, host)
+    }
+
     private class MockWebView: WKWebView {
         var mockedUrl: URL?
 

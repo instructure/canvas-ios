@@ -20,7 +20,8 @@ import Foundation
 import WebKit
 
 public class EmbeddedWebPageContainerViewModel: ObservableObject {
-    // MARK: - SwiftUI Interface
+    // MARK: - Outputs
+    @Published public private(set) var leadingNavigationButton: InstUI.NavigationBarButton?
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
 
@@ -33,6 +34,17 @@ public class EmbeddedWebPageContainerViewModel: ObservableObject {
         let result = WKWebViewConfiguration()
         result.websiteDataStore = WKWebsiteDataStore.nonPersistent()
         return result
+    }
+
+    // MARK: - Inputs
+
+    /// The view controller presenting the view.
+    public var viewController: UIViewController? {
+        didSet {
+            if let viewController {
+                leadingNavigationButton = webPageModel.leadingNavigationButton(host: viewController)
+            }
+        }
     }
 
     // MARK: - Private Properties
