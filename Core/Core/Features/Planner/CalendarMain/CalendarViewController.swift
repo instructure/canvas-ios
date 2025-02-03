@@ -94,7 +94,6 @@ class CalendarViewController: ScreenViewTrackableViewController {
         monthButton.configuration?.background.backgroundColor = .clear
         // trailing = 8 (text-image spacing) + 20 (image width) + 4 (image right padding)
         monthButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32)
-        monthButton.accessibilityLabel = String(localized: "Show a month at a time", bundle: .core)
         updateMonthButtonAccessibilityValue()
 
         filterButton.setTitle(String(localized: "Calendars", bundle: .core), for: .normal)
@@ -151,12 +150,15 @@ class CalendarViewController: ScreenViewTrackableViewController {
     }
 
     private func updateMonthButtonAccessibilityValue() {
-        monthButton.accessibilityValue = isExpanded ? String(localized: "Expanded", bundle: .core) : String(localized: "Collapsed", bundle: .core)
+        monthButton.accessibilityValue = isExpanded ? String(localized: "Expanded, Show a month at a time", bundle: .core) : String(localized: "Collapsed, Show a month at a time", bundle: .core)
+    }
+
+    private func updateMonthButtonAccessibilityLabel(with label: String) {
+        monthButton.accessibilityLabel = label
     }
 
     func setExpanded(_ flag: Bool) {
         isExpanded = flag
-        monthButton.isSelected = flag
         UIView.animate(withDuration: 0.3, animations: updateExpanded)
     }
 
@@ -189,6 +191,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
         yearLabel.text = yearFormatter.string(from: selectedDate)
 
         let monthTitle = monthFormatter.string(from: selectedDate)
+        updateMonthButtonAccessibilityLabel(with: monthTitle)
         if monthButton.title(for: .normal) != monthTitle {
             animateMonthTitle(monthTitle)
         }
