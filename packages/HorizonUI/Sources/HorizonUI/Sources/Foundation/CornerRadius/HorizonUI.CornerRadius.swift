@@ -19,7 +19,7 @@
 import SwiftUI
 
 public extension HorizonUI {
-    enum CornerRadius: Float, CaseIterable {
+    enum CornerRadius: CaseIterable {
         case level1
         case level2
         case level3
