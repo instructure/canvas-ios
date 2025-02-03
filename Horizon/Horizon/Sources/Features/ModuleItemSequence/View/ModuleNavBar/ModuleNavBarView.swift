@@ -30,6 +30,7 @@ struct ModuleNavBarView: View {
     private let router: Router
     private let isNextButtonEnabled: Bool
     private let isPreviousButtonEnabled: Bool
+    private let isShowUtilityButtons: Bool
     private let didTapNext: () -> Void
     private let didTapPrevious: () -> Void
 
@@ -37,32 +38,33 @@ struct ModuleNavBarView: View {
         router: Router,
         isNextButtonEnabled: Bool,
         isPreviousButtonEnabled: Bool,
+        isShowUtilityButtons: Bool = true,
         didTapNext: @escaping () -> Void,
         didTapPrevious: @escaping () -> Void
     ) {
         self.router = router
         self.isNextButtonEnabled = isNextButtonEnabled
         self.isPreviousButtonEnabled = isPreviousButtonEnabled
+        self.isShowUtilityButtons = isShowUtilityButtons
         self.didTapNext = didTapNext
         self.didTapPrevious = didTapPrevious
     }
 
     var body: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: .zero) {
             previousButton
 
             Spacer()
-            HStack(spacing: 8) {
-                buttonView(type: .tts)
-                chatBotButton
-                buttonView(type: .notebook)
+            if isShowUtilityButtons {
+                HStack(spacing: .huiSpaces.primitives.xSmall) {
+                    buttonView(type: .tts)
+                    chatBotButton
+                    buttonView(type: .notebook)
+                }
             }
             Spacer()
             nextButton
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, 16)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var previousButton: some View {
