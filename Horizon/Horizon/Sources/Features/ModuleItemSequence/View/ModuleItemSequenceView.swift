@@ -145,7 +145,6 @@ public struct ModuleItemSequenceView: View {
                 .id(url.absoluteString)
             case .externalTool(environment: let environment, tools: let tools, name: let name):
                 ModuleItemSequenceAssembly.makeLTIView(
-                    environment: environment,
                     tools: tools,
                     name: name
                 )

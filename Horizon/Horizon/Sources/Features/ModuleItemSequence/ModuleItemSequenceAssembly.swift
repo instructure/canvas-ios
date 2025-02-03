@@ -96,7 +96,6 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeLTIView(
-        environment: AppEnvironment,
         tools: LTITools,
         name: String?
     ) -> LTIView {
