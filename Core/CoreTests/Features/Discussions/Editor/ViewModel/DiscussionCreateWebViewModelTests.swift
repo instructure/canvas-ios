@@ -77,7 +77,7 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
         // THEN
         wait(for: [discussionDownloadExpectation], timeout: 10)
         XCTAssertEqual(router.dismissed, webViewHost)
-        XCTAssertTrue(router.lastRoutedTo("/courses/123/discussion_topics/456"))
+        XCTAssertTrue(router.lastRoutedTo("/courses/123/discussion_topics/456", withOptions: .detail))
     }
 
     private class MockWebView: WKWebView {

@@ -89,7 +89,7 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
 
         router.dismiss(webViewController) { [router, newDiscussionPushSource] in
             if let newDiscussionPushSource {
-                router.route(to: discussionUrl, from: newDiscussionPushSource)
+                router.route(to: discussionUrl, from: newDiscussionPushSource, options: .detail)
             }
         }
     }
