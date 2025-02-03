@@ -25,7 +25,8 @@ final class AccountViewModel {
     // MARK: - Outputs
 
     private(set) var name: String = ""
-    private(set) var institution: String = "Generation Me"
+    // TODO: set actual value when PR #3100 is merged
+    private(set) var institution: String = "Institution Name"
     var isShowingLogoutConfirmationAlert = false
 
     // MARK: - Private properties
