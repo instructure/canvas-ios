@@ -63,26 +63,26 @@ struct AccountView: View {
                     title: String(localized: "Profile", bundle: .horizon),
                     isFirstItem: true,
                     didTapRow: {
-                        print("profile did tap")
+                        viewModel.profileDidTap()
                     }
                 )
                 AccountEntryRowView(
                     title: String(localized: "Password", bundle: .horizon),
                     didTapRow: {
-                        print("password did tap")
+                        viewModel.passwordDidTap()
                     }
                 )
                 AccountEntryRowView(
                     title: String(localized: "Notifications", bundle: .horizon),
                     didTapRow: {
-                        print("notifications did tap")
+                        viewModel.notificationsDidTap()
                     }
                 )
                 AccountEntryRowView(
                     title: String(localized: "Advanced", bundle: .horizon),
                     isLastItem: true,
                     didTapRow: {
-                        print("advanced did tap")
+                        viewModel.advancedDidTap()
                     }
                 )
             }
@@ -101,7 +101,7 @@ struct AccountView: View {
                     image: .huiIcons.openInNew,
                     isFirstItem: true,
                     didTapRow: {
-                        print("community did tap")
+                        viewModel.betaCommunityDidTap()
                     }
                 )
                 AccountEntryRowView(
@@ -109,7 +109,7 @@ struct AccountView: View {
                     image: .huiIcons.openInNew,
                     isLastItem: true,
                     didTapRow: {
-                        print("feedback did tap")
+                        viewModel.giveFeedbackDidTap()
                     }
                 )
             }

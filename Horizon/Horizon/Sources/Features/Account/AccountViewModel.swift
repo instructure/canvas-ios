@@ -27,7 +27,7 @@ final class AccountViewModel {
     private(set) var name: String = ""
     private(set) var institution: String = "Generation Me"
     var isShowingLogoutConfirmationAlert = false
-    
+
     // MARK: - Private properties
 
     public let confirmLogoutViewModel = ConfirmationAlertViewModel(
@@ -51,7 +51,7 @@ final class AccountViewModel {
             .replaceError(with: "")
             .assign(to: \.name, on: self)
             .store(in: &subscriptions)
-        
+
         confirmLogoutViewModel.userConfirmation()
             .sink {
                 sessionInteractor.logout()
@@ -60,6 +60,18 @@ final class AccountViewModel {
     }
 
     // MARK: - Input functions
+
+    func profileDidTap() {}
+
+    func passwordDidTap() {}
+
+    func notificationsDidTap() {}
+
+    func advancedDidTap() {}
+
+    func betaCommunityDidTap() {}
+
+    func giveFeedbackDidTap() {}
 
     func logoutDidTap() {
         isShowingLogoutConfirmationAlert = true
