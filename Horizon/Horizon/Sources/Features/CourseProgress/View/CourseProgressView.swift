@@ -39,7 +39,7 @@ struct CourseProgressView: View {
                 ModuleItemSequenceAssembly.makeModuleNavBarView(
                     isNextButtonEnabled: viewModel.isNextButtonEnabled,
                     isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled,
-                    isShowAIButtons: false
+                    isShowUtilityButtons: false
                 ) {
                     withAnimation {
                         viewModel.goToNextModule()

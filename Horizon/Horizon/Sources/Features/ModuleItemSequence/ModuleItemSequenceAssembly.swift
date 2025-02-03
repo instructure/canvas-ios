@@ -60,7 +60,7 @@ enum ModuleItemSequenceAssembly {
     static func makeModuleNavBarView(
         isNextButtonEnabled: Bool,
         isPreviousButtonEnabled: Bool,
-        isShowAIButtons: Bool = true,
+        isShowUtilityButtons: Bool = true,
         didTapNext: @escaping () -> Void,
         didTapPrevious: @escaping () -> Void
     ) -> ModuleNavBarView {
@@ -69,7 +69,7 @@ enum ModuleItemSequenceAssembly {
             router: router,
             isNextButtonEnabled: isNextButtonEnabled,
             isPreviousButtonEnabled: isPreviousButtonEnabled,
-            isShowAIButtons: isShowAIButtons,
+            isShowUtilityButtons: isShowUtilityButtons,
             didTapNext: didTapNext,
             didTapPrevious: didTapPrevious
         )

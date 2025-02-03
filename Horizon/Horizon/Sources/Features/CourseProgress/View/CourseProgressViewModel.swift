@@ -38,20 +38,21 @@ final class CourseProgressViewModel {
     private let router: Router
     private let course: HCourse
     var currentModuleItem: HModuleItem?
-    var onSelectModuleItem: ((HModuleItem?) -> Void)?
+    private let onSelectModuleItem: ((HModuleItem?) -> Void)?
 
     // MARK: - Init
 
     init(
         router: Router,
         course: HCourse,
-        currentModuleItem: HModuleItem?
+        currentModuleItem: HModuleItem?,
+        onSelectModuleItem: ((HModuleItem?) -> Void)?
     ) {
         self.router = router
         self.currentModuleItem = currentModuleItem
         self.course = course
         self.modulesCount = course.modules.count
-
+        self.onSelectModuleItem = onSelectModuleItem
         currentModuleIndex = course.modules.firstIndex(where: { $0.id == currentModuleItem?.moduleID }) ?? 0
         updateCurrentModuleItems()
     }

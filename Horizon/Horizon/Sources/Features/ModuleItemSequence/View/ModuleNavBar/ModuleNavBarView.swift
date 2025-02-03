@@ -30,7 +30,7 @@ struct ModuleNavBarView: View {
     private let router: Router
     private let isNextButtonEnabled: Bool
     private let isPreviousButtonEnabled: Bool
-    private let isShowAIButtons: Bool
+    private let isShowUtilityButtons: Bool
     private let didTapNext: () -> Void
     private let didTapPrevious: () -> Void
 
@@ -38,14 +38,14 @@ struct ModuleNavBarView: View {
         router: Router,
         isNextButtonEnabled: Bool,
         isPreviousButtonEnabled: Bool,
-        isShowAIButtons: Bool = true,
+        isShowUtilityButtons: Bool = true,
         didTapNext: @escaping () -> Void,
         didTapPrevious: @escaping () -> Void
     ) {
         self.router = router
         self.isNextButtonEnabled = isNextButtonEnabled
         self.isPreviousButtonEnabled = isPreviousButtonEnabled
-        self.isShowAIButtons = isShowAIButtons
+        self.isShowUtilityButtons = isShowUtilityButtons
         self.didTapNext = didTapNext
         self.didTapPrevious = didTapPrevious
     }
@@ -55,7 +55,7 @@ struct ModuleNavBarView: View {
             previousButton
 
             Spacer()
-            if isShowAIButtons {
+            if isShowUtilityButtons {
                 HStack(spacing: .huiSpaces.primitives.xSmall) {
                     buttonView(type: .tts)
                     chatBotButton

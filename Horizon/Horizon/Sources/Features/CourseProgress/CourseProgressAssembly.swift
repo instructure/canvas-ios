@@ -29,9 +29,9 @@ struct CourseProgressAssembly {
         let viewModel = CourseProgressViewModel(
             router: environment.router,
             course: course,
-            currentModuleItem: currentModuleItem
+            currentModuleItem: currentModuleItem,
+            onSelectModuleItem: onSelectModuleItem
         )
-        viewModel.onSelectModuleItem = onSelectModuleItem
         let view = CourseProgressView(viewModel: viewModel)
         let viewController = CoreHostingController(view)
         if let presentationController = viewController.sheetPresentationController {
@@ -68,7 +68,7 @@ struct CourseProgressAssembly {
             router: AppEnvironment.shared.router,
             course: course,
             currentModuleItem: moduleItems.first
-        )
+       ) { _ in }
         return CourseProgressView(viewModel: viewModel)
     }
 }

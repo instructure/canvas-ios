@@ -74,7 +74,7 @@ final class ModuleItemSequenceViewModel {
 
         fetchModuleItemSequence(assetId: assetID)
 
-        moduleItemInteractor.getSelectedCourse()
+        moduleItemInteractor.getCourse()
             .sink { [weak self] course in
                 self?.courseName = course.name
                 self?.course = course

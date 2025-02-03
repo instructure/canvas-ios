@@ -37,7 +37,7 @@ protocol ModuleItemSequenceInteractor {
         itemID: String
     ) -> AnyPublisher<[HModuleItem], Error>
 
-    func getSelectedCourse() -> AnyPublisher<HCourse, Never>
+    func getCourse() -> AnyPublisher<HCourse, Never>
 }
 
 final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
@@ -150,7 +150,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getSelectedCourse() -> AnyPublisher<HCourse, Never> {
+    func getCourse() -> AnyPublisher<HCourse, Never> {
         ReactiveStore(useCase: GetCourse(courseID: courseID))
             .getEntities()
             .replaceError(with: [])

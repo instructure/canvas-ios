@@ -54,7 +54,7 @@ final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
         nil
     }
 
-    func getSelectedCourse() -> AnyPublisher<HCourse, Never> {
+    func getCourse() -> AnyPublisher<HCourse, Never> {
         Just(HCourse(id: "", name: "", imageURL: nil, overviewDescription: "", modules: []))
             .eraseToAnyPublisher()
     }
