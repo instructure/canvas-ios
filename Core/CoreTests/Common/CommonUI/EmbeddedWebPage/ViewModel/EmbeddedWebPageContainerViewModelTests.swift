@@ -20,7 +20,7 @@
 import WebKit
 import XCTest
 
-class EmbeddedWebPageScreenViewModelTests: CoreTestCase {
+class EmbeddedWebPageContainerViewModelTests: CoreTestCase {
     let timezoneName = TimeZone.current.identifier
     let locale = Locale.current.identifier.replacingOccurrences(of: "_", with: "-")
     private let mockWebPageViewModel = MockWebPageViewModel()
