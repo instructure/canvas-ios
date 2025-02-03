@@ -19,7 +19,7 @@
 import SwiftUI
 
 public extension HorizonUI {
-    enum CornerRadius: CaseIterable {
+    enum CornerRadius: Float, CaseIterable {
         case level1
         case level2
         case level3
@@ -27,9 +27,9 @@ public extension HorizonUI {
         case level5
         case level6
 
-        typealias CornerAttributes = SmoothRoundedRectangle.CornerAttributes
+        public typealias CornerAttributes = SmoothRoundedRectangle.CornerAttributes
 
-        var attributes: CornerAttributes {
+        public var attributes: CornerAttributes {
             switch self {
             case .level1:
                 CornerAttributes(radius: 8, smoothness: 0)

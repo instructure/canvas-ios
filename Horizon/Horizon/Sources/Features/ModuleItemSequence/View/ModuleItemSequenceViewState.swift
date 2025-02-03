@@ -20,7 +20,7 @@ import Foundation
 import Core
 
 enum ModuleItemSequenceViewState {
-    case externalURL(url: URL, environment: AppEnvironment, name: String, courseID: String)
+    case externalURL(url: URL, name: String, courseID: String)
     case externalTool(environment: AppEnvironment, tools: LTITools, name: String?)
     case moduleItem(controller: UIViewController, id: String)
     case error
