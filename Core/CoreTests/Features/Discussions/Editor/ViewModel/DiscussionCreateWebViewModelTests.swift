@@ -32,7 +32,7 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
     func test_init_discussion() {
         let testee = DiscussionCreateWebViewModel(
             isAnnouncement: false,
-            discussionListViewController: discussionList
+            newDiscussionPushSource: discussionList
         )
 
         XCTAssertEqual(testee.urlPathComponent, "/discussion_topics/new")
@@ -43,7 +43,7 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
     func test_init_announcement() {
         let testee = DiscussionCreateWebViewModel(
             isAnnouncement: true,
-            discussionListViewController: discussionList
+            newDiscussionPushSource: discussionList
         )
 
         XCTAssertEqual(testee.urlPathComponent, "/discussion_topics/new")
@@ -62,7 +62,7 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
         let testee = DiscussionCreateWebViewModel(
             isAnnouncement: true,
             router: router,
-            discussionListViewController: mockDiscussionList
+            newDiscussionPushSource: mockDiscussionList
         )
         let discussionDownloadExpectation = expectation(description: "Discussion Downloaded")
         let request = GetDiscussionTopicRequest(context: .course("123"), topicID: "456", include: [.sections])

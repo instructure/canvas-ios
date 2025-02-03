@@ -19,7 +19,7 @@
 import Foundation
 import WebKit
 
-public class EmbeddedWebPageScreenViewModel: ObservableObject {
+public class EmbeddedWebPageContainerViewModel: ObservableObject {
     // MARK: - SwiftUI Interface
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?

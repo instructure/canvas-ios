@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-public struct EmbeddedWebPageScreen: View {
-    @ObservedObject private var viewModel: EmbeddedWebPageScreenViewModel
+public struct EmbeddedWebPageContainerScreen: View {
+    @ObservedObject private var viewModel: EmbeddedWebPageContainerViewModel
     private var features: [CoreWebViewFeature] = [
         .disableZoom,
         .darkModeForWebDiscussions,
@@ -28,7 +28,7 @@ public struct EmbeddedWebPageScreen: View {
     ]
 
     public init(
-        viewModel: EmbeddedWebPageScreenViewModel,
+        viewModel: EmbeddedWebPageContainerViewModel,
         isPullToRefreshEnabled: Bool
     ) {
         self.viewModel = viewModel

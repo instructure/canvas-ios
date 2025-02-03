@@ -62,13 +62,13 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/7/modules/items/6") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/9/module_item_redirect/8") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
-        XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<EmbeddedWebPageScreen>)
+        XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<EmbeddedWebPageContainerScreen>)
         XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
-        XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<EmbeddedWebPageScreen>)
+        XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<EmbeddedWebPageContainerScreen>)
         XCTAssert(router.match("/courses/2/discussions") is DiscussionListViewController)
         XCTAssert(router.match("/courses/2/discussion_topics") is DiscussionListViewController)
-        XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<EmbeddedWebPageScreen>)
-        XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<EmbeddedWebPageScreen>)
+        XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<EmbeddedWebPageContainerScreen>)
+        XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<EmbeddedWebPageContainerScreen>)
         XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions") is SubmissionListViewController)
@@ -128,8 +128,8 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageScreen>)
-        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageScreen>)
+        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageContainerScreen>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageContainerScreen>)
     }
 
     func testNativeAnnouncementDiscussionDetailsRouteWhenDeviceIsOffline() throws {
@@ -143,6 +143,6 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/courses/2/announcements/3") is CoreHostingController<EmbeddedWebPageScreen>)
+        XCTAssert(router.match("/courses/2/announcements/3") is CoreHostingController<EmbeddedWebPageContainerScreen>)
     }
 }

@@ -24,21 +24,23 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
     public let queryItems: [URLQueryItem]
 
     private let router: Router
-    private let discussionListViewController: UIViewController?
+    private let newDiscussionPushSource: UIViewController?
 
     /// - parameters:
-    ///   - discussionListViewController: If this variable is present then after creating a discussion the newly created discussion will be pushed using this view controller. If this variable is nil then only the create modal will be dismissed.
+    ///   - newDiscussionPushSource: If this variable is present then after creating a discussion,
+    ///   the newly created discussion will be pushed using this view controller.
+    ///   If this variable is nil then only the create modal will be dismissed.
     public init(
         isAnnouncement: Bool,
         router: Router = AppEnvironment.shared.router,
-        discussionListViewController: UIViewController?
+        newDiscussionPushSource: UIViewController?
     ) {
         navigationBarTitle = isAnnouncement ? String(localized: "New Announcement", bundle: .core)
                                             : String(localized: "New Discussion", bundle: .core)
         queryItems = isAnnouncement ? [URLQueryItem(name: "is_announcement", value: "true")]
                                     : []
         self.router = router
-        self.discussionListViewController = discussionListViewController
+        self.newDiscussionPushSource = newDiscussionPushSource
     }
 
     public func webView(
@@ -85,21 +87,21 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
             return
         }
 
-        router.dismiss(webViewController) { [router, discussionListViewController] in
-            if let discussionListViewController {
-                router.route(to: discussionUrl, from: discussionListViewController)
+        router.dismiss(webViewController) { [router, newDiscussionPushSource] in
+            if let newDiscussionPushSource {
+                router.route(to: discussionUrl, from: newDiscussionPushSource)
             }
         }
     }
 }
 
-extension URL {
+private extension URL {
 
-    internal var discussionTopicId: String? {
+    var discussionTopicId: String? {
         guard
-            self.pathComponents.count > 2,
-            self.pathComponents[self.pathComponents.count - 2] == "discussion_topics",
-            let topicIdString = self.pathComponents.last,
+            pathComponents.count > 2,
+            pathComponents[pathComponents.count - 2] == "discussion_topics",
+            let topicIdString = pathComponents.last,
             topicIdString.isNotEmpty,
             topicIdString.containsOnlyNumbers
         else {

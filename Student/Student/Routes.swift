@@ -112,7 +112,7 @@ let router = Router(routes: [
 
     RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
-        return DiscussionsAssembly.makeDiscussionEditor(
+        return DiscussionsAssembly.makeDiscussionEditViewController(
             context: context,
             topicID: topicID,
             isAnnouncement: true
@@ -223,7 +223,7 @@ let router = Router(routes: [
     },
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
-        return DiscussionsAssembly.makeDiscussionEditor(
+        return DiscussionsAssembly.makeDiscussionEditViewController(
             context: context,
             topicID: topicID,
             isAnnouncement: false
@@ -566,16 +566,16 @@ private func discussionViewController(
         return DiscussionDetailsViewController.create(context: context, topicID: discussionId)
     } else {
         let isAnnouncement = (params["announcementID"] != nil)
-        let webPageModel = DiscussionDetailsWebPage(
+        let webPageModel = DiscussionDetailsWebViewModel(
             discussionId: discussionId,
             isAnnouncement: isAnnouncement
         )
-        let viewModel = EmbeddedWebPageScreenViewModel(
+        let viewModel = EmbeddedWebPageContainerViewModel(
             context: context,
             webPageModel: webPageModel
         )
         return CoreHostingController(
-            EmbeddedWebPageScreen(
+            EmbeddedWebPageContainerScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
             )

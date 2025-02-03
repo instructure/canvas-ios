@@ -31,7 +31,7 @@ class EmbeddedWebPageScreenViewModelTests: CoreTestCase {
         AppEnvironment.shared.currentSession = nil
 
         // WHEN
-        let testee = EmbeddedWebPageScreenViewModel(
+        let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
             webPageModel: mockWebPageViewModel
         )
@@ -44,7 +44,7 @@ class EmbeddedWebPageScreenViewModelTests: CoreTestCase {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
 
         // WHEN
-        let testee = EmbeddedWebPageScreenViewModel(
+        let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
             webPageModel: mockWebPageViewModel
         )
@@ -60,7 +60,7 @@ class EmbeddedWebPageScreenViewModelTests: CoreTestCase {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
 
         // WHEN
-        let testee = EmbeddedWebPageScreenViewModel(
+        let testee = EmbeddedWebPageContainerViewModel(
             context: .group("1"),
             webPageModel: mockWebPageViewModel
         )
@@ -78,7 +78,7 @@ class EmbeddedWebPageScreenViewModelTests: CoreTestCase {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
 
         // WHEN
-        let testee = EmbeddedWebPageScreenViewModel(
+        let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
             webPageModel: mockWebPageViewModel
         )
@@ -95,7 +95,7 @@ class EmbeddedWebPageScreenViewModelTests: CoreTestCase {
         AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "https://instructure.com")!, userID: "", userName: "")
 
         // WHEN
-        let testee = EmbeddedWebPageScreenViewModel(
+        let testee = EmbeddedWebPageContainerViewModel(
             context: .group("1"),
             webPageModel: mockWebPageViewModel
         )
@@ -110,7 +110,7 @@ class EmbeddedWebPageScreenViewModelTests: CoreTestCase {
     }
 
     func testForwardsProvisionalNavigationStartCallback() {
-        let testee = EmbeddedWebPageScreenViewModel(
+        let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
             webPageModel: mockWebPageViewModel
         )

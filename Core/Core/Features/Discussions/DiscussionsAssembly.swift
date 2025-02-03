@@ -20,16 +20,17 @@ public enum DiscussionsAssembly {
     public static let SourceViewKey = "SourceViewKey"
 
     /// - parameters:
-    ///   - routeUserInfo: If the discussion list is passed in this dictionary with the key `SourceViewKey`, then the newly created discussion will be pushed after it has been created.
+    ///   - routeUserInfo: If the discussion list is passed in this dictionary with the key `SourceViewKey`,
+    ///    then the newly created discussion will be pushed after it has been created.
     public static func makeDiscussionCreateViewController(
         context: Context,
         isAnnouncement: Bool,
         routeUserInfo: [String: Any]? = [:]
     ) -> UIViewController {
-        let discussionListViewController = routeUserInfo?[SourceViewKey] as? UIViewController
+        let newDiscussionPushSource = routeUserInfo?[SourceViewKey] as? UIViewController
         let webPageModel = DiscussionCreateWebViewModel(
             isAnnouncement: isAnnouncement,
-            discussionListViewController: discussionListViewController
+            newDiscussionPushSource: newDiscussionPushSource
         )
         return makeEmbeddedWebPage(
             context: context,
@@ -37,7 +38,7 @@ public enum DiscussionsAssembly {
         )
     }
 
-    public static func makeDiscussionEditor(
+    public static func makeDiscussionEditViewController(
         context: Context,
         topicID: String,
         isAnnouncement: Bool
@@ -56,12 +57,12 @@ public enum DiscussionsAssembly {
         context: Context,
         webPageModel: EmbeddedWebPageViewModel
     ) -> UIViewController {
-        let viewModel = EmbeddedWebPageScreenViewModel(
+        let viewModel = EmbeddedWebPageContainerViewModel(
             context: context,
             webPageModel: webPageModel
         )
         return CoreHostingController(
-            EmbeddedWebPageScreen(
+            EmbeddedWebPageContainerScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
             )
