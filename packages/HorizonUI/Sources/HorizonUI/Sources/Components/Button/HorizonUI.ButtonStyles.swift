@@ -190,7 +190,7 @@ extension HorizonUI.ButtonStyles {
             case .white:
                 return Color.huiColors.text.title
             case .red:
-                return Color.huiColors.text.warning
+                return Color.huiColors.text.error
             }
         }
 
