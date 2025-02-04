@@ -59,13 +59,15 @@ final class DashboardViewModel: ObservableObject {
 
     // MARK: - Inputs
 
-    func notebookDidTap(controller: WeakViewController ) {
-        router.route(to: "/notebook", from: controller)
+    func notebookDidTap(viewController: WeakViewController ) {
+        router.route(to: "/notebook", from: viewController)
     }
 
     func notificationsDidTap() {}
 
-    func mailDidTap() {}
+    func mailDidTap(viewController: WeakViewController) {
+        router.route(to: "/conversations", from: viewController)
+    }
 
     func navigateToCourseDetails(url: URL, viewController: WeakViewController) {
         router.route(to: url, from: viewController)
