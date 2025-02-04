@@ -36,17 +36,19 @@ final class CourseDetailsViewModel {
 
     // MARK: - Init
 
+    /// The course parameter can be provided for immediate display. But doesn't have to be for flexibility, such as deep linking
     init(
         router: Router,
         getCoursesInteractor: GetCoursesInteractor,
-        course: HCourse,
+        courseID: String,
+        course: HCourse?,
         onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
-        self.course = course
+        self.course = course ?? .init()
         self.onShowTabBar = onShowTabBar
 
-        getCoursesInteractor.getCourse(id: course.id)
+        getCoursesInteractor.getCourse(id: courseID)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
                 self.course = course

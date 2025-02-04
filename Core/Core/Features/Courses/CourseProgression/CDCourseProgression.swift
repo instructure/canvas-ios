@@ -98,9 +98,7 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
         model.incompleteModules = incompleteModules
             .map { Module.save($0, for: courseId, in: context) }
             .compactMap { $0 }
-
-        print("CDCourseProgression: Incomplete Modules length for \(courseId): \(model.incompleteModules.count)")
-
+        
         return model
     }
 
@@ -138,8 +136,6 @@ extension Module {
         newModule.items = incompleteItems.map {
             ModuleItem.save($0, for: courseID, for: moduleID, in: context)
         }
-
-        print("CDCourseProgression: Incomplete Module Items length for courseID: \(courseID), moduleID: \(moduleID): \(newModule.items.count)")
 
         return newModule
     }

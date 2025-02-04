@@ -65,11 +65,7 @@ final class CourseListViewModel: ObservableObject {
     }
 
     func routeToCourse(course: CourseListCourse, vc: WeakViewController) {
-        var userInfo: [String: Any] = [:]
-        if let hCourse = hCourses.first(where: { $0.id == course.id }) {
-            userInfo["course"] = hCourse
-        }
-        router.route(to: "/courses/\(course.id)", userInfo: userInfo, from: vc)
+        router.route(to: "/courses/\(course.id)", from: vc)
     }
 
     struct CourseListCourse: Identifiable {

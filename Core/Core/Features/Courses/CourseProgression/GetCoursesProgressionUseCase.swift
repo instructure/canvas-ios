@@ -52,14 +52,6 @@ public class GetCoursesProgressionUseCase: APIUseCase {
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
         enrollments.forEach { enrollment in
-
-            let courseId = enrollment.course.id
-            let incompleteModules = enrollment.course.usersConnection?.nodes?.first?.courseProgression?.incompleteModulesConnection?.nodes ?? []
-            print("GetCoursesProgressionUseCase: Incomplete Modules count for courseId: \(courseId): \(incompleteModules.count)")
-            incompleteModules.forEach { incompleteModule in
-                print("\tGetCoursesProgressionUseCase: Incomplete Module Items count: \(incompleteModule.incompleteItemsConnection?.nodes.count ?? 0)")
-            }
-
             CDCourseProgression.save(enrollment, in: client)
         }
     }
