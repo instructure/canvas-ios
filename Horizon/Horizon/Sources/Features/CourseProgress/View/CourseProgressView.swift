@@ -28,32 +28,21 @@ struct CourseProgressView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: .huiSpaces.primitives.mediumSmall) {
-                headerView
-                ModuleItemListView(selectedModuleItem: viewModel.currentModuleItem, items: viewModel.moduleItems) { selectedItem in
-                    viewModel.currentModuleItem = selectedItem
-                }
-                .animation(.smooth, value: viewModel.currentModuleItem)
-
-                ModuleItemSequenceAssembly.makeModuleNavBarView(
-                    isNextButtonEnabled: viewModel.isNextButtonEnabled,
-                    isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled,
-                    isShowUtilityButtons: false
-                ) {
-                    withAnimation {
-                        viewModel.goToNextModule()
+        VStack(spacing: .zero) {
+            ScrollView {
+                VStack(spacing: .huiSpaces.primitives.mediumSmall) {
+                    headerView
+                    ModuleItemListView(selectedModuleItem: viewModel.currentModuleItem, items: viewModel.moduleItems) { selectedItem in
+                        viewModel.currentModuleItem = selectedItem
                     }
-                } didTapPrevious: {
-                    withAnimation {
-                        viewModel.goToPreviousModule()
-                    }
+                    .animation(.smooth, value: viewModel.currentModuleItem)
                 }
-                Spacer()
             }
-            .animation(.smooth, value: viewModel.currentModuleItem)
-            .padding(.horizontal, .huiSpaces.primitives.medium)
+            Spacer()
+            moduleNavBarButtons
         }
+        .padding(.horizontal, .huiSpaces.primitives.medium)
+        .animation(.smooth, value: viewModel.currentModuleItem)
         .overlay(alignment: .topTrailing) {
             HorizonUI.IconButton(Image.huiIcons.close, type: .white) {
                 viewModel.dimiss(controller: viewController)
@@ -77,6 +66,22 @@ struct CourseProgressView: View {
                 .huiTypography(.labelLargeBold)
         }
         .padding(.top, .huiSpaces.primitives.medium)
+    }
+
+    private var moduleNavBarButtons: some View {
+        ModuleItemSequenceAssembly.makeModuleNavBarView(
+            isNextButtonEnabled: viewModel.isNextButtonEnabled,
+            isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled,
+            isShowUtilityButtons: false
+        ) {
+            withAnimation {
+                viewModel.goToNextModule()
+            }
+        } didTapPrevious: {
+            withAnimation {
+                viewModel.goToPreviousModule()
+            }
+        }
     }
 }
 
