@@ -17,27 +17,22 @@
 //
 
 import Core
+import SwiftUI
 
-final class AccountAssembly {
-    static func makeView() -> AccountView {
-        AccountView(
-            viewModel: AccountViewModel(
-                getUserInteractor: GetUserInteractorLive(),
-                sessionInteractor: SessionInteractor(),
-                router: AppEnvironment.shared.router
+final class NotificationSettingsAssembly {
+    static func makeView() -> UIViewController {
+        CoreHostingController(
+            NotificationSettingsView(
+                viewModel: NotificationSettingsViewModel(router: AppEnvironment.shared.router)
             )
         )
     }
 
     #if DEBUG
-    static func makePreview() -> AccountView {
-        let getUserInteractorPreview = GetUserInteractorPreview()
-        let viewModel = AccountViewModel(
-            getUserInteractor: getUserInteractorPreview,
-            sessionInteractor: SessionInteractor(),
-            router: AppEnvironment.shared.router
+    static func makePreview() -> NotificationSettingsView {
+        NotificationSettingsView(
+            viewModel: NotificationSettingsViewModel(router: AppEnvironment.shared.router)
         )
-        return AccountView(viewModel: viewModel)
     }
     #endif
 }

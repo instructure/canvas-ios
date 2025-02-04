@@ -29,6 +29,10 @@ final class AccountViewModel {
     private(set) var institution: String = "Institution Name"
     var isShowingLogoutConfirmationAlert = false
 
+    // MARK: - Dependencies
+
+    private let router: Router
+
     // MARK: - Private properties
 
     public let confirmLogoutViewModel = ConfirmationAlertViewModel(
@@ -44,8 +48,11 @@ final class AccountViewModel {
 
     init(
         getUserInteractor: GetUserInteractor,
-        sessionInteractor: SessionInteractor
+        sessionInteractor: SessionInteractor,
+        router: Router
     ) {
+        self.router = router
+
         getUserInteractor
             .getUser()
             .map { $0.name }
@@ -66,7 +73,9 @@ final class AccountViewModel {
 
     func passwordDidTap() {}
 
-    func notificationsDidTap() {}
+    func notificationsDidTap(viewController: WeakViewController) {
+        router.route(to: "/notification-settings", from: viewController)
+    }
 
     func advancedDidTap() {}
 

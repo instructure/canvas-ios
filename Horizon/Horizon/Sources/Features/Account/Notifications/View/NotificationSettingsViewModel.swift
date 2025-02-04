@@ -17,27 +17,30 @@
 //
 
 import Core
+import Observation
 
-final class AccountAssembly {
-    static func makeView() -> AccountView {
-        AccountView(
-            viewModel: AccountViewModel(
-                getUserInteractor: GetUserInteractorLive(),
-                sessionInteractor: SessionInteractor(),
-                router: AppEnvironment.shared.router
-            )
-        )
+@Observable
+final class NotificationSettingsViewModel {
+    // MARK: - Outputs
+
+    var isMessagesEmailEnabled: Bool = false
+    var isMessagesPushEnabled: Bool = false
+    var isDueDatesEmailEnabled: Bool = false
+    var isDueDatesPushEnabled: Bool = false
+    var isScoreEmailEnabled: Bool = false
+    var isScorePushEnabled: Bool = false
+
+    // MARK: - Dependencies
+
+    private let router: Router
+
+    init(router: Router) {
+        self.router = router
     }
 
-    #if DEBUG
-    static func makePreview() -> AccountView {
-        let getUserInteractorPreview = GetUserInteractorPreview()
-        let viewModel = AccountViewModel(
-            getUserInteractor: getUserInteractorPreview,
-            sessionInteractor: SessionInteractor(),
-            router: AppEnvironment.shared.router
-        )
-        return AccountView(viewModel: viewModel)
+    // MARK: - Inputs
+
+    func navigateBack(viewController: WeakViewController) {
+        router.pop(from: viewController)
     }
-    #endif
 }

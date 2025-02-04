@@ -38,6 +38,9 @@
     "AI Tutor" : {
 
     },
+    "Announcements and Messages" : {
+
+    },
     "Answer" : {
 
     },
@@ -45,6 +48,9 @@
 
     },
     "Are you sure you want to proceed?" : {
+
+    },
+    "Assignment due dates" : {
 
     },
     "Cancel" : {
@@ -68,6 +74,9 @@
     "Confusing" : {
 
     },
+    "E-mail" : {
+
+    },
     "Edit" : {
 
     },
@@ -78,6 +87,15 @@
 
     },
     "Generate some study flashcards" : {
+
+    },
+    "Get a notification anytime an assignment is scored or the score is changed, and anytime the score weight is changed." : {
+
+    },
+    "Get a notification anytime an assignment’s due date is added or changed." : {
+
+    },
+    "Get a notification anytime you receive a course announcement or a new message." : {
 
     },
     "Give me key takeaways" : {
@@ -155,6 +173,9 @@
     "Profile" : {
 
     },
+    "Push notification" : {
+
+    },
     "Question" : {
 
     },
@@ -171,6 +192,9 @@
 
     },
     "Save" : {
+
+    },
+    "Scores" : {
 
     },
     "Search" : {

@@ -36,7 +36,8 @@ enum HorizonRoutes {
         inboxRoutes,
         externalToolRoutes,
         notebookRoutes,
-        aiRoutes
+        aiRoutes,
+        notificationSettings,
     ]
 
     private static var splashRoutes: [RouteHandler] {
@@ -229,6 +230,14 @@ enum HorizonRoutes {
             },
             RouteHandler("/summary") { _, _, _ in
                 ChatBotAssembly.makeAISummaryView()
+            }
+        ]
+    }
+    
+    private static var notificationSettings: [RouteHandler] {
+        [
+            RouteHandler("/notification-settings") { _, _, _ in
+                NotificationSettingsAssembly.makeView()
             }
         ]
     }

@@ -22,6 +22,7 @@ import Core
 
 struct AccountView: View {
     @Bindable var viewModel: AccountViewModel
+    @Environment(\.viewController) private var viewController
 
     var body: some View {
         ScrollView {
@@ -75,7 +76,7 @@ struct AccountView: View {
                 AccountEntryRowView(
                     title: String(localized: "Notifications", bundle: .horizon),
                     didTapRow: {
-                        viewModel.notificationsDidTap()
+                        viewModel.notificationsDidTap(viewController: viewController)
                     }
                 )
                 AccountEntryRowView(
@@ -135,7 +136,7 @@ struct AccountView: View {
 }
 #endif
 
-struct AccountEntryRowView: View {
+fileprivate struct AccountEntryRowView: View {
     private let title: String
     private let image: Image
     private let didTapRow: () -> Void
