@@ -60,6 +60,7 @@ enum ModuleItemSequenceAssembly {
     static func makeModuleNavBarView(
         isNextButtonEnabled: Bool,
         isPreviousButtonEnabled: Bool,
+        isShowUtilityButtons: Bool = true,
         didTapNext: @escaping () -> Void,
         didTapPrevious: @escaping () -> Void
     ) -> ModuleNavBarView {
@@ -68,6 +69,7 @@ enum ModuleItemSequenceAssembly {
             router: router,
             isNextButtonEnabled: isNextButtonEnabled,
             isPreviousButtonEnabled: isPreviousButtonEnabled,
+            isShowUtilityButtons: isShowUtilityButtons,
             didTapNext: didTapNext,
             didTapPrevious: didTapPrevious
         )
@@ -96,14 +98,14 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeLTIView(
-        environment: AppEnvironment,
         tools: LTITools,
         name: String?
-    ) -> LTIViewRepresentable {
-        LTIViewRepresentable(
-            environment: environment,
-            tools: tools,
-            name: name
+    ) -> LTIView {
+        LTIView(
+            viewModel: LTIViewModel(
+                tools: tools,
+                name: name
+            )
         )
     }
 

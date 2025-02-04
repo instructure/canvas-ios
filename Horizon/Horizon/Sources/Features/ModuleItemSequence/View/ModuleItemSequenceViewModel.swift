@@ -43,6 +43,7 @@ final class ModuleItemSequenceViewModel {
     private var itemID: String?
     private var subscriptions = Set<AnyCancellable>()
     private var sequence: HModuleItemSequence?
+    private var course: HCourse?
 
     // MARK: - Dependencies
 
@@ -73,9 +74,10 @@ final class ModuleItemSequenceViewModel {
 
         fetchModuleItemSequence(assetId: assetID)
 
-        moduleItemInteractor.getCourseName()
-            .sink { [weak self] name in
-                self?.courseName = name
+        moduleItemInteractor.getCourse()
+            .sink { [weak self] course in
+                self?.courseName = course.name
+                self?.course = course
             }
             .store(in: &subscriptions)
     }
@@ -84,6 +86,26 @@ final class ModuleItemSequenceViewModel {
 
     func pop(from controller: WeakViewController) {
         router.pop(from: controller)
+    }
+
+    func navigateToCourseProgress(from controller: WeakViewController) {
+        guard let course else {
+            return
+        }
+
+        let viewController = CourseProgressAssembly.makeView(
+            course: course,
+            currentModuleItem: moduleItem
+        ) { [weak self] selectedModuleItem in
+            guard selectedModuleItem != self?.moduleItem else {
+                return
+            }
+            self?.itemID = selectedModuleItem?.id
+            self?.moduleID = selectedModuleItem?.moduleID
+            self?.moduleItem = selectedModuleItem
+            self?.fetchModuleItemSequence(assetId: selectedModuleItem?.id ?? "")
+        }
+        router.show(viewController, from: controller, options: .modal(isDismissable: false))
     }
 
     // MARK: - Private Functions

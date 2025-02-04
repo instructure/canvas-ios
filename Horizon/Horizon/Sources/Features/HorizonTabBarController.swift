@@ -40,7 +40,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
             learnTab(),
             fakeTab(),
             careerTab(),
-            inboxTab()
+            accountTab()
         ]
         tabBar.tintColor = .textDarkest
         UINavigationBar.appearance().tintColor = .textDarkest
@@ -112,22 +112,14 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         return vc
     }
 
-    private func inboxTab() -> UIViewController {
-        let inboxController: UIViewController
-        let inboxSplit = CoreSplitViewController()
-
-        inboxController = InboxAssembly.makeInboxViewController()
-
-        let empty = CoreNavigationController()
-
-        inboxSplit.viewControllers = [inboxController, empty]
-        let title = "Inbox"
-        inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
-        inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
-//        inboxSplit.tabBarItem.makeUnavailableInOfflineMode()
-        inboxSplit.extendedLayoutIncludesOpaqueBars = true
-        TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
-        return inboxSplit
+    private func accountTab() -> UIViewController {
+        let vc = CoreNavigationController(
+            rootViewController: CoreHostingController(AccountAssembly.makeView())
+        )
+        vc.tabBarItem.title = String(localized: "Account", bundle: .horizon)
+        vc.tabBarItem.image = getHorizonImage(name: "account_circle")
+        vc.tabBarItem.selectedImage = getHorizonImage(name: "account_circle_filled")
+        return vc
     }
 
     private func getHorizonImage(name: String) -> UIImage? {

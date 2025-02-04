@@ -14,10 +14,16 @@
         }
       }
     },
+    "Account" : {
+
+    },
     "Add a Note" : {
 
     },
     "Add your text" : {
+
+    },
+    "Advanced" : {
 
     },
     "AI Assist" : {
@@ -33,6 +39,9 @@
 
     },
     "Answer" : {
+
+    },
+    "Are you sure you want to log out?" : {
 
     },
     "Are you sure you want to proceed?" : {
@@ -95,6 +104,9 @@
     "Locked" : {
 
     },
+    "Logout" : {
+
+    },
     "Mark as Done" : {
 
     },
@@ -107,6 +119,9 @@
     "Next Up" : {
 
     },
+    "No" : {
+
+    },
     "Notebook" : {
 
     },
@@ -114,6 +129,9 @@
 
     },
     "Notes" : {
+
+    },
+    "Notifications" : {
 
     },
     "of" : {
@@ -125,7 +143,16 @@
     "OK" : {
 
     },
+    "Open in a New Tab" : {
+
+    },
     "Overview" : {
+
+    },
+    "Password" : {
+
+    },
+    "Profile" : {
 
     },
     "Question" : {
@@ -149,6 +176,9 @@
     "Search" : {
 
     },
+    "Settings" : {
+
+    },
     "Skillspace" : {
 
     },
@@ -156,6 +186,9 @@
 
     },
     "Summarize this material" : {
+
+    },
+    "Support" : {
 
     },
     "Tap to flip" : {

@@ -85,7 +85,7 @@ public struct ModuleItemSequenceView: View {
                 onBack: {
                     viewModel.pop(from: viewController)
                 },
-                onMenu: {}
+                onMenu: { viewModel.navigateToCourseProgress(from: viewController) }
             )
             .transition(.move(edge: .top).combined(with: .opacity))
         }
@@ -143,9 +143,8 @@ public struct ModuleItemSequenceView: View {
                     courseID: courseID
                 )
                 .id(url.absoluteString)
-            case .externalTool(environment: let environment, tools: let tools, name: let name):
+            case .externalTool(tools: let tools, name: let name):
                 ModuleItemSequenceAssembly.makeLTIView(
-                    environment: environment,
                     tools: tools,
                     name: name
                 )
@@ -181,6 +180,9 @@ public struct ModuleItemSequenceView: View {
         } didTapPrevious: {
             goPrevious()
         }
+        .padding(.vertical, .huiSpaces.primitives.xSmall)
+        .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+        .background(Color.huiColors.surface.pagePrimary)
         .frame(height: 56)
     }
 }
