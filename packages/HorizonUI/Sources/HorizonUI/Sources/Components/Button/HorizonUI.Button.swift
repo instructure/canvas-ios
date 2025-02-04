@@ -97,3 +97,46 @@ public extension HorizonUI {
         }
     }
 }
+
+public extension HorizonUI {
+    struct TextButton: View {
+        private let label: String
+        private let type: HorizonUI.ButtonStyles.ButtonType
+        private let isSmall: Bool
+        private let fillsWidth: Bool
+        private let leading: Image?
+        private let trailing: Image?
+        private let action: () -> Void
+
+        public init(
+            _ label: String,
+            type: HorizonUI.ButtonStyles.ButtonType = .blue,
+            isSmall: Bool = false,
+            fillsWidth: Bool = false,
+            leading: Image? = nil,
+            trailing: Image? = nil,
+            action: @escaping () -> Void
+        ) {
+            self.label = label
+            self.type = type
+            self.isSmall = isSmall
+            self.fillsWidth = fillsWidth
+            self.leading = leading
+            self.trailing = trailing
+            self.action = action
+        }
+
+        public var body: some View {
+            Button(label, action: action)
+            .buttonStyle(
+                HorizonUI.ButtonStyles.textLink(
+                    type,
+                    isSmall: isSmall,
+                    fillsWidth: fillsWidth,
+                    leading: leading,
+                    trailing: trailing
+                )
+            )
+        }
+    }
+}

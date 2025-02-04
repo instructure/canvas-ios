@@ -34,6 +34,7 @@ extension HorizonUI {
         private let trailing: Image?
         private let smallButtonSize = 40.0
         private let largeButtonSize = 44.0
+        private let isTextUnderlined: Bool
 
         // MARK: - Icon Button Dependencies
 
@@ -47,7 +48,8 @@ extension HorizonUI {
             isSmall: Bool = false,
             fillsWidth: Bool = false,
             leading: Image? = nil,
-            trailing: Image? = nil
+            trailing: Image? = nil,
+            isTextUnderlined: Bool = false
         ) {
             self.backgroundColor = AnyShapeStyle(backgroundColor)
             self.foregroundColor = foregroundColor
@@ -55,6 +57,7 @@ extension HorizonUI {
             self.fillsWidth = fillsWidth
             self.leading = leading
             self.trailing = trailing
+            self.isTextUnderlined = isTextUnderlined
 
             self.badgeNumber = nil
             self.badgeStyle = nil
@@ -79,6 +82,7 @@ extension HorizonUI {
             self.fillsWidth = false
             self.leading = nil
             self.trailing = nil
+            self.isTextUnderlined = false
         }
 
         @ViewBuilder
@@ -126,6 +130,7 @@ extension HorizonUI {
                     .foregroundColor(foregroundColor)
             }
             .huiTypography(.buttonTextLarge)
+            .underline(isTextUnderlined, pattern: .solid)
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
             .frame(height: isSmall ? smallButtonSize : largeButtonSize)
             .frame(maxWidth: fillsWidth ? .infinity : nil)
@@ -189,6 +194,21 @@ extension HorizonUI.ButtonStyles {
             }
         }
 
+        var linkTextColor: Color {
+            switch self {
+            case .black:
+                return Color.huiColors.text.body
+            case .white:
+                return Color.huiColors.text.surfaceColored
+            case .beige:
+                return Color.huiColors.text.beigePrimary
+            case .blue:
+                return Color.huiColors.surface.institution
+            default:
+                return Color.huiColors.text.body
+            }
+        }
+
         var badgeStyle: HorizonUI.Badge.Style {
             switch self {
             case .ai:
@@ -223,6 +243,24 @@ extension HorizonUI.ButtonStyles {
             fillsWidth: fillsWidth,
             leading: leading,
             trailing: trailing
+        )
+    }
+
+    public static func textLink(
+        _ type: HorizonUI.ButtonStyles.ButtonType,
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: Image? = nil,
+        trailing: Image? = nil
+    ) -> HorizonUI.ButtonStyles {
+        .init(
+            backgroundColor: .clear,
+            foregroundColor: type.linkTextColor,
+            isSmall: isSmall,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing,
+            isTextUnderlined: true
         )
     }
 
@@ -261,6 +299,24 @@ extension ButtonStyle where Self == HorizonUI.ButtonStyles {
         )
     }
 
+    public static func textLink(
+        _ type: HorizonUI.ButtonStyles.ButtonType,
+        isSmall: Bool = false,
+        fillsWidth: Bool = false,
+        leading: Image? = nil,
+        trailing: Image? = nil
+    ) -> HorizonUI.ButtonStyles {
+        HorizonUI.ButtonStyles.init(
+            backgroundColor: .clear,
+            foregroundColor: type.linkTextColor,
+            isSmall: isSmall,
+            fillsWidth: fillsWidth,
+            leading: leading,
+            trailing: trailing,
+            isTextUnderlined: true
+        )
+    }
+
     public static func icon(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
@@ -289,6 +345,8 @@ extension ButtonStyle where Self == HorizonUI.ButtonStyles {
                             .disabled(true)
                         Button("AI Button") {}
                             .buttonStyle(HorizonUI.ButtonStyles.primary(type))
+                        Button("Link Button") {}
+                            .buttonStyle(HorizonUI.ButtonStyles.textLink(type))
                     }
                 }
             }

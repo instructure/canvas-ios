@@ -16,36 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Observation
 import Core
 
-struct LTIViewRepresentable: UIViewControllerRepresentable {
-    // MARK: - Dependencies
+@Observable
+final class LTIViewModel {
 
-    private let environment: AppEnvironment
+    // MARK: - Outputs
+
+    let urlToDisplay: URL?
+
+    // MARK: - Private
+
     private let tools: LTITools
-    private let name: String?
+
+    // MARK: - Init
 
     init(
-        environment: AppEnvironment,
-        tools: LTITools,
-        name: String?
+        tools: LTITools = .init(isQuizLTI: false),
+        name: String? = nil
     ) {
-        self.environment = environment
         self.tools = tools
-        self.name = name
+        self.urlToDisplay = tools.url
     }
 
-    func makeUIViewController(context: Self.Context) -> LTIViewController {
-        LTIViewController.create(
-            env: environment,
-            tools: tools,
-            name: name
-        )
+    func launchUrl(weakViewController: WeakViewController) {
+        tools.presentTool(from: weakViewController.value)
     }
-
-    func updateUIViewController(
-        _ uiViewController: LTIViewController,
-        context: Self.Context
-    ) { }
 }
