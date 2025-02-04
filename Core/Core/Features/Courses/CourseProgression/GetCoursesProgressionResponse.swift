@@ -75,7 +75,7 @@ public struct GetCoursesProgressionResponse: Codable {
 
     struct Module: Codable {
         public let id: String
-        public let createdAt: String
+        public let createdAt: String?
         public let name: String
         public let position: Int
         public let unlockAt: Date?
