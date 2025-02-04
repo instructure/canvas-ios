@@ -99,6 +99,8 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
             .map { Module.save($0, for: courseId, in: context) }
             .compactMap { $0 }
 
+        print("CDCourseProgression: Incomplete Modules length for \(courseId): \(model.incompleteModules.count)")
+
         return model
     }
 
@@ -132,9 +134,12 @@ extension Module {
         newModule.courseID = courseID
         newModule.name = responseModule.name
         newModule.position = responseModule.position ?? 0
+
         newModule.items = incompleteItems.map {
             ModuleItem.save($0, for: courseID, for: moduleID, in: context)
         }
+
+        print("CDCourseProgression: Incomplete Module Items length for courseID: \(courseID), moduleID: \(moduleID): \(newModule.items.count)")
 
         return newModule
     }
@@ -152,12 +157,24 @@ extension ModuleItem {
             NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
             NSPredicate(key: #keyPath(ModuleItem.id), equals: id)
         ])
-        let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
-        model.id = id
-        model.htmlURL = URL(string: item.url ?? "")
-        model.courseID = courseID
-        model.moduleID = moduleID
+        let loadedModule: ModuleItem? = context.fetch(predicate).first
+        let module: ModuleItem = loadedModule ?? context.insert()
 
-        return model
+        module.courseID = courseID
+        module.moduleID = moduleID
+        module.htmlURL = URL(string: item.url ?? "")
+        module.title = item.content?.title ?? ""
+        module.position = item.content?.position ?? 0.0
+        module.dueAt = item.content?.dueAt
+
+        if loadedModule == nil {
+            module.id = id
+            module.indent = 0
+            module.canBeUnpublished = false
+            module.lockedForUser = false
+            module.isQuizLTI = false
+        }
+
+        return module
     }
 }

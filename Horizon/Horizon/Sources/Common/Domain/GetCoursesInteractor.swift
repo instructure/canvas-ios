@@ -65,36 +65,38 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .replaceError(with: [])
             .flatMap {
                 $0.publisher
-                    .flatMap { courseProgression in
-                        ReactiveStore(useCase: GetModules(courseID: courseProgression.courseID))
+                    .flatMap { (courseProgression: CDCourseProgression) in
+
+                        print("GetCoursesInteractor: Incomplete Modules length for \(courseProgression.courseID): \(courseProgression.incompleteModules.count)")
+                        courseProgression.incompleteModules.forEach { incompleteModule in
+                            print("\tGetCoursesInteractor: Incomplete Module Items Count: \(incompleteModule.items.count)")
+                        }
+
+                        let courseID = courseProgression.courseID
+                        let institutionName = courseProgression.institutionName
+                        let name = courseProgression.course.name ?? ""
+                        let overviewDescription = courseProgression.course.syllabusBody
+                        let progress = courseProgression.completionPercentage
+                        let incompleteModules: [HModule] = courseProgression.incompleteModules.map { .init($0) }
+
+                        return ReactiveStore(useCase: GetModules(courseID: courseProgression.courseID))
                         .getEntities()
                         .replaceError(with: [])
                         .map {
-                            .init(
-                                from: courseProgression,
-                                modules: $0
+                            HCourse(
+                                id: courseID,
+                                institutionName: institutionName ?? "",
+                                name: name,
+                                overviewDescription: overviewDescription,
+                                progress: progress,
+                                modules: $0.map { HModule($0) },
+                                incompleteModules: incompleteModules
                             )
                         }
                     }
                     .collect()
             }
             .eraseToAnyPublisher()
-    }
-}
-
-extension HCourse {
-    init(
-        from courseProgression: CDCourseProgression,
-        modules: [Module]
-    ) {
-        self.init(
-            id: courseProgression.courseID,
-            name: courseProgression.course.name ?? "",
-            overviewDescription: courseProgression.course.syllabusBody,
-            progress: courseProgression.completionPercentage,
-            modules: modules.map { .init($0) },
-            incompleteModules: courseProgression.incompleteModules.map { .init($0) }
-        )
     }
 }
 

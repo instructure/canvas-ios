@@ -62,7 +62,47 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                     incompleteItemsConnection {
                                                         nodes {
                                                             id: _id
-                                                            url                             
+                                                            url
+                                                            content {
+                                                                ... on Assignment {
+                                                                    id
+                                                                    title: name
+                                                                    dueAt
+                                                                    position
+                                                                }
+                                                                ... on Discussion {
+                                                                    id
+                                                                    title
+                                                                    position
+                                                                }
+                                                                ... on ExternalTool {
+                                                                    id: _id
+                                                                    title: name
+                                                                }
+                                                                ... on ExternalUrl {
+                                                                    id: _id
+                                                                    title
+                                                                }
+                                                                ... on File {
+                                                                    id
+                                                                    title: displayName
+                                                                }
+                                                                ... on ModuleExternalTool {
+                                                                    id: _id
+                                                                    title: url
+                                                                }
+                                                                ... on Page {
+                                                                    id
+                                                                    title
+                                                                }
+                                                                ... on Quiz {
+                                                                    id
+                                                                }
+                                                                ... on SubHeader {
+                                                                    id: title
+                                                                    title
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }

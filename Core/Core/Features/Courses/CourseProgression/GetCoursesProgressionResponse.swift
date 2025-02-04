@@ -87,5 +87,13 @@ public struct GetCoursesProgressionResponse: Codable {
     struct ModuleContent: Codable {
         public let url: String?
         public let id: String
+        public let content: ContentNode?
+    }
+
+    struct ContentNode: Codable {
+        public let id: String
+        public let title: String?
+        public let dueAt: Date?
+        public let position: Double?
     }
 }
