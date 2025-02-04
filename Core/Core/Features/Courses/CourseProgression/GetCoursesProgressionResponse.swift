@@ -71,13 +71,21 @@ public struct GetCoursesProgressionResponse: Codable {
 
     struct IncompleteNode: Codable {
         public let module: Module?
+        public let incompleteItemsConnection: IncompleteItemsConnection?
     }
 
     struct Module: Codable {
         public let id: String
-        public let createdAt: String?
         public let name: String
-        public let position: Int
-        public let unlockAt: Date?
+        public let position: Int?
+    }
+
+    struct IncompleteItemsConnection: Codable {
+        public let nodes: [ModuleContent]
+    }
+
+    struct ModuleContent: Codable {
+        public let url: String?
+        public let id: String
     }
 }

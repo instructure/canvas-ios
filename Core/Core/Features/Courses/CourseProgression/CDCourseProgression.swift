@@ -95,10 +95,9 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
         model.courseID = courseId
         model.institutionName = institutionName
         model.completionPercentage = completionPercentage ?? 100.0
-        model.incompleteModules =
-            incompleteModules
-            .compactMap { $0.module }
-            .map { Module.save($0!, for: courseId, in: context) }
+        model.incompleteModules = incompleteModules
+            .map { Module.save($0, for: courseId, in: context) }
+            .compactMap { $0 }
 
         return model
     }
@@ -118,15 +117,47 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
 
 extension Module {
     static func save(
-        _ item: GetCoursesProgressionResponse.Module, for courseID: String, in context: NSManagedObjectContext
-    ) -> Module {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id)
-        let module: Module = context.fetch(predicate).first ?? context.insert()
-        module.id = item.id
-        module.courseID = courseID
-        module.name = item.name
-        module.position = item.position
-        module.unlockAt = item.unlockAt
-        return module
+        _ item: GetCoursesProgressionResponse.IncompleteNode,
+        for courseID: String,
+        in context: NSManagedObjectContext
+    ) -> Module? {
+        guard let responseModule = item.module else { return nil }
+        let incompleteItems = item.incompleteItemsConnection?.nodes ?? []
+
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), responseModule.id)
+        let newModule: Module = context.fetch(predicate).first ?? context.insert()
+        let moduleID = responseModule.id
+
+        newModule.id = moduleID
+        newModule.courseID = courseID
+        newModule.name = responseModule.name
+        newModule.position = responseModule.position ?? 0
+        newModule.items = incompleteItems.map {
+            ModuleItem.save($0, for: courseID, for: moduleID, in: context)
+        }
+
+        return newModule
+    }
+}
+
+extension ModuleItem {
+    static func save(
+        _ item: GetCoursesProgressionResponse.ModuleContent,
+        for courseID: String,
+        for moduleID: String,
+        in context: NSManagedObjectContext
+    ) -> ModuleItem {
+        let id = item.id
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
+            NSPredicate(key: #keyPath(ModuleItem.id), equals: id)
+        ])
+        let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
+        model.id = id
+        model.htmlURL = URL(string: item.url ?? "")
+        model.courseID = courseID
+        model.moduleID = moduleID
+
+        return model
     }
 }

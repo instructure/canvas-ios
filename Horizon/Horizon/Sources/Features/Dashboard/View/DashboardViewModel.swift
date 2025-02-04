@@ -72,13 +72,13 @@ class DashboardViewModel {
     }
 
     private func toLearningObjectCardViewModel(_ module: HModule) -> LearningObjectCardViewModel {
-        let firstLearningObject = module.items.first
+        let firstModuleItem = module.items.first
         return LearningObjectCardViewModel(
             moduleTitle: module.name,
-            learningObjectName: firstLearningObject?.title ?? "",
-            type: firstLearningObject?.type?.label,
-            dueDate: firstLearningObject?.dueAt?.relativeShortDateOnlyString,
-            url: firstLearningObject?.htmlURL
+            learningObjectName: firstModuleItem?.title ?? "",
+            type: firstModuleItem?.type?.label,
+            dueDate: firstModuleItem?.dueAt?.relativeShortDateOnlyString,
+            url: firstModuleItem?.htmlURL
         )
     }
 
