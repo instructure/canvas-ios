@@ -19,6 +19,7 @@
 import Core
 import Foundation
 import Observation
+import SafariServices
 
 @Observable
 final class ExternalURLViewModel {
@@ -53,16 +54,10 @@ final class ExternalURLViewModel {
 
     func openURL() {
         guard let viewController = viewController?.value else { return }
-
-        let controller = CoreWebViewController()
-        controller.webView.load(URLRequest(url: url))
-        controller.title = title
-        controller.addDoneButton(side: .right)
-
         router.show(
-            controller,
+            SFSafariViewController(url: url),
             from: viewController,
-            options: .modal(.overFullScreen, embedInNav: true)
+            options: .modal(.overFullScreen)
         )
     }
 
