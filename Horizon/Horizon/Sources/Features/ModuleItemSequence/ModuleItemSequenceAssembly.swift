@@ -98,14 +98,14 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeLTIView(
-        environment: AppEnvironment,
         tools: LTITools,
         name: String?
-    ) -> LTIViewRepresentable {
-        LTIViewRepresentable(
-            environment: environment,
-            tools: tools,
-            name: name
+    ) -> LTIView {
+        LTIView(
+            viewModel: LTIViewModel(
+                tools: tools,
+                name: name
+            )
         )
     }
 

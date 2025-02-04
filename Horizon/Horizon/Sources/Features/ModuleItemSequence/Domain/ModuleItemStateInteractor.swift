@@ -98,7 +98,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
                 moduleID: moduleID,
                 moduleItemID: itemID
             )
-            return .externalTool(environment: environment, tools: tools, name: item.title)
+            return .externalTool(tools: tools, name: item.title)
 
         case .assignment(let id):
             return .assignment(courseID: courseID, assignmentID: id)

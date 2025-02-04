@@ -20,6 +20,8 @@ import SwiftUI
 
 public extension HorizonUI {
     enum CornerRadius: CaseIterable {
+        /// Helper variant when conditional corner radius is applied
+        case level0
         case level1
         case level2
         case level3
@@ -31,6 +33,8 @@ public extension HorizonUI {
 
         public var attributes: CornerAttributes {
             switch self {
+            case .level0:
+                CornerAttributes(radius: 0, smoothness: 0)
             case .level1:
                 CornerAttributes(radius: 8, smoothness: 0)
             case .level2:
@@ -49,16 +53,21 @@ public extension HorizonUI {
 }
 
 public extension View {
+    @ViewBuilder
     func huiCornerRadius(
         level: HorizonUI.CornerRadius,
-        corners: HorizonUI.Corners = [.all]
+        corners: HorizonUI.Corners? = [.all]
     ) -> some View {
-        clipShape(
-            HorizonUI.SmoothRoundedRectangle(
-                radius: level.attributes.radius,
-                corners: corners,
-                smoothness: level.attributes.smoothness
+        if level != .level0, let corners {
+            clipShape(
+                HorizonUI.SmoothRoundedRectangle(
+                    radius: level.attributes.radius,
+                    corners: corners,
+                    smoothness: level.attributes.smoothness
+                )
             )
-        )
+        } else {
+            self
+        }
     }
 }

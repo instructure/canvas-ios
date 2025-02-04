@@ -16,36 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import Core
-
-struct LTIViewRepresentable: UIViewControllerRepresentable {
-    // MARK: - Dependencies
-
-    private let environment: AppEnvironment
-    private let tools: LTITools
-    private let name: String?
-
-    init(
-        environment: AppEnvironment,
-        tools: LTITools,
-        name: String?
-    ) {
-        self.environment = environment
-        self.tools = tools
-        self.name = name
-    }
-
-    func makeUIViewController(context: Self.Context) -> LTIViewController {
-        LTIViewController.create(
-            env: environment,
-            tools: tools,
-            name: name
+final class AccountAssembly {
+    static func makeView() -> AccountView {
+        AccountView(
+            viewModel: AccountViewModel(
+                getUserInteractor: GetUserInteractorLive(),
+                sessionInteractor: SessionInteractor()
+            )
         )
     }
 
-    func updateUIViewController(
-        _ uiViewController: LTIViewController,
-        context: Self.Context
-    ) { }
+    #if DEBUG
+    static func makePreview() -> AccountView {
+        let getUserInteractorPreview = GetUserInteractorPreview()
+        let viewModel = AccountViewModel(
+            getUserInteractor: getUserInteractorPreview,
+            sessionInteractor: SessionInteractor()
+        )
+        return AccountView(viewModel: viewModel)
+    }
+    #endif
 }
