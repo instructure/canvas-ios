@@ -96,7 +96,7 @@ extension HorizonUI.ProgressBar {
     @ViewBuilder
     private var progressText: some View {
         if numberPosition != .hidden {
-            let percentageRound = max(round(progress * 10000) / 100.0, 100)
+            let percentageRound = round(progress * 100.0)
             Group {
                 Text(percentageRound, format: .number) + Text("%")
             }
