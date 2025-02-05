@@ -50,7 +50,7 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
-        XCTContext.runActivity(named: "Login with \(dsUser.login_id!)") { activity in
+        XCTContext.runActivity(named: "Login with \(dsUser.login_id!)") { _ in
             LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
             LoginHelper.Login.emailField.writeText(text: dsUser.login_id!)
             LoginHelper.Login.passwordField.writeText(text: password)

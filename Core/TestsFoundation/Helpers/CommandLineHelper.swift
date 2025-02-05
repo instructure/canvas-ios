@@ -87,8 +87,7 @@ class CommandLine {
 
             if let urlResponse,
                let httpResponse = urlResponse as? HTTPURLResponse,
-               httpResponse.statusCode != 200
-            {
+               httpResponse.statusCode != 200 {
                 errorResult = NSError.instructureError("Error while executing terminal service command: HTTP \(httpResponse.statusCode)")
                 return
             }
