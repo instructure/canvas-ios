@@ -168,6 +168,16 @@ public struct ModuleItemSequenceView: View {
                     assignmentID: assignmentID,
                     isShowHeader: $isShowHeader
                 )
+
+            case let .file(context, fileID):
+                FileDetailsAssembly.makeView(
+                    courseID: viewModel.moduleItem?.courseID ?? "",
+                    fileID: fileID,
+                    context: context,
+                    fileName: viewModel.moduleItem?.title ?? "",
+                    isShowHeader: $isShowHeader
+                )
+                .id(fileID)
             }
         }
     }

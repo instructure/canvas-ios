@@ -1,0 +1,81 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Foundation
+import Core
+import Combine
+
+protocol DownloadFileInteractor {
+    func download() -> AnyPublisher<URL, Error>
+}
+
+final class DownloadFileInteractorLive: DownloadFileInteractor {
+    // MARK: - Dependencies
+
+    private let courseID: String
+    private let fileID: String
+    private let fileManager: FileManager
+
+    // MARK: - Init
+
+    init(
+        courseID: String,
+        fileID: String,
+        fileManager: FileManager = .default
+    ) {
+        self.courseID = courseID
+        self.fileID = fileID
+        self.fileManager = fileManager
+    }
+
+    func download() -> AnyPublisher<URL, Error> {
+        ReactiveStore(
+            useCase: GetFile(context: .course(courseID), fileID: fileID)
+        )
+        .getEntities(ignoreCache: true)
+        .flatMap { files -> AnyPublisher<URL, Error> in
+            guard let file = files.first,
+                  let url = file.url
+            else {
+                return Empty(completeImmediately: true)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let localURL = URL.Directories.documents.appendingPathComponent(file.filename)
+
+            if self.fileManager.fileExists(atPath: localURL.path) {
+                return AnyPublisher<URL, Error>.create { subscriber in
+                    subscriber.send(localURL)
+                    subscriber.send(completion: .finished)
+                    return AnyCancellable {}
+                }
+            } else {
+                return DownloadTaskPublisher(parameters:
+                    DownloadTaskParameters(
+                        remoteURL: url,
+                        localURL: localURL
+                    )
+                )
+                .collect() // Wait until the download is finished.
+                .mapToValue(localURL)
+                .eraseToAnyPublisher()
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+}

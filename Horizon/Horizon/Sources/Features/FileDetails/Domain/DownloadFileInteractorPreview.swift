@@ -16,24 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
 import Foundation
-import Core
+import Combine
 
-enum ModuleItemSequenceViewState {
-    case externalURL(url: URL, environment: AppEnvironment, name: String, courseID: String)
-    case externalTool(environment: AppEnvironment, tools: LTITools, name: String?)
-    case moduleItem(controller: UIViewController, id: String)
-    case error
-    case locked(title: String, lockExplanation: String)
-    case assignment(courseID: String, assignmentID: String)
-    case file(context: Context, fileID: String)
-
-    var isModuleItem: Bool {
-        switch self {
-        case .moduleItem, .assignment:
-            return true
-        default:
-            return false
-        }
+class DownloadFileInteractorPreview: DownloadFileInteractor {
+    func download() -> AnyPublisher<URL, Error> {
+        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
+#endif
