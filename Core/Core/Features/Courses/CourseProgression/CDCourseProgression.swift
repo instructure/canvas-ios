@@ -98,7 +98,7 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
         model.incompleteModules = incompleteModules
             .map { Module.save($0, for: courseId, in: context) }
             .compactMap { $0 }
-        
+
         return model
     }
 
