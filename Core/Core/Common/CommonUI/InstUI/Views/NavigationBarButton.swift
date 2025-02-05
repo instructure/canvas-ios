@@ -30,6 +30,7 @@ extension InstUI {
         private let isEnabledOverride: Bool?
         private let isAvailableOffline: Bool
         private let menuContent: AnyView?
+        private let a11yIdentifier: String?
 
         private var isEnabled: Bool {
             isEnabledOverride ?? isEnabledViaEnvironment
@@ -40,6 +41,7 @@ extension InstUI {
             isBackgroundContextColor: Bool = false,
             isEnabled isEnabledOverride: Bool? = nil,
             isAvailableOffline: Bool = true,
+            a11yIdentifier: String? = nil,
             action: @escaping () -> Void,
             menuContent: AnyView? = nil,
             label: @escaping () -> AnyView
@@ -50,12 +52,14 @@ extension InstUI {
             self.isAvailableOffline = isAvailableOffline
             self.action = action
             self.menuContent = menuContent
+            self.a11yIdentifier = a11yIdentifier
         }
 
         public var body: some View {
             button
                 .foregroundStyle(color)
                 .environment(\.isEnabled, isEnabled)
+                .accessibilityIdentifier(a11yIdentifier ?? "")
         }
 
         @ViewBuilder
@@ -92,12 +96,14 @@ extension InstUI.NavigationBarButton {
         isEnabled isEnabledOverride: Bool? = nil,
         isAvailableOffline: Bool = true,
         title: String,
+        a11yIdentifier: String? = nil,
         action: @escaping () -> Void
     ) {
         self.init(
             isBackgroundContextColor: isBackgroundContextColor,
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
+            a11yIdentifier: a11yIdentifier,
             action: action
         ) {
             AnyView(Text(title).font(.regular16, lineHeight: .fit))
@@ -176,6 +182,7 @@ extension InstUI.NavigationBarButton {
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
             title: String(localized: "Cancel", bundle: .core),
+            a11yIdentifier: "screen.dismiss",
             action: action
         )
     }
