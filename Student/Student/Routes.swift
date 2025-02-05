@@ -539,7 +539,7 @@ private func pageViewController(url: URLComponents, params: [String: String], us
         )
     }
     return PageDetailsViewController
-        .create(env: env, context: context, pageURL: pageURL, app: .student)
+        .create(context: context, pageURL: pageURL, app: .student, env: env)
 }
 
 private func discussionViewController(

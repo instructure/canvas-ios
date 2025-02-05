@@ -23,7 +23,7 @@ import TestsFoundation
 
 class PageDetailsViewControllerTests: CoreTestCase {
     lazy var controller = PageDetailsViewController
-        .create(env: environment, context: context, pageURL: pageURL, app: .student)
+        .create(context: context, pageURL: pageURL, app: .student, env: environment)
 
     let context = Context(.course, id: "1")
     var htmlURL = URL(string: "/courses/1/pages/test-page")!
@@ -118,7 +118,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         htmlURL = URL(string: "/courses/1/pages/front_page")!
         pageURL = "front_page"
         controller = PageDetailsViewController
-            .create(env: environment, context: context, pageURL: pageURL, app: .student)
+            .create(context: context, pageURL: pageURL, app: .student, env: environment)
         api.mock(GetFrontPageRequest(context: context), value: .make(
             front_page: true,
             html_url: htmlURL,

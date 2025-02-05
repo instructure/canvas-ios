@@ -160,7 +160,7 @@ let router = Router(routes: [
 private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
     return PageDetailsViewController
-        .create(env: env, context: context, pageURL: pageURL, app: .student)
+        .create(context: context, pageURL: pageURL, app: .student, env: env)
 }
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

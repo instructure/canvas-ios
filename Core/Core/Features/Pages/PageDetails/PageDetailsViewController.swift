@@ -61,17 +61,17 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
     private var offlineModeInteractor: OfflineModeInteractor?
 
     public static func create(
-        env: AppEnvironment,
         context: Context,
         pageURL: String,
         app: App,
+        env: AppEnvironment,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> PageDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.env = env
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
+        controller.env = env
         controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
