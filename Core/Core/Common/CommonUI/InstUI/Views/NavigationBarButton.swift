@@ -23,11 +23,12 @@ extension InstUI {
     public struct NavigationBarButton: View {
         @Environment(\.isEnabled) private var isEnabledViaEnvironment: Bool
 
+        internal let action: () -> Void
+
         @ViewBuilder private let label: () -> AnyView
         private let isBackgroundContextColor: Bool
         private let isEnabledOverride: Bool?
         private let isAvailableOffline: Bool
-        private let action: () -> Void
         private let menuContent: AnyView?
 
         private var isEnabled: Bool {
