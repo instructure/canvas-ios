@@ -28,19 +28,18 @@ struct CourseProgressView: View {
     }
 
     var body: some View {
-        VStack(spacing: .zero) {
-            ScrollView {
-                VStack(spacing: .huiSpaces.primitives.mediumSmall) {
-                    headerView
-                    ModuleItemListView(selectedModuleItem: viewModel.currentModuleItem, items: viewModel.moduleItems) { selectedItem in
-                        viewModel.currentModuleItem = selectedItem
-                    }
-                    .animation(.smooth, value: viewModel.currentModuleItem)
+        ScrollView {
+            VStack(spacing: .huiSpaces.primitives.mediumSmall) {
+                headerView
+                ModuleItemListView(selectedModuleItem: viewModel.currentModuleItem, items: viewModel.moduleItems) { selectedItem in
+                    viewModel.currentModuleItem = selectedItem
                 }
+                .animation(.smooth, value: viewModel.currentModuleItem)
             }
-            Spacer()
-            moduleNavBarButtons
         }
+        .safeAreaInset(edge: .bottom, content: {
+            moduleNavBarButtons
+        })
         .padding(.horizontal, .huiSpaces.primitives.medium)
         .animation(.smooth, value: viewModel.currentModuleItem)
         .overlay(alignment: .topTrailing) {
