@@ -84,16 +84,16 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeExternalURLView(
-        environment: AppEnvironment,
         name: String,
         url: URL,
-        courseID: String?
-    ) -> ExternalURLViewRepresentable {
-        ExternalURLViewRepresentable(
-            environment: environment,
-            name: name,
-            url: url,
-            courseID: courseID
+        viewController: WeakViewController
+    ) -> ExternalURLView {
+        ExternalURLView(
+            viewModel: ExternalURLViewModel(
+                title: name,
+                url: url,
+                viewController: viewController
+            )
         )
     }
 

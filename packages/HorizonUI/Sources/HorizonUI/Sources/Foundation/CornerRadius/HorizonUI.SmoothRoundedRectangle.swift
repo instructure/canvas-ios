@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension HorizonUI {
-    struct SmoothRoundedRectangle: InsettableShape {
+    public struct SmoothRoundedRectangle: InsettableShape {
         let topLeftCorner: CornerAttributes
         let topRightCorner: CornerAttributes
         let bottomLeftCorner: CornerAttributes
@@ -56,10 +56,10 @@ extension HorizonUI {
 }
 
 extension HorizonUI.SmoothRoundedRectangle {
-    struct CornerAttributes {
-        var radius: CGFloat
-        var smoothness: CGFloat
-        var segmentLength: CGFloat
+    public struct CornerAttributes : Sendable{
+        public var radius: CGFloat
+        public var smoothness: CGFloat
+        public var segmentLength: CGFloat
 
         init(radius: CGFloat, smoothness: CGFloat = 0) {
             self.radius = radius
@@ -92,7 +92,7 @@ extension HorizonUI.SmoothRoundedRectangle {
 // MARK: - InsettableShape
 
 extension HorizonUI.SmoothRoundedRectangle {
-    func path(in rect: CGRect) -> Path {
+    public func path(in rect: CGRect) -> Path {
         let insetRect = rect.insetBy(dx: insetAmount, dy: insetAmount)
 
         let normRect = normalizeCorners(
@@ -117,7 +117,7 @@ extension HorizonUI.SmoothRoundedRectangle {
         return path.offsetBy(dx: insetAmount, dy: insetAmount)
     }
 
-    func inset(by amount: CGFloat) -> some InsettableShape {
+    public func inset(by amount: CGFloat) -> some InsettableShape {
         var shape = self
         shape.insetAmount += amount
         return shape
