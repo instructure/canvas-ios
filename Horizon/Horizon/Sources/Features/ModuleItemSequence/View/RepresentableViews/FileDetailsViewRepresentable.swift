@@ -24,18 +24,19 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Dependencies
 
     @Binding private var isScrollTopReached: Bool
+    @Binding private var isFinishLoading: Bool
     private let context: Core.Context?
     private let fileID: String
-     @Binding  private var isFinishLoading: Bool
 
     init(isScrollTopReached: Binding<Bool>,
+         isFinishLoading: Binding<Bool>,
          context: Core.Context?,
-         fileID: String,
-         isFinishLoading: Binding<Bool>) {
+         fileID: String
+    ) {
         self._isScrollTopReached = isScrollTopReached
+        self._isFinishLoading = isFinishLoading
         self.context = context
         self.fileID = fileID
-        self._isFinishLoading = isFinishLoading
     }
 
     func makeUIViewController(context: Self.Context) -> UIViewController {

@@ -55,7 +55,6 @@ struct FileDownloadStatusView: View {
                 initialView
             }
         }
-
     }
 
     private var initialView: some View {
@@ -84,7 +83,6 @@ struct FileDownloadStatusView: View {
                     .foregroundStyle(Color.huiColors.icon.default)
                     .frame(width: 24, height: 24)
             }
-
         }
     }
 

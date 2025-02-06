@@ -135,7 +135,7 @@ public struct ModuleItemSequenceView: View {
     private var mainContent: some View {
         if let state = viewModel.viewState {
             switch state {
-            case .externalURL(url: let url, name: let name, courseID: let courseID):
+            case .externalURL(url: let url, name: let name):
                 ModuleItemSequenceAssembly.makeExternalURLView(
                     name: name,
                     url: url,

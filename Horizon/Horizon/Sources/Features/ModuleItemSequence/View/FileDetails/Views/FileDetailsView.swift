@@ -62,9 +62,9 @@ struct FileDetailsView: View {
             }
             FileDetailsViewRepresentable(
                 isScrollTopReached: $isShowHeader,
+                isFinishLoading: $isFinishLoading,
                 context: context,
-                fileID: fileID,
-                isFinishLoading: $isFinishLoading
+                fileID: fileID
             )
         }
         .animation(.smooth, value: viewModel.viewState)

@@ -34,7 +34,6 @@ final class FileDetailsViewModel {
 
     private(set) var viewState: FileDownloadStatus = .initial
 
-
     // MARK: - Dependencies
 
     private let interactor: DownloadFileInteractor

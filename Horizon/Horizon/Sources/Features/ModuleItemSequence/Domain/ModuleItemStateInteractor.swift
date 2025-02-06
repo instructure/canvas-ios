@@ -66,8 +66,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
         } else {
             return .externalURL(
                 url: url,
-                name: String(localized: "Unsupported Item", bundle: .horizon),
-                courseID: courseID
+                name: String(localized: "Unsupported Item", bundle: .horizon)
             )
         }
     }
@@ -86,7 +85,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
 
         switch item.type {
         case .externalURL(let url):
-            return .externalURL(url: url, name: item.title, courseID: item.courseID)
+            return .externalURL(url: url, name: item.title)
         case let .externalTool(toolID, url):
             let tools = LTITools(
                 env: environment,

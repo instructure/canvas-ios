@@ -20,7 +20,7 @@ import Foundation
 import Core
 
 enum ModuleItemSequenceViewState {
-    case externalURL(url: URL, name: String, courseID: String)
+    case externalURL(url: URL, name: String)
     case externalTool(tools: LTITools, name: String?)
     case moduleItem(controller: UIViewController, id: String)
     case error
@@ -30,7 +30,7 @@ enum ModuleItemSequenceViewState {
 
     var isModuleItem: Bool {
         switch self {
-        case .moduleItem, .assignment:
+        case .moduleItem, .assignment, .file:
             return true
         default:
             return false
