@@ -57,7 +57,7 @@ struct ProfileView: View {
 
     @ViewBuilder
     var nameView: some View {
-        TextInput(
+        HorizonUI.TextInput(
             $viewModel.name,
             label: String(localized: "Full Name", bundle: .horizon),
             error: viewModel.nameError
@@ -66,7 +66,7 @@ struct ProfileView: View {
 
     @ViewBuilder
     var displayNameView: some View {
-        TextInput(
+        HorizonUI.TextInput(
             $viewModel.displayName,
             label: String(localized: "Display Name", bundle: .horizon),
             error: viewModel.displayNameError,
@@ -76,7 +76,7 @@ struct ProfileView: View {
 
     @ViewBuilder
     var emailView: some View {
-        TextInput(
+        HorizonUI.TextInput(
             $viewModel.email,
             label: String(localized: "Email", bundle: .horizon),
             helperText: String(localized: "Email can only be changed by your institution", bundle: .horizon),
