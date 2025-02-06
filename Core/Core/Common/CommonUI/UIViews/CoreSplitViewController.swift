@@ -17,12 +17,17 @@
 //
 
 import UIKit
+import Combine
 
 public class CoreSplitViewController: UISplitViewController {
+
+    private var subscriptions = Set<AnyCancellable>()
+    private var preBackgroundedSecondaryController: UIViewController?
 
     public override init(nibName: String? = nil, bundle: Bundle? = nil) {
         super.init(nibName: nibName, bundle: bundle)
         delegate = self
+        setupBackgroundStateObservers()
     }
 
     required init?(coder: NSCoder) {
@@ -30,7 +35,36 @@ public class CoreSplitViewController: UISplitViewController {
     }
 
     public override func viewDidLoad() {
+        super.viewDidLoad()
         preferredDisplayMode = .oneBesideSecondary
+    }
+
+    private func setupBackgroundStateObservers() {
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.didEnterBackgroundNotification)
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.saveCurrentSecondaryController()
+            }
+            .store(in: &subscriptions)
+
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.willEnterForegroundNotification)
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.removePreBackgroundedSecondaryController()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func saveCurrentSecondaryController() {
+        preBackgroundedSecondaryController = viewControllers.last
+    }
+
+    private func removePreBackgroundedSecondaryController() {
+        preBackgroundedSecondaryController = nil
     }
 
     public override var prefersStatusBarHidden: Bool {
@@ -90,6 +124,9 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
     }
 
     public func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+
+        guard preBackgroundedSecondaryController == nil else { return false }
+
         if let nav = secondaryViewController as? UINavigationController {
             // swiftlint:disable:next unused_optional_binding
             if let _ = nav.topViewController as? EmptyViewController {
@@ -106,6 +143,8 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
     }
 
     public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+
+        if let secondaryView = preBackgroundedSecondaryController { return secondaryView }
 
         // Setup default detail view provided by the master view controller
         if let nav = primaryViewController as? UINavigationController,
