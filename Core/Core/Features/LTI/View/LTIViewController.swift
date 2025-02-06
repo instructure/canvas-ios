@@ -78,9 +78,6 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
     }
 
     func updateNavBar() {
-        guard env.app != .horizon else {
-            return
-        }
         let course = courses?.first
         updateNavBar(subtitle: course?.name, color: course?.color)
     }
