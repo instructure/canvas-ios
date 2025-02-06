@@ -101,14 +101,14 @@ struct PutNotificationDefaultsFlagRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/notification_preferences.html#method.notification_preferences.index
-struct GetNotificationPreferencesRequest: APIRequestable {
-    struct Response: Codable {
+public struct GetNotificationPreferencesRequest: APIRequestable {
+    public struct Response: Codable {
         let notification_preferences: [APINotificationPreference]
     }
 
     let channelID: String
 
-    var path: String {
+    public var path: String {
         return "users/self/communication_channels/\(channelID)/notification_preferences"
     }
 }

@@ -28,9 +28,11 @@ struct NotificationSettingsView: View {
         ZStack {
             Color.huiColors.surface.pagePrimary.edgesIgnoringSafeArea(.all)
             ScrollView {
-                entries
-                    .padding([.leading, .top, .trailing], 32)
-                    .background(Color.white)
+                if viewModel.isPushNotificationsEnabled {
+                    entries
+                } else {
+                    openSettingsButton
+                }
             }
             .background(.white)
             .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
@@ -78,6 +80,18 @@ struct NotificationSettingsView: View {
                 isPushNotificationOn: $viewModel.isScorePushEnabled
             )
         }
+        .padding([.leading, .top, .trailing], 32)
+        .background(Color.white)
+    }
+
+    private var openSettingsButton: some View {
+        Button {
+            viewModel.goToAppSettings()
+        } label: {
+            Text(verbatim: "Go to App Settings")
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 32)
     }
 
     private var navigationBar: some View {

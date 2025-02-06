@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Observation
 
@@ -23,6 +24,7 @@ import Observation
 final class NotificationSettingsViewModel {
     // MARK: - Outputs
 
+    var isPushNotificationsEnabled: Bool = true
     var isMessagesEmailEnabled: Bool = false
     var isMessagesPushEnabled: Bool = false
     var isDueDatesEmailEnabled: Bool = false
@@ -32,15 +34,40 @@ final class NotificationSettingsViewModel {
 
     // MARK: - Dependencies
 
+    private let notificationSettingsInteractor: NotificationSettingsInteractor
     private let router: Router
 
-    init(router: Router) {
+    // MARK: - Private properties
+
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(
+        notificationSettingsInteractor: NotificationSettingsInteractor = NotificationSettingsInteractorLive(),
+        router: Router
+    ) {
+        self.notificationSettingsInteractor = notificationSettingsInteractor
         self.router = router
+
+        self.notificationSettingsInteractor
+            .getNotificationPreferences()
+            .replaceError(with: [])
+            .sink(receiveValue: { preferences in
+                preferences.forEach { preference in
+                    print("🟨 \(preference)\n")
+                    print("-------------------\n")
+                }
+            })
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
 
     func navigateBack(viewController: WeakViewController) {
         router.pop(from: viewController)
+    }
+
+    func goToAppSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
     }
 }
