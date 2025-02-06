@@ -31,20 +31,6 @@ final class CourseListViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
-    private var hCourses: [HCourse] = [] {
-        didSet {
-            courses = hCourses.map {
-                CourseListCourse(
-                    id: $0.id,
-                    institutionName: $0.institutionName,
-                    name: $0.name,
-                    progress: $0.progress / 100.0,
-                    progressString: $0.progress.progressString,
-                    progressState: $0.progress.progressState
-                )
-            }
-        }
-    }
 
     // MARK: - Init
 
@@ -58,7 +44,16 @@ final class CourseListViewModel: ObservableObject {
 
         interactor.getCourses()
             .sink { hCourses in
-                unownedSelf.hCourses = hCourses
+                unownedSelf.courses = hCourses.map {
+                    CourseListCourse(
+                        id: $0.id,
+                        institutionName: $0.institutionName,
+                        name: $0.name,
+                        progress: $0.progress / 100.0,
+                        progressString: $0.progress.progressString,
+                        progressState: $0.progress.progressState
+                    )
+                }
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
