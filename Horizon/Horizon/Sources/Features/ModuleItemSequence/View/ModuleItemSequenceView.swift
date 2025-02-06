@@ -135,17 +135,15 @@ public struct ModuleItemSequenceView: View {
     private var mainContent: some View {
         if let state = viewModel.viewState {
             switch state {
-            case .externalURL(url: let url, environment: let environment, name: let name, courseID: let courseID):
+            case .externalURL(url: let url, name: let name, courseID: let courseID):
                 ModuleItemSequenceAssembly.makeExternalURLView(
-                    environment: environment,
                     name: name,
                     url: url,
-                    courseID: courseID
+                    viewController: viewController
                 )
                 .id(url.absoluteString)
-            case .externalTool(environment: let environment, tools: let tools, name: let name):
+            case .externalTool(tools: let tools, name: let name):
                 ModuleItemSequenceAssembly.makeLTIView(
-                    environment: environment,
                     tools: tools,
                     name: name
                 )

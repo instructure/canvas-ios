@@ -16,24 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Observation
 import Core
 
-enum ModuleItemSequenceViewState {
-    case externalURL(url: URL, name: String, courseID: String)
-    case externalTool(tools: LTITools, name: String?)
-    case moduleItem(controller: UIViewController, id: String)
-    case error
-    case locked(title: String, lockExplanation: String)
-    case assignment(courseID: String, assignmentID: String)
-    case file(context: Context, fileID: String)
+@Observable
+final class LTIViewModel {
 
-    var isModuleItem: Bool {
-        switch self {
-        case .moduleItem, .assignment:
-            return true
-        default:
-            return false
-        }
+    // MARK: - Outputs
+
+    let urlToDisplay: URL?
+
+    // MARK: - Private
+
+    private let tools: LTITools
+
+    // MARK: - Init
+
+    init(
+        tools: LTITools = .init(isQuizLTI: false),
+        name: String? = nil
+    ) {
+        self.tools = tools
+        self.urlToDisplay = tools.url
+    }
+
+    func launchUrl(weakViewController: WeakViewController) {
+        tools.presentTool(from: weakViewController.value)
     }
 }

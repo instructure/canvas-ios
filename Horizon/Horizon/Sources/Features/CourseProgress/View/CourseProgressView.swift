@@ -35,25 +35,13 @@ struct CourseProgressView: View {
                     viewModel.currentModuleItem = selectedItem
                 }
                 .animation(.smooth, value: viewModel.currentModuleItem)
-
-                ModuleItemSequenceAssembly.makeModuleNavBarView(
-                    isNextButtonEnabled: viewModel.isNextButtonEnabled,
-                    isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled,
-                    isShowUtilityButtons: false
-                ) {
-                    withAnimation {
-                        viewModel.goToNextModule()
-                    }
-                } didTapPrevious: {
-                    withAnimation {
-                        viewModel.goToPreviousModule()
-                    }
-                }
-                Spacer()
             }
-            .animation(.smooth, value: viewModel.currentModuleItem)
-            .padding(.horizontal, .huiSpaces.primitives.medium)
         }
+        .safeAreaInset(edge: .bottom, content: {
+            moduleNavBarButtons
+        })
+        .padding(.horizontal, .huiSpaces.primitives.medium)
+        .animation(.smooth, value: viewModel.currentModuleItem)
         .overlay(alignment: .topTrailing) {
             HorizonUI.IconButton(Image.huiIcons.close, type: .white) {
                 viewModel.dimiss(controller: viewController)
@@ -77,6 +65,22 @@ struct CourseProgressView: View {
                 .huiTypography(.labelLargeBold)
         }
         .padding(.top, .huiSpaces.primitives.medium)
+    }
+
+    private var moduleNavBarButtons: some View {
+        ModuleItemSequenceAssembly.makeModuleNavBarView(
+            isNextButtonEnabled: viewModel.isNextButtonEnabled,
+            isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled,
+            isShowUtilityButtons: false
+        ) {
+            withAnimation {
+                viewModel.goToNextModule()
+            }
+        } didTapPrevious: {
+            withAnimation {
+                viewModel.goToPreviousModule()
+            }
+        }
     }
 }
 

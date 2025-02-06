@@ -84,28 +84,28 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeExternalURLView(
-        environment: AppEnvironment,
         name: String,
         url: URL,
-        courseID: String?
-    ) -> ExternalURLViewRepresentable {
-        ExternalURLViewRepresentable(
-            environment: environment,
-            name: name,
-            url: url,
-            courseID: courseID
+        viewController: WeakViewController
+    ) -> ExternalURLView {
+        ExternalURLView(
+            viewModel: ExternalURLViewModel(
+                title: name,
+                url: url,
+                viewController: viewController
+            )
         )
     }
 
     static func makeLTIView(
-        environment: AppEnvironment,
         tools: LTITools,
         name: String?
-    ) -> LTIViewRepresentable {
-        LTIViewRepresentable(
-            environment: environment,
-            tools: tools,
-            name: name
+    ) -> LTIView {
+        LTIView(
+            viewModel: LTIViewModel(
+                tools: tools,
+                name: name
+            )
         )
     }
 
