@@ -72,7 +72,8 @@ struct FileDetailsView: View {
         .onFirstAppear { viewModel.viewController = viewController }
     }
 }
-
+#if DEBUG
 #Preview {
     FileDetailsAssembly.makePreview()
 }
+#endif

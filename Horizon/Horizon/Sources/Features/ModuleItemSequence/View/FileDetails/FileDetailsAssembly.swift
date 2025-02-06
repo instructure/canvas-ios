@@ -40,6 +40,7 @@ struct FileDetailsAssembly {
         )
     }
 
+#if DEBUG
     static func makePreview() -> FileDetailsView {
         let interactor = DownloadFileInteractorPreview()
         let router = AppEnvironment.shared.router
@@ -53,4 +54,5 @@ struct FileDetailsAssembly {
         )
         return view
     }
+#endif
 }
