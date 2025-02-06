@@ -175,16 +175,11 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Reply to thread
         let replyToPostText = "Text replying to reply of discussion"
         replyToPostButton.hit()
-
-        let replyButtons = DetailsHelper.Reply.replyButtons(count: 2)
-        XCTAssertTrue(replyButtons.count > 1)
-
-        let secondReplyButton = replyButtons[1].waitUntil(.visible)
-        XCTAssertTrue(textInput.waitUntil(.visible).isVisible)
-        XCTAssertTrue(secondReplyButton.isVisible)
+        let threadReplyButton = DetailsHelper.Reply.replyButton.waitUntil(.visible)
+        XCTAssertTrue(threadReplyButton.isVisible)
 
         textInput.writeText(text: replyToPostText)
-        secondReplyButton.hit()
+        threadReplyButton.hit()
         XCTAssertTrue(textInput.waitUntil(.vanish).isVanished)
 
         // MARK: Check visibility and label of the thread reply

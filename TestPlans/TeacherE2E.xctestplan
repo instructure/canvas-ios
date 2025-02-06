@@ -28,6 +28,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",
