@@ -693,10 +693,12 @@ extension CoreWebView {
             loadFileURL(
                 URL.Directories.documents,
                 allowingReadAccessTo: URL.Directories.documents
-            )
-            let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
-            // All offline content should have relative links to the documents directory
-            loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
+            ) { [weak self] _ in
+                guard let self else { return }
+                let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
+                // All offline content should have relative links to the documents directory
+                self.loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
+            }
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }
