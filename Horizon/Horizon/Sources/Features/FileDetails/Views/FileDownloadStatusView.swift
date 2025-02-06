@@ -27,15 +27,18 @@ struct FileDownloadStatusView: View {
     private let status: FileDownloadStatus
     private let fileName: String
     private let onTapDownload: () -> Void
+    private let onTapCancel: () -> Void
 
     init(
         status: FileDownloadStatus,
         fileName: String,
-        onTapDownload: @escaping () -> Void
+        onTapDownload: @escaping () -> Void,
+        onTapCancel: @escaping () -> Void
     ) {
         self.status = status
         self.fileName = fileName
         self.onTapDownload = onTapDownload
+        self.onTapCancel = onTapCancel
     }
 
     var body: some View {
@@ -44,11 +47,15 @@ struct FileDownloadStatusView: View {
             initialView
         case .loading:
             loadingView
-        case .loaded(let filePath):
-            loadedView(url: filePath)
+        case .loaded:
+            EmptyView()
         case .error(let string):
-            errorView(message: string)
+            VStack(spacing: .huiSpaces.primitives.small) {
+                errorView(message: string)
+                initialView
+            }
         }
+
     }
 
     private var initialView: some View {
@@ -69,42 +76,29 @@ struct FileDownloadStatusView: View {
                 .huiTypography(.p1)
                 .foregroundStyle(Color.huiColors.text.body)
             Spacer()
-        }
-    }
 
-    private func loadedView(url: URL) -> some View {
-        HStack(spacing: .huiSpaces.primitives.xSmall) {
-            ShareLink(item: url) {
-                HorizonUI.icons.iosShare
-                    .foregroundStyle(Color.huiColors.surface.institution)
-            }
-            .scaleEffect(isScaled ? 1 : 0.7)
-            .animation(.easeInOut(duration: 0.7).repeatForever(autoreverses: true), value: isScaled)
-            .onAppear {
-                isScaled = true
+            Button {
+                onTapCancel()
+            } label: {
+                HorizonUI.icons.close
+                    .foregroundStyle(Color.huiColors.icon.default)
+                    .frame(width: 24, height: 24)
             }
 
-            Text(fileName)
-                .huiTypography(.p1)
-                .foregroundStyle(Color.huiColors.text.body)
-            Spacer()
         }
     }
 
     private func errorView(message: String) -> some View {
-        HStack(spacing: .huiSpaces.primitives.xSmall) {
+        HStack(spacing: .huiSpaces.primitives.xxSmall) {
             HorizonUI.icons.error
                 .foregroundStyle(Color.huiColors.icon.error)
-
             Text(message)
                 .huiTypography(.p1)
                 .foregroundStyle(Color.huiColors.text.error)
-            Spacer()
         }
     }
-
 }
 
 #Preview {
-    FileDownloadStatusView(status: .loading, fileName: "AI Book.pdf") {}
+    FileDownloadStatusView(status: .loading, fileName: "AI.mp4") {} onTapCancel: {}
 }

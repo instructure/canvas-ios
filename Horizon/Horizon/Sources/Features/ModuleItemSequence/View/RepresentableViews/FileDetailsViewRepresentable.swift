@@ -41,9 +41,7 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Self.Context) -> UIViewController {
         let viewController = FileDetailsViewController.create(context: self.context, fileID: fileID)
         viewController.didFinishLoading = {
-//            DispatchQueue.main.async {
                 isFinishLoading = true
-//            }
         }
         if let scrollView = findScrollView(in: viewController.view) {
             scrollView.delegate = context.coordinator
@@ -54,7 +52,11 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     func updateUIViewController(
         _ uiViewController: UIViewController,
         context: Self.Context
-    ) { }
+    ) {
+        if let scrollView = findScrollView(in: uiViewController.view) {
+            scrollView.delegate = context.coordinator
+        }
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator { value in

@@ -29,7 +29,8 @@ struct FileDetailsAssembly {
         isShowHeader: Binding<Bool>
     ) -> FileDetailsView {
         let interactor = DownloadFileInteractorLive(courseID: courseID, fileID: fileID)
-        let viewModel = FileDetailsViewModel(interactor: interactor)
+        let router = AppEnvironment.shared.router
+        let viewModel = FileDetailsViewModel(interactor: interactor, router: router)
         return FileDetailsView(
             viewModel: viewModel,
             context: context,
@@ -41,7 +42,8 @@ struct FileDetailsAssembly {
 
     static func makePreview() -> FileDetailsView {
         let interactor = DownloadFileInteractorPreview()
-        let viewModel = FileDetailsViewModel(interactor: interactor)
+        let router = AppEnvironment.shared.router
+        let viewModel = FileDetailsViewModel(interactor: interactor, router: router)
         let view = FileDetailsView(
             viewModel: viewModel,
             context: nil,

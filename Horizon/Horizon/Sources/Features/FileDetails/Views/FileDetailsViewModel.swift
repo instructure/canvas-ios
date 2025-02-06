@@ -16,39 +16,70 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Observation
 import Combine
+import Core
+import CombineSchedulers
 
 @Observable
 final class FileDetailsViewModel {
+    // MARK: - Private Properties
+
+    private var subscription: AnyCancellable?
+
+    // MARK: - Input
+
+    var viewController: WeakViewController = WeakViewController()
     // MARK: - Output
 
     private(set) var viewState: FileDownloadStatus = .initial
-    private var subscriptions = Set<AnyCancellable>()
+
 
     // MARK: - Dependencies
 
     private let interactor: DownloadFileInteractor
-
+    private let router: Router
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     // MARK: - Init
 
-    init(interactor: DownloadFileInteractor) {
+    init(
+        interactor: DownloadFileInteractor,
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.interactor = interactor
+        self.router = router
+        self.scheduler = scheduler
     }
+
+    // MARK: - Input Functions
 
     func downloadFile() {
         viewState = .loading
-        interactor.download()
+        subscription = interactor
+            .download()
+            .receive(on: scheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     if case .failure(let error)  = completion {
                         self?.viewState = .error(error.localizedDescription)
                     }
-                }, receiveValue: { [weak self] value in
-                    self?.viewState = .loaded(filePath: value)
+                }, receiveValue: { [weak self] url in
+                    self?.viewState = .loaded
+                    self?.showShareSheet(fileURL: url)
                 }
             )
-            .store(in: &subscriptions)
+    }
+
+    func cancelDownload() {
+        subscription?.cancel()
+        viewState = .initial
+    }
+
+    // MARK: - Private Functions
+
+    private func showShareSheet(fileURL: URL) {
+        let controller = CoreActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        router.show(controller, from: viewController, options: .modal())
     }
 }

@@ -24,10 +24,11 @@ struct FileDetailsView: View {
     // MARK: - Private Properties
 
     @State private var isFinishLoading: Bool = false
+    @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
 
-    private let viewModel: FileDetailsViewModel
+    @State private var viewModel: FileDetailsViewModel
     private let context: Context?
     private let fileID: String
     private let fileName: String
@@ -52,6 +53,8 @@ struct FileDetailsView: View {
             if isShowHeader {
                 FileDownloadStatusView(status: viewModel.viewState, fileName: fileName) {
                     viewModel.downloadFile()
+                } onTapCancel: {
+                    viewModel.cancelDownload()
                 }
                 .padding(.vertical, .huiSpaces.primitives.small)
                 .padding(.horizontal, .huiSpaces.primitives.medium)
@@ -66,6 +69,7 @@ struct FileDetailsView: View {
         }
         .animation(.smooth, value: viewModel.viewState)
         .animation(.smooth, value: [isShowHeader, isFinishLoading])
+        .onFirstAppear { viewModel.viewController = viewController }
     }
 }
 
