@@ -40,7 +40,7 @@ public extension HorizonUI {
 
         public var body: some View {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: .huiSpaces.primitives.medium) {
+                HStack(alignment: .top, spacing: .huiSpaces.space24) {
                     ForEach(Array(tabs.enumerated()), id: \.offset) { index, item in
                         Button {
                             selectTabIndex = index
@@ -50,14 +50,14 @@ public extension HorizonUI {
                         .id(index)
                     }
                 }
-                .padding(.horizontal, .huiSpaces.primitives.medium)
+                .padding(.horizontal, .huiSpaces.space24)
             }
             .scrollPosition(id: $selectTabIndex, anchor: .center)
             .animation(.smooth, value: selectTabIndex)
         }
 
         private func tab(title: String, isSelected: Bool) -> some View {
-            VStack(spacing: .huiSpaces.primitives.xxxSmall) {
+            VStack(spacing: .huiSpaces.space2) {
                 Text(title)
                     .frame(maxWidth: .infinity)
                     .huiTypography(.p1)

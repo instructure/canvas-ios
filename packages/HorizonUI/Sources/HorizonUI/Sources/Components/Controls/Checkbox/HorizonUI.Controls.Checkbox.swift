@@ -86,7 +86,7 @@ fileprivate extension HorizonUI.Controls {
         let style: HorizonUI.Controls.Checkbox.Style
 
         func makeBody(configuration: Configuration) -> some View {
-            HStack(alignment: .top, spacing: .huiSpaces.primitives.xxSmall) {
+            HStack(alignment: .top, spacing: .huiSpaces.space4) {
                 Button {
                     configuration.isOn.toggle()
                 } label: {

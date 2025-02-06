@@ -30,7 +30,7 @@ struct NotebookNoteView: View {
             leading: {},
             trailing: {}
         ) {
-            VStack(spacing: .huiSpaces.primitives.medium) {
+            VStack(spacing: .huiSpaces.space24) {
                 HStack {
                     HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
                         viewModel.close(viewController: viewController)
@@ -48,7 +48,7 @@ struct NotebookNoteView: View {
                 }
                 .background(HorizonUI.colors.surface.pagePrimary)
 
-                HStack(spacing: .huiSpaces.primitives.xSmall) {
+                HStack(spacing: .huiSpaces.space8) {
                     NoteCardFilterButton(
                         type: .confusing,
                         selected: viewModel.isConfusing
@@ -71,12 +71,12 @@ struct NotebookNoteView: View {
                     TextField("", text: $viewModel.note, axis: .vertical)
                         .disabled(viewModel.isTextEditorDisabled)
                         .onTapGesture { viewModel.edit() }
-                        .padding(.huiSpaces.primitives.small)
+                        .padding(.huiSpaces.space12)
                         .frame(minHeight: 112, alignment: .topLeading)
                         .frame(maxWidth: .infinity)
                         .scrollDisabled(true)
                         .background(.white)
-                        .cornerRadius(.huiSpaces.primitives.xSmall)
+                        .cornerRadius(.huiSpaces.space8)
                         .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
 
                     if viewModel.isTextEditorDisabled {
@@ -85,7 +85,7 @@ struct NotebookNoteView: View {
                     }
                 }
 
-                VStack(spacing: .huiSpaces.primitives.mediumSmall) {
+                VStack(spacing: .huiSpaces.space16) {
                     if viewModel.isSaveVisible {
                         Button {
                             viewModel.saveAndDismiss(viewController: viewController)
@@ -122,7 +122,7 @@ struct NotebookNoteView: View {
                     }
                 }
             }
-            .padding(.vertical, .huiSpaces.primitives.large)
+            .padding(.vertical, .huiSpaces.space36)
         }
         .alert(isPresented: $viewModel.isDeleteAlertPresented) {
             Alert(

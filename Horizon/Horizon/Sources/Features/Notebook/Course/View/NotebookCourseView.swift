@@ -35,13 +35,13 @@ struct NotebookCourseView: View {
             },
             trailing: {}
         ) {
-            NotebookSearchBar(term: $viewModel.term).padding(.top, .huiSpaces.primitives.medium)
+            NotebookSearchBar(term: $viewModel.term).padding(.top, .huiSpaces.space24)
 
             Text("Filter", bundle: .horizon).font(.regular16)
-                .padding(.top, .huiSpaces.primitives.mediumSmall)
+                .padding(.top, .huiSpaces.space16)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            HStack(spacing: .huiSpaces.primitives.xSmall) {
+            HStack(spacing: .huiSpaces.space8) {
                 NoteCardFilterButton(type: .confusing, selected: viewModel.isConfusingEnabled)
                     .onTapGesture {
                         viewModel.filter = .confusing
@@ -53,7 +53,7 @@ struct NotebookCourseView: View {
             }.frame(maxWidth: .infinity)
 
             Text("Notes", bundle: .horizon).font(.regular16)
-                .padding(.top, .huiSpaces.primitives.medium)
+                .padding(.top, .huiSpaces.space24)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             ForEach(viewModel.notes) { note in

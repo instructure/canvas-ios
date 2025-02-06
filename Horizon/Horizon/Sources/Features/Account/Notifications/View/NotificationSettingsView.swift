@@ -29,7 +29,7 @@ struct NotificationSettingsView: View {
             Color.huiColors.surface.pagePrimary.edgesIgnoringSafeArea(.all)
             ScrollView {
                 if !viewModel.isPushNotificationsEnabled {
-                    openSettingsButton
+                    enablePushNotificationsButton
                 }
                 entries
             }
@@ -79,21 +79,21 @@ struct NotificationSettingsView: View {
                 isPushNotificationOn: $viewModel.isScorePushEnabled
             )
         }
-        .padding([.leading, .top, .trailing], 32)
+        .padding([.leading, .top, .trailing], .huiSpaces.space32)
         .background(Color.white)
     }
 
-    private var openSettingsButton: some View {
-        VStack(spacing: .huiSpaces.primitives.mediumSmall) {
+    private var enablePushNotificationsButton: some View {
+        VStack(spacing: .huiSpaces.space16) {
             Text("Push notifications are currently disabled. To turn on, you will need to enable in iOS Settings.")
                 .huiTypography(.p2)
                 .foregroundStyle(Color.huiColors.text.timestamp)
-                .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
-                .padding(.top, .huiSpaces.primitives.small)
-            HStack(spacing: .huiSpaces.primitives.xxSmall) {
+                .padding(.horizontal, .huiSpaces.space16)
+                .padding(.top, .huiSpaces.space12)
+            HStack(spacing: .huiSpaces.space4) {
                 Spacer()
                 HorizonUI.TextButton(
-                    "Enable iOS Notifications",
+                    String(localized: "Enable iOS Notifications", bundle: .horizon),
                     type: .black
                 ) {
                     viewModel.goToAppSettings()
@@ -103,16 +103,16 @@ struct NotificationSettingsView: View {
                     .resizable()
                     .frame(width: 24, height: 24)
             }
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
-            .padding(.bottom, .huiSpaces.primitives.small)
+            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.bottom, .huiSpaces.space12)
 
         }
         .huiBorder(
             level: .level1,
-            radius: CGFloat.huiSpaces.primitives.medium
+            radius: 16
         )
-        .padding(.top, 32)
-        .padding(.horizontal, 30)
+        .padding(.top, .huiSpaces.space32)
+        .padding(.horizontal, .huiSpaces.space32)
     }
 
     private var navigationBar: some View {
@@ -131,11 +131,11 @@ struct NotificationSettingsView: View {
                     viewModel.navigateBack(viewController: viewController)
                 }
                 .frame(width: 44, height: 44)
-                .padding(.leading, .huiSpaces.primitives.medium)
+                .padding(.leading, .huiSpaces.space24)
                 Spacer()
             }
         }
-        .padding(.bottom, .huiSpaces.primitives.xSmall)
+        .padding(.bottom, .huiSpaces.space8)
     }
 
     @ViewBuilder
@@ -145,8 +145,8 @@ struct NotificationSettingsView: View {
         isEmailOn: Binding<Bool>,
         isPushNotificationOn: Binding<Bool>
     ) -> some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
-            VStack(alignment: .leading, spacing: .huiSpaces.primitives.xxSmall) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+            VStack(alignment: .leading, spacing: .huiSpaces.space4) {
                 Text(title)
                     .huiTypography(.labelLargeBold)
                     .foregroundStyle(Color.huiColors.text.body)
@@ -155,17 +155,17 @@ struct NotificationSettingsView: View {
                     .huiTypography(.p2)
                     .foregroundStyle(Color.huiColors.text.body)
             }
-            VStack(alignment: .leading, spacing: .huiSpaces.primitives.xxSmall) {
+            VStack(alignment: .leading, spacing: .huiSpaces.space4) {
                 HorizonUI.Controls.ToggleItem(
                     isOn: isEmailOn,
                     title: String(localized: "E-mail", bundle: .horizon)
                 )
-                .padding(.vertical, .huiSpaces.primitives.smallMedium)
+                .padding(.vertical, .huiSpaces.space10)
                 HorizonUI.Controls.ToggleItem(
                     isOn: isPushNotificationOn,
                     title: String(localized: "Push notification", bundle: .horizon)
                 )
-                .padding(.vertical, .huiSpaces.primitives.smallMedium)
+                .padding(.vertical, .huiSpaces.space10)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

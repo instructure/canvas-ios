@@ -46,8 +46,8 @@ struct DashboardView: View {
                             Text(course.name)
                                 .huiTypography(.h1)
                                 .foregroundStyle(Color.huiColors.text.title)
-                                .padding(.top, .huiSpaces.primitives.medium)
-                                .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+                                .padding(.top, .huiSpaces.space24)
+                                .padding(.bottom, .huiSpaces.space16)
 
                             HorizonUI.ProgressBar(
                                 progress: course.progress,
@@ -58,8 +58,8 @@ struct DashboardView: View {
                                 Text("Next Up", bundle: .horizon)
                                     .huiTypography(.h3)
                                     .foregroundStyle(Color.huiColors.text.title)
-                                    .padding(.top, .huiSpaces.primitives.large)
-                                    .padding(.bottom, .huiSpaces.primitives.small)
+                                    .padding(.top, .huiSpaces.space36)
+                                    .padding(.bottom, .huiSpaces.space12)
                                     .frame(maxWidth: .infinity, alignment: .leading)
 
                                 HorizonUI.LearningObjectCard(
@@ -76,11 +76,11 @@ struct DashboardView: View {
                                 }
                             }
                         }
-                        .padding(.horizontal, .huiSpaces.primitives.medium)
+                        .padding(.horizontal, .huiSpaces.space24)
                     }
                 }
             }
-            .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+            .padding(.bottom, .huiSpaces.space16)
         }
         .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: logoURL))
         .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing {

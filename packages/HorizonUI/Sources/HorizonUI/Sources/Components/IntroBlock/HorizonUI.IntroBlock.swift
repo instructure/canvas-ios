@@ -54,7 +54,7 @@ public extension HorizonUI {
         }
 
         public var body: some View {
-            VStack(spacing: .huiSpaces.primitives.small) {
+            VStack(spacing: .huiSpaces.space12) {
                 HStack {
                     backButton
                     Spacer()
@@ -64,8 +64,8 @@ public extension HorizonUI {
                 }
                 moduleInfoView
             }
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
-            .padding(.bottom, .huiSpaces.primitives.medium)
+            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.bottom, .huiSpaces.space24)
             .background {
                 Rectangle()
                     .fill(backgroundColor)
@@ -73,7 +73,7 @@ public extension HorizonUI {
         }
 
         private var moduleTitleView: some View {
-            VStack(spacing: .huiSpaces.primitives.xxSmall) {
+            VStack(spacing: .huiSpaces.space4) {
                 Text(moduleName)
                     .huiTypography(.p3)
                     .lineLimit(1)
@@ -110,7 +110,7 @@ public extension HorizonUI {
             }
             .foregroundStyle(foregroundColor)
             .huiTypography(.p2)
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .padding(.horizontal, .huiSpaces.space16)
         }
     }
 }
