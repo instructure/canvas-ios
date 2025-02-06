@@ -16,11 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
+import Observation
 import SwiftUI
 
 struct ProfileView: View {
 
-    private let viewModel: ProfileViewModel
+    @Bindable
+    private var viewModel: ProfileViewModel
 
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -28,11 +31,66 @@ struct ProfileView: View {
 
     var body: some View {
         VStack {
-            AccountNavigationBar()
+            AccountNavigationBar(String(localized: "Profile", bundle: .horizon))
+                .background(Color.huiColors.surface.pagePrimary)
+
+            ScrollView {
+                VStack(spacing: .huiSpaces.primitives.medium) {
+                    nameView
+                    displayNameView
+                    emailView
+                    saveButton
+                }
+                .frame(maxHeight: .infinity, alignment: .top)
+                .background(Color.huiColors.surface.pageSecondary)
+                .padding(.horizontal, .huiSpaces.primitives.medium)
+                .padding(.vertical, .huiSpaces.primitives.xLarge)
+            }
+            .background(Color.huiColors.surface.pageSecondary)
+            .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
         }
-        .frame(maxHeight: .infinity, alignment: .top)
+        .ignoresSafeArea(.all, edges: .bottom)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    @ViewBuilder
+    var nameView: some View {
+        TextInput(
+            $viewModel.name,
+            label: String(localized: "Full Name", bundle: .horizon),
+            error: viewModel.nameError
+        )
+    }
+
+    @ViewBuilder
+    var displayNameView: some View {
+        TextInput(
+            $viewModel.displayName,
+            label: String(localized: "Display Name", bundle: .horizon),
+            error: viewModel.displayNameError,
+            helperText: String(localized: "Required", bundle: .horizon)
+        )
+    }
+
+    @ViewBuilder
+    var emailView: some View {
+        TextInput(
+            $viewModel.email,
+            label: String(localized: "Email", bundle: .horizon),
+            helperText: String(localized: "Email can only be changed by your institution", bundle: .horizon),
+            disabled: true,
+            small: true
+        )
+    }
+
+    @ViewBuilder
+    var saveButton: some View {
+        HorizonUI.PrimaryButton(String(localized: "Save Changes", bundle: .horizon)) {
+            viewModel.save()
+        }
+        .disabled(viewModel.isSaveDisabled)
     }
 }
 

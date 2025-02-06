@@ -36,15 +36,17 @@ struct AccountNavigationBar: View {
 
     @Environment(\.viewController) private var viewController
 
+    private let title: String
     private let viewModel: AccountNavigationBarViewModel
 
-    init(viewModel: AccountNavigationBarViewModel = .init()) {
+    init(_ title: String, viewModel: AccountNavigationBarViewModel = .init()) {
         self.viewModel = viewModel
+        self.title = title
     }
 
     var body: some View {
         ZStack {
-            Text("Notifications")
+            Text(title)
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
                 .frame(height: 44)
@@ -64,4 +66,13 @@ struct AccountNavigationBar: View {
         }
         .padding(.bottom, .huiSpaces.primitives.xSmall)
     }
+}
+
+#Preview {
+    VStack {
+        AccountNavigationBar("Pizza")
+    }
+    .frame(maxHeight: .infinity, alignment: .top)
+    .toolbar(.hidden)
+    .background(Color.huiColors.surface.pagePrimary)
 }

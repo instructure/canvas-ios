@@ -68,13 +68,25 @@
     "Confusing" : {
 
     },
+    "Display Name" : {
+
+    },
     "Edit" : {
+
+    },
+    "Email" : {
+
+    },
+    "Email can only be changed by your institution" : {
 
     },
     "Error" : {
 
     },
     "Filter" : {
+
+    },
+    "Full Name" : {
 
     },
     "Generate some study flashcards" : {
@@ -114,6 +126,9 @@
 
     },
     "My Progress" : {
+
+    },
+    "Name is required" : {
 
     },
     "Next Up" : {
@@ -167,10 +182,16 @@
     "Regenerate" : {
 
     },
+    "Required" : {
+
+    },
     "Retry" : {
 
     },
     "Save" : {
+
+    },
+    "Save Changes" : {
 
     },
     "Search" : {

@@ -16,6 +16,60 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Observation
+
+@Observable
 final class ProfileViewModel {
-    
+
+    // MARK: - Output
+
+    var name: String = "Reed Abbott" {
+        didSet {
+            validateName()
+        }
+    }
+    var nameError: String = " "
+    var displayName: String = "Reed" {
+        didSet {
+            validateDisplayName()
+        }
+    }
+    var displayNameError: String = " "
+    var email: String = "reabbotted@gmail.com"
+    var isSaveDisabled: Bool {
+        !isNameValid || !isDisplayNameValid
+    }
+
+    // MARK: - Init
+
+    init() {
+    }
+
+    // MARK: - Input Actions
+
+    func save() {
+    }
+
+    // MARK: - Private
+
+    private var isDisplayNameValid: Bool {
+        !displayName.isEmpty
+    }
+
+    private var isNameValid: Bool {
+        !name.isEmpty
+    }
+
+    private func validate() {
+        validateName()
+        validateDisplayName()
+    }
+
+    private func validateDisplayName() {
+        displayNameError = isDisplayNameValid ? " " : "Display Name is required"
+    }
+
+    private func validateName() {
+        nameError = isNameValid ? " " : String(localized: "Name is required", bundle: .horizon)
+    }
 }
