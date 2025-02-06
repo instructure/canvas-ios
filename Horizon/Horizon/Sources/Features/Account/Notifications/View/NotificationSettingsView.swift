@@ -28,11 +28,10 @@ struct NotificationSettingsView: View {
         ZStack {
             Color.huiColors.surface.pagePrimary.edgesIgnoringSafeArea(.all)
             ScrollView {
-                if viewModel.isPushNotificationsEnabled {
-                    entries
-                } else {
+                if !viewModel.isPushNotificationsEnabled {
                     openSettingsButton
                 }
+                entries
             }
             .background(.white)
             .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
@@ -85,13 +84,35 @@ struct NotificationSettingsView: View {
     }
 
     private var openSettingsButton: some View {
-        Button {
-            viewModel.goToAppSettings()
-        } label: {
-            Text(verbatim: "Go to App Settings")
+        VStack(spacing: .huiSpaces.primitives.mediumSmall) {
+            Text("Push notifications are currently disabled. To turn on, you will need to enable in iOS Settings.")
+                .huiTypography(.p2)
+                .foregroundStyle(Color.huiColors.text.timestamp)
+                .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+                .padding(.top, .huiSpaces.primitives.small)
+            HStack(spacing: .huiSpaces.primitives.xxSmall) {
+                Spacer()
+                HorizonUI.TextButton(
+                    "Enable iOS Notifications",
+                    type: .black
+                ) {
+                    viewModel.goToAppSettings()
+                }
+
+                Image.huiIcons.openInNew
+                    .resizable()
+                    .frame(width: 24, height: 24)
+            }
+            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .padding(.bottom, .huiSpaces.primitives.small)
+
         }
-        .frame(maxWidth: .infinity)
+        .huiBorder(
+            level: .level1,
+            radius: CGFloat.huiSpaces.primitives.medium
+        )
         .padding(.top, 32)
+        .padding(.horizontal, 30)
     }
 
     private var navigationBar: some View {

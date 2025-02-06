@@ -21,28 +21,18 @@ import Core
 struct NotificationPreference {
     let channelID: String
     let category: SupportedCategories
-    let notificationIDs: [SupportedNotifications]
+    let notificationIDs: [String]
     let frequence: Frequency
     let title: String = ""
     let subtitle: String = ""
     let type: NotificationChannel.ChannelType
 
     enum SupportedCategories: String, CaseIterable {
+        case account_notification
         case announcement
         case conversation_message
         case due_date
         case grading
-    }
-
-    enum SupportedNotifications: String, CaseIterable {
-        case new_announcement
-        case conversation_message
-        case assignment_due_date_changed
-        case assignment_due_date_override_changed
-        case assignment_graded
-        case submission_graded
-        case submission_grade_changed
-        case quiz_regrade_finished
     }
 
     enum Frequency {
@@ -57,14 +47,7 @@ struct NotificationPreference {
             return nil
         }
 
-        var notificationIDs = [SupportedNotifications]()
-        for notification in notificationCategory.notifications {
-            if let supportedNotification = SupportedNotifications(rawValue: notification) {
-                notificationIDs.append(supportedNotification)
-            }
-        }
-        
-        self.notificationIDs = notificationIDs
+        self.notificationIDs = notificationCategory.notifications
         self.channelID = notificationCategory.channelID
 
         switch notificationCategory.frequency {

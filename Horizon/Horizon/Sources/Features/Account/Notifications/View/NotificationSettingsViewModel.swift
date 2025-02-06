@@ -24,14 +24,16 @@ import Observation
 final class NotificationSettingsViewModel {
     // MARK: - Outputs
 
-    var isPushNotificationsEnabled: Bool = true
+    var isPushNotificationsEnabled: Bool = false
     var isMessagesEmailEnabled: Bool = false
     var isMessagesPushEnabled: Bool = false
+    
     var isDueDatesEmailEnabled: Bool = false
     var isDueDatesPushEnabled: Bool = false
+    
     var isScoreEmailEnabled: Bool = false
     var isScorePushEnabled: Bool = false
-
+    var isScorePushButtonDisabled: Bool = false
     // MARK: - Dependencies
 
     private let notificationSettingsInteractor: NotificationSettingsInteractor

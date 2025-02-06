@@ -176,6 +176,9 @@
     "Push notification" : {
 
     },
+    "Push notifications are currently disabled. To turn on, you will need to enable in iOS Settings." : {
+
+    },
     "Question" : {
 
     },
