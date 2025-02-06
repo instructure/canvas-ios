@@ -80,6 +80,7 @@ struct NotificationSettingsView: View {
             )
         }
         .padding([.leading, .top, .trailing], .huiSpaces.space32)
+        .padding(.bottom, .huiSpaces.space48)
         .background(Color.white)
     }
 
@@ -163,7 +164,8 @@ struct NotificationSettingsView: View {
                 .padding(.vertical, .huiSpaces.space10)
                 HorizonUI.Controls.ToggleItem(
                     isOn: isPushNotificationOn,
-                    title: String(localized: "Push notification", bundle: .horizon)
+                    title: String(localized: "Push notification", bundle: .horizon),
+                    isDisabled: !viewModel.isPushNotificationsEnabled
                 )
                 .padding(.vertical, .huiSpaces.space10)
             }
