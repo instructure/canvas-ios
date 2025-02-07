@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 import Core
 import Observation
 
@@ -24,16 +25,80 @@ import Observation
 final class NotificationSettingsViewModel {
     // MARK: - Outputs
 
-    var isPushNotificationsEnabled: Bool = false
+    /// iOS level notifications are enabled or not.
+    var isOSNotificationEnabled: Bool = true
 
-    var isMessagesEmailEnabled: Bool = false
-    var isMessagesPushEnabled: Bool = false
+    /// Push notifications are configured on the backend or not.
+    var isPushConfigured = false
 
-    var isDueDatesEmailEnabled: Bool = false
-    var isDueDatesPushEnabled: Bool = false
+    // MARK: - Inputs/Outputs
 
-    var isScoreEmailEnabled: Bool = false
-    var isScorePushEnabled: Bool = false
+    var isMessagesEmailEnabled = false {
+        didSet {
+            updateNotificationPreference(
+                type: .email,
+                category: .announcementsAndMesages,
+                isOn: isMessagesEmailEnabled
+            )
+        }
+    }
+
+    var isMessagesPushEnabled = false {
+        didSet {
+            updateNotificationPreference(
+                type: .push,
+                category: .announcementsAndMesages,
+                isOn: isMessagesPushEnabled
+            )
+        }
+    }
+
+    var isDueDatesEmailEnabled = false {
+        didSet {
+            updateNotificationPreference(
+                type: .email,
+                category: .assignmentDueDates,
+                isOn: isDueDatesEmailEnabled
+            )
+        }
+    }
+
+    var isDueDatesPushEnabled = false {
+        didSet {
+            updateNotificationPreference(
+                type: .push,
+                category: .assignmentDueDates,
+                isOn: isDueDatesPushEnabled
+            )
+        }
+    }
+
+    var isScoreEmailEnabled = false {
+        didSet {
+            updateNotificationPreference(
+                type: .email,
+                category: .scores,
+                isOn: isScoreEmailEnabled
+            )
+        }
+    }
+
+    var isScorePushEnabled = false {
+        didSet {
+            updateNotificationPreference(
+                type: .push,
+                category: .scores,
+                isOn: isScorePushEnabled
+            )
+        }
+    }
+
+    var viewState: ViewState = .loading
+
+    enum ViewState {
+        case loading
+        case data
+    }
 
     // MARK: - Dependencies
 
@@ -42,7 +107,10 @@ final class NotificationSettingsViewModel {
 
     // MARK: - Private properties
 
+    private var notificationPreferences = [NotificationPreference]()
     private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Init
 
     init(
         notificationSettingsInteractor: NotificationSettingsInteractor = NotificationSettingsInteractorLive(),
@@ -53,17 +121,76 @@ final class NotificationSettingsViewModel {
 
         self.notificationSettingsInteractor
             .getNotificationPreferences()
+            .print("✅")
             .replaceError(with: [])
-            .sink(receiveValue: { preferences in
-                preferences.forEach { preference in
-                    print("🟨 \(preference)\n")
-                    print("-------------------\n")
-                }
-            })
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] prefs in self?.setNotificationPreferences(preferences: prefs) })
+            .store(in: &subscriptions)
+
+        self.notificationSettingsInteractor
+            .isOSNotificationEnabled()
+            .assign(to: \.isOSNotificationEnabled, on: self)
             .store(in: &subscriptions)
     }
 
+    private func setNotificationPreferences(preferences: [NotificationPreference]) {
+        isMessagesEmailEnabled = preferences
+            .getIsOn(
+                for: .announcementsAndMesages,
+                type: .email
+            )
+
+        isMessagesPushEnabled = preferences
+            .getIsOn(
+                for: .announcementsAndMesages,
+                type: .push
+            )
+
+        isDueDatesEmailEnabled = preferences
+            .getIsOn(
+                for: .assignmentDueDates,
+                type: .email
+            )
+
+        isDueDatesPushEnabled = preferences
+            .getIsOn(
+                for: .assignmentDueDates,
+                type: .push
+            )
+        isScoreEmailEnabled = preferences
+            .getIsOn(
+                for: .scores,
+                type: .email
+            )
+
+        isScorePushEnabled = preferences
+            .getIsOn(
+                for: .scores,
+                type: .push
+            )
+
+        isPushConfigured = preferences.isPushNotificationConfigured()
+        viewState = .data
+        self.notificationPreferences = preferences
+    }
+
     // MARK: - Inputs
+
+    private func updateNotificationPreference(
+        type: NotificationChannel.ChannelType,
+        category: NotificationPreference.VisibleCategories,
+        isOn: Bool
+    ) {
+        notificationSettingsInteractor.updateNotificationPreferences(
+            type: type,
+            visibleCategory: category,
+            currentPreferences: notificationPreferences,
+            isOn: isOn
+        )
+        .ignoreFailure()
+        .sink { _ in }
+        .store(in: &subscriptions)
+    }
 
     func navigateBack(viewController: WeakViewController) {
         router.pop(from: viewController)

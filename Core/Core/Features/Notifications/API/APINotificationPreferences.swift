@@ -114,9 +114,9 @@ public struct GetNotificationPreferencesRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/notification_preferences.html#method.notification_preferences.update_all
-struct PutNotificationPreferencesRequest: APIRequestable {
-    typealias Response = GetNotificationPreferencesRequest.Response
-    struct Body: Encodable, Equatable {
+public struct PutNotificationPreferencesRequest: APIRequestable {
+    public typealias Response = GetNotificationPreferencesRequest.Response
+    public struct Body: Encodable, Equatable {
         let notification_preferences: [String: [String: NotificationFrequency]]
     }
 
@@ -124,11 +124,11 @@ struct PutNotificationPreferencesRequest: APIRequestable {
     let notifications: [String]
     let frequency: NotificationFrequency
 
-    let method = APIMethod.put
-    var path: String {
+    public let method = APIMethod.put
+    public var path: String {
         return "users/self/communication_channels/\(channelID)/notification_preferences"
     }
-    var body: Body? {
+    public var body: Body? {
         return Body(notification_preferences: notifications.reduce(into: [:]) { json, notification in
             json[notification] = [ "frequency": frequency ]
         })

@@ -20,14 +20,41 @@ import Core
 
 struct NotificationPreference {
     let channelID: String
-    let category: SupportedCategories
+    let category: VisibleCategories
+    let associatedCategory: NotificationPreference.AssociatedCategories
     let notificationIDs: [String]
-    let frequence: Frequency
-    let title: String = ""
-    let subtitle: String = ""
+    var frequency: Frequency
     let type: NotificationChannel.ChannelType
 
-    enum SupportedCategories: String, CaseIterable {
+    var isOn: Bool {
+        switch frequency {
+        case .immediate:
+            return true
+        case .never:
+            return false
+        }
+    }
+
+    enum VisibleCategories: String {
+        case announcementsAndMesages
+        case assignmentDueDates
+        case scores
+
+        // Notification preference categories presented on the UI may include more than 1 notification category
+        // that comes from the the backend.
+        init?(category: NotificationPreference.AssociatedCategories) {
+            switch category {
+            case .account_notification, .announcement, .conversation_message:
+                self = .announcementsAndMesages
+            case .due_date:
+                self = .assignmentDueDates
+            case .grading:
+                self = .scores
+            }
+        }
+    }
+
+    enum AssociatedCategories: String, CaseIterable {
         case account_notification
         case announcement
         case conversation_message
@@ -41,7 +68,9 @@ struct NotificationPreference {
     }
 
     init?(from notificationCategory: NotificationCategory, type: NotificationChannel.ChannelType) {
-        if let category = NotificationPreference.SupportedCategories(rawValue: notificationCategory.category) {
+        if let supportedCategory = NotificationPreference.AssociatedCategories(rawValue: notificationCategory.category),
+           let category = NotificationPreference.VisibleCategories(category: supportedCategory) {
+            self.associatedCategory = supportedCategory
             self.category = category
         } else {
             return nil
@@ -51,10 +80,27 @@ struct NotificationPreference {
         self.channelID = notificationCategory.channelID
 
         switch notificationCategory.frequency {
-        case .immediately: self.frequence = .immediate
-        case .never: self.frequence = .never
-        default: self.frequence = .never
+        case .immediately: self.frequency = .immediate
+        case .never: self.frequency = .never
+        default: self.frequency = .never
         }
         self.type = type
+    }
+}
+
+extension Array where Element == NotificationPreference {
+    func getIsOn(
+        for category: NotificationPreference.VisibleCategories,
+        type: NotificationChannel.ChannelType
+    ) -> Bool {
+        filter { $0.category == category && $0.type == type }
+            .compactMap { $0.isOn }
+            .first ?? false
+    }
+
+    // Returns if push notifications are configured on the account.
+    // It's not the same as registering for Apple Push Notification Services.
+    func isPushNotificationConfigured() -> Bool {
+        contains(where: { $0.type == .push })
     }
 }

@@ -17,19 +17,30 @@
 //
 
 import Combine
+import CombineExt
 import Core
 
 protocol NotificationSettingsInteractor {
     func getNotificationPreferences() -> AnyPublisher<[NotificationPreference], Error>
+    func isOSNotificationEnabled() -> AnyPublisher<Bool, Never>
+    func updateNotificationPreferences(
+        type: NotificationChannel.ChannelType,
+        visibleCategory: NotificationPreference.VisibleCategories,
+        currentPreferences: [NotificationPreference],
+        isOn: Bool
+    ) -> AnyPublisher<Void, Error>
 }
 
 final class NotificationSettingsInteractorLive: NotificationSettingsInteractor {
+    private var currentPreferences: [NotificationPreference] = []
+
     public init() {}
-    func getNotificationChannels() -> AnyPublisher<[NotificationChannel], Error> {
+
+    private func getNotificationChannels() -> AnyPublisher<[NotificationChannel], Error> {
         ReactiveStore(
             useCase: GetCommunicationChannels()
         )
-        .getEntities()
+        .getEntities(ignoreCache: true)
         .flatMap(\.publisher)
         .map { NotificationChannel(from: $0) }
         .collect()
@@ -43,11 +54,52 @@ final class NotificationSettingsInteractorLive: NotificationSettingsInteractor {
                 ReactiveStore(
                     useCase: GetNotificationCategories(channelID: channel.id)
                 )
-                .getEntities()
+                .getEntities(ignoreCache: true)
                 .flatMap(\.publisher)
                 .compactMap { NotificationPreference(from: $0, type: channel.type) }
-                .collect()
             }
+            .collect()
+            .eraseToAnyPublisher()
+    }
+
+    func isOSNotificationEnabled() -> AnyPublisher<Bool, Never> {
+        return AnyPublisher<Bool, Never>.create { subscriber in
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                subscriber.send(settings.authorizationStatus == .authorized)
+                subscriber.send(completion: .finished)
+            }
+            return AnyCancellable {}
+        }
+    }
+
+    func updateNotificationPreferences(
+        type: NotificationChannel.ChannelType,
+        visibleCategory: NotificationPreference.VisibleCategories,
+        currentPreferences: [NotificationPreference],
+        isOn: Bool
+    ) -> AnyPublisher<Void, Error> {
+        let frequency: NotificationFrequency = isOn ? .immediately : .never
+
+        let categoriesToUpdate = currentPreferences
+            .filter { cp in
+                cp.category == visibleCategory && cp.type == type
+            }
+
+        return categoriesToUpdate
+            .publisher
+            .flatMap { category in
+                ReactiveStore(
+                    useCase: PutNotificationCategory(
+                        channelID: category.channelID,
+                        category: category.associatedCategory.rawValue,
+                        notifications: category.notificationIDs,
+                        frequency: frequency
+                    )
+                )
+                .getEntities()
+            }
+            .collect()
+            .map { _ in () }
             .eraseToAnyPublisher()
     }
 }

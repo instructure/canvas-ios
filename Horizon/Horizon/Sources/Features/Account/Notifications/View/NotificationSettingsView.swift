@@ -27,17 +27,26 @@ struct NotificationSettingsView: View {
     var body: some View {
         ZStack {
             Color.huiColors.surface.pagePrimary.edgesIgnoringSafeArea(.all)
-            ScrollView {
-                if !viewModel.isPushNotificationsEnabled {
-                    enablePushNotificationsButton
-                }
-                entries
+            switch viewModel.viewState {
+            case .loading:
+                loadingView
+            case .data:
+                dataView
             }
-            .background(.white)
-            .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
         }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var dataView: some View {
+        ScrollView {
+            if !viewModel.isOSNotificationEnabled {
+                enablePushNotificationsButton
+            }
+            entries
+        }
+        .background(.white)
+        .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
     }
 
     private var entries: some View {
@@ -106,7 +115,6 @@ struct NotificationSettingsView: View {
             }
             .padding(.horizontal, .huiSpaces.space16)
             .padding(.bottom, .huiSpaces.space12)
-
         }
         .huiBorder(
             level: .level1,
@@ -162,15 +170,25 @@ struct NotificationSettingsView: View {
                     title: String(localized: "E-mail", bundle: .horizon)
                 )
                 .padding(.vertical, .huiSpaces.space10)
-                HorizonUI.Controls.ToggleItem(
-                    isOn: isPushNotificationOn,
-                    title: String(localized: "Push notification", bundle: .horizon),
-                    isDisabled: !viewModel.isPushNotificationsEnabled
-                )
-                .padding(.vertical, .huiSpaces.space10)
+                if viewModel.isPushConfigured {
+                    HorizonUI.Controls.ToggleItem(
+                        isOn: isPushNotificationOn,
+                        title: String(localized: "Push notification", bundle: .horizon),
+                        isDisabled: !viewModel.isOSNotificationEnabled
+                    )
+                    .padding(.vertical, .huiSpaces.space10)
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var loadingView: some View {
+        HorizonUI.Spinner(
+            size: .small,
+            showBackground: true
+        )
+        .frame(alignment: .center)
     }
 }
 
