@@ -55,8 +55,6 @@ struct AssignmentSection<Header: View, Content: View>: View {
                 .background(Color.backgroundLightest)
             }
             .accessibilityElement(children: .combine)
-            .accessibilityRemoveTraits(.isButton)
-            .accessibilityAddTraits(.isHeader)
             .accessibilityHint(isExpanded
                                ? String(localized: "expanded", bundle: .core)
                                : String(localized: "collapsed", bundle: .core)
