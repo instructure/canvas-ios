@@ -25,15 +25,12 @@ final class CourseListViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var courses: [HCourse] = []
-
-    // MARK: - Inputs
-
-    let courseDidSelect = PassthroughRelay<(HCourse, WeakViewController)>()
+    @Published private(set) var courses: [CourseListCourse] = []
 
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
 
     // MARK: - Init
 
@@ -41,19 +38,54 @@ final class CourseListViewModel: ObservableObject {
         router: Router,
         interactor: GetCoursesInteractor
     ) {
+        self.router = router
+
         unowned let unownedSelf = self
 
         interactor.getCourses()
-            .sink { courses in
-                unownedSelf.courses = courses
+            .sink { hCourses in
+                unownedSelf.courses = hCourses.map {
+                    CourseListCourse(
+                        id: $0.id,
+                        institutionName: $0.institutionName,
+                        name: $0.name,
+                        progress: $0.progress / 100.0,
+                        progressString: $0.progress.progressString,
+                        progressState: $0.progress.progressState
+                    )
+                }
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
+    }
 
-        courseDidSelect
-            .sink { course, vc in
-                router.route(to: "/courses/\(course.id)", userInfo: ["course": course], from: vc)
-            }
-            .store(in: &subscriptions)
+    func routeToCourse(course: CourseListCourse, vc: WeakViewController) {
+        router.route(to: "/courses/\(course.id)", from: vc)
+    }
+
+    struct CourseListCourse: Identifiable {
+        let id: String
+        let institutionName: String
+        let name: String
+        let progress: Double
+        let progressString: String
+        let progressState: String
+    }
+}
+
+extension Double {
+    var progressState: String {
+        switch self {
+        case 0:
+            return "Not Started"
+        case 100:
+            return "Completed"
+        default:
+            return "On Track"
+        }
+    }
+    var progressString: String {
+        let percentageRound = self.rounded()
+        return "\(percentageRound)%"
     }
 }

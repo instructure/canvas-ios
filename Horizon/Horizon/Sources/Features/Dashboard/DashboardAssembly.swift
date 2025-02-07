@@ -21,7 +21,7 @@ import Foundation
 
 final class DashboardAssembly {
     static func makeGetCoursesInteractor() -> GetCoursesInteractor {
-        GetCoursesInteractorLive(appEnvironment: AppEnvironment.shared)
+        GetCoursesInteractorLive()
     }
 
     static func makeGetUserInteractor() -> GetUserInteractor {

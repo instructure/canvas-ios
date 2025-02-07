@@ -21,7 +21,7 @@ import SwiftUI
 import HorizonUI
 
 struct DashboardView: View {
-    @ObservedObject private var viewModel: DashboardViewModel
+    @Bindable private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
 
     // TODO: - Set with correct url later
@@ -40,44 +40,43 @@ struct DashboardView: View {
             )
         ) { _ in
             LazyVStack(spacing: .zero) {
-                ForEach(viewModel.courses) { course in
-                    if course.currentModuleItem != nil, !course.upcomingModuleItems.isEmpty {
-                        VStack(alignment: .leading, spacing: .zero) {
-                            Text(course.name)
-                                .huiTypography(.h1)
+                ForEach(viewModel.nextUpViewModels) { nextUpViewModel in
+                    VStack(alignment: .leading, spacing: .zero) {
+                        Text(nextUpViewModel.name)
+                            .huiTypography(.h1)
+                            .foregroundStyle(Color.huiColors.text.title)
+                            .padding(.top, .huiSpaces.primitives.medium)
+                            .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+
+                        HorizonUI.ProgressBar(
+                            progress: nextUpViewModel.progress,
+                            size: .medium,
+                            numberPosition: .outside
+                        )
+
+                        if let learningObjectCardViewModel = nextUpViewModel.learningObjectCardViewModel {
+                            Text("Next Up", bundle: .horizon)
+                                .huiTypography(.h3)
                                 .foregroundStyle(Color.huiColors.text.title)
-                                .padding(.top, .huiSpaces.primitives.medium)
-                                .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+                                .padding(.top, .huiSpaces.primitives.large)
+                                .padding(.bottom, .huiSpaces.primitives.small)
+                                .frame(maxWidth: .infinity, alignment: .leading)
 
-                            HorizonUI.ProgressBar(
-                                progress: course.progress,
-                                size: .medium,
-                                numberPosition: .outside
-                            )
-                            if let module = course.currentModule, let moduleItem = course.currentModuleItem {
-                                Text("Next Up", bundle: .horizon)
-                                    .huiTypography(.h3)
-                                    .foregroundStyle(Color.huiColors.text.title)
-                                    .padding(.top, .huiSpaces.primitives.large)
-                                    .padding(.bottom, .huiSpaces.primitives.small)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                                HorizonUI.LearningObjectCard(
-                                    status: "Default",
-                                    moduleTitle: module.name,
-                                    learningObjectName: moduleItem.title,
-                                    duration: "20 Mins",
-                                    type: moduleItem.type?.label,
-                                    dueDate: moduleItem.dueAt?.relativeShortDateOnlyString
-                                ) {
-                                    if let url = moduleItem.htmlURL {
-                                        viewModel.navigateToCourseDetails(url: url, viewController: viewController)
-                                    }
+                            HorizonUI.LearningObjectCard(
+                                status: "Default",
+                                moduleTitle: learningObjectCardViewModel.moduleTitle,
+                                learningObjectName: learningObjectCardViewModel.learningObjectName,
+                                duration: "20 Mins",
+                                type: learningObjectCardViewModel.type,
+                                dueDate: learningObjectCardViewModel.dueDate
+                            ) {
+                                if let url = learningObjectCardViewModel.url {
+                                    viewModel.navigateToCourseDetails(url: url, viewController: viewController)
                                 }
                             }
                         }
-                        .padding(.horizontal, .huiSpaces.primitives.medium)
                     }
+                    .padding(.horizontal, .huiSpaces.primitives.medium)
                 }
             }
             .padding(.bottom, .huiSpaces.primitives.mediumSmall)

@@ -20,32 +20,51 @@ import Combine
 import Core
 import Foundation
 
-final class CourseDetailsViewModel: ObservableObject {
+@Observable
+final class CourseDetailsViewModel {
     // MARK: - Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Biology certificate"
-    @Published private(set) var course: HCourse
+    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var title: String = "Biology certificate"
+    private(set) var course: HCourse
 
     // MARK: - Private
 
+    private let onShowTabBar: (Bool) -> Void
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
+    /// The course parameter can be provided for immediate display. But doesn't have to be for flexibility, such as deep linking
     init(
         router: Router,
-        course: HCourse
+        getCoursesInteractor: GetCoursesInteractor,
+        courseID: String,
+        course: HCourse?,
+        onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
-        self.course = course
-        self.state = .data
+        self.course = course ?? .init()
+        self.onShowTabBar = onShowTabBar
+
+        getCoursesInteractor.getCourse(id: courseID)
+            .sink { [weak self] course in
+                guard let course = course, let self = self else { return }
+                self.course = course
+
+                self.state = .data
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
         router.route(to: url, from: from)
+    }
+
+    func showTabBar() {
+        onShowTabBar(true)
     }
 }
