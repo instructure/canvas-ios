@@ -87,6 +87,10 @@ struct NavBarBackButtonModifier: ViewModifier {
 }
 
 extension View {
+    /// Sets the UINavigationBar's background color, title color and font, button color and font.
+    /// Only affects Views inside a UINavigationController.
+    /// Title style does not affect custom titleViews, like `TitleSubtitleView`.
+    /// Button style does not affect custom buttons, like `InstUI.NavigationBarButton`.
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
     }
@@ -95,6 +99,9 @@ extension View {
         modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
     }
 
+    /// Sets the UINavigationBar's background color, button color to match the `Brand.shared` colors,
+    /// sets the button font and sets the brand logo as the titleView.
+    /// Only affects Views inside a UINavigationController.
     public func navigationBarGlobal() -> some View {
         modifier(GlobalNavigationBarModifier())
     }

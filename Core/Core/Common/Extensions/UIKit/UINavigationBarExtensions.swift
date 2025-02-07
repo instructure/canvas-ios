@@ -96,17 +96,17 @@ extension UINavigationBar {
         } else {
             appearance.configureWithDefaultBackground()
 
-            if let backgroundColor = backgroundColor {
+            if let backgroundColor {
                 appearance.backgroundColor = backgroundColor
             }
         }
 
-        if let foreGroundColor = foregroundColor {
-            appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
+        if let foregroundColor {
+            appearance.titleTextAttributes = [.foregroundColor: foregroundColor]
         }
 
-        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(.bold17)
-        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(.regular17)
+        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(.semibold16)
+        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(.regular16)
 
         standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance
