@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, L
 
         window = UIWindow()
         _ = environment
-        window?.rootViewController = CoreHostingController(ProfileAssembly.makeView())
+        window?.rootViewController = SplashAssembly.makeViewController()
         window?.makeKeyAndVisible()
 
         // MARK: Setups

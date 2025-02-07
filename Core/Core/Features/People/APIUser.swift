@@ -132,6 +132,7 @@ public struct APIProfile: Codable, Equatable {
 
     public let id: ID
     public let name: String
+    public let short_name: String?
     public let primary_email: String?
     public let locale: String?
     public let login_id: String?
@@ -225,6 +226,7 @@ extension APIProfile {
     public static func make(
         id: ID = "1",
         name: String = "Bob",
+        short_name: String? = nil,
         primary_email: String? = nil,
         locale: String? = "en",
         login_id: String? = nil,
@@ -236,6 +238,7 @@ extension APIProfile {
         return APIProfile(
             id: id,
             name: name,
+            short_name: short_name,
             primary_email: primary_email,
             locale: locale,
             login_id: login_id,
@@ -352,6 +355,27 @@ struct PutUserAvatarRequest: APIRequestable {
     let path = "users/self"
     var body: Body? {
         return Body(user: User(avatar: Avatar(token: token)))
+    }
+}
+
+struct PutUserInfoRequest: APIRequestable {
+    let name: String
+    let shortName: String
+
+    typealias Response = APIUser
+
+    struct Body: Encodable {
+        let user: User
+    }
+    struct User: Encodable {
+        let name: String
+        let short_name: String
+    }
+
+    let method = APIMethod.put
+    let path = "users/self"
+    var body: Body? {
+        return Body(user: User(name: name, short_name: shortName))
     }
 }
 

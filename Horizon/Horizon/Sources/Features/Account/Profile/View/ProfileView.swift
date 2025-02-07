@@ -60,7 +60,8 @@ struct ProfileView: View {
         HorizonUI.TextInput(
             $viewModel.name,
             label: String(localized: "Full Name", bundle: .horizon),
-            error: viewModel.nameError
+            error: viewModel.nameError,
+            disabled: viewModel.nameDisabled
         )
     }
 
@@ -70,7 +71,8 @@ struct ProfileView: View {
             $viewModel.displayName,
             label: String(localized: "Display Name", bundle: .horizon),
             error: viewModel.displayNameError,
-            helperText: String(localized: "Required", bundle: .horizon)
+            helperText: String(localized: "Required", bundle: .horizon),
+            disabled: viewModel.displayNameDisabled
         )
     }
 
@@ -80,17 +82,29 @@ struct ProfileView: View {
             $viewModel.email,
             label: String(localized: "Email", bundle: .horizon),
             helperText: String(localized: "Email can only be changed by your institution", bundle: .horizon),
-            disabled: true,
-            small: true
+            disabled: true
         )
     }
 
     @ViewBuilder
     var saveButton: some View {
-        HorizonUI.PrimaryButton(String(localized: "Save Changes", bundle: .horizon)) {
-            viewModel.save()
+        ZStack {
+            HorizonUI.PrimaryButton(
+                String(localized: "Save Changes", bundle: .horizon),
+                type: .black,
+                fillsWidth: true
+            ) {
+                viewModel.save()
+            }
+            .opacity(viewModel.isLoading ? 0.25 : 1.0)
+            .animation(.easeInOut, value: viewModel.isLoading)
+            .disabled(viewModel.isSaveDisabled)
+
+            HorizonUI.Spinner(size: .xSmall)
+                .opacity(viewModel.isLoading ? 1.0 : 0.0)
+                .animation(.easeInOut, value: viewModel.isLoading)
         }
-        .disabled(viewModel.isSaveDisabled)
+        .frame(maxWidth: .infinity)
     }
 }
 

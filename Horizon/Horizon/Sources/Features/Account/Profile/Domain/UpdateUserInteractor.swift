@@ -15,14 +15,30 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-struct ProfileAssembly {
-    static func makeView() -> ProfileView {
-        ProfileView(
-            viewModel: makeViewModel()
-        )
+
+import Core
+
+class UpdateUserInteractor {
+
+    private let api: API
+
+    init(api: API) {
+        self.api = api
     }
 
-    private static func makeViewModel() -> ProfileViewModel {
-        ProfileViewModel()
+    func set(name: String, shortName: String) {
+
+    }
+}
+
+
+class UpdateUserUseCase: UseCase {
+    typealias Response = <#type#>
+    
+    var cacheKey: String?
+    
+    func makeRequest(environment: Core.AppEnvironment, completionHandler: @escaping RequestCallback) {
+        PutUserInfoRequest(name: name, shortName: shortName).send(environment: environment) { result in
+        }
     }
 }

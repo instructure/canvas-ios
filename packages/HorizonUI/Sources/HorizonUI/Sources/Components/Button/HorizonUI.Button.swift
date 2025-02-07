@@ -52,7 +52,7 @@ extension HorizonUI {
                     HorizonUI.ButtonStyles.primary(
                         type,
                         isSmall: isSmall,
-                        fillsWidth: isSmall,
+                        fillsWidth: fillsWidth,
                         leading: leading,
                         trailing: trailing
                     )

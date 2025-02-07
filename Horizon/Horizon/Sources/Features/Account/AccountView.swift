@@ -22,6 +22,7 @@ import Core
 
 struct AccountView: View {
     @Bindable var viewModel: AccountViewModel
+    @Environment(\.viewController) private var viewController
 
     var body: some View {
         ScrollView {
@@ -63,7 +64,7 @@ struct AccountView: View {
                     title: String(localized: "Profile", bundle: .horizon),
                     isFirstItem: true,
                     didTapRow: {
-                        viewModel.profileDidTap()
+                        viewModel.profileDidTap(viewController: viewController)
                     }
                 )
                 AccountEntryRowView(

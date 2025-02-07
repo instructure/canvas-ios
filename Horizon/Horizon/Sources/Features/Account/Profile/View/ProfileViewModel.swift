@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Observation
 
 @Observable
@@ -23,37 +24,81 @@ final class ProfileViewModel {
 
     // MARK: - Output
 
-    var name: String = "Reed Abbott" {
+    var name: String = "" {
         didSet {
             validateName()
         }
     }
+    var nameDisabled: Bool {
+        isLoading
+    }
     var nameError: String = " "
-    var displayName: String = "Reed" {
+    var displayName: String = "" {
         didSet {
             validateDisplayName()
         }
     }
-    var displayNameError: String = " "
-    var email: String = "reabbotted@gmail.com"
-    var isSaveDisabled: Bool {
-        !isNameValid || !isDisplayNameValid
+    var displayNameDisabled: Bool {
+        isLoading
     }
+    var displayNameError: String = " "
+    var email: String = ""
+    var isSaveDisabled: Bool {
+        !isNameValid || !isDisplayNameValid || !(isNameChanged || isDisplayNameChanged)
+    }
+    var isLoading: Bool = true
+
+    // MARK: - Private
+
+    private var displayNameOriginal: String = "" {
+        didSet {
+            displayName = displayNameOriginal
+        }
+    }
+
+    private var nameOriginal: String = "" {
+        didSet {
+            name = nameOriginal
+        }
+    }
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init() {
+    init(getUserInteractor: GetUserInteractor = GetUserInteractorLive()) {
+        getUserInteractor
+            .getUser()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] user in
+                    self?.nameOriginal = user.name
+                    self?.displayNameOriginal = user.shortName ?? ""
+                    self?.email = user.email ?? ""
+                    self?.validate()
+                    self?.isLoading = false
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     // MARK: - Input Actions
 
     func save() {
+        isLoading = true
     }
 
     // MARK: - Private
 
+    private var isDisplayNameChanged: Bool {
+        displayName != displayNameOriginal
+    }
+
     private var isDisplayNameValid: Bool {
         !displayName.isEmpty
+    }
+
+    private var isNameChanged: Bool {
+        name != nameOriginal
     }
 
     private var isNameValid: Bool {

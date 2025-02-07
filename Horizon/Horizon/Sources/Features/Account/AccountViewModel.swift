@@ -66,7 +66,11 @@ final class AccountViewModel {
 
     // MARK: - Input functions
 
-    func profileDidTap() {}
+    func profileDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "/account/profile") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func passwordDidTap() {}
 

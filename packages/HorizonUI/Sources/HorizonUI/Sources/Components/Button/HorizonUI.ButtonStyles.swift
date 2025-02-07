@@ -138,7 +138,9 @@ extension HorizonUI {
             .foregroundStyle(foregroundColor)
             .huiCornerRadius(level: .level6)
             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
+            .animation(.easeInOut, value: isEnabled)
         }
+
     }
 }
 
