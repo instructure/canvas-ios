@@ -48,7 +48,7 @@ struct FileDownloadStatusView: View {
         case .loading:
             loadingView
         case .loaded:
-            EmptyView()
+            initialView
         case .error(let string):
             VStack(spacing: .huiSpaces.primitives.small) {
                 errorView(message: string)
