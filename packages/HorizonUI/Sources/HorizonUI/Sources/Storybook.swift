@@ -128,6 +128,11 @@ public struct Storybook: View {
                     } label: {
                         Text("Intro Block").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.FileUploadSheet.Storybook()
+                    } label: {
+                        Text("File Upload Sheet").tint(Color.black)
+                    }
                 }
             }
             .listStyle(.sidebar)
