@@ -70,6 +70,8 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
+        dropdownButton.isAccessibilityElement = false
+        dropdownButton.accessibilityElementsHidden = true
         addStudentView.layer.addDropShadow()
         addStudentView.isHidden = true
         avatarView.isHidden = true
@@ -152,6 +154,9 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
                 badgeCount
             )
         }
+
+        dropdownButton.isAccessibilityElement = true
+        dropdownButton.accessibilityElementsHidden = false
     }
 
     func updateCurrentStudent(_ oldValue: Core.User?) {
@@ -177,9 +182,10 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
             titleLabel.text = displayName
             dropdownButton.accessibilityLabel = String.localizedStringWithFormat(
-                String(localized: "Current student: %@. Tap to switch students", bundle: .parent),
+                String(localized: "Current student: %@", bundle: .parent),
                 displayName
             )
+            dropdownButton.accessibilityHint = String(localized: "Tap to switch students")
         } else {
             avatarView.isHidden = true
             titleLabel.text = String(localized: "Add Student", bundle: .parent)
