@@ -30,7 +30,9 @@ struct NavigationBarStyleModifier: ViewModifier {
     func body(content: Content) -> some View {
         (controller.value as? NavigationBarStyled)?.navigationBarStyle = style
         controller.value.navigationController?.navigationBar.useStyle(style)
+
         return content.overlay(Color?.none) // needs something modified to actually run
+            .environment(\.navBarColors, .init(style: style))
     }
 }
 
@@ -97,6 +99,14 @@ extension View {
 
     public func navigationTitle(_ title: String, subtitle: String?) -> some View {
         modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
+    }
+
+    public func navigationBarTitleView(title: String, subtitle: String? = nil) -> some View {
+        toolbar {
+            ToolbarItem(placement: .principal) {
+                InstUI.NavigationBarTitleView(title: title, subtitle: subtitle)
+            }
+        }
     }
 
     /// Sets the UINavigationBar's background color, button color to match the `Brand.shared` colors,
