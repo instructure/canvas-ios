@@ -358,27 +358,6 @@ struct PutUserAvatarRequest: APIRequestable {
     }
 }
 
-struct PutUserInfoRequest: APIRequestable {
-    let name: String
-    let shortName: String
-
-    typealias Response = APIUser
-
-    struct Body: Encodable {
-        let user: User
-    }
-    struct User: Encodable {
-        let name: String
-        let short_name: String
-    }
-
-    let method = APIMethod.put
-    let path = "users/self"
-    var body: Body? {
-        return Body(user: User(name: name, short_name: shortName))
-    }
-}
-
 struct PutUserAcceptedTermsRequest: APIRequestable {
     typealias Response = APIUser
 

@@ -16,7 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
+import CoreData
 
 class UpdateUserInteractor {
 
@@ -26,19 +28,55 @@ class UpdateUserInteractor {
         self.api = api
     }
 
-    func set(name: String, shortName: String) {
-
+    func set(name: String, shortName: String) -> AnyPublisher<UserProfile?, Never> {
+        ReactiveStore(useCase: UpdateUserUseCase(name: name, shortName: shortName))
+            .getEntities()
+            .replaceError(with: [])
+            .map { $0.first }
+            .eraseToAnyPublisher()
     }
 }
 
-
-class UpdateUserUseCase: UseCase {
-    typealias Response = <#type#>
-    
+class UpdateUserUseCase: APIUseCase {
     var cacheKey: String?
-    
-    func makeRequest(environment: Core.AppEnvironment, completionHandler: @escaping RequestCallback) {
-        PutUserInfoRequest(name: name, shortName: shortName).send(environment: environment) { result in
-        }
+
+    public typealias Response = APIProfile
+    public typealias Model = UserProfile
+
+    private let name: String
+    private let shortName: String
+
+    init(name: String, shortName: String) {
+        self.name = name
+        self.shortName = shortName
+    }
+
+    public var request: PutUserInfoRequest {
+        .init(name: name, shortName: shortName)
+    }
+
+    func write(response: APIProfile?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response = response else { return }
+        UserProfile.save(response, in: client)
+    }
+}
+
+struct PutUserInfoRequest: APIRequestable {
+    let name: String
+    let shortName: String
+
+    typealias Response = APIProfile
+
+    struct Body: Encodable {
+        let user: User
+    }
+    struct User: Encodable {
+        let name: String
+        let short_name: String
+    }
+    let method = APIMethod.put
+    let path = "users/self"
+    var body: Body? {
+        return Body(user: User(name: name, short_name: shortName))
     }
 }
