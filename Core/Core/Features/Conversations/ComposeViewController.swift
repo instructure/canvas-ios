@@ -108,7 +108,6 @@ public class ComposeViewController: UIViewController, ErrorViewController {
             attributes: [ .foregroundColor: UIColor.textDark ]
         )
         subjectField.accessibilityLabel = String(localized: "Subject", bundle: .core)
-        subjectField.accessibilityHint = String(localized: "Text Field", bundle: .core)
 
         recipientsView.editButton.addTarget(self, action: #selector(editRecipients), for: .primaryActionTriggered)
         course?.refresh()
