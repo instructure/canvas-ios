@@ -33,6 +33,7 @@ extension HorizonUI {
         @Binding var text: String
         private let disabled: Bool
         private let small: Bool
+        private let trailing: AnyView?
 
         // MARK: - Init
 
@@ -43,7 +44,9 @@ extension HorizonUI {
             helperText: String? = nil,
             placeholder: String? = nil,
             disabled: Bool = false,
-            small: Bool = false
+            small: Bool = false,
+            trailing: (any View)? = nil,
+            focused: FocusState<Bool>? = nil
         ) {
             self.error = error
             self.helperText = helperText
@@ -52,6 +55,8 @@ extension HorizonUI {
             self._text = text
             self.disabled = disabled
             self.small = small
+            self.trailing = trailing.map { AnyView($0) }
+            self._focused = focused ?? FocusState()
         }
 
         // MARK: - Body
@@ -59,7 +64,13 @@ extension HorizonUI {
         public var body: some View {
             VStack(alignment: .leading) {
                 labelText
-                textFieldContainer
+                ZStack(alignment: .trailing) {
+                    textFieldContainer
+                    if let trailing = trailing {
+                        trailing
+                            .padding(.trailing, 15)
+                    }
+                }
                 ZStack {
                     errorView
                     helperTextView
@@ -120,6 +131,7 @@ extension HorizonUI {
                 text: $text
             )
             .padding(.huiSpaces.primitives.small)
+            .padding(.trailing, 30)
             .frame(height: textFieldHeight)
             .huiTypography(textFieldTypography)
             .overlay(
@@ -187,7 +199,8 @@ extension HorizonUI {
                 helperText: "This is some helper text",
                 placeholder: "Placeholder text",
                 disabled: disabled,
-                small: small
+                small: small,
+                trailing: Image.huiIcons.chevronRight
             )
         }
         .frame(maxHeight: .infinity, alignment: .top)
