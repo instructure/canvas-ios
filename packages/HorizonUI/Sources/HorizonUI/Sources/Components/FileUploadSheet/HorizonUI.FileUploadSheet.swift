@@ -104,7 +104,6 @@ public extension HorizonUI {
 
         }
     }
-
 }
 
 extension HorizonUI.FileUploadSheet {
@@ -134,5 +133,3 @@ extension HorizonUI.FileUploadSheet {
 #Preview {
     HorizonUI.FileUploadSheet(onTapChoosePhoto: {}, onTapOpenCamera: {}, onTapChooseFile: {})
 }
-
-
