@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct SessionDefaults {
+public struct SessionDefaults: Equatable {
     /**
      This is a shared session storage with an empty string as `sessionID`.
      Can be used for testing/preview/fallback purposes.

@@ -49,4 +49,18 @@ class SearchSupportButtonModelTests: CoreTestCase {
         // Then
         XCTAssertTrue(actionCalled)
     }
+
+    func test_searchSupportIcon_helpIconImages() {
+        let testee = SearchSupportIcon.help
+        XCTAssertEqual(testee.image(), Image.questionLine)
+        XCTAssertEqual(testee.uiImage(), UIImage.questionLine)
+    }
+
+    func test_SearchSupportButtonModel_defaultIcon() {
+        let action = SearchSupportClosureAction {}
+        let testee = SearchSupportButtonModel(action: action)
+
+        XCTAssertEqual(testee.icon.image(), .questionLine)
+        XCTAssertEqual(testee.icon.uiImage(), .questionLine)
+    }
 }
