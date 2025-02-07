@@ -19,14 +19,17 @@
 import UIKit
 
 extension UINavigationBar {
-    public enum Style: Equatable { case modal, modalLight, global, color(UIColor?) }
+
+    public enum Style: Equatable {
+        case modal
+        case global
+        case color(UIColor?)
+    }
 
     func useStyle(_ style: Style) {
         switch style {
         case .modal:
             useModalStyle()
-        case .modalLight:
-            useModalStyle(isLightFont: true)
         case .global:
             useGlobalNavStyle()
         case .color(let color):
@@ -65,7 +68,6 @@ extension UINavigationBar {
      */
     public func useModalStyle(
         brand: Brand = Brand.shared,
-        isLightFont: Bool = false,
         forcedTheme: UITraitCollection? = nil
     ) {
         var backgroundColor = UIColor.backgroundLightest
@@ -83,14 +85,10 @@ extension UINavigationBar {
         barStyle = .default
         isTranslucent = false
 
-        applyAppearanceChanges(
-            backgroundColor: backgroundColor,
-            foregroundColor: foregroundColor,
-            isLightFont: isLightFont
-        )
+        applyAppearanceChanges(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
     }
 
-    private func applyAppearanceChanges(backgroundColor: UIColor?, foregroundColor: UIColor?, isLightFont: Bool = false) {
+    private func applyAppearanceChanges(backgroundColor: UIColor?, foregroundColor: UIColor?) {
         let appearance = UINavigationBarAppearance()
 
         if isTranslucent {
@@ -107,8 +105,8 @@ extension UINavigationBar {
             appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
         }
 
-        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(isLightFont ? .semibold16 : .bold17)
-        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(isLightFont ? .semibold16 : .regular17)
+        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(.bold17)
+        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(.regular17)
 
         standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance
