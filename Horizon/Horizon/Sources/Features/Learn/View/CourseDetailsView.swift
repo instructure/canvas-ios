@@ -21,23 +21,22 @@ import HorizonUI
 import SwiftUI
 
 struct CourseDetailsView: View {
-    @ObservedObject private var viewModel: CourseDetailsViewModel
+    @Bindable private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
-    @State private var selectedTabIndex: Int?
+    @State var selectedTabIndex: Int = 0
 
     init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
-        self.selectedTabIndex = 0
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             headerView
-            learningContentView(course: viewModel.course)
+            learningContentView()
         }
         .padding(.top, .huiSpaces.primitives.small)
         .background(Color.huiColors.surface.pagePrimary)
-        .onFirstAppear { selectedTabIndex = 0 }
+        .onAppear { viewModel.showTabBar() }
     }
 
     private var headerView: some View {
@@ -55,10 +54,10 @@ struct CourseDetailsView: View {
         .padding([.horizontal, .bottom], .huiSpaces.primitives.medium)
     }
 
-    private func learningContentView(course: HCourse) -> some View {
+    private func learningContentView() -> some View {
         VStack(spacing: .huiSpaces.primitives.medium) {
             tabSelectorView
-            tabDetailsView(course: course)
+            tabDetailsView()
         }
         .background(Color.huiColors.surface.pagePrimary)
     }
@@ -66,23 +65,23 @@ struct CourseDetailsView: View {
     private var tabSelectorView: some View {
         HorizonUI.Tabs(
             tabs: Tabs.titles,
-            selectTabIndex: $selectedTabIndex
+            selectTabIndex: Binding(
+                get: { selectedTabIndex },
+                set: { selectedTabIndex = $0 ?? 0 }
+            )
         )
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    private func tabDetailsView(course: HCourse) -> some View {
-        TabView(selection: Binding(
-            get: { selectedTabIndex ?? 0 },
-            set: { selectedTabIndex = $0 }
-        )) {
+    private func tabDetailsView() -> some View {
+        TabView(selection: $selectedTabIndex) {
             ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
                     switch tab {
                     case .myProgress:
-                        modulesView(modules: course.modules).id(index)
+                        modulesView(modules: viewModel.course.modules).id(index)
                     case .overview:
-                        overview(htmlString: course.overviewDescription).id(index)
+                        overview(htmlString: viewModel.course.overviewDescription).id(index)
                     case .grades:
                         Text(verbatim: "Grades")
                             .id(index)
@@ -94,6 +93,7 @@ struct CourseDetailsView: View {
                             .id(index)
                     }
                 }
+                .tag(index)
             }
         }
         .padding(.horizontal, .huiSpaces.primitives.medium)

@@ -59,8 +59,8 @@ struct CourseProgressAssembly {
         ]
         let course = HCourse(
             id: "10",
+            institutionName: "Instructure",
             name: "AI for Everyone course",
-            imageURL: nil,
             overviewDescription: "overview Description",
             modules: modules
         )

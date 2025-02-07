@@ -29,6 +29,7 @@ public class GetCoursesProgressionUseCase: APIUseCase {
     // MARK: - Properties
 
     public var cacheKey: String?
+    private let courseId: String?
     private let userId: String
 
     public var request: GetCoursesProgressionRequest {
@@ -37,8 +38,9 @@ public class GetCoursesProgressionUseCase: APIUseCase {
 
     // MARK: - Init
 
-    public init(userId: String) {
+    public init(userId: String, courseId: String? = nil) {
         self.userId = userId
+        self.courseId = courseId
     }
 
     // MARK: - Functions
@@ -49,8 +51,16 @@ public class GetCoursesProgressionUseCase: APIUseCase {
         to client: NSManagedObjectContext
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
-        enrollments.forEach { item in
-            CDCourseProgression.save(item, in: client)
+        enrollments.forEach { enrollment in
+            CDCourseProgression.save(enrollment, in: client)
         }
     }
+
+    public var scope: Scope {
+        if let courseId = courseId {
+            return .where(#keyPath(CDCourseProgression.courseID), equals: courseId)
+        }
+        return .all
+    }
+
 }

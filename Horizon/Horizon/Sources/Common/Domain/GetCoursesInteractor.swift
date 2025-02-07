@@ -22,76 +22,111 @@ import Core
 
 protocol GetCoursesInteractor {
     func getCourses() -> AnyPublisher<[HCourse], Never>
+    func getCourse(id: String) -> AnyPublisher<HCourse?, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
     // MARK: - Properties
 
-    private let appEnvironment: AppEnvironment
+    private let userId: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
-        appEnvironment: AppEnvironment,
+        userId: String = AppEnvironment.shared.currentSession?.userID ?? "",
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.appEnvironment = appEnvironment
+        self.userId = userId
         self.scheduler = scheduler
     }
 
     // MARK: - Functions
 
     func getCourses() -> AnyPublisher<[HCourse], Never> {
-        Publishers.Zip(fetchCourses(), fetchCourseProgression())
+        fetchCourses()
             .receive(on: scheduler)
-            .map { courses, coursesProgression in
-                courses.map { course in
-                    guard let progression = coursesProgression.first(
-                        where: { $0.courseID == course.id }) else {
-                        return course
-                    }
-
-                    var updatedCourse = course
-                    let completionPercentage = progression.completionPercentage
-                    updatedCourse.percentage = completionPercentage
-                    updatedCourse.progressState = HCourse.ProgressState(from: completionPercentage)
-                    return updatedCourse
-                }
-            }
             .eraseToAnyPublisher()
     }
 
-    private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
-        ReactiveStore(useCase: GetCourses())
+    func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
+        fetchCourses(courseId: id)
+            .map { $0.first }
+            .receive(on: scheduler)
+            .eraseToAnyPublisher()
+    }
+
+    // MARK: - Private
+
+    private func fetchCourses(courseId: String? = nil) -> AnyPublisher<[HCourse], Never> {
+        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: courseId))
             .getEntities()
             .replaceError(with: [])
             .flatMap {
                 $0.publisher
-                    .flatMap { course in
-                        ReactiveStore(
-                            useCase: GetModules(courseID: course.id)
-                        )
-                        .getEntities()
-                        .replaceError(with: [])
-                        .map {
-                            HCourse(
-                                from: course,
-                                modulesEntity: $0
+                    .flatMap { (courseProgression: CDCourseProgression) in
+
+                        let courseID = courseProgression.courseID
+                        let institutionName = courseProgression.institutionName
+                        let name = courseProgression.course.name ?? ""
+                        let overviewDescription = courseProgression.course.syllabusBody
+                        let progress = courseProgression.completionPercentage
+                        let incompleteModules: [HModule] = courseProgression.incompleteModules.map { .init($0) }
+
+                        if courseId == nil {
+                            return Just(
+                                HCourse(
+                                    id: courseID,
+                                    institutionName: institutionName ?? "",
+                                    name: name,
+                                    overviewDescription: overviewDescription,
+                                    progress: progress,
+                                    modules: [],
+                                    incompleteModules: incompleteModules
+                                )
                             )
+                            .eraseToAnyPublisher()
                         }
+
+                        // The GetCoursesProgressionUseCase does not return all of the module item data.
+                        // Currently, we only use all the module item information when requesting a single course.
+                        // Should this change in the future, we should update the GraphQL endpoint in GetCourseProgressionUseCase
+                        // to return all the module item information required
+                        return ReactiveStore(useCase: GetModules(courseID: courseProgression.courseID))
+                            .getEntities()
+                            .replaceError(with: [])
+                            .map {
+                                HCourse(
+                                    id: courseID,
+                                    institutionName: institutionName ?? "",
+                                    name: name,
+                                    overviewDescription: overviewDescription,
+                                    progress: progress,
+                                    modules: $0.map { HModule($0) },
+                                    incompleteModules: incompleteModules
+                                )
+                            }
+                            .eraseToAnyPublisher()
                     }
                     .collect()
             }
             .eraseToAnyPublisher()
     }
+}
 
-    private func fetchCourseProgression() -> AnyPublisher<[CDCourseProgression], Never> {
-        let userId = appEnvironment.currentSession?.userID ?? ""
-        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
-            .getEntities()
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
+extension HModule {
+    init(_ entity: Module) {
+        self.id = entity.id
+        self.name = entity.name
+        self.courseID = entity.courseID
+        self.items = entity.items.map { HModuleItem(from: $0) }
+        self.contentItems = items.filter { $0.type?.isContentItem == true }
+        self.moduleStatus = .init(
+            items: contentItems,
+            state: entity.state,
+            lockMessage: entity.lockedMessage,
+            countOfPrerequisite: entity.prerequisiteModuleIDs.count
+        )
     }
 }

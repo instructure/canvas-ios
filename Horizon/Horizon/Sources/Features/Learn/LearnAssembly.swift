@@ -20,7 +20,7 @@ import Core
 
 final class LearnAssembly {
     static func makeGetCoursesInteractor() -> GetCoursesInteractor {
-        GetCoursesInteractorLive(appEnvironment: AppEnvironment.shared)
+        GetCoursesInteractorLive()
     }
 
     static func makeCoursesView() -> CourseListView {
@@ -32,13 +32,16 @@ final class LearnAssembly {
         )
     }
 
-    static func makeCourseDetailsViewController(course: HCourse) -> UIViewController {
+    static func makeCourseDetailsViewController(courseID: String, course: HCourse? = nil) -> UIViewController {
         let appEnvironment = AppEnvironment.shared
         return CoreHostingController(
             CourseDetailsView(
                 viewModel: .init(
                     router: appEnvironment.router,
-                    course: course
+                    getCoursesInteractor: makeGetCoursesInteractor(),
+                    courseID: courseID,
+                    course: course,
+                    onShowTabBar: appEnvironment.tabBar(isVisible:)
                 )
             )
         )

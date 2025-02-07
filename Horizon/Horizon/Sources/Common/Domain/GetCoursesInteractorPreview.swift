@@ -19,6 +19,7 @@
 #if DEBUG
 import Combine
 import Foundation
+import Core
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
     func getCourses() -> AnyPublisher<[HCourse], Never> {
@@ -26,26 +27,19 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
+    func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
+        Just(course)
+            .eraseToAnyPublisher()
+    }
+
     private var course: HCourse {
         .init(
-            id: "1",
-            name: "learning AI for business",
-            imageURL: URL(
-                string: "https://www.mbaandbeyond.com/wp-content/uploads/2024/05/How-is-AI-revolutionizing-MBA-programs-and-shaping-the-future-of-business-education.png"
-            ),
-            overviewDescription: "String",
-            modules: [
-                .init(
-                    id: "12",
-                    name: "Introduction",
-                    courseID: "1",
-                    items: [
-                        .init(id: "15", title: "Sub title", htmlURL: nil),
-                        .init(id: "20", title: "Sub title 44", htmlURL: nil)
-                    ]
-                ),
-                .init(id: "13", name: "Assginemts", courseID: "2", items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)])
-            ]
+            id: "123",
+            institutionName: "Instructure",
+            name: "Course Name",
+            overviewDescription: "Course Description",
+            progress: 0.5,
+            modules: []
         )
     }
 }
