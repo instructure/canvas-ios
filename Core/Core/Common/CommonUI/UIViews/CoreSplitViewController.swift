@@ -22,6 +22,11 @@ import Combine
 public class CoreSplitViewController: UISplitViewController {
 
     private var subscriptions = Set<AnyCancellable>()
+
+    /// Introduced to get around the issue where SplitViewController
+    /// report collapse then expansion when app is put to background.
+    /// This property is used to cache secondary controller to be returned
+    /// on expansion state configuration (secondary separation delegate's method)
     private var preBackgroundedSecondaryController: UIViewController?
 
     public override init(nibName: String? = nil, bundle: Bundle? = nil) {
@@ -144,6 +149,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
 
     public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
 
+        // Return cached secondary controller when called on background
         if let secondaryView = preBackgroundedSecondaryController { return secondaryView }
 
         // Setup default detail view provided by the master view controller
