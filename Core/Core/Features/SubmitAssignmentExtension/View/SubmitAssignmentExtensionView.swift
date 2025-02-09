@@ -30,6 +30,8 @@ public struct SubmitAssignmentExtensionView: View {
 
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
 
+    private let title: String = String(localized: "Canvas Student", bundle: .core)
+
     public init(viewModel: SubmitAssignmentExtensionViewModel) {
         self.viewModel = viewModel
     }
@@ -50,10 +52,10 @@ public struct SubmitAssignmentExtensionView: View {
         Text("Please log in via the application", bundle: .core)
             .foregroundColor(.textDarkest)
             .font(.regular16)
-            .navigationBarGlobal()
-            .navigationTitleStyled(title)
+            .navigationBarTitleView(title: title)
             .navigationBarTitleDisplayMode(.inline)
             .navBarItems(trailing: cancelButton)
+            .navigationBarStyle(.modal)
     }
 
     private var contentView: some View {
@@ -69,32 +71,13 @@ public struct SubmitAssignmentExtensionView: View {
             }
             .padding(.horizontal, 20)
         }
-        .navigationBarGlobal()
-        .navigationTitleStyled(titleView)
+        .navigationBarTitleView(title: title, subtitle: env.currentSession?.userName)
         .navigationBarTitleDisplayMode(.inline)
         .navBarItems(leading: cancelButton, trailing: submitButton)
+        .navigationBarStyle(.modal)
         .onDisappear {
             accessibilityFocus = nil
         }
-    }
-
-    private var titleView: some View {
-        VStack(spacing: 1) {
-            title
-            if let userName = env.currentSession?.userName {
-                Text(userName)
-                    .font(.regular12)
-                    .foregroundColor(.textDark)
-            }
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isHeader)
-    }
-
-    private var title: Text {
-        Text("Canvas Student", bundle: .core)
-            .font(.semibold16)
-            .foregroundColor(.textDarkest)
     }
 
     @ViewBuilder

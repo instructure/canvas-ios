@@ -27,7 +27,10 @@ struct CourseSyncProgressView: View {
 
     var body: some View {
         content
-            .navigationTitleStyled(navBarTitleView)
+            .navigationBarTitleView(
+                title: String(localized: "Offline Content", bundle: .core),
+                subtitle: String(localized: "All Courses", bundle: .core)
+            )
             .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
             .navigationBarStyle(.modal)
             .confirmationAlert(
@@ -89,17 +92,6 @@ struct CourseSyncProgressView: View {
             .allowsHitTesting(false)
             .padding(.horizontal, 16)
             .padding(.vertical, 32)
-    }
-
-    private var navBarTitleView: some View {
-        VStack(spacing: 1) {
-            Text("Offline Content", bundle: .core)
-                .font(.semibold16)
-                .foregroundColor(.textDarkest)
-            Text("All Courses", bundle: .core)
-                .font(.regular12)
-                .foregroundColor(.textDark)
-        }
     }
 
     private var cancelButton: some View {
