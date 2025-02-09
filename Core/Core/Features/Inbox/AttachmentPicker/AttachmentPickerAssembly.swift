@@ -20,25 +20,6 @@ import Foundation
 import Combine
 
 public enum AttachmentPickerAssembly {
-    public static func makeAttachmentPickerViewController(
-        subTitle: String? = nil,
-        env: AppEnvironment = .shared,
-        batchId: String,
-        uploadManager: UploadManager,
-        alreadyUploadedFiles: CurrentValueSubject<[File], Never>
-    ) -> UIViewController {
-        let interactor = AttachmentPickerInteractorLive(
-            batchId: batchId,
-            uploadFolderPath: "conversation attachments",
-            restrictForFolderPath: true,
-            uploadManager: uploadManager,
-            alreadyUploadedFiles: alreadyUploadedFiles
-        )
-        let viewModel = AttachmentPickerViewModel(subTitle: subTitle, router: env.router, interactor: interactor)
-        let view = AttachmentPickerView(model: viewModel)
-        return CoreHostingController(view)
-    }
-
     public static func makeAudioPickerViewcontroller(
         router: Router,
         onSelect: @escaping (URL) -> Void = { _ in }
@@ -59,13 +40,6 @@ public enum AttachmentPickerAssembly {
     }
 
 #if DEBUG
-
-    public static func makePreview(env: AppEnvironment)
-    -> AttachmentPickerView {
-        let interactor = AttachmentPickerInteractorPreview()
-        let viewModel = AttachmentPickerViewModel(router: env.router, interactor: interactor)
-        return AttachmentPickerView(model: viewModel)
-    }
 
     public static func makeAudioPickerPreview(
         env: AppEnvironment
