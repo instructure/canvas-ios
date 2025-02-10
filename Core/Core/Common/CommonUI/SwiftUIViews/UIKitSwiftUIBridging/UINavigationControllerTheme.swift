@@ -67,14 +67,23 @@ struct NavBarBackButtonModifier: ViewModifier {
 }
 
 extension View {
-    /// Sets the UINavigationBar's background color, title color and font, button color and font.
-    /// Only affects Views inside a UINavigationController.
-    /// Title style does not affect custom titleViews, like `TitleSubtitleView`.
-    /// Button style does not affect custom buttons, like `InstUI.NavigationBarButton`.
+    /// Sets the navigation bar's background color, title color & font, button color & font.
+    /// - Warning: Make sure to call this method AFTER calling `navigationBarTitleView()` to affect it.
+    /// - Parameters:
+    ///     - style:
+    ///       - `.global` is used only on a few screens, typically on root screens of each tab.
+    ///       - `.modal` is primarily used on modal screens, but also on some screen which doesn't belong to a context, but not considered global.
+    ///       - `.color()` is used on non-modal screens within a context (typically a course or group), and in some other cases.
+    ///       - Use `.color(nil)` to keep the navigation bar's current context background color but ensure the proper title color is set.
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
     }
 
+    /// Sets the navigation bar's title and subtitle, using the proper fonts and arrangement.
+    /// - Warning: Make sure to call `navigationBarStyle()` _**AFTER**_ this method to set the proper text colors.
+    /// - Parameters:
+    ///     - title: The line is always displayed, even if this is empty. (This should not happen normally.)
+    ///     - subtitle: The subtitle line is only displayed if this is not empty.
     public func navigationBarTitleView(title: String, subtitle: String?) -> some View {
         toolbar {
             ToolbarItem(placement: .principal) {
@@ -83,13 +92,14 @@ extension View {
         }
     }
 
+    /// Sets the navigation bar's title, using the proper font. Please use this one instead of the native `navigationTitle()` method.
+    /// - Warning: Make sure to call `navigationBarStyle()` _**AFTER**_ this method to set the proper text color.
     public func navigationBarTitleView(_ title: String) -> some View {
         navigationBarTitleView(title: title, subtitle: nil)
     }
 
-    /// Sets the UINavigationBar's background color, button color to match the `Brand.shared` colors,
+    /// Sets the navigation bar's background color, button color to match the `Brand.shared` colors,
     /// sets the button font and sets the brand logo as the titleView.
-    /// Only affects Views inside a UINavigationController.
     public func navigationBarGlobal() -> some View {
         modifier(GlobalNavigationBarModifier())
     }
