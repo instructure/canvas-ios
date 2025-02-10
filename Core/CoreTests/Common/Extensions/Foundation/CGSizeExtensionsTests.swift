@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,31 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+@testable import Core
+import XCTest
 
-public struct SearchSupportButtonModel<Action: SearchSupportAction> {
-    let action: Action
-    let icon: SearchSupportIcon
+class CGSizeExtensionsTests: CoreTestCase {
 
-    public init(action: Action, icon: SearchSupportIcon = .help) {
-        self.action = action
-        self.icon = icon
-    }
-}
+    func test_isZero() {
+        XCTAssertTrue(CGSize.zero.isZero)
+        XCTAssertTrue(CGSize(width: 0, height: 0).isZero)
 
-// MARK: - Icon
-
-public struct SearchSupportIcon {
-    public static var help = SearchSupportIcon(image: .questionLine, uiImage: .questionLine)
-
-    let image: () -> Image
-    let uiImage: () -> UIImage?
-
-    public init(
-        image: @autoclosure @escaping () -> Image,
-        uiImage: @autoclosure @escaping () -> UIImage?
-    ) {
-        self.image = image
-        self.uiImage = uiImage
+        XCTAssertFalse(CGSize(width: 1, height: 1).isZero)
     }
 }
