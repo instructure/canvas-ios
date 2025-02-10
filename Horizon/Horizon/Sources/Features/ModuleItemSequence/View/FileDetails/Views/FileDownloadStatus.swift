@@ -21,6 +21,5 @@ import Foundation
 enum FileDownloadStatus: Equatable {
     case initial
     case loading
-    case loaded
     case error(String)
 }

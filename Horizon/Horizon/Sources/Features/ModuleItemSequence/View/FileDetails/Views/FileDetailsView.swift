@@ -23,7 +23,7 @@ import HorizonUI
 struct FileDetailsView: View {
     // MARK: - Private Properties
 
-    @State private var isFinishLoading: Bool = false
+    @State private var didFinishRenderingPreview: Bool = false
     @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
@@ -52,24 +52,23 @@ struct FileDetailsView: View {
         VStack {
             if isShowHeader {
                 FileDownloadStatusView(status: viewModel.viewState, fileName: fileName) {
-                    viewModel.downloadFile()
+                    viewModel.downloadFile(viewController: viewController)
                 } onTapCancel: {
                     viewModel.cancelDownload()
                 }
                 .padding(.vertical, .huiSpaces.primitives.small)
                 .padding(.horizontal, .huiSpaces.primitives.medium)
-                .hidden(!isFinishLoading)
+                .hidden(!didFinishRenderingPreview)
             }
             FileDetailsViewRepresentable(
                 isScrollTopReached: $isShowHeader,
-                isFinishLoading: $isFinishLoading,
+                isFinishLoading: $didFinishRenderingPreview,
                 context: context,
                 fileID: fileID
             )
         }
         .animation(.smooth, value: viewModel.viewState)
-        .animation(.smooth, value: [isShowHeader, isFinishLoading])
-        .onFirstAppear { viewModel.viewController = viewController }
+        .animation(.smooth, value: [isShowHeader, didFinishRenderingPreview])
     }
 }
 #if DEBUG

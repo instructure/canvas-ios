@@ -48,8 +48,9 @@ final class DownloadFileInteractorLive: DownloadFileInteractor {
             useCase: GetFile(context: .course(courseID), fileID: fileID)
         )
         .getEntities(ignoreCache: true)
-        .flatMap { files -> AnyPublisher<URL, Error> in
-            guard let file = files.first,
+        .flatMap { [weak self] files -> AnyPublisher<URL, Error> in
+            guard let self,
+                  let file = files.first,
                   let url = file.url
             else {
                 return Empty(completeImmediately: true)

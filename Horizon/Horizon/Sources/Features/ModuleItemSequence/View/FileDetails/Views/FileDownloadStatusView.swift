@@ -47,8 +47,6 @@ struct FileDownloadStatusView: View {
             initialView
         case .loading:
             loadingView
-        case .loaded:
-            initialView
         case .error(let string):
             VStack(spacing: .huiSpaces.primitives.small) {
                 errorView(message: string)
@@ -75,13 +73,8 @@ struct FileDownloadStatusView: View {
                 .huiTypography(.p1)
                 .foregroundStyle(Color.huiColors.text.body)
             Spacer()
-
-            Button {
+            HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
                 onTapCancel()
-            } label: {
-                HorizonUI.icons.close
-                    .foregroundStyle(Color.huiColors.icon.default)
-                    .frame(width: 24, height: 24)
             }
         }
     }

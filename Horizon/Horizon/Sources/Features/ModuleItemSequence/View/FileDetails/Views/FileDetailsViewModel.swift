@@ -26,10 +26,8 @@ final class FileDetailsViewModel {
     // MARK: - Private Properties
 
     private var subscription: AnyCancellable?
+    private var viewController: WeakViewController = WeakViewController()
 
-    // MARK: - Input
-
-    var viewController: WeakViewController = WeakViewController()
     // MARK: - Output
 
     private(set) var viewState: FileDownloadStatus = .initial
@@ -53,7 +51,8 @@ final class FileDetailsViewModel {
 
     // MARK: - Input Functions
 
-    func downloadFile() {
+    func downloadFile(viewController: WeakViewController) {
+        self.viewController = viewController
         viewState = .loading
         subscription = interactor
             .download()
@@ -64,7 +63,7 @@ final class FileDetailsViewModel {
                         self?.viewState = .error(error.localizedDescription)
                     }
                 }, receiveValue: { [weak self] url in
-                    self?.viewState = .loaded
+                    self?.viewState = .initial
                     self?.showShareSheet(fileURL: url)
                 }
             )
