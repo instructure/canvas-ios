@@ -30,7 +30,7 @@ struct NavigationBarColorConfiguration {
         self.tint = tint
     }
 
-    init(style: UINavigationBar.Style, brand: Brand = .shared) {
+    init(style: NavigationBarStyle, brand: Brand = .shared) {
         switch style {
         case .modal:
             self.init(

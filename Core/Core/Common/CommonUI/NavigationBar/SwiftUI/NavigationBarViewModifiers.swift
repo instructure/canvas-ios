@@ -19,11 +19,11 @@
 import SwiftUI
 
 protocol NavigationBarStyled: AnyObject {
-    var navigationBarStyle: UINavigationBar.Style { get set }
+    var navigationBarStyle: NavigationBarStyle { get set }
 }
 
 struct NavigationBarStyleModifier: ViewModifier {
-    let style: UINavigationBar.Style
+    let style: NavigationBarStyle
 
     @Environment(\.viewController) var controller
 
@@ -75,7 +75,7 @@ extension View {
     ///       - `.modal` is primarily used on modal screens, but also on some screen which doesn't belong to a context, but not considered global.
     ///       - `.color()` is used on non-modal screens within a context (typically a course or group), and in some other cases.
     ///       - Use `.color(nil)` to keep the navigation bar's current context background color but ensure the proper title color is set.
-    public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
+    public func navigationBarStyle(_ style: NavigationBarStyle) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
     }
 

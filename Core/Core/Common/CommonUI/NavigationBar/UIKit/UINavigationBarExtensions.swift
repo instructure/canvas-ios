@@ -20,11 +20,7 @@ import UIKit
 
 extension UINavigationBar {
 
-    public enum Style: Equatable {
-        case modal
-        case global
-        case color(UIColor?)
-    }
+    public typealias Style = NavigationBarStyle
 
     func useStyle(_ style: Style) {
         switch style {
