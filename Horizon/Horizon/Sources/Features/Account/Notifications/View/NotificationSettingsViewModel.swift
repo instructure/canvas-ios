@@ -20,6 +20,7 @@ import Combine
 import CombineExt
 import Core
 import Observation
+import CombineSchedulers
 
 @Observable
 final class NotificationSettingsViewModel {
@@ -114,16 +115,16 @@ final class NotificationSettingsViewModel {
 
     init(
         notificationSettingsInteractor: NotificationSettingsInteractor = NotificationSettingsInteractorLive(),
-        router: Router
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.notificationSettingsInteractor = notificationSettingsInteractor
         self.router = router
 
         self.notificationSettingsInteractor
             .getNotificationPreferences()
-            .print("✅")
             .replaceError(with: [])
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .sink(receiveValue: { [weak self] prefs in self?.setNotificationPreferences(preferences: prefs) })
             .store(in: &subscriptions)
 
