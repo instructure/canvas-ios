@@ -326,7 +326,12 @@ public struct GradeListView: View, ScreenViewTrackable {
                             .frame(height: 40)
                             .paddingStyle(.horizontal, .standard)
                     }
-                    .accessibilityLabel(section.title ?? "")
+                    .accessibilityLabel(
+                        String(
+                            localized: "\(section.title ?? ""), \(section.assignments.count) items",
+                            bundle: .core
+                        )
+                    )
 
                 } content: {
                     ForEach(section.assignments, id: \.id) { assignment in
