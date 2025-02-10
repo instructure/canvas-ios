@@ -28,11 +28,8 @@ public extension HorizonUI.Colors {
         public var color: UIColor {
             get {
                 return queue.sync { _color }
-            }
-            set {
-                queue.async(flags: .barrier) {
-                    self._color = newValue
-                }
+            } set {
+                queue.async(flags: .barrier) { self._color = newValue }
             }
         }
     }
