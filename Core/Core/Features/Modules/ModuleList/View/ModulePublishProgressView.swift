@@ -29,7 +29,7 @@ struct ModulePublishProgressView: View {
 
     var body: some View {
         content
-            .navigationBarTitleView(title: title)
+            .navigationBarTitleView(title)
             .navigationBarItems(leading: dismissButton, trailing: trailingBarButton)
             .navigationBarStyle(.modal)
     }

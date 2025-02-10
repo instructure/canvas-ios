@@ -101,12 +101,16 @@ extension View {
         modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
     }
 
-    public func navigationBarTitleView(title: String, subtitle: String? = nil) -> some View {
+    public func navigationBarTitleView(title: String, subtitle: String?) -> some View {
         toolbar {
             ToolbarItem(placement: .principal) {
                 InstUI.NavigationBarTitleView(title: title, subtitle: subtitle)
             }
         }
+    }
+
+    public func navigationBarTitleView(_ title: String) -> some View {
+        navigationBarTitleView(title: title, subtitle: nil)
     }
 
     /// Sets the UINavigationBar's background color, button color to match the `Brand.shared` colors,

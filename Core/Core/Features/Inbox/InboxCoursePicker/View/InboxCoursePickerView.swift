@@ -31,7 +31,7 @@ public struct InboxCoursePickerView: View {
                 ? String(localized: "Select a Course", bundle: .core)
                 : String(localized: "Select a Course or a Group", bundle: .core)
             content
-                .navigationBarTitleView(title: title)
+                .navigationBarTitleView(title)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarStyle(.modal)
         }

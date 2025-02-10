@@ -52,7 +52,7 @@ public struct SubmitAssignmentExtensionView: View {
         Text("Please log in via the application", bundle: .core)
             .foregroundColor(.textDarkest)
             .font(.regular16)
-            .navigationBarTitleView(title: title)
+            .navigationBarTitleView(title)
             .navigationBarTitleDisplayMode(.inline)
             .navBarItems(trailing: cancelButton)
             .navigationBarStyle(.modal)
