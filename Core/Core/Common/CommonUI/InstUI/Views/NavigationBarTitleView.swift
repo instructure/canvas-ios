@@ -43,7 +43,7 @@ extension InstUI {
 
                 if let subtitle, subtitle.isNotEmpty {
                     Text(subtitle)
-                        .font(.regular12)
+                        .font(.regular14)
                         .foregroundColor(navBarColors.subtitle)
                 }
             }
