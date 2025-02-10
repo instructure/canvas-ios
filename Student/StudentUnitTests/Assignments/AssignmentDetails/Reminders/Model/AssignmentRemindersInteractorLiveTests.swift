@@ -81,7 +81,10 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         testee.contextDidUpdate.send(context)
 
         // THEN
-        waitUntil(shouldFail: true) {
+        waitUntil(
+            shouldFail: true,
+            failureMessage: "Reminders are not in chronological order: \(testee.reminders.value)"
+        ) {
             testee.reminders.value == [
                 .init(id: "2", title: "1 minute before"),
                 .init(id: "3", title: "2 minutes before"),
