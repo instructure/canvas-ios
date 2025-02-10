@@ -36,28 +36,6 @@ struct NavigationBarStyleModifier: ViewModifier {
     }
 }
 
-struct TitleSubtitleModifier: ViewModifier {
-    let title: String
-    let subtitle: String?
-
-    @Environment(\.viewController) var controller
-
-    func body(content: Content) -> some View {
-        let view = controller.value.navigationItem.titleView as? TitleSubtitleView ?? {
-            let view = TitleSubtitleView.create()
-            controller.value.navigationItem.titleView = view
-            return view
-        }()
-        view.title = title
-        view.subtitle = subtitle
-        var combinedTitle = title
-        if let subtitle = subtitle, subtitle != "" {
-            combinedTitle += ", \(subtitle)"
-        }
-        return content.navigationBarTitle(Text(combinedTitle))
-    }
-}
-
 struct RightBarButtonItemModifier: ViewModifier {
     let barButtonItems: () -> [UIBarButtonItemWithCompletion]
 
@@ -95,10 +73,6 @@ extension View {
     /// Button style does not affect custom buttons, like `InstUI.NavigationBarButton`.
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
-    }
-
-    public func navigationTitle(_ title: String, subtitle: String?) -> some View {
-        modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
     }
 
     public func navigationBarTitleView(title: String, subtitle: String?) -> some View {
