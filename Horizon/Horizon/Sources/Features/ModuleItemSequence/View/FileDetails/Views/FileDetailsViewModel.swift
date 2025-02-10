@@ -26,7 +26,6 @@ final class FileDetailsViewModel {
     // MARK: - Private Properties
 
     private var subscription: AnyCancellable?
-    private var viewController: WeakViewController = WeakViewController()
 
     // MARK: - Output
 
@@ -52,7 +51,6 @@ final class FileDetailsViewModel {
     // MARK: - Input Functions
 
     func downloadFile(viewController: WeakViewController) {
-        self.viewController = viewController
         viewState = .loading
         subscription = interactor
             .download()
@@ -64,7 +62,7 @@ final class FileDetailsViewModel {
                     }
                 }, receiveValue: { [weak self] url in
                     self?.viewState = .initial
-                    self?.showShareSheet(fileURL: url)
+                    self?.showShareSheet(fileURL: url, viewController: viewController)
                 }
             )
     }
@@ -76,7 +74,7 @@ final class FileDetailsViewModel {
 
     // MARK: - Private Functions
 
-    private func showShareSheet(fileURL: URL) {
+    private func showShareSheet(fileURL: URL, viewController: WeakViewController) {
         let controller = CoreActivityViewController(activityItems: [fileURL], applicationActivities: nil)
         router.show(controller, from: viewController, options: .modal())
     }
