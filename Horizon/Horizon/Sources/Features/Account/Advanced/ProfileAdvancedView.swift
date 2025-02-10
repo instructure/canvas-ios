@@ -77,15 +77,11 @@ struct ProfileAdvancedView: View {
                     selection: $viewModel.timeZone,
                     options: rowItems
                 ) {
-                    HorizonUI.PrimaryButton(
-                        "Save Changes",
-                        type: .black,
-                        fillsWidth: true
-                    ) {
-                        viewModel.save()
-                    }
-                    .padding(.top, .huiSpaces.primitives.medium)
-                    .disabled(viewModel.isSaveDisabled)
+                    SavingButton(
+                        isLoading: $viewModel.isLoading,
+                        isDisabled: $viewModel.isSaveDisabled,
+                        onSave: viewModel.save
+                    )
                 }
             }
             .padding(.horizontal, .huiSpaces.primitives.large)

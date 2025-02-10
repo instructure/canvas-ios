@@ -30,6 +30,7 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var calendarURL: URL?
     @NSManaged public var pronouns: String?
     @NSManaged public var isK5User: Bool
+    @NSManaged public var defaultTimeZone: String?
 }
 
 extension UserProfile: WriteableModel {
@@ -46,6 +47,7 @@ extension UserProfile: WriteableModel {
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
+        model.defaultTimeZone = item.default_time_zone
         return model
     }
 }

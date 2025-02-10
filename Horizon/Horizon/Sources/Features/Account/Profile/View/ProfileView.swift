@@ -79,23 +79,11 @@ struct ProfileView: View {
 
     @ViewBuilder
     var saveButton: some View {
-        ZStack {
-            HorizonUI.PrimaryButton(
-                String(localized: "Save Changes", bundle: .horizon),
-                type: .black,
-                fillsWidth: true
-            ) {
-                viewModel.save()
-            }
-            .opacity(viewModel.isLoading ? 0.25 : 1.0)
-            .animation(.easeInOut, value: viewModel.isLoading)
-            .disabled(viewModel.isSaveDisabled)
-
-            HorizonUI.Spinner(size: .xSmall)
-                .opacity(viewModel.isLoading ? 1.0 : 0.0)
-                .animation(.easeInOut, value: viewModel.isLoading)
-        }
-        .frame(maxWidth: .infinity)
+        SavingButton(
+            isLoading: $viewModel.isLoading,
+            isDisabled: $viewModel.isSaveDisabled,
+            onSave: viewModel.save
+        )
     }
 }
 

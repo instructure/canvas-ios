@@ -16,11 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Observation
 
 @Observable
 class ProfileAdvancedViewModel {
 
+    var isLoading: Bool = false
     var isSaveDisabled: Bool = false
     var timeZone: String = "" {
         didSet {
@@ -28,15 +30,48 @@ class ProfileAdvancedViewModel {
         }
     }
 
-    init() {
-        updateSaveDisabled()
+    private let updateUserProfileInteractor: UpdateUserProfileInteractor
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(
+        getUserInteractor: GetUserInteractor = GetUserInteractorLive(),
+        updateUserProfileInteractor: UpdateUserProfileInteractor = UpdateUserProfileInteractorLive()
+    ) {
+        self.updateUserProfileInteractor = updateUserProfileInteractor
+
+        self.isLoading = true
+        getUserInteractor
+            .getUser()
+            .sink(
+                receiveCompletion: { [weak self] _ in
+                    self?.isLoading = false
+                },
+                receiveValue: { [weak self] user in
+                    self?.originalTimeZone = user.defaultTimeZone ?? ""
+                }
+            )
+            .store(in: &subscriptions)
     }
 
-    private var originalTimeZone = ""
+    private var originalTimeZone = "" {
+        didSet {
+            timeZone = originalTimeZone
+        }
+    }
 
     func save() {
-        originalTimeZone = timeZone
-        updateSaveDisabled()
+        isLoading = true
+        updateUserProfileInteractor.set(timeZone: timeZone)
+            .sink(
+                receiveCompletion: { [weak self] _ in
+                    self?.isLoading = false
+                },
+                receiveValue: { [weak self] userProfile in
+                    self?.originalTimeZone = userProfile?.defaultTimeZone ?? ""
+                    self?.updateSaveDisabled()
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     private func updateSaveDisabled() {

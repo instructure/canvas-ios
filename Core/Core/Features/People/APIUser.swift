@@ -140,6 +140,7 @@ public struct APIProfile: Codable, Equatable {
     public let calendar: APICalendar?
     public let pronouns: String?
     public let k5_user: Bool?
+    public let default_time_zone: String?
 }
 
 #if DEBUG
@@ -233,7 +234,8 @@ extension APIProfile {
         avatar_url: URL? = nil,
         calendar: APIProfile.APICalendar? = .make(),
         pronouns: String? = nil,
-        k5_user: Bool? = nil
+        k5_user: Bool? = nil,
+        default_time_zone: String? = nil
     ) -> APIProfile {
         return APIProfile(
             id: id,
@@ -245,7 +247,8 @@ extension APIProfile {
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             calendar: calendar,
             pronouns: pronouns,
-            k5_user: k5_user
+            k5_user: k5_user,
+            default_time_zone: default_time_zone
         )
     }
 }

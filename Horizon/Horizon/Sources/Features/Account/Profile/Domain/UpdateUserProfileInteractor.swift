@@ -20,16 +20,36 @@ import Combine
 import Core
 import CoreData
 
-class UpdateUserInteractor {
+protocol UpdateUserProfileInteractor {
+    func set(
+        name: String,
+        shortName: String
+    ) -> AnyPublisher<UserProfile?, Never>
+
+    func set(timeZone: String) -> AnyPublisher<UserProfile?, Never>
+}
+
+class UpdateUserProfileInteractorLive: UpdateUserProfileInteractor {
 
     private let api: API
 
-    init(api: API) {
+    init(api: API = AppEnvironment.shared.api) {
         self.api = api
     }
 
-    func set(name: String, shortName: String) -> AnyPublisher<UserProfile?, Never> {
+    func set(
+        name: String,
+        shortName: String
+    ) -> AnyPublisher<UserProfile?, Never> {
         ReactiveStore(useCase: UpdateUserUseCase(name: name, shortName: shortName))
+            .getEntities()
+            .replaceError(with: [])
+            .map { $0.first }
+            .eraseToAnyPublisher()
+    }
+
+    func set(timeZone: String) -> AnyPublisher<UserProfile?, Never> {
+        ReactiveStore(useCase: UpdateUserUseCase(timeZone: timeZone))
             .getEntities()
             .replaceError(with: [])
             .map { $0.first }
@@ -43,16 +63,18 @@ class UpdateUserUseCase: APIUseCase {
     public typealias Response = APIProfile
     public typealias Model = UserProfile
 
-    private let name: String
-    private let shortName: String
+    private let name: String?
+    private let shortName: String?
+    private let timeZone: String?
 
-    init(name: String, shortName: String) {
+    init(name: String? = nil, shortName: String? = nil, timeZone: String? = nil) {
         self.name = name
         self.shortName = shortName
+        self.timeZone = timeZone
     }
 
     public var request: PutUserInfoRequest {
-        .init(name: name, shortName: shortName)
+        .init(name: name, shortName: shortName, timeZone: timeZone)
     }
 
     func write(response: APIProfile?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -62,8 +84,9 @@ class UpdateUserUseCase: APIUseCase {
 }
 
 struct PutUserInfoRequest: APIRequestable {
-    let name: String
-    let shortName: String
+    let name: String?
+    let shortName: String?
+    let timeZone: String?
 
     typealias Response = APIProfile
 
@@ -71,12 +94,13 @@ struct PutUserInfoRequest: APIRequestable {
         let user: User
     }
     struct User: Encodable {
-        let name: String
-        let short_name: String
+        let name: String?
+        let short_name: String?
+        let default_time_zone: String?
     }
     let method = APIMethod.put
     let path = "users/self"
     var body: Body? {
-        return Body(user: User(name: name, short_name: shortName))
+        return Body(user: User(name: name, short_name: shortName, default_time_zone: timeZone))
     }
 }

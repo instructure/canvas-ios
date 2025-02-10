@@ -27,6 +27,7 @@ final class ProfileViewModel {
     var name: String = "" {
         didSet {
             validateName()
+            updateSaveDisabled()
         }
     }
     var nameDisabled: Bool {
@@ -36,6 +37,7 @@ final class ProfileViewModel {
     var displayName: String = "" {
         didSet {
             validateDisplayName()
+            updateSaveDisabled()
         }
     }
     var displayNameDisabled: Bool {
@@ -43,9 +45,7 @@ final class ProfileViewModel {
     }
     var displayNameError: String = " "
     var email: String = ""
-    var isSaveDisabled: Bool {
-        !isNameValid || !isDisplayNameValid || !(isNameChanged || isDisplayNameChanged)
-    }
+    var isSaveDisabled: Bool = true
     var isLoading: Bool = true
 
     // MARK: - Private
@@ -62,10 +62,16 @@ final class ProfileViewModel {
         }
     }
     private var subscriptions = Set<AnyCancellable>()
+    private let updateUserProfileInteractor: UpdateUserProfileInteractor
 
     // MARK: - Init
 
-    init(getUserInteractor: GetUserInteractor = GetUserInteractorLive()) {
+    init(
+        getUserInteractor: GetUserInteractor = GetUserInteractorLive(),
+        updateUserProfileInteractor: UpdateUserProfileInteractor = UpdateUserProfileInteractorLive()
+    ) {
+        self.updateUserProfileInteractor = updateUserProfileInteractor
+
         getUserInteractor
             .getUser()
             .sink(
@@ -85,6 +91,18 @@ final class ProfileViewModel {
 
     func save() {
         isLoading = true
+        updateUserProfileInteractor.set(name: name, shortName: displayName)
+            .sink(
+                receiveCompletion: { [weak self] _ in
+                    self?.isLoading = false
+                },
+                receiveValue: { [weak self] userProfile in
+                    self?.nameOriginal = userProfile?.name ?? ""
+                    self?.displayNameOriginal = userProfile?.shortName ?? ""
+                    self?.validate()
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     // MARK: - Private
@@ -103,6 +121,10 @@ final class ProfileViewModel {
 
     private var isNameValid: Bool {
         !name.isEmpty
+    }
+
+    private func updateSaveDisabled() {
+        isSaveDisabled = !isNameValid || !isDisplayNameValid || !(isNameChanged || isDisplayNameChanged)
     }
 
     private func validate() {
