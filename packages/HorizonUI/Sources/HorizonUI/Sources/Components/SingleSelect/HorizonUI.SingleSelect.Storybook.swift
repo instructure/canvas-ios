@@ -16,30 +16,5 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Observation
-
-@Observable
-class ProfileAdvancedViewModel {
-
-    var isSaveDisabled: Bool = false
-    var timeZone: String = "" {
-        didSet {
-            updateSaveDisabled()
-        }
-    }
-
-    init() {
-        updateSaveDisabled()
-    }
-
-    private var originalTimeZone = ""
-
-    func save() {
-        originalTimeZone = timeZone
-        updateSaveDisabled()
-    }
-
-    private func updateSaveDisabled() {
-        isSaveDisabled = timeZone == originalTimeZone || timeZone.isEmpty
-    }
+extension HorizonUI.SingleSelect {
 }

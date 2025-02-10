@@ -22,13 +22,7 @@ import SwiftUI
 
 struct ProfileAdvancedView: View {
 
-    let viewModel: ProfileAdvancedViewModel
-
-    @State var timeZone: String = ""
-
-    @State var open: Bool = false
-
-    @FocusState var focused: Bool
+    @Bindable var viewModel: ProfileAdvancedViewModel
 
     let rowItems = [
         "UTC-12:00: Baker Island, Howland Island",
@@ -71,77 +65,32 @@ struct ProfileAdvancedView: View {
         "UTC+14:00: Line Islands"
     ]
 
-    @State var displayedItems: [String] = []
-
     init(viewModel: ProfileAdvancedViewModel = ProfileAdvancedViewModel()) {
         self.viewModel = viewModel
-        displayedItems = rowItems
     }
 
     var body: some View {
-        ZStack(alignment: .top) {
-            HorizonUI.TextInput(
-                $timeZone,
-                trailing: Image.huiIcons.chevronRight.rotationEffect(.degrees(open ? -90 : 90)).animation(
-                    .easeInOut, value: open),
-                focused: _focused
-            )
-            .onChange(of: focused) { _, newValue in
-                displayedItems = rowItems
-                open = newValue
-            }
-            .onChange(of: timeZone) { _, _ in
-                if timeZone.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    displayedItems = rowItems
-                    return
-                }
-
-                if rowItems.first(where: { $0 == timeZone }) != nil {
-                    focused = false
-                    return
-                }
-
-                displayedItems = rowItems.filter { $0.lowercased().contains(timeZone.lowercased()) }
-
-                if displayedItems.isEmpty {
-                    displayedItems = rowItems
-                }
-            }
-            ScrollView {
-                VStack(spacing: .zero) {
-                    ForEach(displayedItems, id: \.self) { item in
-                        rowItem(item)
+        ProfileBody(String(localized: "Profile", bundle: .horizon)) {
+            ZStack {
+                HorizonUI.SingleSelect(
+                    label: String(localized: "Time Zone", bundle: .horizon),
+                    selection: $viewModel.timeZone,
+                    options: rowItems
+                ) {
+                    HorizonUI.PrimaryButton(
+                        "Save Changes",
+                        type: .black,
+                        fillsWidth: true
+                    ) {
+                        viewModel.save()
                     }
+                    .padding(.top, .huiSpaces.primitives.medium)
+                    .disabled(viewModel.isSaveDisabled)
                 }
-                .background(Color.huiColors.surface.pageSecondary)
-                .padding(.vertical, .huiSpaces.primitives.xxSmall)
-                .padding(.horizontal, 5)
             }
-            .cornerRadius(24)
-            .shadow(radius: 3)
-            .frame(maxWidth: .infinity, maxHeight: 500, alignment: .leading)
-            .opacity(open ? 1 : 0)
-            .animation(.easeInOut, value: open)
-            .padding(.top, 50)
+            .padding(.horizontal, .huiSpaces.primitives.large)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
-        .padding(.vertical, 25)
-        .padding(.horizontal, .huiSpaces.primitives.small)
     }
-
-    private func rowItem(_ text: String) -> some View {
-        Text(text)
-            .padding(.horizontal, .huiSpaces.primitives.small)
-            .padding(.vertical, .huiSpaces.primitives.xSmall)
-            .background(Color.huiColors.surface.pageSecondary)
-            .huiTypography(.p1)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .onTapGesture {
-                timeZone = text
-                focused = false
-            }
-    }
-
 }
 
 #Preview {

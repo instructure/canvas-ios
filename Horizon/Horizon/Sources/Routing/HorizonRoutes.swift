@@ -44,6 +44,9 @@ enum HorizonRoutes {
         [
             RouteHandler("/account/profile") { _, _, _ in
                 ProfileAssembly.makeViewController()
+            },
+            RouteHandler("/account/advanced") { _, _, _ in
+                ProfileAdvancedAssembly.makeViewController()
             }
         ]
     }

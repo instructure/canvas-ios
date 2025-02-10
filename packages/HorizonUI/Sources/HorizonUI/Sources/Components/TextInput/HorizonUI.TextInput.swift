@@ -135,7 +135,7 @@ extension HorizonUI {
             .frame(height: textFieldHeight)
             .huiTypography(textFieldTypography)
             .overlay(
-                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level2_5.attributes.radius)
+                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
                     .stroke(
                         textFieldBorderColor,
                         lineWidth: HorizonUI.Borders.level1.rawValue
@@ -166,7 +166,7 @@ extension HorizonUI {
             }
             .padding(3)
             .overlay(
-                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level2_5.attributes.radius + 2)
+                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + 2)
                     .stroke(
                         textFieldContainerBorderColor,
                         lineWidth: HorizonUI.Borders.level2.rawValue

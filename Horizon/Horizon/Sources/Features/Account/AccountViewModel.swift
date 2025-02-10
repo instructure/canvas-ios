@@ -76,7 +76,11 @@ final class AccountViewModel {
 
     func notificationsDidTap() {}
 
-    func advancedDidTap() {}
+    func advancedDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "/account/advanced") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func betaCommunityDidTap() {}
 

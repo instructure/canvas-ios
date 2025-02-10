@@ -30,10 +30,7 @@ struct ProfileView: View {
     }
 
     var body: some View {
-        VStack {
-            AccountNavigationBar(String(localized: "Profile", bundle: .horizon))
-                .background(Color.huiColors.surface.pagePrimary)
-
+        ProfileBody(String(localized: "Profile", bundle: .horizon)) {
             ScrollView {
                 VStack(spacing: .huiSpaces.primitives.medium) {
                     nameView
@@ -46,13 +43,7 @@ struct ProfileView: View {
                 .padding(.horizontal, .huiSpaces.primitives.medium)
                 .padding(.vertical, .huiSpaces.primitives.xLarge)
             }
-            .background(Color.huiColors.surface.pageSecondary)
-            .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
         }
-        .ignoresSafeArea(.all, edges: .bottom)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .toolbar(.hidden)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     @ViewBuilder
