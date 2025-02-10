@@ -59,8 +59,9 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
             await viewModel.refresh()
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(viewModel.title)
+        .navigationBarTitleView(viewModel.title)
         .navigationBarItems(trailing: doneButton)
+        .navigationBarStyle(.modal)
     }
 
     private var loadingIndicator: some View {

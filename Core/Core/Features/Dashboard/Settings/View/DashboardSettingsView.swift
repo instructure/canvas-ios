@@ -77,8 +77,8 @@ public struct DashboardSettingsView: View {
             .padding(.vertical, verticalPadding)
         }
         .background(Color.backgroundLightest.ignoresSafeArea())
+        .navigationBarTitleView(String(localized: "Dashboard Settings", bundle: .core))
         .navigationBarStyle(.modal)
-        .navigationTitle(Text("Dashboard Settings", bundle: .core))
     }
 
     private func header(label: Text) -> some View {

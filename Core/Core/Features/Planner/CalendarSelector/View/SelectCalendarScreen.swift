@@ -41,7 +41,8 @@ struct SelectCalendarScreen: View {
                 }
             }
         }
-        .navigationTitle(viewModel.pageTitle)
+        .navigationBarTitleView(viewModel.pageTitle)
+        .navigationBarStyle(.modal)
     }
 }
 
