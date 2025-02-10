@@ -70,8 +70,6 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        dropdownButton.isAccessibilityElement = false
-        dropdownButton.accessibilityElementsHidden = true
         addStudentView.layer.addDropShadow()
         addStudentView.isHidden = true
         avatarView.isHidden = true
@@ -154,9 +152,6 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
                 badgeCount
             )
         }
-
-        dropdownButton.isAccessibilityElement = true
-        dropdownButton.accessibilityElementsHidden = false
     }
 
     func updateCurrentStudent(_ oldValue: Core.User?) {
