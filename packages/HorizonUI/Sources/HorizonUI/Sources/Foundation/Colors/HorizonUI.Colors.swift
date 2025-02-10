@@ -29,6 +29,7 @@ public extension HorizonUI {
     }
 
     static let colors = HorizonUI.Colors()
+    static let institution = Colors.InstitutionColor()
 }
 
 extension Color {

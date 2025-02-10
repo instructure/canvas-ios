@@ -26,7 +26,7 @@ public extension HorizonUI.Colors {
         public let cardSecondary = Color(hexString: "#FFFDFA")
         public let divider = Color(hexString: "#E8EAEC")
         public let error = Color(hexString: "#C71F23")
-        public let institution = Color(hexString: "#09508C")
+        public var institution: Color { Color(uiColor: HorizonUI.institution.color) }
         public let inversePrimary = Color(hexString: "#273540")
         public let inverseSecondary = Color(hexString: "#0A1B2A")
         public let overlayGrey = Color(hexString: "#586874")

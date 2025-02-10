@@ -19,6 +19,7 @@
 import Combine
 import Core
 import Foundation
+import HorizonUI
 
 final class SplashViewModel: ObservableObject {
     // MARK: - Input
@@ -53,6 +54,7 @@ final class SplashViewModel: ObservableObject {
             .flatMap { unownedSelf.setBrandTheme() }
             .replaceError(with: ())
             .sink(receiveValue: { _ in
+                HorizonUI.institution.color = Brand.shared.primary
                 router.setRootViewController(
                     isLoginTransition: true,
                     viewController: HorizonTabBarController()
