@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import CombineSchedulers
 import Core
 import XCTest
 
@@ -37,7 +38,7 @@ class CourseSyncCleanupInteractorTests: XCTestCase {
 
         // MARK: - WHEN
         let testee = CourseSyncCleanupInteractor(appGroup: "group.com.instructure.icanvas", session: mockSession)
-        XCTAssertFinish(testee.clean(), timeout: 1)
+        XCTAssertFinish(testee.clean(scheduler: .main), timeout: 1)
 
         // MARK: - THEN
         XCTAssertFalse(FileManager.default.fileExists(atPath: dbURL.path))
@@ -60,7 +61,7 @@ class CourseSyncCleanupInteractorTests: XCTestCase {
 
         // MARK: - WHEN
         let testee = CourseSyncCleanupInteractor(appGroup: nil, session: mockSession)
-        XCTAssertFinish(testee.clean())
+        XCTAssertFinish(testee.clean(scheduler: .main))
 
         // MARK: - THEN
         XCTAssertFalse(FileManager.default.fileExists(atPath: dbURL.path))

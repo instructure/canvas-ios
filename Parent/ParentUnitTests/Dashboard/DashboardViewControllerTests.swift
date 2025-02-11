@@ -42,9 +42,11 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
+        waitUntil(1, shouldFail: true) {
+            vc.dropdownButton.accessibilityLabel == "Current student: Short Name (Pro/Noun)"
+        }
         XCTAssertEqual(vc.avatarView.name, "Full Name")
         XCTAssertEqual(vc.titleLabel.text, "Short Name (Pro/Noun)")
-        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Short Name (Pro/Noun)")
         XCTAssertEqual(vc.dropdownButton.accessibilityHint, "Tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
         XCTAssertEqual(vc.headerView.backgroundColor?.hexString, vc.currentColor.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
@@ -63,12 +65,13 @@ class DashboardViewControllerTests: ParentTestCase {
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, false)
 
         (vc.studentListStack.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
-        drainMainQueue() // Wait for animation to complete
+
+        waitUntil(1, shouldFail: true) {
+            vc.dropdownButton.accessibilityLabel == "Current student: Bob"
+        }
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
-        // FIXME: always fails locally, always works on CI
         XCTAssertEqual(vc.avatarView.name, "Bob")
         XCTAssertEqual(vc.titleLabel.text, "Bob")
-        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Bob")
         XCTAssertEqual(vc.dropdownButton.accessibilityHint, "Tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
 
