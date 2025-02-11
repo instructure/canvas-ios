@@ -52,6 +52,14 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertTrue("test123".containsNumber)
     }
 
+    func testContainsOnlyNumbers() {
+        XCTAssertFalse("test".containsOnlyNumbers)
+        XCTAssertFalse("test123".containsOnlyNumbers)
+        XCTAssertFalse("-123".containsOnlyNumbers)
+        XCTAssertTrue("".containsOnlyNumbers)
+        XCTAssertTrue("123".containsOnlyNumbers)
+    }
+
     func testIsNotEmpty() {
         XCTAssertFalse("".isNotEmpty)
         XCTAssertTrue("test".isNotEmpty)

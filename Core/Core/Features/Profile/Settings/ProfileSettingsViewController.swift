@@ -134,7 +134,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
         sections.append(
             Section(String(localized: "Legal", bundle: .core), rows: [
-                Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false) { [weak self] in
+                Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
                 },
@@ -142,7 +142,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     guard let self = self else { return }
                     self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
                 },
-                Row(String(localized: "Canvas on GitHub", bundle: .core), isSupportedOffline: false) { [weak self] in
+                Row(String(localized: "Canvas on GitHub", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 }
@@ -332,6 +332,9 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
             let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline
             cell.contentView.alpha = isAvailable ? 1 : 0.5
+            if let accessibilityTraits = row.accessibilityTraits {
+                cell.accessibilityTraitsOverride = accessibilityTraits
+            }
             return cell
         } else if let switchRow = row as? Switch {
             let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)
@@ -393,14 +396,24 @@ private struct Row {
     let style: UITableViewCell.CellStyle
     let hasDisclosure: Bool
     let isSupportedOffline: Bool
+    let accessibilityTraits: UIAccessibilityTraits?
     let onSelect: () -> Void
 
-    init(_ title: String, detail: String? = nil, style: UITableViewCell.CellStyle = .value1, hasDisclosure: Bool = true, isSupportedOffline: Bool, onSelect: @escaping () -> Void) {
+    init(
+        _ title: String,
+        detail: String? = nil,
+        style: UITableViewCell.CellStyle = .value1,
+        hasDisclosure: Bool = true,
+        isSupportedOffline: Bool,
+        accessibilityTraits: UIAccessibilityTraits? = nil,
+        onSelect: @escaping () -> Void
+    ) {
         self.title = title
         self.detail = detail
         self.style = style
         self.isSupportedOffline = isSupportedOffline
         self.hasDisclosure = hasDisclosure
+        self.accessibilityTraits = accessibilityTraits
         self.onSelect = onSelect
     }
 }

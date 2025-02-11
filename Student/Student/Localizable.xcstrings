@@ -17002,7 +17002,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tambahkan Komentar"
+            "value" : "Tambah Komentar"
           }
         },
         "is" : {
@@ -17026,7 +17026,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tāpiri kōrero"
+            "value" : "Tāpiri Kōrero"
           }
         },
         "ms" : {
@@ -27867,13 +27867,13 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annuller"
+            "value" : "Annullér"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annuller"
+            "value" : "Annullér"
           }
         },
         "de" : {
@@ -32816,7 +32816,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تعليق"
+            "value" : "التعليق"
           }
         },
         "ca" : {
@@ -32978,7 +32978,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kommentere"
+            "value" : "Kommentar"
           }
         },
         "nl" : {
@@ -33026,7 +33026,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kommentera"
+            "value" : "Kommentar"
           }
         },
         "th" : {
@@ -33481,7 +33481,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngā Kōrero"
+            "value" : "Ngā kōrero"
           }
         },
         "ms" : {
@@ -37100,7 +37100,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cursos"
+            "value" : "Asignaturas"
           }
         },
         "fi" : {
@@ -43039,7 +43039,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "رفض"
+            "value" : "تجاهل"
           }
         },
         "ca" : {
@@ -43051,7 +43051,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diystyru"
+            "value" : "Gwrthod"
           }
         },
         "da" : {
@@ -43069,7 +43069,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ablehnen"
+            "value" : "Verwerfen"
           }
         },
         "en" : {
@@ -43135,13 +43135,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rejeter"
+            "value" : "Ignorer"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rejeter"
+            "value" : "Ignorer"
           }
         },
         "ga" : {
@@ -43183,7 +43183,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "棄却する"
+            "value" : "取り下げる"
           }
         },
         "mi" : {
@@ -43207,37 +43207,37 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avvise"
+            "value" : "Avvis"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verwijderen"
+            "value" : "Afwijzen"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odwołaj"
+            "value" : "Odrzuć"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dispensar"
+            "value" : "Ignorar"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recusar"
+            "value" : "Descartar"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отклонить"
+            "value" : "Исключить"
           }
         },
         "sl" : {
@@ -43255,7 +43255,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avfärda"
+            "value" : "Avvisa"
           }
         },
         "th" : {
@@ -43273,25 +43273,25 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解散"
+            "value" : "撤销"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解散"
+            "value" : "撤销"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取消"
+            "value" : "忽略"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取消"
+            "value" : "忽略"
           }
         }
       }
@@ -44501,7 +44501,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完了"
+            "value" : "終了"
           }
         },
         "mi" : {
@@ -44573,7 +44573,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Färdiggjord"
+            "value" : "Klar"
           }
         },
         "th" : {
@@ -44585,7 +44585,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đã xong"
+            "value" : "Đã Xong"
           }
         },
         "zh" : {
@@ -47239,13 +47239,13 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Redigér"
+            "value" : "Rediger"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rediger"
+            "value" : "Redigér"
           }
         },
         "de" : {
@@ -50029,7 +50029,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avvik"
+            "value" : "Feil"
           }
         },
         "nl" : {
@@ -54995,7 +54995,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kōnae"
+            "value" : "Ngā Kōnae"
           }
         },
         "ms" : {
@@ -55073,7 +55073,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Các Tập Tin"
+            "value" : "Tập Tin"
           }
         },
         "zh" : {
@@ -57561,7 +57561,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Note"
+            "value" : "Notation"
           }
         },
         "ga" : {
@@ -57585,7 +57585,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kelas"
+            "value" : "Nilai"
           }
         },
         "is" : {
@@ -57687,7 +57687,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lớp"
+            "value" : "Điểm"
           }
         },
         "zh" : {
@@ -59569,7 +59569,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الدرجات"
+            "value" : "التقديرات"
           }
         },
         "ca" : {
@@ -60881,7 +60881,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إخفاء الدرجات"
+            "value" : "إخفاء التقادير"
           }
         },
         "ca" : {
@@ -60941,19 +60941,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hide marks"
+            "value" : "Hide Marks"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hide marks"
+            "value" : "Hide Marks"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hide marks"
+            "value" : "Hide Marks"
           }
         },
         "es" : {
@@ -63058,7 +63058,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saapuneet"
+            "value" : "Saapuvin postien laatikko"
           }
         },
         "fr" : {
@@ -63112,7 +63112,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "受信トレイ"
+            "value" : "メッセージ"
           }
         },
         "mi" : {
@@ -63376,7 +63376,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不完全"
+            "value" : "未完了"
           }
         },
         "mi" : {
@@ -63406,7 +63406,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incompleet"
+            "value" : "Onvoltooid"
           }
         },
         "pl" : {
@@ -82924,7 +82924,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No entregat"
+            "value" : "No s’ha entregat"
           }
         },
         "cy" : {
@@ -82972,25 +82972,25 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Not submitted"
+            "value" : "Not Submitted"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Not submitted"
+            "value" : "Not Submitted"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Not submitted"
+            "value" : "Not Submitted"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No entregado"
+            "value" : "No presentado"
           }
         },
         "es-ES" : {
@@ -83086,7 +83086,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Niet ingediend"
+            "value" : "Nog niet Beoordeeld"
           }
         },
         "pl" : {
@@ -83122,13 +83122,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inte inskickade"
+            "value" : "Inte inlämnat"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inte inskickade"
+            "value" : "Inte inlämnad"
           }
         },
         "th" : {
@@ -87086,7 +87086,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الفتح في Safari"
+            "value" : "فتح في Safari"
           }
         },
         "ca" : {
@@ -87098,7 +87098,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agor yn y Porwr"
+            "value" : "Agor yn Safari"
           }
         },
         "da" : {
@@ -87194,7 +87194,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oscail in Safari"
+            "value" : "Oscail i Safari"
           }
         },
         "hi" : {
@@ -87872,7 +87872,260 @@
       }
     },
     "Open the Quiz" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فتح الاختبار الموجز"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obre la prova"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agor y Cwis"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn testen"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn quizzen"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quiz öffnen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the Quiz"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir el examen"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir la prueba"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avaa testi"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le quiz"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le questionnaire"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscail an Tráth na gCeist"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रश्नोत्तरी खोलें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvri Quiz la"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Kuis"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opnaðu prófið"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri il quiz"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小テストを開く"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whakatuwheratia te Patapatai"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Kuiz"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne quizen"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne quizen"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open de toets"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz quiz"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir o Questionário"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir o teste"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть тест"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odpri kviz"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna quizet"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna quizet"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เปิดแบบทดสอบ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mở Bài Kiểm Tra"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开测验"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开测验"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟測驗"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟測驗"
+          }
+        }
+      }
     },
     "Other" : {
       "extractionState" : "manual",
@@ -96868,19 +97121,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record audio"
+            "value" : "Record Audio"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record audio"
+            "value" : "Record Audio"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record audio"
+            "value" : "Record Audio"
           }
         },
         "es" : {
@@ -97652,19 +97905,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record video"
+            "value" : "Record Video"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record video"
+            "value" : "Record Video"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Record video"
+            "value" : "Record Video"
           }
         },
         "es" : {
@@ -97772,7 +98025,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nagraj dźwięk"
+            "value" : "Nagraj wideo"
           }
         },
         "pt" : {
@@ -101498,7 +101751,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Torna-ho a provar"
+            "value" : "Torna a provar-ho"
           }
         },
         "cy" : {
@@ -101654,7 +101907,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prøv igjen"
+            "value" : "Forsøk igjen"
           }
         },
         "nl" : {
@@ -101773,7 +102026,7 @@
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vurderingskriterium"
+            "value" : "Vurderingskriterie"
           }
         },
         "de" : {
@@ -101833,7 +102086,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rubriikki"
+            "value" : "Arviointitaulukko"
           }
         },
         "fr" : {
@@ -101875,7 +102128,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Matsviðmið"
+            "value" : "Matskvarði"
           }
         },
         "it" : {
@@ -103826,13 +104079,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "發送"
+            "value" : "傳送"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "發送"
+            "value" : "傳送"
           }
         }
       }
@@ -109101,7 +109354,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الطالب"
+            "value" : "طالب"
           }
         },
         "ca" : {
@@ -109245,7 +109498,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "受講者"
+            "value" : "生徒"
           }
         },
         "mi" : {
@@ -109275,7 +109528,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cursist"
+            "value" : "Student"
           }
         },
         "pl" : {
@@ -109299,7 +109552,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Студент"
+            "value" : "Учащийся"
           }
         },
         "sl" : {
@@ -112981,7 +113234,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entregat"
+            "value" : "S’ha entregat"
           }
         },
         "cy" : {
@@ -113113,13 +113366,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "タスクの評定を送信"
+            "value" : "提出済み"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kua tukuna"
+            "value" : "Kua Tukuna"
           }
         },
         "ms" : {
@@ -113143,7 +113396,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingediend"
+            "value" : "Ingeleverd"
           }
         },
         "pl" : {
@@ -113179,13 +113432,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inskickad"
+            "value" : "Skickad"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inlämnad"
+            "value" : "Inskickad"
           }
         },
         "th" : {
@@ -113197,7 +113450,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đã nộp"
+            "value" : "Đã Nộp"
           }
         },
         "zh" : {
@@ -127965,13 +128218,13 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tehtävä"
+            "value" : "Tehtävälista"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À faire"
+            "value" : "À Faire"
           }
         },
         "fr-CA" : {
@@ -128001,13 +128254,13 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Harus Dilakukan"
+            "value" : "To Do"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verkefni"
+            "value" : "Verkefnalisti"
           }
         },
         "it" : {
@@ -128025,7 +128278,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hei mahi"
+            "value" : "Hei Mahi"
           }
         },
         "ms" : {
@@ -128037,7 +128290,7 @@
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gjøremål"
+            "value" : "Å gjøre"
           }
         },
         "nb-instk12" : {
@@ -128049,7 +128302,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opdrachtenlijst"
+            "value" : "Takenlijst"
           }
         },
         "pl" : {
@@ -128097,13 +128350,13 @@
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "สิ่งที่ต้องดำเนินการ"
+            "value" : "สิ่งที่ต้องทำ"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Việc Cần Làm"
+            "value" : "Cần Làm"
           }
         },
         "zh" : {
@@ -132410,19 +132663,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unknown error"
+            "value" : "Unknown Error"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unknown error"
+            "value" : "Unknown Error"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unknown error"
+            "value" : "Unknown Error"
           }
         },
         "es" : {
@@ -132500,7 +132753,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaore i mōhiotia te hapa"
+            "value" : "Kaore I Mōhiotia Te Hapa"
           }
         },
         "ms" : {
@@ -137676,7 +137929,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ver archivo  %@ %@"
+            "value" : "Ver archivo %@ %@"
           }
         },
         "fi" : {
@@ -141067,7 +141320,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escribir…"
+            "value" : "Escribir..."
           }
         },
         "fi" : {

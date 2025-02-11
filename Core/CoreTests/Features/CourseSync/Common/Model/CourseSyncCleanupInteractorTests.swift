@@ -37,7 +37,7 @@ class CourseSyncCleanupInteractorTests: XCTestCase {
 
         // MARK: - WHEN
         let testee = CourseSyncCleanupInteractor(appGroup: "group.com.instructure.icanvas", session: mockSession)
-        XCTAssertFinish(testee.clean())
+        XCTAssertFinish(testee.clean(), timeout: 1)
 
         // MARK: - THEN
         XCTAssertFalse(FileManager.default.fileExists(atPath: dbURL.path))

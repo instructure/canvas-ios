@@ -94,6 +94,7 @@ class ModuleItemCell: UITableViewCell {
 
         updateDueLabel(item)
 
+        accessibilityTraits = .button
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"

@@ -50,6 +50,7 @@ public class TitleSubtitleView: UIView {
         view.subtitleLabel.text = ""
         view.titleLabel.accessibilityElementsHidden = true
         view.subtitleLabel.accessibilityElementsHidden = true
+        view.accessibilityTraits = [.header]
         return view
     }
 

@@ -67,6 +67,11 @@ extension String {
         }
     }
 
+    /// - returns: True if the receiver string only contains decimal digits or if the string is empty.
+    public var containsOnlyNumbers: Bool {
+        unicodeScalars.allSatisfy { CharacterSet.decimalDigits.contains($0) }
+    }
+
     public var isNotEmpty: Bool {
         !isEmpty
     }

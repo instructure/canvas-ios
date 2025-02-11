@@ -43,6 +43,7 @@ struct SideMenuHeaderView: View {
                 }
                 .accessibilityElement(children: .ignore)
                 .accessibility(label: avatarLabel)
+                .accessibilityAddTraits(.isButton)
                 .actionSheet(isPresented: $isShowingActionSheet) {
                     ActionSheet(title: Text("Choose Profile Picture", bundle: .core), buttons: [
                         .default(Text("Take Photo", bundle: .core)) {

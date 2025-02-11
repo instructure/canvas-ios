@@ -97,7 +97,7 @@ class CoreWebViewFullScreenVideoSupportTests: XCTestCase {
     }
 }
 
-class MockWebView: CoreWebView {
+private class MockWebView: CoreWebView {
     var mockedFullscreenState: FullscreenState? {
         willSet {
             willChangeValue(for: \.fullscreenState)

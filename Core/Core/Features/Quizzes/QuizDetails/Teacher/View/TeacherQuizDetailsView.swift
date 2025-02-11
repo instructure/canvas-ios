@@ -76,6 +76,7 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
             Text(viewModel.quizTitle)
                 .font(.heavy24).foregroundColor(.textDarkest)
                 .accessibility(identifier: "QuizDetails.name")
+                .accessibilityAddTraits(.isHeader)
             HStack(spacing: 0) {
                 Text(viewModel.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)

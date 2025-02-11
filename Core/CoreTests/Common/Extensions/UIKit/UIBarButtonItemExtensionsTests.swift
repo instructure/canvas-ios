@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import XCTest
 
 class UIBarButtonItemExtensionsTests: XCTestCase {
@@ -25,12 +25,15 @@ class UIBarButtonItemExtensionsTests: XCTestCase {
         let config = UIImage.SymbolConfiguration(weight: .semibold)
         let backImage = UIImage(systemName: "chevron.backward", withConfiguration: config)
 
-        let testee = UIBarButtonItem.back(target: self, action: #selector(testBackButton))
+        var actionCallsCount = 0
+        let testee = UIBarButtonItem.back { actionCallsCount += 1 }
 
         XCTAssertEqual(testee.image, backImage)
         XCTAssertEqual(testee.landscapeImagePhone, backImage)
-        XCTAssertEqual(testee.target as? UIBarButtonItemExtensionsTests, self)
-        XCTAssertEqual(testee.action, #selector(testBackButton))
         XCTAssertEqual(testee.style, .plain)
+
+        (testee as? UIBarButtonItemWithCompletion)?.buttonDidTap(sender: .init())
+
+        XCTAssertEqual(actionCallsCount, 1)
     }
 }

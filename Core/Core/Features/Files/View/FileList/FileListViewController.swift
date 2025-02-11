@@ -61,14 +61,16 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     lazy var course = context.contextType == .course ? env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
     } : nil
-    lazy var folder = env.subscribe(GetFolderByPath(context: context, path: path)) { [weak self] in
+    lazy var folder = env.subscribe(GetFolderByPath(context: context.local, path: path)) { [weak self] in
         self?.updateFolder()
     }
+
     var items: Store<GetFolderItems>?
+
     lazy var group = context.contextType == .group ? env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     } : nil
-    lazy var uploads = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
+    lazy var uploads = env.uploadManager.subscribe(batchID: batchID) { [weak self] in
         self?.updateUploads()
     }
 
