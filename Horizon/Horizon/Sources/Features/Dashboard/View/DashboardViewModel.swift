@@ -63,7 +63,11 @@ final class DashboardViewModel: ObservableObject {
         router.route(to: "/notebook", from: viewController)
     }
 
-    func notificationsDidTap() {}
+    func notificationsDidTap() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            LocalNotificationsInteractor().notify(identifier: "alma123", title: "Testing", body: "body", route: nil)
+        }
+    }
 
     func mailDidTap(viewController: WeakViewController) {
         router.route(to: "/conversations", from: viewController)

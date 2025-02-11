@@ -22,7 +22,7 @@ import UIKit
 
 final class SplashAssembly {
     static func makeViewController() -> UIViewController {
-        let interactor = SessionInteractor()
+        let interactor = AppDelegate.sessionInteractor
         let viewModel = SplashViewModel(
             interactor: interactor,
             router: AppEnvironment.shared.router

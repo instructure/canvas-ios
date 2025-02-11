@@ -23,11 +23,13 @@ import UserNotifications
 public class PushNotificationsInteractor {
     public static var shared = PushNotificationsInteractor(
         notificationCenter: UNUserNotificationCenter.current(),
+        notificationCenterDelegate: UserNotificationCenterDelegate(),
         logger: AppEnvironment.shared.logger
     )
 
     public let notificationCenter: UserNotificationCenterProtocol
-
+    private let notificationCenterDelegate: UserNotificationCenterDelegate
+    
     private let logger: LoggerProtocol
     private var deviceToken: Data? {
         didSet {
@@ -42,9 +44,12 @@ public class PushNotificationsInteractor {
 
     init(
         notificationCenter: UserNotificationCenterProtocol,
+        notificationCenterDelegate: UserNotificationCenterDelegate,
         logger: LoggerProtocol
     ) {
         self.notificationCenter = notificationCenter
+        self.notificationCenterDelegate = notificationCenterDelegate
+        self.notificationCenter.delegate = notificationCenterDelegate
         self.logger = logger
     }
 

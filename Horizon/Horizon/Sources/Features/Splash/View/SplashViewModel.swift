@@ -57,6 +57,7 @@ final class SplashViewModel: ObservableObject {
                     isLoginTransition: true,
                     viewController: HorizonTabBarController()
                 )
+                UIApplication.shared.registerForPushNotifications()
             })
             .store(in: &subscriptions)
     }

@@ -251,7 +251,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
 // MARK: - Push notifications
 
-extension StudentAppDelegate: UNUserNotificationCenterDelegate {
+extension StudentAppDelegate: UNUserNotificationCenterDelegate {    
     func application(
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
