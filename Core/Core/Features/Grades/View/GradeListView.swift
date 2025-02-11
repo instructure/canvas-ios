@@ -320,19 +320,14 @@ public struct GradeListView: View, ScreenViewTrackable {
 
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
+                let itemCountLabel = String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), section.assignments.count)
                 AssignmentSection {
                     VStack(spacing: 0) {
                         listSectionView(title: section.title)
                             .frame(height: 40)
                             .paddingStyle(.horizontal, .standard)
                     }
-                    .accessibilityLabel(
-                        String(
-                            localized: "\(section.title ?? ""), \(section.assignments.count) items",
-                            bundle: .core
-                        )
-                    )
-
+                    .accessibilityLabel("\(section.title), \(itemCountLabel)")
                 } content: {
                     ForEach(section.assignments, id: \.id) { assignment in
                         VStack(alignment: .leading, spacing: 0) {
