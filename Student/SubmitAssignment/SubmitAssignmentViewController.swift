@@ -23,12 +23,7 @@ import Social
 
 @objc(SubmitAssignmentViewController)
 class SubmitAssignmentViewController: UIViewController {
-    /**
-     The share extension process doesn't terminate in case we have a background upload and the user starts another one.
-     The system just creates a new instance of this viewcontroller so we shouldn't create a new assembly but re-use this
-     mainly because of the single background url session it manages.
-    */
-    private static let submissionAssembly: FileSubmissionAssembly = .makeShareExtensionAssembly()
+
     private var attachmentCopyService: AttachmentCopyService!
     private var attachmentSubmissionService: AttachmentSubmissionService!
     private var viewModel: SubmitAssignmentExtensionViewModel!
@@ -47,9 +42,9 @@ class SubmitAssignmentViewController: UIViewController {
          otherwise the CoreData stack will be re-initialized resulting in strange errors.
         */
         if currentSession != lastApplicationSession {
-            if let lastApplicationSession = lastApplicationSession {
+            if let lastApplicationSession {
                 AppEnvironment.shared.userDidLogin(session: lastApplicationSession)
-            } else if let currentSession = currentSession {
+            } else if let currentSession {
                 AppEnvironment.shared.userDidLogout(session: currentSession)
             }
         }
@@ -62,11 +57,18 @@ class SubmitAssignmentViewController: UIViewController {
 
         // extensionContext is nil in init so we have to initialize here
         attachmentCopyService = AttachmentCopyService(extensionContext: extensionContext)
-        attachmentSubmissionService = AttachmentSubmissionService(submissionAssembly: Self.submissionAssembly)
+
+        /// The share extension process doesn't terminate in case we have a background upload and the user starts another one.
+        /// The system just creates a new instance of this viewcontroller. We create a new assembly _after_ logging in
+        /// to handle the case when the current user is changed in the app.
+        let submissionAssembly: FileSubmissionAssembly = .makeShareExtensionAssembly()
+        attachmentSubmissionService = AttachmentSubmissionService(submissionAssembly: submissionAssembly)
+
         viewModel = SubmitAssignmentExtensionViewModel(
             attachmentCopyService: attachmentCopyService,
             submissionService: attachmentSubmissionService,
-            shareCompleted: shareCompleted)
+            shareCompleted: shareCompleted
+        )
         embed(CoreHostingController(SubmitAssignmentExtensionView(viewModel: viewModel)), in: view)
     }
 
