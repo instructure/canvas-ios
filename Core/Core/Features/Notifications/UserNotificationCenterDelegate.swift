@@ -20,11 +20,11 @@ import UserNotifications
 
 class UserNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
     private let environment: AppEnvironment
-    
+
     init(environment: AppEnvironment = .shared) {
         self.environment = environment
     }
-    
+
     func userNotificationCenter(
         _: UNUserNotificationCenter,
         willPresent _: UNNotification,
@@ -48,12 +48,12 @@ class UserNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate
     }
 
     @objc @discardableResult func openURL(_ url: URL, userInfo: [String: Any]? = nil) -> Bool {
-        //        if LoginSession.mostRecent == nil, let host = url.host {
-        //            let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
-        //            loginNav.login(host: host)
-        //            window?.rootViewController = loginNav
-        //            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
-        //        }
+//        if LoginSession.mostRecent == nil, let host = url.host {
+//            let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
+//            loginNav.login(host: host)
+//            environment.window?.rootViewController = loginNav
+//            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
+//        }
 
         if let from = environment.topViewController {
             var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)

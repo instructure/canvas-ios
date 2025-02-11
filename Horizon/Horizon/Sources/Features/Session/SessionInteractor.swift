@@ -25,6 +25,8 @@ enum LoginError: Error {
 }
 
 final class SessionInteractor: NSObject, LoginDelegate {
+    public static let shared = SessionInteractor(environment: .shared)
+    
     let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
