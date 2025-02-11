@@ -73,7 +73,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         ]))
     }
 
-    func testAssignment_NextPage_Fetch() {
+    func testAssignment_Pages_Exhaust_Fetch() {
         // First Fetch
         api.mock(
             AssignmentPickerListRequest(courseID: "successID"),
@@ -86,16 +86,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             )
         )
 
-        expect()
-        testee.courseID = "successID"
-
-        waitForExpectations(timeout: 5)
-        XCTAssertEqual(receivedResult, .success([
-            .init(id: "A1", name: "Assignment 1", allowedExtensions: [], gradeAsGroup: false),
-            .init(id: "A2", name: "Assignment 2", allowedExtensions: [], gradeAsGroup: false)
-        ]))
-
-        // Next Page Fetch
+        // Next Page
         api.mock(
             AssignmentPickerListRequest(courseID: "successID", cursor: "next_cursor"),
             value: mockAssignments(
@@ -107,30 +98,19 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             )
         )
 
-        expect()
-        testee.loadNextPage()
-
-        waitForExpectations(timeout: 5)
-        XCTAssertEqual(receivedResult, .success([
-            .init(id: "A1", name: "Assignment 1", allowedExtensions: [], gradeAsGroup: false),
-            .init(id: "A2", name: "Assignment 2", allowedExtensions: [], gradeAsGroup: false),
-            .init(id: "A3", name: "Assignment 3", allowedExtensions: [], gradeAsGroup: false),
-            .init(id: "A4", name: "Assignment 4", allowedExtensions: [], gradeAsGroup: false)
-        ]))
-
-        // Final Fetch
+        // Final Page
         api.mock(
             AssignmentPickerListRequest(courseID: "successID", cursor: "final_cursor"),
             value: mockAssignments(
-                [],
+                [
+                    .make(id: "A5", name: "Assignment 5", submission_types: [.online_upload])
+                ],
                 pageInfo: nil
             )
         )
 
         expect()
-        testee.loadNextPage { [weak self] in
-            self?.expectation?.fulfill()
-        }
+        testee.courseID = "successID"
 
         waitForExpectations(timeout: 5)
         XCTAssertEqual(receivedResult, .success([

@@ -25,11 +25,11 @@ class APICommentLibraryTests: CoreTestCase {
     func testRequest() {
         let operationName = "CommentLibraryQuery"
         let query = """
-            query \(operationName)($userId: ID!, $pageSize: Int!, $cursor: String) {
+            query \(operationName)($query: String, $userId: ID!, $pageSize: Int!, $cursor: String) {
                 user: legacyNode(_id: $userId, type: User) {
                     ... on User {
                         id: _id
-                        commentBankItems: commentBankItemsConnection(query: "", first: $pageSize, after: $cursor) {
+                        commentBankItems: commentBankItemsConnection(query: $query, first: $pageSize, after: $cursor) {
                             nodes {
                                 comment: comment
                                 id: _id

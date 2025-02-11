@@ -71,6 +71,12 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
         }
     }
 
+    private func fetchSettings(_ completion: @escaping () -> Void) {
+        settings.refresh(force: true) { _ in
+            completion()
+        }
+    }
+
     func attributedText(with string: String, rangeString: Binding<String>, attributes: AttributeContainer) -> Text {
         Text(string) {
             if let range = $0.range(of: rangeString.wrappedValue, options: .caseInsensitive) {
@@ -82,12 +88,6 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     func loadNextPage(completion: @escaping () -> Void) {
         Task { @MainActor in
             await self.fetchNextPage()
-            completion()
-        }
-    }
-
-    private func fetchSettings(_ completion: @escaping () -> Void) {
-        settings.refresh(force: true) { _ in
             completion()
         }
     }
