@@ -21,6 +21,7 @@ import UIKit
 import Core
 
 class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewControllerDataSource {
+    static let AllUsersUserID = "speedgrader"
     typealias Page = CoreHostingController<SubmissionGrader>
 
     let assignmentID: String
@@ -49,7 +50,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         self.assignmentID = assignmentID
         self.context = context
         self.filter = filter
-        self.userID = userID == "speedgrader" ? nil : userID
+        self.userID = userID == Self.AllUsersUserID ? nil : userID
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -118,6 +119,12 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         }
 
         updatePages()
+
+        // SpeedGrader is by design not embedded into a navigation controller.
+        // However, when navigating to this screen from CoreWebView's link handler
+        // it automatically wraps it into a navigation controller and adds a Done button.
+        // To avoid displaying double Close/Done buttons and an extra navigation bar hide it.
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     var isLoading: Bool {
