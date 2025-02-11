@@ -5124,7 +5124,11 @@
         }
       }
     },
+    "Current student: %@" : {
+
+    },
     "Current student: %@. Tap to switch students" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -15877,6 +15881,9 @@
           }
         }
       }
+    },
+    "Tap to switch students" : {
+
     },
     "The linked item is no longer available." : {
       "localizations" : {

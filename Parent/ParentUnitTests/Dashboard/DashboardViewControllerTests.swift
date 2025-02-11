@@ -44,7 +44,8 @@ class DashboardViewControllerTests: ParentTestCase {
 
         XCTAssertEqual(vc.avatarView.name, "Full Name")
         XCTAssertEqual(vc.titleLabel.text, "Short Name (Pro/Noun)")
-        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Short Name (Pro/Noun). Tap to switch students")
+        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Short Name (Pro/Noun)")
+        XCTAssertEqual(vc.dropdownButton.accessibilityHint, "Tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
         XCTAssertEqual(vc.headerView.backgroundColor?.hexString, vc.currentColor.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
 
@@ -67,7 +68,8 @@ class DashboardViewControllerTests: ParentTestCase {
         // FIXME: always fails locally, always works on CI
         XCTAssertEqual(vc.avatarView.name, "Bob")
         XCTAssertEqual(vc.titleLabel.text, "Bob")
-        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Bob. Tap to switch students")
+        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Bob")
+        XCTAssertEqual(vc.dropdownButton.accessibilityHint, "Tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
 
         (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
