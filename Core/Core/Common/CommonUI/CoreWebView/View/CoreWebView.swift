@@ -519,9 +519,7 @@ extension CoreWebView: WKUIDelegate {
         for navigationAction: WKNavigationAction,
         windowFeatures: WKWindowFeatures
     ) -> WKWebView? {
-        guard let from = linkDelegate?.routeLinksFrom else {
-            return nil
-        }
+        guard let from = linkDelegate?.routeLinksFrom else { return nil }
 
         let router = AppEnvironment.shared.router
 
