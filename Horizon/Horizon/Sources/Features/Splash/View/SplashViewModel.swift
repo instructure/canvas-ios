@@ -54,7 +54,7 @@ final class SplashViewModel: ObservableObject {
             .flatMap { unownedSelf.setBrandTheme() }
             .replaceError(with: ())
             .sink(receiveValue: { _ in
-                HorizonUI.institution.color = Brand.shared.primary
+                HorizonUI.setInstitutionColor(Brand.shared.primary)
                 router.setRootViewController(
                     isLoginTransition: true,
                     viewController: HorizonTabBarController()
