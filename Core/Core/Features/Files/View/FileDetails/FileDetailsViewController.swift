@@ -66,7 +66,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var imageLoader: ImageLoader?
     private var isFileLocalURLAvailable: Bool { localURL != nil }
     private var isPresentingOfflineModeAlert = false
-
+    public var didFinishLoading: () -> Void = { }
     public static func create(
         context: Context?,
         fileID: String,
@@ -303,6 +303,9 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         progressView.isHidden = true
         let courseID = context?.contextType == .course ? context?.id : nil
         NotificationCenter.default.post(moduleItem: .file(fileID), completedRequirement: .view, courseID: courseID ?? "")
+        DispatchQueue.main.async {
+            self.didFinishLoading()
+        }
     }
 
     @IBAction func viewModules() {

@@ -17,23 +17,33 @@
 //
 
 import SwiftUI
+import HorizonUI
 import Core
 
-struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
+struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Dependencies
 
     @Binding private var isScrollTopReached: Bool
-    private let viewController: UIViewController
+    @Binding private var isFinishLoading: Bool
+    private let context: Core.Context?
+    private let fileID: String
 
-    init(
-        viewController: UIViewController,
-        isScrollTopReached: Binding<Bool>
+    init(isScrollTopReached: Binding<Bool>,
+         isFinishLoading: Binding<Bool>,
+         context: Core.Context?,
+         fileID: String
     ) {
-        self.viewController = viewController
         self._isScrollTopReached = isScrollTopReached
+        self._isFinishLoading = isFinishLoading
+        self.context = context
+        self.fileID = fileID
     }
 
     func makeUIViewController(context: Self.Context) -> UIViewController {
+        let viewController = FileDetailsViewController.create(context: self.context, fileID: fileID)
+        viewController.didFinishLoading = {
+                isFinishLoading = true
+        }
         if let scrollView = findScrollView(in: viewController.view) {
             scrollView.delegate = context.coordinator
         }
