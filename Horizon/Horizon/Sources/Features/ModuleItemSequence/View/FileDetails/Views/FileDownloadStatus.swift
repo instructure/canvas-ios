@@ -17,23 +17,9 @@
 //
 
 import Foundation
-import Core
 
-enum ModuleItemSequenceViewState {
-    case externalURL(url: URL, name: String)
-    case externalTool(tools: LTITools, name: String?)
-    case moduleItem(controller: UIViewController, id: String)
-    case error
-    case locked(title: String, lockExplanation: String)
-    case assignment(courseID: String, assignmentID: String)
-    case file(context: Context, fileID: String)
-
-    var isModuleItem: Bool {
-        switch self {
-        case .moduleItem, .assignment, .file:
-            return true
-        default:
-            return false
-        }
-    }
+enum FileDownloadStatus: Equatable {
+    case initial
+    case loading
+    case error(String)
 }
