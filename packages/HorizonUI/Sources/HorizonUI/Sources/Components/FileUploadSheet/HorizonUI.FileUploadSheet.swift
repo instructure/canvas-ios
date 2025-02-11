@@ -22,7 +22,7 @@ public extension HorizonUI {
     struct FileUploadSheet: View {
         // MARK: - Private Properties
 
-        private let files = UploadType.allCases
+        private let uploadTypes = UploadType.allCases
         @Environment(\.dismiss) private var dismiss
 
         // MARK: - Dependencies
@@ -73,18 +73,18 @@ public extension HorizonUI {
 
         private var options: some View {
             VStack(spacing: .zero) {
-                ForEach(files, id: \.self) { file in
+                ForEach(uploadTypes, id: \.self) { type in
                     Button {
-                        switch file {
+                        switch type {
                         case .choosePhoto: onTapChoosePhoto()
                         case .takePhoto: onTapOpenCamera()
                         case .chooseFile: onTapChooseFile()
                         }
                     } label: {
-                        optionRow(type: file)
+                        optionRow(type: type)
                     }
                     Divider()
-                        .opacity(file == files.last ? 0 : 1)
+                        .opacity(type == uploadTypes.last ? 0 : 1)
                 }
             }
         }
