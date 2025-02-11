@@ -58,6 +58,7 @@ class EditComposeRecipientsViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         view.frame.size.height = 304
         titleLabel.text = String(localized: "Recipients", bundle: .core)
+        titleLabel.accessibilityTraits = .header
         teachers.exhaust(force: false)
         tas.exhaust(force: false)
     }

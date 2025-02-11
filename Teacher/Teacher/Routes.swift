@@ -325,13 +325,15 @@ let router = Router(routes: [
         return CoreHostingController(PageEditorView(context: context))
     },
 
-    RouteHandler("/:context/:contextID/pages/:url") { url, params, _ in
+    RouteHandler("/:context/:contextID/pages/:url") { url, params, _, env in
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
-        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
+        return PageDetailsViewController
+            .create(context: context, pageURL: pageURL, app: .teacher, env: env)
     },
-    RouteHandler("/:context/:contextID/wiki/:url") { url, params, _ in
+    RouteHandler("/:context/:contextID/wiki/:url") { url, params, _, env in
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
-        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
+        return PageDetailsViewController
+            .create(context: context, pageURL: pageURL, app: .teacher, env: env)
     },
 
     RouteHandler("/:context/:contextID/pages/:url/edit") { url, params, _ in

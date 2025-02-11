@@ -70,7 +70,7 @@ public struct SubmitAssignmentExtensionView: View {
             .padding(.horizontal, 20)
         }
         .navigationBarGlobal()
-        .navigationTitleStyled(title)
+        .navigationTitleStyled(titleView)
         .navigationBarTitleDisplayMode(.inline)
         .navBarItems(leading: cancelButton, trailing: submitButton)
         .onDisappear {
@@ -78,8 +78,23 @@ public struct SubmitAssignmentExtensionView: View {
         }
     }
 
+    private var titleView: some View {
+        VStack(spacing: 1) {
+            title
+            if let userName = env.currentSession?.userName {
+                Text(userName)
+                    .font(.regular12)
+                    .foregroundColor(.textDark)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isHeader)
+    }
+
     private var title: Text {
-        Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
+        Text("Canvas Student", bundle: .core)
+            .font(.semibold16)
+            .foregroundColor(.textDarkest)
     }
 
     @ViewBuilder
