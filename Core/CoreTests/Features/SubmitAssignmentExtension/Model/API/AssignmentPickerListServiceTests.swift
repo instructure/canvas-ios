@@ -160,7 +160,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
 
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), error: NSError.instructureError("custom error"))
+        api.mock(AssignmentPickerListRequest(courseID: "failureID"), error: NSError.instructureError("custom error"))
 
         expect()
         testee.courseID = "failureID"

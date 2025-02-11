@@ -61,12 +61,10 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    func viewDidAppear() {
+    func viewDidAppear(completion: (() -> Void)? = nil) {
         fetchSettings {
             if self.shouldShow {
-                Task {
-                    await self.refresh()
-                }
+                self.refresh(completion: { completion?() })
             }
         }
     }
@@ -103,28 +101,20 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
         }
     }
 
+    @MainActor
     public func refresh() async {
-        performUIUpdate { [weak self] in
-            self?.state = .loading
-        }
+        self.state = .loading
+
         let userId = env.currentSession?.userID ?? ""
         let requestable = APICommentLibraryRequest(query: comment, userId: userId)
-        return await withCheckedContinuation { [weak self] continuation in
-            guard let self else {
-                continuation.resume()
-                return
-            }
-            env.api.makeRequest(requestable) { [weak self] response, _, _  in
-                performUIUpdate {
-                    defer { continuation.resume() }
-                    guard let response, let self else { return }
 
-                    let comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-                    self.state = .data(comments)
-                    self.endCursor = response.pageInfo?.nextCursor
-                }
-            }
-        }
+        do {
+            let response = try await env.api.makeRequest(requestable)
+            let comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+            self.comments = comments
+            self.endCursor = response.pageInfo?.nextCursor
+            self.state = .data(comments)
+        } catch { }
     }
 
     @MainActor
@@ -140,10 +130,10 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
 
         if let response = try? await env.api.makeRequest(requestable) {
             let newComments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-            let allComments = comments + newComments
-            comments = allComments
+            let allComments = self.comments + newComments
+            self.comments = allComments
 
-            self.state = .data(comments)
+            self.state = .data(allComments)
             self.endCursor = response.pageInfo?.nextCursor
         }
     }

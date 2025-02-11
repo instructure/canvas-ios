@@ -44,8 +44,11 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
 
         // When
         let testee = SubmissionCommentLibraryViewModel()
-        testee.viewDidAppear()
-        drainMainQueue()
+
+        let exp1 = expectation(description: "fetch completed")
+        testee.viewDidAppear(completion: { exp1.fulfill() })
+
+        wait(for: [exp1], timeout: 2)
 
         // Then
         XCTAssertEqual(testee.endCursor, "next_cursor")
@@ -79,10 +82,10 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
         api.mock(APICommentLibraryRequest(userId: "1", cursor: "next_cursor"), value: pageResponse)
 
         // When
-        let expectation = expectation(description: "page loaded")
-        testee.loadNextPage(completion: { expectation.fulfill() })
+        let exp2 = expectation(description: "page loaded")
+        testee.loadNextPage(completion: { exp2.fulfill() })
 
-        wait(for: [expectation], timeout: 2)
+        wait(for: [exp2], timeout: 2)
 
         // Then
         XCTAssertNil(testee.endCursor)
