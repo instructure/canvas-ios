@@ -200,4 +200,13 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
             }
         }
     }
+
+    /// Helper function to help normalize user ids coming from webview urls
+    static func normalizeUserID(_ userID: String?) -> String {
+        if let userID, userID.containsOnlyNumbers {
+            return userID
+        }
+
+        return SpeedGraderViewController.AllUsersUserID
+    }
 }
