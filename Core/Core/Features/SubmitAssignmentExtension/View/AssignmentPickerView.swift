@@ -90,12 +90,6 @@ public struct AssignmentPickerView: View {
 
                     Divider()
                 }
-
-                PagingButton(endCursor: $viewModel.endCursor) { _, finished in
-                    viewModel.loadNextPage(completion: finished)
-                }
-                .padding(.vertical)
-                .font(.regular16)
             }
         }
     }

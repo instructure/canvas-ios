@@ -30,7 +30,6 @@ public class AssignmentPickerViewModel: ObservableObject {
     @Published public private(set) var state: State = .loading
     @Published public private(set) var selectedAssignment: AssignmentPickerItem?
     @Published public var incompatibleFilesMessage: AlertMessage?
-    @Published public var endCursor: String?
 
     public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
     /** Modify this to trigger the assignment list fetch for the given course ID. */
@@ -74,10 +73,6 @@ public class AssignmentPickerViewModel: ObservableObject {
                 self?.state = state
                 self?.selectDefaultAssignment()
             }
-
-        service.endCursor
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$endCursor)
     }
 
     public func assignmentSelected(_ assignment: AssignmentPickerItem) {
@@ -91,11 +86,6 @@ public class AssignmentPickerViewModel: ObservableObject {
                 self.dismissViewDidTrigger.send()
             }
         }
-    }
-
-    public func loadNextPage(completion: (() -> Void)? = nil) {
-        Analytics.shared.logEvent("assignment_picker_load_next_page")
-        service.loadNextPage(completion: completion)
     }
 
     private func courseIdWillChange(to newValue: String?) {

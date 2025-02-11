@@ -17,6 +17,7 @@
 //
 
 import Core
+import Combine
 import SwiftUI
 
 class SubmissionCommentLibraryViewModel: ObservableObject {
@@ -30,32 +31,34 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     @Published public private(set) var state: ViewModelState<[LibraryComment]> = .loading
     @Published public var endCursor: String?
 
-    private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
     public var shouldShow: Bool {
         settings.first?.commentLibrarySuggestionsEnabled ?? false
     }
-    public var comment: String = "" {
-        didSet {
-            updateFilteredComments()
-        }
-    }
-    private let env = AppEnvironment.shared
-    private var filteredComments: [LibraryComment] = [] {
-        didSet {
-            withAnimation {
-                if filteredComments.isEmpty {
-                    state = .empty
-                } else {
-                    state = .data(filteredComments)
-                }
-            }
-        }
+
+    public var comment: String {
+        get { commentSubject.value }
+        set { commentSubject.send(newValue) }
     }
 
-    private var comments: [LibraryComment] = [] {
-        didSet {
-            updateFilteredComments()
-        }
+    private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
+    private var commentSubject = CurrentValueSubject<String, Never>("")
+
+    private let env = AppEnvironment.shared
+    private var subscriptions = Set<AnyCancellable>()
+    private var comments: [LibraryComment] = []
+
+    init() {
+        commentSubject
+            .debounce(for: 0.5, scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .mapToVoid()
+            .flatMap({
+                return Future { [weak self] promise in
+                    self?.refresh(completion: { promise(.success) })
+                }
+            })
+            .sink(receiveValue: {})
+            .store(in: &subscriptions)
     }
 
     func viewDidAppear() {
@@ -88,10 +91,6 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
             completion()
         }
     }
-
-    private func updateFilteredComments() {
-        filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
-    }
 }
 
 extension SubmissionCommentLibraryViewModel: Refreshable {
@@ -109,7 +108,7 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
             self?.state = .loading
         }
         let userId = env.currentSession?.userID ?? ""
-        let requestable = APICommentLibraryRequest(userId: userId)
+        let requestable = APICommentLibraryRequest(query: comment, userId: userId)
         return await withCheckedContinuation { [weak self] continuation in
             guard let self else {
                 continuation.resume()
@@ -119,7 +118,9 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
                 performUIUpdate {
                     defer { continuation.resume() }
                     guard let response, let self else { return }
-                    self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+
+                    let comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+                    self.state = .data(comments)
                     self.endCursor = response.pageInfo?.nextCursor
                 }
             }
@@ -131,12 +132,18 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
         guard let endCursor else { return }
 
         let userId = env.currentSession?.userID ?? ""
-        let requestable = APICommentLibraryRequest(userId: userId, cursor: endCursor)
+        let requestable = APICommentLibraryRequest(
+            query: comment,
+            userId: userId,
+            cursor: endCursor
+        )
 
         if let response = try? await env.api.makeRequest(requestable) {
             let newComments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-            let allComments = self.comments + newComments
-            self.comments = allComments
+            let allComments = comments + newComments
+            comments = allComments
+
+            self.state = .data(comments)
             self.endCursor = response.pageInfo?.nextCursor
         }
     }

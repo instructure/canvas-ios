@@ -21,11 +21,11 @@ public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
 
     static let operationName = "CommentLibraryQuery"
     static let query = """
-        query \(operationName)($userId: ID!, $pageSize: Int!, $cursor: String) {
+        query \(operationName)($query: String, $userId: ID!, $pageSize: Int!, $cursor: String) {
             user: legacyNode(_id: $userId, type: User) {
                 ... on User {
                     id: _id
-                    commentBankItems: commentBankItemsConnection(query: "", first: $pageSize, after: $cursor) {
+                    commentBankItems: commentBankItemsConnection(query: $query, first: $pageSize, after: $cursor) {
                         nodes {
                             comment: comment
                             id: _id
@@ -41,6 +41,7 @@ public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
         """
 
     public struct Variables: Codable, Equatable {
+        public let query: String
         public let userId: String
         public let cursor: String?
         public let pageSize: Int
@@ -48,8 +49,13 @@ public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
 
     public let variables: Variables
 
-    public init(userId: String, pageSize: Int = 20, cursor: String? = nil) {
-        variables = Variables(userId: userId, cursor: cursor, pageSize: pageSize)
+    public init(query: String, userId: String, pageSize: Int = 20, cursor: String? = nil) {
+        variables = Variables(
+            query: query,
+            userId: userId,
+            cursor: cursor,
+            pageSize: pageSize
+        )
     }
 
     public func nextPageRequest(from response: APICommentLibraryResponse) -> APICommentLibraryRequest? {
@@ -58,6 +64,7 @@ public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
         else { return nil }
 
         return APICommentLibraryRequest(
+            query: variables.query,
             userId: variables.userId,
             pageSize: variables.pageSize,
             cursor: pageInfo.endCursor
