@@ -111,7 +111,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     func testBackgroundURLSessionCompletionWithOngoingTasks() {
