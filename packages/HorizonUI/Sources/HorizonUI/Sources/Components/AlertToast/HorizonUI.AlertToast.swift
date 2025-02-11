@@ -26,30 +26,15 @@ public extension HorizonUI {
 
         // MARK: - Dependencies
 
-        private let text: String
-        private let style: AlertToast.Style
-        private let isShowCancelButton: Bool
-        private let buttons: AlertToast.Buttons?
+        private let model: AlertToast.Model
         private let onTapCancel: (() -> Void)?
-        private let onTapDefaultButton: (() -> Void)?
-        private let onTapSolidButton: (() -> Void)?
 
-        init(
-            text: String,
-            style: AlertToast.Style,
-            isShowCancelButton: Bool = true,
-            buttons: AlertToast.Buttons? = nil,
-            onTapCancel: (() -> Void)? = nil,
-            onTapDefaultButton: (() -> Void)? = nil,
-            onTapSolidButton: (() -> Void)? = nil
+        public init(
+            model: AlertToast.Model,
+            onTapCancel: (() -> Void)? = nil
         ) {
-            self.text = text
-            self.style = style
-            self.isShowCancelButton = isShowCancelButton
-            self.buttons = buttons
+            self.model = model
             self.onTapCancel = onTapCancel
-            self.onTapDefaultButton = onTapDefaultButton
-            self.onTapSolidButton = onTapSolidButton
         }
 
         public var body: some View {
@@ -64,25 +49,24 @@ public extension HorizonUI {
                 trailingButtons
                     .padding(.top,.huiSpaces.primitives.mediumSmall)
             }
-
             .frame(minHeight: 64)
-            .huiBorder(level: .level2, color: style.color, radius: cornerRadius.attributes.radius)
+            .huiBorder(level: .level2, color: model.style.color, radius: cornerRadius.attributes.radius)
             .huiCornerRadius(level: cornerRadius)
             .fixedSize(horizontal: false, vertical: true)
         }
 
         private var alertIcon: some View {
             Rectangle()
-                .fill(style.color)
+                .fill(model.style.color)
                 .frame(width: 50)
                 .overlay {
-                    style.image
+                    model.style.image
                         .foregroundStyle(Color.huiColors.icon.surfaceColored)
                 }
         }
 
         private var textView: some View {
-            Text(text)
+            Text(model.text)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.p1)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -90,12 +74,12 @@ public extension HorizonUI {
 
         private var trailingButtons: some View {
             HStack(spacing: .huiSpaces.primitives.mediumSmall) {
-                if case .solid(title: let title) =  buttons {
+                if case .solid(title: let title) =  model.buttons {
                     HorizonUI.PrimaryButton(title, type: .black) {
-                        onTapSolidButton?()
+                        model.onTapSolidButton?()
                     }
                 }
-                if isShowCancelButton {
+                if model.isShowCancelButton {
                     HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
                         onTapCancel?()
                     }
@@ -106,14 +90,14 @@ public extension HorizonUI {
 
         @ViewBuilder
         private var groupButtons: some View {
-            if case let .group(defaultTitle, solidTitle) =  buttons  {
+            if case let .group(defaultTitle, solidTitle) =  model.buttons  {
                 HStack {
                     HorizonUI.PrimaryButton(defaultTitle, type: .white) {
-                        onTapDefaultButton?()
+                        model.onTapDefaultButton?()
                     }
 
                     HorizonUI.PrimaryButton(solidTitle, type: .black) {
-                        onTapSolidButton?()
+                        model.onTapSolidButton?()
                     }
                 }
             }
@@ -122,9 +106,6 @@ public extension HorizonUI {
 }
 
 #Preview {
-    HorizonUI.AlertToast(
-        text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
-        style: .warning
-    )
+    HorizonUI.AlertToast(model: .init(text: "Alert Toast", style: .info))
     .padding(5)
 }
