@@ -29,6 +29,10 @@ public extension HorizonUI {
     }
 
     static let colors = HorizonUI.Colors()
+
+    static func setInstitutionColor(_ color: UIColor) {
+        HorizonUI.Colors.Surface.institutionWrapper.color = color
+    }
 }
 
 extension Color {
