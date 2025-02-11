@@ -22,7 +22,7 @@ public extension HorizonUI {
     struct FileUploadSheet: View {
         // MARK: - Private Properties
 
-        private let files = FileType.allCases
+        private let files = UploadType.allCases
         @Environment(\.dismiss) private var dismiss
 
         // MARK: - Dependencies
@@ -46,7 +46,7 @@ public extension HorizonUI {
         public var body: some View {
             VStack(spacing: .huiSpaces.primitives.medium) {
                 headerView
-                listFiles
+                options
                     .background(Color.huiColors.surface.cardPrimary)
                     .huiCornerRadius(level: .level3)
                     .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
@@ -71,7 +71,7 @@ public extension HorizonUI {
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
         }
 
-        private var listFiles: some View {
+        private var options: some View {
             VStack(spacing: .zero) {
                 ForEach(files, id: \.self) { file in
                     Button {
@@ -81,7 +81,7 @@ public extension HorizonUI {
                         case .chooseFile: onTapChooseFile()
                         }
                     } label: {
-                        fileRow(type: file)
+                        optionRow(type: file)
                     }
                     Divider()
                         .opacity(file == files.last ? 0 : 1)
@@ -89,7 +89,7 @@ public extension HorizonUI {
             }
         }
 
-        private func fileRow(type: FileType) -> some View {
+        private func optionRow(type: UploadType) -> some View {
             HStack {
                 Text(type.name)
                     .huiTypography(.p1)
@@ -107,7 +107,7 @@ public extension HorizonUI {
 }
 
 extension HorizonUI.FileUploadSheet {
-    enum FileType: CaseIterable {
+    enum UploadType: CaseIterable {
         case choosePhoto
         case takePhoto
         case chooseFile
