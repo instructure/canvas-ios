@@ -43,6 +43,7 @@ extension HorizonUI {
         // MARK: Dependencies
 
         private let content: Content?
+        private let disabled: Bool
         private let label: String?
         private let options: [String]
         @Binding private var selection: String
@@ -61,11 +62,13 @@ extension HorizonUI {
             label: String? = nil,
             selection: Binding<String>,
             options: [String],
+            disabled: Bool = false,
             @ViewBuilder content: (() -> Content)
         ) {
             self.label = label
             self.options = options
             self._selection = selection
+            self.disabled = disabled
             self.content = content()
 
             originalSelection = selection.wrappedValue
@@ -131,12 +134,19 @@ extension HorizonUI {
             HorizonUI.TextInput(
                 $text,
                 label: label,
+                disabled: disabled,
                 trailing: Image.huiIcons.chevronRight.rotationEffect(.degrees(open ? -90 : 90)).animation(
                     .easeInOut, value: open),
                 focused: _focused
             )
             .onChange(of: focused, onFocusChange)
             .onChange(of: text, onTextChange)
+            .onTapGesture {
+                if disabled {
+                    return
+                }
+                focused = !focused
+            }
         }
 
         // MARK: - Private Actions

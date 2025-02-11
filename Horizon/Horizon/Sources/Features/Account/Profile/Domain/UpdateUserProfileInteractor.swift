@@ -18,7 +18,6 @@
 
 import Combine
 import Core
-import CoreData
 
 protocol UpdateUserProfileInteractor {
     func set(
@@ -54,53 +53,5 @@ class UpdateUserProfileInteractorLive: UpdateUserProfileInteractor {
             .replaceError(with: [])
             .map { $0.first }
             .eraseToAnyPublisher()
-    }
-}
-
-class UpdateUserUseCase: APIUseCase {
-    var cacheKey: String?
-
-    public typealias Response = APIProfile
-    public typealias Model = UserProfile
-
-    private let name: String?
-    private let shortName: String?
-    private let timeZone: String?
-
-    init(name: String? = nil, shortName: String? = nil, timeZone: String? = nil) {
-        self.name = name
-        self.shortName = shortName
-        self.timeZone = timeZone
-    }
-
-    public var request: PutUserInfoRequest {
-        .init(name: name, shortName: shortName, timeZone: timeZone)
-    }
-
-    func write(response: APIProfile?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
-        UserProfile.save(response, in: client)
-    }
-}
-
-struct PutUserInfoRequest: APIRequestable {
-    let name: String?
-    let shortName: String?
-    let timeZone: String?
-
-    typealias Response = APIProfile
-
-    struct Body: Encodable {
-        let user: User
-    }
-    struct User: Encodable {
-        let name: String?
-        let short_name: String?
-        let default_time_zone: String?
-    }
-    let method = APIMethod.put
-    let path = "users/self"
-    var body: Body? {
-        return Body(user: User(name: name, short_name: shortName, default_time_zone: timeZone))
     }
 }
