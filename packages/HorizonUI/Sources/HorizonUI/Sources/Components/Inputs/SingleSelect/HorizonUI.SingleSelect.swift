@@ -55,6 +55,11 @@ extension HorizonUI {
         @State private var open: Bool = false
         @FocusState private var focused: Bool
         @State private var filteredItems: [String] = []
+        @State private var textInputMeasuredHeight: CGFloat = 0
+        @State private var displayedOptionHeight: CGFloat = 0
+        private var displayedOptionsHeight: CGFloat {
+            open ? min(displayedOptionHeight * CGFloat(filteredItems.count) + .huiSpaces.primitives.xxSmall, 300) : 0
+        }
 
         // MARK: - Init
 
@@ -90,27 +95,22 @@ extension HorizonUI {
         // MARK: - Private
 
         private var displayedOptions: some View {
-            GeometryReader { geometry in
-                ScrollView {
-                    VStack(spacing: .zero) {
-                        ForEach(filteredItems, id: \.self) { item in
-                            displayedOption(item)
-                        }
+            ScrollView {
+                VStack(spacing: .zero) {
+                    ForEach(filteredItems, id: \.self) { item in
+                        displayedOption(item)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.huiColors.surface.pageSecondary)
-                    .padding(.vertical, .huiSpaces.primitives.xxSmall)
-                    .padding(.horizontal, 5)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.huiColors.surface.pageSecondary)
-                .cornerRadius(12)
-                .shadow(radius: 3)
-                .offset(y: 90)
-                .frame(maxHeight: min(geometry.size.height, 300), alignment: .leading)
-                .opacity(open ? 1 : 0)
-                .animation(.easeInOut, value: open)
-                .padding(.horizontal, .huiSpaces.primitives.xxSmall)
+                .padding(.vertical, .huiSpaces.primitives.xxSmall)
             }
+            .background(Color.huiColors.surface.pageSecondary)
+            .frame(maxHeight: displayedOptionsHeight)
+            .cornerRadius(12)
+            .shadow(radius: 3)
+            .offset(y: textInputMeasuredHeight + .huiSpaces.primitives.xSmall)
+            .animation(.easeInOut, value: displayedOptionsHeight)
         }
 
         private func displayedOption(_ text: String) -> some View {
@@ -118,6 +118,16 @@ extension HorizonUI {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, .huiSpaces.primitives.small)
                 .padding(.vertical, .huiSpaces.primitives.xSmall)
+                .background {
+                    GeometryReader { geometry in
+                        HStack {}
+                            .onAppear {
+                                if geometry.size.height != displayedOptionHeight {
+                                    displayedOptionHeight = geometry.size.height
+                                }
+                            }
+                    }
+                }
                 .background(Color.huiColors.surface.pageSecondary)
                 .huiTypography(.p1)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -137,6 +147,14 @@ extension HorizonUI {
                     .easeInOut, value: open),
                 focused: _focused
             )
+            .background {
+                GeometryReader { geometry in
+                    HStack {}
+                        .onAppear {
+                            textInputMeasuredHeight = geometry.size.height
+                        }
+                }
+            }
             .onChange(of: focused, onFocusChange)
             .onChange(of: text, onTextChange)
             .onTapGesture {
@@ -182,7 +200,16 @@ extension HorizonUI {
                 filteredItems = options
             }
         }
+    }
 
+    private struct VStackHeightKey: PreferenceKey {
+        typealias Value = CGFloat
+
+        static let defaultValue: CGFloat = 0
+
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = nextValue()
+        }
     }
 }
 
@@ -193,5 +220,8 @@ extension HorizonUI {
     HorizonUI.SingleSelect(
         selection: $selection,
         options: ["Alphabet", "Backyard", "Country"]
-    ) {}
+    ) {
+        HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
+    }
+    .padding(.horizontal, .huiSpaces.primitives.medium)
 }

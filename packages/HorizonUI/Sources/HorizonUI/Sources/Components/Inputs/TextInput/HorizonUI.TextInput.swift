@@ -124,7 +124,6 @@ extension HorizonUI {
             }
         }
 
-        @ViewBuilder
         private var textField: some View {
             TextField(
                 placeholder ?? "",
@@ -159,12 +158,8 @@ extension HorizonUI {
             isErrorEmpty ? Color.huiColors.lineAndBorders.containerStroke : Color.huiColors.surface.error
         }
 
-        @ViewBuilder
         private var textFieldContainer: some View {
-            VStack {
-                textField
-            }
-            .padding(3)
+            textField
             .overlay(
                 RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + 2)
                     .stroke(

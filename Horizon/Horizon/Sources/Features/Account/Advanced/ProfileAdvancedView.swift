@@ -44,6 +44,7 @@ struct ProfileAdvancedView: View {
                     )
                 }
             }
+            .frame(maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, .huiSpaces.primitives.large)
         }
     }
