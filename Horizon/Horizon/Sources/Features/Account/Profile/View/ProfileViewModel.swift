@@ -97,8 +97,8 @@ final class ProfileViewModel {
                     self?.isLoading = false
                 },
                 receiveValue: { [weak self] userProfile in
-                    self?.nameOriginal = userProfile?.name ?? ""
-                    self?.displayNameOriginal = userProfile?.shortName ?? ""
+                    self?.nameOriginal = userProfile.name
+                    self?.displayNameOriginal = userProfile.shortName ?? ""
                     self?.validate()
                 }
             )
