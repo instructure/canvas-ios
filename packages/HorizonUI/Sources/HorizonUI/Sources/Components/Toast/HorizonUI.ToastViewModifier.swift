@@ -18,17 +18,17 @@
 
 import SwiftUI
 
-extension HorizonUI.AlertToast {
-    struct AlertToastModifier: ViewModifier {
-        let viewModel: HorizonUI.AlertToast.ViewModel
-        @Binding var isShowToast: Bool
+extension HorizonUI.Toast {
+    struct ToastViewModifier: ViewModifier {
+        let viewModel: HorizonUI.Toast.ViewModel
+        @Binding var isPresented: Bool
 
         func body(content: Content) -> some View {
             content.overlay(alignment: viewModel.direction.alignment) {
                 ZStack(alignment: .top) {
-                    if  isShowToast {
-                        HorizonUI.AlertToast(viewModel: viewModel) {
-                            isShowToast = false
+                    if  isPresented {
+                        HorizonUI.Toast(viewModel: viewModel) {
+                            isPresented = false
                         }
                         .transition(
                             .move(edge: viewModel.direction.edge)
@@ -42,23 +42,23 @@ extension HorizonUI.AlertToast {
                     maxHeight: .infinity,
                     alignment: viewModel.direction.alignment
                 )
-                .animation(.easeInOut(duration: 0.25), value: isShowToast)
+                .animation(.easeInOut(duration: 0.25), value: isPresented)
             }
         }
 
         private func dismissToast() {
             DispatchQueue.main.asyncAfter(deadline: .now() + viewModel.dismissAfter) {
-                isShowToast = false
+                isPresented = false
             }
         }
     }
 }
 
 extension View {
-    public func alertToast(
-        viewModel: HorizonUI.AlertToast.ViewModel,
-        isShowToast: Binding<Bool>
+    public func huiToast(
+        viewModel: HorizonUI.Toast.ViewModel,
+        isPresented: Binding<Bool>
     ) -> some View {
-        modifier(HorizonUI.AlertToast.AlertToastModifier(viewModel: viewModel, isShowToast: isShowToast))
+        modifier(HorizonUI.Toast.ToastViewModifier(viewModel: viewModel, isPresented: isPresented))
     }
 }

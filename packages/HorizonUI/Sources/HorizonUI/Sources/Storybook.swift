@@ -134,7 +134,7 @@ public struct Storybook: View {
                         Text("File Upload Sheet").tint(Color.black)
                     }
                     NavigationLink {
-                        HorizonUI.AlertToast.Storybook()
+                        HorizonUI.Toast.Storybook()
                     } label: {
                         Text("Alert Toast").tint(Color.black)
                     }

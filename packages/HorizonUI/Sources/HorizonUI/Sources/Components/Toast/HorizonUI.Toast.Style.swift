@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension HorizonUI.AlertToast {
+public extension HorizonUI.Toast {
     enum Style {
         case info
         case success
@@ -45,55 +45,7 @@ public extension HorizonUI.AlertToast {
     }
 
     enum Buttons {
-        case solid(title: String)
-        case group(defaultTitle: String, solidTitle: String)
-    }
-}
-
-public extension HorizonUI.AlertToast {
-    struct ViewModel {
-        let text: String
-        let style: HorizonUI.AlertToast.Style
-        let isShowCancelButton: Bool
-        let buttons: HorizonUI.AlertToast.Buttons?
-        public let direction: Direction
-        public let dismissAfter: Double
-        public var onTapDefaultButton: (() -> Void)?
-        public var onTapSolidButton: (() -> Void)?
-
-        public init(
-            text: String,
-            style: HorizonUI.AlertToast.Style,
-            isShowCancelButton: Bool = true,
-            direction: Direction = .bottom,
-            dismissAfter: Double = 2.0,
-            buttons: HorizonUI.AlertToast.Buttons? = nil
-        ) {
-            self.text = text
-            self.style = style
-            self.isShowCancelButton = isShowCancelButton
-            self.direction = direction
-            self.dismissAfter = dismissAfter
-            self.buttons = buttons
-        }
-    }
-
-    enum Direction {
-        case top
-        case bottom
-
-        public var alignment: Alignment {
-            switch self {
-            case .top: return .top
-            case .bottom: return .bottom
-            }
-        }
-
-        public var edge: Edge {
-            switch self {
-            case .top: return .top
-            case .bottom: return .bottom
-            }
-        }
+        case solid(button: ButtonAttribute)
+        case group(defaultButton: ButtonAttribute, solidButton: ButtonAttribute)
     }
 }

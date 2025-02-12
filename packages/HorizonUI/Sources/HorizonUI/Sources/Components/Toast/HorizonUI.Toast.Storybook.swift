@@ -18,48 +18,48 @@
 
 import SwiftUI
 
-public extension HorizonUI.AlertToast {
+public extension HorizonUI.Toast {
     struct Storybook: View {
         let viewModel = StorybookViewModel()
-        @State var isShowToast: Bool = false
+        @State var isPresented: Bool = false
 
         public  var body: some View {
             VStack {
                 Button {
                     viewModel.showInfoToast()
-                    isShowToast = true
+                    isPresented = true
                 } label: {
                     Text(verbatim: "Show Info Alert")
                 }
 
                 Button {
                     viewModel.showErrorToast()
-                    isShowToast = true
+                    isPresented = true
                 } label: {
                     Text(verbatim: "Show Error Alert")
                 }
 
                 Button {
                     viewModel.showSuccessToast()
-                    isShowToast = true
+                    isPresented = true
                 } label: {
                     Text(verbatim: "Show Success Alert")
                 }
                 Button {
                     viewModel.showWarningToast()
-                    isShowToast = true
+                    isPresented = true
                 } label: {
                     Text(verbatim: "Show Warning Alert")
                 }
 
                 Button {
-                    isShowToast = false
+                    isPresented = false
                 } label: {
                     Text(verbatim: "Dismiss")
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .alertToast(viewModel: viewModel.toastViewModel, isShowToast: $isShowToast)
+            .huiToast(viewModel: viewModel.toastViewModel, isPresented: $isPresented)
             .padding(16)
             .navigationTitle("Alert Toast")
         }
@@ -67,5 +67,5 @@ public extension HorizonUI.AlertToast {
 }
 
 #Preview {
-    HorizonUI.AlertToast.Storybook()
+    HorizonUI.Toast.Storybook()
 }

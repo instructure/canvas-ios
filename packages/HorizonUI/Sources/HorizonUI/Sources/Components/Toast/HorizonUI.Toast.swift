@@ -19,22 +19,22 @@
 import SwiftUI
 
 public extension HorizonUI {
-    struct AlertToast: View {
+    struct Toast: View {
         // MARK: - Properties
 
         private let cornerRadius = CornerRadius.level3
 
         // MARK: - Dependencies
 
-        private let viewModel: AlertToast.ViewModel
-        private let onTapCancel: (() -> Void)?
+        private let viewModel: Toast.ViewModel
+        private let onTapDismiss: (() -> Void)?
 
         public init(
-            viewModel: AlertToast.ViewModel,
-            onTapCancel: (() -> Void)? = nil
+            viewModel: Toast.ViewModel,
+            onTapDismiss: (() -> Void)? = nil
         ) {
             self.viewModel = viewModel
-            self.onTapCancel = onTapCancel
+            self.onTapDismiss = onTapDismiss
         }
 
         public var body: some View {
@@ -74,14 +74,14 @@ public extension HorizonUI {
 
         private var trailingButtons: some View {
             HStack(spacing: .huiSpaces.primitives.mediumSmall) {
-                if case .solid(title: let title) =  viewModel.buttons {
-                    HorizonUI.PrimaryButton(title, type: .black) {
-                        viewModel.onTapSolidButton?()
+                if case .solid(button: let buttonAttribute) =  viewModel.buttons {
+                    HorizonUI.PrimaryButton(buttonAttribute.title, type: .black) {
+                        buttonAttribute.action()
                     }
                 }
                 if viewModel.isShowCancelButton {
                     HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
-                        onTapCancel?()
+                        onTapDismiss?()
                     }
                     .padding(.trailing, .huiSpaces.primitives.mediumSmall)
                 }
@@ -90,14 +90,14 @@ public extension HorizonUI {
 
         @ViewBuilder
         private var groupButtons: some View {
-            if case let .group(defaultTitle, solidTitle) =  viewModel.buttons  {
+            if case let .group(defaultTitleAttribute, solidTitleAttribute) =  viewModel.buttons  {
                 HStack {
-                    HorizonUI.PrimaryButton(defaultTitle, type: .white) {
-                        viewModel.onTapDefaultButton?()
+                    HorizonUI.PrimaryButton(defaultTitleAttribute.title, type: .white) {
+                        defaultTitleAttribute.action()
                     }
 
-                    HorizonUI.PrimaryButton(solidTitle, type: .black) {
-                        viewModel.onTapSolidButton?()
+                    HorizonUI.PrimaryButton(solidTitleAttribute.title, type: .black) {
+                        solidTitleAttribute.action()
                     }
                 }
             }
@@ -105,8 +105,66 @@ public extension HorizonUI {
     }
 }
 
-#Preview {
-    HorizonUI.AlertToast(viewModel: .init(text: "Alert Toast", style: .info))
-    .padding(5)
+public extension HorizonUI.Toast {
+    struct ButtonAttribute {
+        let title: String
+        let action: () -> Void
+
+        public init(
+            title: String,
+            action: @escaping () -> Void
+        ) {
+            self.title = title
+            self.action = action
+        }
+    }
+
+    struct ViewModel {
+        let text: String
+        let style: HorizonUI.Toast.Style
+        let isShowCancelButton: Bool
+        let buttons: HorizonUI.Toast.Buttons?
+        public let direction: Direction
+        public let dismissAfter: Double
+
+        public init(
+            text: String,
+            style: HorizonUI.Toast.Style,
+            isShowCancelButton: Bool = true,
+            direction: Direction = .bottom,
+            dismissAfter: Double = 2.0,
+            buttons: HorizonUI.Toast.Buttons? = nil
+        ) {
+            self.text = text
+            self.style = style
+            self.isShowCancelButton = isShowCancelButton
+            self.direction = direction
+            self.dismissAfter = dismissAfter
+            self.buttons = buttons
+        }
+    }
+
+    enum Direction {
+        case top
+        case bottom
+
+        public var alignment: Alignment {
+            switch self {
+            case .top: return .top
+            case .bottom: return .bottom
+            }
+        }
+
+        public var edge: Edge {
+            switch self {
+            case .top: return .top
+            case .bottom: return .bottom
+            }
+        }
+    }
 }
 
+#Preview {
+    HorizonUI.Toast(viewModel: .init(text: "Alert Toast", style: .info))
+    .padding(5)
+}

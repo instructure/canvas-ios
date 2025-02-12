@@ -19,13 +19,13 @@
 import Foundation
 import Observation
 
-extension HorizonUI.AlertToast {
+extension HorizonUI.Toast {
     @Observable
     final class StorybookViewModel {
-        var toastViewModel = HorizonUI.AlertToast.ViewModel(text: "", style: .info)
+        var toastViewModel = HorizonUI.Toast.ViewModel(text: "", style: .info)
 
         func showErrorToast() {
-            toastViewModel = HorizonUI.AlertToast.ViewModel(
+            toastViewModel = HorizonUI.Toast.ViewModel(
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
                 style: .error,
                 isShowCancelButton: true,
@@ -36,40 +36,38 @@ extension HorizonUI.AlertToast {
         }
 
         func showSuccessToast() {
-            toastViewModel = HorizonUI.AlertToast.ViewModel(
+            let solidButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
+                print("onTapSolidButton")
+            }
+            toastViewModel = HorizonUI.Toast.ViewModel(
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
                 style: .success,
                 isShowCancelButton: true,
                 direction: .top,
-                buttons: .solid(title: "Yes Bro")
+                buttons: .solid(button: solidButton)
             )
 
-            toastViewModel.onTapSolidButton = {
-                print("onTapSolidButton")
-            }
         }
 
         func showWarningToast() {
-            toastViewModel = HorizonUI.AlertToast.ViewModel(
+            let defaultButton = HorizonUI.Toast.ButtonAttribute(title: "no") {
+                print("defaultButton")
+            }
+            let solidButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
+                print("onTapSolidButton")
+            }
+            toastViewModel = HorizonUI.Toast.ViewModel(
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
                 style: .warning,
                 isShowCancelButton: false,
                 direction: .bottom,
                 dismissAfter: 15,
-                buttons: .group(defaultTitle: "NO", solidTitle: "Thanks")
+                buttons: .group(defaultButton: defaultButton, solidButton: solidButton)
             )
-
-            toastViewModel.onTapDefaultButton = {
-                print("onTapDefaultButton")
-            }
-
-            toastViewModel.onTapSolidButton = {
-                print("onTapSolidButton")
-            }
         }
 
         func showInfoToast() {
-            toastViewModel = HorizonUI.AlertToast.ViewModel(
+            toastViewModel = HorizonUI.Toast.ViewModel(
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.Nunc ut lacus ac libero ultrices vestibulum.",
                 style: .info,
                 isShowCancelButton: true,
