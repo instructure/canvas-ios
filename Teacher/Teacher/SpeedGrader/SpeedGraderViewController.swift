@@ -21,7 +21,7 @@ import UIKit
 import Core
 
 class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewControllerDataSource {
-    static let AllUsersUserID = "speedgrader"
+    internal static let AllUsersUserID = "speedgrader"
     typealias Page = CoreHostingController<SubmissionGrader>
 
     let assignmentID: String
