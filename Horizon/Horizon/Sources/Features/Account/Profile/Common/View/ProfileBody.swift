@@ -29,11 +29,11 @@ struct ProfileBody<Content: View>: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             AccountNavigationBar(title)
                 .background(Color.huiColors.surface.pagePrimary)
 
-            VStack {
+            VStack(spacing: 0) {
                 content
             }
             .background(Color.huiColors.surface.pageSecondary)

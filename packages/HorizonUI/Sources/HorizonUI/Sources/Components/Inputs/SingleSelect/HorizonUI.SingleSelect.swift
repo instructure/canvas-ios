@@ -89,7 +89,6 @@ extension HorizonUI {
 
         // MARK: - Private
 
-        @ViewBuilder
         private var displayedOptions: some View {
             GeometryReader { geometry in
                 ScrollView {
@@ -129,7 +128,6 @@ extension HorizonUI {
                 }
         }
 
-        @ViewBuilder
         private var textInput: some View {
             HorizonUI.TextInput(
                 $text,

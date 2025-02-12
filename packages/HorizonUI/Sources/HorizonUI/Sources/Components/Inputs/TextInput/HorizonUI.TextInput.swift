@@ -83,7 +83,7 @@ extension HorizonUI {
         @ViewBuilder
         private var errorView: some View {
             if let error = error {
-                HStack {
+                HStack(spacing: 0) {
                     Image.huiIcons.error.foregroundColor(Color.huiColors.text.error)
                     Text(error)
                         .huiTypography(.p2)

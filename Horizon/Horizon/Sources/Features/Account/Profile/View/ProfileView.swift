@@ -46,8 +46,7 @@ struct ProfileView: View {
         }
     }
 
-    @ViewBuilder
-    var nameView: some View {
+    private var nameView: some View {
         HorizonUI.TextInput(
             $viewModel.name,
             label: String(localized: "Full Name", bundle: .horizon),
@@ -56,8 +55,7 @@ struct ProfileView: View {
         )
     }
 
-    @ViewBuilder
-    var displayNameView: some View {
+    private var displayNameView: some View {
         HorizonUI.TextInput(
             $viewModel.displayName,
             label: String(localized: "Display Name", bundle: .horizon),
@@ -67,8 +65,7 @@ struct ProfileView: View {
         )
     }
 
-    @ViewBuilder
-    var emailView: some View {
+    private var emailView: some View {
         HorizonUI.TextInput(
             $viewModel.email,
             label: String(localized: "Email", bundle: .horizon),
@@ -77,8 +74,7 @@ struct ProfileView: View {
         )
     }
 
-    @ViewBuilder
-    var saveButton: some View {
+    private var saveButton: some View {
         SavingButton(
             isLoading: $viewModel.isLoading,
             isDisabled: $viewModel.isSaveDisabled,

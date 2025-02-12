@@ -23,9 +23,9 @@ protocol UpdateUserProfileInteractor {
     func set(
         name: String,
         shortName: String
-    ) -> AnyPublisher<UserProfile?, Never>
+    ) -> AnyPublisher<UserProfile, Error>
 
-    func set(timeZone: String) -> AnyPublisher<UserProfile?, Never>
+    func set(timeZone: String) -> AnyPublisher<UserProfile, Error>
 }
 
 class UpdateUserProfileInteractorLive: UpdateUserProfileInteractor {
@@ -39,19 +39,17 @@ class UpdateUserProfileInteractorLive: UpdateUserProfileInteractor {
     func set(
         name: String,
         shortName: String
-    ) -> AnyPublisher<UserProfile?, Never> {
+    ) -> AnyPublisher<UserProfile, Error> {
         ReactiveStore(useCase: UpdateUserUseCase(name: name, shortName: shortName))
             .getEntities()
-            .replaceError(with: [])
-            .map { $0.first }
+            .compactMap { $0.first }
             .eraseToAnyPublisher()
     }
 
-    func set(timeZone: String) -> AnyPublisher<UserProfile?, Never> {
+    func set(timeZone: String) -> AnyPublisher<UserProfile, Error> {
         ReactiveStore(useCase: UpdateUserUseCase(timeZone: timeZone))
             .getEntities()
-            .replaceError(with: [])
-            .map { $0.first }
+            .compactMap { $0.first }
             .eraseToAnyPublisher()
     }
 }

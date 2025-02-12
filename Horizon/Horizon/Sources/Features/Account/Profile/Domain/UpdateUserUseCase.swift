@@ -57,7 +57,7 @@ extension UserProfile {
         model.loginID = item.login_id
         model.avatarURL = item.avatar_url?.rawValue
         model.pronouns = item.pronouns
-        model.defaultTimeZone = item.time_zone
+        model.defaultTimeZone = item.time_zone?.identifier
         return model
     }
 }

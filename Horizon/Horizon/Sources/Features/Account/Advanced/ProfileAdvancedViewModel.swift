@@ -84,14 +84,16 @@ class ProfileAdvancedViewModel {
             return
         }
         isLoading = true
+
+        weak var weakSelf = self
         updateUserProfileInteractor.set(timeZone: timeZoneValue)
             .sink(
-                receiveCompletion: { [weak self] _ in
-                    self?.isLoading = false
+                receiveCompletion: { _ in
+                    weakSelf?.isLoading = false
                 },
-                receiveValue: { [weak self] userProfile in
-                    self?.originalTimeZone = userProfile?.defaultTimeZone ?? ""
-                    self?.updateSaveDisabled()
+                receiveValue: { userProfile in
+                    weakSelf?.originalTimeZone = userProfile.defaultTimeZone ?? ""
+                    weakSelf?.updateSaveDisabled()
                 }
             )
             .store(in: &subscriptions)
