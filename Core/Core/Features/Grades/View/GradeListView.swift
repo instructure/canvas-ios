@@ -327,7 +327,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                             .frame(height: 40)
                             .paddingStyle(.horizontal, .standard)
                     }
-                    .accessibilityLabel("\(section.title), \(itemCountLabel)")
+                    .accessibilityLabel(Text(verbatim: "\(section.title), \(itemCountLabel)"))
                 } content: {
                     ForEach(section.assignments, id: \.id) { assignment in
                         VStack(alignment: .leading, spacing: 0) {
