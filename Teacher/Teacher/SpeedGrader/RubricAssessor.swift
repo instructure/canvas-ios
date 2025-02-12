@@ -233,7 +233,7 @@ struct RubricAssessor: View {
         private let tooltip: String
         private let content: Content
 
-        @GestureState private var showTooltip = false
+        @State private var showTooltip = false
         private let containerFrame: CGRect
 
         init(isOn: Binding<Bool>, tooltip: String = "", containerFrame: CGRect = .null, @ViewBuilder content: () -> Content) {
@@ -258,12 +258,11 @@ struct RubricAssessor: View {
                 )
                 .accessibility(addTraits: isOn ? [.isButton, .isSelected] : .isButton)
                 .onTapGesture { isOn.toggle() }
-                .gesture(LongPressGesture(minimumDuration: .infinity)
-                    .updating($showTooltip) { _, state, transation in
-                        transation.animation = .spring(response: 0.2, dampingFraction: 0.6)
-                        state = true
+                .onLongPressGesture(perform: {}, onPressingChanged: { isLongPressing in
+                    withAnimation(.spring(response: 0.2, dampingFraction: 0.6)) {
+                        showTooltip = isLongPressing
                     }
-                )
+                })
                 .overlay(!showTooltip || tooltip.isEmpty ? nil :
                     GeometryReader { geometry in
                         let bubbleToCircleOffset: CGFloat = 16
@@ -301,8 +300,7 @@ struct RubricAssessor: View {
                             // Alignment must match the guides we use above otherwise they don't get called
                             .frame(width: maxWidth, height: maxHeight, alignment: .bottomLeading)
                     }
-                    .transition(.scale),
-                    alignment: .bottomLeading)
+                    .transition(.scale.combined(with: .opacity)), alignment: .bottomLeading)
         }
     }
 
