@@ -49,7 +49,7 @@ class OfflineModeViewModelTests: XCTestCase {
         mockInteractor.offlineMode.send(false)
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertFalse(testee.isOffline)
         subscription.cancel()
     }

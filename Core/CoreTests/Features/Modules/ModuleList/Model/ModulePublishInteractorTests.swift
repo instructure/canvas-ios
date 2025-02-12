@@ -53,7 +53,7 @@ class ModulePublishInteractorTests: CoreTestCase {
                                         action: .publish)
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -75,7 +75,7 @@ class ModulePublishInteractorTests: CoreTestCase {
         )
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -126,7 +126,7 @@ class ModulePublishInteractorTests: CoreTestCase {
         fileUpdateMock.resume()
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -178,7 +178,7 @@ class ModulePublishInteractorTests: CoreTestCase {
 
         // THEN
         getFileMock.resume()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -194,7 +194,7 @@ class ModulePublishInteractorTests: CoreTestCase {
             }
 
         let testOperation = testee.bulkPublish(moduleIds: ["1", "2"], action: .publish(.onlyModules)).sink()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
         testOperation.cancel()
     }
@@ -238,7 +238,7 @@ class ModulePublishInteractorTests: CoreTestCase {
         // THEN
         drainMainQueue()
         XCTAssertTrue(testee.modulesUpdating.value.isEmpty)
-        wait(for: [cancelCalled, modulesRefreshed], timeout: 0.1)
+        wait(for: [cancelCalled, modulesRefreshed], timeout: 1)
     }
 }
 

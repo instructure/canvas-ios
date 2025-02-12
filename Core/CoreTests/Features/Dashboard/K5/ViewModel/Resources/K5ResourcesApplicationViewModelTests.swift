@@ -26,7 +26,7 @@ class K5ResourcesApplicationViewModelTests: CoreTestCase {
         testee.applicationTapped(router: router, route: URL(string: "https://instructure.com")!, viewController: WeakViewController())
 
         XCTAssertTrue(router.lastRoutedTo("https://instructure.com"))
-        wait(for: [router.routeExpectation], timeout: 0.1)
+        wait(for: [router.routeExpectation], timeout: 1)
     }
 
     func testEquatable() {

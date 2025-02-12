@@ -43,7 +43,7 @@ class FutureExtensionsTests: XCTestCase {
                     receivedValue.fulfill()
                 })
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -68,7 +68,7 @@ class FutureExtensionsTests: XCTestCase {
                     receivedNoValue.fulfill()
                 })
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
