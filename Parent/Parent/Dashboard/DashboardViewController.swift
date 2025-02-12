@@ -177,9 +177,10 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
             titleLabel.text = displayName
             dropdownButton.accessibilityLabel = String.localizedStringWithFormat(
-                String(localized: "Current student: %@. Tap to switch students", bundle: .parent),
+                String(localized: "Current student: %@", bundle: .parent),
                 displayName
             )
+            dropdownButton.accessibilityHint = String(localized: "Tap to switch students")
         } else {
             avatarView.isHidden = true
             titleLabel.text = String(localized: "Add Student", bundle: .parent)

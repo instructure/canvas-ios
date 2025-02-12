@@ -104,7 +104,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enseignant Canvas"
+            "value" : "Canvas Teacher"
           }
         },
         "fr-CA" : {
@@ -380,7 +380,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enseignant Canvas"
+            "value" : "Canvas Teacher"
           }
         },
         "fr-CA" : {
@@ -560,7 +560,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atodwch luniau a fideos ar gyfer sylwadau ar gyflwyniad."
+            "value" : "Atodwch luniau a fideos ar gyfer sylwadau ar gyflwyniadau."
           }
         },
         "da" : {
@@ -1352,7 +1352,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atodwch luniau a fideos ar gyfer sylwadau ar gyflwyniad."
+            "value" : "Atodwch luniau a fideos ar gyfer sylwadau ar gyflwyniadau."
           }
         },
         "da" : {

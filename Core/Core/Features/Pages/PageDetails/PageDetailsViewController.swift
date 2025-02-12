@@ -28,7 +28,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
     var app = App.student
     public var color: UIColor?
     var context = Context.currentUser
-    let env = AppEnvironment.shared
+    var env: AppEnvironment = .shared
     var pageURL = ""
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -40,7 +40,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
     lazy var groups = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
+    lazy var pages = env.subscribe(GetPage(context: context.local, url: pageURL)) { [weak self] in
         self?.updatePages()
     }
     var localPages: Store<LocalUseCase<Page>>?
@@ -64,12 +64,14 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         context: Context,
         pageURL: String,
         app: App,
+        env: AppEnvironment,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> PageDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
+        controller.env = env
         controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
@@ -100,7 +102,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if AppEnvironment.shared.app != .parent {
+        if env.app != .parent {
             navigationController?.navigationBar.useContextColor(color)
         }
     }
@@ -116,7 +118,7 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         guard
             let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
             let color = context.contextType == .course ? courses.first?.color : groups.first?.color,
-            AppEnvironment.shared.app != .parent
+            env.app != .parent
         else { return }
         updateNavBar(subtitle: name, color: color)
     }
