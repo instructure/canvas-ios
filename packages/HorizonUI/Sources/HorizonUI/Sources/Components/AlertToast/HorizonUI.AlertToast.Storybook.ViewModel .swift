@@ -21,7 +21,7 @@ import Observation
 
 extension HorizonUI.AlertToast {
     @Observable
-    final class AlertToastStorybookViewModel {
+    final class StorybookViewModel {
         var toastViewModel = HorizonUI.AlertToast.ViewModel(text: "", style: .info)
 
         func showErrorToast() {

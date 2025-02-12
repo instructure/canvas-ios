@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension HorizonUI.AlertToast {
     struct Storybook: View {
-        let viewModel = AlertToastStorybookViewModel()
+        let viewModel = StorybookViewModel()
         @State var isShowToast: Bool = false
 
         public  var body: some View {
