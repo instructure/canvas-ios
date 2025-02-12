@@ -26,14 +26,14 @@ public extension HorizonUI {
 
         // MARK: - Dependencies
 
-        private let model: AlertToast.Model
+        private let viewModel: AlertToast.ViewModel
         private let onTapCancel: (() -> Void)?
 
         public init(
-            model: AlertToast.Model,
+            viewModel: AlertToast.ViewModel,
             onTapCancel: (() -> Void)? = nil
         ) {
-            self.model = model
+            self.viewModel = viewModel
             self.onTapCancel = onTapCancel
         }
 
@@ -50,23 +50,23 @@ public extension HorizonUI {
                     .padding(.top,.huiSpaces.primitives.mediumSmall)
             }
             .frame(minHeight: 64)
-            .huiBorder(level: .level2, color: model.style.color, radius: cornerRadius.attributes.radius)
+            .huiBorder(level: .level2, color: viewModel.style.color, radius: cornerRadius.attributes.radius)
             .huiCornerRadius(level: cornerRadius)
             .fixedSize(horizontal: false, vertical: true)
         }
 
         private var alertIcon: some View {
             Rectangle()
-                .fill(model.style.color)
+                .fill(viewModel.style.color)
                 .frame(width: 50)
                 .overlay {
-                    model.style.image
+                    viewModel.style.image
                         .foregroundStyle(Color.huiColors.icon.surfaceColored)
                 }
         }
 
         private var textView: some View {
-            Text(model.text)
+            Text(viewModel.text)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.p1)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -74,12 +74,12 @@ public extension HorizonUI {
 
         private var trailingButtons: some View {
             HStack(spacing: .huiSpaces.primitives.mediumSmall) {
-                if case .solid(title: let title) =  model.buttons {
+                if case .solid(title: let title) =  viewModel.buttons {
                     HorizonUI.PrimaryButton(title, type: .black) {
-                        model.onTapSolidButton?()
+                        viewModel.onTapSolidButton?()
                     }
                 }
-                if model.isShowCancelButton {
+                if viewModel.isShowCancelButton {
                     HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
                         onTapCancel?()
                     }
@@ -90,14 +90,14 @@ public extension HorizonUI {
 
         @ViewBuilder
         private var groupButtons: some View {
-            if case let .group(defaultTitle, solidTitle) =  model.buttons  {
+            if case let .group(defaultTitle, solidTitle) =  viewModel.buttons  {
                 HStack {
                     HorizonUI.PrimaryButton(defaultTitle, type: .white) {
-                        model.onTapDefaultButton?()
+                        viewModel.onTapDefaultButton?()
                     }
 
                     HorizonUI.PrimaryButton(solidTitle, type: .black) {
-                        model.onTapSolidButton?()
+                        viewModel.onTapSolidButton?()
                     }
                 }
             }
@@ -106,6 +106,7 @@ public extension HorizonUI {
 }
 
 #Preview {
-    HorizonUI.AlertToast(model: .init(text: "Alert Toast", style: .info))
+    HorizonUI.AlertToast(viewModel: .init(text: "Alert Toast", style: .info))
     .padding(5)
 }
+

@@ -51,7 +51,7 @@ public extension HorizonUI.AlertToast {
 }
 
 public extension HorizonUI.AlertToast {
-    struct Model {
+    struct ViewModel {
         let text: String
         let style: HorizonUI.AlertToast.Style
         let isShowCancelButton: Bool
