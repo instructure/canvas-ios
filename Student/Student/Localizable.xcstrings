@@ -103044,6 +103044,9 @@
         }
       }
     },
+    "Select Attachment Type" : {
+
+    },
     "Select file(s)" : {
       "comment" : "Title for a file picker window",
       "extractionState" : "manual",
