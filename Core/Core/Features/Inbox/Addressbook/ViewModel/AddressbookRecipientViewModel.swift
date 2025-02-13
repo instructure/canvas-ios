@@ -67,13 +67,26 @@ class AddressbookRecipientViewModel: ObservableObject {
         Just(allRecipient)
             .combineLatest(searchText)
             .map { (recipients, searchText) in
-                recipients.filter { recipient in
+
+                let foundResults = recipients.filter { recipient in
                     if searchText.isEmpty {
                         true
                     } else {
                         recipient.displayName.lowercased().contains(searchText.lowercased())
                     }
                 }
+
+                if searchText.isNotEmpty {
+                    let message = foundResults.isEmpty
+                        ? String(localized: "No results found", bundle: .core)
+                        : String(
+                            format: String(localized: "%i results found!", bundle: .core),
+                            foundResults.count
+                        )
+                    UIAccessibility.post(notification: .announcement, argument: message)
+                }
+
+                return foundResults
             }
             .assign(to: &$recipients)
 
