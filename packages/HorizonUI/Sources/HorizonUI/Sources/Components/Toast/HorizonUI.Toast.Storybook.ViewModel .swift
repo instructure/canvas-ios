@@ -30,31 +30,30 @@ extension HorizonUI.Toast {
                 style: .error,
                 isShowCancelButton: true,
                 direction: .bottom,
-                dismissAfter: 2,
-                buttons: nil
+                dismissAfter: 2
             )
         }
 
         func showSuccessToast() {
-            let solidButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
-                print("onTapSolidButton")
+            let confirmButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
+                print("confirmButton")
             }
             toastViewModel = HorizonUI.Toast.ViewModel(
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
                 style: .success,
                 isShowCancelButton: true,
                 direction: .top,
-                buttons: .solid(button: solidButton)
+                confirmActionButton: confirmButton
             )
 
         }
 
         func showWarningToast() {
-            let defaultButton = HorizonUI.Toast.ButtonAttribute(title: "no") {
-                print("defaultButton")
+            let cancelButton = HorizonUI.Toast.ButtonAttribute(title: "no") {
+                print("cancelButton")
             }
-            let solidButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
-                print("onTapSolidButton")
+            let confirmButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
+                print("confirmButton")
             }
             toastViewModel = HorizonUI.Toast.ViewModel(
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
@@ -62,7 +61,8 @@ extension HorizonUI.Toast {
                 isShowCancelButton: false,
                 direction: .bottom,
                 dismissAfter: 15,
-                buttons: .group(defaultButton: defaultButton, solidButton: solidButton)
+                confirmActionButton: confirmButton,
+                cancelActionButton: cancelButton
             )
         }
 

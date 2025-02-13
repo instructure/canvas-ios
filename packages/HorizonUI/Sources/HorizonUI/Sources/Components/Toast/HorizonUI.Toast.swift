@@ -21,14 +21,14 @@ import SwiftUI
 public extension HorizonUI {
     struct Toast: View {
         // MARK: - Properties
-
+        
         private let cornerRadius = CornerRadius.level3
-
+        
         // MARK: - Dependencies
-
+        
         private let viewModel: Toast.ViewModel
         private let onTapDismiss: (() -> Void)?
-
+        
         public init(
             viewModel: Toast.ViewModel,
             onTapDismiss: (() -> Void)? = nil
@@ -36,7 +36,7 @@ public extension HorizonUI {
             self.viewModel = viewModel
             self.onTapDismiss = onTapDismiss
         }
-
+        
         public var body: some View {
             HStack(alignment: .top, spacing: .zero) {
                 alertIcon
@@ -54,7 +54,7 @@ public extension HorizonUI {
             .huiCornerRadius(level: cornerRadius)
             .fixedSize(horizontal: false, vertical: true)
         }
-
+        
         private var alertIcon: some View {
             Rectangle()
                 .fill(viewModel.style.color)
@@ -64,19 +64,19 @@ public extension HorizonUI {
                         .foregroundStyle(Color.huiColors.icon.surfaceColored)
                 }
         }
-
+        
         private var textView: some View {
             Text(viewModel.text)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.p1)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-
+        
         private var trailingButtons: some View {
             HStack(spacing: .huiSpaces.primitives.mediumSmall) {
-                if case .solid(button: let buttonAttribute) =  viewModel.buttons {
-                    HorizonUI.PrimaryButton(buttonAttribute.title, type: .black) {
-                        buttonAttribute.action()
+                if case .single(confirmButton: let confirmButton) =  viewModel.buttons {
+                    HorizonUI.PrimaryButton(confirmButton.title, type: .black) {
+                        confirmButton.action()
                     }
                 }
                 if viewModel.isShowCancelButton {
@@ -87,17 +87,17 @@ public extension HorizonUI {
                 }
             }
         }
-
+        
         @ViewBuilder
         private var groupButtons: some View {
-            if case let .group(defaultTitleAttribute, solidTitleAttribute) =  viewModel.buttons  {
+            if case let .double(cancelButton: cancelButton, confirmButton: confirmButton) =  viewModel.buttons  {
                 HStack {
-                    HorizonUI.PrimaryButton(defaultTitleAttribute.title, type: .white) {
-                        defaultTitleAttribute.action()
+                    HorizonUI.PrimaryButton(cancelButton.title, type: .white) {
+                        cancelButton.action()
                     }
-
-                    HorizonUI.PrimaryButton(solidTitleAttribute.title, type: .black) {
-                        solidTitleAttribute.action()
+                    
+                    HorizonUI.PrimaryButton(confirmButton.title, type: .black) {
+                        confirmButton.action()
                     }
                 }
             }
@@ -109,7 +109,7 @@ public extension HorizonUI.Toast {
     struct ButtonAttribute {
         let title: String
         let action: () -> Void
-
+        
         public init(
             title: String,
             action: @escaping () -> Void
@@ -118,43 +118,49 @@ public extension HorizonUI.Toast {
             self.action = action
         }
     }
-
+    
     struct ViewModel {
         let text: String
         let style: HorizonUI.Toast.Style
         let isShowCancelButton: Bool
         let buttons: HorizonUI.Toast.Buttons?
-        public let direction: Direction
-        public let dismissAfter: Double
-
+        let direction: Direction
+        let dismissAfter: Double
         public init(
             text: String,
             style: HorizonUI.Toast.Style,
             isShowCancelButton: Bool = true,
             direction: Direction = .bottom,
             dismissAfter: Double = 2.0,
-            buttons: HorizonUI.Toast.Buttons? = nil
+            confirmActionButton: ButtonAttribute? = nil,
+            cancelActionButton: ButtonAttribute? = nil
         ) {
             self.text = text
             self.style = style
             self.isShowCancelButton = isShowCancelButton
             self.direction = direction
             self.dismissAfter = dismissAfter
-            self.buttons = buttons
+            if let confirmActionButton, let cancelActionButton {
+                buttons = .double(cancelButton: cancelActionButton, confirmButton: confirmActionButton)
+            } else if let confirmActionButton {
+                buttons = .single(confirmButton: confirmActionButton)
+            } else {
+                self.buttons = nil
+            }
         }
     }
-
+    
     enum Direction {
         case top
         case bottom
-
+        
         public var alignment: Alignment {
             switch self {
             case .top: return .top
             case .bottom: return .bottom
             }
         }
-
+        
         public var edge: Edge {
             switch self {
             case .top: return .top
@@ -166,5 +172,5 @@ public extension HorizonUI.Toast {
 
 #Preview {
     HorizonUI.Toast(viewModel: .init(text: "Alert Toast", style: .info))
-    .padding(5)
+        .padding(5)
 }
