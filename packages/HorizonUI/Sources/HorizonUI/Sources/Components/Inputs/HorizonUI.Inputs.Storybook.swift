@@ -18,23 +18,33 @@
 
 import SwiftUI
 
-extension HorizonUI.SingleSelect {
-    struct Storybook: View {
-        
-        @State var selection = "Option 1"
+extension HorizonUI {
+    struct Inputs {
 
+    }
+}
+
+extension HorizonUI.Inputs {
+    struct Storybook: View {
         var body: some View {
-            HorizonUI.SingleSelect(
-                label: "Label",
-                selection: $selection,
-                options: Array(1 ... 20).map { "Option \($0)" }
-            )
-            .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, .huiSpaces.primitives.large)
+            List {
+                Section(header: Text("Components: Organisms")) {
+                    NavigationLink {
+                        HorizonUI.TextInput.Storybook()
+                    } label: {
+                        Text("Text Input").tint(Color.black)
+                    }
+                    NavigationLink {
+                        HorizonUI.SingleSelect.Storybook()
+                    } label: {
+                        Text("Single Selection Dropdown").tint(Color.black)
+                    }
+                }
+            }
         }
     }
 }
 
 #Preview {
-    HorizonUI.SingleSelect.Storybook()
+    HorizonUI.Inputs.Storybook()
 }

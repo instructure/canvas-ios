@@ -17,7 +17,6 @@
 //
 
 import HorizonUI
-import Observation
 import SwiftUI
 
 struct ProfileView: View {

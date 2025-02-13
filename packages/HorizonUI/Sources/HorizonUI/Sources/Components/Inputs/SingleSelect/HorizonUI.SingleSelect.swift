@@ -38,11 +38,11 @@ import Observation
 import SwiftUI
 
 extension HorizonUI {
-    public struct SingleSelect<Content: View>: View {
+    public struct SingleSelect: View {
 
         // MARK: Dependencies
 
-        private let content: Content?
+        private let content: AnyView?
         private let disabled: Bool
         private let label: String?
         private let options: [String]
@@ -68,13 +68,15 @@ extension HorizonUI {
             selection: Binding<String>,
             options: [String],
             disabled: Bool = false,
-            @ViewBuilder content: (() -> Content)
+            focused: FocusState<Bool>? = nil,
+            @ViewBuilder content: () -> some View = { EmptyView() }
         ) {
             self.label = label
             self.options = options
             self._selection = selection
             self.disabled = disabled
-            self.content = content()
+            self._focused = focused ?? FocusState()
+            self.content = AnyView(content())
 
             originalSelection = selection.wrappedValue
             text = selection.wrappedValue
@@ -107,14 +109,16 @@ extension HorizonUI {
             }
             .background(Color.huiColors.surface.pageSecondary)
             .frame(maxHeight: displayedOptionsHeight)
-            .cornerRadius(12)
-            .shadow(radius: 3)
+            .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
+            .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
             .offset(y: textInputMeasuredHeight + .huiSpaces.primitives.xSmall)
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
 
         private func displayedOption(_ text: String) -> some View {
             Text(text)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, .huiSpaces.primitives.small)
                 .padding(.vertical, .huiSpaces.primitives.xSmall)

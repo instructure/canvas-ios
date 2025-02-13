@@ -41,7 +41,7 @@ public struct APIUser: Codable, Equatable {
     public let email: String?
     public let effective_locale: String?
     // let last_login: Date?
-    public let time_zone: TimeZone?
+    public let time_zone: String?
     public let bio: String?
     public let pronouns: String?
     public let root_account: String?
@@ -69,7 +69,7 @@ public struct APIUser: Codable, Equatable {
         pronouns: String?,
         permissions: Permissions?,
         root_account: String?,
-        time_zone: TimeZone? = nil
+        time_zone: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -104,7 +104,7 @@ public struct APIUser: Codable, Equatable {
         pronouns = try container.decodeIfPresent(String.self, forKey: .pronouns)
         permissions = try container.decodeIfPresent(Permissions.self, forKey: .permissions)
         root_account = try container.decodeIfPresent(String.self, forKey: .root_account)
-        time_zone = try container.decodeIfPresent(TimeZone.self, forKey: .time_zone)
+        time_zone = try container.decodeIfPresent(String.self, forKey: .time_zone)
     }
 }
 
@@ -163,7 +163,7 @@ extension APIUser {
         pronouns: String? = nil,
         permissions: Permissions? = .make(),
         root_account: String? = nil,
-        time_zone: TimeZone? = nil
+        time_zone: String? = nil
     ) -> APIUser {
         return APIUser(
             id: id,

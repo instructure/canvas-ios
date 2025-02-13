@@ -17,12 +17,12 @@
 //
 
 import HorizonUI
-import Observation
 import SwiftUI
 
 struct ProfileAdvancedView: View {
 
-    @Bindable var viewModel: ProfileAdvancedViewModel
+    @Bindable private var viewModel: ProfileAdvancedViewModel
+    @FocusState private var focused: Bool
 
     init(viewModel: ProfileAdvancedViewModel = ProfileAdvancedViewModel()) {
         self.viewModel = viewModel
@@ -35,7 +35,8 @@ struct ProfileAdvancedView: View {
                     label: String(localized: "Time Zone", bundle: .horizon),
                     selection: $viewModel.timeZone,
                     options: viewModel.timeZones,
-                    disabled: viewModel.isSelectDisabled
+                    disabled: viewModel.isSelectDisabled,
+                    focused: _focused
                 ) {
                     SavingButton(
                         isLoading: $viewModel.isLoading,
@@ -46,6 +47,10 @@ struct ProfileAdvancedView: View {
             }
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, .huiSpaces.primitives.large)
+        }
+        .onTapGesture {
+            print("On Tap")
+            focused = false
         }
     }
 }
