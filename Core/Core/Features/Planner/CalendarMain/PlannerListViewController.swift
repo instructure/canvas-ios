@@ -37,7 +37,9 @@ public class PlannerListViewController: UIViewController {
     let env = AppEnvironment.shared
     var start: Date = Clock.now.startOfDay() // inclusive
     var end: Date = Clock.now.startOfDay().addDays(1) // exclusive
+
     private var selectedPlannableId: String?
+    private var needsRowAccessibilityFocus: Bool = false
 
     var plannables: Store<GetPlannables>?
 
@@ -102,6 +104,22 @@ public class PlannerListViewController: UIViewController {
         errorView.isHidden = plannables?.error == nil
         tableView.reloadData()
         reselectRowAfterReload()
+        accessibilityFocusOnRowIfNeeded()
+    }
+
+    func setNeedsRowAccessibilityFocus() {
+        needsRowAccessibilityFocus = true
+    }
+
+    func accessibilityFocusOnRowIfNeeded() {
+        guard needsRowAccessibilityFocus else { return }
+        accessibilityFocusOnDefaultRow()
+        needsRowAccessibilityFocus = false
+    }
+
+    func accessibilityFocusOnDefaultRow() {
+        let cell = tableView.cellForRow(at: indexPathForRowToFocusOn)
+        UIAccessibility.post(notification: .screenChanged, argument: cell)
     }
 
     private func reselectRowAfterReload() {
@@ -113,6 +131,14 @@ public class PlannerListViewController: UIViewController {
 
         let indexPath = IndexPath(row: index, section: 0)
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+    }
+
+    private var indexPathForRowToFocusOn: IndexPath {
+        if let selectedPlannableId,
+           let index = plannables?.all.firstIndex(where: { $0.id == selectedPlannableId }) {
+            return IndexPath(row: index, section: 0)
+        }
+        return IndexPath(row: 0, section: 0)
     }
 }
 

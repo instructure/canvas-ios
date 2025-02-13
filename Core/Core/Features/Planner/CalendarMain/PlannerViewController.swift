@@ -241,12 +241,18 @@ public class PlannerViewController: UIViewController {
     }
 
     func updateList(_ date: Date) {
-        guard !calendar.calendar.isDate(date, inSameDayAs: list.start) else { return }
+        guard !calendar.calendar.isDate(date, inSameDayAs: list.start) else {
+            (listPageController.currentPage as? PlannerListViewController)?
+                .accessibilityFocusOnDefaultRow()
+            return
+        }
+
         let newList = PlannerListViewController.create(
             start: date.startOfDay(),
             end: date.startOfDay().addDays(1),
             delegate: self
         )
+        newList.setNeedsRowAccessibilityFocus()
         newList.loadViewIfNeeded()
         newList.tableView.contentInset = list.tableView.contentInset
         listPageController.setCurrentPage(newList, direction: date < list.start ? .reverse : .forward)
