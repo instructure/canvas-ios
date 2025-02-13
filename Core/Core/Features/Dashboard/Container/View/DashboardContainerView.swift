@@ -137,6 +137,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
         .accessibility(label: Text("Profile Menu", bundle: .core))
+        .accessibilityValue(Text("Closed", bundle: .core))
     }
 
     @ViewBuilder
