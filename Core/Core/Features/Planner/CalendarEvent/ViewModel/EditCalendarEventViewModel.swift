@@ -422,6 +422,19 @@ final class EditCalendarEventViewModel: ObservableObject {
                     }
                     .eraseToAnyPublisher()
             }
+            .flatMap {
+
+                UIAccessibility
+                    .post(
+                        notification: .announcement,
+                        argument: String(localized: "Event has been added successfully", bundle: .core)
+                    )
+
+                return NotificationCenter
+                    .default
+                    .publisher(for: UIAccessibility.announcementDidFinishNotification)
+                    .mapToVoid()
+            }
             .sink {
                 completion(.didUpdate)
             }
