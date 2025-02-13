@@ -35,6 +35,11 @@ public extension Array {
     }
 
     var nilIfEmpty: Self? { isEmpty ? nil : self }
+
+    subscript(safe index: Int) -> Element? {
+        guard (0 ..< count).contains(index) else { return nil }
+        return self[index]
+    }
 }
 
 public extension Array where Element: Equatable {

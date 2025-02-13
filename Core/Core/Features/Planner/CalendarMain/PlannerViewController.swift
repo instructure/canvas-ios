@@ -201,6 +201,7 @@ public class PlannerViewController: UIViewController {
         let date = Clock.now.startOfDay()
         selectedDate = date
         calendar.showDate(date)
+        calendar.accessibilityFocusOnSelectedButton()
         updateList(date)
     }
 
@@ -240,10 +241,15 @@ public class PlannerViewController: UIViewController {
         }
     }
 
-    func updateList(_ date: Date) {
-        guard !calendar.calendar.isDate(date, inSameDayAs: list.start) else {
-            (listPageController.currentPage as? PlannerListViewController)?
-                .accessibilityFocusOnDefaultRow()
+    func updateList(
+        _ date: Date,
+        unchanged: ((PlannerListViewController?) -> Void)? = nil,
+        created: ((PlannerListViewController) -> Void)? = nil
+    ) {
+
+        guard !calendar.calendar.isDate(date, inSameDayAs: list.start)
+        else {
+            unchanged?(listPageController.currentPage as? PlannerListViewController)
             return
         }
 
@@ -252,7 +258,7 @@ public class PlannerViewController: UIViewController {
             end: date.startOfDay().addDays(1),
             delegate: self
         )
-        newList.setNeedsRowAccessibilityFocus()
+        created?(newList)
         newList.loadViewIfNeeded()
         newList.tableView.contentInset = list.tableView.contentInset
         listPageController.setCurrentPage(newList, direction: date < list.start ? .reverse : .forward)
@@ -266,7 +272,15 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     func calendarDidSelectDate(_ date: Date) {
         selectedDate = date
         calendar.showDate(date)
-        updateList(date)
+        updateList(
+            date,
+            unchanged: { listController in
+                listController?.accessibilityFocusOnDefaultRow()
+            },
+            created: { listController in
+                listController.setNeedsRowAccessibilityFocus()
+            }
+        )
     }
 
     func calendarDidTransitionToDate(_ date: Date) {
