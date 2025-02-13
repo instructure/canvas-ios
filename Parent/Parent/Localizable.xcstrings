@@ -3587,6 +3587,9 @@
         }
       }
     },
+    "Collapsed" : {
+
+    },
     "Compose Message" : {
       "localizations" : {
         "ar" : {
@@ -7175,6 +7178,9 @@
           }
         }
       }
+    },
+    "Expanded" : {
+
     },
     "Find School" : {
       "localizations" : {
