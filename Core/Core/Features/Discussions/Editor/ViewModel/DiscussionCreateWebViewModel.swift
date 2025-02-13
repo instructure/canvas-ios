@@ -25,6 +25,7 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
 
     private let router: Router
     private let newDiscussionPushSource: UIViewController?
+    private let isAnnouncement: Bool
 
     /// - parameters:
     ///   - newDiscussionPushSource: If this variable is present then after creating a discussion,
@@ -41,6 +42,7 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
                                     : []
         self.router = router
         self.newDiscussionPushSource = newDiscussionPushSource
+        self.isAnnouncement = isAnnouncement
     }
 
     public func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton? {
@@ -94,10 +96,18 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
         }
 
         router.dismiss(webViewController) { [router, newDiscussionPushSource] in
+            announceDiscussionCreated()
+
             if let newDiscussionPushSource {
                 router.route(to: discussionUrl, from: newDiscussionPushSource, options: .detail)
             }
         }
+    }
+
+    private func announceDiscussionCreated() {
+        let message = isAnnouncement ? String(localized: "Announcement created", bundle: .core)
+                                     : String(localized: "Discussion created", bundle: .core)
+        UIAccessibility.announce(message)
     }
 }
 
