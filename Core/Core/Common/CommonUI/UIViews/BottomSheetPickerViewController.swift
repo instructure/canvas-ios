@@ -28,18 +28,34 @@ public struct BottomSheetAction {
 public class BottomSheetPickerViewController: UIViewController {
     let env = AppEnvironment.shared
     public private(set) var actions: [BottomSheetAction] = []
+    let titleView = UILabel()
     let stackView = UIStackView()
 
     public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
     private var buttonHeight: CGFloat = 0
 
-    public static func create() -> BottomSheetPickerViewController {
+    public static func create(title: String? = nil) -> BottomSheetPickerViewController {
         let controller = BottomSheetPickerViewController()
         controller.modalPresentationStyle = .custom
         controller.modalPresentationCapturesStatusBarAppearance = true
         controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
+        controller.addTitle(title)
         return controller
+    }
+
+    private func addTitle(_ title: String?) {
+        guard let title = title else {
+            return
+        }
+        titleView.font = .scaledNamedFont(.regular14)
+        titleView.textColor = .textDark
+        titleView.textAlignment = .center
+        titleView.text = title
+        titleView.accessibilityLabel = title
+        titleView.accessibilityTraits = .header
+        stackView.addArrangedSubview(titleView)
+        buttonHeight += titleView.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
     }
 
     public override func viewDidLoad() {
@@ -49,7 +65,7 @@ public class BottomSheetPickerViewController: UIViewController {
         }
         view.addSubview(stackView)
         stackView.axis = .vertical
-        stackView.pin(inside: view, leading: nil, trailing: nil, top: 8, bottom: nil)
+        stackView.pin(inside: view, leading: nil, trailing: nil, top: 8, bottom: 18)
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -58,8 +74,8 @@ public class BottomSheetPickerViewController: UIViewController {
 
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let topPadding: CGFloat = 8
-        view.frame.size.height = topPadding + buttonHeight + view.safeAreaInsets.bottom
+        let magicNumber: CGFloat = 36
+        view.frame.size.height = magicNumber + buttonHeight + view.safeAreaInsets.bottom
     }
 
     public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
