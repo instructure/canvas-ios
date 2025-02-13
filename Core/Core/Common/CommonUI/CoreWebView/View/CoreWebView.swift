@@ -21,6 +21,7 @@ import Combine
 
 @IBDesignable
 open class CoreWebView: WKWebView {
+
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try

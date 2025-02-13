@@ -18,10 +18,10 @@
 
 import UIKit
 
-public final class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
-    let webView = CoreWebView()
+    var webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
@@ -64,13 +64,15 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         context: Context,
         pageURL: String,
         app: App,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
+        webView: CoreWebView?
     ) -> PageDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
         controller.offlineModeInteractor = offlineModeInteractor
+        controller.webView = webView ?? controller.webView
         return controller
     }
 

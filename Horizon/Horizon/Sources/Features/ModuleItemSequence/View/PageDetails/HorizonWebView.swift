@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WebKit
+import Core
 
-/**
- This is an abstract class for a webview feature.
- Methods here should be overridden and the necessary changes should be made there to make the custom feature work.
- */
-open class CoreWebViewFeature {
-    public init() {}
-    open func apply(on configuration: WKWebViewConfiguration) {}
-    open func apply(on webView: CoreWebView) {}
-    open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
+final class HorizonWebView: CoreWebView {
+    override init() {
+        super.init(features: [
+            HighlightWebFeature()
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    public override func buildMenu(with builder: any UIMenuBuilder) {
+
+    }
 }

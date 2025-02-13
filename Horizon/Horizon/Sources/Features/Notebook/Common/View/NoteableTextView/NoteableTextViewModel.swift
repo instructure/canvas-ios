@@ -20,6 +20,7 @@ import SwiftUI
 import HorizonUI
 import Combine
 import Core
+import WebKit
 
 @Observable
 public class NoteableTextViewModel {
@@ -30,6 +31,8 @@ public class NoteableTextViewModel {
     private var text: String?
 
     var attributedText: NSAttributedString = NSAttributedString("")
+
+    var htmlString = "<html><head><title>Hello</title><body><p>This is a paragraph</p></body></head></html>"
 
     private static var viewModels = [String: NoteableTextViewModel]()
 
@@ -59,6 +62,7 @@ public class NoteableTextViewModel {
         router: Router?
     ) {
         self.text = text
+        self.htmlString = text
         self.notebookNoteInteractor = notebookNoteInteractor
         self.router = router
 
@@ -121,6 +125,56 @@ public class NoteableTextViewModel {
         ]
 
         return UIMenu(title: "", children: actions + suggestedActions)
+    }
+
+    public func getMenu(
+        highlightsKey: String,
+        courseId: String?,
+        webView: WKWebView,
+        range: NSRange,
+        suggestedActions: [UIMenuElement],
+        viewController: WeakViewController
+    ) -> UIMenu {
+//        let start = webView.
+//        let end = webView.offset(from: textView.beginningOfDocument, to: range.end)
+//        if firstOverlappingNotebookCourseNote(start: start, end: end) != nil {
+//            return UIMenu(title: "", children: suggestedActions)
+//        }
+//
+//        let actions: [UIMenuElement] = [
+//            UIAction(title: String(localized: "Confusing", bundle: .horizon)) {_ in
+//                self.onSelection(
+//                    highlightsKey: highlightsKey,
+//                    courseId: courseId,
+//                    textView: textView,
+//                    textRange: range,
+//                    courseNoteLabel: .confusing,
+//                    viewController: viewController
+//                )
+//            },
+//            UIAction(title: String(localized: "Important", bundle: .horizon)) {_ in
+//                self.onSelection(
+//                    highlightsKey: highlightsKey,
+//                    courseId: courseId,
+//                    textView: textView,
+//                    textRange: range,
+//                    courseNoteLabel: .important,
+//                    viewController: viewController
+//                )
+//            },
+//            UIAction(title: String(localized: "Add a Note", bundle: .horizon)) {_ in
+//                self.onSelection(
+//                    highlightsKey: highlightsKey,
+//                    courseId: courseId,
+//                    textView: textView,
+//                    textRange: range,
+//                    courseNoteLabel: .other,
+//                    viewController: viewController
+//                )
+//            }
+//        ]
+
+        return UIMenu(title: "", children: suggestedActions)
     }
 
     /// finds the block of text highlighted within a text view (if any) and navigates to the note page if found
