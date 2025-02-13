@@ -133,6 +133,11 @@ public struct Storybook: View {
                     } label: {
                         Text("File Upload Sheet").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.Toast.Storybook()
+                    } label: {
+                        Text("Alert Toast").tint(Color.black)
+                    }
                 }
             }
             .listStyle(.sidebar)
