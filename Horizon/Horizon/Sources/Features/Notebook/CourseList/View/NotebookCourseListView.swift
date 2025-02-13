@@ -50,9 +50,6 @@ struct NotebookCourseListView: View {
                 highlightsKey: "highlightKey2",
                 typography: .h3
             )
-            NoteableWebView("<html><head><title>Hello</title></head><body><p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. </p></body></html>", highlightsKey: "highlightKey3")
-                .background(Color.pink)
-                .frame(maxWidth: .infinity, maxHeight: 500)
             ListViewItems(listItems: viewModel.listItems,
                           onTap: viewModel.onTap,
                           viewController: viewController)

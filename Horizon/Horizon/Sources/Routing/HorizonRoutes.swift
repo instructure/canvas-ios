@@ -302,7 +302,7 @@ extension HorizonRoutes {
             context: context,
             pageURL: pageURL,
             app: .student,
-            webView: HorizonWebView()
+            webView: HorizonWebView(highlightsKey: "pageHighlights")
         )
     }
 }

@@ -26,13 +26,11 @@ import WebKit
 public class NoteableTextViewModel {
     private let notebookNoteInteractor: NotebookNoteInteractor
     private var notebookCourseNotes: [NotebookCourseNote] = []
-    private let router: Router?
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private var text: String?
 
     var attributedText: NSAttributedString = NSAttributedString("")
-
-    var htmlString = "<html><head><title>Hello</title><body><p>This is a paragraph</p></body></head></html>"
 
     private static var viewModels = [String: NoteableTextViewModel]()
 
@@ -59,10 +57,9 @@ public class NoteableTextViewModel {
         highlightsKey: String,
         typography: HorizonUI.Typography.Name,
         notebookNoteInteractor: NotebookNoteInteractor,
-        router: Router?
+        router: Router = AppEnvironment.shared.router
     ) {
         self.text = text
-        self.htmlString = text
         self.notebookNoteInteractor = notebookNoteInteractor
         self.router = router
 
@@ -127,56 +124,6 @@ public class NoteableTextViewModel {
         return UIMenu(title: "", children: actions + suggestedActions)
     }
 
-    public func getMenu(
-        highlightsKey: String,
-        courseId: String?,
-        webView: WKWebView,
-        range: NSRange,
-        suggestedActions: [UIMenuElement],
-        viewController: WeakViewController
-    ) -> UIMenu {
-//        let start = webView.
-//        let end = webView.offset(from: textView.beginningOfDocument, to: range.end)
-//        if firstOverlappingNotebookCourseNote(start: start, end: end) != nil {
-//            return UIMenu(title: "", children: suggestedActions)
-//        }
-//
-//        let actions: [UIMenuElement] = [
-//            UIAction(title: String(localized: "Confusing", bundle: .horizon)) {_ in
-//                self.onSelection(
-//                    highlightsKey: highlightsKey,
-//                    courseId: courseId,
-//                    textView: textView,
-//                    textRange: range,
-//                    courseNoteLabel: .confusing,
-//                    viewController: viewController
-//                )
-//            },
-//            UIAction(title: String(localized: "Important", bundle: .horizon)) {_ in
-//                self.onSelection(
-//                    highlightsKey: highlightsKey,
-//                    courseId: courseId,
-//                    textView: textView,
-//                    textRange: range,
-//                    courseNoteLabel: .important,
-//                    viewController: viewController
-//                )
-//            },
-//            UIAction(title: String(localized: "Add a Note", bundle: .horizon)) {_ in
-//                self.onSelection(
-//                    highlightsKey: highlightsKey,
-//                    courseId: courseId,
-//                    textView: textView,
-//                    textRange: range,
-//                    courseNoteLabel: .other,
-//                    viewController: viewController
-//                )
-//            }
-//        ]
-
-        return UIMenu(title: "", children: suggestedActions)
-    }
-
     /// finds the block of text highlighted within a text view (if any) and navigates to the note page if found
     public func onTap(viewController: WeakViewController, gesture: UITapGestureRecognizer) {
         guard let textView = gesture.view as? UITextView else {
@@ -191,7 +138,7 @@ public class NoteableTextViewModel {
         let end = start + 1
 
         if let note = firstOverlappingNotebookCourseNote(start: start, end: end) {
-            router?.route(to: "/notebook/note/\(note.id)", from: viewController)
+            router.route(to: "/notebook/note/\(note.id)", from: viewController)
         }
     }
 
@@ -228,7 +175,7 @@ public class NoteableTextViewModel {
             receiveCompletion: { _ in },
             receiveValue: { [weak self] courseNote in
                 if courseNoteLabel == .other, let courseNote = courseNote {
-                    self?.router?.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
+                    self?.router.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
             }
         }).store(in: &subscriptions)
     }
