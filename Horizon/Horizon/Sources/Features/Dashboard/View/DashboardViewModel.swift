@@ -18,14 +18,14 @@
 
 import Combine
 import Core
-import Foundation
 
-final class DashboardViewModel: ObservableObject {
+@Observable
+class DashboardViewModel {
     // MARK: - Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var title: String = "Hi, John"
-    @Published private(set) var courses: [HCourse] = []
+    private(set) var state: InstUI.ScreenState = .loading
+    var title: String = ""
+    var nextUpViewModels: [NextUpViewModel] = []
 
     // MARK: - Private variables
 
@@ -41,20 +41,45 @@ final class DashboardViewModel: ObservableObject {
     ) {
         self.router = router
 
-        unowned let unownedSelf = self
-
         getCoursesInteractor.getCourses()
-            .sink { courses in
-                unownedSelf.courses = courses
-                unownedSelf.state = .data
-            }
+            .sink(receiveValue: onGetCoursesResponse(courses:))
             .store(in: &subscriptions)
 
         getUserInteractor.getUser()
             .map { $0.name }
             .map { "Hi, \($0)" }
             .replaceError(with: "")
-            .assign(to: &$title)
+            .assign(to: \.title, on: self)
+            .store(in: &subscriptions)
+    }
+
+    private func onGetCoursesResponse(courses: [HCourse]) {
+        self.state = .data
+        self.nextUpViewModels = courses
+            .filter { $0.incompleteModules.count > 0 }
+            .map(toNextUpViewModel)
+    }
+
+    private func toNextUpViewModel(_ course: HCourse) -> NextUpViewModel {
+        .init(
+            name: course.name,
+            progress: course.progress / 100.0,
+            learningObjectCardViewModel: course
+                .incompleteModules
+                .first
+                .flatMap(toLearningObjectCardViewModel)
+        )
+    }
+
+    private func toLearningObjectCardViewModel(_ module: HModule) -> LearningObjectCardViewModel {
+        let firstModuleItem = module.items.first
+        return LearningObjectCardViewModel(
+            moduleTitle: module.name,
+            learningObjectName: firstModuleItem?.title ?? "",
+            type: firstModuleItem?.type?.label,
+            dueDate: firstModuleItem?.dueAt?.relativeShortDateOnlyString,
+            url: firstModuleItem?.htmlURL
+        )
     }
 
     // MARK: - Inputs
@@ -75,5 +100,21 @@ final class DashboardViewModel: ObservableObject {
 
     func navigateToCourseDetails(url: URL, viewController: WeakViewController) {
         router.route(to: url, from: viewController)
+    }
+
+    struct NextUpViewModel: Identifiable {
+        let name: String
+        let progress: Double
+        let learningObjectCardViewModel: LearningObjectCardViewModel?
+
+        var id: String { name }
+    }
+
+    struct LearningObjectCardViewModel {
+        let moduleTitle: String
+        let learningObjectName: String
+        let type: String?
+        let dueDate: String?
+        let url: URL?
     }
 }

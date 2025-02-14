@@ -24,37 +24,96 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
     public let variables: Input
 
     public struct Input: Codable, Equatable {
-        var userId: String
+        var id: String
     }
 
     public init(userId: String) {
-        variables = Input(userId: userId)
+        variables = Input(id: userId)
     }
-    public static let operationName = "courseProgressionQuery"
 
-    public static var query: String = """
-            query \(operationName)($userId: ID!) {
-              user: legacyNode(_id: $userId, type: User) {
-                ... on User {
-                  enrollments(currentOnly: true) {
-                    course {
-                      _id
-                      name
-                      usersConnection(filter: { userIds: [$userId] }) {
-                        nodes {
-                          courseProgression {
-                            requirements {
-                              completed
-                              completionPercentage
-                              total
+    public static let operationName = "GetUserCourses"
+
+    public static let query = """
+            query \(operationName)($id: ID!) {
+                legacyNode(_id: $id, type: User) {
+                    ... on User {
+                        enrollments(currentOnly: true) {
+                            course {
+                                id: _id
+                                name
+                                image_download_url: imageUrl
+                                syllabus_body: syllabusBody
+                                account {
+                                  name
+                                }
+                                usersConnection(filter: {userIds: [$id]}) {
+                                    nodes {
+                                        courseProgression {
+                                            requirements {
+                                                completionPercentage
+                                            }
+                                            incompleteModulesConnection {
+                                                nodes {
+                                                    module {
+                                                        id: _id
+                                                        name
+                                                        position
+                                                    }
+                                                    incompleteItemsConnection {
+                                                        nodes {
+                                                            id: _id
+                                                            url
+                                                            content {
+                                                                ... on Assignment {
+                                                                    id
+                                                                    title: name
+                                                                    dueAt
+                                                                    position
+                                                                }
+                                                                ... on Discussion {
+                                                                    id
+                                                                    title
+                                                                    position
+                                                                }
+                                                                ... on ExternalTool {
+                                                                    id: _id
+                                                                    title: name
+                                                                }
+                                                                ... on ExternalUrl {
+                                                                    id: _id
+                                                                    title
+                                                                }
+                                                                ... on File {
+                                                                    id
+                                                                    title: displayName
+                                                                }
+                                                                ... on ModuleExternalTool {
+                                                                    id: _id
+                                                                    title: url
+                                                                }
+                                                                ... on Page {
+                                                                    id
+                                                                    title
+                                                                }
+                                                                ... on Quiz {
+                                                                    id
+                                                                }
+                                                                ... on SubHeader {
+                                                                    id: title
+                                                                    title
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
-                          }
                         }
-                      }
                     }
-                  }
                 }
-              }
             }
-"""
+        """
 }

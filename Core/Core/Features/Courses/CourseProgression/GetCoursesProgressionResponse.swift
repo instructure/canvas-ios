@@ -22,30 +22,34 @@ public struct GetCoursesProgressionResponse: Codable {
     let data: DataModel?
 
     struct DataModel: Codable {
-        let user: UserModel?
+        let user: LegacyNodeModel?
+
+        enum CodingKeys: String, CodingKey {
+            case user = "legacyNode"
+        }
     }
 
-    struct UserModel: Codable {
+    struct LegacyNodeModel: Codable {
         let enrollments: [EnrollmentModel]?
     }
 
     public struct EnrollmentModel: Codable {
-        let course: CourseModel?
+        let course: CourseModel
     }
 
     struct CourseModel: Codable {
-        let id, name: String?
+        let id, name: String
+        let account: AccountModel?
+        let imageUrl, syllabusBody: String?
         let usersConnection: UsersConnection?
+    }
 
-        enum CodingKeys: String, CodingKey {
-            case id = "_id"
-            case name
-            case usersConnection
-        }
+    struct AccountModel: Codable {
+        let name: String
     }
 
     struct UsersConnection: Codable {
-        public  let nodes: [NodeModel]?
+        public let nodes: [NodeModel]?
     }
 
     struct NodeModel: Codable {
@@ -54,11 +58,42 @@ public struct GetCoursesProgressionResponse: Codable {
 
     struct CourseProgression: Codable {
         public let requirements: Requirements?
+        public let incompleteModulesConnection: IncompleteModulesConnection?
     }
 
     struct Requirements: Codable {
-        let completed: Int?
-        public   let completionPercentage: Double?
-        let total: Int?
+        public let completionPercentage: Double?
+    }
+
+    struct IncompleteModulesConnection: Codable {
+        public let nodes: [IncompleteNode]
+    }
+
+    struct IncompleteNode: Codable {
+        public let module: Module?
+        public let incompleteItemsConnection: IncompleteItemsConnection?
+    }
+
+    struct Module: Codable {
+        public let id: String
+        public let name: String
+        public let position: Int?
+    }
+
+    struct IncompleteItemsConnection: Codable {
+        public let nodes: [ModuleContent]
+    }
+
+    struct ModuleContent: Codable {
+        public let url: String?
+        public let id: String
+        public let content: ContentNode?
+    }
+
+    struct ContentNode: Codable {
+        public let id: String
+        public let title: String?
+        public let dueAt: Date?
+        public let position: Double?
     }
 }

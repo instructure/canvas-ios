@@ -64,7 +64,7 @@ struct AccountView: View {
                     title: String(localized: "Profile", bundle: .horizon),
                     isFirstItem: true,
                     didTapRow: {
-                        viewModel.profileDidTap()
+                        viewModel.profileDidTap(viewController: viewController)
                     }
                 )
                 AccountEntryRowView(
@@ -83,7 +83,7 @@ struct AccountView: View {
                     title: String(localized: "Advanced", bundle: .horizon),
                     isLastItem: true,
                     didTapRow: {
-                        viewModel.advancedDidTap()
+                        viewModel.advancedDidTap(viewController: viewController)
                     }
                 )
             }

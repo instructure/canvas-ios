@@ -36,7 +36,7 @@ struct CourseListView: View {
                 ForEach(viewModel.courses) { course in
                     VStack(spacing: 16) {
                         Button {
-                            viewModel.courseDidSelect.accept((course, viewController))
+                            viewModel.routeToCourse(course: course, vc: viewController)
                         } label: {
                             VStack(alignment: .leading, spacing: 12) {
                                 Size12RegularTextDarkestTitle(title: course.institutionName)
@@ -45,7 +45,7 @@ struct CourseListView: View {
                                 HStack(spacing: 0) {
                                     Size12RegularTextDarkTitle(title: course.progressString)
                                     Spacer()
-                                    Size12RegularTextDarkTitle(title: course.progressState.rawValue)
+                                    Size12RegularTextDarkTitle(title: course.progressState)
                                 }
                             }
                             .padding(.all, 24)

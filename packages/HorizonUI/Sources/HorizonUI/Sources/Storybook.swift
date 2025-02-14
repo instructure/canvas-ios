@@ -110,7 +110,9 @@ public struct Storybook: View {
                     } label: {
                         Text("Controls").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Inputs.Storybook()
+                    } label: {
                         Text("Inputs and Interactive Fields").tint(Color.black)
                     }
                     NavigationLink {
@@ -127,6 +129,16 @@ public struct Storybook: View {
                         HorizonUI.IntroBlock.Storybook()
                     } label: {
                         Text("Intro Block").tint(Color.black)
+                    }
+                    NavigationLink {
+                        HorizonUI.FileUploadSheet.Storybook()
+                    } label: {
+                        Text("File Upload Sheet").tint(Color.black)
+                    }
+                    NavigationLink {
+                        HorizonUI.Toast.Storybook()
+                    } label: {
+                        Text("Alert Toast").tint(Color.black)
                     }
                 }
             }

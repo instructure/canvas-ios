@@ -26,6 +26,7 @@ enum HorizonRoutes {
     }
 
     private static let routes = [
+        accountRoutes,
         splashRoutes,
         moduleRoutes,
         pageRoutes,
@@ -39,6 +40,17 @@ enum HorizonRoutes {
         aiRoutes,
         notificationSettings,
     ]
+
+    private static var accountRoutes: [RouteHandler] {
+        [
+            RouteHandler("/account/profile") { _, _, _ in
+                ProfileAssembly.makeViewController()
+            },
+            RouteHandler("/account/advanced") { _, _, _ in
+                ProfileAdvancedAssembly.makeViewController()
+            }
+        ]
+    }
 
     private static var splashRoutes: [RouteHandler] {
         [
@@ -95,9 +107,9 @@ enum HorizonRoutes {
 
     private static var courseRoutes: [RouteHandler] {
         [
-            RouteHandler("/courses/:courseID") { _, _, userInfo in
-                guard let course = userInfo?["course"] as? HCourse else { return nil }
-                return LearnAssembly.makeCourseDetailsViewController(course: course)
+            RouteHandler("/courses/:courseID") { _, params, _ in
+                let courseID = params["courseID"] ?? ""
+                return LearnAssembly.makeCourseDetailsViewController(courseID: courseID)
             }
         ]
     }

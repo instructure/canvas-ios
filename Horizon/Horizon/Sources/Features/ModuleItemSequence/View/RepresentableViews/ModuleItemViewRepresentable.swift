@@ -43,7 +43,11 @@ struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
     func updateUIViewController(
         _ uiViewController: UIViewController,
         context: Self.Context
-    ) { }
+    ) {
+        if let scrollView = findScrollView(in: uiViewController.view) {
+            scrollView.delegate = context.coordinator
+        }
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator { value in

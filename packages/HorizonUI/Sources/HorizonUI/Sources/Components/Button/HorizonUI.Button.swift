@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension HorizonUI {
-    struct PrimaryButton: View {
+    public struct PrimaryButton: View {
         private let label: String
         private let type: HorizonUI.ButtonStyles.ButtonType
         private let isSmall: Bool
@@ -28,7 +28,7 @@ extension HorizonUI {
         private let trailing: Image?
         private let action: () -> Void
 
-        init(
+        public init(
             _ label: String,
             type: HorizonUI.ButtonStyles.ButtonType = .blue,
             isSmall: Bool = false,
@@ -46,13 +46,13 @@ extension HorizonUI {
             self.action = action
         }
 
-        var body: some View {
+        public var body: some View {
             Button(self.label, action: action)
                 .buttonStyle(
                     HorizonUI.ButtonStyles.primary(
                         type,
                         isSmall: isSmall,
-                        fillsWidth: isSmall,
+                        fillsWidth: fillsWidth,
                         leading: leading,
                         trailing: trailing
                     )

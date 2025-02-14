@@ -53,7 +53,7 @@ public extension HorizonUI {
             numberPosition: NumberPosition = .inside,
             textColor: Color = .huiColors.surface.institution
         ) {
-            self.progress = progress
+            self.progress = max(min(progress, 1.0), 0.0)
             self.size = size
             self.progressColor = progressColor
             self.numberPosition = numberPosition
@@ -96,7 +96,7 @@ extension HorizonUI.ProgressBar {
     @ViewBuilder
     private var progressText: some View {
         if numberPosition != .hidden {
-            let percentageRound = round(progress * 10000) / 100.0
+            let percentageRound = round(progress * 100.0)
             Group {
                 Text(percentageRound, format: .number) + Text("%")
             }

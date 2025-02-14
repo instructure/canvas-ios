@@ -42,6 +42,7 @@ final class AccountViewModel {
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -49,7 +50,7 @@ final class AccountViewModel {
     init(
         getUserInteractor: GetUserInteractor,
         sessionInteractor: SessionInteractor,
-        router: Router
+        router: Router = AppEnvironment.shared.router
     ) {
         self.router = router
 
@@ -69,7 +70,11 @@ final class AccountViewModel {
 
     // MARK: - Input functions
 
-    func profileDidTap() {}
+    func profileDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "/account/profile") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func passwordDidTap() {}
 
@@ -77,7 +82,11 @@ final class AccountViewModel {
         router.route(to: "/notification-settings", from: viewController)
     }
 
-    func advancedDidTap() {}
+    func advancedDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "/account/advanced") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func betaCommunityDidTap() {}
 

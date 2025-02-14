@@ -135,12 +135,11 @@ public struct ModuleItemSequenceView: View {
     private var mainContent: some View {
         if let state = viewModel.viewState {
             switch state {
-            case .externalURL(url: let url, environment: let environment, name: let name, courseID: let courseID):
+            case .externalURL(url: let url, name: let name):
                 ModuleItemSequenceAssembly.makeExternalURLView(
-                    environment: environment,
                     name: name,
                     url: url,
-                    courseID: courseID
+                    viewController: viewController
                 )
                 .id(url.absoluteString)
             case .externalTool(tools: let tools, name: let name):
@@ -167,6 +166,16 @@ public struct ModuleItemSequenceView: View {
                     assignmentID: assignmentID,
                     isShowHeader: $isShowHeader
                 )
+
+            case let .file(context, fileID):
+                FileDetailsAssembly.makeView(
+                    courseID: viewModel.moduleItem?.courseID ?? "",
+                    fileID: fileID,
+                    context: context,
+                    fileName: viewModel.moduleItem?.title ?? "",
+                    isShowHeader: $isShowHeader
+                )
+                .id(fileID)
             }
         }
     }
