@@ -26,6 +26,7 @@ enum HorizonRoutes {
     }
 
     private static let routes = [
+        accountRoutes,
         splashRoutes,
         moduleRoutes,
         pageRoutes,
@@ -38,6 +39,17 @@ enum HorizonRoutes {
         notebookRoutes,
         aiRoutes
     ]
+
+    private static var accountRoutes: [RouteHandler] {
+        [
+            RouteHandler("/account/profile") { _, _, _ in
+                ProfileAssembly.makeViewController()
+            },
+            RouteHandler("/account/advanced") { _, _, _ in
+                ProfileAdvancedAssembly.makeViewController()
+            }
+        ]
+    }
 
     private static var splashRoutes: [RouteHandler] {
         [

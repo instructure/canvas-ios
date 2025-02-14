@@ -38,14 +38,18 @@ final class AccountViewModel {
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
         getUserInteractor: GetUserInteractor,
-        sessionInteractor: SessionInteractor
+        sessionInteractor: SessionInteractor,
+        router: Router = AppEnvironment.shared.router
     ) {
+        self.router = router
+
         getUserInteractor
             .getUser()
             .map { $0.name }
@@ -62,13 +66,21 @@ final class AccountViewModel {
 
     // MARK: - Input functions
 
-    func profileDidTap() {}
+    func profileDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "/account/profile") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func passwordDidTap() {}
 
     func notificationsDidTap() {}
 
-    func advancedDidTap() {}
+    func advancedDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "/account/advanced") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func betaCommunityDidTap() {}
 

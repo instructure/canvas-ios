@@ -1126,6 +1126,7 @@
     <entity name="UserProfile" representedClassName="Core.UserProfile" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="calendarURL" optional="YES" attributeType="URI"/>
+        <attribute name="defaultTimeZone" optional="YES" attributeType="String"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isK5User" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -1133,6 +1134,7 @@
         <attribute name="loginID" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <attribute name="shortName" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
         <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES"/>
