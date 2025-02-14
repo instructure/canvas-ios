@@ -117,7 +117,8 @@ public extension HorizonUI.Overlay {
     }
 }
 
-//#Preview {
-//    HorizonUI.FileUploadSheet(onTapChoosePhoto: {}, onTapOpenCamera: {}, onTapChooseFile: {})
-//}
-
+#Preview {
+    HorizonUI.Overlay(title: "Title", buttons: [
+        .init(title: "Choose Photo or Video", icon: Image.huiIcons.image) { print("Choose Photo or Video") }
+    ])
+}
