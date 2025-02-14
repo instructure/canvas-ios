@@ -38,13 +38,12 @@ public struct PutNotificationCategory: APIUseCase {
         self.notifications = notifications
         self.frequency = frequency
     }
-    
-    public func write(response: Request.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+
+    public func write(response: Request.Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard response != nil else { return }
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-            #keyPath(NotificationCategory.channelID), channelID,
-            #keyPath(NotificationCategory.category), category
-        )
+                                    #keyPath(NotificationCategory.channelID), channelID,
+                                    #keyPath(NotificationCategory.category), category)
         let model: NotificationCategory = client.fetch(predicate).first ?? client.insert()
         model.channelID = channelID
         model.category = category

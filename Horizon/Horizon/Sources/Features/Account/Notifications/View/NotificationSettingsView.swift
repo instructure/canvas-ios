@@ -50,7 +50,7 @@ struct NotificationSettingsView: View {
     }
 
     private var entries: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: .huiSpaces.space32) {
             entry(
                 title: String(
                     localized: "Announcements and Messages",
@@ -118,7 +118,7 @@ struct NotificationSettingsView: View {
         }
         .huiBorder(
             level: .level1,
-            radius: 16
+            radius: .huiSpaces.space16
         )
         .padding(.top, .huiSpaces.space32)
         .padding(.horizontal, .huiSpaces.space32)

@@ -41,8 +41,8 @@ public struct GetNotificationCategories: CollectionUseCase {
     public init(channelID: String) {
         self.channelID = channelID
     }
-    
-    public func write(response: Request.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+
+    public func write(response: Request.Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let preferences = response?.notification_preferences else { return }
         var categories: [String: ([String], NotificationFrequency)] = [:]
         for pref in preferences {
@@ -53,9 +53,8 @@ public struct GetNotificationCategories: CollectionUseCase {
         }
         for (category, (notifications, frequency)) in categories {
             let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-                #keyPath(NotificationCategory.channelID), channelID,
-                #keyPath(NotificationCategory.category), category
-            )
+                                        #keyPath(NotificationCategory.channelID), channelID,
+                                        #keyPath(NotificationCategory.category), category)
             let model: NotificationCategory = client.fetch(predicate).first ?? client.insert()
             model.channelID = channelID
             model.category = category
