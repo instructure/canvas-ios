@@ -40,7 +40,7 @@ struct CourseProgressView: View {
         .safeAreaInset(edge: .bottom, content: {
             moduleNavBarButtons
         })
-        .padding(.horizontal, .huiSpaces.primitives.medium)
+        .padding(.horizontal, .huiSpaces.space24)
         .animation(.smooth, value: viewModel.currentModuleItem)
         .overlay(alignment: .topTrailing) {
             HorizonUI.IconButton(Image.huiIcons.close, type: .white) {

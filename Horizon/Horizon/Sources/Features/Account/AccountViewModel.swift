@@ -42,7 +42,6 @@ final class AccountViewModel {
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
-    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init

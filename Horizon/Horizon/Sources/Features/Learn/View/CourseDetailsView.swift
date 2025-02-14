@@ -55,7 +55,7 @@ struct CourseDetailsView: View {
     }
 
     private func learningContentView() -> some View {
-        VStack(spacing: .huiSpaces.primitives.medium) {
+        VStack(spacing: .huiSpaces.space24) {
             tabSelectorView
             tabDetailsView()
         }

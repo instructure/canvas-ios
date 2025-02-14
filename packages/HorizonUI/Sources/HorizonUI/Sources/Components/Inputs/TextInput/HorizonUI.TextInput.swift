@@ -91,7 +91,7 @@ extension HorizonUI {
                 }
                 .opacity(isErrorEmpty ? 0 : 1)
                 .animation(.easeInOut, value: error)
-                .padding(.leading, .huiSpaces.primitives.xxSmall)
+                .padding(.leading, .huiSpaces.space4)
             }
         }
 
@@ -129,8 +129,8 @@ extension HorizonUI {
                 placeholder ?? "",
                 text: $text
             )
-            .padding(.huiSpaces.primitives.small)
-            .padding(.trailing, .huiSpaces.primitives.medium)
+            .padding(.huiSpaces.space12)
+            .padding(.trailing, .huiSpaces.space24)
             .frame(height: textFieldHeight)
             .huiTypography(textFieldTypography)
             .overlay(

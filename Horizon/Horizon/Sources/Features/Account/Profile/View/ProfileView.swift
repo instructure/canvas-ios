@@ -31,7 +31,7 @@ struct ProfileView: View {
     var body: some View {
         ProfileBody(String(localized: "Profile", bundle: .horizon)) {
             ScrollView {
-                VStack(spacing: .huiSpaces.primitives.medium) {
+                VStack(spacing: .huiSpaces.space24) {
                     nameView
                     displayNameView
                     emailView
@@ -39,8 +39,8 @@ struct ProfileView: View {
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
                 .background(Color.huiColors.surface.pageSecondary)
-                .padding(.horizontal, .huiSpaces.primitives.medium)
-                .padding(.vertical, .huiSpaces.primitives.xLarge)
+                .padding(.horizontal, .huiSpaces.space24)
+                .padding(.vertical, .huiSpaces.space48)
             }
         }
     }
