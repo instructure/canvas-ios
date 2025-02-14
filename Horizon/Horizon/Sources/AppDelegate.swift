@@ -24,10 +24,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     var window: UIWindow?
 
-    static let sessionInteractor = SessionInteractor()
+    private let sessionInteractor = SessionInteractor()
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
-        env.loginDelegate = Self.sessionInteractor
+        env.loginDelegate = sessionInteractor
         env.router = Router(routes: HorizonRoutes.routeHandlers())
         env.app = .horizon
         env.window = window
@@ -51,7 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
         return true
     }
-    
+}
+
+// MARK: - Notification Registration
+
+extension AppDelegate {
     func application(
         _: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
@@ -62,6 +66,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         AppEnvironment.shared.reportError(error)
     }
-    
-    
 }

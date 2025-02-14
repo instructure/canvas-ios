@@ -25,20 +25,13 @@ enum LoginError: Error {
 }
 
 final class SessionInteractor: NSObject, LoginDelegate {
-    public static let shared = SessionInteractor(environment: .shared)
-    
-    let environment: AppEnvironment
+    private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
     init(environment: AppEnvironment = .shared) {
         self.environment = environment
-        print("✅ init")
     }
 
-    deinit {
-        print("❌ deinit")
-    }
-    
     func refreshCurrentUserDetails() -> AnyPublisher<UserProfile, Error> {
         guard let currentSession = LoginSession.mostRecent else {
             return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
@@ -47,7 +40,7 @@ final class SessionInteractor: NSObject, LoginDelegate {
         return updateLoginSession(session: currentSession)
     }
 
-    func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
+    private func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
         LoginSession.add(session)
         environment.userDidLogin(session: session)
 
