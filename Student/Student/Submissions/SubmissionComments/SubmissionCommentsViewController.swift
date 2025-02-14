@@ -66,7 +66,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         addCommentButton.accessibilityLabel = String(localized: "Send comment", bundle: .student)
-        addCommentTextView.accessibilityLabel = String(localized: "Add a comment or reply to previous comments", bundle: .student)
+        addCommentTextView.accessibilityLabel = String(localized: "Comment", bundle: .student)
+        addCommentTextView.accessibilityValue = String(localized: "Text Field", bundle: .student)
+        addCommentTextView.accessibilityHint = String(localized: "Add a comment or reply to previous comments", bundle: .student)
         addCommentTextView.placeholder = String(localized: "Comment", bundle: .student)
         addCommentTextView.placeholderColor = .textDark
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
@@ -284,7 +286,11 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
 
 extension SubmissionCommentsViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        addCommentButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        let textIsNotEmpty = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        if textIsNotEmpty {
+            addCommentTextView.accessibilityLabel = textView.text
+        }
+        addCommentButton.isEnabled = textIsNotEmpty
         addCommentButton.alpha = addCommentButton.isEnabled ? 1 : 0.5
         textView.adjustHeight(to: 10, heightConstraints: addCommentTextViewHeightConstraint)
     }
