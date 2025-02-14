@@ -92,11 +92,7 @@ struct HAssignment {
     }
 
     var attemptCount: String? {
-        switch allowedAttempts {
-        case -1: return String(localized: "Unlimited", bundle: .horizon)
-        case 0: return String(localized: "Zero", bundle: .horizon)
-        default: return "\(allowedAttempts)"
-        }
+        allowedAttempts > 0 ? "\(allowedAttempts)" : String(localized: "Unlimited", bundle: .horizon)
     }
 }
 
