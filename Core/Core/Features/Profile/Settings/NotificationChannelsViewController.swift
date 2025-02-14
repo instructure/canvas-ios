@@ -62,6 +62,11 @@ class NotificationChannelsViewController: UIViewController {
         refresh()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIAccessibility.post(notification: .screenChanged, argument: tableView)
+    }
+
     @objc func refresh(sender: Any? = nil) {
         channels.exhaust(while: { _ in true })
     }

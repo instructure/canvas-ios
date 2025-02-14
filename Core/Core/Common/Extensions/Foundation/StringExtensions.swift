@@ -81,7 +81,6 @@ extension String {
      */
     public var boolValue: Bool {
         return (self as NSString).boolValue
-
     }
 
     public var nilIfEmpty: String? {
@@ -125,6 +124,11 @@ extension String {
             throw NSError.instructureError("Failed to convert string to data using encoding \(encoding).")
         }
         return data
+    }
+
+    /// Localized string to be used when we need number of items. Example: "5 items"
+    public static func localizedNumberOfItems(_ count: Int) -> String {
+        String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), count)
     }
 }
 

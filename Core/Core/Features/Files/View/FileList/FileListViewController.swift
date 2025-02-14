@@ -524,10 +524,7 @@ class FileListCell: UITableViewCell {
         if let folder = item?.folder {
             iconView.icon = .folderSolid
             iconView.setState(locked: folder.locked, hidden: folder.hidden, unlockAt: folder.unlockAt, lockAt: folder.lockAt)
-            let sizeText = String.localizedStringWithFormat(
-                String(localized: "d_items", bundle: .core),
-                folder.filesCount + folder.foldersCount
-            )
+            let sizeText = String.localizedNumberOfItems(folder.filesCount + folder.foldersCount)
             sizeLabel.setText(sizeText, style: .textCellSupportingText)
             updateAccessibilityLabel()
             return
