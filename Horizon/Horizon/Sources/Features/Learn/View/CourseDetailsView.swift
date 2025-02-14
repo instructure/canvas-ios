@@ -39,7 +39,7 @@ struct CourseDetailsView: View {
         .onAppear { viewModel.showTabBar() }
         .overlay {
             if viewModel.isLoaderVisible {
-                HorizonUI.Spinner(size: .medium, showBackground: true)
+                HorizonUI.Spinner(size: .small, showBackground: true)
             }
         }
     }
