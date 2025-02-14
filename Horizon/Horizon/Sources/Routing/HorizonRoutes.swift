@@ -38,7 +38,7 @@ enum HorizonRoutes {
         externalToolRoutes,
         notebookRoutes,
         aiRoutes,
-        notificationSettings,
+        notificationSettings
     ]
 
     private static var accountRoutes: [RouteHandler] {
