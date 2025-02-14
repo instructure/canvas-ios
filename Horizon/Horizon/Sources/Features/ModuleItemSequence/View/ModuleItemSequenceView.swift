@@ -25,6 +25,7 @@ public struct ModuleItemSequenceView: View {
 
     @State private var isShowMakeAsDoneSheet = false
     @State private var isShowHeader = true
+    @State private var attemptCount: String?
     @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
@@ -81,7 +82,10 @@ public struct ModuleItemSequenceView: View {
                 moduleName: viewModel.moduleItem?.moduleName ?? "",
                 moduleItemName: viewModel.moduleItem?.title ?? "",
                 duration: "22 Mins", // TODO Set real value
-                dueDate: viewModel.moduleItem?.dueAt?.dateOnlyString ?? "",
+                countOfPoints: viewModel.moduleItem?.points,
+                dueDateTime: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM, h:mm a"),
+                isOverdue: viewModel.moduleItem?.isOverDue ?? false,
+                attemptCount: attemptCount,
                 onBack: {
                     viewModel.pop(from: viewController)
                 },
@@ -165,7 +169,10 @@ public struct ModuleItemSequenceView: View {
                     courseID: courseID,
                     assignmentID: assignmentID,
                     isShowHeader: $isShowHeader
-                )
+                ) { attemptCount in
+                    self.attemptCount = attemptCount
+
+                }
 
             case let .file(context, fileID):
                 FileDetailsAssembly.makeView(

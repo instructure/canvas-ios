@@ -23,9 +23,12 @@ public extension HorizonUI {
         // MARK: - Dependencies
 
         let moduleName: String
-        let moduleItemName: String
-        let duration: String
-        let dueDate: String
+        let moduleItemName: String // format 'Due 10/12, 11:50 AM'
+        let duration: String?
+        let countOfPoints: Double?
+        let dueDateTime: String?
+        let isOverdue: Bool
+        let attemptCount: String? // One, three or Unlimited
         let backgroundColor: Color
         let foregroundColor: Color
         let onBack: () -> Void
@@ -36,17 +39,23 @@ public extension HorizonUI {
         public init(
             moduleName: String,
             moduleItemName: String,
-            duration: String,
-            dueDate: String,
+            duration: String?,
+            countOfPoints: Double? = nil,
+            dueDateTime: String?,
+            isOverdue: Bool = false,
+            attemptCount: String? = nil,
             backgroundColor: Color = Color.huiColors.surface.institution,
-             foregroundColor: Color = Color.huiColors.text.surfaceColored,
+            foregroundColor: Color = Color.huiColors.text.surfaceColored,
             onBack: @escaping () -> Void,
             onMenu: @escaping () -> Void
         ) {
             self.moduleName = moduleName
             self.moduleItemName = moduleItemName
             self.duration = duration
-            self.dueDate = dueDate
+            self.countOfPoints = countOfPoints
+            self.dueDateTime = dueDateTime
+            self.isOverdue = isOverdue
+            self.attemptCount = attemptCount
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
             self.onBack = onBack
@@ -63,6 +72,20 @@ public extension HorizonUI {
                     menuButton
                 }
                 moduleInfoView
+                if let attemptCount {
+                    let text = String(localized: "Attempts Allowed")
+                    Text("\(attemptCount) \(text)")
+                        .huiTypography(.p2)
+                        .foregroundStyle(foregroundColor)
+                }
+                if isOverdue {
+                    HorizonUI.Pill(
+                        title: String(localized: "Overdue"),
+                        style: .outline(.init(borderColor: foregroundColor,textColor: foregroundColor,iconColor: foregroundColor)),
+                        isUppercased: true,
+                        icon: nil
+                    )
+                }
             }
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
             .padding(.bottom, .huiSpaces.primitives.medium)
@@ -103,14 +126,18 @@ public extension HorizonUI {
         }
 
         private var moduleInfoView: some View {
-            HStack {
-                Text(duration)
-                Spacer()
-                Text(dueDate)
-            }
+            Text(getModuleItemInfo())
             .foregroundStyle(foregroundColor)
             .huiTypography(.p2)
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+        }
+
+        // TODO: - Add the duration at the same line till we get the new UI for it
+        private func getModuleItemInfo() -> String {
+            let due = dueDateTime == nil ? nil : "\(String(localized: "Due")) \(dueDateTime ?? "")"
+            let points = countOfPoints == nil ? nil : "\(countOfPoints ?? 0) \(String(localized: "Points Possible"))"
+            let items = [due, points, duration].compactMap { $0 }
+            return items.joined(separator: items.count == 1 ? "" : " | ")
         }
     }
 }
@@ -120,7 +147,10 @@ public extension HorizonUI {
         moduleName: "Module Name Amet Adipiscing Elit",
         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object Name Lorem Ipsum Dolor",
         duration: "XX Mins",
-        dueDate: "Due XX/XX",
+        countOfPoints: 10.0,
+        dueDateTime: "Due 10/12,11:50 AM",
+        isOverdue: true,
+        attemptCount: "Three",
         onBack: {},
         onMenu: {}
     )
