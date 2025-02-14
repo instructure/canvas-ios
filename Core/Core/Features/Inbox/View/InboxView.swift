@@ -214,7 +214,7 @@ public struct InboxView: View, ScreenViewTrackable {
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Inbox.profileButton")
-        .accessibility(label: Text("Profile Menu", bundle: .core))
+        .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
 
     private var newMessageButton: some View {

@@ -101,14 +101,22 @@ let router = Router(routes: [
         return AnnouncementListViewController.create(context: context)
     },
 
-    RouteHandler("/:context/:contextID/announcements/new") { url, _, _ in
+    RouteHandler("/:context/:contextID/announcements/new") { url, _, userInfo in
         guard let context = Context(path: url.path) else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: true))
+        return DiscussionsAssembly.makeDiscussionCreateViewController(
+            context: context,
+            isAnnouncement: true,
+            routeUserInfo: userInfo
+        )
     },
 
     RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
+        return DiscussionsAssembly.makeDiscussionEditViewController(
+            context: context,
+            topicID: topicID,
+            isAnnouncement: true
+        )
     },
 
     RouteHandler("/:context/:contextID/announcements/:announcementID", factory: discussionViewController),
@@ -205,13 +213,21 @@ let router = Router(routes: [
         return DiscussionListViewController.create(context: context)
     },
 
-    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, _ in
+    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, userInfo in
         guard let context = Context(path: url.path) else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: false))
+        return DiscussionsAssembly.makeDiscussionCreateViewController(
+            context: context,
+            isAnnouncement: false,
+            routeUserInfo: userInfo
+        )
     },
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
-        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: false))
+        return DiscussionsAssembly.makeDiscussionEditViewController(
+            context: context,
+            topicID: topicID,
+            isAnnouncement: false
+        )
     },
 
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID/reply") { url, params, _, env in
@@ -511,18 +527,19 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo _
     return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
 }
 
-private func pageViewController(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+private func pageViewController(url: URLComponents, params: [String: String], userInfo _: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
     if !url.originIsModuleItemDetails, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: context.id,
             assetType: .page,
             assetID: pageURL,
             url: url
         )
     }
-    return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+    return PageDetailsViewController
+        .create(context: context, pageURL: pageURL, app: .student, env: env)
 }
 
 private func discussionViewController(
@@ -531,36 +548,35 @@ private func discussionViewController(
     userInfo _: [String: Any]?,
     environment: AppEnvironment
 ) -> UIViewController? {
-    guard let context = Context(path: url.path) else { return nil }
-
-    var webPageType: EmbeddedWebPageViewModelLive.EmbeddedWebPageType
-    if let discussionID = params["discussionID"] {
-        webPageType = .discussion(id: discussionID)
-    } else if let announcementID = params["announcementID"] {
-        webPageType = .announcement(id: announcementID)
-    } else {
-        return nil
-    }
+    guard
+        let context = Context(path: url.path),
+        let discussionId = params["discussionID"] ?? params["announcementID"]
+    else { return nil }
 
     if context.contextType == .course, !url.originIsModuleItemDetails {
         return ModuleItemSequenceViewController.create(
             env: environment,
             courseID: context.id,
             assetType: .discussion,
-            assetID: webPageType.assetID,
+            assetID: discussionId,
             url: url
         )
     }
 
     if OfflineModeAssembly.make().isOfflineModeEnabled() {
-        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
+        return DiscussionDetailsViewController.create(context: context, topicID: discussionId)
     } else {
-        let viewModel = EmbeddedWebPageViewModelLive(
+        let isAnnouncement = (params["announcementID"] != nil)
+        let webPageModel = DiscussionDetailsWebViewModel(
+            discussionId: discussionId,
+            isAnnouncement: isAnnouncement
+        )
+        let viewModel = EmbeddedWebPageContainerViewModel(
             context: context,
-            webPageType: webPageType
+            webPageModel: webPageModel
         )
         return CoreHostingController(
-            EmbeddedWebPageView(
+            EmbeddedWebPageContainerScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
             )

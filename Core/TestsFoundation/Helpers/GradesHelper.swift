@@ -75,6 +75,7 @@ public class GradesHelper: BaseHelper {
     }
 
     public struct Filter {
+        public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
         public static var sortByGroupSwitch: XCUIElement { app.find(id: "GradeFilter.sortModeOptions.groupName") }
         public static var sortByDateSwitch: XCUIElement { app.find(id: "GradeFilter.sortModeOptions.dueDate") }
         public static var saveButton: XCUIElement { app.find(id: "GradeFilter.saveButton", type: .button) }

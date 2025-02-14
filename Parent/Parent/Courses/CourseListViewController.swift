@@ -111,6 +111,7 @@ class CourseListCell: UITableViewCell {
         backgroundColor = .backgroundLightest
         let id = course?.id ?? ""
         accessibilityIdentifier = "course_cell_\(id)"
+        accessibilityTraits = .button
 
         nameLabel.accessibilityIdentifier = "course_title_\(id)"
         nameLabel.setText(course?.name, style: .textCellTitle)

@@ -183,7 +183,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
             cell.title?.textColor = delegate?.menuItemDefaultColor
             cell.selectionColor = delegate?.menuItemSelectedColor
             cell.isAccessibilityElement = true
-            cell.accessibilityTraits = [.button, .header]
+            cell.accessibilityTraits = [.button]
             cell.accessibilityIdentifier = delegate?.accessibilityIdentifier(at: indexPath)
             cell.accessibilityLabel = cell.title?.text
             if indexPath == selectedIndexPath {

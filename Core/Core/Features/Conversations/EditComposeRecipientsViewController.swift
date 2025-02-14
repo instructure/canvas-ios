@@ -58,6 +58,7 @@ class EditComposeRecipientsViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         view.frame.size.height = 304
         titleLabel.text = String(localized: "Recipients", bundle: .core)
+        titleLabel.accessibilityTraits = .header
         teachers.exhaust(force: false)
         tas.exhaust(force: false)
     }
@@ -109,7 +110,9 @@ extension EditComposeRecipientsViewController: UITableViewDataSource, UITableVie
         )
         cell.avatarView.name = person.fullName
         cell.avatarView.url = person.avatarURL
-        cell.isSelected = selectedRecipients.contains(person)
+        let isSelected = selectedRecipients.contains(person)
+        cell.isSelected = isSelected
+        cell.setAccessibilityTraitsSelected(isSelected)
         cell.selectedView.isHidden = !cell.isSelected
         cell.selectedView.layoutIfNeeded()
         return cell
@@ -162,6 +165,7 @@ class RecipientCell: UITableViewCell {
 
     func initialize() {
         backgroundColor = .backgroundLightest
+        accessibilityTraits = .button
     }
 
     override func layoutSubviews() {
@@ -170,5 +174,13 @@ class RecipientCell: UITableViewCell {
             corners: UIRectCorner.allCorners,
             radius: selectedView.frame.size.width / 2
         )
+    }
+
+    func setAccessibilityTraitsSelected(_ isSelected: Bool) {
+        if isSelected {
+            accessibilityTraits.insert(.selected)
+        } else {
+            accessibilityTraits.remove(.selected)
+        }
     }
 }

@@ -79,7 +79,10 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                         .foregroundStyle(Color(.textDarkest))
                 }
                 .padding(.vertical, 8)
-                .accessibility(addTraits: .isHeader)
+                .accessibilityElement()
+                .accessibilityLabel(Text("Selected grading period:", bundle: .core))
+                .accessibilityValue(text)
+                .accessibilityRemoveTraits(.isHeader)
             },
             content: { }
         )

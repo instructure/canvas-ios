@@ -95,6 +95,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         Section {
             Text(assignment.name)
                 .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "AssignmentDetails.name")
+                .accessibilityAddTraits(.isHeader)
             HStack(spacing: 0) {
                 Text(assignment.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.points")

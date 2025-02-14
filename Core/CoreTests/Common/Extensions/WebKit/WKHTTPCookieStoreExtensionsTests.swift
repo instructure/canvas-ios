@@ -83,7 +83,7 @@ class WKHTTPCookieStoreExtensionsTests: XCTestCase {
         XCTAssertFinish(cookieStore.setCookie(cookie), timeout: 10)
 
         // WHEN
-        XCTAssertFinish(cookieStore.deleteAllCookies())
+        XCTAssertFinish(cookieStore.deleteAllCookies(), timeout: 10)
 
         // THEN
         XCTAssertSingleOutputEquals(

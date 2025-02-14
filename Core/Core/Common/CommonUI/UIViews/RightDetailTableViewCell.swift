@@ -20,6 +20,21 @@ import Foundation
 import UIKit
 
 public class RightDetailTableViewCell: UITableViewCell {
+    public var accessibilityTraitsOverride: UIAccessibilityTraits?
+    public override var accessibilityTraits: UIAccessibilityTraits {
+        get {
+            if let accessibilityTraitsOverride {
+                return accessibilityTraitsOverride
+            } else {
+                return super.accessibilityTraits
+            }
+        }
+        set {
+            accessibilityTraitsOverride = nil
+            super.accessibilityTraits = newValue
+        }
+    }
+
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         setup()
@@ -38,5 +53,10 @@ public class RightDetailTableViewCell: UITableViewCell {
         textLabel?.textColor = .textDarkest
         textLabel?.font = .scaledNamedFont(.semibold16)
         textLabel?.numberOfLines = 0
+    }
+
+    override public func prepareForReuse() {
+        super.prepareForReuse()
+        accessibilityTraitsOverride = nil
     }
 }

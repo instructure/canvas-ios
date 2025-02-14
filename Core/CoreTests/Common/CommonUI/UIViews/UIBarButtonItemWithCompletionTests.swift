@@ -20,7 +20,7 @@
 import XCTest
 
 class UIBarButtonItemWithCompletionTests: XCTestCase {
-    func testProperties() {
+    func testPropertiesWithTitle() {
         let title = "title"
         let style = UIBarButtonItem.Style.done
         let view = UIBarButtonItemWithCompletion(
@@ -32,13 +32,44 @@ class UIBarButtonItemWithCompletionTests: XCTestCase {
         XCTAssertEqual(view.style, style)
     }
 
-    func testCompletion() {
+    func testPropertiesWithImage() {
+        let image1 = UIImage(systemName: "heart.fill")
+        let image2 = UIImage(systemName: "chevron.backward")
+        let style = UIBarButtonItem.Style.done
+        let view = UIBarButtonItemWithCompletion(
+            image: image1,
+            landscapeImagePhone: image2,
+            style: style,
+            actionHandler: {}
+        )
+        XCTAssertEqual(view.image, image1)
+        XCTAssertEqual(view.landscapeImagePhone, image2)
+        XCTAssertEqual(view.style, style)
+    }
+
+    func testCompletionWithTitle() {
         let expectation = expectation(description: "Completion gets called")
         let completion: () -> Void = {
             expectation.fulfill()
         }
 
         let view = UIBarButtonItemWithCompletion(title: nil, actionHandler: completion)
+        view.buttonDidTap(sender: view)
+        waitForExpectations(timeout: 0.1)
+    }
+
+    func testCompletionWithImage() {
+        let expectation = expectation(description: "Completion gets called")
+        let completion: () -> Void = {
+            expectation.fulfill()
+        }
+
+        let view = UIBarButtonItemWithCompletion(
+            image: UIImage(),
+            landscapeImagePhone: UIImage(),
+            style: .plain,
+            actionHandler: completion
+        )
         view.buttonDidTap(sender: view)
         waitForExpectations(timeout: 0.1)
     }

@@ -16,12 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 
 public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
     public var webView: CoreWebView
 
     var limitedInteractionView: NotificationView?
+
+    private var subscriptions = Set<AnyCancellable>()
 
     public var isInteractionLimited: Bool = false {
         didSet {
@@ -68,5 +71,21 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
             n.heightAnchor.constraint(greaterThanOrEqualToConstant: 78)
         ])
         limitedInteractionView = n
+    }
+
+    /// Adds a `back` toolbar item and shows/hides the `navigationController` toolbar based on whether the `webView` can go back or not.
+    /// Only works if the ViewController has a `navigationController`.
+    /// Clears existing toolbar items if there is any.
+    public func setupBackToolbarButton() {
+        toolbarItems = [
+            .back { [weak webView] in webView?.goBack() }
+        ]
+
+        webView
+            .publisher(for: \.canGoBack)
+            .sink { [weak self] canGoBack in
+                self?.navigationController?.setToolbarHidden(!canGoBack, animated: true)
+            }
+            .store(in: &subscriptions)
     }
 }
