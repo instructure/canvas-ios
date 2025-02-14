@@ -289,6 +289,8 @@ extension SubmissionCommentsViewController: UITextViewDelegate {
         let textIsNotEmpty = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         if textIsNotEmpty {
             addCommentTextView.accessibilityLabel = textView.text
+        } else {
+            addCommentTextView.accessibilityLabel = String(localized: "Comment", bundle: .student)
         }
         addCommentButton.isEnabled = textIsNotEmpty
         addCommentButton.alpha = addCommentButton.isEnabled ? 1 : 0.5
