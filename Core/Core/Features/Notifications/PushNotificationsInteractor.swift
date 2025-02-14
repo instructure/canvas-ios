@@ -28,7 +28,7 @@ public class PushNotificationsInteractor {
     )
 
     public let notificationCenter: UserNotificationCenterProtocol
-    private let notificationCenterDelegate: UserNotificationCenterDelegate
+    private let notificationCenterDelegate: UNUserNotificationCenterDelegate
 
     private let logger: LoggerProtocol
     private var deviceToken: Data? {
@@ -45,7 +45,7 @@ public class PushNotificationsInteractor {
 
     init(
         notificationCenter: UserNotificationCenterProtocol,
-        notificationCenterDelegate: UserNotificationCenterDelegate,
+        notificationCenterDelegate: UNUserNotificationCenterDelegate,
         logger: LoggerProtocol
     ) {
         self.notificationCenter = notificationCenter
