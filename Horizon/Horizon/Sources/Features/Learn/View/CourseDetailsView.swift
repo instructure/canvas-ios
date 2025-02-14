@@ -51,7 +51,7 @@ struct CourseDetailsView: View {
                 .foregroundStyle(Color.huiColors.primitives.black174)
 
             HorizonUI.ProgressBar(
-                progress: viewModel.course.progress,
+                progress: viewModel.course.progress / 100,
                 size: .medium,
                 textColor: .huiColors.primitives.white10
             )
