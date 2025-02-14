@@ -320,6 +320,7 @@ final class ComposeMessageViewModel: ObservableObject {
             .sink { [weak self] recipient in
                 self?.allRecipients.value.append(recipient)
                 self?.selectedRecipients.value.removeAll { $0 == recipient }
+                UIAccessibility.announce(String(localized: "Removed successfully", bundle: .core))
             }
             .store(in: &subscriptions)
 
