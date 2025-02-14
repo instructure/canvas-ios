@@ -18,11 +18,11 @@
 
 import SwiftUI
 
-public extension HorizonUI.FileDropUploader {
+public extension HorizonUI.FileDrop {
     struct Storybook: View {
          public var body: some View {
              VStack {
-                 HorizonUI.FileDropUploader(acceptedFilesType: "pdf, docx") {
+                 HorizonUI.FileDrop(acceptedFilesType: "pdf, docx") {
                      print("FileDropUploader")
                  }
                  Spacer()
@@ -33,7 +33,6 @@ public extension HorizonUI.FileDropUploader {
     }
 }
 
-
 #Preview {
-    HorizonUI.FileDropUploader.Storybook()
+    HorizonUI.FileDrop.Storybook()
 }

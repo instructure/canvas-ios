@@ -19,7 +19,7 @@
 import SwiftUI
 
 public extension HorizonUI {
-    struct FileDropUploader: View {
+    struct FileDrop: View {
         private let cornerRadius = CornerRadius.level2
 
         // MARK: - Dependencies
@@ -39,7 +39,7 @@ public extension HorizonUI {
 
         public var body: some View {
             VStack(alignment: .center, spacing: .huiSpaces.primitives.medium) {
-                HorizonUI.PrimaryButton("Upload File", type: .blue) {
+                HorizonUI.PrimaryButton(String(localized: "Upload File"), type: .blue) {
                     onTap()
                 }
                 acceptedFilesView
@@ -58,7 +58,7 @@ public extension HorizonUI {
 
         private var acceptedFilesView: some View {
             HStack(spacing: .huiSpaces.primitives.xxSmall) {
-                Text("Accepted file types:")
+                Text(String(localized: "Accepted file types:"))
                 Text(acceptedFilesType)
             }
             .foregroundStyle(Color.huiColors.text.body)
@@ -69,7 +69,7 @@ public extension HorizonUI {
 }
 
 #Preview {
-    HorizonUI.FileDropUploader(acceptedFilesType: "pdf, docx") {
+    HorizonUI.FileDrop(acceptedFilesType: "pdf, docx") {
 
     }
 }

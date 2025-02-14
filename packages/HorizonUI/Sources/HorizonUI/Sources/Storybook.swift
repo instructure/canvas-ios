@@ -140,9 +140,9 @@ public struct Storybook: View {
                     }
 
                     NavigationLink {
-                        HorizonUI.FileDropUploader.Storybook()
+                        HorizonUI.FileDrop.Storybook()
                     } label: {
-                        Text("File Drop Uploader").tint(Color.black)
+                        Text("File Drop").tint(Color.black)
                     }
 
                     NavigationLink {
