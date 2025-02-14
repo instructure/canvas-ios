@@ -57,8 +57,7 @@ public struct K5DashboardView: View {
                     .foregroundColor(Color(Brand.shared.navTextColor))
             })
             .identifier("Dashboard.profileButton")
-            .accessibility(label: Text("Profile Menu", bundle: .core))
-            .accessibilityValue(Text("Closed", bundle: .core))
+            .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
         )
     }
 
