@@ -16,4 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Foundation
+import Combine
+
+class ParentInboxCoursePickerInteractorPreview: ParentInboxCoursePickerInteractor {
+    var state = CurrentValueSubject<StoreState, Never>(.data)
+    var studentContextItems = CurrentValueSubject<[StudentContextItem], Never>([])
+
+    func refresh() -> AnyPublisher<[Void], Never> {
+        Future<[Void], Never> {_ in }.eraseToAnyPublisher()
+    }
+
+    init(env: AppEnvironment) {
+
+    }
+}

@@ -23,37 +23,62 @@ import Core
 class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[Course], Never>([])
-    public var enrollments = CurrentValueSubject<[Enrollment], Never>([])
+    public var studentContextItems = CurrentValueSubject<[StudentContextItem], Never>([])
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
-    private let courseListStore: Store<GetCourses>
-    private let enrollmentListStore: Store<GetEnrollments>
+    private var courses = CurrentValueSubject<[Course], Error>([])
+    private var enrollments = CurrentValueSubject<[Enrollment], Error>([])
 
     public init(env: AppEnvironment) {
-        self.courseListStore = env.subscribe(GetCourses())
-        self.enrollmentListStore = env.subscribe(GetEnrollments(context: .currentUser))
+//        ReactiveStore(
+//            useCase: GetEnrollments(
+//                context: .currentUser,
+//                includes: [.observed_users, .avatar_url],
+//                states: GetEnrollmentsRequest.State.allForParentObserver
+//            )
+//        )
+        ReactiveStore(useCase: GetObservedEnrollments(observerID: env.currentSession?.userID ?? ""))
+        .getEntities()
+        .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] enrollmentList in
+            print("ENROLLMENTS")
+            print(enrollmentList)
+            self?.enrollments.send(enrollmentList)
+        })
+        .store(in: &subscriptions)
 
-        StoreState.combineLatest(courseListStore.statePublisher, enrollmentListStore.statePublisher)
-            .subscribe(state)
+        ReactiveStore(useCase: GetCourses())
+            .getEntities()
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] courseList in
+                print("COURSES")
+                print(courseList)
+                self?.courses.send(courseList)
+            })
             .store(in: &subscriptions)
 
-        courseListStore
-            .allObjects
-            .subscribe(courses)
+        Publishers.CombineLatest(courses, enrollments)
+            .map { (courseList, enrollmentList) in
+                return enrollmentList.compactMap { enrollment -> StudentContextItem? in
+                    let course = courseList.first(where: { $0.canvasContextID == enrollment.canvasContextID })
+                    let user = enrollment.observedUser
+                    guard let course, let user else { return nil }
+                    return StudentContextItem(student: user, course: course)
+                }
+            }
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.state.send(.error)
+            },
+            receiveValue: { [weak self] items in
+                print("ITEMS")
+                print(items)
+                self?.studentContextItems.send(items)
+            })
             .store(in: &subscriptions)
-        courseListStore.exhaust()
-
-        enrollmentListStore
-            .allObjects
-            .subscribe(enrollments)
-            .store(in: &subscriptions)
-        enrollmentListStore.exhaust()
     }
 
     // MARK: - Inputs
     public func refresh() -> AnyPublisher<[Void], Never> {
-        courseListStore.refreshWithFuture(force: true).combineLatest(with: enrollmentListStore.refreshWithFuture(force: true))
+        Future<[Void], Never> {_ in }.eraseToAnyPublisher()
+        // courseListStore.refreshWithFuture(force: true).combineLatest(with: enrollmentListStore.refreshWithFuture(force: true))
     }
 }

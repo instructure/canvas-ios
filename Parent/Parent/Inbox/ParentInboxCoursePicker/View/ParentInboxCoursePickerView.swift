@@ -18,12 +18,26 @@
 
 import SwiftUI
 
-struct ParentInboxCoursePickerView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+public struct ParentInboxCoursePickerView: View {
+    @ObservedObject private var viewModel: ParentInboxCoursePickerViewModel
+
+    init(viewModel: ParentInboxCoursePickerViewModel) {
+        self.viewModel = viewModel
+    }
+
+    public var body: some View {
+        VStack {
+            ForEach(viewModel.items, id: \.student.id) { item in
+                VStack {
+                    Text(item.course.name ?? "")
+                    Text(item.student.name)
+                }
+                .padding()
+            }
+        }
     }
 }
 
 #Preview {
-    ParentInboxCoursePickerView()
+    //ParentInboxCoursePickerView()
 }

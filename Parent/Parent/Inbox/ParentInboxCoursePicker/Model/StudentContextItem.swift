@@ -16,28 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Core
 
-class ParentInboxCoursePickerViewModel: ObservableObject {
-    // MARK: - Output
-
-    @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var items: [StudentContextItem] = []
-
-    init(interactor: ParentInboxCoursePickerInteractor) {
-        self.interactor = interactor
-        setupOutputBindings()
-    }
-
-    // MARK: - Private
-
-    private let interactor: ParentInboxCoursePickerInteractor
-
-    private func setupOutputBindings() {
-        interactor.state
-            .assign(to: &$state)
-        interactor.studentContextItems
-            .assign(to: &$items)
-    }
+public struct StudentContextItem {
+    let student: User
+    let course: Course
 }

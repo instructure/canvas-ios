@@ -38,7 +38,16 @@ let router = Router(routes: [
     },
 
     RouteHandler("/conversations") { _, _, _ in
-        return ParentConversationListViewController.create()
+        return ParentInboxCoursePickerAssembly.makeInboxCoursePickerViewController(env: AppEnvironment.shared)
+    },
+
+    RouteHandler("/conversations/compose") { url, _, _ in
+        if let queryItems = url.queryItems {
+            return ComposeMessageAssembly.makeComposeMessageViewController(queryItems: queryItems)
+        } else {
+            return ComposeMessageAssembly.makeComposeMessageViewController()
+        }
+
     },
 
     RouteHandler("/conversations/:conversationID") { _, params, _ in

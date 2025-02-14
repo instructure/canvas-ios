@@ -23,8 +23,7 @@ import Core
 public protocol ParentInboxCoursePickerInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
-    var courses: CurrentValueSubject<[Course], Never> { get }
-    var enrollments: CurrentValueSubject<[Enrollment], Never> { get }
+    var studentContextItems: CurrentValueSubject<[StudentContextItem], Never> { get }
 
     func refresh() -> AnyPublisher<[Void], Never>
 }
