@@ -37,6 +37,11 @@ struct CourseDetailsView: View {
         .padding(.top, .huiSpaces.primitives.small)
         .background(Color.huiColors.surface.pagePrimary)
         .onAppear { viewModel.showTabBar() }
+        .overlay {
+            if viewModel.isLoaderVisible {
+                HorizonUI.Spinner(size: .medium, showBackground: true)
+            }
+        }
     }
 
     private var headerView: some View {
