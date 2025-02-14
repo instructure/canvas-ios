@@ -102,6 +102,9 @@ struct FrameReader: View {
         GeometryReader { geometry in
             Text("")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onAppear {
+                    onChange(geometry.frame(in: coordinateSpace))
+                }
                 .onChange(of: geometry.frame(in: coordinateSpace)) { _, newState in
                     onChange(newState)
                 }

@@ -19,28 +19,21 @@
 import SwiftUI
 
 public extension HorizonUI {
-    struct FileUploadSheet: View {
+    struct Overlay: View {
         // MARK: - Private Properties
 
-        private let uploadTypes = UploadType.allCases
         @Environment(\.dismiss) private var dismiss
 
         // MARK: - Dependencies
 
-        private let onTapChoosePhoto: () -> Void
-        private let onTapOpenCamera: () -> Void
-        private let onTapChooseFile: () -> Void
+        private let title: String
+        private let buttons: [ButtonAttribute]
 
         // MARK: - Init
 
-        init(
-            onTapChoosePhoto: @escaping () -> Void,
-            onTapOpenCamera: @escaping () -> Void,
-            onTapChooseFile: @escaping () -> Void
-        ) {
-            self.onTapChoosePhoto = onTapChoosePhoto
-            self.onTapOpenCamera = onTapOpenCamera
-            self.onTapChooseFile = onTapChooseFile
+        public init(title: String, buttons: [ButtonAttribute]) {
+            self.title = title
+            self.buttons = buttons
         }
 
         public var body: some View {
@@ -59,7 +52,7 @@ public extension HorizonUI {
 
         private var headerView: some View {
             ZStack(alignment: .trailing) {
-                Text("Upload File")
+                Text(title)
                     .foregroundStyle(Color.huiColors.primitives.grey125)
                     .huiTypography(.h3)
                     .frame(maxWidth: .infinity)
@@ -73,30 +66,30 @@ public extension HorizonUI {
 
         private var options: some View {
             VStack(spacing: .zero) {
-                ForEach(uploadTypes, id: \.self) { type in
+                ForEach(buttons) { button in
+
                     Button {
-                        switch type {
-                        case .choosePhoto: onTapChoosePhoto()
-                        case .takePhoto: onTapOpenCamera()
-                        case .chooseFile: onTapChooseFile()
-                        }
+                        button.onAction()
                     } label: {
-                        optionRow(type: type)
+                        buttonRow(button: button)
                     }
                     Divider()
-                        .opacity(type == uploadTypes.last ? 0 : 1)
+                        .opacity(button.id == buttons.last?.id ? 0 : 1)
                 }
             }
         }
 
-        private func optionRow(type: UploadType) -> some View {
+        private func buttonRow(button: ButtonAttribute) -> some View {
             HStack {
-                Text(type.name)
+                Text(button.title)
                     .huiTypography(.p1)
                 Spacer()
-                type.image
-                    .resizable()
-                    .frame(width: 24, height: 24)
+                if let icon = button.icon {
+                    icon
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                }
+
             }
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
             .foregroundStyle(Color.huiColors.text.body)
@@ -105,31 +98,26 @@ public extension HorizonUI {
         }
     }
 }
+public extension HorizonUI.Overlay {
+    struct ButtonAttribute: Identifiable {
+        public let id = UUID()
+        let title: String
+        let icon: Image?
+        let onAction: () -> Void
 
-extension HorizonUI.FileUploadSheet {
-    enum UploadType: CaseIterable {
-        case choosePhoto
-        case takePhoto
-        case chooseFile
-
-        var name: String {
-            switch self {
-            case .choosePhoto: String(localized: "Choose Photo or Video")
-            case .takePhoto: String(localized: "Take Photo or Video")
-            case .chooseFile: String(localized: "Choose File")
-            }
-        }
-
-        var image: Image {
-            switch self {
-            case .choosePhoto: Image.huiIcons.image
-            case .takePhoto: Image.huiIcons.camera
-            case .chooseFile: Image.huiIcons.folder
-            }
+        public init(
+            title: String,
+            icon: Image?,
+            onAction: @escaping () -> Void
+        ) {
+            self.title = title
+            self.icon = icon
+            self.onAction = onAction
         }
     }
 }
 
-#Preview {
-    HorizonUI.FileUploadSheet(onTapChoosePhoto: {}, onTapOpenCamera: {}, onTapChooseFile: {})
-}
+//#Preview {
+//    HorizonUI.FileUploadSheet(onTapChoosePhoto: {}, onTapOpenCamera: {}, onTapChooseFile: {})
+//}
+
