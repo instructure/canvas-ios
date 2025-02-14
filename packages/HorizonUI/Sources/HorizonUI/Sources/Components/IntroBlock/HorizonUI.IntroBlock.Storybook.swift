@@ -39,7 +39,7 @@ public extension HorizonUI.IntroBlock {
                         moduleName: "Module Name Amet Adipiscing Elit ",
                         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object",
                         duration: "XX Mins",
-                        dueDate: "Due XX/XX",
+                        dueDateTime: "Due 10/12, 11:50 AM",
                         onBack: {dismiss()},
                         onMenu: {}
                     )
