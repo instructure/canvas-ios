@@ -83,7 +83,7 @@ public struct ModuleItemSequenceView: View {
                 moduleItemName: viewModel.moduleItem?.title ?? "",
                 duration: "22 Mins", // TODO Set real value
                 countOfPoints: viewModel.moduleItem?.points,
-                dueDateTime: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM, h:mm a"),
+                dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,
                 attemptCount: attemptCount,
                 onBack: {

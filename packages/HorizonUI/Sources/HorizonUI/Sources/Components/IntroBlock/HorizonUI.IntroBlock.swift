@@ -26,7 +26,7 @@ public extension HorizonUI {
         let moduleItemName: String // format 'Due 10/12, 11:50 AM'
         let duration: String?
         let countOfPoints: Double?
-        let dueDateTime: String?
+        let dueDate: String?
         let isOverdue: Bool
         let attemptCount: String? // One, three or Unlimited
         let backgroundColor: Color
@@ -41,7 +41,7 @@ public extension HorizonUI {
             moduleItemName: String,
             duration: String?,
             countOfPoints: Double? = nil,
-            dueDateTime: String?,
+            dueDate: String?,
             isOverdue: Bool = false,
             attemptCount: String? = nil,
             backgroundColor: Color = Color.huiColors.surface.institution,
@@ -53,7 +53,7 @@ public extension HorizonUI {
             self.moduleItemName = moduleItemName
             self.duration = duration
             self.countOfPoints = countOfPoints
-            self.dueDateTime = dueDateTime
+            self.dueDate = dueDate
             self.isOverdue = isOverdue
             self.attemptCount = attemptCount
             self.backgroundColor = backgroundColor
@@ -126,17 +126,16 @@ public extension HorizonUI {
         }
 
         private var moduleInfoView: some View {
-            Text(getModuleItemInfo())
+            Text(moduleItemInfo)
             .foregroundStyle(foregroundColor)
             .huiTypography(.p2)
             .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
         }
 
-        // TODO: - Add the duration at the same line till we get the new UI for it
-        private func getModuleItemInfo() -> String {
-            let due = dueDateTime == nil ? nil : "\(String(localized: "Due")) \(dueDateTime ?? "")"
-            let points = countOfPoints == nil ? nil : "\(countOfPoints ?? 0) \(String(localized: "Points Possible"))"
-            let items = [due, points, duration].compactMap { $0 }
+        private var moduleItemInfo: String {
+            let dueText = dueDate.map { "\(String(localized: "Due")) \($0)" }
+            let pointsText = countOfPoints.map { "\($0) \(String(localized: "Points Possible"))" }
+            let items = [duration, dueText, pointsText].compactMap { $0 }
             return items.joined(separator: items.count == 1 ? "" : " | ")
         }
     }
@@ -148,7 +147,7 @@ public extension HorizonUI {
         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object Name Lorem Ipsum Dolor",
         duration: "XX Mins",
         countOfPoints: 10.0,
-        dueDateTime: "Due 10/12,11:50 AM",
+        dueDate: "Due 10/12",
         isOverdue: true,
         attemptCount: "Three",
         onBack: {},
