@@ -73,6 +73,8 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
         setupTableView()
         emptyStateHeader.text = String(localized: "No Notifications", bundle: .student)
         emptyStateSubHeader.text = String(localized: "There's nothing to be notified of yet.", bundle: .student)
+        profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
+        profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
         refreshData()
     }
 
