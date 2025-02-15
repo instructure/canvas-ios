@@ -35,6 +35,7 @@ struct CourseDetailsView: View {
             learningContentView()
         }
         .padding(.top, .huiSpaces.primitives.small)
+        .hidden(viewModel.isLoaderVisible)
         .background(Color.huiColors.surface.pagePrimary)
         .onAppear { viewModel.showTabBar() }
         .overlay {
