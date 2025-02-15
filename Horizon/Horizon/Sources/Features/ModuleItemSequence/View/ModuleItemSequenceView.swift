@@ -171,8 +171,8 @@ public struct ModuleItemSequenceView: View {
                     isShowHeader: $isShowHeader
                 ) { attemptCount in
                     self.attemptCount = attemptCount
-
                 }
+                .onDisappear { self.attemptCount = nil }
 
             case let .file(context, fileID):
                 FileDetailsAssembly.makeView(
