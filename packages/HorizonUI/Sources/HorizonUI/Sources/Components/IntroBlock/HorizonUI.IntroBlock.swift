@@ -23,12 +23,12 @@ public extension HorizonUI {
         // MARK: - Dependencies
 
         let moduleName: String
-        let moduleItemName: String // format 'Due 10/12, 11:50 AM'
+        let moduleItemName: String
         let duration: String?
         let countOfPoints: Double?
         let dueDate: String?
         let isOverdue: Bool
-        let attemptCount: String? // One, three or Unlimited
+        let attemptCount: String?
         let backgroundColor: Color
         let foregroundColor: Color
         let onBack: () -> Void
