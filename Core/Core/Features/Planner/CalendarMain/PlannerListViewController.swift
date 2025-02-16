@@ -39,7 +39,7 @@ public class PlannerListViewController: UIViewController {
     var end: Date = Clock.now.startOfDay().addDays(1) // exclusive
 
     private var selectedPlannableId: String?
-    private var needsRowAccessibilityFocus: Bool = false
+    private var needsDetailsAccessibilityFocus: Bool = false
 
     var plannables: Store<GetPlannables>?
 
@@ -104,22 +104,36 @@ public class PlannerListViewController: UIViewController {
         errorView.isHidden = plannables?.error == nil
         tableView.reloadData()
         reselectRowAfterReload()
-        accessibilityFocusOnRowIfNeeded()
+        accessibilityFocusOnDetailsIfNeeded()
     }
 
-    func setNeedsRowAccessibilityFocus() {
-        needsRowAccessibilityFocus = true
+    func setNeedsDetailsAccessibilityFocus() {
+        needsDetailsAccessibilityFocus = true
     }
 
-    func accessibilityFocusOnRowIfNeeded() {
-        guard needsRowAccessibilityFocus else { return }
-        accessibilityFocusOnDefaultRow()
-        needsRowAccessibilityFocus = false
+    func accessibilityFocusOnDetailsIfNeeded() {
+        guard needsDetailsAccessibilityFocus else { return }
+        accessibilityFocusOnDetails()
+        needsDetailsAccessibilityFocus = false
     }
 
-    func accessibilityFocusOnDefaultRow() {
-        let cell = tableView.cellForRow(at: indexPathForRowToFocusOn)
-        UIAccessibility.post(notification: .screenChanged, argument: cell)
+    func accessibilityFocusOnDetails() {
+        if emptyStateView.isHidden {
+            accessibilityFocusOnDefaultRow()
+        } else {
+            let message = String(localized: "No Events Today!", bundle: .core)
+            UIAccessibility.announce(message)
+        }
+    }
+
+    private func accessibilityFocusOnDefaultRow() {
+        /// Calling this on main queue with a duration to avoid any
+        /// possible interruption caused by cell reloading or selection
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self else { return }
+            let cell = tableView.cellForRow(at: indexPathForRowToFocusOn)
+            UIAccessibility.post(notification: .screenChanged, argument: cell)
+        }
     }
 
     private func reselectRowAfterReload() {

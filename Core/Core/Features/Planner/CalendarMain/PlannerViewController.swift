@@ -275,10 +275,10 @@ extension PlannerViewController: CalendarViewControllerDelegate {
         updateList(
             date,
             unchanged: { listController in
-                listController?.accessibilityFocusOnDefaultRow()
+                listController?.accessibilityFocusOnDetails()
             },
             created: { listController in
-                listController.setNeedsRowAccessibilityFocus()
+                listController.setNeedsDetailsAccessibilityFocus()
             }
         )
     }
