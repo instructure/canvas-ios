@@ -77,13 +77,9 @@ class AddressbookRecipientViewModel: ObservableObject {
                 }
 
                 if searchText.isNotEmpty {
-                    let message = foundResults.isEmpty
-                        ? String(localized: "No results found", bundle: .core)
-                        : String(
-                            format: String(localized: "%i results found!", bundle: .core),
-                            foundResults.count
-                        )
-                    UIAccessibility.post(notification: .announcement, argument: message)
+                    let format = String(localized: "d_results_found", bundle: .core)
+                    let message = String.localizedStringWithFormat(format, foundResults.count)
+                    UIAccessibility.announce(message)
                 }
 
                 return foundResults
