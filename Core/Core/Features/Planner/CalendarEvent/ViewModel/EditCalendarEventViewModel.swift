@@ -431,8 +431,10 @@ final class EditCalendarEventViewModel: ObservableObject {
                     return Just(Void()).eraseToAnyPublisher()
                 }
 
-                let message = String(localized: "Event has been added successfully", bundle: .core)
-                UIAccessibility.post(notification: .announcement, argument: message)
+                UIAccessibility
+                    .announce(
+                        String(localized: "Event added successfully", bundle: .core)
+                    )
 
                 return NotificationCenter
                     .default
