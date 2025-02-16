@@ -40,6 +40,7 @@ extension CourseSyncSelectorViewModel {
         let selectionState: OfflineListCellView.SelectionState
         var isCollapsed: Bool?
         let cellStyle: OfflineListCellView.ListCellStyle
+        var followingListCount: Int?
 
         fileprivate(set) var selectionDidToggle: (() -> Void)?
         fileprivate(set) var collapseDidToggle: (() -> Void)?
@@ -71,8 +72,9 @@ extension Array where Element == CourseSyncEntry {
 
         var cells: [CourseSyncSelectorViewModel.Cell] = []
 
-        for course in self {
+        for (courseIndex, course) in enumerated() {
             var courseItem = course.makeViewModelItem()
+            courseItem.followingListCount = courseIndex == 0 ? count : nil
             courseItem.selectionDidToggle = {
                 let selectionState: OfflineListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
                 interactor?.setSelected(selection: .course(course.id), selectionState: selectionState)
@@ -91,11 +93,12 @@ extension Array where Element == CourseSyncEntry {
                 continue
             }
 
-            for tab in course.tabs {
+            for (tabIndex, tab) in course.tabs.enumerated() {
                 guard tab.type != .additionalContent else {
                     continue
                 }
                 var tabItem = tab.makeViewModelItem()
+                tabItem.followingListCount = tabIndex == 0 ? course.tabs.count : nil
                 tabItem.selectionDidToggle = {
                     let selectionState: OfflineListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
                     interactor?.setSelected(selection: .tab(course.id, tab.id), selectionState: selectionState)
@@ -117,8 +120,10 @@ extension Array where Element == CourseSyncEntry {
                     continue
                 }
 
-                for file in course.files {
+                for (fileIndex, file) in course.files.enumerated() {
+
                     var fileItem = file.makeViewModelItem()
+                    fileItem.followingListCount = fileIndex == 0 ? course.files.count : nil
                     fileItem.selectionDidToggle = {
                         interactor?.setSelected(selection: .file(course.id, file.id), selectionState: file.selectionState == .selected ? .deselected : .selected)
                     }

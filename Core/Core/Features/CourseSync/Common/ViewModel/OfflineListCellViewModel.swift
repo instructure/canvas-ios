@@ -21,6 +21,7 @@ import SwiftUI
 class OfflineListCellViewModel: ObservableObject {
 
     let cellStyle: OfflineListCellView.ListCellStyle
+    let followingListCount: Int?
     let title: String
     let subtitle: String?
     let selectionState: OfflineListCellView.SelectionState
@@ -31,6 +32,7 @@ class OfflineListCellViewModel: ObservableObject {
     let state: OfflineListCellView.State
 
     init(cellStyle: OfflineListCellView.ListCellStyle,
+         followingListCount: Int? = nil,
          title: String,
          subtitle: String? = nil,
          selectionState: OfflineListCellView.SelectionState = .deselected,
@@ -41,6 +43,7 @@ class OfflineListCellViewModel: ObservableObject {
          progress: Float? = nil,
          state: OfflineListCellView.State) {
         self.cellStyle = cellStyle
+        self.followingListCount = followingListCount
         self.title = title
         self.subtitle = subtitle
         self.selectionState = selectionState
@@ -134,28 +137,31 @@ class OfflineListCellViewModel: ObservableObject {
             }
         }
 
-        var finalText = ""
+        var finalTextParts: [String] = []
+
+        if let listCount = followingListCount {
+            let countText = String.localizedNumberOfItems(listCount)
+            let listLabel = "\(String(localized: "List", bundle: .core)), \(countText)"
+            finalTextParts.append(listLabel)
+        }
 
         if !titleText.isEmpty {
-            finalText.append(titleText)
+            finalTextParts.append(titleText)
         }
 
         if !selectionText.isEmpty {
-            finalText.append(", ")
-            finalText.append(selectionText)
+            finalTextParts.append(selectionText)
         }
 
         if !collapseText.isEmpty {
-            finalText.append(", ")
-            finalText.append(collapseText)
+            finalTextParts.append(collapseText)
         }
 
         if !progressText.isEmpty {
-            finalText.append(", ")
-            finalText.append(progressText)
+            finalTextParts.append(progressText)
         }
 
-        return finalText
+        return finalTextParts.joined(separator: ", ")
     }
 
 }

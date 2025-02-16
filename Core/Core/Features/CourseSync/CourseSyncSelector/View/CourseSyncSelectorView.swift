@@ -143,14 +143,19 @@ struct CourseSyncSelectorView: View {
                 VStack(spacing: 0) {
                     switch cell {
                     case let .item(item):
-                        OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
-                                                       title: item.title,
-                                                       subtitle: item.subtitle,
-                                                       selectionState: item.selectionState,
-                                                       isCollapsed: item.isCollapsed,
-                                                       selectionDidToggle: item.selectionDidToggle,
-                                                       collapseDidToggle: item.collapseDidToggle,
-                                                       state: .idle))
+                        OfflineListCellView(
+                            OfflineListCellViewModel(
+                                cellStyle: item.cellStyle,
+                                followingListCount: item.followingListCount,
+                                title: item.title,
+                                subtitle: item.subtitle,
+                                selectionState: item.selectionState,
+                                isCollapsed: item.isCollapsed,
+                                selectionDidToggle: item.selectionDidToggle,
+                                collapseDidToggle: item.collapseDidToggle,
+                                state: .idle
+                            )
+                        )
                     case .empty:
                         emptyCourse
                     }
