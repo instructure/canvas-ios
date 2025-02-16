@@ -29,6 +29,13 @@ extension CourseSyncSelectorViewModel {
             case .item(let item): return item.id
             }
         }
+
+        var item: Item? {
+            guard case .item(let item) = self else {
+                return nil
+            }
+            return item
+        }
     }
 
     struct Item: Hashable, Identifiable {

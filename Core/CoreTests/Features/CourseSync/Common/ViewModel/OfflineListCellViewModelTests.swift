@@ -195,4 +195,16 @@ class OfflineListCellViewModelTests: CoreTestCase {
         )
         XCTAssertEqual(testee2.accessibilityText, "Title Subtitle, Downloading")
     }
+
+    func testAccessiblityText_FollowingList() {
+        let testee = OfflineListCellViewModel(
+            cellStyle: .listAccordionHeader,
+            followingListCount: 6,
+            title: "Title",
+            subtitle: "Subtitle",
+            state: .downloaded
+        )
+
+        XCTAssertEqual(testee.accessibilityText, "List, 6 items, Title Subtitle")
+    }
 }
