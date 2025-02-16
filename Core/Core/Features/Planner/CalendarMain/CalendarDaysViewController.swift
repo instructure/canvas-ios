@@ -159,7 +159,7 @@ class CalendarDaysViewController: UIViewController {
     }
 
     func selectedDayButton() -> CalendarDayButton? {
-        guard let week = weeksStackView.arrangedSubviews[safe: selectedWeekIndex]
+        guard let week = weeksStackView.arrangedSubviews[safeIndex: selectedWeekIndex]
         else { return nil }
         return week
             .subviews

@@ -28,18 +28,13 @@ public extension Array {
     }
 
     subscript(safeIndex index: Int) -> Element? {
-        guard index < count else {
+        guard index < count && index >= 0 else {
             return nil
         }
         return self[index]
     }
 
     var nilIfEmpty: Self? { isEmpty ? nil : self }
-
-    subscript(safe index: Int) -> Element? {
-        guard (0 ..< count).contains(index) else { return nil }
-        return self[index]
-    }
 }
 
 public extension Array where Element: Equatable {
