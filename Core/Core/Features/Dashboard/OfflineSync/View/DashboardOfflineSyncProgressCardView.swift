@@ -40,7 +40,9 @@ struct DashboardOfflineSyncProgressCardView: View {
                 }
                 .accessibilityFocused($isProgressCardFocused)
                 .onAppear {
-                    isProgressCardFocused = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        isProgressCardFocused = true
+                    }
                 }
             case .hidden:
                 SwiftUI.EmptyView()
