@@ -90,6 +90,79 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 2)
     }
 
+    func test_followingList_counts() {
+        var courses = [
+            CourseSyncEntry(
+                name: "course1", id: "course-1", hasFrontPage: false,
+                tabs: [
+                    .init(id: "0", name: "Assignments", type: .assignments),
+                    .init(id: "1", name: "Pages", type: .pages),
+                    .init(id: "2", name: "Files", type: .files)
+                ],
+                files: [
+                    .make(id: "1", displayName: "test1.txt"),
+                    .make(id: "2", displayName: "test2.txt")
+                ]
+            ),
+            CourseSyncEntry(
+                name: "course2", id: "course-2", hasFrontPage: false,
+                tabs: [
+                    .init(id: "6", name: "Modules", type: .modules),
+                    .init(id: "8", name: "Announcments", type: .announcements)
+                ],
+                files: []
+            ),
+            CourseSyncEntry(
+                name: "course3", id: "course-3", hasFrontPage: false,
+                tabs: [
+                    .init(id: "89", name: "Grades", type: .grades),
+                    .init(id: "64", name: "Syllabus", type: .syllabus),
+                    .init(id: "18", name: "Files", type: .files)
+                ],
+                files: [
+                    .make(id: "34", displayName: "test34.txt")
+                ]
+            )
+        ]
+
+        // When
+        courses.indices.forEach { i in courses[i].isCollapsed = true }
+        var cells = courses.makeViewModelItems(interactor: mockInteractor)
+
+        // Then
+        XCTAssertEqual(cells.count, 3)
+        XCTAssertEqual(cells[0].item?.accessibilityLabelPrefix, 3.accessibilityPrefixForListOfCount)
+
+        XCTAssertNil(cells[1].item?.accessibilityLabelPrefix)
+        XCTAssertNil(cells[2].item?.accessibilityLabelPrefix)
+
+        // When
+        courses.indices.forEach { i in
+            var course = courses[i]
+            course.isCollapsed = false
+            course.tabs.indices.forEach { ti in
+                course.tabs[ti].isCollapsed = false
+            }
+            courses[i] = course
+        }
+        cells = courses.makeViewModelItems(interactor: mockInteractor)
+
+        // Then
+        XCTAssertEqual(cells.count, 14)
+
+        let expectedFollowingListIndices = [
+            (0, 3), (1, 3), (4, 2), (7, 2), (10, 3), (13, 1)
+        ]
+
+        for (i, cell) in cells.enumerated() {
+            if let expectedCount = expectedFollowingListIndices.first(where: { $0.0 == i })?.1 {
+                XCTAssertEqual(cell.item?.accessibilityLabelPrefix, expectedCount.accessibilityPrefixForListOfCount)
+            } else {
+                XCTAssertNil(cell.item?.accessibilityLabelPrefix)
+            }
+        }
+    }
+
     func testExpandedEmptyCourse() {
         var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [])
         course.isCollapsed = false
@@ -314,5 +387,16 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
 
     func getCourseName() -> AnyPublisher<String, Never> {
         Just("").eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Helpers
+
+private extension CourseSyncSelectorViewModel.Cell {
+    var item: CourseSyncSelectorViewModel.Item? {
+        guard case .item(let item) = self else {
+            return nil
+        }
+        return item
     }
 }
