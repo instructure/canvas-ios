@@ -21,8 +21,8 @@ import CoreData
 
 final public class InboxEnrollment: NSManagedObject, WriteableModel {
 
-    @NSManaged public var id: String?
-    @NSManaged public var userId: String?
+    @NSManaged public var id: String
+    @NSManaged public var userId: String
     @NSManaged public var canvasContextID: String?
     @NSManaged public var observedUser: User?
 
@@ -30,6 +30,7 @@ final public class InboxEnrollment: NSManagedObject, WriteableModel {
     public static func save(_ item: APIEnrollment, in context: NSManagedObjectContext) -> InboxEnrollment {
         let dbEntity: InboxEnrollment = context.first(where: #keyPath(InboxEnrollment.id), equals: item.id?.value) ?? context.insert()
         dbEntity.userId = item.user_id.value
+        dbEntity.id = item.id?.value ?? ""
 
         if let courseID = item.course_id?.value {
             dbEntity.canvasContextID = "course_\(courseID)"

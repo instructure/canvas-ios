@@ -630,8 +630,8 @@
     </entity>
     <entity name="InboxEnrollment" representedClassName="Core.InboxEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="userId" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="userId" attributeType="String"/>
         <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User"/>
     </entity>
     <entity name="InboxMessageListItem" representedClassName="Core.InboxMessageListItem" syncable="YES">
