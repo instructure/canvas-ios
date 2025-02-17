@@ -146,11 +146,11 @@ struct CourseSyncSelectorView: View {
                         OfflineListCellView(
                             OfflineListCellViewModel(
                                 cellStyle: item.cellStyle,
-                                followingListCount: item.followingListCount,
                                 title: item.title,
                                 subtitle: item.subtitle,
                                 selectionState: item.selectionState,
                                 isCollapsed: item.isCollapsed,
+                                accessibilityLabelPrefix: item.accessibilityLabelPrefix,
                                 selectionDidToggle: item.selectionDidToggle,
                                 collapseDidToggle: item.collapseDidToggle,
                                 state: .idle

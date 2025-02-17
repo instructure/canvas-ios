@@ -21,33 +21,33 @@ import SwiftUI
 class OfflineListCellViewModel: ObservableObject {
 
     let cellStyle: OfflineListCellView.ListCellStyle
-    let followingListCount: Int?
     let title: String
     let subtitle: String?
     let selectionState: OfflineListCellView.SelectionState
     let isCollapsed: Bool?
+    let accessibilityLabelPrefix: String?
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
     let removeItemPressed: (() -> Void)?
     let state: OfflineListCellView.State
 
     init(cellStyle: OfflineListCellView.ListCellStyle,
-         followingListCount: Int? = nil,
          title: String,
          subtitle: String? = nil,
          selectionState: OfflineListCellView.SelectionState = .deselected,
          isCollapsed: Bool? = nil,
+         accessibilityLabelPrefix: String? = nil,
          selectionDidToggle: (() -> Void)? = nil,
          collapseDidToggle: (() -> Void)? = nil,
          removeItemPressed: (() -> Void)? = nil,
          progress: Float? = nil,
          state: OfflineListCellView.State) {
         self.cellStyle = cellStyle
-        self.followingListCount = followingListCount
         self.title = title
         self.subtitle = subtitle
         self.selectionState = selectionState
         self.isCollapsed = isCollapsed
+        self.accessibilityLabelPrefix = accessibilityLabelPrefix
         self.selectionDidToggle = selectionDidToggle
         self.collapseDidToggle = collapseDidToggle
         self.removeItemPressed = removeItemPressed
@@ -137,31 +137,15 @@ class OfflineListCellViewModel: ObservableObject {
             }
         }
 
-        var finalTextParts: [String] = []
-
-        if let listCount = followingListCount {
-            let countText = String.localizedNumberOfItems(listCount)
-            let listLabel = "\(String(localized: "List", bundle: .core)), \(countText)"
-            finalTextParts.append(listLabel)
-        }
-
-        if !titleText.isEmpty {
-            finalTextParts.append(titleText)
-        }
-
-        if !selectionText.isEmpty {
-            finalTextParts.append(selectionText)
-        }
-
-        if !collapseText.isEmpty {
-            finalTextParts.append(collapseText)
-        }
-
-        if !progressText.isEmpty {
-            finalTextParts.append(progressText)
-        }
-
-        return finalTextParts.joined(separator: ", ")
+        return [
+            accessibilityLabelPrefix?.nilIfEmpty,
+            titleText.nilIfEmpty,
+            selectionText.nilIfEmpty,
+            collapseText.nilIfEmpty,
+            progressText.nilIfEmpty
+        ]
+            .compactMap({ $0 })
+            .joined(separator: ", ")
     }
 
 }

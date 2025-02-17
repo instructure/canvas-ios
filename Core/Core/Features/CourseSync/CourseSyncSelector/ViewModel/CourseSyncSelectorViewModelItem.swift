@@ -46,8 +46,8 @@ extension CourseSyncSelectorViewModel {
         var subtitle: String?
         let selectionState: OfflineListCellView.SelectionState
         var isCollapsed: Bool?
+        var accessibilityLabelPrefix: String?
         let cellStyle: OfflineListCellView.ListCellStyle
-        var followingListCount: Int?
 
         fileprivate(set) var selectionDidToggle: (() -> Void)?
         fileprivate(set) var collapseDidToggle: (() -> Void)?
@@ -81,7 +81,9 @@ extension Array where Element == CourseSyncEntry {
 
         for (courseIndex, course) in enumerated() {
             var courseItem = course.makeViewModelItem()
-            courseItem.followingListCount = courseIndex == 0 ? count : nil
+            courseItem.accessibilityLabelPrefix = courseIndex == 0
+                ? count.accessibilityPrefixForListOfCount
+                : nil
             courseItem.selectionDidToggle = {
                 let selectionState: OfflineListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
                 interactor?.setSelected(selection: .course(course.id), selectionState: selectionState)
@@ -105,7 +107,9 @@ extension Array where Element == CourseSyncEntry {
                     continue
                 }
                 var tabItem = tab.makeViewModelItem()
-                tabItem.followingListCount = tabIndex == 0 ? course.tabs.count : nil
+                tabItem.accessibilityLabelPrefix = tabIndex == 0
+                ? course.tabs.count.accessibilityPrefixForListOfCount
+                    : nil
                 tabItem.selectionDidToggle = {
                     let selectionState: OfflineListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
                     interactor?.setSelected(selection: .tab(course.id, tab.id), selectionState: selectionState)
@@ -130,7 +134,9 @@ extension Array where Element == CourseSyncEntry {
                 for (fileIndex, file) in course.files.enumerated() {
 
                     var fileItem = file.makeViewModelItem()
-                    fileItem.followingListCount = fileIndex == 0 ? course.files.count : nil
+                    fileItem.accessibilityLabelPrefix = fileIndex == 0
+                        ? course.files.count.accessibilityPrefixForListOfCount
+                        : nil
                     fileItem.selectionDidToggle = {
                         interactor?.setSelected(selection: .file(course.id, file.id), selectionState: file.selectionState == .selected ? .deselected : .selected)
                     }
@@ -140,6 +146,13 @@ extension Array where Element == CourseSyncEntry {
         }
 
         return cells
+    }
+}
+
+extension Int {
+    var accessibilityPrefixForListOfCount: String {
+        let countText = String.localizedNumberOfItems(self)
+        return "\(String(localized: "List", bundle: .core)), \(countText)"
     }
 }
 

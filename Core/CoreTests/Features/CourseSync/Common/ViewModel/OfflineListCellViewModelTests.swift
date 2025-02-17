@@ -199,9 +199,9 @@ class OfflineListCellViewModelTests: CoreTestCase {
     func testAccessiblityText_FollowingList() {
         let testee = OfflineListCellViewModel(
             cellStyle: .listAccordionHeader,
-            followingListCount: 6,
             title: "Title",
             subtitle: "Subtitle",
+            accessibilityLabelPrefix: 6.accessibilityPrefixForListOfCount,
             state: .downloaded
         )
 
