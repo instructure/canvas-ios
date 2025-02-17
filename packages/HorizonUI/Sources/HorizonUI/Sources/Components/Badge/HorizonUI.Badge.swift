@@ -51,13 +51,13 @@ public extension HorizonUI {
                 Text(number)
                     .huiTypography(.tag)
                     .frame(minWidth: 19, minHeight: 19)
-                    .padding(.huiSpaces.primitives.xxSmall)
+                    .padding(.huiSpaces.space4)
                     .multilineTextAlignment(.center)
             case .icon(let icon):
                 icon
                     .resizable()
                     .frame(width: 17, height: 17)
-                    .padding(.huiSpaces.primitives.xxxSmall)
+                    .padding(.huiSpaces.space2)
             case .solidColor:
                 Circle()
                     .fill(.clear)

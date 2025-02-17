@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Using</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER).offline-sync</string>
@@ -92,6 +90,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Using</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Attach audio recordings to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Frameworks/Core.framework/lato_italic.ttf</string>
@@ -134,7 +136,5 @@
 	<true/>
 	<key>VersionName</key>
 	<string>Innovative Panda</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Attach audio recordings to messages and discussion posts or turn them in as assignment submissions.</string>
 </dict>
 </plist>

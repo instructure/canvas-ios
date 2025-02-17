@@ -23,10 +23,12 @@ import UserNotifications
 public class PushNotificationsInteractor {
     public static var shared = PushNotificationsInteractor(
         notificationCenter: UNUserNotificationCenter.current(),
+        notificationCenterDelegate: UserNotificationCenterDelegate(),
         logger: AppEnvironment.shared.logger
     )
 
     public let notificationCenter: UserNotificationCenterProtocol
+    private let notificationCenterDelegate: UNUserNotificationCenterDelegate
 
     private let logger: LoggerProtocol
     private var deviceToken: Data? {
@@ -34,6 +36,7 @@ public class PushNotificationsInteractor {
             subscribeToCanvasPushNotificationsIfNecessary()
         }
     }
+
     private var loginSession: LoginSession? {
         didSet {
             subscribeToCanvasPushNotificationsIfNecessary()
@@ -42,9 +45,12 @@ public class PushNotificationsInteractor {
 
     init(
         notificationCenter: UserNotificationCenterProtocol,
+        notificationCenterDelegate: UNUserNotificationCenterDelegate,
         logger: LoggerProtocol
     ) {
         self.notificationCenter = notificationCenter
+        self.notificationCenterDelegate = notificationCenterDelegate
+        self.notificationCenter.delegate = notificationCenterDelegate
         self.logger = logger
     }
 
@@ -109,7 +115,7 @@ public class PushNotificationsInteractor {
     ) {
         let api = API(session)
         api.makeRequest(PostCommunicationChannelRequest(pushToken: deviceToken)) { channel, _, error in
-            let retryCodes = [ Int(ECONNABORTED), NSURLErrorNetworkConnectionLost ]
+            let retryCodes = [Int(ECONNABORTED), NSURLErrorNetworkConnectionLost]
             if let code = (error as NSError?)?.code, retryCodes.contains(code), retriesLeft > 0 {
                 return self.createPushChannel(deviceToken: deviceToken, session: session, retriesLeft: retriesLeft - 1)
             }
@@ -139,7 +145,7 @@ public class PushNotificationsInteractor {
                 return self.logger.error(error.localizedDescription)
             }
             guard let preferences = response?.notification_preferences else { return }
-            let ignore = [ "registration", "summaries", "other", "migration", "alert", "reminder", "recording_ready" ]
+            let ignore = ["registration", "summaries", "other", "migration", "alert", "reminder", "recording_ready"]
             let notifications = preferences.compactMap {
                 ignore.contains($0.category ?? "") ? nil : $0.notification
             }

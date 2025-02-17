@@ -189,8 +189,8 @@ public struct ModuleItemSequenceView: View {
         } didTapPrevious: {
             goPrevious()
         }
-        .padding(.vertical, .huiSpaces.primitives.xSmall)
-        .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+        .padding(.vertical, .huiSpaces.space8)
+        .padding(.horizontal, .huiSpaces.space16)
         .background(Color.huiColors.surface.pagePrimary)
         .frame(height: 56)
     }

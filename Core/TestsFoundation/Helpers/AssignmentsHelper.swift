@@ -36,7 +36,7 @@ public class AssignmentsHelper: BaseHelper {
     }
 
     public static func oneNeedsGradingLabel(assignmentItem: XCUIElement) -> XCUIElement {
-        return assignmentItem.find(label: "1 NEEDS GRADING", type: .staticText)
+        return assignmentItem.find(label: "1 Needs Grading", type: .staticText)
     }
 
     public struct SpeedGrader {

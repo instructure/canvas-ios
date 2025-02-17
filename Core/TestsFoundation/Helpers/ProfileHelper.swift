@@ -30,7 +30,7 @@ public class ProfileHelper: BaseHelper {
     public static var userNameLabel: XCUIElement { app.find(id: "Profile.userNameLabel") }
     public static var versionLabel: XCUIElement { app.find(id: "Profile.versionLabel") }
     public static var inboxButton: XCUIElement { app.find(id: "Profile.inboxButton") }
-    public static var avatar: XCUIElement { app.find(labelContaining: "Profile avatar", type: .other) }
+    public static var avatar: XCUIElement { app.find(labelContaining: "Profile avatar", type: .button) }
     public static var studioButton: XCUIElement { app.find(id: "Profile.lti.arc.instructure.com.955147Button") }
     public static var networkButton: XCUIElement { app.find(id: "Profile.networkAvailabilityStatusButton") }
     public static var offlineLine: XCUIElement { app.find(label: "offlineLine", type: .image) }

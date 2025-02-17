@@ -61,7 +61,7 @@ public extension HorizonUI {
         }
 
         public var body: some View {
-            HStack(spacing: .huiSpaces.primitives.xSmall) {
+            HStack(spacing: .huiSpaces.space8) {
                 GeometryReader { geometry in
                     progressContentView(width: geometry.size.width * progress)
                 }
@@ -100,7 +100,7 @@ extension HorizonUI.ProgressBar {
             Group {
                 Text(percentageRound, format: .number) + Text("%")
             }
-            .padding(.horizontal, .huiSpaces.primitives.xSmall)
+            .padding(.horizontal, .huiSpaces.space8)
             .foregroundStyle(textColor)
             .huiTypography(.buttonTextMedium)
         }

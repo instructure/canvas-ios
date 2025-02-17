@@ -50,14 +50,16 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
-        LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
-        LoginHelper.Login.emailField.writeText(text: dsUser.login_id!)
-        LoginHelper.Login.passwordField.writeText(text: password)
-        LoginHelper.Login.loginButton.hit()
+        XCTContext.runActivity(named: "Login with \(dsUser.login_id!)") { _ in
+            LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
+            LoginHelper.Login.emailField.writeText(text: dsUser.login_id!)
+            LoginHelper.Login.passwordField.writeText(text: password)
+            LoginHelper.Login.loginButton.hit()
 
-        homeScreen.waitUntil(.visible, timeout: 20)
-        user.session = currentSession()
-        setAppThemeToSystem()
+            homeScreen.waitUntil(.visible, timeout: 20)
+            user.session = currentSession()
+            setAppThemeToSystem()
+        }
     }
 
     open func logInDSUser(_ dsUser: DSUser, lastLogin: Bool = true, password: String = "password") {

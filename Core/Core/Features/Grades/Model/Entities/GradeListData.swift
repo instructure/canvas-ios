@@ -32,7 +32,7 @@ public struct GradeListData: Identifiable, Equatable {
 
     struct AssignmentSections: Identifiable, Equatable {
         var id: String
-        let title: String?
+        let title: String
         var assignments: [Assignment]
     }
 }

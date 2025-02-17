@@ -44,15 +44,15 @@ public extension HorizonUI {
         }
 
         public var body: some View {
-            VStack(spacing: .huiSpaces.primitives.medium) {
+            VStack(spacing: .huiSpaces.space24) {
                 headerView
                 options
                     .background(Color.huiColors.surface.cardPrimary)
                     .huiCornerRadius(level: .level3)
-                    .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+                    .padding(.horizontal, .huiSpaces.space16)
             }
-            .padding(.vertical, .huiSpaces.primitives.medium)
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .padding(.vertical, .huiSpaces.space24)
+            .padding(.horizontal, .huiSpaces.space16)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.huiColors.primitives.beige11)
         }
@@ -68,7 +68,7 @@ public extension HorizonUI {
                 }
                 .huiElevation(level: .level2)
             }
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .padding(.horizontal, .huiSpaces.space16)
         }
 
         private var options: some View {
@@ -98,9 +98,9 @@ public extension HorizonUI {
                     .resizable()
                     .frame(width: 24, height: 24)
             }
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .padding(.horizontal, .huiSpaces.space16)
             .foregroundStyle(Color.huiColors.text.body)
-            .padding(.vertical, .huiSpaces.primitives.mediumSmall)
+            .padding(.vertical, .huiSpaces.space16)
 
         }
     }

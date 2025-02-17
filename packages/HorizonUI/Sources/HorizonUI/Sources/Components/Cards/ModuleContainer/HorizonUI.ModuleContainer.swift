@@ -56,16 +56,16 @@ public extension HorizonUI {
                 contentView
                 subtitleView
             }
-            .padding(.huiSpaces.primitives.mediumSmall)
+            .padding(.huiSpaces.space16)
             .background(Color.huiColors.surface.cardPrimary)
             .huiCornerRadius(level: .level2)
         }
 
         private var contentView: some View {
-            HStack(alignment: .top, spacing: .huiSpaces.primitives.xSmall) {
+            HStack(alignment: .top, spacing: .huiSpaces.space8) {
                 collapsedImage
                     .foregroundStyle(Color.huiColors.icon.default)
-                VStack(alignment: .leading, spacing: .huiSpaces.primitives.xxSmall) {
+                VStack(alignment: .leading, spacing: .huiSpaces.space4) {
                     StatusView(status: status)
                     headerView
                     moduleOverview
@@ -95,7 +95,7 @@ public extension HorizonUI {
         }
 
         private var moduleOverview: some View {
-            HStack(spacing: .huiSpaces.primitives.small) {
+            HStack(spacing: .huiSpaces.space12) {
                 Text("\(numberOfItems.description) Items")
                     .foregroundStyle(Color.huiColors.text.body)
 
@@ -119,7 +119,7 @@ public extension HorizonUI {
                     .foregroundStyle(Color.huiColors.text.body)
                     .huiTypography(.p2)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, .huiSpaces.primitives.medium)
+                    .padding(.top, .huiSpaces.space24)
             }
         }
     }

@@ -54,7 +54,7 @@ struct ModuleItemSequenceErrorView: View {
         Text("Retry", bundle: .horizon)
             .foregroundStyle(Color.huiColors.primitives.grey24)
             .huiTypography(.labelLargeBold)
-            .padding(.huiSpaces.primitives.smallMedium)
+            .padding(.huiSpaces.space10)
             .frame(width: 120, height: 55)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)

@@ -42,12 +42,12 @@ public extension HorizonUI {
                 alertIcon
                 VStack(alignment: .leading, spacing: .zero) {
                     textView
-                        .padding(.huiSpaces.primitives.mediumSmall)
+                        .padding(.huiSpaces.space16)
                     groupButtons
-                        .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+                        .padding(.bottom, .huiSpaces.space16)
                 }
                 trailingButtons
-                    .padding(.top,.huiSpaces.primitives.mediumSmall)
+                    .padding(.top,.huiSpaces.space16)
             }
             .frame(minHeight: 64)
             .huiBorder(level: .level2, color: viewModel.style.color, radius: cornerRadius.attributes.radius)
@@ -73,7 +73,7 @@ public extension HorizonUI {
         }
         
         private var trailingButtons: some View {
-            HStack(spacing: .huiSpaces.primitives.mediumSmall) {
+            HStack(spacing: .huiSpaces.space16) {
                 if case .single(confirmButton: let confirmButton) =  viewModel.buttons {
                     HorizonUI.PrimaryButton(confirmButton.title, type: .black) {
                         confirmButton.action()
@@ -83,7 +83,7 @@ public extension HorizonUI {
                     HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
                         onTapDismiss?()
                     }
-                    .padding(.trailing, .huiSpaces.primitives.mediumSmall)
+                    .padding(.trailing, .huiSpaces.space16)
                 }
             }
         }

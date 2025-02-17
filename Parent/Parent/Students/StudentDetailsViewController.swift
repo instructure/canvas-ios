@@ -117,6 +117,7 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
         }
         avatarView.name = student.first?.name ?? ""
         avatarView.url = student.first?.avatarURL
+        nameLabel.accessibilityTraits = .header
     }
 
     func updateThresholds() {

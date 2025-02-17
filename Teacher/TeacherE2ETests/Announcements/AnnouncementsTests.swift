@@ -77,14 +77,17 @@ class AnnouncementsTests: E2ETestCase {
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
         let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement).waitUntil(.visible)
-        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
         XCTAssertTrue(toggleButton.isVisible)
+        XCTAssertEqual(toggleButton.label, "\(globalAnnouncement.subject), Tap to view announcement")
+        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
         XCTAssertTrue(dismissButton.isVanished)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again
         toggleButton.hit()
         dismissButton = dismissButton.waitUntil(.visible)
+        XCTAssertEqual(toggleButton.label, "Hide content for \(globalAnnouncement.subject)")
         XCTAssertTrue(dismissButton.isVisible)
+        XCTAssertEqual(dismissButton.label, "Dismiss \(globalAnnouncement.subject)")
 
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
@@ -107,52 +110,44 @@ class AnnouncementsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Announcements
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
 
-        AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
-        let createButton = AnnouncementsHelper.createAnnouncementButton.waitUntil(.visible)
-        XCTAssertTrue(createButton.isVisible)
+        XCTContext.runActivity(named: "Navigate to new announcement screen") { _ in
+            let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+            XCTAssertTrue(courseCard.isVisible)
+            AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
+            let createButton = AnnouncementsHelper.createAnnouncementButton.waitUntil(.visible)
+            XCTAssertTrue(createButton.isVisible)
+            createButton.hit()
+        }
 
-        // MARK: Create new announcement
-        createButton.hit()
-        let cancelButton = EditorHelper.cancelButton.waitUntil(.visible)
-        let attachmentButton = EditorHelper.attachment.waitUntil(.visible)
-        let doneButton = EditorHelper.done.waitUntil(.visible)
-        let titleField = EditorHelper.title.waitUntil(.visible)
-        let descriptionField = EditorHelper.description.waitUntil(.visible)
-        let sections = EditorHelper.sections.waitUntil(.visible)
-        let delayPosting = EditorHelper.delayed.waitUntil(.visible)
-        let allowUsersToComment = EditorHelper.locked.waitUntil(.visible)
-        let allowRating = EditorHelper.allowRating.waitUntil(.visible)
-        XCTAssertTrue(cancelButton.isVisible)
-        XCTAssertTrue(attachmentButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
-        XCTAssertTrue(titleField.isVisible)
-        XCTAssertTrue(descriptionField.isVisible)
-        XCTAssertTrue(sections.isVisible)
-        XCTAssertTrue(delayPosting.isVisible)
-        XCTAssertTrue(delayPosting.hasValue(value: "0"))
-        XCTAssertTrue(allowUsersToComment.isVisible)
-        XCTAssertTrue(allowUsersToComment.hasValue(value: "0"))
-        XCTAssertTrue(allowRating.isVisible)
-        XCTAssertTrue(allowRating.hasValue(value: "0"))
+        let cancelButton = EditorHelper.cancelButton
+        let attachmentButton = EditorHelper.attachment
+        let titleField = EditorHelper.title
+        let descriptionField = EditorHelper.description
+        let publishButton = EditorHelper.publishButton
 
-        titleField.writeText(text: title)
-        descriptionField.writeText(text: description)
-        allowUsersToComment.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        allowUsersToComment.hit()
-        allowRating.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        allowRating.hit()
-        allowUsersToComment.waitUntil(.value(expected: "1"))
-        allowRating.waitUntil(.value(expected: "1"))
-        XCTAssertTrue(allowUsersToComment.hasValue(value: "1"))
-        XCTAssertTrue(allowRating.hasValue(value: "1"))
+        XCTContext.runActivity(named: "Check new announcement screen details") { _ in
+            cancelButton.waitUntil(.visible)
+            attachmentButton.waitUntil(.visible)
+            titleField.waitUntil(.visible)
+            descriptionField.waitUntil(.visible)
+            publishButton.waitUntil(.visible)
+            XCTAssertTrue(cancelButton.isVisible)
+            XCTAssertTrue(attachmentButton.isVisible)
+            XCTAssertTrue(titleField.isVisible)
+            XCTAssertTrue(descriptionField.isVisible)
+            XCTAssertTrue(publishButton.isVisible)
+        }
 
-        // MARK: Finish creating announcement, check if it was successful
-        doneButton.hit()
-        let newAnnouncementItem = Helper.cell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(newAnnouncementItem.isVisible)
-        XCTAssertTrue(newAnnouncementItem.hasLabel(label: title, strict: false))
+        XCTContext.runActivity(named: "Save new announcement") { _ in
+            titleField.writeText(text: title)
+            descriptionField.writeText(text: description)
+            publishButton.hit()
+        }
+
+        XCTContext.runActivity(named: "Check if new announcement is pushed") { _ in
+            let backButton = DiscussionsHelper.Details.backButton.waitUntil(.visible)
+            XCTAssertTrue(backButton.isVisible)
+        }
     }
 }
