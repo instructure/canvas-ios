@@ -41,8 +41,6 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
         ReactiveStore(useCase: GetObservedEnrollments(observerID: env.currentSession?.userID ?? ""))
         .getEntities()
         .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] enrollmentList in
-            print("ENROLLMENTS")
-            print(enrollmentList)
             self?.enrollments.send(enrollmentList)
         })
         .store(in: &subscriptions)
@@ -50,8 +48,6 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
         ReactiveStore(useCase: GetCourses())
             .getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] courseList in
-                print("COURSES")
-                print(courseList)
                 self?.courses.send(courseList)
             })
             .store(in: &subscriptions)
@@ -60,17 +56,14 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
             .map { (courseList, enrollmentList) in
                 return enrollmentList.compactMap { enrollment -> StudentContextItem? in
                     let course = courseList.first(where: { $0.canvasContextID == enrollment.canvasContextID })
-                    let user = enrollment.observedUser
-                    guard let course, let user else { return nil }
-                    return StudentContextItem(student: user, course: course)
+                    guard let course, let studentId = enrollment.observedUserId, let studentName = enrollment.observedUserDisplayName else { return nil }
+                    return StudentContextItem(studentId: studentId, studentDisplayName: studentName, course: course)
                 }
             }
             .sink(receiveCompletion: { [weak self] _ in
                 self?.state.send(.error)
             },
             receiveValue: { [weak self] items in
-                print("ITEMS")
-                print(items)
                 self?.studentContextItems.send(items)
             })
             .store(in: &subscriptions)

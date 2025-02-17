@@ -27,10 +27,10 @@ public struct ParentInboxCoursePickerView: View {
 
     public var body: some View {
         VStack {
-            ForEach(viewModel.items, id: \.student.id) { item in
+            ForEach(viewModel.items, id: \.self) { item in
                 VStack {
                     Text(item.course.name ?? "")
-                    Text(item.student.name)
+                    Text(item.studentDisplayName)
                 }
                 .padding()
             }

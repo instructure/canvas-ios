@@ -18,7 +18,8 @@
 
 import Core
 
-public struct StudentContextItem {
-    let student: User
+public struct StudentContextItem: Hashable {
+    let studentId: String
+    let studentDisplayName: String
     let course: Course
 }

@@ -23,8 +23,9 @@ final public class InboxEnrollment: NSManagedObject, WriteableModel {
 
     @NSManaged public var id: String
     @NSManaged public var userId: String
-    @NSManaged public var canvasContextID: String?
-    @NSManaged public var observedUser: User?
+    @NSManaged public var canvasContextID: String
+    @NSManaged public var observedUserId: String?
+    @NSManaged public var observedUserDisplayName: String?
 
     @discardableResult
     public static func save(_ item: APIEnrollment, in context: NSManagedObjectContext) -> InboxEnrollment {
@@ -37,7 +38,8 @@ final public class InboxEnrollment: NSManagedObject, WriteableModel {
         }
         if let apiUser = item.observed_user {
             let observedUserModel: User = User.save(apiUser, in: context)
-            dbEntity.observedUser = observedUserModel
+            dbEntity.observedUserId = observedUserModel.id
+            dbEntity.observedUserDisplayName = observedUserModel.name
         }
         return dbEntity
     }
