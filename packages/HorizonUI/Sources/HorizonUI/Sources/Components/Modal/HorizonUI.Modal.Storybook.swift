@@ -44,7 +44,6 @@ public extension HorizonUI.Modal {
                 isShowCancelButton: false,
                 confirmButton: .init(title: "View Submission") { print("Tapped") },
                 isPresented: $isShowSuccessModal) { successModalContent }
-                .animation(.smooth, value: [isShowSuccessModal, isShowConfirmModal])
         }
 
         private var successModalContent: some View {

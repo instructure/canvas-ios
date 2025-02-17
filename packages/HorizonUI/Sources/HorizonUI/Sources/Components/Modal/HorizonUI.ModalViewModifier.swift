@@ -64,6 +64,7 @@ fileprivate extension HorizonUI {
                     )
                 }
             }
+            .animation(.linear, value: isPresented)
         }
     }
 }
