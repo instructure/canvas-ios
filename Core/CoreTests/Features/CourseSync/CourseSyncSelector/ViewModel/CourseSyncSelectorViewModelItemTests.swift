@@ -389,3 +389,14 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
         Just("").eraseToAnyPublisher()
     }
 }
+
+// MARK: - Helpers
+
+private extension CourseSyncSelectorViewModel.Cell {
+    var item: CourseSyncSelectorViewModel.Item? {
+        guard case .item(let item) = self else {
+            return nil
+        }
+        return item
+    }
+}
