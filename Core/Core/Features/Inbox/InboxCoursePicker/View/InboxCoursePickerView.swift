@@ -114,7 +114,7 @@ public struct InboxCoursePickerView: View {
     
     private func groups(groups: [Group]) -> some View {
         VStack(spacing: 0) {
-            if !groups.isEmpty {
+            if !groups.isEmpty {  
                 Section(header:
                             VStack(spacing: 0) {
                     Text("Groups", bundle: .core)
