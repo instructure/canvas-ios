@@ -20,8 +20,8 @@ import SwiftUI
 
 public extension HorizonUI.Modal {
     struct Storybook: View {
-        @State var isShowSuccessModal: Bool = false
-        @State var isShowConfirmModal: Bool = false
+        @State private var isShowSuccessModal: Bool = false
+        @State private var isShowConfirmModal: Bool = false
 
         public var body: some View {
             VStack(spacing: 24)  {
