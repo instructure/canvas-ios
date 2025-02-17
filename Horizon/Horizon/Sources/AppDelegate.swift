@@ -21,11 +21,13 @@ import HorizonUI
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, LoginDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     var window: UIWindow?
+
+    private let sessionInteractor = SessionInteractor()
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
-        env.loginDelegate = self
+        env.loginDelegate = sessionInteractor
         env.router = Router(routes: HorizonRoutes.routeHandlers())
         env.app = .horizon
         env.window = window
@@ -51,12 +53,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate, L
     }
 }
 
+// MARK: - Notification Registration
+
 extension AppDelegate {
-    func openExternalURL(_ url: URL) {
-        UIApplication.shared.open(url)
+    func application(
+        _: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        PushNotificationsInteractor.shared.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
     }
 
-    func userDidLogin(session _: Core.LoginSession) {}
-
-    func userDidLogout(session _: Core.LoginSession) {}
+    func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        AppEnvironment.shared.reportError(error)
+    }
 }

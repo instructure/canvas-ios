@@ -501,6 +501,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             attemptDateButton.changesSelectionAsPrimaryAction = true
             attemptDateButton.showsMenuAsPrimaryAction = true
             attemptDateButton.menu = UIMenu(children: items)
+        } else {
+            attemptDateButton.accessibilityTraits = .staticText
         }
 
         attemptDateButton?.configuration = buttonConfig

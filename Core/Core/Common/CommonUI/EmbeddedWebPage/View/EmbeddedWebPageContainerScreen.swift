@@ -18,8 +18,9 @@
 
 import SwiftUI
 
-public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
-    @ObservedObject private var viewModel: ViewModel
+public struct EmbeddedWebPageContainerScreen: View {
+    @ObservedObject private var viewModel: EmbeddedWebPageContainerViewModel
+    @Environment(\.viewController) private var viewController
     private var features: [CoreWebViewFeature] = [
         .disableZoom,
         .darkModeForWebDiscussions,
@@ -28,7 +29,7 @@ public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
     ]
 
     public init(
-        viewModel: ViewModel,
+        viewModel: EmbeddedWebPageContainerViewModel,
         isPullToRefreshEnabled: Bool
     ) {
         self.viewModel = viewModel
@@ -46,6 +47,13 @@ public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
                 canToggleTheme: true,
                 configuration: viewModel.webViewConfig
             )
+            .onProvisionalNavigationStarted { webView, navigation in
+                viewModel.webView(webView, didStartProvisionalNavigation: navigation)
+            }
+            .navBarItems(leading: viewModel.leadingNavigationButton)
+            .onAppear {
+                viewModel.viewController = viewController.value
+            }
         }
         .navigationTitle(viewModel.navTitle, subtitle: viewModel.subTitle)
         .navigationBarStyle(.color(viewModel.contextColor))

@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
-import Core
 
 struct AccountView: View {
     @Bindable var viewModel: AccountViewModel
@@ -38,12 +38,12 @@ struct AccountView: View {
                 settingsSection
                     .padding(.top, 40)
                 supportSection
-                    .padding(.top, .huiSpaces.primitives.medium)
+                    .padding(.top, .huiSpaces.space24)
 
                 logoutRow
                     .padding(.top, 40)
             }
-            .padding(.huiSpaces.primitives.medium)
+            .padding(.huiSpaces.space24)
         }
         .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
@@ -54,7 +54,7 @@ struct AccountView: View {
     }
 
     private var settingsSection: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.primitives.small) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space12) {
             Text("Settings")
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
@@ -67,18 +67,21 @@ struct AccountView: View {
                         viewModel.profileDidTap(viewController: viewController)
                     }
                 )
+                divider
                 AccountEntryRowView(
                     title: String(localized: "Password", bundle: .horizon),
                     didTapRow: {
                         viewModel.passwordDidTap()
                     }
                 )
+                divider
                 AccountEntryRowView(
                     title: String(localized: "Notifications", bundle: .horizon),
                     didTapRow: {
-                        viewModel.notificationsDidTap()
+                        viewModel.notificationsDidTap(viewController: viewController)
                     }
                 )
+                divider
                 AccountEntryRowView(
                     title: String(localized: "Advanced", bundle: .horizon),
                     isLastItem: true,
@@ -90,8 +93,14 @@ struct AccountView: View {
         }
     }
 
+    private var divider: some View {
+        Rectangle()
+            .fill(Color.huiColors.lineAndBorders.lineStroke)
+            .frame(height: 1)
+    }
+
     private var supportSection: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.primitives.small) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space12) {
             Text("Support")
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
@@ -105,6 +114,7 @@ struct AccountView: View {
                         viewModel.betaCommunityDidTap()
                     }
                 )
+                divider
                 AccountEntryRowView(
                     title: "Give Feedback",
                     image: .huiIcons.openInNew,
@@ -136,7 +146,7 @@ struct AccountView: View {
 }
 #endif
 
-struct AccountEntryRowView: View {
+private struct AccountEntryRowView: View {
     private let title: String
     private let image: Image
     private let didTapRow: () -> Void
@@ -183,7 +193,7 @@ struct AccountEntryRowView: View {
                     .frame(width: 24, height: 24)
                     .foregroundStyle(Color.huiColors.icon.medium)
             }
-            .padding(.all, .huiSpaces.primitives.mediumSmall)
+            .padding(.all, .huiSpaces.space16)
         }
         .background(Color.huiColors.surface.cardPrimary)
         .huiCornerRadius(level: cornerRadiusLevel, corners: roundedCorners)

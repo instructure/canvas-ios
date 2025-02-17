@@ -30,7 +30,7 @@ struct ExternalURLView: View {
     var body: some View {
         VStack {
             VStack {
-                HStack(spacing: HorizonUI.spaces.primitives.xSmall) {
+                HStack(spacing: HorizonUI.spaces.space8) {
                     Image.huiIcons.link
                         .foregroundColor(.huiColors.icon.default)
 
@@ -43,7 +43,7 @@ struct ExternalURLView: View {
                     Image.huiIcons.openInNew
                         .foregroundColor(.huiColors.icon.default)
                 }
-                .padding(.all, .huiSpaces.primitives.medium)
+                .padding(.all, .huiSpaces.space24)
             }
             .onTapGesture { viewModel.openURL() }
             .huiCornerRadius(level: .level3)
@@ -51,7 +51,7 @@ struct ExternalURLView: View {
                 RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level3.attributes.radius)
                     .stroke(Color.huiColors.lineAndBorders.lineStroke, lineWidth: 1)
             }
-            .padding(.all, .huiSpaces.primitives.medium)
+            .padding(.all, .huiSpaces.space24)
         }
         .frame(maxHeight: .infinity, alignment: .top)
     }

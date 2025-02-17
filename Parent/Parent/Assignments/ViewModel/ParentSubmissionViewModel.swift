@@ -23,10 +23,6 @@ import WebKit
 class ParentSubmissionViewModel {
     // MARK: - Outputs
     public let hideLoadingIndicator = PassthroughSubject<Void, Never>()
-    public let showWebBackNavigationButton = CurrentValueSubject<Bool, Never>(false)
-
-    // MARK: - Inputs
-    public let didTapNavigateWebBackButton = PassthroughSubject<Void, Never>()
 
     // MARK: - Private
     private let interactor: ParentSubmissionInteractor
@@ -48,8 +44,6 @@ class ParentSubmissionViewModel {
     ) {
         self.viewController = viewController
 
-        handleWebBackButtonTap(webView: webView)
-        showBackNavigationButtonIfWebViewCanGoBack(webView: webView)
         handleFeedbackViewLoadResult(viewController: viewController, webView: webView)
     }
 
@@ -67,27 +61,6 @@ class ParentSubmissionViewModel {
                 }
 
             } receiveValue: { _ in }
-            .store(in: &subscriptions)
-    }
-
-    private func handleWebBackButtonTap(
-        webView: WKWebView
-    ) {
-        didTapNavigateWebBackButton
-            .sink { [weak webView] in
-                webView?.goBack()
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func showBackNavigationButtonIfWebViewCanGoBack(
-        webView: WKWebView
-    ) {
-        webView
-            .publisher(for: \.canGoBack)
-            .sink { [weak showWebBackNavigationButton] canGoBack in
-                showWebBackNavigationButton?.send(canGoBack)
-            }
             .store(in: &subscriptions)
     }
 

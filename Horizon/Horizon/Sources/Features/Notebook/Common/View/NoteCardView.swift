@@ -26,20 +26,20 @@ struct NoteCardView: View {
 
     var body: some View {
         NotebookCard {
-            VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
+            VStack(alignment: .leading, spacing: .huiSpaces.space8) {
                 Text(note.title)
                     .font(.regular12)
-                    .padding(.bottom, .huiSpaces.primitives.xSmall)
+                    .padding(.bottom, .huiSpaces.space8)
                 Text(note.highlightedText)
                     .font(.regular14Italic)
-                    .padding(.bottom, .huiSpaces.primitives.xSmall)
+                    .padding(.bottom, .huiSpaces.space8)
                 if !note.note.isEmpty {
                     Text(note.note)
                         .lineLimit(3)
                         .font(.regular16)
-                        .padding(.bottom, .huiSpaces.primitives.xSmall)
+                        .padding(.bottom, .huiSpaces.space8)
                 }
-                HStack(spacing: .huiSpaces.primitives.xSmall) {
+                HStack(spacing: .huiSpaces.space8) {
                     ForEach(note.types, id: \.self) { type in
                         noteCardLabelView(type: type)
                     }

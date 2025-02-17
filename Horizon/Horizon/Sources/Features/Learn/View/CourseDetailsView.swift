@@ -34,7 +34,7 @@ struct CourseDetailsView: View {
             headerView
             learningContentView()
         }
-        .padding(.top, .huiSpaces.primitives.small)
+        .padding(.top, .huiSpaces.space12)
         .hidden(viewModel.isLoaderVisible)
         .background(Color.huiColors.surface.pagePrimary)
         .onAppear { viewModel.showTabBar() }
@@ -46,7 +46,7 @@ struct CourseDetailsView: View {
     }
 
     private var headerView: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.primitives.mediumSmall) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             Text(viewModel.course.name)
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.primitives.black174)
@@ -57,11 +57,11 @@ struct CourseDetailsView: View {
                 textColor: .huiColors.primitives.white10
             )
         }
-        .padding([.horizontal, .bottom], .huiSpaces.primitives.medium)
+        .padding([.horizontal, .bottom], .huiSpaces.space24)
     }
 
     private func learningContentView() -> some View {
-        VStack(spacing: .huiSpaces.primitives.medium) {
+        VStack(spacing: .huiSpaces.space24) {
             tabSelectorView
             tabDetailsView()
         }
@@ -102,13 +102,13 @@ struct CourseDetailsView: View {
                 .tag(index)
             }
         }
-        .padding(.horizontal, .huiSpaces.primitives.medium)
+        .padding(.horizontal, .huiSpaces.space24)
         .tabViewStyle(.page(indexDisplayMode: .never))
         .animation(.smooth, value: selectedTabIndex)
     }
 
     private func modulesView(modules: [HModule]) -> some View {
-        VStack(spacing: .huiSpaces.primitives.xSmall) {
+        VStack(spacing: .huiSpaces.space8) {
             ForEach(modules) { module in
                 ExpandingModuleView(module: module) { url in
                     viewModel.moduleItemDidTap(url: url, from: viewController)

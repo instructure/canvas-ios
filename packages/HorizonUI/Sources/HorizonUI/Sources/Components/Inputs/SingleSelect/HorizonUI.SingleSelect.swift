@@ -58,7 +58,7 @@ extension HorizonUI {
         @State private var textInputMeasuredHeight: CGFloat = 0
         @State private var displayedOptionHeight: CGFloat = 0
         private var displayedOptionsHeight: CGFloat {
-            open ? min(displayedOptionHeight * CGFloat(filteredItems.count) + .huiSpaces.primitives.xxSmall, 300) : 0
+            open ? min(displayedOptionHeight * CGFloat(filteredItems.count) + .huiSpaces.space4, 300) : 0
         }
 
         // MARK: - Init
@@ -105,13 +105,13 @@ extension HorizonUI {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.huiColors.surface.pageSecondary)
-                .padding(.vertical, .huiSpaces.primitives.xxSmall)
+                .padding(.vertical, .huiSpaces.space4)
             }
             .background(Color.huiColors.surface.pageSecondary)
             .frame(maxHeight: displayedOptionsHeight)
             .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
-            .offset(y: textInputMeasuredHeight + .huiSpaces.primitives.xSmall)
+            .offset(y: textInputMeasuredHeight + .huiSpaces.space8)
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
 
@@ -120,8 +120,8 @@ extension HorizonUI {
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, .huiSpaces.primitives.small)
-                .padding(.vertical, .huiSpaces.primitives.xSmall)
+                .padding(.horizontal, .huiSpaces.space12)
+                .padding(.vertical, .huiSpaces.space8)
                 .background {
                     GeometryReader { geometry in
                         HStack {}
@@ -227,5 +227,5 @@ extension HorizonUI {
     ) {
         HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
     }
-    .padding(.horizontal, .huiSpaces.primitives.medium)
+    .padding(.horizontal, .huiSpaces.space24)
 }

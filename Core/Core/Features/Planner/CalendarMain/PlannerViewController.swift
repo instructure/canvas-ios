@@ -69,6 +69,7 @@ public class PlannerViewController: UIViewController {
 
         profileButton.accessibilityIdentifier = "PlannerCalendar.profileButton"
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
+        profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
 
         addButton.target = self
         addButton.action = nil

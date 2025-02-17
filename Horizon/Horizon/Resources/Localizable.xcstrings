@@ -56,6 +56,9 @@
     "Amsterdam (+01:00/+02:00)" : {
 
     },
+    "Announcements and Messages" : {
+
+    },
     "Answer" : {
 
     },
@@ -66,6 +69,9 @@
 
     },
     "Arizona (-07:00)" : {
+
+    },
+    "Assignment due dates" : {
 
     },
     "Astana (+05:00/+05:00)" : {
@@ -206,6 +212,9 @@
     "Dublin (+01:00/+00:00)" : {
 
     },
+    "E-mail" : {
+
+    },
     "Eastern Time (US & Canada) (-05:00/-04:00)" : {
 
     },
@@ -227,6 +236,9 @@
     "Email can only be changed by your institution" : {
 
     },
+    "Enable iOS Notifications" : {
+
+    },
     "Error" : {
 
     },
@@ -246,6 +258,15 @@
 
     },
     "Georgetown (-04:00/-04:00)" : {
+
+    },
+    "Get a notification anytime an assignment is scored or the score is changed, and anytime the score weight is changed." : {
+
+    },
+    "Get a notification anytime an assignment’s due date is added or changed." : {
+
+    },
+    "Get a notification anytime you receive a course announcement or a new message." : {
 
     },
     "Give me key takeaways" : {
@@ -521,6 +542,12 @@
     "Puerto Rico (-04:00)" : {
 
     },
+    "Push notification" : {
+
+    },
+    "Push notifications are currently disabled. To turn on, you will need to enable in iOS Settings." : {
+
+    },
     "Question" : {
 
     },
@@ -576,6 +603,9 @@
 
     },
     "Save Changes" : {
+
+    },
+    "Scores" : {
 
     },
     "Search" : {

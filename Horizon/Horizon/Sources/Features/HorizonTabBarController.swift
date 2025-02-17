@@ -18,7 +18,6 @@
 
 import Core
 import HorizonUI
-import UIKit
 import SwiftUI
 
 final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {

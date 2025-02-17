@@ -75,7 +75,7 @@ public extension HorizonUI {
 
         @ViewBuilder
         private func segmentView(title: String, isSelected: Bool) -> some View {
-            HStack(spacing: .huiSpaces.primitives.xxSmall) {
+            HStack(spacing: .huiSpaces.space4) {
                 if iconAlignment == .leading { icon(forSelected: isSelected) }
                 Text(title)
                     .huiTypography(.buttonTextLarge)
@@ -87,7 +87,7 @@ public extension HorizonUI {
 
                 if iconAlignment == .trailing { icon(forSelected: isSelected) }
             }
-            .padding(.vertical, .huiSpaces.primitives.smallMedium)
+            .padding(.vertical, .huiSpaces.space10)
             .frame(maxWidth: .infinity)
             .overlay {
                 if isSelected { selectedSegmentView }

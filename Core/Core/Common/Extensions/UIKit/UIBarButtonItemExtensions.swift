@@ -26,14 +26,15 @@ public extension UIBarButtonItem {
         appearance.setTitleTextAttributes(attributes, for: .normal)
     }
 
-    static func back(target: Any, action: Selector) -> UIBarButtonItem {
+    static func back(actionHandler: @escaping () -> Void) -> UIBarButtonItem {
         let config = UIImage.SymbolConfiguration(weight: .semibold)
         let backImage = UIImage(systemName: "chevron.backward", withConfiguration: config)
-        let barButton = UIBarButtonItem(image: backImage,
-                                        landscapeImagePhone: backImage,
-                                        style: .plain,
-                                        target: target,
-                                        action: action)
+        let barButton = UIBarButtonItemWithCompletion(
+            image: backImage,
+            landscapeImagePhone: backImage,
+            style: .plain,
+            actionHandler: actionHandler
+        )
         barButton.imageInsets = .init(top: 0, left: -7.5, bottom: 0, right: 0)
         barButton.landscapeImagePhoneInsets = .init(top: 0, left: -8, bottom: 0, right: 0)
         return barButton

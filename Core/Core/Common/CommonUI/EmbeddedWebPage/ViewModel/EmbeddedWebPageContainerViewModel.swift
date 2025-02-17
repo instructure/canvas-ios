@@ -19,19 +19,9 @@
 import Foundation
 import WebKit
 
-public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
-    public enum EmbeddedWebPageType {
-        case announcement(id: String)
-        case discussion(id: String)
-
-        public var assetID: String {
-            switch self {
-            case .announcement(let id): return id
-            case .discussion(let id): return id
-            }
-        }
-    }
-
+public class EmbeddedWebPageContainerViewModel: ObservableObject {
+    // MARK: - Outputs
+    @Published public private(set) var leadingNavigationButton: InstUI.NavigationBarButton?
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
 
@@ -45,8 +35,22 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         result.websiteDataStore = WKWebsiteDataStore.nonPersistent()
         return result
     }
-    private let isMasqueradingUser: Bool
 
+    // MARK: - Inputs
+
+    /// The view controller presenting the view.
+    public var viewController: UIViewController? {
+        didSet {
+            if let viewController {
+                leadingNavigationButton = webPageModel.leadingNavigationButton(host: viewController)
+            }
+        }
+    }
+
+    // MARK: - Private Properties
+
+    private let webPageModel: EmbeddedWebPageViewModel
+    private let isMasqueradingUser: Bool
     private let context: Context
     private let env = AppEnvironment.shared
     private lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -59,25 +63,17 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         self?.update()
     }
 
+    // MARK: - Public Methods
+
     public init(
         context: Context,
-        webPageType: EmbeddedWebPageType,
+        webPageModel: EmbeddedWebPageViewModel,
         environment: AppEnvironment = .shared
     ) {
+        self.webPageModel = webPageModel
         self.context = context
         self.isMasqueradingUser = environment.currentSession?.actAsUserID != nil
-
-        var urlPathComponent: String
-        switch webPageType {
-        case .announcement(let id):
-            // announcements/\(id) shows a navigation bar at the top
-            // so we need to use discussion topics
-            urlPathComponent = "discussion_topics/\(id)"
-            navTitle = String(localized: "Announcement Details", bundle: .core)
-        case .discussion(let id):
-            urlPathComponent = "discussion_topics/\(id)"
-            navTitle = String(localized: "Discussion Details", bundle: .core)
-        }
+        self.navTitle = webPageModel.navigationBarTitle
 
         self.url = {
             guard var baseURL = AppEnvironment.shared.currentSession?.baseURL else {
@@ -85,12 +81,13 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
             }
 
             baseURL.appendPathComponent(context.pathComponent)
-            baseURL.appendPathComponent(urlPathComponent)
-            baseURL = baseURL.appendingQueryItems(
+            baseURL.appendPathComponent(webPageModel.urlPathComponent)
+            baseURL.append(queryItems: webPageModel.queryItems)
+            baseURL.append(queryItems: [
                 URLQueryItem(name: "embed", value: "true"),
                 URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
                 URLQueryItem(name: "session_locale", value: Locale.current.identifier.replacingOccurrences(of: "_", with: "-"))
-            )
+            ])
 
             return baseURL
         }()
@@ -103,6 +100,20 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
             group.refresh()
         }
     }
+
+    // MARK: WebView Callbacks
+
+    public func webView(
+        _ webView: WKWebView,
+        didStartProvisionalNavigation navigation: WKNavigation!
+    ) {
+        webPageModel.webView(
+            webView,
+            didStartProvisionalNavigation: navigation
+        )
+    }
+
+    // MARK: - Private Methods
 
     private func update() {
         guard

@@ -60,11 +60,11 @@ struct AccountNavigationBar: View {
                     viewModel.navigateBack(viewController: viewController)
                 }
                 .frame(width: 44, height: 44)
-                .padding(.leading, .huiSpaces.primitives.medium)
+                .padding(.leading, .huiSpaces.space24)
                 Spacer()
             }
         }
-        .padding(.bottom, .huiSpaces.primitives.xSmall)
+        .padding(.bottom, .huiSpaces.space8)
     }
 }
 

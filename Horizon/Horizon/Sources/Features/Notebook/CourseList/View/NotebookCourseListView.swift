@@ -39,7 +39,7 @@ struct NotebookCourseListView: View {
             trailing: {}
         ) {
             NotebookSearchBar(term: $viewModel.term)
-                .padding(.vertical, .huiSpaces.primitives.medium)
+                .padding(.vertical, .huiSpaces.space24)
             NoteableTextView(
                 "This text belongs to a course. When highlighted, a note will be associated with the course. The highlight key is used to uniquely identify a block of text.",
                 highlightsKey: "highlightKey1",
@@ -62,7 +62,7 @@ struct NotebookCourseListView: View {
         let viewController: WeakViewController
 
         var body: some View {
-            VStack(spacing: .huiSpaces.primitives.smallMedium) {
+            VStack(spacing: .huiSpaces.space10) {
                 ForEach(listItems, id: \.id) { listItem in
                     ListViewItem(onTap: onTap, item: listItem, viewController: viewController)
                 }

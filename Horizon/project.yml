@@ -7,13 +7,14 @@ options:
     iOS: 17.0
   createIntermediateGroups: true
 settings:
-  CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
-  DEVELOPMENT_TEAM: B6333T4PXQ ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
+  CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
+  DEVELOPMENT_TEAM: B6333T4PXQ ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
   CURRENT_PROJECT_VERSION: 0.0.1
   MARKETING_VERSION: 0.0.1
   platform: iOS
+  CODE_SIGN_ENTITLEMENTS: Horizon/Resources/Horizon.entitlements
 sources:
   - path: ./
     excludes:
@@ -28,7 +29,7 @@ packages:
   # Local
   HorizonUI:
     path: ../packages/HorizonUI
-  
+
   # Remote
   Heap:
     url: https://github.com/heap/heap-ios-sdk.git
@@ -45,4 +46,3 @@ packages:
   FirebaseRemoteConfigSwift:
     url: https://github.com/firebase/firebase-ios-sdk.git
     exactVersion: 10.23.1
-

@@ -29,6 +29,10 @@ final class AccountViewModel {
     private(set) var institution: String = "Institution Name"
     var isShowingLogoutConfirmationAlert = false
 
+    // MARK: - Dependencies
+
+    private let router: Router
+
     // MARK: - Private properties
 
     public let confirmLogoutViewModel = ConfirmationAlertViewModel(
@@ -38,7 +42,6 @@ final class AccountViewModel {
         confirmButtonTitle: String(localized: "Yes", bundle: .core),
         isDestructive: false
     )
-    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -74,7 +77,9 @@ final class AccountViewModel {
 
     func passwordDidTap() {}
 
-    func notificationsDidTap() {}
+    func notificationsDidTap(viewController: WeakViewController) {
+        router.route(to: "/notification-settings", from: viewController)
+    }
 
     func advancedDidTap(viewController: WeakViewController) {
         if let url = URL(string: "/account/advanced") {

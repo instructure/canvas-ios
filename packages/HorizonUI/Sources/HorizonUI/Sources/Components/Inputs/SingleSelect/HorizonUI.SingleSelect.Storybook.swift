@@ -30,7 +30,7 @@ extension HorizonUI.SingleSelect {
                 options: Array(1 ... 20).map { "Option \($0)" }
             )
             .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, .huiSpaces.primitives.large)
+            .padding(.horizontal, .huiSpaces.space36)
         }
     }
 }

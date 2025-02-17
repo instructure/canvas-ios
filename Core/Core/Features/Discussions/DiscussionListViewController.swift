@@ -147,6 +147,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
         env.router.route(
             to: "\(context.pathComponent)/discussion_topics/new",
+            userInfo: [DiscussionsAssembly.SourceViewKey: self],
             from: self,
             options: .modal(isDismissable: false, embedInNav: true)
         )
