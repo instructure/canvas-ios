@@ -201,10 +201,10 @@ class OfflineListCellViewModelTests: CoreTestCase {
             cellStyle: .listAccordionHeader,
             title: "Title",
             subtitle: "Subtitle",
-            accessibilityLabelPrefix: 6.accessibilityPrefixForListOfCount,
+            accessibilityLabelPrefix: "some prefix",
             state: .downloaded
         )
 
-        XCTAssertEqual(testee.accessibilityText, "List, 6 items, Title Subtitle")
+        XCTAssertEqual(testee.accessibilityText, "some prefix, Title Subtitle")
     }
 }

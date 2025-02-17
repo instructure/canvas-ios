@@ -131,7 +131,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
         // Then
         XCTAssertEqual(cells.count, 3)
-        XCTAssertEqual(cells[0].item?.accessibilityLabelPrefix, 3.accessibilityPrefixForListOfCount)
+        XCTAssertEqual(cells[0].item?.accessibilityLabelPrefix, String.localizedAccessibilityListCount(3))
 
         XCTAssertNil(cells[1].item?.accessibilityLabelPrefix)
         XCTAssertNil(cells[2].item?.accessibilityLabelPrefix)
@@ -156,7 +156,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
         for (i, cell) in cells.enumerated() {
             if let expectedCount = expectedFollowingListIndices.first(where: { $0.0 == i })?.1 {
-                XCTAssertEqual(cell.item?.accessibilityLabelPrefix, expectedCount.accessibilityPrefixForListOfCount)
+                XCTAssertEqual(cell.item?.accessibilityLabelPrefix, String.localizedAccessibilityListCount(expectedCount))
             } else {
                 XCTAssertNil(cell.item?.accessibilityLabelPrefix)
             }
