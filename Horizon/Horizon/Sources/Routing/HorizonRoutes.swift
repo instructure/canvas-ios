@@ -319,6 +319,6 @@ extension HorizonRoutes {
                 url: url
             )
         }
-        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student, env: .shared)
     }
 }

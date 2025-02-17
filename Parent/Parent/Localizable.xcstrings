@@ -3354,13 +3354,13 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annuller"
+            "value" : "Annullér"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annuller"
+            "value" : "Annullér"
           }
         },
         "de" : {
@@ -3586,6 +3586,9 @@
           }
         }
       }
+    },
+    "Closed" : {
+
     },
     "Compose Message" : {
       "localizations" : {
@@ -4951,7 +4954,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cursos"
+            "value" : "Asignaturas"
           }
         },
         "fi" : {
@@ -5124,7 +5127,11 @@
         }
       }
     },
+    "Current student: %@" : {
+
+    },
     "Current student: %@. Tap to switch students" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -5897,7 +5904,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "رفض"
+            "value" : "تجاهل"
           }
         },
         "ca" : {
@@ -5909,7 +5916,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diystyru"
+            "value" : "Gwrthod"
           }
         },
         "da" : {
@@ -5927,7 +5934,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ablehnen"
+            "value" : "Verwerfen"
           }
         },
         "en-AU" : {
@@ -5987,13 +5994,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rejeter"
+            "value" : "Ignorer"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rejeter"
+            "value" : "Ignorer"
           }
         },
         "ga" : {
@@ -6035,7 +6042,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "棄却する"
+            "value" : "取り下げる"
           }
         },
         "mi" : {
@@ -6059,37 +6066,37 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avvise"
+            "value" : "Avvis"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verwijderen"
+            "value" : "Afwijzen"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odwołaj"
+            "value" : "Odrzuć"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dispensar"
+            "value" : "Ignorar"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recusar"
+            "value" : "Descartar"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отклонить"
+            "value" : "Исключить"
           }
         },
         "sl" : {
@@ -6107,7 +6114,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avfärda"
+            "value" : "Avvisa"
           }
         },
         "th" : {
@@ -6125,25 +6132,25 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解散"
+            "value" : "撤销"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解散"
+            "value" : "撤销"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取消"
+            "value" : "忽略"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取消"
+            "value" : "忽略"
           }
         }
       }
@@ -7689,7 +7696,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الدرجات"
+            "value" : "التقديرات"
           }
         },
         "ca" : {
@@ -8029,7 +8036,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saapuneet"
+            "value" : "Saapuvin postien laatikko"
           }
         },
         "fr" : {
@@ -8083,7 +8090,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "受信トレイ"
+            "value" : "メッセージ"
           }
         },
         "mi" : {
@@ -11547,19 +11554,19 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingen karakterer"
+            "value" : "Ingen karakter"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingen vurderinger"
+            "value" : "Ingen vurdering"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Noten"
+            "value" : "Keine Note"
           }
         },
         "en-AU" : {
@@ -11583,19 +11590,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No mark"
+            "value" : "No Mark"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No mark"
+            "value" : "No Mark"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No mark"
+            "value" : "No Mark"
           }
         },
         "es" : {
@@ -11667,7 +11674,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "評定なし"
+            "value" : "評定はありません"
           }
         },
         "mi" : {
@@ -11697,7 +11704,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geen beoordeling"
+            "value" : "Geen cijfer"
           }
         },
         "pl" : {
@@ -11709,37 +11716,37 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem Nota"
+            "value" : "Sem classificação"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem Nota"
+            "value" : "Sem nota"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Без оценки"
+            "value" : "Нет оценки"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ni ocen."
+            "value" : "Ni ocen"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingen omdöme"
+            "value" : "Inget omdöme"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingen omdöme"
+            "value" : "Ingen bedömning"
           }
         },
         "th" : {
@@ -13841,7 +13848,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Torna-ho a provar"
+            "value" : "Torna a provar-ho"
           }
         },
         "cy" : {
@@ -13997,7 +14004,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prøv igjen"
+            "value" : "Forsøk igjen"
           }
         },
         "nl" : {
@@ -15877,6 +15884,9 @@
           }
         }
       }
+    },
+    "Tap to switch students" : {
+
     },
     "The linked item is no longer available." : {
       "localizations" : {

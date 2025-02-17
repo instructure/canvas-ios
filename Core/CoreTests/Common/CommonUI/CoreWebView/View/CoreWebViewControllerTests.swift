@@ -19,6 +19,7 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import WebKit
 import XCTest
 
 class CoreWebViewControllerTests: CoreTestCase {
@@ -31,5 +32,54 @@ class CoreWebViewControllerTests: CoreTestCase {
         XCTAssert(limitedView?.isDescendant(of: controller.view) == true)
         controller.limitedInteractionView?.dismiss.sendActions(for: .primaryActionTriggered)
         XCTAssert(limitedView?.isDescendant(of: controller.view) == false)
+    }
+
+    func testBackToolbarButton() {
+        let navController = UINavigationController(rootViewController: controller)
+        let webView = MockWebView()
+        controller.webView = webView
+        controller.view.layoutIfNeeded()
+
+        // toolbar should have one item
+        controller.setupBackToolbarButton()
+        XCTAssertEqual(controller.toolbarItems?.count, 1)
+
+        // back button action should call goBack()
+        let backButton = controller.toolbarItems?.first as? UIBarButtonItemWithCompletion
+        backButton?.buttonDidTap(sender: .init())
+        XCTAssertEqual(webView.goBackCallsCount, 1)
+
+        // when webview can go back should show toolbar
+        webView.mockCanGoBack = true
+        XCTAssertEqual(navController.isToolbarHidden, false)
+
+        // when webview can't go back should hide toolbar
+        webView.mockCanGoBack = false
+        XCTAssertEqual(navController.isToolbarHidden, true)
+    }
+}
+
+private class MockWebView: CoreWebView {
+    var mockCanGoBack = false {
+        willSet {
+            willChangeValue(for: \.canGoBack)
+        }
+        didSet {
+            didChangeValue(for: \.canGoBack)
+        }
+    }
+    override var canGoBack: Bool {
+        mockCanGoBack
+    }
+
+    var goBackCallsCount: Int = 0
+    override func goBack() -> WKNavigation? {
+        goBackCallsCount += 1
+        return nil
+    }
+
+    override func load(_ request: URLRequest) -> WKNavigation? {
+        // noop to avoid unnecessary site load
+        nil
     }
 }

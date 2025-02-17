@@ -101,6 +101,7 @@ public class ComposeViewController: UIViewController, ErrorViewController {
         bodyView.textColor = .textDarkest
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
         bodyView.accessibilityLabel = String(localized: "Message", bundle: .core)
+        bodyView.accessibilityHint = String(localized: "Text Field", bundle: .core)
 
         subjectField.attributedPlaceholder = NSAttributedString(
             string: String(localized: "Subject", bundle: .core),

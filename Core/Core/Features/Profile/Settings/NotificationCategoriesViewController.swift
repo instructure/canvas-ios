@@ -71,6 +71,11 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         refresh()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIAccessibility.post(notification: .screenChanged, argument: tableView)
+    }
+
     @objc func refresh(sender: Any? = nil) {
         let force = sender != nil
         categories.refresh(force: force)
@@ -154,7 +159,8 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard isNotificationsEnabled else { return nil }
         let header: GroupedSectionHeaderView = tableView.dequeueHeaderFooter()
-        header.titleLabel.text = sections[section].name
+        let section = sections[section]
+        header.update(title: section.name, itemCount: section.rows.count)
         return header
     }
 

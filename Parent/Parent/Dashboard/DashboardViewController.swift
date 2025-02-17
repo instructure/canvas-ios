@@ -146,6 +146,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     func updateBadgeCount() {
         profileButton.addBadge(number: badgeCount, color: currentColor)
         profileButton.accessibilityLabel = String(localized: "Settings", bundle: .parent)
+        profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
         if badgeCount > 0 {
             profileButton.accessibilityHint = String.localizedStringWithFormat(
                 String(localized: "conversation_unread_messages", bundle: .core),
@@ -177,9 +178,10 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
             titleLabel.text = displayName
             dropdownButton.accessibilityLabel = String.localizedStringWithFormat(
-                String(localized: "Current student: %@. Tap to switch students", bundle: .parent),
+                String(localized: "Current student: %@", bundle: .parent),
                 displayName
             )
+            dropdownButton.accessibilityHint = String(localized: "Tap to switch students")
         } else {
             avatarView.isHidden = true
             titleLabel.text = String(localized: "Add Student", bundle: .parent)

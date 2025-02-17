@@ -175,16 +175,11 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Reply to thread
         let replyToPostText = "Text replying to reply of discussion"
         replyToPostButton.hit()
-
-        let replyButtons = DetailsHelper.Reply.replyButtons(count: 2)
-        XCTAssertTrue(replyButtons.count > 1)
-
-        let secondReplyButton = replyButtons[1].waitUntil(.visible)
-        XCTAssertTrue(textInput.waitUntil(.visible).isVisible)
-        XCTAssertTrue(secondReplyButton.isVisible)
+        let threadReplyButton = DetailsHelper.Reply.replyButton.waitUntil(.visible)
+        XCTAssertTrue(threadReplyButton.isVisible)
 
         textInput.writeText(text: replyToPostText)
-        secondReplyButton.hit()
+        threadReplyButton.hit()
         XCTAssertTrue(textInput.waitUntil(.vanish).isVanished)
 
         // MARK: Check visibility and label of the thread reply
@@ -232,57 +227,23 @@ class DiscussionsTests: E2ETestCase {
         newDiscussionButton.hit()
         let cancelButton = EditorHelper.cancelButton.waitUntil(.visible)
         let attachmentButton = EditorHelper.attachmentButton.waitUntil(.visible)
-        let doneButton = EditorHelper.doneButton.waitUntil(.visible)
+        let saveAndPublishButton = EditorHelper.saveAndPublishButton.waitUntil(.visible)
         let titleField = EditorHelper.titleField.waitUntil(.visible)
         let descriptionField = EditorHelper.descriptionField.waitUntil(.visible)
-        let publishToggle = EditorHelper.publishedToggle.waitUntil(.visible)
-        let sections = EditorHelper.sectionsButton.waitUntil(.visible)
-        let threadedToggle = EditorHelper.threadedToggle.waitUntil(.visible)
-        let requireInitialPostToggle = EditorHelper.requireInitialPostToggle.waitUntil(.visible)
-        let allowRatingToggle = EditorHelper.allowRatingToggle.waitUntil(.visible)
         XCTAssertTrue(cancelButton.isVisible)
         XCTAssertTrue(attachmentButton.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
+        XCTAssertTrue(saveAndPublishButton.isVisible)
         XCTAssertTrue(titleField.isVisible)
         XCTAssertTrue(descriptionField.isVisible)
-        XCTAssertTrue(publishToggle.isVisible)
-        XCTAssertTrue(publishToggle.hasValue(value: "0"))
-        XCTAssertTrue(sections.isVisible)
-        XCTAssertTrue(threadedToggle.isVisible)
-        XCTAssertTrue(threadedToggle.hasValue(value: "0"))
-        XCTAssertTrue(requireInitialPostToggle.isVisible)
-        XCTAssertTrue(requireInitialPostToggle.hasValue(value: "0"))
-        XCTAssertTrue(allowRatingToggle.isVisible)
-        XCTAssertTrue(allowRatingToggle.hasValue(value: "0"))
 
         titleField.writeText(text: newTitle)
         descriptionField.writeText(text: newDescription)
-        publishToggle.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        publishToggle.hit()
-        allowRatingToggle.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
-        allowRatingToggle.hit()
-        publishToggle.waitUntil(.value(expected: "1"))
-        allowRatingToggle.waitUntil(.value(expected: "1"))
-        XCTAssertTrue(publishToggle.hasValue(value: "1"))
-        XCTAssertTrue(allowRatingToggle.hasValue(value: "1"))
-
-        let onlyGradersCanRateToggle = EditorHelper.onlyGradersCanRateToggle.waitUntil(.visible)
-        let sortByRatingToggle = EditorHelper.sortByRatingToggle.waitUntil(.visible)
-        XCTAssertTrue(onlyGradersCanRateToggle.isVisible)
-        XCTAssertTrue(onlyGradersCanRateToggle.hasValue(value: "0"))
-        XCTAssertTrue(sortByRatingToggle.isVisible)
-        XCTAssertTrue(sortByRatingToggle.hasValue(value: "0"))
-
-        let availableFromButton = EditorHelper.availableFromButton.waitUntil(.visible)
-        let availableUntilButton = EditorHelper.availableUntilButton.waitUntil(.visible)
-        XCTAssertTrue(availableFromButton.isVisible)
-        XCTAssertTrue(availableUntilButton.isVisible)
 
         // MARK: Finish creating discussion, check if it was successful
-        doneButton.hit()
+        saveAndPublishButton.hit()
 
-        // MARK: Check if creating new discussion was successful
-        let newDiscussionElement = Helper.discussionButtonByLabel(label: newTitle).waitUntil(.visible)
-        XCTAssertTrue(newDiscussionElement.isVisible)
+        // MARK: Check if new discussion is pushed
+        let backButton = DiscussionsHelper.Details.backButton.waitUntil(.visible)
+        XCTAssertTrue(backButton.isVisible)
     }
 }
