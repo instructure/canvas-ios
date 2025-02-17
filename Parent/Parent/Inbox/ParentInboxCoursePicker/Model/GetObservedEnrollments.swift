@@ -18,9 +18,12 @@
 
 import Foundation
 import CoreData
+import Core
 
 public class GetObservedEnrollments: CollectionUseCase {
-    public typealias Model = Enrollment
+
+    public typealias Model = InboxEnrollment
+    public typealias Response = Request.Response
 
     let observerID: String
 
@@ -33,7 +36,7 @@ public class GetObservedEnrollments: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Enrollment.userID), equals: observerID, orderBy: #keyPath(Enrollment.id))
+        return .where(#keyPath(InboxEnrollment.userId), equals: observerID, orderBy: #keyPath(InboxEnrollment.id))
     }
 
     public var request: GetEnrollmentsRequest {
@@ -42,12 +45,5 @@ public class GetObservedEnrollments: CollectionUseCase {
             includes: [.observed_users, .avatar_url],
             states: GetEnrollmentsRequest.State.allForParentObserver
         )
-    }
-
-    public func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        response?.forEach { item in
-            let enrollment: Enrollment = client.first(where: #keyPath(Enrollment.id), equals: item.id!.rawValue) ?? client.insert()
-            enrollment.update(fromApiModel: item, course: nil, in: client)
-        }
     }
 }

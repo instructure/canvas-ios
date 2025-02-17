@@ -28,7 +28,7 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private var courses = CurrentValueSubject<[Course], Error>([])
-    private var enrollments = CurrentValueSubject<[Enrollment], Error>([])
+    private var enrollments = CurrentValueSubject<[InboxEnrollment], Error>([])
 
     public init(env: AppEnvironment) {
 //        ReactiveStore(
