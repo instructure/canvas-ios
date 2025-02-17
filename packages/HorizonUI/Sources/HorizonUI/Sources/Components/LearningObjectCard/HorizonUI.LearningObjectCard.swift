@@ -67,19 +67,19 @@ public extension HorizonUI {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.huiColors.text.body)
                     .huiTypography(.p2)
-                    .padding(.top, .huiSpaces.primitives.mediumSmall)
+                    .padding(.top, .huiSpaces.space16)
 
                 Text(learningObjectName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.huiColors.surface.institution)
                     .huiTypography(.h3)
-                    .padding(.top, .huiSpaces.primitives.smallMedium)
+                    .padding(.top, .huiSpaces.space10)
 
                 courseInfoView()
-                    .padding(.top, .huiSpaces.primitives.xLarge)
+                    .padding(.top, .huiSpaces.space48)
             }
             .frame(maxWidth: .infinity)
-            .padding(.huiSpaces.primitives.large)
+            .padding(.huiSpaces.space36)
             .background(Color.huiColors.surface.cardPrimary)
             .huiCornerRadius(level: .level2)
             .huiElevation(level: .level4)
@@ -94,7 +94,7 @@ public extension HorizonUI {
         }
 
         private func setCoursePropertiesView() -> some View {
-            VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
+            VStack(alignment: .leading, spacing: .huiSpaces.space8) {
                 if let duration {
                     HorizonUI.Pill(
                         title: duration,

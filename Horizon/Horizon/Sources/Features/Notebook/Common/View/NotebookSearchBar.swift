@@ -38,7 +38,7 @@ struct NotebookSearchBar: View {
 
             Image.huiIcons.search
                     .foregroundColor(.textDarkest)
-                    .padding(.leading, .huiSpaces.primitives.mediumSmall)
+                    .padding(.leading, .huiSpaces.space16)
         }
     }
 }

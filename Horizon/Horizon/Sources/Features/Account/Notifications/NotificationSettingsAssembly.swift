@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import SwiftUI
 
-public struct GetCommunicationChannels: CollectionUseCase {
-    public typealias Model = CommunicationChannel
-    public typealias Response = Request.Response
+final class NotificationSettingsAssembly {
+    static func makeView() -> UIViewController {
+        CoreHostingController(
+            NotificationSettingsView(
+                viewModel: NotificationSettingsViewModel(router: AppEnvironment.shared.router)
+            )
+        )
+    }
 
-    public let cacheKey: String? = "get-user-self-communication-channels"
-
-    public let request = GetCommunicationChannelsRequest()
-
-    public let scope = Scope(predicate: .all, order: [
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.typeRaw), ascending: true),
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true)
-    ])
-
-    public init() {}
+    #if DEBUG
+    static func makePreview() -> NotificationSettingsView {
+        NotificationSettingsView(
+            viewModel: NotificationSettingsViewModel(router: AppEnvironment.shared.router)
+        )
+    }
+    #endif
 }

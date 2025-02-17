@@ -105,14 +105,14 @@ public extension HorizonUI {
                 verticalPadding = 0
                 minHeight = 17
             } else {
-                horizontalPadding = isSmall ? .huiSpaces.primitives.xSmall : .huiSpaces.primitives.small
-                verticalPadding = isSmall ? .huiSpaces.primitives.xxSmall : .huiSpaces.primitives.xSmall
+                horizontalPadding = isSmall ? .huiSpaces.space8 : .huiSpaces.space12
+                verticalPadding = isSmall ? .huiSpaces.space4 : .huiSpaces.space8
                 minHeight = isSmall ? 25 : 33
             }
         }
 
         public var body: some View {
-            HStack(spacing: .huiSpaces.primitives.xxSmall) {
+            HStack(spacing: .huiSpaces.space4) {
                 if let icon {
                     icon
                         .resizable()

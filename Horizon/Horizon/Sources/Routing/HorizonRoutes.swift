@@ -37,7 +37,8 @@ enum HorizonRoutes {
         inboxRoutes,
         externalToolRoutes,
         notebookRoutes,
-        aiRoutes
+        aiRoutes,
+        notificationSettings
     ]
 
     private static var accountRoutes: [RouteHandler] {
@@ -214,11 +215,11 @@ enum HorizonRoutes {
     private static var notebookRoutes: [RouteHandler] {
         [
             RouteHandler("/notebook") { _, _, _ in
-                return NotebookCourseListAssembly.makeViewController()
+                NotebookCourseListAssembly.makeViewController()
             },
             RouteHandler("/notebook/:courseID") { _, params, _ in
                 guard let courseId = params["courseID"] else { return nil }
-                return NotebookCourseAssembly.makeView(courseId: courseId	)
+                return NotebookCourseAssembly.makeView(courseId: courseId)
             },
             RouteHandler("/notebook/note/:noteID") { _, params, _ in
                 guard let noteId = params["noteID"] else { return nil }
@@ -241,6 +242,14 @@ enum HorizonRoutes {
             },
             RouteHandler("/summary") { _, _, _ in
                 ChatBotAssembly.makeAISummaryView()
+            }
+        ]
+    }
+
+    private static var notificationSettings: [RouteHandler] {
+        [
+            RouteHandler("/notification-settings") { _, _, _ in
+                NotificationSettingsAssembly.makeView()
             }
         ]
     }

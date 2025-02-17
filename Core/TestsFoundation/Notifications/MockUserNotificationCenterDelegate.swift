@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+public class MockUserNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
+    public override init() {}
 
-public struct GetCommunicationChannels: CollectionUseCase {
-    public typealias Model = CommunicationChannel
-    public typealias Response = Request.Response
+    public func userNotificationCenter(
+        _: UNUserNotificationCenter,
+        willPresent _: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound])
+    }
 
-    public let cacheKey: String? = "get-user-self-communication-channels"
-
-    public let request = GetCommunicationChannelsRequest()
-
-    public let scope = Scope(predicate: .all, order: [
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.typeRaw), ascending: true),
-        NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true)
-    ])
-
-    public init() {}
+    public func userNotificationCenter(
+        _: UNUserNotificationCenter,
+        didReceive _: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        completionHandler()
+    }
 }

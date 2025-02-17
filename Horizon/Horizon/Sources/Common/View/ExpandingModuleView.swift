@@ -38,15 +38,15 @@ struct ExpandingModuleView: View {
             if isExpanded {
                 Divider()
                     .background(Color.huiColors.lineAndBorders.lineStroke)
-                    .padding(.bottom, .huiSpaces.primitives.mediumSmall)
+                    .padding(.bottom, .huiSpaces.space16)
 
                 ModuleItemListView(items: module.items) { selectedItem in
                     handleItemTap(selectedItem)
                 }
-                .padding(.bottom, .huiSpaces.primitives.large)
+                .padding(.bottom, .huiSpaces.space36)
             }
         }
-        .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+        .padding(.horizontal, .huiSpaces.space16)
     }
 
     private var header: some View {

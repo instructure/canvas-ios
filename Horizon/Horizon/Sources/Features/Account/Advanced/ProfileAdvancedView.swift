@@ -46,7 +46,7 @@ struct ProfileAdvancedView: View {
                 }
             }
             .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, .huiSpaces.primitives.large)
+            .padding(.horizontal, .huiSpaces.space36)
         }
         .onTapGesture {
             print("On Tap")

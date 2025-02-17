@@ -42,8 +42,8 @@ extension HorizonUI.Controls {
         }
 
         var body: some View {
-            VStack(alignment: .leading, spacing: .huiSpaces.primitives.xxSmall) {
-                HStack(alignment: .top, spacing: .huiSpaces.primitives.xxxSmall) {
+            VStack(alignment: .leading, spacing: .huiSpaces.space4) {
+                HStack(alignment: .top, spacing: .huiSpaces.space2) {
                     Text(title)
                     if isRequired {
                         Text(verbatim: "*")
@@ -62,7 +62,7 @@ extension HorizonUI.Controls {
         @ViewBuilder
         private var errorMessageView: some View {
             if let errorMessage {
-                HStack(spacing: .huiSpaces.primitives.xxxSmall) {
+                HStack(spacing: .huiSpaces.space2) {
                     Image.huiIcons.error
                         .resizable()
                         .frame(width: 14, height: 14)

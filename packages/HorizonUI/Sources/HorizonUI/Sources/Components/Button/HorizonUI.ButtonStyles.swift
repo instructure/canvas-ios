@@ -131,7 +131,7 @@ extension HorizonUI {
             }
             .huiTypography(.buttonTextLarge)
             .underline(isTextUnderlined, pattern: .solid)
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .padding(.horizontal, .huiSpaces.space16)
             .frame(height: isSmall ? smallButtonSize : largeButtonSize)
             .frame(maxWidth: fillsWidth ? .infinity : nil)
             .background(backgroundColor)

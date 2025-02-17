@@ -20,14 +20,16 @@ import Foundation
 
 public extension HorizonUI.Spaces {
     struct Primitives: Sendable {
-        public let xxxSmall: CGFloat = 2
-        public let xxSmall: CGFloat = 4
-        public let xSmall: CGFloat = 8
-        public let smallMedium: CGFloat = 10
-        public let small: CGFloat = 12
-        public let mediumSmall: CGFloat = 16
-        public let medium: CGFloat = 24
-        public let large: CGFloat = 36
-        public let xLarge: CGFloat = 48
+        public let space2: CGFloat = 2
+        public let space4: CGFloat = 4
+        public let space8: CGFloat = 8
+        public let space10: CGFloat = 10
+        public let space12: CGFloat = 12
+        public let space16: CGFloat = 16
+        public let space24: CGFloat = 24
+        public let space32: CGFloat = 32
+        public let space36: CGFloat = 36
+        public let space40: CGFloat = 40
+        public let space48: CGFloat = 48
     }
 }
