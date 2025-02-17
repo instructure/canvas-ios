@@ -89,4 +89,9 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(String.localizedNumberOfItems(5), "5 items")
         XCTAssertEqual(String.localizedNumberOfItems(0), "0 items")
     }
+
+    func testLocalizedAccessibilityListCount() {
+        XCTAssertEqual(String.localizedAccessibilityListCount(1), "List, 1 item")
+        XCTAssertEqual(String.localizedAccessibilityListCount(5), "List, 5 items")
+    }
 }

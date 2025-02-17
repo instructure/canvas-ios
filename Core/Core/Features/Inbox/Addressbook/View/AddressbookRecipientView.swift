@@ -33,7 +33,7 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
 
     public var body: some View {
         ScrollView {
-            peopleView
+            listView
         }
         .searchable(
             text: Binding { viewModel.searchText.value } set: { viewModel.searchText.send($0) },
@@ -60,16 +60,20 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
         .accessibilityIdentifier("Inbox.addRecipient.done")
     }
 
-    private var peopleView: some View {
+    private var listView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if viewModel.isAllRecipientButtonVisible { allRecipient }
+            if viewModel.isAllRecipientButtonVisible {
+                allRecipientsRow
+            }
             ForEach(viewModel.recipients, id: \.self) { user in
-                personRowView(user)
+                recipientRow(user)
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String.localizedAccessibilityListCount(viewModel.listCount))
     }
 
-    private func personRowView(_ recipient: Recipient) -> some View {
+    private func recipientRow(_ recipient: Recipient) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
                 viewModel.recipientDidTap.send(recipient)
@@ -97,7 +101,7 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
         }
     }
 
-    private var allRecipient: some View {
+    private var allRecipientsRow: some View {
             VStack(alignment: .leading, spacing: 0) {
                 Button(action: {
                     viewModel.recipientDidTap.send(viewModel.allRecipient)
