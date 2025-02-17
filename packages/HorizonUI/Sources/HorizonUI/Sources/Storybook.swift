@@ -140,6 +140,18 @@ public struct Storybook: View {
                     } label: {
                         Text("Alert Toast").tint(Color.black)
                     }
+
+                    NavigationLink {
+                        HorizonUI.FileDrop.Storybook()
+                    } label: {
+                        Text("File Drop").tint(Color.black)
+                    }
+
+                    NavigationLink {
+                        HorizonUI.UploadedFile.Storybook()
+                    } label: {
+                        Text("Uploaded File").tint(Color.black)
+                    }
                 }
             }
             .listStyle(.sidebar)
