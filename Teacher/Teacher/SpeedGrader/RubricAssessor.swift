@@ -258,8 +258,13 @@ struct RubricAssessor: View {
                 )
                 .accessibility(addTraits: isOn ? [.isButton, .isSelected] : .isButton)
                 .onTapGesture { isOn.toggle() }
-                .onLongPressGesture(perform: {}, onPressingChanged: { isLongPressing in
-                    withAnimation(.spring(response: 0.2, dampingFraction: 0.6)) {
+                // Minimumduration is infinity so the gesture never succeeds and completes but we detect that it's in progress.
+                .onLongPressGesture(minimumDuration: .infinity, perform: {}, onPressingChanged: { isLongPressing in
+                    // The gesture recognition starts as soon the user touches down but we want the appear animation
+                    // to be delayed to have the long press effect. Also, this delay is enough to timeout the tap gesture
+                    // so it won't toggle the state while the tooltip is also visible.
+                    let animationStartDelay = isLongPressing ? 0.5 : 0
+                    withAnimation(.spring(response: 0.2, dampingFraction: 0.6).delay(animationStartDelay)) {
                         showTooltip = isLongPressing
                     }
                 })
