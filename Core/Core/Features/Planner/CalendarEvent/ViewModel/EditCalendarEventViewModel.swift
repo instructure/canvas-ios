@@ -25,6 +25,15 @@ final class EditCalendarEventViewModel: ObservableObject {
     private enum Mode {
         case add
         case edit(id: String)
+
+        var successMessage: String {
+            switch self {
+            case .add:
+                String(localized: "Event added successfully", bundle: .core)
+            case .edit:
+                String(localized: "Event saved successfully", bundle: .core)
+            }
+        }
     }
 
     // MARK: - Output
@@ -426,15 +435,13 @@ final class EditCalendarEventViewModel: ObservableObject {
                     }
                     .eraseToAnyPublisher()
             }
-            .flatMap {
+            .flatMap { [weak self] in
                 guard UIAccessibility.isVoiceOverRunning() else {
                     return Just(Void()).eraseToAnyPublisher()
                 }
 
-                UIAccessibility
-                    .announce(
-                        String(localized: "Event added successfully", bundle: .core)
-                    )
+                let runningMode = self?.mode ?? .add
+                UIAccessibility.announce(runningMode.successMessage)
 
                 return NotificationCenter
                     .default
