@@ -23,7 +23,8 @@ import CombineExt
 class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[Course], Never>([])
+    public var favoriteCourses = CurrentValueSubject<[Course], Never>([])
+    public var moreCourses = CurrentValueSubject<[Course], Never>([])
     public var groups = CurrentValueSubject<[Group], Never>([])
 
     // MARK: - Private
@@ -39,9 +40,17 @@ class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
             .subscribe(state)
             .store(in: &subscriptions)
 
-        courseListStore
-            .allObjects
-            .subscribe(courses)
+        let courseObjects = courseListStore.allObjects
+        
+        // FIXME: this is not the correct way
+        courseObjects
+            .filterMany { $0.isFavorite }
+            .subscribe(favoriteCourses)
+            .store(in: &subscriptions)
+        
+        courseObjects
+            .filterMany { !$0.isFavorite }
+            .subscribe(moreCourses)
             .store(in: &subscriptions)
         courseListStore.exhaust()
 

@@ -34,9 +34,9 @@ class InboxCoursePickerInteractorLiveTests: CoreTestCase {
 
     func testPopulatesListItems() {
         XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.courses.value.count, 2)
+        XCTAssertEqual(testee.favoriteCourses.value.count, 2)
         XCTAssertEqual(testee.groups.value.count, 1)
-        XCTAssertEqual(testee.courses.value.first?.name, "Course 1")
+        XCTAssertEqual(testee.favoriteCourses.value.first?.name, "Course 1")
         XCTAssertEqual(testee.groups.value.first?.name, "Group 1")
     }
 

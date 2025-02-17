@@ -20,11 +20,11 @@ import SwiftUI
 
 public struct InboxCoursePickerView: View {
     @ObservedObject private var viewModel: InboxCoursePickerViewModel
-
+    
     init(viewModel: InboxCoursePickerViewModel) {
         self.viewModel = viewModel
     }
-
+    
     public var body: some View {
         ScrollView {
             let titleText = viewModel.groups.isEmpty
@@ -43,39 +43,41 @@ public struct InboxCoursePickerView: View {
         .navigationBarStyle(.modal)
         .background(Color.backgroundLightest)
     }
-
+    
     @ViewBuilder
     private var content: some View {
-            switch viewModel.state {
-            case .loading:
-                VStack {
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle())
-                        .padding(12)
-                }
-            case .data:
-                VStack(spacing: 0) {
-                    courses(courses: viewModel.courses)
-                    groups(groups: viewModel.groups)
-                }
-            case .empty, .error:
-                Text("Some error occured", bundle: .core)
-                    .font(.regular17)
-                    .foregroundColor(.textDarkest)
+        switch viewModel.state {
+        case .loading:
+            VStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+                    .padding(12)
             }
+        case .data:
+            VStack(spacing: 0) {
+                favoriteCourses(viewModel.favoriteCourses)
+                moreCourses(viewModel.moreCourses)
+                groups(groups: viewModel.groups)
+            }
+        case .empty, .error:
+            Text("Some error occured", bundle: .core)
+                .font(.regular17)
+                .foregroundColor(.textDarkest)
         }
-
+    }
+    
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
     }
-
-    private func courses(courses: [Course]) -> some View {
+    
+    private func favoriteCourses(_ courses: [Course]) -> some View {
         VStack(spacing: 0) {
-            if !courses.isEmpty {
-                Section(header:
-                        VStack(spacing: 0) {
-                    Text("Courses", bundle: .core)
+            if courses.isNotEmpty {
+                Section {
+                    ForEach(courses, id: \.id) { courseRow($0) }
+                } header: {
+                    Text("Favorite Courses", bundle: .core)
                         .font(.regular14)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundStyle(Color.textDarkest)
@@ -84,21 +86,37 @@ public struct InboxCoursePickerView: View {
                         .background(Color.backgroundLight)
                         .accessibilityHeading(.h1)
                     separator
-                    }
-                ) {
-                    ForEach(courses, id: \.id) { course in
-                        courseRow(course)
-                    }
                 }
             }
         }
     }
+    
+    private func moreCourses(_ courses: [Course]) -> some View {
+        VStack(spacing: 0) {
+            if courses.isNotEmpty {
+                Section {
+                    ForEach(courses, id: \.id) { courseRow($0) }
+                } header: {
+                    Text("More Courses", bundle: .core)
+                        .font(.regular14)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(Color.textDarkest)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 16)
+                        .background(Color.backgroundLight)
+                        .accessibilityHeading(.h1)
+                    separator
+                }
 
+            }
+        }
+    }
+    
     private func groups(groups: [Group]) -> some View {
         VStack(spacing: 0) {
             if !groups.isEmpty {
                 Section(header:
-                    VStack(spacing: 0) {
+                            VStack(spacing: 0) {
                     Text("Groups", bundle: .core)
                         .font(.regular14)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -108,7 +126,7 @@ public struct InboxCoursePickerView: View {
                         .background(Color.backgroundLight)
                         .accessibilityHeading(.h1)
                     separator
-                    }
+                }
                 ) {
                     VStack(spacing: 0) {
                         ForEach(groups, id: \.id) { group in
@@ -119,15 +137,15 @@ public struct InboxCoursePickerView: View {
             }
         }
     }
-
+    
     private func isSelected(_ course: Course) -> Bool {
         return viewModel.selectedRecipientContext?.context.id == course.id && viewModel.selectedRecipientContext?.context.contextType == .course
     }
-
+    
     private func isSelected(_ group: Group) -> Bool {
         viewModel.selectedRecipientContext?.context.id == group.id && viewModel.selectedRecipientContext?.context.contextType == .group
     }
-
+    
     private func courseRow(_ course: Course) -> some View {
         let courseName = course.name ?? course.courseCode ?? ""
         let accessibilityLabel = isSelected(course) ? Text("Selected: \(courseName)", bundle: .core) : Text(courseName)
@@ -147,18 +165,18 @@ public struct InboxCoursePickerView: View {
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 12)
                         .hidden(!isSelected(course))
-
+                    
                 }
                 .foregroundStyle(Color.textDarkest)
             }
             .padding(.vertical, 16)
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.course.\(course.id)")
-
+            
             separator
         }
     }
-
+    
     private func groupRow(_ group: Group) -> some View {
         let groupName = group.name
         let accessibilityLabel = isSelected(group) ? Text("Selected: \(groupName)", bundle: .core) : Text(groupName)
@@ -184,7 +202,7 @@ public struct InboxCoursePickerView: View {
             .padding(.vertical, 16)
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.group.\(group.id)")
-
+            
             separator
         }
     }
@@ -194,10 +212,17 @@ public struct InboxCoursePickerView: View {
 
 struct InboxCoursePickerView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
-
+    
     static var previews: some View {
         InboxCoursePickerAssembly.makePreview(env: env)
     }
 }
 
 #endif
+
+/// Convenience property inspired by Kotlin
+extension Collection {
+    var isNotEmpty: Bool {
+        return !isEmpty
+    }
+}
