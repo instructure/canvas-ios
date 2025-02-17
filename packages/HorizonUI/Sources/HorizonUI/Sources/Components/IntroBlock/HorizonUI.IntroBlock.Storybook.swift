@@ -39,7 +39,7 @@ public extension HorizonUI.IntroBlock {
                         moduleName: "Module Name Amet Adipiscing Elit ",
                         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object",
                         duration: "XX Mins",
-                        dueDate: "Due XX/XX",
+                        dueDate: "Due 10/12",
                         onBack: {dismiss()},
                         onMenu: {}
                     )
@@ -102,6 +102,9 @@ struct FrameReader: View {
         GeometryReader { geometry in
             Text("")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onAppear {
+                    onChange(geometry.frame(in: coordinateSpace))
+                }
                 .onChange(of: geometry.frame(in: coordinateSpace)) { _, newState in
                     onChange(newState)
                 }

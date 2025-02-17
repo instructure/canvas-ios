@@ -103,6 +103,11 @@ public struct Storybook: View {
                     } label: {
                         Text("Custom Menu Actions").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.SegmentedControl.Storybook()
+                    } label: {
+                        Text("Segmented Control").tint(Color.black)
+                    }
                 }
                 Section(header: Text("Components: Organisms")) {
                     NavigationLink {
@@ -131,9 +136,9 @@ public struct Storybook: View {
                         Text("Intro Block").tint(Color.black)
                     }
                     NavigationLink {
-                        HorizonUI.FileUploadSheet.Storybook()
+                        HorizonUI.Overlay.Storybook()
                     } label: {
-                        Text("File Upload Sheet").tint(Color.black)
+                        Text("Navigation Overlay").tint(Color.black)
                     }
                     NavigationLink {
                         HorizonUI.Toast.Storybook()

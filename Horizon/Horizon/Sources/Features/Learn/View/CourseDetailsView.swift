@@ -35,8 +35,14 @@ struct CourseDetailsView: View {
             learningContentView()
         }
         .padding(.top, .huiSpaces.space12)
+        .hidden(viewModel.isLoaderVisible)
         .background(Color.huiColors.surface.pagePrimary)
         .onAppear { viewModel.showTabBar() }
+        .overlay {
+            if viewModel.isLoaderVisible {
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
     }
 
     private var headerView: some View {
@@ -46,7 +52,7 @@ struct CourseDetailsView: View {
                 .foregroundStyle(Color.huiColors.primitives.black174)
 
             HorizonUI.ProgressBar(
-                progress: viewModel.course.progress,
+                progress: viewModel.course.progress / 100,
                 size: .medium,
                 textColor: .huiColors.primitives.white10
             )

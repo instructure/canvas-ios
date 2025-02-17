@@ -24,8 +24,11 @@ public extension HorizonUI {
 
         let moduleName: String
         let moduleItemName: String
-        let duration: String
-        let dueDate: String
+        let duration: String?
+        let countOfPoints: Double?
+        let dueDate: String?
+        let isOverdue: Bool
+        let attemptCount: String?
         let backgroundColor: Color
         let foregroundColor: Color
         let onBack: () -> Void
@@ -36,17 +39,23 @@ public extension HorizonUI {
         public init(
             moduleName: String,
             moduleItemName: String,
-            duration: String,
-            dueDate: String,
+            duration: String?,
+            countOfPoints: Double? = nil,
+            dueDate: String?,
+            isOverdue: Bool = false,
+            attemptCount: String? = nil,
             backgroundColor: Color = Color.huiColors.surface.institution,
-             foregroundColor: Color = Color.huiColors.text.surfaceColored,
+            foregroundColor: Color = Color.huiColors.text.surfaceColored,
             onBack: @escaping () -> Void,
             onMenu: @escaping () -> Void
         ) {
             self.moduleName = moduleName
             self.moduleItemName = moduleItemName
             self.duration = duration
+            self.countOfPoints = countOfPoints
             self.dueDate = dueDate
+            self.isOverdue = isOverdue
+            self.attemptCount = attemptCount
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
             self.onBack = onBack
@@ -63,6 +72,20 @@ public extension HorizonUI {
                     menuButton
                 }
                 moduleInfoView
+                if let attemptCount {
+                    let text = String(localized: "Attempts Allowed")
+                    Text("\(attemptCount) \(text)")
+                        .huiTypography(.p2)
+                        .foregroundStyle(foregroundColor)
+                }
+                if isOverdue {
+                    HorizonUI.Pill(
+                        title: String(localized: "Overdue"),
+                        style: .outline(.init(borderColor: foregroundColor,textColor: foregroundColor,iconColor: foregroundColor)),
+                        isUppercased: true,
+                        icon: nil
+                    )
+                }
             }
             .padding(.horizontal, .huiSpaces.space16)
             .padding(.bottom, .huiSpaces.space24)
@@ -103,14 +126,17 @@ public extension HorizonUI {
         }
 
         private var moduleInfoView: some View {
-            HStack {
-                Text(duration)
-                Spacer()
-                Text(dueDate)
-            }
+            Text(moduleItemInfo)
             .foregroundStyle(foregroundColor)
             .huiTypography(.p2)
             .padding(.horizontal, .huiSpaces.space16)
+        }
+
+        private var moduleItemInfo: String {
+            let dueText = dueDate.map { "\(String(localized: "Due")) \($0)" }
+            let pointsText = countOfPoints.map { "\($0) \(String(localized: "Points Possible"))" }
+            let items = [duration, dueText, pointsText].compactMap { $0 }
+            return items.joined(separator: items.count == 1 ? "" : " | ")
         }
     }
 }
@@ -120,7 +146,10 @@ public extension HorizonUI {
         moduleName: "Module Name Amet Adipiscing Elit",
         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object Name Lorem Ipsum Dolor",
         duration: "XX Mins",
-        dueDate: "Due XX/XX",
+        countOfPoints: 10.0,
+        dueDate: "Due 10/12",
+        isOverdue: true,
+        attemptCount: "Three",
         onBack: {},
         onMenu: {}
     )
