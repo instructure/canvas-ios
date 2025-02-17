@@ -38,7 +38,7 @@ public extension HorizonUI {
         }
 
         public var body: some View {
-            VStack(alignment: .center, spacing: .huiSpaces.primitives.medium) {
+            VStack(alignment: .center, spacing: .huiSpaces.space24) {
                 HorizonUI.PrimaryButton(String(localized: "Upload File"), type: .blue) {
                     onTap()
                 }
@@ -57,13 +57,13 @@ public extension HorizonUI {
         }
 
         private var acceptedFilesView: some View {
-            HStack(spacing: .huiSpaces.primitives.xxSmall) {
+            HStack(spacing: .huiSpaces.space2) {
                 Text(String(localized: "Accepted file types:"))
                 Text(acceptedFilesType)
             }
             .foregroundStyle(Color.huiColors.text.body)
             .huiTypography(.p2)
-            .padding(.horizontal, .huiSpaces.primitives.mediumSmall)
+            .padding(.horizontal, .huiSpaces.space16)
         }
     }
 }

@@ -52,7 +52,7 @@ public extension HorizonUI {
         }
 
         public var body: some View {
-            HStack(spacing: .huiSpaces.primitives.smallMedium) {
+            HStack(spacing: .huiSpaces.space10) {
                 if actionType == .delete {
                     HorizonUI.icons.checkCircleFull
                         .foregroundStyle(Color.huiColors.icon.success)
@@ -66,7 +66,7 @@ public extension HorizonUI {
                     onTap()
                 }
             }
-            .padding(.huiSpaces.primitives.mediumSmall)
+            .padding(.huiSpaces.space16)
             .huiBorder(level: .level1, color: Color.huiColors.lineAndBorders.lineStroke, radius: 16)
         }
     }
