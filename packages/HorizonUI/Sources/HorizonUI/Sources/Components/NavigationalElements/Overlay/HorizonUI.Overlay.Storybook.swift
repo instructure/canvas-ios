@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension HorizonUI.Overlay {
     struct Storybook: View {
-        @State private var present: Bool = false
+        @State private var isPresented: Bool = false
         @State private var height: CGFloat = 0.0
         @State private var buttons:[ButtonAttribute] = []
         @State private var title: String = ""
@@ -31,27 +31,22 @@ public extension HorizonUI.Overlay {
                 Button("Present File Sheet") {
                     buttons = viewModel.fileUploadButtons
                     title = "Upload File"
-                    present.toggle()
+                    isPresented.toggle()
 
                 }
 
                 Button("Tools Sheet") {
                     buttons = viewModel.toolsButtons
                     title = "Tools"
-                    present.toggle()
+                    isPresented.toggle()
                 }
             }
-            .sheet(isPresented: $present){
-                HorizonUI.Overlay(title: title, buttons: buttons)
-                    .readingFrame(onChange: { frame in
-                        height = frame.size.height
-                    })
-                    .presentationCompactAdaptation(.sheet)
-                    .presentationCornerRadius(32)
-                    .interactiveDismissDisabled()
-                    .presentationDetents([.height(height)])
-            }
-            .navigationTitle("File Upload Sheet")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .huiOverlay(
+                title: title,
+                buttons: buttons,
+                isPresented: $isPresented
+            )
         }
     }
 }

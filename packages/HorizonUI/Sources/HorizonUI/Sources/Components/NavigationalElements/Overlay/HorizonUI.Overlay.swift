@@ -20,20 +20,22 @@ import SwiftUI
 
 public extension HorizonUI {
     struct Overlay: View {
-        // MARK: - Private Properties
-
-        @Environment(\.dismiss) private var dismiss
-
         // MARK: - Dependencies
 
         private let title: String
         private let buttons: [ButtonAttribute]
+        @Binding private var isPresented: Bool
 
         // MARK: - Init
 
-        public init(title: String, buttons: [ButtonAttribute]) {
+        public init(
+            title: String,
+            buttons: [ButtonAttribute],
+            isPresented: Binding<Bool>
+        ) {
             self.title = title
             self.buttons = buttons
+            self._isPresented = isPresented
         }
 
         public var body: some View {
@@ -57,7 +59,7 @@ public extension HorizonUI {
                     .huiTypography(.h3)
                     .frame(maxWidth: .infinity)
                 HorizonUI.IconButton(HorizonUI.icons.close, type: .white) {
-                    dismiss()
+                    isPresented.toggle()
                 }
                 .huiElevation(level: .level2)
             }
@@ -67,7 +69,6 @@ public extension HorizonUI {
         private var options: some View {
             VStack(spacing: .zero) {
                 ForEach(buttons) { button in
-
                     Button {
                         button.onAction()
                     } label: {
@@ -118,7 +119,14 @@ public extension HorizonUI.Overlay {
 }
 
 #Preview {
-    HorizonUI.Overlay(title: "Title", buttons: [
-        .init(title: "Choose Photo or Video", icon: Image.huiIcons.image) { print("Choose Photo or Video") }
-    ])
+    HorizonUI
+        .Overlay(
+            title: "Title",
+            buttons: [
+                .init(title: "Choose Photo or Video",icon: Image.huiIcons.image) {
+                    print("Choose Photo or Video")
+                }
+            ],
+            isPresented: .constant(true)
+        )
 }

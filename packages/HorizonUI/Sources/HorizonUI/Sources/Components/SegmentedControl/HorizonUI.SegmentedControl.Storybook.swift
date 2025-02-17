@@ -20,48 +20,51 @@ import SwiftUI
 
 public extension HorizonUI.SegmentedControl {
     struct Storybook: View {
-        private let firstItems: [String] = ["Items 1", "Items 2"]
-        private let secondItems: [String] = ["Items 1", "Items 2", "Items 3"]
+        private let smallSetItems: [String] = ["Item 1", "Item 2"]
+        private let mediumSetItems: [String] = ["Item 1", "Item 2", "Item 3"]
+        private let largeSetItems: [String] = ["Item 1", "Item 2", "Item 3", "Item 4"]
+        private let extraLargeSetItems: [String] = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
 
-        @State private var selectedIndices: [Int] = Array(repeating: 0, count: 11)
+
+        @State private var selectedIndices: [Int] = Array(repeating: 0, count: 13)
 
         public var body: some View {
             ScrollView {
                 VStack(spacing: 20) {
                     HorizonUI.SegmentedControl(
-                        items: firstItems,
+                        items: smallSetItems,
                         icon: .add,
                         iconAlignment: .leading,
                         selectedIndex: $selectedIndices[0]
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: firstItems,
+                        items: smallSetItems,
                         icon: .add,
                         selectedIndex:  $selectedIndices[1]
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: firstItems,
+                        items: smallSetItems,
                         selectedIndex:  $selectedIndices[2]
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: firstItems,
+                        items: smallSetItems,
                         icon: .checkMark,
                         iconAlignment: .leading,
                         selectedIndex:  $selectedIndices[3]
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: firstItems,
+                        items: smallSetItems,
                         icon: .checkMark,
                         iconAlignment: .trailing,
                         selectedIndex:  $selectedIndices[4]
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: firstItems,
+                        items: smallSetItems,
                         icon: .checkMark,
                         iconAlignment: .trailing,
                         isShowIconForAllItems: false,
@@ -69,7 +72,7 @@ public extension HorizonUI.SegmentedControl {
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: secondItems,
+                        items: mediumSetItems,
                         icon: .checkMark,
                         iconAlignment: .trailing,
                         isShowIconForAllItems: false,
@@ -77,7 +80,7 @@ public extension HorizonUI.SegmentedControl {
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: secondItems,
+                        items: mediumSetItems,
                         icon: .add,
                         iconAlignment: .leading,
                         isShowIconForAllItems: false,
@@ -85,22 +88,32 @@ public extension HorizonUI.SegmentedControl {
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: secondItems,
+                        items: mediumSetItems,
                         icon: .add,
                         iconAlignment: .leading,
                         selectedIndex: $selectedIndices[8]
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: secondItems,
+                        items: mediumSetItems,
                         icon: .checkMark,
                         iconAlignment: .trailing,
                         selectedIndex: $selectedIndices[9]
                     )
 
                     HorizonUI.SegmentedControl(
-                        items: secondItems,
+                        items: mediumSetItems,
                         selectedIndex: $selectedIndices[10]
+                    )
+
+                    HorizonUI.SegmentedControl(
+                        items: largeSetItems,
+                        selectedIndex: $selectedIndices[11]
+                    )
+
+                    HorizonUI.SegmentedControl(
+                        items: extraLargeSetItems,
+                        selectedIndex: $selectedIndices[12]
                     )
                 }
                 .padding()
