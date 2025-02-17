@@ -40,6 +40,7 @@ struct DashboardOfflineSyncProgressCardView: View {
                 }
                 .accessibilityFocused($isProgressCardFocused)
                 .onAppear {
+                    UIAccessibility.announce(String(localized: "Offline sync started", bundle: .core))
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         isProgressCardFocused = true
                     }
