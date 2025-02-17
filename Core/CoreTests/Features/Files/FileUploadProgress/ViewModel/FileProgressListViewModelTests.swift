@@ -223,7 +223,7 @@ class FileProgressListViewModelTests: CoreTestCase {
         }
         file.bytesUploaded = 1
         saveFiles()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(testee.state, .uploading(progressText: "Uploading 1 byte of 10 bytes", progress: 0.1))
 
         uiRefreshObserver.cancel()

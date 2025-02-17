@@ -146,6 +146,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     func updateBadgeCount() {
         profileButton.addBadge(number: badgeCount, color: currentColor)
         profileButton.accessibilityLabel = String(localized: "Settings", bundle: .parent)
+        profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
         if badgeCount > 0 {
             profileButton.accessibilityHint = String.localizedStringWithFormat(
                 String(localized: "conversation_unread_messages", bundle: .core),

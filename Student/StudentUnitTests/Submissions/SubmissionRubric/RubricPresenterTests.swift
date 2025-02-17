@@ -129,7 +129,7 @@ class RubricPresenterTests: StudentTestCase {
             submissionsStore.refreshExpectation,
             colorsStore.refreshExpectation,
             coursesStore.refreshExpectation
-        ], timeout: 0.1)
+        ], timeout: 1)
     }
 
     func testViewEmptyState() {

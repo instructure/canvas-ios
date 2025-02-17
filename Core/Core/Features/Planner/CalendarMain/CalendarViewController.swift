@@ -213,6 +213,10 @@ class CalendarViewController: ScreenViewTrackableViewController {
         updateSelectedDate(date)
     }
 
+    func accessibilityFocusOnSelectedButton() {
+        days.accessibilityFocusOnSelectedButton()
+    }
+
     func animateMonthTitle(_ title: String) {
         let duration: TimeInterval = 0.185
         UIView.animate(withDuration: duration, animations: {

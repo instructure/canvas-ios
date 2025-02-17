@@ -26,29 +26,38 @@ public extension UIAccessibility {
         - announcementHandler: This parameter is only used for testing purposes, use its default value otherwise.
         - isVoiceOverRunning: This parameter is only used for testing purposes, use its default value otherwise.
      */
-    static func announce(_ announcement: String,
-                         announcementHandler: @escaping (UIAccessibility.Notification, Any?) -> Void = UIAccessibility.post(notification:argument:),
-                         isVoiceOverRunning: () -> Bool = UIAccessibility.isVoiceOverRunning) {
+    static func announce(
+        _ announcement: String,
+        announcementHandler: @escaping (UIAccessibility.Notification, Any?) -> Void = UIAccessibility.post(notification:argument:),
+        isVoiceOverRunning: () -> Bool = UIAccessibility.isVoiceOverRunning)
+    {
         guard isVoiceOverRunning(), _announcementHandler == nil else { return }
         _announcementHandler = announcementHandler
+
+        let announcement = NSAttributedString(
+            string: announcement,
+            attributes: [
+                .accessibilitySpeechQueueAnnouncement: true
+            ]
+        )
         observeAnnouncementFinishedNofitication(announcement)
         _announcementHandler?(.announcement, announcement)
     }
 
     /**
-     This is a helper method for testing purposes. The reason behind is that you can't pass around a reference of a method getter only of a function, so we wrap the UIAccessibility.isVoiceOverRunning property into a function and use this to mock the value of this property while testing the `announce` method.
+     This is a helper method for testing purposes. The reason behind is that you can't pass around a reference of a method getter, only of a function, so we wrap the UIAccessibility.isVoiceOverRunning property into a function and use this to mock the value of this property while testing the `announce` method.
      */
     static func isVoiceOverRunning() -> Bool {
         UIAccessibility.isVoiceOverRunning
     }
 
-    private static func observeAnnouncementFinishedNofitication(_ announcement: String) {
+    private static func observeAnnouncementFinishedNofitication(_ announcement: NSAttributedString) {
         guard _announcementFinishedObserver == nil else { return }
         _announcementFinishedObserver = NotificationCenter.default.addObserver(forName: announcementDidFinishNotification, object: nil, queue: .main) { notification in
             guard
                 let announced = notification.userInfo?[announcementStringValueUserInfoKey] as? String,
                 let isSuccessful = notification.userInfo?[announcementWasSuccessfulUserInfoKey] as? Bool,
-                announced == announcement
+                announced == announcement.string
             else {
                 return
             }

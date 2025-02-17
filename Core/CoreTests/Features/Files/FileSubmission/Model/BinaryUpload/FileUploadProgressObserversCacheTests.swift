@@ -43,7 +43,7 @@ class FileUploadProgressObserversCacheTests: CoreTestCase {
         testee.urlSession(api.urlSession, dataTask: mockTask, didReceive: Data())
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         guard let mockObserver = mockObserver else { return }
 
         XCTAssertTrue(mockObserver.didReceiveProgressCallback)

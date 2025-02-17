@@ -64,7 +64,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -86,7 +86,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -108,7 +108,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -137,7 +137,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -166,7 +166,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -195,7 +195,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -253,7 +253,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 }

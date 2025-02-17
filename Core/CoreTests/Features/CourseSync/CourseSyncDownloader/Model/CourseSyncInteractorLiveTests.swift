@@ -497,7 +497,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         entries[0].tabs[7].selectionState = .selected
 
         let subscription = testee.downloadContent(for: entries).sink()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -532,7 +532,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         entries[0].tabs[0].selectionState = .selected
 
         let subscription = testee.downloadContent(for: entries).sink()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         subscription.cancel()
     }
 

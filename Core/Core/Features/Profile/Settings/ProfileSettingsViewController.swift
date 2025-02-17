@@ -313,7 +313,8 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: GroupedSectionHeaderView = tableView.dequeueHeaderFooter()
-        header.titleLabel.text = sections[section].title
+        let section = sections[section]
+        header.update(title: section.title, itemCount: section.rows.count)
         return header
     }
 

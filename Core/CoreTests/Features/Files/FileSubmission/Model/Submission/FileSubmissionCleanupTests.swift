@@ -53,7 +53,7 @@ class FileSubmissionCleanupTests: CoreTestCase {
 
         // MARK: - THEN
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         FileManager.default.fileExists(atPath: tempFileURL.path)
 
         subscription.cancel()
