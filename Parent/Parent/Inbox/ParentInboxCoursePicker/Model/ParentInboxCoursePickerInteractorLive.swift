@@ -44,7 +44,6 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
         })
         .store(in: &subscriptions)
 
-
         coursesStore.getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] courseList in
                 self?.courses.send(courseList)

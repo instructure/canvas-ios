@@ -66,13 +66,14 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
 
         didTapRefresh
             .sink { [weak self] in
-                self?.interactor.refresh()
+                _ = self?.interactor.refresh()
             }
             .store(in: &subscriptions)
     }
 
     private func routeToCompose(_ controller: WeakViewController, _ selectedContext: StudentContextItem) -> ComposeMessageOptions {
-        ComposeMessageOptions(
+        let hiddenMessage = String(localized: "Regarding: \(selectedContext.studentDisplayName), \(interactor.getCourseURL(courseId: selectedContext.course.id))", bundle: .core)
+        return ComposeMessageOptions(
             disabledFields: DisabledMessageFieldOptions(
                 contextDisabled: true
             ),
@@ -82,7 +83,7 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
             ),
             messageType: .new,
             extras: ExtraMessageOptions(
-                hiddenMessage: "Regarding: \(selectedContext.studentDisplayName), \(interactor.getCourseURL(courseId: selectedContext.course.id))",
+                hiddenMessage: hiddenMessage,
                 autoTeacherSelect: true
             )
         )

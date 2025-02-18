@@ -21,8 +21,9 @@ import Foundation
 import Combine
 
 class ParentInboxCoursePickerInteractorPreview: ParentInboxCoursePickerInteractor {
+    
     var state = CurrentValueSubject<StoreState, Never>(.data)
-    var studentContextItems = CurrentValueSubject<[StudentContextItem], Never>([])
+    var studentContextItems: CurrentValueSubject<[StudentContextItem], Never>
 
     func refresh() -> AnyPublisher<[Void], Never> {
         Future<[Void], Never> {_ in }.eraseToAnyPublisher()
@@ -33,6 +34,14 @@ class ParentInboxCoursePickerInteractorPreview: ParentInboxCoursePickerInteracto
     }
 
     init(env: AppEnvironment) {
+        let course1 = Course()
+        let course2 = Course()
+        course1.name = "Course 1"
+        course2.name = "Course 2"
 
+        studentContextItems = CurrentValueSubject<[StudentContextItem], Never>([
+            StudentContextItem(studentId: "1", studentDisplayName: "Student 1", course: course1),
+            StudentContextItem(studentId: "2", studentDisplayName: "Student 2", course: course2)
+        ])
     }
 }

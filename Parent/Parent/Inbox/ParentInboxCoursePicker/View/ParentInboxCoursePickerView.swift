@@ -30,7 +30,7 @@ public struct ParentInboxCoursePickerView: View {
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Choose a course to message")
+                Text("Choose a course to message", bundle: .core)
                     .font(.regular16)
                     .foregroundColor(.textDark)
 
@@ -86,9 +86,12 @@ public struct ParentInboxCoursePickerView: View {
     private var errorView: some View {
         VStack {
             Spacer()
-            Text("Failed to load courses")
-            Button("Retry") {
+            Text("Failed to load courses", bundle: .core)
+            Button {
                 viewModel.didTapRefresh.accept(())
+            } label: {
+                Text("Retry", bundle: .core)
+                    .foregroundColor(.textInfo)
             }
             Spacer()
         }.frame(maxWidth: .infinity)
@@ -97,15 +100,26 @@ public struct ParentInboxCoursePickerView: View {
     private var emptyView: some View {
         VStack {
             Spacer()
-            Text("No courses found")
-            Button("Retry") {
+            Text("No courses found", bundle: .core)
+            Button {
                 viewModel.didTapRefresh.accept(())
+            } label: {
+                Text("Retry", bundle: .core)
+                    .foregroundColor(.textInfo)
             }
             Spacer()
         }.frame(maxWidth: .infinity)
     }
 }
 
-#Preview {
-    //ParentInboxCoursePickerView()
+#if DEBUG
+
+struct ParentInboxCoursePickerView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+
+    static var previews: some View {
+        ParentInboxCoursePickerAssembly.makePreview(env: env)
+    }
 }
+
+#endif
