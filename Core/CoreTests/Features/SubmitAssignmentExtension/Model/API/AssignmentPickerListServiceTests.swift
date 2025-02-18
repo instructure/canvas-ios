@@ -52,7 +52,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         expect()
         testee.courseID = "failingID"
         waitForExpectations(timeout: 1)
-        
+
         XCTAssertEqual(receivedResult, .failure(.failedToGetAssignments))
     }
 
