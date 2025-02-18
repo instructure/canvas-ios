@@ -106,19 +106,6 @@ public extension HorizonUI {
 }
 
 public extension HorizonUI.Toast {
-    struct ButtonAttribute {
-        let title: String
-        let action: () -> Void
-        
-        public init(
-            title: String,
-            action: @escaping () -> Void
-        ) {
-            self.title = title
-            self.action = action
-        }
-    }
-    
     struct ViewModel {
         let text: String
         let style: HorizonUI.Toast.Style
@@ -132,8 +119,8 @@ public extension HorizonUI.Toast {
             isShowCancelButton: Bool = true,
             direction: Direction = .bottom,
             dismissAfter: Double = 2.0,
-            confirmActionButton: ButtonAttribute? = nil,
-            cancelActionButton: ButtonAttribute? = nil
+            confirmActionButton: HorizonUI.ButtonAttribute? = nil,
+            cancelActionButton: HorizonUI.ButtonAttribute? = nil
         ) {
             self.text = text
             self.style = style
@@ -170,6 +157,20 @@ public extension HorizonUI.Toast {
     }
 }
 
+public extension HorizonUI {
+    struct ButtonAttribute {
+        let title: String
+        let action: () -> Void
+
+        public init(
+            title: String,
+            action: @escaping () -> Void
+        ) {
+            self.title = title
+            self.action = action
+        }
+    }
+}
 #Preview {
     HorizonUI.Toast(viewModel: .init(text: "Alert Toast", style: .info))
         .padding(5)

@@ -35,7 +35,7 @@ extension HorizonUI.Toast {
         }
 
         func showSuccessToast() {
-            let confirmButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
+            let confirmButton = HorizonUI.ButtonAttribute(title: "Yes Now") {
                 print("confirmButton")
             }
             toastViewModel = HorizonUI.Toast.ViewModel(
@@ -49,10 +49,10 @@ extension HorizonUI.Toast {
         }
 
         func showWarningToast() {
-            let cancelButton = HorizonUI.Toast.ButtonAttribute(title: "no") {
+            let cancelButton = HorizonUI.ButtonAttribute(title: "no") {
                 print("cancelButton")
             }
-            let confirmButton = HorizonUI.Toast.ButtonAttribute(title: "Yes Now") {
+            let confirmButton = HorizonUI.ButtonAttribute(title: "Yes Now") {
                 print("confirmButton")
             }
             toastViewModel = HorizonUI.Toast.ViewModel(

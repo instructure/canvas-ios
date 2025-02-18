@@ -45,7 +45,7 @@ public extension HorizonUI.Toast {
     }
 
     enum Buttons {
-        case single(confirmButton: ButtonAttribute)
-        case double(cancelButton: ButtonAttribute, confirmButton: ButtonAttribute)
+        case single(confirmButton: HorizonUI.ButtonAttribute)
+        case double(cancelButton: HorizonUI.ButtonAttribute, confirmButton: HorizonUI.ButtonAttribute)
     }
 }

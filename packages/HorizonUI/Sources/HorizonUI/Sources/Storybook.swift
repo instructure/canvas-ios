@@ -157,6 +157,11 @@ public struct Storybook: View {
                     } label: {
                         Text("Uploaded File").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.Modal<EmptyView>.Storybook()
+                    } label: {
+                        Text("Modal").tint(Color.black)
+                    }
                 }
             }
             .listStyle(.sidebar)
