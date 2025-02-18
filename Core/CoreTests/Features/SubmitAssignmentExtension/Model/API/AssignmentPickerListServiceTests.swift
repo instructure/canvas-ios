@@ -52,6 +52,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         expect()
         testee.courseID = "failingID"
         waitForExpectations(timeout: 1)
+        
         XCTAssertEqual(receivedResult, .failure(.failedToGetAssignments))
     }
 
@@ -66,6 +67,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         expect()
         testee.courseID = "successID"
         waitForExpectations(timeout: 1)
+
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ]))
@@ -109,8 +111,8 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
         expect()
         testee.courseID = "successID"
-
         waitForExpectations(timeout: 5)
+
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A1", name: "Assignment 1", allowedExtensions: [], gradeAsGroup: false),
             .init(id: "A2", name: "Assignment 2", allowedExtensions: [], gradeAsGroup: false),
@@ -130,6 +132,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         expect()
         testee.courseID = "successID"
         waitForExpectations(timeout: 1)
+
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
         ]))
@@ -144,13 +147,10 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             .make(id: "A2", name: "online upload", submission_types: [.online_upload])
         ]))
 
+        expect()
         testee.courseID = "successID"
         waitForExpectations(timeout: 1)
 
-        expect()
-        testee.courseID = "successID"
-
-        waitForExpectations(timeout: 0.1)
         XCTAssertEqual(analyticsHandler.totalEventCount, 1)
         XCTAssertEqual(analyticsHandler.lastEvent, "assignments_loaded")
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
