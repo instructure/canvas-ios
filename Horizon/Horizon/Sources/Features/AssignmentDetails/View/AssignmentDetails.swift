@@ -16,13 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 import HorizonUI
+import Core
 
 struct AssignmentDetails: View {
-    // MARK: - Properties
 
+    @FocusState private var focusedInput: Bool
+    @State var html = ""
+    // MARK: - Dependencies
+    let uploadParameters: RichContentEditorUploadParameters = .init(context: .course("1"))
     @Bindable private var viewModel: AssignmentDetailsViewModel
     @Binding private var isShowHeader: Bool
 
@@ -35,43 +38,63 @@ struct AssignmentDetails: View {
     }
 
     var body: some View {
-            ScrollView {
-                VStack(spacing: 10) {
-                    topView
-                    if viewModel.isLoaderVisible == false {
-                        header
-                    }
-                    VStack(spacing: 8) {
-                        Size14RegularTextDarkestTitle(title: viewModel.assignment?.dueAt ?? "")
-                        if let pointsPossible = viewModel.assignment?.pointsPossible {
-                            Size14RegularTextDarkestTitle(title: "\(pointsPossible) Points")
+        ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: 10) {
+                        topView
+                            .id("topView")
+                            .padding(.top)
+                        if viewModel.isLoaderVisible == false {
+                            header
                         }
-                        if (viewModel.assignment?.allowedAttempts ?? 0) > 0 {
-                            Size14RegularTextDarkestTitle(title: "\(viewModel.assignment?.allowedAttempts ?? 0) attempt(s)")
-                        } else {
-                            Size14RegularTextDarkestTitle(title: "Unlimited Attempts Allowed")
+                        VStack(spacing: 8) {
+                            Size14RegularTextDarkestTitle(title: viewModel.assignment?.dueAt ?? "")
+                            if let pointsPossible = viewModel.assignment?.pointsPossible {
+                                Size14RegularTextDarkestTitle(title: "\(pointsPossible) Points")
+                            }
+                            if (viewModel.assignment?.allowedAttempts ?? 0) > 0 {
+                                Size14RegularTextDarkestTitle(title: "\(viewModel.assignment?.allowedAttempts ?? 0) attempt(s)")
+                            } else {
+                                Size14RegularTextDarkestTitle(title: "Unlimited Attempts Allowed")
+                            }
                         }
-                    }
-                    .padding(.top, 8)
+                        .padding(.top, 8)
 
-                    if let details = viewModel.assignment?.details {
-                        WebView(html: details)
-                            .frameToFit()
-                            .padding(.horizontal, -16)
-                    }
-                    if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
-                        Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
-                    }
+                        if let details = viewModel.assignment?.details {
+                            // try Comment this code
+                            WebView(html: details)
+                                .frameToFit()
+                                .padding(.horizontal, -16)
+                        }
+                        if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
+                            Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
+                        }
 
-                    if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
-                        AssignmentSubmissionView(viewModel: viewModel)
-                            .disabled(viewModel.didSubmitAssignment)
-                            .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
-                            .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
+                        InstUI.RichContentEditorCell(
+                            placeholder: String(localized: "Add your text entry", bundle: .horizon),
+                            html: $html,
+                            uploadParameters: uploadParameters,
+                            onFocus: {
+                                proxy.scrollTo("topView", anchor: .top)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    withAnimation {
+                                        proxy.scrollTo("RichContentEditorCell", anchor: .bottom)
+                                    }
+                                }
+                            }
+                        )
+                        .id("RichContentEditorCell")
+                        .focused($focusedInput)
+    //                    if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
+    //                        AssignmentSubmissionView(viewModel: viewModel)
+    //                            .disabled(viewModel.didSubmitAssignment)
+    //                            .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
+    //                            .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
+    //                    }
                     }
+                    .paddingStyle(.horizontal, .standard)
+                    .padding(.bottom, 100)
                 }
-                .paddingStyle(.horizontal, .standard)
-                .padding(.bottom, 100)
             }
         .overlay { loaderView }
         .background(Color.backgroundLightest)
@@ -121,3 +144,4 @@ struct AssignmentDetails: View {
     AssignmentDetailsAssembly.makePreview()
 }
 #endif
+
