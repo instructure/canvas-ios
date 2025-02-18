@@ -41,8 +41,7 @@ class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
             .store(in: &subscriptions)
 
         let courseObjects = courseListStore.allObjects
-        
-        // FIXME: this is not the correct way
+
         courseObjects
             .filterMany { $0.isFavorite }
             .subscribe(favoriteCourses)
