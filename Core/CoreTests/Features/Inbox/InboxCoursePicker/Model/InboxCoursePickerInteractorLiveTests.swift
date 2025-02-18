@@ -34,28 +34,26 @@ class InboxCoursePickerInteractorLiveTests: CoreTestCase {
 
     func testPopulatesListItems() {
         XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.favoriteCourses.value.count, 2)
+
+        XCTAssertEqual(testee.moreCourses.value.count, 2)
+        XCTAssertEqual(testee.favoriteCourses.value.count, 1)
         XCTAssertEqual(testee.groups.value.count, 1)
-        XCTAssertEqual(testee.favoriteCourses.value.first?.name, "Course 1")
+
+        XCTAssertEqual(testee.moreCourses.value.first?.name, "Course 1")
+        XCTAssertEqual(testee.favoriteCourses.value.first?.name, "Course 3 (favorite)")
         XCTAssertEqual(testee.groups.value.first?.name, "Group 1")
     }
 
     private func mockData() {
-        let course1 = APICourse.make(
-            id: "1",
-            name: "Course 1"
-        )
-        let course2 = APICourse.make(
-            id: "2",
-            name: "Course 2"
-        )
-        let courses = [course1, course2]
+        let courses: [APICourse] = [
+            .make(id: "1", name: "Course 1"),
+            .make(id: "2", name: "Course 2"),
+            .make(id: 3, name: "Course 3 (favorite)", is_favorite: true),
+        ]
 
-        let group1 = APIGroup.make(
-            id: "1",
-            name: "Group 1"
-        )
-        let groups = [group1]
+        let groups: [APIGroup] = [
+            .make(id: "1", name: "Group 1"),
+        ]
 
         api.mock(GetCourses(), value: courses)
         api.mock(GetGroups(), value: groups)

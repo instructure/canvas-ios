@@ -30,7 +30,7 @@ class InboxCoursePickerInteractorPreview: InboxCoursePickerInteractor {
 
     public init(env: AppEnvironment) {
         self.favoriteCourses = CurrentValueSubject<[Course], Never>([
-            .save(.make(id: "3", name: "Course 3", is_favorite: true), in: env.database.viewContext)
+            .save(.make(id: "3", name: "Course 3 (favorite)", is_favorite: true), in: env.database.viewContext)
         ])
         self.moreCourses = CurrentValueSubject<[Course], Never>([
             .save(.make(id: "1", name: "Course 1"), in: env.database.viewContext),
