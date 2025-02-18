@@ -57,7 +57,7 @@ public struct InboxCoursePickerView: View {
             VStack(spacing: 0) {
                 favoriteCourses(viewModel.favoriteCourses)
                 moreCourses(viewModel.moreCourses)
-                groups(groups: viewModel.groups)
+                groups(viewModel.groups)
             }
         case .empty, .error:
             Text("Some error occured", bundle: .core)
@@ -78,14 +78,11 @@ public struct InboxCoursePickerView: View {
                     ForEach(courses, id: \.id) { courseRow($0) }
                 } header: {
                     Text("Favorite Courses", bundle: .core)
-                        .font(.regular14)
+                        .textStyle(.sectionHeader)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.textDarkest)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 16)
-                        .background(Color.backgroundLight)
-                        .accessibilityHeading(.h1)
-                    separator
+                        .paddingStyle(set: .sectionHeader)
+                        .accessibilityAddTraits([.isHeader])
+                    InstUI.Divider()
                 }
             }
         }
@@ -98,40 +95,32 @@ public struct InboxCoursePickerView: View {
                     ForEach(courses, id: \.id) { courseRow($0) }
                 } header: {
                     Text("More Courses", bundle: .core)
-                        .font(.regular14)
+                        .textStyle(.sectionHeader)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.textDarkest)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 16)
-                        .background(Color.backgroundLight)
-                        .accessibilityHeading(.h1)
-                    separator
+                        .paddingStyle(set: .sectionHeader)
+                        .accessibilityAddTraits([.isHeader])
+                    InstUI.Divider()
                 }
-
+                
             }
         }
     }
     
-    private func groups(groups: [Group]) -> some View {
+    private func groups(_ groups: [Group]) -> some View {
         VStack(spacing: 0) {
-            if !groups.isEmpty {  
-                Section(header:
-                            VStack(spacing: 0) {
-                    Text("Groups", bundle: .core)
-                        .font(.regular14)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.textDarkest)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 16)
-                        .background(Color.backgroundLight)
-                        .accessibilityHeading(.h1)
-                    separator
-                }
-                ) {
+            if groups.isNotEmpty {
+                Section {
+                    ForEach(groups, id: \.id) { group in
+                        groupRow(group)
+                    }
+                } header: {
                     VStack(spacing: 0) {
-                        ForEach(groups, id: \.id) { group in
-                            groupRow(group)
-                        }
+                        Text("Groups", bundle: .core)
+                            .textStyle(.sectionHeader)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .paddingStyle(set: .sectionHeader)
+                            .accessibilityAddTraits([.isHeader])
+                        InstUI.Divider()
                     }
                 }
             }
@@ -173,7 +162,7 @@ public struct InboxCoursePickerView: View {
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.course.\(course.id)")
             
-            separator
+            InstUI.Divider()
         }
     }
     
@@ -203,7 +192,7 @@ public struct InboxCoursePickerView: View {
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.group.\(group.id)")
             
-            separator
+            InstUI.Divider()
         }
     }
 }
@@ -220,7 +209,7 @@ struct InboxCoursePickerView_Previews: PreviewProvider {
 
 #endif
 
-/// Convenience property inspired by Kotlin
+/// Kotlin-inspired convenience property
 extension Collection {
     var isNotEmpty: Bool {
         return !isEmpty
