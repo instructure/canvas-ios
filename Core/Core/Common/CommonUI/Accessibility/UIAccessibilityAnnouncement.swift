@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+
 public extension UIAccessibility {
 
     /**
@@ -72,6 +74,51 @@ public extension UIAccessibility {
                 _announcementHandler?(.announcement, announcement)
             }
         }
+    }
+
+    /**
+     Attempts to announces the received string via VoiceOver then publishes a Void value on read out completion.
+     It will post completion value if maximum attempts were tried, or if maximum duration was elapsed.
+     - parameters:
+        - message: The string to be read by VoiceOver.
+        - maxAttempts: Maximum amount of attempts before publishing completion value.
+        - maxDuration: Maximum duration to wait for the read out before publishing completion.
+     */
+    static func announcePersistently(
+        _ message: String,
+        maxAttempts: Int = 3,
+        maxDuration: TimeInterval = 5
+    ) -> AnyPublisher<Void, Never> {
+        guard UIAccessibility.isVoiceOverRunning() else {
+            return Just(Void()).eraseToAnyPublisher()
+        }
+
+        announce(message)
+
+        let readoutPublisher = NotificationCenter
+            .default
+            .publisher(for: UIAccessibility.announcementDidFinishNotification)
+            .filter({ notification in
+                if let announced = notification.userInfo?[announcementStringValueUserInfoKey] as? String,
+                   announced == message { return true }
+                return false
+            })
+            .map({ ($0.userInfo?[announcementWasSuccessfulUserInfoKey] as? Bool) ?? false })
+            .flatMap { isSuccessful in
+                if isSuccessful || maxAttempts <= 1 {
+                    return Just(Void()).eraseToAnyPublisher()
+                } else {
+                    return announcePersistently(message, maxAttempts: maxAttempts - 1)
+                }
+            }
+
+        let duration = OperationQueue.SchedulerTimeType.Stride(maxDuration)
+        let delayPublisher = Just(Void())
+            .delay(for: duration, scheduler: OperationQueue.main)
+
+        return Publishers
+            .Merge(readoutPublisher, delayPublisher)
+            .eraseToAnyPublisher()
     }
 }
 

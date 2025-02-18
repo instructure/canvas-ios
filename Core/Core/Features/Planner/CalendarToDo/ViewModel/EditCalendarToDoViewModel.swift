@@ -190,18 +190,8 @@ final class EditCalendarToDoViewModel: ObservableObject {
                     .eraseToAnyPublisher()
             }
             .flatMap { [weak self] in
-                guard UIAccessibility.isVoiceOverRunning() else {
-                    return Just(Void()).eraseToAnyPublisher()
-                }
-
                 let runningMode = self?.mode ?? .add
-                UIAccessibility.announce(runningMode.successMessage)
-
-                return NotificationCenter
-                    .default
-                    .publisher(for: UIAccessibility.announcementDidFinishNotification)
-                    .mapToVoid()
-                    .eraseToAnyPublisher()
+                return UIAccessibility.announcePersistently(runningMode.successMessage)
             }
             .sink {
                 completion(.didUpdate)
