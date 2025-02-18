@@ -27,6 +27,7 @@ final class CourseDetailsViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var title: String = "Biology certificate"
     private(set) var course: HCourse
+    private(set) var isLoaderVisible: Bool = false
 
     // MARK: - Private
 
@@ -47,13 +48,13 @@ final class CourseDetailsViewModel {
         self.router = router
         self.course = course ?? .init()
         self.onShowTabBar = onShowTabBar
-
+        isLoaderVisible = true
         getCoursesInteractor.getCourse(id: courseID)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
                 self.course = course
-
                 self.state = .data
+                self.isLoaderVisible = false
             }
             .store(in: &subscriptions)
     }

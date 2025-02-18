@@ -23,7 +23,8 @@ import Foundation
 final class AssignmentDetailsAssembly {
     static func makeViewModel(
         courseID: String,
-        assignmentID: String
+        assignmentID: String,
+        didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetailsViewModel {
         let uploadManager = HUploadFileManagerLive(
             uploadManager: .shared,
@@ -40,19 +41,22 @@ final class AssignmentDetailsAssembly {
         return AssignmentDetailsViewModel(
             interactor: interactor,
             router: router,
-            courseID: courseID
+            courseID: courseID,
+            didLoadAttemptCount: didLoadAttemptCount
         )
     }
 
     static func makeView(
         courseID: String,
         assignmentID: String,
-        isShowHeader: Binding<Bool>
+        isShowHeader: Binding<Bool>,
+        didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetails {
         AssignmentDetails(
             viewModel: makeViewModel(
                 courseID: courseID,
-                assignmentID: assignmentID
+                assignmentID: assignmentID,
+                didLoadAttemptCount: didLoadAttemptCount
             ),
             isShowHeader: isShowHeader
         )
@@ -65,7 +69,7 @@ final class AssignmentDetailsAssembly {
             interactor: interactor,
             router: AppEnvironment.shared.router,
             courseID: "1"
-        )
+        ) { _ in}
         return AssignmentDetails(viewModel: viewModel)
     }
 
@@ -74,8 +78,7 @@ final class AssignmentDetailsAssembly {
         return AssignmentDetailsViewModel(
             interactor: interactor,
             router: AppEnvironment.shared.router,
-            courseID: "1"
-        )
+            courseID: "1") { _ in }
     }
 #endif
 }
