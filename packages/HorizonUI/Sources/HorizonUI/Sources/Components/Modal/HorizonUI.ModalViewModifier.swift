@@ -64,7 +64,7 @@ fileprivate extension HorizonUI {
                     )
                 }
             }
-            .animation(.linear, value: isPresented)
+            .animation(.easeOut, value: isPresented)
         }
     }
 }
