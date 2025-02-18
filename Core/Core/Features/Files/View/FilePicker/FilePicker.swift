@@ -42,9 +42,8 @@ public class FilePicker: NSObject {
     }
 
     public func pick(from: UIViewController) {
-        let sheet = BottomSheetPickerViewController.create(
-            title: String(localized: "Select Attachment Type", bundle: .core)
-        )
+        let sheet = BottomSheetPickerViewController.create()
+        sheet.title = String(localized: "Select Attachment Type", bundle: .core)
 
         sheet.addAction(image: .audioLine, title: String(localized: "Record Audio", bundle: .core)) { [weak self] in
             let controller = AudioRecorderViewController.create()

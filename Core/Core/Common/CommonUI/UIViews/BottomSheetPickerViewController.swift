@@ -37,26 +37,12 @@ public class BottomSheetPickerViewController: UIViewController {
 
     public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
-    public static func create(title: String? = nil) -> BottomSheetPickerViewController {
+    public static func create() -> BottomSheetPickerViewController {
         let controller = BottomSheetPickerViewController()
         controller.modalPresentationStyle = .custom
         controller.modalPresentationCapturesStatusBarAppearance = true
         controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
-        if let title {
-            controller.addTitle(title)
-        }
         return controller
-    }
-
-    private func addTitle(_ title: String) {
-        loadViewIfNeeded()
-        titleLabel.font = .scaledNamedFont(.regular14)
-        titleLabel.textColor = .textDark
-        titleLabel.textAlignment = .center
-        titleLabel.text = title
-        titleLabel.accessibilityLabel = title
-        titleLabel.accessibilityTraits = .header
-        mainStackView.insertArrangedSubview(titleLabel, at: 0)
     }
 
     public override func viewDidLoad() {
@@ -64,9 +50,21 @@ public class BottomSheetPickerViewController: UIViewController {
         view.backgroundColor = UIColor {
             $0.isDarkInterface ? .backgroundLight : .backgroundLightest
         }
+
+        // Adding title
+        titleLabel.font = .scaledNamedFont(.regular14)
+        titleLabel.textColor = .textDark
+        titleLabel.textAlignment = .center
+        titleLabel.text = title
+        titleLabel.accessibilityLabel = title
+        titleLabel.accessibilityTraits = .header
+        mainStackView.addArrangedSubview(titleLabel)
+
+        // Adding stack of buttons
         mainStackView.addArrangedSubview(stackView)
         stackView.axis = .vertical
 
+        // Attaching to view
         view.addSubview(mainStackView)
         mainStackView.axis = .vertical
         mainStackView.spacing = stackViewSpacing
@@ -79,11 +77,10 @@ public class BottomSheetPickerViewController: UIViewController {
 
     private func calculateFrameSize() {
         loadViewIfNeeded()
-        frameSize = 0
+        frameSize = titleLabel.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
         stackView.arrangedSubviews.forEach {
             frameSize += $0.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
         }
-        frameSize += titleLabel.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
     }
 
     public override func viewWillLayoutSubviews() {
