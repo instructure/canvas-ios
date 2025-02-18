@@ -23,8 +23,8 @@ import Core
 
 @Observable
 public class NoteableTextViewModel {
-    private let notebookNoteInteractor: NotebookNoteInteractor
-    private var notebookCourseNotes: [NotebookCourseNote] = []
+    private let notebookNoteInteractor: CourseNoteInteractor
+    private var notebookCourseNotes: [CourseNote] = []
     private let router: Router?
     private var subscriptions = Set<AnyCancellable>()
     private var text: String?
@@ -37,7 +37,7 @@ public class NoteableTextViewModel {
         text: String,
         highlightsKey: String,
         typography: HorizonUI.Typography.Name,
-        notebookNoteInteractor: NotebookNoteInteractor = NotebookNoteInteractor(),
+        notebookNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
         router: Router = AppEnvironment.shared.router
     ) -> NoteableTextViewModel {
         let viewModel = viewModels[highlightsKey] ?? NoteableTextViewModel(
@@ -55,7 +55,7 @@ public class NoteableTextViewModel {
         text: String,
         highlightsKey: String,
         typography: HorizonUI.Typography.Name,
-        notebookNoteInteractor: NotebookNoteInteractor,
+        notebookNoteInteractor: CourseNoteInteractor,
         router: Router?
     ) {
         self.text = text
@@ -75,7 +75,9 @@ public class NoteableTextViewModel {
     /// dynamically computes the list of menu options available when a block of text is selected
     public func getMenu(
         highlightsKey: String,
-        courseId: String?,
+        courseId: String,
+        moduleId: String,
+        moduleType: ModuleItemType,
         textView: UITextView,
         range: UITextRange,
         suggestedActions: [UIMenuElement],
@@ -92,6 +94,8 @@ public class NoteableTextViewModel {
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
+                    moduleId: moduleId,
+                    moduleType: moduleType,
                     textView: textView,
                     textRange: range,
                     courseNoteLabel: .confusing,
@@ -102,6 +106,8 @@ public class NoteableTextViewModel {
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
+                    moduleId: moduleId,
+                    moduleType: moduleType,
                     textView: textView,
                     textRange: range,
                     courseNoteLabel: .important,
@@ -112,6 +118,8 @@ public class NoteableTextViewModel {
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
+                    moduleId: moduleId,
+                    moduleType: moduleType,
                     textView: textView,
                     textRange: range,
                     courseNoteLabel: .other,
@@ -145,7 +153,9 @@ public class NoteableTextViewModel {
     /// If it's chosen to add a note, then it navigates to the note page
     private func onSelection(
         highlightsKey: String,
-        courseId: String?,
+        courseId: String,
+        moduleId: String,
+        moduleType: ModuleItemType,
         textView: UITextView,
         textRange: UITextRange,
         courseNoteLabel: CourseNoteLabel,
@@ -162,28 +172,34 @@ public class NoteableTextViewModel {
         let highlightedText = textView.text(in: textRange) ?? ""
 
         notebookNoteInteractor.add(
-            index: NotebookNoteIndex(
+            courseId: courseId,
+            moduleId: moduleId,
+            moduleType: moduleType,
+            content: "",
+            labels: [courseNoteLabel],
+            index: NotebookHighlight(
                 highlightKey: highlightsKey,
                 startIndex: start,
                 length: end - start,
-                groupId: courseId
-            ),
-            highlightedText: highlightedText,
-            labels: [courseNoteLabel]
+                highlightedText: highlightedText
+            )
         ).sink(
             receiveCompletion: { _ in },
             receiveValue: { [weak self] courseNote in
-                if courseNoteLabel == .other, let courseNote = courseNote {
+                if courseNoteLabel == .other {
                     self?.router?.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
             }
         }).store(in: &subscriptions)
     }
 
     /// Finds the first instance of a highlight that overlaps with the start and end values passed in
-    private func firstOverlappingNotebookCourseNote(start: Int, end: Int) -> NotebookCourseNote? {
+    private func firstOverlappingNotebookCourseNote(start: Int, end: Int) -> CourseNote? {
         notebookCourseNotes.first { notebookCourseNote in
-            let selectionStart = notebookCourseNote.highlightStart
-            let selectionEnd = notebookCourseNote.highlightStart + notebookCourseNote.highlightLength
+            guard let selectionStart = notebookCourseNote.startIndex?.intValue,
+                  let length = notebookCourseNote.length?.intValue else {
+                return false
+            }
+            let selectionEnd = selectionStart + length
             return (start < selectionStart && end > selectionStart) || (start < selectionEnd && end > selectionEnd)
                 || (start >= selectionStart && end <= selectionEnd)
         }
@@ -206,9 +222,14 @@ public class NoteableTextViewModel {
         )
 
         notebookCourseNotes.forEach { notebookCourseNote in
-            let type = notebookCourseNote.types.first ?? .other
+            guard let startIndex = notebookCourseNote.startIndex?.intValue,
+                    let length = notebookCourseNote.length?.intValue else {
+                return
+            }
+
+            let type = notebookCourseNote.labelsList.first?.toCourseNoteLabel() ?? .other
             let highlightColor = type.highlightColor.uiColor
-            let range = NSRange(location: notebookCourseNote.highlightStart, length: notebookCourseNote.highlightLength)
+            let range = NSRange(location: startIndex, length: length)
 
             attributedText.addAttribute(
                 .backgroundColor,

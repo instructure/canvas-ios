@@ -25,7 +25,7 @@ final class NotebookCourseViewModel {
 
     private let courseId: String
     private let formatter = DateFormatter()
-    private let getCourseNotesInteractor: GetCourseNotesInteractor
+    private var getCourseNotesInteractor: GetCourseNotesInteractor
 
     // MARK: - Outputs
 
@@ -34,7 +34,7 @@ final class NotebookCourseViewModel {
             getCourseNotesInteractor.filter
         }
         set {
-            getCourseNotesInteractor.setFilter(self.filter == newValue ? nil : newValue)
+            getCourseNotesInteractor.filter = (self.filter == newValue ? nil : newValue)
         }
     }
     var isConfusingEnabled: Bool { filter == .confusing }
@@ -46,7 +46,7 @@ final class NotebookCourseViewModel {
             getCourseNotesInteractor.term
         }
         set {
-            getCourseNotesInteractor.setTerm(newValue)
+            getCourseNotesInteractor.term = newValue
         }
     }
 
@@ -57,9 +57,11 @@ final class NotebookCourseViewModel {
 
     // MARK: - Init
 
-    init(courseId: String,
-         getCourseNotesInteractor: GetCourseNotesInteractor,
-         router: Router) {
+    init(
+        courseId: String,
+        getCourseNotesInteractor: GetCourseNotesInteractor,
+        router: Router
+    ) {
         self.courseId = courseId
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
@@ -71,25 +73,7 @@ final class NotebookCourseViewModel {
             courseId
         )
 
-        weak var weakSelf = self
-        getCourseNotesInteractor
-            .get(courseId: courseId)
-            .flatMap {
-                $0.publisher
-                    .map { note in
-                        NotebookNote(
-                            id: note.id,
-                            highlightedText: "\"\(note.highlightedText)\"",
-                            note: note.note,
-                            title: weakSelf?.formatter.string(from: note.date) ?? "",
-                            types: note.types
-                        )
-                    }
-                    .collect()
-            }
-            .replaceError(with: [])
-            .sink { weakSelf?.notes = $0 }
-            .store(in: &subscriptions)
+        loadNotes()
     }
 
     // MARK: - Inputs
@@ -105,6 +89,30 @@ final class NotebookCourseViewModel {
 
     func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
         router.route(to: "/notebook/note/\(note.id)", from: viewController)
+    }
+
+    // MARK: - Private functions
+
+    private func loadNotes() {
+        weak var weakSelf = self
+        getCourseNotesInteractor
+            .get()
+            .flatMap {
+                $0.publisher
+                    .map { note in
+                        NotebookNote(
+                            id: note.id,
+                            highlightedText: note.highlightedText ?? "",
+                            note: note.content ?? "",
+                            title: weakSelf?.formatter.string(from: note.date) ?? "",
+                            types: note.labelsList.map { $0.toCourseNoteLabel() }.compactMap { $0 }
+                        )
+                    }
+                    .collect()
+            }
+            .replaceError(with: [])
+            .sink { weakSelf?.notes = $0 }
+            .store(in: &subscriptions)
     }
 }
 

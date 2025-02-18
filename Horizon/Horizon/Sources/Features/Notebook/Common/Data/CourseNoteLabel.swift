@@ -48,3 +48,9 @@ enum CourseNoteLabel: String, CaseIterable {
         label.color
     }
 }
+
+extension String {
+    func toCourseNoteLabel() -> CourseNoteLabel? {
+        CourseNoteLabel(rawValue: self)
+    }
+}

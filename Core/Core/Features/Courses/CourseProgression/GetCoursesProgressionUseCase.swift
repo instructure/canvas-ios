@@ -31,6 +31,8 @@ public class GetCoursesProgressionUseCase: APIUseCase {
     public var cacheKey: String?
     private let courseId: String?
     private let userId: String
+    private let searchTerm: String?
+    private let orderByInstitution: Bool
 
     public var request: GetCoursesProgressionRequest {
         .init(userId: userId)
@@ -38,9 +40,16 @@ public class GetCoursesProgressionUseCase: APIUseCase {
 
     // MARK: - Init
 
-    public init(userId: String, courseId: String? = nil) {
+    public init(
+        userId: String,
+        courseId: String? = nil,
+        searchTerm: String? = nil,
+        orderByInstitution: Bool = false
+    ) {
         self.userId = userId
         self.courseId = courseId
+        self.searchTerm = searchTerm
+        self.orderByInstitution = orderByInstitution
     }
 
     // MARK: - Functions
@@ -60,6 +69,19 @@ public class GetCoursesProgressionUseCase: APIUseCase {
         if let courseId = courseId {
             return .where(#keyPath(CDCourseProgression.courseID), equals: courseId)
         }
+
+        var predicate: NSPredicate?
+
+        if let searchTerm = searchTerm, searchTerm.isEmpty == false {
+            let namePredicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(CDCourseProgression.course.name), searchTerm)
+            let institutionNamePredicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(CDCourseProgression.institutionName), searchTerm)
+            predicate = NSCompoundPredicate(type: .or, subpredicates: [namePredicate, institutionNamePredicate])
+        }
+
+        if orderByInstitution {
+            return Scope(predicate: predicate ?? .all, order: [NSSortDescriptor(key: #keyPath(CDCourseProgression.institutionName), ascending: true)])
+        }
+        
         return .all
     }
 

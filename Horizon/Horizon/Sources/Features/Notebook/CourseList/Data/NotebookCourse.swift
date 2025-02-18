@@ -20,16 +20,4 @@ struct NotebookCourse: Hashable {
     let id: String
     let course: String
     let institution: String
-
-    static func from(_ courseNote: CourseNote) -> NotebookCourse? {
-        guard let courseId = courseNote.courseId,
-              let course = courseNote.course,
-              let institution = courseNote.institution
-            else { return nil }
-        return .init(
-            id: courseId,
-            course: course,
-            institution: institution
-        )
-    }
 }

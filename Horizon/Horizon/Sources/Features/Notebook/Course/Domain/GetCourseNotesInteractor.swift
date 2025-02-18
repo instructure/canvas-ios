@@ -17,94 +17,76 @@
 //
 
 import Combine
+import Core
 import Foundation
 
-struct NotebookCourseNote {
-    let date: Date
-    let highlightedText: String
-    let highlightStart: Int
-    let highlightLength: Int
-    let id: String
-    let note: String
-    let types: [CourseNoteLabel]
-
-    init(from courseNote: CourseNote) {
-        date = courseNote.date
-        highlightedText = courseNote.highlightedText
-        highlightStart = courseNote.highlightStart
-        highlightLength = courseNote.highlightLength
-        id = courseNote.id
-        note = courseNote.content
-        types = courseNote.labels
-    }
+protocol GetCourseNotesInteractor {
+    var filter: CourseNoteLabel? { get set }
+    var term: String { get set }
+    func get() -> AnyPublisher<[CourseNote], NotebookError>
 }
 
-final class GetCourseNotesInteractor {
+final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
     // MARK: - Dependencies
 
-    let courseNotesRepository: CourseNotesRepository
+    final let canvasApi: API
 
     // MARK: - Public
 
     var filter: CourseNoteLabel? {
-        filterPublisher.value
+        get {
+            filterPublisher.value
+        }
+        set {
+            filterPublisher.send(newValue)
+        }
+    }
+
+    var term: String {
+        get {
+            termPublisher.value
+        }
+        set {
+            termPublisher.send(newValue)
+        }
     }
 
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
     private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
-    var term: String {
-        termPublisher.value
-    }
     private var filterPublisher: CurrentValueSubject<CourseNoteLabel?, Error> = CurrentValueSubject(nil)
 
     // MARK: - Init
 
-    init(courseNotesRepository: CourseNotesRepository) {
-        self.courseNotesRepository = courseNotesRepository
+    init(api: API = AppEnvironment.shared.api) {
+        self.canvasApi = api
     }
 
     // MARK: - Public Methods
 
-    func get(courseId: String) -> AnyPublisher<[NotebookCourseNote], Error> {
-        courseNotesRepository.get()
-            .map(sortByDate)
-            .map {notes in notes.filter { note in note.courseId == courseId } }
-            .map(toNotebookCourseNotes)
-            .combineLatest(termPublisher.map({$0.lowercased()}))
-            .map(filterByTerm)
-            .combineLatest(filterPublisher)
-            .map(filterByLabel)
+    func get() -> AnyPublisher<[CourseNote], NotebookError> {
+        JWTTokenRequest(.redwood)
+            .api(from: canvasApi)
+            .flatMap { api in
+                Publishers.CombineLatest(
+                    self.filterPublisher,
+                    self.termPublisher
+                )
+                .flatMap { value in
+                    ReactiveStore(
+                        useCase: GetCourseNotesUseCase(
+                            api: api,
+                            labels: value.0.map { [$0] } ?? [],
+                            searchTerm: value.1
+                        )
+                    )
+                    .getEntities(keepObservingDatabaseChanges: true)
+                    .eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
+            }
+            .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
-    }
-
-    func setTerm(_ term: String) {
-        termPublisher.send(term)
-    }
-
-    func setFilter(_ filter: CourseNoteLabel?) {
-        filterPublisher.send(filter)
-    }
-
-    // MARK: - Private Methods
-
-    private func filterByLabel(notes: [NotebookCourseNote], filter: CourseNoteLabel?) -> [NotebookCourseNote] {
-        notes.filter { note in
-            guard let filter = filter else { return true } // if no label is specified, all values pass
-            return note.types.contains(filter) // otherwise, the note passes if the type matches the label
-        }
-    }
-
-    private func filterByTerm(notes: [NotebookCourseNote], term: String) -> [NotebookCourseNote] {
-        notes.filter { term.isEmpty || $0.note.lowercased().contains(term.lowercased()) }
-    }
-
-    private func sortByDate(_ notes: [CourseNote]) -> [CourseNote] {
-        notes.sorted(by: { $0.date > $1.date })
-    }
-
-    private func toNotebookCourseNotes(_ notes: [CourseNote]) -> [NotebookCourseNote] {
-        notes.map { courseNote in NotebookCourseNote(from: courseNote) }
     }
 }

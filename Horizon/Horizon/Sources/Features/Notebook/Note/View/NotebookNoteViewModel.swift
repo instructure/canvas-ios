@@ -17,8 +17,8 @@
 //
 
 import Combine
-import Observation
 import Core
+import Observation
 
 @Observable
 final class NotebookNoteViewModel {
@@ -30,6 +30,9 @@ final class NotebookNoteViewModel {
     var isCancelVisible: Bool { isEditing && !isAdding }
     var isConfusing: Bool = false
     var isDeleteAlertPresented: Bool = false
+    var isHighlightedTextVisible: Bool {
+        !highlightedText.isEmpty
+    }
     var isImportant: Bool = false
     var isSaveDisabled: Bool { !isConfusing && !isImportant && note.isEmpty }
     var isSaveVisible: Bool { isEditing || isAdding }
@@ -42,7 +45,7 @@ final class NotebookNoteViewModel {
     // MARK: - Dependencies
 
     private var isEditing = false
-    private let notebookNoteInteractor: NotebookNoteInteractor
+    private let courseNoteInteractor: CourseNoteInteractor
     private let noteId: String?
     private let router: Router
 
@@ -56,18 +59,22 @@ final class NotebookNoteViewModel {
 
     // MARK: - Init
 
-    init(notebookNoteInteractor: NotebookNoteInteractor,
-         router: Router,
-         noteId: String,
-         isEditing: Bool = false) {
-        self.notebookNoteInteractor = notebookNoteInteractor
+    init(
+        courseNoteInteractor: CourseNoteInteractor,
+        router: Router,
+        noteId: String,
+        isEditing: Bool = false
+    ) {
+        self.courseNoteInteractor = courseNoteInteractor
         self.router = router
         self.noteId = noteId
         self.isEditing = isEditing
 
-        notebookNoteInteractor.get(noteId: noteId)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: whenNotebookCourseNoteUpdated)
+        courseNoteInteractor.get(id: noteId)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: whenNotebookCourseNoteUpdated
+            )
             .store(in: &subscriptions)
     }
 
@@ -93,10 +100,15 @@ final class NotebookNoteViewModel {
     func deleteNoteAndDismiss(viewController: WeakViewController) {
         guard let noteId = noteId else { return }
 
-        notebookNoteInteractor.delete(noteId: noteId)
-            .sink { _ in
-                self.router.dismiss(viewController)
-            }
+        courseNoteInteractor.delete(id: noteId)
+            .sink(
+                receiveCompletion: { _ in
+                    DispatchQueue.main.async {
+                        self.router.dismiss(viewController)
+                    }
+                },
+                receiveValue: { _ in }
+            )
             .store(in: &subscriptions)
     }
 
@@ -119,27 +131,27 @@ final class NotebookNoteViewModel {
 
     func toggleConfusing() {
         isEditing = true
-        if !isConfusing && isImportant { isImportant = false }
         isConfusing.toggle()
     }
 
     func toggleImportant() {
         isEditing = true
-        if isConfusing && !isImportant { isConfusing = false }
         isImportant.toggle()
     }
 
     // MARK: - Private
 
-    private func whenNotebookCourseNoteUpdated(notebookCourseNote: NotebookCourseNote?) {
-        note = notebookCourseNote?.note ?? ""
-        highlightedText = "\"\(notebookCourseNote?.highlightedText ?? "")\""
+    private func whenNotebookCourseNoteUpdated(notebookCourseNote: CourseNote?) {
+        note = notebookCourseNote?.content ?? ""
+        if let highlightedText = notebookCourseNote?.highlightedText, !highlightedText.isEmpty {
+            self.highlightedText = "\"\(notebookCourseNote?.highlightedText ?? "")\""
+        }
         noteSaved = note
 
-        isConfusing = notebookCourseNote?.types.contains(.confusing) ?? false
+        isConfusing = notebookCourseNote?.labelsList.contains { $0.toCourseNoteLabel() == .confusing } ?? false
         isConfusingSaved = isConfusing
 
-        isImportant = notebookCourseNote?.types.contains(.important) ?? false
+        isImportant = notebookCourseNote?.labelsList.contains { $0.toCourseNoteLabel() == .important } ?? false
         isImportantSaved = isImportant
     }
 
@@ -149,29 +161,15 @@ final class NotebookNoteViewModel {
 
     private func saveContent() {
         if let noteId = noteId {
-            var labels: [CourseNoteLabel] = []
-            if isConfusing {
-                labels.append(.confusing)
-            }
-            if isImportant {
-                labels.append(.important)
-            }
+            let labels: [CourseNoteLabel] = [
+                isConfusing ? .confusing : nil,
+                isImportant ? .important : nil
+            ].compactMap { $0 }
 
-            notebookNoteInteractor
-                .update(noteId: noteId, content: note, labels: labels)
-                .sink { _ in }
+            courseNoteInteractor
+                .set(id: noteId, content: note, labels: labels)
+                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
                 .store(in: &subscriptions)
         }
-    }
-
-    private var getCourseNoteLabels: [CourseNoteLabel] {
-        var labels: [CourseNoteLabel] = []
-        if isConfusing {
-            labels.append(.confusing)
-        }
-        if isImportant {
-            labels.append(.important)
-        }
-        return labels
     }
 }

@@ -17,22 +17,23 @@
 //
 
 import Combine
+import Core
 import Foundation
 import CombineExt
 
 final class GetNotebookCoursesInteractor {
     // MARK: - Dependencies
 
-    private let courseNotesRepository: CourseNotesRepository
-
     // MARK: - Private variables
 
     private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
 
+    private let userId: String
+
     // MARK: - Init
 
-    init(courseNotesRepository: CourseNotesRepository) {
-        self.courseNotesRepository = courseNotesRepository
+    init(userId: String = AppEnvironment.shared.currentSession?.userID ?? "") {
+        self.userId = userId
     }
 
     // MARK: - Public
@@ -41,36 +42,24 @@ final class GetNotebookCoursesInteractor {
         termPublisher.send(value)
     }
 
-    func get() -> AnyPublisher<[NotebookCourse], Error> {
-        courseNotesRepository
-            .get()
-            .map { notes in notes.map { NotebookCourse.from($0) }.compactMap { $0 } }
-            .map(filterToUnique)
-            .combineLatest(termPublisher.map({ $0.lowercased() }))
-            .map(filterByText)
-            .map(sortByInstitution)
+    func get() -> AnyPublisher<[NotebookCourse], any Error> {
+        termPublisher
+            .flatMap { searchTerm in
+                ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: self.userId, searchTerm: searchTerm, orderByInstitution: true))
+                    .getEntities()
+                    .map { $0.compactMap { $0.notebookCourse } }
+                    .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
+}
 
-    // MARK: - Private
-
-    private func filterByText(courses: [NotebookCourse], term: String) -> [NotebookCourse] {
-        return courses.filter({ course in
-            term.isEmpty ||
-            course.course.lowercased().contains(term.lowercased()) ||
-            course.institution.lowercased().contains(term.lowercased())
-        })
-    }
-
-    private func filterToUnique(_ courses: [NotebookCourse]) -> [NotebookCourse] {
-        Array(Set(courses))
-    }
-
-    private func sortByInstitution(_ courses: [NotebookCourse]) -> [NotebookCourse] {
-        courses.sorted(by: { lhs, rhs in
-            lhs.institution == rhs.institution ?
-            lhs.course < rhs.course :
-            lhs.institution < rhs.institution
-        })
+extension CDCourseProgression {
+    var notebookCourse: NotebookCourse? {
+        NotebookCourse(
+            id: courseID,
+            course: course.name ?? "",
+            institution: institutionName ?? "Unknown"
+        )
     }
 }

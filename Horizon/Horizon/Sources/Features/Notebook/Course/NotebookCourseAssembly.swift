@@ -20,9 +20,7 @@ import Core
 
 final class NotebookCourseAssembly {
     static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
-        GetCourseNotesInteractor(
-            courseNotesRepository: CourseNotesRepositoryPreview.instance
-        )
+        GetCourseNotesInteractorLive()
     }
 
     static func makeViewModel(courseId: String) -> NotebookCourseViewModel {
