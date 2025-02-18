@@ -26,14 +26,32 @@ public struct ParentInboxCoursePickerView: View {
     }
 
     public var body: some View {
-        VStack {
-            ForEach(viewModel.items, id: \.self) { item in
-                VStack {
-                    Text(item.course.name ?? "")
-                    Text(item.studentDisplayName)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Choose a course to message")
+                    .font(.regular16)
+                    .foregroundColor(.textDark)
+
+                ForEach(viewModel.items, id: \.self) { item in
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(item.course.name ?? "")
+                                .font(.regular16)
+                                .foregroundColor(.textDarkest)
+                                .background(.white)
+
+                            Text(item.studentDisplayName)
+                                .font(.regular14)
+                                .foregroundColor(.textDark)
+
+                        }
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
                 }
-                .padding()
             }
+            .frame(maxWidth: .infinity)
+            .padding(.all, 12)
         }
     }
 }

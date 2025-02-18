@@ -37,10 +37,15 @@ public class ParentInboxCoursePickerBottomSheetViewController: UIViewController 
         view.backgroundColor = UIColor {
             $0.isDarkInterface ? .backgroundLight : .backgroundLightest
         }
-        view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        view.addSubview(ParentInboxCoursePickerAssembly.makeInboxCoursePickerViewController(env: env).view)
+        let viewController = ParentInboxCoursePickerAssembly.makeInboxCoursePickerViewController(env: env)
+        let subView = viewController.view!
+        addChild(viewController)
+        view.addSubview(subView)
+        subView.translatesAutoresizingMaskIntoConstraints = false
+        subView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        subView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        subView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        subView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         addAccessiblityDismissButton()
     }
 
