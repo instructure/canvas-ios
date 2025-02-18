@@ -74,9 +74,9 @@ extension Array where Element == CourseSyncEntry {
 
         for (courseIndex, course) in enumerated() {
             var courseItem = course.makeViewModelItem()
-            courseItem.accessibilityLabelPrefix = courseIndex == 0
-                ? count.accessibilityPrefixForListOfCount
-                : nil
+            if courseIndex == 0 {
+                courseItem.accessibilityLabelPrefix = String.localizedAccessibilityListCount(count)
+            }
             courseItem.selectionDidToggle = {
                 let selectionState: OfflineListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
                 interactor?.setSelected(selection: .course(course.id), selectionState: selectionState)
@@ -100,9 +100,9 @@ extension Array where Element == CourseSyncEntry {
                     continue
                 }
                 var tabItem = tab.makeViewModelItem()
-                tabItem.accessibilityLabelPrefix = tabIndex == 0
-                ? course.tabs.count.accessibilityPrefixForListOfCount
-                    : nil
+                if tabIndex == 0 {
+                    tabItem.accessibilityLabelPrefix = String.localizedAccessibilityListCount(course.tabs.count)
+                }
                 tabItem.selectionDidToggle = {
                     let selectionState: OfflineListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
                     interactor?.setSelected(selection: .tab(course.id, tab.id), selectionState: selectionState)
@@ -127,9 +127,9 @@ extension Array where Element == CourseSyncEntry {
                 for (fileIndex, file) in course.files.enumerated() {
 
                     var fileItem = file.makeViewModelItem()
-                    fileItem.accessibilityLabelPrefix = fileIndex == 0
-                        ? course.files.count.accessibilityPrefixForListOfCount
-                        : nil
+                    if fileIndex == 0 {
+                        fileItem.accessibilityLabelPrefix = String.localizedAccessibilityListCount(course.files.count)
+                    }
                     fileItem.selectionDidToggle = {
                         interactor?.setSelected(selection: .file(course.id, file.id), selectionState: file.selectionState == .selected ? .deselected : .selected)
                     }
@@ -139,13 +139,6 @@ extension Array where Element == CourseSyncEntry {
         }
 
         return cells
-    }
-}
-
-extension Int {
-    var accessibilityPrefixForListOfCount: String {
-        let countText = String.localizedNumberOfItems(self)
-        return "\(String(localized: "List", bundle: .core)), \(countText)"
     }
 }
 

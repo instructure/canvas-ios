@@ -31,6 +31,10 @@ class AddressbookRecipientViewModel: ObservableObject {
         searchText.value.isEmpty && canSelectAllRecipient
     }
 
+    public var listCount: Int {
+        recipients.count + (isAllRecipientButtonVisible ? 1 : 0)
+    }
+
     public let title = String(localized: "Select Recipients", bundle: .core)
     public let roleName: String
 
