@@ -29,8 +29,7 @@ public extension UIAccessibility {
     static func announce(
         _ announcement: String,
         announcementHandler: @escaping (UIAccessibility.Notification, Any?) -> Void = UIAccessibility.post(notification:argument:),
-        isVoiceOverRunning: () -> Bool = UIAccessibility.isVoiceOverRunning)
-    {
+        isVoiceOverRunning: () -> Bool = UIAccessibility.isVoiceOverRunning) {
         guard isVoiceOverRunning(), _announcementHandler == nil else { return }
         _announcementHandler = announcementHandler
 
