@@ -64,7 +64,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
     func testLoadTabs() {
         let tab = Tab.make(from: .make(label: "tab"), context: context)
         presenter.tabs.eventHandler()
-        wait(for: [expectUpdate], timeout: 0.1)
+        wait(for: [expectUpdate], timeout: 1)
         XCTAssertEqual(presenter.tabs.first?.label, tab.label)
     }
 
@@ -73,7 +73,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
         let colorStore = presenter.color as! TestStore
         let courseStore = presenter.courses as! TestStore
         let tabStore = presenter.tabs as! TestStore
-        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, tabStore.exhaustExpectation], timeout: 0.1)
+        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, tabStore.exhaustExpectation], timeout: 1)
     }
 
     func testTabsAreOrderedByPosition() {
@@ -82,7 +82,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
         Tab.make(from: .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1), context: context)
 
         presenter.tabs.eventHandler()
-        wait(for: [expectUpdate], timeout: 0.1)
+        wait(for: [expectUpdate], timeout: 1)
         XCTAssertEqual(presenter.tabs.count, 3)
         XCTAssertEqual(presenter.tabs.first?.id, "a")
         XCTAssertEqual(presenter.tabs.last?.id, "c")

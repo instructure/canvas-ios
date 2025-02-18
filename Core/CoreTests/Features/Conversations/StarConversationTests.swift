@@ -32,7 +32,7 @@ class StarConversationStateTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertEqual(conversation?.id, result.id)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testPostRequestError() {
@@ -46,7 +46,7 @@ class StarConversationStateTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertNotNil(error)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testScope() {

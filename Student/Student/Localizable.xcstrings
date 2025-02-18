@@ -32283,6 +32283,9 @@
         }
       }
     },
+    "Closed" : {
+
+    },
     "Closed for Comments" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -33330,6 +33333,9 @@
           }
         }
       }
+    },
+    "Comment sent successfully" : {
+
     },
     "Comments" : {
       "comment" : "View comments",
@@ -93918,6 +93924,9 @@
         }
       }
     },
+    "Profile Menu" : {
+
+    },
     "Questions:" : {
       "localizations" : {
         "ar" : {
@@ -103043,6 +103052,9 @@
           }
         }
       }
+    },
+    "Select Attachment Type" : {
+
     },
     "Select file(s)" : {
       "comment" : "Title for a file picker window",

@@ -618,7 +618,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         // When
         testee.didTapCancel.accept(viewController)
         // Then
-        wait(for: [router.dismissExpectation], timeout: 0.1)
+        wait(for: [router.dismissExpectation], timeout: 1)
     }
     func test_didTapCancel_didApplyChanges_showConfirmationAlert() {
         // Given

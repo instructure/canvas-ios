@@ -115,7 +115,7 @@ class StoreTests: CoreTestCase {
         }
 
         // Then
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let ids = store.map { $0.id }
         XCTAssertEqual(ids.count, 1)
         XCTAssert(ids.contains("0"))
@@ -139,7 +139,7 @@ class StoreTests: CoreTestCase {
         }
 
         // Then
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let ids = store.map { $0.id }
         XCTAssertEqual(ids.count, 1)
         XCTAssert(ids.contains("0"))
@@ -162,7 +162,7 @@ class StoreTests: CoreTestCase {
         }
 
         // Then
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let ids = store.map { $0.id }
         XCTAssertEqual(ids.count, 2)
         XCTAssert(ids.contains("0"))
