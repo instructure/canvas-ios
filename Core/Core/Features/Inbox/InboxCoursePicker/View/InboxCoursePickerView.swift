@@ -208,11 +208,3 @@ struct InboxCoursePickerView_Previews: PreviewProvider {
 }
 
 #endif
-
-/// Kotlin-inspired convenience property
-extension Collection {
-    var isNotEmpty: Bool {
-        return !isEmpty
-    }
-}
-

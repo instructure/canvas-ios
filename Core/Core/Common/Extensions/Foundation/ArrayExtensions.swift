@@ -35,6 +35,9 @@ public extension Array {
     }
 
     var nilIfEmpty: Self? { isEmpty ? nil : self }
+
+    /// A Boolean value indicating whether the collection is not empty.
+    var isNotEmpty: Bool { !isEmpty }
 }
 
 public extension Array where Element: Equatable {
