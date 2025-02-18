@@ -26,7 +26,7 @@ public enum ParentInboxCoursePickerAssembly {
 
     public static func makeInboxCoursePickerViewController(env: AppEnvironment = .shared) -> UIViewController {
         let interactor = ParentInboxCoursePickerInteractorLive(env: env)
-        let viewModel = ParentInboxCoursePickerViewModel(interactor: interactor)
+        let viewModel = ParentInboxCoursePickerViewModel(interactor: interactor, router: env.router)
         let view = ParentInboxCoursePickerView(viewModel: viewModel)
         return CoreHostingController(view)
     }
@@ -35,7 +35,7 @@ public enum ParentInboxCoursePickerAssembly {
 
     public static func makePreview(env: AppEnvironment) -> ParentInboxCoursePickerView {
         let interactor = ParentInboxCoursePickerInteractorPreview(env: env)
-        let viewModel = ParentInboxCoursePickerViewModel(interactor: interactor)
+        let viewModel = ParentInboxCoursePickerViewModel(interactor: interactor, router: env.router)
         return ParentInboxCoursePickerView(viewModel: viewModel)
     }
 

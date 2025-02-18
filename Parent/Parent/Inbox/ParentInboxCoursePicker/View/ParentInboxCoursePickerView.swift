@@ -17,9 +17,11 @@
 //
 
 import SwiftUI
+import Core
 
 public struct ParentInboxCoursePickerView: View {
     @ObservedObject private var viewModel: ParentInboxCoursePickerViewModel
+    @Environment(\.viewController) private var controller
 
     init(viewModel: ParentInboxCoursePickerViewModel) {
         self.viewModel = viewModel
@@ -32,27 +34,75 @@ public struct ParentInboxCoursePickerView: View {
                     .font(.regular16)
                     .foregroundColor(.textDark)
 
-                ForEach(viewModel.items, id: \.self) { item in
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(item.course.name ?? "")
-                                .font(.regular16)
-                                .foregroundColor(.textDarkest)
-                                .background(.white)
-
-                            Text(item.studentDisplayName)
-                                .font(.regular14)
-                                .foregroundColor(.textDark)
-
-                        }
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity)
+                switch(viewModel.state) {
+                case .data:
+                    contentView
+                case .empty:
+                    emptyView
+                case .error:
+                    errorView
+                case .loading:
+                    loadingView
                 }
+
             }
             .frame(maxWidth: .infinity)
             .padding(.all, 12)
         }
+    }
+
+    private var contentView: some View {
+        ForEach(viewModel.items, id: \.self) { item in
+            Button {
+                viewModel.didTapContext.accept((controller, item))
+            } label: {
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.course.name ?? "")
+                            .font(.regular16)
+                            .foregroundColor(.textDarkest)
+
+                        Text(item.studentDisplayName)
+                            .font(.regular14)
+                            .foregroundColor(.textDark)
+
+                    }
+                    Spacer()
+                }
+            }
+            .padding(.vertical, 4)
+            .frame(maxWidth: .infinity)
+        }
+    }
+
+    private var loadingView: some View {
+        VStack {
+            Spacer()
+            ProgressView()
+            Spacer()
+        }.frame(maxWidth: .infinity)
+    }
+
+    private var errorView: some View {
+        VStack {
+            Spacer()
+            Text("Failed to load courses")
+            Button("Retry") {
+                viewModel.didTapRefresh.accept(())
+            }
+            Spacer()
+        }.frame(maxWidth: .infinity)
+    }
+
+    private var emptyView: some View {
+        VStack {
+            Spacer()
+            Text("No courses found")
+            Button("Retry") {
+                viewModel.didTapRefresh.accept(())
+            }
+            Spacer()
+        }.frame(maxWidth: .infinity)
     }
 }
 

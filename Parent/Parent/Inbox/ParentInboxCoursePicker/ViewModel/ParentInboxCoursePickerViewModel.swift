@@ -17,6 +17,8 @@
 //
 
 import Foundation
+import Combine
+import CombineExt
 import Core
 
 public class ParentInboxCoursePickerViewModel: ObservableObject {
@@ -25,19 +27,64 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var items: [StudentContextItem] = []
 
-    init(interactor: ParentInboxCoursePickerInteractor) {
+    // MARK: - Inputs
+    public let didTapContext = PassthroughRelay<(WeakViewController, StudentContextItem)>()
+    public let didTapRefresh = PassthroughRelay<Void>()
+
+    init(interactor: ParentInboxCoursePickerInteractor, router: Router) {
         self.interactor = interactor
+        self.router = router
         setupOutputBindings()
+        setupInputBindings()
     }
 
     // MARK: - Private
 
     private let interactor: ParentInboxCoursePickerInteractor
+    private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
 
     private func setupOutputBindings() {
         interactor.state
             .assign(to: &$state)
         interactor.studentContextItems
             .assign(to: &$items)
+    }
+
+    private func setupInputBindings() {
+        didTapContext
+            .sink { [weak self] (controller, context) in
+                guard let self else { return }
+                let options = self.routeToCompose(controller, context)
+                router.show(
+                    ComposeMessageAssembly.makeComposeMessageViewController(options: options),
+                    from: controller,
+                    options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+                )
+            }
+            .store(in: &subscriptions)
+
+        didTapRefresh
+            .sink { [weak self] in
+                self?.interactor.refresh()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func routeToCompose(_ controller: WeakViewController, _ selectedContext: StudentContextItem) -> ComposeMessageOptions {
+        ComposeMessageOptions(
+            disabledFields: DisabledMessageFieldOptions(
+                contextDisabled: true
+            ),
+            fieldsContents: DefaultMessageFieldContents(
+                selectedContext: RecipientContext(name: selectedContext.course.name ?? "", context: Context(.course, id: selectedContext.course.id)),
+                subjectText: selectedContext.course.name ?? ""
+            ),
+            messageType: .new,
+            extras: ExtraMessageOptions(
+                hiddenMessage: "Regarding: \(selectedContext.studentDisplayName), \(interactor.getCourseURL(courseId: selectedContext.course.id))",
+                autoTeacherSelect: true
+            )
+        )
     }
 }

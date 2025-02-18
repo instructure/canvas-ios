@@ -25,5 +25,6 @@ public protocol ParentInboxCoursePickerInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
     var studentContextItems: CurrentValueSubject<[StudentContextItem], Never> { get }
 
+    func getCourseURL(courseId: String) -> String
     func refresh() -> AnyPublisher<[Void], Never>
 }

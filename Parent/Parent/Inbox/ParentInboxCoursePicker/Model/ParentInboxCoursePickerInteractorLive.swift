@@ -29,24 +29,23 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private var courses = CurrentValueSubject<[Course], Error>([])
     private var enrollments = CurrentValueSubject<[InboxEnrollment], Error>([])
+    private var enrollmentsStore: ReactiveStore<GetObservedEnrollments>
+    private var coursesStore: ReactiveStore<GetCourses>
+    private let environment: AppEnvironment
 
     public init(env: AppEnvironment) {
-//        ReactiveStore(
-//            useCase: GetEnrollments(
-//                context: .currentUser,
-//                includes: [.observed_users, .avatar_url],
-//                states: GetEnrollmentsRequest.State.allForParentObserver
-//            )
-//        )
-        ReactiveStore(useCase: GetObservedEnrollments(observerID: env.currentSession?.userID ?? ""))
-        .getEntities()
+        enrollmentsStore = ReactiveStore(useCase: GetObservedEnrollments(observerID: env.currentSession?.userID ?? ""))
+        coursesStore = ReactiveStore(useCase: GetCourses())
+        environment = env
+
+        enrollmentsStore.getEntities()
         .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] enrollmentList in
             self?.enrollments.send(enrollmentList)
         })
         .store(in: &subscriptions)
 
-        ReactiveStore(useCase: GetCourses())
-            .getEntities()
+
+        coursesStore.getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] courseList in
                 self?.courses.send(courseList)
             })
@@ -64,14 +63,17 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
                 self?.state.send(.error)
             },
             receiveValue: { [weak self] items in
+                self?.state.send(items.isEmpty ? .empty : .data)
                 self?.studentContextItems.send(items)
             })
             .store(in: &subscriptions)
     }
 
-    // MARK: - Inputs
     public func refresh() -> AnyPublisher<[Void], Never> {
-        Future<[Void], Never> {_ in }.eraseToAnyPublisher()
-        // courseListStore.refreshWithFuture(force: true).combineLatest(with: enrollmentListStore.refreshWithFuture(force: true))
+        coursesStore.forceRefresh().combineLatest(with: enrollmentsStore.forceRefresh())
+    }
+
+    func getCourseURL(courseId: String) -> String {
+        return "\(environment.currentSession?.baseURL.absoluteString ?? "")/courses/\(courseId)"
     }
 }

@@ -28,6 +28,10 @@ class ParentInboxCoursePickerInteractorPreview: ParentInboxCoursePickerInteracto
         Future<[Void], Never> {_ in }.eraseToAnyPublisher()
     }
 
+    func getCourseURL(courseId: String) -> String {
+        return "https://instructure.com/courses/\(courseId)"
+    }
+
     init(env: AppEnvironment) {
 
     }

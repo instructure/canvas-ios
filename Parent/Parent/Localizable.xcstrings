@@ -7182,6 +7182,9 @@
         }
       }
     },
+    "Failed to load courses" : {
+
+    },
     "Find School" : {
       "localizations" : {
         "ar" : {
@@ -11277,6 +11280,9 @@
           }
         }
       }
+    },
+    "No courses found" : {
+
     },
     "No Due Date" : {
       "localizations" : {
