@@ -20,11 +20,11 @@ import SwiftUI
 
 public struct InboxCoursePickerView: View {
     @ObservedObject private var viewModel: InboxCoursePickerViewModel
-    
+
     init(viewModel: InboxCoursePickerViewModel) {
         self.viewModel = viewModel
     }
-    
+
     public var body: some View {
         ScrollView {
             let titleText = viewModel.groups.isEmpty
@@ -43,7 +43,7 @@ public struct InboxCoursePickerView: View {
         .navigationBarStyle(.modal)
         .background(Color.backgroundLightest)
     }
-    
+
     @ViewBuilder
     private var content: some View {
         switch viewModel.state {
@@ -65,12 +65,12 @@ public struct InboxCoursePickerView: View {
                 .foregroundColor(.textDarkest)
         }
     }
-    
+
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
     }
-    
+
     private func favoriteCourses(_ courses: [Course]) -> some View {
         VStack(spacing: 0) {
             if courses.isNotEmpty {
@@ -87,7 +87,7 @@ public struct InboxCoursePickerView: View {
             }
         }
     }
-    
+
     private func moreCourses(_ courses: [Course]) -> some View {
         VStack(spacing: 0) {
             if courses.isNotEmpty {
@@ -101,11 +101,11 @@ public struct InboxCoursePickerView: View {
                         .accessibilityAddTraits([.isHeader])
                     InstUI.Divider()
                 }
-                
+
             }
         }
     }
-    
+
     private func groups(_ groups: [Group]) -> some View {
         VStack(spacing: 0) {
             if groups.isNotEmpty {
@@ -126,15 +126,15 @@ public struct InboxCoursePickerView: View {
             }
         }
     }
-    
+
     private func isSelected(_ course: Course) -> Bool {
         return viewModel.selectedRecipientContext?.context.id == course.id && viewModel.selectedRecipientContext?.context.contextType == .course
     }
-    
+
     private func isSelected(_ group: Group) -> Bool {
         viewModel.selectedRecipientContext?.context.id == group.id && viewModel.selectedRecipientContext?.context.contextType == .group
     }
-    
+
     private func courseRow(_ course: Course) -> some View {
         let courseName = course.name ?? course.courseCode ?? ""
         let accessibilityLabel = isSelected(course) ? Text("Selected: \(courseName)", bundle: .core) : Text(courseName)
@@ -154,18 +154,18 @@ public struct InboxCoursePickerView: View {
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 12)
                         .hidden(!isSelected(course))
-                    
+
                 }
                 .foregroundStyle(Color.textDarkest)
             }
             .padding(.vertical, 16)
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.course.\(course.id)")
-            
+
             InstUI.Divider()
         }
     }
-    
+
     private func groupRow(_ group: Group) -> some View {
         let groupName = group.name
         let accessibilityLabel = isSelected(group) ? Text("Selected: \(groupName)", bundle: .core) : Text(groupName)
@@ -191,7 +191,7 @@ public struct InboxCoursePickerView: View {
             .padding(.vertical, 16)
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.group.\(group.id)")
-            
+
             InstUI.Divider()
         }
     }
@@ -201,7 +201,7 @@ public struct InboxCoursePickerView: View {
 
 struct InboxCoursePickerView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
-    
+
     static var previews: some View {
         InboxCoursePickerAssembly.makePreview(env: env)
     }
@@ -215,3 +215,4 @@ extension Collection {
         return !isEmpty
     }
 }
+
