@@ -275,6 +275,9 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
 
         if let vc = targetVC {
             UIAccessibility.post(notification: .screenChanged, argument: vc)
+        } else {
+            let itemView = viewForMenuItem(at: at)
+            UIAccessibility.post(notification: .screenChanged, argument: itemView)
         }
     }
 }
