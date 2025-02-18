@@ -61,7 +61,7 @@ fileprivate extension HorizonUI {
                         isPresented: $isPresented,
                         content: { self.content }
                     )
-                    .scaleEffect(isPresented ? 1 : 0)
+                    .scaleEffect(isPresented ? 1 : 0.6)
                 }
                 .opacity(isPresented ? 1 : 0)
             }
