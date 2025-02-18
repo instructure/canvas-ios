@@ -38,7 +38,12 @@ let router = Router(routes: [
     },
 
     RouteHandler("/conversations") { _, _, _ in
-        return ParentInboxCoursePickerAssembly.makeInboxCoursePickerViewController(env: AppEnvironment.shared)
+        return InboxAssembly.makeInboxViewController()
+    },
+
+    // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
+    RouteHandler("/conversations/new_message") { _, _, _ in
+        return ParentInboxCoursePickerAssembly.makeParentInboxCoursePickerBottomSheetViewController()
     },
 
     RouteHandler("/conversations/compose") { url, _, _ in

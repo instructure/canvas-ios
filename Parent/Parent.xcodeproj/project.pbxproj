@@ -115,6 +115,7 @@
 		CFEE68DB2B1A251C00A04E43 /* LaunchScreen.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */; };
 		CFEE68DC2B1A251C00A04E43 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */; };
 		CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */; };
+		D343528B2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343528A2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift */; };
 		D359F94B2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359F94A2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift */; };
 		D359F94E2D5E1A3A000B1480 /* ParentInboxCoursePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359F94D2D5E1A3A000B1480 /* ParentInboxCoursePickerViewModel.swift */; };
 		D359F9502D5E1A66000B1480 /* ParentInboxCoursePickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359F94F2D5E1A66000B1480 /* ParentInboxCoursePickerInteractor.swift */; };
@@ -280,6 +281,7 @@
 		CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCellGradesTests.swift; sourceTree = "<group>"; };
+		D343528A2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D359F94A2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerView.swift; sourceTree = "<group>"; };
 		D359F94D2D5E1A3A000B1480 /* ParentInboxCoursePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerViewModel.swift; sourceTree = "<group>"; };
 		D359F94F2D5E1A66000B1480 /* ParentInboxCoursePickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerInteractor.swift; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 		D359F9482D5E19E2000B1480 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D343528A2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift */,
 				D359F94A2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift */,
 			);
 			path = View;
@@ -1265,6 +1268,7 @@
 				CF72EBD52C590A1D0056562A /* ParentSubmissionInteractor.swift in Sources */,
 				D359F94B2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift in Sources */,
 				3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */,
+				D343528B2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift in Sources */,
 				5B57423C2CB57429000FB627 /* GetObserverAlerts.swift in Sources */,
 				CF72EBE02C5922AC0056562A /* ParentSubmissionViewController.swift in Sources */,
 				CF34EC472C08C6700085EA33 /* ObserverAlertsInteractor.swift in Sources */,

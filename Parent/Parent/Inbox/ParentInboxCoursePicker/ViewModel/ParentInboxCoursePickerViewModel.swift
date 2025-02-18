@@ -19,7 +19,7 @@
 import Foundation
 import Core
 
-class ParentInboxCoursePickerViewModel: ObservableObject {
+public class ParentInboxCoursePickerViewModel: ObservableObject {
     // MARK: - Output
 
     @Published public private(set) var state: StoreState = .loading

@@ -175,12 +175,19 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         newMessageDidTap
-            .sink { [router, didSendMailSuccessfully] source in
-                router.show(
-                    ComposeMessageAssembly.makeComposeMessageViewController(sentMailEvent: didSendMailSuccessfully),
-                    from: source,
-                    options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
-                )
+            .sink { [router, didSendMailSuccessfully, messageInteractor] source in
+                // In the parent app we need a different logic for student context picker
+                if messageInteractor.isParent {
+                    if let bottomSheet = router.match("/conversations/new_message") {
+                        router.show(bottomSheet, from: source, options: .modal())
+                    }
+                } else {
+                    router.show(
+                        ComposeMessageAssembly.makeComposeMessageViewController(sentMailEvent: didSendMailSuccessfully),
+                        from: source,
+                        options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+                    )
+                }
             }
             .store(in: &subscriptions)
         messageDidTap

@@ -20,6 +20,10 @@ import Core
 import Foundation
 
 public enum ParentInboxCoursePickerAssembly {
+    public static func makeParentInboxCoursePickerBottomSheetViewController() -> UIViewController {
+        return ParentInboxCoursePickerBottomSheetViewController.create()
+    }
+
     public static func makeInboxCoursePickerViewController(env: AppEnvironment = .shared) -> UIViewController {
         let interactor = ParentInboxCoursePickerInteractorLive(env: env)
         let viewModel = ParentInboxCoursePickerViewModel(interactor: interactor)
