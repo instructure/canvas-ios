@@ -17,18 +17,26 @@
 //
 
 import XCTest
+import Combine
 @testable import Core
 
 class PagingPresenterTests: XCTestCase {
 
     private var controller: TestPageViewController!
     private var paging: PagingPresenter<TestPageViewController>!
+    private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
 
         controller = TestPageViewController()
         paging = PagingPresenter(controller: controller)
+    }
+
+    override func tearDown() {
+        subscriptions.forEach { $0.cancel() }
+        subscriptions.removeAll()
+        super.tearDown()
     }
 
     func test_hasMore() {
@@ -46,6 +54,9 @@ class PagingPresenterTests: XCTestCase {
         controller.lastRowIndex = lastIndex
         paging.onPageLoaded(model)
 
+        let loadMoreSubject = CurrentValueSubject<Bool, Never>(false)
+        paging.isLoadingMorePublisher.subscribe(loadMoreSubject).store(in: &subscriptions)
+
         // When
         paging.willDisplayRow(at: lastIndex)
 
@@ -58,12 +69,14 @@ class PagingPresenterTests: XCTestCase {
 
         // Then
         XCTAssertFalse(paging.isLoadingMore)
+        XCTAssertFalse(loadMoreSubject.value)
 
         // When
         paging.willDisplayRow(at: lastIndex)
 
         // Then
         XCTAssertTrue(paging.isLoadingMore)
+        XCTAssertTrue(loadMoreSubject.value)
         XCTAssertEqual(controller.nextPageCallCount, 2)
 
         // When
@@ -74,6 +87,7 @@ class PagingPresenterTests: XCTestCase {
 
         // Then
         XCTAssertFalse(paging.isLoadingMore)
+        XCTAssertFalse(loadMoreSubject.value)
         XCTAssertEqual(controller.nextPageCallCount, 2)
     }
 
@@ -83,6 +97,9 @@ class PagingPresenterTests: XCTestCase {
         let lastIndex = IndexPath(row: 0, section: 1)
         controller.lastRowIndex = lastIndex
         paging.onPageLoaded(model)
+
+        let loadMoreSubject = CurrentValueSubject<Bool, Never>(false)
+        paging.isLoadingMorePublisher.subscribe(loadMoreSubject).store(in: &subscriptions)
 
         // When - first page
         paging.willDisplayRow(at: lastIndex)
@@ -96,6 +113,7 @@ class PagingPresenterTests: XCTestCase {
 
         // Then
         XCTAssertFalse(paging.isLoadingMore)
+        XCTAssertFalse(loadMoreSubject.value)
 
         // When - last row displayed again
         paging.willDisplayRow(at: lastIndex)
@@ -109,6 +127,7 @@ class PagingPresenterTests: XCTestCase {
 
         // Then
         XCTAssertTrue(paging.isLoadingMore)
+        XCTAssertTrue(loadMoreSubject.value)
         XCTAssertEqual(controller.nextPageCallCount, 2)
 
         // When - success
@@ -116,7 +135,9 @@ class PagingPresenterTests: XCTestCase {
 
         // Then
         XCTAssertFalse(paging.isLoadingMore)
+        XCTAssertFalse(loadMoreSubject.value)
     }
+
 }
 
 struct TestPageModel: PageModel {
