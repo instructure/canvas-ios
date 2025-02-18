@@ -26,6 +26,9 @@ struct AssignmentDetails: View {
     @Bindable private var viewModel: AssignmentDetailsViewModel
     @Binding private var isShowHeader: Bool
 
+    @Environment(\.viewController) private var viewController
+
+    
     init(
         viewModel: AssignmentDetailsViewModel,
         isShowHeader: Binding<Bool> = .constant(false)
@@ -61,6 +64,12 @@ struct AssignmentDetails: View {
                     }
                     if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
                         Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
+                    }
+                    
+                    Button {
+                        viewModel.viewComments(controller: viewController)
+                    } label: {
+                        Text("View coments")
                     }
 
                     if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {

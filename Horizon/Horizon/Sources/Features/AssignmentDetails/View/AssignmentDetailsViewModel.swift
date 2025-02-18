@@ -94,6 +94,18 @@ final class AssignmentDetailsViewModel {
         }
         router.show(richContentEditor, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
+    
+    func viewComments(controller: WeakViewController) {
+        let v = SubmissionCommentAssembly.makeView(
+            context: .course(courseID),
+            assignmentID: assignment?.id ?? "",
+            userID: AppEnvironment.shared.currentSession?.userID ?? "",
+            attempt: 1
+        )
+        let vc = CoreHostingController(v)
+        router.show(vc, from: controller)
+        
+    }
 
     // MARK: - Private Functions
 

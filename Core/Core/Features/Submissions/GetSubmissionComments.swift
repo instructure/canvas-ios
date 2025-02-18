@@ -23,13 +23,15 @@ public class GetSubmissionComments: APIUseCase {
     let assignmentID: String
     let context: Context
     let userID: String
-
+    let isAscendingOrder: Bool
+    
     public typealias Model = SubmissionComment
 
-    public init(context: Context, assignmentID: String, userID: String) {
+    public init(context: Context, assignmentID: String, userID: String, isAscendingOrder: Bool = false) {
         self.assignmentID = assignmentID
         self.context = context
         self.userID = userID
+        self.isAscendingOrder = isAscendingOrder
     }
 
     public var cacheKey: String? {
@@ -49,7 +51,7 @@ public class GetSubmissionComments: APIUseCase {
                 #keyPath(SubmissionComment.userID),
                 userID
             ),
-            order: [NSSortDescriptor(key: #keyPath(SubmissionComment.createdAt), ascending: false)]
+            order: [NSSortDescriptor(key: #keyPath(SubmissionComment.createdAt), ascending: isAscendingOrder)]
         )
     }
 
