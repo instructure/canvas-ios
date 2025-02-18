@@ -48,12 +48,10 @@ class InboxCoursePickerInteractorLiveTests: CoreTestCase {
         let courses: [APICourse] = [
             .make(id: "1", name: "Course 1"),
             .make(id: "2", name: "Course 2"),
-            .make(id: 3, name: "Course 3 (favorite)", is_favorite: true),
-        ]
+            .make(id: 3, name: "Course 3 (favorite)", is_favorite: true)]
 
         let groups: [APIGroup] = [
-            .make(id: "1", name: "Group 1"),
-        ]
+            .make(id: "1", name: "Group 1")]
 
         api.mock(GetCourses(), value: courses)
         api.mock(GetGroups(), value: groups)

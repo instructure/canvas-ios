@@ -46,7 +46,7 @@ class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
             .filterMany { $0.isFavorite }
             .subscribe(favoriteCourses)
             .store(in: &subscriptions)
-        
+
         courseObjects
             .filterMany { !$0.isFavorite }
             .subscribe(moreCourses)
@@ -65,3 +65,4 @@ class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
         courseListStore.refreshWithFuture(force: true).combineLatest(with: groupListStore.refreshWithFuture(force: true))
     }
 }
+
