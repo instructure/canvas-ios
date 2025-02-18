@@ -28,34 +28,35 @@ public struct BottomSheetAction {
 public class BottomSheetPickerViewController: UIViewController {
     let env = AppEnvironment.shared
     public private(set) var actions: [BottomSheetAction] = []
-    let titleView = UILabel()
+    let titleLabel = UILabel()
     let stackView = UIStackView()
+    let mainStackView = UIStackView()
+    private let topPadding: CGFloat = 8
+    private let stackViewSpacing: CGFloat = 8
+    private var frameSize: CGFloat = 0
 
     public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
-
-    private var buttonHeight: CGFloat = 0
 
     public static func create(title: String? = nil) -> BottomSheetPickerViewController {
         let controller = BottomSheetPickerViewController()
         controller.modalPresentationStyle = .custom
         controller.modalPresentationCapturesStatusBarAppearance = true
         controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
-        controller.addTitle(title)
+        if let title {
+            controller.addTitle(title)
+        }
         return controller
     }
 
-    private func addTitle(_ title: String?) {
-        guard let title = title else {
-            return
-        }
-        titleView.font = .scaledNamedFont(.regular14)
-        titleView.textColor = .textDark
-        titleView.textAlignment = .center
-        titleView.text = title
-        titleView.accessibilityLabel = title
-        titleView.accessibilityTraits = .header
-        stackView.addArrangedSubview(titleView)
-        buttonHeight += titleView.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
+    private func addTitle(_ title: String) {
+        loadViewIfNeeded()
+        titleLabel.font = .scaledNamedFont(.regular14)
+        titleLabel.textColor = .textDark
+        titleLabel.textAlignment = .center
+        titleLabel.text = title
+        titleLabel.accessibilityLabel = title
+        titleLabel.accessibilityTraits = .header
+        mainStackView.insertArrangedSubview(titleLabel, at: 0)
     }
 
     public override func viewDidLoad() {
@@ -63,19 +64,32 @@ public class BottomSheetPickerViewController: UIViewController {
         view.backgroundColor = UIColor {
             $0.isDarkInterface ? .backgroundLight : .backgroundLightest
         }
-        view.addSubview(stackView)
+        mainStackView.addArrangedSubview(stackView)
         stackView.axis = .vertical
-        stackView.pin(inside: view, leading: nil, trailing: nil, top: 8, bottom: 18)
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+
+        view.addSubview(mainStackView)
+        mainStackView.axis = .vertical
+        mainStackView.spacing = stackViewSpacing
+        mainStackView.pin(inside: view, leading: nil, trailing: nil, top: topPadding, bottom: nil)
+        mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         addAccessiblityDismissButton()
+    }
+
+    private func calculateFrameSize() {
+        loadViewIfNeeded()
+        frameSize = 0
+        stackView.arrangedSubviews.forEach {
+            frameSize += $0.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
+        }
+        frameSize += titleLabel.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
     }
 
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let magicNumber: CGFloat = 36
-        view.frame.size.height = magicNumber + buttonHeight + view.safeAreaInsets.bottom
+        calculateFrameSize()
+        view.frame.size.height = topPadding + stackViewSpacing + frameSize + view.safeAreaInsets.bottom
     }
 
     public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
@@ -95,7 +109,6 @@ public class BottomSheetPickerViewController: UIViewController {
             button.setImage(image, for: .normal)
             button.configuration?.imagePadding = 24
         }
-        buttonHeight += button.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
 
         stackView.addArrangedSubview(button)
         actions.append(BottomSheetAction(action: action, image: image, title: title))
