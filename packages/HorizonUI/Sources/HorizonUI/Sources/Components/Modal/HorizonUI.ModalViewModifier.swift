@@ -49,8 +49,7 @@ fileprivate extension HorizonUI {
         func body(content: Content) -> some View {
             ZStack {
                 content
-
-                if isPresented {
+                ZStack {
                     Color.huiColors.surface.inverseSecondary.opacity(0.75)
                         .ignoresSafeArea()
                     Modal(
@@ -62,9 +61,11 @@ fileprivate extension HorizonUI {
                         isPresented: $isPresented,
                         content: { self.content }
                     )
+                    .scaleEffect(isPresented ? 1 : 0)
                 }
+                .opacity(isPresented ? 1 : 0)
             }
-            .animation(.easeOut, value: isPresented)
+            .animation(.spring, value: isPresented)
         }
     }
 }
