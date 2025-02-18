@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import UIKit
 
-public struct GradeListData: Identifiable, Equatable {
-   public var id: String?
-   var userID: String?
-   var courseName: String?
-   var courseColor: UIColor?
-   var assignmentSections: [AssignmentSections] = []
-   var isGradingPeriodHidden: Bool = true
-   var gradingPeriods: [GradingPeriod] = []
-   var currentGradingPeriod: GradingPeriod?
-   var totalGradeText: String?
-   var currentGradingPeriodID: String?
+public enum SpeedGraderAssembly {
 
-    struct AssignmentSections: Identifiable, Equatable {
-        var id: String
-        let title: String
-        var assignments: [Assignment]
+    public static func makeSpeedGraderViewController(
+        context: Context,
+        assignmentID: String,
+        userID: String?,
+        env: AppEnvironment,
+        filter: [GetSubmissions.Filter]
+    ) -> UIViewController {
+        let normalizedUserId = SpeedGraderViewController.normalizeUserID(userID)
+
+        return SpeedGraderViewController(
+            env: env,
+            context: context,
+            assignmentID: assignmentID,
+            userID: normalizedUserId,
+            filter: filter
+        )
     }
 }

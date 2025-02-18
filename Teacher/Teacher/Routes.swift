@@ -165,19 +165,39 @@ let router = Router(routes: [
             )
     },
 
-    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _, env in
-        guard let context = Context(path: url.path) else { return nil }
-        guard let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
-        let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
-            GetSubmissions.Filter(rawValue: $0)
-        } ?? []
-        return SpeedGraderViewController(
+    RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, _, env in
+        guard
+            let context = Context(path: url.path),
+            let assignmentID = url.queryValue(for: "assignment_id")
+        else { return nil }
+
+        return SpeedGraderAssembly.makeSpeedGraderViewController(
+            context: context,
+            assignmentID: assignmentID,
+            userID: url.queryValue(for: "student_id"),
             env: env,
+            filter: [])
+    },
+
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _, env in
+        guard
+            let context = Context(path: url.path),
+            let assignmentID = params["assignmentID"],
+            let userID = params["userID"]
+        else { return nil }
+
+        let filter = url
+            .queryValue(for: "filter")?
+            .components(separatedBy: ",")
+            .compactMap {
+                GetSubmissions.Filter(rawValue: $0)
+            } ?? []
+        return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentID: assignmentID,
             userID: userID,
-            filter: filter
-        )
+            env: env,
+            filter: filter)
     },
 
     RouteHandler("/courses/:courseID/attendance/:toolID") { _, params, _ in
@@ -305,13 +325,15 @@ let router = Router(routes: [
         return CoreHostingController(PageEditorView(context: context))
     },
 
-    RouteHandler("/:context/:contextID/pages/:url") { url, params, _ in
+    RouteHandler("/:context/:contextID/pages/:url") { url, params, _, env in
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
-        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
+        return PageDetailsViewController
+            .create(context: context, pageURL: pageURL, app: .teacher, env: env)
     },
-    RouteHandler("/:context/:contextID/wiki/:url") { url, params, _ in
+    RouteHandler("/:context/:contextID/wiki/:url") { url, params, _, env in
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
-        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
+        return PageDetailsViewController
+            .create(context: context, pageURL: pageURL, app: .teacher, env: env)
     },
 
     RouteHandler("/:context/:contextID/pages/:url/edit") { url, params, _ in

@@ -83,4 +83,10 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(results.first, "<iframe param=1>content</iframe>")
         XCTAssertEqual(results.last, "<iframe></iframe>")
     }
+
+    func testLocalizedNumberOfItems() {
+        XCTAssertEqual(String.localizedNumberOfItems(1), "1 item")
+        XCTAssertEqual(String.localizedNumberOfItems(5), "5 items")
+        XCTAssertEqual(String.localizedNumberOfItems(0), "0 items")
+    }
 }

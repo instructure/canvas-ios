@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
-public struct GradeListData: Identifiable, Equatable {
-   public var id: String?
-   var userID: String?
-   var courseName: String?
-   var courseColor: UIColor?
-   var assignmentSections: [AssignmentSections] = []
-   var isGradingPeriodHidden: Bool = true
-   var gradingPeriods: [GradingPeriod] = []
-   var currentGradingPeriod: GradingPeriod?
-   var totalGradeText: String?
-   var currentGradingPeriodID: String?
+extension View {
 
-    struct AssignmentSections: Identifiable, Equatable {
-        var id: String
-        let title: String
-        var assignments: [Assignment]
+    /// This is a convenience overload of the `accessibilityIdentifier` function but this accepts an optional.
+    /// If the passed `identifier` is nil this method does nothing.
+    @ViewBuilder
+    public func accessibilityIdentifier(_ identifier: String?) -> some View {
+        if let identifier {
+            self.accessibilityIdentifier(identifier)
+        } else {
+            self
+        }
     }
 }

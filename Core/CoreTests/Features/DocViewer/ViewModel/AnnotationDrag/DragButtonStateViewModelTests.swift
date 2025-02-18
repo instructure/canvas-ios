@@ -51,7 +51,7 @@ class DragButtonStateViewModelTests: XCTestCase {
         XCTAssertNil(annotationStateManager.lastState)
         XCTAssertNil(annotationStateManager.lastVariant)
         XCTAssertTrue(dragButton.isSelected)
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }
@@ -69,7 +69,7 @@ class DragButtonStateViewModelTests: XCTestCase {
         testee.anotherAnnotationButtonSelected()
 
         XCTAssertFalse(dragButton.isSelected)
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }

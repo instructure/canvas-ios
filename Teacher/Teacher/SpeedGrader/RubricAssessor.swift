@@ -39,6 +39,7 @@ struct RubricAssessor: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Rubric", bundle: .teacher)
                     .font(.heavy24).foregroundColor(.textDarkest)
+                    .accessibilityAddTraits(.isHeader)
                 Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")", bundle: .teacher)
                     .font(.medium14).foregroundColor(.textDark)
             }

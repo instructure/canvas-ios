@@ -527,18 +527,19 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo _
     return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
 }
 
-private func pageViewController(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+private func pageViewController(url: URLComponents, params: [String: String], userInfo _: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
     if !url.originIsModuleItemDetails, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
-            env: .shared,
+            env: env,
             courseID: context.id,
             assetType: .page,
             assetID: pageURL,
             url: url
         )
     }
-    return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+    return PageDetailsViewController
+        .create(context: context, pageURL: pageURL, app: .student, env: env)
 }
 
 private func discussionViewController(
