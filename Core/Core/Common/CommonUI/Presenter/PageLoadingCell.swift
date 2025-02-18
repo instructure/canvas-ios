@@ -73,7 +73,12 @@ public class PageLoadingCell: UITableViewCell {
         subscriptions.removeAll()
     }
 
-    func observeLoading(_ loadingPublisher: AnyPublisher<Bool, Never>) {
+    public func setup<Controller: PagingViewController>(with presenter: PagingPresenter<Controller>) -> Self {
+        observeLoading(presenter.isLoadingMorePublisher)
+        return self
+    }
+
+    private func observeLoading(_ loadingPublisher: AnyPublisher<Bool, Never>) {
         loadingPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in

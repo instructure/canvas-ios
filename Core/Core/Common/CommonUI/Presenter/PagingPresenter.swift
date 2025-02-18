@@ -34,6 +34,9 @@ public class PagingPresenter<Controller: PagingViewController> {
 
     public var hasMore: Bool { endCursor != nil }
     public var isLoadingMore: Bool { isLoadingMoreSubject.value }
+    public var isLoadingMorePublisher: AnyPublisher<Bool, Never> {
+        isLoadingMoreSubject.eraseToAnyPublisher()
+    }
 
     private var endCursor: String?
     private var isLoadingMoreSubject = CurrentValueSubject<Bool, Never>(false)
@@ -62,11 +65,6 @@ public class PagingPresenter<Controller: PagingViewController> {
     public func willSelectRow(at indexPath: IndexPath) {
         guard controller.isMoreRow(at: indexPath), isLoadingMoreSubject.value == false else { return }
         loadMore()
-    }
-
-    public func setup(in cell: PageLoadingCell) -> PageLoadingCell {
-        cell.observeLoading(isLoadingMoreSubject.eraseToAnyPublisher())
-        return cell
     }
 
     private func loadMore() {

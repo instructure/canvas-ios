@@ -95,7 +95,9 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard indexPath.section == 0 else {
-            return paging.setup(in: tableView.dequeue(for: indexPath))
+            return tableView
+                .dequeue(PageLoadingCell.self, for: indexPath)
+                .setup(with: paging)
         }
 
         let cell: UITableViewCell
