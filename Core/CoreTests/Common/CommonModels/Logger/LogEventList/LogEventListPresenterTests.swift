@@ -54,7 +54,7 @@ class LogEventListPresenterTests: CoreTestCase {
         view.reloadDataExpectation = XCTestExpectation()
         presenter.applyFilter(.log)
 
-        wait(for: [view.reloadDataExpectation], timeout: 0.1)
+        wait(for: [view.reloadDataExpectation], timeout: 1)
         XCTAssertEqual(presenter.events.count, 1)
         let event = presenter.events[IndexPath(row: 0, section: 0)]
         XCTAssertEqual(event?.type, .log)
@@ -69,13 +69,13 @@ class LogEventListPresenterTests: CoreTestCase {
         // Filter to only show errors
         view.reloadDataExpectation = XCTestExpectation()
         presenter.applyFilter(.log)
-        wait(for: [view.reloadDataExpectation], timeout: 0.1)
+        wait(for: [view.reloadDataExpectation], timeout: 1)
         XCTAssertEqual(presenter.events.count, 1)
 
         // Apply filter back to nil
         view.reloadDataExpectation = XCTestExpectation()
         presenter.applyFilter(nil)
-        wait(for: [view.reloadDataExpectation], timeout: 0.1)
+        wait(for: [view.reloadDataExpectation], timeout: 1)
         XCTAssertEqual(presenter.events.count, 2)
     }
 

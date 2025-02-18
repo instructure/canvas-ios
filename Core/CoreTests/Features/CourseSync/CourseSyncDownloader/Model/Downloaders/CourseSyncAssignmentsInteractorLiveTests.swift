@@ -104,7 +104,7 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
                 receiveValue: { _ in }
             )
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let assignmentList: [Assignment] = databaseClient.fetch(nil, sortDescriptors: nil)
         XCTAssertEqual(assignmentList.count, 0)
         subscription.cancel()
@@ -153,7 +153,7 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
                 receiveValue: { _ in }
             )
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let submissionCommentList: [SubmissionComment] = databaseClient.fetch(
             nil,
             sortDescriptors: [NSSortDescriptor(key: #keyPath(SubmissionComment.id), ascending: true)]

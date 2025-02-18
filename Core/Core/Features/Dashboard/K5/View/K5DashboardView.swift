@@ -56,8 +56,8 @@ public struct K5DashboardView: View {
                 Image.hamburgerSolid
                     .foregroundColor(Color(Brand.shared.navTextColor))
             })
-                .identifier("Dashboard.profileButton")
-                .accessibility(label: Text("Profile Menu", bundle: .core))
+            .identifier("Dashboard.profileButton")
+            .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
         )
     }
 

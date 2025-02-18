@@ -233,7 +233,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 assignmentSections.append(
                     GradeListData.AssignmentSections(
                         id: assignment.assignmentGroupID ?? UUID.string,
-                        title: assignment.assignmentGroupSectionName,
+                        title: assignment.assignmentGroupSectionName ?? "",
                         assignments: [assignment]
                     )
                 )

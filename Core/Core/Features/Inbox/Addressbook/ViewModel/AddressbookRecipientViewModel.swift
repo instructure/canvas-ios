@@ -67,13 +67,22 @@ class AddressbookRecipientViewModel: ObservableObject {
         Just(allRecipient)
             .combineLatest(searchText)
             .map { (recipients, searchText) in
-                recipients.filter { recipient in
+
+                let foundResults = recipients.filter { recipient in
                     if searchText.isEmpty {
                         true
                     } else {
                         recipient.displayName.lowercased().contains(searchText.lowercased())
                     }
                 }
+
+                if searchText.isNotEmpty {
+                    let format = String(localized: "d_results_found", bundle: .core)
+                    let message = String.localizedStringWithFormat(format, foundResults.count)
+                    UIAccessibility.announce(message)
+                }
+
+                return foundResults
             }
             .assign(to: &$recipients)
 
