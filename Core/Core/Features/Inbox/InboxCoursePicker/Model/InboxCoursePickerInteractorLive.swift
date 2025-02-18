@@ -65,4 +65,3 @@ class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
         courseListStore.refreshWithFuture(force: true).combineLatest(with: groupListStore.refreshWithFuture(force: true))
     }
 }
-
