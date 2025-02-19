@@ -375,7 +375,7 @@ final class ComposeMessageViewModel: ObservableObject {
         initialMessageProperties.subject = subject
 
         if autoTeacherSelect {
-            selectedRecipients.send([.init(ids: [], name: String(localized: "Teachers"), avatarURL: nil)])
+            selectedRecipients.send([.init(id: "\(selectedContext?.context.canvasContextID ?? "")_teachers", name: String(localized: "All in Teachers", bundle: .core), avatarURL: nil)])
         }
     }
 
