@@ -30,9 +30,9 @@ class BottomSheetPickerViewControllerTests: CoreTestCase {
         }
         controller.addAction(image: .xLine, title: "Cancel")
 
-        (controller.stackView.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
+        (controller.buttonStackView.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
         XCTAssertFalse(addCalled)
-        (controller.stackView.arrangedSubviews[0] as? UIButton)?.sendActions(for: .primaryActionTriggered)
+        (controller.buttonStackView.arrangedSubviews[0] as? UIButton)?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(addCalled)
         controller.viewWillLayoutSubviews()
         XCTAssertEqual(controller.view.frame.height, 148)
