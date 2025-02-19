@@ -38,12 +38,14 @@ public class FilterHeaderView: UITableViewHeaderFooterView {
         titleLabel.textColor = .textDarkest
         titleLabel.font = .scaledNamedFont(.heavy24)
         titleLabel.numberOfLines = 2
+        titleLabel.accessibilityTraits = [ .header ]
         contentView.addSubview(titleLabel)
         titleLabel.pin(inside: contentView, leading: 16, trailing: nil, top: 16, bottom: 8)
         filterButton.setTitle(String(localized: "Filter", bundle: .core), for: .normal)
         filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
         filterButton.titleLabel?.font = .scaledNamedFont(.medium16)
         filterButton.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.accessibilityTraits = [ .button ]
         contentView.addSubview(filterButton)
         NSLayoutConstraint.activate([
             filterButton.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),

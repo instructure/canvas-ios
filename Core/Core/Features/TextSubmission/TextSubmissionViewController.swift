@@ -64,8 +64,6 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
         title = String(localized: "Text Entry", bundle: .core)
 
         navigationController?.navigationBar.useModalStyle()
-        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "TextSubmission.submitButton"
-        navigationItem.rightBarButtonItem?.isEnabled = false
         addNavBarButtons()
         editor.delegate = self
         editor.placeholder = String(localized: "Write...", bundle: .core, comment: "Text submission editor placeholder")
@@ -106,12 +104,15 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
                 action: #selector(horizonCancel)
             )
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(
+            let submitButton = UIBarButtonItem(
                 title: String(localized: "Submit", bundle: .core),
                 style: .plain,
                 target: self,
                 action: #selector(submit)
             )
+            submitButton.accessibilityIdentifier = "TextSubmission.submitButton"
+            submitButton.isEnabled = false
+            navigationItem.rightBarButtonItem = submitButton
             addCancelButton(side: .left)
         }
     }

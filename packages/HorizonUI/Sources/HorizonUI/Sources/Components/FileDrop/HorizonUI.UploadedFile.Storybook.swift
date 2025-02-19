@@ -18,29 +18,31 @@
 
 import SwiftUI
 
-public extension HorizonUI.FileUploadSheet {
+public extension HorizonUI.UploadedFile {
     struct Storybook: View {
-        @State var present: Bool = false
-
         public var body: some View {
             VStack {
-                Button("Present File Sheet") { present.toggle() }
+                HorizonUI.UploadedFile(
+                    fileName: "LoremIpsumFileName.xxx",
+                    actionType: .download
+                ) {
+                    print("download")
+                }
+
+                HorizonUI.UploadedFile(
+                    fileName: "LoremIpsumFileName.xxx",
+                    actionType: .delete
+                ) {
+                    print("delete")
+                }
+                Spacer()
             }
-            .sheet(isPresented: $present){
-                HorizonUI.FileUploadSheet(onTapChoosePhoto: {},
-                                          onTapOpenCamera: {},
-                                          onTapChooseFile: {})
-                    .presentationCompactAdaptation(.sheet)
-                    .presentationCornerRadius(32)
-                    .interactiveDismissDisabled()
-                    .presentationDetents([.height(300)])
-                    .background(.red)
-            }
-            .navigationTitle("File Upload Sheet")
+            .padding()
+            .navigationTitle("Uploaded File")
         }
     }
 }
 
 #Preview {
-    HorizonUI.FileUploadSheet.Storybook()
+    HorizonUI.UploadedFile.Storybook()
 }

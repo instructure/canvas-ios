@@ -34,13 +34,13 @@ extension CourseDefaultView {
     }
 
     func homeRoute(courseID: String) -> URL? {
-        var route = "courses/\(courseID)/\(rawValue)"
+        var route = "/courses/\(courseID)/\(rawValue)"
 
         switch self {
         case .feed:
-            route = "courses/\(courseID)/activity_stream"
+            route = "/courses/\(courseID)/activity_stream"
         case .wiki:
-            route = "courses/\(courseID)/pages/front_page"
+            route = "/courses/\(courseID)/pages/front_page"
         default:
             break
         }

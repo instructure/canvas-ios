@@ -36,7 +36,10 @@ public struct SearchSupportIcon {
     let image: () -> Image
     let uiImage: () -> UIImage?
 
-    public init(image: @autoclosure @escaping () -> Image, uiImage: @autoclosure @escaping () -> UIImage?) {
+    public init(
+        image: @autoclosure @escaping () -> Image,
+        uiImage: @autoclosure @escaping () -> UIImage?
+    ) {
         self.image = image
         self.uiImage = uiImage
     }

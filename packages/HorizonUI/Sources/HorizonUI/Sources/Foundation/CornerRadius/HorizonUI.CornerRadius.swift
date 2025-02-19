@@ -23,8 +23,10 @@ public extension HorizonUI {
         /// Helper variant when conditional corner radius is applied
         case level0
         case level1
+        case level1_5
         case level2
         case level3
+        case level3_5
         case level4
         case level5
         case level6
@@ -37,10 +39,14 @@ public extension HorizonUI {
                 CornerAttributes(radius: 0, smoothness: 0)
             case .level1:
                 CornerAttributes(radius: 8, smoothness: 0)
+            case .level1_5:
+                CornerAttributes(radius: 12, smoothness: 0)
             case .level2:
                 CornerAttributes(radius: 16, smoothness: 60)
             case .level3:
                 CornerAttributes(radius: 16, smoothness: 0)
+            case .level3_5:
+                CornerAttributes(radius: 24, smoothness: 0)
             case .level4:
                 CornerAttributes(radius: 32, smoothness: 60)
             case .level5:

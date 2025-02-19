@@ -24,7 +24,7 @@ enum LoginError: Error {
     case unauthorized
 }
 
-final class SessionInteractor: LoginDelegate {
+final class SessionInteractor: NSObject, LoginDelegate {
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
@@ -40,7 +40,7 @@ final class SessionInteractor: LoginDelegate {
         return updateLoginSession(session: currentSession)
     }
 
-    func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
+    private func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
         LoginSession.add(session)
         environment.userDidLogin(session: session)
 
@@ -51,6 +51,7 @@ final class SessionInteractor: LoginDelegate {
             .compactMap { $0.first }
             .flatMap { userProfile in
                 CoreWebView.keepCookieAlive(for: unownedSelf.environment)
+                PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
 
                 return ReactiveStore(
                     useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
@@ -63,6 +64,9 @@ final class SessionInteractor: LoginDelegate {
                 if err.domain == NSError.Constants.domain,
                    err.code == HttpError.unauthorized {
                     unownedSelf.userDidLogout(session: session)
+                    return LoginError.unauthorized
+                } else if let apiError = error as? APIError, case .unauthorized = apiError {
+                   unownedSelf.userDidLogout(session: session)
                     return LoginError.unauthorized
                 } else {
                     return error

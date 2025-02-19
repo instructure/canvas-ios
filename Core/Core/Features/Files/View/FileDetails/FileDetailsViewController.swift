@@ -67,6 +67,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var isFileLocalURLAvailable: Bool { localURL != nil }
     private var isPresentingOfflineModeAlert = false
     public var didFinishLoading: () -> Void = { }
+
     public static func create(
         context: Context?,
         fileID: String,

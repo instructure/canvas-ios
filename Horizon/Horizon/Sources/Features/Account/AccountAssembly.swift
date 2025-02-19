@@ -16,12 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 final class AccountAssembly {
     static func makeView() -> AccountView {
         AccountView(
             viewModel: AccountViewModel(
                 getUserInteractor: GetUserInteractorLive(),
-                sessionInteractor: SessionInteractor()
+                sessionInteractor: SessionInteractor(),
+                router: AppEnvironment.shared.router
             )
         )
     }
@@ -31,7 +34,8 @@ final class AccountAssembly {
         let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = AccountViewModel(
             getUserInteractor: getUserInteractorPreview,
-            sessionInteractor: SessionInteractor()
+            sessionInteractor: SessionInteractor(),
+            router: AppEnvironment.shared.router
         )
         return AccountView(viewModel: viewModel)
     }

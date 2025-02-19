@@ -14,6 +14,9 @@
         }
       }
     },
+    "Abu Dhabi (+04:00/+04:00)" : {
+
+    },
     "Account" : {
 
     },
@@ -21,6 +24,9 @@
 
     },
     "Add your text" : {
+
+    },
+    "Adelaide (+09:30/+10:30)" : {
 
     },
     "Advanced" : {
@@ -38,6 +44,21 @@
     "AI Tutor" : {
 
     },
+    "Alaska (-09:00/-08:00)" : {
+
+    },
+    "Almaty (+05:00/+05:00)" : {
+
+    },
+    "American Samoa (-11:00)" : {
+
+    },
+    "Amsterdam (+01:00/+02:00)" : {
+
+    },
+    "Announcements and Messages" : {
+
+    },
     "Answer" : {
 
     },
@@ -47,10 +68,112 @@
     "Are you sure you want to proceed?" : {
 
     },
+    "Arizona (-07:00)" : {
+
+    },
+    "Assignment due dates" : {
+
+    },
+    "Astana (+05:00/+05:00)" : {
+
+    },
+    "Asuncion (-04:00/-03:00)" : {
+
+    },
+    "Athens (+02:00/+03:00)" : {
+
+    },
+    "Atlantic Time (Canada) (-04:00/-03:00)" : {
+
+    },
+    "Auckland (+12:00/+13:00)" : {
+
+    },
+    "Azores (-01:00/+00:00)" : {
+
+    },
+    "Baghdad (+03:00/+03:00)" : {
+
+    },
+    "Baku (+04:00/+04:00)" : {
+
+    },
+    "Bangkok (+07:00/+07:00)" : {
+
+    },
+    "Beijing (+08:00)" : {
+
+    },
+    "Belgrade (+01:00/+02:00)" : {
+
+    },
+    "Berlin (+01:00/+02:00)" : {
+
+    },
+    "Bern (+01:00/+02:00)" : {
+
+    },
+    "Bogota (-05:00/-05:00)" : {
+
+    },
+    "Brasilia (-03:00/-03:00)" : {
+
+    },
+    "Bratislava (+01:00/+02:00)" : {
+
+    },
+    "Brisbane (+10:00)" : {
+
+    },
+    "Brussels (+01:00/+02:00)" : {
+
+    },
+    "Bucharest (+02:00/+03:00)" : {
+
+    },
+    "Budapest (+01:00/+02:00)" : {
+
+    },
+    "Buenos Aires (-03:00/-03:00)" : {
+
+    },
+    "Cairo (+02:00/+03:00)" : {
+
+    },
+    "Canberra (+10:00/+11:00)" : {
+
+    },
     "Cancel" : {
 
     },
+    "Cape Verde Is. (-01:00/-01:00)" : {
+
+    },
+    "Caracas (-04:00/-04:00)" : {
+
+    },
+    "Casablanca (+01:00/+00:00)" : {
+
+    },
+    "Central America (-06:00)" : {
+
+    },
+    "Central Time (US & Canada) (-06:00/-05:00)" : {
+
+    },
+    "Chatham Is. (+12:45/+13:45)" : {
+
+    },
     "Check Answer" : {
+
+    },
+    "Chennai (+05:30)" : {
+
+    },
+    "Chihuahua (-06:00)" : {
+
+    },
+    "Chongqing (+08:00)" : {
 
     },
     "Choose and complete one of the required items." : {
@@ -68,19 +191,82 @@
     "Confusing" : {
 
     },
+    "Copenhagen (+01:00/+02:00)" : {
+
+    },
+    "Cuiaba (-04:00/-04:00)" : {
+
+    },
+    "Darwin (+09:30)" : {
+
+    },
+    "Dhaka (+06:00/+06:00)" : {
+
+    },
+    "Display Name" : {
+
+    },
     "Download File" : {
+
+    },
+    "Dublin (+01:00/+00:00)" : {
+
+    },
+    "E-mail" : {
+
+    },
+    "Eastern Time (US & Canada) (-05:00/-04:00)" : {
+
+    },
+    "Edinburgh (+00:00/+01:00)" : {
 
     },
     "Edit" : {
 
     },
+    "Eirunepe (-05:00/-05:00)" : {
+
+    },
+    "Ekaterinburg (+05:00/+05:00)" : {
+
+    },
+    "Email" : {
+
+    },
+    "Email can only be changed by your institution" : {
+
+    },
+    "Enable iOS Notifications" : {
+
+    },
     "Error" : {
+
+    },
+    "Fiji (+12:00/+12:00)" : {
 
     },
     "Filter" : {
 
     },
+    "Fortaleza (-03:00/-03:00)" : {
+
+    },
+    "Full Name" : {
+
+    },
     "Generate some study flashcards" : {
+
+    },
+    "Georgetown (-04:00/-04:00)" : {
+
+    },
+    "Get a notification anytime an assignment is scored or the score is changed, and anytime the score weight is changed." : {
+
+    },
+    "Get a notification anytime an assignment’s due date is added or changed." : {
+
+    },
+    "Get a notification anytime you receive a course announcement or a new message." : {
 
     },
     "Give me key takeaways" : {
@@ -89,10 +275,37 @@
     "Grades" : {
 
     },
+    "Greenland (-02:00/-01:00)" : {
+
+    },
+    "Guadalajara (-06:00)" : {
+
+    },
+    "Guam (+10:00)" : {
+
+    },
+    "Hanoi (+07:00/+07:00)" : {
+
+    },
+    "Harare (+02:00)" : {
+
+    },
+    "Hawaii (-10:00)" : {
+
+    },
     "Hello, Career!" : {
 
     },
+    "Helsinki (+02:00/+03:00)" : {
+
+    },
+    "Hobart (+10:00/+11:00)" : {
+
+    },
     "Home" : {
+
+    },
+    "Hong Kong (+08:00)" : {
 
     },
     "How was this question?" : {
@@ -101,7 +314,70 @@
     "Important" : {
 
     },
+    "Indiana (East) (-05:00/-04:00)" : {
+
+    },
+    "International Date Line West (-12:00)" : {
+
+    },
+    "Irkutsk (+08:00/+08:00)" : {
+
+    },
+    "Islamabad (+05:00)" : {
+
+    },
+    "Istanbul (+03:00/+03:00)" : {
+
+    },
+    "Jakarta (+07:00)" : {
+
+    },
+    "Jerusalem (+02:00/+03:00)" : {
+
+    },
+    "Kabul (+04:30/+04:30)" : {
+
+    },
+    "Kaliningrad (+02:00)" : {
+
+    },
+    "Kamchatka (+12:00/+12:00)" : {
+
+    },
+    "Karachi (+05:00)" : {
+
+    },
+    "Kathmandu (+05:45/+05:45)" : {
+
+    },
+    "Kolkata (+05:30)" : {
+
+    },
+    "Krasnoyarsk (+07:00/+07:00)" : {
+
+    },
+    "Kuala Lumpur (+08:00/+08:00)" : {
+
+    },
+    "Kuwait (+03:00/+03:00)" : {
+
+    },
+    "Kyiv (+02:00/+03:00)" : {
+
+    },
+    "La Paz (-04:00/-04:00)" : {
+
+    },
     "Learn" : {
+
+    },
+    "Lima (-05:00/-05:00)" : {
+
+    },
+    "Lisbon (+00:00/+01:00)" : {
+
+    },
+    "Ljubljana (+01:00/+02:00)" : {
 
     },
     "Locked" : {
@@ -110,19 +386,94 @@
     "Logout" : {
 
     },
+    "London (+00:00/+01:00)" : {
+
+    },
+    "Madrid (+01:00/+02:00)" : {
+
+    },
+    "Magadan (+11:00/+11:00)" : {
+
+    },
+    "Manaus (-04:00/-04:00)" : {
+
+    },
     "Mark as Done" : {
 
     },
     "Mark as Undone" : {
 
     },
+    "Marshall Is. (+12:00/+12:00)" : {
+
+    },
+    "Mazatlan (-07:00)" : {
+
+    },
+    "Melbourne (+10:00/+11:00)" : {
+
+    },
+    "Mexico City (-06:00)" : {
+
+    },
+    "Mid-Atlantic (-02:00/-02:00)" : {
+
+    },
+    "Midway Island (-11:00)" : {
+
+    },
+    "Minsk (+03:00/+03:00)" : {
+
+    },
+    "Monrovia (+00:00)" : {
+
+    },
+    "Monterrey (-06:00)" : {
+
+    },
+    "Montevideo (-03:00/-03:00)" : {
+
+    },
+    "Moscow (+03:00)" : {
+
+    },
+    "Mountain Time (US & Canada) (-07:00/-06:00)" : {
+
+    },
+    "Mumbai (+05:30)" : {
+
+    },
+    "Muscat (+04:00/+04:00)" : {
+
+    },
     "My Progress" : {
+
+    },
+    "Nairobi (+03:00)" : {
+
+    },
+    "Name is required" : {
+
+    },
+    "New Caledonia (+11:00/+11:00)" : {
+
+    },
+    "New Delhi (+05:30)" : {
+
+    },
+    "Newfoundland (-03:30/-02:30)" : {
 
     },
     "Next Up" : {
 
     },
     "No" : {
+
+    },
+    "Norfolk Island (+11:00/+12:00)" : {
+
+    },
+    "Noronha (-02:00/-02:00)" : {
 
     },
     "Notebook" : {
@@ -137,6 +488,12 @@
     "Notifications" : {
 
     },
+    "Novosibirsk (+07:00/+07:00)" : {
+
+    },
+    "Nuku'alofa (+13:00/+13:00)" : {
+
+    },
     "of" : {
 
     },
@@ -149,13 +506,46 @@
     "Open in a New Tab" : {
 
     },
+    "Osaka (+09:00)" : {
+
+    },
     "Overview" : {
+
+    },
+    "Pacific Time (US & Canada) (-08:00/-07:00)" : {
+
+    },
+    "Paris (+01:00/+02:00)" : {
 
     },
     "Password" : {
 
     },
+    "Perth (+08:00)" : {
+
+    },
+    "Philippines (+08:00)" : {
+
+    },
+    "Port Moresby (+10:00/+10:00)" : {
+
+    },
+    "Prague (+01:00/+02:00)" : {
+
+    },
+    "Pretoria (+02:00)" : {
+
+    },
     "Profile" : {
+
+    },
+    "Puerto Rico (-04:00)" : {
+
+    },
+    "Push notification" : {
+
+    },
+    "Push notifications are currently disabled. To turn on, you will need to enable in iOS Settings." : {
 
     },
     "Question" : {
@@ -164,25 +554,94 @@
     "Quick Links" : {
 
     },
+    "Quito (-05:00/-05:00)" : {
+
+    },
     "Quiz me on this material" : {
+
+    },
+    "Rangoon (+06:30/+06:30)" : {
 
     },
     "Regenerate" : {
 
     },
+    "Required" : {
+
+    },
     "Retry" : {
+
+    },
+    "Riga (+02:00/+03:00)" : {
+
+    },
+    "Riyadh (+03:00/+03:00)" : {
+
+    },
+    "Rome (+01:00/+02:00)" : {
+
+    },
+    "Samara (+04:00/+04:00)" : {
+
+    },
+    "Samoa (+13:00/+13:00)" : {
+
+    },
+    "Santiago (-04:00/-03:00)" : {
+
+    },
+    "Sapporo (+09:00)" : {
+
+    },
+    "Sarajevo (+01:00/+02:00)" : {
+
+    },
+    "Saskatchewan (-06:00)" : {
 
     },
     "Save" : {
 
     },
+    "Save Changes" : {
+
+    },
+    "Scores" : {
+
+    },
     "Search" : {
+
+    },
+    "Seoul (+09:00)" : {
 
     },
     "Settings" : {
 
     },
+    "Singapore (+08:00/+08:00)" : {
+
+    },
     "Skillspace" : {
+
+    },
+    "Skopje (+01:00/+02:00)" : {
+
+    },
+    "Sofia (+02:00/+03:00)" : {
+
+    },
+    "Solomon Is. (+11:00/+11:00)" : {
+
+    },
+    "Srednekolymsk (+11:00/+11:00)" : {
+
+    },
+    "Sri Jayawardenepura (+05:30/+05:30)" : {
+
+    },
+    "St. Petersburg (+03:00)" : {
+
+    },
+    "Stockholm (+01:00/+02:00)" : {
 
     },
     "Submit Assignment" : {
@@ -194,7 +653,25 @@
     "Support" : {
 
     },
+    "Sydney (+10:00/+11:00)" : {
+
+    },
+    "Taipei (+08:00)" : {
+
+    },
+    "Tallinn (+02:00/+03:00)" : {
+
+    },
     "Tap to flip" : {
+
+    },
+    "Tashkent (+05:00/+05:00)" : {
+
+    },
+    "Tbilisi (+04:00/+04:00)" : {
+
+    },
+    "Tehran (+03:30/+03:30)" : {
 
     },
     "Tell me more about this topic" : {
@@ -203,16 +680,73 @@
     "There was an error. please try again." : {
 
     },
+    "Tijuana (-08:00/-07:00)" : {
+
+    },
+    "Time Zone" : {
+
+    },
+    "Tokelau Is. (+13:00/+13:00)" : {
+
+    },
+    "Tokyo (+09:00)" : {
+
+    },
     "Try Again" : {
 
     },
+    "Ulaanbaatar (+08:00/+08:00)" : {
+
+    },
+    "Unlimited" : {
+
+    },
     "Unsupported Item" : {
+
+    },
+    "Urumqi (+06:00/+06:00)" : {
+
+    },
+    "UTC (+00:00)" : {
+
+    },
+    "Vienna (+01:00/+02:00)" : {
+
+    },
+    "Vilnius (+02:00/+03:00)" : {
+
+    },
+    "Vladivostok (+10:00/+10:00)" : {
+
+    },
+    "Volgograd (+03:00)" : {
+
+    },
+    "Warsaw (+01:00/+02:00)" : {
+
+    },
+    "Wellington (+12:00/+13:00)" : {
+
+    },
+    "West Central Africa (+01:00)" : {
+
+    },
+    "Yakutsk (+09:00/+09:00)" : {
+
+    },
+    "Yerevan (+04:00/+04:00)" : {
 
     },
     "Yes" : {
 
     },
     "Your Courses" : {
+
+    },
+    "Zagreb (+01:00/+02:00)" : {
+
+    },
+    "Zurich (+01:00/+02:00)" : {
 
     }
   },

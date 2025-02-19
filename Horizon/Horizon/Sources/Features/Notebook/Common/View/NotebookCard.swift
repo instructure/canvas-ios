@@ -27,11 +27,11 @@ struct NotebookCard<Content: View>: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) { content }
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) { content }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.huiSpaces.primitives.medium)
+            .padding(.huiSpaces.space24)
             .background(Color.white)
-            .cornerRadius(.huiSpaces.primitives.mediumSmall)
+            .cornerRadius(.huiSpaces.space16)
             .huiElevation(level: .level4)
     }
 }

@@ -29,21 +29,21 @@ struct APIUserDisplay: Codable, Equatable {
 // https://canvas.instructure.com/doc/api/users.html#User
 public struct APIUser: Codable, Equatable {
     public let id: ID
-    let name: String
-    let sortable_name: String
-    let short_name: String
+    public let name: String
+    public let sortable_name: String
+    public let short_name: String
     // let sis_user_id: String?
     // let sis_import_id: String?
     // let integration_id: String?
-    let login_id: String?
-    let avatar_url: APIURL?
-    let enrollments: [APIEnrollment]?
-    let email: String?
-    let effective_locale: String?
+    public let login_id: String?
+    public let avatar_url: APIURL?
+    public let enrollments: [APIEnrollment]?
+    public let email: String?
+    public let effective_locale: String?
     // let last_login: Date?
-    // let time_zone: TimeZone
-    let bio: String?
-    let pronouns: String?
+    public let time_zone: String?
+    public let bio: String?
+    public let pronouns: String?
     public let root_account: String?
 
     public let locale: String?
@@ -68,7 +68,8 @@ public struct APIUser: Codable, Equatable {
         bio: String?,
         pronouns: String?,
         permissions: Permissions?,
-        root_account: String?
+        root_account: String?,
+        time_zone: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -84,6 +85,7 @@ public struct APIUser: Codable, Equatable {
         self.pronouns = pronouns
         self.permissions = permissions
         self.root_account = root_account
+        self.time_zone = time_zone
     }
 
     public init(from decoder: Decoder) throws {
@@ -102,6 +104,7 @@ public struct APIUser: Codable, Equatable {
         pronouns = try container.decodeIfPresent(String.self, forKey: .pronouns)
         permissions = try container.decodeIfPresent(Permissions.self, forKey: .permissions)
         root_account = try container.decodeIfPresent(String.self, forKey: .root_account)
+        time_zone = try container.decodeIfPresent(String.self, forKey: .time_zone)
     }
 }
 
@@ -132,6 +135,7 @@ public struct APIProfile: Codable, Equatable {
 
     public let id: ID
     public let name: String
+    public let short_name: String?
     public let primary_email: String?
     public let locale: String?
     public let login_id: String?
@@ -139,6 +143,7 @@ public struct APIProfile: Codable, Equatable {
     public let calendar: APICalendar?
     public let pronouns: String?
     public let k5_user: Bool?
+    public let default_time_zone: String?
 }
 
 #if DEBUG
@@ -157,7 +162,8 @@ extension APIUser {
         bio: String? = nil,
         pronouns: String? = nil,
         permissions: Permissions? = .make(),
-        root_account: String? = nil
+        root_account: String? = nil,
+        time_zone: String? = nil
     ) -> APIUser {
         return APIUser(
             id: id,
@@ -173,7 +179,8 @@ extension APIUser {
             bio: bio,
             pronouns: pronouns,
             permissions: permissions,
-            root_account: root_account
+            root_account: root_account,
+            time_zone: time_zone
         )
     }
 
@@ -225,24 +232,28 @@ extension APIProfile {
     public static func make(
         id: ID = "1",
         name: String = "Bob",
+        short_name: String? = nil,
         primary_email: String? = nil,
         locale: String? = "en",
         login_id: String? = nil,
         avatar_url: URL? = nil,
         calendar: APIProfile.APICalendar? = .make(),
         pronouns: String? = nil,
-        k5_user: Bool? = nil
+        k5_user: Bool? = nil,
+        default_time_zone: String? = nil
     ) -> APIProfile {
         return APIProfile(
             id: id,
             name: name,
+            short_name: short_name,
             primary_email: primary_email,
             locale: locale,
             login_id: login_id,
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             calendar: calendar,
             pronouns: pronouns,
-            k5_user: k5_user
+            k5_user: k5_user,
+            default_time_zone: default_time_zone
         )
     }
 }

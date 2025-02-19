@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mok-pg-KkL">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-r0-wRL" customClass="ComposeRecipientsView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -43,7 +43,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-0x-wXN" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="57" width="343" height="48"/>
                                         <accessibility key="accessibilityConfiguration" identifier="Compose.subject">
-                                            <accessibilityTraits key="traits" header="YES"/>
+                                            <accessibilityTraits key="traits" none="YES"/>
                                         </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="VCI-fH-9f0"/>
@@ -68,9 +68,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-YB-DID">
-                                        <rect key="frame" x="0.0" y="106" width="375" height="517"/>
+                                        <rect key="frame" x="0.0" y="106" width="375" height="497"/>
                                         <accessibility key="accessibilityConfiguration" identifier="Compose.body">
-                                            <accessibilityTraits key="traits" header="YES"/>
+                                            <accessibilityTraits key="traits" none="YES"/>
                                         </accessibility>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -83,7 +83,7 @@
                                         </connections>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ftq-q2-BcR">
-                                        <rect key="frame" x="0.0" y="623" width="375" height="104"/>
+                                        <rect key="frame" x="0.0" y="603" width="375" height="104"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oic-Gu-7jh">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
@@ -150,11 +150,6 @@
             <point key="canvasLocation" x="-130.40000000000001" y="142.57871064467767"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="dz1-0x-wXN">
-            <size key="intrinsicContentSize" width="57" height="21"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

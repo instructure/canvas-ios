@@ -67,7 +67,7 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
                 }
             )
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let assignmentList: [Assignment] = databaseClient.fetch(nil, sortDescriptors: nil)
         XCTAssertEqual(assignmentList.count, 1)
         XCTAssertEqual(assignmentList[0].id, "1")

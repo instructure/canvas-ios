@@ -51,14 +51,14 @@ struct ModuleItemLockedView: View {
             Text("Locked", bundle: .horizon)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.h3)
-                .padding(.top, .huiSpaces.primitives.medium)
+                .padding(.top, .huiSpaces.space24)
 
             WebView(html: "<p class=\"lock-explanation\">\(lockExplanation)</p>")
                 .frameToFit()
 
             Spacer()
         }
-        .padding(.huiSpaces.primitives.mediumSmall)
+        .padding(.huiSpaces.space16)
     }
 }
 

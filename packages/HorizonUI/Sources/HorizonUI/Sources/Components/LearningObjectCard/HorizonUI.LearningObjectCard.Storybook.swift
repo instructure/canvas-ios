@@ -66,7 +66,7 @@ extension HorizonUI.LearningObjectCard {
                         learningObjectName: "Learning Object Name Lorem Ipsum Dolor"
                     )
                 }
-                .padding(.horizontal, .huiSpaces.primitives.medium)
+                .padding(.horizontal, .huiSpaces.space24)
             }
             .navigationTitle("LearningObjectCard")
         }

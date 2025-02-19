@@ -67,7 +67,7 @@ extension HorizonUI {
                     arrowEdge: arrowEdge
                 ) {
                     self.content
-                        .padding([.horizontal], .huiSpaces.primitives.mediumSmall)
+                        .padding([.horizontal], .huiSpaces.space16)
                         .foregroundStyle(style.foregroundColor)
                         .presentationCompactAdaptation(.popover)
                         .presentationBackground(style.backgroundColor)

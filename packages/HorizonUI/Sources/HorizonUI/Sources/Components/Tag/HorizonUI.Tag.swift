@@ -127,7 +127,7 @@ public extension HorizonUI {
         }
 
         private var standaloneTag: some View {
-            HStack(spacing: .huiSpaces.primitives.xxxSmall) {
+            HStack(spacing: .huiSpaces.space2) {
                 Text(title)
                     .huiTypography(size.typography)
                     .foregroundStyle(textColor)
@@ -164,38 +164,38 @@ public extension HorizonUI {
             switch (style, size) {
             case (.standalone, .large):
                 return onCloseAction != nil
-                    ? CGFloat.huiSpaces.primitives.mediumSmall
-                    : CGFloat.huiSpaces.primitives.small
+                    ? CGFloat.huiSpaces.space16
+                    : CGFloat.huiSpaces.space12
             case (.standalone, .medium):
                 return onCloseAction != nil
-                    ? CGFloat.huiSpaces.primitives.small
-                    : CGFloat.huiSpaces.primitives.xSmall
+                    ? CGFloat.huiSpaces.space12
+                    : CGFloat.huiSpaces.space8
             case (.standalone, .small):
                 return onCloseAction != nil
-                    ? CGFloat.huiSpaces.primitives.small
-                    : CGFloat.huiSpaces.primitives.xSmall
-            case (.inline, .large): return CGFloat.huiSpaces.primitives.small
-            case (.inline, .medium): return CGFloat.huiSpaces.primitives.small
-            case (.inline, .small): return CGFloat.huiSpaces.primitives.small
+                    ? CGFloat.huiSpaces.space12
+                    : CGFloat.huiSpaces.space8
+            case (.inline, .large): return CGFloat.huiSpaces.space12
+            case (.inline, .medium): return CGFloat.huiSpaces.space12
+            case (.inline, .small): return CGFloat.huiSpaces.space12
             }
         }
 
         private func trailingPadding() -> CGFloat {
             switch (style, size) {
-            case (.standalone, .large): return CGFloat.huiSpaces.primitives.small
-            case (.standalone, .medium): return CGFloat.huiSpaces.primitives.xSmall
-            case (.standalone, .small): return CGFloat.huiSpaces.primitives.xSmall
-            case (.inline, .large): return CGFloat.huiSpaces.primitives.small
-            case (.inline, .medium): return CGFloat.huiSpaces.primitives.small
-            case (.inline, .small): return CGFloat.huiSpaces.primitives.small
+            case (.standalone, .large): return CGFloat.huiSpaces.space12
+            case (.standalone, .medium): return CGFloat.huiSpaces.space8
+            case (.standalone, .small): return CGFloat.huiSpaces.space8
+            case (.inline, .large): return CGFloat.huiSpaces.space12
+            case (.inline, .medium): return CGFloat.huiSpaces.space12
+            case (.inline, .small): return CGFloat.huiSpaces.space12
             }
         }
 
         private func verticalPadding() -> CGFloat {
             if style == .standalone && size == .small {
-                return CGFloat.huiSpaces.primitives.xxSmall
+                return CGFloat.huiSpaces.space4
             } else {
-                return CGFloat.huiSpaces.primitives.xSmall
+                return CGFloat.huiSpaces.space8
             }
         }
 

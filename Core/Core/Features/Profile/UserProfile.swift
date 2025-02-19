@@ -22,6 +22,7 @@ import CoreData
 public final class UserProfile: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String
+    @NSManaged public var shortName: String?
     @NSManaged public var email: String?
     @NSManaged public var locale: String?
     @NSManaged public var loginID: String?
@@ -29,6 +30,7 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var calendarURL: URL?
     @NSManaged public var pronouns: String?
     @NSManaged public var isK5User: Bool
+    @NSManaged public var defaultTimeZone: String?
 }
 
 extension UserProfile: WriteableModel {
@@ -37,6 +39,7 @@ extension UserProfile: WriteableModel {
         let model: UserProfile = context.first(where: #keyPath(UserProfile.id), equals: item.id.value) ?? context.insert()
         model.id = item.id.value
         model.name = item.name
+        model.shortName = item.short_name
         model.email = item.primary_email
         model.locale = item.locale
         model.loginID = item.login_id
@@ -44,6 +47,7 @@ extension UserProfile: WriteableModel {
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
+        model.defaultTimeZone = item.default_time_zone
         return model
     }
 }

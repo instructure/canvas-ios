@@ -32,12 +32,26 @@ public class GroupedSectionHeaderView: UITableViewHeaderFooterView {
         setup()
     }
 
-    func setup() {
+    private func setup() {
         backgroundView = UIView()
         backgroundView?.backgroundColor = .backgroundLightest
         titleLabel.textColor = .textDark
         titleLabel.font = .scaledNamedFont(.semibold12)
         contentView.addSubview(titleLabel)
         titleLabel.pin(inside: contentView, leading: 16, trailing: 16, top: 16, bottom: 6)
+        accessibilityTraits = [.header]
+    }
+
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        accessibilityLabel = nil
+    }
+
+    /// Use this method instead of setting `titleLabel.text` directly
+    public func update(title: String, itemCount: Int) {
+        titleLabel.text = title
+        let countText = String.localizedNumberOfItems(itemCount)
+        accessibilityLabel = "\(title), \(countText)"
     }
 }

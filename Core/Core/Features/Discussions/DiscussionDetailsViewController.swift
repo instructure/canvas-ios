@@ -730,7 +730,7 @@ extension DiscussionDetailsViewController {
 
     func editTopic() {
         let path = "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)/edit"
-        env.router.route(to: path, from: self, options: .modal(isDismissable: false, embedInNav: true))
+        env.router.route(to: path, from: self, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: true))
     }
 
     func markAllRead(isRead: Bool) {

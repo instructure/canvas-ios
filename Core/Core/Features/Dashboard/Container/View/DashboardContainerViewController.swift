@@ -40,10 +40,14 @@ public class DashboardContainerViewController: CoreNavigationController {
     }
 
     override public func show(_ vc: UIViewController, sender: Any?) {
-        vc.addNavigationButton(.back(target: self, action: #selector(pop)), side: .left)
+        vc.addNavigationButton(
+            .back { [weak self] in self?.popViewController(animated: true) },
+            side: .left
+        )
 
         let split = makeSplitViewController(masterViewController: vc)
         let container = UIViewController()
+        container.navigationItem.hidesBackButton = true
         container.embed(split, in: container.view)
 
         super.show(container, sender: sender)
@@ -73,11 +77,6 @@ public class DashboardContainerViewController: CoreNavigationController {
 
     // MARK: - Private Methods
 
-    @objc
-    private func pop() {
-        popViewController(animated: true)
-    }
-
     private func makeSplitViewController(masterViewController: UIViewController) -> UIViewController {
         let split = splitViewControllerFactory()
         split.preferredDisplayMode = .oneBesideSecondary
@@ -99,6 +98,11 @@ extension DashboardContainerViewController: UINavigationControllerDelegate {
      public func navigationController(_ navigationController: UINavigationController,
                                       willShow viewController: UIViewController, animated: Bool) {
          let isPush = navigationController.viewControllers.count > 1
-         setNavigationBarHidden(isPush, animated: animated)
+         // re-showing the navigation bar with no animation on regular
+         // horizontal size class (full iPad size), as it could
+         // break the navigation bar when swiping back to dashboard
+         let isCompact = traitCollection.horizontalSizeClass == .compact
+         let canBeAnimated = if #available(iOS 18, *) { isCompact } else { true }
+         setNavigationBarHidden(isPush, animated: canBeAnimated && animated)
     }
 }

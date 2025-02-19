@@ -52,6 +52,14 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertTrue("test123".containsNumber)
     }
 
+    func testContainsOnlyNumbers() {
+        XCTAssertFalse("test".containsOnlyNumbers)
+        XCTAssertFalse("test123".containsOnlyNumbers)
+        XCTAssertFalse("-123".containsOnlyNumbers)
+        XCTAssertTrue("".containsOnlyNumbers)
+        XCTAssertTrue("123".containsOnlyNumbers)
+    }
+
     func testIsNotEmpty() {
         XCTAssertFalse("".isNotEmpty)
         XCTAssertTrue("test".isNotEmpty)
@@ -74,5 +82,11 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(results.count, 2)
         XCTAssertEqual(results.first, "<iframe param=1>content</iframe>")
         XCTAssertEqual(results.last, "<iframe></iframe>")
+    }
+
+    func testLocalizedNumberOfItems() {
+        XCTAssertEqual(String.localizedNumberOfItems(1), "1 item")
+        XCTAssertEqual(String.localizedNumberOfItems(5), "5 items")
+        XCTAssertEqual(String.localizedNumberOfItems(0), "0 items")
     }
 }

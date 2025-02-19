@@ -30,7 +30,7 @@ public extension View {
     func huiBorder(
         level: HorizonUI.Borders?,
         color: Color = Color(hexString: "#D7DADE"),
-        radius: Double = 0
+        radius: CGFloat = 0
     ) -> some View {
         if let level {
             overlay(

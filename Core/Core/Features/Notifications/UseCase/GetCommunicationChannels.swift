@@ -30,4 +30,6 @@ public struct GetCommunicationChannels: CollectionUseCase {
         NSSortDescriptor(key: #keyPath(CommunicationChannel.typeRaw), ascending: true),
         NSSortDescriptor(key: #keyPath(CommunicationChannel.position), ascending: true)
     ])
+
+    public init() {}
 }

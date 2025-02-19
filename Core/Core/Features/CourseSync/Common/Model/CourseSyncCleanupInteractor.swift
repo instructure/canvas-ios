@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 
 public struct CourseSyncCleanupInteractor {
     private let applicationOfflineFolder: URL
@@ -43,9 +44,9 @@ public struct CourseSyncCleanupInteractor {
     }
 
     /// Deletes offline folders with all files inside them on a background thread.
-    public func clean() -> AnyPublisher<Void, Never> {
+    public func clean(scheduler: AnySchedulerOf<DispatchQueue> = .global()) -> AnyPublisher<Void, Never> {
         Just(())
-            .receive(on: DispatchQueue.global())
+            .receive(on: scheduler)
             .handleEvents(receiveOutput: {
                 try? FileManager.default.removeItem(at: applicationOfflineFolder)
 

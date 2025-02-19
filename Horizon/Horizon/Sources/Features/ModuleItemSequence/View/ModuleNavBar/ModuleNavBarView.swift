@@ -56,7 +56,7 @@ struct ModuleNavBarView: View {
 
             Spacer()
             if isShowUtilityButtons {
-                HStack(spacing: .huiSpaces.primitives.xSmall) {
+                HStack(spacing: .huiSpaces.space8) {
                     buttonView(type: .tts)
                     chatBotButton
                     buttonView(type: .notebook)
