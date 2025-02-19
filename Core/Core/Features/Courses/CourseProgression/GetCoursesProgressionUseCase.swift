@@ -81,7 +81,7 @@ public class GetCoursesProgressionUseCase: APIUseCase {
         if orderByInstitution {
             return Scope(predicate: predicate ?? .all, order: [NSSortDescriptor(key: #keyPath(CDCourseProgression.institutionName), ascending: true)])
         }
-        
+
         return .all
     }
 
