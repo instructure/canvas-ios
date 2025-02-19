@@ -33,7 +33,7 @@ public class BottomSheetPickerViewController: UIViewController {
     let mainStackView = UIStackView()
 
     private let topPadding: CGFloat = 8
-    private let titleBottomSpacing: CGFloat = 8
+    private var titleBottomSpacing: CGFloat = 0
     private var frameHeight: CGFloat = 0
 
     public private(set) var actions: [BottomSheetAction] = []
@@ -68,6 +68,7 @@ public class BottomSheetPickerViewController: UIViewController {
 
     private func addTitle() {
         guard title?.nilIfEmpty != nil else { return }
+        titleBottomSpacing = 8
         titleLabel.font = .scaledNamedFont(.regular14)
         titleLabel.textColor = .textDark
         titleLabel.textAlignment = .center
