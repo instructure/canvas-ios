@@ -55,7 +55,7 @@ public struct ModuleItemSequenceView: View {
         }
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
-        .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
+//        .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(.linear, value: isShowHeader)
         .confirmationDialog("", isPresented: $isShowMakeAsDoneSheet, titleVisibility: .hidden) {
             makeAsDoneSheetButtons

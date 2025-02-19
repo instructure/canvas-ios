@@ -75,16 +75,24 @@ struct AssignmentDetails: View {
                             html: $html,
                             uploadParameters: uploadParameters,
                             onFocus: {
-                                proxy.scrollTo("topView", anchor: .top)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    withAnimation {
-                                        proxy.scrollTo("RichContentEditorCell", anchor: .bottom)
-                                    }
+                                withAnimation {
+                                    proxy.scrollTo("RichContentEditorCell", anchor: .bottom)
                                 }
                             }
                         )
                         .id("RichContentEditorCell")
+                        .onChange(of: html, { _, _ in
+                            withAnimation {
+                                proxy.scrollTo("RichContentEditorCell", anchor: .bottom)
+                            }
+                        })
                         .focused($focusedInput)
+//                        .onChange(of: focusedInput) { oldValue, newValue in
+//                            withAnimation {
+//                                proxy.scrollTo("RichContentEditorCell", anchor: .bottom)
+//                            }
+//                         
+//                        }
     //                    if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
     //                        AssignmentSubmissionView(viewModel: viewModel)
     //                            .disabled(viewModel.didSubmitAssignment)
@@ -93,11 +101,13 @@ struct AssignmentDetails: View {
     //                    }
                     }
                     .paddingStyle(.horizontal, .standard)
-                    .padding(.bottom, 100)
+//                    .padding(.bottom, 100)
                 }
             }
         .overlay { loaderView }
         .background(Color.backgroundLightest)
+        .keyboardAdaptive()
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
         .toolbarBackground(.visible, for: .navigationBar)
@@ -145,3 +155,36 @@ struct AssignmentDetails: View {
 }
 #endif
 
+import Combine
+
+struct KeyboardAdaptive: ViewModifier {
+    @State private var keyboardHeight: CGFloat = 0
+
+    func body(content: Content) -> some View {
+        content
+            .padding(.bottom, keyboardHeight)
+            .onAppear {
+                NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+                    .merge(with: NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))
+                    .compactMap { notification in
+                        notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+                    }
+                    .map { rect in
+                        rect.height
+                    }
+                    .subscribe(Subscribers.Assign(object: self, keyPath: \.keyboardHeight))
+
+                NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+                    .map { _ in
+                        CGFloat(0)
+                    }
+                    .subscribe(Subscribers.Assign(object: self, keyPath: \.keyboardHeight))
+            }
+    }
+}
+
+extension View {
+    func keyboardAdaptive() -> some View {
+        self.modifier(KeyboardAdaptive())
+    }
+}
