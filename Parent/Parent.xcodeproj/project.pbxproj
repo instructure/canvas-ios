@@ -113,6 +113,7 @@
 		CF9A81E92C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A81E82C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift */; };
 		CF9A81EB2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9A81EA2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift */; };
 		CFAA401D2AE26302002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA401C2AE26302002C7AAE /* PSPDFKit */; };
+		CFC6702A2D6623F800ACA8A9 /* StudentHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC670292D6623F600ACA8A9 /* StudentHeaderViewModel.swift */; };
 		CFEE68D82B1A24ED00A04E43 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */; };
 		CFEE68DB2B1A251C00A04E43 /* LaunchScreen.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */; };
 		CFEE68DC2B1A251C00A04E43 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */; };
@@ -272,6 +273,7 @@
 		CF72EBED2C5A23540056562A /* ParentSubmissionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionViewModelTests.swift; sourceTree = "<group>"; };
 		CF9A81E82C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionURLInteractor.swift; sourceTree = "<group>"; };
 		CF9A81EA2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionURLInteractorTests.swift; sourceTree = "<group>"; };
+		CFC670292D6623F600ACA8A9 /* StudentHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentHeaderViewModel.swift; sourceTree = "<group>"; };
 		CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 		97043EDD23E8D4BA00E52436 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				CFC670282D661B6C00ACA8A9 /* ViewModel */,
 				97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */,
 			);
 			path = Dashboard;
@@ -874,6 +877,14 @@
 			isa = PBXGroup;
 			children = (
 				CF72EBED2C5A23540056562A /* ParentSubmissionViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CFC670282D661B6C00ACA8A9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFC670292D6623F600ACA8A9 /* StudentHeaderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1166,6 +1177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFC6702A2D6623F800ACA8A9 /* StudentHeaderViewModel.swift in Sources */,
 				97F69BA723F1D232009622E3 /* AddStudentControllerTests.swift in Sources */,
 				7DC7047124ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift in Sources */,
 				5B5742572CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift in Sources */,

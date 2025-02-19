@@ -24,10 +24,13 @@ struct StudentHeaderView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     private var isVerticallyCompact: Bool {
         verticalSizeClass == .compact
     }
+    private let horizontalPadding: CGFloat = 16
+    private var menuIconSize: CGFloat { uiScale.iconScale * 24 }
     private var avatarSize: CGFloat { isVerticallyCompact ? 32 : 48 }
     private var navBarHeight: CGFloat { isVerticallyCompact ? 42 : 91 }
 
@@ -36,16 +39,17 @@ struct StudentHeaderView: View {
     }
 
     var body: some View {
-        studentView
-            .frame(minHeight: navBarHeight, alignment: .center)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .animation(nil, value: viewModel.backgroundColor)
-            .background(viewModel.backgroundColor)
-            .animation(.default, value: viewModel.backgroundColor)
-            .overlay(alignment: isVerticallyCompact ? .leading : .topLeading) {
-                menuButton
-            }
-            .foregroundStyle(Color.textLightest)
+        HStack(alignment: isVerticallyCompact ? .center : .top, spacing: horizontalPadding) {
+            menuButton
+            studentView
+            Color.clear.frame(width: horizontalPadding + menuIconSize)
+        }
+        .frame(height: navBarHeight, alignment: .center)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .animation(nil, value: viewModel.backgroundColor)
+        .background(viewModel.backgroundColor)
+        .animation(.default, value: viewModel.backgroundColor)
+        .foregroundStyle(Color.textLightest)
     }
 
     private var studentView: some View {
@@ -62,7 +66,6 @@ struct StudentHeaderView: View {
                     .accessibilityValue(viewModel.accessibilityValue)
                     .accessibilityHint(viewModel.accessibilityHint)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             // Match the animation we use for the student carousel appearance
             .animation(.easeOut(duration: 0.3), value: viewModel.state)
             .clipped()
@@ -117,7 +120,9 @@ struct StudentHeaderView: View {
         HStack(spacing: 4) {
             Text(name)
                 .font(.semibold16)
+                .lineLimit(1)
             Image.dropdown
+                .size(uiScale.iconScale * 12)
                 .rotationEffect(.degrees(viewModel.isDropdownClosed ? 0 : -180))
         }
     }
@@ -133,12 +138,12 @@ struct StudentHeaderView: View {
         } label: {
             Image.hamburgerSolid
                 .resizable()
-                .frame(width: 24, height: 24)
+                .size(menuIconSize)
                 .foregroundColor(Color.textLightest)
                 .instBadge(viewModel.badgeCount)
         }
-        .padding(.leading, 16)
-        .padding(.top, isVerticallyCompact ? 0 : 20)
+        .padding(.leading, horizontalPadding)
+        .padding(.top, isVerticallyCompact ? 0 : 12)
         .identifier("Dashboard.profileButton")
         .accessibilityLabel(Text("Settings", bundle: .parent))
         .accessibilityValue(String(localized: "Closed", bundle: .core))
@@ -159,6 +164,27 @@ private extension View {
 }
 
 #Preview {
-    StudentHeaderView(viewModel: StudentHeaderViewModel())
-        .frame(maxHeight: .infinity, alignment: .top)
+    VStack {
+        StudentHeaderView(viewModel: StudentHeaderViewModel())
+        Spacer()
+    }
+}
+
+#Preview {
+    let previewEnvironment = PreviewEnvironment()
+    let user = User.save(
+        // swiftlint:disable:next line_length
+        .make(short_name: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        in: previewEnvironment.database.viewContext
+    )
+    let viewModel = {
+        let model = StudentHeaderViewModel()
+        model.didSelectStudent.send(user)
+        return model
+    }()
+
+    VStack {
+        StudentHeaderView(viewModel: viewModel)
+        Spacer()
+    }
 }
