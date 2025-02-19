@@ -55,11 +55,12 @@ public struct AssignmentGroupView: View {
             Spacer()
             Image.arrowOpenUpLine
                 .size(uiScale.iconScale * 16)
-                .rotationEffect(isExpanded ? .degrees(0) : .degrees(180))
+                .rotationEffect(isExpanded ? .degrees(0) : .degrees(-180))
                 .accessibilityHidden(true)
                 .animation(.smooth, value: isExpanded)
         }
         .accessibilityAddTraits(.isHeader)
+        .accessibilityLabel(Text(verbatim: "\(viewModel.name), \(String.localizedNumberOfItems(viewModel.assignments.count))"))
         .accessibilityHint(
             isExpanded
                 ? String(localized: "Expanded", bundle: .core)

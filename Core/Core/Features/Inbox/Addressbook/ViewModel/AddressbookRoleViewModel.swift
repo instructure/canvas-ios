@@ -41,6 +41,14 @@ class AddressbookRoleViewModel: ObservableObject {
         Recipient(ids: recipients.flatMap { $0.ids }, name: "All in \(recipientContext.name)", avatarURL: nil)
     }
 
+    public var listCount: Int {
+        if isRolesViewVisible {
+            roles.count + (isAllRecipientButtonVisible ? 1 : 0)
+        } else {
+            recipients.count
+        }
+    }
+
     public let title = String(localized: "Select Recipients", bundle: .core)
     public let recipientContext: RecipientContext
 
