@@ -150,6 +150,24 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
+    private lazy var announcer = MessageAnnouncer(message: { [weak self] in
+        guard let state = self?.submissionLabelState else { return nil }
+
+        switch state {
+        case .success, .failed, .resubmissionFailed:
+            return state.text
+        default:
+            return nil
+        }
+    })
+
+    private var submissionLabelState: SubmissionLabelState? {
+        didSet {
+            submittedLabel?.text = submissionLabelState?.text
+            submittedLabel?.textColor = submissionLabelState?.color
+        }
+    }
+
     static func create(env: AppEnvironment,
                        courseID: String,
                        assignmentID: String,
@@ -202,7 +220,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         quizHeadingLabel?.text = String(localized: "Settings", bundle: .student)
         quizQuestionsLabel?.text = String(localized: "Questions:", bundle: .student)
         quizTimeLimitLabel?.text = String(localized: "Time Limit:", bundle: .student)
-        submittedLabel?.text = String(localized: "Successfully submitted!", bundle: .student)
+        submissionLabelState = .success
         submittedDetailsLabel?.text = String(localized: "Your submission is now waiting to be graded.", bundle: .student)
         submissionButton?.setTitle(String(localized: "Submission & Rubric", bundle: .student), for: .normal)
         attemptsHeadingLabel.text = String(localized: "Attempts", bundle: .student)
@@ -303,8 +321,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         }
 
         submissionRubricButtonSection?.isHidden = true
-        submittedLabel?.textColor = .textDarkest
-        submittedLabel?.text = String(localized: "Successfully submitted!", bundle: .student)
+        submissionLabelState = .success
         submittedDetailsLabel?.isHidden = false
         changeSubmittedIconVisibility(to: true)
 
@@ -342,31 +359,25 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     }
 
     func updateSubmissionLabels(state: OnlineUploadState) {
+        submissionLabelState = state.submissionLabelState
+
         switch state {
         case .reSubmissionFailed:
-            submittedLabel?.text = String(localized: "Resubmission Failed", bundle: .student)
-            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .textLightest.variantForLightMode)
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .failed:
-            submittedLabel?.text = String(localized: "Submission Failed", bundle: .student)
-            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .textLightest.variantForLightMode)
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .uploading:
-            submittedLabel?.text = String(localized: "Submission Uploading...", bundle: .student)
-            submittedLabel?.textColor = .textDarkest
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view progress", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .staged:
-            submittedLabel?.text = String(localized: "Submission In Progress...", bundle: .student)
-            submittedLabel?.textColor = .textDarkest
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view progress", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
@@ -424,7 +435,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         updateGradeCell(assignment, submission: submission)
 
-        guard let presenter = presenter else { return }
+        guard let presenter = presenter else {
+            announcer.announceIfNeeded()
+            return
+        }
 
         lockedIconContainerView.isHidden = presenter.lockedIconContainerViewIsHidden()
         dueSection?.isHidden = presenter.dueSectionIsHidden()
@@ -461,7 +475,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         scrollView?.isHidden = false
         loadingView.stopAnimating()
         refreshControl?.endRefreshing()
-        UIAccessibility.post(notification: .screenChanged, argument: view)
+
+        if announcer.announceIfNeeded() == false {
+            UIAccessibility.post(notification: .screenChanged, argument: view)
+        }
     }
 
     func updateAttemptInfo(attemptNumber: String) {
@@ -620,6 +637,107 @@ extension AssignmentDetailsViewController {
             UIAlertController.showItemNotAvailableInOfflineAlert()
         } else {
             presenter?.routeToSubmission(view: self)
+        }
+    }
+}
+
+// MARK: - UIAccessibility Helpers
+
+extension AssignmentDetailsViewController {
+    func setNeedsSubmissionStatusAnnouncement() {
+        announcer.setNeedsAnnouncement()
+    }
+}
+
+private class MessageAnnouncer {
+
+    init(message: @escaping () -> String?) {
+        self.message = message
+    }
+
+    var message: () -> String?
+    private let debounceTime: TimeInterval = 0.5
+    private var needsAnnouncement: Bool = false
+    private var debounceTimer: Timer?
+
+    func setNeedsAnnouncement() {
+        needsAnnouncement = true
+    }
+
+    func announceIfNeeded() -> Bool {
+        guard needsAnnouncement else { return false }
+
+        debounceTimer?.invalidate()
+        debounceTimer = Timer.scheduledTimer(
+            withTimeInterval: debounceTime,
+            repeats: false,
+            block: { [weak self] _ in self?.announce() }
+        )
+
+        return true
+    }
+
+    private func announce() {
+        guard needsAnnouncement else { return }
+
+        print("Announce Message: ")
+        if let msg = message() {
+            print(msg)
+            UIAccessibility.announce(msg)
+        }
+        needsAnnouncement = false
+        debounceTimer = nil
+    }
+}
+
+// MARK: - Helper Models
+
+private enum SubmissionLabelState {
+    case success
+    case failed
+    case resubmissionFailed
+    case uploading
+    case inProgress
+
+    var color: UIColor {
+        switch self {
+        case .success, .uploading, .inProgress:
+            return .textDarkest
+        case .failed, .resubmissionFailed:
+            return UIColor.textDanger.ensureContrast(against: .textLightest.variantForLightMode)
+        }
+    }
+
+    var text: String {
+        switch self {
+        case .success:
+            String(localized: "Successfully submitted!", bundle: .student)
+        case .failed:
+            String(localized: "Submission Failed", bundle: .student)
+        case .resubmissionFailed:
+            String(localized: "Resubmission Failed", bundle: .student)
+        case .uploading:
+            String(localized: "Submission Uploading...", bundle: .student)
+        case .inProgress:
+            String(localized: "Submission In Progress...", bundle: .student)
+        }
+    }
+}
+
+private extension OnlineUploadState {
+
+    var submissionLabelState: SubmissionLabelState {
+        switch self {
+        case .staged:
+            .inProgress
+        case .uploading:
+            .uploading
+        case .failed:
+            .failed
+        case .completed:
+            .success
+        case .reSubmissionFailed:
+            .resubmissionFailed
         }
     }
 }
