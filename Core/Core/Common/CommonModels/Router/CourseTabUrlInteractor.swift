@@ -83,22 +83,35 @@ public final class CourseTabUrlInteractor {
             return true
         }
 
-        // it's a tab, if it matches any of the enabled tabs allow it, otherwise block it
+        // if it's a tab that can only be hidden but never disabled -> allow it
+        if isHideOnlyTab(relativePath) {
+            return true
+        }
+
+        // it's a tab that may be disabled, if it matches any of the enabled tabs allow it, otherwise block it
         return enabledTabs.contains(relativePath)
     }
 
     /// Expects relative paths, with "/api/v1" already stripped
     private func isKnownPathFormat(_ path: String) -> Bool {
-        let parts = path.split(separator: "/").map { String($0) }
+        let parts = path.splitUsingSlash
         return CourseTabFormat.allCases.contains {
             $0.isMatch(for: parts)
         }
     }
 
+    /// Checks for tabs which can't be disabled, only hidden.
+    /// These tabs should always be allowed to visit, they are simply removed from the Course Tab list.
+    private func isHideOnlyTab(_ path: String) -> Bool {
+        let parts = path.splitUsingSlash
+        return parts.count == 3
+            && (parts[2] == "discussion_topics" || parts[2] == "grades")
+    }
+
     /// Check for any tabs which match the Home format: "/courses/:courseID"
     /// For example K5Subject tabs: "/courses/:courseID#schedule"
     private func isHomeFormat(_ path: String) -> Bool {
-        let parts = path.split(separator: "/").map { String($0) }
+        let parts = path.splitUsingSlash
         return parts.count == 2 && parts[0] == "courses"
     }
 
@@ -233,6 +246,12 @@ private enum CourseTabFormat: CaseIterable {
             // example: "/courses/42/external_tools/1234"
             return parts.count == 4 && parts[2] == "external_tools"
         }
+    }
+}
+
+private extension String {
+    var splitUsingSlash: [String] {
+        split(separator: "/").map { String($0) }
     }
 }
 
