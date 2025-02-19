@@ -40,10 +40,10 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     func test_isAllowedUrl_whenNotSetup_shouldAllowAll() {
         testee = .init()
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/discussion_topics?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/discussion_topics")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/discussion_topics")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/unkown_thing")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/users?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/users")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/users")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/unknown_thing")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/1234")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/1234/")), true)
 
@@ -53,14 +53,14 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     // MARK: - Enabled / Disabled tabs
 
     func test_isAllowedUrl_whenSetupWithTabs_shouldAllowOnlyEnabledTabs() {
-        saveTab(htmlUrl: "/courses/42/grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/stuff", context: .course("42"))
         saveTab(htmlUrl: "/courses/42/users", context: .course("42"))
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/users")), true)
 
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/modules")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/unkown_thing")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/unknown_thing")), false)
 
         verifyUnrelatedURLsAreAllowed()
     }
@@ -68,32 +68,32 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     func test_isAllowedUrl_whenUrlIsNotCourseTab_shouldAllow() {
         saveTab(htmlUrl: "/courses/42/_something_", context: .course("42"))
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("/groups/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/groups/42/stuff")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/users/self/files")), true)
         XCTAssertEqual(testee.isAllowedUrl(.make("/users/42/settings")), true)
     }
 
     func test_isAllowedUrl_whenTabIsDisabledInAnotherCourse_shouldBlockOnlyForThatCourse() {
-        saveTab(htmlUrl: "/courses/7/not_grades", context: .course("7"))
-        saveTab(htmlUrl: "/courses/42/grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/7/not_stuff", context: .course("7"))
+        saveTab(htmlUrl: "/courses/42/stuff", context: .course("42"))
 
         // tab disabled in course -> block
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/7/grades")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/7/stuff")), false)
 
         // tab enabled in course -> allow
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), true)
 
         // tab in unknown course -> allow
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/0/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/0/stuff")), true)
     }
 
     // MARK: - UserInfo
 
     func test_isAllowedUrlWithUserInfo_whenBlockDisabledTabIsFalse_shouldAllowDisabledTab() {
-        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/not_stuff", context: .course("42"))
 
         let isAllowedUrl = testee.isAllowedUrl(
-            .make("/courses/42/grades"),
+            .make("/courses/42/stuff"),
             userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
         )
         XCTAssertEqual(isAllowedUrl, true)
@@ -102,10 +102,10 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     }
 
     func test_isAllowedUrlWithUserInfo_whenBlockDisabledTabIsTrue_shouldBlockDisabledTab() {
-        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/not_stuff", context: .course("42"))
 
         let isAllowedUrl = testee.isAllowedUrl(
-            .make("/courses/42/grades"),
+            .make("/courses/42/stuff"),
             userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: true]
         )
         XCTAssertEqual(isAllowedUrl, false)
@@ -114,10 +114,10 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     }
 
     func test_isAllowedUrlWithUserInfo_whenBlockDisabledTabIsNotSet_shouldBlockDisabledTab() {
-        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/not_stuff", context: .course("42"))
 
         let isAllowedUrl = testee.isAllowedUrl(
-            .make("/courses/42/grades"),
+            .make("/courses/42/stuff"),
             userInfo: [:]
         )
         XCTAssertEqual(isAllowedUrl, false)
@@ -128,62 +128,62 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     // MARK: - Tab Format rules
 
     func test_isAllowedUrl_whenTabIsDisabled_shouldBlockAllVariants() {
-        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/not_stuff", context: .course("42"))
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/grades?per_page=100&include%5B%5D=sections&no_verifiers=1")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades?display=borderless")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades#foo")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/grades")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades/")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/grades")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/stuff?per_page=100&include%5B%5D=sections&no_verifiers=1")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff?display=borderless")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff#foo")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/stuff")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff/")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/stuff")), false)
     }
 
     func test_isAllowedUrl_whenTabIsEnabled_shouldAllowAllVariants() {
-        saveTab(htmlUrl: "/courses/42/grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/stuff", context: .course("42"))
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/grades?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades?display=borderless")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades#foo")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/grades")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades/")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/stuff?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff?display=borderless")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff#foo")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/stuff")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff/")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/stuff")), true)
     }
 
     func test_isAllowedUrl_whenTabWithQueryIsEnabled_shouldAllowAllVariants() {
-        saveTab(htmlUrl: "/courses/42/grades?display=borderless", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/stuff?display=borderless", context: .course("42"))
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/grades?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades?display=borderless")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades#foo")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/grades")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades/")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/stuff?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff?display=borderless")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff#foo")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/stuff")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff/")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/stuff")), true)
     }
 
     func test_isAllowedUrl_whenTabWithFragmentIsEnabled_shouldAllowAllVariants() {
-        saveTab(htmlUrl: "/courses/42/grades#foo", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/stuff#foo", context: .course("42"))
 
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/grades?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades?display=borderless")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades#foo")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/grades#bar")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/grades")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades/")), true)
-        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/api/v1/courses/42/stuff?per_page=100&include%5B%5D=sections&no_verifiers=1")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff?display=borderless")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff#foo")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("https://stuff.instructure.com/courses/42/stuff#bar")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/api/v1/courses/42/stuff")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff/")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("courses/42/stuff")), true)
     }
 
     func test_isAllowedUrl_whenTabIsDisabled_shouldAllowSubpages() {
-        saveTab(htmlUrl: "/courses/42/not_grades", context: .course("42"))
+        saveTab(htmlUrl: "/courses/42/not_stuff", context: .course("42"))
 
         // subpage -> allow
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades/123")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff/123")), true)
 
         // tab -> block
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), false)
     }
 
     func test_isAllowedUrl_whenTabIsDisabled_shouldAllowNonTabNavigationPaths() {
@@ -247,7 +247,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
             id: "people",
             html_url: URL(string: "/courses/42/modules")!,
             full_url: URL(string: "/courses/42/pages")!,
-            url: URL(string: "/courses/42/grades")!
+            url: URL(string: "/courses/42/stuff")!
         )
         let tab: Tab = databaseClient.insert()
         tab.save(apiTab, in: databaseClient, context: .course("42"))
@@ -257,7 +257,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/users")), false)
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/pages")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), false)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/stuff")), false)
     }
 
     func test_setupEnabledTabs_whenTabIsNotCourse_shouldIgnore() {
@@ -288,12 +288,12 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
     func test_setupEnabledTabs_whenPathFormatIsUnknown_shouldLogIt() {
         // known path formats are not logged
-        saveTab(id: "grades", htmlUrl: "/courses/42/grades", context: .course("42"))
+        saveTab(id: "stuff", htmlUrl: "/courses/42/stuff", context: .course("42"))
         saveTab(id: "syllabus", htmlUrl: "/courses/42/assignments/syllabus", context: .course("42"))
         XCTAssertEqual(remoteLogHandler.lastErrorName, nil)
 
         // unknown path format is logged
-        saveTab(id: "pages", htmlUrl: "/courses/42/tabs/grades", context: .course("42"))
+        saveTab(id: "pages", htmlUrl: "/courses/42/tabs/stuff", context: .course("42"))
         XCTAssertEqual(remoteLogHandler.lastErrorName, "Unexpected Course Tab path format")
     }
 
