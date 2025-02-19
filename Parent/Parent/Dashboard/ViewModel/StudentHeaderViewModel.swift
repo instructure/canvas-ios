@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import SwiftUI
 
@@ -44,9 +45,14 @@ class StudentHeaderViewModel: ObservableObject {
     // MARK: - Private
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
+    private var mainScheduler: AnySchedulerOf<DispatchQueue>
 
-    init(router: Router = AppEnvironment.shared.router) {
+    init(
+        router: Router = AppEnvironment.shared.router,
+        mainScheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.router = router
+        self.mainScheduler = mainScheduler
 
         toggleDropdownStateOnTap()
         updateStudentPropertiesOnStudentSelection()
@@ -111,7 +117,7 @@ class StudentHeaderViewModel: ObservableObject {
 
     private func updateBadgeProperties() {
         didUpdateBadgeCount
-            .receive(on: RunLoop.main)
+            .receive(on: mainScheduler)
             .sink { [unowned self] count in
                 badgeCount = count
                 menuAccessibilityHint = {
