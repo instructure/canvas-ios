@@ -67,8 +67,8 @@
                             <constraint firstItem="Etp-Sy-mwK" firstAttribute="leading" secondItem="vFv-WE-Vix" secondAttribute="leading" id="5MA-ab-ncU"/>
                             <constraint firstAttribute="bottom" secondItem="tQz-mz-EdB" secondAttribute="bottom" id="Ihg-1s-BM0"/>
                             <constraint firstItem="vFv-WE-Vix" firstAttribute="top" secondItem="BbJ-cb-Nm6" secondAttribute="top" placeholder="YES" id="JUx-F9-0HP"/>
-                            <constraint firstItem="tQz-mz-EdB" firstAttribute="leading" secondItem="vFv-WE-Vix" secondAttribute="leading" id="Kr8-8g-rQP"/>
-                            <constraint firstItem="vFv-WE-Vix" firstAttribute="trailing" secondItem="tQz-mz-EdB" secondAttribute="trailing" id="Lb8-TL-5Ef"/>
+                            <constraint firstItem="tQz-mz-EdB" firstAttribute="leading" secondItem="utC-55-lT3" secondAttribute="leading" id="Kr8-8g-rQP"/>
+                            <constraint firstAttribute="trailing" secondItem="tQz-mz-EdB" secondAttribute="trailing" id="Lb8-TL-5Ef"/>
                             <constraint firstItem="BbJ-cb-Nm6" firstAttribute="leading" secondItem="utC-55-lT3" secondAttribute="leading" id="Vif-hB-uL6"/>
                             <constraint firstItem="vFv-WE-Vix" firstAttribute="trailing" secondItem="Etp-Sy-mwK" secondAttribute="trailing" id="WUU-TJ-CHY"/>
                             <constraint firstItem="Nzw-SO-Fz0" firstAttribute="leading" secondItem="vFv-WE-Vix" secondAttribute="leading" id="ehd-Hb-R8N"/>

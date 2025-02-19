@@ -174,9 +174,6 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     func toggleStudentList(_ show: Bool = true, completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.studentListHiddenHeight.isActive = !show
-//            self.dropdownView.transform = CGAffineTransform(rotationAngle: show ? .pi : 0)
-//            self.dropdownButton.accessibilityValue = show ? String(localized: "Expanded", bundle: .core)
-//                                                          : String(localized: "Collapsed", bundle: .core)
             self.view.layoutIfNeeded()
         }, completion: { _ in
             completion?()
