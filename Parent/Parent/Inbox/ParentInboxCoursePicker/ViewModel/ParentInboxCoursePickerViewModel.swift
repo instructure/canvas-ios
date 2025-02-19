@@ -56,11 +56,14 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
             .sink { [weak self] (controller, context) in
                 guard let self else { return }
                 let options = self.routeToCompose(controller, context)
-                router.show(
-                    ComposeMessageAssembly.makeComposeMessageViewController(options: options),
-                    from: controller,
-                    options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
-                )
+                let parent = controller.value.presentingViewController
+                router.dismiss(controller) {
+                    self.router.show(
+                        ComposeMessageAssembly.makeComposeMessageViewController(options: options),
+                        from: parent ?? controller.value,
+                        options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+                    )
+                }
             }
             .store(in: &subscriptions)
 

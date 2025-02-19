@@ -53,7 +53,7 @@ struct SideMenuMainSection: View {
         VStack(spacing: 0) {
             if enrollment == .observer {
                 PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
-                    route(to: "/conversations", options: .push)
+                    route(to: "/conversations")
                 } label: {
                     SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: $unreadCount).onAppear {
                         env.api.makeRequest(GetConversationsUnreadCountRequest()) { (response, _, _) in

@@ -38,7 +38,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/conversations") { _, _, _ in
-        return InboxAssembly.makeInboxViewController()
+        return InboxAssembly.makeInboxViewControllerForParent()
     },
 
     // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
@@ -57,7 +57,7 @@ let router = Router(routes: [
 
     RouteHandler("/conversations/:conversationID") { _, params, _ in
         guard let conversationID = params["conversationID"] else { return nil }
-        return ConversationDetailViewController.create(conversationID: conversationID)
+        return MessageDetailsAssembly.makeViewController(env: .shared, conversationID: conversationID, allowArchive: true)
     },
 
     RouteHandler("/courses") { _, _, _ in

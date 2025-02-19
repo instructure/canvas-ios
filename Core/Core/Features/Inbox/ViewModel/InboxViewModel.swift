@@ -29,6 +29,7 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var hasNextPage = false
     @Published public var isShowingScopeSelector = false
     @Published public var isShowingCourseSelector = false
+    @Published public var isShowMenuButton: Bool = true
     public let snackBarViewModel = SnackBarViewModel()
     public let scopes = InboxMessageScope.allCases
     public let emptyState = (scene: SpacePanda() as PandaScene,
@@ -66,6 +67,7 @@ public class InboxViewModel: ObservableObject {
     ) {
         self.messageInteractor = messageInteractor
         self.favouriteInteractor = favouriteInteractor
+        self.isShowMenuButton = !messageInteractor.isParent
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindUserActionsToOutputs()

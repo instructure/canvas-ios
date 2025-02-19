@@ -71,7 +71,7 @@ public struct InboxView: View, ScreenViewTrackable {
         }
         .snackBar(viewModel: model.snackBarViewModel)
         .background(Color.backgroundLightest)
-        .navigationBarItems(leading: menuButton, trailing: newMessageButton)
+        .navigationBarItems(leading: model.isShowMenuButton ? menuButton : nil, trailing: newMessageButton)
     }
 
     private var messagesList: some View {
