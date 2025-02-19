@@ -20,8 +20,8 @@ import Core
 import CoreData
 
 class GetCourseNotesUseCase: APIUseCase {
-    public typealias Model = CourseNote
-    public typealias Request = GetNotesQuery
+    typealias Model = CourseNote
+    typealias Request = GetNotesQuery
 
     // MARK: - Properties
 
@@ -29,14 +29,14 @@ class GetCourseNotesUseCase: APIUseCase {
     private let id: String?
     private let highlightsKey: String?
     private let labels: [CourseNoteLabel]?
-    public var cacheKey: String?
+    var cacheKey: String?
     private let searchTerm: String?
 
-    public var request: GetNotesQuery {
+    var request: GetNotesQuery {
         .init(jwt: api.loginSession?.accessToken ?? "")
     }
 
-    public var scope: Scope {
+    var scope: Scope {
         let order = [NSSortDescriptor(key: #keyPath(CourseNote.date), ascending: false)]
         let highlightKeyPredicate = highlightsKey.map {
             NSPredicate(format: "%K == %@", #keyPath(CourseNote.highlightKey), $0)
@@ -68,7 +68,7 @@ class GetCourseNotesUseCase: APIUseCase {
 
     // MARK: - Init
 
-    public init(
+    init(
         api: API,
         id: String? = nil,
         highlightsKey: String? = nil,
@@ -88,7 +88,7 @@ class GetCourseNotesUseCase: APIUseCase {
         api.makeRequest(request, callback: completionHandler)
     }
 
-    public func write(
+    func write(
         response: RedwoodFetchNotesQueryResponse?,
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext

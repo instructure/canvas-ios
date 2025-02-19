@@ -58,7 +58,7 @@ class RedwoodDeleteNoteMutation: APIGraphQLRequestable {
 // MARK: - Codeables
 
 struct RedwoodDeleteNoteMutationResponse: Codable {
-    let data: String
+    let data: DeleteNote
 
     struct DeleteNote: Codable {
         let deleteNote: String

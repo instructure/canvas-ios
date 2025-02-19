@@ -44,7 +44,7 @@ protocol CourseNoteInteractor {
         labels: [CourseNoteLabel],
         index: NotebookHighlight
     ) -> AnyPublisher<CourseNote, NotebookError>
-    func delete(id: String) -> AnyPublisher<Void, NotebookError>
+    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError>
     func get() -> AnyPublisher<[CourseNote], NotebookError>
     func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError>
     func get(id: String) -> AnyPublisher<CourseNote?, NotebookError>
@@ -87,11 +87,14 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
             .eraseToAnyPublisher()
     }
 
-    func delete(id: String) -> AnyPublisher<Void, NotebookError> {
+    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
-            .map { api in
-                api.makeRequest(RedwoodDeleteNoteMutation(jwt: api.loginSession?.accessToken ?? "", id: id))
+            .flatMap { api in
+                ReactiveStore(useCase: DeleteCourseNoteUseCase(api: api, id: id))
+                    .getEntities()
+                    .mapError { _ in NotebookError.unknown }
+                    .compactMap { $0.first }
             }
             .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
@@ -180,8 +183,8 @@ class CourseNoteInteractorPreview: CourseNoteInteractor {
             .eraseToAnyPublisher()
     }
 
-    func delete(id: String) -> AnyPublisher<Void, NotebookError> {
-        Just(())
+    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError> {
+        Just(CourseNote())
             .setFailureType(to: NotebookError.self)
             .eraseToAnyPublisher()
     }

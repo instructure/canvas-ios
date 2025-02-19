@@ -24,10 +24,14 @@ class DeleteCourseNoteUseCase: APIUseCase {
     var cacheKey: String?
 
     typealias Request = RedwoodDeleteNoteMutation
-    typealias Model = NSManagedObject
+    typealias Model = CourseNote
 
     private let api: API
     private let id: String
+
+    var scope: Scope {
+        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CourseNote.id), id), order: [])
+    }
 
     var request: RedwoodDeleteNoteMutation {
         return RedwoodDeleteNoteMutation(jwt: api.loginSession?.accessToken ?? "", id: id)
@@ -38,11 +42,13 @@ class DeleteCourseNoteUseCase: APIUseCase {
         self.id = id
     }
 
-    func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {
         api.makeRequest(request, callback: completionHandler)
     }
 
     func write(response: RedwoodDeleteNoteMutationResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        CourseNote.delete(id: id, in: client)
+        if let id = response?.data.deleteNote {
+            CourseNote.delete(id: id, in: client)
+        }
     }
 }
