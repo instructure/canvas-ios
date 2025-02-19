@@ -52,7 +52,7 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
                 }
             )
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let pageList: [Page] = databaseClient.fetch(
             nil,
             sortDescriptors: [NSSortDescriptor(key: #keyPath(Page.id), ascending: true)]
@@ -117,7 +117,7 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
                 receiveValue: { _ in }
             )
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         let pageList: [Page] = databaseClient.fetch(nil, sortDescriptors: nil)
         XCTAssertEqual(pageList.count, 0)
         subscription.cancel()

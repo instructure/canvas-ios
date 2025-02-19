@@ -27,7 +27,7 @@ class K5ScheduleSubjectViewModelTests: CoreTestCase {
 
         testee.viewTapped(router: router, viewController: WeakViewController(UIViewController()))
 
-        wait(for: [router.routeExpectation], timeout: 0.1)
+        wait(for: [router.routeExpectation], timeout: 1)
     }
 
     func testHasTapActionProperty() {

@@ -19,40 +19,20 @@
 import SwiftUI
 
 protocol NavigationBarStyled: AnyObject {
-    var navigationBarStyle: UINavigationBar.Style { get set }
+    var navigationBarStyle: NavigationBarStyle { get set }
 }
 
 struct NavigationBarStyleModifier: ViewModifier {
-    let style: UINavigationBar.Style
+    let style: NavigationBarStyle
 
     @Environment(\.viewController) var controller
 
     func body(content: Content) -> some View {
         (controller.value as? NavigationBarStyled)?.navigationBarStyle = style
         controller.value.navigationController?.navigationBar.useStyle(style)
+
         return content.overlay(Color?.none) // needs something modified to actually run
-    }
-}
-
-struct TitleSubtitleModifier: ViewModifier {
-    let title: String
-    let subtitle: String?
-
-    @Environment(\.viewController) var controller
-
-    func body(content: Content) -> some View {
-        let view = controller.value.navigationItem.titleView as? TitleSubtitleView ?? {
-            let view = TitleSubtitleView.create()
-            controller.value.navigationItem.titleView = view
-            return view
-        }()
-        view.title = title
-        view.subtitle = subtitle
-        var combinedTitle = title
-        if let subtitle = subtitle, subtitle != "" {
-            combinedTitle += ", \(subtitle)"
-        }
-        return content.navigationBarTitle(Text(combinedTitle))
+            .environment(\.navBarColors, .init(style: style))
     }
 }
 
@@ -87,14 +67,39 @@ struct NavBarBackButtonModifier: ViewModifier {
 }
 
 extension View {
-    public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
+    /// Sets the navigation bar's background color, title color & font, button color & font.
+    /// - Warning: Make sure to call this method AFTER calling `navigationBarTitleView()` to affect it.
+    /// - Parameters:
+    ///     - style:
+    ///       - `.global` is used only on a few screens, typically on root screens of each tab.
+    ///       - `.modal` is primarily used on modal screens, but also on some screen which doesn't belong to a context, but not considered global.
+    ///       - `.color()` is used on non-modal screens within a context (typically a course or group), and in some other cases.
+    ///       - Use `.color(nil)` to keep the navigation bar's current context background color but ensure the proper title color is set.
+    public func navigationBarStyle(_ style: NavigationBarStyle) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
     }
 
-    public func navigationTitle(_ title: String, subtitle: String?) -> some View {
-        modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
+    /// Sets the navigation bar's title and subtitle, using the proper fonts and arrangement.
+    /// - Warning: Make sure to call `navigationBarStyle()` _**AFTER**_ this method to set the proper text colors.
+    /// - Parameters:
+    ///     - title: The line is always displayed, even if this is empty. (This should not happen normally.)
+    ///     - subtitle: The subtitle line is only displayed if this is not empty.
+    public func navigationBarTitleView(title: String, subtitle: String?) -> some View {
+        toolbar {
+            ToolbarItem(placement: .principal) {
+                InstUI.NavigationBarTitleView(title: title, subtitle: subtitle)
+            }
+        }
     }
 
+    /// Sets the navigation bar's title, using the proper font. Please use this one instead of the native `navigationTitle()` method.
+    /// - Warning: Make sure to call `navigationBarStyle()` _**AFTER**_ this method to set the proper text color.
+    public func navigationBarTitleView(_ title: String) -> some View {
+        navigationBarTitleView(title: title, subtitle: nil)
+    }
+
+    /// Sets the navigation bar's background color, button color to match the `Brand.shared` colors,
+    /// sets the button font and sets the brand logo as the titleView.
     public func navigationBarGlobal() -> some View {
         modifier(GlobalNavigationBarModifier())
     }

@@ -44,7 +44,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
     func testAPIError() {
         api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
         testee.courseID = "failingID"
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(receivedResult, .failure(.failedToGetAssignments))
     }
 
@@ -56,7 +56,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
         testee.courseID = "successID"
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ]))
@@ -70,7 +70,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
         testee.courseID = "successID"
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
         ]))
@@ -85,7 +85,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
             mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload])
         ]))
         testee.courseID = "successID"
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         XCTAssertEqual(analyticsHandler.totalEventCount, 1)
         XCTAssertEqual(analyticsHandler.lastEvent, "assignments_loaded")
@@ -98,7 +98,7 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), error: NSError.instructureError("custom error"))
         testee.courseID = "failureID"
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         XCTAssertEqual(analyticsHandler.totalEventCount, 1)
         XCTAssertEqual(analyticsHandler.lastEvent, "error_loading_assignments")

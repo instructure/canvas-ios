@@ -19,14 +19,13 @@
 import UIKit
 
 extension UINavigationBar {
-    public enum Style: Equatable { case modal, modalLight, global, color(UIColor?) }
+
+    public typealias Style = NavigationBarStyle
 
     func useStyle(_ style: Style) {
         switch style {
         case .modal:
             useModalStyle()
-        case .modalLight:
-            useModalStyle(isLightFont: true)
         case .global:
             useGlobalNavStyle()
         case .color(let color):
@@ -65,7 +64,6 @@ extension UINavigationBar {
      */
     public func useModalStyle(
         brand: Brand = Brand.shared,
-        isLightFont: Bool = false,
         forcedTheme: UITraitCollection? = nil
     ) {
         var backgroundColor = UIColor.backgroundLightest
@@ -83,14 +81,10 @@ extension UINavigationBar {
         barStyle = .default
         isTranslucent = false
 
-        applyAppearanceChanges(
-            backgroundColor: backgroundColor,
-            foregroundColor: foregroundColor,
-            isLightFont: isLightFont
-        )
+        applyAppearanceChanges(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
     }
 
-    private func applyAppearanceChanges(backgroundColor: UIColor?, foregroundColor: UIColor?, isLightFont: Bool = false) {
+    private func applyAppearanceChanges(backgroundColor: UIColor?, foregroundColor: UIColor?) {
         let appearance = UINavigationBarAppearance()
 
         if isTranslucent {
@@ -98,17 +92,17 @@ extension UINavigationBar {
         } else {
             appearance.configureWithDefaultBackground()
 
-            if let backgroundColor = backgroundColor {
+            if let backgroundColor {
                 appearance.backgroundColor = backgroundColor
             }
         }
 
-        if let foreGroundColor = foregroundColor {
-            appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
+        if let foregroundColor {
+            appearance.titleTextAttributes = [.foregroundColor: foregroundColor]
         }
 
-        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(isLightFont ? .semibold16 : .bold17)
-        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(isLightFont ? .semibold16 : .regular17)
+        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(.semibold16)
+        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(.regular16)
 
         standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance

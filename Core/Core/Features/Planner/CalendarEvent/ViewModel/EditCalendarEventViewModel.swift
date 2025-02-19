@@ -413,13 +413,33 @@ final class EditCalendarEventViewModel: ObservableObject {
                 return $0
             }
             .flatMap { [weak self] in
-                (self?.saveAction(seriesModificationType: $0) ?? Empty().eraseToAnyPublisher())
-                    .catch { error in
+                guard let action = self?.saveAction(seriesModificationType: $0) else {
+                    return Empty<Void, Never>().eraseToAnyPublisher()
+                }
+
+                return action
+                    .catch { [weak self] error in
                         self?.saveErrorMessageFromApi = error.isBadRequest ? error.localizedDescription : nil
                         self?.state = .data
                         self?.shouldShowSaveError = true
                         return Empty<Void, Never>().eraseToAnyPublisher()
                     }
+                    .eraseToAnyPublisher()
+            }
+            .flatMap {
+                guard UIAccessibility.isVoiceOverRunning() else {
+                    return Just(Void()).eraseToAnyPublisher()
+                }
+
+                UIAccessibility
+                    .announce(
+                        String(localized: "Event added successfully", bundle: .core)
+                    )
+
+                return NotificationCenter
+                    .default
+                    .publisher(for: UIAccessibility.announcementDidFinishNotification)
+                    .mapToVoid()
                     .eraseToAnyPublisher()
             }
             .sink {

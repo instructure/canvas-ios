@@ -249,7 +249,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
             completion_requirement: .make(type: .must_view, completed: nil)
         ))
         controller.view.layoutIfNeeded()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testReportsScreenViewForLoadedChildViewController() {

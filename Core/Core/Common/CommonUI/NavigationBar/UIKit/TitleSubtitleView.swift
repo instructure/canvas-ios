@@ -48,6 +48,8 @@ public class TitleSubtitleView: UIView {
         let view = loadFromXib()
         view.titleLabel.text = ""
         view.subtitleLabel.text = ""
+        view.titleLabel.font = .scaledNamedFont(.semibold16)
+        view.subtitleLabel.font = .scaledNamedFont(.regular14)
         view.titleLabel.accessibilityElementsHidden = true
         view.subtitleLabel.accessibilityElementsHidden = true
         view.accessibilityTraits = [.header]

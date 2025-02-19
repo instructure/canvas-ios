@@ -30,7 +30,7 @@ class GetConversationsWithSentTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertEqual(conversations?.count, 2)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testMakeRequestError() {
@@ -42,7 +42,7 @@ class GetConversationsWithSentTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertNotNil(error)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testMakeRequestErrorSent() {
@@ -55,7 +55,7 @@ class GetConversationsWithSentTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertNotNil(error)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testScope() {

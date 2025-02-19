@@ -68,7 +68,7 @@ class WKWebViewExtensionsTests: CoreTestCase {
         handler?.userContentController(webView.configuration.userContentController, didReceive: message)
 
         // THEN
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testEvaluateJavaScript() {

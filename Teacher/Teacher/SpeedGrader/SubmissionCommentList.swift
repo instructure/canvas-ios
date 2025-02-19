@@ -188,8 +188,12 @@ struct SubmissionCommentList: View {
             attempt: commentAttempt
         ).fetch { comment, error in
             if error != nil || comment == nil {
+                let genericErrorMessage = String(localized: "Could not save the comment.", bundle: .teacher)
                 self.comment = text
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
+                self.error = error.map { Text($0.localizedDescription) } ?? Text(genericErrorMessage)
+                UIAccessibility.announce(genericErrorMessage)
+            } else {
+                UIAccessibility.announce(String(localized: "Comment sent successfully", bundle: .teacher))
             }
         }
     }

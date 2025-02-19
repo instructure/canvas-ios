@@ -3590,6 +3590,12 @@
     "Choose a course to message" : {
 
     },
+    "Closed" : {
+
+    },
+    "Collapsed" : {
+
+    },
     "Compose Message" : {
       "localizations" : {
         "ar" : {
@@ -7183,6 +7189,9 @@
       }
     },
     "Failed to load courses" : {
+
+    },
+    "Expanded" : {
 
     },
     "Find School" : {

@@ -122,6 +122,8 @@ class ComposeRecipientsView: UIView {
         }
         placeholder.isHidden = !pills.isEmpty
         placeholder.setNeedsLayout()
+
+        updateAccessibilityOrder()
     }
 
     override func layoutSubviews() {
@@ -148,6 +150,20 @@ class ComposeRecipientsView: UIView {
 
         additionalRecipients.frame.origin.x = next.x
     }
+
+    private func updateAccessibilityOrder() {
+        if additionalRecipients.isHidden {
+            // Follow visual order of elements shown on screen
+            accessibilityElements = nil
+        } else {
+            var elements = [Any?]()
+            elements.append(placeholder)
+            elements.append(contentsOf: pills)
+            elements.append(additionalRecipients)
+            elements.append(editButton)
+            accessibilityElements = elements.compactMap({ $0 })
+        }
+    }
 }
 
 class ComposeRecipientView: UIView {
@@ -157,6 +173,7 @@ class ComposeRecipientView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        isAccessibilityElement = true
 
         backgroundColor = .backgroundLight
         layer.cornerRadius = 20
@@ -188,11 +205,15 @@ class ComposeRecipientView: UIView {
         avatarView.name = recipient.name
         avatarView.url = recipient.avatarURL
         nameLabel.text = recipient.displayName
-        nameLabel.accessibilityIdentifier = "Compose.recipientName.\(recipient.id)"
-        roleLabel.accessibilityIdentifier = "Compose.recipientRole.\(recipient.id)"
-        roleLabel.text = ListFormatter.localizedString(from: recipient.commonCourses
+
+        let role = ListFormatter.localizedString(from: recipient.commonCourses
             .filter { $0.courseID == context?.id }
             .compactMap { Role(rawValue: $0.role)?.description() }
         )
+        roleLabel.text = role
+
+        nameLabel.accessibilityIdentifier = "Compose.recipientName.\(recipient.id)"
+        roleLabel.accessibilityIdentifier = "Compose.recipientRole.\(recipient.id)"
+        accessibilityLabel = [recipient.displayName, role].compactMap({ $0 }).joined(separator: ", ")
     }
 }
