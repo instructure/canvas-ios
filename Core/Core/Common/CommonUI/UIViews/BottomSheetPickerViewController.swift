@@ -52,14 +52,10 @@ public class BottomSheetPickerViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor { $0.isDarkInterface ? .backgroundLight : .backgroundLightest }
 
-        // Adding title
-        if let title = title?.nilIfEmpty { addTitle() }
-
-        // Adding stack of buttons
+        addTitle()
         mainStackView.addArrangedSubview(buttonStackView)
         buttonStackView.axis = .vertical
 
-        // Attaching to view
         view.addSubview(mainStackView)
         mainStackView.axis = .vertical
         mainStackView.spacing = titleBottomSpacing
@@ -71,6 +67,7 @@ public class BottomSheetPickerViewController: UIViewController {
     }
 
     private func addTitle() {
+        guard title?.nilIfEmpty != nil else { return }
         titleLabel.font = .scaledNamedFont(.regular14)
         titleLabel.textColor = .textDark
         titleLabel.textAlignment = .center
