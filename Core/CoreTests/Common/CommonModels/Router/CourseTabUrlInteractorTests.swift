@@ -87,6 +87,17 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/0/stuff")), true)
     }
 
+    // MARK: - Hide only tabs
+
+    func test_isAllowedUrl_whenUrlIsHideOnlyTab_shouldAllow() {
+        saveTab(htmlUrl: "/courses/42/_something_", context: .course("42"))
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/grades")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/discussion_topics")), true)
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/not_grades_or_discussuions")), false)
+    }
+
     // MARK: - UserInfo
 
     func test_isAllowedUrlWithUserInfo_whenBlockDisabledTabIsFalse_shouldAllowDisabledTab() {
