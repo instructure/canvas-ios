@@ -18,6 +18,23 @@
 
 import Combine
 
+public protocol AccessibilityHandler {
+    func post(notification: UIAccessibility.Notification, argument: Any?)
+    var isVoiceOverRunning: Bool { get }
+}
+
+public struct DefaultAccessibilityHandler: AccessibilityHandler {
+    public init() {}
+
+    public func post(notification: UIAccessibility.Notification, argument: Any?) {
+        UIAccessibility.post(notification: notification, argument: argument)
+    }
+
+    public var isVoiceOverRunning: Bool {
+        UIAccessibility.isVoiceOverRunning
+    }
+}
+
 public extension UIAccessibility {
 
     /**
@@ -29,28 +46,15 @@ public extension UIAccessibility {
         - isVoiceOverRunning: This parameter is only used for testing purposes, use its default value otherwise.
      */
     static func announce(
-        _ announcement: String,
-        announcementHandler: @escaping (UIAccessibility.Notification, Any?) -> Void = UIAccessibility.post(notification:argument:),
-        isVoiceOverRunning: () -> Bool = UIAccessibility.isVoiceOverRunning)
-    {
-        guard isVoiceOverRunning(), _announcementHandler == nil else { return }
-        _announcementHandler = announcementHandler
+        _ announcementMessage: String,
+        handler: AccessibilityHandler = DefaultAccessibilityHandler()
+    ) {
+        guard handler.isVoiceOverRunning, _announcementHandler == nil else { return }
+        _announcementHandler = handler
 
-        let announcement = NSAttributedString(
-            string: announcement,
-            attributes: [
-                .accessibilitySpeechQueueAnnouncement: true
-            ]
-        )
+        let announcement = announcementMessage.asAnnouncement()
         observeAnnouncementFinishedNofitication(announcement)
-        _announcementHandler?(.announcement, announcement)
-    }
-
-    /**
-     This is a helper method for testing purposes. The reason behind is that you can't pass around a reference of a method getter, only of a function, so we wrap the UIAccessibility.isVoiceOverRunning property into a function and use this to mock the value of this property while testing the `announce` method.
-     */
-    static func isVoiceOverRunning() -> Bool {
-        UIAccessibility.isVoiceOverRunning
+        _announcementHandler?.post(notification: .announcement, argument: announcement)
     }
 
     private static func observeAnnouncementFinishedNofitication(_ announcement: NSAttributedString) {
@@ -71,7 +75,7 @@ public extension UIAccessibility {
                 _announcementFinishedObserver = nil
                 _announcementHandler = nil
             } else {
-                _announcementHandler?(.announcement, announcement)
+                _announcementHandler?.post(notification: .announcement, argument: announcement)
             }
         }
     }
@@ -87,13 +91,18 @@ public extension UIAccessibility {
     static func announcePersistently(
         _ message: String,
         maxAttempts: Int = 3,
-        maxDuration: TimeInterval = 5
+        maxDuration: TimeInterval = 5,
+        handler: AccessibilityHandler = DefaultAccessibilityHandler()
     ) -> AnyPublisher<Void, Never> {
-        guard UIAccessibility.isVoiceOverRunning() else {
+        guard handler.isVoiceOverRunning else {
             return Just(Void()).eraseToAnyPublisher()
         }
 
-        announce(message)
+        func postAnnouncement() {
+            handler.post(notification: .announcement, argument: message.asAnnouncement())
+        }
+
+        postAnnouncement()
 
         let readoutPublisher = NotificationCenter
             .default
@@ -103,12 +112,17 @@ public extension UIAccessibility {
                    announced == message { return true }
                 return false
             })
-            .map({ ($0.userInfo?[announcementWasSuccessfulUserInfoKey] as? Bool) ?? false })
-            .flatMap { isSuccessful in
-                if isSuccessful || maxAttempts <= 1 {
+            .scan((0, false), { pair, notification in
+                let success = (notification.userInfo?[announcementWasSuccessfulUserInfoKey] as? Bool) ?? false
+                let attempts = pair.0 + 1
+                return (attempts, success)
+            })
+            .flatMap { attempts, isSuccessful in
+                if isSuccessful || attempts >= maxAttempts {
                     return Just(Void()).eraseToAnyPublisher()
                 } else {
-                    return announcePersistently(message, maxAttempts: maxAttempts - 1)
+                    postAnnouncement()
+                    return Empty<Void, Never>().eraseToAnyPublisher()
                 }
             }
 
@@ -122,5 +136,16 @@ public extension UIAccessibility {
     }
 }
 
+private extension String {
+    func asAnnouncement() -> NSAttributedString {
+        return NSAttributedString(
+            string: self,
+            attributes: [
+                .accessibilitySpeechQueueAnnouncement: true
+            ]
+        )
+    }
+}
+
 private var _announcementFinishedObserver: Any?
-private var _announcementHandler: ((UIAccessibility.Notification, Any?) -> Void)?
+private var _announcementHandler: AccessibilityHandler?
