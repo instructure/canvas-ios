@@ -21,7 +21,7 @@ import Foundation
 import Combine
 
 class ParentInboxCoursePickerInteractorPreview: ParentInboxCoursePickerInteractor {
-    
+
     var state = CurrentValueSubject<StoreState, Never>(.data)
     var studentContextItems: CurrentValueSubject<[StudentContextItem], Never>
 

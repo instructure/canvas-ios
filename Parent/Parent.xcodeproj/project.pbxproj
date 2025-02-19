@@ -116,6 +116,8 @@
 		CFEE68DC2B1A251C00A04E43 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */; };
 		CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */; };
 		D343528B2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343528A2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift */; };
+		D343528F2D6619E700AE32AB /* ParentInboxCoursePickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343528E2D6619BA00AE32AB /* ParentInboxCoursePickerViewModelTests.swift */; };
+		D34352912D6619FA00AE32AB /* ParentInboxCoursePickerInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34352902D6619ED00AE32AB /* ParentInboxCoursePickerInteractorLiveTests.swift */; };
 		D359F94B2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359F94A2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift */; };
 		D359F94E2D5E1A3A000B1480 /* ParentInboxCoursePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359F94D2D5E1A3A000B1480 /* ParentInboxCoursePickerViewModel.swift */; };
 		D359F9502D5E1A66000B1480 /* ParentInboxCoursePickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359F94F2D5E1A66000B1480 /* ParentInboxCoursePickerInteractor.swift */; };
@@ -282,6 +284,8 @@
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCellGradesTests.swift; sourceTree = "<group>"; };
 		D343528A2D647F9F00AE32AB /* ParentInboxCoursePickerBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerBottomSheetViewController.swift; sourceTree = "<group>"; };
+		D343528E2D6619BA00AE32AB /* ParentInboxCoursePickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerViewModelTests.swift; sourceTree = "<group>"; };
+		D34352902D6619ED00AE32AB /* ParentInboxCoursePickerInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerInteractorLiveTests.swift; sourceTree = "<group>"; };
 		D359F94A2D5E1A19000B1480 /* ParentInboxCoursePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerView.swift; sourceTree = "<group>"; };
 		D359F94D2D5E1A3A000B1480 /* ParentInboxCoursePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerViewModel.swift; sourceTree = "<group>"; };
 		D359F94F2D5E1A66000B1480 /* ParentInboxCoursePickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInboxCoursePickerInteractor.swift; sourceTree = "<group>"; };
@@ -342,6 +346,7 @@
 		3B36A2E02322C26A00599A1E /* ParentUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				D343528C2D66190A00AE32AB /* Inbox */,
 				7DB92CAD24C61555004A6C16 /* AccountNotifications */,
 				97523A8523C9373F0086D825 /* Assignments */,
 				7DFDB43023A3EDE200B28DED /* Conversations */,
@@ -875,6 +880,39 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D343528C2D66190A00AE32AB /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				D343528D2D6619AC00AE32AB /* ParentInboxCoursePicker */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		D343528D2D6619AC00AE32AB /* ParentInboxCoursePicker */ = {
+			isa = PBXGroup;
+			children = (
+				D34352932D661A2E00AE32AB /* Model */,
+				D34352922D661A2800AE32AB /* ViewModel */,
+			);
+			path = ParentInboxCoursePicker;
+			sourceTree = "<group>";
+		};
+		D34352922D661A2800AE32AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D343528E2D6619BA00AE32AB /* ParentInboxCoursePickerViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D34352932D661A2E00AE32AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D34352902D6619ED00AE32AB /* ParentInboxCoursePickerInteractorLiveTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D359F9442D5E19A6000B1480 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
@@ -1224,6 +1262,8 @@
 				CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */,
 				CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */,
 				CF9A81EB2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift in Sources */,
+				D343528F2D6619E700AE32AB /* ParentInboxCoursePickerViewModelTests.swift in Sources */,
+				D34352912D6619FA00AE32AB /* ParentInboxCoursePickerInteractorLiveTests.swift in Sources */,
 				CF72EBE82C5930CB0056562A /* ParentSubmissionInteractorTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
 				CF72EBEE2C5A23540056562A /* ParentSubmissionViewModelTests.swift in Sources */,

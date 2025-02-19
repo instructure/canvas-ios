@@ -144,6 +144,7 @@ private class InboxMessageInteractorMock: InboxMessageInteractor {
     var messages: CurrentValueSubject<[InboxMessageListItem], Never>
     var courses: CurrentValueSubject<[InboxCourse], Never>
     var hasNextPage = CurrentValueSubject<Bool, Never>(true)
+    var isParent: Bool = false
 
     private(set) var refreshCalled = false
     private(set) var loadNextPageCalled = false
