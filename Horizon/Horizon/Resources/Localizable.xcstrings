@@ -245,9 +245,6 @@
     "Fiji (+12:00/+12:00)" : {
 
     },
-    "Filter" : {
-
-    },
     "Fortaleza (-03:00/-03:00)" : {
 
     },
@@ -479,9 +476,6 @@
     "Notebook" : {
 
     },
-    "Notebook for Course %@" : {
-
-    },
     "Notes" : {
 
     },
@@ -678,6 +672,9 @@
 
     },
     "There was an error. please try again." : {
+
+    },
+    "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
 
     },
     "Tijuana (-08:00/-07:00)" : {

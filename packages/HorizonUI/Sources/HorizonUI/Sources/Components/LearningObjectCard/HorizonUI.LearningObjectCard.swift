@@ -52,7 +52,7 @@ public extension HorizonUI {
 
 
         public var body: some View {
-            VStack(alignment: .leading, spacing: .zero) {
+            HorizonUI.Card {
                 if let status {
                     HorizonUI.Pill(
                         title: status,
@@ -78,11 +78,6 @@ public extension HorizonUI {
                 courseInfoView()
                     .padding(.top, .huiSpaces.space48)
             }
-            .frame(maxWidth: .infinity)
-            .padding(.huiSpaces.space36)
-            .background(Color.huiColors.surface.cardPrimary)
-            .huiCornerRadius(level: .level2)
-            .huiElevation(level: .level4)
         }
 
         private func courseInfoView() -> some View {

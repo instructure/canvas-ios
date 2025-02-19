@@ -45,8 +45,10 @@ final class NotebookNoteViewModel {
     // MARK: - Dependencies
 
     private var isEditing = false
+    private let courseId: String?
     private let courseNoteInteractor: CourseNoteInteractor
     private let noteId: String?
+    private let itemId: String?
     private let router: Router
 
     private var isConfusingSaved: Bool = false
@@ -60,8 +62,8 @@ final class NotebookNoteViewModel {
     // MARK: - Init
 
     init(
-        courseNoteInteractor: CourseNoteInteractor,
-        router: Router,
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
+        router: Router = AppEnvironment.shared.router,
         noteId: String,
         isEditing: Bool = false
     ) {
@@ -70,12 +72,31 @@ final class NotebookNoteViewModel {
         self.noteId = noteId
         self.isEditing = isEditing
 
+        self.courseId = nil
+        self.itemId = nil
+
         courseNoteInteractor.get(id: noteId)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: whenNotebookCourseNoteUpdated
             )
             .store(in: &subscriptions)
+    }
+
+    init(
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
+        router: Router = AppEnvironment.shared.router,
+        courseId: String,
+        itemId: String,
+        isEditing: Bool = false
+    ) {
+        self.courseNoteInteractor = courseNoteInteractor
+        self.router = router
+        self.courseId = courseId
+        self.itemId = itemId
+        self.isEditing = isEditing
+
+        self.noteId = nil
     }
 
     // MARK: - Inputs
@@ -160,14 +181,28 @@ final class NotebookNoteViewModel {
     }
 
     private func saveContent() {
-        if let noteId = noteId {
-            let labels: [CourseNoteLabel] = [
-                isConfusing ? .confusing : nil,
-                isImportant ? .important : nil
-            ].compactMap { $0 }
+        let labels: [CourseNoteLabel] = [
+            isConfusing ? .confusing : nil,
+            isImportant ? .important : nil
+        ].compactMap { $0 }
 
+        if let noteId = noteId {
             courseNoteInteractor
                 .set(id: noteId, content: note, labels: labels)
+                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+                .store(in: &subscriptions)
+        }
+
+        if let courseId = courseId, let itemId = itemId {
+            courseNoteInteractor
+                .add(
+                    courseId: courseId,
+                    itemId: itemId,
+                    moduleType: .subHeader,
+                    content: note,
+                    labels: labels,
+                    index: nil
+                )
                 .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
                 .store(in: &subscriptions)
         }

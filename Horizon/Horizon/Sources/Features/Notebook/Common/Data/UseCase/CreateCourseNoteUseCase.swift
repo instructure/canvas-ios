@@ -28,7 +28,7 @@ class CreateCourseNoteUseCase: APIUseCase {
     // MARK: - Properties
     private let api: API
     private let courseId: String
-    private let moduleId: String
+    private let itemId: String
     private let moduleType: String
     private let userText: String
     private let reactions: [String]
@@ -38,7 +38,7 @@ class CreateCourseNoteUseCase: APIUseCase {
             jwt: api.loginSession?.accessToken ?? "",
             note: NewCourseNote(
                 courseId: self.courseId,
-                objectId: self.moduleId,
+                objectId: self.itemId,
                 objectType: self.moduleType,
                 userText: self.userText,
                 reaction: self.reactions
@@ -55,14 +55,14 @@ class CreateCourseNoteUseCase: APIUseCase {
     public init(
         api: API,
         courseId: String,
-        moduleId: String,
+        itemId: String,
         moduleType: String,
         userText: String,
         reactions: [String]
     ) {
         self.api = api
         self.courseId = courseId
-        self.moduleId = moduleId
+        self.itemId = itemId
         self.moduleType = moduleType
         self.userText = userText
         self.reactions = reactions

@@ -21,9 +21,7 @@ import Foundation
 import Combine
 
 class GetNotesQuery: APIGraphQLRequestable {
-    public let variables: Input
-
-    public struct Input: Codable, Equatable {}
+    public let variables: GetNotesQueryInput
 
     private let jwt: String
 
@@ -39,35 +37,56 @@ class GetNotesQuery: APIGraphQLRequestable {
         ]
     }
 
-    public init(jwt: String) {
+    public init(jwt: String, after: String? = nil) {
         self.jwt = jwt
-        self.variables = Input()
+        self.variables = GetNotesQueryInput(after: after)
     }
 
     public static let operationName: String = "FetchNotes"
     public static var query: String = """
     query \(operationName) {
-        notes {
-            id
-            courseId
-            objectId
-            objectType
-            userText
-            reaction
-            createdAt
+        notes (after: $after) {
+            nodes {
+                id
+                courseId
+                objectId
+                objectType
+                userText
+                reaction
+                createdAt
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
         }
     }
     """
 
     typealias Response = RedwoodFetchNotesQueryResponse
+
+    struct GetNotesQueryInput: Codable, Equatable {
+        let after: String?
+    }
 }
 
 // MARK: - Codeables
 
 struct RedwoodFetchNotesQueryResponse: Codable {
-    struct ResponseData: Codable {
-        let notes: [RedwoodNote]
-    }
 
     let data: ResponseData
+
+    struct ResponseData: Codable {
+        let notes: ResponseNode
+    }
+
+    struct ResponseNode: Codable {
+        let nodes: [RedwoodNote]
+        let pageInfo: PageInfo
+    }
+
+    struct PageInfo: Codable {
+        let hasNextPage: Bool
+        let endCursor: String?
+    }
 }

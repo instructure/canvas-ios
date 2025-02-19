@@ -16,8 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotebookCourse: Hashable {
-    let id: String
-    let course: String
-    let institution: String
+import Core
+
+final class NotebookAssembly {
+    static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
+        GetCourseNotesInteractorLive()
+    }
+
+    static func makeViewModel() -> NotebookViewModel {
+        NotebookViewModel(
+            getCourseNotesInteractor: makeGetCourseNotesInteractor(),
+            router: AppEnvironment.shared.router
+        )
+    }
+
+    static func makeViewController() -> CoreHostingController<NotebookView>? {
+        CoreHostingController(
+            NotebookView(
+                viewModel: makeViewModel()
+            )
+        )
+    }
 }

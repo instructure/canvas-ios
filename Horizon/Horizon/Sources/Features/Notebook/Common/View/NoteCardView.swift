@@ -30,9 +30,11 @@ struct NoteCardView: View {
                 Text(note.title)
                     .font(.regular12)
                     .padding(.bottom, .huiSpaces.space8)
-                Text(note.highlightedText)
-                    .font(.regular14Italic)
-                    .padding(.bottom, .huiSpaces.space8)
+                if !note.highlightedText.isEmpty {
+                    Text(note.highlightedText)
+                        .font(.regular14Italic)
+                        .padding(.bottom, .huiSpaces.space8)
+                }
                 if !note.note.isEmpty {
                     Text(note.note)
                         .lineLimit(3)

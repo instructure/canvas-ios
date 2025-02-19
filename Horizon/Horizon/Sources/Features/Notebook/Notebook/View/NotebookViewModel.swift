@@ -20,10 +20,9 @@ import Core
 import Combine
 
 @Observable
-final class NotebookCourseViewModel {
+final class NotebookViewModel {
     // MARK: - Dependencies
 
-    private let courseId: String
     private let formatter = DateFormatter()
     private var getCourseNotesInteractor: GetCourseNotesInteractor
 
@@ -38,17 +37,11 @@ final class NotebookCourseViewModel {
         }
     }
     var isConfusingEnabled: Bool { filter == .confusing }
+    var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil }
     var isImportantEnabled: Bool { filter == .important }
     var notes: [NotebookNote] = []
+    var state: InstUI.ScreenState = .loading
     var title: String = ""
-    var term: String {
-        get {
-            getCourseNotesInteractor.term
-        }
-        set {
-            getCourseNotesInteractor.term = newValue
-        }
-    }
 
     // MARK: - Private variables
 
@@ -58,20 +51,15 @@ final class NotebookCourseViewModel {
     // MARK: - Init
 
     init(
-        courseId: String,
-        getCourseNotesInteractor: GetCourseNotesInteractor,
-        router: Router
+        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive(),
+        router: Router = AppEnvironment.defaultValue.router
     ) {
-        self.courseId = courseId
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
 
         formatter.dateFormat = "MMM d, yyyy"
 
-        title = String.localizedStringWithFormat(
-            String(localized: "Notebook for Course %@", bundle: .horizon),
-            courseId
-        )
+        title = String(localized: "Notebook", bundle: .horizon)
 
         loadNotes()
     }
@@ -79,7 +67,7 @@ final class NotebookCourseViewModel {
     // MARK: - Inputs
 
     func onAdd(viewController: WeakViewController) {
-        let route = "/notebook/\(courseId)/addNote"
+        let route = "/notebook/531/46043/add"
         router.route(to: route, from: viewController)
     }
 
@@ -91,12 +79,20 @@ final class NotebookCourseViewModel {
         router.route(to: "/notebook/note/\(note.id)", from: viewController)
     }
 
+    func nextPage() {
+
+    }
+
+    func previousPage() {
+        
+    }
+
     // MARK: - Private functions
 
     private func loadNotes() {
         weak var weakSelf = self
         getCourseNotesInteractor
-            .get()
+            .get(after: )
             .flatMap {
                 $0.publisher
                     .map { note in
@@ -111,7 +107,10 @@ final class NotebookCourseViewModel {
                     .collect()
             }
             .replaceError(with: [])
-            .sink { weakSelf?.notes = $0 }
+            .sink {
+                weakSelf?.notes = $0
+                weakSelf?.state = .data
+            }
             .store(in: &subscriptions)
     }
 }

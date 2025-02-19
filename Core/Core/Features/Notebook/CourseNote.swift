@@ -19,12 +19,13 @@
 import CoreData
 
 public final class CourseNote: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged public var date: Date
+
     @NSManaged public var content: String?
     @NSManaged public var courseID: String
-    @NSManaged public var date: Date
     @NSManaged public var highlightedText: String?
     @NSManaged public var highlightKey: String?
-    @NSManaged public var id: String
     @NSManaged public var labels: String?
     @NSManaged public var length: NSNumber?
     @NSManaged public var startIndex: NSNumber?

@@ -35,4 +35,17 @@ final class NotebookNoteAssembly {
             )
         )
     }
+
+    static func makeViewNoteViewController(courseID: String, itemID: String) -> CoreHostingController<NotebookNoteView> {
+        CoreHostingController(
+            NotebookNoteView(
+                viewModel: .init(
+                    courseNoteInteractor: makeCourseNoteInteractor(),
+                    router: AppEnvironment.shared.router,
+                    courseId: courseID,
+                    itemId: itemID
+                )
+            )
+        )
+    }
 }

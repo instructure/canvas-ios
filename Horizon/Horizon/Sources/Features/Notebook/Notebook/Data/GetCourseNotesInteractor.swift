@@ -23,7 +23,8 @@ import Foundation
 protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get set }
     var term: String { get set }
-    func get() -> AnyPublisher<[CourseNote], NotebookError>
+    var afterNodeId: String? { get set }
+    func get(after nodeId: String?) -> AnyPublisher<[CourseNote], NotebookError>
 }
 
 final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
@@ -51,11 +52,21 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         }
     }
 
+    var afterNodeId: String? {
+        get {
+            afterNodeIdPublisher.value
+        }
+        set {
+            afterNodeIdPublisher.send(newValue)
+        }
+    }
+
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
     private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
     private var filterPublisher: CurrentValueSubject<CourseNoteLabel?, Error> = CurrentValueSubject(nil)
+    private var afterNodeIdPublisher: CurrentValueSubject<String?, Error> = CurrentValueSubject(nil)
 
     // MARK: - Init
 
@@ -65,20 +76,22 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Public Methods
 
-    func get() -> AnyPublisher<[CourseNote], NotebookError> {
+    func get(after nodeId: String? = nil) -> AnyPublisher<[CourseNote], NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
-                Publishers.CombineLatest(
+                Publishers.CombineLatest3(
                     self.filterPublisher,
-                    self.termPublisher
+                    self.termPublisher,
+                    self.afterNodeIdPublisher
                 )
                 .flatMap { value in
                     ReactiveStore(
                         useCase: GetCourseNotesUseCase(
                             api: api,
                             labels: value.0.map { [$0] } ?? [],
-                            searchTerm: value.1
+                            searchTerm: value.1,
+                            after: value.2
                         )
                     )
                     .getEntities(keepObservingDatabaseChanges: true)

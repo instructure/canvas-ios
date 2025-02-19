@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,24 +18,21 @@
 
 import Core
 
-final class NotebookCourseAssembly {
-    static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
-        GetCourseNotesInteractorLive()
+class NavigationBarViewModel {
+
+    private let router: Router
+
+    init(router: Router = AppEnvironment.defaultValue.router) {
+        self.router = router
     }
 
-    static func makeViewModel(courseId: String) -> NotebookCourseViewModel {
-        NotebookCourseViewModel(
-            courseId: courseId,
-            getCourseNotesInteractor: makeGetCourseNotesInteractor(),
-            router: AppEnvironment.shared.router
-        )
+    func notebookDidTap(viewController: WeakViewController ) {
+        router.route(to: "/notebook", from: viewController)
     }
 
-    static func makeView(courseId: String) -> CoreHostingController<NotebookCourseView>? {
-        CoreHostingController(
-            NotebookCourseView(
-                viewModel: makeViewModel(courseId: courseId)
-            )
-        )
+    func notificationsDidTap() {}
+
+    func mailDidTap(viewController: WeakViewController) {
+        router.route(to: "/conversations", from: viewController)
     }
 }

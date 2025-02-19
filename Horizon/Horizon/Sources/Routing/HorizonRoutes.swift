@@ -215,11 +215,18 @@ enum HorizonRoutes {
     private static var notebookRoutes: [RouteHandler] {
         [
             RouteHandler("/notebook") { _, _, _ in
-                NotebookCourseListAssembly.makeViewController()
+                return NotebookAssembly.makeViewController()
             },
-            RouteHandler("/notebook/:courseID") { _, params, _ in
-                guard let courseId = params["courseID"] else { return nil }
-                return NotebookCourseAssembly.makeView(courseId: courseId)
+            RouteHandler("/notebook/:courseID/:itemID/add") { _, params, _ in
+                guard let itemId = params["itemID"], let courseId = params["courseID"] else { return nil }
+                guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
+                let router: Router = AppEnvironment.shared.router
+                router.show(
+                    NotebookNoteAssembly.makeViewNoteViewController(courseID: courseId, itemID: itemId),
+                    from: vc,
+                    options: .modal(.pageSheet)
+                )
+                return nil
             },
             RouteHandler("/notebook/note/:noteID") { _, params, _ in
                 guard let noteId = params["noteID"] else { return nil }

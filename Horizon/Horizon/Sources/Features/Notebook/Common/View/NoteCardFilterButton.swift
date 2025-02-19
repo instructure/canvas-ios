@@ -27,20 +27,28 @@ struct NoteCardFilterButton: View {
     let selected: Bool
 
     var body: some View {
-        HStack {
+        VStack {
             type.image
-                .frame(width: 24, height: 24)
+                .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
             Text(type.label)
-                .font(.regular16)
+                .huiTypography(.buttonTextLarge)
         }
-        .frame(height: 48)
+        .frame(height: 102)
         .frame(maxWidth: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: 15.5)
-                .fill(Color.white)
+            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level2.attributes.radius)
+                .fill(Color.huiColors.surface.cardPrimary)
                 .stroke(type.color ?? .huiColors.surface.inversePrimary, lineWidth: selected ? 2 : 0)
         )
         .cornerRadius(16)
         .huiElevation(level: selected ? .level0 : .level4)
     }
+}
+
+#Preview {
+    HStack(spacing: 16) {
+        NoteCardFilterButton(type: .confusing, selected: false)
+        NoteCardFilterButton(type: .important, selected: false)
+    }
+
 }

@@ -27,18 +27,17 @@ struct DashboardView: View {
     // TODO: - Set with correct url later
     private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
 
+    private let navigationBarViewModel: NavigationBarViewModel = .init()
+
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        InstUI.BaseScreen(
+        NavigationBarView(
             state: viewModel.state,
-            config: .init(
-                refreshable: true,
-                loaderBackgroundColor: .huiColors.surface.pagePrimary
-            )
-        ) { _ in
+            viewModel: navigationBarViewModel
+        ) {
             LazyVStack(spacing: .zero) {
                 ForEach(viewModel.nextUpViewModels) { nextUpViewModel in
                     VStack(alignment: .leading, spacing: .zero) {
@@ -81,16 +80,6 @@ struct DashboardView: View {
             }
             .padding(.bottom, .huiSpaces.space16)
         }
-        .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: logoURL))
-        .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing {
-            viewModel.notebookDidTap(viewController: viewController)
-        } onNotificationDidTap: {
-            viewModel.notificationsDidTap()
-        } onMailDidTap: {
-            viewModel.mailDidTap(viewController: viewController)
-        })
-        .scrollIndicators(.hidden, axes: .vertical)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var nameLabel: some View {

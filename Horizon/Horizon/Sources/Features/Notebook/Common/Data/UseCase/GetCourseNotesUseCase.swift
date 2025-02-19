@@ -29,11 +29,14 @@ class GetCourseNotesUseCase: APIUseCase {
     private let id: String?
     private let highlightsKey: String?
     private let labels: [CourseNoteLabel]?
-    var cacheKey: String?
+    var cacheKey: String? {
+        return after
+    }
     private let searchTerm: String?
+    private let after: String?
 
     var request: GetNotesQuery {
-        .init(jwt: api.loginSession?.accessToken ?? "")
+        .init(jwt: api.loginSession?.accessToken ?? "", after: after)
     }
 
     var scope: Scope {
@@ -73,13 +76,15 @@ class GetCourseNotesUseCase: APIUseCase {
         id: String? = nil,
         highlightsKey: String? = nil,
         labels: [CourseNoteLabel]? = nil,
-        searchTerm: String? = nil
+        searchTerm: String? = nil,
+        after: String? = nil
     ) {
         self.api = api
         self.id = id
         self.highlightsKey = highlightsKey
         self.labels = labels
         self.searchTerm = searchTerm
+        self.after = after
     }
 
     // MARK: - Methods
@@ -96,12 +101,12 @@ class GetCourseNotesUseCase: APIUseCase {
 
         // delete all notes that do not come back in the response if we don't have any filters applied
         if id == nil && highlightsKey == nil && (labels == nil || labels?.isEmpty == true) {
-            let idsReturned = response?.data.notes.map(\.id) ?? []
+            let idsReturned = response?.data.notes.nodes.map(\.id) ?? []
             let notesToDelete: [CourseNote] = client.fetch(NSPredicate(format: "NOT %K IN %@", #keyPath(CourseNote.id), idsReturned))
             client.delete(notesToDelete)
         }
 
-        response?.data.notes.forEach {
+        response?.data.notes.nodes.forEach {
             CourseNote.save($0, in: client)
         }
     }
