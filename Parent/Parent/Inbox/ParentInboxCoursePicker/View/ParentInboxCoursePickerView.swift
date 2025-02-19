@@ -44,7 +44,6 @@ public struct ParentInboxCoursePickerView: View {
                 case .loading:
                     loadingView
                 }
-
             }
             .frame(maxWidth: .infinity)
             .padding(.all, 12)
