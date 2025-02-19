@@ -22,13 +22,14 @@ import Foundation
 import CombineExt
 
 final class GetNotebookCoursesInteractor {
+
     // MARK: - Dependencies
+
+    private let userId: String
 
     // MARK: - Private variables
 
     private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
-
-    private let userId: String
 
     // MARK: - Init
 

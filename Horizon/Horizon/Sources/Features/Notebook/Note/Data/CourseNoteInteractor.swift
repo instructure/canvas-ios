@@ -45,18 +45,24 @@ protocol CourseNoteInteractor {
         index: NotebookHighlight
     ) -> AnyPublisher<CourseNote, NotebookError>
     func delete(id: String) -> AnyPublisher<CourseNote, NotebookError>
-    func get() -> AnyPublisher<[CourseNote], NotebookError>
     func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError>
     func get(id: String) -> AnyPublisher<CourseNote?, NotebookError>
     func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> AnyPublisher<CourseNote?, NotebookError>
 }
 
 class CourseNoteInteractorLive: CourseNoteInteractor {
+
+    // MARK: - Dependencies
+
     private let canvasApi: API
+
+    // MARK: - Init
 
     init(canvasApi: API = AppEnvironment.shared.api) {
         self.canvasApi = canvasApi
     }
+
+    // MARK: - Public
 
     func add(
         courseId: String,
@@ -98,10 +104,6 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
             }
             .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
-    }
-
-    func get() -> AnyPublisher<[CourseNote], NotebookError> {
-        fetch()
     }
 
     func get(id: String) -> AnyPublisher<CourseNote?, NotebookError> {
@@ -149,71 +151,6 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
     }
 }
 
-class StringListTransformer: ValueTransformer {
-    override class func transformedValueClass() -> AnyClass {
-        return NSData.self
-    }
-
-    override class func allowsReverseTransformation() -> Bool {
-        return true
-    }
-
-    override func transformedValue(_ value: Any?) -> Any? {
-        guard let stringArray = value as? [String] else { return nil }
-        return try? JSONEncoder().encode(stringArray)
-    }
-
-    override func reverseTransformedValue(_ value: Any?) -> Any? {
-        guard let data = value as? Data else { return nil }
-        return try? JSONDecoder().decode([String].self, from: data)
-    }
-}
-
-class CourseNoteInteractorPreview: CourseNoteInteractor {
-    func add(
-        courseId: String,
-        moduleId: String,
-        moduleType: ModuleItemType,
-        content: String = "",
-        labels: [CourseNoteLabel] = [],
-        index: NotebookHighlight
-    ) -> AnyPublisher<CourseNote, NotebookError> {
-        Just(CourseNote())
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-
-    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError> {
-        Just(CourseNote())
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-
-    func get() -> AnyPublisher<[CourseNote], NotebookError> {
-        Just([])
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-
-    func get(id: String) -> AnyPublisher<CourseNote?, NotebookError> {
-        Just(nil)
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-
-    func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError> {
-        Just([])
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-
-    func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> AnyPublisher<CourseNote?, NotebookError> {
-        Just(nil)
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-}
-
 extension ModuleItemType {
     var courseNoteLabel: String {
         switch self {
@@ -247,7 +184,7 @@ extension CourseNote {
         courseNote.content = note.userText
         courseNote.courseID = note.courseId
         courseNote.date = note.createdAt
-//        courseNote.highlightKey = note.highlightKey
+//        courseNote.highlightKey = note.highlightKey // COMING SOON!
 //        courseNote.highlightedText = note.highlightedText
         courseNote.labels = (note.reaction ?? []).joined(separator: ";")
 //        courseNote.length = note.length
@@ -259,5 +196,44 @@ extension CourseNote {
         if let courseNote: CourseNote = context.first(where: #keyPath(CourseNote.id), equals: id) {
             context.delete(courseNote)
         }
+    }
+}
+
+class CourseNoteInteractorPreview: CourseNoteInteractor {
+    func add(
+        courseId: String,
+        moduleId: String,
+        moduleType: ModuleItemType,
+        content: String = "",
+        labels: [CourseNoteLabel] = [],
+        index: NotebookHighlight
+    ) -> AnyPublisher<CourseNote, NotebookError> {
+        Just(CourseNote())
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+
+    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError> {
+        Just(CourseNote())
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+
+    func get(id: String) -> AnyPublisher<CourseNote?, NotebookError> {
+        Just(nil)
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+
+    func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError> {
+        Just([])
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+
+    func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> AnyPublisher<CourseNote?, NotebookError> {
+        Just(nil)
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
     }
 }
