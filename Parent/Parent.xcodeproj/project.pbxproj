@@ -103,6 +103,8 @@
 		CF20B5C42B1F9D5700C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */; };
 		CF34EC472C08C6700085EA33 /* ObserverAlertsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */; };
 		CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */; };
+		CF4DA8D82D5F84D600F3D120 /* StudentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DA8D72D5F84D200F3D120 /* StudentHeaderView.swift */; };
+		CF4DA8EC2D64D02500F3D120 /* StudentHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DA8EB2D64D02300F3D120 /* StudentHeaderViewModel.swift */; };
 		CF72EBD52C590A1D0056562A /* ParentSubmissionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */; };
 		CF72EBE02C5922AC0056562A /* ParentSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBDF2C5922AC0056562A /* ParentSubmissionViewController.swift */; };
 		CF72EBE82C5930CB0056562A /* ParentSubmissionInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */; };
@@ -261,6 +263,8 @@
 		CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertsInteractor.swift; sourceTree = "<group>"; };
 		CF34EC492C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertsInteractorTests.swift; sourceTree = "<group>"; };
+		CF4DA8D72D5F84D200F3D120 /* StudentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentHeaderView.swift; sourceTree = "<group>"; };
+		CF4DA8EB2D64D02300F3D120 /* StudentHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentHeaderViewModel.swift; sourceTree = "<group>"; };
 		CF72EBD42C590A1D0056562A /* ParentSubmissionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionInteractor.swift; sourceTree = "<group>"; };
 		CF72EBDF2C5922AC0056562A /* ParentSubmissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentSubmissionViewController.swift; sourceTree = "<group>"; };
 		CF72EBE72C5930CB0056562A /* ParentSubmissionInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSubmissionInteractorTests.swift; sourceTree = "<group>"; };
@@ -411,6 +415,8 @@
 		5E0F9A4E1C739E6A00BB7707 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				CF4DA8EA2D64D01500F3D120 /* ViewModel */,
+				CF4DA8E92D64D00C00F3D120 /* View */,
 				7893BDCE20D1A74700231DF7 /* Admin */,
 				7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */,
 				5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */,
@@ -804,6 +810,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CF4DA8E92D64D00C00F3D120 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF4DA8D72D5F84D200F3D120 /* StudentHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF4DA8EA2D64D01500F3D120 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF4DA8EB2D64D02300F3D120 /* StudentHeaderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CF72EBD02C5909340056562A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1185,12 +1207,14 @@
 				5B57423E2CB575DB000FB627 /* GetObserverAlertsRequest.swift in Sources */,
 				78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */,
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
+				CF4DA8EC2D64D02500F3D120 /* StudentHeaderViewModel.swift in Sources */,
 				3BEA6CC1245887F000BE4589 /* ParentConversationListViewController.swift in Sources */,
 				97F69BA523F1C682009622E3 /* AddStudentController.swift in Sources */,
 				7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */,
 				5B5742462CB5792A000FB627 /* DismissObserverAlert.swift in Sources */,
 				7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */,
 				7DB92CB424C62071004A6C16 /* CourseListViewController.swift in Sources */,
+				CF4DA8D82D5F84D600F3D120 /* StudentHeaderView.swift in Sources */,
 				7DB92CA524C5FD26004A6C16 /* AccountNotificationDetailsViewController.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
 				CF9A81E92C8A0261004B2C13 /* ParentSubmissionURLInteractor.swift in Sources */,
