@@ -66,24 +66,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        let headerViewController = CoreHostingController(StudentHeaderView(viewModel: headerViewModel))
-        embed(headerViewController, in: view) { [studentListView] header, superview in
-            let headerView = header.view!
-            headerView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                headerView.topAnchor.constraint(equalTo: superview.topAnchor, constant: 0),
-                headerView.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0),
-                headerView.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0),
-                headerView.bottomAnchor.constraint(equalTo: studentListView!.topAnchor, constant: 0)
-            ])
-        }
-        headerViewModel
-            .didTapStudentView
-            .sink { [weak self] in
-                self?.didTapDropdownButton()
-            }
-            .store(in: &subscriptions)
-
+        embedHeaderView()
         studentListHiddenHeight.isActive = true
 
         tabsController.tabBar.useGlobalNavStyle()
@@ -146,9 +129,9 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     }
 
     func updateBadge() {
-        env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+        env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in
             self?.badgeCount = UInt(response?.unread_count ?? 0)
-        } }
+        }
     }
 
     func updateCurrentStudent(_ oldValue: Core.User?) {
@@ -245,6 +228,26 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
             AppEnvironment.shared.loginDelegate?.changeUser()
         })
+    }
+
+    private func embedHeaderView() {
+        let headerViewController = CoreHostingController(StudentHeaderView(viewModel: headerViewModel))
+        embed(headerViewController, in: view) { [studentListView] header, superview in
+            let headerView = header.view!
+            headerView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                headerView.topAnchor.constraint(equalTo: superview.topAnchor, constant: 0),
+                headerView.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0),
+                headerView.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0),
+                headerView.bottomAnchor.constraint(equalTo: studentListView!.topAnchor, constant: 0)
+            ])
+        }
+        headerViewModel
+            .didTapStudentView
+            .sink { [weak self] in
+                self?.didTapDropdownButton()
+            }
+            .store(in: &subscriptions)
     }
 }
 

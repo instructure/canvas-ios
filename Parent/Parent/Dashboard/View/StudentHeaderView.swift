@@ -56,6 +56,11 @@ struct StudentHeaderView: View {
                 viewBody
                     .id(viewModel.state)
                     .transition(.push(from: .bottom))
+                    .accessibilityElement()
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityLabel(viewModel.accessibilityLabel)
+                    .accessibilityValue(viewModel.accessibilityValue)
+                    .accessibilityHint(viewModel.accessibilityHint)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             // Match the animation we use for the student carousel appearance
