@@ -163,6 +163,8 @@ private extension View {
     }
 }
 
+#if DEBUG
+
 #Preview {
     VStack {
         StudentHeaderView(viewModel: StudentHeaderViewModel())
@@ -188,3 +190,5 @@ private extension View {
         Spacer()
     }
 }
+
+#endif

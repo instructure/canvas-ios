@@ -158,7 +158,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         studentListStack.addArrangedSubview(addButton)
     }
 
-    @IBAction func didTapDropdownButton() {
+    func didTapDropdownButton() {
         guard !students.isEmpty else { return addStudentController.addStudent() }
         toggleStudentList(studentListHiddenHeight.isActive)
     }
