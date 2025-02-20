@@ -4109,6 +4109,7 @@
       }
     },
     "Compose new message" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -7188,10 +7189,10 @@
         }
       }
     },
-    "Failed to load courses" : {
+    "Expanded" : {
 
     },
-    "Expanded" : {
+    "Failed to load courses" : {
 
     },
     "Find School" : {
@@ -7963,6 +7964,7 @@
       }
     },
     "Inbox" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -8219,6 +8221,7 @@
       }
     },
     "Inbox Zero" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12830,6 +12833,7 @@
       }
     },
     "Regarding: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -18979,6 +18983,7 @@
       }
     },
     "You’re all caught up" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

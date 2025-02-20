@@ -22,8 +22,6 @@
 		3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */; };
 		3BD0CD732327026400B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD722327026400B3341E /* Core.framework */; };
 		3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3BEA6CC0245887F000BE4589 /* ParentConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEA6CBE245887F000BE4589 /* ParentConversationListViewController.storyboard */; };
-		3BEA6CC1245887F000BE4589 /* ParentConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CBF245887F000BE4589 /* ParentConversationListViewController.swift */; };
 		4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948BE681F915D330035BAFD /* BundleExtensions.swift */; };
 		5B57423C2CB57429000FB627 /* GetObserverAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57423B2CB57429000FB627 /* GetObserverAlerts.swift */; };
 		5B57423E2CB575DB000FB627 /* GetObserverAlertsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57423D2CB575DB000FB627 /* GetObserverAlertsRequest.swift */; };
@@ -75,7 +73,6 @@
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
 		7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */; };
 		7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */; };
-		7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */; };
 		8B4C56702AE7EDF800B5AC89 /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */; };
 		8B4C56732AE941A100B5AC89 /* AboutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56722AE941A100B5AC89 /* AboutTests.swift */; };
 		8B4C56762AE9444100B5AC89 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56752AE9444100B5AC89 /* InboxTests.swift */; };
@@ -189,8 +186,6 @@
 		3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		3BD0CD722327026400B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD0CD742327027000B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BEA6CBE245887F000BE4589 /* ParentConversationListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ParentConversationListViewController.storyboard; sourceTree = "<group>"; };
-		3BEA6CBF245887F000BE4589 /* ParentConversationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewController.swift; sourceTree = "<group>"; };
 		4948BE681F915D330035BAFD /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		4968E29E1DB977CF00A39703 /* Parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Parent.entitlements; sourceTree = "<group>"; };
 		49952C3B1F7477C300A11404 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,7 +243,6 @@
 		7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarEventDetailsViewController.storyboard; sourceTree = "<group>"; };
 		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
-		7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewControllerTests.swift; sourceTree = "<group>"; };
 		8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		8B4C56722AE941A100B5AC89 /* AboutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTests.swift; sourceTree = "<group>"; };
 		8B4C56752AE9444100B5AC89 /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
@@ -349,7 +343,6 @@
 				D343528C2D66190A00AE32AB /* Inbox */,
 				7DB92CAD24C61555004A6C16 /* AccountNotifications */,
 				97523A8523C9373F0086D825 /* Assignments */,
-				7DFDB43023A3EDE200B28DED /* Conversations */,
 				97F0817223C43E09002B9F68 /* Courses */,
 				97043EDD23E8D4BA00E52436 /* Dashboard */,
 				7DB92CB024C61A0A004A6C16 /* Discussions */,
@@ -487,7 +480,6 @@
 				7DB92CA324C5FC11004A6C16 /* AccountNotifications */,
 				5E6441911C3EE2E0003D7397 /* Assets.xcassets */,
 				7D1801B724C2079800A7F023 /* Assignments */,
-				7D111CFD23A2DDAD00C912C0 /* Conversations */,
 				3BA9FF6B2332997D00196A06 /* Courses */,
 				5E0F9A4E1C739E6A00BB7707 /* Dashboard */,
 				9F5A3D3C2048745B00F6EDCE /* Discussions */,
@@ -544,15 +536,6 @@
 				7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */,
 			);
 			path = Admin;
-			sourceTree = "<group>";
-		};
-		7D111CFD23A2DDAD00C912C0 /* Conversations */ = {
-			isa = PBXGroup;
-			children = (
-				3BEA6CBE245887F000BE4589 /* ParentConversationListViewController.storyboard */,
-				3BEA6CBF245887F000BE4589 /* ParentConversationListViewController.swift */,
-			);
-			path = Conversations;
 			sourceTree = "<group>";
 		};
 		7D1801B724C2079800A7F023 /* Assignments */ = {
@@ -652,14 +635,6 @@
 				7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */,
 			);
 			path = Planner;
-			sourceTree = "<group>";
-		};
-		7DFDB43023A3EDE200B28DED /* Conversations */ = {
-			isa = PBXGroup;
-			children = (
-				7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */,
-			);
-			path = Conversations;
 			sourceTree = "<group>";
 		};
 		8B4C566B2AE7EDBB00B5AC89 /* Help */ = {
@@ -1166,7 +1141,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BEA6CC0245887F000BE4589 /* ParentConversationListViewController.storyboard in Resources */,
 				CFEE68DC2B1A251C00A04E43 /* Localizable.xcstrings in Resources */,
 				7D33976E24534D8C0074ED71 /* StudentListViewController.storyboard in Resources */,
 				7D00F3482457776600C370D5 /* StudentDetailsViewController.storyboard in Resources */,
@@ -1258,7 +1232,6 @@
 				7DB92CB224C61A2B004A6C16 /* DiscussionDetailsViewControllerTests.swift in Sources */,
 				7DB92CB824C64D35004A6C16 /* CourseListViewControllerTests.swift in Sources */,
 				7DB92CAF24C61575004A6C16 /* AccountNotificationDetailsViewControllerTests.swift in Sources */,
-				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
 				CF34EC4A2C08C9D80085EA33 /* ObserverAlertsInteractorTests.swift in Sources */,
 				CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */,
 				CF9A81EB2C8A0387004B2C13 /* ParentSubmissionURLInteractorTests.swift in Sources */,
@@ -1292,7 +1265,6 @@
 				5B57423E2CB575DB000FB627 /* GetObserverAlertsRequest.swift in Sources */,
 				78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */,
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
-				3BEA6CC1245887F000BE4589 /* ParentConversationListViewController.swift in Sources */,
 				97F69BA523F1C682009622E3 /* AddStudentController.swift in Sources */,
 				D359F9542D5E1A81000B1480 /* ParentInboxCoursePickerInteractorPreview.swift in Sources */,
 				D359F94E2D5E1A3A000B1480 /* ParentInboxCoursePickerViewModel.swift in Sources */,
