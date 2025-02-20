@@ -54,6 +54,7 @@ class GetNotesQuery: APIGraphQLRequestable {
                 userText
                 reaction
                 createdAt
+                highlightData
             }
             pageInfo {
                 hasNextPage

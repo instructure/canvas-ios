@@ -24,7 +24,7 @@ protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get set }
     var term: String { get set }
     var afterNodeId: String? { get set }
-    func get(after nodeId: String?) -> AnyPublisher<[CourseNote], NotebookError>
+    func get() -> AnyPublisher<[CourseNote], NotebookError>
 }
 
 final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
@@ -76,7 +76,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Public Methods
 
-    func get(after nodeId: String? = nil) -> AnyPublisher<[CourseNote], NotebookError> {
+    func get() -> AnyPublisher<[CourseNote], NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in

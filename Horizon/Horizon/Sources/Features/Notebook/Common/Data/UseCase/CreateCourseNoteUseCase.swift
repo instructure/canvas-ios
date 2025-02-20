@@ -32,16 +32,24 @@ class CreateCourseNoteUseCase: APIUseCase {
     private let moduleType: String
     private let userText: String
     private let reactions: [String]
+    private let highlightKey: String?
+    private let startIndex: Int?
+    private let length: Int?
+    private let highlightedText: String?
 
     var request: RedwoodCreateNoteMutation {
         RedwoodCreateNoteMutation(
             jwt: api.loginSession?.accessToken ?? "",
-            note: NewCourseNote(
+            note: NewRedwoodNote(
                 courseId: self.courseId,
                 objectId: self.itemId,
                 objectType: self.moduleType,
                 userText: self.userText,
-                reaction: self.reactions
+                reaction: self.reactions,
+                highlightKey: self.highlightKey,
+                highlightedText: self.highlightedText,
+                length: self.length,
+                startIndex: self.startIndex
             )
         )
     }
@@ -58,7 +66,11 @@ class CreateCourseNoteUseCase: APIUseCase {
         itemId: String,
         moduleType: String,
         userText: String,
-        reactions: [String]
+        reactions: [String],
+        highlightKey: String?,
+        startIndex: Int?,
+        length: Int?,
+        highlightedText: String?
     ) {
         self.api = api
         self.courseId = courseId
@@ -66,6 +78,10 @@ class CreateCourseNoteUseCase: APIUseCase {
         self.moduleType = moduleType
         self.userText = userText
         self.reactions = reactions
+        self.highlightKey = highlightKey
+        self.startIndex = startIndex
+        self.length = length
+        self.highlightedText = highlightedText
     }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {

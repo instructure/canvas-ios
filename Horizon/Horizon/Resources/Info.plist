@@ -62,9 +62,7 @@
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
-	<true/>
-	<key>ITSEncryptionExportComplianceCode</key>
-	<string>7bb091ae-4a93-44ec-bb77-ff69e62c1f50</string>
+	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -134,6 +132,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>VersionName</key>
 	<string>Innovative Panda</string>
 </dict>

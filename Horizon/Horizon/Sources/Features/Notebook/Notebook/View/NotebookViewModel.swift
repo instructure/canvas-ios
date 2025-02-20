@@ -67,8 +67,10 @@ final class NotebookViewModel {
     // MARK: - Inputs
 
     func onAdd(viewController: WeakViewController) {
-        let route = "/notebook/531/46043/add"
-        router.route(to: route, from: viewController)
+        router.route(
+            to: "/notebook/531/46036/add",
+            from: viewController
+        )
     }
 
     func onBack(viewController: WeakViewController) {
@@ -92,7 +94,7 @@ final class NotebookViewModel {
     private func loadNotes() {
         weak var weakSelf = self
         getCourseNotesInteractor
-            .get(after: )
+            .get()
             .flatMap {
                 $0.publisher
                     .map { note in

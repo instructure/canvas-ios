@@ -18,17 +18,18 @@
 
 import Foundation
 
-public struct RedwoodNote: Codable {
-    let id: String
-    let courseId: String
-    let objectId: String
-    let objectType: String
-    let userText: String
-    let reaction: [String]?
-    let createdAt: Date
+public class RedwoodNote: NewRedwoodNote {
+    public static func == (lhs: RedwoodNote, rhs: RedwoodNote) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.createdAt == rhs.createdAt &&
+        (lhs as NewRedwoodNote) == (rhs as NewRedwoodNote)
+    }
+
+    let id: String?
+    let createdAt: Date?
 
     enum CodingKeys: String, CodingKey {
-        case id, courseId, objectId, objectType, userText, reaction, createdAt
+        case id, courseId, objectId, objectType, userText, reaction, createdAt, highlightData
     }
 
     // Custom DateFormatter to handle the date format
@@ -40,21 +41,29 @@ public struct RedwoodNote: Codable {
         return formatter
     }()
 
-    public init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try container.decode(String.self, forKey: .id)
-        courseId = try container.decode(String.self, forKey: .courseId)
-        objectId = try container.decode(String.self, forKey: .objectId)
-        objectType = try container.decode(String.self, forKey: .objectType)
-        userText = try container.decode(String.self, forKey: .userText)
-        reaction = try container.decodeIfPresent([String].self, forKey: .reaction)
-
         let dateString = try container.decode(String.self, forKey: .createdAt)
         if let date = RedwoodNote.dateFormatter.date(from: dateString) {
             createdAt = date
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .createdAt, in: container, debugDescription: "Date string does not match format expected by formatter.")
+            throw DecodingError.dataCorruptedError(
+                forKey: .createdAt, in: container,
+                debugDescription: "Date string does not match format expected by formatter.")
         }
+
+        try super.init(from: decoder)
+    }
+
+    override public func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        try container.encode(id, forKey: .id)
+
+        let dateString = RedwoodNote.dateFormatter.string(from: createdAt ?? Date())
+        try container.encode(dateString, forKey: .createdAt)
     }
 }

@@ -36,7 +36,7 @@ class RedwoodCreateNoteMutation: APIGraphQLRequestable {
 
     public init(
         jwt: String,
-        note: NewCourseNote
+        note: NewRedwoodNote
     ) {
         self.variables = NewCourseNoteInput(input: note)
         self.jwt = jwt
@@ -53,6 +53,7 @@ class RedwoodCreateNoteMutation: APIGraphQLRequestable {
             userText
             reaction
             createdAt
+            highlightData
         }
     }
     """
@@ -61,16 +62,7 @@ class RedwoodCreateNoteMutation: APIGraphQLRequestable {
 }
 
 struct NewCourseNoteInput: Codable, Equatable {
-    let input: NewCourseNote
-}
-
-struct NewCourseNote: Codable, Equatable {
-    let courseId: String
-    let objectId: String
-    let objectType: String
-    let userText: String?
-    let reaction: [String]?
-//        let highlightData: JSON?
+    let input: NewRedwoodNote
 }
 
 // MARK: - Codeables

@@ -58,6 +58,21 @@ final class NotebookNoteViewModel {
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
+    private var courseNote: CourseNote? {
+        didSet {
+            note = courseNote?.content ?? ""
+            if let highlightedText = courseNote?.highlightedText, !highlightedText.isEmpty {
+                self.highlightedText = "\"\(courseNote?.highlightedText ?? "")\""
+            }
+            noteSaved = note
+
+            isConfusing = courseNote?.labelsList.contains { $0.toCourseNoteLabel() == .confusing } ?? false
+            isConfusingSaved = isConfusing
+
+            isImportant = courseNote?.labelsList.contains { $0.toCourseNoteLabel() == .important } ?? false
+            isImportantSaved = isImportant
+        }
+    }
 
     // MARK: - Init
 
@@ -78,7 +93,9 @@ final class NotebookNoteViewModel {
         courseNoteInteractor.get(id: noteId)
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: whenNotebookCourseNoteUpdated
+                receiveValue: { [weak self] courseNote in
+                    self?.courseNote = courseNote
+                }
             )
             .store(in: &subscriptions)
     }
@@ -162,25 +179,25 @@ final class NotebookNoteViewModel {
 
     // MARK: - Private
 
-    private func whenNotebookCourseNoteUpdated(notebookCourseNote: CourseNote?) {
-        note = notebookCourseNote?.content ?? ""
-        if let highlightedText = notebookCourseNote?.highlightedText, !highlightedText.isEmpty {
-            self.highlightedText = "\"\(notebookCourseNote?.highlightedText ?? "")\""
-        }
-        noteSaved = note
-
-        isConfusing = notebookCourseNote?.labelsList.contains { $0.toCourseNoteLabel() == .confusing } ?? false
-        isConfusingSaved = isConfusing
-
-        isImportant = notebookCourseNote?.labelsList.contains { $0.toCourseNoteLabel() == .important } ?? false
-        isImportantSaved = isImportant
-    }
-
     private var isAdding: Bool {
         noteId == nil
     }
 
     private func saveContent() {
+        var index: NotebookHighlight?
+
+        if let highlightKey = courseNote?.highlightKey,
+           let startIndex = courseNote?.startIndex?.intValue,
+           let length = courseNote?.length?.intValue,
+           let highlightedText = courseNote?.highlightedText {
+            index = NotebookHighlight(
+                highlightKey: highlightKey,
+                startIndex: startIndex,
+                length: length,
+                highlightedText: highlightedText
+            )
+        }
+
         let labels: [CourseNoteLabel] = [
             isConfusing ? .confusing : nil,
             isImportant ? .important : nil
@@ -188,7 +205,21 @@ final class NotebookNoteViewModel {
 
         if let noteId = noteId {
             courseNoteInteractor
-                .set(id: noteId, content: note, labels: labels)
+                .set(id: noteId, content: note, labels: labels, index: index)
+                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+                .store(in: &subscriptions)
+        }
+
+        if let courseId = courseId, let itemId = itemId {
+            courseNoteInteractor
+                .add(
+                    courseId: courseId,
+                    itemId: itemId,
+                    moduleType: .subHeader,
+                    content: note,
+                    labels: labels,
+                    index: nil
+                )
                 .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
                 .store(in: &subscriptions)
         }
