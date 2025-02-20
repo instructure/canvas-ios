@@ -25,6 +25,7 @@ struct StudentHeaderView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @ScaledMetric private var uiScale: CGFloat = 1
+    @AccessibilityFocusState private var isStudentViewFocused: Bool
 
     private var isVerticallyCompact: Bool {
         verticalSizeClass == .compact
@@ -71,6 +72,13 @@ struct StudentHeaderView: View {
             .clipped()
         }
         .frame(maxWidth: .infinity, alignment: .center)
+        .accessibilityFocused($isStudentViewFocused)
+        .onChange(of: isStudentViewFocused) {
+            viewModel.isStudentPickerFocused = $0
+        }
+        .onChange(of: viewModel.isStudentPickerFocused) {
+            isStudentViewFocused = $0
+        }
     }
 
     @ViewBuilder

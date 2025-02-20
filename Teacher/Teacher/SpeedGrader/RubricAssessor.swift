@@ -233,7 +233,7 @@ struct RubricAssessor: View {
         private let tooltip: String
         private let content: Content
 
-        @GestureState private var showTooltip = false
+        @State private var showTooltip = false
         private let containerFrame: CGRect
 
         init(isOn: Binding<Bool>, tooltip: String = "", containerFrame: CGRect = .null, @ViewBuilder content: () -> Content) {
@@ -258,12 +258,16 @@ struct RubricAssessor: View {
                 )
                 .accessibility(addTraits: isOn ? [.isButton, .isSelected] : .isButton)
                 .onTapGesture { isOn.toggle() }
-                .gesture(LongPressGesture(minimumDuration: .infinity)
-                    .updating($showTooltip) { _, state, transation in
-                        transation.animation = .spring(response: 0.2, dampingFraction: 0.6)
-                        state = true
+                // Minimumduration is infinity so the gesture never succeeds and completes but we detect that it's in progress.
+                .onLongPressGesture(minimumDuration: .infinity, perform: {}, onPressingChanged: { isLongPressing in
+                    // The gesture recognition starts as soon the user touches down but we want the appear animation
+                    // to be delayed to have the long press effect. Also, this delay is enough to timeout the tap gesture
+                    // so it won't toggle the state while the tooltip is also visible.
+                    let animationStartDelay = isLongPressing ? 0.5 : 0
+                    withAnimation(.spring(response: 0.2, dampingFraction: 0.6).delay(animationStartDelay)) {
+                        showTooltip = isLongPressing
                     }
-                )
+                })
                 .overlay(!showTooltip || tooltip.isEmpty ? nil :
                     GeometryReader { geometry in
                         let bubbleToCircleOffset: CGFloat = 16
@@ -301,8 +305,7 @@ struct RubricAssessor: View {
                             // Alignment must match the guides we use above otherwise they don't get called
                             .frame(width: maxWidth, height: maxHeight, alignment: .bottomLeading)
                     }
-                    .transition(.scale),
-                    alignment: .bottomLeading)
+                    .transition(.scale.combined(with: .opacity)), alignment: .bottomLeading)
         }
     }
 

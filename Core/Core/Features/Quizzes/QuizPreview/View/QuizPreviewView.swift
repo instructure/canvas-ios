@@ -54,7 +54,8 @@ public struct QuizPreviewView: View {
                 .animation(.default, value: quizHTMLLoaded)
             }
         }
-        .navigationTitle(viewModel.navigationTitle)
+        .navigationBarTitleView(viewModel.navigationTitle)
+        .navigationBarStyle(.modal)
     }
 
     private var loadingIndicator: some View {

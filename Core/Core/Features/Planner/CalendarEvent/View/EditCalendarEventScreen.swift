@@ -142,7 +142,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                 .frame(maxWidth: geometry.size.width, minHeight: geometry.size.height)
             }
         }
-        .navigationTitle(viewModel.pageTitle)
+        .navigationBarTitleView(viewModel.pageTitle)
         .navBarItems(
             leading: InstUI.NavigationBarButton.cancel {
                 viewModel.didTapCancel.send()
@@ -160,6 +160,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                 presenting: viewModel.editConfirmation
             )
         )
+        .navigationBarStyle(.modal)
         .errorAlert(isPresented: $viewModel.shouldShowSaveError, presenting: viewModel.saveErrorAlert)
     }
 }

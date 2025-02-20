@@ -265,6 +265,10 @@ extension DashboardViewController: UITabBarControllerDelegate {
     ) -> (any UIViewControllerAnimatedTransitioning)? {
         InstUI.TabChangeTransition()
     }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        headerViewModel.isStudentPickerFocused = true
+    }
 }
 
 class StudentButton: UIButton {
