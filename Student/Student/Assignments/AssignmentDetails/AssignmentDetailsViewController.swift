@@ -376,6 +376,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
                 filePicker.dismiss(animated: true, completion: nil)
             }
+            UIAccessibility.announce(String(localized: "File uploaded successfully", bundle: .student))
         }
     }
 

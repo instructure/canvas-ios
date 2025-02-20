@@ -54851,6 +54851,9 @@
         }
       }
     },
+    "File uploaded successfully" : {
+
+    },
     "Files" : {
       "comment" : "Files view\n   Name of a tab displaying files in a course\n   title for files view\n   Title for the Files View Controller",
       "localizations" : {
