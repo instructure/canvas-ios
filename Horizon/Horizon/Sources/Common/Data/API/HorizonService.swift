@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Foundation
 
-final class NotebookCourseListAssembly {
-    static func makeViewController() -> CoreHostingController<NotebookCourseListView> {
-        CoreHostingController(
-            NotebookCourseListView(
-                viewModel: NotebookCourseListViewModel()
-            )
-        )
+enum HorizonService: String {
+
+    // Be careful if renaming these. The rawValue is used in the jwt token request.
+    case cedar
+    case redwood
+
+    var audience: String {
+        switch self {
+        case .cedar:
+            return "cedar-api-dev.domain-svcs.nonprod.inseng.io"
+        case .redwood:
+            return "redwood-api-dev.domain-svcs.nonprod.inseng.io"
+        }
+    }
+
+    var baseURL: URL {
+        URL(string: "https://\(audience)")!
     }
 }

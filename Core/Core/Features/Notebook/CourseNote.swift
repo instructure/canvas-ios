@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Combine
+import CoreData
 
-struct CourseNote {
-    let id: String
-    let date: Date
-    let content: String
-    let institution: String?
-    let courseId: String?
-    let course: String?
-    let highlightedText: String
-    let highlightKey: String
-    let highlightStart: Int
-    let highlightLength: Int
-    let labels: [CourseNoteLabel]
+public final class CourseNote: NSManagedObject {
+    @NSManaged public var content: String?
+    @NSManaged public var courseID: String
+    @NSManaged public var date: Date
+    @NSManaged public var highlightedText: String?
+    @NSManaged public var highlightKey: String?
+    @NSManaged public var id: String
+    @NSManaged public var labels: String?
+    @NSManaged public var length: NSNumber?
+    @NSManaged public var startIndex: NSNumber?
+
+    public var labelsList: [String] {
+        return labels?.components(separatedBy: ";") ?? []
+    }
 }

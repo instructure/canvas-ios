@@ -40,16 +40,6 @@ struct NotebookCourseListView: View {
         ) {
             NotebookSearchBar(term: $viewModel.term)
                 .padding(.vertical, .huiSpaces.space24)
-            NoteableTextView(
-                "This text belongs to a course. When highlighted, a note will be associated with the course. The highlight key is used to uniquely identify a block of text.",
-                highlightsKey: "highlightKey1",
-                courseId: "1"
-            )
-            NoteableTextView(
-                "This is still highlightable text, but is not associated with a course. The highlight can still be saved, but won't be associated with the notebook. This has a different typography",
-                highlightsKey: "highlightKey2",
-                typography: .h3
-            )
             ListViewItems(listItems: viewModel.listItems,
                           onTap: viewModel.onTap,
                           viewController: viewController)
@@ -92,11 +82,6 @@ struct NotebookCourseListView: View {
 
 #Preview {
     NotebookCourseListView(
-        viewModel: .init(
-            router: AppEnvironment.shared.router,
-            getCoursesInteractor: GetNotebookCoursesInteractor(
-                courseNotesRepository: CourseNotesRepositoryPreview.instance
-            )
-        )
+        viewModel: .init()
     )
 }

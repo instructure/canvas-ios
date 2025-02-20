@@ -23,7 +23,9 @@ import Core
 /// That can be highlighted and annotated.
 /// It requires a view model for managing  logic associated with highlighting and annotation.
 struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
-    let courseId: String?
+    let courseId: String
+    let itemId: String
+    let moduleType: ModuleItemType
     let highlightsKey: String
     @Environment(\.viewController) var viewController
     let viewModel: NoteableTextViewModel
@@ -31,11 +33,15 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
     init(
         _ text: String,
         highlightsKey: String,
-        courseId: String? = nil,
+        courseId: String,
+        itemId: String,
+        moduleType: ModuleItemType,
         typography: HorizonUI.Typography.Name = .p1
     ) {
         self.highlightsKey = highlightsKey
         self.courseId = courseId
+        self.itemId = itemId
+        self.moduleType = moduleType
         self.viewModel = NoteableTextViewModel.build(
             text: text,
             highlightsKey: highlightsKey,
@@ -58,6 +64,8 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
         viewModel.getMenu(
             highlightsKey: highlightsKey,
             courseId: courseId,
+            itemId: itemId,
+            moduleType: moduleType,
             textView: textView,
             range: range,
             suggestedActions: suggestedActions,
@@ -76,7 +84,9 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
         NoteableTextView(
             "This is some text. You may select some of this text. This is some text. You may select some of this text. This is some text. You may select some of this text.",
             highlightsKey: "Test",
-            courseId: "1"
+            courseId: "1",
+            itemId: "1",
+            moduleType: .subHeader
         )
         Text(
             "Again this is not selectable. This is to show that the NoteableTextView expands correctly."

@@ -63,9 +63,11 @@ struct NotebookNoteView: View {
                     }
                 }
 
-                Text(viewModel.highlightedText)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.regular14Italic)
+                if viewModel.isHighlightedTextVisible {
+                    Text(viewModel.highlightedText)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.regular14Italic)
+                }
 
                 ZStack {
                     TextField("", text: $viewModel.note, axis: .vertical)
@@ -141,9 +143,7 @@ struct NotebookNoteView: View {
     NavigationView {
         NotebookNoteView(
             viewModel: NotebookNoteViewModel(
-                notebookNoteInteractor: NotebookNoteInteractor(
-                    courseNotesRepository: CourseNotesRepositoryPreview.instance
-                ),
+                courseNoteInteractor: CourseNoteInteractorPreview(),
                 router: AppEnvironment.shared.router,
                 noteId: "1",
                 isEditing: false

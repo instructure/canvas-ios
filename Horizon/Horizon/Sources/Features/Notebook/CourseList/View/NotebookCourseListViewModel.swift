@@ -27,23 +27,26 @@ final class NotebookCourseListViewModel {
     var listItems: [NotebookListItem] = []
     var term: String = "" {
         didSet {
-            getCoursesInteractor.setTerm(term)
+            getNotebookCourses.setTerm(term)
         }
     }
 
     // MARK: - Private variables
 
-    private let getCoursesInteractor: GetNotebookCoursesInteractor
+    private let getNotebookCourses: GetNotebookCoursesInteractor
     private let router: Router
     private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Init
 
-    init(router: Router, getCoursesInteractor: GetNotebookCoursesInteractor) {
+    init(
+        router: Router = AppEnvironment.shared.router,
+        getNotebookCourses: GetNotebookCoursesInteractor = GetNotebookCoursesInteractor()
+    ) {
         self.router = router
-        self.getCoursesInteractor = getCoursesInteractor
+        self.getNotebookCourses = getNotebookCourses
 
-        getCoursesInteractor.get()
+        getNotebookCourses.get()
             .flatMap {
                 $0.publisher
                     .map { course in

@@ -33,7 +33,11 @@ struct NotebookCourseView: View {
                     viewModel.onBack(viewController: viewController)
                 }
             },
-            trailing: {}
+            trailing: {
+                HorizonUI.IconButton(.huiIcons.add, type: .white) {
+                    viewModel.onAdd(viewController: viewController)
+                }
+            }
         ) {
             NotebookSearchBar(term: $viewModel.term).padding(.top, .huiSpaces.space24)
 
