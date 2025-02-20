@@ -36,10 +36,24 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
     public init(
         jwt: String,
         id: String,
-        userText: String? = nil,
-        reaction: [String]? = nil
+        userText: String,
+        reaction: [String],
+        highlightKey: String?,
+        highlightedText: String?,
+        length: Int?,
+        startIndex: Int?
     ) {
-        self.variables = Input(id: id, input: .init(userText: userText, reaction: reaction))
+        self.variables = Input(
+            id: id,
+            input: .init(
+                userText: userText,
+                reaction: reaction,
+                highlightKey: highlightKey,
+                highlightedText: highlightedText,
+                length: length,
+                startIndex: startIndex
+            )
+        )
         self.jwt = jwt
     }
 
@@ -54,6 +68,7 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
             userText
             reaction
             createdAt
+            highlightData
         }
     }
     """
@@ -62,13 +77,7 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
 
     struct Input: Codable, Equatable {
         let id: String
-        let input: UpdateNoteInput
-    }
-
-    struct UpdateNoteInput: Codable, Equatable {
-        let userText: String?
-        let reaction: [String]?
-        // let highlightData: [String: Any]?
+        let input: UpdateRedwoodNote
     }
 }
 

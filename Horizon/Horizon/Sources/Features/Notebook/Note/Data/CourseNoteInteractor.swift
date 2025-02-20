@@ -47,7 +47,7 @@ protocol CourseNoteInteractor {
     func delete(id: String) -> AnyPublisher<CourseNote, NotebookError>
     func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError>
     func get(id: String) -> AnyPublisher<CourseNote?, NotebookError>
-    func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> AnyPublisher<CourseNote?, NotebookError>
+    func set(id: String, content: String?, labels: [CourseNoteLabel]?, index: NotebookHighlight?) -> AnyPublisher<CourseNote?, NotebookError>
 }
 
 class CourseNoteInteractorLive: CourseNoteInteractor {
@@ -82,7 +82,11 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                         moduleId: moduleId,
                         moduleType: moduleType.courseNoteLabel,
                         userText: content,
-                        reactions: labels.map { $0.rawValue }
+                        reactions: labels.map { $0.rawValue },
+                        highlightKey: index.highlightKey,
+                        startIndex: index.startIndex,
+                        length: index.length,
+                        highlightedText: index.highlightedText
                     )
                 )
                 .getEntities()
@@ -116,7 +120,12 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         fetch(highlightsKey: highlightsKey)
     }
 
-    func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> AnyPublisher<CourseNote?, NotebookError> {
+    func set(
+        id: String,
+        content: String?,
+        labels: [CourseNoteLabel]?,
+        index: NotebookHighlight?
+    ) -> AnyPublisher<CourseNote?, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
@@ -125,7 +134,11 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                         api: api,
                         id: id,
                         userText: content ?? "",
-                        reactions: labels?.map { $0.rawValue } ?? []
+                        reactions: labels?.map { $0.rawValue } ?? [],
+                        highlightKey: index?.highlightKey,
+                        startIndex: index?.startIndex,
+                        length: index?.length,
+                        highlightedText: index?.highlightedText
                     )
                 )
                 .getEntities()
@@ -143,7 +156,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
             .api(from: canvasApi)
             .flatMap { api in
                 ReactiveStore(useCase: GetCourseNotesUseCase(api: api, id: id, highlightsKey: highlightsKey))
-                    .getEntities()
+                    .getEntities(keepObservingDatabaseChanges: true)
                     .eraseToAnyPublisher()
             }
             .mapError { _ in NotebookError.unknown }
@@ -179,16 +192,15 @@ extension CourseNote {
     public static func save(_ note: RedwoodNote, in context: NSManagedObjectContext) -> CourseNote {
         let firstCourseNote: CourseNote? = context.first(where: #keyPath(CourseNote.id), equals: note.id)
         let courseNote: CourseNote = firstCourseNote ?? NSEntityDescription.insertNewObject(forEntityName: "CourseNote", into: context) as? CourseNote ?? CourseNote()
-        courseNote.id = note.id
-        courseNote.date = note.createdAt
+        courseNote.id = note.id ?? ""
+        courseNote.date = note.createdAt ?? Date()
         courseNote.content = note.userText
         courseNote.courseID = note.courseId
-        courseNote.date = note.createdAt
-//        courseNote.highlightKey = note.highlightKey // COMING SOON!
-//        courseNote.highlightedText = note.highlightedText
+        courseNote.highlightKey = note.highlightKey
+        courseNote.highlightedText = note.highlightedText
         courseNote.labels = (note.reaction ?? []).joined(separator: ";")
-//        courseNote.length = note.length
-//        courseNote.startIndex = note.startIndex
+        courseNote.length = note.length.map { NSNumber(value: $0) }
+        courseNote.startIndex = note.startIndex.map { NSNumber(value: $0) }
         return courseNote
     }
 
@@ -231,7 +243,7 @@ class CourseNoteInteractorPreview: CourseNoteInteractor {
             .eraseToAnyPublisher()
     }
 
-    func set(id: String, content: String?, labels: [CourseNoteLabel]?) -> AnyPublisher<CourseNote?, NotebookError> {
+    func set(id: String, content: String?, labels: [CourseNoteLabel]?, index: NotebookHighlight?) -> AnyPublisher<CourseNote?, NotebookError> {
         Just(nil)
             .setFailureType(to: NotebookError.self)
             .eraseToAnyPublisher()

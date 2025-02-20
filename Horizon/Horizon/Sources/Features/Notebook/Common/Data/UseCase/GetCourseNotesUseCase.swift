@@ -96,12 +96,12 @@ class GetCourseNotesUseCase: APIUseCase {
 
         // delete all notes that do not come back in the response if we don't have any filters applied
         if id == nil && highlightsKey == nil && (labels == nil || labels?.isEmpty == true) {
-            let idsReturned = response?.data.notes.map(\.id) ?? []
+            let idsReturned = response?.data.notes.nodes.map(\.id) ?? []
             let notesToDelete: [CourseNote] = client.fetch(NSPredicate(format: "NOT %K IN %@", #keyPath(CourseNote.id), idsReturned))
             client.delete(notesToDelete)
         }
 
-        response?.data.notes.forEach {
+        response?.data.notes.nodes.forEach {
             CourseNote.save($0, in: client)
         }
     }

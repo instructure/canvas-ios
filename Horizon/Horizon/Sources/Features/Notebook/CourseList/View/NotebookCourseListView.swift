@@ -40,13 +40,6 @@ struct NotebookCourseListView: View {
         ) {
             NotebookSearchBar(term: $viewModel.term)
                 .padding(.vertical, .huiSpaces.space24)
-            NoteableTextView(
-                "This text belongs to a course. When highlighted, a note will be associated with the course. The highlight key is used to uniquely identify a block of text.",
-                highlightsKey: "highlightKey1",
-                courseId: "531",
-                moduleId: "1",
-                moduleType: .subHeader
-            )
             ListViewItems(listItems: viewModel.listItems,
                           onTap: viewModel.onTap,
                           viewController: viewController)
