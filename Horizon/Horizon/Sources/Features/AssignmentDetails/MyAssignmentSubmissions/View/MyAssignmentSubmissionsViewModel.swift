@@ -22,7 +22,7 @@ import Core
 import CombineSchedulers
 
 @Observable
-final class FileDetailsViewModel {
+final class MyAssignmentSubmissionsViewModel {
     // MARK: - Private Properties
 
     private var subscription: AnyCancellable?
@@ -50,10 +50,10 @@ final class FileDetailsViewModel {
 
     // MARK: - Input Functions
 
-    func downloadFile(viewController: WeakViewController, fileID: String) {
+    func downloadFile(viewController: WeakViewController, file: File) {
         viewState = .loading
         subscription = interactor
-            .download(fileID: fileID)
+            .download(file: file)
             .receive(on: scheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
@@ -65,6 +65,7 @@ final class FileDetailsViewModel {
                     self?.showShareSheet(fileURL: url, viewController: viewController)
                 }
             )
+
     }
 
     func cancelDownload() {

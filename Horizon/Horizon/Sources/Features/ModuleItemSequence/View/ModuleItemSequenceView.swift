@@ -173,6 +173,7 @@ public struct ModuleItemSequenceView: View {
                     self.attemptCount = attemptCount
                 }
                 .onDisappear { self.attemptCount = nil }
+                .id(assignmentID)
 
             case let .file(context, fileID):
                 FileDetailsAssembly.makeView(

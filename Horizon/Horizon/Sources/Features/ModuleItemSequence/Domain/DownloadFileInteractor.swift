@@ -21,29 +21,27 @@ import Core
 import Combine
 
 protocol DownloadFileInteractor {
-    func download() -> AnyPublisher<URL, Error>
+    func download(fileID: String) -> AnyPublisher<URL, Error>
+    func download(file: File) -> AnyPublisher<URL, Error>
 }
 
 final class DownloadFileInteractorLive: DownloadFileInteractor {
     // MARK: - Dependencies
 
     private let courseID: String
-    private let fileID: String
     private let fileManager: FileManager
 
     // MARK: - Init
 
     init(
         courseID: String,
-        fileID: String,
         fileManager: FileManager = .default
     ) {
         self.courseID = courseID
-        self.fileID = fileID
         self.fileManager = fileManager
     }
 
-    func download() -> AnyPublisher<URL, Error> {
+    func download(fileID: String) -> AnyPublisher<URL, Error> {
         ReactiveStore(
             useCase: GetFile(context: .course(courseID), fileID: fileID)
         )
@@ -76,5 +74,24 @@ final class DownloadFileInteractorLive: DownloadFileInteractor {
             }
         }
         .eraseToAnyPublisher()
+    }
+
+    func download(file: File) -> AnyPublisher<URL, Error> {
+        let localURL = URL.Directories.documents.appendingPathComponent(file.filename)
+        if self.fileManager.fileExists(atPath: localURL.path) {
+            return Just(localURL)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        } else {
+            return DownloadTaskPublisher(parameters:
+                DownloadTaskParameters(
+                    remoteURL: file.url!,
+                    localURL: localURL
+                )
+            )
+            .collect() // Wait until the download is finished.
+            .mapToValue(localURL)
+            .eraseToAnyPublisher()
+        }
     }
 }

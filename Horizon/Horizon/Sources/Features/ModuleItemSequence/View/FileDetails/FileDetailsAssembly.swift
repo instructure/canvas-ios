@@ -28,7 +28,7 @@ struct FileDetailsAssembly {
         fileName: String,
         isShowHeader: Binding<Bool>
     ) -> FileDetailsView {
-        let interactor = DownloadFileInteractorLive(courseID: courseID, fileID: fileID)
+        let interactor = DownloadFileInteractorLive(courseID: courseID)
         let router = AppEnvironment.shared.router
         let viewModel = FileDetailsViewModel(interactor: interactor, router: router)
         return FileDetailsView(

@@ -52,7 +52,7 @@ struct FileDetailsView: View {
         VStack {
             if isShowHeader {
                 FileDownloadStatusView(status: viewModel.viewState, fileName: fileName) {
-                    viewModel.downloadFile(viewController: viewController)
+                    viewModel.downloadFile(viewController: viewController, fileID: fileID)
                 } onTapCancel: {
                     viewModel.cancelDownload()
                 }

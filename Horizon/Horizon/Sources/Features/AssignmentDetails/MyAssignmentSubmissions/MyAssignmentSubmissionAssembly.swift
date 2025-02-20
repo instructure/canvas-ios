@@ -16,22 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
 import Foundation
-import Combine
 import Core
 
-class DownloadFileInteractorPreview: DownloadFileInteractor {
-    func download(file: Core.File) -> AnyPublisher<URL, any Error> {
-        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-    
-    func download(fileID: String) -> AnyPublisher<URL, Error> {
-        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+struct MyAssignmentSubmissionAssembly {
+
+    static func makeView(
+        selectedSubmission: AssignmentSubmissionType,
+        submission: HSubmission,
+        courseId: String
+    ) -> MyAssignmentSubmissionsView {
+        let interactor = DownloadFileInteractorLive(courseID: courseId)
+        let router = AppEnvironment.shared.router
+        let viewModel = MyAssignmentSubmissionsViewModel(interactor: interactor, router: router)
+        return MyAssignmentSubmissionsView(
+            viewModel: viewModel,
+            selectedSubmission: selectedSubmission,
+            submission: submission,
+            courseId: courseId
+        )
     }
 }
-#endif
