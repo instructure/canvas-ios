@@ -74,6 +74,9 @@ final class SessionInteractor: NSObject, LoginDelegate {
                    err.code == HttpError.unauthorized {
                     unownedSelf.userDidLogout(session: session)
                     return LoginError.unauthorized
+                } else if let apiError = error as? APIError, case .unauthorized = apiError {
+                   unownedSelf.userDidLogout(session: session)
+                    return LoginError.unauthorized
                 } else {
                     return error
                 }
