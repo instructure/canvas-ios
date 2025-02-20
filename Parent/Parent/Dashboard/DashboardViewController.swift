@@ -267,7 +267,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        headerViewModel.isStudentPickerFocused = true
+        headerViewModel.focusStudentPicker.send()
     }
 }
 

@@ -73,11 +73,8 @@ struct StudentHeaderView: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .accessibilityFocused($isStudentViewFocused)
-        .onChange(of: isStudentViewFocused) {
-            viewModel.isStudentPickerFocused = $0
-        }
-        .onChange(of: viewModel.isStudentPickerFocused) {
-            isStudentViewFocused = $0
+        .onReceive(viewModel.focusStudentPicker) {
+            isStudentViewFocused = true
         }
     }
 

@@ -41,7 +41,7 @@ class StudentHeaderViewModel: ObservableObject {
     let didTapMenuButton = PassthroughSubject<UIViewController, Never>()
     let didSelectStudent = PassthroughSubject<User?, Never>()
     let didUpdateBadgeCount = PassthroughSubject<Int, Never>()
-    @Published var isStudentPickerFocused = false
+    let focusStudentPicker = PassthroughSubject<Void, Never>()
 
     // MARK: - Private
     private let router: Router
