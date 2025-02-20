@@ -22,10 +22,9 @@ import Foundation
 
 final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
     func getComments(
-        context _: Context,
+        courseID _: String,
         assignmentID _: String,
-        attempt: Int? = nil,
-        userID _: String
+        attempt _: Int? = nil
     ) -> AnyPublisher<[SubmissionComment], any Error> {
         Just([
             SubmissionComment(
@@ -73,7 +72,12 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
         .eraseToAnyPublisher()
     }
 
-    func postComment(_: String) -> AnyPublisher<Void, any Error> {
+    func postComment(
+        courseID: String,
+        assignmentID: String,
+        attempt: Int?,
+        text: String
+    ) -> AnyPublisher<Void, any Error> {
         Just(())
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

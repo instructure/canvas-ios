@@ -21,42 +21,77 @@ import Core
 
 protocol SubmissionCommentInteractor {
     func getComments(
-        context: Context,
+        courseID: String,
         assignmentID: String,
-        attempt: Int?,
-        userID: String
+        attempt: Int?
     ) -> AnyPublisher<[SubmissionComment], Error>
 
-    func postComment(_ comment: String) -> AnyPublisher<Void, Error>
+    func postComment(
+        courseID: String,
+        assignmentID: String,
+        attempt: Int?,
+        text: String
+    ) -> AnyPublisher<Void, Error>
 }
 
 final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
+    // MARK: - Dependencies
+
+    private let sessionInteractor: SessionInteractor
+
+    // MARK: - Init
+
+    init(sessionInteractor: SessionInteractor) {
+        self.sessionInteractor = sessionInteractor
+    }
+
     func getComments(
-        context: Context,
+        courseID: String,
+        assignmentID: String,
+        attempt: Int?
+    ) -> AnyPublisher<[SubmissionComment], Error> {
+        sessionInteractor.getUserID()
+            .flatMap { userID in
+                ReactiveStore(
+                    useCase: GetSubmissionComments(
+                        context: .course(courseID),
+                        assignmentID: assignmentID,
+                        userID: userID,
+                        isAscendingOrder: true
+                    )
+                )
+                .getEntities()
+                .flatMap { $0.publisher }
+                // TODO: Remove $0.mediaURL == nil once media comments like audio, video, image is supported
+                .filter { ($0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt) && $0.mediaURL == nil && !$0.id.contains("submission") }
+                .map { SubmissionComment(from: $0, isCurrentUsersComment: $0.authorID?.localID == userID) }
+                .collect()
+                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func postComment(
+        courseID: String,
         assignmentID: String,
         attempt: Int?,
-        userID: String
-    ) -> AnyPublisher<[SubmissionComment], Error> {
-        ReactiveStore(
-            useCase: GetSubmissionComments(
-                context: context,
-                assignmentID: assignmentID,
-                userID: userID,
-                isAscendingOrder: true
-            )
-        )
-        .getEntities()
-        .flatMap { $0.publisher }
-        // TODO: Remove $0.mediaURL == nil once media comments like audio, video, image is supported
-        .filter { ($0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt)  && $0.mediaURL == nil && !$0.id.contains("submission") }
-        .map { SubmissionComment(from: $0, isCurrentUsersComment: $0.authorID?.localID == userID) }
-        .collect()
-        .eraseToAnyPublisher()
-    }
-    
-    func postComment(_: String) -> AnyPublisher<Void, Error> {
-        Just(())
-            .setFailureType(to: Error.self)
+        text: String
+    ) -> AnyPublisher<Void, Error> {
+        sessionInteractor.getUserID()
+            .flatMap { userID in
+                ReactiveStore(
+                    useCase: PutSubmissionComment(
+                        courseID: courseID,
+                        assignmentID: assignmentID,
+                        userID: userID,
+                        text: text,
+                        isGroupComment: false,
+                        attempt: attempt
+                    )
+                )
+                .getEntities()
+                .map { _ in () }
+            }
             .eraseToAnyPublisher()
     }
 }

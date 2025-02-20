@@ -22,28 +22,55 @@ import SwiftUI
 struct SubmissionCommentView: View {
     let viewModel: SubmissionCommentViewModel
     @State private var text = ""
+    @FocusState private var isTextAreaFocused: Bool
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.viewController) private var viewController
 
     var body: some View {
         ScrollViewReader { proxy in
-            ScrollView {
-                VStack(alignment: .center) {
-                    commentListView
-                    addCommentView
-                    postButton
-                    Spacer()
-                }
-                .onChange(of: text) { _, _ in
-                    withAnimation {
-                        proxy.scrollTo("PostButton", anchor: .bottom)
-                    }
+            ScrollView(showsIndicators: false) {
+                switch viewModel.viewState {
+                case .loading:
+                    loadingView
+                case .data:
+                    dataView(proxy: proxy)
+                case .error:
+                    Text("Error loading comments.")
                 }
             }
-            .toolbar(.hidden)
-            .padding([.top, .horizontal], .huiSpaces.space24)
-            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
-            .background(Color.huiColors.surface.pagePrimary)
+        }
+        .toolbar(.hidden)
+        .padding(.horizontal, .huiSpaces.space24)
+        .background(Color.huiColors.surface.pagePrimary)
+        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+    }
+
+    @ViewBuilder
+    private func dataView(proxy: ScrollViewProxy) -> some View {
+        VStack(alignment: .center) {
+            commentListView
+            addCommentView
+            postButton
+            Spacer()
+        }
+        .onChange(of: text) { _, _ in
+            withAnimation {
+                proxy.scrollTo("PostButton", anchor: .bottom)
+            }
+        }
+        .onChange(of: isTextAreaFocused) { _, _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                withAnimation {
+                    proxy.scrollTo("PostButton", anchor: .bottom)
+                }
+            }
+        }
+        .onFirstAppear {
+            text = ""
+            withAnimation {
+                proxy.scrollTo("PostButton", anchor: .bottom)
+            }
         }
     }
 
@@ -51,6 +78,7 @@ struct SubmissionCommentView: View {
         ForEach(viewModel.comments) { comment in
             commentView(comment)
         }
+        .padding(.top, .huiSpaces.space24)
     }
 
     @ViewBuilder
@@ -98,8 +126,12 @@ struct SubmissionCommentView: View {
                 text: $text,
                 placeholderText: "Placeholder text"
             )
+            .focused($isTextAreaFocused)
         }
         .padding(.top, .huiSpaces.space24)
+        .onTapGesture {
+            isTextAreaFocused = true
+        }
     }
 
     private var navigationBar: some View {
@@ -108,12 +140,13 @@ struct SubmissionCommentView: View {
                 HorizonUI.icons.arrowBack,
                 type: .white
             ) {
-                viewModel.goBack()
+                viewModel.goBack(from: viewController)
             }
             Spacer()
             HStack(spacing: .huiSpaces.space8) {
                 HorizonUI.icons.chat
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 24, height: 24)
                 Text("Comments")
                     .huiTypography(.h3)
@@ -127,7 +160,12 @@ struct SubmissionCommentView: View {
                 dismiss()
             }
         }
+        .frame(height: 44)
         .padding(.horizontal, .huiSpaces.space24)
+        .padding(.top, .huiSpaces.space24)
+        .padding(.bottom, 6)
+        .background(Color.huiColors.surface.pagePrimary)
+        .huiCornerRadius(level: .level5, corners: .top)
     }
 
     private var postButton: some View {
@@ -136,11 +174,24 @@ struct SubmissionCommentView: View {
             type: .blue,
             fillsWidth: true
         ) {
-            print("post tapped")
+            viewModel.postComment(text: text)
         }
         .padding(.top, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space32)
         .id("PostButton")
+    }
+
+    private var loadingView: some View {
+        VStack {
+            Spacer()
+            HorizonUI.Spinner(
+                size: .small,
+                showBackground: true
+            )
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .containerRelativeFrame(.vertical)
     }
 }
 

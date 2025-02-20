@@ -17,14 +17,28 @@
 //
 
 import Combine
-import CombineExt
-import Observation
 import Core
+import Observation
 
 @Observable
 final class SubmissionCommentViewModel {
+    enum ViewState {
+        case loading
+        case data
+        case error
+    }
+
+    // MARK: - Dependencies
+
+    private let courseID: String
+    private let assignmentID: String
+    private let attempt: Int?
+    private let router: Router
+    private let interactor: SubmissionCommentInteractor
+
     // MARK: - Outputs
 
+    var viewState: ViewState = .loading
     var comments: [SubmissionComment] = []
 
     // MARK: - Private properties
@@ -34,24 +48,72 @@ final class SubmissionCommentViewModel {
     // MARK: - Init
 
     init(
-        context: Context,
+        courseID: String,
         assignmentID: String,
-        userID: String,
         attempt: Int?,
-        interactor: SubmissionCommentInteractor
+        interactor: SubmissionCommentInteractor,
+        router: Router
     ) {
-        interactor.getComments(
-            context: context,
-            assignmentID: assignmentID,
-            attempt: attempt,
-            userID: userID
-        )
-        .replaceError(with: [])
-        .assign(to: \.comments, on: self, ownership: .weak)
-        .store(in: &subscriptions)
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.attempt = attempt
+        self.router = router
+        self.interactor = interactor
+
+        getComments()
     }
 
     // MARK: - Inputs
 
-    func goBack() {}
+    func goBack(from viewController: WeakViewController) {
+        router.pop(from: viewController)
+    }
+
+    func postComment(text: String) {
+        viewState = .loading
+
+        weak var weakSelf = self
+
+        interactor.postComment(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            attempt: attempt,
+            text: text
+        )
+        .sink(
+            receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    weakSelf?.getComments()
+                case .failure:
+                    weakSelf?.viewState = .error
+                }
+            },
+            receiveValue: { _ in }
+        ).store(in: &subscriptions)
+    }
+
+    // MARK: - Private functions
+
+    private func getComments() {
+        weak var weakSelf = self
+
+        interactor.getComments(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            attempt: attempt
+        )
+        .sink(
+            receiveCompletion: { completion in
+                if case .failure = completion {
+                    weakSelf?.viewState = .error
+                }
+            },
+            receiveValue: { comments in
+                weakSelf?.viewState = .data
+                weakSelf?.comments = comments
+            }
+        )
+        .store(in: &subscriptions)
+    }
 }

@@ -96,15 +96,17 @@ final class AssignmentDetailsViewModel {
     }
     
     func viewComments(controller: WeakViewController) {
-        let v = SubmissionCommentAssembly.makeView(
-            context: .course(courseID),
+        let view = SubmissionCommentAssembly.makeView(
+            courseID: courseID,
             assignmentID: assignment?.id ?? "",
-            userID: AppEnvironment.shared.currentSession?.userID ?? "",
             attempt: 1
         )
-        let vc = CoreHostingController(v)
-        router.show(vc, from: controller)
-        
+        let viewController = CoreHostingController(view)
+        if let presentationController = viewController.sheetPresentationController {
+            presentationController.detents = [.large()]
+            presentationController.preferredCornerRadius = 32
+        }
+        router.show(viewController, from: controller, options: .modal())
     }
 
     // MARK: - Private Functions

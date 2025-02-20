@@ -20,7 +20,7 @@ import Core
 
 enum SubmissionCommentAssembly {
     static func makeSubmissionCommentInteractor() -> SubmissionCommentInteractor {
-        SubmissionCommentInteractorLive()
+        SubmissionCommentInteractorLive(sessionInteractor: SessionInteractor())
     }
 
     static func makeSubmissionCommentInteractorPreview() -> SubmissionCommentInteractor {
@@ -28,18 +28,17 @@ enum SubmissionCommentAssembly {
     }
 
     static func makeView(
-        context: Context,
+        courseID: String,
         assignmentID: String,
-        userID: String,
         attempt: Int?
     ) -> SubmissionCommentView {
         SubmissionCommentView(
             viewModel: SubmissionCommentViewModel(
-                context: context,
+                courseID: courseID,
                 assignmentID: assignmentID,
-                userID: userID,
                 attempt: attempt,
-                interactor: makeSubmissionCommentInteractor()
+                interactor: makeSubmissionCommentInteractor(),
+                router: AppEnvironment.shared.router
             )
         )
     }
@@ -47,11 +46,11 @@ enum SubmissionCommentAssembly {
     static func makePreview() -> SubmissionCommentView {
         SubmissionCommentView(
             viewModel: SubmissionCommentViewModel(
-                context: .course("1"),
+                courseID: "1",
                 assignmentID: "1",
-                userID: "",
                 attempt: nil,
-                interactor: makeSubmissionCommentInteractorPreview()
+                interactor: makeSubmissionCommentInteractorPreview(),
+                router: AppEnvironment.shared.router
             )
         )
     }
