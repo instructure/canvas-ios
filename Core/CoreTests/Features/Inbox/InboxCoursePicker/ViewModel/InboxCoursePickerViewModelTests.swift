@@ -63,12 +63,12 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
 }
 
 private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
-    public var favoriteCourses: CurrentValueSubject<[Core.Course], Never>
-    public var moreCourses: CurrentValueSubject<[Core.Course], Never>
-    public var groups = CurrentValueSubject<[Group], Never>([])
-    public var state = CurrentValueSubject<StoreState, Never>(.data)
+    var favoriteCourses: CurrentValueSubject<[Core.Course], Never>
+    var moreCourses: CurrentValueSubject<[Core.Course], Never>
+    var groups = CurrentValueSubject<[Group], Never>([])
+    var state = CurrentValueSubject<StoreState, Never>(.data)
 
-    public init(env: AppEnvironment) {
+    init(env: AppEnvironment) {
         self.favoriteCourses = CurrentValueSubject<[Course], Never>([
             .save(.make(id: "3", name: "Course 3 (favorite)", is_favorite: true), in: env.database.viewContext)
         ])
@@ -84,5 +84,4 @@ private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
     func refresh() -> AnyPublisher<[Void], Never> {
         return Future<[Void], Never> { _ in }.eraseToAnyPublisher()
     }
-
 }
