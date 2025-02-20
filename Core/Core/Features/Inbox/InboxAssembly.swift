@@ -48,6 +48,9 @@ public enum InboxAssembly {
 
         let controller = CoreHostingController(InboxView(model: viewModel))
 
+        let titleView = TitleSubtitleView.create()
+        titleView.title = String(localized: "Inbox", bundle: .core)
+        controller.navigationItem.titleView = titleView
         return controller
     }
 
