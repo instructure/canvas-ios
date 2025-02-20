@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct InboxCoursePickerView: View {
     @ObservedObject private var viewModel: InboxCoursePickerViewModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(viewModel: InboxCoursePickerViewModel) {
         self.viewModel = viewModel
@@ -66,23 +67,13 @@ public struct InboxCoursePickerView: View {
         }
     }
 
-    private var separator: some View {
-        Color.borderMedium
-            .frame(height: 0.5)
-    }
-
     private func favoriteCourses(_ courses: [Course]) -> some View {
         VStack(spacing: 0) {
             if courses.isNotEmpty {
                 Section {
                     ForEach(courses, id: \.id) { courseRow($0) }
                 } header: {
-                    Text("Favorite Courses", bundle: .core)
-                        .textStyle(.sectionHeader)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .paddingStyle(set: .sectionHeader)
-                        .accessibilityAddTraits([.isHeader])
-                    InstUI.Divider()
+                    InstUI.ListSectionHeader(title: String(localized: "Favorite Courses", bundle: .core))
                 }
             }
         }
@@ -94,12 +85,7 @@ public struct InboxCoursePickerView: View {
                 Section {
                     ForEach(courses, id: \.id) { courseRow($0) }
                 } header: {
-                    Text("More Courses", bundle: .core)
-                        .textStyle(.sectionHeader)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .paddingStyle(set: .sectionHeader)
-                        .accessibilityAddTraits([.isHeader])
-                    InstUI.Divider()
+                    InstUI.ListSectionHeader(title: String(localized: "More Courses", bundle: .core))
                 }
 
             }
@@ -115,12 +101,7 @@ public struct InboxCoursePickerView: View {
                     }
                 } header: {
                     VStack(spacing: 0) {
-                        Text("Groups", bundle: .core)
-                            .textStyle(.sectionHeader)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .paddingStyle(set: .sectionHeader)
-                            .accessibilityAddTraits([.isHeader])
-                        InstUI.Divider()
+                        InstUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core))
                     }
                 }
             }
@@ -143,8 +124,11 @@ public struct InboxCoursePickerView: View {
                 viewModel.onSelect(selected: course)
             } label: {
                 HStack {
-                    Circle().fill(Color(course.color)).frame(width: 20, height: 20)
-                        .padding(.leading, 22).padding(.trailing, 12)
+                    Circle()
+                        .fill(Color(course.color))
+                        .frame(width: 20, height: 20)
+                        .padding(.leading, 22)
+                        .padding(.trailing, 12)
                     Text(courseName)
                         .font(.regular16)
                         .multilineTextAlignment(.leading)
@@ -174,8 +158,11 @@ public struct InboxCoursePickerView: View {
                 viewModel.onSelect(selected: group)
             } label: {
                 HStack {
-                    Circle().fill(Color(group.color)).frame(width: 20, height: 20)
-                        .padding(.leading, 22).padding(.trailing, 12)
+                    Circle()
+                        .fill(Color(group.color))
+                        .frame(width: 20, height: 20)
+                        .padding(.leading, 22)
+                        .padding(.trailing, 12)
                     Text(groupName)
                         .font(.regular16)
                         .multilineTextAlignment(.leading)
