@@ -18,12 +18,12 @@
 
 import Combine
 
-public protocol AccessibilityHandler {
+public protocol AccessibilityNotificationHandler {
     func post(notification: UIAccessibility.Notification, argument: Any?)
     var isVoiceOverRunning: Bool { get }
 }
 
-public struct DefaultAccessibilityHandler: AccessibilityHandler {
+public struct DefaultAccessibilityNotificationHandler: AccessibilityNotificationHandler {
     public init() {}
 
     public func post(notification: UIAccessibility.Notification, argument: Any?) {
@@ -46,7 +46,7 @@ public extension UIAccessibility {
      */
     static func announce(
         _ announcementMessage: String,
-        handler: AccessibilityHandler = DefaultAccessibilityHandler()
+        handler: AccessibilityNotificationHandler = DefaultAccessibilityNotificationHandler()
     ) {
         guard handler.isVoiceOverRunning, _announcementHandler == nil else { return }
         _announcementHandler = handler
@@ -92,7 +92,7 @@ public extension UIAccessibility {
         _ message: String,
         maxAttempts: Int = 3,
         maxDuration: TimeInterval = 5,
-        handler: AccessibilityHandler = DefaultAccessibilityHandler()
+        handler: AccessibilityNotificationHandler = DefaultAccessibilityNotificationHandler()
     ) -> AnyPublisher<Void, Never> {
         guard handler.isVoiceOverRunning else {
             return Just(Void()).eraseToAnyPublisher()
@@ -148,4 +148,4 @@ private extension String {
 }
 
 private var _announcementFinishedObserver: Any?
-private var _announcementHandler: AccessibilityHandler?
+private var _announcementHandler: AccessibilityNotificationHandler?

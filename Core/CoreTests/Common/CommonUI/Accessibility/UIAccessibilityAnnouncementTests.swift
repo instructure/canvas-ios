@@ -137,7 +137,7 @@ class UIAccessibilityAnnouncementTests: XCTestCase {
     }
 }
 
-class MockAccessabilityHandler: AccessibilityHandler {
+class MockAccessabilityHandler: AccessibilityNotificationHandler {
 
     struct Attempt {
         let notificaiton: UIAccessibility.Notification
