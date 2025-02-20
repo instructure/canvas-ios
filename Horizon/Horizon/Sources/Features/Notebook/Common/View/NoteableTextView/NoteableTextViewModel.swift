@@ -76,7 +76,7 @@ public class NoteableTextViewModel {
     public func getMenu(
         highlightsKey: String,
         courseId: String,
-        moduleId: String,
+        itemId: String,
         moduleType: ModuleItemType,
         textView: UITextView,
         range: UITextRange,
@@ -94,7 +94,7 @@ public class NoteableTextViewModel {
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
-                    moduleId: moduleId,
+                    itemId: itemId,
                     moduleType: moduleType,
                     textView: textView,
                     textRange: range,
@@ -106,7 +106,7 @@ public class NoteableTextViewModel {
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
-                    moduleId: moduleId,
+                    itemId: itemId,
                     moduleType: moduleType,
                     textView: textView,
                     textRange: range,
@@ -118,7 +118,7 @@ public class NoteableTextViewModel {
                 self.onSelection(
                     highlightsKey: highlightsKey,
                     courseId: courseId,
-                    moduleId: moduleId,
+                    itemId: itemId,
                     moduleType: moduleType,
                     textView: textView,
                     textRange: range,
@@ -154,7 +154,7 @@ public class NoteableTextViewModel {
     private func onSelection(
         highlightsKey: String,
         courseId: String,
-        moduleId: String,
+        itemId: String,
         moduleType: ModuleItemType,
         textView: UITextView,
         textRange: UITextRange,
@@ -173,7 +173,7 @@ public class NoteableTextViewModel {
 
         notebookNoteInteractor.add(
             courseId: courseId,
-            moduleId: moduleId,
+            itemId: itemId,
             moduleType: moduleType,
             content: "",
             labels: [courseNoteLabel],

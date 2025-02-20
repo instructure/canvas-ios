@@ -38,11 +38,11 @@ struct NotebookHighlight {
 protocol CourseNoteInteractor {
     func add(
         courseId: String,
-        moduleId: String,
+        itemId: String,
         moduleType: ModuleItemType,
         content: String,
         labels: [CourseNoteLabel],
-        index: NotebookHighlight
+        index: NotebookHighlight?
     ) -> AnyPublisher<CourseNote, NotebookError>
     func delete(id: String) -> AnyPublisher<CourseNote, NotebookError>
     func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError>
@@ -66,11 +66,11 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
 
     func add(
         courseId: String,
-        moduleId: String,
+        itemId: String,
         moduleType: ModuleItemType,
         content: String = "",
         labels: [CourseNoteLabel] = [],
-        index: NotebookHighlight
+        index: NotebookHighlight? = nil
     ) -> AnyPublisher<CourseNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
@@ -79,14 +79,14 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                     useCase: CreateCourseNoteUseCase(
                         api: api,
                         courseId: courseId,
-                        moduleId: moduleId,
+                        itemId: itemId,
                         moduleType: moduleType.courseNoteLabel,
                         userText: content,
                         reactions: labels.map { $0.rawValue },
-                        highlightKey: index.highlightKey,
-                        startIndex: index.startIndex,
-                        length: index.length,
-                        highlightedText: index.highlightedText
+                        highlightKey: index?.highlightKey,
+                        startIndex: index?.startIndex,
+                        length: index?.length,
+                        highlightedText: index?.highlightedText
                     )
                 )
                 .getEntities()
@@ -214,11 +214,11 @@ extension CourseNote {
 class CourseNoteInteractorPreview: CourseNoteInteractor {
     func add(
         courseId: String,
-        moduleId: String,
+        itemId: String,
         moduleType: ModuleItemType,
         content: String = "",
         labels: [CourseNoteLabel] = [],
-        index: NotebookHighlight
+        index: NotebookHighlight? = nil
     ) -> AnyPublisher<CourseNote, NotebookError> {
         Just(CourseNote())
             .setFailureType(to: NotebookError.self)

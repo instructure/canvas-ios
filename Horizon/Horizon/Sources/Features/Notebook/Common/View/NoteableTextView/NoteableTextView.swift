@@ -24,7 +24,7 @@ import Core
 /// It requires a view model for managing  logic associated with highlighting and annotation.
 struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
     let courseId: String
-    let moduleId: String
+    let itemId: String
     let moduleType: ModuleItemType
     let highlightsKey: String
     @Environment(\.viewController) var viewController
@@ -34,13 +34,13 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
         _ text: String,
         highlightsKey: String,
         courseId: String,
-        moduleId: String,
+        itemId: String,
         moduleType: ModuleItemType,
         typography: HorizonUI.Typography.Name = .p1
     ) {
         self.highlightsKey = highlightsKey
         self.courseId = courseId
-        self.moduleId = moduleId
+        self.itemId = itemId
         self.moduleType = moduleType
         self.viewModel = NoteableTextViewModel.build(
             text: text,
@@ -64,7 +64,7 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
         viewModel.getMenu(
             highlightsKey: highlightsKey,
             courseId: courseId,
-            moduleId: moduleId,
+            itemId: itemId,
             moduleType: moduleType,
             textView: textView,
             range: range,
@@ -85,7 +85,7 @@ struct NoteableTextView: View, HorizonUI.MenuActionsTextView.Delegate {
             "This is some text. You may select some of this text. This is some text. You may select some of this text. This is some text. You may select some of this text.",
             highlightsKey: "Test",
             courseId: "1",
-            moduleId: "1",
+            itemId: "1",
             moduleType: .subHeader
         )
         Text(
