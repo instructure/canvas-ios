@@ -33,7 +33,7 @@ class CollectionExtensionsTests: XCTestCase {
         let nonEmptyArray: [Int] = [1]
         let nonEmptySet: Set<Int> = [1]
         let nonEmptyDictionary: [Int: Int] = [1: 1]
-        
+
         XCTAssertTrue(nonEmptyArray.isNotEmpty)
         XCTAssertTrue(nonEmptySet.isNotEmpty)
         XCTAssertTrue(nonEmptyDictionary.isNotEmpty)
