@@ -36,7 +36,10 @@ struct CourseSyncSelectorView: View {
     var body: some View {
         content
             .background(Color.backgroundLightest)
-            .navigationTitleStyled(navBarTitleView)
+            .navigationBarTitleView(
+                title: String(localized: "Offline Content", bundle: .core),
+                subtitle: viewModel.navBarSubtitle
+            )
             .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
             .navigationBarStyle(.modal)
     }
@@ -182,17 +185,6 @@ struct CourseSyncSelectorView: View {
             .allowsHitTesting(false)
             .padding(.horizontal, 16)
             .padding(.vertical, 32)
-    }
-
-    private var navBarTitleView: some View {
-        VStack(spacing: 1) {
-            Text("Offline Content", bundle: .core)
-                .font(.semibold16)
-                .foregroundColor(.textDarkest)
-            Text(viewModel.navBarSubtitle)
-                .font(.regular12)
-                .foregroundColor(.textDark)
-        }
     }
 
     private var cancelButton: some View {

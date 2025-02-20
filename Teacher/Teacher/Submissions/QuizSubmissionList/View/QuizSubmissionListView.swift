@@ -65,8 +65,9 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(model.title, subtitle: model.subTitle)
+        .navigationBarTitleView(title: model.title, subtitle: model.subTitle)
         .navigationBarItems(trailing: messageUsersButton)
+        .navigationBarStyle(.color(nil))
         .alert(isPresented: $model.showError) {
             Alert(title: Text("Practice quizzes & surveys do not have detail views.", bundle: .teacher))
         }

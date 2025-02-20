@@ -294,6 +294,10 @@ extension DashboardViewController: UITabBarControllerDelegate {
     ) -> (any UIViewControllerAnimatedTransitioning)? {
         InstUI.TabChangeTransition()
     }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        UIAccessibility.post(notification: .layoutChanged, argument: dropdownButton)
+    }
 }
 
 class StudentButton: UIButton {

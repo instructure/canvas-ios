@@ -76,7 +76,11 @@ public struct FileEditorView: View {
 
     public var body: some View {
         form
-            .navigationBarTitle(isFile ? Text("Edit File", bundle: .core) : Text("Edit Folder", bundle: .core), displayMode: .inline)
+            .navigationBarTitleView(isFile
+                                        ? String(localized: "Edit File", bundle: .core)
+                                        : String(localized: "Edit Folder", bundle: .core)
+            )
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: dismiss, label: {
                     Text("Cancel", bundle: .core)
@@ -88,6 +92,8 @@ public struct FileEditorView: View {
                     .disabled(isLoading || isSaving)
                     .identifier("FileEditor.doneButton")
             )
+            .navigationBarStyle(.modal)
+
             .alert(item: $alertItem) {
                 switch $0 {
                 case .error(let error):
@@ -106,6 +112,7 @@ public struct FileEditorView: View {
                                                 })
                 }
             }
+
             .onAppear(perform: load)
     }
 

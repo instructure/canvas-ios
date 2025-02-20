@@ -40,11 +40,12 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                 groupFilters
             }
         }
-        .navigationTitle(viewModel.pageTitle)
+        .navigationBarTitleView(viewModel.pageTitle)
         .toolbar {
             doneButton
             selectAllButton
         }
+        .navigationBarStyle(.modal)
         .snackBar(viewModel: viewModel.snackbarViewModel)
         // Without this the refreshable scroll view won't trigger the refresh
         // because the pull gesture is swallowed by the modal dialog dimiss gesture.

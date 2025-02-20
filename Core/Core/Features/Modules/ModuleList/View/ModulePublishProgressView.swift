@@ -29,7 +29,7 @@ struct ModulePublishProgressView: View {
 
     var body: some View {
         content
-            .navigationTitleStyled(titleText.navigationBarTitleStyle())
+            .navigationBarTitleView(title)
             .navigationBarItems(leading: dismissButton, trailing: trailingBarButton)
             .navigationBarStyle(.modal)
     }
@@ -50,16 +50,16 @@ struct ModulePublishProgressView: View {
 
     // MARK: - Navigation Bar
 
-    private var titleText: Text {
+    private var title: String {
         switch viewModel.title {
         case .allModulesAndItems:
-            Text("All Modules and Items", bundle: .core)
+            String(localized: "All Modules and Items", bundle: .core)
         case .allModules:
-            Text("All Modules")
+            String(localized: "All Modules")
         case .selectedModuleAndItems:
-            Text("Selected Module and Items", bundle: .core)
+            String(localized: "Selected Module and Items", bundle: .core)
         case .selectedModule:
-            Text("Selected Module", bundle: .core)
+            String(localized: "Selected Module", bundle: .core)
         }
     }
 
@@ -171,12 +171,6 @@ struct ModulePublishProgressView: View {
 // MARK: - Helpers
 
 private extension View {
-    func navigationBarTitleStyle() -> some View {
-        self
-            .font(.semibold16)
-            .foregroundStyle(Color.textDarkest)
-    }
-
     func navigationBarButtonStyle() -> some View {
         self
             .font(.semibold16)

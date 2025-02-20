@@ -73,7 +73,8 @@ class WebSitePreviewViewModel: ObservableObject {
         AppEnvironment.shared.router.show(
             CoreHostingController(
                 WebView(request: request)
-                    .navigationTitle("WebSite Preview")
+                    .navigationBarTitleView("WebSite Preview")
+                    .navigationBarStyle(.modal)
             ), from: viewController
         )
     }
