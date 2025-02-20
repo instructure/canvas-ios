@@ -41,9 +41,8 @@ public extension UIAccessibility {
      Announces the received string via VoiceOver. If the announcement is interrupted by anything this method will retry until the announcement succeeds.
      Doesn't support queueing so if an announcement is already in progress and this method is invoked, then this method will return without doing anything.
      - parameters:
-        - announcement: The string to be read by VoiceOver.
-        - announcementHandler: This parameter is only used for testing purposes, use its default value otherwise.
-        - isVoiceOverRunning: This parameter is only used for testing purposes, use its default value otherwise.
+        - announcementMessage: The string to be read by VoiceOver.
+        - handler: This parameter is only used for testing purposes, use its default value otherwise.
      */
     static func announce(
         _ announcementMessage: String,
@@ -87,6 +86,7 @@ public extension UIAccessibility {
         - message: The string to be read by VoiceOver.
         - maxAttempts: Maximum amount of attempts before publishing completion value.
         - maxDuration: Maximum duration to wait for the read out before publishing completion.
+        - handler: This parameter is only used for testing purposes, use its default value otherwise.
      */
     static func announcePersistently(
         _ message: String,
