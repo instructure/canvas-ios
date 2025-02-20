@@ -50,7 +50,9 @@ class ParentInboxCoursePickerViewModelTests: ParentTestCase {
         let selectedItem = mockInteractor.studentContextItems.value.first!
         testee.didTapContext.accept((WeakViewController(), selectedItem))
         wait(for: [router.dismissExpectation], timeout: 1)
-        wait(for: [router.routeExpectation], timeout: 1)
+        wait(for: [router.showExpectation], timeout: 1)
+        let viewController = router.viewControllerCalls.last?.0
+        XCTAssert(viewController is CoreHostingController<ComposeMessageView>)
     }
 }
 

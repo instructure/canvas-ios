@@ -27,11 +27,10 @@ class ParentInboxCoursePickerInteractorLiveTests: ParentTestCase {
 
     override func setUp() {
         super.setUp()
+        observerId = env.currentSession?.userID ?? ""
         mockData()
 
         testee = ParentInboxCoursePickerInteractorLive(env: env)
-
-        observerId = env.currentSession?.userID ?? ""
 
         waitForState(.data)
     }
@@ -41,8 +40,8 @@ class ParentInboxCoursePickerInteractorLiveTests: ParentTestCase {
         XCTAssertEqual(testee.studentContextItems.value.count, 2)
         XCTAssertEqual(testee.studentContextItems.value[0].course.name, "Course 1")
         XCTAssertEqual(testee.studentContextItems.value[0].studentDisplayName, "Student 1")
-        XCTAssertEqual(testee.studentContextItems.value[0].course.name, "Course 2")
-        XCTAssertEqual(testee.studentContextItems.value[0].studentDisplayName, "Student 2")
+        XCTAssertEqual(testee.studentContextItems.value[1].course.name, "Course 2")
+        XCTAssertEqual(testee.studentContextItems.value[1].studentDisplayName, "Student 2")
     }
 
     private func mockData() {
