@@ -65,7 +65,7 @@ struct AssignmentDetails: View {
                     if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
                         Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
                     }
-                    
+
                     Button {
                         viewModel.viewComments(controller: viewController)
                     } label: {

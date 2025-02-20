@@ -97,7 +97,7 @@ final class AssignmentDetailsViewModel {
         }
         router.show(richContentEditor, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
-    
+
     func viewComments(controller: WeakViewController) {
         let view = SubmissionCommentAssembly.makeView(
             courseID: courseID,

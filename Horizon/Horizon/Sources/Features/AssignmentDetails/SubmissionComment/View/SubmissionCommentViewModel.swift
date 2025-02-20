@@ -23,7 +23,8 @@ import Observation
 @Observable
 final class SubmissionCommentViewModel {
     enum ViewState {
-        case loading
+        case initialLoading
+        case postingComment
         case data
         case error
     }
@@ -36,9 +37,14 @@ final class SubmissionCommentViewModel {
     private let router: Router
     private let interactor: SubmissionCommentInteractor
 
+    // MARK: - Inputs/Outputs
+
+    var text = ""
+
     // MARK: - Outputs
 
-    var viewState: ViewState = .loading
+    var viewState: ViewState = .initialLoading
+    var isPostingComment: Bool = false
     var comments: [SubmissionComment] = []
 
     // MARK: - Private properties
@@ -69,8 +75,8 @@ final class SubmissionCommentViewModel {
         router.pop(from: viewController)
     }
 
-    func postComment(text: String) {
-        viewState = .loading
+    func postComment() {
+        viewState = .postingComment
 
         weak var weakSelf = self
 
@@ -110,6 +116,7 @@ final class SubmissionCommentViewModel {
                 }
             },
             receiveValue: { comments in
+                weakSelf?.text = ""
                 weakSelf?.viewState = .data
                 weakSelf?.comments = comments
             }

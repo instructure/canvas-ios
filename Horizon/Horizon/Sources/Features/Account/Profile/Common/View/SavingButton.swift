@@ -21,22 +21,35 @@ import Observation
 import SwiftUI
 
 struct SavingButton: View {
+    private let title: String
+    private let fillsWidth: Bool
+    private let type: HorizonUI.ButtonStyles.ButtonType
     @Binding private var isLoading: Bool
     @Binding private var isDisabled: Bool
     private let onSave: () -> Void
 
-    init(isLoading: Binding<Bool>, isDisabled: Binding<Bool>, onSave: @escaping () -> Void) {
+    init(
+        title: String,
+        type: HorizonUI.ButtonStyles.ButtonType = .black,
+        fillsWidth: Bool = true,
+        isLoading: Binding<Bool>,
+        isDisabled: Binding<Bool>? = nil,
+        onSave: @escaping () -> Void
+    ) {
+        self.title = title
+        self.fillsWidth = fillsWidth
+        self.type = type
         _isLoading = isLoading
-        _isDisabled = isDisabled
+        _isDisabled = isDisabled ?? .constant(false)
         self.onSave = onSave
     }
 
     var body: some View {
         ZStack {
             HorizonUI.PrimaryButton(
-                String(localized: "Save Changes", bundle: .horizon),
-                type: .black,
-                fillsWidth: true
+                title,
+                type: type,
+                fillsWidth: fillsWidth
             ) {
                 onSave()
             }

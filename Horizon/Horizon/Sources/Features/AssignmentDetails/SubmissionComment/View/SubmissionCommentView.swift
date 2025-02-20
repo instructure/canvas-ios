@@ -20,8 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct SubmissionCommentView: View {
-    let viewModel: SubmissionCommentViewModel
-    @State private var text = ""
+    @Bindable var viewModel: SubmissionCommentViewModel
     @FocusState private var isTextAreaFocused: Bool
 
     @Environment(\.dismiss) private var dismiss
@@ -31,9 +30,9 @@ struct SubmissionCommentView: View {
         ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
                 switch viewModel.viewState {
-                case .loading:
+                case .initialLoading:
                     loadingView
-                case .data:
+                case .data, .postingComment:
                     dataView(proxy: proxy)
                 case .error:
                     Text("Error loading comments.")
@@ -54,7 +53,7 @@ struct SubmissionCommentView: View {
             postButton
             Spacer()
         }
-        .onChange(of: text) { _, _ in
+        .onChange(of: viewModel.text) { _, _ in
             withAnimation {
                 proxy.scrollTo("PostButton", anchor: .bottom)
             }
@@ -67,7 +66,6 @@ struct SubmissionCommentView: View {
             }
         }
         .onFirstAppear {
-            text = ""
             withAnimation {
                 proxy.scrollTo("PostButton", anchor: .bottom)
             }
@@ -123,7 +121,7 @@ struct SubmissionCommentView: View {
                 .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.title)
             TextArea(
-                text: $text,
+                text: $viewModel.text,
                 placeholderText: "Placeholder text"
             )
             .focused($isTextAreaFocused)
@@ -169,16 +167,24 @@ struct SubmissionCommentView: View {
     }
 
     private var postButton: some View {
-        HorizonUI.PrimaryButton(
-            String(localized: "Post", bundle: .horizon),
+        SavingButton(
+            title: String(localized: "Post", bundle: .horizon),
             type: .blue,
-            fillsWidth: true
+            fillsWidth: true,
+            isLoading: postingCommentBinding
         ) {
-            viewModel.postComment(text: text)
+            viewModel.postComment()
         }
         .padding(.top, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space32)
         .id("PostButton")
+    }
+
+    private var postingCommentBinding: Binding<Bool> {
+        Binding(
+            get: { viewModel.viewState == .postingComment },
+            set: { _ in }
+        )
     }
 
     private var loadingView: some View {

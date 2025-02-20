@@ -75,6 +75,7 @@ struct ProfileView: View {
 
     private var saveButton: some View {
         SavingButton(
+            title: String(localized: "Save Changes", bundle: .horizon),
             isLoading: $viewModel.isLoading,
             isDisabled: $viewModel.isSaveDisabled,
             onSave: viewModel.save
