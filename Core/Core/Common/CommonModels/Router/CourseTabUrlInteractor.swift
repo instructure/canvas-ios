@@ -57,6 +57,8 @@ public final class CourseTabUrlInteractor {
         enabledTabsPerCourse = [:]
     }
 
+    // MARK: - Allow / Block URL
+
     /// Returns `true` if `url` is not a course tab URL OR it is but it's not in the list of enabled course tab URLs.
     public func isAllowedUrl(_ url: URL, userInfo: [String: Any]?) -> Bool {
         // if there is an override in `userInfo` -> allow url
@@ -108,12 +110,7 @@ public final class CourseTabUrlInteractor {
             && (parts[2] == "discussion_topics" || parts[2] == "grades")
     }
 
-    /// Check for any tabs which match the Home format: "/courses/:courseID"
-    /// For example K5Subject tabs: "/courses/:courseID#schedule"
-    private func isHomeFormat(_ path: String) -> Bool {
-        let parts = path.splitUsingSlash
-        return parts.count == 2 && parts[0] == "courses"
-    }
+    // MARK: - Enabled tab list
 
     private func updateEnabledTabs(with tabs: [Tab]) {
         let courseTabs = tabs.filter { $0.context.contextType == .course }
@@ -183,17 +180,44 @@ public final class CourseTabUrlInteractor {
         return tabPaths
     }
 
+    // MARK: - Unknown format logging
+
     private func logPathFormatIfUnknown(for tab: TabModel) {
-        guard tab.id != "home"
-                && tab.id != "settings" // Teachers logging into Student app have this enabled tab, no need to log it
-                && !isHomeFormat(tab.htmlUrl)
-                && !isKnownPathFormat(tab.htmlUrl)
-        else { return }
+        if isExcludedFromLogging(tab) || isKnownPathFormat(tab.htmlUrl) {
+            return
+        }
 
         RemoteLogger.shared.logError(
             name: "Unexpected Course Tab path format",
             reason: "tab.id: \(tab.id), tab.html_url: \(tab.htmlUrl), baseUrl: \(Analytics.analyticsBaseUrl)"
         )
+    }
+
+    private func isExcludedFromLogging(_ tab: TabModel) -> Bool {
+        let excludedTabIDs = [
+            "home", // all responses have this enabled tab, no need to log it
+            "settings" // Teachers logging into Student app have this enabled tab, no need to log it
+        ]
+        if excludedTabIDs.contains(tab.id) {
+            return true
+        }
+
+        let parts = tab.htmlUrl.splitUsingSlash
+
+        // Exclude tabs matching the Home format: "/courses/:courseID"
+        // For example K5Subject tabs: "/courses/:courseID#schedule"
+        if parts.count == 2 && parts[0] == "courses" {
+            return true
+        }
+
+        // Exclude tabs matching the LTI launch request format: "/courses/:courseID/lti/basic_lti_launch_request/:ltiID
+        // These are not disabled at the moment, just collected here in case they need to be
+        // example tab.id: "lti/message_handler_123", tab.html_url: "/courses/42/lti/basic_lti_launch_request/123?resource_link_fragment=nav"
+        if parts.count == 5 && parts[2] == "lti" && parts[3] == "basic_lti_launch_request" {
+            return true
+        }
+
+        return false
     }
 
     // MARK: Base URL Overrides
@@ -209,6 +233,8 @@ public final class CourseTabUrlInteractor {
         })?.value
     }
 }
+
+// MARK: - CourseTabFormat
 
 /// Known course tab formats
 private enum CourseTabFormat: CaseIterable {
@@ -248,6 +274,8 @@ private enum CourseTabFormat: CaseIterable {
         }
     }
 }
+
+// MARK: - Helpers
 
 private extension String {
     var splitUsingSlash: [String] {

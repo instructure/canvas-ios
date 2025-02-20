@@ -297,6 +297,8 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/front_page")), true)
     }
 
+    // MARK: - Log unknown formats
+
     func test_setupEnabledTabs_whenPathFormatIsUnknown_shouldLogIt() {
         // known path formats are not logged
         saveTab(id: "stuff", htmlUrl: "/courses/42/stuff", context: .course("42"))
@@ -320,6 +322,12 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
 
     func test_setupEnabledTabs_whenTabIsSettings_shouldNotLogIt() {
         saveTab(id: "settings", htmlUrl: "/courses/42/settings", context: .course("42"))
+        XCTAssertEqual(remoteLogHandler.lastErrorName, nil)
+    }
+
+    func test_setupEnabledTabs_whenTabHasLTILaunchRequestFormat_shouldNotLogIt() {
+        saveTab(id: "someId", htmlUrl: "/courses/42/lti/basic_lti_launch_request/123", context: .course("42"))
+        saveTab(id: "someId", htmlUrl: "/courses/42/lti/basic_lti_launch_request/123?resource_link_fragment=nav", context: .course("42"))
         XCTAssertEqual(remoteLogHandler.lastErrorName, nil)
     }
 
