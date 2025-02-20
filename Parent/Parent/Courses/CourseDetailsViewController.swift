@@ -197,7 +197,6 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
             env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
 
-
             replyButton?.isEnabled = true
         }
     }

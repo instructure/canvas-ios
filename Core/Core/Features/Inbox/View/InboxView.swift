@@ -34,6 +34,9 @@ public struct InboxView: View, ScreenViewTrackable {
     public var body: some View {
         VStack(spacing: 0) {
             InboxFilterBarView(model: model)
+                .onAppear {
+                    controller.value.navigationController?.navigationBar.useGlobalNavStyle()
+                }
             Color.borderMedium
                 .frame(height: 0.5)
             if case .loading = model.state {
