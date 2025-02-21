@@ -36,7 +36,7 @@ struct AttachedFilesView: View {
 
     private func fileView(_ file: File) -> some View {
         HStack {
-            Size16RegularTextDarkestTitle(title: file.filename)
+            Text(file.filename)
             Spacer()
             Button {
                 withAnimation {

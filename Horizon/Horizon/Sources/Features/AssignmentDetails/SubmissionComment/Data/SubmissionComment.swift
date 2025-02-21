@@ -28,7 +28,7 @@ struct SubmissionComment: Identifiable {
     let comment: String
     let createdAt: Date?
     let isCurrentUsersComment: Bool
-    
+
     var createdAtString: String? {
         if let createdAt {
             return Self.dateFormatter.string(from: createdAt)

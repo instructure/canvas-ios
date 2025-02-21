@@ -66,17 +66,17 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
                 comment: "Dolor sit amet unc ut lacus ac libero ultrices vestibulum.",
                 createdAt: Date(),
                 isCurrentUsersComment: true
-            ),
+            )
         ])
         .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
 
     func postComment(
-        courseID: String,
-        assignmentID: String,
-        attempt: Int?,
-        text: String
+        courseID _: String,
+        assignmentID _: String,
+        attempt _: Int?,
+        text _: String
     ) -> AnyPublisher<Void, any Error> {
         Just(())
             .setFailureType(to: Error.self)

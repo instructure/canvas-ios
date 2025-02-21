@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%lf Points" : {
+
+    },
     "%lld %@ %lld" : {
       "localizations" : {
         "en" : {
@@ -13,6 +16,9 @@
           }
         }
       }
+    },
+    "%lld attempt(s)" : {
+
     },
     "Abu Dhabi (+04:00/+04:00)" : {
 
@@ -377,6 +383,9 @@
     "La Paz (-04:00/-04:00)" : {
 
     },
+    "Last Submitted: %@" : {
+
+    },
     "Learn" : {
 
     },
@@ -711,6 +720,9 @@
 
     },
     "Unlimited" : {
+
+    },
+    "Unlimited Attempts Allowed" : {
 
     },
     "Unsupported Item" : {
