@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Combine
+import XCTest
 
-public protocol InboxCoursePickerInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var favoriteCourses: CurrentValueSubject<[Course], Never> { get }
-    var moreCourses: CurrentValueSubject<[Course], Never> { get }
-    var groups: CurrentValueSubject<[Group], Never> { get }
+class CollectionExtensionsTests: XCTestCase {
+    func testEmpty() {
+        let emptyArray: [Int] = []
+        let emptySet: Set<Int> = []
+        let emptyDictionary: [Int: Int] = [:]
 
-    func refresh() -> AnyPublisher<[Void], Never>
+        XCTAssertFalse(emptyArray.isNotEmpty)
+        XCTAssertFalse(emptySet.isNotEmpty)
+        XCTAssertFalse(emptyDictionary.isNotEmpty)
+    }
+
+    func testNotEmpty() {
+        let nonEmptyArray: [Int] = [1]
+        let nonEmptySet: Set<Int> = [1]
+        let nonEmptyDictionary: [Int: Int] = [1: 1]
+
+        XCTAssertTrue(nonEmptyArray.isNotEmpty)
+        XCTAssertTrue(nonEmptySet.isNotEmpty)
+        XCTAssertTrue(nonEmptyDictionary.isNotEmpty)
+    }
 }

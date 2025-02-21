@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,14 +17,8 @@
 //
 
 import Foundation
-import Combine
 
-public protocol InboxCoursePickerInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var favoriteCourses: CurrentValueSubject<[Course], Never> { get }
-    var moreCourses: CurrentValueSubject<[Course], Never> { get }
-    var groups: CurrentValueSubject<[Group], Never> { get }
-
-    func refresh() -> AnyPublisher<[Void], Never>
+extension Collection {
+    /// A Boolean value indicating whether the collection is not empty.
+    public var isNotEmpty: Bool { !isEmpty }
 }
