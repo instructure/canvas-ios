@@ -38,26 +38,30 @@ public struct RemoteImage: View {
     }
 
     public var body: some View {
-        let isURLChanged = url.pathComponents != loadedURL?.pathComponents
-        let hasContent = image != nil || animated
+        VStack {
+            let isURLChanged = url.pathComponents != loadedURL?.pathComponents
+            let hasContent = image != nil || animated
 
-        if hasContent && isURLChanged {
-            emptyState.onAppear {
-                resetState()
-                load()
-            }
-        } else if let image {
-            Image(uiImage: image.withRenderingMode(.alwaysOriginal))
-                .resizable().scaledToFill()
-                .frame(width: width, height: height)
-        } else if animated {
-            ImageWrapperWebView(url: url)
-                .frame(width: width, height: height)
-        } else {
-            emptyState.onAppear {
-                load()
+            if hasContent && isURLChanged {
+                emptyState.onAppear {
+                    resetState()
+                    load()
+                }
+            } else if let image {
+                Image(uiImage: image.withRenderingMode(.alwaysOriginal))
+                    .resizable().scaledToFill()
+                    .frame(width: width, height: height)
+            } else if animated {
+                ImageWrapperWebView(url: url)
+                    .frame(width: width, height: height)
+            } else {
+                emptyState.onAppear {
+                    load()
+                }
             }
         }
+        .compatibleGeometryGroup()
+        .frame(width: width, height: height)
     }
 
     private var emptyState: some View {

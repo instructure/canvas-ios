@@ -49,8 +49,8 @@ public struct Avatar: View {
                 .allowsTightening(true)
                 .font(Font(UIFont.applicationFont(ofSize: size / 2.25, weight: .semibold)))
                 .foregroundColor(.textDark)
-                .background(Color.backgroundLightest)
                 .frame(width: size, height: size)
+                .background(Color.backgroundLightest)
                 .cornerRadius(size / 2)
                 .overlay(Circle()
                     .stroke(Color.borderMedium, lineWidth: 1)
@@ -105,4 +105,14 @@ public struct Avatar: View {
                 )
         }
     }
+}
+
+#Preview {
+    HStack {
+        Avatar(name: "John Doe", url: nil)
+        Avatar(name: nil, url: nil)
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .background(Color.black)
+
 }
