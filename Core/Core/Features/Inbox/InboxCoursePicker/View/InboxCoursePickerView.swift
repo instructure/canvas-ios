@@ -56,8 +56,7 @@ public struct InboxCoursePickerView: View {
             }
         case .data:
             VStack(spacing: 0) {
-                favoriteCourses(viewModel.favoriteCourses)
-                moreCourses(viewModel.moreCourses)
+                courses(favorites: viewModel.favoriteCourses, more: viewModel.moreCourses)
                 groups(viewModel.groups)
             }
         case .empty, .error:
@@ -67,27 +66,30 @@ public struct InboxCoursePickerView: View {
         }
     }
 
-    private func favoriteCourses(_ courses: [Course]) -> some View {
+    private func courses(favorites: [Course], more: [Course]) -> some View {
         VStack(spacing: 0) {
-            if courses.isNotEmpty {
-                Section {
-                    ForEach(courses, id: \.id) { courseRow($0) }
-                } header: {
-                    InstUI.ListSectionHeader(title: String(localized: "Favorite Courses", bundle: .core))
-                }
+            switch (favorites.isNotEmpty, more.isNotEmpty) {
+            case (true, true):
+                groupedCourses(by: favorites, header: "Favorite Courses")
+                groupedCourses(by: more, header: "More Courses")
+            case (true, false):
+                groupedCourses(by: favorites, header: "Courses")
+            case (false, true):
+                groupedCourses(by: more, header: "Courses")
+            case (false, false):
+                SwiftUI.EmptyView()
             }
         }
     }
 
-    private func moreCourses(_ courses: [Course]) -> some View {
+    private func groupedCourses(by courses: [Course], header: String.LocalizationValue) -> some View {
         VStack(spacing: 0) {
             if courses.isNotEmpty {
                 Section {
                     ForEach(courses, id: \.id) { courseRow($0) }
                 } header: {
-                    InstUI.ListSectionHeader(title: String(localized: "More Courses", bundle: .core))
+                    InstUI.ListSectionHeader(title: String(localized: header, bundle: .core))
                 }
-
             }
         }
     }
