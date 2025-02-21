@@ -70,26 +70,24 @@ public struct InboxCoursePickerView: View {
         VStack(spacing: 0) {
             switch (favorites.isNotEmpty, more.isNotEmpty) {
             case (true, true):
-                groupedCourses(by: favorites, header: "Favorite Courses")
-                groupedCourses(by: more, header: "More Courses")
+                courseSection(with: favorites, title: String(localized: "Favorite Courses", bundle: .core))
+                courseSection(with: more, title: String(localized: "More Courses", bundle: .core))
             case (true, false):
-                groupedCourses(by: favorites, header: "Courses")
+                courseSection(with: favorites, title: String(localized: "Courses", bundle: .core))
             case (false, true):
-                groupedCourses(by: more, header: "Courses")
+                courseSection(with: more, title: String(localized: "Courses", bundle: .core))
             case (false, false):
                 SwiftUI.EmptyView()
             }
         }
     }
 
-    private func groupedCourses(by courses: [Course], header: String.LocalizationValue) -> some View {
+    private func courseSection(with courses: [Course], title: String) -> some View {
         VStack(spacing: 0) {
-            if courses.isNotEmpty {
-                Section {
-                    ForEach(courses, id: \.id) { courseRow($0) }
-                } header: {
-                    InstUI.ListSectionHeader(title: String(localized: header, bundle: .core))
-                }
+            Section {
+                ForEach(courses, id: \.id) { courseRow($0) }
+            } header: {
+                InstUI.ListSectionHeader(title: title)
             }
         }
     }
