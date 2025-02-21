@@ -212,6 +212,15 @@ public class PlannerViewController: UIViewController {
 
         currentlyDisplayedToday = date
         todayButton.image = makeTodayIcon(text: date.dayString)
+
+
+        // Update accessibilityLabel with today's date
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM")
+        let todayString = dateFormatter.string(from: date)
+        if let aLabel = todayButton.accessibilityLabel {
+            todayButton.accessibilityLabel = "\(aLabel), \(todayString)"
+        }
     }
 
     private func makeTodayIcon(text: String) -> UIImage {
