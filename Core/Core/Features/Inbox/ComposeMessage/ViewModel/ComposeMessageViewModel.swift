@@ -96,6 +96,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let recipientInteractor: RecipientInteractor
+    private let settingsInteractor: InboxSettingsInteractor
     private let audioSession: AudioSessionProtocol
     private let cameraPermissionService: CameraPermissionService.Type
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -114,6 +115,7 @@ final class ComposeMessageViewModel: ObservableObject {
         interactor: ComposeMessageInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
+        inboxSettingsInteractor: InboxSettingsInteractor,
         sentMailEvent: PassthroughSubject<Void, Never>? = nil,
         audioSession: AudioSessionProtocol,
         cameraPermissionService: CameraPermissionService.Type
@@ -123,6 +125,7 @@ final class ComposeMessageViewModel: ObservableObject {
         self.scheduler = scheduler
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
+        self.settingsInteractor = inboxSettingsInteractor
         self.didSentMailSuccessfully = sentMailEvent
         self.audioSession = audioSession
         self.cameraPermissionService = cameraPermissionService
@@ -346,6 +349,13 @@ final class ComposeMessageViewModel: ObservableObject {
                 } else {
                     self.sendIndividual = sendIndividualToggleLastValue
                 }
+            }
+            .store(in: &subscriptions)
+
+        settingsInteractor.settings
+            .sink { settings in
+                print("SEttings")
+                print(settings)
             }
             .store(in: &subscriptions)
     }
