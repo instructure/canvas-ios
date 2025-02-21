@@ -16,38 +16,44 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+
+public protocol AccessibilityNotificationHandler {
+    func post(notification: UIAccessibility.Notification, argument: Any?)
+    var isVoiceOverRunning: Bool { get }
+}
+
+public struct DefaultAccessibilityNotificationHandler: AccessibilityNotificationHandler {
+    public init() {}
+
+    public func post(notification: UIAccessibility.Notification, argument: Any?) {
+        UIAccessibility.post(notification: notification, argument: argument)
+    }
+
+    public var isVoiceOverRunning: Bool {
+        UIAccessibility.isVoiceOverRunning
+    }
+}
+
 public extension UIAccessibility {
 
     /**
      Announces the received string via VoiceOver. If the announcement is interrupted by anything this method will retry until the announcement succeeds.
      Doesn't support queueing so if an announcement is already in progress and this method is invoked, then this method will return without doing anything.
      - parameters:
-        - announcement: The string to be read by VoiceOver.
-        - announcementHandler: This parameter is only used for testing purposes, use its default value otherwise.
-        - isVoiceOverRunning: This parameter is only used for testing purposes, use its default value otherwise.
+        - announcementMessage: The string to be read by VoiceOver.
+        - handler: This parameter is only used for testing purposes, use its default value otherwise.
      */
     static func announce(
-        _ announcement: String,
-        announcementHandler: @escaping (UIAccessibility.Notification, Any?) -> Void = UIAccessibility.post(notification:argument:),
-        isVoiceOverRunning: () -> Bool = UIAccessibility.isVoiceOverRunning) {
-        guard isVoiceOverRunning(), _announcementHandler == nil else { return }
-        _announcementHandler = announcementHandler
+        _ announcementMessage: String,
+        handler: AccessibilityNotificationHandler = DefaultAccessibilityNotificationHandler()
+    ) {
+        guard handler.isVoiceOverRunning, _announcementHandler == nil else { return }
+        _announcementHandler = handler
 
-        let announcement = NSAttributedString(
-            string: announcement,
-            attributes: [
-                .accessibilitySpeechQueueAnnouncement: true
-            ]
-        )
+        let announcement = announcementMessage.asAnnouncement()
         observeAnnouncementFinishedNofitication(announcement)
-        _announcementHandler?(.announcement, announcement)
-    }
-
-    /**
-     This is a helper method for testing purposes. The reason behind is that you can't pass around a reference of a method getter, only of a function, so we wrap the UIAccessibility.isVoiceOverRunning property into a function and use this to mock the value of this property while testing the `announce` method.
-     */
-    static func isVoiceOverRunning() -> Bool {
-        UIAccessibility.isVoiceOverRunning
+        _announcementHandler?.post(notification: .announcement, argument: announcement)
     }
 
     private static func observeAnnouncementFinishedNofitication(_ announcement: NSAttributedString) {
@@ -68,11 +74,78 @@ public extension UIAccessibility {
                 _announcementFinishedObserver = nil
                 _announcementHandler = nil
             } else {
-                _announcementHandler?(.announcement, announcement)
+                _announcementHandler?.post(notification: .announcement, argument: announcement)
             }
         }
+    }
+
+    /**
+     Attempts to announces the received string via VoiceOver then publishes a Void value on read out completion.
+     It will post completion value if maximum attempts were tried, or if maximum duration was elapsed.
+     - parameters:
+        - message: The string to be read by VoiceOver.
+        - maxAttempts: Maximum amount of attempts before publishing completion value.
+        - maxDuration: Maximum duration to wait for the read out before publishing completion.
+        - handler: This parameter is only used for testing purposes, use its default value otherwise.
+     */
+    static func announcePersistently(
+        _ message: String,
+        maxAttempts: Int = 3,
+        maxDuration: TimeInterval = 5,
+        handler: AccessibilityNotificationHandler = DefaultAccessibilityNotificationHandler()
+    ) -> AnyPublisher<Void, Never> {
+        guard handler.isVoiceOverRunning else {
+            return Just(Void()).eraseToAnyPublisher()
+        }
+
+        func postAnnouncement() {
+            handler.post(notification: .announcement, argument: message.asAnnouncement())
+        }
+
+        postAnnouncement()
+
+        let readoutPublisher = NotificationCenter
+            .default
+            .publisher(for: UIAccessibility.announcementDidFinishNotification)
+            .filter({ notification in
+                if let announced = notification.userInfo?[announcementStringValueUserInfoKey] as? String,
+                   announced == message { return true }
+                return false
+            })
+            .scan((0, false), { pair, notification in
+                let success = (notification.userInfo?[announcementWasSuccessfulUserInfoKey] as? Bool) ?? false
+                let attempts = pair.0 + 1
+                return (attempts, success)
+            })
+            .flatMap { attempts, isSuccessful in
+                if isSuccessful || attempts >= maxAttempts {
+                    return Just(Void()).eraseToAnyPublisher()
+                } else {
+                    postAnnouncement()
+                    return Empty<Void, Never>().eraseToAnyPublisher()
+                }
+            }
+
+        let duration = OperationQueue.SchedulerTimeType.Stride(maxDuration)
+        let delayPublisher = Just(Void())
+            .delay(for: duration, scheduler: OperationQueue.main)
+
+        return Publishers
+            .Merge(readoutPublisher, delayPublisher)
+            .eraseToAnyPublisher()
+    }
+}
+
+private extension String {
+    func asAnnouncement() -> NSAttributedString {
+        return NSAttributedString(
+            string: self,
+            attributes: [
+                .accessibilitySpeechQueueAnnouncement: true
+            ]
+        )
     }
 }
 
 private var _announcementFinishedObserver: Any?
-private var _announcementHandler: ((UIAccessibility.Notification, Any?) -> Void)?
+private var _announcementHandler: AccessibilityNotificationHandler?

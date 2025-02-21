@@ -24,6 +24,15 @@ final class EditCalendarToDoViewModel: ObservableObject {
     private enum Mode {
         case add
         case edit(id: String)
+
+        var successMessage: String {
+            switch self {
+            case .add:
+                String(localized: "To Do added successfully", bundle: .core)
+            case .edit:
+                String(localized: "To Do saved successfully", bundle: .core)
+            }
+        }
     }
 
     // MARK: - Output
@@ -168,13 +177,21 @@ final class EditCalendarToDoViewModel: ObservableObject {
                 self?.state = .data(loadingOverlay: true)
             }
             .flatMap { [weak self] in
-                (self?.saveAction() ?? Empty().eraseToAnyPublisher())
-                    .catch { _ in
+                guard let action = self?.saveAction() else {
+                    return Empty<Void, Never>().eraseToAnyPublisher()
+                }
+
+                return action
+                    .catch { [weak self] _ in
                         self?.state = .data
                         self?.shouldShowSaveError = true
                         return Empty<Void, Never>().eraseToAnyPublisher()
                     }
                     .eraseToAnyPublisher()
+            }
+            .flatMap { [weak self] in
+                let runningMode = self?.mode ?? .add
+                return UIAccessibility.announcePersistently(runningMode.successMessage)
             }
             .sink {
                 completion(.didUpdate)
