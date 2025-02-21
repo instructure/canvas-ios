@@ -61,10 +61,10 @@ public class PutSubmissionComment: APIUseCase {
             )
         )
     }
-    
+
     public func write(
         response: APISubmission?,
-        urlResponse: URLResponse?,
+        urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {
         guard let item = response else {

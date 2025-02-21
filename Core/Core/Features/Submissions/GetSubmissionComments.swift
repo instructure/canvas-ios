@@ -24,7 +24,7 @@ public class GetSubmissionComments: APIUseCase {
     let context: Context
     let userID: String
     let isAscendingOrder: Bool
-    
+
     public typealias Model = SubmissionComment
 
     public init(context: Context, assignmentID: String, userID: String, isAscendingOrder: Bool = false) {
@@ -55,7 +55,7 @@ public class GetSubmissionComments: APIUseCase {
         )
     }
 
-    public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: APISubmission?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let item = response else { return }
         Submission.save(item, in: client)
     }
