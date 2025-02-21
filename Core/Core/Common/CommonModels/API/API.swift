@@ -94,6 +94,24 @@ public class API {
     }
 
     @discardableResult
+    public func makeRequest<Request: APIRequestable>(
+        _ requestable: Request,
+        refreshToken: Bool = true
+    ) async throws -> Request.Response {
+        return try await withCheckedThrowingContinuation { continuation in
+            makeRequest(requestable) { result, response, error in
+                if let error {
+                    continuation.resume(throwing: APIError.from(data: nil, response: response, error: error))
+                } else if let result {
+                    continuation.resume(returning: result)
+                } else {
+                    continuation.resume(throwing: APIAsyncError.invalidResponse)
+                }
+            }
+        }
+    }
+
+    @discardableResult
     public func makeDownloadRequest(_ url: URL,
                                     method: APIMethod? = nil,
                                     callback: ((URL?, URLResponse?, Error?) -> Void)? = nil)
@@ -196,6 +214,25 @@ public class API {
             callback(result, urlResponse, error)
         }
     }
+
+    public func exhaust<R>(_ requestable: R, callback: @escaping (R.Response.Page?, URLResponse?, Error?) -> Void) where R: APIPagedRequestable {
+        exhaust(requestable, result: nil, callback: callback)
+    }
+
+    private func exhaust<R>(_ requestable: R, result: R.Response.Page?, callback: @escaping (R.Response.Page?, URLResponse?, Error?) -> Void) where R: APIPagedRequestable {
+        makeRequest(requestable) { response, urlResponse, error in
+            guard let response = response else {
+                callback(nil, urlResponse, error)
+                return
+            }
+            let result = result == nil ? response.page : result! + response.page
+            if let next = requestable.nextPageRequest(from: response) as? R {
+                self.exhaust(next, result: result, callback: callback)
+                return
+            }
+            callback(result, urlResponse, error)
+        }
+    }
 }
 
 public protocol APITask {
@@ -246,4 +283,8 @@ public class FollowRedirect: NSObject, URLSessionTaskDelegate {
         }
         completionHandler(newRequest)
     }
+}
+
+public enum APIAsyncError: Error {
+    case invalidResponse
 }

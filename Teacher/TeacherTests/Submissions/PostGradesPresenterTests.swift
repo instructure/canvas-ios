@@ -36,7 +36,7 @@ class PostGradesPresenterTests: TeacherTestCase {
     var didShowAllHidden = false
     var didShowAllPosted = false
     var errorMessage: String?
-    var viewModel: APIPostPolicyInfo?
+    var viewModel: APIPostPolicy?
     var resultingColor: UIColor?
 
     override func setUp() {
@@ -57,7 +57,7 @@ class PostGradesPresenterTests: TeacherTestCase {
     }
 
     func testPostGrades() {
-        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
+        let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: .everyone)
         let str = """
         {
             "data": {
@@ -97,8 +97,7 @@ class PostGradesPresenterTests: TeacherTestCase {
     }
 
     func testPostGradesWithError() {
-        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
-
+        let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: .everyone)
         api.mock(req, value: nil, response: nil, error: NSError.internalError())
         presenter.postGrades(postPolicy: .everyone, sectionIDs: ["sectionID"])
 
@@ -107,9 +106,9 @@ class PostGradesPresenterTests: TeacherTestCase {
     }
 
     func testViewIsReady() {
-        let expectedSections = [APIPostPolicyInfo.SectionNode(id: "1", name: "section a")]
-        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
-        let str = """
+        let expectedSections = [APIPostPolicy.CourseInfo.SectionNode(id: "1", name: "section a")]
+        let sectionsReq = GetPostPolicyCourseSectionsRequest(courseID: courseID)
+        let sectionsStr = """
         {
             "data": {
                 "course": {
@@ -119,7 +118,15 @@ class PostGradesPresenterTests: TeacherTestCase {
                             "name": "section a"
                         }]
                     }
-                },
+                }
+            }
+        }
+        """
+
+        let submissionsReq = GetPostPolicyAssignmentSubmissionsRequest(assignmentID: assignmentID)
+        let submissionsStr = """
+        {
+            "data": {
                 "assignment": {
                     "submissions": {
                         "nodes": [{
@@ -139,17 +146,23 @@ class PostGradesPresenterTests: TeacherTestCase {
             }
         }
         """
-        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
+
+        api.mock(sectionsReq, data: sectionsStr.data(using: .utf8)!, response: nil, error: nil)
+        api.mock(submissionsReq, data: submissionsStr.data(using: .utf8)!, response: nil, error: nil)
         presenter.viewIsReady()
 
         wait(for: [updateExpectation], timeout: 0.5)
-        XCTAssertEqual(viewModel?.submissions.hiddenCount, 1)
+        XCTAssertEqual(viewModel?.submissions?.hiddenCount, 1)
         XCTAssertEqual(viewModel?.sections, expectedSections)
     }
 
     func testViewIsReadyWithError() {
-        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
-        api.mock(req, value: nil, response: nil, error: NSError.internalError())
+        let sectionsReq = GetPostPolicyCourseSectionsRequest(courseID: courseID)
+        let submissionsReq = GetPostPolicyAssignmentSubmissionsRequest(assignmentID: assignmentID)
+
+        api.mock(sectionsReq, value: nil, response: nil, error: NSError.internalError())
+        api.mock(submissionsReq, value: nil, response: nil, error: NSError.internalError())
+
         presenter.viewIsReady()
 
         wait(for: [errorExpectation], timeout: 0.5)
@@ -167,8 +180,8 @@ class PostGradesPresenterTests: TeacherTestCase {
     }
 
     func testAllGradesPosted() {
-        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
-        let str = """
+        let sectionsReq = GetPostPolicyCourseSectionsRequest(courseID: courseID)
+        let sectionsStr = """
         {
             "data": {
                 "course": {
@@ -178,7 +191,15 @@ class PostGradesPresenterTests: TeacherTestCase {
                             "name": "section a"
                         }]
                     }
-                },
+                }
+            }
+        }
+        """
+
+        let submissionsReq = GetPostPolicyAssignmentSubmissionsRequest(assignmentID: assignmentID)
+        let submissionsStr = """
+        {
+            "data": {
                 "assignment": {
                     "submissions": {
                         "nodes": [{
@@ -192,7 +213,9 @@ class PostGradesPresenterTests: TeacherTestCase {
             }
         }
         """
-        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
+
+        api.mock(sectionsReq, data: sectionsStr.data(using: .utf8)!, response: nil, error: nil)
+        api.mock(submissionsReq, data: submissionsStr.data(using: .utf8)!, response: nil, error: nil)
         presenter.viewIsReady()
 
         wait(for: [hiddenStateExpectation], timeout: 0.5)
@@ -200,8 +223,8 @@ class PostGradesPresenterTests: TeacherTestCase {
     }
 
     func testAllGradesHidden() {
-        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
-        let str = """
+        let sectionsReq = GetPostPolicyCourseSectionsRequest(courseID: courseID)
+        let sectionsStr = """
         {
             "data": {
                 "course": {
@@ -211,7 +234,15 @@ class PostGradesPresenterTests: TeacherTestCase {
                             "name": "section a"
                         }]
                     }
-                },
+                }
+            }
+        }
+        """
+
+        let submissionsReq = GetPostPolicyAssignmentSubmissionsRequest(assignmentID: assignmentID)
+        let submissionsStr = """
+        {
+            "data": {
                 "assignment": {
                     "submissions": {
                         "nodes": [{
@@ -225,7 +256,9 @@ class PostGradesPresenterTests: TeacherTestCase {
             }
         }
         """
-        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
+
+        api.mock(sectionsReq, data: sectionsStr.data(using: .utf8)!, response: nil, error: nil)
+        api.mock(submissionsReq, data: submissionsStr.data(using: .utf8)!, response: nil, error: nil)
         presenter.viewIsReady()
 
         wait(for: [hiddenStateExpectation], timeout: 0.5)
@@ -239,9 +272,19 @@ extension PostGradesPresenterTests: PostGradesViewProtocol {
         colorExpectation.fulfill()
     }
 
-    func update(_ viewModel: APIPostPolicyInfo) {
+    func update(_ viewModel: APIPostPolicy) {
         self.viewModel = viewModel
         updateExpectation.fulfill()
+    }
+
+    func nextPageLoaded(_ viewModel: Core.APIPostPolicy) {
+        self.viewModel = viewModel
+        updateExpectation.fulfill()
+    }
+
+    func nextPageLoadingFailed(_ error: any Error) {
+        errorMessage = error.localizedDescription
+        errorExpectation.fulfill()
     }
 
     func didPostGrades() {

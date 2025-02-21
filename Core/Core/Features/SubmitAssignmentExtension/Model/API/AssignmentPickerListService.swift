@@ -20,6 +20,7 @@ import Combine
 
 public protocol AssignmentPickerListServiceProtocol: AnyObject {
     typealias APIResult = Result<[APIAssignmentPickerListItem], AssignmentPickerListServiceError>
+
     var result: AnyPublisher<APIResult, Never> { get }
     var courseID: String? { get set }
 }
@@ -30,6 +31,7 @@ public enum AssignmentPickerListServiceError: String, Error {
 
 public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
     public private(set) lazy var result: AnyPublisher<APIResult, Never> = resultSubject.eraseToAnyPublisher()
+
     public var courseID: String? {
         didSet { fetchAssignments() }
     }
@@ -47,12 +49,12 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
 
         requestedCourseID = courseID
         let request = AssignmentPickerListRequest(courseID: courseID)
-        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, _, error in
+        AppEnvironment.shared.api.exhaust(request) { [weak self] response, _, error in
             self?.handleResponse(response, error: error, completedCourseID: courseID)
         }
     }
 
-    private func handleResponse(_ response: AssignmentPickerListRequest.Response?, error: Error?, completedCourseID: String) {
+    private func handleResponse(_ response: AssignmentPickerListRequest.Response.Page?, error: Error?, completedCourseID: String) {
         // If the finished request was for an older fetch we ignore its results
         if self.requestedCourseID != completedCourseID {
             return
@@ -61,7 +63,7 @@ public class AssignmentPickerListService: AssignmentPickerListServiceProtocol {
         let result: APIResult
 
         if let response = response {
-            let assignments = Self.filterAssignments(response.assignments)
+            let assignments = Self.filterAssignments(response)
             Analytics.shared.logEvent("assignments_loaded", parameters: ["count": assignments.count])
             result = .success(assignments)
         } else {

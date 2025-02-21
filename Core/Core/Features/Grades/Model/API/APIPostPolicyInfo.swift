@@ -18,58 +18,93 @@
 
 import Foundation
 
-public struct APIPostPolicyInfo: Codable {
-    public var sections: [SectionNode] {
-        return data.course.sections.nodes
-    }
-    public var submissions: [SubmissionNode] {
-        return data.assignment.submissions.nodes
-    }
-    internal var data: PostPolicyData
+public struct APIPostPolicy {
 
-    public struct SectionNode: Codable, Equatable {
-        public let id: String
-        public let name: String
-    }
+    public struct AssignmentInfo: Codable {
 
-    public struct SubmissionNode: Codable, Equatable, PostPolicyLogicProtocol {
-        public let score: Double?
-        public let excused: Bool
-        public let state: String
-        public let postedAt: Date?
-        public var isGraded: Bool {
-            return ( score != nil && state == "graded" ) || excused
+        struct Data: Codable {
+            var assignment: Assignment
         }
 
-        public var isHidden: Bool {
-            return isGraded && postedAt == nil
+        struct Assignment: Codable {
+            var submissions: Submissions
         }
 
-        public var isPosted: Bool {
-            return postedAt != nil && isGraded
+        struct Submissions: Codable {
+            var nodes: [SubmissionNode]
+        }
+
+        public struct SubmissionNode: Codable, Equatable, PostPolicyLogicProtocol {
+            public let score: Double?
+            public let excused: Bool
+            public let state: String
+            public let postedAt: Date?
+            public var isGraded: Bool {
+                return ( score != nil && state == "graded" ) || excused
+            }
+
+            public var isHidden: Bool {
+                return isGraded && postedAt == nil
+            }
+
+            public var isPosted: Bool {
+                return postedAt != nil && isGraded
+            }
+        }
+
+        internal var data: Data
+
+        public var nodes: [SubmissionNode] {
+            return data.assignment.submissions.nodes
         }
     }
 
-    struct Sections: Codable {
-        var nodes: [APIPostPolicyInfo.SectionNode]
+    public struct CourseInfo: PagedResponse {
+        public typealias Page = [SectionNode]
+
+        struct Data: Codable {
+            var course: Course
+        }
+
+        struct Course: Codable {
+            var sections: Sections
+        }
+
+        struct Sections: Codable {
+            var nodes: [SectionNode]
+            let pageInfo: APIPageInfo?
+        }
+
+        public struct SectionNode: Codable, Equatable {
+            public let id: String
+            public let name: String
+        }
+
+        internal var data: Data
+
+        public var page: [SectionNode] { data.course.sections.nodes }
+        public var pageInfo: APIPageInfo? { data.course.sections.pageInfo }
+
+        public mutating func appendSections(_ info: CourseInfo) {
+            let nodes = page + info.data.course.sections.nodes
+            let newPageInfo = info.data.course.sections.pageInfo
+            data.course.sections = Sections(nodes: nodes, pageInfo: newPageInfo)
+        }
     }
 
-    struct PostPolicyData: Codable {
-        var course: Course
-        var assignment: Assignment
+    public var assignment: AssignmentInfo?
+    public var course: CourseInfo?
+
+    public init(assignment: AssignmentInfo? = nil, course: CourseInfo? = nil) {
+        self.assignment = assignment
+        self.course = course
     }
 
-    struct Course: Codable {
-        var sections: Sections
-    }
+    public var sections: [CourseInfo.SectionNode]? { course?.page }
+    public var submissions: [AssignmentInfo.SubmissionNode]? { assignment?.data.assignment.submissions.nodes }
 
-    struct Assignment: Codable {
-        var submissions: Submissions
-    }
-
-    struct Submissions: Codable {
-        var nodes: [APIPostPolicyInfo.SubmissionNode]
-    }
+    public var sectionsCount: Int { sections?.count ?? 0 }
+    public var submissionsCount: Int { submissions?.count ?? 0 }
 }
 
 public protocol PostPolicyLogicProtocol {
@@ -92,20 +127,22 @@ public enum PostGradePolicy: String, CaseIterable {
     case everyone, graded
 }
 
+extension APIPostPolicy: PageModel {
+    public var nextCursor: String? { course?.pageInfo?.nextCursor }
+}
+
 #if DEBUG
-extension APIPostPolicyInfo {
+extension APIPostPolicy.CourseInfo {
     public static func make(
-        sections: [APIPostPolicyInfo.SectionNode] = [.make()],
-        submissions: [APIPostPolicyInfo.SubmissionNode] = [.make()]
+        sections: [SectionNode] = [.make()]
     ) -> Self {
-        Self(data: PostPolicyData(
-            course: Course(sections: Sections(nodes: sections)),
-            assignment: Assignment(submissions: Submissions(nodes: submissions))
+        Self(data: Data(
+            course: Course(sections: Sections(nodes: sections, pageInfo: nil))
         ))
     }
 }
 
-extension APIPostPolicyInfo.SectionNode {
+extension APIPostPolicy.CourseInfo.SectionNode {
     public static func make(
         id: String = "1",
         name: String = "section 1"
@@ -114,7 +151,7 @@ extension APIPostPolicyInfo.SectionNode {
     }
 }
 
-extension APIPostPolicyInfo.SubmissionNode {
+extension APIPostPolicy.AssignmentInfo.SubmissionNode {
     public static func make(
         score: Double? = 1.0,
         excused: Bool = false,
@@ -224,28 +261,21 @@ public class HideAssignmentGradesForSectionsPostPolicyRequest: HideAssignmentGra
         """ }
 }
 
-public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
-    public typealias Response = APIPostPolicyInfo
+public struct GetPostPolicyAssignmentSubmissionsRequest: APIGraphQLRequestable {
+    public typealias Response = APIPostPolicy.AssignmentInfo
     public struct Variables: Codable, Equatable {
-        public let courseID: String
         public let assignmentID: String
     }
     public let variables: Variables
 
-    public init(courseID: String, assignmentID: String) {
-        variables = Variables(courseID: courseID, assignmentID: assignmentID)
+    public init(
+        assignmentID: String
+    ) {
+        variables = Variables(assignmentID: assignmentID)
     }
 
     public static let query = """
-        query \(operationName)($courseID: ID!, $assignmentID: ID!) {
-          course(id: $courseID) {
-            sections: sectionsConnection {
-              nodes {
-                id
-                name
-              }
-            }
-          }
+        query \(operationName)($assignmentID: ID!) {
           assignment(id: $assignmentID) {
             submissions: submissionsConnection {
               nodes {
@@ -258,4 +288,53 @@ public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
           }
         }
         """
+}
+
+public struct GetPostPolicyCourseSectionsRequest: APIGraphQLPagedRequestable {
+    public typealias Response = APIPostPolicy.CourseInfo
+    public struct Variables: Codable, Equatable {
+        public let courseID: String
+        public let cursor: String?
+        public let pageSize: Int
+    }
+    public let variables: Variables
+
+    public init(
+        courseID: String,
+        pageSize: Int = 20,
+        cursor: String? = nil
+    ) {
+        variables = Variables(
+            courseID: courseID,
+            cursor: cursor,
+            pageSize: pageSize
+        )
+    }
+
+    public static let query = """
+        query \(operationName)($courseID: ID!, $pageSize: Int!, $cursor: String) {
+          course(id: $courseID) {
+            sections: sectionsConnection(first: $pageSize, after: $cursor) {
+              nodes {
+                id
+                name
+              }
+              pageInfo {
+                endCursor
+                hasNextPage
+              }
+            }
+          }
+        }
+        """
+
+    public func nextPageRequest(from response: APIPostPolicy.CourseInfo) -> GetPostPolicyCourseSectionsRequest? {
+        guard let info = response.data.course.sections.pageInfo, info.hasNextPage else { return nil }
+
+        return GetPostPolicyCourseSectionsRequest(
+            courseID: variables.courseID,
+            pageSize: variables.pageSize,
+            cursor: info.endCursor
+        )
+    }
 }

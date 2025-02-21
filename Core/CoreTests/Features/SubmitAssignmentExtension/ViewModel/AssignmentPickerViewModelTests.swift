@@ -171,6 +171,7 @@ class AssignmentPickerViewModelTests: CoreTestCase {
 }
 
 class MockAssignmentPickerListService: AssignmentPickerListServiceProtocol {
+
     public private(set) lazy var result: AnyPublisher<APIResult, Never> = resultSubject.eraseToAnyPublisher()
     public var courseID: String? {
         didSet { resultSubject.send(mockResult ?? .failure(.failedToGetAssignments)) }

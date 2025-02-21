@@ -22,15 +22,15 @@ import Core
 class HideGradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hideGradesButton: DynamicButton!
-    private var sections: [String] = []
     private var sectionToggles: [Bool] = []
     private var gradesCurrentlyPosted = 0
-    private var showSections = false
+    fileprivate var showSections = false
     @IBOutlet weak var allGradesHiddenView: UIView!
     @IBOutlet weak var allHiddenLabel: DynamicLabel!
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
-    var viewModel: APIPostPolicyInfo?
+    private lazy var paging = PagingPresenter(controller: self)
+    var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
     static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
@@ -50,6 +50,9 @@ class HideGradesViewController: UIViewController {
         allHiddenSubHeader.text = String(localized: "All grades are currently hidden.", bundle: .teacher)
 
         hideGradesButton.setTitle(String(localized: "Hide Grades", bundle: .teacher), for: .normal)
+        hideGradesButton.setTitleColor(.textLightest, for: .normal)
+        hideGradesButton.textStyle = UIFont.Name.semibold16.rawValue
+        hideGradesButton.backgroundColor = .textInfo
 
         presenter.viewIsReady()
     }
@@ -57,25 +60,41 @@ class HideGradesViewController: UIViewController {
     func setupTableView() {
         tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(PostGradesViewController.SectionCell.self)
+        tableView.registerCell(PageLoadingCell.self)
     }
 
     func setupSections() {
-        sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
+        sectionToggles = Array(repeating: false, count: viewModel.sectionsCount)
     }
 
     @IBAction func actionUserDidClickHideGrades(_ sender: Any) {
-        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
+        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel.sections?[i].id : nil }
         presenter.hideGrades(sectionIDs: sectionIDs)
 
     }
 }
 
 extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
+
+    private var rowsCount: Int {
+        return (showSections ? viewModel.sectionsCount : 0) + 1
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return showSections ? (paging.hasMore ? 2 : 1) : 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (showSections ? (viewModel?.sections.count ?? 0) : 0) + 1
+        return section == 0 ? rowsCount : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.section == 0 else {
+            return tableView
+                .dequeue(PageLoadingCell.self, for: indexPath)
+                .setup(with: paging)
+        }
+
         let cell: PostGradesViewController.SectionCell = tableView.dequeue(for: indexPath)
         cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
 
@@ -87,8 +106,8 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
         } else {    //  sections
             let index = abs(indexPath.row - 1)
-            cell.textLabel?.text = viewModel?.sections[index].name
-            cell.toggle.accessibilityIdentifier = "PostPolicy.hide.section.toggle.\(viewModel?.sections[index].id ?? "")"
+            cell.textLabel?.text = viewModel.sections?[index].name
+            cell.toggle.accessibilityIdentifier = "PostPolicy.hide.section.toggle.\(viewModel.sections?[index].id ?? "")"
             cell.selectionStyle = .none
             cell.toggle.isOn = sectionToggles[index]
             cell.toggle.tag = index
@@ -101,8 +120,17 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localizedFormat = String(localized: "grades_currently_posted", bundle: .teacher, comment: "number of grades hidden")
-            return String(format: localizedFormat, viewModel?.submissions.postedCount ?? 0)
+            return String(format: localizedFormat, viewModel.submissions?.postedCount ?? 0)
         }
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        paging.willDisplayRow(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        paging.willSelectRow(at: indexPath)
         return nil
     }
 
@@ -119,9 +147,22 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HideGradesViewController: PostGradesViewProtocol {
-    func update(_ viewModel: APIPostPolicyInfo) {
-        self.viewModel = viewModel
+    func update(_ newModel: APIPostPolicy) {
+        self.viewModel = newModel
+        self.paging.onPageLoaded(newModel)
         setupSections()
+        tableView.reloadData()
+    }
+
+    func nextPageLoadingFailed(_ error: any Error) {
+        self.paging.onPageLoadingFailed()
+    }
+
+    func nextPageLoaded(_ newModel: APIPostPolicy) {
+        let newSectionsCount = max(newModel.sectionsCount - self.viewModel.sectionsCount, 0)
+        sectionToggles.append(contentsOf: Array(repeating: false, count: newSectionsCount))
+        self.viewModel = newModel
+        self.paging.onPageLoaded(newModel)
         tableView.reloadData()
     }
 
@@ -135,5 +176,17 @@ extension HideGradesViewController: PostGradesViewProtocol {
 
     func showAllHiddenView() {
         allGradesHiddenView.isHidden = false
+    }
+}
+
+extension HideGradesViewController: PagingViewController {
+    typealias Page = APIPostPolicy
+
+    func isMoreRow(at indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1 && indexPath.row == 0
+    }
+
+    func loadNextPage() {
+        presenter.fetchNextPage(to: viewModel)
     }
 }
