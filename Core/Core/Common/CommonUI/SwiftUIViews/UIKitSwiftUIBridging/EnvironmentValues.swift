@@ -60,4 +60,7 @@ extension EnvironmentValues {
         get { self[HorizontalPadding.self] }
         set { self[HorizontalPadding.self] = newValue }
     }
+
+    // Used for passing colors to NavigationBar components.
+    @Entry var navBarColors: NavigationBarColorConfiguration = .init(style: .modal)
 }

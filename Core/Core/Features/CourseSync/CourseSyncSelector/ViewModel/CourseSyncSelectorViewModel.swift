@@ -215,6 +215,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
                         .receive(on: DispatchQueue.main)
                         .handleEvents(receiveOutput: { entries in
                             NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
+                            UIAccessibility.announce(String(localized: "Offline sync started", bundle: .core))
                             AppEnvironment.shared.router.dismiss(view)
                         })
                 ).eraseToAnyPublisher()

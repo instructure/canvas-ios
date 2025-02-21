@@ -30,7 +30,7 @@ public struct CalendarToDoDetailsScreen: View {
         InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
             eventContent
         }
-        .navigationTitle(viewModel.navigationTitle)
+        .navigationBarTitleView(viewModel.navigationTitle)
         .navBarItems(
             trailing: .moreIcon(
                 isBackgroundContextColor: true,

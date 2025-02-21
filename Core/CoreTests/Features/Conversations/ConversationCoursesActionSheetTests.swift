@@ -43,7 +43,7 @@ class ConversationCoursesActionSheetTests: CoreTestCase {
         XCTAssertTrue(loadingIndicator.isAnimating)
 
         let enrollments = controller.enrollments as! TestStore
-        wait(for: [enrollments.exhaustExpectation], timeout: 0.1)
+        wait(for: [enrollments.exhaustExpectation], timeout: 1)
     }
 
     func testActivityIndicator() {

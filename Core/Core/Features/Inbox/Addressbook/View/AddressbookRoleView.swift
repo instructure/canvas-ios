@@ -39,11 +39,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
             case .loading:
                 loadingIndicator
             case .data:
-                if viewModel.isRolesViewVisible {
-                    rolesView
-                } else {
-                    peopleView
-                }
+                listView
             case .empty, .error:
                 Text("There was an error loading recipients.\nPull to refresh to try again.", bundle: .core)
                     .foregroundColor(.textDark)
@@ -59,8 +55,9 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
             await viewModel.refresh()
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(viewModel.title)
+        .navigationBarTitleView(viewModel.title)
         .navigationBarItems(trailing: doneButton)
+        .navigationBarStyle(.modal)
     }
 
     private var loadingIndicator: some View {
@@ -87,15 +84,26 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
         }
     }
 
-    private var peopleView: some View {
+    private var listView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ForEach(viewModel.recipients, id: \.self) { user in
-                personRowView(user)
+            if viewModel.isRolesViewVisible {
+                if viewModel.isAllRecipientButtonVisible {
+                    allRecipientsRow
+                }
+                ForEach(viewModel.roles, id: \.self) { role in
+                    roleRow(role)
+                }
+            } else {
+                ForEach(viewModel.recipients, id: \.self) { user in
+                    recipientRow(user)
+                }
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String.localizedAccessibilityListCount(viewModel.listCount))
     }
 
-    private func personRowView(_ recipient: Recipient) -> some View {
+    private func recipientRow(_ recipient: Recipient) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
                 viewModel.didTapRecipient.send(recipient)
@@ -122,16 +130,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
         }
     }
 
-    private var rolesView: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            if viewModel.isAllRecipientButtonVisible { allRecipient }
-            ForEach(viewModel.roles, id: \.self) { role in
-                roleRowView(role)
-            }
-        }
-    }
-
-    private func roleRowView(_ role: String) -> some View {
+    private func roleRow(_ role: String) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
                 viewModel.didTapRole.send((roleName: role, recipients: viewModel.roleRecipients[role] ?? [], controller: controller))
@@ -168,7 +167,7 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
         }
     }
 
-    private var allRecipient: some View {
+    private var allRecipientsRow: some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
                 viewModel.didTapRecipient.send(viewModel.allRecipient)

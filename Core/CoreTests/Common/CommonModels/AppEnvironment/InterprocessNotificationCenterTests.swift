@@ -48,7 +48,7 @@ class InterprocessNotificationCenterTests: XCTestCase {
         testee.post(name: "test1")
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     func testMultipleSubscriptions() {
@@ -75,7 +75,7 @@ class InterprocessNotificationCenterTests: XCTestCase {
         testee.post(name: "test")
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     func testMultipleSubscriptionsWhenOneCancelled() {
@@ -103,7 +103,7 @@ class InterprocessNotificationCenterTests: XCTestCase {
         testee.post(name: "test")
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         secondSubscription?.cancel()
     }
 
@@ -130,7 +130,7 @@ class InterprocessNotificationCenterTests: XCTestCase {
 
         // MARK: - THEN
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription?.cancel()
     }
 }

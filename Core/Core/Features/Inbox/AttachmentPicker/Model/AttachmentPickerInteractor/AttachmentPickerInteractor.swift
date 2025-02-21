@@ -16,25 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Foundation
-import Combine
 
-protocol AttachmentPickerInteractor {
-    var files: PassthroughSubject<[File], Error> { get }
-    var alreadyUploadedFiles: CurrentValueSubject<[File], Never> { get }
-    var isCancelConfirmationNeeded: Bool { get }
+final class DismissObserverAlert: DeleteUseCase {
+    typealias Model = ObserverAlert
 
-    func uploadFiles()
+    let request: PutObserverAlertDismissedRequest
+    let cacheKey: String? = nil
+    var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: id) }
 
-    func addFile(url: URL)
+    private let id: String
 
-    func addFile(file: File)
-
-    func retry()
-
-    func cancel()
-
-    func removeFile(file: File)
-
-    func deleteFile(file: File) -> AnyPublisher<Void, Never>
+    init(id: String) {
+        self.id = id
+        self.request = PutObserverAlertDismissedRequest(alertID: id)
+    }
 }

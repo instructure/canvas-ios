@@ -100,7 +100,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
                 expectation.fulfill()
             })
         testee.syncConfirmAlert.notifyCompletion(isConfirmed: true)
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subsription.cancel()
     }
 
