@@ -20,7 +20,7 @@ import Foundation
 import Combine
 
 protocol RecipientInteractor {
-    func getRecipients(by context: Context?) -> AnyPublisher<[Recipient], Never>
+    func getRecipients(by context: Context?, qualifier: GetSearchRecipientsRequest.ContextQualifier?) -> AnyPublisher<[Recipient], Never>
 }
 
 final class RecipientInteractorLive: RecipientInteractor {
@@ -29,14 +29,14 @@ final class RecipientInteractorLive: RecipientInteractor {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Functions
-    func getRecipients(by context: Context?) -> AnyPublisher<[Recipient], Never> {
+    func getRecipients(by context: Context?, qualifier: GetSearchRecipientsRequest.ContextQualifier? = nil) -> AnyPublisher<[Recipient], Never> {
 
         guard let context else {
             return Just([])
                 .eraseToAnyPublisher()
         }
        return ReactiveStore(
-            useCase: GetSearchRecipients(context: context)
+        useCase: GetSearchRecipients(context: context, qualifier: qualifier)
         ).getEntities()
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .map { Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL) }

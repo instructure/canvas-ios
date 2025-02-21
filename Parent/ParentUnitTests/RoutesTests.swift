@@ -25,8 +25,8 @@ class RoutesTests: ParentTestCase {
     func testRoutes() {
         XCTAssert(Parent.router.match("/courses/1/grades") is CourseDetailsViewController)
         XCTAssert(Parent.router.match("/courses/1/assignments/syllabus") is SyllabusViewController)
-        XCTAssert(Parent.router.match("/conversations") is ParentConversationListViewController)
-        XCTAssert(Parent.router.match("/conversations/1") is ConversationDetailViewController)
+        XCTAssert(Parent.router.match("/conversations") is CoreHostingController<InboxView>)
+        XCTAssert(Parent.router.match("/conversations/1") is CoreHostingController<MessageDetailsView>)
         XCTAssert(Parent.router.match("/calendar") is PlannerViewController)
         XCTAssert(Parent.router.match("/calendar?event_id=1") is Parent.CalendarEventDetailsViewController)
         XCTAssert(Parent.router.match("/calendar_events/1") is Parent.CalendarEventDetailsViewController)

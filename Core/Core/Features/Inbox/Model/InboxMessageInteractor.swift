@@ -24,6 +24,7 @@ public protocol InboxMessageInteractor {
     var messages: CurrentValueSubject<[InboxMessageListItem], Never> { get }
     var courses: CurrentValueSubject<[InboxCourse], Never> { get }
     var hasNextPage: CurrentValueSubject<Bool, Never> { get }
+    var isParent: Bool { get }
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>
