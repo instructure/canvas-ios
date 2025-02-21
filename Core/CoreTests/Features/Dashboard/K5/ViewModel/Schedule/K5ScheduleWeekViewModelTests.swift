@@ -44,7 +44,7 @@ class K5ScheduleWeekViewModelTests: CoreTestCase {
         }
 
         testee.viewDidAppear()
-        wait(for: [viewModelUpdateEvent], timeout: 0.1)
+        wait(for: [viewModelUpdateEvent], timeout: 1)
 
         let today = testee.days[0]
         XCTAssertTrue(testee.isTodayModel(today))

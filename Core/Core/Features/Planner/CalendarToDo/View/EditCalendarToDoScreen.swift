@@ -87,7 +87,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
             }
             .frame(maxWidth: geometry.size.width, minHeight: geometry.size.height)
         }
-        .navigationTitle(viewModel.pageTitle)
+        .navigationBarTitleView(viewModel.pageTitle)
         .navBarItems(
             leading: .cancel {
                 viewModel.didTapCancel.send()
@@ -101,6 +101,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                 }
             )
         )
+        .navigationBarStyle(.modal)
         .errorAlert(isPresented: $viewModel.shouldShowSaveError, presenting: viewModel.saveErrorAlert)
     }
 }

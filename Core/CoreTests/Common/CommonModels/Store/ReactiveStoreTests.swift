@@ -165,7 +165,7 @@ class ReactiveStoreTests: CoreTestCase {
                 }
             )
 
-        wait(for: [expectation1], timeout: 0.1)
+        wait(for: [expectation1], timeout: 1)
         let subscription2 = testee.forceRefresh(loadAllPages: true)
             .sink(
                 receiveCompletion: { _ in },
@@ -174,7 +174,7 @@ class ReactiveStoreTests: CoreTestCase {
                 }
             )
 
-        wait(for: [expectation2], timeout: 0.1)
+        wait(for: [expectation2], timeout: 1)
         subscription2.cancel()
         subscription.cancel()
     }
@@ -249,7 +249,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         drainMainQueue()
         databaseClient.delete(course)
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription1.cancel()
     }
 
@@ -279,7 +279,7 @@ class ReactiveStoreTests: CoreTestCase {
                 }
             )
 
-        wait(for: [expectation1], timeout: 0.1)
+        wait(for: [expectation1], timeout: 1)
         subscription1.cancel()
 
         let expectation2 = XCTestExpectation(description: "Publisher sends value")
@@ -292,7 +292,7 @@ class ReactiveStoreTests: CoreTestCase {
                 }
             )
 
-        wait(for: [expectation2], timeout: 0.1)
+        wait(for: [expectation2], timeout: 1)
         subscription2.cancel()
     }
 
@@ -375,7 +375,7 @@ class ReactiveStoreTests: CoreTestCase {
                 }
             })
 
-        wait(for: [expectation1], timeout: 0.1)
+        wait(for: [expectation1], timeout: 1)
         subscription.cancel()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

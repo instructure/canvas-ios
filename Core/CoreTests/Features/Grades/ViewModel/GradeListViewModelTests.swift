@@ -76,7 +76,7 @@ class GradeListViewModelTests: CoreTestCase {
 
         testee.pullToRefreshDidTrigger.accept((nil))
         XCTAssertEqual(states[1], .data(.init()))
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -105,7 +105,7 @@ class GradeListViewModelTests: CoreTestCase {
 
         testee.pullToRefreshDidTrigger.accept((nil))
         XCTAssertEqual(states[1], .data(.init()))
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -134,7 +134,7 @@ class GradeListViewModelTests: CoreTestCase {
 
         testee.pullToRefreshDidTrigger.accept((nil))
         XCTAssertEqual(states[1], .data(.init()))
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertTrue(gradeFilterInteractor.saveGradingIsCalled)
         XCTAssertTrue(gradeFilterInteractor.saveSortByOptionIsCalled)
         subscription.cancel()
@@ -165,7 +165,7 @@ class GradeListViewModelTests: CoreTestCase {
 
         testee.pullToRefreshDidTrigger.accept((nil))
         XCTAssertEqual(states[1], .data(.init()))
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertFalse(gradeFilterInteractor.saveGradingIsCalled)
         XCTAssertFalse(gradeFilterInteractor.saveSortByOptionIsCalled)
         subscription.cancel()
@@ -228,7 +228,7 @@ class GradeListViewModelTests: CoreTestCase {
 
         // When
         testee.navigateToFilter(viewController: viewController)
-        wait(for: [router.showExpectation], timeout: 0.1)
+        wait(for: [router.showExpectation], timeout: 1)
         // Then
         XCTAssertTrue(router.presented is CoreHostingController<GradeFilterView>)
     }

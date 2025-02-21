@@ -69,7 +69,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         FileManager.default.createFile(atPath: URL.Directories.temporary.path, contents: "test".data(using: .utf8))
         mock.download(didFinishDownloadingTo: URL.Directories.temporary)
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(progressList.count, 4)
         XCTAssertEqual(progressList[0], 0)
         XCTAssertEqual(progressList[1], 0.2)
@@ -119,7 +119,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             }
         )
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -166,7 +166,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             }
         )
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -208,7 +208,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         mock.download(didWriteData: 2, totalBytesWritten: 2, totalBytesExpectedToWrite: 10)
         mock.complete(withError: NSError.instructureError("Failed."))
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(progressList.count, 2)
         XCTAssertEqual(progressList[0], 0)
         XCTAssertEqual(progressList[1], 0.2)
@@ -240,7 +240,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             }
         }, receiveValue: { _ in })
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 

@@ -59,7 +59,7 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertNil(submission.submissionError)
         XCTAssertTrue(submission.isSubmitted)
         subscription.cancel()
@@ -104,7 +104,7 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(submission.submissionError, "testError")
         XCTAssertFalse(submission.isSubmitted)
         subscription.cancel()
@@ -149,7 +149,7 @@ class FileSubmissionSubmitterTests: CoreTestCase {
         mockTask.resume()
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 

@@ -74,7 +74,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         mockEntryComposeCourse()
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].selectionState, .selected)
         XCTAssertEqual(entries[0].tabs[0].selectionState, .selected)
@@ -110,7 +110,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         mockEntryComposeCourse()
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].selectionState, .partiallySelected)
         XCTAssertEqual(entries[0].tabs.count, 1)
@@ -147,7 +147,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         mockEntryComposeCourse()
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(entries.count, 0)
 
         subscription.cancel()

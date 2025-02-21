@@ -96,6 +96,31 @@ class AddressbookRoleViewModelTests: CoreTestCase {
         testee.searchText.value = "Test"
         XCTAssertFalse(testee.isAllRecipientButtonVisible)
     }
+
+    func testListCount() {
+        let recipients: [SearchRecipient] = [
+            .save(.make(id: "1", name: "T01", common_courses: ["Course 1": ["TeacherEnrollment"]]), filter: "", in: databaseClient),
+            .save(.make(id: "2", name: "S01", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: databaseClient),
+            .save(.make(id: "3", name: "S02", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: databaseClient),
+            .save(.make(id: "4", name: "S03", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: databaseClient),
+            .save(.make(id: "5", name: "P01", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: databaseClient),
+            .save(.make(id: "6", name: "P02", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: databaseClient)
+        ]
+        mockInteractor.recipients.value = recipients
+
+        testee.searchText.value = ""
+        mockInteractor.canSelectAllRecipient.value = true
+        XCTAssertEqual(testee.listCount, 4)
+
+        mockInteractor.canSelectAllRecipient.value = false
+        XCTAssertEqual(testee.listCount, 3)
+
+        testee.searchText.value = "0"
+        XCTAssertEqual(testee.listCount, 6)
+
+        testee.searchText.value = "S0"
+        XCTAssertEqual(testee.listCount, 3)
+    }
 }
 
 private class AddressbookInteractorMock: AddressbookInteractor {

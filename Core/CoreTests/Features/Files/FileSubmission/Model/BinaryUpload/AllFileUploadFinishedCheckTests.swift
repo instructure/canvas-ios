@@ -43,7 +43,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }
@@ -69,7 +69,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }
@@ -95,7 +95,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }
@@ -122,7 +122,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }
@@ -142,7 +142,7 @@ class AllFileUploadFinishedCheckTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }

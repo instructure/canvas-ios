@@ -49,7 +49,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle(Text("Search Preferences", bundle: .core))
+            .navigationBarTitleView(String(localized: "Search Preferences", bundle: .core))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
 
@@ -70,6 +70,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                     }
                 }
             }
+            .navigationBarStyle(.modal)
         }
         .tint(contextColor)
     }

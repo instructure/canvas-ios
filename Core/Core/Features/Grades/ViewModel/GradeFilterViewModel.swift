@@ -102,7 +102,9 @@ public final class GradeFilterViewModel: ObservableObject {
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriodId)
         gradeFilterInteractor.saveSelectedGradingPeriod(id: selectedGradingPeriodId)
 
-        dimiss(viewController: viewController)
+        dependency.router.dismiss(viewController) {
+            UIAccessibility.announce(String(localized: "Filter applied successfully", bundle: .core))
+        }
     }
 
     func dimiss(viewController: WeakViewController) {

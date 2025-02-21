@@ -193,7 +193,7 @@ struct SubmissionCommentList: View {
                 self.error = error.map { Text($0.localizedDescription) } ?? Text(genericErrorMessage)
                 UIAccessibility.announce(genericErrorMessage)
             } else {
-                UIAccessibility.announce(String(localized: "Sent successfully", bundle: .teacher))
+                UIAccessibility.announce(String(localized: "Comment sent successfully", bundle: .teacher))
             }
         }
     }

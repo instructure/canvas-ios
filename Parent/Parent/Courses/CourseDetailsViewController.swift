@@ -260,4 +260,24 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             return String(localized: "Summary", bundle: .parent)
         }
     }
+
+    func didSelectMenuItem(at: IndexPath) {
+        guard let menuItem = MenuItem(rawValue: at.row) else { return }
+
+        let targetVC: UIViewController? = switch menuItem {
+        case .grades:
+            gradesViewController
+        case .syllabus:
+            syllabusViewController
+        case .summary:
+            summaryViewController
+        }
+
+        if let vc = targetVC {
+            UIAccessibility.post(notification: .screenChanged, argument: vc)
+        } else {
+            let itemView = viewForMenuItem(at: at)
+            UIAccessibility.post(notification: .screenChanged, argument: itemView)
+        }
+    }
 }

@@ -29,8 +29,12 @@ public struct ContextCardView: View {
     public var body: some View {
         contextCard
             .background(Color.backgroundLightest)
+            .navigationBarTitleView(
+                title: model.user.first?.name ?? "",
+                subtitle: model.course.first?.name
+            )
             .navigationBarItems(trailing: emailButton)
-            .navigationTitle(model.user.first?.name ?? "", subtitle: model.course.first?.name ?? "")
+            .navigationBarStyle(model.isModal ? .modal : .color(nil))
             .onAppear {
                 model.viewAppeared()
             }

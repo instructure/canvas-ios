@@ -42,6 +42,7 @@ public struct PushNotificationDebugView: View {
         }
         .listStyle(.plain)
         .background(Color.backgroundLightest)
-        .navigationTitle("Push Notifications")
+        .navigationBarTitleView("Push Notifications")
+        .navigationBarStyle(.modal)
     }
 }

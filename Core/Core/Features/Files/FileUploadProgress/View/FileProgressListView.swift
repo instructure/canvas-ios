@@ -45,8 +45,9 @@ struct FileProgressListView<ViewModel>: View where ViewModel: FileProgressListVi
             }
         }
         .background(Color.backgroundLightest)
+        .navigationBarTitleView(viewModel.title)
         .navBarItems(leading: barButton(viewModel.leftBarButton), trailing: barButton(viewModel.rightBarButton))
-        .navigationTitle(viewModel.title)
+        .navigationBarStyle(.modal)
         .onReceive(viewModel.presentDialog) {
             env.router.show($0, from: controller, options: .modal())
         }

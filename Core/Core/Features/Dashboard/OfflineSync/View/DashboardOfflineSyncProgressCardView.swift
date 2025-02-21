@@ -21,6 +21,7 @@ import SwiftUI
 struct DashboardOfflineSyncProgressCardView: View {
     @Environment(\.viewController) private var viewController
     @ObservedObject private var viewModel: DashboardOfflineSyncProgressCardViewModel
+    @AccessibilityFocusState private var isProgressCardFocused: Bool
 
     public init(viewModel: DashboardOfflineSyncProgressCardViewModel) {
         self.viewModel = viewModel
@@ -36,6 +37,12 @@ struct DashboardOfflineSyncProgressCardView: View {
             case let .progress(progress, progressText):
                 containerCard(backgroundColor: Color.backgroundDarkest) {
                     progressView(progress, progressText)
+                }
+                .accessibilityFocused($isProgressCardFocused)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        isProgressCardFocused = true
+                    }
                 }
             case .hidden:
                 SwiftUI.EmptyView()

@@ -520,11 +520,30 @@ extension CoreWebView: WKUIDelegate {
         windowFeatures: WKWindowFeatures
     ) -> WKWebView? {
         guard let from = linkDelegate?.routeLinksFrom else { return nil }
+
+        let router = AppEnvironment.shared.router
+
+        if let targetURL = navigationAction.request.url,
+           router.isRegisteredRoute(targetURL) {
+            let routeOptions = RouteOptions.modal(
+                .fullScreen,
+                isDismissable: false,
+                embedInNav: true,
+                addDoneButton: true
+            )
+            router.route(
+                to: targetURL,
+                from: from,
+                options: routeOptions
+            )
+            return nil
+        }
+
         let controller = CoreWebViewController()
         // Don't change the processPool of this configuration otherwise it will crash
         controller.webView = CoreWebView(externalConfiguration: configuration)
         controller.webView.linkDelegate = linkDelegate
-        AppEnvironment.shared.router.show(
+        router.show(
             controller,
             from: from,
             options: .modal(.formSheet, embedInNav: true, addDoneButton: true)

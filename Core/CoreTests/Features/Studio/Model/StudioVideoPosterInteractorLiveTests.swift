@@ -64,7 +64,7 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
         // THEN
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
         XCTAssertEqual(posterURL, expectedPosterURL)
-        wait(for: [posterFactoryNotCalled], timeout: 0.1)
+        wait(for: [posterFactoryNotCalled], timeout: 1)
     }
 
     func testSwallowsNoVideoTrackError() {

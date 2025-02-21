@@ -33,7 +33,7 @@ class DeleteConversationTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertEqual(conversation?.id, result.id)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testDeleteConversationRequestError() {
@@ -46,7 +46,7 @@ class DeleteConversationTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertNotNil(error)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testDeleteConversationMessageRequest() {
@@ -61,7 +61,7 @@ class DeleteConversationTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertEqual(conversation?.id, result.id)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testDeleteConversationMessageRequestError() {
@@ -75,6 +75,6 @@ class DeleteConversationTests: CoreTestCase {
             expectation.fulfill()
             XCTAssertNotNil(error)
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 }

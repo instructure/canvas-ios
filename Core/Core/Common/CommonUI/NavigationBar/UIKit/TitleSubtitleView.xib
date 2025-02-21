@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="170" height="32"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-j1-wKj">
+                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" axis="vertical" distribution="fillProportionally" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-j1-wKj">
                     <rect key="frame" x="0.0" y="0.0" width="170" height="32"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stb-Qj-5cD" userLabel="titleLabel" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="67.5" y="0.0" width="35" height="18.5"/>
+                            <rect key="frame" x="67.5" y="0.0" width="35" height="18"/>
                             <accessibility key="accessibilityConfiguration" identifier="NavBar.title">
                                 <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                             </accessibility>
@@ -29,7 +29,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd2-Sy-FDG" userLabel="subtitleLabel" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="63" y="18.5" width="44" height="13.5"/>
+                            <rect key="frame" x="63" y="19" width="44" height="13"/>
                             <accessibility key="accessibilityConfiguration" identifier="NavBar.subtitle"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -63,12 +63,4 @@
             <point key="canvasLocation" x="121" y="-264"/>
         </view>
     </objects>
-    <designables>
-        <designable name="Stb-Qj-5cD">
-            <size key="intrinsicContentSize" width="35" height="20.5"/>
-        </designable>
-        <designable name="kd2-Sy-FDG">
-            <size key="intrinsicContentSize" width="44" height="14.5"/>
-        </designable>
-    </designables>
 </document>

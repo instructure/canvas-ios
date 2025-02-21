@@ -50,8 +50,8 @@ public struct AllCoursesView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .navigationBarTitleView(String(localized: "All Courses", bundle: .core))
         .navigationBarStyle(.global)
-        .navigationTitle(String(localized: "All Courses", bundle: .core), subtitle: nil)
     }
 
     @ViewBuilder

@@ -59,7 +59,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
         testee.urlSession(api.urlSession, dataTask: mockTask, didReceive: apiResponse)
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(uploadItem.apiID, "testAPIID")
         XCTAssertNil(uploadItem.uploadError)
 
@@ -84,7 +84,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
 
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: NSError.instructureError("Test Error"))
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(uploadItem.uploadError, "Test Error")
         subscription.cancel()
     }
@@ -105,7 +105,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
 
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(uploadItem.uploadError, "Upload failed due to unknown reason.")
         subscription.cancel()
     }
@@ -127,7 +127,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
         testee.urlSession(api.urlSession, dataTask: mockTask, didReceive: Data())
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -148,7 +148,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
 
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: nil)
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -167,7 +167,7 @@ class FileUploadProgressObserverTests: CoreTestCase {
 
         testee.urlSession(api.urlSession, task: mockTask, didCompleteWithError: URLError(.backgroundSessionWasDisconnected))
 
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 }

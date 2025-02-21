@@ -17,7 +17,7 @@
 //
 
 import XCTest
-import Core
+@testable import Core
 
 public class TestRouter: Router {
     public init() {
@@ -57,6 +57,12 @@ public class TestRouter: Router {
 
     public override func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
         return routes[url]?()
+    }
+
+    public override func isRegisteredRoute(_ url: URLComponents) -> Bool {
+        routes.keys.contains { route in
+            route.path == url.path
+        }
     }
 
     public var routeExpectation = XCTestExpectation(description: "route")

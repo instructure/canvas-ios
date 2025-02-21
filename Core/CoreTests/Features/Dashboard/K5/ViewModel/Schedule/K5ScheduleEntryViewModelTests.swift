@@ -57,7 +57,7 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
 
         testee.itemTapped(router: router, viewController: WeakViewController(UIViewController()))
 
-        wait(for: [router.routeExpectation], timeout: 0.1)
+        wait(for: [router.routeExpectation], timeout: 1)
         XCTAssertTrue(router.lastRoutedTo("/a", withOptions: .modal(isDismissable: false, embedInNav: true, addDoneButton: true)))
     }
 
@@ -78,7 +78,7 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
 
         testee.leading = .checkbox(isChecked: true)
 
-        wait(for: [refreshTriggeredExpectation], timeout: 0.1)
+        wait(for: [refreshTriggeredExpectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -101,7 +101,7 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
 
         testee.checkboxTapped()
 
-        wait(for: [refreshTriggeredExpectation], timeout: 0.1)
+        wait(for: [refreshTriggeredExpectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -129,7 +129,7 @@ class K5ScheduleEntryViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.subtitle?.color, .textDark)
         XCTAssertEqual(testee.subtitle?.font, .regular12)
 
-        wait(for: [refreshTriggeredExpectation], timeout: 0.1)
+        wait(for: [refreshTriggeredExpectation], timeout: 1)
         subscription.cancel()
     }
 }

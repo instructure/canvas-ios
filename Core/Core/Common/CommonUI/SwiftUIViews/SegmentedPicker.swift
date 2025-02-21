@@ -76,6 +76,8 @@ public struct SegmentedPicker<Element, Content>: View where Content: View {
                         ) { dimensions in
                             dimensions[HorizontalAlignment.center]
                         }
+                        .accessibilityAddTraits(selectedIndex == index ? [.isSelected] : [])
+                        .accessibilityValue(Text("\(index + 1) of \(data.indices.count)", bundle: .core, comment: "Example: 1 of 3"))
                     }
 
                     if index != data.count - 1 {

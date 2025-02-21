@@ -290,6 +290,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 // MARK: - Usage Analytics
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
+
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         if Heap.isTrackingEnabled() {
             Heap.track(name, withProperties: parameters)
@@ -372,6 +373,7 @@ extension StudentAppDelegate {
 }
 
 extension StudentAppDelegate: RemoteLogHandler {
+
     func handleBreadcrumb(_ name: String) {
         Firebase.Crashlytics.crashlytics().log(name)
     }

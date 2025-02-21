@@ -46,7 +46,8 @@ struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
             }
             .frame(minHeight: geometry.size.height)
         }
-        .navigationTitle(viewModel.pageTitle)
+        .navigationBarTitleView(viewModel.pageTitle)
+        .navigationBarStyle(.modal)
         .onDisappear {
             viewModel.didTapBack.send()
         }

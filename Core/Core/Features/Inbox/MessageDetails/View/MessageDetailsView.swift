@@ -50,8 +50,9 @@ public struct MessageDetailsView: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(model.title)
+        .navigationBarTitleView(model.title)
         .navigationBarItems(trailing: moreButton)
+        .navigationBarStyle(.global)
         .snackBar(viewModel: model.snackBarViewModel)
     }
 

@@ -28,8 +28,12 @@ public struct GroupContextCardView: View {
 
     public var body: some View {
         contextCard
+            .navigationBarTitleView(
+                title: model.user.first?.name ?? "",
+                subtitle: model.group.first?.name
+            )
             .navigationBarItems(trailing: emailButton)
-            .navigationTitle(model.user.first?.name ?? "", subtitle: model.group.first?.name)
+            .navigationBarStyle(.color(nil))
             .onAppear {
                 model.viewAppeared()
             }

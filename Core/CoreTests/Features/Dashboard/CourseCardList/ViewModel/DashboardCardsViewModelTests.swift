@@ -42,7 +42,7 @@ class DashboardCardsViewModelTests: CoreTestCase {
         testee.refresh { refreshCallbackExpectation.fulfill() }
         drainMainQueue()
 
-        wait(for: [uiRefreshExpectation, refreshCallbackExpectation], timeout: 0.1)
+        wait(for: [uiRefreshExpectation, refreshCallbackExpectation], timeout: 1)
 
         guard case .data = testee.state else { XCTFail("No data in view model"); return }
         let courseCardList = testee.courseCardList

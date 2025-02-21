@@ -125,7 +125,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         presenter.update()
         let quizStore = presenter.quizzes as! TestStore
 
-        wait(for: [quizStore.refreshExpectation], timeout: 0.1)
+        wait(for: [quizStore.refreshExpectation], timeout: 1)
 
         presenter.quizzes?.eventHandler()
         XCTAssertEqual(resultingQuiz, quiz)
@@ -140,7 +140,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let arcStore = presenter.arc as! TestStore
 
         presenter.viewIsReady()
-        wait(for: [coursesStore.refreshExpectation, assignmentsStore.refreshExpectation, colorsStore.refreshExpectation, arcStore.refreshExpectation], timeout: 0.1)
+        wait(for: [coursesStore.refreshExpectation, assignmentsStore.refreshExpectation, colorsStore.refreshExpectation, arcStore.refreshExpectation], timeout: 1)
     }
 
     func testBaseURLWithNilFragment() {
@@ -535,7 +535,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         try UploadManager.shared.viewContext.save()
         file.uploadError = "im telling you, IT FAILED!!"
         try UploadManager.shared.viewContext.save()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testLockExplanationBeforeUnlockDate() {

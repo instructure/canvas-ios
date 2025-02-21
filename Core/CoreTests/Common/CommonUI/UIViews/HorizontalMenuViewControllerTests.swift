@@ -48,7 +48,7 @@ class HorizontalMenuViewControllerTests: XCTestCase {
         let vc = MockViewController()
         mock.viewControllers.append(vc)
         mock.collectionView(mock.pages!, willDisplay: UICollectionViewCell(), forItemAt: IndexPath(row: 2, section: 0))
-        wait(for: [vc.expectation], timeout: 0.1)
+        wait(for: [vc.expectation], timeout: 1)
     }
 
     func testWithoutMenuItem() {

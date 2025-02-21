@@ -31,7 +31,8 @@ public struct WebSitePreviewView: View {
             headersSection
             launchButton
         }
-        .navigationTitle("WebSite Preview")
+        .navigationBarTitleView("WebSite Preview")
+        .navigationBarStyle(.modal)
         .onAppear {
             viewModel.viewController = controller
         }

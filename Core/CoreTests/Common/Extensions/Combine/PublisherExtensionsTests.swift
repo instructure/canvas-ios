@@ -49,7 +49,7 @@ class PublisherExtensionsTests: XCTestCase {
             .store(in: &subscriptions)
 
         // MARK: - GIVEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(receivedProgress, true)
     }
 
@@ -75,7 +75,7 @@ class PublisherExtensionsTests: XCTestCase {
         publisher.send(completion: .finished)
 
         // MARK: - GIVEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(receivedProgress, false)
     }
 

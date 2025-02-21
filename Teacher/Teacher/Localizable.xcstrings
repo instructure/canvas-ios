@@ -6659,6 +6659,9 @@
         }
       }
     },
+    "Comment sent successfully" : {
+
+    },
     "Comments" : {
       "localizations" : {
         "ar" : {
@@ -28515,9 +28518,6 @@
           }
         }
       }
-    },
-    "Sent successfully" : {
-
     },
     "Similarity Score" : {
       "localizations" : {

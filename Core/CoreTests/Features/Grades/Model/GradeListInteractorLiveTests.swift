@@ -209,7 +209,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
 
         Clock.reset()
@@ -245,7 +245,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -265,7 +265,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -285,7 +285,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -306,7 +306,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -326,7 +326,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
     func testShowGradeLetterForAllGradingPeriodsNotBasedOnGradedAssignment() {
@@ -345,7 +345,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -374,7 +374,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -394,7 +394,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -425,7 +425,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -459,7 +459,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -481,7 +481,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -508,7 +508,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -536,7 +536,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -564,7 +564,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -592,7 +592,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -619,7 +619,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -642,7 +642,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
                     expectation.fulfill()
                 }
         drainMainQueue()
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 

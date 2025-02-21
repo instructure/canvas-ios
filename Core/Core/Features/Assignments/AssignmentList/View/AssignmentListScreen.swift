@@ -49,14 +49,17 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .navigationBarStyle(.color(viewModel.courseColor))
-        .navigationTitle(String(localized: "Assignments", bundle: .core), subtitle: viewModel.courseName)
+        .navigationBarTitleView(
+            title: String(localized: "Assignments", bundle: .core),
+            subtitle: viewModel.courseName
+        )
         .navigationBarGenericBackButton()
         .navBarItems(
             trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
                 viewModel.navigateToPreferences(viewController: controller)
             }
         )
+        .navigationBarStyle(.color(viewModel.courseColor))
         .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
     }

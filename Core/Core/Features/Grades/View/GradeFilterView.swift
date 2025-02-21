@@ -38,19 +38,12 @@ public struct GradeFilterView: View {
                 }
                 sortBySection
             }
-            .navigationTitleStyled(navBarTitleView)
+            .navigationBarTitleView(
+                title: String(localized: "Grade List Preferences", bundle: .core),
+                subtitle: viewModel.courseName
+            )
             .navigationBarItems(leading: cancelButton, trailing: sendButton)
-        }
-    }
-
-    private var navBarTitleView: some View {
-        VStack {
-            Text(String(localized: "Grade List Preferences", bundle: .core))
-                .foregroundStyle(Color.textDarkest)
-                .font(.semibold16)
-            Text(viewModel.courseName ?? "")
-                .foregroundStyle(Color.textDark)
-                .font(.regular12)
+            .navigationBarStyle(.modal)
         }
     }
 

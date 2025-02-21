@@ -28,7 +28,7 @@ class UIAccessibilityAnnouncementTests: XCTestCase {
         UIAccessibility.announce("Test Announcement", announcementHandler: { notificationType, announcementString in
             announcementReceived.fulfill()
             XCTAssertEqual(notificationType, .announcement)
-            XCTAssertEqual(announcementString as? String, "Test Announcement")
+            XCTAssertEqual((announcementString as? NSAttributedString)?.string, "Test Announcement")
         }, isVoiceOverRunning: {
             true
         })

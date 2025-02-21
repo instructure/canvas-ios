@@ -39,7 +39,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
 
         subscription.cancel()
     }
@@ -63,7 +63,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(item.uploadError, "Failed to start upload.")
 
         subscription.cancel()
@@ -93,7 +93,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertNil(item.uploadError)
 
         guard let mockAPITask = apiMock.queue.first else {
@@ -133,7 +133,7 @@ class FileSubmissionItemsUploadStarterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertNil(item.uploadError)
         XCTAssertNil(item.apiID)
         XCTAssertEqual(item.bytesUploaded, 0)

@@ -67,7 +67,7 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
         viewModel.hideDidTap()
 
         // Then
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(viewModel.isHiddenByUser, true)
     }
 

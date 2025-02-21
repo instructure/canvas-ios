@@ -53,10 +53,10 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 }
             }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-            .navigationBarStyle(.color(viewModel.courseColor))
-            .navigationTitle(viewModel.navigationBarTitle, subtitle: nil)
+            .navigationBarTitleView(viewModel.navigationBarTitle)
             .navigationBarGenericBackButton()
             .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
+            .navigationBarStyle(.color(viewModel.courseColor))
             .onAppear {
                 viewModel.viewDidAppear()
                 viewModel.splitModeObserver.splitViewController = controller.value.splitViewController

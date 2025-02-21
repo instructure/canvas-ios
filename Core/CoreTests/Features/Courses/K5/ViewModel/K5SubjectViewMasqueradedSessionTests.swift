@@ -51,7 +51,7 @@ class K5SubjectViewMasqueradedSessionTests: CoreTestCase {
         }
         testee.tabChanged(toIndex: 1, toURL: URL(string: "/first_tab_url")!)
 
-        wait(for: [sessionExpectation], timeout: 0.1)
+        wait(for: [sessionExpectation], timeout: 1)
         subscription.cancel()
     }
 

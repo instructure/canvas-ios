@@ -158,6 +158,20 @@ class CalendarDaysViewController: UIViewController {
         }
     }
 
+    func selectedDayButton() -> CalendarDayButton? {
+        guard let week = weeksStackView.arrangedSubviews[safeIndex: selectedWeekIndex]
+        else { return nil }
+        return week
+            .subviews
+            .compactMap({ $0 as? CalendarDayButton })
+            .first(where: { $0.isSelected })
+    }
+
+    func accessibilityFocusOnSelectedButton() {
+        guard let day = selectedDayButton() else { return }
+        UIAccessibility.post(notification: .screenChanged, argument: day)
+    }
+
     func midDate(isExpanded: Bool) -> Date {
         let week = isExpanded
             ? weeksStackView.arrangedSubviews[weeksStackView.arrangedSubviews.count / 2]

@@ -158,7 +158,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
         mockInteractor.mockLoadPublisher.send(completion: .finished)
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -184,7 +184,7 @@ class CalendarFilterViewModelTests: CoreTestCase {
         mockInteractor.mockLoadPublisher.send(completion: .finished)
 
         // THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 }

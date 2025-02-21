@@ -86,6 +86,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            UIAccessibility.post(notification: .screenChanged, argument: self.tableView.visibleCells.first)
+         }
     }
 
     @IBAction func addCommentButtonPressed(_ sender: UIButton) {

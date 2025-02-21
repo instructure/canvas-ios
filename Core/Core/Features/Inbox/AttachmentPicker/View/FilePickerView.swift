@@ -33,9 +33,10 @@ public struct FilePickerView: View {
         }
         .font(.regular12)
         .foregroundColor(.textDarkest)
-        .navigationTitle(viewModel.title)
+        .navigationBarTitleView(viewModel.title)
         .navigationBarItems(trailing: cancelButton)
         .navigationBarGenericBackButton()
+        .navigationBarStyle(.modal)
     }
 
     var contentView: some View {

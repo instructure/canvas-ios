@@ -97,6 +97,8 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(String(localized: "Could not save the comment", bundle: .student)))
+            } else {
+                UIAccessibility.announce(String(localized: "Comment sent successfully", bundle: .student))
             }
         }
     }

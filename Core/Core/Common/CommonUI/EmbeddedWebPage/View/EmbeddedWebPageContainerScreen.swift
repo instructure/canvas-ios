@@ -55,7 +55,7 @@ public struct EmbeddedWebPageContainerScreen: View {
                 viewModel.viewController = viewController.value
             }
         }
-        .navigationTitle(viewModel.navTitle, subtitle: viewModel.subTitle)
+        .navigationBarTitleView(title: viewModel.navTitle, subtitle: viewModel.subTitle)
         .navigationBarStyle(.color(viewModel.contextColor))
     }
 }

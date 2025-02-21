@@ -28,7 +28,7 @@ public extension Array {
     }
 
     subscript(safeIndex index: Int) -> Element? {
-        guard index < count else {
+        guard index < count && index >= 0 else {
             return nil
         }
         return self[index]

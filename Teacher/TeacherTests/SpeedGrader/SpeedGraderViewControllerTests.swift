@@ -83,4 +83,23 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
         // THEN
         XCTAssertEqual(controller.submissions.all.count, 1)
     }
+
+    func test_normalizeUserID() {
+        XCTAssertEqual(
+            SpeedGraderViewController.normalizeUserID(nil),
+            SpeedGraderViewController.AllUsersUserID
+        )
+        XCTAssertEqual(
+            SpeedGraderViewController.normalizeUserID(":student"),
+            SpeedGraderViewController.AllUsersUserID
+        )
+        XCTAssertEqual(
+            SpeedGraderViewController.normalizeUserID("ABC"),
+            SpeedGraderViewController.AllUsersUserID
+        )
+        XCTAssertEqual(
+            SpeedGraderViewController.normalizeUserID("123"),
+            "123"
+        )
+    }
 }

@@ -27,12 +27,13 @@ public struct InboxCoursePickerView: View {
 
     public var body: some View {
         ScrollView {
-            let titleText = viewModel.groups.isEmpty
-            ? Text("Select a Course", bundle: .core)
-            : Text("Select a Course or a Group", bundle: .core)
+            let title = viewModel.groups.isEmpty
+                ? String(localized: "Select a Course", bundle: .core)
+                : String(localized: "Select a Course or a Group", bundle: .core)
             content
-                .navigationTitleStyled(titleText.font(.semibold17).foregroundColor(.textDarkest))
+                .navigationBarTitleView(title)
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationBarStyle(.modal)
         }
         .refreshable {
             await viewModel.refresh()

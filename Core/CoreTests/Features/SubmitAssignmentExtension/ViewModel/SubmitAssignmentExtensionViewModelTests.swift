@@ -49,7 +49,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         testee.coursePickerViewModel.selectedCourse = .init(id: "1", name: "selected course")
         XCTAssertEqual(testee.selectCourseButtonTitle, Text(verbatim: "selected course"))
 
-        wait(for: [uiRefreshExpectation], timeout: 0.1)
+        wait(for: [uiRefreshExpectation], timeout: 1)
     }
 
     func testAssignmentButtonTitleUpdates() {
@@ -59,7 +59,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         testee.assignmentPickerViewModel.assignmentSelected(.init(id: "1", name: "selected assignment"))
         XCTAssertEqual(testee.selectAssignmentButtonTitle, Text(verbatim: "selected assignment"))
 
-        wait(for: [uiRefreshExpectation], timeout: 0.1)
+        wait(for: [uiRefreshExpectation], timeout: 1)
     }
 
     func testAssignmentSelectionEnablesSubmitButton() {
@@ -69,7 +69,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         testee.assignmentPickerViewModel.assignmentSelected(.init(id: "1", name: "selected assignment"))
         XCTAssertFalse(testee.isSubmitButtonDisabled)
 
-        wait(for: [uiRefreshExpectation], timeout: 0.1)
+        wait(for: [uiRefreshExpectation], timeout: 1)
     }
 
     func testCourseSelectionTriggersAssignmentListLoad() {

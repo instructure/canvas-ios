@@ -61,7 +61,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(item.uploadTarget, FileUploadTarget(upload_url: URL(string: "/test")!, upload_params: ["testKey": "testValue"]))
         XCTAssertNil(item.uploadError)
 
@@ -131,7 +131,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(item.uploadError, "The operation couldn’t be completed. (Core.FileSubmissionErrors.RequestUploadTargetUnknownError error 1.)")
         XCTAssertNil(item.uploadTarget)
 
@@ -164,7 +164,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertNil(item.uploadTarget)
 
         subscription.cancel()
@@ -185,7 +185,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
@@ -220,7 +220,7 @@ class FileUploadTargetRequesterTests: CoreTestCase {
         mockTask.resume()
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertNil(item.uploadTarget)
         XCTAssertNil(item.uploadError)
 

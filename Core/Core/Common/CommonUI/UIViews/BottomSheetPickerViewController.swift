@@ -27,12 +27,18 @@ public struct BottomSheetAction {
 
 public class BottomSheetPickerViewController: UIViewController {
     let env = AppEnvironment.shared
+
+    let titleLabel = UILabel()
+    let buttonStackView = UIStackView()
+    let mainStackView = UIStackView()
+
+    private let topPadding: CGFloat = 8
+    private var titleBottomSpacing: CGFloat = 0
+    private var frameHeight: CGFloat = 0
+
     public private(set) var actions: [BottomSheetAction] = []
-    let stackView = UIStackView()
 
     public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
-
-    private var buttonHeight: CGFloat = 0
 
     public static func create() -> BottomSheetPickerViewController {
         let controller = BottomSheetPickerViewController()
@@ -44,25 +50,53 @@ public class BottomSheetPickerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor {
-            $0.isDarkInterface ? .backgroundLight : .backgroundLightest
-        }
-        view.addSubview(stackView)
-        stackView.axis = .vertical
-        stackView.pin(inside: view, leading: nil, trailing: nil, top: 8, bottom: nil)
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        view.backgroundColor = UIColor { $0.isDarkInterface ? .backgroundLight : .backgroundLightest }
+
+        addTitle()
+        mainStackView.addArrangedSubview(buttonStackView)
+        buttonStackView.axis = .vertical
+
+        view.addSubview(mainStackView)
+        mainStackView.axis = .vertical
+        mainStackView.spacing = titleBottomSpacing
+        mainStackView.pin(inside: view, leading: nil, trailing: nil, top: topPadding, bottom: nil)
+        mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         addAccessiblityDismissButton()
+    }
+
+    private func addTitle() {
+        guard title?.nilIfEmpty != nil else { return }
+        titleBottomSpacing = 8
+        titleLabel.font = .scaledNamedFont(.regular14)
+        titleLabel.textColor = .textDark
+        titleLabel.textAlignment = .center
+        titleLabel.text = title
+        titleLabel.accessibilityTraits = .header
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.numberOfLines = 0
+        mainStackView.addArrangedSubview(titleLabel)
+    }
+
+    private func updateFrameHeight() {
+        let size = CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)
+        frameHeight = titleLabel.sizeThatFits(size).height
+        buttonStackView.arrangedSubviews.forEach { frameHeight += $0.sizeThatFits(size).height }
     }
 
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let topPadding: CGFloat = 8
-        view.frame.size.height = topPadding + buttonHeight + view.safeAreaInsets.bottom
+        updateFrameHeight()
+        view.frame.size.height = topPadding + titleBottomSpacing + frameHeight + view.safeAreaInsets.bottom
     }
 
-    public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
+    public func addAction(
+        image: UIImage?,
+        title: String,
+        accessibilityIdentifier: String? = nil,
+        action: @escaping () -> Void = {}
+    ) {
         loadViewIfNeeded()
         let button = UIButton(type: .system)
         button.configuration = UIButton.Configuration.plain()
@@ -79,19 +113,20 @@ public class BottomSheetPickerViewController: UIViewController {
             button.setImage(image, for: .normal)
             button.configuration?.imagePadding = 24
         }
-        buttonHeight += button.sizeThatFits(CGSize(width: view.bounds.size.width, height: .greatestFiniteMagnitude)).height
 
-        stackView.addArrangedSubview(button)
+        buttonStackView.addArrangedSubview(button)
         actions.append(BottomSheetAction(action: action, image: image, title: title))
     }
 
     private func addAccessiblityDismissButton() {
         accessibilityCustomActions = [
-            .init(name: String(localized: "Dismiss menu", bundle: .core),
-                  actionHandler: { [weak self] _ in
-                      self?.dismiss(animated: true)
-                      return true
-                  })
+            .init(
+                name: String(localized: "Dismiss menu", bundle: .core),
+                actionHandler: { [weak self] _ in
+                    self?.dismiss(animated: true)
+                    return true
+                }
+            )
         ]
     }
 
