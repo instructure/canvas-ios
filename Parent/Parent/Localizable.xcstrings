@@ -12561,6 +12561,9 @@
         }
       }
     },
+    "Profile Menu" : {
+
+    },
     "QR Code" : {
       "localizations" : {
         "ar" : {
@@ -14356,6 +14359,7 @@
       }
     },
     "Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

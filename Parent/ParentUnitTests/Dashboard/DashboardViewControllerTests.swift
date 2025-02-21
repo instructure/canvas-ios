@@ -55,7 +55,7 @@ class DashboardViewControllerTests: ParentTestCase {
         XCTAssert(vc.tabsController.viewControllers?[1] is PlannerViewController)
         XCTAssert(vc.tabsController.viewControllers?[2] is ObserverAlertListViewController)
 
-        XCTAssertEqual(vc.profileButton.accessibilityLabel, "Settings")
+        XCTAssertEqual(vc.profileButton.accessibilityLabel, "Profile Menu")
         XCTAssertEqual(vc.profileButton.accessibilityHint, "3 unread conversations")
         vc.profileButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))
