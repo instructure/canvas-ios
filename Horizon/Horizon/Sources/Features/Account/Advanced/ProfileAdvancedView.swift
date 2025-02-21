@@ -39,6 +39,7 @@ struct ProfileAdvancedView: View {
                     focused: _focused
                 ) {
                     SavingButton(
+                        title: String(localized: "Save Changes", bundle: .horizon),
                         isLoading: $viewModel.isLoading,
                         isDisabled: $viewModel.isSaveDisabled,
                         onSave: viewModel.save

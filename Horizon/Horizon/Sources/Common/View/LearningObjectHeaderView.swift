@@ -18,6 +18,7 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct LearningObjectHeaderView: View {
     let type: String
@@ -36,16 +37,19 @@ struct LearningObjectHeaderView: View {
                     .aspectRatio(contentMode: .fit)
                     .foregroundStyle(Color.textDarkest)
                     .frame(width: 14, height: 14)
-                Size12RegularTextDarkestTitle(title: type)
+                Text(type)
+                    .huiTypography(.p3)
                 Spacer()
                 Image(systemName: "timer")
                     .resizable()
                     .renderingMode(.template)
                     .foregroundStyle(Color.textDarkest)
                     .frame(width: 14, height: 14)
-                Size12RegularTextDarkestTitle(title: duration)
+                Text(duration)
+                    .huiTypography(.p3)
             }
-            Size12RegularTextDarkTitle(title: courseName)
+            Text(courseName)
+                .huiTypography(.p3)
                 .padding(.top, 2)
             ContentProgressBar(
                 progress: 0.30
@@ -53,9 +57,11 @@ struct LearningObjectHeaderView: View {
             .padding(.top, 12)
 
             HStack(spacing: 0) {
-                Size12RegularTextDarkestTitle(title: courseState)
+                Text(courseState)
+                    .huiTypography(.p3)
                 Spacer()
-                Size12RegularTextDarkestTitle(title: courseDueDate)
+                Text(courseDueDate)
+                    .huiTypography(.p3)
             }
             .padding(.top, 2)
         }
