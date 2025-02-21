@@ -20,7 +20,6 @@
 import XCTest
 
 final class RecurrenceRuleSelectionDescriptionTests: XCTestCase {
-    
     func test_selectionText() {
         XCTAssertEqual(RecurrenceFrequency.daily.selectionText, String(localized: "Daily", bundle: .core))
         XCTAssertEqual(RecurrenceFrequency.weekly.selectionText, String(localized: "Weekly", bundle: .core))

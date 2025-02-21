@@ -21,13 +21,13 @@ import Foundation
 
 final class DismissObserverAlert: DeleteUseCase {
     typealias Model = ObserverAlert
-    
+
     let request: PutObserverAlertDismissedRequest
     let cacheKey: String? = nil
     var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: id) }
-    
+
     private let id: String
-    
+
     init(id: String) {
         self.id = id
         self.request = PutObserverAlertDismissedRequest(alertID: id)
