@@ -138,7 +138,9 @@ struct SubmissionCommentView: View {
                 HorizonUI.icons.arrowBack,
                 type: .white
             ) {
-                viewModel.goBack(from: viewController)
+//                viewModel.goBack(from: viewController)
+                // TODO: Align with design if back and close is both needed.
+                dismiss()
             }
             Spacer()
             HStack(spacing: .huiSpaces.space8) {

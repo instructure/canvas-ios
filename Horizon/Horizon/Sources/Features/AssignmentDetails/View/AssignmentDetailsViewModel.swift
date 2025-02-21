@@ -102,7 +102,7 @@ final class AssignmentDetailsViewModel {
         let view = SubmissionCommentAssembly.makeView(
             courseID: courseID,
             assignmentID: assignment?.id ?? "",
-            attempt: 1
+            attempt: 1 // TODO: Get the actual submission for the assignment, then pass submission.attempt here
         )
         let viewController = CoreHostingController(view)
         if let presentationController = viewController.sheetPresentationController {
