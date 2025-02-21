@@ -16,39 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Parent/Parent/ObserverAlerts/Model/UseCase/DismissObserverAlert.swift
 import Core
 import Foundation
 
 final class DismissObserverAlert: DeleteUseCase {
     typealias Model = ObserverAlert
-
+    
     let request: PutObserverAlertDismissedRequest
     let cacheKey: String? = nil
     var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: id) }
-
+    
     private let id: String
-
+    
     init(id: String) {
         self.id = id
         self.request = PutObserverAlertDismissedRequest(alertID: id)
     }
-========
-import SwiftUI
-
-public protocol SearchViewsProvider {
-    associatedtype Filter: SearchPreference
-    associatedtype FilterEditor: View
-    associatedtype Support: SearchSupportAction
-    associatedtype SearchContent: View
-
-    var supportButtonModel: SearchSupportButtonModel<Support>? { get }
-
-    func contentView(_ filter: Binding<Filter?>) -> SearchContent
-    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
-}
-
-public protocol SearchPreference {
-    var isActive: Bool { get }
->>>>>>>> origin/master:Core/Core/Features/Search/View/SearchViewsProvider.swift
 }

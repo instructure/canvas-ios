@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Cards/HorizonUI.Card.Stroybook.swift
 public extension HorizonUI.Cards {
     struct Storybook: View {
         public var body: some View {
@@ -49,39 +48,3 @@ public extension HorizonUI.Cards {
 public extension HorizonUI {
     struct Cards { }
 }
-========
-extension InstUI {
-
-    public struct NavigationBarTitleView: View {
-        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-        @Environment(\.navBarColors) private var navBarColors
-
-        private let title: String
-        private let subtitle: String?
-
-        public init(
-            title: String,
-            subtitle: String? = nil
-        ) {
-            self.title = title
-            self.subtitle = subtitle
-        }
-
-        public var body: some View {
-            VStack(spacing: 1) {
-                Text(title)
-                    .font(.semibold16)
-                    .foregroundColor(navBarColors.title)
-
-                if let subtitle, subtitle.isNotEmpty {
-                    Text(subtitle)
-                        .font(.regular14)
-                        .foregroundColor(navBarColors.subtitle)
-                }
-            }
-            .accessibilityElement(children: .combine)
-            .accessibilityAddTraits(.isHeader)
-        }
-    }
-}
->>>>>>>> origin/master:Core/Core/Common/CommonUI/InstUI/Views/NavigationBarTitleView.swift

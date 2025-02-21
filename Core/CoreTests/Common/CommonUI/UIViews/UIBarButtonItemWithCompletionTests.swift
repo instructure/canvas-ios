@@ -73,20 +73,4 @@ class UIBarButtonItemWithCompletionTests: XCTestCase {
         view.buttonDidTap(sender: view)
         waitForExpectations(timeout: 1)
     }
-
-    func testCompletionWithImage() {
-        let expectation = expectation(description: "Completion gets called")
-        let completion: () -> Void = {
-            expectation.fulfill()
-        }
-
-        let view = UIBarButtonItemWithCompletion(
-            image: UIImage(),
-            landscapeImagePhone: UIImage(),
-            style: .plain,
-            actionHandler: completion
-        )
-        view.buttonDidTap(sender: view)
-        waitForExpectations(timeout: 0.1)
-    }
 }

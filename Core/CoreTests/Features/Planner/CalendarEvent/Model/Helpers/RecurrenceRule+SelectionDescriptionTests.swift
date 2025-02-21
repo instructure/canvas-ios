@@ -1,10 +1,6 @@
 //
 // This file is part of Canvas.
-<<<<<<<< HEAD:Core/CoreTests/Features/Planner/CalendarEvent/Model/Helpers/RecurrenceRule+SelectionDescriptionTests.swift
-// Copyright (C) 2024-present  Instructure, Inc.
-========
 // Copyright (C) 2025-present  Instructure, Inc.
->>>>>>>> origin/master:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -20,40 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Core/CoreTests/Features/Planner/CalendarEvent/Model/Helpers/RecurrenceRule+SelectionDescriptionTests.swift
-========
 @testable import Core
->>>>>>>> origin/master:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
 import XCTest
-@testable import Core
 
-<<<<<<<< HEAD:Core/CoreTests/Features/Planner/CalendarEvent/Model/Helpers/RecurrenceRule+SelectionDescriptionTests.swift
 final class RecurrenceRuleSelectionDescriptionTests: XCTestCase {
-
+    
     func test_selectionText() {
         XCTAssertEqual(RecurrenceFrequency.daily.selectionText, String(localized: "Daily", bundle: .core))
         XCTAssertEqual(RecurrenceFrequency.weekly.selectionText, String(localized: "Weekly", bundle: .core))
         XCTAssertEqual(RecurrenceFrequency.monthly.selectionText, String(localized: "Monthly", bundle: .core))
         XCTAssertEqual(RecurrenceFrequency.yearly.selectionText, String(localized: "Yearly", bundle: .core))
-========
-class CourseSmartSearchViewAttributesTests: CoreTestCase {
-
-    func test_default_properties() {
-        let testee = CourseSmartSearchViewAttributes.default
-
-        XCTAssertEqual(testee.context, .currentUser)
-        XCTAssertNil(testee.accentColor)
-    }
-
-    func test_custom_properties() {
-        let testee = CourseSmartSearchViewAttributes(
-            context: .course("1"),
-            color: .red
-        )
-
-        XCTAssertEqual(testee.context, .course("1"))
-        XCTAssertEqual(testee.accentColor, .red)
-        XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
->>>>>>>> origin/master:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
     }
 }

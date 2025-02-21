@@ -18,38 +18,6 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Cards/HorizonUI.Card.Stroybook.swift
-public extension HorizonUI.Cards {
-    struct Storybook: View {
-        public var body: some View {
-            ScrollView {
-                VStack {
-                    Text("Module Container")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.ModuleContainer.Storybook()
-                    Text("Module Item Card")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.LearningObjectItem.Storybook()
-                    Text("Learning Object Card")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    HorizonUI.LearningObjectCard.Storybook()
-                }
-            }
-            .navigationTitle("Cards")
-            .padding()
-            .background(Color.black.opacity(0.1))
-        }
-    }
-}
-
-#Preview {
-    HorizonUI.Cards.Storybook()
-}
-
-public extension HorizonUI {
-    struct Cards { }
-}
-========
 extension InstUI {
 
     public struct NavigationBarTitleView: View {
@@ -84,4 +52,3 @@ extension InstUI {
         }
     }
 }
->>>>>>>> origin/master:Core/Core/Common/CommonUI/InstUI/Views/NavigationBarTitleView.swift
