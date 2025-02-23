@@ -31,17 +31,28 @@ final class AssignmentDetailsAssembly {
             assignmentID: assignmentID,
             courseID: courseID
         )
+
         let interactor = AssignmentInteractorLive(
             courseID: courseID,
             assignmentID: assignmentID,
+            userID: AppEnvironment.shared.currentSession?.userID ?? "",
             uploadManager: uploadManager,
             appEnvironment: .shared
         )
+        let userDefaults = AppEnvironment.shared.userDefaults
+        let textEntryInteractor = AssignmentTextEntryInteractorLive(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            userDefaults: userDefaults
+        )
         let router = AppEnvironment.shared.router
+
         return AssignmentDetailsViewModel(
             interactor: interactor,
+            textEntryInteractor: textEntryInteractor,
             router: router,
             courseID: courseID,
+            assignmentID: assignmentID,
             didLoadAttemptCount: didLoadAttemptCount
         )
     }
@@ -50,6 +61,7 @@ final class AssignmentDetailsAssembly {
         courseID: String,
         assignmentID: String,
         isShowHeader: Binding<Bool>,
+        isShowModuleNavBar: Binding<Bool>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetails {
         AssignmentDetails(
@@ -58,27 +70,27 @@ final class AssignmentDetailsAssembly {
                 assignmentID: assignmentID,
                 didLoadAttemptCount: didLoadAttemptCount
             ),
-            isShowHeader: isShowHeader
+            isShowHeader: isShowHeader,
+            isShowModuleNavBar: isShowModuleNavBar
         )
     }
 
 #if DEBUG
     static func makePreview() -> AssignmentDetails {
         let interactor = AssignmentInteractorPreview()
+        let assignmentTextEntryInteractor = AssignmentTextEntryInteractorLive(
+            courseID: "courseID",
+            assignmentID: "assignmentID",
+            userDefaults: AppEnvironment.shared.userDefaults
+        )
         let viewModel = AssignmentDetailsViewModel(
             interactor: interactor,
+            textEntryInteractor: assignmentTextEntryInteractor,
             router: AppEnvironment.shared.router,
-            courseID: "1"
+            courseID: "1",
+            assignmentID: "assignmentID"
         ) { _ in}
-        return AssignmentDetails(viewModel: viewModel)
-    }
-
-    static func makeAssignmentSubmissionViewModel() -> AssignmentDetailsViewModel {
-        let interactor = AssignmentInteractorPreview()
-        return AssignmentDetailsViewModel(
-            interactor: interactor,
-            router: AppEnvironment.shared.router,
-            courseID: "1") { _ in }
+        return AssignmentDetails(viewModel: viewModel, isShowModuleNavBar: .constant(false))
     }
 #endif
 }

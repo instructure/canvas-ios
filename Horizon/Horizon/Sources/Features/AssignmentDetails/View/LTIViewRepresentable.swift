@@ -16,27 +16,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
+import Core
 
-enum AssignmentType: String {
-    case textEntry = "online_text_entry"
-    case uploadFile = "online_upload"
+struct LTIViewRepresentable: UIViewControllerRepresentable {
+    // MARK: - Dependencies
 
-    var title: String {
-        switch self {
-        case .textEntry:
-            "Text Entry"
-        case .uploadFile:
-            "File Upload"
-        }
+    private let environment: AppEnvironment
+    private let tools: LTITools
+    private let name: String?
+
+    init(
+        environment: AppEnvironment,
+        tools: LTITools,
+        name: String?
+    ) {
+        self.environment = environment
+        self.tools = tools
+        self.name = name
     }
 
-    var imageName: String {
-        switch self {
-        case .textEntry:
-            "square.and.pencil"
-        case .uploadFile:
-            "square.and.arrow.up"
-        }
+    func makeUIViewController(context: Self.Context) -> LTIViewController {
+        LTIViewController.create(
+            env: environment,
+            tools: tools,
+            name: name
+        )
     }
+
+    func updateUIViewController(
+        _ uiViewController: LTIViewController,
+        context: Self.Context
+    ) { }
 }

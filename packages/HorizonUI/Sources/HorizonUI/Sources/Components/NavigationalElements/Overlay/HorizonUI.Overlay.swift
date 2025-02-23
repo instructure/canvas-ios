@@ -56,7 +56,7 @@ public extension HorizonUI {
             ZStack(alignment: .trailing) {
                 Text(title)
                     .foregroundStyle(Color.huiColors.primitives.grey125)
-                    .huiTypography(.h3)
+                    .huiTypography(.p1)
                     .frame(maxWidth: .infinity)
                 HorizonUI.IconButton(HorizonUI.icons.close, type: .white) {
                     isPresented.toggle()

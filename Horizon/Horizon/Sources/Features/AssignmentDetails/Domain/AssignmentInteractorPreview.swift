@@ -22,6 +22,10 @@ import Core
 import Combine
 
 class AssignmentInteractorPreview: AssignmentInteractor {
+    func getSubmissions() -> AnyPublisher<[HSubmission], Never> {
+        Just([])
+            .eraseToAnyPublisher()
+    }
 
     var attachments = CurrentValueSubject<[File], Never>([])
     var didUploadFiles = PassthroughSubject<Result<Void, Error>, Never>()

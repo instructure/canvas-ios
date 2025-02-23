@@ -39,7 +39,15 @@ enum AssignmentSubmissionType: String {
         }
     }
 
-    static func items() -> [String] {
-        [Self.text, Self.fileUpload].map { $0.title }
+    static var items: [String] {
+        [Self.text, Self.fileUpload].map(\.title)
+    }
+
+    var index: Int {
+        switch self {
+        case .text: return 0
+        case .fileUpload: return 1
+        case .externalTool: return 2
+        }
     }
 }

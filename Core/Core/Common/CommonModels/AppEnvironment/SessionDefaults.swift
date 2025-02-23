@@ -260,4 +260,10 @@ public struct SessionDefaults: Equatable {
         get { self["assignmentListTeacherStatusFilterSettingByCourseId"] as? [String: String] }
         set { self["assignmentListTeacherStatusFilterSettingByCourseId"] = newValue }
     }
+
+    // Horizon
+    public var assignmentSubmissionTextEntry: [String: String]? {
+        get { self["assignmentSubmissionTextEntry"] as? [String: String] }
+        set { self["assignmentSubmissionTextEntry"] = newValue }
+    }
 }

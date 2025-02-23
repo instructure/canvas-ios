@@ -4,6 +4,16 @@
     "" : {
 
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%lld %@ %lld" : {
       "localizations" : {
         "en" : {
@@ -23,7 +33,7 @@
     "Add a Note" : {
 
     },
-    "Add your text" : {
+    "Add your text entry" : {
 
     },
     "Adelaide (+09:30/+10:30)" : {
@@ -179,6 +189,12 @@
     "Choose and complete one of the required items." : {
 
     },
+    "Choose File" : {
+
+    },
+    "Choose Photo or Video" : {
+
+    },
     "Complete all of the items." : {
 
     },
@@ -198,6 +214,9 @@
 
     },
     "Darwin (+09:30)" : {
+
+    },
+    "Delete Draft" : {
 
     },
     "Dhaka (+06:00/+06:00)" : {
@@ -221,9 +240,6 @@
     "Edinburgh (+00:00/+01:00)" : {
 
     },
-    "Edit" : {
-
-    },
     "Eirunepe (-05:00/-05:00)" : {
 
     },
@@ -242,7 +258,13 @@
     "Error" : {
 
     },
+    "External Tool" : {
+
+    },
     "Fiji (+12:00/+12:00)" : {
+
+    },
+    "File Upload" : {
 
     },
     "Filter" : {
@@ -455,6 +477,9 @@
     "Name is required" : {
 
     },
+    "New Attempt" : {
+
+    },
     "New Caledonia (+11:00/+11:00)" : {
 
     },
@@ -498,9 +523,6 @@
 
     },
     "Ok" : {
-
-    },
-    "OK" : {
 
     },
     "Open in a New Tab" : {
@@ -605,10 +627,16 @@
     "Save Changes" : {
 
     },
+    "Saved at " : {
+
+    },
     "Scores" : {
 
     },
     "Search" : {
+
+    },
+    "Select a Submission Type" : {
 
     },
     "Seoul (+09:00)" : {
@@ -659,6 +687,9 @@
     "Taipei (+08:00)" : {
 
     },
+    "Take Photo or Video" : {
+
+    },
     "Tallinn (+02:00/+03:00)" : {
 
     },
@@ -675,6 +706,9 @@
 
     },
     "Tell me more about this topic" : {
+
+    },
+    "Text" : {
 
     },
     "There was an error. please try again." : {
@@ -702,6 +736,9 @@
 
     },
     "Unsupported Item" : {
+
+    },
+    "Upload File" : {
 
     },
     "Urumqi (+06:00/+06:00)" : {
@@ -741,6 +778,12 @@
 
     },
     "Your Courses" : {
+
+    },
+    "Your Text Submission" : {
+
+    },
+    "Your Uploaded Submission" : {
 
     },
     "Zagreb (+01:00/+02:00)" : {

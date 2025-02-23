@@ -362,6 +362,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                             "error": error?.localizedDescription ?? "unknown"
                         ])
                         RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
+                        if let error {
+                            didUploadFile.send(.failure(error))
+                        }
                         self.complete(file: file, error: error)
                         return
                     }
@@ -421,7 +424,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.localFileURL = nil
             }
             try? context.save()
-            if error != nil {
+            if let error {
+                didUploadFile.send(.failure(error))
                 if case let .submission(courseID, assignmentID, _)? = file.context {
                     localNotifications.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {

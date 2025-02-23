@@ -23,117 +23,138 @@ import Observation
 
 @Observable
 final class AssignmentDetailsViewModel {
-    // MARK: - Input
-
-    private(set) var submissionEvents = PassthroughSubject<AssignmentSubmissionView.Events, Never>()
-    var isSubmitButtonVisible = false
-    var selectedSubmission: AssignmentType?
-
     // MARK: - Input / Output
 
-    var isAlertVisible = false
+    var htmlContent = ""
 
     // MARK: - Output
 
     private(set) var assignment: HAssignment?
     private(set) var isLoaderVisible = true
-    private(set) var didSubmitAssignment = false
-    private(set) var attachments: [File] = []
-    private(set) var errorMessage = ""
-    private(set) var htmlContent = ""
-    var isSubmitButtonDisabled: Bool {
-        let selectedSubmission = selectedSubmission ?? .textEntry
-        switch selectedSubmission {
-        case .textEntry:
-            return htmlContent.isEmpty
-        case .uploadFile:
-            return attachments.isEmpty
-        }
-    }
+    private(set) var attachedFiles: [File] = []
+    private(set) var submitButtonTitle = ""
+    private(set) var errorMessage: String?
+    private(set) var lastDraftSavedAt: String?
+    private(set) var submission: HSubmission?
+    private(set) var isSegmentControlVisible: Bool = false
+    private(set) var selectedSubmission: AssignmentSubmissionType = .text
 
     // MARK: - Properties
 
     private var subscriptions = Set<AnyCancellable>()
+    private var textEntryTimestamp: String?
+    private var fileUploadTimestamp: String?
+
+    var selectedSubmissionIndex: Int = 0 {
+        didSet {
+            selectedSubmission = AssignmentSubmissionType(index: selectedSubmissionIndex) ?? .text
+            setLastDraftSavedAt()
+        }
+    }
+
+    var didSubmitBefore: Bool = false {
+        didSet {
+            submitButtonTitle = didSubmitBefore
+            ? AssignmentLocalizedKeys.newAttempt.title
+            : AssignmentLocalizedKeys.submitAssignment.title
+        }
+    }
+
+    var shouldEnableSubmitButton: Bool {
+        guard didSubmitBefore == false else {
+            // Allow submitting a new attempt.
+            return true
+        }
+        switch selectedSubmission {
+        case .text:
+            return htmlContent.isNotEmpty
+        case .fileUpload:
+            return !attachedFiles.isEmpty
+        default:
+            return false
+        }
+    }
 
     // MARK: - Dependancies
 
     private let interactor: AssignmentInteractor
+    private let textEntryInteractor: AssignmentTextEntryInteractor
     private let router: Router
-    private let courseID: String
+    let courseID: String
+    let assignmentID: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let didLoadAttemptCount: (String?) -> Void
 
     // MARK: - Init
 
-    deinit {
-        interactor.cancelAllFiles()
-    }
-
     init(
         interactor: AssignmentInteractor,
+        textEntryInteractor: AssignmentTextEntryInteractor,
         router: Router,
         courseID: String,
+        assignmentID: String,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) {
         self.interactor = interactor
+        self.textEntryInteractor = textEntryInteractor
         self.scheduler = scheduler
         self.router = router
         self.courseID = courseID
+        self.assignmentID = assignmentID
         self.didLoadAttemptCount = didLoadAttemptCount
-        fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
-    }
-
-    // MARK: - Input Actions
-
-    func presentRichContentEditor(controller: WeakViewController) {
-        let richContentEditor = TextSubmissionViewController.create(htmlContent: htmlContent, courseID: courseID)
-        /// Switch the `selectedSubmission` to nil and then back to `.textEntry` after retrieving the HTML content, to reflect the height for webView.
-        selectedSubmission = nil
-        richContentEditor.didSetHtmlContent = { [weak self] html in
-            self?.htmlContent = html
-            self?.selectedSubmission = .textEntry
-        }
-        router.show(richContentEditor, from: controller, options: .modal(isDismissable: false, embedInNav: true))
+        fetchAssignmentDetails()
     }
 
     // MARK: - Private Functions
 
+    private func fetchDrafts() {
+        let lastTextEntryDraft = textEntryInteractor.load()
+        htmlContent = lastTextEntryDraft?.text ?? ""
+        textEntryTimestamp = lastTextEntryDraft?.dateFormated
+        fileUploadTimestamp = attachedFiles.first?.createdAt?.formatted(format: "d/MM, h:mm a")
+    }
+
     private func fetchAssignmentDetails() {
-        interactor.getAssignmentDetails()
+        Publishers.Zip(interactor.getAssignmentDetails(), interactor.getSubmissions())
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] response in
-                self?.isLoaderVisible = false
-                self?.assignment = response
-                self?.didLoadAttemptCount(response.attemptCount)
+            .sink { [weak self] assignmentDetails, submissions in
+                self?.configAssignmentDetails(response: assignmentDetails, submissions: submissions)
             }
             .store(in: &subscriptions)
     }
 
-    private func bindSubmissionAssignmentEvents() {
-        submissionEvents.sink { [weak self] event in
-            guard let self else {
-                return
-            }
-            switch event {
-            case .onTextEntry:
-                submitTextEntry()
-            case .uploadFile(url: let url):
-                interactor.addFile(url: url)
-            case .sendFileTapped:
-                isLoaderVisible = true
-                interactor.uploadFiles()
-            case .deleteFile(file: let file):
-                interactor.cancelFile(file)
-            }
-        }
-        .store(in: &subscriptions)
+    private func configAssignmentDetails(response: HAssignment, submissions: [HSubmission]) {
+        isLoaderVisible = false
+        assignment = response
 
+        // This is the first time to visit the assignment & did't submit before
+        isSegmentControlVisible = Set(response.assignmentSubmissionTypes) == Set([.text, .fileUpload])
+        let firstSubmission = response.assignmentSubmissionTypes.first ?? .text
+        selectedSubmission = isSegmentControlVisible ? .text : firstSubmission
+
+        // In case submit before
+        didSubmitBefore = !response.isUnsubmitted
+        let latestSubmission = submissions.first?.type ?? .text
+
+        selectedSubmission = didSubmitBefore ? latestSubmission : selectedSubmission
+        submission = submissions.first
+        didLoadAttemptCount(response.attemptCount)
+    }
+
+    private func bindSubmissionAssignmentEvents() {
         interactor.attachments
+            .removeDuplicates()
             .receive(on: scheduler)
-            .sink { [weak self] values in
-                self?.attachments = values
+            .sink { [weak self] files in
+                guard let self else {
+                    return
+                }
+                print(files.count,"=====")
+
+                attachedFiles = files
+                fetchDrafts()
             }
             .store(in: &subscriptions)
 
@@ -143,29 +164,86 @@ final class AssignmentDetailsViewModel {
             .sink { [weak self] result in
                 switch result {
                 case .success:
-                    self?.isLoaderVisible = false
-                    self?.didSubmitAssignment = true
+                    self?.fetchAssignmentDetails()
+                    self?.interactor.cancelAllFiles()
                 case .failure(let error):
                     self?.isLoaderVisible = false
-                    self?.isAlertVisible = true
                     self?.errorMessage = error.localizedDescription
                 }
             }
             .store(in: &subscriptions)
     }
 
-    private func submitTextEntry() {
-        isLoaderVisible = true
+    // MARK: - Input Actions
+
+    func addFile(url: URL) {
+        interactor.addFile(url: url)
+    }
+
+    func deleteFile(file: File) {
+        interactor.cancelFile(file)
+    }
+
+    func submitTextEntry() {
         interactor.submitTextEntry(with: htmlContent)
             .sink { [weak self] completion in
-                self?.isLoaderVisible = false
                 if case .failure(let error) = completion {
-                    self?.isAlertVisible = true
+                    self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
                 }
             } receiveValue: { [weak self] _ in
-                self?.didSubmitAssignment = true
+                self?.htmlContent = ""
+                self?.textEntryInteractor.delete()
+                self?.fetchAssignmentDetails()
             }
             .store(in: &subscriptions)
+    }
+
+    func saveTextEntry() {
+        textEntryInteractor.save(htmlContent)
+    }
+
+    func submit() {
+        guard !didSubmitBefore else {
+            didSubmitBefore = false
+            selectedSubmissionIndex = selectedSubmission.index
+            return
+        }
+        isLoaderVisible = true
+        switch selectedSubmission {
+        case .text:
+            submitTextEntry()
+        case .fileUpload:
+            interactor.uploadFiles()
+        default:
+            break
+        }
+    }
+
+    private func setLastDraftSavedAt() {
+        switch selectedSubmission {
+        case .text:
+            lastDraftSavedAt = textEntryTimestamp
+        case .fileUpload:
+            lastDraftSavedAt = fileUploadTimestamp
+        default:
+            break
+        }
+    }
+
+    func deleteDraft() {
+        switch selectedSubmission {
+        case .text:
+            textEntryInteractor.delete()
+            textEntryTimestamp = nil
+            lastDraftSavedAt = nil
+            htmlContent = ""
+        case .fileUpload:
+            interactor.cancelAllFiles()
+            fileUploadTimestamp = nil
+            lastDraftSavedAt = nil
+        default:
+            break
+        }
     }
 }

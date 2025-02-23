@@ -25,6 +25,7 @@ public struct ModuleItemSequenceView: View {
 
     @State private var isShowMakeAsDoneSheet = false
     @State private var isShowHeader = true
+    @State private var isShowModuleNavBar = true
     @State private var attemptCount: String?
     @Environment(\.viewController) private var viewController
 
@@ -168,7 +169,8 @@ public struct ModuleItemSequenceView: View {
                 AssignmentDetailsAssembly.makeView(
                     courseID: courseID,
                     assignmentID: assignmentID,
-                    isShowHeader: $isShowHeader
+                    isShowHeader: $isShowHeader,
+                    isShowModuleNavBar: $isShowModuleNavBar
                 ) { attemptCount in
                     self.attemptCount = attemptCount
                 }
@@ -188,19 +190,22 @@ public struct ModuleItemSequenceView: View {
         }
     }
 
+    @ViewBuilder
     private var moduleNavBarView: some View {
-        ModuleItemSequenceAssembly.makeModuleNavBarView(
-            isNextButtonEnabled: viewModel.isNextButtonEnabled,
-            isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled
-        ) {
-            goNext()
-        } didTapPrevious: {
-            goPrevious()
+        if isShowModuleNavBar {
+            ModuleItemSequenceAssembly.makeModuleNavBarView(
+                isNextButtonEnabled: viewModel.isNextButtonEnabled,
+                isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled
+            ) {
+                goNext()
+            } didTapPrevious: {
+                goPrevious()
+            }
+            .padding(.vertical, .huiSpaces.space8)
+            .padding(.horizontal, .huiSpaces.space16)
+            .background(Color.huiColors.surface.pagePrimary)
+            .frame(height: 56)
         }
-        .padding(.vertical, .huiSpaces.space8)
-        .padding(.horizontal, .huiSpaces.space16)
-        .background(Color.huiColors.surface.pagePrimary)
-        .frame(height: 56)
     }
 }
 #if DEBUG

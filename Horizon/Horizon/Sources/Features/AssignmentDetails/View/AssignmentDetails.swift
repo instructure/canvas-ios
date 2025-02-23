@@ -21,62 +21,107 @@ import HorizonUI
 import Core
 
 struct AssignmentDetails: View {
-
     // MARK: - Dependencies
+
     @State private var viewModel: AssignmentDetailsViewModel
     @Binding private var isShowHeader: Bool
-    @FocusState private var focusedInput: Bool
-    @State private var isShowFileImporter = false
-    @State private var isPresentOverlayUploadFile = false
+    @Binding private var isShowModuleNavBar: Bool
+
+    // MARK: - Private Properties
+
+    @State private var dismissKeyboard: Bool = false
 
     init(
         viewModel: AssignmentDetailsViewModel,
-        isShowHeader: Binding<Bool> = .constant(false)
+        isShowHeader: Binding<Bool> = .constant(false),
+        isShowModuleNavBar: Binding<Bool>
     ) {
         self.viewModel = viewModel
         self._isShowHeader = isShowHeader
+        self._isShowModuleNavBar = isShowModuleNavBar
     }
 
     var body: some View {
-        ScrollViewReader { _ in
+        ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
                 VStack(spacing: .huiSpaces.space24) {
+                    topView
                     introView
                         .id(viewModel.courseID)
-                    if viewModel.didSubmitBefore {
-                        MyAssignmentSubmissionAssembly.makeView(
-                            selectedSubmission: viewModel.selectedSubmission,
-                            submission: viewModel.submission,
-                            courseId: viewModel.courseID
+                    if let submission = viewModel.submission {
+                        mainContentView(
+                            submission: submission,
+                            proxy: proxy
                         )
-                        .id(viewModel.submission.id)
-                    } else {
-                        segmentView
-                        submissionContentView
+
+                        errorView
+                        if !viewModel.didSubmitBefore, let date = viewModel.lastDraftSavedAt {
+                            draftView(date: date)
+                        }
                         submitButton
                     }
                 }
+                .animation(.smooth, value: viewModel.didSubmitBefore)
                 .padding(.huiSpaces.space24)
             }
-
         }
-        .overlay { if viewModel.isLoaderVisible { HorizonUI.Spinner(size: .small, showBackground: true) } }
-        .huiOverlay(
-            title: "Upload File",
-            buttons: getFileUploadButtons(),
-            isPresented: $isPresentOverlayUploadFile
-        )
-        .fileImporter(
-            isPresented: $isShowFileImporter,
-            allowedContentTypes: (viewModel.assignment?.fileExtensions ?? [])
-                .compactMap { $0.uttype }) { result in
-                    switch result {
-                    case .success(let success):
-                        self.viewModel.submissionEvents.send(.uploadFile(url: success))
-                    case .failure(let failure):
-                        debugPrint(failure)
-                    }
-                }
+        .overlay { loaderView }
+        .keyboardAdaptive()
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+    }
+
+    private var topView: some View {
+        Color.clear
+            .frame(height: 0)
+            .readingFrame { frame in
+                isShowHeader = frame.minY > -100
+            }
+    }
+
+    @ViewBuilder
+    private func mainContentView(submission: HSubmission, proxy: ScrollViewProxy) -> some View {
+        if viewModel.didSubmitBefore {
+            MyAssignmentSubmissionAssembly.makeView(
+                selectedSubmission: viewModel.selectedSubmission,
+                submission: submission,
+                courseId: viewModel.courseID
+            )
+            .id(submission.id)
+        } else {
+            AssignmentSubmissionView(
+                viewModel: viewModel,
+                isShowModuleNavBar: $isShowModuleNavBar,
+                proxy: proxy,
+                dismissKeyboard: dismissKeyboard
+            )
+            .onDisappear { viewModel.saveTextEntry() }
+        }
+    }
+
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            ZStack {
+                Color.huiColors.surface.inverseSecondary.opacity(0.01)
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var errorView: some View {
+        if let errorMessage = viewModel.errorMessage {
+            HStack {
+                Spacer()
+                Image.huiIcons.error
+                    .frame(width: 19, height: 19)
+                Text(errorMessage)
+                    .huiTypography(.p1)
+            }
+            .foregroundStyle(Color.huiColors.text.error)
+        }
+
     }
 
     @ViewBuilder
@@ -88,90 +133,37 @@ struct AssignmentDetails: View {
         }
     }
 
-    @ViewBuilder
-    private var segmentView: some View {
-        if viewModel.isSegmentControlVisible {
-            VStack(spacing: .huiSpaces.space16) {
-                Text("Select a Submission Type", bundle: .horizon)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .huiTypography(.h3)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                HorizonUI.SegmentedControl(
-                    items: AssignmentSubmissionType.items(),
-                        icon: .checkMark,
-                        iconAlignment: .leading,
-                        isShowIconForAllItems: false,
-                    selectedIndex: $viewModel.selectedSubmissionIndex
-                )
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var submissionContentView: some View {
-        switch viewModel.selectedSubmission {
-        case .text:
-            rceEditor
-        case .externalTool:
-            Rectangle()
-                .fill(.red)
-                .frame(height: 300)
-        case .fileUpload:
-            VStack(spacing: .huiSpaces.space8) {
-                HorizonUI.FileDrop(
-                    acceptedFilesType: viewModel.assignment?.allowedFileExtensions ?? ""
-                ) {
-                    isPresentOverlayUploadFile.toggle()
-                }
-                .frame(height: 190)
-            }
-
-            ForEach(viewModel.attachedFiles, id: \.self) { file in
-                HorizonUI.UploadedFile(fileName: file.filename, actionType: .delete) {
-                    viewModel.submissionEvents.send(.deleteFile(file: file))
-                }
-            }
-        }
-    }
-
-    private var rceEditor: some View {
-        TextEditor(text: $viewModel.htmlContent)
-            .focused($focusedInput)
-            .frame(height: 320)
-            .padding(.huiSpaces.space4)
-            .huiBorder(level: .level1, color: Color.huiColors.surface.institution, radius: 10)
-    }
-
     private var submitButton: some View {
         HStack {
             Spacer()
-            HorizonUI.PrimaryButton(String(localized: "Submit Assignment", bundle: .horizon)) {
-                viewModel.submitTextEntry()
+            HorizonUI.PrimaryButton(viewModel.submitButtonTitle) {
+                dismissKeyboard.toggle()
+                viewModel.submit()
             }
-            .disableWithOpacity(viewModel.htmlContent.isEmpty)
+            .disableWithOpacity(!viewModel.shouldEnableSubmitButton, disabledOpacity: 0.7)
+            .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
         }
     }
 
-    private func getFileUploadButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
-        guard let fileExtensions = viewModel.assignment?.fileExtensions else {  return []}
+    private func draftView(date: String) -> some View {
+        HStack {
+            Spacer()
+            Text("\(AssignmentLocalizedKeys.savedAt.title) \(date)")
+                .foregroundStyle(Color.huiColors.text.timestamp)
+                .huiTypography(.p1)
 
-        var buttons: [HorizonUI.Overlay.ButtonAttribute]  = []
-
-        if fileExtensions.contains(where: { $0.isImage || $0.isVideo }) {
-               buttons.append(.init(title: "Choose Photo or Video", icon: Image.huiIcons.image) {
-                   print("Choose Photo or Video")
-               })
-           }
-
-           if fileExtensions.contains(where: { $0.isAny }) {
-               buttons.append(.init(title: "Choose File", icon: Image.huiIcons.folder) {
-                   print("Choose File")
-                   isPresentOverlayUploadFile.toggle()
-                   isShowFileImporter.toggle()
-               })
-           }
-
-        return buttons
+            Button {
+                viewModel.deleteDraft()
+            } label: {
+                HStack(spacing: .zero) {
+                    Image.huiIcons.delete
+                        .frame(width: 24, height: 24)
+                    Text(AssignmentLocalizedKeys.deleteDraft.title)
+                        .huiTypography(.buttonTextLarge)
+                }
+                .foregroundStyle(Color.huiColors.text.error)
+            }
+        }
     }
 }
 
