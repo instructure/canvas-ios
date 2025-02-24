@@ -51,8 +51,8 @@ public struct K5SubjectView: View, ScreenViewTrackable {
                 Divider()
             }
         }
+        .navigationBarTitleView(viewModel.courseTitle ?? "")
         .navigationBarStyle(.color(viewModel.courseColor))
-        .navigationTitle(viewModel.courseTitle ?? "", subtitle: nil)
     }
 
     public init(context: Context, selectedTabId: String? = nil) {

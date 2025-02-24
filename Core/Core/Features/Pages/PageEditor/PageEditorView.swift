@@ -48,7 +48,11 @@ public struct PageEditorView: View {
 
     public var body: some View {
         form
-            .navigationBarTitle(url == nil ? Text("New Page", bundle: .core) : Text("Edit Page", bundle: .core), displayMode: .inline)
+            .navigationBarTitleView(url == nil
+                                        ? String(localized: "New Page", bundle: .core)
+                                        : String(localized: "Edit Page", bundle: .core)
+            )
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
                     env.router.dismiss(controller)
@@ -62,6 +66,7 @@ public struct PageEditorView: View {
                     .disabled(isLoading || isSaving)
                     .identifier("PageEditor.doneButton")
             )
+            .navigationBarStyle(.modal)
 
             .alert(isPresented: $showError) {
                 Alert(title: Text(error!.localizedDescription))

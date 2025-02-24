@@ -22,7 +22,8 @@ import Combine
 public protocol InboxCoursePickerInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
-    var courses: CurrentValueSubject<[Course], Never> { get }
+    var favoriteCourses: CurrentValueSubject<[Course], Never> { get }
+    var moreCourses: CurrentValueSubject<[Course], Never> { get }
     var groups: CurrentValueSubject<[Group], Never> { get }
 
     func refresh() -> AnyPublisher<[Void], Never>

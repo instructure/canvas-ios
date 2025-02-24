@@ -22,7 +22,8 @@ import CombineExt
 
 class InboxCoursePickerViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published public private(set) var courses: [Course] = []
+    @Published public private(set) var favoriteCourses: [Course] = []
+    @Published public private(set) var moreCourses: [Course] = []
     @Published public private(set) var groups: [Group] = []
     @Published public private(set) var state: StoreState = .loading
 
@@ -77,8 +78,10 @@ class InboxCoursePickerViewModel: ObservableObject {
     private func setupOutputBindings() {
         interactor.state
             .assign(to: &$state)
-        interactor.courses
-            .assign(to: &$courses)
+        interactor.favoriteCourses
+            .assign(to: &$favoriteCourses)
+        interactor.moreCourses
+            .assign(to: &$moreCourses)
         interactor.groups
             .assign(to: &$groups)
     }

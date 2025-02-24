@@ -42,6 +42,7 @@ public class CoreSearchHostingController<
 
     private(set) var selectedFilter: ViewsProvider.Filter?
     private var leftBarButtonItemsToRestore: [UIBarButtonItem]?
+    private var titleViewToRestore: UIView?
 
     private var searchFieldState: SearchFieldState = .removed
     private var subscriptions: Set<AnyCancellable> = []
@@ -148,6 +149,7 @@ public class CoreSearchHostingController<
 
         searchInteractor
             .isEnabled
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isEnabled in
                 self?.setupOrRemoveSearchBar(isEnabled)
@@ -157,6 +159,11 @@ public class CoreSearchHostingController<
 
     private func setupOrRemoveSearchBar(_ isSearchEnabled: Bool) {
         if isSearchEnabled == (searchFieldState != .removed) { return }
+
+        if titleViewToRestore == nil && navigationItem.titleView !== searchFieldView {
+            titleViewToRestore = navigationItem.titleView
+        }
+
         if isSearchEnabled {
             hideSearchBarAndShowSearchButton()
         } else {
@@ -191,9 +198,9 @@ public class CoreSearchHostingController<
     }
 
     private func hideSearchBarAndShowSearchButton() {
-        navigationItem.titleView = nil
         navigationItem.hidesBackButton = false
         navigationItem.leftBarButtonItems = leftBarButtonItemsToRestore
+        navigationItem.titleView = titleViewToRestore
         navigationItem.rightBarButtonItems = [searchBarItem]
 
         searchFieldState = .hidden
@@ -201,9 +208,9 @@ public class CoreSearchHostingController<
     }
 
     private func removeSearchBarAndButton() {
-        navigationItem.titleView = nil
         navigationItem.hidesBackButton = false
         navigationItem.leftBarButtonItems = leftBarButtonItemsToRestore
+        navigationItem.titleView = titleViewToRestore
         navigationItem.rightBarButtonItems = nil
         searchFieldState = .removed
     }

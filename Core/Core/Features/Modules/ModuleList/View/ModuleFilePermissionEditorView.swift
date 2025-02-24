@@ -46,8 +46,9 @@ struct ModuleFilePermissionEditorView: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(Text("Edit Permissions", bundle: .core))
+        .navigationBarTitleView(String(localized: "Edit Permissions", bundle: .core))
         .navigationBarItems(leading: cancelNavButton)
+        .navigationBarStyle(.modal)
     }
 
     private var form: some View {

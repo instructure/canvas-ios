@@ -281,6 +281,10 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
         }
     }
 
+    public func viewForMenuItem(at indexPath: IndexPath) -> UIView? {
+        return menu?.cellForItem(at: indexPath)
+    }
+
     /**
      When VoiceOver focus moves from `menu` to `pages` the scroll offset on `pages` resets to 0, no matter which menu item is selected. The same applies if the focus moves from the tab bar up to `pages`, in this case the scroll offset moves to the last page. This method sets back the scroll offset to show the selected menu item's content.
      */

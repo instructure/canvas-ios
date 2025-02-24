@@ -45,8 +45,12 @@ public struct AssignmentListPreferencesScreen: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitleStyled(navBarTitleView)
+        .navigationBarTitleView(
+            title: String(localized: "Assignment List Preferences", bundle: .core),
+            subtitle: viewModel.courseName
+        )
         .navigationBarItems(leading: cancelButton, trailing: doneButton)
+        .navigationBarStyle(.modal)
         .onDisappear {
             viewModel.didDismiss()
         }
@@ -64,17 +68,6 @@ public struct AssignmentListPreferencesScreen: View {
             viewModel.didTapDone(viewController: viewController)
         }
         .accessibilityIdentifier("AssignmentFilter.doneButton")
-    }
-
-    private var navBarTitleView: some View {
-        VStack {
-            Text(String(localized: "Assignment List Preferences", bundle: .core))
-                .foregroundStyle(Color.textDarkest)
-                .font(.semibold16)
-            Text(viewModel.courseName)
-                .foregroundStyle(Color.textDark)
-                .font(.regular12)
-        }
     }
 
     // MARK: - Sections
