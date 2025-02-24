@@ -49,20 +49,3 @@ public struct APICommentLibraryResponse: PagedResponse, Equatable {
         data.user.commentBankItems.nodes
     }
 }
-
-public struct APIPageInfo: Codable, Equatable {
-    public let endCursor: String?
-    public let hasNextPage: Bool
-
-    public var nextCursor: String? {
-        hasNextPage ? endCursor : nil
-    }
-}
-
-#if DEBUG
-extension APIPageInfo {
-    public static func make(endCursor: String? = nil, hasNextPage: Bool = false) -> APIPageInfo {
-        return APIPageInfo(endCursor: endCursor, hasNextPage: hasNextPage)
-    }
-}
-#endif
