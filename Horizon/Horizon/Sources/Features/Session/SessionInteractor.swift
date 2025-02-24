@@ -41,6 +41,10 @@ final class SessionInteractor: NSObject, LoginDelegate {
             .eraseToAnyPublisher()
     }
 
+    func getUserID() -> String? {
+        LoginSession.mostRecent?.userID
+    }
+
     func refreshCurrentUserDetails() -> AnyPublisher<UserProfile, Error> {
         guard let currentSession = LoginSession.mostRecent else {
             return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
@@ -75,7 +79,7 @@ final class SessionInteractor: NSObject, LoginDelegate {
                     unownedSelf.userDidLogout(session: session)
                     return LoginError.unauthorized
                 } else if let apiError = error as? APIError, case .unauthorized = apiError {
-                   unownedSelf.userDidLogout(session: session)
+                    unownedSelf.userDidLogout(session: session)
                     return LoginError.unauthorized
                 } else {
                     return error
