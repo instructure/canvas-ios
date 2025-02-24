@@ -351,7 +351,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     private var individualView: some View {
-        Toggle(isOn: $model.sendIndividual) {
+        InstUI.Toggle(isOn: $model.sendIndividual) {
             VStack(alignment: .leading, spacing: .zero) {
                 Text("Send individual message to each recipient", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)

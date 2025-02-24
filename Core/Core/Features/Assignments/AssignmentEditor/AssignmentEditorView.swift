@@ -172,7 +172,7 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
             .identifier("AssignmentEditor.gradingTypeButton")
             if !published || canUnpublish {
                 Divider()
-                Toggle(isOn: $published) { Text("Publish", bundle: .core) }
+                InstUI.Toggle(isOn: $published) { Text("Publish", bundle: .core) }
                     .font(.semibold16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("AssignmentEditor.publishedToggle")
