@@ -130,6 +130,15 @@ extension String {
     public static func localizedNumberOfItems(_ count: Int) -> String {
         String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), count)
     }
+
+    /// Localized string to be used as `accessibilityLabel` for lists without a section header. Example: "List, 5 items"
+    public static func localizedAccessibilityListCount(_ count: Int) -> String {
+        let listText = String(localized: "List", bundle: .core)
+        let countText = String.localizedNumberOfItems(count)
+        // It's okay to not translate the comma, because VoiceOver (with captions enabled) uses commas for separation,
+        // even when language & region both are set to a language which doesn't (like Danish)
+        return "\(listText), \(countText)"
+    }
 }
 
 extension ReferenceWritableKeyPath {

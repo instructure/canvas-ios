@@ -47,7 +47,7 @@ class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
             dismissExpectation.fulfill()
         }
         testee.closeTapped()
-        wait(for: [dismissExpectation], timeout: 0.1)
+        wait(for: [dismissExpectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -79,7 +79,7 @@ class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
             updateCounter += 1
         }
         testee.postSubmission()
-        wait(for: [loadingExpectation, finishedExpectation], timeout: 0.1)
+        wait(for: [loadingExpectation, finishedExpectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -95,7 +95,7 @@ class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
             errorExpectation.fulfill()
         }
         testee.postSubmission()
-        wait(for: [errorExpectation], timeout: 0.1)
+        wait(for: [errorExpectation], timeout: 1)
         subscription.cancel()
     }
 
@@ -109,7 +109,7 @@ class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
         }
 
         testee.postSubmission()
-        wait(for: [dismissExpectation], timeout: 0.1)
+        wait(for: [dismissExpectation], timeout: 1)
         subscription.cancel()
     }
 

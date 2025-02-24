@@ -23,23 +23,18 @@ import Combine
 import CombineExt
 
 class AddressbookRecipientViewModelTests: CoreTestCase {
-    var testee: AddressbookRecipientViewModel!
+
+    private var testee: AddressbookRecipientViewModel!
+    private var recipients: [SearchRecipient] = []
 
     override func setUp() {
         super.setUp()
-        let recipients: [SearchRecipient] = [
+        recipients = [
             .save(.make(id: "1", name: "Recipient 1", common_courses: ["Course 1": ["TeacherEnrollment"]]), filter: "", in: environment.database.viewContext),
             .save(.make(id: "2", name: "Recipient 2", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: environment.database.viewContext),
             .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: environment.database.viewContext)
         ]
-        testee = AddressbookRecipientViewModel(
-            router: environment.router,
-            roleName: "Students",
-            recipients: recipients.map { Recipient(searchRecipient: $0) },
-            canSelectAllRecipient: true,
-            recipientDidSelect: PassthroughRelay<Recipient>(),
-            selectedRecipients: CurrentValueSubject<[Recipient], Never>([])
-        )
+        testee = makeViewModel(canSelectAllRecipient: true)
     }
 
     func testInitState() {
@@ -57,5 +52,25 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.recipients.first?.displayName, "Recipient 1")
         XCTAssertEqual(testee.recipients.first?.ids, ["1"])
         XCTAssertNil(testee.recipients.first?.avatarURL)
+    }
+
+    func test_listCount_whenCanSelectAllRecipients() {
+        XCTAssertEqual(testee.listCount, 4)
+    }
+
+    func test_listCount_whenCanNotSelectAllRecipients() {
+        testee = makeViewModel(canSelectAllRecipient: false)
+        XCTAssertEqual(testee.listCount, 3)
+    }
+
+    private func makeViewModel(canSelectAllRecipient: Bool) -> AddressbookRecipientViewModel {
+        .init(
+            router: environment.router,
+            roleName: "Students",
+            recipients: recipients.map { Recipient(searchRecipient: $0) },
+            canSelectAllRecipient: canSelectAllRecipient,
+            recipientDidSelect: .init(),
+            selectedRecipients: .init([])
+        )
     }
 }

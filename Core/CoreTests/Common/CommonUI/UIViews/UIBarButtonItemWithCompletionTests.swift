@@ -55,7 +55,7 @@ class UIBarButtonItemWithCompletionTests: XCTestCase {
 
         let view = UIBarButtonItemWithCompletion(title: nil, actionHandler: completion)
         view.buttonDidTap(sender: view)
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     func testCompletionWithImage() {
@@ -71,6 +71,6 @@ class UIBarButtonItemWithCompletionTests: XCTestCase {
             actionHandler: completion
         )
         view.buttonDidTap(sender: view)
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 }

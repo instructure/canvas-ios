@@ -86,7 +86,10 @@ struct CustomizeCourseView: View {
             }
             InstUI.Divider()
         }
-        .navigationTitleStyled(navBarTitleView)
+        .navigationBarTitleView(
+            title: String(localized: "Customize Course", bundle: .core),
+            subtitle: viewModel.courseName
+        )
         .navigationBarItems(leading: cancelNavBarButton, trailing: doneNavBarButton)
         .navigationBarStyle(.modal)
         .onReceive(viewModel.dismissView) { _ in
@@ -100,17 +103,6 @@ struct CustomizeCourseView: View {
             )
         }
     } }
-
-    private var navBarTitleView: some View {
-        VStack(spacing: 1) {
-            Text("Customize Course", bundle: .core)
-                .font(.semibold16)
-                .foregroundColor(.textDarkest)
-            Text(viewModel.courseName)
-                .font(.regular12)
-                .foregroundColor(.textDark)
-        }
-    }
 
     private var cancelNavBarButton: some View {
         Button(action: cancel, label: {

@@ -239,7 +239,7 @@ class CoreWebViewTests: CoreTestCase {
         let webView = view.webView(
             view,
             createWebViewWith: WKWebViewConfiguration(),
-            for: WKNavigationAction(),
+            for: MockNavigationAction(url: "/", type: .other),
             windowFeatures: WKWindowFeatures()
         )
         XCTAssertNotNil(webView)
@@ -264,5 +264,38 @@ class CoreWebViewTests: CoreTestCase {
         view.load(URLRequest(url: URL(string: "https://instructure.com/")!))
 
         waitForExpectations(timeout: 10)
+    }
+
+    func test_routesNatively_whenOpeningURLInNewTab() {
+        let testURL = "https://instructure.com/speedgrader"
+        let viewControllerCreatedByRouter = UIViewController()
+        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let delegate = LinkDelegate()
+        view.linkDelegate = delegate
+        router.mock("/speedgrader") {
+            viewControllerCreatedByRouter
+        }
+
+        // WHEN
+        let createdWebView = view.uiDelegate?.webView?(
+            view,
+            createWebViewWith: view.configuration,
+            for: MockNavigationAction(url: testURL, type: .linkActivated),
+            windowFeatures: .init()
+        )
+
+        // THEN
+        XCTAssertNil(createdWebView)
+
+        let lastRoute = router.calls.last
+        XCTAssertEqual(lastRoute!.0, URLComponents(string: testURL))
+        XCTAssertEqual(lastRoute!.1, delegate.routeLinksFrom)
+        XCTAssertEqual(lastRoute!.2, .modal(
+            .fullScreen,
+            isDismissable: false,
+            embedInNav: true,
+            addDoneButton: true,
+            animated: true
+        ))
     }
 }
