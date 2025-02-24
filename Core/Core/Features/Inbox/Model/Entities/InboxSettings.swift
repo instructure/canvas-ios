@@ -34,18 +34,20 @@ final public class InboxSettings: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(_ item: APIInboxSettings, in context: NSManagedObjectContext) -> InboxSettings {
-        let dbEntity: InboxSettings = context.first(where: #keyPath(InboxSettings.userId), equals: item.data.userId) ?? context.insert()
-        dbEntity.id = item.data._id ?? ""
-        dbEntity.createdAt = item.data.createdAt
-        dbEntity.outOfOfficeLastDate = item.data.outOfOfficeLastDate
-        dbEntity.outOfOfficeMessage = item.data.outOfOfficeMessage
-        dbEntity.outOfOfficeSubject = item.data.outOfOfficeSubject
-        dbEntity.outOfOfficeFirstDate = item.data.outOfOfficeFirstDate
-        dbEntity.signature = item.data.signature
-        dbEntity.updatedAt = item.data.updatedAt
-        dbEntity.useOutOfOffice = item.data.useOutOfOffice ?? false
-        dbEntity.useSignature = item.data.useSignature ?? false
-        dbEntity.userId = item.data.userId
+        let data = item.data.myInboxSettings
+        let dbEntity: InboxSettings = context.first(where: #keyPath(InboxSettings.userId), equals: data.userId) ?? context.insert()
+        print(item)
+        dbEntity.id = data._id ?? ""
+        dbEntity.createdAt = data.createdAt
+        dbEntity.outOfOfficeLastDate = data.outOfOfficeLastDate
+        dbEntity.outOfOfficeMessage = data.outOfOfficeMessage
+        dbEntity.outOfOfficeSubject = data.outOfOfficeSubject
+        dbEntity.outOfOfficeFirstDate = data.outOfOfficeFirstDate
+        dbEntity.signature = data.signature
+        dbEntity.updatedAt = data.updatedAt
+        dbEntity.useOutOfOffice = data.useOutOfOffice ?? false
+        dbEntity.useSignature = data.useSignature ?? false
+        dbEntity.userId = data.userId
 
         return dbEntity
     }

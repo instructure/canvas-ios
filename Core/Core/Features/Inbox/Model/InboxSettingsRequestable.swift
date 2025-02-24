@@ -48,7 +48,11 @@ public struct GetInboxSettingsRequest: APIGraphQLRequestable {
 }
 
 public struct APIInboxSettings: Codable, Equatable {
-    let data: APIInboxSettings.Data
+    let data: APIInboxSettings.MyInboxSettings
+
+    struct MyInboxSettings: Codable, Equatable {
+        let myInboxSettings: APIInboxSettings.Data
+    }
 
     struct Data: Codable, Equatable {
         let _id: String?
