@@ -51,7 +51,8 @@ public struct AboutView: View {
         }
         .accessibilityIdentifier("AboutView")
         .background(Color.backgroundLightest)
-        .navigationTitle(viewModel.title)
+        .navigationBarTitleView(viewModel.title)
+        .navigationBarStyle(.modal)
     }
 }
 

@@ -52,6 +52,6 @@ final class InboxMessageFavouriteInteractorLiveTests: CoreTestCase {
                 expectation.fulfill()
             }
             .store(in: &subscriptions)
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 }

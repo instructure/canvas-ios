@@ -25,6 +25,7 @@ class OfflineListCellViewModel: ObservableObject {
     let subtitle: String?
     let selectionState: OfflineListCellView.SelectionState
     let isCollapsed: Bool?
+    let accessibilityLabelPrefix: String?
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
     let removeItemPressed: (() -> Void)?
@@ -35,6 +36,7 @@ class OfflineListCellViewModel: ObservableObject {
          subtitle: String? = nil,
          selectionState: OfflineListCellView.SelectionState = .deselected,
          isCollapsed: Bool? = nil,
+         accessibilityLabelPrefix: String? = nil,
          selectionDidToggle: (() -> Void)? = nil,
          collapseDidToggle: (() -> Void)? = nil,
          removeItemPressed: (() -> Void)? = nil,
@@ -45,6 +47,7 @@ class OfflineListCellViewModel: ObservableObject {
         self.subtitle = subtitle
         self.selectionState = selectionState
         self.isCollapsed = isCollapsed
+        self.accessibilityLabelPrefix = accessibilityLabelPrefix
         self.selectionDidToggle = selectionDidToggle
         self.collapseDidToggle = collapseDidToggle
         self.removeItemPressed = removeItemPressed
@@ -134,28 +137,15 @@ class OfflineListCellViewModel: ObservableObject {
             }
         }
 
-        var finalText = ""
-
-        if !titleText.isEmpty {
-            finalText.append(titleText)
-        }
-
-        if !selectionText.isEmpty {
-            finalText.append(", ")
-            finalText.append(selectionText)
-        }
-
-        if !collapseText.isEmpty {
-            finalText.append(", ")
-            finalText.append(collapseText)
-        }
-
-        if !progressText.isEmpty {
-            finalText.append(", ")
-            finalText.append(progressText)
-        }
-
-        return finalText
+        return [
+            accessibilityLabelPrefix?.nilIfEmpty,
+            titleText.nilIfEmpty,
+            selectionText.nilIfEmpty,
+            collapseText.nilIfEmpty,
+            progressText.nilIfEmpty
+        ]
+            .compactMap({ $0 })
+            .joined(separator: ", ")
     }
 
 }

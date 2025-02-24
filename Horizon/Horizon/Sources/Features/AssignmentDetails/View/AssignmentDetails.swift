@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import HorizonUI
 import Core
+import HorizonUI
+import SwiftUI
 
 struct AssignmentDetails: View {
     // MARK: - Dependencies
@@ -30,6 +30,8 @@ struct AssignmentDetails: View {
     // MARK: - Private Properties
 
     @State private var dismissKeyboard: Bool = false
+
+    @Environment(\.viewController) private var viewController
 
     init(
         viewModel: AssignmentDetailsViewModel,

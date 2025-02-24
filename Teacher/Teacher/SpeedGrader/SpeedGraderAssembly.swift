@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,25 @@
 //
 
 import Core
-import SwiftUI
+import UIKit
 
-struct Size16RegularTextDarkestTitle: View {
-    let title: String
+public enum SpeedGraderAssembly {
 
-    var body: some View {
-        Text(title.capitalized)
-            .font(.regular16)
-            .foregroundColor(.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
+    public static func makeSpeedGraderViewController(
+        context: Context,
+        assignmentID: String,
+        userID: String?,
+        env: AppEnvironment,
+        filter: [GetSubmissions.Filter]
+    ) -> UIViewController {
+        let normalizedUserId = SpeedGraderViewController.normalizeUserID(userID)
+
+        return SpeedGraderViewController(
+            env: env,
+            context: context,
+            assignmentID: assignmentID,
+            userID: normalizedUserId,
+            filter: filter
+        )
     }
-}
-
-#Preview {
-    Size14RegularTextDarkestTitle(title: "Module Name")
 }

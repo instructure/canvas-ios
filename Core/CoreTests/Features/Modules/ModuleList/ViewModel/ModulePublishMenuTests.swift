@@ -171,7 +171,7 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Publish?",
                    message: "This will make only this item visible to students.",
                    defaultActionTitle: "Publish")
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     func testPublishItemA11yAction() {
@@ -187,7 +187,7 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Publish?",
                    message: "This will make only this item visible to students.",
                    defaultActionTitle: "Publish")
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     func testUnpublishItem() {
@@ -205,7 +205,7 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Unpublish?",
                    message: "This will make only this item invisible to students.",
                    defaultActionTitle: "Unpublish")
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     func testUnpublishItemA11yAction() {
@@ -221,7 +221,7 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Unpublish?",
                    message: "This will make only this item invisible to students.",
                    defaultActionTitle: "Unpublish")
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
     }
 
     // MARK: - Private

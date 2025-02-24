@@ -33,6 +33,9 @@
     "Add a Note" : {
 
     },
+    "Add Comment" : {
+
+    },
     "Add your text entry" : {
 
     },
@@ -195,6 +198,9 @@
     "Choose Photo or Video" : {
 
     },
+    "Comments" : {
+
+    },
     "Complete all of the items." : {
 
     },
@@ -256,6 +262,9 @@
 
     },
     "Error" : {
+
+    },
+    "Error loading comments." : {
 
     },
     "External Tool" : {
@@ -550,6 +559,9 @@
 
     },
     "Port Moresby (+10:00/+10:00)" : {
+
+    },
+    "Post" : {
 
     },
     "Prague (+01:00/+02:00)" : {

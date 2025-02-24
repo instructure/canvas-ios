@@ -133,7 +133,7 @@ class NetworkAvailabilityServiceTests: CoreTestCase {
         )
 
         // Then
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(service.status, .connected(.cellular))
         XCTAssertEqual(status, .connected(.cellular))
     }

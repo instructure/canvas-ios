@@ -203,6 +203,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         if let drawer = drawer, drawer.height == 0 {
             drawer.moveTo(height: drawer.midDrawerHeight, velocity: 1)
         }
+        UIAccessibility.post(notification: .screenChanged, argument: drawerContentViewController)
     }
 
     @IBAction func pickerButtonTapped(_ sender: Any) {

@@ -94,7 +94,8 @@ struct DashboardView: View {
     }
 
     private var nameLabel: some View {
-        Size16RegularTextDarkestTitle(title: viewModel.title)
+        Text(viewModel.title)
+            .huiTypography(.p1)
     }
 }
 

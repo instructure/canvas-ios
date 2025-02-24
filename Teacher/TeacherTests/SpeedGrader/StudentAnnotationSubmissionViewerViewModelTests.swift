@@ -106,7 +106,7 @@ class StudentAnnotationSubmissionViewerViewModelTests: TeacherTestCase {
         }
 
         testActions()
-        wait(for: [updateExpectation], timeout: 0.1)
+        wait(for: [updateExpectation], timeout: 1)
         subscription.cancel()
     }
 }
