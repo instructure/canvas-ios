@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
@@ -27,47 +28,44 @@ struct SubmissionCommentView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        ScrollViewReader { proxy in
-            ScrollView(showsIndicators: false) {
-                switch viewModel.viewState {
-                case .initialLoading:
-                    loadingView
-                case .data, .postingComment:
-                    dataView(proxy: proxy)
-                case .error:
-                    Text("Error loading comments.")
+        GeometryReader { geoProxy in
+            ScrollViewReader { scrollProxy in
+                ScrollView(showsIndicators: false) {
+                    switch viewModel.viewState {
+                    case .initialLoading:
+                        loadingView
+                    case .data, .postingComment:
+                        dataView(geoProxy: geoProxy, scrollProxy: scrollProxy)
+                    case .error:
+                        Text("Error loading comments.")
+                    }
                 }
             }
+            .toolbar(.hidden)
+            .padding(.horizontal, .huiSpaces.space24)
+            .background(Color.huiColors.surface.pagePrimary)
+            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         }
-        .toolbar(.hidden)
-        .padding(.horizontal, .huiSpaces.space24)
-        .background(Color.huiColors.surface.pagePrimary)
-        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
     }
 
     @ViewBuilder
-    private func dataView(proxy: ScrollViewProxy) -> some View {
+    private func dataView(geoProxy: GeometryProxy, scrollProxy: ScrollViewProxy) -> some View {
         VStack(alignment: .center) {
             commentListView
-            addCommentView
+            addCommentView(proxy: geoProxy)
             postButton
             Spacer()
         }
-//        .onChange(of: viewModel.text) { _, _ in
-//            withAnimation {
-//                proxy.scrollTo("PostButton", anchor: .bottom)
-//            }
-//        }
         .onChange(of: isTextAreaFocused) { _, _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 withAnimation {
-                    proxy.scrollTo("PostButton", anchor: .bottom)
+                    scrollProxy.scrollTo("PostButton", anchor: .bottom)
                 }
             }
         }
         .onFirstAppear {
             withAnimation {
-                proxy.scrollTo("PostButton", anchor: .bottom)
+                scrollProxy.scrollTo("PostButton", anchor: .bottom)
             }
         }
     }
@@ -115,14 +113,15 @@ struct SubmissionCommentView: View {
         .padding(.trailing, comment.isCurrentUsersComment ? .zero : .huiSpaces.space24)
     }
 
-    private var addCommentView: some View {
+    @ViewBuilder
+    private func addCommentView(proxy: GeometryProxy) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             Text("Add Comment", bundle: .horizon)
                 .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.title)
             TextArea(
                 text: $viewModel.text,
-                placeholderText: "Placeholder text"
+                proxy: proxy
             )
             .focused($isTextAreaFocused)
         }
@@ -210,7 +209,7 @@ struct SubmissionCommentView: View {
 // TODO: Implement a proper design system component
 private struct TextArea: View {
     @Binding var text: String
-    let placeholderText: String
+    let proxy: GeometryProxy
 
     var body: some View {
         textField
@@ -221,20 +220,21 @@ private struct TextArea: View {
                 radius: HorizonUI.CornerRadius.level1_5.attributes.radius
             )
             .huiCornerRadius(level: .level1_5)
+            .huiTypography(.p1)
     }
 
     private var textField: some View {
-        TextField(text: $text, axis: .vertical) {
-            if text.isEmpty {
-                Text(text)
-                    .huiTypography(.p1)
-                    .foregroundStyle(Color.huiColors.text.placeholder)
-            } else {
-                Text(placeholderText)
-                    .huiTypography(.p1)
-                    .foregroundStyle(Color.huiColors.text.body)
-            }
+        UITextViewWrapper(text: $text) {
+            let tv = UITextView()
+            tv.isScrollEnabled = false
+            tv.textContainer.widthTracksTextView = true
+            tv.textContainer.lineBreakMode = .byWordWrapping
+            tv.translatesAutoresizingMaskIntoConstraints = false
+            tv.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
+            tv.widthAnchor.constraint(equalToConstant: proxy.frame(in: .global).width - (2 * 16)).isActive = true
+            return tv
         }
+        .foregroundStyle(text.isEmpty ? Color.huiColors.text.placeholder : Color.huiColors.text.body)
         .frame(minHeight: 120, alignment: .top)
         .padding(.huiSpaces.space8)
     }
