@@ -45,6 +45,7 @@ extension InstUI {
             .accessibilityElement(children: .combine)
             .accessibilityAddTraitsIsToggle()
             .accessibilityValue(isOn ? Text("on", bundle: .core) : Text("off", bundle: .core))
+            .addHapticFeedback(isOn: isOn)
         }
 
         private var toggle: some View {
@@ -108,6 +109,18 @@ private extension View {
     func accessibilityAddTraitsIsToggle() -> some View {
         if #available(iOSApplicationExtension 17.0, *) {
             self.accessibilityAddTraits(.isToggle)
+        } else {
+            self
+        }
+    }
+
+    @available(iOSApplicationExtension,
+               obsoleted: 17.0,
+               message: "Use `sensoryFeedback(.selection, trigger: isOn)` directly.")
+    @ViewBuilder
+    func addHapticFeedback(isOn: Bool) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            self.sensoryFeedback(.impact, trigger: isOn)
         } else {
             self
         }
