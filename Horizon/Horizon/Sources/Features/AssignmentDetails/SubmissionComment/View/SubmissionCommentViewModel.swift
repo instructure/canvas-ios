@@ -43,9 +43,9 @@ final class SubmissionCommentViewModel {
 
     // MARK: - Outputs
 
-    var viewState: ViewState = .initialLoading
-    var isPostingComment: Bool = false
-    var comments: [SubmissionComment] = []
+    private(set) var viewState: ViewState = .initialLoading
+    private(set) var isPostingComment: Bool = false
+    private(set) var comments: [SubmissionComment] = []
 
     // MARK: - Private properties
 

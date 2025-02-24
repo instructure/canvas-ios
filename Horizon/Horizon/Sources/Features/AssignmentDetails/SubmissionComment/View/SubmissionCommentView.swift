@@ -53,11 +53,11 @@ struct SubmissionCommentView: View {
             postButton
             Spacer()
         }
-        .onChange(of: viewModel.text) { _, _ in
-            withAnimation {
-                proxy.scrollTo("PostButton", anchor: .bottom)
-            }
-        }
+//        .onChange(of: viewModel.text) { _, _ in
+//            withAnimation {
+//                proxy.scrollTo("PostButton", anchor: .bottom)
+//            }
+//        }
         .onChange(of: isTextAreaFocused) { _, _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 withAnimation {
@@ -117,7 +117,7 @@ struct SubmissionCommentView: View {
 
     private var addCommentView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-            Text("Add Comment")
+            Text("Add Comment", bundle: .horizon)
                 .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.title)
             TextArea(
@@ -148,7 +148,7 @@ struct SubmissionCommentView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 24, height: 24)
-                Text("Comments")
+                Text("Comments", bundle: .horizon)
                     .huiTypography(.h3)
                     .foregroundStyle(Color.huiColors.text.title)
             }
