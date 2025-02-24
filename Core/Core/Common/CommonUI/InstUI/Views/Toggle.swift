@@ -24,15 +24,12 @@ extension InstUI {
         @Environment(\.isEnabled) private var isEnabled: Bool
         @Binding private var isOn: Bool
         private var label: () -> Label
-        private let tint: Color
 
         public init(
             isOn: Binding<Bool>,
-            tint: Color = Color(uiColor: Brand.shared.primary),
             @ViewBuilder label: @escaping () -> Label
         ) {
             self._isOn = isOn
-            self.tint = tint
             self.label = label
         }
 
@@ -46,20 +43,20 @@ extension InstUI {
             .accessibilityAddTraitsIsToggle()
             .accessibilityValue(isOn ? Text("on", bundle: .core) : Text("off", bundle: .core))
             .addHapticFeedback(isOn: isOn)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation {
+                    isOn.toggle()
+                }
+            }
         }
 
         private var toggle: some View {
             backgroundColor
                 .frame(width: 44, height: 28)
                 .clipShape(RoundedRectangle(cornerRadius: 100))
-                .contentShape(Rectangle())
                 .overlay(alignment: isOn ? .trailing : .leading) {
                     knob
-                }
-                .onTapGesture {
-                    withAnimation {
-                        isOn.toggle()
-                    }
                 }
         }
 
@@ -84,7 +81,7 @@ extension InstUI {
             guard isEnabled else {
                 return .backgroundMedium
             }
-            return isOn ? tint : .backgroundDark
+            return isOn ? .accentColor : .backgroundDark
         }
 
         private var knobBackground: Color {
@@ -95,7 +92,7 @@ extension InstUI {
             guard isEnabled else {
                 return .backgroundDark
             }
-            return isOn ? tint : .textDarkest
+            return isOn ? .accentColor : .textDarkest
         }
     }
 }
@@ -164,4 +161,5 @@ private extension View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .font(.regular12)
+    .accentColor(.course1)
 }
