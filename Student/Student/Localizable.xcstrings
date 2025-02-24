@@ -16457,7 +16457,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuir Ceangaltán leis"
+            "value" : "Add Attachment"
           }
         },
         "hi" : {
@@ -16984,7 +16984,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuir Ráiteas leis"
+            "value" : "Add Comment"
           }
         },
         "hi" : {
@@ -33972,7 +33972,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Críochnaithe"
+            "value" : "Complete"
           }
         },
         "hi" : {
@@ -43153,7 +43153,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ruaig"
+            "value" : "Dún"
           }
         },
         "hi" : {
@@ -49975,7 +49975,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Earráid"
+            "value" : "Error"
           }
         },
         "hi" : {
@@ -60995,7 +60995,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folaigh Marcanna"
+            "value" : "Hide Grades"
           }
         },
         "hi" : {
@@ -63346,7 +63346,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neamhiomlán"
+            "value" : "Incomplete"
           }
         },
         "hi" : {
@@ -102904,7 +102904,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuardaigh faighteoirí"
+            "value" : "Search for recipients"
           }
         },
         "hi" : {
