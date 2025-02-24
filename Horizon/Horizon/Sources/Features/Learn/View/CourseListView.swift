@@ -18,6 +18,7 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct CourseListView: View {
     @ObservedObject private var viewModel: CourseListViewModel
@@ -39,13 +40,17 @@ struct CourseListView: View {
                             viewModel.routeToCourse(course: course, vc: viewController)
                         } label: {
                             VStack(alignment: .leading, spacing: 12) {
-                                Size12RegularTextDarkestTitle(title: course.institutionName)
-                                Size16RegularTextDarkestTitle(title: course.name)
+                                Text(course.institutionName)
+                                    .huiTypography(.p3)
+                                Text(course.name)
+                                    .huiTypography(.p1)
                                 ContentProgressBar(progress: course.progress)
                                 HStack(spacing: 0) {
-                                    Size12RegularTextDarkTitle(title: course.progressString)
+                                    Text(course.progressString)
+                                        .huiTypography(.p3)
                                     Spacer()
-                                    Size12RegularTextDarkTitle(title: course.progressState)
+                                    Text(course.progressState)
+                                        .huiTypography(.p3)
                                 }
                             }
                             .padding(.all, 24)

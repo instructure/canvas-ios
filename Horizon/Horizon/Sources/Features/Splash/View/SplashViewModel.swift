@@ -75,8 +75,13 @@ final class SplashViewModel: ObservableObject {
                 )
             )
         } else {
-            // show error alert
-        }
+            router.setRootViewController(
+                isLoginTransition: false,
+                viewController: LoginNavigationController.create(
+                    loginDelegate: interactor,
+                    app: .horizon
+                )
+            )        }
         return Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 

@@ -17,14 +17,16 @@
 //
 
 import Core
-import SwiftUI
 import HorizonUI
+import SwiftUI
 
 struct AssignmentDetails: View {
     // MARK: - Properties
 
     @Bindable private var viewModel: AssignmentDetailsViewModel
     @Binding private var isShowHeader: Bool
+
+    @Environment(\.viewController) private var viewController
 
     init(
         viewModel: AssignmentDetailsViewModel,
@@ -35,51 +37,61 @@ struct AssignmentDetails: View {
     }
 
     var body: some View {
-            ScrollView {
-                VStack(spacing: 10) {
-                    topView
-                    if viewModel.isLoaderVisible == false {
-                        header
+        ScrollView {
+            VStack(spacing: 10) {
+                topView
+                if viewModel.isLoaderVisible == false {
+                    header
+                }
+                VStack(spacing: 8) {
+                    Text(viewModel.assignment?.dueAt ?? "")
+                        .huiTypography(.p2)
+                    if let pointsPossible = viewModel.assignment?.pointsPossible {
+                        Text("\(pointsPossible) Points")
                     }
-                    VStack(spacing: 8) {
-                        Size14RegularTextDarkestTitle(title: viewModel.assignment?.dueAt ?? "")
-                        if let pointsPossible = viewModel.assignment?.pointsPossible {
-                            Size14RegularTextDarkestTitle(title: "\(pointsPossible) Points")
-                        }
-                        if (viewModel.assignment?.allowedAttempts ?? 0) > 0 {
-                            Size14RegularTextDarkestTitle(title: "\(viewModel.assignment?.allowedAttempts ?? 0) attempt(s)")
-                        } else {
-                            Size14RegularTextDarkestTitle(title: "Unlimited Attempts Allowed")
-                        }
-                    }
-                    .padding(.top, 8)
-
-                    if let details = viewModel.assignment?.details {
-                        WebView(html: details)
-                            .frameToFit()
-                            .padding(.horizontal, -16)
-                    }
-                    if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
-                        Size14RegularTextDarkestTitle(title: "Last Submitted: \(lastSubmitted)")
-                    }
-
-                    if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
-                        AssignmentSubmissionView(viewModel: viewModel)
-                            .disabled(viewModel.didSubmitAssignment)
-                            .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
-                            .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
+                    if (viewModel.assignment?.allowedAttempts ?? 0) > 0 {
+                        Text("\(viewModel.assignment?.allowedAttempts ?? 0) attempt(s)")
+                            .huiTypography(.p2)
+                    } else {
+                        Text("Unlimited Attempts Allowed")
+                            .huiTypography(.p2)
                     }
                 }
-                .paddingStyle(.horizontal, .standard)
-                .padding(.bottom, 100)
+                .padding(.top, 8)
+
+                if let details = viewModel.assignment?.details {
+                    WebView(html: details)
+                        .frameToFit()
+                        .padding(.horizontal, -16)
+                }
+                if let lastSubmitted = viewModel.assignment?.submittedAt?.dateTimeString {
+                    Text("Last Submitted: \(lastSubmitted)")
+                        .huiTypography(.p2)
+                }
+
+                Button {
+                    viewModel.viewComments(controller: viewController)
+                } label: {
+                    Text("View coments")
+                }
+
+                if !(viewModel.assignment?.assignmentTypes.isEmpty ?? false) {
+                    AssignmentSubmissionView(viewModel: viewModel)
+                        .disabled(viewModel.didSubmitAssignment)
+                        .opacity(viewModel.didSubmitAssignment ? 0.5 : 1)
+                        .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
+                }
             }
+            .paddingStyle(.horizontal, .standard)
+            .padding(.bottom, 100)
+        }
         .overlay { loaderView }
         .background(Color.backgroundLightest)
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
         .toolbarBackground(.visible, for: .navigationBar)
         .alert("Error", isPresented: $viewModel.isAlertVisible) {
-            Button("OK", role: .cancel) { }
+            Button("OK", role: .cancel) {}
         } message: {
             Text(viewModel.errorMessage)
         }
