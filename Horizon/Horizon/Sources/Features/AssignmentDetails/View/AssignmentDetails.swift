@@ -24,22 +24,19 @@ struct AssignmentDetails: View {
     // MARK: - Dependencies
 
     @State private var viewModel: AssignmentDetailsViewModel
-    @Binding private var isShowHeader: Bool
     @Binding private var isShowModuleNavBar: Bool
 
     // MARK: - Private Properties
 
     @State private var dismissKeyboard: Bool = false
-
+    @State private var isShowHeader: Bool = true
     @Environment(\.viewController) private var viewController
 
     init(
         viewModel: AssignmentDetailsViewModel,
-        isShowHeader: Binding<Bool> = .constant(false),
         isShowModuleNavBar: Binding<Bool>
     ) {
         self.viewModel = viewModel
-        self._isShowHeader = isShowHeader
         self._isShowModuleNavBar = isShowModuleNavBar
     }
 
@@ -70,6 +67,7 @@ struct AssignmentDetails: View {
         .overlay { loaderView }
         .keyboardAdaptive()
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
     }
 
     private var topView: some View {
@@ -174,3 +172,11 @@ struct AssignmentDetails: View {
     AssignmentDetailsAssembly.makePreview()
 }
 #endif
+
+struct HeaderVisibilityKey: PreferenceKey {
+    static var defaultValue: Bool = true
+
+    static func reduce(value: inout Bool, nextValue: () -> Bool) {
+        value = nextValue()
+    }
+}

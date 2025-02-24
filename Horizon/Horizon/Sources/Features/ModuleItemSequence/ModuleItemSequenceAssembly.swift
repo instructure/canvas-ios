@@ -110,10 +110,9 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeModuleItemView(
-        isScrollTopReached: Binding<Bool>,
         viewController: UIViewController
-    ) -> ModuleItemViewRepresentable {
-        ModuleItemViewRepresentable(viewController: viewController, isScrollTopReached: isScrollTopReached)
+    ) -> ModuleItemView {
+        ModuleItemView(viewController: viewController)
     }
 
 #if DEBUG

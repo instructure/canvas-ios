@@ -60,7 +60,6 @@ final class AssignmentDetailsAssembly {
     static func makeView(
         courseID: String,
         assignmentID: String,
-        isShowHeader: Binding<Bool>,
         isShowModuleNavBar: Binding<Bool>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetails {
@@ -70,7 +69,6 @@ final class AssignmentDetailsAssembly {
                 assignmentID: assignmentID,
                 didLoadAttemptCount: didLoadAttemptCount
             ),
-            isShowHeader: isShowHeader,
             isShowModuleNavBar: isShowModuleNavBar
         )
     }

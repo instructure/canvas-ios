@@ -25,6 +25,7 @@ struct FileDetailsView: View {
 
     @State private var didFinishRenderingPreview: Bool = false
     @Environment(\.viewController) private var viewController
+    @State var isShowHeader: Bool = true
 
     // MARK: - Dependencies
 
@@ -32,19 +33,16 @@ struct FileDetailsView: View {
     private let context: Context?
     private let fileID: String
     private let fileName: String
-    @Binding var isShowHeader: Bool
 
     init(
         viewModel: FileDetailsViewModel,
         context: Context?,
         fileID: String,
-        fileName: String,
-        isShowHeader: Binding<Bool>
+        fileName: String
     ) {
         self.context = context
         self.fileID = fileID
         self.fileName = fileName
-        self._isShowHeader = isShowHeader
         self.viewModel = viewModel
     }
 
@@ -69,6 +67,7 @@ struct FileDetailsView: View {
         }
         .animation(.smooth, value: viewModel.viewState)
         .animation(.smooth, value: [isShowHeader, didFinishRenderingPreview])
+        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
     }
 }
 #if DEBUG

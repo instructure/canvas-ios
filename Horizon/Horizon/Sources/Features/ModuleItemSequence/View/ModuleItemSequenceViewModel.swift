@@ -32,11 +32,13 @@ final class ModuleItemSequenceViewModel {
     private(set) var errorMessage = ""
     private(set) var courseName = ""
     private(set) var moduleItem: HModuleItem?
+    private(set) var assignmentAttemptCount: String?
 
     // MARK: - Input / Output
 
     var offsetX: CGFloat = 0
     var isShowErrorAlert: Bool = false
+    var didAssignmentLoadAttemptCount: (String?) -> Void = { _ in}
 
     // MARK: - Private Properties
     private var moduleID: String?
@@ -80,6 +82,10 @@ final class ModuleItemSequenceViewModel {
                 self?.course = course
             }
             .store(in: &subscriptions)
+
+        didLoadAttemptCount = { [weak self] value in
+            self?.assignmentAttemptCount = value
+        }
     }
 
     // MARK: - Input Functions
@@ -214,6 +220,7 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func update(item: HModuleItemSequenceNode) {
+        assignmentAttemptCount = nil
         moduleID = item.moduleID
         itemID = item.id
         guard let itemID else {

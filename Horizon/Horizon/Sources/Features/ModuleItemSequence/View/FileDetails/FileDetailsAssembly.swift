@@ -25,8 +25,7 @@ struct FileDetailsAssembly {
         courseID: String,
         fileID: String,
         context: Context,
-        fileName: String,
-        isShowHeader: Binding<Bool>
+        fileName: String
     ) -> FileDetailsView {
         let interactor = DownloadFileInteractorLive(courseID: courseID)
         let router = AppEnvironment.shared.router
@@ -35,8 +34,7 @@ struct FileDetailsAssembly {
             viewModel: viewModel,
             context: context,
             fileID: fileID,
-            fileName: fileName,
-            isShowHeader: isShowHeader
+            fileName: fileName
         )
     }
 
@@ -49,8 +47,7 @@ struct FileDetailsAssembly {
             viewModel: viewModel,
             context: nil,
             fileID: "23",
-            fileName: "AI for Everyone.pdf",
-            isShowHeader: .constant(true)
+            fileName: "AI for Everyone.pdf"
         )
         return view
     }

@@ -47,9 +47,11 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
         viewController.didFinishLoading = {
                 isFinishLoading = true
             if let scrollView = findScrollView(in: viewController.view) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     contentHeight = scrollView.contentSize.height
                 }
+            } else {
+                contentHeight = 300
             }
         }
         if let scrollView = findScrollView(in: viewController.view) {

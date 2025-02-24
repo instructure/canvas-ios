@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
+fileprivate struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Dependencies
 
     @Binding private var isScrollTopReached: Bool
@@ -81,5 +81,22 @@ struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
             let yOffset = scrollView.contentOffset.y
             didScroll(yOffset > threshold)
         }
+    }
+}
+
+struct ModuleItemView: View {
+    @State private var isShowHeader: Bool = true
+    private let viewController: UIViewController
+
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+    }
+
+    var body: some View {
+        ModuleItemViewRepresentable(
+            viewController: viewController,
+            isScrollTopReached: $isShowHeader
+        )
+        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
     }
 }
