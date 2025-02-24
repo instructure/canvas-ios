@@ -173,7 +173,11 @@ struct SubmissionCommentView: View {
             title: String(localized: "Post", bundle: .horizon),
             type: .blue,
             fillsWidth: true,
-            isLoading: postingCommentBinding
+            isLoading: postingCommentBinding,
+            isDisabled: Binding(
+                get: { viewModel.text.isEmpty },
+                set: { _ in }
+            )
         ) {
             viewModel.postComment()
         }
