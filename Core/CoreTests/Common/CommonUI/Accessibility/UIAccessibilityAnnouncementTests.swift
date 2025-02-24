@@ -149,6 +149,6 @@ class MockAccessabilityHandler: AccessibilityNotificationHandler {
         let message = (argument as? NSAttributedString)?.string
         attempts.append(Attempt(notificaiton: notification, value: message))
     }
-    
+
     var isVoiceOverRunning: Bool = true
 }
