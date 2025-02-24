@@ -243,7 +243,7 @@ class CalendarDayButton: UIButton {
         let month = String(calendar.component(.month, from: date))
         let day = String(calendar.component(.day, from: date))
         accessibilityIdentifier = "PlannerCalendar.dayButton.\(year)-\(month)-\(day)"
-        accessibilityLabel = date.formatted(.dateTime .year() .month() .day() .weekday(.wide))
+        accessibilityLabel = date.formatted(.dateTime.year().month().day().weekday(.wide))
 
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(circleView)
