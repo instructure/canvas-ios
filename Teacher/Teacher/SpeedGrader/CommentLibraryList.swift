@@ -51,8 +51,16 @@ struct CommentLibraryList: View {
 
     @ViewBuilder
     private func commentList(_ comments: [LibraryComment]) -> some View {
-        List(comments) { libraryComment in
-            commentView(libraryComment)
+        List {
+            ForEach(comments) { libraryComment in
+                commentView(libraryComment)
+            }
+            PagingButton(endCursor: $viewModel.endCursor) { _, finished in
+                viewModel.loadNextPage(completion: finished)
+            }
+            .font(.regular15)
+            .foregroundColor(.blue)
+            .listRowSeparator(.hidden, edges: .bottom)
         }
         .listStyle(.plain)
         .refreshable {
