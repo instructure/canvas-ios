@@ -57,6 +57,7 @@ public struct APIInboxSettings: Codable, Equatable {
         let outOfOfficeMessage: String?
         let outOfOfficeSubject: String?
         let outOfOfficeFirstDate: Date?
+        let signature: String?
         let updatedAt: Date?
         let useOutOfOffice: Bool?
         let useSignature:  Bool?

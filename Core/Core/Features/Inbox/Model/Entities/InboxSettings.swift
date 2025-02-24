@@ -26,6 +26,7 @@ final public class InboxSettings: NSManagedObject, WriteableModel {
     @NSManaged public var outOfOfficeMessage: String?
     @NSManaged public var outOfOfficeSubject: String?
     @NSManaged public var outOfOfficeFirstDate: Date?
+    @NSManaged public var signature: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var useOutOfOffice: Bool
     @NSManaged public var useSignature:  Bool
@@ -40,6 +41,7 @@ final public class InboxSettings: NSManagedObject, WriteableModel {
         dbEntity.outOfOfficeMessage = item.data.outOfOfficeMessage
         dbEntity.outOfOfficeSubject = item.data.outOfOfficeSubject
         dbEntity.outOfOfficeFirstDate = item.data.outOfOfficeFirstDate
+        dbEntity.signature = item.data.signature
         dbEntity.updatedAt = item.data.updatedAt
         dbEntity.useOutOfOffice = item.data.useOutOfOffice ?? false
         dbEntity.useSignature = item.data.useSignature ?? false

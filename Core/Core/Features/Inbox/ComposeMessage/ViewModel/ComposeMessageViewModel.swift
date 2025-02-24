@@ -352,10 +352,12 @@ final class ComposeMessageViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        settingsInteractor.settings
-            .sink { settings in
-                print("SEttings")
-                print(settings)
+        settingsInteractor.signature
+            //.timeout(.seconds(3), scheduler: DispatchQueue.main)
+            .sink { [weak self] (useSignature, signature) in
+                if useSignature == true, let signature, signature.isNotEmpty {
+                    self?.bodyText.append("\n\n---\n\(signature)")
+                }
             }
             .store(in: &subscriptions)
     }

@@ -22,8 +22,7 @@ import CombineExt
 public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
 
-    public var settings = PassthroughRelay<InboxSettings>()
-    public var environmentSettings = PassthroughRelay<[CDEnvironmentSettings]>()
+    public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
 
     public func refresh() -> AnyPublisher<Void, Never> {
         return Just(()).eraseToAnyPublisher()

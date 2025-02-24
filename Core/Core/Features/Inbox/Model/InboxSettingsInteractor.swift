@@ -21,8 +21,5 @@ import CombineExt
 
 public protocol InboxSettingsInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
-    var settings: PassthroughRelay<InboxSettings> { get }
-    var environmentSettings: PassthroughRelay<[CDEnvironmentSettings]> { get }
-
-    func refresh() -> AnyPublisher<Void, Never>
+    var signature: CurrentValueSubject<(Bool?, String?), Never> { get }
 }

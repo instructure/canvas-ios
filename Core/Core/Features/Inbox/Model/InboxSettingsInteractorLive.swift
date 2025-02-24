@@ -21,19 +21,21 @@ import CombineExt
 
 public class InboxSettingsInteractorLive: InboxSettingsInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
-    public let signature = CurrentValueSubject<String?, Never>("")
-    public let useSignature = CurrentValueSubject<Bool?, Never>(false)
+    public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
 
-    public let settings = PassthroughRelay<InboxSettings>()
-    public let environmentSettings = PassthroughRelay<[CDEnvironmentSettings]>()
+    private let settings = PassthroughRelay<InboxSettings>()
+    private let environmentSettings = PassthroughRelay<CDEnvironmentSettings>()
 
     private var subscriptions = Set<AnyCancellable>()
     private var settingsStore: ReactiveStore<GetInboxSettings>
     private var environmentSettingsStore: ReactiveStore<GetEnvironmentSettings>
 
-    public init(userId: String) {
+    private let environment: AppEnvironment
+
+    public init(userId: String, environment: AppEnvironment) {
         self.settingsStore = ReactiveStore(useCase: GetInboxSettings(userId: userId))
         self.environmentSettingsStore = ReactiveStore(useCase: GetEnvironmentSettings())
+        self.environment = environment
 
         settingsStore.getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
@@ -45,16 +47,20 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
         environmentSettingsStore.getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
-                print("SETTINGS")
-                print(settings.map {$0.calendarContextsLimit})
-                print(settings.map {$0.enableInboxSignatureBlock})
-                print(settings.map {$0.disableInboxSignatureBlockForStudents})
-                self?.environmentSettings.accept(settings)
+                if let settings = settings.first {
+                    self?.environmentSettings.accept(settings)
+                }
             })
             .store(in: &subscriptions)
-    }
 
-    public func refresh() -> AnyPublisher<Void, Never> {
-        settingsStore.forceRefresh()
+        Publishers.CombineLatest(settings, environmentSettings)
+            .sink { [weak self, environment] (settings, environmentSettings) in
+                var useSignature = settings.useSignature && environmentSettings.enableInboxSignatureBlock
+                if environment.app == .student {
+                    useSignature = useSignature && !environmentSettings.disableInboxSignatureBlockForStudents
+                }
+                self?.signature.send((useSignature, settings.signature))
+            }
+            .store(in: &subscriptions)
     }
 }
