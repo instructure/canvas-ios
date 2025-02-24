@@ -150,7 +150,7 @@ struct StudentHeaderView: View {
         .padding(.leading, horizontalPadding)
         .padding(.top, isVerticallyCompact ? 0 : 12)
         .identifier("Dashboard.profileButton")
-        .accessibilityLabel(Text("Settings", bundle: .parent))
+        .accessibilityLabel(Text("Profile Menu", bundle: .parent))
         .accessibilityValue(String(localized: "Closed", bundle: .core))
         .accessibilityHint(viewModel.menuAccessibilityHint)
     }
