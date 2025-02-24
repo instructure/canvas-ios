@@ -151,7 +151,16 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
     private lazy var submittedLabelFocusHandler = AccessibilityDeferredFocusHandler(
-        targetView: { [weak self] in self?.submittedLabel }
+        targetView: { [weak self] in
+            guard let self, let sView = submittedView else { return nil }
+
+            if sView.isHidden {
+                attemptLabel?.accessibilityHint = submittedLabel?.text
+                return attemptLabel
+            } else {
+                return submittedLabel
+            }
+        }
     )
 
     static func create(env: AppEnvironment,
@@ -469,9 +478,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         loadingView.stopAnimating()
         refreshControl?.endRefreshing()
 
-        submittedLabelFocusHandler.focusIfNeeded { [weak self] posted in
-            guard let self, posted == false else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: view)
+        submittedLabelFocusHandler.focusIfNeeded { [weak self] in
+            UIAccessibility.post(notification: .screenChanged, argument: self?.view)
         }
     }
 
@@ -653,7 +661,7 @@ private class AccessibilityDeferredFocusHandler {
 
     private var targetView: () -> UIView?
     private let debounceTime: TimeInterval = 0.5
-    private var completion: ((Bool) -> Void)?
+    private var completion: (() -> Void)?
 
     private(set) var needsAccessibilityFocus: Bool = false
     private var debounceTimer: Timer?
@@ -662,11 +670,11 @@ private class AccessibilityDeferredFocusHandler {
         needsAccessibilityFocus = true
     }
 
-    func focusIfNeeded(completion: ((Bool) -> Void)? = nil) {
-        self.completion = completion
+    func focusIfNeeded(_ fallback: (() -> Void)? = nil) {
+        self.completion = fallback
 
         guard needsAccessibilityFocus else {
-            return consumeCompletion(false)
+            return cancelled()
         }
 
         // Debouncing to avoiding this multiple times ass a result of calling
@@ -681,21 +689,19 @@ private class AccessibilityDeferredFocusHandler {
     }
 
     private func focus() {
-        guard needsAccessibilityFocus else { return consumeCompletion(false) }
+        guard needsAccessibilityFocus else { return cancelled() }
 
-        var posted: Bool = false
         if let trgView = targetView() {
             UIAccessibility.post(notification: .screenChanged, argument: trgView)
-            posted = true
         }
 
         needsAccessibilityFocus = false
         debounceTimer = nil
-        consumeCompletion(posted)
+        completion = nil
     }
 
-    private func consumeCompletion(_ posted: Bool) {
-        completion?(posted)
+    private func cancelled() {
+        completion?()
         completion = nil
     }
 }
