@@ -249,6 +249,7 @@ final class ComposeMessageViewModel: ObservableObject {
 
     private func showDialog(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
+        sheet.title = String(localized: "Select Attachment Type", bundle: .core)
 
         sheet.addAction(
             image: .documentLine,

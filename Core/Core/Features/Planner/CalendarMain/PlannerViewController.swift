@@ -212,6 +212,7 @@ public class PlannerViewController: UIViewController {
 
         currentlyDisplayedToday = date
         todayButton.image = makeTodayIcon(text: date.dayString)
+        todayButton.accessibilityHint = date.formatted(.dateTime.day().month(.wide))
     }
 
     private func makeTodayIcon(text: String) -> UIImage {
