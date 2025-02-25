@@ -46,7 +46,7 @@ class DashboardViewControllerTests: ParentTestCase {
             vc.headerViewModel.accessibilityLabel == "Current student: Short Name (Pro/Noun)"
         }
         XCTAssertEqual(vc.headerViewModel.state, .student(name: "Short Name (Pro/Noun)", avatarURL: nil))
-        XCTAssertEqual(vc.headerViewModel.accessibilityHint, "Tap to switch students")
+        XCTAssertEqual(vc.headerViewModel.accessibilityHint, "Double tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
         XCTAssertEqual(
             vc.headerViewModel.backgroundColor.hexString,
@@ -70,7 +70,7 @@ class DashboardViewControllerTests: ParentTestCase {
             vc.headerViewModel.accessibilityLabel == "Current student: Bob"
         }
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
-        XCTAssertEqual(vc.headerViewModel.accessibilityHint, "Tap to switch students")
+        XCTAssertEqual(vc.headerViewModel.accessibilityHint, "Double tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
 
         (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
