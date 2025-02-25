@@ -257,7 +257,13 @@
     "Error loading comments." : {
 
     },
+    "External Tool" : {
+
+    },
     "Fiji (+12:00/+12:00)" : {
+
+    },
+    "File Upload" : {
 
     },
     "Filter" : {
@@ -696,6 +702,9 @@
 
     },
     "Tell me more about this topic" : {
+
+    },
+    "Text" : {
 
     },
     "There was an error. please try again." : {

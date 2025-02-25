@@ -89,7 +89,7 @@ struct CourseDetailsView: View {
                     case .overview:
                         overview(htmlString: viewModel.course.overviewDescription).id(index)
                     case .grades:
-                        Text(verbatim: "Grades")
+                        ScoresAssembly.makeView(courseID: viewModel.courseID)
                             .id(index)
                     case .notebook:
                         Text(verbatim: "Notebook")

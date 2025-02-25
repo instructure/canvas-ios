@@ -22,6 +22,7 @@ public struct APIAssignmentGroup: Codable, Equatable {
     let id: ID
     let name: String
     let position: Int
+    let group_weight: Double?
     var assignments: [APIAssignment]?
 }
 
@@ -31,12 +32,14 @@ extension APIAssignmentGroup {
         id: ID = "1",
         name: String = "Assignment Group A",
         position: Int = 1,
+        group_weight: Double? = 80.0,
         assignments: [APIAssignment]? = nil
         ) -> APIAssignmentGroup {
         return APIAssignmentGroup(
             id: id,
             name: name,
             position: position,
+            group_weight: group_weight,
             assignments: assignments
         )
     }

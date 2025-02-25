@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,32 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
 import Combine
-import Foundation
 import Core
+import Observation
 
-class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourses() -> AnyPublisher<[HCourse], Never> {
-        Just([course])
-            .eraseToAnyPublisher()
-    }
+@Observable
+final class ScoresViewModel {
 
-    func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
-        Just(course)
-            .eraseToAnyPublisher()
-    }
+    private(set) var scoreDetails: ScoreDetails?
+    
+    private var subscriptions = Set<AnyCancellable>()
 
-    private var course: HCourse {
-        .init(
-            id: "123",
-            institutionName: "Instructure",
-            name: "Course Name",
-            overviewDescription: "Course Description",
-            progress: 0.5,
-            enrollments: [],
-            modules: []
-        )
+    init(
+        interactor: ScoresInteractor
+    ) {
+        weak var weakSelf = self
+        
+        interactor.getScores()
+            .sink(receiveCompletion: { _ in
+
+            }, receiveValue: { value in
+                weakSelf?.scoreDetails = value
+                print("🟨 ", value)
+            })
+            .store(in: &subscriptions)
     }
 }
-#endif

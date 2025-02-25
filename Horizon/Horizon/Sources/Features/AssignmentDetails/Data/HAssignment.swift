@@ -36,6 +36,8 @@ struct HAssignment {
     let submittedAt: Date?
     var showSubmitButton = false
     var allowedExtensions: [String] = []
+    let submissions: [HSubmission]
+
     init(
         id: String,
         name: String,
@@ -47,7 +49,8 @@ struct HAssignment {
         courseID: String,
         courseName: String,
         workflowState: SubmissionWorkflowState?,
-        submittedAt: Date?
+        submittedAt: Date?,
+        submissions: [HSubmission]
     ) {
         self.id = id
         self.name = name
@@ -60,6 +63,7 @@ struct HAssignment {
         self.courseName = courseName
         self.workflowState = workflowState
         self.submittedAt = submittedAt
+        self.submissions = submissions
     }
 
     init(from assignment: Assignment) {
@@ -76,6 +80,11 @@ struct HAssignment {
         self.courseName = assignment.course?.name ?? ""
         self.showSubmitButton = assignment.hasAttemptsLeft
         self.allowedExtensions = assignment.allowedExtensions
+        if let submissions = assignment.submissions {
+            self.submissions = Array(submissions).map { HSubmission(entity: $0) }
+        } else {
+            self.submissions = []
+        }
     }
 
     var submitButtonTitle: String {
@@ -88,7 +97,7 @@ struct HAssignment {
     }
 
     var fileExtensions: [UTI] {
-        submissionTypes.allowedUTIs( allowedExtensions: allowedExtensions)
+        submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
     }
 
     var attemptCount: String? {
@@ -114,7 +123,8 @@ extension HAssignment {
             courseID: "1",
             courseName: "Design Thinking Workshop",
             workflowState: .unsubmitted,
-            submittedAt: Date()
+            submittedAt: Date(),
+            submissions: []
         )
     }
 }
