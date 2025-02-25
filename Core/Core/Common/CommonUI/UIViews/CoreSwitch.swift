@@ -39,6 +39,9 @@ public class CoreSwitch: UIControl {
     public override var intrinsicContentSize: CGSize {
         CGSize(width: 44, height: 28)
     }
+    public override var accessibilityLabel: String? {
+        didSet { toggleViewModel.accessibilityLabel = accessibilityLabel ?? "" }
+    }
 
     // MARK: - Private Properties
 
@@ -94,9 +97,10 @@ private class ToggleViewModel: ObservableObject {
     @Published var isOn = false
     @Published var isEnabled = true
     @Published var tintColor: Color?
+    @Published var accessibilityLabel: String = ""
 }
 
-/// The purpose of this view is just to simulate a SwiftUI environment from where variables can be passed
+/// The purpose of this view is just to create a SwiftUI environment from where variables can be passed
 /// down to the underlying InstUI.Toggle.
 private struct ToggleWrapper: View {
     @EnvironmentObject var toggleViewModel: ToggleViewModel
@@ -105,6 +109,7 @@ private struct ToggleWrapper: View {
         InstUI.Toggle(isOn: $toggleViewModel.isOn) {}
             .environment(\.isEnabled, toggleViewModel.isEnabled)
             .accentColor(toggleViewModel.tintColor)
+            .accessibilityLabel(toggleViewModel.accessibilityLabel)
     }
 }
 

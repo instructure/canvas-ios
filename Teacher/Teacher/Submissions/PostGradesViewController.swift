@@ -123,7 +123,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 if let cell = cell as? SectionCell {
                     cell.toggle.isOn = showSections
-                    cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
+                    cell.toggle.tintColor = Brand.shared.buttonPrimaryBackground
                     cell.toggle.accessibilityIdentifier = "PostPolicy.togglePostToSections"
                     cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                 }
@@ -135,7 +135,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             if let cell = cell as? SectionCell {
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
-                cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
+                cell.toggle.tintColor = Brand.shared.buttonPrimaryBackground
                 cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel.sections?[index].id ?? "")"
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
             }
@@ -179,26 +179,30 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     @objc
-    func actionDidToggleShowSections(sender: UISwitch) {
+    func actionDidToggleShowSections(sender: CoreSwitch) {
         showSections = sender.isOn
         tableView.reloadData()
     }
 
     @objc
-    func actionDidToggleSection(toggle: UISwitch) {
+    func actionDidToggleSection(toggle: CoreSwitch) {
         sectionToggles[toggle.tag] = toggle.isOn
     }
 
     class SectionCell: UITableViewCell {
-        var toggle: UISwitch
+        var toggle: CoreSwitch
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+            toggle = CoreSwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             backgroundColor = .backgroundLightest
             textLabel?.textColor = .textDarkest
             textLabel?.font = .scaledNamedFont(.semibold16)
-            accessoryView = toggle
+
+            toggle.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(toggle)
+            toggle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+            toggle.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
         }
 
         required init?(coder aDecoder: NSCoder) {

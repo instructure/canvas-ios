@@ -96,7 +96,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let cell: PostGradesViewController.SectionCell = tableView.dequeue(for: indexPath)
-        cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
+        cell.toggle.tintColor = Brand.shared.buttonPrimaryBackground
 
         if indexPath.row == 0 {
             cell.textLabel?.text = String(localized: "Specific Sections", bundle: .teacher)
@@ -135,13 +135,13 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     @objc
-    func actionDidToggleShowSections(sender: UISwitch) {
+    func actionDidToggleShowSections(sender: CoreSwitch) {
         showSections = sender.isOn
         tableView.reloadData()
     }
 
     @objc
-    func actionDidToggleSection(toggle: UISwitch) {
+    func actionDidToggleSection(toggle: CoreSwitch) {
         sectionToggles[toggle.tag] = toggle.isOn
     }
 }

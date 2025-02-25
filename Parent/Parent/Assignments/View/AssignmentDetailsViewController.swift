@@ -33,7 +33,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var reminderDateButton: UIButton!
     @IBOutlet weak var reminderHeadingLabel: UILabel!
     @IBOutlet weak var reminderMessageLabel: UILabel!
-    @IBOutlet weak var reminderSwitch: UISwitch!
+    @IBOutlet weak var reminderSwitch: CoreSwitch!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var statusIconView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
@@ -112,6 +112,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         reminderMessageLabel.text = String(localized: "Set a date and time to be notified of this event.", bundle: .parent)
         reminderSwitch.accessibilityLabel = String(localized: "Remind Me", bundle: .parent)
         reminderSwitch.isEnabled = false
+        reminderSwitch.tintColor = ColorScheme.observee(studentID).color
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
         reminderDateButton.setTitleColor(

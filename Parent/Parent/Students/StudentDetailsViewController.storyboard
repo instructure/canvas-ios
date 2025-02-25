@@ -243,12 +243,12 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HEh-iY-JoD">
+                                                    <view opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HEh-iY-JoD" customClass="CoreSwitch" customModule="Core">
                                                         <rect key="frame" x="310" y="11" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="switchChanged:" destination="JSN-Mu-RvM" eventType="valueChanged" id="KHK-iN-jz8"/>
                                                         </connections>
-                                                    </switch>
+                                                    </view>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBf-v0-W2f" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="52" width="375" height="1"/>
                                                         <constraints>
@@ -405,12 +405,12 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <switch opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Adz-0I-UDS">
+                                                    <view opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Adz-0I-UDS" customClass="CoreSwitch" customModule="Core">
                                                         <rect key="frame" x="310" y="11" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="switchChanged:" destination="JSN-Mu-RvM" eventType="valueChanged" id="Vnb-Sd-QDb"/>
                                                         </connections>
-                                                    </switch>
+                                                    </view>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRZ-JS-IaO" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="52" width="375" height="1"/>
                                                         <constraints>
@@ -451,12 +451,12 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <switch opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rcj-MP-zfD">
+                                                    <view opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rcj-MP-zfD" customClass="CoreSwitch" customModule="Core">
                                                         <rect key="frame" x="310" y="11" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="switchChanged:" destination="JSN-Mu-RvM" eventType="valueChanged" id="8JV-jR-EDl"/>
                                                         </connections>
-                                                    </switch>
+                                                    </view>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ps-XN-klr" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="52" width="375" height="1"/>
                                                         <constraints>
