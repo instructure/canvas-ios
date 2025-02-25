@@ -197,7 +197,7 @@ class CalendarDayButton: UIButton {
             for (d, dot) in dotContainer.arrangedSubviews.enumerated() {
                 dot.isHidden = d >= activityDotCount
             }
-            accessibilityHint = String.localizedStringWithFormat(
+            accessibilityValue = String.localizedStringWithFormat(
                 String(localized: "d_events", bundle: .core),
                 activityDotCount
             )
