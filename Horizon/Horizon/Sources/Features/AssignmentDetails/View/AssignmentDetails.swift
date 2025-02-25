@@ -68,6 +68,11 @@ struct AssignmentDetails: View {
         .keyboardAdaptive()
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
+        .huiOverlay(
+            title: AssignmentLocalizedKeys.tools.title,
+            buttons: getToolsButtons(),
+            isPresented: $viewModel.isOverlayToolsPresented
+        )
     }
 
     private var topView: some View {
@@ -164,6 +169,27 @@ struct AssignmentDetails: View {
                 .foregroundStyle(Color.huiColors.text.error)
             }
         }
+    }
+
+    private func getToolsButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
+        let historyButton = HorizonUI.Overlay.ButtonAttribute(
+            title: AssignmentLocalizedKeys.attemptHistory.title,
+            icon: Image.huiIcons.history
+        ) {
+            viewModel.isOverlayToolsPresented.toggle()
+        }
+
+        let commentButton = HorizonUI.Overlay.ButtonAttribute(
+            title: AssignmentLocalizedKeys.comments.title,
+            icon: Image.huiIcons.chat
+        ) {
+            viewModel.isOverlayToolsPresented.toggle()
+            // Waite till dismiss the tools sheet
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                viewModel.viewComments(controller: viewController)
+            }
+        }
+        return [historyButton, commentButton]
     }
 }
 

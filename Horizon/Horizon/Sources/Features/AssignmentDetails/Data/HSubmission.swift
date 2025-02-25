@@ -27,6 +27,9 @@ struct HSubmission {
     let attachments: [File]?
     let body: String?
     let type: AssignmentSubmissionType?
+    let attempt: Int
+    let postedAt: Date?
+    let grade: String?
 
     // MARK: - Init
 
@@ -36,6 +39,9 @@ struct HSubmission {
         self.attachments = Array(entity.attachments ?? [])
         self.body = entity.body
         self.type = AssignmentSubmissionType(rawValue: entity.type?.rawValue ?? "")
+        self.attempt = entity.attempt
+        self.postedAt = entity.postedAt
+        self.grade = entity.grade
     }
 
     init(
@@ -43,12 +49,18 @@ struct HSubmission {
         assignmentID: String,
         attachments: [File]? = [],
         body: String? = nil,
-        type: AssignmentSubmissionType? = nil
+        type: AssignmentSubmissionType? = nil,
+        attempt: Int = 10,
+        postedAt: Date? = nil,
+        grade: String? = nil
     ) {
         self.id = id
         self.assignmentID = assignmentID
         self.attachments = attachments
         self.body = body
         self.type = type
+        self.attempt = attempt
+        self.postedAt = postedAt
+        self.grade = grade
     }
 }

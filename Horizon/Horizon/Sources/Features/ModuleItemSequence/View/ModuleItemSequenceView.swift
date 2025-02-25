@@ -141,18 +141,27 @@ public struct ModuleItemSequenceView: View {
     @ViewBuilder
     private var moduleNavBarView: some View {
         if isShowModuleNavBar {
-            ModuleItemSequenceAssembly.makeModuleNavBarView(
-                isNextButtonEnabled: viewModel.isNextButtonEnabled,
-                isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled
-            ) {
+            let nextButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isNextButtonEnabled) {
                 goNext()
-            } didTapPrevious: {
+            }
+            let previousButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isPreviousButtonEnabled) {
                 goPrevious()
             }
+
+            let assignmentOptionsButton = ModuleNavBarView.ButtonAttribute(
+                isVisible: viewModel.isAssignmentOptionsButtonVisible
+            ) {
+                viewModel.onTapAssignmentOptions.send()
+            }
+
+            ModuleItemSequenceAssembly.makeModuleNavBarView(
+                nextButton: nextButton,
+                previousButton: previousButton,
+                assignmentMoreOptionsButton: assignmentOptionsButton
+            )
             .padding(.vertical, .huiSpaces.space8)
             .padding(.horizontal, .huiSpaces.space16)
             .background(Color.huiColors.surface.pagePrimary)
-            .frame(height: 56)
         }
     }
 }
@@ -192,12 +201,12 @@ fileprivate struct ContentView: View {
                 case .locked(title: let title, lockExplanation: let lockExplanation):
                     ModuleItemSequenceAssembly.makeLockView(title: title, lockExplanation: lockExplanation)
                 case .assignment(courseID: let courseID, assignmentID: let assignmentID):
-                    // onTapAssignmentOptions: viewModel.onTapAssignmentOptions
                     AssignmentDetailsAssembly.makeView(
                         courseID: courseID,
                         assignmentID: assignmentID,
                         isShowModuleNavBar: .constant(false),
-                        didLoadAttemptCount: viewModel.didAssignmentLoadAttemptCount
+                        onTapAssignmentOptions: viewModel.onTapAssignmentOptions,
+                        didLoadAttemptCount: viewModel.didLoadAssignmentAttemptCount
                     )
                     .id(assignmentID)
 

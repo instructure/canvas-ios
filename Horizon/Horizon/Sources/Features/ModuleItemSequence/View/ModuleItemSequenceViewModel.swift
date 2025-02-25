@@ -33,12 +33,14 @@ final class ModuleItemSequenceViewModel {
     private(set) var courseName = ""
     private(set) var moduleItem: HModuleItem?
     private(set) var assignmentAttemptCount: String?
+    private(set) var isAssignmentOptionsButtonVisible: Bool = false
 
     // MARK: - Input / Output
 
     var offsetX: CGFloat = 0
     var isShowErrorAlert: Bool = false
-    var didAssignmentLoadAttemptCount: (String?) -> Void = { _ in}
+    var onTapAssignmentOptions = PassthroughSubject<Void, Never>()
+    var didLoadAssignmentAttemptCount: (String?) -> Void = { _ in}
 
     // MARK: - Private Properties
     private var moduleID: String?
@@ -83,7 +85,7 @@ final class ModuleItemSequenceViewModel {
             }
             .store(in: &subscriptions)
 
-        didLoadAttemptCount = { [weak self] value in
+        didLoadAssignmentAttemptCount = { [weak self] value in
             self?.assignmentAttemptCount = value
         }
     }
@@ -157,6 +159,7 @@ final class ModuleItemSequenceViewModel {
         if state?.isModuleItem == true {
             markAsViewed()
         }
+        isAssignmentOptionsButtonVisible = state?.isAssignment ?? false
         return state
     }
 

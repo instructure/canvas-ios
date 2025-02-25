@@ -25,6 +25,7 @@ enum ModuleNavBarButtons {
     case chatBot
     case notebook
     case next
+    case assignmentMoreOptions
 
     var image: Image {
         switch self {
@@ -38,6 +39,8 @@ enum ModuleNavBarButtons {
             Image.huiIcons.menuBookNotebook
         case .next:
             Image.huiIcons.chevronRight
+        case .assignmentMoreOptions:
+            Image.huiIcons.moreVert
         }
     }
 }

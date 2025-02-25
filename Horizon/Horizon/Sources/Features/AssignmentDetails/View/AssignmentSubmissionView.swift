@@ -26,7 +26,7 @@ struct AssignmentSubmissionView: View {
     @FocusState private var focusedInput: Bool
     @State private var isImagePickerVisible = false
     @State private var isTakePhotoVisible = false
-    @State private var isOverlayUploadFileVisible = false
+    @State private var isOverlayUploadFilePresented = false
 
    private let uploadParameters: RichContentEditorUploadParameters
    private let rceID = "rceID"
@@ -65,7 +65,7 @@ struct AssignmentSubmissionView: View {
         .huiOverlay(
             title: AssignmentLocalizedKeys.uploadFile.title,
             buttons: getFileUploadButtons(),
-            isPresented: $isOverlayUploadFileVisible
+            isPresented: $isOverlayUploadFilePresented
         )
         .fileImporter(
             isPresented: $isFilePickerVisible,
@@ -128,7 +128,7 @@ struct AssignmentSubmissionView: View {
                 HorizonUI.FileDrop(
                     acceptedFilesType: viewModel.assignment?.allowedFileExtensions ?? ""
                 ) {
-                    isOverlayUploadFileVisible.toggle()
+                    isOverlayUploadFilePresented.toggle()
                 }
                 .frame(height: 190)
             }
@@ -182,7 +182,7 @@ struct AssignmentSubmissionView: View {
                 title: AssignmentLocalizedKeys.selectMedia.title,
                 icon: Image.huiIcons.image
         ) {
-            isOverlayUploadFileVisible.toggle()
+            isOverlayUploadFilePresented.toggle()
             isImagePickerVisible.toggle()
         }
 
@@ -190,7 +190,7 @@ struct AssignmentSubmissionView: View {
             title: AssignmentLocalizedKeys.takeMedia.title,
             icon: Image.huiIcons.camera
         ) {
-            isOverlayUploadFileVisible.toggle()
+            isOverlayUploadFilePresented.toggle()
             isTakePhotoVisible.toggle()
         }
 
@@ -198,7 +198,7 @@ struct AssignmentSubmissionView: View {
             title: AssignmentLocalizedKeys.chooseFile.title,
             icon: Image.huiIcons.image
         ) {
-            isOverlayUploadFileVisible.toggle()
+            isOverlayUploadFilePresented.toggle()
             isFilePickerVisible.toggle()
         }
 

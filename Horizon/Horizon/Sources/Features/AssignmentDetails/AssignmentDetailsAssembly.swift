@@ -19,11 +19,13 @@
 import Core
 import SwiftUI
 import Foundation
+import Combine
 
 final class AssignmentDetailsAssembly {
     static func makeViewModel(
         courseID: String,
         assignmentID: String,
+        onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetailsViewModel {
         let uploadManager = HUploadFileManagerLive(
@@ -53,6 +55,7 @@ final class AssignmentDetailsAssembly {
             router: router,
             courseID: courseID,
             assignmentID: assignmentID,
+            onTapAssignmentOptions: onTapAssignmentOptions,
             didLoadAttemptCount: didLoadAttemptCount
         )
     }
@@ -61,12 +64,14 @@ final class AssignmentDetailsAssembly {
         courseID: String,
         assignmentID: String,
         isShowModuleNavBar: Binding<Bool>,
+        onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetails {
         AssignmentDetails(
             viewModel: makeViewModel(
                 courseID: courseID,
                 assignmentID: assignmentID,
+                onTapAssignmentOptions: onTapAssignmentOptions,
                 didLoadAttemptCount: didLoadAttemptCount
             ),
             isShowModuleNavBar: isShowModuleNavBar
@@ -86,7 +91,8 @@ final class AssignmentDetailsAssembly {
             textEntryInteractor: assignmentTextEntryInteractor,
             router: AppEnvironment.shared.router,
             courseID: "1",
-            assignmentID: "assignmentID"
+            assignmentID: "assignmentID",
+            onTapAssignmentOptions: .init()
         ) { _ in}
         return AssignmentDetails(viewModel: viewModel, isShowModuleNavBar: .constant(false))
     }

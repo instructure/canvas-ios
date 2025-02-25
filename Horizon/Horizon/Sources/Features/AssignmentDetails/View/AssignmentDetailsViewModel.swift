@@ -20,12 +20,13 @@ import Combine
 import CombineSchedulers
 import Core
 import Observation
-
+import SwiftUI
 @Observable
 final class AssignmentDetailsViewModel {
     // MARK: - Input / Output
 
     var htmlContent = ""
+    var isOverlayToolsPresented = false
 
     // MARK: - Output
 
@@ -83,8 +84,9 @@ final class AssignmentDetailsViewModel {
     let courseID: String
     let assignmentID: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var onTapAssignmentOptions: PassthroughSubject<Void, Never>
     private let didLoadAttemptCount: (String?) -> Void
-
+    
     // MARK: - Init
 
     init(
@@ -93,11 +95,13 @@ final class AssignmentDetailsViewModel {
         router: Router,
         courseID: String,
         assignmentID: String,
+        onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) {
         self.interactor = interactor
         self.textEntryInteractor = textEntryInteractor
+        self.onTapAssignmentOptions = onTapAssignmentOptions
         self.scheduler = scheduler
         self.router = router
         self.courseID = courseID
@@ -105,6 +109,12 @@ final class AssignmentDetailsViewModel {
         self.didLoadAttemptCount = didLoadAttemptCount
         bindSubmissionAssignmentEvents()
         fetchAssignmentDetails()
+
+        onTapAssignmentOptions
+            .sink { [weak self] in
+                self?.isOverlayToolsPresented.toggle()
+        }
+        .store(in: &subscriptions)
     }
 
     func viewComments(controller: WeakViewController) {

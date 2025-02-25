@@ -31,6 +31,9 @@ enum AssignmentLocalizedKeys {
     case uploadFile
     case deleteDraft
     case savedAt
+    case attemptHistory
+    case comments
+    case tools
 
     var title: String {
         switch self {
@@ -58,6 +61,12 @@ enum AssignmentLocalizedKeys {
             return String(localized: "Delete Draft", bundle: .horizon)
         case .savedAt:
             return String(localized: "Saved at ", bundle: .horizon)
+        case .attemptHistory:
+            return String(localized: "Attempt History", bundle: .horizon)
+        case .comments:
+            return String(localized: "Comments", bundle: .horizon)
+        case .tools:
+            return String(localized: "Tools", bundle: .horizon)
         }
     }
 }
