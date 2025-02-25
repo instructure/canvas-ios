@@ -44,7 +44,6 @@ final class NotebookNoteViewModel {
     private var isEditing = false
     private let courseId: String?
     private let courseNoteInteractor: CourseNoteInteractor
-    private let noteId: String?
     private let itemId: String?
     private let router: Router
 
@@ -55,46 +54,35 @@ final class NotebookNoteViewModel {
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
-    private var courseNote: CourseNote? {
-        didSet {
-            note = courseNote?.content ?? ""
-            if let highlightedText = courseNote?.highlightedText, !highlightedText.isEmpty {
-                self.highlightedText = "\"\(courseNote?.highlightedText ?? "")\""
-            }
-            noteSaved = note
-
-            isConfusing = courseNote?.labelsList.contains { $0.toCourseNoteLabel() == .confusing } ?? false
-            isConfusingSaved = isConfusing
-
-            isImportant = courseNote?.labelsList.contains { $0.toCourseNoteLabel() == .important } ?? false
-            isImportantSaved = isImportant
-        }
-    }
+    private var courseNote: CourseNotebookNote?
 
     // MARK: - Init
 
     init(
         courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
         router: Router = AppEnvironment.shared.router,
-        noteId: String,
+        courseNotebookNote: CourseNotebookNote,
         isEditing: Bool = false
     ) {
         self.courseNoteInteractor = courseNoteInteractor
         self.router = router
-        self.noteId = noteId
+        self.courseNote = courseNotebookNote
         self.isEditing = isEditing
 
         self.courseId = nil
         self.itemId = nil
 
-        courseNoteInteractor.get(id: noteId)
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] courseNote in
-                    self?.courseNote = courseNote
-                }
-            )
-            .store(in: &subscriptions)
+        note = courseNote?.content ?? ""
+        if let highlightedText = courseNote?.highlightedText, !highlightedText.isEmpty {
+            self.highlightedText = "\"\(courseNote?.highlightedText ?? "")\""
+        }
+        noteSaved = note
+
+        isConfusing = courseNote?.labels?.contains { $0 == .confusing } ?? false
+        isConfusingSaved = isConfusing
+
+        isImportant = courseNote?.labels?.contains { $0 == .important } ?? false
+        isImportantSaved = isImportant
     }
 
     init(
@@ -110,7 +98,7 @@ final class NotebookNoteViewModel {
         self.itemId = itemId
         self.isEditing = isEditing
 
-        self.noteId = nil
+        self.courseNote = nil
     }
 
     // MARK: - Inputs
@@ -133,7 +121,7 @@ final class NotebookNoteViewModel {
     }
 
     func deleteNoteAndDismiss(viewController: WeakViewController) {
-        guard let noteId = noteId else { return }
+        guard let noteId = courseNote?.id else { return }
 
         courseNoteInteractor.delete(id: noteId)
             .sink(
@@ -177,15 +165,15 @@ final class NotebookNoteViewModel {
     // MARK: - Private
 
     private var isAdding: Bool {
-        noteId == nil
+        courseNote == nil
     }
 
     private func saveContent() {
         var index: NotebookHighlight?
 
         if let highlightKey = courseNote?.highlightKey,
-           let startIndex = courseNote?.startIndex?.intValue,
-           let length = courseNote?.length?.intValue,
+           let startIndex = courseNote?.startIndex,
+           let length = courseNote?.length,
            let highlightedText = courseNote?.highlightedText {
             index = NotebookHighlight(
                 highlightKey: highlightKey,
@@ -200,7 +188,7 @@ final class NotebookNoteViewModel {
             isImportant ? .important : nil
         ].compactMap { $0 }
 
-        if let noteId = noteId {
+        if let noteId = courseNote?.id {
             courseNoteInteractor
                 .set(id: noteId, content: note, labels: labels, index: index)
                 .sink(receiveCompletion: { _ in }, receiveValue: { _ in })

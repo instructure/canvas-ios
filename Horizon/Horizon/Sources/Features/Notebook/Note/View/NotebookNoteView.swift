@@ -172,16 +172,3 @@ struct NotebookNoteView: View {
         .background(HorizonUI.colors.surface.pagePrimary)
     }
 }
-
-#Preview {
-    NavigationView {
-        NotebookNoteView(
-            viewModel: NotebookNoteViewModel(
-                courseNoteInteractor: CourseNoteInteractorPreview(),
-                router: AppEnvironment.shared.router,
-                noteId: "1",
-                isEditing: false
-            )
-        )
-    }
-}

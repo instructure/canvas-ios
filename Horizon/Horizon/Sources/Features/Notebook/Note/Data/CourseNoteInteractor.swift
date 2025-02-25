@@ -43,11 +43,19 @@ protocol CourseNoteInteractor {
         content: String,
         labels: [CourseNoteLabel],
         index: NotebookHighlight?
-    ) -> AnyPublisher<CourseNote, NotebookError>
-    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError>
-    func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError>
-    func get(id: String) -> AnyPublisher<CourseNote?, NotebookError>
-    func set(id: String, content: String?, labels: [CourseNoteLabel]?, index: NotebookHighlight?) -> AnyPublisher<CourseNote?, NotebookError>
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError>
+    func delete(id: String) -> AnyPublisher<Void, NotebookError>
+    func set(id: String, content: String?, labels: [CourseNoteLabel]?, index: NotebookHighlight?) -> AnyPublisher<CourseNotebookNote, NotebookError>
+}
+
+extension API {
+    func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
+        let apiResponseSubject = PassthroughSubject<Request.Response?, Error>()
+        makeRequest(requestable) { response, _, _ in
+            apiResponseSubject.send(response)
+        }
+        return apiResponseSubject.eraseToAnyPublisher()
+    }
 }
 
 class CourseNoteInteractorLive: CourseNoteInteractor {
@@ -55,11 +63,16 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
     // MARK: - Dependencies
 
     private let canvasApi: API
+    private let getCourseNotesInteractor: GetCourseNotesInteractor
 
     // MARK: - Init
 
-    init(canvasApi: API = AppEnvironment.shared.api) {
+    init(
+        canvasApi: API = AppEnvironment.shared.api,
+        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.instance
+    ) {
         self.canvasApi = canvasApi
+        self.getCourseNotesInteractor = getCourseNotesInteractor
     }
 
     // MARK: - Public
@@ -71,53 +84,53 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         content: String = "",
         labels: [CourseNoteLabel] = [],
         index: NotebookHighlight? = nil
-    ) -> AnyPublisher<CourseNote, NotebookError> {
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
-                ReactiveStore(
-                    useCase: CreateCourseNoteUseCase(
-                        api: api,
-                        courseId: courseId,
-                        itemId: itemId,
-                        moduleType: moduleType.courseNoteLabel,
-                        userText: content,
-                        reactions: labels.map { $0.rawValue },
-                        highlightKey: index?.highlightKey,
-                        startIndex: index?.startIndex,
-                        length: index?.length,
-                        highlightedText: index?.highlightedText
+                api.makeRequest(
+                    RedwoodCreateNoteMutation(
+                        jwt: api.loginSession?.accessToken ?? "",
+                        note: NewRedwoodNote(
+                            courseId: courseId,
+                            objectId: itemId,
+                            objectType: moduleType.courseNoteLabel,
+                            userText: content,
+                            reaction: labels.map { $0.rawValue },
+                            highlightKey: index?.highlightKey,
+                            highlightedText: index?.highlightedText,
+                            length: index?.length,
+                            startIndex: index?.startIndex
+                        )
                     )
                 )
-                .getEntities()
-                .mapError { _ in NotebookError.unknown }
-                .compactMap { $0.first }
+                .compactMap { [weak self] (response: RedwoodCreateNoteMutationResponse?) in
+                    self?.getCourseNotesInteractor.refresh()
+
+                    return response.map { CourseNotebookNote(from: $0.data.createNote) }
+                }
             }
             .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
     }
 
-    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError> {
+    func delete(id: String) -> AnyPublisher<Void, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
-                ReactiveStore(useCase: DeleteCourseNoteUseCase(api: api, id: id))
-                    .getEntities()
-                    .mapError { _ in NotebookError.unknown }
-                    .compactMap { $0.first }
+                api.makeRequest(
+                    RedwoodDeleteNoteMutation(
+                        jwt: api.loginSession?.accessToken ?? "",
+                        id: id
+                    )
+                )
+                .compactMap { [weak self] _ in
+                    self?.getCourseNotesInteractor.refresh()
+                    return ()
+                }
             }
             .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
-    }
-
-    func get(id: String) -> AnyPublisher<CourseNote?, NotebookError> {
-        fetch(id: id)
-            .map(\.first)
-            .eraseToAnyPublisher()
-    }
-
-    func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError> {
-        fetch(highlightsKey: highlightsKey)
     }
 
     func set(
@@ -125,39 +138,26 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         content: String?,
         labels: [CourseNoteLabel]?,
         index: NotebookHighlight?
-    ) -> AnyPublisher<CourseNote?, NotebookError> {
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
-                ReactiveStore(
-                    useCase: UpdateCourseNoteUseCase(
-                        api: api,
+                api.makeRequest(
+                    RedwoodUpdateNoteMutation(
+                        jwt: api.loginSession?.accessToken ?? "",
                         id: id,
                         userText: content ?? "",
-                        reactions: labels?.map { $0.rawValue } ?? [],
+                        reaction: labels?.map { $0.rawValue } ?? [],
                         highlightKey: index?.highlightKey,
-                        startIndex: index?.startIndex,
+                        highlightedText: index?.highlightedText,
                         length: index?.length,
-                        highlightedText: index?.highlightedText
+                        startIndex: index?.startIndex
                     )
                 )
-                .getEntities()
-                .mapError { _ in NotebookError.unknown }
-                .compactMap { $0.first }
-            }
-            .mapError { _ in NotebookError.unknown }
-            .eraseToAnyPublisher()
-    }
-
-    // MARK: - Private
-
-    private func fetch(id: String? = nil, highlightsKey: String? = nil) -> AnyPublisher<[CourseNote], NotebookError> {
-        JWTTokenRequest(.redwood)
-            .api(from: canvasApi)
-            .flatMap { api in
-                ReactiveStore(useCase: GetCourseNotesUseCase(api: api, id: id, highlightsKey: highlightsKey))
-                    .getEntities(keepObservingDatabaseChanges: true)
-                    .eraseToAnyPublisher()
+                .compactMap { [weak self] (response: RedwoodUpdateNoteMutationResponse?) in
+                    self?.getCourseNotesInteractor.refresh()
+                    return response.map { CourseNotebookNote(from: $0.data.updateNote) }
+                }
             }
             .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
@@ -249,41 +249,18 @@ extension CourseNote {
     }
 }
 
-class CourseNoteInteractorPreview: CourseNoteInteractor {
-    func add(
-        courseId: String,
-        itemId: String,
-        moduleType: ModuleItemType,
-        content: String = "",
-        labels: [CourseNoteLabel] = [],
-        index: NotebookHighlight? = nil
-    ) -> AnyPublisher<CourseNote, NotebookError> {
-        Just(CourseNote())
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
+extension CourseNotebookNote {
+    init(from note: RedwoodNote) {
+        self.id = note.id ?? ""
+        self.date = note.createdAt ?? Date()
+        self.courseID = note.courseId
 
-    func delete(id: String) -> AnyPublisher<CourseNote, NotebookError> {
-        Just(CourseNote())
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
+        self.content = note.userText
 
-    func get(id: String) -> AnyPublisher<CourseNote?, NotebookError> {
-        Just(nil)
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-
-    func get(highlightsKey: String) -> AnyPublisher<[CourseNote], NotebookError> {
-        Just([])
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
-    }
-
-    func set(id: String, content: String?, labels: [CourseNoteLabel]?, index: NotebookHighlight?) -> AnyPublisher<CourseNote?, NotebookError> {
-        Just(nil)
-            .setFailureType(to: NotebookError.self)
-            .eraseToAnyPublisher()
+        self.highlightedText = note.highlightedText
+        self.highlightKey = note.highlightKey
+        self.labels = note.reaction.map { $0.compactMap { CourseNoteLabel(rawValue: $0) } }
+        self.length = note.length
+        self.startIndex = note.startIndex
     }
 }

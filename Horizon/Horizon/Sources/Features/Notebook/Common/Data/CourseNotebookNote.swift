@@ -28,11 +28,11 @@ struct CourseNotebookNote {
     // MARK: - Optional
 
     var content: String?
-    var cursor: String?
     var highlightedText: String?
     var highlightKey: String?
-    var labels: [String]?
+    var labels: [CourseNoteLabel]?
     var length: Int?
+    var nextCursor: String?
+    var previousCursor: String?
     var startIndex: Int?
-    var hasMore: Bool?
 }

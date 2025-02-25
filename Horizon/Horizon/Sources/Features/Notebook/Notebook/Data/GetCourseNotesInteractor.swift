@@ -23,15 +23,16 @@ import Foundation
 protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get set }
     var cursor: Cursor? { get set }
-    func get() -> AnyPublisher<[CourseNote], NotebookError>
+    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError>
+    func refresh()
 }
 
 final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
     // MARK: - Dependencies
 
-    final let canvasApi: API
+    let canvasApi: API
 
-    final let instance: GetCourseNotesInteractorLive = .init()
+    static let instance: GetCourseNotesInteractor = GetCourseNotesInteractorLive()
 
     // MARK: - Public
 
@@ -49,6 +50,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
             filterPublisher.value
         }
         set {
+            cursor = nil
             filterPublisher.send(newValue)
         }
     }
@@ -61,19 +63,40 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
-    private let refreshSubject = PassthroughSubject<Void, Error>()
+    private let refreshSubject = CurrentValueSubject<Void, Error>(())
     private var cursorPublisher: CurrentValueSubject<Cursor?, Error> = CurrentValueSubject(nil)
     private var filterPublisher: CurrentValueSubject<CourseNoteLabel?, Error> = CurrentValueSubject(nil)
 
+    private func request(api: API, labels: [CourseNoteLabel]? = nil) -> GetNotesQuery {
+        let accessToken = api.loginSession?.accessToken ?? ""
+        let reactions = labels?.map(\.rawValue)
+
+        guard let cursorValue = cursor?.cursor else {
+            return .init(jwt: accessToken, reactions: reactions)
+        }
+        if cursor?.isBefore == true {
+            return .init(
+                jwt: accessToken,
+                before: cursorValue,
+                reactions: reactions
+            )
+        }
+        return .init(
+            jwt: accessToken,
+            after: cursorValue,
+            reactions: reactions
+        )
+    }
+
     // MARK: - Init
 
-    init(api: API = AppEnvironment.shared.api) {
+    private init(api: API = AppEnvironment.shared.api) {
         self.canvasApi = api
     }
 
     // MARK: - Public Methods
 
-    func get() -> AnyPublisher<[CourseNote], NotebookError> {
+    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap(listenToFilters)
@@ -83,7 +106,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Private Methods
 
-    private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNote], any Error> {
+    private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
         Publishers.CombineLatest3(
             filterPublisher,
             cursorPublisher,
@@ -91,24 +114,56 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         )
         .flatMap { [weak self] filter, cursor, _ in
             guard let self = self else {
-                return Just([CourseNote]())
+                return Just([CourseNotebookNote]())
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            return self.listenToStore(api: api, filter: filter, cursor: cursor)
+            return self.listenTo(api: api, filter: filter, cursor: cursor)
         }
         .eraseToAnyPublisher()
     }
 
-    private func listenToStore(api: API, filter: CourseNoteLabel?, cursor: Cursor?) -> AnyPublisher<[CourseNote], any Error> {
-        ReactiveStore(
-            useCase: GetCourseNotesUseCase(
-                api: api,
-                labels: filter.map { [$0] },
-                cursor: cursor
-            )
-        )
-        .getEntities(keepObservingDatabaseChanges: true)
+    private func listenTo(api: API, filter: CourseNoteLabel?, cursor: Cursor?) -> AnyPublisher<[CourseNotebookNote], any Error> {
+        api.makeRequest(request(api: api, labels: filter.map { [$0] }))
+        .map(queryResponseToNotes)
         .eraseToAnyPublisher()
+    }
+
+    private func queryResponseToNotes(_ response: RedwoodFetchNotesQueryResponse?) -> [CourseNotebookNote] {
+        guard let response = response else {
+            return []
+        }
+
+        let pageInfo = response.data.notes.pageInfo
+        return response.data.notes.edges.compactMap { edge in
+            .init(
+                from: edge,
+                pageInfo: pageInfo
+            )
+        }
+    }
+}
+
+extension CourseNotebookNote {
+    init(
+        from edge: RedwoodFetchNotesQueryResponse.ResponseEdge,
+        pageInfo: RedwoodFetchNotesQueryResponse.PageInfo
+    ) {
+        let note = edge.node
+
+        self.id = note.id ?? ""
+        self.date = note.createdAt ?? Date()
+        self.courseID = note.courseId
+
+        self.content = note.userText
+
+        self.nextCursor = pageInfo.hasNextPage ? edge.cursor : nil
+        self.previousCursor = pageInfo.hasPreviousPage ? edge.cursor : nil
+
+        self.highlightedText = note.highlightedText
+        self.highlightKey = note.highlightKey
+        self.labels = note.reaction.map { $0.compactMap { CourseNoteLabel(rawValue: $0) } }
+        self.length = note.length
+        self.startIndex = note.startIndex
     }
 }

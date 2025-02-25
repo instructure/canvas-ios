@@ -61,15 +61,6 @@ public class NoteableTextViewModel {
         self.text = text
         self.notebookNoteInteractor = notebookNoteInteractor
         self.router = router
-
-        notebookNoteInteractor.get(highlightsKey: highlightsKey).sink(
-            receiveCompletion: { _ in },
-            receiveValue: { [weak self] notebookCourseNotes in
-                guard let self = self else { return }
-                self.notebookCourseNotes = notebookCourseNotes
-                self.attributedText = self.getAttributedText(text, typography: typography)
-            }
-        ).store(in: &subscriptions)
     }
 
     /// dynamically computes the list of menu options available when a block of text is selected
@@ -145,7 +136,7 @@ public class NoteableTextViewModel {
         let end = start + 1
 
         if let note = firstOverlappingNotebookCourseNote(start: start, end: end) {
-            router?.route(to: "/notebook/note/\(note.id)", from: viewController)
+            router?.route(to: "/notebook/note", userInfo: ["note": note], from: viewController)
         }
     }
 
@@ -187,9 +178,14 @@ public class NoteableTextViewModel {
             receiveCompletion: { _ in },
             receiveValue: { [weak self] courseNote in
                 if courseNoteLabel == .other {
-                    self?.router?.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
+                    self?.router?.route(
+                        to: "/notebook/note",
+                        userInfo: ["note": courseNote],
+                        from: viewController
+                    )
+                }
             }
-        }).store(in: &subscriptions)
+        ).store(in: &subscriptions)
     }
 
     /// Finds the first instance of a highlight that overlaps with the start and end values passed in

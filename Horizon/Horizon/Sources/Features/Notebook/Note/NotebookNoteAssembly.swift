@@ -24,13 +24,13 @@ final class NotebookNoteAssembly {
         CourseNoteInteractorLive()
     }
 
-    static func makeViewNoteViewController(noteId: String) -> CoreHostingController<NotebookNoteView> {
+    static func makeViewNoteViewController(courseNotebookNote: CourseNotebookNote) -> CoreHostingController<NotebookNoteView> {
         CoreHostingController(
             NotebookNoteView(
                 viewModel: .init(
                     courseNoteInteractor: makeCourseNoteInteractor(),
                     router: AppEnvironment.shared.router,
-                    noteId: noteId
+                    courseNotebookNote: courseNotebookNote
                 )
             )
         )

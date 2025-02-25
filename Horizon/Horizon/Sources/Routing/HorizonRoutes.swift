@@ -228,12 +228,12 @@ enum HorizonRoutes {
                 )
                 return nil
             },
-            RouteHandler("/notebook/note/:noteID") { _, params, _ in
-                guard let noteId = params["noteID"] else { return nil }
+            RouteHandler("/notebook/note") { _, _, userInfo in
+                guard let courseNotebookNote = userInfo?["note"] as? CourseNotebookNote else { return nil }
                 guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
                 let router: Router = AppEnvironment.shared.router
                 router.show(
-                    NotebookNoteAssembly.makeViewNoteViewController(noteId: noteId),
+                    NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: courseNotebookNote),
                     from: vc,
                     options: .modal(.pageSheet)
                 )

@@ -23,7 +23,6 @@ import Combine
 final class NotebookViewModel {
     // MARK: - Dependencies
 
-    private let formatter = DateFormatter()
     private var getCourseNotesInteractor: GetCourseNotesInteractor
 
     // MARK: - Outputs
@@ -33,14 +32,15 @@ final class NotebookViewModel {
             getCourseNotesInteractor.filter
         }
         set {
+            state = .loading
             getCourseNotesInteractor.filter = (self.filter == newValue ? nil : newValue)
         }
     }
     var isConfusingEnabled: Bool { filter == .confusing }
     var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
     var isImportantEnabled: Bool { filter == .important }
-    var isNextDisabled: Bool = false
-    var isPreviousDisabled: Bool = false
+    var isNextDisabled: Bool = true
+    var isPreviousDisabled: Bool = true
     var notes: [NotebookNote] = []
     var state: InstUI.ScreenState = .loading
     var title: String = ""
@@ -53,13 +53,11 @@ final class NotebookViewModel {
     // MARK: - Init
 
     init(
-        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive(),
+        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.instance,
         router: Router = AppEnvironment.defaultValue.router
     ) {
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
-
-        formatter.dateFormat = "MMM d, yyyy"
 
         title = String(localized: "Notebook", bundle: .horizon)
 
@@ -80,17 +78,17 @@ final class NotebookViewModel {
     }
 
     func onNoteTapped(_ note: NotebookNote, viewController: WeakViewController) {
-        router.route(to: "/notebook/note/\(note.id)", from: viewController)
+        router.route(to: "/notebook/note", userInfo: ["note": note.courseNotebookNote], from: viewController)
     }
 
     func nextPage() {
-        guard let cursor = notes.last?.cursor else { return }
+        guard let cursor = notes.last?.nextCursor else { return }
         state = .loading
         getCourseNotesInteractor.cursor = Cursor(next: cursor)
     }
 
     func previousPage() {
-        guard let cursor = notes.first?.cursor else { return }
+        guard let cursor = notes.first?.previousCursor else { return }
         state = .loading
         getCourseNotesInteractor.cursor = Cursor(previous: cursor)
     }
@@ -102,30 +100,34 @@ final class NotebookViewModel {
         getCourseNotesInteractor
             .get()
             .replaceError(with: [])
-            .sink { (courseNotes: [CourseNote]) in
-                weakSelf?.notes = courseNotes.map { note in
-                    NotebookNote(
-                        id: note.id,
-                        highlightedText: note.highlightedText ?? "",
-                        note: note.content ?? "",
-                        title: weakSelf?.formatter.string(from: note.date) ?? "",
-                        types: note.labelsList.map { $0.toCourseNoteLabel() }.compactMap { $0 },
-                        cursor: note.cursor
-                    )
+            .sink { (courseNotes: [CourseNotebookNote]) in
+                guard let self = weakSelf else { return }
+                self.notes = courseNotes.map { note in
+                    NotebookNote(courseNotebookNote: note)
                 }
-                weakSelf?.isNextDisabled = courseNotes.last?.hasMoreBool != true
-                weakSelf?.isPreviousDisabled = courseNotes.first?.hasMoreBool != true
-                weakSelf?.state = .data
+                self.isNextDisabled = courseNotes.last?.nextCursor == nil
+                self.isPreviousDisabled = courseNotes.first?.previousCursor == nil
+                self.state = .data
             }
             .store(in: &subscriptions)
     }
 }
 
 struct NotebookNote: Identifiable {
-    let id: String
-    let highlightedText: String
-    let note: String
-    let title: String
-    let types: [CourseNoteLabel]
-    let cursor: String?
+    let courseNotebookNote: CourseNotebookNote
+    var id: String { courseNotebookNote.id }
+    var highlightedText: String { courseNotebookNote.highlightedText ?? "" }
+    var nextCursor: String? { courseNotebookNote.nextCursor }
+    var note: String { courseNotebookNote.content ?? "" }
+    var previousCursor: String? { courseNotebookNote.previousCursor }
+    var title: String { formatter.string(from: courseNotebookNote.date) }
+    var types: [CourseNoteLabel] { courseNotebookNote.labels ?? [] }
+
+    private let formatter = DateFormatter()
+
+    init(courseNotebookNote: CourseNotebookNote) {
+        self.courseNotebookNote = courseNotebookNote
+
+        formatter.dateFormat = "MMM d, yyyy"
+    }
 }
