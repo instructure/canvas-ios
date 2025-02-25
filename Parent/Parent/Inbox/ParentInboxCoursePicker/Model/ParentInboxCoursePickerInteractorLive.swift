@@ -38,19 +38,22 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
         coursesStore = ReactiveStore(useCase: GetCourses())
         environment = env
 
-        enrollmentsStore.getEntities()
-        .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] enrollmentList in
-            self?.enrollments.send(enrollmentList)
-        })
-        .store(in: &subscriptions)
+        enrollmentsStore
+            .getEntities()
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] enrollmentList in
+                self?.enrollments.send(enrollmentList)
+            })
+            .store(in: &subscriptions)
 
-        coursesStore.getEntities()
+        coursesStore
+            .getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] courseList in
                 self?.courses.send(courseList)
             })
             .store(in: &subscriptions)
 
-        Publishers.CombineLatest(courses, enrollments)
+        Publishers
+            .CombineLatest(courses, enrollments)
             .map { (courseList, enrollmentList) in
                 return enrollmentList.compactMap { enrollment -> StudentContextItem? in
                     let course = courseList.first(where: { $0.canvasContextID == enrollment.canvasContextID })

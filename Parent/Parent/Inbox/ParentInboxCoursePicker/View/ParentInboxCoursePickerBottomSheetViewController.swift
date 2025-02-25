@@ -56,11 +56,13 @@ public class ParentInboxCoursePickerBottomSheetViewController: UIViewController 
 
     private func addAccessiblityDismissButton() {
         accessibilityCustomActions = [
-            .init(name: String(localized: "Dismiss menu", bundle: .core),
-                  actionHandler: { [weak self] _ in
-                      self?.dismiss(animated: true)
-                      return true
-                  })
+            .init(
+                name: String(localized: "Dismiss menu", bundle: .core),
+                actionHandler: { [weak self] _ in
+                  self?.dismiss(animated: true)
+                  return true
+                }
+            )
         ]
     }
 }

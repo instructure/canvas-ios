@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Combine
-@testable import Core
-
-final class RecipientInteractorMock: RecipientInteractor {
-
-    // MARK: - Simulate Behaviours
-    func getRecipients(by context: Context?, qualifier: ContextQualifier? = nil) -> AnyPublisher<[Recipient], Never> {
-        if context == nil {
-            Just([])
-            .eraseToAnyPublisher()
-        } else {
-            Just(ReceiptStub.recipients)
-            .eraseToAnyPublisher()
-        }
-    }
+public enum ContextQualifier: String {
+    case teachers, students, observers, tas
 }
