@@ -51,8 +51,8 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
-        var useSignatureResult: Bool? = nil
-        var signatureResult: String? = nil
+        var useSignatureResult: Bool?
+        var signatureResult: String?
         var initFlag = false
         testee.signature
             .sink { (useSignature, signature) in
