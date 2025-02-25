@@ -24,7 +24,7 @@ import Core
 @Observable
 public class NoteableTextViewModel {
     private let notebookNoteInteractor: CourseNoteInteractor
-    private var notebookCourseNotes: [CourseNote] = []
+    private var notebookCourseNotes: [CourseNotebookNote] = []
     private let router: Router?
     private var subscriptions = Set<AnyCancellable>()
     private var text: String?
@@ -189,10 +189,10 @@ public class NoteableTextViewModel {
     }
 
     /// Finds the first instance of a highlight that overlaps with the start and end values passed in
-    private func firstOverlappingNotebookCourseNote(start: Int, end: Int) -> CourseNote? {
+    private func firstOverlappingNotebookCourseNote(start: Int, end: Int) -> CourseNotebookNote? {
         notebookCourseNotes.first { notebookCourseNote in
-            guard let selectionStart = notebookCourseNote.startIndex?.intValue,
-                  let length = notebookCourseNote.length?.intValue else {
+            guard let selectionStart = notebookCourseNote.startIndex,
+                  let length = notebookCourseNote.length else {
                 return false
             }
             let selectionEnd = selectionStart + length
@@ -218,12 +218,12 @@ public class NoteableTextViewModel {
         )
 
         notebookCourseNotes.forEach { notebookCourseNote in
-            guard let startIndex = notebookCourseNote.startIndex?.intValue,
-                    let length = notebookCourseNote.length?.intValue else {
+            guard let startIndex = notebookCourseNote.startIndex,
+                    let length = notebookCourseNote.length else {
                 return
             }
 
-            let type = notebookCourseNote.labelsList.first?.toCourseNoteLabel() ?? .other
+            let type = notebookCourseNote.labels?.first ?? .other
             let highlightColor = type.highlightColor.uiColor
             let range = NSRange(location: startIndex, length: length)
 

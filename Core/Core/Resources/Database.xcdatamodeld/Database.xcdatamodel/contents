@@ -327,19 +327,6 @@
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
     </entity>
-    <entity name="CourseNote" representedClassName="Core.CourseNote" syncable="YES">
-        <attribute name="content" optional="YES" attributeType="String"/>
-        <attribute name="courseID" attributeType="String"/>
-        <attribute name="cursor" optional="YES" attributeType="String"/>
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="hasMore" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="highlightedText" optional="YES" attributeType="String"/>
-        <attribute name="highlightKey" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="labels" optional="YES" attributeType="String"/>
-        <attribute name="length" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="startIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-    </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
