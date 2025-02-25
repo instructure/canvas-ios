@@ -22,41 +22,91 @@ import XCTest
 
 class APICommentLibraryTests: CoreTestCase {
 
-    let request = APICommentLibraryRequest(userId: "1")
-
     func testRequest() {
         let operationName = "CommentLibraryQuery"
         let query = """
-            query \(operationName)($userId: ID!) {
+            query \(operationName)($query: String, $userId: ID!, $pageSize: Int!, $cursor: String) {
                 user: legacyNode(_id: $userId, type: User) {
                     ... on User {
                         id: _id
-                        commentBankItems: commentBankItemsConnection(query: "") {
+                        commentBankItems: commentBankItemsConnection(query: $query, first: $pageSize, after: $cursor) {
                             nodes {
                                 comment: comment
                                 id: _id
+                            }
+                            pageInfo {
+                                endCursor
+                                hasNextPage
                             }
                         }
                     }
                 }
             }
             """
+
+        let request = APICommentLibraryRequest(userId: "1")
+
         XCTAssertEqual(request.body?.query, query)
         XCTAssertEqual(request.variables.userId, "1")
+        XCTAssertEqual(request.variables.pageSize, 20)
+        XCTAssertNil(request.variables.cursor)
     }
 
     func testResponse() {
-        let comments = [APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
-                        APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment") ]
-        let data = APICommentLibraryResponse.Data.init(user: .init(id: "1", commentBankItems: .init(nodes: comments )))
-        let response =  APICommentLibraryResponse(data: data)
-        api.mock(APICommentLibraryRequest(userId: "1"), value: response)
+        let mockedResponse = makeResponse(pageInfo: nil)
+        let request = APICommentLibraryRequest(userId: "1")
+
+        api.mock(request, value: mockedResponse)
         api.makeRequest(request) { response, _, _  in
-            XCTAssertEqual(response?.data, data)
+            XCTAssertEqual(response?.data, mockedResponse.data)
             XCTAssertEqual(response?.comments[0].id, "1")
             XCTAssertEqual(response?.comments[0].comment, "First comment")
             XCTAssertEqual(response?.comments[1].id, "2")
             XCTAssertEqual(response?.comments[1].comment, "Second comment")
         }
+    }
+
+    func test_next_page() throws {
+        let response = makeResponse(
+            pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: true)
+        )
+
+        let nextRequest = try XCTUnwrap(
+            APICommentLibraryRequest(userId: "1").nextPageRequest(from: response)
+        )
+
+        XCTAssertEqual(nextRequest.variables.cursor, "next_cursor")
+    }
+
+    func test_no_next_page() throws {
+        // Case 1
+        var response = makeResponse(
+            pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: false)
+        )
+        var nextRequest = APICommentLibraryRequest(userId: "1")
+            .nextPageRequest(from: response)
+        XCTAssertNil(nextRequest)
+
+        // Case 2
+        response = makeResponse(pageInfo: nil)
+        nextRequest = APICommentLibraryRequest(userId: "1")
+            .nextPageRequest(from: response)
+        XCTAssertNil(nextRequest)
+    }
+
+    private func makeResponse(pageInfo: APIPageInfo?) -> APICommentLibraryResponse {
+        let comments = [APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
+                        APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment") ]
+        let data = APICommentLibraryResponse.Data
+            .init(
+                user: .init(
+                    id: "1",
+                    commentBankItems: .init(
+                        nodes: comments,
+                        pageInfo: pageInfo
+                    )
+                )
+            )
+        return APICommentLibraryResponse(data: data)
     }
 }

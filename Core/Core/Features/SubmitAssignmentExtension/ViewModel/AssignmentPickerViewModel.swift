@@ -30,6 +30,7 @@ public class AssignmentPickerViewModel: ObservableObject {
     @Published public private(set) var state: State = .loading
     @Published public private(set) var selectedAssignment: AssignmentPickerItem?
     @Published public var incompatibleFilesMessage: AlertMessage?
+
     public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
     /** Modify this to trigger the assignment list fetch for the given course ID. */
     public var courseID: String? {

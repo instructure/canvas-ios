@@ -876,7 +876,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuir Ceangaltán leis"
+            "value" : "Add Attachment"
           }
         },
         "hi" : {
@@ -1132,7 +1132,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuir Trácht leis"
+            "value" : "Add Comment"
           }
         },
         "hi" : {
@@ -3180,7 +3180,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Attendance"
+            "value" : "Tinreamh"
           }
         },
         "hi" : {
@@ -6659,6 +6659,9 @@
         }
       }
     },
+    "Comment sent successfully" : {
+
+    },
     "Comments" : {
       "localizations" : {
         "ar" : {
@@ -7022,7 +7025,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Críochnaithe"
+            "value" : "Complete"
           }
         },
         "hi" : {
@@ -8302,7 +8305,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diúltaigh"
+            "value" : "Dún"
           }
         },
         "hi" : {
@@ -9070,7 +9073,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Earráid"
+            "value" : "Error"
           }
         },
         "hi" : {
@@ -10095,7 +10098,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leithscéal Faighte"
+            "value" : "Leithscéal ina leith"
           }
         },
         "hi" : {
@@ -17870,7 +17873,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folaigh Marcanna"
+            "value" : "Hide Grades"
           }
         },
         "hi" : {
@@ -18383,7 +18386,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neamhiomlán"
+            "value" : "Incomplete"
           }
         },
         "hi" : {
@@ -20687,7 +20690,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Níl aon Marc"
+            "value" : "Níl aon Mharc ann"
           }
         },
         "hi" : {
@@ -21455,7 +21458,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Níl sé Marcáilte"
+            "value" : "Nach Bhfuil Marcáilte"
           }
         },
         "hi" : {
@@ -28516,9 +28519,6 @@
         }
       }
     },
-    "Sent successfully" : {
-
-    },
     "Similarity Score" : {
       "localizations" : {
         "ar" : {
@@ -29138,7 +29138,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac léinn"
+            "value" : "Mac Léinn"
           }
         },
         "hi" : {
@@ -29394,7 +29394,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Id %lMac Léinn"
+            "value" : "Mac Léinn %lld"
           }
         },
         "hi" : {
@@ -30162,7 +30162,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tástáil Mac Léinn"
+            "value" : "Mac Léinn Tástála"
           }
         },
         "hi" : {
@@ -33741,6 +33741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Décoché"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neamhmharcáilte"
           }
         },
         "hi" : {

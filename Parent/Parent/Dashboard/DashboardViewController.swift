@@ -19,23 +19,17 @@
 import UIKit
 import CoreData
 import Core
+import Combine
 
 class DashboardViewController: ScreenViewTrackableViewController, ErrorViewController {
-    @IBOutlet weak var addStudentView: UIView!
-    @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var studentListStack: UIStackView!
     @IBOutlet weak var studentListView: UIView!
     lazy var studentListHiddenHeight = studentListView.heightAnchor.constraint(equalToConstant: 0)
-    @IBOutlet weak var dropdownButton: UIButton!
-    @IBOutlet weak var dropdownView: UIImageView!
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var tabsContainer: UIView!
     let tabsController = UITabBarController()
-    @IBOutlet weak var titleLabel: UILabel!
 
     var badgeCount: UInt = 0 {
-        didSet { updateBadgeCount() }
+        didSet { headerViewModel.didUpdateBadgeCount.send(Int(badgeCount)) }
     }
     var currentColor: UIColor {
         currentStudentID.flatMap {
@@ -49,6 +43,8 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     var hasStudents: Bool?
     var shownNotAParent = false
     let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
+    let headerViewModel = StudentHeaderViewModel()
+    var subscriptions = Set<AnyCancellable>()
 
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
@@ -70,13 +66,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        addStudentView.layer.addDropShadow()
-        addStudentView.isHidden = true
-        avatarView.isHidden = true
-        dropdownView.isHidden = true
-        dropdownButton.accessibilityValue = String(localized: "Collapsed", bundle: .core)
-        titleLabel.text = nil
-
+        embedHeaderView()
         studentListHiddenHeight.isActive = true
 
         tabsController.tabBar.useGlobalNavStyle()
@@ -139,20 +129,8 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     }
 
     func updateBadge() {
-        env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+        env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in
             self?.badgeCount = UInt(response?.unread_count ?? 0)
-        } }
-    }
-
-    func updateBadgeCount() {
-        profileButton.addBadge(number: badgeCount, color: currentColor)
-        profileButton.accessibilityLabel = String(localized: "Settings", bundle: .parent)
-        profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
-        if badgeCount > 0 {
-            profileButton.accessibilityHint = String.localizedStringWithFormat(
-                String(localized: "conversation_unread_messages", bundle: .core),
-                badgeCount
-            )
         }
     }
 
@@ -163,36 +141,12 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         env.userDefaults?.parentCurrentStudentID = currentStudentID
 
         view.tintColor = currentColor
-        updateHeader()
+        headerViewModel.didSelectStudent.send(currentStudent)
         updateTabs()
-    }
-
-    func updateHeader() {
-        headerView.backgroundColor = currentColor
-        profileButton.addBadge(number: badgeCount, color: currentColor)
-        addStudentView.isHidden = false // provides shadow even when avatar covers it
-
-        if let student = currentStudent {
-            avatarView.name = student.name
-            avatarView.url = student.avatarURL
-            avatarView.isHidden = false
-            let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
-            titleLabel.text = displayName
-            dropdownButton.accessibilityLabel = String.localizedStringWithFormat(
-                String(localized: "Current student: %@", bundle: .parent),
-                displayName
-            )
-            dropdownButton.accessibilityHint = String(localized: "Tap to switch students")
-        } else {
-            avatarView.isHidden = true
-            titleLabel.text = String(localized: "Add Student", bundle: .parent)
-            dropdownButton.accessibilityLabel = String(localized: "Add Student", bundle: .parent)
-        }
     }
 
     func updateStudentList() {
         studentListStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        dropdownView.isHidden = students.isEmpty
         for (index, student) in students.enumerated() {
             let button = StudentButton(student: student)
             button.tag = index
@@ -204,14 +158,14 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         studentListStack.addArrangedSubview(addButton)
     }
 
-    @IBAction func didTapDropdownButton() {
+    func didTapDropdownButton() {
         guard !students.isEmpty else { return addStudentController.addStudent() }
         toggleStudentList(studentListHiddenHeight.isActive)
     }
 
     @objc func didSelectStudent(sender: UIButton) {
         guard sender.tag >= 0, let student = students[sender.tag] else { return }
-        headerView.backgroundColor = ColorScheme.observee(student.id).color
+        headerViewModel.didSelectStudent.send(student)
         toggleStudentList(false, completion: { [weak self] in
             self?.currentStudent = student
         })
@@ -220,9 +174,6 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     func toggleStudentList(_ show: Bool = true, completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.studentListHiddenHeight.isActive = !show
-            self.dropdownView.transform = CGAffineTransform(rotationAngle: show ? .pi : 0)
-            self.dropdownButton.accessibilityValue = show ? String(localized: "Expanded", bundle: .core)
-                                                          : String(localized: "Collapsed", bundle: .core)
             self.view.layoutIfNeeded()
         }, completion: { _ in
             completion?()
@@ -275,6 +226,26 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             AppEnvironment.shared.loginDelegate?.changeUser()
         })
     }
+
+    private func embedHeaderView() {
+        let headerViewController = CoreHostingController(StudentHeaderView(viewModel: headerViewModel))
+        embed(headerViewController, in: view) { [studentListView] header, superview in
+            let headerView = header.view!
+            headerView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                headerView.topAnchor.constraint(equalTo: superview.topAnchor, constant: 0),
+                headerView.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0),
+                headerView.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0),
+                headerView.bottomAnchor.constraint(equalTo: studentListView!.topAnchor, constant: 0)
+            ])
+        }
+        headerViewModel
+            .didTapStudentView
+            .sink { [weak self] in
+                self?.didTapDropdownButton()
+            }
+            .store(in: &subscriptions)
+    }
 }
 
 extension DashboardViewController: UITabBarControllerDelegate {
@@ -296,7 +267,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        UIAccessibility.post(notification: .layoutChanged, argument: dropdownButton)
+        headerViewModel.focusStudentPicker.send()
     }
 }
 
