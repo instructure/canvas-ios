@@ -424,10 +424,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         updateGradeCell(assignment, submission: submission)
 
-        guard let presenter = presenter else {
-            //submittedLabelFocusHandler.focusIfNeeded()
-            return
-        }
+        guard let presenter = presenter else { return }
 
         lockedIconContainerView.isHidden = presenter.lockedIconContainerViewIsHidden()
         dueSection?.isHidden = presenter.dueSectionIsHidden()

@@ -24,11 +24,6 @@ import WebKit
 import Lottie
 
 protocol SubmissionButtonViewProtocol: ErrorViewController {
-    func setNeedsSubmissionStatusAnnouncement()
-}
-
-extension SubmissionButtonViewProtocol {
-    func setNeedsSubmissionStatusAnnouncement() {}
 }
 
 enum ArcID: Equatable {
@@ -366,7 +361,6 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
 
 extension SubmissionButtonPresenter {
     @objc func handleCelebrate(_ notification: Notification) {
-        view?.setNeedsSubmissionStatusAnnouncement()
         if flags.first(where: { $0.name == "disable_celebrations" })?.enabled != true,
             notification.userInfo?["assignmentID"] as? String == assignmentID {
             performUIUpdate { self.showConfetti() }

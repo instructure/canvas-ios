@@ -95,13 +95,6 @@ class AssignmentDetailsPresenter {
     }
     var onlineUploadState: OnlineUploadState? {
         didSet {
-            if let newState = onlineUploadState,
-               // This case will be covered in selectLatestSubmissionIfNecessary()
-               newState != .completed,
-               newState != oldValue {
-                view?.setNeedsSubmissionStatusAnnouncement()
-            }
-
             if onlineUploadState != oldValue {
                 update()
             }
@@ -255,7 +248,6 @@ class AssignmentDetailsPresenter {
             if let latestSubmission = validSubmissions.first, latestSubmission.attempt > selectedSubmission.attempt {
                 // A new attempt arrived possibly from a new submission, switch to that
                 self.selectedSubmission = latestSubmission
-                self.view?.setNeedsSubmissionStatusAnnouncement()
             }
         } else {
             selectedSubmission = validSubmissions.first
