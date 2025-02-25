@@ -37,8 +37,10 @@ final class NotebookViewModel {
         }
     }
     var isConfusingEnabled: Bool { filter == .confusing }
-    var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil }
+    var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
     var isImportantEnabled: Bool { filter == .important }
+    var isNextDisabled: Bool = false
+    var isPreviousDisabled: Bool = false
     var notes: [NotebookNote] = []
     var state: InstUI.ScreenState = .loading
     var title: String = ""
@@ -82,11 +84,15 @@ final class NotebookViewModel {
     }
 
     func nextPage() {
-
+        guard let cursor = notes.last?.cursor else { return }
+        state = .loading
+        getCourseNotesInteractor.cursor = Cursor(next: cursor)
     }
 
     func previousPage() {
-        
+        guard let cursor = notes.first?.cursor else { return }
+        state = .loading
+        getCourseNotesInteractor.cursor = Cursor(previous: cursor)
     }
 
     // MARK: - Private functions
@@ -95,22 +101,20 @@ final class NotebookViewModel {
         weak var weakSelf = self
         getCourseNotesInteractor
             .get()
-            .flatMap {
-                $0.publisher
-                    .map { note in
-                        NotebookNote(
-                            id: note.id,
-                            highlightedText: note.highlightedText ?? "",
-                            note: note.content ?? "",
-                            title: weakSelf?.formatter.string(from: note.date) ?? "",
-                            types: note.labelsList.map { $0.toCourseNoteLabel() }.compactMap { $0 }
-                        )
-                    }
-                    .collect()
-            }
             .replaceError(with: [])
-            .sink {
-                weakSelf?.notes = $0
+            .sink { (courseNotes: [CourseNote]) in
+                weakSelf?.notes = courseNotes.map { note in
+                    NotebookNote(
+                        id: note.id,
+                        highlightedText: note.highlightedText ?? "",
+                        note: note.content ?? "",
+                        title: weakSelf?.formatter.string(from: note.date) ?? "",
+                        types: note.labelsList.map { $0.toCourseNoteLabel() }.compactMap { $0 },
+                        cursor: note.cursor
+                    )
+                }
+                weakSelf?.isNextDisabled = courseNotes.last?.hasMoreBool != true
+                weakSelf?.isPreviousDisabled = courseNotes.first?.hasMoreBool != true
                 weakSelf?.state = .data
             }
             .store(in: &subscriptions)
@@ -123,4 +127,5 @@ struct NotebookNote: Identifiable {
     let note: String
     let title: String
     let types: [CourseNoteLabel]
+    let cursor: String?
 }

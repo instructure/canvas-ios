@@ -37,9 +37,7 @@ struct NotebookView: View {
                 HStack {
                     backButton
 
-                    Text("Notebook", bundle: .horizon)
-                        .frame(maxWidth: .infinity)
-                        .huiTypography(.h3)
+                    title
 
                     addNoteButton
                 }
@@ -47,7 +45,10 @@ struct NotebookView: View {
                     if viewModel.isEmptyCardVisible {
                         emptyCard
                     } else {
-                        notesBody
+                        VStack {
+                            notesBody
+                            forwardBackButtons
+                        }
                     }
                 }
             }
@@ -55,7 +56,7 @@ struct NotebookView: View {
         }
     }
 
-    var addNoteButton: some View {
+    private var addNoteButton: some View {
         HorizonUI.IconButton(
             .huiIcons.add,
             type: .white
@@ -64,7 +65,7 @@ struct NotebookView: View {
         }
     }
 
-    var backButton: some View {
+    private var backButton: some View {
         HorizonUI.IconButton(
             .huiIcons.arrowBack,
             type: .white
@@ -73,9 +74,30 @@ struct NotebookView: View {
         }
     }
 
-    var notesBody: some View {
+    private var forwardBackButtons: some View {
+        HStack {
+            HorizonUI.IconButton(
+                .huiIcons.chevronLeft,
+                type: .black
+            ) {
+                viewModel.previousPage()
+            }
+            .disabled(viewModel.isPreviousDisabled)
+
+            HorizonUI.IconButton(
+                .huiIcons.chevronRight,
+                type: .black
+            ) {
+                viewModel.nextPage()
+            }
+            .disabled(viewModel.isNextDisabled)
+        }
+        .padding(.top, .huiSpaces.space24)
+    }
+
+    private var notesBody: some View {
         VStack {
-            sectionHeading(title: String(localized: "Filter", bundle: .horizon))
+            NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
 
             HStack(spacing: .huiSpaces.space16) {
                 NoteCardFilterButton(type: .confusing, selected: viewModel.isConfusingEnabled)
@@ -89,7 +111,7 @@ struct NotebookView: View {
             }
             .frame(maxWidth: .infinity)
 
-            sectionHeading(title: String(localized: "Notes", bundle: .horizon))
+            NotebookSectionHeading(title: String(localized: "Notes", bundle: .horizon))
 
             ForEach(viewModel.notes) { note in
                 NoteCardView(note: note)
@@ -100,7 +122,7 @@ struct NotebookView: View {
         }
     }
 
-    var emptyCard: some View {
+    private var emptyCard: some View {
         HorizonUI.Card {
             Text("This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!",
                 bundle: .horizon
@@ -111,11 +133,10 @@ struct NotebookView: View {
         .padding(.vertical, .huiSpaces.space32)
     }
 
-    func sectionHeading(title: String) -> some View {
-        Text(title)
-            .huiTypography(.labelLargeBold)
-            .padding(.top, .huiSpaces.space24)
-            .frame(maxWidth: .infinity, alignment: .leading)
+    private var title: some View {
+        Text("Notebook", bundle: .horizon)
+            .frame(maxWidth: .infinity)
+            .huiTypography(.h3)
     }
 }
 

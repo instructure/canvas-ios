@@ -77,7 +77,8 @@ struct NoteCardView: View {
                 highlightedText: "This is some highlighted text",
                 note: "Note",
                 title: "Title",
-                types: []
+                types: [],
+                cursor: "1"
             )
         )
         NoteCardView(
@@ -86,7 +87,8 @@ struct NoteCardView: View {
                 highlightedText: "This is some highlighted text again",
                 note: "Note",
                 title: "Title",
-                types: [.important]
+                types: [.important],
+                cursor: "2"
             )
         )
         NoteCardView(
@@ -95,7 +97,8 @@ struct NoteCardView: View {
                 highlightedText: "This is some highlighted text again again",
                 note: "Note",
                 title: "Title",
-                types: [.confusing]
+                types: [.confusing],
+                cursor: "3"
             )
         )
         NoteCardView(
@@ -104,7 +107,8 @@ struct NoteCardView: View {
                 highlightedText: "This is some highlighted text again again again",
                 note: "Note",
                 title: "Title",
-                types: [.important, .confusing]
+                types: [.important, .confusing],
+                cursor: "4"
             )
         )
     }

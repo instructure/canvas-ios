@@ -24,9 +24,9 @@ import Observation
 final class NotebookNoteViewModel {
 
     // MARK: - Outputs
+    var closeButtonOpacity: Double { isEditing ? 0 : 1 }
     var highlightedText: String = ""
-    var isActionButtonsVisible: Bool { !isEditing && !isAdding }
-    var isBackButtonHidden: Bool { isEditing }
+    var isDeleteButtonVisible: Bool { !isEditing && !isAdding }
     var isCancelVisible: Bool { isEditing && !isAdding }
     var isConfusing: Bool = false
     var isDeleteAlertPresented: Bool = false
@@ -38,9 +38,6 @@ final class NotebookNoteViewModel {
     var isSaveVisible: Bool { isEditing || isAdding }
     var isTextEditorDisabled: Bool { !isEditing }
     var note: String = ""
-    var title: String {
-        String(localized: isEditing && !isAdding ? "Edit" : "Note", bundle: .horizon)
-    }
 
     // MARK: - Dependencies
 
@@ -206,20 +203,6 @@ final class NotebookNoteViewModel {
         if let noteId = noteId {
             courseNoteInteractor
                 .set(id: noteId, content: note, labels: labels, index: index)
-                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
-                .store(in: &subscriptions)
-        }
-
-        if let courseId = courseId, let itemId = itemId {
-            courseNoteInteractor
-                .add(
-                    courseId: courseId,
-                    itemId: itemId,
-                    moduleType: .subHeader,
-                    content: note,
-                    labels: labels,
-                    index: nil
-                )
                 .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
                 .store(in: &subscriptions)
         }

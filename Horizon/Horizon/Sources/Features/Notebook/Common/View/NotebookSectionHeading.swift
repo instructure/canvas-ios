@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
-import HorizonUI
 
-struct NotebookSearchBar: View {
-
-    @Binding var term: String
+struct NotebookSectionHeading: View {
+    let title: String
 
     var body: some View {
-        ZStack(alignment: .leading) {
-            TextField("",
-                  text: $term,
-                  prompt: Text(String(localized: "Search", bundle: .horizon))
-                )
-                .frame(height: 48)
-                .padding(.leading, 48)
-                .background(Color.white)
-                .huiCornerRadius(level: .level5)
-                .huiElevation(level: .level4)
-
-            Image.huiIcons.search
-                    .foregroundColor(.textDarkest)
-                    .padding(.leading, .huiSpaces.space16)
-        }
+        Text(title)
+            .huiTypography(.labelLargeBold)
+            .padding(.top, .huiSpaces.space24)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

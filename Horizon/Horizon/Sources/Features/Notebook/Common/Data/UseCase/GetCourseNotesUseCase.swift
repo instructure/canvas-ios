@@ -19,28 +19,62 @@
 import Core
 import CoreData
 
+/// Cursor to paginate the notes
+/// If previous is set, it'll get the prior results
+/// If next is set, it'll get the next results
+struct Cursor {
+    let cursor: String
+    let isBefore: Bool // if it's not before, it's "after"
+
+    init(previous cursor: String) {
+        self.cursor = cursor
+        isBefore = true
+    }
+
+    init(next cursor: String) {
+        self.cursor = cursor
+        isBefore = false
+    }
+}
+
 class GetCourseNotesUseCase: APIUseCase {
     typealias Model = CourseNote
     typealias Request = GetNotesQuery
 
     // MARK: - Properties
-
+    private static let pageSize = 10
     private let api: API
     private let id: String?
     private let highlightsKey: String?
     private let labels: [CourseNoteLabel]?
-    var cacheKey: String? {
-        return after
-    }
-    private let searchTerm: String?
-    private let after: String?
+
+    var cacheKey: String?
+
+    private let cursor: Cursor?
 
     var request: GetNotesQuery {
-        .init(jwt: api.loginSession?.accessToken ?? "", after: after)
+        let accessToken = api.loginSession?.accessToken ?? ""
+        let reactions = labels?.map(\.rawValue)
+
+        guard let cursorValue = cursor?.cursor else {
+            return .init(jwt: accessToken, reactions: reactions)
+        }
+        if cursor?.isBefore == true {
+            return .init(
+                jwt: accessToken,
+                before: cursorValue,
+                reactions: reactions
+            )
+        }
+        return .init(
+            jwt: accessToken,
+            after: cursorValue,
+            reactions: reactions
+        )
     }
 
     var scope: Scope {
-        let order = [NSSortDescriptor(key: #keyPath(CourseNote.date), ascending: false)]
+        let order = [NSSortDescriptor(key: #keyPath(CourseNote.date), ascending: true)]
         let highlightKeyPredicate = highlightsKey.map {
             NSPredicate(format: "%K == %@", #keyPath(CourseNote.highlightKey), $0)
         }
@@ -56,14 +90,11 @@ class GetCourseNotesUseCase: APIUseCase {
                 }
             )
         }
-        let searchTermPredicate = searchTerm?.isEmpty == true ? nil : searchTerm.map {
-            NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(CourseNote.content), $0)
-        }
+
         let predicates: [NSPredicate] = [
             highlightKeyPredicate,
             idPredicate,
-            reactionsPredicate,
-            searchTermPredicate
+            reactionsPredicate
         ].compactMap { $0 }
         let predicate = NSCompoundPredicate(type: .and, subpredicates: predicates)
         return Scope(predicate: predicate, order: order)
@@ -76,15 +107,13 @@ class GetCourseNotesUseCase: APIUseCase {
         id: String? = nil,
         highlightsKey: String? = nil,
         labels: [CourseNoteLabel]? = nil,
-        searchTerm: String? = nil,
-        after: String? = nil
+        cursor: Cursor? = nil
     ) {
         self.api = api
         self.id = id
         self.highlightsKey = highlightsKey
         self.labels = labels
-        self.searchTerm = searchTerm
-        self.after = after
+        self.cursor = cursor
     }
 
     // MARK: - Methods
@@ -98,16 +127,15 @@ class GetCourseNotesUseCase: APIUseCase {
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-
-        // delete all notes that do not come back in the response if we don't have any filters applied
-        if id == nil && highlightsKey == nil && (labels == nil || labels?.isEmpty == true) {
-            let idsReturned = response?.data.notes.nodes.map(\.id) ?? []
+        // If not filtering by id or highlightsKey, delete all notes that are not in the response
+        if id == nil && highlightsKey == nil {
+            let idsReturned = response?.data.notes.edges.map { $0.node.id } ?? []
             let notesToDelete: [CourseNote] = client.fetch(NSPredicate(format: "NOT %K IN %@", #keyPath(CourseNote.id), idsReturned))
             client.delete(notesToDelete)
         }
 
-        response?.data.notes.nodes.forEach {
-            CourseNote.save($0, in: client)
+        if let responseNotes = response?.data.notes {
+            CourseNote.save(responseNotes, in: client)
         }
     }
 }

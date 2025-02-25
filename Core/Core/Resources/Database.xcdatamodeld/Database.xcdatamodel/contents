@@ -330,7 +330,9 @@
     <entity name="CourseNote" representedClassName="Core.CourseNote" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="cursor" optional="YES" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasMore" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="highlightedText" optional="YES" attributeType="String"/>
         <attribute name="highlightKey" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>

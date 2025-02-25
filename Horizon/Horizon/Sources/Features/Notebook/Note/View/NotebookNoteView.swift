@@ -25,107 +25,30 @@ struct NotebookNoteView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        NotesBody(
-            title: "",
-            leading: {},
-            trailing: {}
-        ) {
+        ScrollView {
             VStack(spacing: .huiSpaces.space24) {
-                HStack {
-                    HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {
-                        viewModel.close(viewController: viewController)
-                    }
-                    .hidden(viewModel.isBackButtonHidden)
+                titleBar
 
-                    Text(viewModel.title)
-                        .frame(maxWidth: .infinity)
-                        .multilineTextAlignment(.center)
-                        .font(.bold22)
-                        .foregroundColor(.textDarkest)
+                highlightedText
 
-                    HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {}
-                        .hidden()
-                }
-                .background(HorizonUI.colors.surface.pagePrimary)
+                labels
 
-                HStack(spacing: .huiSpaces.space8) {
-                    NoteCardFilterButton(
-                        type: .confusing,
-                        selected: viewModel.isConfusing
-                    ).onTapGesture {
-                        viewModel.toggleConfusing()
-                    }
-                    NoteCardFilterButton(
-                        type: .important,
-                        selected: viewModel.isImportant
-                    ).onTapGesture {
-                        viewModel.toggleImportant()
-                    }
-                }
-
-                if viewModel.isHighlightedTextVisible {
-                    Text(viewModel.highlightedText)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.regular14Italic)
-                }
-
-                ZStack {
-                    TextField("", text: $viewModel.note, axis: .vertical)
-                        .disabled(viewModel.isTextEditorDisabled)
-                        .onTapGesture { viewModel.edit() }
-                        .padding(.huiSpaces.space12)
-                        .frame(minHeight: 112, alignment: .topLeading)
-                        .frame(maxWidth: .infinity)
-                        .scrollDisabled(true)
-                        .background(.white)
-                        .cornerRadius(.huiSpaces.space8)
-                        .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
-
-                    if viewModel.isTextEditorDisabled {
-                        Color.clear.contentShape(Rectangle())
-                            .onTapGesture { viewModel.edit() }
-                    }
-                }
+                note
 
                 VStack(spacing: .huiSpaces.space16) {
-                    if viewModel.isSaveVisible {
-                        Button {
-                            viewModel.saveAndDismiss(viewController: viewController)
-                        } label: {
-                            Text(String(localized: "Save", bundle: .horizon))
-                        }
-                        .buttonStyle(
-                            HorizonUI.ButtonStyles.primary(.blue, fillsWidth: true)
-                        )
-                        .disabled(viewModel.isSaveDisabled)
-                    }
-
-                    if viewModel.isCancelVisible {
-                        Button {
-                            viewModel.cancelEditingAndReset()
-                        } label: {
-                            Text(String(localized: "Cancel", bundle: .horizon))
-                        }
-                        .buttonStyle(.primary(.white, fillsWidth: true))
-                    }
+                    saveButton
+                    cancelButton
                 }
 
-                if viewModel.isActionButtonsVisible {
-                    HStack {
-                        HorizonUI.IconButton(.huiIcons.delete, type: .red) {
-                            viewModel.presentDeleteAlert()
-                        }
-
-                        HorizonUI.IconButton(.huiIcons.ai, type: .ai) { }
-
-                        HorizonUI.IconButton(.huiIcons.edit, type: .white) {
-                            viewModel.beginEditing()
-                        }
-                    }
-                }
+                deleteButton
             }
             .padding(.vertical, .huiSpaces.space36)
+            .padding(.horizontal, .huiSpaces.space24)
         }
+        .frame(maxWidth: .infinity)
+        .navigationBarBackButtonHidden(true)
+        .toolbarBackground(Color.huiColors.surface.pagePrimary, for: .navigationBar)
+        .background(Color.huiColors.surface.pagePrimary)
         .alert(isPresented: $viewModel.isDeleteAlertPresented) {
             Alert(
                 title: Text(String(localized: "Confirmation", bundle: .horizon)),
@@ -136,6 +59,117 @@ struct NotebookNoteView: View {
                 secondaryButton: .cancel()
             )
         }
+    }
+
+    @ViewBuilder
+    private var cancelButton: some View {
+        if viewModel.isCancelVisible {
+            Button {
+                viewModel.cancelEditingAndReset()
+            } label: {
+                Text(String(localized: "Cancel", bundle: .horizon))
+            }
+            .buttonStyle(.primary(.white, fillsWidth: true))
+        }
+    }
+
+    @ViewBuilder
+    private var deleteButton: some View {
+        if viewModel.isDeleteButtonVisible {
+            HorizonUI.IconButton(.huiIcons.delete, type: .red) {
+                viewModel.presentDeleteAlert()
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
+
+    @ViewBuilder
+    private var highlightedText: some View {
+        NotebookSectionHeading(title: String(localized: "Highlight", bundle: .horizon))
+
+        if viewModel.isHighlightedTextVisible {
+            Text(viewModel.highlightedText)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.regular14Italic)
+        }
+    }
+
+    @ViewBuilder
+    private var labels: some View {
+        NotebookSectionHeading(title: String(localized: "Label", bundle: .horizon))
+
+        HStack(spacing: .huiSpaces.space8) {
+            NoteCardFilterButton(
+                type: .confusing,
+                selected: viewModel.isConfusing
+            ).onTapGesture {
+                viewModel.toggleConfusing()
+            }
+            NoteCardFilterButton(
+                type: .important,
+                selected: viewModel.isImportant
+            ).onTapGesture {
+                viewModel.toggleImportant()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var note: some View {
+        NotebookSectionHeading(title: String(localized: "Add a Note (Optional)", bundle: .horizon))
+
+        ZStack {
+            TextField("", text: $viewModel.note, axis: .vertical)
+                .disabled(viewModel.isTextEditorDisabled)
+                .onTapGesture { viewModel.edit() }
+                .padding(.huiSpaces.space12)
+                .frame(minHeight: 120, alignment: .topLeading)
+                .frame(maxWidth: .infinity)
+                .scrollDisabled(true)
+                .background(.white)
+                .cornerRadius(.huiSpaces.space12)
+                .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
+
+            if viewModel.isTextEditorDisabled {
+                Color.clear.contentShape(Rectangle())
+                    .onTapGesture { viewModel.edit() }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var saveButton: some View {
+        if viewModel.isSaveVisible {
+            Button {
+                viewModel.saveAndDismiss(viewController: viewController)
+            } label: {
+                Text(String(localized: "Save", bundle: .horizon))
+            }
+            .buttonStyle(
+                HorizonUI.ButtonStyles.primary(.blue, fillsWidth: true)
+            )
+            .disabled(viewModel.isSaveDisabled)
+        }
+    }
+
+    private var titleBar: some View {
+        HStack {
+            HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {}
+                .hidden()
+
+            HStack {
+                HorizonUI.icons.menuBookNotebook
+                Text("Notebook", bundle: .horizon)
+                    .huiTypography(.h3)
+            }
+            .frame(maxWidth: .infinity)
+
+            HorizonUI.IconButton(.huiIcons.close, type: .white) {
+                viewModel.close(viewController: viewController)
+            }
+            .opacity(viewModel.closeButtonOpacity)
+        }
+        .background(HorizonUI.colors.surface.pagePrimary)
     }
 }
 

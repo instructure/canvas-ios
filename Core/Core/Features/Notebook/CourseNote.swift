@@ -19,18 +19,34 @@
 import CoreData
 
 public final class CourseNote: NSManagedObject {
+
+    // MARK: - Required
+
     @NSManaged public var id: String
     @NSManaged public var date: Date
+    @NSManaged public var courseID: String
+
+    // MARK: - Optional
 
     @NSManaged public var content: String?
-    @NSManaged public var courseID: String
+    @NSManaged public var cursor: String?
     @NSManaged public var highlightedText: String?
     @NSManaged public var highlightKey: String?
     @NSManaged public var labels: String?
     @NSManaged public var length: NSNumber?
     @NSManaged public var startIndex: NSNumber?
+    @NSManaged public var hasMore: NSNumber?
 
     public var labelsList: [String] {
         return labels?.components(separatedBy: ";") ?? []
+    }
+
+    public var hasMoreBool: Bool {
+        get {
+            return hasMore?.boolValue ?? false
+        }
+        set {
+            hasMore = NSNumber(value: newValue)
+        }
     }
 }

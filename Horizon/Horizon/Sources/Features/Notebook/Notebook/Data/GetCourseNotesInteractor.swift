@@ -22,8 +22,7 @@ import Foundation
 
 protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get set }
-    var term: String { get set }
-    var afterNodeId: String? { get set }
+    var cursor: Cursor? { get set }
     func get() -> AnyPublisher<[CourseNote], NotebookError>
 }
 
@@ -32,7 +31,18 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     final let canvasApi: API
 
+    final let instance: GetCourseNotesInteractorLive = .init()
+
     // MARK: - Public
+
+    var cursor: Cursor? {
+        get {
+            cursorPublisher.value
+        }
+        set {
+            cursorPublisher.send(newValue)
+        }
+    }
 
     var filter: CourseNoteLabel? {
         get {
@@ -43,30 +53,17 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         }
     }
 
-    var term: String {
-        get {
-            termPublisher.value
-        }
-        set {
-            termPublisher.send(newValue)
-        }
-    }
-
-    var afterNodeId: String? {
-        get {
-            afterNodeIdPublisher.value
-        }
-        set {
-            afterNodeIdPublisher.send(newValue)
-        }
+    // A method for requesting an update to the list of course notes
+    func refresh() {
+        refreshSubject.send()
     }
 
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
-    private var termPublisher: CurrentValueSubject<String, Error> = CurrentValueSubject("")
+    private let refreshSubject = PassthroughSubject<Void, Error>()
+    private var cursorPublisher: CurrentValueSubject<Cursor?, Error> = CurrentValueSubject(nil)
     private var filterPublisher: CurrentValueSubject<CourseNoteLabel?, Error> = CurrentValueSubject(nil)
-    private var afterNodeIdPublisher: CurrentValueSubject<String?, Error> = CurrentValueSubject(nil)
 
     // MARK: - Init
 
@@ -79,27 +76,39 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
     func get() -> AnyPublisher<[CourseNote], NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
-            .flatMap { api in
-                Publishers.CombineLatest3(
-                    self.filterPublisher,
-                    self.termPublisher,
-                    self.afterNodeIdPublisher
-                )
-                .flatMap { value in
-                    ReactiveStore(
-                        useCase: GetCourseNotesUseCase(
-                            api: api,
-                            labels: value.0.map { [$0] } ?? [],
-                            searchTerm: value.1,
-                            after: value.2
-                        )
-                    )
-                    .getEntities(keepObservingDatabaseChanges: true)
-                    .eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
-            }
+            .flatMap(listenToFilters)
             .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
+    }
+
+    // MARK: - Private Methods
+
+    private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNote], any Error> {
+        Publishers.CombineLatest3(
+            filterPublisher,
+            cursorPublisher,
+            refreshSubject
+        )
+        .flatMap { [weak self] filter, cursor, _ in
+            guard let self = self else {
+                return Just([CourseNote]())
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            return self.listenToStore(api: api, filter: filter, cursor: cursor)
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func listenToStore(api: API, filter: CourseNoteLabel?, cursor: Cursor?) -> AnyPublisher<[CourseNote], any Error> {
+        ReactiveStore(
+            useCase: GetCourseNotesUseCase(
+                api: api,
+                labels: filter.map { [$0] },
+                cursor: cursor
+            )
+        )
+        .getEntities(keepObservingDatabaseChanges: true)
+        .eraseToAnyPublisher()
     }
 }

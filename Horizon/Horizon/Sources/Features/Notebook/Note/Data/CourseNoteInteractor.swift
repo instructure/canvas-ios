@@ -189,7 +189,39 @@ extension ModuleItemType {
 
 extension CourseNote {
     @discardableResult
-    public static func save(_ note: RedwoodNote, in context: NSManagedObjectContext) -> CourseNote {
+    public static func save(
+        _ responseNotes: RedwoodFetchNotesQueryResponse.ResponseNotes,
+        in context: NSManagedObjectContext
+    ) -> [CourseNote] {
+        let hasNextPage = responseNotes.pageInfo.hasNextPage
+        let hasPreviousPage = responseNotes.pageInfo.hasPreviousPage
+
+        let courseNotes = responseNotes
+            .edges
+//            .sorted { $0.node.createdAt ?? Date() > $1.node.createdAt ?? Date() }
+            .enumerated()
+            .map { index, responseEdge in
+            let note = responseEdge.node
+            let cursor = responseEdge.cursor
+            let hasMore = (hasPreviousPage && index == 0) || (hasNextPage && index == responseNotes.edges.count - 1)
+            return save(
+                note,
+                in: context,
+                cursor: cursor,
+                hasMore: hasMore
+            )
+        }
+
+        return courseNotes
+    }
+
+    @discardableResult
+    public static func save(
+        _ note: RedwoodNote,
+        in context: NSManagedObjectContext,
+        cursor: String? = nil,
+        hasMore: Bool? = nil
+    ) -> CourseNote {
         let firstCourseNote: CourseNote? = context.first(where: #keyPath(CourseNote.id), equals: note.id)
         let courseNote: CourseNote = firstCourseNote ?? NSEntityDescription.insertNewObject(forEntityName: "CourseNote", into: context) as? CourseNote ?? CourseNote()
         courseNote.id = note.id ?? ""
@@ -201,6 +233,12 @@ extension CourseNote {
         courseNote.labels = (note.reaction ?? []).joined(separator: ";")
         courseNote.length = note.length.map { NSNumber(value: $0) }
         courseNote.startIndex = note.startIndex.map { NSNumber(value: $0) }
+        if let hasMore = hasMore {
+            courseNote.hasMoreBool = hasMore
+        }
+        if let cursor = cursor {
+            courseNote.cursor = cursor
+        }
         return courseNote
     }
 
