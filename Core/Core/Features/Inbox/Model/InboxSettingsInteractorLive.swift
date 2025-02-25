@@ -25,7 +25,6 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
     private let settings = PassthroughRelay<InboxSettings>()
     private let environmentSettings = PassthroughRelay<CDEnvironmentSettings>()
-
     private var subscriptions = Set<AnyCancellable>()
     private var settingsStore: ReactiveStore<GetInboxSettings>
     private var environmentSettingsStore: ReactiveStore<GetEnvironmentSettings>
