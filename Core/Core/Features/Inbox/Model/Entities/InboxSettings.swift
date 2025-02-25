@@ -36,7 +36,6 @@ final public class InboxSettings: NSManagedObject, WriteableModel {
     public static func save(_ item: APIInboxSettings, in context: NSManagedObjectContext) -> InboxSettings {
         let data = item.data.myInboxSettings
         let dbEntity: InboxSettings = context.first(where: #keyPath(InboxSettings.userId), equals: data.userId) ?? context.insert()
-        print(item)
         dbEntity.id = data._id ?? ""
         dbEntity.createdAt = data.createdAt
         dbEntity.outOfOfficeLastDate = data.outOfOfficeLastDate
