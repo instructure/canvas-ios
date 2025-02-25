@@ -62,30 +62,33 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                ViewThatFits {
-                    HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
-                        dateRow
+                VStack(spacing: 0) {
+                    ViewThatFits {
+                        HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+                            dateRow
+                        }
+                        VStack(alignment: .leading) {
+                            dateRow
+                        }
                     }
-                    VStack(alignment: .leading) {
-                        dateRow
-                    }
-                }
-                .frame(minHeight: 36) // To always have the same height despite datepicker visibility
+                    .frame(minHeight: 36) // To always have the same height despite datepicker visibility
 
-                if let errorMessage {
-                    Text(errorMessage)
-                        .textStyle(.errorMessage)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(.top, 8)
+                    if let errorMessage {
+                        Text(errorMessage)
+                            .textStyle(.errorMessage)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.top, 8)
+                    }
                 }
+                .paddingStyle(.leading, .standard)
+                .paddingStyle(.trailing, .standard)
+                // best effort estimations to match the height of other cells, correcting for DatePicker
+                .padding(.top, 5)
+                .padding(.bottom, 7)
+                .accessibilityElement(children: .contain)
+
+                InstUI.Divider()
             }
-            .paddingStyle(.leading, .standard)
-            .paddingStyle(.trailing, .standard)
-            // best effort estimations to match the height of other cells, correcting for DatePicker
-            .padding(.top, 5)
-            .padding(.bottom, 7)
-
-            InstUI.Divider()
         }
 
         @ViewBuilder
