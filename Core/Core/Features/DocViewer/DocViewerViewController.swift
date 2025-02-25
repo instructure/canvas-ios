@@ -297,18 +297,31 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
         annotationProvider?.retryFailedRequest()
     }
 
-    func annotationDidFailToSave(error: Error) { performUIUpdate {
-        self.syncAnnotationsButton.isEnabled = true
-        self.syncAnnotationsButton.backgroundColor = .backgroundDanger
-        self.syncAnnotationsButton.setTitle(String(localized: "Error Saving. Tap to retry.", bundle: .core), for: .normal)
-    } }
+    func annotationDidFailToSave(error: Error) {
+        guard let syncAnnotationsButton else { return }
 
-    func annotationSaveStateChanges(saving: Bool) { performUIUpdate {
-        self.syncAnnotationsButton.isEnabled = false
-        self.syncAnnotationsButton.backgroundColor = .backgroundLight
-        self.syncAnnotationsButton.setTitle(saving
+        let title = String(localized: "Error Saving. Tap to retry.", bundle: .core)
+
+        performUIUpdate {
+            syncAnnotationsButton.isEnabled = true
+            syncAnnotationsButton.backgroundColor = .backgroundDanger
+            syncAnnotationsButton.setTitle(title, for: .normal)
+            syncAnnotationsButton.accessibilityTraits.insert(.button)
+        }
+    }
+
+    func annotationSaveStateChanges(saving: Bool) {
+        guard let syncAnnotationsButton else { return }
+
+        let title = saving
             ? String(localized: "Saving...", bundle: .core)
-            : String(localized: "All annotations saved.", bundle: .core),
-        for: .normal)
-    } }
+            : String(localized: "All annotations saved.", bundle: .core)
+
+        performUIUpdate {
+            syncAnnotationsButton.isEnabled = false
+            syncAnnotationsButton.backgroundColor = .backgroundLight
+            syncAnnotationsButton.setTitle(title, for: .normal)
+            syncAnnotationsButton.accessibilityTraits.remove(.button)
+        }
+    }
 }

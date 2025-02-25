@@ -27,7 +27,17 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
             APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
             APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment")
         ]
-        let response = APICommentLibraryResponse(data: .init(user: .init(id: "1", commentBankItems: .init(nodes: comments))))
+        let response = APICommentLibraryResponse(
+            data: .init(
+                user: .init(
+                    id: "1",
+                    commentBankItems: .init(
+                        nodes: comments,
+                        pageInfo: nil
+                    )
+                )
+            )
+        )
         api.mock(APICommentLibraryRequest(userId: "1"), value: response)
     }
 

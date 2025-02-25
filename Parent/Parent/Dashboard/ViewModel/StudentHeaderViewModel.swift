@@ -92,7 +92,7 @@ class StudentHeaderViewModel: ObservableObject {
                     String(localized: "Current student: %@", bundle: .parent),
                     displayName
                 )
-                accessibilityHint = String(localized: "Double tap to switch students")
+                accessibilityHint = String(localized: "Double tap to switch students", bundle: .parent)
             }
             .store(in: &subscriptions)
     }
