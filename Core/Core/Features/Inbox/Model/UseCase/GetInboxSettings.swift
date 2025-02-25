@@ -20,7 +20,7 @@ import Foundation
 
 public class GetInboxSettings: APIUseCase {
     public typealias Model = InboxSettings
-    public typealias Response = Request.Response
+    public typealias Response = APIInboxSettings
 
     let userId: String
 

@@ -24,9 +24,9 @@ public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
 
     public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
 
+    public init() { }
+
     public func refresh() -> AnyPublisher<Void, Never> {
         return Just(()).eraseToAnyPublisher()
     }
-    
-
 }

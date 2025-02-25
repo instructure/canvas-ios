@@ -25,6 +25,7 @@ import XCTest
 class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
     private var recipientInteractorMock: RecipientInteractorMock!
+    private var inboxSettingsInteractor: InboxSettingsInteractor!
     private var audioSession: AudioSessionMock!
     private var cameraPermissionService = CameraPermissionServiceMock.self
     var testee: ComposeMessageViewModel!
@@ -34,6 +35,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         super.setUp()
         recipientInteractorMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
+        inboxSettingsInteractor = InboxSettingsInteractorPreview()
         audioSession = AudioSessionMock()
         testee = ComposeMessageViewModel(
             router: router,
@@ -42,6 +44,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             ),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -54,6 +57,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -66,6 +70,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -78,6 +83,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -236,6 +242,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .reply(conversation: conversation, message: message2)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -258,6 +265,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -279,6 +287,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -300,6 +309,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -322,6 +332,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: message2)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -344,6 +355,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -478,6 +490,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -550,6 +563,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             ),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
