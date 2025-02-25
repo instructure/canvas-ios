@@ -6655,6 +6655,9 @@
         }
       }
     },
+    "Double tap to switch students" : {
+
+    },
     "Due" : {
       "localizations" : {
         "ar" : {
@@ -12802,6 +12805,9 @@
         }
       }
     },
+    "Profile Menu" : {
+
+    },
     "QR Code" : {
       "localizations" : {
         "ar" : {
@@ -14597,6 +14603,7 @@
       }
     },
     "Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -16133,6 +16140,7 @@
       }
     },
     "Tap to switch students" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
