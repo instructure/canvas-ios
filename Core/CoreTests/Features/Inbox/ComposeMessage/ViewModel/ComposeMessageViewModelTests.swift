@@ -712,7 +712,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         let exp = expectation(description: "signatureLoaded")
         var initFlag = false
         inboxSettingsInteractor.signature
-            .sink { ( _ in
+            .sink { _ in
                 if initFlag { exp.fulfill() }
                 initFlag = true
             }
