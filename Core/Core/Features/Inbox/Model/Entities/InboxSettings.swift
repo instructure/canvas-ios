@@ -29,7 +29,7 @@ final public class InboxSettings: NSManagedObject, WriteableModel {
     @NSManaged public var signature: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var useOutOfOffice: Bool
-    @NSManaged public var useSignature:  Bool
+    @NSManaged public var useSignature: Bool
     @NSManaged public var userId: String?
 
     @discardableResult

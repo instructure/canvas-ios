@@ -64,7 +64,7 @@ public struct APIInboxSettings: Codable, Equatable {
         let signature: String?
         let updatedAt: Date?
         let useOutOfOffice: Bool?
-        let useSignature:  Bool?
+        let useSignature: Bool?
         let userId: String?
     }
 }

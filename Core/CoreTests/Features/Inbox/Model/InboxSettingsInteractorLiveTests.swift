@@ -29,7 +29,23 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let signatureText = "Test"
         let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: false, disable_inbox_signature_block_for_students: false)
         api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(data: .init(myInboxSettings: .init(_id: "1", createdAt: nil, outOfOfficeLastDate: nil, outOfOfficeMessage: nil, outOfOfficeSubject: nil, outOfOfficeFirstDate: nil, signature: signatureText, updatedAt: nil, useOutOfOffice: nil, useSignature: true, userId: userId)))
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -57,14 +73,30 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         environment.app = .teacher
         let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
         api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(data: .init(myInboxSettings: .init(_id: "1", createdAt: nil, outOfOfficeLastDate: nil, outOfOfficeMessage: nil, outOfOfficeSubject: nil, outOfOfficeFirstDate: nil, signature: signatureText, updatedAt: nil, useOutOfOffice: nil, useSignature: true, userId: userId)))
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
-        var useSignatureResult: Bool? = nil
-        var signatureResult: String? = nil
+        var useSignatureResult: Bool?
+        var signatureResult: String?
         var initFlag = false
         testee.signature
             .sink { (useSignature, signature) in
@@ -85,14 +117,30 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         environment.app = .parent
         let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
         api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(data: .init(myInboxSettings: .init(_id: "1", createdAt: nil, outOfOfficeLastDate: nil, outOfOfficeMessage: nil, outOfOfficeSubject: nil, outOfOfficeFirstDate: nil, signature: signatureText, updatedAt: nil, useOutOfOffice: nil, useSignature: true, userId: userId)))
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
-        var useSignatureResult: Bool? = nil
-        var signatureResult: String? = nil
+        var useSignatureResult: Bool?
+        var signatureResult: String?
         var initFlag = false
         testee.signature
             .sink { (useSignature, signature) in
@@ -113,14 +161,30 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         environment.app = .student
         let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
         api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(data: .init(myInboxSettings: .init(_id: "1", createdAt: nil, outOfOfficeLastDate: nil, outOfOfficeMessage: nil, outOfOfficeSubject: nil, outOfOfficeFirstDate: nil, signature: signatureText, updatedAt: nil, useOutOfOffice: nil, useSignature: true, userId: userId)))
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
-        var useSignatureResult: Bool? = nil
-        var signatureResult: String? = nil
+        var useSignatureResult: Bool?
+        var signatureResult: String?
         var initFlag = false
         testee.signature
             .sink { (useSignature, signature) in
@@ -140,14 +204,30 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let signatureText = "Test"
         let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: false)
         api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(data: .init(myInboxSettings: .init(_id: "1", createdAt: nil, outOfOfficeLastDate: nil, outOfOfficeMessage: nil, outOfOfficeSubject: nil, outOfOfficeFirstDate: nil, signature: signatureText, updatedAt: nil, useOutOfOffice: nil, useSignature: false, userId: userId)))
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: false,
+                    userId: userId
+                )
+            )
+        )
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
-        var useSignatureResult: Bool? = nil
-        var signatureResult: String? = nil
+        var useSignatureResult: Bool?
+        var signatureResult: String?
         var initFlag = false
         testee.signature
             .sink { (useSignature, signature) in
@@ -167,14 +247,30 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let signatureText = "Test"
         let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: false)
         api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(data: .init(myInboxSettings: .init(_id: "1", createdAt: nil, outOfOfficeLastDate: nil, outOfOfficeMessage: nil, outOfOfficeSubject: nil, outOfOfficeFirstDate: nil, signature: signatureText, updatedAt: nil, useOutOfOffice: nil, useSignature: true, userId: userId)))
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
-        var useSignatureResult: Bool? = nil
-        var signatureResult: String? = nil
+        var useSignatureResult: Bool?
+        var signatureResult: String?
         var initFlag = false
         testee.signature
             .sink { (useSignature, signature) in
