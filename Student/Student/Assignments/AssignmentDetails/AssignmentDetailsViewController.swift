@@ -623,9 +623,3 @@ extension AssignmentDetailsViewController {
         }
     }
 }
-
-// MARK: - UIAccessibility Helpers
-
-extension AssignmentDetailsViewController {
-    func setNeedsSubmissionStatusAnnouncement() { }
-}
