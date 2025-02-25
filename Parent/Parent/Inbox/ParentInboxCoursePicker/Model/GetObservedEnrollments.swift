@@ -46,4 +46,12 @@ public class GetObservedEnrollments: CollectionUseCase {
             states: GetEnrollmentsRequest.State.allForParentObserver
         )
     }
+
+    public func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response = response else { return }
+
+        for apiEntity in response {
+            CDInboxEnrollment.save(apiEntity, in: client)
+        }
+    }
 }

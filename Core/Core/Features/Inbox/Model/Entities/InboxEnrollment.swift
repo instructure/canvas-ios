@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-final public class CDInboxEnrollment: NSManagedObject, WriteableModel {
+final public class CDInboxEnrollment: NSManagedObject {
 
     @NSManaged public var id: String
     @NSManaged public var userId: String
@@ -28,14 +28,14 @@ final public class CDInboxEnrollment: NSManagedObject, WriteableModel {
     @NSManaged public var observedUserDisplayName: String?
 
     @discardableResult
-    public static func save(_ item: APIEnrollment, in context: NSManagedObjectContext) -> CDInboxEnrollment {
+    public static func save(_ item: APIEnrollment, in context: NSManagedObjectContext) -> CDInboxEnrollment? {
+        guard let id = item.id?.value, let courseId = item.course_id?.value else { return nil }
         let dbEntity: CDInboxEnrollment = context.first(where: #keyPath(CDInboxEnrollment.id), equals: item.id?.value) ?? context.insert()
         dbEntity.userId = item.user_id.value
-        dbEntity.id = item.id?.value ?? ""
+        dbEntity.id = id
 
-        if let courseID = item.course_id?.value {
-            dbEntity.canvasContextID = "course_\(courseID)"
-        }
+        dbEntity.canvasContextID = "course_\(courseId)"
+
         if let apiUser = item.observed_user {
             let observedUserModel: User = User.save(apiUser, in: context)
             dbEntity.observedUserId = observedUserModel.id
