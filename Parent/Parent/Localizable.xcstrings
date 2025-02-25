@@ -6414,6 +6414,9 @@
         }
       }
     },
+    "Double tap to switch students" : {
+
+    },
     "Due" : {
       "localizations" : {
         "ar" : {
@@ -15894,9 +15897,6 @@
           }
         }
       }
-    },
-    "Tap to switch students" : {
-
     },
     "The linked item is no longer available." : {
       "localizations" : {

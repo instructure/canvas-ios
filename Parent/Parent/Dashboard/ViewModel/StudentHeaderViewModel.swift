@@ -22,11 +22,12 @@ import Core
 import SwiftUI
 
 class StudentHeaderViewModel: ObservableObject {
-    // MARK: - Outputs
     enum IconState: Hashable {
         case addStudent
         case student(name: String, avatarURL: URL?)
     }
+
+    // MARK: - Outputs
     @Published private(set) var state: IconState = .addStudent
     @Published private(set) var backgroundColor: Color = ColorScheme.observeeBlue.color.asColor
     @Published private(set) var badgeCount: Int = 0
@@ -91,7 +92,7 @@ class StudentHeaderViewModel: ObservableObject {
                     String(localized: "Current student: %@", bundle: .parent),
                     displayName
                 )
-                accessibilityHint = String(localized: "Tap to switch students")
+                accessibilityHint = String(localized: "Double tap to switch students")
             }
             .store(in: &subscriptions)
     }

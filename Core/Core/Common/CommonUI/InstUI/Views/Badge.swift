@@ -26,7 +26,7 @@ extension InstUI {
         init(count: Int) {
             text = {
                 switch count {
-                case Int.min...0:
+                case ...0:
                     return nil
                 case 1..<100:
                     return "\(count)"

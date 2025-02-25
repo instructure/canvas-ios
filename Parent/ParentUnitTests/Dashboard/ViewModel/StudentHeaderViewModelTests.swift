@@ -77,7 +77,7 @@ class StudentHeaderViewModelTests: ParentTestCase {
         XCTAssertEqual(
             viewModel.accessibilityLabel,
             "Current student: Test Student")
-        XCTAssertEqual(viewModel.accessibilityHint, "Tap to switch students")
+        XCTAssertEqual(viewModel.accessibilityHint, "Double tap to switch students")
     }
 
     func test_didSelectStudent_withNil_showsAddStudentState() {
