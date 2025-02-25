@@ -22,4 +22,9 @@ public struct StudentContextItem: Hashable {
     let studentId: String
     let studentDisplayName: String
     let course: Course
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(studentId)
+        hasher.combine(course.id)
+    }
 }

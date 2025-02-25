@@ -23,7 +23,6 @@ import Core
 
 public class ParentInboxCoursePickerViewModel: ObservableObject {
     // MARK: - Output
-
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var items: [StudentContextItem] = []
 
@@ -31,18 +30,17 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
     public let didTapContext = PassthroughRelay<(WeakViewController, StudentContextItem)>()
     public let didTapRefresh = PassthroughRelay<Void>()
 
+    // MARK: - Private
+    private let interactor: ParentInboxCoursePickerInteractor
+    private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
+
     init(interactor: ParentInboxCoursePickerInteractor, router: Router) {
         self.interactor = interactor
         self.router = router
         setupOutputBindings()
         setupInputBindings()
     }
-
-    // MARK: - Private
-
-    private let interactor: ParentInboxCoursePickerInteractor
-    private var subscriptions = Set<AnyCancellable>()
-    private let router: Router
 
     private func setupOutputBindings() {
         interactor.state

@@ -60,10 +60,12 @@ public struct ParentInboxCoursePickerView: View {
                         Text(item.course.name ?? "")
                             .font(.regular16)
                             .foregroundColor(.textDarkest)
+                            .multilineTextAlignment(.leading)
 
                         Text(item.studentDisplayName)
                             .font(.regular14)
                             .foregroundColor(.textDark)
+                            .multilineTextAlignment(.leading)
 
                     }
                     Spacer()

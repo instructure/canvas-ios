@@ -22,7 +22,7 @@ import Core
 
 public class GetObservedEnrollments: CollectionUseCase {
 
-    public typealias Model = InboxEnrollment
+    public typealias Model = CDInboxEnrollment
     public typealias Response = Request.Response
 
     let observerID: String
@@ -36,7 +36,7 @@ public class GetObservedEnrollments: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(InboxEnrollment.userId), equals: observerID, orderBy: #keyPath(InboxEnrollment.id))
+        return .where(#keyPath(CDInboxEnrollment.userId), equals: observerID, orderBy: #keyPath(CDInboxEnrollment.id))
     }
 
     public var request: GetEnrollmentsRequest {

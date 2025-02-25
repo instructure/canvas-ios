@@ -28,7 +28,7 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private var courses = CurrentValueSubject<[Course], Error>([])
-    private var enrollments = CurrentValueSubject<[InboxEnrollment], Error>([])
+    private var enrollments = CurrentValueSubject<[CDInboxEnrollment], Error>([])
     private var enrollmentsStore: ReactiveStore<GetObservedEnrollments>
     private var coursesStore: ReactiveStore<GetCourses>
     private let environment: AppEnvironment
@@ -53,7 +53,7 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
             .store(in: &subscriptions)
 
         Publishers
-            .CombineLatest(courses, enrollments)
+            .CombineLatest(courses.dropFirst(), enrollments.dropFirst()) // Drop the initial values
             .map { (courseList, enrollmentList) in
                 return enrollmentList.compactMap { enrollment -> StudentContextItem? in
                     let course = courseList.first(where: { $0.canvasContextID == enrollment.canvasContextID })
