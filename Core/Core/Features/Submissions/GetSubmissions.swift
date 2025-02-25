@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 public struct GetRecentlyGradedSubmissions: CollectionUseCase {
     public typealias Model = SubmissionList
@@ -44,6 +45,8 @@ public class CreateSubmission: APIUseCase {
     let userID: String
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
+
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(
         context: Context,
@@ -95,14 +98,39 @@ public class CreateSubmission: APIUseCase {
     ) }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
-        environment.api.makeRequest(request) { [weak self] response, urlResponse, error in
-            guard let self = self else { return }
-            if error == nil {
-                NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
-                NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+
+        environment
+            .api
+            .makeUnfailableRequest(request)
+            .flatMap { response in
+
+                guard UIAccessibility.isVoiceOverRunning else {
+                    return Just(response).eraseToAnyPublisher()
+                }
+
+                let message: String
+                if response.body != nil, response.error == nil {
+                    message = String(localized: "Successfully submitted!", bundle: .core)
+                } else {
+                    message = String(localized: "Submission Failed", bundle: .core)
+                }
+
+                return UIAccessibility
+                    .announcePersistently(message)
+                    .map { response }
+                    .eraseToAnyPublisher()
             }
-            completionHandler(response, urlResponse, error)
-        }
+            .sink { [weak self] response, urlResponse, error in
+                guard let self = self else { return }
+
+                if error == nil {
+                    NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
+                    NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+                }
+
+                completionHandler(response, urlResponse, error)
+            }
+            .store(in: &subscriptions)
     }
 
     public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

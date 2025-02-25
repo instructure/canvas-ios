@@ -150,19 +150,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
-    private lazy var submittedLabelFocusHandler = AccessibilityDeferredFocusHandler(
-        targetView: { [weak self] in
-            guard let self, let sView = submittedView else { return nil }
-
-            if sView.isHidden {
-                attemptLabel?.accessibilityHint = submittedLabel?.text
-                return attemptLabel
-            } else {
-                return submittedLabel
-            }
-        }
-    )
-
     static func create(env: AppEnvironment,
                        courseID: String,
                        assignmentID: String,
@@ -438,7 +425,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         updateGradeCell(assignment, submission: submission)
 
         guard let presenter = presenter else {
-            submittedLabelFocusHandler.focusIfNeeded()
+            //submittedLabelFocusHandler.focusIfNeeded()
             return
         }
 
@@ -477,10 +464,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         scrollView?.isHidden = false
         loadingView.stopAnimating()
         refreshControl?.endRefreshing()
-
-        submittedLabelFocusHandler.focusIfNeeded { [weak self] in
-            UIAccessibility.post(notification: .screenChanged, argument: self?.view)
-        }
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
 
     func updateAttemptInfo(attemptNumber: String) {
@@ -646,62 +630,5 @@ extension AssignmentDetailsViewController {
 // MARK: - UIAccessibility Helpers
 
 extension AssignmentDetailsViewController {
-    func setNeedsSubmissionStatusAnnouncement() {
-        submittedLabelFocusHandler.setNeedsAccessibilityFocus()
-    }
-}
-
-/// This is used to direct focus to specific view on screen
-/// on need, and in a deferred way.
-private class AccessibilityDeferredFocusHandler {
-
-    init(targetView: @escaping () -> UIView?) {
-        self.targetView = targetView
-    }
-
-    private var targetView: () -> UIView?
-    private let debounceTime: TimeInterval = 0.5
-    private var completion: (() -> Void)?
-
-    private(set) var needsAccessibilityFocus: Bool = false
-    private var debounceTimer: Timer?
-
-    func setNeedsAccessibilityFocus() {
-        needsAccessibilityFocus = true
-    }
-
-    func focusIfNeeded(_ fallback: (() -> Void)? = nil) {
-        self.completion = fallback
-
-        guard needsAccessibilityFocus else {
-            return cancelled()
-        }
-
-        // Debouncing to avoiding this multiple times ass a result of calling
-        // `AssignmentDetailsViewController.update(assignment:quiz:submission:baseURL:)`
-        // multiple times after a submission.
-        debounceTimer?.invalidate()
-        debounceTimer = Timer.scheduledTimer(
-            withTimeInterval: debounceTime,
-            repeats: false,
-            block: { [weak self] _ in self?.focus() }
-        )
-    }
-
-    private func focus() {
-        guard needsAccessibilityFocus else { return cancelled() }
-
-        if let trgView = targetView() {
-            UIAccessibility.post(notification: .screenChanged, argument: trgView)
-        }
-
-        needsAccessibilityFocus = false
-        debounceTimer = nil
-        completion = nil
-    }
-
-    private func cancelled() {
-        completion?()
-        completion = nil
-    }
+    func setNeedsSubmissionStatusAnnouncement() { }
 }
