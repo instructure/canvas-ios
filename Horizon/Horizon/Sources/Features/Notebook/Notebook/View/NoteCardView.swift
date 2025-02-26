@@ -30,9 +30,11 @@ struct NoteCardView: View {
                 Text(note.title)
                     .font(.regular12)
                     .padding(.bottom, .huiSpaces.space8)
-                Text(note.highlightedText)
-                    .font(.regular14Italic)
-                    .padding(.bottom, .huiSpaces.space8)
+                if !note.highlightedText.isEmpty {
+                    Text(note.highlightedText)
+                        .font(.regular14Italic)
+                        .padding(.bottom, .huiSpaces.space8)
+                }
                 if !note.note.isEmpty {
                     Text(note.note)
                         .lineLimit(3)
@@ -64,46 +66,5 @@ struct NoteCardView: View {
                 .stroke(type.color ?? .huiColors.surface.inversePrimary, lineWidth: 2)
         )
         .huiCornerRadius(level: .level3)
-    }
-}
-
-#Preview {
-    VStack {
-        NoteCardView(
-            note: .init(
-                id: "1",
-                highlightedText: "This is some highlighted text",
-                note: "Note",
-                title: "Title",
-                types: []
-            )
-        )
-        NoteCardView(
-            note: .init(
-                id: "1",
-                highlightedText: "This is some highlighted text again",
-                note: "Note",
-                title: "Title",
-                types: [.important]
-            )
-        )
-        NoteCardView(
-            note: .init(
-                id: "2",
-                highlightedText: "This is some highlighted text again again",
-                note: "Note",
-                title: "Title",
-                types: [.confusing]
-            )
-        )
-        NoteCardView(
-            note: .init(
-                id: "2",
-                highlightedText: "This is some highlighted text again again again",
-                note: "Note",
-                title: "Title",
-                types: [.important, .confusing]
-            )
-        )
     }
 }

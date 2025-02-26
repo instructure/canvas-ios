@@ -29,6 +29,10 @@
     "Add a Note" : {
 
     },
+
+    "Add a Note (Optional)" : {
+
+    },
     "Add Comment" : {
 
     },
@@ -314,6 +318,9 @@
     "Helsinki (+02:00/+03:00)" : {
 
     },
+    "Highlight" : {
+
+    },
     "Hobart (+10:00/+11:00)" : {
 
     },
@@ -381,6 +388,9 @@
 
     },
     "La Paz (-04:00/-04:00)" : {
+
+    },
+    "Label" : {
 
     },
     "Last Submitted: %@" : {
@@ -495,9 +505,6 @@
 
     },
     "Notebook" : {
-
-    },
-    "Notebook for Course %@" : {
 
     },
     "Notes" : {
@@ -629,9 +636,6 @@
     "Scores" : {
 
     },
-    "Search" : {
-
-    },
     "Seoul (+09:00)" : {
 
     },
@@ -699,6 +703,9 @@
 
     },
     "There was an error. please try again." : {
+
+    },
+    "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
 
     },
     "Tijuana (-08:00/-07:00)" : {

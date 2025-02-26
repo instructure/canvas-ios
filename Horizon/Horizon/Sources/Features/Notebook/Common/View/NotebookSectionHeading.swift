@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotebookCourse: Hashable {
-    let id: String
-    let course: String
-    let institution: String
+import SwiftUI
 
-    static func from(_ courseNote: CourseNote) -> NotebookCourse? {
-        guard let courseId = courseNote.courseId,
-              let course = courseNote.course,
-              let institution = courseNote.institution
-            else { return nil }
-        return .init(
-            id: courseId,
-            course: course,
-            institution: institution
-        )
+struct NotebookSectionHeading: View {
+    let title: String
+
+    var body: some View {
+        Text(title)
+            .huiTypography(.labelLargeBold)
+            .padding(.top, .huiSpaces.space24)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

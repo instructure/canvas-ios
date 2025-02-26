@@ -18,25 +18,22 @@
 
 import Core
 
-final class NotebookCourseAssembly {
+final class NotebookAssembly {
     static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
-        GetCourseNotesInteractor(
-            courseNotesRepository: CourseNotesRepositoryPreview.instance
-        )
+        GetCourseNotesInteractorLive.instance
     }
 
-    static func makeViewModel(courseId: String) -> NotebookCourseViewModel {
-        NotebookCourseViewModel(
-            courseId: courseId,
+    static func makeViewModel() -> NotebookViewModel {
+        NotebookViewModel(
             getCourseNotesInteractor: makeGetCourseNotesInteractor(),
             router: AppEnvironment.shared.router
         )
     }
 
-    static func makeView(courseId: String) -> CoreHostingController<NotebookCourseView>? {
+    static func makeViewController() -> CoreHostingController<NotebookView>? {
         CoreHostingController(
-            NotebookCourseView(
-                viewModel: makeViewModel(courseId: courseId)
+            NotebookView(
+                viewModel: makeViewModel()
             )
         )
     }

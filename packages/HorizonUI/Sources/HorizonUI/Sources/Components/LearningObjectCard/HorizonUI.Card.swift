@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Combine
+import SwiftUI
 
-struct CourseNote {
-    let id: String
-    let date: Date
-    let content: String
-    let institution: String?
-    let courseId: String?
-    let course: String?
-    let highlightedText: String
-    let highlightKey: String
-    let highlightStart: Int
-    let highlightLength: Int
-    let labels: [CourseNoteLabel]
+public extension HorizonUI {
+    struct Card<Content: View>: View {
+
+        private let content: Content
+
+        public init(@ViewBuilder content: () -> Content) {
+            self.content = content()
+        }
+
+        public var body: some View {
+            VStack(alignment: .leading, spacing: .zero) {
+                content
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.huiSpaces.space36)
+            .background(Color.huiColors.surface.cardPrimary)
+            .huiCornerRadius(level: .level2)
+            .huiElevation(level: .level4)
+        }
+    }
 }
