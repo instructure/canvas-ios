@@ -37,7 +37,9 @@ public class PlannerListViewController: UIViewController {
     let env = AppEnvironment.shared
     var start: Date = Clock.now.startOfDay() // inclusive
     var end: Date = Clock.now.startOfDay().addDays(1) // exclusive
+
     private var selectedPlannableId: String?
+    private var needsDetailsAccessibilityFocus: Bool = false
 
     var plannables: Store<GetPlannables>?
 
@@ -102,6 +104,36 @@ public class PlannerListViewController: UIViewController {
         errorView.isHidden = plannables?.error == nil
         tableView.reloadData()
         reselectRowAfterReload()
+        accessibilityFocusOnDetailsIfNeeded()
+    }
+
+    func setNeedsDetailsAccessibilityFocus() {
+        needsDetailsAccessibilityFocus = true
+    }
+
+    func accessibilityFocusOnDetailsIfNeeded() {
+        guard needsDetailsAccessibilityFocus else { return }
+        accessibilityFocusOnDetails()
+        needsDetailsAccessibilityFocus = false
+    }
+
+    func accessibilityFocusOnDetails() {
+        if emptyStateView.isHidden {
+            accessibilityFocusOnDefaultRow()
+        } else {
+            let message = String(localized: "No Events Today!", bundle: .core)
+            UIAccessibility.announce(message)
+        }
+    }
+
+    private func accessibilityFocusOnDefaultRow() {
+        /// Calling this on main queue with a duration to avoid any
+        /// possible interruption caused by cell reloading or selection
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self else { return }
+            let cell = tableView.cellForRow(at: indexPathForRowToFocusOn)
+            UIAccessibility.post(notification: .screenChanged, argument: cell)
+        }
     }
 
     private func reselectRowAfterReload() {
@@ -113,6 +145,14 @@ public class PlannerListViewController: UIViewController {
 
         let indexPath = IndexPath(row: index, section: 0)
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+    }
+
+    private var indexPathForRowToFocusOn: IndexPath {
+        if let selectedPlannableId,
+           let index = plannables?.all.firstIndex(where: { $0.id == selectedPlannableId }) {
+            return IndexPath(row: index, section: 0)
+        }
+        return IndexPath(row: 0, section: 0)
     }
 }
 

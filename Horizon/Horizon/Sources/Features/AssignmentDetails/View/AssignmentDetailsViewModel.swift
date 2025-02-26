@@ -98,6 +98,20 @@ final class AssignmentDetailsViewModel {
         router.show(richContentEditor, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
+    func viewComments(controller: WeakViewController) {
+        let view = SubmissionCommentAssembly.makeView(
+            courseID: courseID,
+            assignmentID: assignment?.id ?? "",
+            attempt: 1 // TODO: Get the actual submission for the assignment, then pass submission.attempt here
+        )
+        let viewController = CoreHostingController(view)
+        if let presentationController = viewController.sheetPresentationController {
+            presentationController.detents = [.large()]
+            presentationController.preferredCornerRadius = 32
+        }
+        router.show(viewController, from: controller, options: .modal())
+    }
+
     // MARK: - Private Functions
 
     private func fetchAssignmentDetails() {

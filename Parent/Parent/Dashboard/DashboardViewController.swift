@@ -74,6 +74,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         addStudentView.isHidden = true
         avatarView.isHidden = true
         dropdownView.isHidden = true
+        dropdownButton.accessibilityValue = String(localized: "Collapsed", bundle: .core)
         titleLabel.text = nil
 
         studentListHiddenHeight.isActive = true
@@ -220,6 +221,8 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.studentListHiddenHeight.isActive = !show
             self.dropdownView.transform = CGAffineTransform(rotationAngle: show ? .pi : 0)
+            self.dropdownButton.accessibilityValue = show ? String(localized: "Expanded", bundle: .core)
+                                                          : String(localized: "Collapsed", bundle: .core)
             self.view.layoutIfNeeded()
         }, completion: { _ in
             completion?()
@@ -290,6 +293,10 @@ extension DashboardViewController: UITabBarControllerDelegate {
         to toVC: UIViewController
     ) -> (any UIViewControllerAnimatedTransitioning)? {
         InstUI.TabChangeTransition()
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        UIAccessibility.post(notification: .layoutChanged, argument: dropdownButton)
     }
 }
 

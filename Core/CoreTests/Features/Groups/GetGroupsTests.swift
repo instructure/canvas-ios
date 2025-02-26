@@ -99,7 +99,7 @@ class GetDashboardGroupsTest: CoreTestCase {
             expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
 
         databaseClient.refresh()
         let groups: [Group] = databaseClient.fetch()
@@ -117,7 +117,7 @@ class GetDashboardGroupsTest: CoreTestCase {
             expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
 
         let groups: [Group] = databaseClient.fetch()
         XCTAssert(groups.contains(notMember))

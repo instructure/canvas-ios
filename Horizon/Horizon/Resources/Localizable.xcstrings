@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%lf Points" : {
+
+    },
     "%lld %@ %lld" : {
       "localizations" : {
         "en" : {
@@ -14,6 +17,9 @@
         }
       }
     },
+    "%lld attempt(s)" : {
+
+    },
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
@@ -23,7 +29,11 @@
     "Add a Note" : {
 
     },
+
     "Add a Note (Optional)" : {
+
+    },
+    "Add Comment" : {
 
     },
     "Add your text" : {
@@ -182,6 +192,9 @@
     "Choose and complete one of the required items." : {
 
     },
+    "Comments" : {
+
+    },
     "Complete all of the items." : {
 
     },
@@ -243,6 +256,9 @@
 
     },
     "Error" : {
+
+    },
+    "Error loading comments." : {
 
     },
     "Fiji (+12:00/+12:00)" : {
@@ -375,6 +391,9 @@
 
     },
     "Label" : {
+
+    },
+    "Last Submitted: %@" : {
 
     },
     "Learn" : {
@@ -534,6 +553,9 @@
 
     },
     "Port Moresby (+10:00/+10:00)" : {
+
+    },
+    "Post" : {
 
     },
     "Prague (+01:00/+02:00)" : {
@@ -707,6 +729,9 @@
     "Unlimited" : {
 
     },
+    "Unlimited Attempts Allowed" : {
+
+    },
     "Unsupported Item" : {
 
     },
@@ -717,6 +742,9 @@
 
     },
     "Vienna (+01:00/+02:00)" : {
+
+    },
+    "View coments" : {
 
     },
     "Vilnius (+02:00/+03:00)" : {
