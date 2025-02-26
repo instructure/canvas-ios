@@ -139,6 +139,14 @@ extension String {
         // even when language & region both are set to a language which doesn't (like Danish)
         return "\(listText), \(countText)"
     }
+
+    /// Localized string to be used for error messages intended for accessibility usage. Adds some context for VoiceOver users that this is an error.
+    /// The `errorMessage` itself is expected to be localized already.
+    /// Example: "Error: Invalid start time"
+    public static func localizedAccessibilityErrorMessage(_ errorMessage: String) -> String {
+        let format = String(localized: "Error: %@", bundle: .core, comment: "Example: 'Error: Invalid start time'")
+        return String.localizedStringWithFormat(format, errorMessage)
+    }
 }
 
 extension ReferenceWritableKeyPath {
