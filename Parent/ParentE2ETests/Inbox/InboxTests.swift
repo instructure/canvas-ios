@@ -102,7 +102,7 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(filterBySentButton.isVisible)
 
         filterBySentButton.hit()
-        
+
         let conversation = Helper.conversationBySubject(subject: subject).waitUntil(.visible)
         XCTAssertTrue(conversation.isVisible)
     }
