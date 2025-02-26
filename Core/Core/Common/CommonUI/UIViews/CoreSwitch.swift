@@ -75,6 +75,7 @@ public class CoreSwitch: UIControl {
         let toggleWrapper = AnyView(ToggleWrapper().environmentObject(toggleViewModel))
         let host = CoreHostingController(toggleWrapper)
         viewHost = host
+        host.view.backgroundColor = .clear
 
         addSubview(host.view)
         host.view.pin(inside: self)
@@ -118,7 +119,7 @@ private struct ToggleWrapper: View {
 }
 
 @available(iOS 17.0, *)
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     let createSwitchView: () -> CoreSwitch = {
         let result = CoreSwitch(frame: .zero)
         result.tintColor = .course1
