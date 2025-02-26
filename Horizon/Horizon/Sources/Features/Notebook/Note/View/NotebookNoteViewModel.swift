@@ -26,7 +26,7 @@ import SwiftUI
 final class NotebookNoteViewModel {
 
     // MARK: - Outputs
-    var closeButtonOpacity: Double { isEditing ? 0 : 1 }
+    var closeButtonOpacity: Double { isEditing && !isAdding ? 0 : 1 }
     var highlightedText: String = ""
     var isDeleteButtonVisible: Bool { !isEditing && !isAdding }
     var isCancelVisible: Bool { isEditing && !isAdding }
@@ -36,7 +36,7 @@ final class NotebookNoteViewModel {
         !highlightedText.isEmpty
     }
     var isImportant: Bool = false
-    var isSaveDisabled: Bool { !isConfusing && !isImportant && note.trimmed().isEmpty }
+    var isSaveDisabled: Bool { !isConfusing && !isImportant }
     var isSaveVisible: Bool { isEditing || isAdding }
     var isTextEditorDisabled: Bool { !isEditing }
     var note: String = ""
