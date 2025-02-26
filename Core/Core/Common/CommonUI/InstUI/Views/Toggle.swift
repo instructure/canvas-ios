@@ -140,8 +140,8 @@ private extension View {
             InstUI.Toggle(isOn: $isOn2) { label }
             InstUI.Divider()
             Text(verbatim: "Disabled")
-            InstUI.Toggle(isOn: .constant(true))  { label }.disabled(true)
-            InstUI.Toggle(isOn: .constant(false))  { label }.disabled(true)
+            InstUI.Toggle(isOn: .constant(true)) { label }.disabled(true)
+            InstUI.Toggle(isOn: .constant(false)) { label }.disabled(true)
         }
         .padding()
         VStack(spacing: 20) {
