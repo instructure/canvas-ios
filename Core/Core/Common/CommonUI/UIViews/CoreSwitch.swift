@@ -27,7 +27,6 @@ public class CoreSwitch: UIControl {
     public var isOn = false {
         didSet {
             toggleViewModel.isOn = isOn
-            sendActions(for: .valueChanged)
         }
     }
     public override var isEnabled: Bool {
@@ -83,8 +82,9 @@ public class CoreSwitch: UIControl {
         toggleViewModel
             .$isOn
             .sink { [unowned self] newValue in
-                if self.isOn != newValue {
-                    self.isOn = newValue
+                if isOn != newValue {
+                    isOn = newValue
+                    sendActions(for: .valueChanged)
                 }
             }
             .store(in: &subscriptions)
