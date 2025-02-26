@@ -124,7 +124,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                         id: id
                     )
                 )
-                .compactMap { [weak self] _ in
+                .map { [weak self] _ in
                     self?.getCourseNotesInteractor.refresh()
                     return ()
                 }

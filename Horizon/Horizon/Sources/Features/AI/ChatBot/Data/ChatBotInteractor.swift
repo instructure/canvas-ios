@@ -48,8 +48,13 @@ class ChatBotInteractorLive: ChatBotInteractor {
     func send(message: ChatBotMessage) -> AnyPublisher<String, Error> {
         JWTTokenRequest(.cedar)
             .api(from: canvasApi)
-            .flatMap { api in
-                self.getAnswer(api: api, prompt: message.serialize())
+            .flatMap { [weak self] api in
+                guard let self = self else {
+                    return Just("")
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.getAnswer(api: api, prompt: message.serialize())
             }
             .eraseToAnyPublisher()
     }

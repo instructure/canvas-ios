@@ -224,7 +224,7 @@ enum HorizonRoutes {
                 router.show(
                     NotebookNoteAssembly.makeViewNoteViewController(courseID: courseId, itemID: itemId),
                     from: vc,
-                    options: .modal(.pageSheet)
+                    options: .modal(.pageSheet, isDismissable: false)
                 )
                 return nil
             },
@@ -235,7 +235,7 @@ enum HorizonRoutes {
                 router.show(
                     NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: courseNotebookNote),
                     from: vc,
-                    options: .modal(.pageSheet)
+                    options: .modal(.pageSheet, isDismissable: false)
                 )
                 return nil
             }

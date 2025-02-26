@@ -23,6 +23,7 @@ import SwiftUI
 struct NotebookNoteView: View {
     @State var viewModel: NotebookNoteViewModel
     @Environment(\.viewController) private var viewController
+    @FocusState var isTextFieldFocused: Bool
 
     var body: some View {
         ScrollView {
@@ -59,6 +60,11 @@ struct NotebookNoteView: View {
                 secondaryButton: .cancel()
             )
         }
+        .onTapGesture {
+            if isTextFieldFocused {
+                isTextFieldFocused = false
+            }
+        }
     }
 
     @ViewBuilder
@@ -90,7 +96,7 @@ struct NotebookNoteView: View {
         if viewModel.isHighlightedTextVisible {
             Text(viewModel.highlightedText)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.regular14Italic)
+                .huiTypography(.p1)
         }
     }
 
@@ -125,10 +131,10 @@ struct NotebookNoteView: View {
                 .padding(.huiSpaces.space12)
                 .frame(minHeight: 120, alignment: .topLeading)
                 .frame(maxWidth: .infinity)
-                .scrollDisabled(true)
                 .background(.white)
                 .cornerRadius(.huiSpaces.space12)
                 .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
+                .focused($isTextFieldFocused)
 
             if viewModel.isTextEditorDisabled {
                 Color.clear.contentShape(Rectangle())

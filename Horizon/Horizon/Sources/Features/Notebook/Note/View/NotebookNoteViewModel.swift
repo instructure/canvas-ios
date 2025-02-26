@@ -17,8 +17,10 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Observation
+import SwiftUI
 
 @Observable
 final class NotebookNoteViewModel {
@@ -34,9 +36,10 @@ final class NotebookNoteViewModel {
         !highlightedText.isEmpty
     }
     var isImportant: Bool = false
-    var isSaveDisabled: Bool { !isConfusing && !isImportant && note.isEmpty }
+    var isSaveDisabled: Bool { !isConfusing && !isImportant && note.trimmed().isEmpty }
     var isSaveVisible: Bool { isEditing || isAdding }
     var isTextEditorDisabled: Bool { !isEditing }
+
     var note: String = ""
 
     // MARK: - Dependencies
@@ -53,8 +56,9 @@ final class NotebookNoteViewModel {
 
     // MARK: - Private
 
-    private var subscriptions = Set<AnyCancellable>()
     private var courseNote: CourseNotebookNote?
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
@@ -62,12 +66,14 @@ final class NotebookNoteViewModel {
         courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
         router: Router = AppEnvironment.shared.router,
         courseNotebookNote: CourseNotebookNote,
-        isEditing: Bool = false
+        isEditing: Bool = false,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.courseNoteInteractor = courseNoteInteractor
         self.router = router
         self.courseNote = courseNotebookNote
         self.isEditing = isEditing
+        self.scheduler = scheduler
 
         self.courseId = nil
         self.itemId = nil
@@ -90,24 +96,20 @@ final class NotebookNoteViewModel {
         router: Router = AppEnvironment.shared.router,
         courseId: String,
         itemId: String,
-        isEditing: Bool = false
+        isEditing: Bool = false,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.courseNoteInteractor = courseNoteInteractor
         self.router = router
         self.courseId = courseId
         self.itemId = itemId
         self.isEditing = isEditing
+        self.scheduler = scheduler
 
         self.courseNote = nil
     }
 
     // MARK: - Inputs
-
-    func beginEditing() {
-        if !isEditing {
-            isEditing = true
-        }
-    }
 
     func cancelEditingAndReset() {
         isEditing = false
@@ -124,13 +126,12 @@ final class NotebookNoteViewModel {
         guard let noteId = courseNote?.id else { return }
 
         courseNoteInteractor.delete(id: noteId)
+            .receive(on: scheduler)
             .sink(
-                receiveCompletion: { _ in
-                    DispatchQueue.main.async {
-                        self.router.dismiss(viewController)
-                    }
-                },
-                receiveValue: { _ in }
+                receiveCompletion: { _ in },
+                receiveValue: { _ in
+                    self.router.dismiss(viewController)
+                }
             )
             .store(in: &subscriptions)
     }
@@ -144,8 +145,9 @@ final class NotebookNoteViewModel {
     }
 
     func saveAndDismiss(viewController: WeakViewController) {
-        saveContent()
-        if isAdding {
+        let saveSuccess = saveContent()
+
+        if isAdding && saveSuccess {
             router.dismiss(viewController)
         } else {
             isEditing = false
@@ -168,8 +170,14 @@ final class NotebookNoteViewModel {
         courseNote == nil
     }
 
-    private func saveContent() {
+    private func saveContent() -> Bool {
         var index: NotebookHighlight?
+
+        note = note.trimmed()
+
+        if isSaveDisabled {
+            return false
+        }
 
         if let highlightKey = courseNote?.highlightKey,
            let startIndex = courseNote?.startIndex,
@@ -208,5 +216,7 @@ final class NotebookNoteViewModel {
                 .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
                 .store(in: &subscriptions)
         }
+
+        return true
     }
 }
