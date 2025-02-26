@@ -26,45 +26,50 @@ struct NotebookNoteView: View {
     @FocusState var isTextFieldFocused: Bool
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: .huiSpaces.space24) {
-                titleBar
-
-                highlightedText
-
-                labels
-
-                note
-
-                VStack(spacing: .huiSpaces.space16) {
-                    saveButton
-                    cancelButton
-                }
-
-                deleteButton
-            }
-            .padding(.vertical, .huiSpaces.space36)
-            .padding(.horizontal, .huiSpaces.space24)
-        }
-        .frame(maxWidth: .infinity)
-        .navigationBarBackButtonHidden(true)
-        .toolbarBackground(Color.huiColors.surface.pagePrimary, for: .navigationBar)
-        .background(Color.huiColors.surface.pagePrimary)
-        .alert(isPresented: $viewModel.isDeleteAlertPresented) {
-            Alert(
-                title: Text(String(localized: "Confirmation", bundle: .horizon)),
-                message: Text(String(localized: "Are you sure you want to proceed?", bundle: .horizon)),
-                primaryButton: .default(Text(String(localized: "Yes", bundle: .horizon))) {
-                    viewModel.deleteNoteAndDismiss(viewController: viewController)
-                },
-                secondaryButton: .cancel()
+        InstUI.BaseScreen(
+            state: viewModel.state,
+            config: .init(
+                refreshable: false,
+                loaderBackgroundColor: .huiColors.surface.pagePrimary
             )
-        }
-        .onTapGesture {
-            if isTextFieldFocused {
-                isTextFieldFocused = false
+        ) { _ in
+            ScrollView {
+                VStack(spacing: .huiSpaces.space24) {
+                    titleBar
+                    highlightedText
+                    labels
+                    note
+                    VStack(spacing: .huiSpaces.space16) {
+                        saveButton
+                        cancelButton
+                    }
+                    deleteButton
+                }
+                .padding(.vertical, .huiSpaces.space36)
+                .padding(.horizontal, .huiSpaces.space24)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .navigationBarBackButtonHidden(true)
+            .toolbarBackground(Color.huiColors.surface.pagePrimary, for: .navigationBar)
+            .background(Color.huiColors.surface.pagePrimary)
+            .alert(isPresented: $viewModel.isDeleteAlertPresented) {
+                Alert(
+                    title: Text(String(localized: "Confirmation", bundle: .horizon)),
+                    message: Text(String(localized: "Are you sure you want to proceed?", bundle: .horizon)),
+                    primaryButton: .default(Text(String(localized: "Yes", bundle: .horizon))) {
+                        viewModel.deleteNoteAndDismiss(viewController: viewController)
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
+            .onTapGesture {
+                if isTextFieldFocused {
+                    isTextFieldFocused = false
+                }
             }
         }
+        .frame(maxHeight: .infinity, alignment: .top)
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     @ViewBuilder
@@ -177,4 +182,19 @@ struct NotebookNoteView: View {
         }
         .background(HorizonUI.colors.surface.pagePrimary)
     }
+}
+
+#Preview {
+    NotebookNoteView(
+        viewModel: .init(
+            courseNotebookNote: CourseNotebookNote(
+                id: "1",
+                date: Date(),
+                courseID: "courseID",
+                content: "Good morning",
+                highlightedText: "This is some highlighted text",
+                labels: [CourseNoteLabel.confusing]
+            )
+        )
+    )
 }

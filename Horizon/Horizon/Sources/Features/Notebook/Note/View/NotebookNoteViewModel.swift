@@ -39,8 +39,8 @@ final class NotebookNoteViewModel {
     var isSaveDisabled: Bool { !isConfusing && !isImportant && note.trimmed().isEmpty }
     var isSaveVisible: Bool { isEditing || isAdding }
     var isTextEditorDisabled: Bool { !isEditing }
-
     var note: String = ""
+    var state: InstUI.ScreenState = .data
 
     // MARK: - Dependencies
 
@@ -78,17 +78,7 @@ final class NotebookNoteViewModel {
         self.courseId = nil
         self.itemId = nil
 
-        note = courseNote?.content ?? ""
-        if let highlightedText = courseNote?.highlightedText, !highlightedText.isEmpty {
-            self.highlightedText = "\"\(courseNote?.highlightedText ?? "")\""
-        }
-        noteSaved = note
-
-        isConfusing = courseNote?.labels?.contains { $0 == .confusing } ?? false
-        isConfusingSaved = isConfusing
-
-        isImportant = courseNote?.labels?.contains { $0 == .important } ?? false
-        isImportantSaved = isImportant
+        initUI()
     }
 
     init(
@@ -107,6 +97,8 @@ final class NotebookNoteViewModel {
         self.scheduler = scheduler
 
         self.courseNote = nil
+
+        initUI()
     }
 
     // MARK: - Inputs
@@ -124,13 +116,14 @@ final class NotebookNoteViewModel {
 
     func deleteNoteAndDismiss(viewController: WeakViewController) {
         guard let noteId = courseNote?.id else { return }
-
+        state = .loading
         courseNoteInteractor.delete(id: noteId)
             .receive(on: scheduler)
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: { _ in
-                    self.router.dismiss(viewController)
+                receiveValue: { [weak self] _ in
+                    self?.state = .data
+                    self?.router.dismiss(viewController)
                 }
             )
             .store(in: &subscriptions)
@@ -197,13 +190,20 @@ final class NotebookNoteViewModel {
         ].compactMap { $0 }
 
         if let noteId = courseNote?.id {
+            state = .loading
             courseNoteInteractor
                 .set(id: noteId, content: note, labels: labels, index: index)
-                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { [weak self] _ in
+                        self?.state = .data
+                    }
+                )
                 .store(in: &subscriptions)
         }
 
         if let courseId = courseId, let itemId = itemId {
+            state = .loading
             courseNoteInteractor
                 .add(
                     courseId: courseId,
@@ -213,10 +213,29 @@ final class NotebookNoteViewModel {
                     labels: labels,
                     index: nil
                 )
-                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { [weak self] _ in
+                        self?.state = .data
+                    }
+                )
                 .store(in: &subscriptions)
         }
 
         return true
+    }
+
+    private func initUI() {
+        note = courseNote?.content ?? ""
+        if let highlightedText = courseNote?.highlightedText, !highlightedText.isEmpty {
+            self.highlightedText = "\"\(courseNote?.highlightedText ?? "")\""
+        }
+        noteSaved = note
+
+        isConfusing = courseNote?.labels?.contains { $0 == .confusing } ?? false
+        isConfusingSaved = isConfusing
+
+        isImportant = courseNote?.labels?.contains { $0 == .important } ?? false
+        isImportantSaved = isImportant
     }
 }
