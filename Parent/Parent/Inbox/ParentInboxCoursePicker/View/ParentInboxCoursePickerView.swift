@@ -73,6 +73,7 @@ public struct ParentInboxCoursePickerView: View {
             }
             .padding(.vertical, 4)
             .frame(maxWidth: .infinity)
+            .accessibilityIdentifier("ParentInboxCoursePickerView.option\(item.course.name ?? "").\(item.studentDisplayName)")
         }
     }
 
