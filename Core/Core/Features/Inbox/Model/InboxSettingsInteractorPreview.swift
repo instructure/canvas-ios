@@ -19,7 +19,7 @@
 import Combine
 import CombineExt
 
-public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
+class InboxSettingsInteractorPreview: InboxSettingsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
 
     public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))

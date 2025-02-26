@@ -18,7 +18,7 @@
 
 import CoreData
 
-final public class InboxSettings: NSManagedObject, WriteableModel {
+final public class CDInboxSettings: NSManagedObject, WriteableModel {
 
     @NSManaged public var id: String
     @NSManaged public var createdAt: Date?
@@ -33,9 +33,9 @@ final public class InboxSettings: NSManagedObject, WriteableModel {
     @NSManaged public var userId: String?
 
     @discardableResult
-    public static func save(_ item: APIInboxSettings, in context: NSManagedObjectContext) -> InboxSettings {
+    public static func save(_ item: APIInboxSettings, in context: NSManagedObjectContext) -> CDInboxSettings {
         let data = item.data.myInboxSettings
-        let dbEntity: InboxSettings = context.first(where: #keyPath(InboxSettings.userId), equals: data.userId) ?? context.insert()
+        let dbEntity: CDInboxSettings = context.first(where: #keyPath(CDInboxSettings.userId), equals: data.userId) ?? context.insert()
         dbEntity.id = data._id ?? ""
         dbEntity.createdAt = data.createdAt
         dbEntity.outOfOfficeLastDate = data.outOfOfficeLastDate

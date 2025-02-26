@@ -23,7 +23,7 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
 
-    private let settings = PassthroughRelay<InboxSettings>()
+    private let settings = PassthroughRelay<CDInboxSettings>()
     private let environmentSettings = PassthroughRelay<CDEnvironmentSettings>()
     private var subscriptions = Set<AnyCancellable>()
     private var settingsStore: ReactiveStore<GetInboxSettings>

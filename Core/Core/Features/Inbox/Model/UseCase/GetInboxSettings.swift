@@ -19,7 +19,7 @@
 import Foundation
 
 public class GetInboxSettings: APIUseCase {
-    public typealias Model = InboxSettings
+    public typealias Model = CDInboxSettings
     public typealias Response = APIInboxSettings
 
     let userId: String
@@ -33,7 +33,7 @@ public class GetInboxSettings: APIUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(InboxSettings.userId), equals: userId, orderBy: #keyPath(InboxSettings.userId))
+        return .where(#keyPath(CDInboxSettings.userId), equals: userId, orderBy: #keyPath(CDInboxSettings.userId))
     }
 
     public var request = GetInboxSettingsRequest()
