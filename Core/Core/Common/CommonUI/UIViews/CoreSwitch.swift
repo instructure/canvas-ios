@@ -110,6 +110,10 @@ private struct ToggleWrapper: View {
             .environment(\.isEnabled, toggleViewModel.isEnabled)
             .accentColor(toggleViewModel.tintColor)
             .accessibilityLabel(toggleViewModel.accessibilityLabel)
+            // Voiceover recognizes the toggle's check icon and adds the image trait automatically.
+            // If we hide that image from accessibility the whole switch will be inaccessible,
+            // so we just remove the image trait.
+            .accessibilityRemoveTraits(.isImage)
     }
 }
 

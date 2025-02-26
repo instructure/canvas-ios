@@ -101,12 +101,14 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             cell.textLabel?.text = String(localized: "Specific Sections", bundle: .teacher)
             cell.selectionStyle = .none
+            cell.toggle.accessibilityLabel = cell.textLabel?.text
             cell.toggle.isOn = showSections
             cell.toggle.accessibilityIdentifier = "PostPolicy.toggleHideGradeSections"
             cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
         } else {    //  sections
             let index = abs(indexPath.row - 1)
             cell.textLabel?.text = viewModel.sections?[index].name
+            cell.toggle.accessibilityLabel = cell.textLabel?.text
             cell.toggle.accessibilityIdentifier = "PostPolicy.hide.section.toggle.\(viewModel.sections?[index].id ?? "")"
             cell.selectionStyle = .none
             cell.toggle.isOn = sectionToggles[index]

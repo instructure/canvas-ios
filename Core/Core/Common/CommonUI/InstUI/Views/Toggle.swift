@@ -125,7 +125,7 @@ private extension View {
 }
 
 @available(iOS 17.0, *)
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     @Previewable @State var isOn1 = true
     @Previewable @State var isOn2 = false
 
@@ -159,7 +159,7 @@ private extension View {
         .background(Color.backgroundLightest)
         .environment(\.colorScheme, .dark)
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .frame(maxWidth: .infinity)
     .font(.regular12)
     .accentColor(.course1)
 }

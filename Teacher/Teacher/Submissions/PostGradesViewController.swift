@@ -122,6 +122,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.textLabel?.text = String(localized: "Specific Sections", bundle: .teacher)
                 cell.selectionStyle = .none
                 if let cell = cell as? SectionCell {
+                    cell.toggle.accessibilityLabel = cell.textLabel?.text
                     cell.toggle.isOn = showSections
                     cell.toggle.tintColor = Brand.shared.buttonPrimaryBackground
                     cell.toggle.accessibilityIdentifier = "PostPolicy.togglePostToSections"
@@ -133,6 +134,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = viewModel.sections?[index].name
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
+                cell.toggle.accessibilityLabel = cell.textLabel?.text
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
                 cell.toggle.tintColor = Brand.shared.buttonPrimaryBackground
@@ -193,11 +195,12 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         var toggle: CoreSwitch
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            toggle = CoreSwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+            toggle = CoreSwitch()
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             backgroundColor = .backgroundLightest
             textLabel?.textColor = .textDarkest
             textLabel?.font = .scaledNamedFont(.semibold16)
+            textLabel?.accessibilityElementsHidden = true
 
             toggle.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(toggle)
@@ -207,6 +210,11 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
+        }
+
+        override func prepareForReuse() {
+            super.prepareForReuse()
+            toggle.removeTarget(nil, action: nil, for: .valueChanged)
         }
     }
 
