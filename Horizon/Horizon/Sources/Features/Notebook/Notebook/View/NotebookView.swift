@@ -124,6 +124,7 @@ struct NotebookView: View {
 
     private var emptyCard: some View {
         HorizonUI.Card {
+            // swiftlint:disable:next line_length
             Text("This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!",
                 bundle: .horizon
             )
