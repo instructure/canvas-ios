@@ -54,6 +54,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                             label: Text("Date", bundle: .core),
                             date: $viewModel.date,
                             mode: .dateOnly,
+                            trackingPopoverID: "date-picker",
                             isClearable: false
                         )
 
@@ -64,6 +65,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                                 label: Text("From", bundle: .core),
                                 date: $viewModel.startTime,
                                 mode: .timeOnly,
+                                trackingPopoverID: "from-time-picker",
                                 isClearable: false
                             )
 
@@ -72,6 +74,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                                 date: $viewModel.endTime,
                                 mode: .timeOnly,
                                 errorMessage: viewModel.endTimeErrorMessage,
+                                trackingPopoverID: "to-time-picker",
                                 isClearable: false
                             )
                         }
