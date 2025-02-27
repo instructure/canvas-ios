@@ -709,15 +709,29 @@ extension CoreWebView {
         originalBaseURL: URL?
     ) {
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
-            loadFileURL(
-                URL.Directories.documents,
-                allowingReadAccessTo: URL.Directories.documents
-            ) { [weak self] _ in
-                guard let self else { return }
-                let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
-                // All offline content should have relative links to the documents directory
-                self.loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
+
+            let previewURL = URL
+                .Directories
+                .documents
+                .appendingPathComponent("offline_preview.html")
+
+            do {
+                let contentHtml = try String(contentsOf: filePath, encoding: .utf8)
+                let pageHtml = html(for: contentHtml)
+                try pageHtml.write(to: previewURL, atomically: true, encoding: .utf8)
+            } catch {
+                RemoteLogger.shared.logError(
+                    name: "Loading Offline Page",
+                    reason: error.localizedDescription
+                )
+                return
             }
+
+            loadFileURL(
+                previewURL,
+                allowingReadAccessTo: URL.Directories.documents
+            )
+
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }
