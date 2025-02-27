@@ -50,7 +50,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
                 alert_type: .institutionAnnouncement,
                 context_id: "1", html_url: nil,
                 id: "3", observer_alert_threshold_id: "3",
-                title: "Institution announcement: \"Finals will be cancelled\"",
+                title: "Global announcement: \"Finals will be cancelled\"",
                 user_id: "1",
                 workflow_state: .read
             ),
@@ -106,8 +106,8 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         indexPath.row = 1
         cell = alertListCell(at: indexPath)
         XCTAssertEqual(cell?.unreadView.isHidden, true)
-        XCTAssertEqual(cell?.typeLabel.text, "Institution Announcement")
-        XCTAssertEqual(cell?.titleLabel.text, "Institution announcement: \"Finals will be cancelled\"")
+        XCTAssertEqual(cell?.typeLabel.text, "Global Announcement")
+        XCTAssertEqual(cell?.titleLabel.text, "Global announcement: \"Finals will be cancelled\"")
         XCTAssertEqual(cell?.dateLabel.text, TestConstants.date0625.dateTimeString)
         XCTAssertEqual(cell?.iconView.image, .infoLine)
         XCTAssertEqual(cell?.iconView.tintColor, .textDark)
