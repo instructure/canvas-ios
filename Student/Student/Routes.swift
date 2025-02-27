@@ -52,6 +52,11 @@ let router = Router(routes: [
     },
 
     RouteHandler("/conversations"),
+
+    RouteHandler("/conversations/settings") { url, _, _ in
+        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    },
+    
     RouteHandler("/conversations/compose") { url, _, _ in
         if let queryItems = url.queryItems {
             return ComposeMessageAssembly.makeComposeMessageViewController(queryItems: queryItems)

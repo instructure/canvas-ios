@@ -41,6 +41,10 @@ let router = Router(routes: [
         return ParentConversationListViewController.create()
     },
 
+    RouteHandler("/conversations/settings") { url, _, _ in
+        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    },
+
     RouteHandler("/conversations/:conversationID") { _, params, _ in
         guard let conversationID = params["conversationID"] else { return nil }
         return ConversationDetailViewController.create(conversationID: conversationID)

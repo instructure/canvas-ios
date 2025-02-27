@@ -25,8 +25,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
-
+    private var showInboxSignatureSettings = false
+    private var isInboxSignatureEnabled = false
     private var offlineModeInteractor = OfflineModeAssembly.make()
+    private var inboxSettingsInteractor = InboxSettingsInteractorLive()
     private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {
@@ -87,6 +89,26 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 self?.networkStateDidChange()
             }
             .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .environmentSettings
+            .sink { [weak self] environmentSettings in
+                var isFeatureEnabled = environmentSettings.enableInboxSignatureBlock
+                if (self?.env.app == .student) {
+                    isFeatureEnabled = isFeatureEnabled && !environmentSettings.disableInboxSignatureBlockForStudents
+                }
+                self?.showInboxSignatureSettings = isFeatureEnabled
+                self?.tableView.reloadData()
+            }
+            .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .settings
+            .sink { [weak self] inboxSettings in
+                self?.isInboxSignatureEnabled = inboxSettings.useSignature
+                self?.tableView.reloadData()
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -127,6 +149,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         }).sorted(by: { $0.title < $1.title })
 
         var sections: [Section] = [preferencesSection]
+
+        if showInboxSignatureSettings {
+            sections.append(inboxSignatureSetingsSection)
+        }
 
         if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
             sections.append(offlineSettingSection)
@@ -170,6 +196,18 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     isSupportedOffline: true) { [weak self] in
                         guard let self = self else { return }
                         self.env.router.route(to: "/offline/settings", from: self)
+                    }
+               ])
+    }
+
+    private var inboxSignatureSetingsSection: Section {
+        let detailLabel = self.isInboxSignatureEnabled ? String(localized: "Enabled", bundle: .core) : String(localized: "Not set", bundle: .core)
+        return Section(String(localized: "Inbox", bundle: .core), rows: [
+                Row(String(localized: "Inbox Signature", bundle: .core),
+                    detail: detailLabel,
+                    isSupportedOffline: true) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "/conversations/settings", from: self)
                     }
                ])
     }
