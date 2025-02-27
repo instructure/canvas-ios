@@ -70,7 +70,10 @@ public struct CourseSmartSearchFilterEditorView: View {
                     }
                 }
             }
-            .navigationBarStyle(.modal)
+            // Not using `.navigationBarStyle(.modal)` here, because that sets the navigatonBar's background color of its `CoreHostingViewController`,
+            // and this screen (the only one in the whole project) is being presented via the `.sheet()` modifier instead of `router(show:)`
+            // AND expected to have a Navigation Bar as well. That would turn the presenting screen's NavigationBar background color to white as well.
+            .environment(\.navBarColors, .init(style: .modal))
         }
         .tint(contextColor)
     }
