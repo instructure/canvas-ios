@@ -33,11 +33,22 @@ public struct InboxSettingsView: View {
 
     public var body: some View {
         contentView
+            .navigationBarTitleView(String(localized: "Inbox Signature", bundle: .core))
+            .navigationBarItems(trailing: doneButton)
     }
 
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
+    }
+
+    private var doneButton: some View {
+        Button {
+            viewModel.didTapSave.accept(controller)
+        } label: {
+            Text("Save", bundle: .core)
+        }
+        .disabled(!viewModel.enableSaveButton)
     }
 
     var contentView: some View {

@@ -19,7 +19,7 @@
 public enum InboxSettingsAssembly {
     public static func makeInboxSettingsViewController() -> UIViewController {
         let interactor = InboxSettingsInteractorLive()
-        let viewModel = InboxSettingsViewModel(interactor: interactor)
+        let viewModel = InboxSettingsViewModel(interactor: interactor, router: AppEnvironment.shared.router)
         return CoreHostingController(InboxSettingsView(viewModel: viewModel))
     }
 }

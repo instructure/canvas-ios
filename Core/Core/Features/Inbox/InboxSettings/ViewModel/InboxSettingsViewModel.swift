@@ -17,17 +17,26 @@
 //
 
 import Combine
+import CombineExt
 
 public class InboxSettingsViewModel: ObservableObject {
     @Published public var useSignature: Bool = false
     @Published public var signature: String = ""
     @Published public var enableSaveButton: Bool = false
 
+    public let didTapSave = PassthroughRelay<WeakViewController>()
+
     private let inboxSettingsInteractor: InboxSettingsInteractor
     private var subscriptions = Set<AnyCancellable>()
+    private var inboxSettings: CDInboxSettings?
+    private let router: Router
 
-    init(interactor: InboxSettingsInteractor) {
+    init(interactor: InboxSettingsInteractor, router: Router) {
         self.inboxSettingsInteractor = interactor
+        self.router = router
+
+        setupOutputBindings()
+        setupInputBindings()
     }
 
     private func setupOutputBindings() {
@@ -36,6 +45,50 @@ public class InboxSettingsViewModel: ObservableObject {
             .sink { [weak self] (useSignature, signature) in
                 self?.useSignature = useSignature ?? false
                 self?.signature = signature ?? ""
+            }
+            .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .settings
+            .sink { [weak self] settings in
+                self?.inboxSettings = settings
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func setupInputBindings() {
+        didTapSave
+            .flatMap { [weak self, inboxSettings, useSignature, signature] controller in
+                guard let inboxSettings, let self else { return Just(controller).setFailureType(to: Error.self).eraseToAnyPublisher() }
+                inboxSettings.useSignature = useSignature
+                inboxSettings.signature = signature
+                return self.inboxSettingsInteractor
+                    .updateInboxSettings(inboxSettings: inboxSettings)
+                    .map { _ in controller }
+                    .eraseToAnyPublisher()
+            }
+            .sink(receiveCompletion: { result in
+                print("Failed to update")
+            }, receiveValue: { [router] controller in
+                router.pop(from: controller)
+            })
+            .store(in: &subscriptions)
+
+        _useSignature
+            .projectedValue
+            .dropFirst()
+            .dropFirst()
+            .sink { [weak self] _ in
+                self?.enableSaveButton = true
+            }
+            .store(in: &subscriptions)
+
+        _signature
+            .projectedValue
+            .dropFirst()
+            .dropFirst()
+            .sink { [weak self] _ in
+                self?.enableSaveButton = true
             }
             .store(in: &subscriptions)
     }

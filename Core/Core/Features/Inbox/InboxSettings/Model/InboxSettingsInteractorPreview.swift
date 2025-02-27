@@ -28,7 +28,7 @@ public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
 
     public init() { }
 
-    public func refresh() -> AnyPublisher<Void, Never> {
-        return Just(()).eraseToAnyPublisher()
+    public func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<URLResponse?, Error> {
+        return Just(.init()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

@@ -66,4 +66,8 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
             }
             .store(in: &subscriptions)
     }
+
+    public func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<URLResponse?, Error> {
+        return Just(.init()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
 }
