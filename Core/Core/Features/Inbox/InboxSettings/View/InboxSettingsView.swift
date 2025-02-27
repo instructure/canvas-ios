@@ -19,8 +19,13 @@
 import SwiftUI
 
 public struct InboxSettingsView: View {
+    private let defaultPadding: CGFloat = 10
     @ObservedObject private var viewModel: InboxSettingsViewModel
     @Environment(\.viewController) private var controller
+    @FocusState private var focusedInput: FocusedInput?
+    private enum FocusedInput {
+        case signature
+    }
 
     public init(viewModel: InboxSettingsViewModel) {
         self.viewModel = viewModel
@@ -30,28 +35,65 @@ public struct InboxSettingsView: View {
         contentView
     }
 
+    private var separator: some View {
+        Color.borderMedium
+            .frame(height: 0.5)
+    }
+
     var contentView: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("Signature will be added to the end of all messaging.", bundle: .core)
-                .foregroundColor(.textDark)
+        GeometryReader { geometry in
+            VStack(alignment: .leading, spacing: 0) {
+                Spacer(minLength: defaultPadding)
+                Text("Signature will be added to the end of all messaging.", bundle: .core)
+                    .font(.regular14, lineHeight: .condensed)
+                    .foregroundColor(.textDark)
+                    .padding(defaultPadding)
 
-            InstUI.CheckboxCell(
-                title: String(localized: "Signature", bundle: .core),
-                subtitle: nil,
-                isSelected: $viewModel.useSignature,
-                color: .primary
-            )
+                separator
 
-            InstUI.TextEditorCell(
-                label: Text("Signature text", bundle: .core),
-                labelTransform: {
-                    $0
+                Toggle(isOn: $viewModel.useSignature) {
+                    Text("Signature", bundle: .core)
+                        .font(.semibold16, lineHeight: .condensed)
                         .foregroundColor(.textDarkest)
-                        .textStyle(.heading)
-                },
-                text: $viewModel.signature
-            )
+                }
+                .tint(.accentColor)
+                .padding(defaultPadding)
+
+                separator
+
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("Signature text", bundle: .core)
+                        .font(.semibold16, lineHeight: .condensed)
+                        .foregroundColor(.textDarkest)
+                        .onTapGesture {
+                            self.focusedInput = .signature
+                        }
+                        .accessibilityHidden(true)
+                        .padding(.vertical, defaultPadding)
+
+                    UITextViewWrapper(text: $viewModel.signature) {
+                        let tv = UITextView()
+                        tv.isScrollEnabled = false
+                        tv.textContainer.widthTracksTextView = true
+                        tv.textContainer.lineBreakMode = .byWordWrapping
+                        tv.font = UIFont.scaledNamedFont(.regular16)
+                        tv.translatesAutoresizingMaskIntoConstraints = false
+                        tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultPadding)).isActive = true
+                        tv.backgroundColor = .backgroundLightest
+                        return tv
+                    }
+                    .font(.regular16, lineHeight: .condensed)
+                    .textInputAutocapitalization(.sentences)
+                    .focused($focusedInput, equals: .signature)
+                    .foregroundColor(.textDarkest)
+                    .frame(minHeight: 60)
+                    .accessibilityLabel(Text("Signature Input", bundle: .core))
+                    .accessibilityHint(Text("Write your Signature text here", bundle: .core))
+                    .accessibilityIdentifier("InboxSettings.signature")
+                }
+                .padding(defaultPadding)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity)
     }
 }
