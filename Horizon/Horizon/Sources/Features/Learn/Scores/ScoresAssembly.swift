@@ -21,8 +21,7 @@ enum ScoresAssembly {
         ScoresView(
             viewModel: ScoresViewModel(
                 interactor: ScoresInteractorLive(
-                    courseID: courseID,
-                    getCoursesInteractor: GetCoursesInteractorLive()
+                    courseID: courseID            
                 )
             )
         )

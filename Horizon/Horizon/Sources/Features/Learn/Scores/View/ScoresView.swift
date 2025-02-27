@@ -16,12 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
 struct ScoresView: View {
     let viewModel: ScoresViewModel
-    
+
     var body: some View {
-        Text(viewModel.scoreDetails?.totalGradeText ?? "No total grade")
+        ScrollView(showsIndicators: false) {
+            switch viewModel.viewState {
+            case .loading:
+                loadingView
+            case .data:
+                Text(viewModel.scoreDetails?.totalGradeText ?? "No total grade")
+            case .error:
+                Text("Error loading scores.")
+            }
+        }
+    }
+
+    private var loadingView: some View {
+        VStack {
+            Spacer()
+            HorizonUI.Spinner(
+                size: .small,
+                showBackground: true
+            )
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .containerRelativeFrame(.vertical)
     }
 }

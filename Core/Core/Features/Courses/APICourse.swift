@@ -37,7 +37,7 @@ public struct APICourse: Codable, Equatable {
     let start_at: Date?
     let end_at: Date?
     let locale: String?
-    var enrollments: [APIEnrollment]?
+    public var enrollments: [APIEnrollment]?
     var grading_periods: [APIGradingPeriod]?
     // let total_students: Int? // include[]=total_students
     // let calendar: ?
@@ -337,7 +337,7 @@ public struct GetCourseRequest: APIRequestable {
 
     var include: [Include] = defaultIncludes
 
-    init(courseID: String, include: [Include] = defaultIncludes) {
+    public init(courseID: String, include: [Include] = defaultIncludes) {
         self.courseID = courseID
         self.include = include
     }

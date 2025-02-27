@@ -25,30 +25,33 @@ protocol ScoresInteractor {
 
 final class ScoresInteractorLive: ScoresInteractor {
     private let courseID: String
-    private let getCoursesInteractor: GetCoursesInteractor
 
-    init(
-        courseID: String,
-        getCoursesInteractor: GetCoursesInteractor
-    ) {
+    init(courseID: String) {
         self.courseID = courseID
-        self.getCoursesInteractor = getCoursesInteractor
     }
 
     func getScores() -> AnyPublisher<ScoreDetails, Error> {
         Publishers.Zip(
             getAssignmentGroups(courseID: courseID),
-            getCoursesInteractor.getCourse(id: courseID)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            getCourse(courseID: courseID)
         )
         .map { assignmentGroups, course in
             ScoreDetails(
-                totalScore: course?.enrollments.first?.computedFinalScore ?? 0.0,
-                totalGrade: course?.enrollments.first?.computedFinalGrade ?? "N/A",
+                totalScore: course.enrollments.first?.computedFinalScore ?? 0.0,
+                totalGrade: course.enrollments.first?.computedFinalGrade ?? "N/A",
                 assignmentGroups: assignmentGroups
             )
         }
+        .eraseToAnyPublisher()
+    }
+
+    private func getCourse(courseID: String) -> AnyPublisher<ScoresCourse, Error> {
+        ReactiveStore(
+            useCase: GetScoresCourseUseCase(courseID: courseID)
+        )
+        .getEntities()
+        .compactMap { $0.first }
+        .map { ScoresCourse(from: $0) }
         .eraseToAnyPublisher()
     }
 
@@ -56,7 +59,7 @@ final class ScoresInteractorLive: ScoresInteractor {
         ReactiveStore(
             useCase: GetAssignmentGroups(courseID: courseID)
         )
-        .getEntities(ignoreCache: true)
+        .getEntities()
         .flatMap { $0.publisher }
         .map { HAssignmentGroup(from: $0) }
         .collect()
@@ -94,11 +97,11 @@ struct HAssignmentGroup {
 struct ScoreDetails {
     let totalScore: Double
     let totalGrade: String
-    
+
     var totalGradeText: String {
         "\(String(totalScore))%"
     }
-    
+
     let assignmentGroups: [HAssignmentGroup]
     var assignments: [HAssignment] {
         assignmentGroups.flatMap { $0.assignments }

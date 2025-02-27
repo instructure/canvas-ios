@@ -195,6 +195,16 @@
     <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="CDScoresCourse" representedClassName="Core.CDScoresCourse" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresCourseEnrollment" inverseName="relationship" inverseEntity="CDScoresCourseEnrollment"/>
+    </entity>
+    <entity name="CDScoresCourseEnrollment" representedClassName="Core.CDScoresCourseEnrollment" syncable="YES">
+        <attribute name="computedFinalGrade" optional="YES" attributeType="String"/>
+        <attribute name="computedFinalScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="courseID" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="enrollments" inverseEntity="CDScoresCourse"/>
+    </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
         <attribute name="avatarRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>

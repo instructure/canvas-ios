@@ -15,34 +15,23 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-
-import Combine
-import Core
-import Observation
-
-@Observable
-final class ScoresViewModel {
-    enum ViewState {
-        case loading
-        case data
-        case error
-    }
-
-    private(set) var viewState: ViewState = .loading
-    private(set) var scoreDetails: ScoreDetails?
-
-    private var subscriptions = Set<AnyCancellable>()
-
-    init(interactor: ScoresInteractor) {
-        weak var weakSelf = self
-
-        interactor.getScores()
-            .sink(receiveCompletion: { _ in
-
-            }, receiveValue: { value in
-                weakSelf?.viewState = .data
-                weakSelf?.scoreDetails = value
-            })
-            .store(in: &subscriptions)
-    }
-}
+//
+//import Combine
+//import Core
+//
+//protocol ScoresCourseInteractor {
+//    func getCourse(id: String) -> AnyPublisher<ScoresCourse, Error>
+//}
+//
+//final class ScoresCourseInterActor: ScoresCourseInteractor {
+//    func getCourse(id: String) -> AnyPublisher<ScoresCourse, any Error> {
+//        ReactiveStore(
+//            useCase: GetScoresCourseUseCase(courseID: id)
+//        )
+//        .getEntities()
+//        .compactMap { $0.first }
+//        .map { ScoresCourse(from: $0) }
+//        .print("🟪")
+//        .eraseToAnyPublisher()
+//    }
+//}
