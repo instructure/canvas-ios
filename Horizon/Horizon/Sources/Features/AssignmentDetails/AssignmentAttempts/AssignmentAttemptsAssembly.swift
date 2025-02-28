@@ -16,31 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import HorizonUI
+import Core
 
-enum ModuleNavBarButtons {
-    case previous
-    case tts
-    case chatBot
-    case notebook
-    case next
-    case assignmentMoreOptions
-
-    var image: Image {
-        switch self {
-        case .previous:
-            Image.huiIcons.chevronLeft
-        case .tts:
-            Image.huiIcons.volumeUp
-        case .chatBot:
-            Image(.chatBot)
-        case .notebook:
-            Image.huiIcons.menuBookNotebook
-        case .next:
-            Image.huiIcons.chevronRight
-        case .assignmentMoreOptions:
-            Image.huiIcons.moreVert
+struct AssignmentAttemptsAssembly {
+    static func makeView(submissions: [HSubmission],
+                         selectedSubmission: HSubmission?,
+                         didSelectSubmission: @escaping (HSubmission?) -> Void
+    ) -> UIViewController {
+        let view = AssignmentAttemptsView(
+            submissions: submissions,
+            selectedSubmission: selectedSubmission,
+            didSelectSubmission: didSelectSubmission
+        )
+        let viewController = CoreHostingController(view)
+        if let presentationController = viewController.sheetPresentationController {
+            presentationController.detents = [.large()]
+            presentationController.preferredCornerRadius = 32
         }
+        return viewController
     }
 }

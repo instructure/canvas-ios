@@ -36,4 +36,13 @@ enum ModuleItemSequenceViewState {
             return false
         }
     }
+
+    var isAssignment: Bool {
+        switch self {
+        case .assignment:
+            return true
+        default:
+            return false
+        }
+    }
 }

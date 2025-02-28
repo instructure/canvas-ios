@@ -31,8 +31,8 @@ enum SubmissionCommentAssembly {
         courseID: String,
         assignmentID: String,
         attempt: Int?
-    ) -> SubmissionCommentView {
-        SubmissionCommentView(
+    ) -> UIViewController {
+      let view = SubmissionCommentView(
             viewModel: SubmissionCommentViewModel(
                 courseID: courseID,
                 assignmentID: assignmentID,
@@ -41,6 +41,14 @@ enum SubmissionCommentAssembly {
                 router: AppEnvironment.shared.router
             )
         )
+
+        let viewController = CoreHostingController(view)
+        if let presentationController = viewController.sheetPresentationController {
+            presentationController.detents = [.large()]
+            presentationController.preferredCornerRadius = 32
+        }
+        return viewController
+
     }
 
     static func makePreview() -> SubmissionCommentView {

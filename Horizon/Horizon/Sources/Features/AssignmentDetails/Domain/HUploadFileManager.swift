@@ -59,10 +59,9 @@ final class HUploadFileManagerLive: HUploadFileManager {
         self.assignmentID = assignmentID
         self.courseID = courseID
 
-        fileStore.refresh()
-
         fileStore
             .allObjects
+            .removeDuplicates()
             .replaceError(with: [])
             .sink { [weak self] files in
                 self?.attachments.send(files)
@@ -76,13 +75,10 @@ final class HUploadFileManagerLive: HUploadFileManager {
     }
 
     func addFile(url: URL) {
-        if url.startAccessingSecurityScopedResource() {
-            do {
-                try uploadManager.add(url: url, batchID: batchId)
-                fileStore.refresh()
-            } catch { debugPrint(error) }
-        }
-        url.stopAccessingSecurityScopedResource()
+        do {
+            try uploadManager.add(url: url, batchID: batchId)
+            fileStore.refresh()
+        } catch { debugPrint(error) }
     }
 
     func cancelFile(_ file: File) {

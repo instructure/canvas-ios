@@ -24,11 +24,13 @@ public extension HorizonUI {
         public enum ActionType {
             case delete
             case download
+            case loading
 
             var image: Image {
                 switch self {
-                case .delete: return HorizonUI.icons.delete
-                case .download:  return HorizonUI.icons.download
+                case .delete: HorizonUI.icons.delete
+                case .download: HorizonUI.icons.download
+                case .loading: HorizonUI.icons.close
                 }
             }
         }
@@ -37,17 +39,21 @@ public extension HorizonUI {
 
         private let actionType: ActionType
         private let fileName: String
+        private let isSelected: Bool
         private let onTap: () -> Void
+        private let cornerRadius: CornerRadius = .level3
 
         // MARK: - Init
 
         public init(
             fileName: String,
             actionType: ActionType,
+            isSelected: Bool = false,
             onTap: @escaping () -> Void
         ) {
             self.fileName = fileName
             self.actionType = actionType
+            self.isSelected = isSelected
             self.onTap = onTap
         }
 
@@ -56,6 +62,9 @@ public extension HorizonUI {
                 if actionType == .delete {
                     HorizonUI.icons.checkCircleFull
                         .foregroundStyle(Color.huiColors.icon.success)
+                }
+                if actionType == .loading {
+                    HorizonUI.Spinner(size: .xSmall, showBackground: true)
                 }
                 Text(fileName)
                     .huiTypography(.p1)
@@ -67,7 +76,13 @@ public extension HorizonUI {
                 }
             }
             .padding(.huiSpaces.space16)
-            .huiBorder(level: .level1, color: Color.huiColors.lineAndBorders.lineStroke, radius: 16)
+            .huiBorder(
+                level: .level1,
+                color: isSelected
+                ? Color.huiColors.surface.institution
+                : Color.huiColors.lineAndBorders.lineStroke,
+                radius: cornerRadius.attributes.radius
+            )
         }
     }
 }

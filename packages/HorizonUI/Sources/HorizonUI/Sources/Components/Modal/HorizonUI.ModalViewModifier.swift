@@ -52,6 +52,9 @@ fileprivate extension HorizonUI {
                 ZStack {
                     Color.huiColors.surface.inverseSecondary.opacity(0.75)
                         .ignoresSafeArea()
+                        .onTapGesture {
+                            isPresented.toggle()
+                        }
                     Modal(
                         headerTitle: headerTitle,
                         headerIcon: headerIcon,

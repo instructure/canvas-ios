@@ -60,13 +60,13 @@ public extension HorizonUI {
                     .frame(maxWidth: .infinity)
                 }
             }
-            .animation(.smooth, value: selectedIndex)
+            .animation(.linear, value: selectedIndex)
             .frame(height: 44)
             .background {
                 Rectangle()
                     .fill(.clear)
                     .huiBorder(
-                        level: .level2,
+                        level: .level1,
                         color: Color.huiColors.lineAndBorders.lineStroke,
                         radius: cornerRadius.attributes.radius
                     )

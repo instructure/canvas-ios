@@ -427,7 +427,7 @@ public struct PostFileUploadRequest: APIRequestable {
     public let fileURL: URL
     public let target: FileUploadTarget
     public let loadBodyFromURL: Bool
-
+    public var shouldAddNoVerifierQuery: Bool = AppEnvironment.shared.app != .horizon
     /**
          Creates an `APIRequestable` instance for file upload.
          - Parameters:

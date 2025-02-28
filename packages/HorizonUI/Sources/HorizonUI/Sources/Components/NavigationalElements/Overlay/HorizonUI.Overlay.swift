@@ -46,8 +46,8 @@ public extension HorizonUI {
                     .huiCornerRadius(level: .level3)
                     .padding(.horizontal, .huiSpaces.space16)
             }
-            .padding(.vertical, .huiSpaces.space24)
-            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.vertical, .huiSpaces.space32)
+            .padding(.horizontal, .huiSpaces.space24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.huiColors.primitives.beige11)
         }
@@ -83,7 +83,7 @@ public extension HorizonUI {
         private func buttonRow(button: ButtonAttribute) -> some View {
             HStack {
                 Text(button.title)
-                    .huiTypography(.p1)
+                    .huiTypography(.buttonTextLarge)
                 Spacer()
                 if let icon = button.icon {
                     icon

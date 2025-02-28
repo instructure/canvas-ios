@@ -19,9 +19,16 @@
 #if DEBUG
 import Foundation
 import Combine
+import Core
 
 class DownloadFileInteractorPreview: DownloadFileInteractor {
-    func download() -> AnyPublisher<URL, Error> {
+    func download(file: Core.File) -> AnyPublisher<URL, any Error> {
+        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func download(fileID: String) -> AnyPublisher<URL, Error> {
         Just(URL(string: "https://github.com/instructure/canvas-ios")!)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

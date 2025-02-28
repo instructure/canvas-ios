@@ -18,25 +18,36 @@
 
 import Foundation
 
-enum AssignmentType: String {
-    case textEntry = "online_text_entry"
-    case uploadFile = "online_upload"
+enum AssignmentSubmissionType: String {
+    case text = "online_text_entry"
+    case fileUpload = "online_upload"
+    case externalTool = "external_tool"
 
+    init(index: Int) {
+        switch index {
+        case 0: self = .text
+        case 1: self = .fileUpload
+        case 2: self = .externalTool
+        default: self = .text
+        }
+    }
     var title: String {
         switch self {
-        case .textEntry:
-            "Text Entry"
-        case .uploadFile:
-            "File Upload"
+        case .text: String(localized: "Text", bundle: .horizon)
+        case .fileUpload: String(localized: "File Upload", bundle: .horizon)
+        case .externalTool: String(localized: "External Tool", bundle: .horizon)
         }
     }
 
-    var imageName: String {
+    static var items: [String] {
+        [Self.text, Self.fileUpload].map(\.title)
+    }
+
+    var index: Int {
         switch self {
-        case .textEntry:
-            "square.and.pencil"
-        case .uploadFile:
-            "square.and.arrow.up"
+        case .text: return 0
+        case .fileUpload: return 1
+        case .externalTool: return 2
         }
     }
 }
