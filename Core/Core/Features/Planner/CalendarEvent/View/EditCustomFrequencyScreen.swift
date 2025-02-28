@@ -156,8 +156,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             date: $viewModel.endDate,
             mode: .dateOnly,
             defaultDate: Clock.now.addYears(1),
-            validFrom: viewModel.proposedDate,
-            isClearable: false
+            validFrom: viewModel.proposedDate
         )
     }
 
