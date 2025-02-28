@@ -41,19 +41,21 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
         self.environment = environment
 
         settingsStore
-            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .getEntities(keepObservingDatabaseChanges: true)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
                 if let value = settings.first {
                     self?.settings.send(value)
-                }
+                } else { self?.state.send(.error) }
             })
             .store(in: &subscriptions)
 
         environmentSettingsStore
-            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .getEntities(keepObservingDatabaseChanges: true)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
                 if let settings = settings.first {
                     self?.environmentSettings.send(settings)
+                } else {
+                    self?.state.send(.error)
                 }
             })
             .store(in: &subscriptions)
@@ -65,6 +67,7 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
                 if environment.app == .student {
                     useSignature = useSignature && !environmentSettings.disableInboxSignatureBlockForStudents
                 }
+                self?.state.send(.data)
                 self?.signature.send((useSignature, settings.signature))
             }
             .store(in: &subscriptions)

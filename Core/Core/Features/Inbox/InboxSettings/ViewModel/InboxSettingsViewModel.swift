@@ -23,6 +23,7 @@ public class InboxSettingsViewModel: ObservableObject {
     @Published public var useSignature: Bool = false
     @Published public var signature: String = ""
     @Published public var enableSaveButton: Bool = false
+    @Published public var state: InstUI.ScreenState = .loading
 
     public let didTapSave = PassthroughRelay<WeakViewController>()
 
@@ -52,6 +53,22 @@ public class InboxSettingsViewModel: ObservableObject {
             .settings
             .sink { [weak self] settings in
                 self?.inboxSettings = settings
+            }
+            .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .state
+            .sink { [weak self] s in
+                switch(s) {
+                case .data:
+                    self?.state = .data
+                case .empty:
+                    self?.state = .data
+                case .error:
+                    self?.state = .error
+                case .loading:
+                    self?.state = .loading
+                }
             }
             .store(in: &subscriptions)
     }

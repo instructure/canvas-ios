@@ -32,9 +32,13 @@ public struct InboxSettingsView: View {
     }
 
     public var body: some View {
-        contentView
-            .navigationBarTitleView(String(localized: "Inbox Signature", bundle: .core))
-            .navigationBarItems(trailing: doneButton)
+        InstUI.BaseScreen(
+            state: viewModel.state
+        ) { _ in
+            contentView
+        }
+        .navigationBarTitleView(String(localized: "Inbox Signature", bundle: .core))
+        .navigationBarItems(trailing: doneButton)
     }
 
     private var separator: some View {
