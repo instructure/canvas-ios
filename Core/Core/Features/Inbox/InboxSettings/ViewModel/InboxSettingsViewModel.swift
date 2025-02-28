@@ -77,6 +77,7 @@ public class InboxSettingsViewModel: ObservableObject {
         didTapSave
             .flatMap { [weak self] controller in
                 guard let self, let newSttings = self.inboxSettings else { return Just(controller).setFailureType(to: Error.self).eraseToAnyPublisher() }
+                self.state = .loading
 
                 newSttings.useSignature = useSignature
                 newSttings.signature = signature
@@ -87,7 +88,12 @@ public class InboxSettingsViewModel: ObservableObject {
             }
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] result in
-                self?.state = .error
+                switch(result) {
+                    case .failure(let error):
+                        self?.state = .error
+                    default:
+                        self?.state = .data
+                }
             }, receiveValue: { [router] controller in
                 router.pop(from: controller)
             })
