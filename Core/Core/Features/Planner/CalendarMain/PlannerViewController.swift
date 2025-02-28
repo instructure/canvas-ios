@@ -134,12 +134,10 @@ public class PlannerViewController: UIViewController {
         offlineModeInteractor
             .observeIsOfflineMode()
             .sink { [weak self] isOffline in
-                guard let self else { return }
-                addButton.action = isOffline ? #selector(showOfflineAlert) : nil
-                addButton.menu = isOffline ? nil : addMenu
-                if isOffline {
-                    addButton.tintColor = .disabledGray
-                }
+                guard let self, isOffline else { return }
+                addButton.tintColor = .disabledGray
+                addButton.menu = nil
+                addButton.action = #selector(showOfflineAlert)
             }
             .store(in: &subscriptions)
     }
