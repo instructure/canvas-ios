@@ -96,12 +96,11 @@ public struct DashboardSettingsView: View {
     }
 
     private func toggle(text: Text, isOn: Binding<Bool>, a11yID: String) -> some View {
-        Toggle(isOn: isOn) {
+        InstUI.Toggle(isOn: isOn) {
             text
                 .font(.semibold16)
                 .foregroundColor(.textDarkest)
         }
-        .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
         .padding(.vertical, 8)
         .testID(a11yID, info: ["selected": isOn.wrappedValue])
     }

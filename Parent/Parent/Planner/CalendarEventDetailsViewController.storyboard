@@ -111,12 +111,12 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d05-jm-OYr">
+                                                    <view opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d05-jm-OYr" customClass="CoreSwitch" customModule="Core">
                                                         <rect key="frame" x="294" y="42" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="reminderSwitchChanged" destination="zib-wx-dtu" eventType="valueChanged" id="gYc-cY-Ika"/>
                                                         </connections>
-                                                    </switch>
+                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-Tt-0mJ">
                                                         <rect key="frame" x="0.0" y="84" width="343" height="253"/>
                                                         <subviews>

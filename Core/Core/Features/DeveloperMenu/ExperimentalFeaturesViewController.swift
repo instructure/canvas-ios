@@ -46,12 +46,13 @@ public class ExperimentalFeaturesViewController: UITableViewController {
         cell.toggle.isOn = feature.isEnabled
         cell.toggle.addTarget(self, action: #selector(toggleFeature(_:)), for: .valueChanged)
         cell.toggle.isEnabled = !readOnly
+        cell.toggle.accessibilityLabel = feature.rawValue
         cell.isUserInteractionEnabled = !readOnly
         return cell
     }
 
     @objc
-    func toggleFeature(_ sender: UISwitch) {
+    func toggleFeature(_ sender: CoreSwitch) {
         ExperimentalFeature.allCases[sender.tag].isEnabled = sender.isOn
         afterToggle?()
     }

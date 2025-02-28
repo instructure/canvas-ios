@@ -108,7 +108,7 @@ public struct PageEditorView: View {
             if env.app == .teacher || context.contextType == .group {
                 EditorSection(label: Text("Details", bundle: .core)) {
                     if url != "front_page" && env.app == .teacher {
-                        Toggle(isOn: $published) { Text("Publish", bundle: .core) }
+                        InstUI.Toggle(isOn: $published) { Text("Publish", bundle: .core) }
                             .font(.semibold16).foregroundColor(.textDarkest)
                             .padding(16)
                             .disabled(isFrontPage)
@@ -116,7 +116,7 @@ public struct PageEditorView: View {
                         Divider()
                     }
                     if url != "front_page" && env.app == .teacher {
-                        Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
+                        InstUI.Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
                             .font(.semibold16).foregroundColor(.textDarkest)
                             .padding(16)
                             .disabled(!published)
