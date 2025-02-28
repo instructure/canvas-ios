@@ -89,7 +89,7 @@ public class InboxSettingsViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] result in
                 switch(result) {
-                case .failure(_):
+                case .failure:
                     self?.state = .error
                 default:
                     self?.state = .data
