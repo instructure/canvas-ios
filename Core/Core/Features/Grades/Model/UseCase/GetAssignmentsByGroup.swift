@@ -101,17 +101,21 @@ public class GetAssignmentsByGroup: UseCase {
                         .map { [AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: $0)] }
                         .eraseToAnyPublisher()
                 } else {
-                    return Publishers
+                    let groupsForNoGradingPeriod = getAssignmentGroups(nil)
+                        .map { [AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: $0)] }
+                    let groupsForGradingPeriods = Publishers
                         .Sequence(sequence: gradingPeriods)
                         .flatMap { gradingPeriod in
                             getAssignmentGroups(gradingPeriod.id)
                                 .map { AssignmentGroupsByGradingPeriod(gradingPeriod: gradingPeriod, assignmentGroups: $0) }
                         }
                         .collect()
-                        .flatMap { assignmentsByGradingPeriods in
-                            getAssignmentGroups(nil)
-                                .map { [AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: $0)] + assignmentsByGradingPeriods }
-                        }
+
+                    return Publishers
+                        // The order is important, otherwise assignments with nil grading period
+                        // will overwrite the ones with grading period.
+                        .Zip(groupsForNoGradingPeriod, groupsForGradingPeriods)
+                        .map { $0.0 + $0.1 }
                         .eraseToAnyPublisher()
                 }
             }

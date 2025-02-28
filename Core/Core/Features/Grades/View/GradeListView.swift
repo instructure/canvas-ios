@@ -69,20 +69,15 @@ public struct GradeListView: View, ScreenViewTrackable {
                     }
                 }
                 whatIfScoreEditorView()
-
-                if viewModel.isLoaderVisible {
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle())
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.backgroundLightest)
-
-                }
             }
             .animation(.smooth, value: isScoreEditorPresented)
         }
         .safeAreaInset(edge: .top, spacing: 0) {
-            if viewModel.gradeHeaderIsVisible {
+            switch viewModel.state {
+            case .data, .empty:
                 courseSummaryView(viewModel.totalGradeText)
+            default:
+                SwiftUI.EmptyView()
             }
         }
         .background(Color.backgroundLightest)
