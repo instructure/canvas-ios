@@ -97,7 +97,6 @@ public extension HorizonUI.Modal {
             .huiTypography(.p2)
         }
 
-
         private var confirmModalContent: some View {
             Text(verbatim: "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes.")
                 .huiTypography(.p1)
