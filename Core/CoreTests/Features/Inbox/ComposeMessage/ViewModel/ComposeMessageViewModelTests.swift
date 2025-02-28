@@ -792,6 +792,8 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
 
     var state = CurrentValueSubject<StoreState, Never>(.data)
     var signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
+    var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
+    var environmentSettings = CurrentValueSubject<Core.CDEnvironmentSettings?, Never>(nil)
 
     var secondsBeforeLoad: Int = 0
     var signatureValue: String = ""
@@ -807,5 +809,9 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
                 self?.signature.send((useSignature, signatureValue))
             }
             .store(in: &subscriptions)
+    }
+
+    func updateInboxSettings(inboxSettings: Core.CDInboxSettings) -> AnyPublisher<Void, any Error> {
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

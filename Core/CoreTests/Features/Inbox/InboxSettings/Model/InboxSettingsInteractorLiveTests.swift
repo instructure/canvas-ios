@@ -285,4 +285,88 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(true, useSignatureResult)
         XCTAssertEqual(signatureText, signatureResult)
     }
+
+    func testSignatureUpdate() {
+        let oldSignatureText = " Old Text"
+        let oldUseSignature = false
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: false)
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: oldSignatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: oldUseSignature,
+                    userId: userId
+                )
+            )
+        )
+        api.mock(GetInboxSettingsRequest(), value: inboxSettings)
+
+        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+
+        let loadExp = expectation(description: "signatureLoaded")
+        let updateExp = expectation(description: "signatureUpdated")
+        var useSignatureResult: Bool?
+        var signatureResult: String?
+        var initFlag = false
+        var updateFlag = false
+        testee.signature
+            .sink { (useSignature, signature) in
+                useSignatureResult = useSignature
+                signatureResult = signature
+                if initFlag && !updateFlag {
+                    updateFlag = true
+                    loadExp.fulfill()
+                } else if updateFlag {
+                    updateExp.fulfill()
+                }
+                initFlag = true
+            }
+            .store(in: &subscriptions)
+        wait(for: [loadExp], timeout: 1)
+
+        XCTAssertEqual(oldUseSignature, useSignatureResult)
+        XCTAssertEqual(oldSignatureText, signatureResult)
+
+        let newSignatureText = "Test"
+        let newUseSignature = true
+        let newSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: newSignatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: newUseSignature,
+                    userId: userId
+                )
+            )
+        )
+
+        let settingsEntity = CDInboxSettings.save(newSettings, in: databaseClient)
+        api.mock(
+            UpdateInboxSettings(inboxSettings: settingsEntity),
+            value: APIUpdateInboxSettings(data: .init(updateMyInboxSettings: newSettings.data))
+        )
+
+        _ = testee.updateInboxSettings(inboxSettings: settingsEntity)
+
+        wait(for: [updateExp], timeout: 1)
+
+        XCTAssertEqual(newUseSignature, useSignatureResult)
+        XCTAssertEqual(newSignatureText, signatureResult)
+    }
 }
