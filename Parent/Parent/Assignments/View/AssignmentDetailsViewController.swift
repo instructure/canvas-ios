@@ -263,7 +263,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
               let name = student.first?.fullName,
               let course = course.first
         else { return }
-        
+
         let subject = String.localizedStringWithFormat(
             String(localized: "Regarding: %@, Assignment - %@", bundle: .parent, comment: "Regarding <Name>, Assignment - <Assignment Name>"),
             name,
