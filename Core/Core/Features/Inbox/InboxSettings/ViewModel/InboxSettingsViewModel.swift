@@ -89,10 +89,10 @@ public class InboxSettingsViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] result in
                 switch(result) {
-                    case .failure(let error):
-                        self?.state = .error
-                    default:
-                        self?.state = .data
+                case .failure(_):
+                    self?.state = .error
+                default:
+                    self?.state = .data
                 }
             }, receiveValue: { [router] controller in
                 router.pop(from: controller)
