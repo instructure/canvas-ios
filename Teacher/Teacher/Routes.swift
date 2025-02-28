@@ -60,7 +60,7 @@ let router = Router(routes: [
         }
     },
 
-    RouteHandler("/conversations/settings") { url, _, _ in
+    RouteHandler("/conversations/settings") { _, _, _ in
         return InboxSettingsAssembly.makeInboxSettingsViewController()
     },
 

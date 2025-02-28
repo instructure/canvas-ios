@@ -86,7 +86,7 @@ public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
     static let query = """
         mutation \(operationName)($input: UpdateMyInboxSettingsInput!) {
           updateMyInboxSettings(input: $input) {
-            myInboxSettings { 
+            myInboxSettings {
                 _id
                 createdAt
                 outOfOfficeLastDate

@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class UpdateInboxSettings: APIUseCase {
-    
+
     public typealias Model = CDInboxSettings
     public typealias Response = APIUpdateInboxSettings
 
@@ -30,7 +30,7 @@ public class UpdateInboxSettings: APIUseCase {
         self.inboxSettings = inboxSettings
     }
 
-    public var cacheKey: String? = nil
+    public var cacheKey: String?
 
     public var scope: Scope {
         return .where(#keyPath(CDInboxSettings.userId), equals: inboxSettings.userId, orderBy: #keyPath(CDInboxSettings.userId))

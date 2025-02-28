@@ -86,8 +86,8 @@ public class InboxSettingsViewModel: ObservableObject {
                     .eraseToAnyPublisher()
             }
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { result in
-                print("Failed to update")
+            .sink(receiveCompletion: { [weak self] result in
+                self?.state = .error
             }, receiveValue: { [router] controller in
                 router.pop(from: controller)
             })
