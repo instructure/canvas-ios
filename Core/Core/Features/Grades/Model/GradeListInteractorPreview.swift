@@ -35,7 +35,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
-    
+
     var courseID: String { "courseID" }
 
     func getGrades(

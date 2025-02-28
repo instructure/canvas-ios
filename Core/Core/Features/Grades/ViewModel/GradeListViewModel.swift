@@ -136,7 +136,6 @@ public final class GradeListViewModel: ObservableObject {
             .sink()
             .store(in: &subscriptions)
 
-
         didSelectAssignment
             .receive(on: scheduler)
             .sink { vc, assignment in

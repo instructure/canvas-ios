@@ -239,7 +239,7 @@ private extension GradeListViewModelTests {
         func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
             Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
         }
-        
+
         var courseID: String { "" }
         func getGrades(
             arrangeBy: GradeArrangementOptions,
@@ -265,7 +265,7 @@ private extension GradeListViewModelTests {
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-        
+
         var courseID: String { "" }
         func getGrades(
             arrangeBy: GradeArrangementOptions,
