@@ -88,7 +88,7 @@ struct DashboardCourseCardView: View {
             Color(courseCard.color).frame(width: width, height: height)
             // disable animated GIFs to avoid creating multiple WebViews
             courseCard.imageURL.map { RemoteImage($0, width: width, height: height, shouldHandleAnimatedGif: false) }?
-                .opacity(hideColorOverlay ? 1 : 0.4)
+                .opacity(hideColorOverlay ? 1 : 0.16)
                 .clipped()
                 // Fix big course image consuming tap events.
                 .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: height)))

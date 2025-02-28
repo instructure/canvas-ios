@@ -69,7 +69,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         title = String(localized: "Settings", bundle: .core)
 
         view.backgroundColor = .backgroundLightest
-        tableView.backgroundColor = .backgroundGrouped
+        tableView.backgroundColor = .backgroundLightest
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = CircleRefreshControl()
