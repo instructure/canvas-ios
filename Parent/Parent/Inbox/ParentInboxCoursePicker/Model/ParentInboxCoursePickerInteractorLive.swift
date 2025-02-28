@@ -22,8 +22,8 @@ import Core
 
 class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     // MARK: - Outputs
-    public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var studentContextItems = CurrentValueSubject<[StudentContextItem], Never>([])
+    var state = CurrentValueSubject<StoreState, Never>(.loading)
+    var studentContextItems = CurrentValueSubject<[StudentContextItem], Never>([])
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -33,7 +33,7 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     private var coursesStore: ReactiveStore<GetCourses>
     private let environment: AppEnvironment
 
-    public init(env: AppEnvironment) {
+    init(env: AppEnvironment) {
         enrollmentsStore = ReactiveStore(useCase: GetObservedEnrollments(observerID: env.currentSession?.userID ?? ""))
         coursesStore = ReactiveStore(useCase: GetCourses())
         environment = env
@@ -71,7 +71,7 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
             .store(in: &subscriptions)
     }
 
-    public func refresh() -> AnyPublisher<[Void], Never> {
+    func refresh() -> AnyPublisher<[Void], Never> {
         coursesStore.forceRefresh().combineLatest(with: enrollmentsStore.forceRefresh())
     }
 

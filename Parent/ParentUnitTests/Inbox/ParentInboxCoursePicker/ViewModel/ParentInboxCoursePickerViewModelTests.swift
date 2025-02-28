@@ -70,7 +70,7 @@ private class ParentInboxCoursePickerInteractorMock: ParentInboxCoursePickerInte
         return Future<[Void], Never> { _ in }.eraseToAnyPublisher()
     }
 
-    public init(env: AppEnvironment) {
+    init(env: AppEnvironment) {
         self.studentContextItems = CurrentValueSubject<[StudentContextItem], Never>([
             StudentContextItem(studentId: "1", studentDisplayName: "User 1", course: .make()),
             StudentContextItem(studentId: "2", studentDisplayName: "User 2", course: .make())
