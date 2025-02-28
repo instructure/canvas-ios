@@ -28,9 +28,9 @@ struct AssignmentSubmissionView: View {
     @State private var isTakePhotoVisible = false
     @State private var isOverlayUploadFilePresented = false
     @State private var assignmentPreference: AssignmentPreferenceType?
+    @State private var isFilePickerVisible = false
     private let uploadParameters: RichContentEditorUploadParameters
     private let rceID = "rceID"
-    @State private var isFilePickerVisible = false
 
     // MARK: - Dependencies
 

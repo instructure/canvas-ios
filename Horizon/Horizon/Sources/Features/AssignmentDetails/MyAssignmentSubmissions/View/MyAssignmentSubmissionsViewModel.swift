@@ -36,6 +36,7 @@ final class MyAssignmentSubmissionsViewModel {
     private let interactor: DownloadFileInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
+
     // MARK: - Init
 
     init(

@@ -50,6 +50,7 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
                 // Set the file pin at the top.
                 scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 scrollView.isScrollEnabled = false
+                // Wait till render the view
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     contentHeight = max(300, scrollView.contentSize.height)
                 }

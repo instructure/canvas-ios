@@ -24,8 +24,8 @@ struct AssignmentAttemptsView: View {
 
     // MARK: - Dependencies
 
-    private let submissions: [HSubmission]
     @State private var selectedSubmission: HSubmission?
+    private let submissions: [HSubmission]
     private let didSelectSubmission: (HSubmission?) -> Void
 
     init(

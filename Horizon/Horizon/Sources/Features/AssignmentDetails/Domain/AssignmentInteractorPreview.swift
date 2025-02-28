@@ -23,7 +23,7 @@ import Combine
 
 class AssignmentInteractorPreview: AssignmentInteractor {
     func getSubmissions() -> AnyPublisher<[HSubmission], Never> {
-        Just([])
+        Just([HSubmission(id: "11", assignmentID: "submittedAt", attempt: 2)])
             .eraseToAnyPublisher()
     }
 

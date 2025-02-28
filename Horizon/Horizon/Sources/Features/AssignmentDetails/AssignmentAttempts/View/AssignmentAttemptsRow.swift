@@ -25,12 +25,12 @@ struct AssignmentAttemptsRow: View {
 
     var body: some View {
         VStack(spacing: .huiSpaces.space12) {
-            attemptView(submission: submission)
+            attemptView
             Text(submission.submittedAt?.formatted(format: "d/MM, h:mm a") ?? "")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(Color.huiColors.text.timestamp)
                 .huiTypography(.p2)
-            scoreView(submission: submission)
+            scoreView
         }
         .padding(.huiSpaces.space16)
         .background {
@@ -44,7 +44,7 @@ struct AssignmentAttemptsRow: View {
         }
     }
 
-    private func attemptView(submission: HSubmission) -> some View {
+    private var attemptView: some View {
         HStack(spacing: .huiSpaces.space2) {
             Text("Attempt", bundle: .horizon)
             Text(submission.attempt.description)
@@ -55,7 +55,7 @@ struct AssignmentAttemptsRow: View {
     }
 
     @ViewBuilder
-    private func scoreView(submission: HSubmission) -> some View {
+    private var scoreView: some View {
         if let grade = submission.grade {
             HStack(spacing: .huiSpaces.space2) {
                 Text("Score", bundle: .horizon)

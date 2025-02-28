@@ -24,8 +24,8 @@ struct FileDetailsView: View {
     // MARK: - Private Properties
 
     @State private var didFinishRenderingPreview: Bool = false
+    @State private var isShowHeader: Bool = true
     @Environment(\.viewController) private var viewController
-    @State var isShowHeader: Bool = true
 
     // MARK: - Dependencies
 
