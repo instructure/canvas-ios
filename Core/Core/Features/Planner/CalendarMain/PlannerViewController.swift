@@ -21,7 +21,7 @@ import UIKit
 
 public class PlannerViewController: UIViewController {
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
-    lazy var addButton = UIBarButtonItem(image: .addSolid)
+    lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: nil)
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))
     private lazy var addMenu = UIMenu(options: .displayInline, children: [
         UIAction(title: String(localized: "Add To Do", bundle: .core), image: .noteLine) { [weak self] _ in
@@ -71,8 +71,6 @@ public class PlannerViewController: UIViewController {
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
         profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
 
-        addButton.target = self
-        addButton.action = nil
         addButton.menu = addMenu
         addButton.accessibilityIdentifier = "PlannerCalendar.addButton"
         addButton.accessibilityLabel = String(localized: "Add Menu", bundle: .core)
