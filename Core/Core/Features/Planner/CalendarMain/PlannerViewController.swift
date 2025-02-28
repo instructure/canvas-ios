@@ -21,7 +21,7 @@ import UIKit
 
 public class PlannerViewController: UIViewController {
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
-    lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: nil)
+    lazy var addButton = UIBarButtonItem(image: .addSolid)
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))
     private lazy var addMenu = UIMenu(options: .displayInline, children: [
         UIAction(title: String(localized: "Add To Do", bundle: .core), image: .noteLine) { [weak self] _ in
@@ -71,9 +71,9 @@ public class PlannerViewController: UIViewController {
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
         profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
 
-        addButton.menu = addMenu
         addButton.accessibilityIdentifier = "PlannerCalendar.addButton"
         addButton.accessibilityLabel = String(localized: "Add Menu", bundle: .core)
+        updateAddButton()
 
         todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
         todayButton.accessibilityLabel = String(localized: "Go to today", bundle: .core)
@@ -134,10 +134,7 @@ public class PlannerViewController: UIViewController {
         offlineModeInteractor
             .observeIsOfflineMode()
             .sink { [weak self] isOffline in
-                guard let self, isOffline else { return }
-                addButton.tintColor = .disabledGray
-                addButton.menu = nil
-                addButton.action = #selector(showOfflineAlert)
+                self?.updateAddButton(isOffline)
             }
             .store(in: &subscriptions)
     }
@@ -149,6 +146,12 @@ public class PlannerViewController: UIViewController {
 
     @objc func openProfile() {
         env.router.route(to: "/profile", from: self, options: .modal())
+    }
+
+    private func updateAddButton(_ isOffline: Bool = false) {
+        addButton.tintColor = isOffline ? .disabledGray : nil
+        addButton.menu = isOffline ? nil : addMenu
+        addButton.action = isOffline ? #selector(showOfflineAlert) : nil
     }
 
     private func addToDo() {
