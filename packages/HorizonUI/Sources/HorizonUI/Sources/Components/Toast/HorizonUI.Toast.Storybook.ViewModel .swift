@@ -29,7 +29,7 @@ extension HorizonUI.Toast {
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
                 style: .error,
                 isShowCancelButton: true,
-                direction: .bottom,
+                direction: .top,
                 dismissAfter: 2
             )
         }
@@ -59,7 +59,7 @@ extension HorizonUI.Toast {
                 text: "Nunc ut lacus ac libero ultrices vestibulum. Integer elementum.",
                 style: .warning,
                 isShowCancelButton: false,
-                direction: .bottom,
+                direction: .top,
                 dismissAfter: 15,
                 confirmActionButton: confirmButton,
                 cancelActionButton: cancelButton

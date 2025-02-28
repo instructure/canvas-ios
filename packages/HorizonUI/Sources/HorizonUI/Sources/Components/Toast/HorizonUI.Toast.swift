@@ -47,6 +47,7 @@ public extension HorizonUI {
                         .padding(.bottom, .huiSpaces.space16)
                 }
                 trailingButtons
+                    .padding(.top,.huiSpaces.space16)
             }
             .frame(minHeight: 64)
             .background(Color.huiColors.surface.pageSecondary)
@@ -74,11 +75,12 @@ public extension HorizonUI {
         }
         
         private var trailingButtons: some View {
-            HStack(spacing: .huiSpaces.space16) {
+            HStack(alignment: .top, spacing: .huiSpaces.space16) {
                 if case .single(confirmButton: let confirmButton) =  viewModel.buttons {
                     HorizonUI.PrimaryButton(confirmButton.title, type: .black) {
                         confirmButton.action()
                     }
+                    .fixedSize(horizontal: true, vertical: false)
                 }
                 if viewModel.isShowCancelButton {
                     HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
@@ -92,7 +94,7 @@ public extension HorizonUI {
         @ViewBuilder
         private var groupButtons: some View {
             if case let .double(cancelButton: cancelButton, confirmButton: confirmButton) =  viewModel.buttons  {
-                HStack {
+                HStack(alignment: .top) {
                     HorizonUI.PrimaryButton(cancelButton.title, type: .white) {
                         cancelButton.action()
                     }

@@ -54,7 +54,8 @@ struct FileDetailsView: View {
                 } onTapCancel: {
                     viewModel.cancelDownload()
                 }
-                .padding(.vertical, .huiSpaces.space12)
+                .padding(.top, .huiSpaces.space24)
+                .padding(.bottom, .huiSpaces.space12)
                 .padding(.horizontal, .huiSpaces.space24)
                 .hidden(!didFinishRenderingPreview)
             }

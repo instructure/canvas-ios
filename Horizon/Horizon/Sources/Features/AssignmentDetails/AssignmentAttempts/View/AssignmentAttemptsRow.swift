@@ -36,7 +36,7 @@ struct AssignmentAttemptsRow: View {
         .background {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.huiColors.surface.pageSecondary)
-                .huiBorder(level: .level1,
+                .huiBorder(level: isSelected ? .level2 : .level1,
                            color: isSelected
                            ? Color.huiColors.surface.institution
                            : Color.huiColors.lineAndBorders.lineStroke,
