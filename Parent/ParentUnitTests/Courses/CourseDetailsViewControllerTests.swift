@@ -58,9 +58,7 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
         XCTAssertNotNil(vc.replyButton)
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
-        let compose = router.presented as? ComposeViewController
-        XCTAssertEqual(compose?.context.id, courseID)
-        XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Grades")
+        XCTAssert(router.presented is CoreHostingController<ComposeMessageView>)
     }
 
     func testHomeIsFrontPage() {

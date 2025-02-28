@@ -63,10 +63,6 @@ public struct GetSearchRecipientsRequest: APIRequestable {
     public let path = "search/recipients"
     public let query: [APIQueryItem]
 
-    public enum ContextQualifier: String {
-        case teachers, students, observers, tas
-    }
-
     public init(
         context: Context,
         qualifier: ContextQualifier? = nil,

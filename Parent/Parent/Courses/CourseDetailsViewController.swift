@@ -173,6 +173,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func messagingReady() {
+        guard let course = courses.first else { return }
         let pending = teachers.pending || student.pending
         if !pending && replyStarted {
             let name = student.first?.fullName ?? ""
@@ -181,14 +182,21 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             var template = String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <John Doe>, <Grades | Syllabus>")
             let subject = String.localizedStringWithFormat(template, name, tabTitle)
             template = String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <John Doe>, [link to grades or syllabus]")
-            let compose = ComposeViewController.create(
-                context: .course(courseID),
-                observeeID: studentID,
-                recipients: teachers.all,
-                subject: subject,
-                hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink())
+            let options = ComposeMessageOptions(
+                disabledFields: .init(
+                    contextDisabled: true
+                ),
+                fieldsContents: .init(
+                    selectedContext: .init(course: course),
+                    subjectText: subject
+                ),
+                extras: .init(
+                    hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink()),
+                    autoTeacherSelect: true
+                )
             )
-            env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+            let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
+            env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
 
             replyButton?.isEnabled = true
         }

@@ -22,15 +22,11 @@ import CoreData
 public struct GetSearchRecipients: CollectionUseCase {
     public typealias Model = SearchRecipient
 
-    enum ContextQualifier {
-        case teachers, students, observers
-    }
-
     public let context: Context
-    public let qualifier: GetSearchRecipientsRequest.ContextQualifier?
+    public let qualifier: ContextQualifier?
     public let userID: String?
 
-    public init(context: Context, qualifier: GetSearchRecipientsRequest.ContextQualifier? = nil, userID: String? = nil) {
+    public init(context: Context, qualifier: ContextQualifier? = nil, userID: String? = nil) {
         self.context = context
         self.qualifier = qualifier
         self.userID = userID

@@ -26,6 +26,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     public let messages: CurrentValueSubject<[InboxMessageListItem], Never>
     public let courses: CurrentValueSubject<[InboxCourse], Never>
     public let hasNextPage = CurrentValueSubject<Bool, Never>(true)
+    public let isParentApp: Bool = false
 
     // MARK: - Private State
     private var scopeValue: InboxMessageScope = .inbox {
