@@ -259,7 +259,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     @IBAction func compose() {
-        guard let assignment = assignment.first, let name = student.first?.fullName else { return }
+        guard let assignment = assignment.first,
+              let name = student.first?.fullName,
+              let course = course.first
+        else { return }
+        
         let subject = String.localizedStringWithFormat(
             String(localized: "Regarding: %@, Assignment - %@", bundle: .parent, comment: "Regarding <Name>, Assignment - <Assignment Name>"),
             name,
@@ -276,7 +280,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
                 contextDisabled: true
             ),
             fieldsContents: .init(
-                selectedContext: .init(course: course.first ?? .init()),
+                selectedContext: .init(course: course),
                 subjectText: subject
             ),
             extras: .init(

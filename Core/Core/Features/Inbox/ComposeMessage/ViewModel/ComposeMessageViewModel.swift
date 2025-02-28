@@ -147,7 +147,7 @@ final class ComposeMessageViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        if autoTeacherSelect == true {
+        if autoTeacherSelect {
             recipientInteractor
                 .getRecipients(by: selectedContext?.context, qualifier: .teachers)
                 .sink { [weak self] result in

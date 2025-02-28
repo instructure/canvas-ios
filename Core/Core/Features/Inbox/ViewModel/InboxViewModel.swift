@@ -67,7 +67,7 @@ public class InboxViewModel: ObservableObject {
     ) {
         self.messageInteractor = messageInteractor
         self.favouriteInteractor = favouriteInteractor
-        self.isShowMenuButton = !messageInteractor.isParent
+        self.isShowMenuButton = !messageInteractor.isParentApp
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindUserActionsToOutputs()
@@ -179,7 +179,7 @@ public class InboxViewModel: ObservableObject {
         newMessageDidTap
             .sink { [router, didSendMailSuccessfully, messageInteractor] source in
                 // In the parent app we need a different logic for student context picker
-                if messageInteractor.isParent {
+                if messageInteractor.isParentApp {
                     if let bottomSheet = router.match("/conversations/new_message") {
                         router.show(bottomSheet, from: source, options: .modal())
                     }

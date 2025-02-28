@@ -173,6 +173,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func messagingReady() {
+        guard let course = courses.first else { return }
         let pending = teachers.pending || student.pending
         if !pending && replyStarted {
             let name = student.first?.fullName ?? ""
@@ -186,7 +187,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
                     contextDisabled: true
                 ),
                 fieldsContents: .init(
-                    selectedContext: .init(course: courses.first ?? .init()),
+                    selectedContext: .init(course: course),
                     subjectText: subject
                 ),
                 extras: .init(

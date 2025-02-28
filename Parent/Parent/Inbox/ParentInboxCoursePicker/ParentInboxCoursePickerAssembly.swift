@@ -19,12 +19,12 @@
 import Core
 import Foundation
 
-public enum ParentInboxCoursePickerAssembly {
-    public static func makeParentInboxCoursePickerBottomSheetViewController() -> UIViewController {
+enum ParentInboxCoursePickerAssembly {
+    static func makeParentInboxCoursePickerBottomSheetViewController() -> UIViewController {
         return ParentInboxCoursePickerBottomSheetViewController.create()
     }
 
-    public static func makeInboxCoursePickerViewController(env: AppEnvironment = .shared) -> UIViewController {
+    static func makeInboxCoursePickerViewController(env: AppEnvironment = .shared) -> UIViewController {
         let interactor = ParentInboxCoursePickerInteractorLive(env: env)
         let viewModel = ParentInboxCoursePickerViewModel(interactor: interactor, router: env.router)
         let view = ParentInboxCoursePickerView(viewModel: viewModel)
@@ -33,7 +33,7 @@ public enum ParentInboxCoursePickerAssembly {
 
 #if DEBUG
 
-    public static func makePreview(env: AppEnvironment) -> ParentInboxCoursePickerView {
+    static func makePreview(env: AppEnvironment) -> ParentInboxCoursePickerView {
         let interactor = ParentInboxCoursePickerInteractorPreview(env: env)
         let viewModel = ParentInboxCoursePickerViewModel(interactor: interactor, router: env.router)
         return ParentInboxCoursePickerView(viewModel: viewModel)

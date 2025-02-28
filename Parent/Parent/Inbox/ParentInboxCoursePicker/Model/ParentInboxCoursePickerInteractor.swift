@@ -20,7 +20,7 @@ import Foundation
 import Combine
 import Core
 
-public protocol ParentInboxCoursePickerInteractor {
+protocol ParentInboxCoursePickerInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
     var studentContextItems: CurrentValueSubject<[StudentContextItem], Never> { get }

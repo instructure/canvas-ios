@@ -76,6 +76,9 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
     }
 
     func getCourseURL(courseId: String) -> String {
-        return "\(environment.currentSession?.baseURL.absoluteString ?? "")/courses/\(courseId)"
+        guard let baseUrl = environment.currentSession?.baseURL else {
+            return "/courses/\(courseId)"
+        }
+        return baseUrl.appending(path: "courses/\(courseId)").absoluteString
     }
 }

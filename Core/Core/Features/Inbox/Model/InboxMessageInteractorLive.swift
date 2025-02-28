@@ -25,7 +25,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
     public let courses = CurrentValueSubject<[InboxCourse], Never>([])
     public let hasNextPage = CurrentValueSubject<Bool, Never>(false)
 
-    public let isParent: Bool
+    public let isParentApp: Bool
 
     // MARK: - Private State
     private var subscriptions = Set<AnyCancellable>()
@@ -48,7 +48,7 @@ public class InboxMessageInteractorLive: InboxMessageInteractor {
         self.messageListUseCase = GetInboxMessageList(currentUserId: currentUserId)
         self.messageListStore = env.subscribe(messageListUseCase)
         self.courseListStore = env.subscribe(GetInboxCourseList())
-        self.isParent = env.app == .parent
+        self.isParentApp = env.app == .parent
 
         messageListStore
             .allObjects
