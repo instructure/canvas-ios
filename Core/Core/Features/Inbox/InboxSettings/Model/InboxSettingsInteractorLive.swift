@@ -40,7 +40,8 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
         self.environmentSettingsStore = ReactiveStore(useCase: GetEnvironmentSettings())
         self.environment = environment
 
-        settingsStore.getEntities()
+        settingsStore
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
                 if let value = settings.first {
                     self?.settings.send(value)
@@ -48,7 +49,8 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
             })
             .store(in: &subscriptions)
 
-        environmentSettingsStore.getEntities()
+        environmentSettingsStore
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
                 if let settings = settings.first {
                     self?.environmentSettings.send(settings)
