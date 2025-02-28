@@ -24,7 +24,6 @@ struct AssignmentDetails: View {
     // MARK: - Dependencies
 
     @State private var viewModel: AssignmentDetailsViewModel
-    @Binding private var isShowModuleNavBar: Bool
 
     // MARK: - Private Properties
 
@@ -32,12 +31,8 @@ struct AssignmentDetails: View {
     @State private var isShowHeader: Bool = true
     @Environment(\.viewController) private var viewController
 
-    init(
-        viewModel: AssignmentDetailsViewModel,
-        isShowModuleNavBar: Binding<Bool>
-    ) {
+    init(viewModel: AssignmentDetailsViewModel) {
         self.viewModel = viewModel
-        self._isShowModuleNavBar = isShowModuleNavBar
     }
 
     var body: some View {
@@ -47,30 +42,27 @@ struct AssignmentDetails: View {
                     topView
                     introView
                         .id(viewModel.courseID)
-                    if let submission = viewModel.submission {
-                        mainContentView(
-                            submission: submission,
-                            proxy: proxy
-                        )
-
-                        errorView
-                        if !viewModel.didSubmitBefore, let date = viewModel.lastDraftSavedAt {
-                            draftView(date: date)
-                        }
-                        submitButton
+                    mainContentView(proxy: proxy)
+                    errorView
+                    if !viewModel.hasSubmittedBefore, let date = viewModel.lastDraftSavedAt {
+                        draftView(date: date)
                     }
+                    submitButton
+
                 }
-                .animation(.smooth, value: viewModel.didSubmitBefore)
+                .animation(.smooth, value: viewModel.hasSubmittedBefore)
                 .padding(.huiSpaces.space24)
             }
         }
+        .hidden(viewModel.isInitialLoading)
         .overlay { loaderView }
         .keyboardAdaptive()
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .preference(key: AssignmentPreferenceKey.self, value: viewModel.assignmentPreference)
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .huiOverlay(
             title: AssignmentLocalizedKeys.tools.title,
-            buttons: getToolsButtons(),
+            buttons: makeOverlayToolButtons(),
             isPresented: $viewModel.isOverlayToolsPresented
         )
     }
@@ -84,22 +76,19 @@ struct AssignmentDetails: View {
     }
 
     @ViewBuilder
-    private func mainContentView(submission: HSubmission, proxy: ScrollViewProxy) -> some View {
-        if viewModel.didSubmitBefore {
+    private func mainContentView(proxy: ScrollViewProxy) -> some View {
+        if let submission = viewModel.submission, viewModel.hasSubmittedBefore {
             MyAssignmentSubmissionAssembly.makeView(
-                selectedSubmission: viewModel.selectedSubmission,
+                selectedSubmission: submission.type ?? .text,
                 submission: submission,
                 courseId: viewModel.courseID
             )
-            .id(submission.id)
         } else {
             AssignmentSubmissionView(
                 viewModel: viewModel,
-                isShowModuleNavBar: $isShowModuleNavBar,
                 proxy: proxy,
                 dismissKeyboard: dismissKeyboard
             )
-            .onDisappear { viewModel.saveTextEntry() }
         }
     }
 
@@ -126,15 +115,20 @@ struct AssignmentDetails: View {
             }
             .foregroundStyle(Color.huiColors.text.error)
         }
-
     }
 
     @ViewBuilder
     private var introView: some View {
-        if let details = viewModel.assignment?.details {
-            WebView(html: details)
-                .frameToFit()
-                .padding(.horizontal, -16)
+        VStack(spacing: .huiSpaces.space4) {
+            Text("Instructions", bundle: .horizon)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.text.title)
+            if let details = viewModel.assignment?.details {
+                WebView(html: details)
+                    .frameToFit()
+                    .padding(.horizontal, -16)
+            }
         }
     }
 
@@ -158,7 +152,7 @@ struct AssignmentDetails: View {
                 .huiTypography(.p1)
 
             Button {
-                viewModel.deleteDraft()
+                viewModel.showDraftAlert()
             } label: {
                 HStack(spacing: .zero) {
                     Image.huiIcons.delete
@@ -171,12 +165,16 @@ struct AssignmentDetails: View {
         }
     }
 
-    private func getToolsButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
+    private func makeOverlayToolButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
         let historyButton = HorizonUI.Overlay.ButtonAttribute(
             title: AssignmentLocalizedKeys.attemptHistory.title,
             icon: Image.huiIcons.history
         ) {
             viewModel.isOverlayToolsPresented.toggle()
+            // Wait until the tools sheet is dismissed
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                viewModel.viewAttempts(controller: viewController)
+            }
         }
 
         let commentButton = HorizonUI.Overlay.ButtonAttribute(
@@ -184,7 +182,7 @@ struct AssignmentDetails: View {
             icon: Image.huiIcons.chat
         ) {
             viewModel.isOverlayToolsPresented.toggle()
-            // Waite till dismiss the tools sheet
+            // Wait until the tools sheet is dismissed
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 viewModel.viewComments(controller: viewController)
             }
@@ -198,11 +196,3 @@ struct AssignmentDetails: View {
     AssignmentDetailsAssembly.makePreview()
 }
 #endif
-
-struct HeaderVisibilityKey: PreferenceKey {
-    static var defaultValue: Bool = true
-
-    static func reduce(value: inout Bool, nextValue: () -> Bool) {
-        value = nextValue()
-    }
-}

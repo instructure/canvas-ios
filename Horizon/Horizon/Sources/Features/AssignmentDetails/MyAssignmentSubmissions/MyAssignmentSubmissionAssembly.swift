@@ -20,7 +20,6 @@ import Foundation
 import Core
 
 struct MyAssignmentSubmissionAssembly {
-
     static func makeView(
         selectedSubmission: AssignmentSubmissionType,
         submission: HSubmission,
@@ -36,4 +35,17 @@ struct MyAssignmentSubmissionAssembly {
             courseId: courseId
         )
     }
+#if DEBUG
+    static func makePreview() -> MyAssignmentSubmissionsView {
+        let interactor = DownloadFileInteractorPreview()
+        let router = AppEnvironment.shared.router
+        let viewModel = MyAssignmentSubmissionsViewModel(interactor: interactor, router: router)
+        return MyAssignmentSubmissionsView(
+            viewModel: viewModel,
+            selectedSubmission: .fileUpload,
+            submission: HSubmission(id: "2", assignmentID: "32"),
+            courseId: "2"
+        )
+    }
+#endif
 }

@@ -47,6 +47,7 @@ final class AssignmentTextEntryInteractorLive: AssignmentTextEntryInteractor {
 
     func save(_ text: String) {
         guard text.isNotEmpty else {
+            delete()
             return
         }
         let model = AssignmentTextEntryModel(text: text)
@@ -56,7 +57,7 @@ final class AssignmentTextEntryInteractorLive: AssignmentTextEntryInteractor {
             userDefaults?.assignmentSubmissionTextEntry?[key] = model.encode
         }
     }
-    
+
     func load() -> AssignmentTextEntryModel? {
         guard let value = userDefaults?.assignmentSubmissionTextEntry?[key] else {
             return nil

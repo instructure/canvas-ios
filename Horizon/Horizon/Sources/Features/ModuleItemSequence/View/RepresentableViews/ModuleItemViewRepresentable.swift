@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-fileprivate struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
+private struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Dependencies
 
     @Binding private var isScrollTopReached: Bool

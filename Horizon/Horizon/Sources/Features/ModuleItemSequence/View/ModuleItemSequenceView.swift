@@ -26,6 +26,8 @@ public struct ModuleItemSequenceView: View {
     @State private var isShowMakeAsDoneSheet = false
     @State private var isShowHeader = true
     @State private var isShowModuleNavBar = true
+    @State private var submissionAlertModel = SubmissionAlertViewModel()
+    @State private var draftToastViewModel = ToastViewModel()
     @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
@@ -54,8 +56,19 @@ public struct ModuleItemSequenceView: View {
                 .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
                     isShowHeader = isShow
                 }
+                .onPreferenceChange(AssignmentPreferenceKey.self) { model in
+                    if let model {
+                        switch model {
+                        case .confirmation(viewModel: let viewModel):
+                            submissionAlertModel = viewModel
+                        case .toastViewModel(viewModel: let viewModel):
+                            draftToastViewModel = viewModel
+                        case .moduleNavBarButton(isVisible: let isVisible):
+                            isShowModuleNavBar = isVisible
+                        }
+                    }
+                }
         }
-
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
@@ -70,6 +83,40 @@ public struct ModuleItemSequenceView: View {
         }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
+        .huiToast(
+            viewModel: .init(
+                text: draftToastViewModel.title,
+                style: .success
+            ),
+            isPresented: $draftToastViewModel.isPresented
+        )
+        .huiModal(headerTitle: submissionAlertModel.title,
+                  headerIcon: submissionAlertModel.type == .success ? Image.huiIcons.checkCircleFull : nil,
+                  headerIconColor: Color.huiColors.icon.success,
+                  isShowCancelButton: submissionAlertModel.type == .confirmation,
+                  confirmButton: submissionAlertModel.button,
+                  isPresented: $submissionAlertModel.isPresented) { assignmentConfirmationView }
+
+    }
+
+    private var assignmentConfirmationView: some View {
+        VStack(spacing: .huiSpaces.space24) {
+            if submissionAlertModel.type == .success, let submission = submissionAlertModel.submission {
+                Text(submissionAlertModel.body)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                AssignmentAttemptsRow(
+                    submission: submission,
+                    isSelected: false
+                )
+            } else {
+                Text(submissionAlertModel.body)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
+            }
+        }
     }
 
     @ViewBuilder
@@ -171,7 +218,7 @@ public struct ModuleItemSequenceView: View {
 }
 #endif
 
-fileprivate struct ContentView: View {
+private struct ContentView: View {
     let viewModel: ModuleItemSequenceViewModel
 
     var body: some View {
@@ -204,7 +251,6 @@ fileprivate struct ContentView: View {
                     AssignmentDetailsAssembly.makeView(
                         courseID: courseID,
                         assignmentID: assignmentID,
-                        isShowModuleNavBar: .constant(false),
                         onTapAssignmentOptions: viewModel.onTapAssignmentOptions,
                         didLoadAttemptCount: viewModel.didLoadAssignmentAttemptCount
                     )

@@ -27,15 +27,14 @@ struct AssignmentSubmissionView: View {
     @State private var isImagePickerVisible = false
     @State private var isTakePhotoVisible = false
     @State private var isOverlayUploadFilePresented = false
-
-   private let uploadParameters: RichContentEditorUploadParameters
-   private let rceID = "rceID"
+    @State private var assignmentPreference: AssignmentPreferenceType?
+    private let uploadParameters: RichContentEditorUploadParameters
+    private let rceID = "rceID"
     @State private var isFilePickerVisible = false
 
     // MARK: - Dependencies
 
     @Bindable private var viewModel: AssignmentDetailsViewModel
-    @Binding private var isShowModuleNavBar: Bool
     private let proxy: ScrollViewProxy
     private let dismissKeyboard: Bool
 
@@ -43,12 +42,10 @@ struct AssignmentSubmissionView: View {
 
     init(
         viewModel: AssignmentDetailsViewModel,
-        isShowModuleNavBar: Binding<Bool>,
         proxy: ScrollViewProxy,
         dismissKeyboard: Bool
     ) {
         self.viewModel = viewModel
-        self._isShowModuleNavBar = isShowModuleNavBar
         self.proxy = proxy
         self.uploadParameters = .init(context: .course(viewModel.courseID))
         self.dismissKeyboard = dismissKeyboard
@@ -64,29 +61,29 @@ struct AssignmentSubmissionView: View {
         }
         .huiOverlay(
             title: AssignmentLocalizedKeys.uploadFile.title,
-            buttons: getFileUploadButtons(),
+            buttons: makeFileUploadButtons(),
             isPresented: $isOverlayUploadFilePresented
         )
         .fileImporter(
             isPresented: $isFilePickerVisible,
-            allowedContentTypes: (viewModel.assignment?.fileExtensions ?? []).compactMap { $0.uttype }) { result in
-            switch result {
-            case .success(let url):
-                if url.startAccessingSecurityScopedResource() {
-                    addFile(url: url)
+            allowedContentTypes: viewModel.assignment?.allowedContentTypes ?? []) { result in
+                switch result {
+                case .success(let url):
+                    if url.startAccessingSecurityScopedResource() {
+                        addFile(url: url)
+                    }
+                    url.stopAccessingSecurityScopedResource()
+                case .failure(let failure):
+                    debugPrint(failure)
                 }
-                url.stopAccessingSecurityScopedResource()
-            case .failure(let failure):
-                debugPrint(failure)
             }
-        }
-        .sheet(isPresented: $isImagePickerVisible) {
-            ImagePickerViewController(sourceType: .photoLibrary, imageHandler: addFile)
-        }
-        .sheet(isPresented: $isTakePhotoVisible) {
-            ImagePickerViewController(sourceType: .camera, imageHandler: addFile)
-                .interactiveDismissDisabled()
-        }
+            .sheet(isPresented: $isImagePickerVisible) {
+                ImagePickerViewController(sourceType: .photoLibrary, imageHandler: addFile)
+            }
+            .sheet(isPresented: $isTakePhotoVisible) {
+                ImagePickerViewController(sourceType: .camera, imageHandler: addFile)
+                    .interactiveDismissDisabled()
+            }
     }
 
     private func addFile(url: URL) {
@@ -119,7 +116,13 @@ struct AssignmentSubmissionView: View {
     private var submissionContentView: some View {
         switch viewModel.selectedSubmission {
         case .text:
-            rceEditor
+            VStack(spacing: .huiSpaces.space16) {
+                Text("Your Submission", bundle: .horizon)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .huiTypography(.h3)
+                    .foregroundStyle(Color.huiColors.text.title)
+                rceEditor
+            }
         case .externalTool:
             externalToolView
                 .frame(height: 322)
@@ -150,7 +153,8 @@ struct AssignmentSubmissionView: View {
         .id(rceID)
         .focused($focusedInput)
         .onChange(of: focusedInput) { _, newValue in
-            isShowModuleNavBar = !newValue
+            viewModel.assignmentPreference = .moduleNavBarButton(isVisible: !newValue)
+            viewModel.isStartTyping = newValue
             if newValue {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     withAnimation {
@@ -173,14 +177,14 @@ struct AssignmentSubmissionView: View {
         LTIViewRepresentable(environment: .shared, tools: tools, name: nil)
     }
 
-    private func getFileUploadButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
+    private func makeFileUploadButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
         guard let fileExtensions = viewModel.assignment?.fileExtensions else {  return []}
         let isIncludeMedia = fileExtensions.contains(where: { $0.isImage || $0.isVideo })
         var buttons: [HorizonUI.Overlay.ButtonAttribute]  = []
 
         let chooseImageButton = HorizonUI.Overlay.ButtonAttribute(
-                title: AssignmentLocalizedKeys.selectMedia.title,
-                icon: Image.huiIcons.image
+            title: AssignmentLocalizedKeys.selectMedia.title,
+            icon: Image.huiIcons.image
         ) {
             isOverlayUploadFilePresented.toggle()
             isImagePickerVisible.toggle()
@@ -211,6 +215,14 @@ struct AssignmentSubmissionView: View {
     }
 }
 
-//#Preview {
-//    AssignmentSubmissionView()
-//}
+#if DEBUG
+#Preview {
+    ScrollViewWithReader { proxy in
+        AssignmentSubmissionView(
+            viewModel: AssignmentDetailsAssembly.makePreviewViewModel(),
+            proxy: proxy,
+            dismissKeyboard: true
+        )
+    }
+}
+#endif

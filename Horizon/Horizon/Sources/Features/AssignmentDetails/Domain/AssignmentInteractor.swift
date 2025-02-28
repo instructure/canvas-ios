@@ -114,6 +114,7 @@ final class AssignmentInteractorLive: AssignmentInteractor {
             .getEntities(ignoreCache: true)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0)}
+            .filter { $0.attempt != 0 }
             .map { HSubmission(entity: $0) }
             .collect()
             .eraseToAnyPublisher()

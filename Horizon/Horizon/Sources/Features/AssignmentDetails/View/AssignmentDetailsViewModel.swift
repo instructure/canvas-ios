@@ -20,18 +20,26 @@ import Combine
 import CombineSchedulers
 import Core
 import Observation
-import SwiftUI
+
 @Observable
 final class AssignmentDetailsViewModel {
     // MARK: - Input / Output
 
-    var htmlContent = ""
+    var htmlContent = "" {
+        didSet {
+            if isStartTyping {
+                saveTextEntry()
+                lastDraftSavedAt = textEntryInteractor.load()?.dateFormated
+            }
+        }
+    }
     var isOverlayToolsPresented = false
 
     // MARK: - Output
 
     private(set) var assignment: HAssignment?
     private(set) var isLoaderVisible = true
+    private(set) var isInitialLoading = true
     private(set) var attachedFiles: [File] = []
     private(set) var submitButtonTitle = ""
     private(set) var errorMessage: String?
@@ -39,30 +47,30 @@ final class AssignmentDetailsViewModel {
     private(set) var submission: HSubmission?
     private(set) var isSegmentControlVisible: Bool = false
     private(set) var selectedSubmission: AssignmentSubmissionType = .text
+    var isStartTyping = false
+    var assignmentPreference: AssignmentPreferenceType?
 
     // MARK: - Properties
 
     private var subscriptions = Set<AnyCancellable>()
     private var textEntryTimestamp: String?
     private var fileUploadTimestamp: String?
-
+    private var submissions: [HSubmission] = []
     var selectedSubmissionIndex: Int = 0 {
         didSet {
-            selectedSubmission = AssignmentSubmissionType(index: selectedSubmissionIndex) ?? .text
+            selectedSubmission = AssignmentSubmissionType(index: selectedSubmissionIndex)
             setLastDraftSavedAt()
         }
     }
 
-    var didSubmitBefore: Bool = false {
+    var hasSubmittedBefore: Bool = false {
         didSet {
-            submitButtonTitle = didSubmitBefore
-            ? AssignmentLocalizedKeys.newAttempt.title
-            : AssignmentLocalizedKeys.submitAssignment.title
+            submitButtonTitle = hasSubmittedBefore ? AssignmentLocalizedKeys.newAttempt.title : AssignmentLocalizedKeys.submitAssignment.title
         }
     }
 
     var shouldEnableSubmitButton: Bool {
-        guard didSubmitBefore == false else {
+        guard hasSubmittedBefore == false else {
             // Allow submitting a new attempt.
             return true
         }
@@ -78,15 +86,15 @@ final class AssignmentDetailsViewModel {
 
     // MARK: - Dependancies
 
+    let courseID: String
+    let assignmentID: String
     private let interactor: AssignmentInteractor
     private let textEntryInteractor: AssignmentTextEntryInteractor
     private let router: Router
-    let courseID: String
-    let assignmentID: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var onTapAssignmentOptions: PassthroughSubject<Void, Never>
     private let didLoadAttemptCount: (String?) -> Void
-    
+
     // MARK: - Init
 
     init(
@@ -109,36 +117,52 @@ final class AssignmentDetailsViewModel {
         self.didLoadAttemptCount = didLoadAttemptCount
         bindSubmissionAssignmentEvents()
         fetchAssignmentDetails()
-
-        onTapAssignmentOptions
-            .sink { [weak self] in
-                self?.isOverlayToolsPresented.toggle()
-        }
-        .store(in: &subscriptions)
     }
+
+    // MARK: - Input Actions
 
     func viewComments(controller: WeakViewController) {
         let view = SubmissionCommentAssembly.makeView(
             courseID: courseID,
             assignmentID: assignmentID,
-            attempt: 1 // TODO: Get the actual submission for the assignment, then pass submission.attempt here
+            attempt: submission?.attempt ?? 0
         )
-        let viewController = CoreHostingController(view)
-        if let presentationController = viewController.sheetPresentationController {
-            presentationController.detents = [.large()]
-            presentationController.preferredCornerRadius = 32
+        router.show(view, from: controller, options: .modal())
+    }
+
+    func viewAttempts(controller: WeakViewController) {
+        let view = AssignmentAttemptsAssembly.makeView(
+            submissions: submissions,
+            selectedSubmission: submission
+        ) { [weak self] selectedSubmission in
+            self?.hasSubmittedBefore = true
+            self?.submission = selectedSubmission
         }
-        router.show(viewController, from: controller, options: .modal())
+        router.show(view, from: controller, options: .modal(isDismissable: false))
+    }
+
+    func addFile(url: URL) {
+        interactor.addFile(url: url)
+    }
+
+    func deleteFile(file: File) {
+        interactor.cancelFile(file)
+    }
+
+    func submit() {
+        guard hasSubmittedBefore == false else {
+            hasSubmittedBefore = false
+            selectedSubmissionIndex = selectedSubmission.index
+            return
+        }
+        assignmentPreference = .confirmation(viewModel: makeSubmissionAlertViewModel())
+    }
+
+    func showDraftAlert() {
+        assignmentPreference = .confirmation(viewModel: makeDraftAlertViewModel())
     }
 
     // MARK: - Private Functions
-
-    private func fetchDrafts() {
-        let lastTextEntryDraft = textEntryInteractor.load()
-        htmlContent = lastTextEntryDraft?.text ?? ""
-        textEntryTimestamp = lastTextEntryDraft?.dateFormated
-        fileUploadTimestamp = attachedFiles.first?.createdAt?.formatted(format: "d/MM, h:mm a")
-    }
 
     private func fetchAssignmentDetails() {
         Publishers.Zip(interactor.getAssignmentDetails(), interactor.getSubmissions())
@@ -149,25 +173,50 @@ final class AssignmentDetailsViewModel {
             .store(in: &subscriptions)
     }
 
+    private func fetchSubmissions() {
+        interactor.getSubmissions()
+            .sink { [weak self] submissions in
+                guard let self else {
+                    return
+                }
+                self.submissions = submissions
+                let latestSubmission = submissions.first?.type ?? .text
+                selectedSubmission = hasSubmittedBefore ? latestSubmission : selectedSubmission
+                submission = submissions.first
+                assignment?.showSubmitButton = submission?.showSubmitButton ?? false
+                assignmentPreference = .confirmation(viewModel: makeSuccessAlertViewModel(submission: submission))
+                hasSubmittedBefore = true
+                isLoaderVisible = false
+                errorMessage = nil
+            }
+            .store(in: &subscriptions)
+    }
+
     private func configAssignmentDetails(response: HAssignment, submissions: [HSubmission]) {
         isLoaderVisible = false
+        isInitialLoading = false
         assignment = response
-
+        self.submissions = submissions
         // This is the first time to visit the assignment & did't submit before
         isSegmentControlVisible = Set(response.assignmentSubmissionTypes) == Set([.text, .fileUpload])
         let firstSubmission = response.assignmentSubmissionTypes.first ?? .text
         selectedSubmission = isSegmentControlVisible ? .text : firstSubmission
 
         // In case submit before
-        didSubmitBefore = !response.isUnsubmitted
+        hasSubmittedBefore = !response.isUnsubmitted
         let latestSubmission = submissions.first?.type ?? .text
-
-        selectedSubmission = didSubmitBefore ? latestSubmission : selectedSubmission
+        selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission
         submission = submissions.first
         didLoadAttemptCount(response.attemptCount)
     }
 
     private func bindSubmissionAssignmentEvents() {
+        onTapAssignmentOptions
+            .sink { [weak self] in
+                self?.isOverlayToolsPresented.toggle()
+            }
+            .store(in: &subscriptions)
+
         interactor.attachments
             .removeDuplicates()
             .receive(on: scheduler)
@@ -175,8 +224,6 @@ final class AssignmentDetailsViewModel {
                 guard let self else {
                     return
                 }
-                print(files.count,"=====")
-
                 attachedFiles = files
                 fetchDrafts()
             }
@@ -188,27 +235,30 @@ final class AssignmentDetailsViewModel {
             .sink { [weak self] result in
                 switch result {
                 case .success:
-                    self?.fetchAssignmentDetails()
+                    self?.fetchSubmissions()
                     self?.interactor.cancelAllFiles()
                 case .failure(let error):
                     self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
+                    self?.interactor.cancelAllFiles()
                 }
             }
             .store(in: &subscriptions)
     }
 
-    // MARK: - Input Actions
-
-    func addFile(url: URL) {
-        interactor.addFile(url: url)
+    private func saveTextEntry() {
+        textEntryInteractor.save(htmlContent)
     }
 
-    func deleteFile(file: File) {
-        interactor.cancelFile(file)
+    private func fetchDrafts() {
+        let lastTextEntryDraft = textEntryInteractor.load()
+        htmlContent = lastTextEntryDraft?.text ?? ""
+        textEntryTimestamp = lastTextEntryDraft?.dateFormated
+        fileUploadTimestamp = attachedFiles.first?.createdAt?.formatted(format: "d/MM, h:mm a")
+        lastDraftSavedAt = fileUploadTimestamp
     }
 
-    func submitTextEntry() {
+    private func submitTextEntry() {
         interactor.submitTextEntry(with: htmlContent)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
@@ -218,21 +268,12 @@ final class AssignmentDetailsViewModel {
             } receiveValue: { [weak self] _ in
                 self?.htmlContent = ""
                 self?.textEntryInteractor.delete()
-                self?.fetchAssignmentDetails()
+                self?.fetchSubmissions()
             }
             .store(in: &subscriptions)
     }
 
-    func saveTextEntry() {
-        textEntryInteractor.save(htmlContent)
-    }
-
-    func submit() {
-        guard !didSubmitBefore else {
-            didSubmitBefore = false
-            selectedSubmissionIndex = selectedSubmission.index
-            return
-        }
+    private func performSubmission() {
         isLoaderVisible = true
         switch selectedSubmission {
         case .text:
@@ -255,7 +296,7 @@ final class AssignmentDetailsViewModel {
         }
     }
 
-    func deleteDraft() {
+    private func deleteDraft() {
         switch selectedSubmission {
         case .text:
             textEntryInteractor.delete()
@@ -269,5 +310,52 @@ final class AssignmentDetailsViewModel {
         default:
             break
         }
+        let draftToastViewModel = ToastViewModel(
+            title: AssignmentLocalizedKeys.draftDeletedAlert.title,
+            isPresented: true
+        )
+        assignmentPreference = .toastViewModel(viewModel: draftToastViewModel)
+    }
+
+    private func makeConfirmationMessage() -> String {
+        guard isSegmentControlVisible else {
+            return AssignmentLocalizedKeys.confirmationNormalBody.title
+        }
+        return selectedSubmission == .text
+        ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
+        : AssignmentLocalizedKeys.submitUploadFileWithText.title
+    }
+
+    private func makeSubmissionAlertViewModel() -> SubmissionAlertViewModel {
+        SubmissionAlertViewModel(
+            title: AssignmentLocalizedKeys.confirmSubmission.title,
+            body: makeConfirmationMessage(),
+            isPresented: true,
+            button: .init(title: AssignmentLocalizedKeys.submitAttempt.title) { [weak self] in
+                self?.performSubmission()
+            }
+        )
+    }
+
+    private func makeDraftAlertViewModel() -> SubmissionAlertViewModel {
+        SubmissionAlertViewModel(
+            title: AssignmentLocalizedKeys.deleteDraftTitle.title,
+            body: AssignmentLocalizedKeys.deleteDraftBody.title,
+            isPresented: true,
+            button: .init(title: AssignmentLocalizedKeys.deleteDraftTitle.title) { [weak self] in
+                self?.deleteDraft()
+            }
+        )
+    }
+
+    private func makeSuccessAlertViewModel(submission: HSubmission?) -> SubmissionAlertViewModel {
+        SubmissionAlertViewModel(
+            title: AssignmentLocalizedKeys.successfullySubmitted.title,
+            body: AssignmentLocalizedKeys.successfullySubmittedBody.title,
+            isPresented: true,
+            type: .success,
+            submission: submission,
+            button: .init(title: AssignmentLocalizedKeys.viewSubmission.title) {}
+        )
     }
 }

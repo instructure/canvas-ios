@@ -96,6 +96,7 @@ public extension HorizonUI {
                 if let confirmButton = confirmButton {
                     HorizonUI.PrimaryButton(confirmButton.title, type: .blue) {
                         confirmButton.action()
+                        isPresented.toggle()
                     }
                 }
             }

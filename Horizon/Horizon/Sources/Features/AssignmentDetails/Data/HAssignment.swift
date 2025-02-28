@@ -17,6 +17,7 @@
 //
 
 import Core
+import UniformTypeIdentifiers
 
 struct HAssignment {
     let id: String
@@ -93,6 +94,11 @@ struct HAssignment {
 
     var fileExtensions: [UTI] {
         allowedExtensions.compactMap { UTI(extension: $0) }
+    }
+
+    var allowedContentTypes: [UTType] {
+       let types = fileExtensions.compactMap { $0.uttype }
+        return types.isEmpty ? [.item] : types
     }
 
     var allowedFileExtensions: String {

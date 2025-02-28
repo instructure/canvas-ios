@@ -90,7 +90,10 @@ struct MyAssignmentSubmissionsView: View {
             EmptyView()
         case .fileUpload:
             fileUploadView
-            .onAppear { selectedUploadedFile = submission.attachments?.first }
+                .onChange(of: submission.attachments) { _, _ in
+                    selectedUploadedFile = submission.attachments?.first
+                }
+                .onAppear { selectedUploadedFile = submission.attachments?.first }
         }
     }
 
@@ -103,7 +106,7 @@ struct MyAssignmentSubmissionsView: View {
                     uploadedFileRow(file: file)
                 }
             }
-            fileDetailsView
+            fileDetailsView(file: selectedUploadedFile)
         }
     }
 
@@ -128,8 +131,8 @@ struct MyAssignmentSubmissionsView: View {
     }
 
     @ViewBuilder
-    private var fileDetailsView: some View {
-        if let fileID = selectedUploadedFile?.id {
+    private func fileDetailsView(file: File?) -> some View {
+        if let fileID = file?.id {
             FileDetailsViewRepresentable(
                 isScrollTopReached: .constant(false),
                 isFinishLoading: .constant(false),
@@ -143,6 +146,8 @@ struct MyAssignmentSubmissionsView: View {
     }
 }
 
-//#Preview {
-//    MyAssignmentSubmissionsView()
-//}
+#if DEBUG
+#Preview {
+    MyAssignmentSubmissionAssembly.makePreview()
+}
+#endif

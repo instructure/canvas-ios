@@ -87,6 +87,9 @@
     "Assignment due dates" : {
 
     },
+    "Assignment Successfully Submitted!" : {
+
+    },
     "Astana (+05:00/+05:00)" : {
 
     },
@@ -99,7 +102,13 @@
     "Atlantic Time (Canada) (-04:00/-03:00)" : {
 
     },
+    "Attempt" : {
+
+    },
     "Attempt History" : {
+
+    },
+    "Attempts" : {
 
     },
     "Auckland (+12:00/+13:00)" : {
@@ -208,6 +217,9 @@
 
     },
     "Complete all of the required items." : {
+
+    },
+    "Confirm Submission" : {
 
     },
     "Confirmation" : {
@@ -349,6 +361,9 @@
 
     },
     "Indiana (East) (-05:00/-04:00)" : {
+
+    },
+    "Instructions" : {
 
     },
     "International Date Line West (-12:00)" : {
@@ -537,6 +552,12 @@
     "Ok" : {
 
     },
+    "Once deleted, this draft cannot be recovered." : {
+
+    },
+    "Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
     "Open in a New Tab" : {
 
     },
@@ -645,6 +666,9 @@
     "Saved at " : {
 
     },
+    "Score" : {
+
+    },
     "Scores" : {
 
     },
@@ -690,6 +714,9 @@
     "Submit Assignment" : {
 
     },
+    "Submit Attempt" : {
+
+    },
     "Summarize this material" : {
 
     },
@@ -727,6 +754,9 @@
 
     },
     "There was an error. please try again." : {
+
+    },
+    "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
 
     },
     "Tijuana (-08:00/-07:00)" : {
@@ -768,6 +798,9 @@
     "Vienna (+01:00/+02:00)" : {
 
     },
+    "View Submission" : {
+
+    },
     "Vilnius (+02:00/+03:00)" : {
 
     },
@@ -778,6 +811,9 @@
 
     },
     "Warsaw (+01:00/+02:00)" : {
+
+    },
+    "We received your submission. You will be notified once it's been reviewed." : {
 
     },
     "Wellington (+12:00/+13:00)" : {
@@ -795,7 +831,19 @@
     "Yes" : {
 
     },
+    "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
+    "You are submitting an uploaded file. Any content in the text field will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
     "Your Courses" : {
+
+    },
+    "Your draft was deleted." : {
+
+    },
+    "Your Submission" : {
 
     },
     "Your Text Submission" : {

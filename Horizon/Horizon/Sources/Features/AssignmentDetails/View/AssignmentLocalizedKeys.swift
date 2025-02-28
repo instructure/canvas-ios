@@ -34,6 +34,19 @@ enum AssignmentLocalizedKeys {
     case attemptHistory
     case comments
     case tools
+    case emptyAttempt
+    case confirmSubmission
+    case confirmationNormalBody
+    case cancel
+    case submitAttempt
+    case submitUploadFileWithText
+    case submitTextWithUploadFile
+    case successfullySubmitted
+    case successfullySubmittedBody
+    case viewSubmission
+    case deleteDraftTitle
+    case deleteDraftBody
+    case draftDeletedAlert
 
     var title: String {
         switch self {
@@ -67,6 +80,42 @@ enum AssignmentLocalizedKeys {
             return String(localized: "Comments", bundle: .horizon)
         case .tools:
             return String(localized: "Tools", bundle: .horizon)
+        case .emptyAttempt:
+            return String(
+                localized: "This assignment allows multiple attempts. Once you've made a submission, you can view it here.",
+                bundle: .horizon
+            )
+        case .confirmSubmission:
+            return String(localized: "Confirm Submission", bundle: .horizon)
+        case .confirmationNormalBody:
+            return String(localized: "Once you submit this attempt, you won’t be able to make any changes.", bundle: .horizon)
+        case .cancel:
+            return String(localized: "Cancel", bundle: .horizon)
+        case .submitAttempt:
+            return String(localized: "Submit Attempt", bundle: .horizon)
+        case .submitUploadFileWithText:
+            return String(
+                localized: "You are submitting an uploaded file. Any content in the text field will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes.",
+                bundle: .horizon
+            )
+        case .submitTextWithUploadFile:
+            return String(
+                localized: "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes.",
+                bundle: .horizon
+            )
+        case .successfullySubmitted:
+            return String(localized: "Assignment Successfully Submitted!", bundle: .horizon)
+        case .successfullySubmittedBody:
+            return String(localized: "We received your submission. You will be notified once it's been reviewed.", bundle: .horizon)
+        case .viewSubmission:
+            return String(localized: "View Submission", bundle: .horizon)
+        case .deleteDraftTitle:
+            return String(localized: "Delete Draft", bundle: .horizon)
+        case .deleteDraftBody:
+            return String(localized: "Once deleted, this draft cannot be recovered.", bundle: .horizon)
+        case .draftDeletedAlert:
+            return String(localized: "Your draft was deleted.", bundle: .horizon)
+
         }
     }
 }

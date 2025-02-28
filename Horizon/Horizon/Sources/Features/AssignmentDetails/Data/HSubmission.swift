@@ -19,17 +19,16 @@
 import Foundation
 import Core
 
-struct HSubmission {
-    // MARK: - Dependencies
-
+struct HSubmission: Hashable, Equatable {
     let id: String
     let assignmentID: String
     let attachments: [File]?
     let body: String?
     let type: AssignmentSubmissionType?
     let attempt: Int
-    let postedAt: Date?
+    let submittedAt: Date?
     let grade: String?
+    let showSubmitButton: Bool
 
     // MARK: - Init
 
@@ -40,8 +39,9 @@ struct HSubmission {
         self.body = entity.body
         self.type = AssignmentSubmissionType(rawValue: entity.type?.rawValue ?? "")
         self.attempt = entity.attempt
-        self.postedAt = entity.postedAt
+        self.submittedAt = entity.submittedAt
         self.grade = entity.grade
+        self.showSubmitButton = entity.assignment?.hasAttemptsLeft ?? false
     }
 
     init(
@@ -51,8 +51,9 @@ struct HSubmission {
         body: String? = nil,
         type: AssignmentSubmissionType? = nil,
         attempt: Int = 10,
-        postedAt: Date? = nil,
-        grade: String? = nil
+        submittedAt: Date? = nil,
+        grade: String? = nil,
+        showSubmitButton: Bool = true
     ) {
         self.id = id
         self.assignmentID = assignmentID
@@ -60,7 +61,8 @@ struct HSubmission {
         self.body = body
         self.type = type
         self.attempt = attempt
-        self.postedAt = postedAt
+        self.submittedAt = submittedAt
         self.grade = grade
+        self.showSubmitButton = showSubmitButton
     }
 }

@@ -63,7 +63,6 @@ final class AssignmentDetailsAssembly {
     static func makeView(
         courseID: String,
         assignmentID: String,
-        isShowModuleNavBar: Binding<Bool>,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetails {
@@ -73,20 +72,23 @@ final class AssignmentDetailsAssembly {
                 assignmentID: assignmentID,
                 onTapAssignmentOptions: onTapAssignmentOptions,
                 didLoadAttemptCount: didLoadAttemptCount
-            ),
-            isShowModuleNavBar: isShowModuleNavBar
+            )
         )
     }
 
 #if DEBUG
     static func makePreview() -> AssignmentDetails {
+        return AssignmentDetails(viewModel: makePreviewViewModel())
+    }
+
+    static func makePreviewViewModel() -> AssignmentDetailsViewModel {
         let interactor = AssignmentInteractorPreview()
         let assignmentTextEntryInteractor = AssignmentTextEntryInteractorLive(
             courseID: "courseID",
             assignmentID: "assignmentID",
             userDefaults: AppEnvironment.shared.userDefaults
         )
-        let viewModel = AssignmentDetailsViewModel(
+        return AssignmentDetailsViewModel(
             interactor: interactor,
             textEntryInteractor: assignmentTextEntryInteractor,
             router: AppEnvironment.shared.router,
@@ -94,7 +96,7 @@ final class AssignmentDetailsAssembly {
             assignmentID: "assignmentID",
             onTapAssignmentOptions: .init()
         ) { _ in}
-        return AssignmentDetails(viewModel: viewModel, isShowModuleNavBar: .constant(false))
+
     }
 #endif
 }

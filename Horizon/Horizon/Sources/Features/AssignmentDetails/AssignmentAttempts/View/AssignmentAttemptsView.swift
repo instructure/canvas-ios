@@ -21,18 +21,37 @@ import HorizonUI
 
 struct AssignmentAttemptsView: View {
     @Environment(\.dismiss) private var dismiss
-    let submissions: [HSubmission] = []
+
+    // MARK: - Dependencies
+
+    private let submissions: [HSubmission]
+    @State private var selectedSubmission: HSubmission?
+    private let didSelectSubmission: (HSubmission?) -> Void
+
+    init(
+        submissions: [HSubmission],
+        selectedSubmission: HSubmission?,
+        didSelectSubmission: @escaping (HSubmission?) -> Void
+    ) {
+        self.submissions = submissions
+        self.selectedSubmission = selectedSubmission
+        self.didSelectSubmission = didSelectSubmission
+    }
+
     var body: some View {
         VStack(spacing: .huiSpaces.space32) {
             headerView
-
-            ScrollView {
-                attemptRow(submission: .init(id: "", assignmentID: ""))
+            if submissions.isEmpty {
+                Text(AssignmentLocalizedKeys.emptyAttempt.title)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .huiTypography(.p1)
+            } else {
+                mainContent
             }
-            Spacer()
-
         }
         .padding(.huiSpaces.space24)
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var headerView: some View {
@@ -46,31 +65,37 @@ struct AssignmentAttemptsView: View {
             Spacer()
 
             HorizonUI.IconButton(Image.huiIcons.close, type: .white) {
+                didSelectSubmission(selectedSubmission)
                 dismiss()
             }
             .huiElevation(level: .level3)
         }
     }
 
-    private func attemptRow(submission: HSubmission) -> some View {
-        VStack {
-            HStack {
-                Text("Attempt", bundle: .horizon)
-
-                Text("ss")
+    private var mainContent: some View {
+        ScrollView {
+            VStack(spacing: .huiSpaces.space8) {
+                ForEach(submissions, id: \.self) { submission in
+                    Button {
+                        selectedSubmission = submission
+                    } label: {
+                        AssignmentAttemptsRow(
+                            submission: submission,
+                            isSelected: submission == selectedSubmission
+                        )
+                    }
+                }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundStyle(Color.huiColors.text.body)
-            .huiTypography(.p2)
-
-            Text(submission.postedAt?.formatted(format: "d/MM, h:mm a") ?? "dsdsds")
-                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.huiSpaces.space16)
-        .huiBorder(level: .level1, color: Color.huiColors.lineAndBorders.lineStroke, radius: 16)
     }
 }
 
 #Preview {
-    AssignmentAttemptsView()
+    AssignmentAttemptsView(
+        submissions: [
+            .init(id: "11", assignmentID: "submittedAt", attempt: 2),
+            .init(id: "11", assignmentID: "submittedAt", attempt: 3),
+            .init(id: "11", assignmentID: "submittedAt", attempt: 4)
+        ],
+        selectedSubmission: nil) { _ in }
 }
