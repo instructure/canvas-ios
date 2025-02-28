@@ -118,7 +118,7 @@ extension GradeFilterViewModel {
         let router: Router
         let isShowGradingPeriod: Bool
         var courseName: String?
-        var selectedGradingPeriodPublisher = CurrentValueRelay<String?>(nil)
+        var selectedGradingPeriodPublisher = PassthroughRelay<String?>()
         var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
         var gradingPeriods: [GradingPeriod]?
         var sortByOptions: [GradeArrangementOptions]

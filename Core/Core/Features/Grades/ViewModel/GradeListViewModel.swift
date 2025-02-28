@@ -64,7 +64,7 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Input / Output
     @Published var baseOnGradedAssignment = true
     @Published var isShowingRevertDialog = false
-    let selectedGradingPeriod = CurrentValueRelay<String?>(nil)
+    let didSelectGradingPeriod = PassthroughRelay<String?>()
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
     var isParentApp: Bool {
         gradeFilterInteractor.isParentApp
@@ -76,6 +76,7 @@ public final class GradeListViewModel: ObservableObject {
     private let gradeFilterInteractor: GradeFilterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let triggerGradeRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
+    private var selectedGradingPeriod: String?
 
     // MARK: - Init
 
@@ -98,13 +99,10 @@ public final class GradeListViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        selectedGradingPeriod
-            // The first update is the initial nil value.
-            // The second update is when we determine which grading period we work with
-            // but during that flow grades are loaded so we don't need to trigger another refresh.
-            .dropFirst(2)
-            .sink { [triggerGradeRefresh] _ in
-                triggerGradeRefresh.accept((true, nil))
+        didSelectGradingPeriod
+            .sink { [weak self] newGradingPeriod in
+                self?.selectedGradingPeriod = newGradingPeriod
+                self?.triggerGradeRefresh.accept((true, nil))
             }
             .store(in: &subscriptions)
 
@@ -173,16 +171,14 @@ public final class GradeListViewModel: ObservableObject {
             gradingPeriods: gradingPeriodData.gradingPeriods
         )
 
-        if selectedGradingPeriod.value != id {
-            selectedGradingPeriod.accept(id)
-        }
+        selectedGradingPeriod = id
     }
 
     private func refreshGrades(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getGrades(
             arrangeBy: selectedGroupByOption.value,
             baseOnGradedAssignment: baseOnGradedAssignment,
-            gradingPeriodID: selectedGradingPeriod.value,
+            gradingPeriodID: selectedGradingPeriod,
             ignoreCache: ignoreCache
         )
         .receive(on: scheduler)
@@ -259,7 +255,7 @@ public final class GradeListViewModel: ObservableObject {
             router: router,
             isShowGradingPeriod: isShowGradingPeriod,
             courseName: courseName,
-            selectedGradingPeriodPublisher: selectedGradingPeriod,
+            selectedGradingPeriodPublisher: didSelectGradingPeriod,
             selectedSortByPublisher: selectedGroupByOption,
             gradingPeriods: gradeData.gradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases

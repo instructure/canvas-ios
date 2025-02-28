@@ -171,7 +171,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     func test_saveButtonTapped() {
         // Given
-        let selectedGradingPeriodPublisher = CurrentValueRelay<String?>(nil)
+        let selectedGradingPeriodPublisher = PassthroughRelay<String?>()
         let selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
         let listGradingPeriods = getListGradingPeriods()
         let viewController = WeakViewController()

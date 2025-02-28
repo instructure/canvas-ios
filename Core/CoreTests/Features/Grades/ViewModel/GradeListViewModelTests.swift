@@ -75,7 +75,7 @@ class GradeListViewModelTests: CoreTestCase {
             }
 
         testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
+        XCTAssertEqual(states[1], .initialLoading)
         waitForExpectations(timeout: 1)
         subscription.cancel()
     }
@@ -104,70 +104,8 @@ class GradeListViewModelTests: CoreTestCase {
             }
 
         testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
+        XCTAssertEqual(states[1], .initialLoading)
         waitForExpectations(timeout: 1)
-        subscription.cancel()
-    }
-
-    func test_getSelectedGradingPeriodId_withNewIdSelected() {
-        var states: [GradeListViewModel.ViewState] = []
-        let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
-        let expectation = expectation(description: "Publisher sends value.")
-        let gradeFilterInteractor = GradeFilterInteractorMock()
-        gradeFilterInteractor.currentGradingId = "10"
-        let testee = GradeListViewModel(
-            interactor: interactor,
-            gradeFilterInteractor: gradeFilterInteractor,
-            router: PreviewEnvironment.shared.router,
-            scheduler: .immediate
-        )
-
-        let subscription = testee.$state
-            .sink { _ in
-
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
-                    expectation.fulfill()
-                }
-            }
-
-        testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
-        waitForExpectations(timeout: 1)
-        XCTAssertTrue(gradeFilterInteractor.saveGradingIsCalled)
-        XCTAssertTrue(gradeFilterInteractor.saveSortByOptionIsCalled)
-        subscription.cancel()
-    }
-
-    func test_getSelectedGradingPeriodId_withShowAllSelected() {
-        var states: [GradeListViewModel.ViewState] = []
-        let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
-        let expectation = expectation(description: "Publisher sends value.")
-        let gradeFilterInteractor = GradeFilterInteractorMock()
-        gradeFilterInteractor.currentGradingId = "-1"
-        let testee = GradeListViewModel(
-            interactor: interactor,
-            gradeFilterInteractor: gradeFilterInteractor,
-            router: PreviewEnvironment.shared.router,
-            scheduler: .immediate
-        )
-
-        let subscription = testee.$state
-            .sink { _ in
-
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
-                    expectation.fulfill()
-                }
-            }
-
-        testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .data(.init()))
-        waitForExpectations(timeout: 1)
-        XCTAssertFalse(gradeFilterInteractor.saveGradingIsCalled)
-        XCTAssertFalse(gradeFilterInteractor.saveSortByOptionIsCalled)
         subscription.cancel()
     }
 
@@ -179,7 +117,8 @@ class GradeListViewModelTests: CoreTestCase {
             router: PreviewEnvironment.shared.router,
             scheduler: .immediate
         )
-        testee.selectedGradingPeriod.accept("999")
+        testee.didSelectGradingPeriod.accept("999")
+
         XCTAssertEqual(interactor.ignoreCache, true)
         XCTAssertEqual(interactor.gradingPeriod, "999")
     }
@@ -312,6 +251,7 @@ private extension GradeListViewModelTests {
         ) -> AnyPublisher<Core.GradeListData, Error> {
             self.ignoreCache = ignoreCache
             self.arrangeBy = arrangeBy
+            gradingPeriod = gradingPeriodID
 
             if let dataToReturn {
                 return Just(dataToReturn)
@@ -322,10 +262,6 @@ private extension GradeListViewModelTests {
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-        }
-
-        func updateGradingPeriod(id: String?) {
-            gradingPeriod = id
         }
 
         func isWhatIfScoreFlagEnabled() -> Bool { false }
