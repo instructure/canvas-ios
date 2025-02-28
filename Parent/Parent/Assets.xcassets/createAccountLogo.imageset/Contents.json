@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "loading-logo.pdf",
+      "filename" : "Parent L.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Parent D.svg",
       "idiom" : "universal"
     }
   ],
