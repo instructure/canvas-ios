@@ -41,7 +41,7 @@ extension InstUI {
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraitsIsToggle()
-            .accessibilityValue(isOn ? Text("on", bundle: .core) : Text("off", bundle: .core))
+            .accessibilityValue(accessibilityValue)
             .addHapticFeedback(isOn: isOn)
             .contentShape(Rectangle())
             .onTapGesture {
@@ -49,6 +49,19 @@ extension InstUI {
                     isOn.toggle()
                 }
             }
+            .gesture(DragGesture(minimumDistance: 0)
+                .onChanged { value in
+                    if abs(value.translation.width) < 20 { return }
+
+                    withAnimation {
+                        switch value.translation.width {
+                        case ...0: isOn = false
+                        case 0...: isOn = true
+                        default: break
+                        }
+                    }
+                }
+            )
         }
 
         private var toggle: some View {
@@ -93,6 +106,24 @@ extension InstUI {
                 return .backgroundDark
             }
             return isOn ? .accentColor : .textDarkest
+        }
+
+        private var accessibilityValue: String {
+            if isOn {
+                String(
+                    localized: "toggle_on",
+                    defaultValue: "on",
+                    bundle: .core,
+                    comment: "The ON state of a toggle."
+                )
+            } else {
+                String(
+                    localized: "toggle_off",
+                    defaultValue: "off",
+                    bundle: .core,
+                    comment: "The OFF state of a toggle."
+                )
+            }
         }
     }
 }

@@ -330,7 +330,12 @@ extension RecurrenceRule {
 // MARK: - Helpers
 
 private extension String {
-    static let on = String(localized: "on", bundle: .core)
+    static let on = String(
+        localized: "recurs_on_lowercase",
+        defaultValue: "on",
+        bundle: .core,
+        comment: "Event recurs ON a specific day of the month, week, or year."
+    )
     static let onSpaced = " " + on + " "
     static let commaSpaced = ", "
     static let space = " "
