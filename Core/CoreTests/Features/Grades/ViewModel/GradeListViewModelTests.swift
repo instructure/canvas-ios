@@ -236,12 +236,16 @@ class GradeListViewModelTests: CoreTestCase {
 
 private extension GradeListViewModelTests {
     class GradeListInteractorErrorMock: GradeListInteractor {
+        func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
+            Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
+        }
+        
         var courseID: String { "" }
         func getGrades(
-            arrangeBy _: Core.GradeArrangementOptions,
-            baseOnGradedAssignment _: Bool,
-            ignoreCache _: Bool,
-            shouldUpdateGradingPeriod: Bool
+            arrangeBy: GradeArrangementOptions,
+            baseOnGradedAssignment: Bool,
+            gradingPeriodID: String?,
+            ignoreCache: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
         }
@@ -251,12 +255,23 @@ private extension GradeListViewModelTests {
     }
 
     class GradeListInteractorEmptySectionsMock: GradeListInteractor {
+        func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
+            let result = GradeListGradingPeriodData(
+                course: .save(.make(), in: singleSharedTestDatabase.viewContext),
+                currentlyActiveGradingPeriodID: nil,
+                gradingPeriods: []
+            )
+            return Just(result)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
         var courseID: String { "" }
         func getGrades(
-            arrangeBy _: Core.GradeArrangementOptions,
-            baseOnGradedAssignment _: Bool,
-            ignoreCache _: Bool,
-            shouldUpdateGradingPeriod: Bool
+            arrangeBy: GradeArrangementOptions,
+            baseOnGradedAssignment: Bool,
+            gradingPeriodID: String?,
+            ignoreCache: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Just(emptySections)
                 .setFailureType(to: Error.self)
@@ -278,11 +293,22 @@ private extension GradeListViewModelTests {
             self.dataToReturn = dataToReturn
         }
 
+        func loadBaseData(ignoreCache: Bool) -> AnyPublisher<Core.GradeListGradingPeriodData, any Error> {
+            let result = GradeListGradingPeriodData(
+                course: .save(.make(), in: singleSharedTestDatabase.viewContext),
+                currentlyActiveGradingPeriodID: nil,
+                gradingPeriods: []
+            )
+            return Just(result)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+
         func getGrades(
-            arrangeBy: Core.GradeArrangementOptions,
-            baseOnGradedAssignment _: Bool,
-            ignoreCache: Bool,
-            shouldUpdateGradingPeriod: Bool
+            arrangeBy: GradeArrangementOptions,
+            baseOnGradedAssignment: Bool,
+            gradingPeriodID: String?,
+            ignoreCache: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             self.ignoreCache = ignoreCache
             self.arrangeBy = arrangeBy

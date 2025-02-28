@@ -22,15 +22,28 @@ import Combine
 import Foundation
 
 final class GradeListInteractorPreview: GradeListInteractor {
+    let context = PreviewEnvironment.shared.database.viewContext
+    let isBaseDataLoaded = true
+
+    func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
+        let result = GradeListGradingPeriodData(
+            course: Course.save(.make(), in: context),
+            currentlyActiveGradingPeriodID: nil,
+            gradingPeriods: []
+        )
+        return Just(result)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+    
     var courseID: String { "courseID" }
 
     func getGrades(
         arrangeBy _: GradeArrangementOptions,
         baseOnGradedAssignment _: Bool,
-        ignoreCache _: Bool,
-        shouldUpdateGradingPeriod: Bool
+        gradingPeriodID: String?,
+        ignoreCache _: Bool
     ) -> AnyPublisher<GradeListData, Error> {
-        let context = PreviewEnvironment.shared.database.viewContext
         return Just(
             GradeListData(
                 id: UUID.string,
