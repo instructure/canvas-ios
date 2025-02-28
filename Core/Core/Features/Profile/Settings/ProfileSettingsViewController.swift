@@ -93,6 +93,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         inboxSettingsInteractor
             .environmentSettings
             .sink { [weak self] environmentSettings in
+                guard let environmentSettings else { return }
                 var isFeatureEnabled = environmentSettings.enableInboxSignatureBlock
                 if (self?.env.app == .student) {
                     isFeatureEnabled = isFeatureEnabled && !environmentSettings.disableInboxSignatureBlockForStudents
@@ -105,6 +106,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         inboxSettingsInteractor
             .settings
             .sink { [weak self] inboxSettings in
+                guard let inboxSettings else { return }
                 self?.isInboxSignatureEnabled = inboxSettings.useSignature
                 self?.reloadData()
             }

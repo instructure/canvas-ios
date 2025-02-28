@@ -23,8 +23,8 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
 
-    public let settings = PassthroughRelay<CDInboxSettings>()
-    public let environmentSettings = PassthroughRelay<CDEnvironmentSettings>()
+    public let settings = CurrentValueSubject<CDInboxSettings?, Never>(nil)
+    public let environmentSettings = CurrentValueSubject<CDEnvironmentSettings?, Never>(nil)
     private var subscriptions = Set<AnyCancellable>()
     private var settingsStore: ReactiveStore<GetInboxSettings>
     private var environmentSettingsStore: ReactiveStore<GetEnvironmentSettings>
@@ -43,7 +43,7 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
         settingsStore.getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
                 if let value = settings.first {
-                    self?.settings.accept(value)
+                    self?.settings.send(value)
                 }
             })
             .store(in: &subscriptions)
@@ -51,13 +51,14 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
         environmentSettingsStore.getEntities()
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
                 if let settings = settings.first {
-                    self?.environmentSettings.accept(settings)
+                    self?.environmentSettings.send(settings)
                 }
             })
             .store(in: &subscriptions)
 
         Publishers.CombineLatest(settings, environmentSettings)
             .sink { [weak self, environment] (settings, environmentSettings) in
+                guard let settings, let environmentSettings else { return }
                 var useSignature = settings.useSignature && environmentSettings.enableInboxSignatureBlock
                 if environment.app == .student {
                     useSignature = useSignature && !environmentSettings.disableInboxSignatureBlockForStudents

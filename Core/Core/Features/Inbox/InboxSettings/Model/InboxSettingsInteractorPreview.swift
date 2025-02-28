@@ -23,8 +23,8 @@ public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
 
     public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
-    public let settings = PassthroughRelay<CDInboxSettings>()
-    public let environmentSettings = PassthroughRelay<CDEnvironmentSettings>()
+    public let settings = CurrentValueSubject<CDInboxSettings?, Never>(nil)
+    public let environmentSettings = CurrentValueSubject<CDEnvironmentSettings?, Never>(nil)
 
     public init() { }
 
