@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetEnvironmentSettingsRequest: APIRequestable {
-    public struct Response: Codable {
-        public let calendar_contexts_limit: Int?
-        public let enable_inbox_signature_block: Bool?
-        public let disable_inbox_signature_block_for_students: Bool?
+import Foundation
+
+public class GetInboxSettings: APIUseCase {
+    public typealias Model = CDInboxSettings
+    public typealias Response = APIInboxSettings
+
+    let userId: String
+
+    public init(userId: String) {
+        self.userId = userId
     }
 
-    public let path = "settings/environment.json"
+    public var cacheKey: String? {
+        return "get-inbox-settings"
+    }
 
-    public init() {}
+    public var scope: Scope {
+        return .where(#keyPath(CDInboxSettings.userId), equals: userId, orderBy: #keyPath(CDInboxSettings.userId))
+    }
+
+    public var request = GetInboxSettingsRequest()
 }
