@@ -25,5 +25,5 @@ public protocol InboxSettingsInteractor {
     var settings: PassthroughRelay<CDInboxSettings> { get }
     var environmentSettings: PassthroughRelay<CDEnvironmentSettings> { get }
 
-    func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<URLResponse?, Error>
+    func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<Void, Error>
 }

@@ -47,6 +47,71 @@ public struct GetInboxSettingsRequest: APIGraphQLRequestable {
         """
 }
 
+public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
+    public typealias Response = APIUpdateInboxSettings
+
+    public struct Input: Codable, Equatable {
+        let outOfOfficeLastDate: Date?
+        let outOfOfficeMessage: String?
+        let outOfOfficeSubject: String?
+        let outOfOfficeFirstDate: Date?
+        let signature: String?
+        let useOutOfOffice: Bool?
+        let useSignature: Bool?
+    }
+
+    public struct Variables: Codable, Equatable {
+        var input: Input
+    }
+    public let variables: Variables
+
+    public init(input: Input) {
+        variables = Variables(input: input)
+    }
+
+    public init (inboxSettings: CDInboxSettings) {
+        let input = Input(
+            outOfOfficeLastDate: inboxSettings.outOfOfficeLastDate,
+            outOfOfficeMessage: inboxSettings.outOfOfficeMessage,
+            outOfOfficeSubject: inboxSettings.outOfOfficeSubject,
+            outOfOfficeFirstDate: inboxSettings.outOfOfficeFirstDate,
+            signature: inboxSettings.signature,
+            useOutOfOffice: inboxSettings.useOutOfOffice,
+            useSignature: inboxSettings.useSignature
+        )
+        self.init(input: input)
+    }
+
+    static let operationName = "InboxSettings"
+    static let query = """
+        mutation \(operationName)($input: UpdateMyInboxSettingsInput!) {
+          updateMyInboxSettings(input: $input) {
+            myInboxSettings { 
+                _id
+                createdAt
+                outOfOfficeLastDate
+                outOfOfficeMessage
+                outOfOfficeSubject
+                outOfOfficeFirstDate
+                signature
+                updatedAt
+                useOutOfOffice
+                useSignature
+                userId
+            }
+          }
+        }
+        """
+}
+
+public struct APIUpdateInboxSettings: Codable, Equatable {
+    let data: UpdateMyInboxSettings
+
+    struct UpdateMyInboxSettings: Codable, Equatable {
+        let updateMyInboxSettings: APIInboxSettings.MyInboxSettings
+    }
+}
+
 public struct APIInboxSettings: Codable, Equatable {
     let data: APIInboxSettings.MyInboxSettings
 

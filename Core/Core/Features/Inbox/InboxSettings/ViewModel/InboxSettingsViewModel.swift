@@ -58,15 +58,17 @@ public class InboxSettingsViewModel: ObservableObject {
 
     private func setupInputBindings() {
         didTapSave
-            .flatMap { [weak self, inboxSettings, useSignature, signature] controller in
-                guard let inboxSettings, let self else { return Just(controller).setFailureType(to: Error.self).eraseToAnyPublisher() }
-                inboxSettings.useSignature = useSignature
-                inboxSettings.signature = signature
+            .flatMap { [weak self] controller in
+                guard let self, let newSttings = self.inboxSettings else { return Just(controller).setFailureType(to: Error.self).eraseToAnyPublisher() }
+
+                newSttings.useSignature = useSignature
+                newSttings.signature = signature
                 return self.inboxSettingsInteractor
-                    .updateInboxSettings(inboxSettings: inboxSettings)
+                    .updateInboxSettings(inboxSettings: newSttings)
                     .map { _ in controller }
                     .eraseToAnyPublisher()
             }
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 print("Failed to update")
             }, receiveValue: { [router] controller in

@@ -98,7 +98,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     isFeatureEnabled = isFeatureEnabled && !environmentSettings.disableInboxSignatureBlockForStudents
                 }
                 self?.showInboxSignatureSettings = isFeatureEnabled
-                self?.tableView.reloadData()
+                self?.reloadData()
             }
             .store(in: &subscriptions)
 
@@ -106,7 +106,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             .settings
             .sink { [weak self] inboxSettings in
                 self?.isInboxSignatureEnabled = inboxSettings.useSignature
-                self?.tableView.reloadData()
+                self?.reloadData()
             }
             .store(in: &subscriptions)
     }
