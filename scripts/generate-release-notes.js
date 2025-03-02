@@ -60,7 +60,7 @@ function generateReleaseNotes () {
     throw new Error('Could not find a previous tag')
   }
 
-  console.log(`Generating release notes for ${app} ${sinceTag}...${tag}`)
+  console.log(`Generating release notes for ${app} *\`${sinceTag}\`* -> *\`${tag}\`*`)
   let result = run('git', [ 'log', `${sinceTag}...${tag}`, `--pretty=format:commit:%H%n%B${delimiter}`, '--' ])
   return parseGitLog(result, app.toLowerCase(), tag)
 }
@@ -74,8 +74,10 @@ async function parseGitLog (log, app, tag) {
   let totalNumberOfJiras = 0
   let releaseNotes = []
   let allJiras = []
+  let allJiraLinks = []
+  let allJirasPRsNotes = []
   let commitsWithoutJiraTicketNumbers = []
-  let jirasWithoutReleaseNotes = []
+
   for (let commit of commits) {
     let hash = getCommitHash(commit)
     let apps = getAppsAffected(commit)
@@ -92,11 +94,29 @@ async function parseGitLog (log, app, tag) {
       let jiras = getJiras(commit)
       if (jiras.length) {
         totalNumberOfJiras += jiras.length
-       allJiras.push(...jiras)
+        allJiras.push(...jiras)
 
-        if (!note) {
-          jirasWithoutReleaseNotes.push(...jiras)
+        let jiraLinks = getJiraLinks(jiras)
+        allJiraLinks.push(...jiraLinks)
+
+        let prNumber = getPRNumber(commit)
+        let prTitle = getPRTitle(commit)
+        let prLink = '[#' + prNumber + '](https://github.com/instructure/canvas-ios/pull/' + prNumber + ')'
+        
+        var notePart = ''
+        var prTitlePart = ''
+        if (note) {
+          notePart = ' _"' + note + '"_'
+          prTitlePart = ''
+        } else {
+          notePart = ' -'
+          prTitlePart = ': ' + prTitle + ''
         }
+
+        let jirasPRsNotes = jiraLinks.map(jira => {
+          return `[ ` + jira + ' @ ' + prLink + prTitlePart + ' ]' + notePart
+        })
+        allJirasPRsNotes.push(...jirasPRsNotes)
       } else {
         commitsWithoutJiraTicketNumbers.push(hash)
       }
@@ -117,22 +137,19 @@ async function parseGitLog (log, app, tag) {
     console.log(commitsWithoutJiraTicketNumbers.join('\n'))
   }
 
-  if (jirasWithoutReleaseNotes.length > 0) {
-    console.log('')
-    console.log('Jira tickets without release notes:')
-    console.log(jirasWithoutReleaseNotes.join('\n'))
-  }
-
   console.log('')
-  console.log('Jira tickets included in this release:')
-  console.log(allJiras.join('\n'))
+  console.log('Jira tickets & PRs included in this release:')
+  console.log('(generated list, may include false positives)')
   console.log('')
-  console.log('Release Notes:')
+  console.log(allJirasPRsNotes.join('\n'))
+  console.log('')
+  console.log('Generated Release Notes:')
+  console.log('```')
   console.log(releaseNotes.map(item => `- ${item}`).join('\n'))
-  console.log('')
+  console.log('```')
 
   if (process.env.JIRA_USERNAME && process.env.JIRA_API_TOKEN) {
-    await addFixVersion(tag, allJiras)
+    await addFixVersion(tag, allJiraLinks)
   }
 }
 
@@ -190,6 +207,24 @@ function getJiras (commit) {
   })
 
   return jiras
+}
+
+function getJiraLinks (jiras) {
+  jiras = jiras.map(jira => {
+    return '[' + jira + '](https://instructure.atlassian.net/browse/' + jira + ')'
+  })
+
+  return jiras
+}
+
+function getPRNumber (commit) {
+  let number = /(?<=\(#)[^()]*(?=\))/gi.exec(commit)
+  return number
+}
+
+function getPRTitle (commit) {
+  let title = /.*(?= \(#[^()]*\))/gi.exec(commit)
+  return title
 }
 
 function getCommitHash (commit) {
