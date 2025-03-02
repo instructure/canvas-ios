@@ -24,14 +24,15 @@ struct A11yRefocusingOnPopoverDismissalViewModifier: ViewModifier {
     // Apple use this value for area where user can tap to dismiss pop-overs
     static let popoverDismissRegionAccessibilityID = "PopoverDismissRegion"
 
-    private static var latestFocused = [String]()
-
     @AccessibilityFocusState
     private var isAccFocused: Bool
 
+    private let focusTracking: A11YPopoverFocusTracking
     private let trackingPopoverID: String
-    init(trackingPopoverID: String) {
+
+    init(trackingPopoverID: String, tracking: A11YPopoverFocusTracking) {
         self.trackingPopoverID = trackingPopoverID
+        self.focusTracking = tracking
     }
 
     func body(content: Content) -> some View {
@@ -39,14 +40,14 @@ struct A11yRefocusingOnPopoverDismissalViewModifier: ViewModifier {
             .accessibilityFocused($isAccFocused)
             .onChange(of: isAccFocused) { focused in
                 if focused {
-                    Self.latestFocused.append(trackingPopoverID)
+                    focusTracking.lastFocused = trackingPopoverID
                 }
             }
             .onReceive(didDismissPopover) {
-                guard Self.latestFocused.last == trackingPopoverID else { return }
+                guard focusTracking.lastFocused == trackingPopoverID else { return }
 
                 isAccFocused = true
-                Self.latestFocused.removeAll()
+                focusTracking.lastFocused = nil
             }
     }
 
@@ -54,8 +55,8 @@ struct A11yRefocusingOnPopoverDismissalViewModifier: ViewModifier {
         NotificationCenter
             .default
             .publisher(for: UIAccessibility.elementFocusedNotification)
-            .filter({ notif in
-                guard let info = notif.userInfo,
+            .filter({ notification in
+                guard let info = notification.userInfo,
                       let popupView = info[UIAccessibility.unfocusedElementUserInfoKey] as? UIAccessibilityElement
                 else { return false }
                 return popupView.accessibilityIdentifier == Self.popoverDismissRegionAccessibilityID
@@ -71,12 +72,29 @@ extension View {
 
     /// Refocuses VoiceOver after popover dismissal to the element which activated it. Common examples are `DatePicker`s & `Menu`s
     /// - parameters:
-    ///    - trackingPopoverID: This ID is used to distinguish popover source when there are multiple elements on screen that can activate popovers. It is important to pass a distinct value even if you have only single element on screen that can activate popover.
-    public func accessibilityRefocusingOnPopoverDismissal(_ trackingPopoverID: String) -> some View {
+    ///    - trackingPopoverID: This ID is used to distinguish popover source when there are multiple elements on screen that can activate popovers. It is important to pass a _distinct_ & **stable** value even if you have one single element on screen that can activate popover.
+    public func accessibilityRefocusingOnPopoverDismissal(
+        _ trackingPopoverID: String,
+        tracking: A11YPopoverFocusTracking = A11YPopoverFocus.tracking
+    ) -> some View {
         modifier(
             A11yRefocusingOnPopoverDismissalViewModifier(
-                trackingPopoverID: trackingPopoverID
+                trackingPopoverID: trackingPopoverID,
+                tracking: tracking
             )
         )
     }
+}
+
+// MARK: - Focus Tracking
+
+public protocol A11YPopoverFocusTracking: AnyObject {
+    var lastFocused: String? { get set }
+}
+
+public enum A11YPopoverFocus {
+    private class DefaultTracking: A11YPopoverFocusTracking {
+        var lastFocused: String?
+    }
+    public static var tracking: A11YPopoverFocusTracking = DefaultTracking()
 }
