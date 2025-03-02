@@ -18,6 +18,11 @@
 
 //
 //  Generates release notes from our common commit message format
+//  Generates notes only for the selected app, based on each commit's affects field.
+//  To generate notes for 
+//    - a given tag: use the tag as an argument. Example: Student-7.12.0
+//    - the master branch since the latest tag: use the app as an argument. Example: Student
+//  (NOTE: app/tag argument is case sensitive)
 //
 
 const { spawnSync } = require('child_process')
@@ -41,8 +46,11 @@ function run (cmd, args) {
 }
 
 function generateReleaseNotes () {
-  const tag = process.argv[2] || ''
-  const app = tag.split('-')[0]
+  const arg = process.argv[2] || ''
+  const isTag = arg.includes('-')
+  const tag = isTag ? arg : 'master'
+  const app = arg.split('-')[0]
+  
   if (![ 'Parent', 'Student', 'Teacher' ].includes(app)) {
     throw new Error('The tag argument is required and must start with Parent-, Student-, or Teacher-')
   }
@@ -52,9 +60,14 @@ function generateReleaseNotes () {
 
   const tags = run('git', [ 'ls-remote', '--tags', '--sort=v:refname', 'origin', `refs/tags/${app}-*` ])
     .split('\n').map(line => line.split('/').pop()).filter(Boolean)
-  const currentIndex = tags.indexOf(tag)
-  const sinceTag = tags[currentIndex - 1]
-  if (currentIndex < 0) {
+
+  var tagIndex = -1
+  if (isTag) {
+    tagIndex = tags.indexOf(tag)
+  }
+  const sinceTagIndex = isTag ? tagIndex - 1 : tags.length - 1
+  const sinceTag = tags[sinceTagIndex]
+  if (isTag && tagIndex < 0) {
     throw new Error(`${tag} is not a valid tag`)
   } else if (!sinceTag) {
     throw new Error('Could not find a previous tag')
