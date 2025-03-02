@@ -754,7 +754,7 @@ extension CoreWebView {
         }
     }
 
-    func cleanOfflinePreview() {
+    private func cleanOfflinePreview() {
         guard let url, url.isFileURL else { return }
         guard url.lastPathComponent.hasPrefix(URL.Paths.offlinePreviewPrefix) else { return }
         try? FileManager.default.removeItem(at: url)
