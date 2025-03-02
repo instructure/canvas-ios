@@ -96,5 +96,5 @@ public enum A11YPopoverFocus {
     private class DefaultTracking: A11YPopoverFocusTracking {
         var lastFocused: String?
     }
-    public static var tracking: A11YPopoverFocusTracking = DefaultTracking()
+    public internal(set) static var tracking: A11YPopoverFocusTracking = DefaultTracking()
 }

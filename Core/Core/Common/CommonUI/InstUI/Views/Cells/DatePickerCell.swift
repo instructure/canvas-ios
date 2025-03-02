@@ -144,7 +144,7 @@ extension InstUI {
             case .dateAndTime: [.date, .hourAndMinute]
             }
 
-            DatePicker(
+            let datePickerView = DatePicker(
                 selection: binding,
                 in: validFrom...validUntil,
                 displayedComponents: components,
