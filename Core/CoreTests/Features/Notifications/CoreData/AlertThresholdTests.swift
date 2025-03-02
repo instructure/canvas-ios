@@ -27,7 +27,7 @@ class AlertThresholdTests: CoreTestCase {
         XCTAssertEqual(AlertThresholdType.courseAnnouncement.name, "Course announcements")
         XCTAssertEqual(AlertThresholdType.courseGradeHigh.name, "Course grade above")
         XCTAssertEqual(AlertThresholdType.courseGradeLow.name, "Course grade below")
-        XCTAssertEqual(AlertThresholdType.institutionAnnouncement.name, "Institution announcements")
+        XCTAssertEqual(AlertThresholdType.institutionAnnouncement.name, "Global announcements")
     }
 
     func testTypeTitle() {
@@ -37,7 +37,7 @@ class AlertThresholdTests: CoreTestCase {
         XCTAssertEqual(AlertThresholdType.courseAnnouncement.title(for: 7), "Course Announcement")
         XCTAssertEqual(AlertThresholdType.courseGradeHigh.title(for: 80), "Course Grade Above 80")
         XCTAssertEqual(AlertThresholdType.courseGradeLow.title(for: 30), "Course Grade Below 30")
-        XCTAssertEqual(AlertThresholdType.institutionAnnouncement.title(for: nil), "Institution Announcement")
+        XCTAssertEqual(AlertThresholdType.institutionAnnouncement.title(for: nil), "Global Announcement")
     }
 
     func testIsPercent() {
