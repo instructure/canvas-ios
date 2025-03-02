@@ -104,10 +104,6 @@ public class CreateSubmission: APIUseCase {
             .makeUnfailableRequest(request)
             .flatMap { response in
 
-                guard UIAccessibility.isVoiceOverRunning else {
-                    return Just(response).eraseToAnyPublisher()
-                }
-
                 let message: String
                 if response.body != nil, response.error == nil {
                     message = String(localized: "Successfully submitted!", bundle: .core)
