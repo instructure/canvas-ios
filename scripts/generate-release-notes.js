@@ -18,11 +18,14 @@
 
 //
 //  Generates release notes from our common commit message format
+//   and adds Fix Versions to related JIRA tickets.
 //  Generates notes only for the selected app, based on each commit's affects field.
 //  To generate notes for 
 //    - a given tag: use the tag as an argument. Example: Student-7.12.0
 //    - the master branch since the latest tag: use the app as an argument. Example: Student
 //  (NOTE: app/tag argument is case sensitive)
+//
+// Fix Versions are only added when the argument is a tag.
 //
 
 const { spawnSync } = require('child_process')
@@ -161,7 +164,10 @@ async function parseGitLog (log, app, tag) {
   console.log(releaseNotes.map(item => `- ${item}`).join('\n'))
   console.log('```')
 
-  if (process.env.JIRA_USERNAME && process.env.JIRA_API_TOKEN) {
+  const arg = process.argv[2] || ''
+  const isTag = arg.includes('-')
+
+  if (isTag && process.env.JIRA_USERNAME && process.env.JIRA_API_TOKEN) {
     await addFixVersion(tag, allJiraLinks)
   }
 }
