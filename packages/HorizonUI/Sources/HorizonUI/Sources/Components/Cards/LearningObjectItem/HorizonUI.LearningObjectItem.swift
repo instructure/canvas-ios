@@ -74,8 +74,8 @@ public extension HorizonUI {
                     lockedMessage: lockedMessage
                 )
             }
-            .padding(.vertical, .huiSpaces.primitives.small)
-            .padding(.horizontal, .huiSpaces.primitives.smallMedium)
+            .padding(.vertical, .huiSpaces.space12)
+            .padding(.horizontal, .huiSpaces.space10)
             .background {
                 Rectangle()
                     .fill(Color.huiColors.surface.cardPrimary)
@@ -96,7 +96,7 @@ public extension HorizonUI {
                     .multilineTextAlignment(.leading)
                     .huiTypography(.p2)
 
-                HStack(spacing: .huiSpaces.primitives.mediumSmall) {
+                HStack(spacing: .huiSpaces.space16) {
                     HorizonUI.Pill(
                         title: type.name,
                         style:.inline(
@@ -117,10 +117,10 @@ public extension HorizonUI {
                     Text(duration)
                         .foregroundStyle(Color.huiColors.text.timestamp)
                         .huiTypography(.p3)
-                        .padding(.leading, .huiSpaces.primitives.mediumSmall)
+                        .padding(.leading, .huiSpaces.space16)
                 }
 
-                HStack(spacing: .huiSpaces.primitives.mediumSmall) {
+                HStack(spacing: .huiSpaces.space16) {
                     if let dueDate {
                         dueDateView(dueDate)
                     }

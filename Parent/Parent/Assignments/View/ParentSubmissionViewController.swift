@@ -31,14 +31,12 @@ class ParentSubmissionViewController: UINavigationController {
 
         let controller = CoreWebViewController(features: [.hideHideCanvasMenus])
         controller.addDoneButton()
+        controller.setupBackToolbarButton()
         controller.title = String(localized: "Submission", bundle: .core)
         self.webView = controller.webView
 
         super.init(rootViewController: controller)
 
-        controller.toolbarItems = [
-            .back(target: self, action: #selector(forwardBackActionToViewModel))
-        ]
         controller.webView.linkDelegate = self
 
         addLoadingIndicator(to: controller.view)
@@ -51,13 +49,6 @@ class ParentSubmissionViewController: UINavigationController {
             .hideLoadingIndicator
             .sink { [weak self] _ in
                 self?.hideLoadingIndicator()
-            }
-            .store(in: &subscriptions)
-
-        viewModel
-            .showWebBackNavigationButton
-            .sink { [weak self] showBackNavigationButton in
-                self?.setToolbarHidden(!showBackNavigationButton, animated: true)
             }
             .store(in: &subscriptions)
     }
@@ -97,11 +88,6 @@ class ParentSubmissionViewController: UINavigationController {
             progressView.centerYAnchor.constraint(equalTo: parent.centerYAnchor, constant: 0)
         ])
         self.loadingIndicator = progressView
-    }
-
-    @objc
-    private func forwardBackActionToViewModel() {
-        viewModel.didTapNavigateWebBackButton.send(())
     }
 }
 

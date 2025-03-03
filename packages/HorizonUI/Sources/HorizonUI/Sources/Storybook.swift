@@ -103,6 +103,11 @@ public struct Storybook: View {
                     } label: {
                         Text("Custom Menu Actions").tint(Color.black)
                     }
+                    NavigationLink {
+                        HorizonUI.SegmentedControl.Storybook()
+                    } label: {
+                        Text("Segmented Control").tint(Color.black)
+                    }
                 }
                 Section(header: Text("Components: Organisms")) {
                     NavigationLink {
@@ -110,7 +115,9 @@ public struct Storybook: View {
                     } label: {
                         Text("Controls").tint(Color.black)
                     }
-                    NavigationLink {} label: {
+                    NavigationLink {
+                        HorizonUI.Inputs.Storybook()
+                    } label: {
                         Text("Inputs and Interactive Fields").tint(Color.black)
                     }
                     NavigationLink {
@@ -129,9 +136,31 @@ public struct Storybook: View {
                         Text("Intro Block").tint(Color.black)
                     }
                     NavigationLink {
-                        HorizonUI.FileUploadSheet.Storybook()
+                        HorizonUI.Overlay.Storybook()
                     } label: {
-                        Text("File Upload Sheet").tint(Color.black)
+                        Text("Navigation Overlay").tint(Color.black)
+                    }
+                    NavigationLink {
+                        HorizonUI.Toast.Storybook()
+                    } label: {
+                        Text("Alert Toast").tint(Color.black)
+                    }
+
+                    NavigationLink {
+                        HorizonUI.FileDrop.Storybook()
+                    } label: {
+                        Text("File Drop").tint(Color.black)
+                    }
+
+                    NavigationLink {
+                        HorizonUI.UploadedFile.Storybook()
+                    } label: {
+                        Text("Uploaded File").tint(Color.black)
+                    }
+                    NavigationLink {
+                        HorizonUI.Modal<EmptyView>.Storybook()
+                    } label: {
+                        Text("Modal").tint(Color.black)
                     }
                 }
             }

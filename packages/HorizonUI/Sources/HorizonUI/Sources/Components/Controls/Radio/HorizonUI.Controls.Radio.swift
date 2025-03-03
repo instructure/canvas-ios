@@ -68,7 +68,7 @@ public extension HorizonUI.Controls {
 private extension HorizonUI.Controls {
     struct RadioButtonStyle: ToggleStyle {
         func makeBody(configuration: Configuration) -> some View {
-            HStack(alignment: .top, spacing: .huiSpaces.primitives.xxSmall) {
+            HStack(alignment: .top, spacing: .huiSpaces.space4) {
                 Button {
                     configuration.isOn.toggle()
                 } label: {

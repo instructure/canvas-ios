@@ -67,6 +67,11 @@ extension String {
         }
     }
 
+    /// - returns: True if the receiver string only contains decimal digits or if the string is empty.
+    public var containsOnlyNumbers: Bool {
+        unicodeScalars.allSatisfy { CharacterSet.decimalDigits.contains($0) }
+    }
+
     public var isNotEmpty: Bool {
         !isEmpty
     }
@@ -76,7 +81,6 @@ extension String {
      */
     public var boolValue: Bool {
         return (self as NSString).boolValue
-
     }
 
     public var nilIfEmpty: String? {
@@ -120,6 +124,20 @@ extension String {
             throw NSError.instructureError("Failed to convert string to data using encoding \(encoding).")
         }
         return data
+    }
+
+    /// Localized string to be used when we need number of items. Example: "5 items"
+    public static func localizedNumberOfItems(_ count: Int) -> String {
+        String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), count)
+    }
+
+    /// Localized string to be used as `accessibilityLabel` for lists without a section header. Example: "List, 5 items"
+    public static func localizedAccessibilityListCount(_ count: Int) -> String {
+        let listText = String(localized: "List", bundle: .core)
+        let countText = String.localizedNumberOfItems(count)
+        // It's okay to not translate the comma, because VoiceOver (with captions enabled) uses commas for separation,
+        // even when language & region both are set to a language which doesn't (like Danish)
+        return "\(listText), \(countText)"
     }
 }
 

@@ -29,7 +29,7 @@ struct CourseProgressView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: .huiSpaces.primitives.mediumSmall) {
+            VStack(spacing: .huiSpaces.space16) {
                 headerView
                 ModuleItemListView(selectedModuleItem: viewModel.currentModuleItem, items: viewModel.moduleItems) { selectedItem in
                     viewModel.currentModuleItem = selectedItem
@@ -40,20 +40,20 @@ struct CourseProgressView: View {
         .safeAreaInset(edge: .bottom, content: {
             moduleNavBarButtons
         })
-        .padding(.horizontal, .huiSpaces.primitives.medium)
+        .padding(.horizontal, .huiSpaces.space24)
         .animation(.smooth, value: viewModel.currentModuleItem)
         .overlay(alignment: .topTrailing) {
             HorizonUI.IconButton(Image.huiIcons.close, type: .white) {
                 viewModel.dimiss(controller: viewController)
             }
             .huiElevation(level: .level4)
-            .padding(.huiSpaces.primitives.medium)
+            .padding(.huiSpaces.space24)
         }
         .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var headerView: some View {
-        VStack(spacing: .huiSpaces.primitives.medium) {
+        VStack(spacing: .huiSpaces.space24) {
             Text("My Progress", bundle: .horizon)
                 .foregroundStyle(Color.huiColors.text.title)
                 .frame(maxWidth: .infinity)
@@ -64,7 +64,7 @@ struct CourseProgressView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .huiTypography(.labelLargeBold)
         }
-        .padding(.top, .huiSpaces.primitives.medium)
+        .padding(.top, .huiSpaces.space24)
     }
 
     private var moduleNavBarButtons: some View {

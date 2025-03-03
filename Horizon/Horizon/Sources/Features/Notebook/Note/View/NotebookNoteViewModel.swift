@@ -17,34 +17,45 @@
 //
 
 import Combine
-import Observation
+import CombineSchedulers
 import Core
+import Observation
+import SwiftUI
 
 @Observable
 final class NotebookNoteViewModel {
 
     // MARK: - Outputs
+    var closeButtonOpacity: Double { isEditing && !isAdding ? 0 : 1 }
+    var courseNoteLabels: [CourseNoteLabel] {
+        [
+            isImportant ? .important : nil,
+            isConfusing ? .confusing : nil
+        ].compactMap { $0 }
+    }
     var highlightedText: String = ""
-    var isActionButtonsVisible: Bool { !isEditing && !isAdding }
-    var isBackButtonHidden: Bool { isEditing }
+    var isDeleteButtonVisible: Bool { !isEditing && !isAdding }
     var isCancelVisible: Bool { isEditing && !isAdding }
     var isConfusing: Bool = false
     var isDeleteAlertPresented: Bool = false
+    var isHighlightedTextVisible: Bool {
+        !highlightedText.isEmpty
+    }
     var isImportant: Bool = false
-    var isSaveDisabled: Bool { !isConfusing && !isImportant && note.isEmpty }
+    var isSaveDisabled: Bool { !isConfusing && !isImportant }
     var isSaveVisible: Bool { isEditing || isAdding }
     var isTextEditorDisabled: Bool { !isEditing }
     var note: String = ""
-    var title: String {
-        String(localized: isEditing && !isAdding ? "Edit" : "Note", bundle: .horizon)
-    }
+    var state: InstUI.ScreenState = .data
 
     // MARK: - Dependencies
 
     private var isEditing = false
-    private let notebookNoteInteractor: NotebookNoteInteractor
-    private let noteId: String?
+    private let courseId: String?
+    private let courseNoteInteractor: CourseNoteInteractor
+    private let itemId: String?
     private let router: Router
+    private let notebookHighlight: NotebookHighlight?
 
     private var isConfusingSaved: Bool = false
     private var isImportantSaved: Bool = false
@@ -52,32 +63,57 @@ final class NotebookNoteViewModel {
 
     // MARK: - Private
 
+    private var courseNote: CourseNotebookNote?
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    init(notebookNoteInteractor: NotebookNoteInteractor,
-         router: Router,
-         noteId: String,
-         isEditing: Bool = false) {
-        self.notebookNoteInteractor = notebookNoteInteractor
+    init(
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.instance,
+        router: Router = AppEnvironment.shared.router,
+        courseNotebookNote: CourseNotebookNote,
+        isEditing: Bool = false,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
+        self.courseNoteInteractor = courseNoteInteractor
         self.router = router
-        self.noteId = noteId
+        self.courseNote = courseNotebookNote
         self.isEditing = isEditing
+        self.scheduler = scheduler
 
-        notebookNoteInteractor.get(noteId: noteId)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: whenNotebookCourseNoteUpdated)
-            .store(in: &subscriptions)
+        self.courseId = nil
+        self.itemId = nil
+        self.notebookHighlight = nil
+
+        initUI()
+    }
+
+    init(
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.instance,
+        router: Router = AppEnvironment.shared.router,
+        courseId: String,
+        itemId: String,
+        notebookHighlight: NotebookHighlight? = nil,
+        isEditing: Bool = false,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
+        self.courseNoteInteractor = courseNoteInteractor
+        self.router = router
+        self.courseId = courseId
+        self.itemId = itemId
+        self.isEditing = isEditing
+        self.scheduler = scheduler
+
+        self.notebookHighlight = notebookHighlight
+        self.highlightedText = notebookHighlight?.selectedText ?? ""
+
+        self.courseNote = nil
+
+        initUI()
     }
 
     // MARK: - Inputs
-
-    func beginEditing() {
-        if !isEditing {
-            isEditing = true
-        }
-    }
 
     func cancelEditingAndReset() {
         isEditing = false
@@ -91,12 +127,17 @@ final class NotebookNoteViewModel {
     }
 
     func deleteNoteAndDismiss(viewController: WeakViewController) {
-        guard let noteId = noteId else { return }
-
-        notebookNoteInteractor.delete(noteId: noteId)
-            .sink { _ in
-                self.router.dismiss(viewController)
-            }
+        guard let noteId = courseNote?.id else { return }
+        state = .loading
+        courseNoteInteractor.delete(id: noteId)
+            .receive(on: scheduler)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] _ in
+                    self?.state = .data
+                    self?.router.dismiss(viewController)
+                }
+            )
             .store(in: &subscriptions)
     }
 
@@ -109,8 +150,9 @@ final class NotebookNoteViewModel {
     }
 
     func saveAndDismiss(viewController: WeakViewController) {
-        saveContent()
-        if isAdding {
+        let saveSuccess = saveContent()
+
+        if isAdding && saveSuccess {
             router.dismiss(viewController)
         } else {
             isEditing = false
@@ -119,59 +161,84 @@ final class NotebookNoteViewModel {
 
     func toggleConfusing() {
         isEditing = true
-        if !isConfusing && isImportant { isImportant = false }
         isConfusing.toggle()
     }
 
     func toggleImportant() {
         isEditing = true
-        if isConfusing && !isImportant { isConfusing = false }
         isImportant.toggle()
     }
 
     // MARK: - Private
 
-    private func whenNotebookCourseNoteUpdated(notebookCourseNote: NotebookCourseNote?) {
-        note = notebookCourseNote?.note ?? ""
-        highlightedText = "\"\(notebookCourseNote?.highlightedText ?? "")\""
-        noteSaved = note
-
-        isConfusing = notebookCourseNote?.types.contains(.confusing) ?? false
-        isConfusingSaved = isConfusing
-
-        isImportant = notebookCourseNote?.types.contains(.important) ?? false
-        isImportantSaved = isImportant
-    }
-
     private var isAdding: Bool {
-        noteId == nil
+        courseNote == nil
     }
 
-    private func saveContent() {
-        if let noteId = noteId {
-            var labels: [CourseNoteLabel] = []
-            if isConfusing {
-                labels.append(.confusing)
-            }
-            if isImportant {
-                labels.append(.important)
-            }
+    private func saveContent() -> Bool {
+        note = note.trimmed()
 
-            notebookNoteInteractor
-                .update(noteId: noteId, content: note, labels: labels)
-                .sink { _ in }
+        if isSaveDisabled {
+            return false
+        }
+
+        let labels: [CourseNoteLabel] = [
+            isConfusing ? .confusing : nil,
+            isImportant ? .important : nil
+        ].compactMap { $0 }
+
+        if let noteId = courseNote?.id {
+            state = .loading
+            courseNoteInteractor
+                .set(
+                    id: noteId,
+                    content: note,
+                    labels: labels,
+                    highlightData: courseNote?.highlightData
+                )
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { [weak self] _ in
+                        self?.state = .data
+                    }
+                )
                 .store(in: &subscriptions)
         }
+
+        if let courseId = courseId, let itemId = itemId {
+            state = .loading
+            courseNoteInteractor
+                .add(
+                    courseId: courseId,
+                    itemId: itemId,
+                    moduleType: .subHeader,
+                    content: note,
+                    labels: labels,
+                    notebookHighlight: notebookHighlight
+                )
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { [weak self] _ in
+                        self?.state = .data
+                    }
+                )
+                .store(in: &subscriptions)
+        }
+
+        return true
     }
 
-    private var getCourseNoteLabels: [CourseNoteLabel] {
-        var labels: [CourseNoteLabel] = []
-        if isConfusing {
-            labels.append(.confusing)
+    private func initUI() {
+        note = courseNote?.content ?? ""
+        if let highlightedText = courseNote?.highlightData?.selectedText, !highlightedText.isEmpty {
+            self.highlightedText = "\(highlightedText)"
         }
-        if isImportant {
-            labels.append(.important)
-        }
-        return labels
+        noteSaved = note
+
+        isConfusing = courseNote?.labels?.contains { $0 == .confusing } ?? false
+        isConfusingSaved = isConfusing
+
+        isImportant = courseNote?.labels?.contains { $0 == .important } ?? false
+        isImportantSaved = isImportant
     }
 }

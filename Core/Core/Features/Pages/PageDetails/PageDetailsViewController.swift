@@ -21,14 +21,14 @@ import UIKit
 open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
-    var webView = CoreWebView()
+    public var webView: CoreWebView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
     var app = App.student
     public var color: UIColor?
     var context = Context.currentUser
-    let env = AppEnvironment.shared
+    var env: AppEnvironment = .shared
     var pageURL = ""
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -40,7 +40,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     lazy var groups = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
+    lazy var pages = env.subscribe(GetPage(context: context.local, url: pageURL)) { [weak self] in
         self?.updatePages()
     }
     var localPages: Store<LocalUseCase<Page>>?
@@ -64,15 +64,16 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         context: Context,
         pageURL: String,
         app: App,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
-        webView: CoreWebView?
+        env: AppEnvironment,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> PageDetailsViewController {
-        let controller = loadFromStoryboard()
+        let controller = loadFromStoryboard(bundle: .core)
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
+        controller.env = env
         controller.offlineModeInteractor = offlineModeInteractor
-        controller.webView = webView ?? controller.webView
+
         return controller
     }
 
@@ -102,7 +103,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if AppEnvironment.shared.app != .parent {
+        if env.app != .parent {
             navigationController?.navigationBar.useContextColor(color)
         }
     }
@@ -113,7 +114,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         }
     }
 
-    // Parent uses a different coloring logic so we prevent any update here. 
+    // Parent uses a different coloring logic so we prevent any update here.
     private func updateNavBar() {
         guard AppEnvironment.shared.app != .horizon else {
             return
@@ -121,7 +122,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         guard
             let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
             let color = context.contextType == .course ? courses.first?.color : groups.first?.color,
-            AppEnvironment.shared.app != .parent
+            env.app != .parent
         else { return }
         updateNavBar(subtitle: name, color: color)
     }
@@ -151,7 +152,8 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     private func updatePages() {
         guard let page = pages.first else { return }
         localPages = env.subscribe(scope: .where(#keyPath(Page.id), equals: page.id)) { [weak self] in
-            self?.update() }
+            self?.update()
+        }
         localPages?.refresh()
     }
 

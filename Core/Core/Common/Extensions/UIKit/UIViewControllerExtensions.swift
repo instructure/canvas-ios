@@ -23,8 +23,8 @@ extension UIViewController: ViewControllerLoader {}
 extension ViewControllerLoader where Self: UIViewController {
     /// Instantiates and returns the view controller.
     /// This can assume that the identifier matches the type name.
-    public static func loadFromStoryboard(withIdentifier identifier: String = String(describing: Self.self)) -> Self {
-        let storyboard = UIStoryboard(name: identifier, bundle: Bundle(for: self))
+    public static func loadFromStoryboard(withIdentifier identifier: String = String(describing: Self.self), bundle: Bundle? = nil) -> Self {
+        let storyboard = UIStoryboard(name: identifier, bundle: bundle ?? Bundle(for: self))
         guard let viewController = storyboard.instantiateViewController(withIdentifier: identifier) as? Self else {
             fatalError("Could not create \(identifier) from a storyboard.")
         }

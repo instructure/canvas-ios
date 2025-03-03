@@ -56,10 +56,10 @@ struct ModuleNavBarView: View {
 
             Spacer()
             if isShowUtilityButtons {
-                HStack(spacing: .huiSpaces.primitives.xSmall) {
+                HStack(spacing: .huiSpaces.space8) {
                     buttonView(type: .tts)
                     chatBotButton
-                    buttonView(type: .notebook)
+                    notebook
                 }
             }
             Spacer()
@@ -95,6 +95,16 @@ struct ModuleNavBarView: View {
             type: .white
         ) {
             navigateToTutor()
+        }
+        .huiElevation(level: .level2)
+    }
+
+    private var notebook: some View {
+        HorizonUI.IconButton(
+            ModuleNavBarButtons.notebook.image,
+            type: .white
+        ) {
+            router.route(to: "/notebook", from: controller)
         }
         .huiElevation(level: .level2)
     }

@@ -30,6 +30,8 @@ public struct SubmitAssignmentExtensionView: View {
 
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
 
+    private let title: String = String(localized: "Canvas Student", bundle: .core)
+
     public init(viewModel: SubmitAssignmentExtensionViewModel) {
         self.viewModel = viewModel
     }
@@ -50,10 +52,10 @@ public struct SubmitAssignmentExtensionView: View {
         Text("Please log in via the application", bundle: .core)
             .foregroundColor(.textDarkest)
             .font(.regular16)
-            .navigationBarGlobal()
-            .navigationTitleStyled(title)
+            .navigationBarTitleView(title)
             .navigationBarTitleDisplayMode(.inline)
             .navBarItems(trailing: cancelButton)
+            .navigationBarStyle(.modal)
     }
 
     private var contentView: some View {
@@ -69,17 +71,13 @@ public struct SubmitAssignmentExtensionView: View {
             }
             .padding(.horizontal, 20)
         }
-        .navigationBarGlobal()
-        .navigationTitleStyled(title)
+        .navigationBarTitleView(title: title, subtitle: env.currentSession?.userName)
         .navigationBarTitleDisplayMode(.inline)
         .navBarItems(leading: cancelButton, trailing: submitButton)
+        .navigationBarStyle(.modal)
         .onDisappear {
             accessibilityFocus = nil
         }
-    }
-
-    private var title: Text {
-        Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
     }
 
     @ViewBuilder
@@ -199,7 +197,7 @@ public struct SubmitAssignmentExtensionView: View {
 
     private var filesSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), viewModel.previews.count))
+            Text(String.localizedNumberOfItems(viewModel.previews.count))
                 .font(.regular12)
                 .foregroundColor(.textDark)
             ScrollView(.horizontal, showsIndicators: false) {

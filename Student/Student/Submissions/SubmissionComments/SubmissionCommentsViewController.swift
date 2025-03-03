@@ -86,6 +86,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            UIAccessibility.post(notification: .screenChanged, argument: self.tableView.visibleCells.first)
+         }
     }
 
     @IBAction func addCommentButtonPressed(_ sender: UIButton) {
@@ -96,7 +99,8 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let title = String(localized: "Select Attachment Type", bundle: .student)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(String(localized: "Record Audio", bundle: .student), style: .default) { _ in
             AudioRecorderViewController.requestPermission { [weak self] allowed in
                 guard let self = self else { return }

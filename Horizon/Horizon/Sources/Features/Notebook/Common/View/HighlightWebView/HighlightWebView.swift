@@ -1,0 +1,248 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Combine
+import Core
+import HorizonUI
+import SwiftUI
+import WebKit
+
+/// This override of WKWebView allows for highlighting of Web content.
+final class HighlightWebView: CoreWebView {
+
+    // MARK: - Private
+
+    private var courseNotebookNotes: [CourseNotebookNote] = [] {
+        didSet {
+            Task {
+                await highlightWebFeature.apply(
+                    webView: self,
+                    notebookTextSelections: courseNotebookNotes.compactMap { $0.notebookTextSelection }
+                )
+            }
+        }
+    }
+    private var subscriptions = Set<AnyCancellable>()
+    private var highlightWebFeature: HighlightWebFeature!
+    private let actionDefinitions = [
+        (label: CourseNoteLabel.confusing, title: String(localized: "Confusing", bundle: .horizon)),
+        (label: CourseNoteLabel.important, title: String(localized: "Important", bundle: .horizon)),
+        (label: CourseNoteLabel.other, title: String(localized: "Add a Note", bundle: .horizon))
+    ]
+
+    // MARK: - Dependencies
+
+    private let courseId: String?
+    private let courseNoteInteractor: CourseNoteInteractor
+    private let itemId: String?
+    private let moduleType: ModuleItemType?
+    private let router: Router
+    private let viewController: WeakViewController?
+
+    // MARK: - Init
+
+    init(
+        courseId: String,
+        itemId: String,
+        moduleType: ModuleItemType,
+        viewController: WeakViewController,
+        router: Router = AppEnvironment.shared.router,
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.instance
+    ) {
+        self.courseId = courseId
+        self.itemId = itemId
+        self.moduleType = moduleType
+        self.router = router
+        self.courseNoteInteractor = courseNoteInteractor
+        self.viewController = viewController
+        self.highlightWebFeature = HighlightWebFeature()
+
+        super.init(features: [highlightWebFeature])
+
+        listenForHighlightTaps()
+    }
+
+    required init?(coder: NSCoder) {
+        self.router = AppEnvironment.shared.router
+        self.courseNoteInteractor = CourseNoteInteractorLive.instance
+
+        self.courseId = nil
+        self.itemId = nil
+        self.moduleType = nil
+        self.viewController = nil
+
+        super.init(coder: coder)
+    }
+
+    // MARK: - Override Functions
+
+    public override func buildMenu(with builder: any UIMenuBuilder) {
+
+        let actions: [UIMenuElement] = actionDefinitions.map {
+            UIAction(title: $0.1, handler: onMenuAction)
+        }
+
+        let menu = UIMenu(title: "Add a Note", children: actions)
+        builder.insertSibling(menu, beforeMenu: .standardEdit)
+    }
+
+    override func html(for content: String) -> String {
+        // Wrap the content in a div that will be referenced by the WebHighlighting javascript
+        super.html(for: "<div id=\"parent-container\">\(content)</div>")
+    }
+
+    override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        super.webView(webView, didFinish: navigation)
+        listenForHighlights()
+    }
+
+    // MARK: - Private
+
+    private func applyHighlights(_ courseNotebookNotes: [CourseNotebookNote]) {
+        self.courseNotebookNotes = courseNotebookNotes
+    }
+
+    private func listenForHighlights() {
+        guard let courseId = courseId,
+            let itemId = itemId
+        else {
+            return
+        }
+
+        self.courseNoteInteractor.get(courseId: courseId, itemId: itemId)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: self.applyHighlights
+            )
+            .store(in: &self.subscriptions)
+    }
+
+    private func listenForHighlightTaps() {
+        highlightWebFeature.listenForHighlightTaps()
+            .sink { _ in
+            } receiveValue: { [weak self] notebookTextSelection in
+                guard let self = self,
+                    let viewController = self.viewController
+                else {
+                    return
+                }
+                if let courseNotebookNote = self.courseNotebookNotes.first(where: {
+                    $0.notebookTextSelection == notebookTextSelection
+                }) {
+                    router.route(to: "/notebook/note", userInfo: ["note": courseNotebookNote], from: viewController)
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func onMenuAction(_ action: UIAction) {
+        guard let label = actionDefinitions.first(where: { action.title == $0.title })?.label,
+            let courseId = courseId,
+            let itemId = itemId,
+            let viewController = self.viewController
+        else {
+            return
+        }
+
+        Task { [weak self] in
+            guard let self = self,
+                let notebookTextSelection = await highlightWebFeature.getCurrentSelection(webView: self)
+            else {
+                return
+            }
+
+            let notebookHighlight = notebookTextSelection.notebookHighlight
+
+            if label == .other {
+                router.route(
+                    to: "/notebook/\(courseId)/\(itemId)/add", userInfo: ["notebookHighlight": notebookHighlight],
+                    from: viewController)
+            } else if let moduleType = self.moduleType {
+                courseNoteInteractor.add(
+                    courseId: courseId,
+                    itemId: itemId,
+                    moduleType: moduleType,
+                    content: "",
+                    labels: [label],
+                    notebookHighlight: notebookHighlight
+                ).sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { [weak self] courseNote in
+                        guard let viewController = self?.viewController else {
+                            return
+                        }
+                        if label == .other {
+                            self?.router.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
+                        }
+                    }
+                ).store(in: &subscriptions)
+            }
+        }
+    }
+}
+
+// MARK: - Extensions
+
+extension NotebookTextSelection {
+    var notebookHighlight: NotebookHighlight {
+        NotebookHighlight(
+            selectedText: selectedText,
+            textPosition: NotebookHighlight.TextPosition(
+                start: textPosition.start,
+                end: textPosition.end
+            ),
+            range: NotebookHighlight.Range(
+                startContainer: range.startContainer,
+                startOffset: range.startOffset,
+                endContainer: range.endContainer,
+                endOffset: range.endOffset
+            )
+        )
+    }
+}
+
+extension CourseNotebookNote {
+    var notebookTextSelection: NotebookTextSelection? {
+        let label = labels?.first
+        guard let highlightData = highlightData else {
+            return nil
+        }
+        return NotebookTextSelection(
+            backgroundColor: label?.backgroundColorCSS ?? "\(Color.huiColors.surface.attention.hexString)33",
+            borderColor: label?.borderColorCSS ?? Color.huiColors.surface.attention.hexString,
+            range: .init(
+                startContainer: highlightData.range.startContainer,
+                endContainer: highlightData.range.endContainer,
+                startOffset: highlightData.range.startOffset,
+                endOffset: highlightData.range.endOffset
+            ),
+            selectedText: highlightData.selectedText,
+            textPosition: .init(start: highlightData.textPosition.start, end: highlightData.textPosition.end)
+        )
+    }
+}
+
+extension CourseNoteLabel {
+    var borderColorCSS: String {
+        "\((color).hexString)"
+    }
+
+    var backgroundColorCSS: String {
+        "\(borderColorCSS)33"  // 33 is 20% opacity
+    }
+}

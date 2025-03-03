@@ -59,6 +59,7 @@ final class SplashViewModel: ObservableObject {
                     isLoginTransition: true,
                     viewController: HorizonTabBarController()
                 )
+                UIApplication.shared.registerForPushNotifications()
             })
             .store(in: &subscriptions)
     }
@@ -74,8 +75,13 @@ final class SplashViewModel: ObservableObject {
                 )
             )
         } else {
-            // show error alert
-        }
+            router.setRootViewController(
+                isLoginTransition: false,
+                viewController: LoginNavigationController.create(
+                    loginDelegate: interactor,
+                    app: .horizon
+                )
+            )        }
         return Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 

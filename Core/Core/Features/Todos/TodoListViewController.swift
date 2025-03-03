@@ -66,6 +66,7 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
+        profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
 
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = CircleRefreshControl()

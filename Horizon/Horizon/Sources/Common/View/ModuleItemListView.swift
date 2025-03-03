@@ -38,7 +38,7 @@ struct ModuleItemListView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.primitives.xSmall) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             ForEach(items) { item in
                 if let type = item.type {
                     if type == .subHeader {
@@ -56,7 +56,7 @@ struct ModuleItemListView: View {
         Text(item.title)
             .huiTypography(.labelMediumBold)
             .foregroundStyle(Color.huiColors.text.body)
-            .padding(.top, .huiSpaces.primitives.small)
+            .padding(.top, .huiSpaces.space12)
     }
 
     private func moduleItemButton(item: HModuleItem, type: ModuleItemType) -> some View {

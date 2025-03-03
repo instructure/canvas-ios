@@ -50,63 +50,96 @@ class GradingPeriodsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Grades page
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
 
-        Helper.navigateToGrades(course: course)
-        let filterButton = Helper.filterButton.waitUntil(.visible)
-        XCTAssertTrue(filterButton.isVisible)
+        let filterButton = Helper.filterButton
+
+        XCTContext.runActivity(named: "Navigate to Grades page") { _ in
+            let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+            XCTAssertTrue(courseCard.isVisible)
+
+            Helper.navigateToGrades(course: course)
+            filterButton.waitUntil(.visible)
+            XCTAssertTrue(filterButton.isVisible)
+        }
 
         // MARK: Check filter options, set sorting to group
-        filterButton.hit()
-        let allOption = Helper.Filter.optionButton().waitUntil(.visible)
-        let firstGPButton = Helper.Filter.optionButton(gradingPeriod: gradingPeriods[0]).waitUntil(.visible)
-        let secondGPButton = Helper.Filter.optionButton(gradingPeriod: gradingPeriods[1]).waitUntil(.visible)
-        let sortByGroupSwitch = Helper.Filter.sortByGroupSwitch.waitUntil(.visible)
-        let sortByDateSwitch = Helper.Filter.sortByDateSwitch.waitUntil(.visible)
-        let saveButton = Helper.Filter.saveButton.waitUntil(.visible)
-        XCTAssertTrue(allOption.isVisible)
-        XCTAssertTrue(firstGPButton.isVisible)
-        XCTAssertTrue(secondGPButton.isVisible)
-        XCTAssertTrue(sortByGroupSwitch.isVisible)
-        XCTAssertTrue(sortByDateSwitch.isVisible)
-        XCTAssertTrue(saveButton.isVisible)
-        XCTAssertTrue(saveButton.isDisabled)
+        let allOption = Helper.Filter.optionButton()
+        let firstGPButton = Helper.Filter.optionButton(gradingPeriod: gradingPeriods[0])
+        let secondGPButton = Helper.Filter.optionButton(gradingPeriod: gradingPeriods[1])
+        let sortByGroupSwitch = Helper.Filter.sortByGroupSwitch
+        let sortByDateSwitch = Helper.Filter.sortByDateSwitch
+        let saveButton = Helper.Filter.saveButton
 
-        allOption.hit()
-        sortByGroupSwitch.hit()
-        XCTAssertTrue(saveButton.waitUntil(.enabled).isEnabled)
+        XCTContext.runActivity(named: "Check filter screen options") { _ in
+            filterButton.hit()
 
-        saveButton.hit()
-        let assignment1Cell = Helper.cell(assignment: assignment1).waitUntil(.visible)
-        let assignment2Cell = Helper.cell(assignment: assignment2).waitUntil(.visible)
-        XCTAssertTrue(assignment1Cell.isVisible)
-        XCTAssertTrue(assignment2Cell.isVisible)
+            XCTContext.runActivity(named: "Work around rendering bug") { _ in
+                // Sometimes only the "all grading periods" row renders and an empty row below
+                firstGPButton.waitUntil(.visible)
 
-        // MARK: Filter for first grading period
-        firstGPButton.hit()
-        XCTAssertTrue(saveButton.waitUntil(.enabled).isEnabled)
+                if firstGPButton.isVanished {
+                    Helper.Filter.cancelButton.hit()
+                    allOption.waitUntil(.vanish)
+                    filterButton.hit()
+                }
+            }
 
-        saveButton.hit()
-        XCTAssertTrue(assignment1Cell.waitUntil(.visible).isVisible)
-        XCTAssertTrue(assignment2Cell.waitUntil(.vanish).isVanished)
+            XCTAssertTrue(allOption.waitUntil(.visible).isVisible)
+            XCTAssertTrue(firstGPButton.waitUntil(.visible).isVisible)
+            XCTAssertTrue(secondGPButton.waitUntil(.visible).isVisible)
+            XCTAssertTrue(sortByGroupSwitch.waitUntil(.visible).isVisible)
+            XCTAssertTrue(sortByDateSwitch.waitUntil(.visible).isVisible)
+            XCTAssertTrue(saveButton.waitUntil(.visible).isVisible)
+            XCTAssertTrue(saveButton.waitUntil(.visible).isDisabled)
+        }
 
-        // MARK: Filter for second grading period
-        filterButton.waitUntil(.visible)
-        XCTAssertTrue(filterButton.isVisible)
+        XCTContext.runActivity(named: "Set sorting to groups") { _ in
+            allOption.hit()
+            sortByGroupSwitch.hit()
+            XCTAssertTrue(saveButton.waitUntil(.enabled).isEnabled)
+            saveButton.hit()
+        }
 
-        filterButton.hit()
-        XCTAssertTrue(allOption.waitUntil(.visible).isVisible)
-        XCTAssertTrue(firstGPButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(secondGPButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(saveButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(saveButton.waitUntil(.visible).isDisabled)
+        let assignment1Cell = Helper.cell(assignment: assignment1)
+        let assignment2Cell = Helper.cell(assignment: assignment2)
 
-        secondGPButton.hit()
-        XCTAssertTrue(saveButton.waitUntil(.enabled).isEnabled)
+        XCTContext.runActivity(named: "Check if assignment list isn't filtered") { _ in
+            XCTAssertTrue(assignment1Cell.waitUntil(.visible).isVisible)
+            XCTAssertTrue(assignment2Cell.waitUntil(.visible).isVisible)
+        }
 
-        saveButton.hit()
-        XCTAssertTrue(assignment1Cell.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(assignment2Cell.waitUntil(.visible).isVisible)
+        XCTContext.runActivity(named: "Filter to first grading period") { _ in
+            filterButton.hit()
+            firstGPButton.waitUntil(.visible).hit()
+            XCTAssertTrue(saveButton.waitUntil(.enabled).isEnabled)
+            saveButton.hit()
+        }
+
+        XCTContext.runActivity(named: "Check if assignment list is filtered") { _ in
+            XCTAssertTrue(assignment1Cell.waitUntil(.visible).isVisible)
+            XCTAssertTrue(assignment2Cell.waitUntil(.vanish).isVanished)
+        }
+
+        XCTContext.runActivity(named: "Filter to second grading period") { _ in
+            filterButton.waitUntil(.visible)
+            XCTAssertTrue(filterButton.isVisible)
+            filterButton.hit()
+
+            XCTAssertTrue(allOption.waitUntil(.visible).isVisible)
+            XCTAssertTrue(firstGPButton.waitUntil(.visible).isVisible)
+            XCTAssertTrue(secondGPButton.waitUntil(.visible).isVisible)
+            XCTAssertTrue(saveButton.waitUntil(.visible).isVisible)
+            XCTAssertTrue(saveButton.waitUntil(.visible).isDisabled)
+
+            secondGPButton.hit()
+            XCTAssertTrue(saveButton.waitUntil(.enabled).isEnabled)
+
+            saveButton.hit()
+        }
+
+        XCTContext.runActivity(named: "Check if assignment list is filtered") { _ in
+            XCTAssertTrue(assignment1Cell.waitUntil(.vanish).isVanished)
+            XCTAssertTrue(assignment2Cell.waitUntil(.visible).isVisible)
+        }
     }
 }

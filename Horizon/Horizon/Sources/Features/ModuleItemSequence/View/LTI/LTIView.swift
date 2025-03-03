@@ -32,9 +32,9 @@ struct LTIView: View {
     var body: some View {
         VStack {
             launchButton()
-                .padding(.top, .huiSpaces.primitives.medium)
+                .padding(.top, .huiSpaces.space24)
             WebView(url: viewModel.urlToDisplay)
-                .padding(.all, .huiSpaces.primitives.medium)
+                .padding(.all, .huiSpaces.space24)
         }
         .frame(maxHeight: .infinity, alignment: .top)
     }

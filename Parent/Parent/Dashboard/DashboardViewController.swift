@@ -74,6 +74,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         addStudentView.isHidden = true
         avatarView.isHidden = true
         dropdownView.isHidden = true
+        dropdownButton.accessibilityValue = String(localized: "Collapsed", bundle: .core)
         titleLabel.text = nil
 
         studentListHiddenHeight.isActive = true
@@ -146,6 +147,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     func updateBadgeCount() {
         profileButton.addBadge(number: badgeCount, color: currentColor)
         profileButton.accessibilityLabel = String(localized: "Settings", bundle: .parent)
+        profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
         if badgeCount > 0 {
             profileButton.accessibilityHint = String.localizedStringWithFormat(
                 String(localized: "conversation_unread_messages", bundle: .core),
@@ -177,9 +179,10 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
             let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
             titleLabel.text = displayName
             dropdownButton.accessibilityLabel = String.localizedStringWithFormat(
-                String(localized: "Current student: %@. Tap to switch students", bundle: .parent),
+                String(localized: "Current student: %@", bundle: .parent),
                 displayName
             )
+            dropdownButton.accessibilityHint = String(localized: "Tap to switch students")
         } else {
             avatarView.isHidden = true
             titleLabel.text = String(localized: "Add Student", bundle: .parent)
@@ -218,6 +221,8 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.studentListHiddenHeight.isActive = !show
             self.dropdownView.transform = CGAffineTransform(rotationAngle: show ? .pi : 0)
+            self.dropdownButton.accessibilityValue = show ? String(localized: "Expanded", bundle: .core)
+                                                          : String(localized: "Collapsed", bundle: .core)
             self.view.layoutIfNeeded()
         }, completion: { _ in
             completion?()
@@ -288,6 +293,10 @@ extension DashboardViewController: UITabBarControllerDelegate {
         to toVC: UIViewController
     ) -> (any UIViewControllerAnimatedTransitioning)? {
         InstUI.TabChangeTransition()
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        UIAccessibility.post(notification: .layoutChanged, argument: dropdownButton)
     }
 }
 

@@ -79,7 +79,11 @@ class CoreTestCase: XCTestCase {
         AppEnvironment.shared = environment
         AppEnvironment.shared.uploadManager = uploadManager
         LoginSession.add(environment.currentSession!)
-        pushNotificationsInteractor = PushNotificationsInteractor(notificationCenter: notificationCenter, logger: logger)
+        pushNotificationsInteractor = PushNotificationsInteractor(
+            notificationCenter: notificationCenter,
+            notificationCenterDelegate: UserNotificationCenterDelegate(),
+            logger: logger
+        )
         MockUploadManager.reset()
         UUID.reset()
         ExperimentalFeature.allEnabled = false

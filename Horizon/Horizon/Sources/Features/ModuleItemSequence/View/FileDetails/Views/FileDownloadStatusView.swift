@@ -48,7 +48,7 @@ struct FileDownloadStatusView: View {
         case .loading:
             loadingView
         case .error(let string):
-            VStack(spacing: .huiSpaces.primitives.small) {
+            VStack(spacing: .huiSpaces.space12) {
                 errorView(message: string)
                 initialView
             }
@@ -67,7 +67,7 @@ struct FileDownloadStatusView: View {
     }
 
     private var loadingView: some View {
-        HStack(spacing: .huiSpaces.primitives.xSmall) {
+        HStack(spacing: .huiSpaces.space8) {
             HorizonUI.Spinner(size: .xSmall, showBackground: true)
             Text(fileName)
                 .huiTypography(.p1)
@@ -80,7 +80,7 @@ struct FileDownloadStatusView: View {
     }
 
     private func errorView(message: String) -> some View {
-        HStack(spacing: .huiSpaces.primitives.xxSmall) {
+        HStack(spacing: .huiSpaces.space4) {
             HorizonUI.icons.error
                 .foregroundStyle(Color.huiColors.icon.error)
             Text(message)

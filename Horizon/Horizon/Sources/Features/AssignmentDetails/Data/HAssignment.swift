@@ -90,6 +90,10 @@ struct HAssignment {
     var fileExtensions: [UTI] {
         submissionTypes.allowedUTIs( allowedExtensions: allowedExtensions)
     }
+
+    var attemptCount: String? {
+        allowedAttempts > 0 ? "\(allowedAttempts)" : String(localized: "Unlimited", bundle: .horizon)
+    }
 }
 
 // swiftlint:disable line_length

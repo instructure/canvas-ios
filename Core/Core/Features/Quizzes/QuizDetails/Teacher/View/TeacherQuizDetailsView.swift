@@ -31,8 +31,7 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
     public var body: some View {
         states
             .background(Color.backgroundLightest)
-            .navigationBarStyle(.color(viewModel.courseColor))
-            .navigationTitle(viewModel.title, subtitle: viewModel.subtitle)
+            .navigationBarTitleView(title: viewModel.title, subtitle: viewModel.subtitle)
             .rightBarButtonItems {
                 [
                     UIBarButtonItemWithCompletion(
@@ -43,6 +42,7 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
                     )
                 ]
             }
+            .navigationBarStyle(.color(viewModel.courseColor))
             .onAppear {
                 viewModel.viewDidAppear()
             }
@@ -76,6 +76,7 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
             Text(viewModel.quizTitle)
                 .font(.heavy24).foregroundColor(.textDarkest)
                 .accessibility(identifier: "QuizDetails.name")
+                .accessibilityAddTraits(.isHeader)
             HStack(spacing: 0) {
                 Text(viewModel.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)

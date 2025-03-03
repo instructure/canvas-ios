@@ -27,7 +27,7 @@ public extension XCTestCase {
     func XCTAssertCompletableSingleOutputEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
-        timeout: TimeInterval = 0.1
+        timeout: TimeInterval = 1
     ) where Output: Equatable, Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
         outputExpectation.expectedFulfillmentCount = 1
@@ -54,7 +54,7 @@ public extension XCTestCase {
      */
     func XCTAssertFirstValueAndCompletion<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 0.1,
+        timeout: TimeInterval = 1,
         assertions: @escaping (Output) -> Void
     ) where Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
@@ -82,7 +82,7 @@ public extension XCTestCase {
     func XCTAssertSingleOutputEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
-        timeout: TimeInterval = 0.1
+        timeout: TimeInterval = 1
     ) where Output: Equatable, Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
         outputExpectation.expectedFulfillmentCount = 1
@@ -106,7 +106,7 @@ public extension XCTestCase {
      */
     func XCTAssertFirstValue<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 0.1,
+        timeout: TimeInterval = 1,
         assertions: @escaping (Output) -> Void
     ) where Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
@@ -132,7 +132,7 @@ public extension XCTestCase {
      */
     func XCTAssertFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 0.1
+        timeout: TimeInterval = 1
     ) where Failure: Error {
         let finishExpectation = expectation(description: "Publisher finished")
         finishExpectation.expectedFulfillmentCount = 1
@@ -154,7 +154,7 @@ public extension XCTestCase {
     func XCTAssertFailure<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         assertOnOutput: Bool = true,
-        timeout: TimeInterval = 0.1
+        timeout: TimeInterval = 1
     ) where Failure: Error {
         let finishExpectation = expectation(description: "Publisher failed")
         finishExpectation.expectedFulfillmentCount = 1
@@ -178,7 +178,7 @@ public extension XCTestCase {
 
     func XCTAssertNoOutput<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 0.1
+        timeout: TimeInterval = 1
     ) where Failure: Error {
         let noValueExpectation = expectation(description: "Publisher sent no value.")
         noValueExpectation.isInverted = true

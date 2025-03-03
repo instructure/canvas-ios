@@ -75,6 +75,7 @@ struct SubmissionGrades: View {
                 VStack(spacing: 0) {
                     HStack(spacing: 0) {
                         Text("Grade", bundle: .teacher)
+                            .accessibilityAddTraits(.isHeader)
                         Spacer()
                         if isSaving {
                             ProgressView()

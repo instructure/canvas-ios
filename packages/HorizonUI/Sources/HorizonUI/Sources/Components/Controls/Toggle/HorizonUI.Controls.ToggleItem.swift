@@ -81,14 +81,14 @@ fileprivate extension HorizonUI.Controls {
         let alignment: VerticalAlignment
 
         func makeBody(configuration: Configuration) -> some View {
-            HStack(alignment: alignment, spacing: .huiSpaces.primitives.xxSmall) {
+            HStack(alignment: alignment, spacing: .huiSpaces.space4) {
                 Rectangle()
                     .fill(contentColor)
                     .huiCornerRadius(level: .level4)
                     .overlay {
                         Circle()
                             .fill(Color.huiColors.surface.pageSecondary)
-                            .padding(.huiSpaces.primitives.xxxSmall)
+                            .padding(.huiSpaces.space2)
                             .overlay {
                                 configuration.isOn ? Image.huiIcons.checkSmall : Image.huiIcons.closeSmall
                             }

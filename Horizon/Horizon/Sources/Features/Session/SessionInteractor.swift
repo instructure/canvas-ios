@@ -24,12 +24,25 @@ enum LoginError: Error {
     case unauthorized
 }
 
-final class SessionInteractor: LoginDelegate {
+final class SessionInteractor: NSObject, LoginDelegate {
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
     init(environment: AppEnvironment = .shared) {
         self.environment = environment
+    }
+
+    func getUserID() -> AnyPublisher<String, Error> {
+        guard let currentSession = LoginSession.mostRecent else {
+            return Fail(error: LoginError.loggedOut).eraseToAnyPublisher()
+        }
+        return Just(currentSession.userID)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func getUserID() -> String? {
+        LoginSession.mostRecent?.userID
     }
 
     func refreshCurrentUserDetails() -> AnyPublisher<UserProfile, Error> {
@@ -40,7 +53,7 @@ final class SessionInteractor: LoginDelegate {
         return updateLoginSession(session: currentSession)
     }
 
-    func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
+    private func updateLoginSession(session: LoginSession) -> AnyPublisher<UserProfile, Error> {
         LoginSession.add(session)
         environment.userDidLogin(session: session)
 
@@ -51,6 +64,7 @@ final class SessionInteractor: LoginDelegate {
             .compactMap { $0.first }
             .flatMap { userProfile in
                 CoreWebView.keepCookieAlive(for: unownedSelf.environment)
+                PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
 
                 return ReactiveStore(
                     useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
@@ -62,6 +76,9 @@ final class SessionInteractor: LoginDelegate {
                 let err = error as NSError
                 if err.domain == NSError.Constants.domain,
                    err.code == HttpError.unauthorized {
+                    unownedSelf.userDidLogout(session: session)
+                    return LoginError.unauthorized
+                } else if let apiError = error as? APIError, case .unauthorized = apiError {
                     unownedSelf.userDidLogout(session: session)
                     return LoginError.unauthorized
                 } else {

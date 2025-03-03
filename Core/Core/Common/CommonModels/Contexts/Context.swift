@@ -95,6 +95,10 @@ public extension Context {
         guard context.contextType == contextType else { return false }
         return context.id.localID == id.localID
     }
+
+    var local: Context {
+        return Context(contextType, id: id.localID)
+    }
 }
 
 public extension Context {

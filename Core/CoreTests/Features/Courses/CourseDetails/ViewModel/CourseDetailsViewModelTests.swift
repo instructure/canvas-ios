@@ -109,7 +109,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(testee.homeLabel, nil)
         XCTAssertEqual(testee.homeSubLabel, "Syllabus")
-        XCTAssertEqual(testee.homeRoute, URL(string: "courses/1/syllabus")!)
+        XCTAssertEqual(testee.homeRoute, URL(string: "/courses/1/syllabus")!)
 
         XCTAssertTrue(testee.showHome)
         XCTAssertFalse(testee.showSettings)

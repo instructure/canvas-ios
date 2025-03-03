@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My JavaScript Project</title>
+  </head>
+  <body>
+    <h1>Hello, JavaScript!</h1>
+    <script type="module" src="./WebHighlighting.js"></script>
+    <script type="text/javascript">
+      const notebookTextSelections = [];
+
+      function onGetSelectionCoordinates() {
+        const notebookTextSelection = window.getSelectionCoordinates();
+        if (notebookTextSelection) {
+          notebookTextSelection.backgroundColor = "yellow";
+          notebookTextSelection.borderColor = "red";
+
+          window.applyHighlights([notebookTextSelection]);
+        }
+      }
+    </script>
+
+    <div id="parent-container">
+      <p>
+        In this lesson, we'll focus on the importance of regular security
+        assessments and the role they play in maintaining strong security
+        practices. You'll learn how to identify and report improper practices,
+        even subtle ones that don’t align with security standards, and the value
+        of continuous education to stay ahead of emerging threats. Engaging in
+        ongoing training and using company-provided tools will help reinforce a
+        culture of vigilance and proactive security.In this lesson, we'll focus
+        on the importance of regular security assessments and the role they play
+        in maintaining strong security practices. You'll learn how to identify
+        and report improper practices, even subtle ones that don’t align with
+        security standards, and the value of continuous education to stay ahead
+        of emerging threats. Engaging in ongoing training and using
+        company-provided tools will help reinforce a culture of vigilance and
+        proactive security.
+      </p>
+      <p>Here is some more text to play with</p>
+      <p>And a third paragraph</p>
+    </div>
+
+    <button onclick="onGetSelectionCoordinates()">Apply Highlight</button>
+  </body>
+</html>
+
+[{\"borderColor\":\"#c71f22\",\"selectedText\":\"In this
+lesson\",\"backgroundColor\":\"#c71f2233\",\"range\":{\"startOffset\":0,\"startContainer\":\"\\/p[1]\",\"endOffset\":14,\"endContainer\":\"\\/p[1]\"},\"textPosition\":{\"start\":17,\"end\":31}}]

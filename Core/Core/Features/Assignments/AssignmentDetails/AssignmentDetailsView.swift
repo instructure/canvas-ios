@@ -48,9 +48,12 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     public var body: some View {
         states
             .background(Color.backgroundLightest)
-            .navigationBarStyle(.color(course.first?.color))
-            .navigationTitle(String(localized: "Assignment Details", bundle: .core), subtitle: course.first?.name)
+            .navigationBarTitleView(
+                title: String(localized: "Assignment Details", bundle: .core),
+                subtitle: course.first?.name
+            )
             .rightBarButtonItems(editButton)
+            .navigationBarStyle(.color(course.first?.color))
             .onAppear {
                 refreshAssignments()
                 refreshCourses()
@@ -95,6 +98,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         Section {
             Text(assignment.name)
                 .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "AssignmentDetails.name")
+                .accessibilityAddTraits(.isHeader)
             HStack(spacing: 0) {
                 Text(assignment.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.points")

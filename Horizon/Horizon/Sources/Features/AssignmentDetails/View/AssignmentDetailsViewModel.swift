@@ -61,6 +61,7 @@ final class AssignmentDetailsViewModel {
     private let router: Router
     private let courseID: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private let didLoadAttemptCount: (String?) -> Void
 
     // MARK: - Init
 
@@ -72,12 +73,14 @@ final class AssignmentDetailsViewModel {
         interactor: AssignmentInteractor,
         router: Router,
         courseID: String,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        didLoadAttemptCount: @escaping (String?) -> Void
     ) {
         self.interactor = interactor
         self.scheduler = scheduler
         self.router = router
         self.courseID = courseID
+        self.didLoadAttemptCount = didLoadAttemptCount
         fetchAssignmentDetails()
         bindSubmissionAssignmentEvents()
     }
@@ -95,6 +98,20 @@ final class AssignmentDetailsViewModel {
         router.show(richContentEditor, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
+    func viewComments(controller: WeakViewController) {
+        let view = SubmissionCommentAssembly.makeView(
+            courseID: courseID,
+            assignmentID: assignment?.id ?? "",
+            attempt: 1 // TODO: Get the actual submission for the assignment, then pass submission.attempt here
+        )
+        let viewController = CoreHostingController(view)
+        if let presentationController = viewController.sheetPresentationController {
+            presentationController.detents = [.large()]
+            presentationController.preferredCornerRadius = 32
+        }
+        router.show(viewController, from: controller, options: .modal())
+    }
+
     // MARK: - Private Functions
 
     private func fetchAssignmentDetails() {
@@ -103,6 +120,7 @@ final class AssignmentDetailsViewModel {
             .sink { [weak self] response in
                 self?.isLoaderVisible = false
                 self?.assignment = response
+                self?.didLoadAttemptCount(response.attemptCount)
             }
             .store(in: &subscriptions)
     }

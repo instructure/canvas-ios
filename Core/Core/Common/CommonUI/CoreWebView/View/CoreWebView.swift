@@ -177,7 +177,7 @@ open class CoreWebView: WKWebView {
         } }
     }
 
-    func html(for content: String) -> String {
+    open func html(for content: String) -> String {
         // If it looks like jQuery is used, include the same version of jQuery as web.
         let jquery = content.contains("$(") || content.contains("$.")
             ? "<script defer src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>"
@@ -421,7 +421,7 @@ extension CoreWebView: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    public func webView(
+    open func webView(
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {
@@ -449,6 +449,10 @@ extension CoreWebView: WKNavigationDelegate {
         withError error: any Error
     ) {
         checkFileLoadNavigationAndExecuteCallback(navigation: navigation, error: error)
+    }
+
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        linkDelegate?.coreWebView(self, didStartProvisionalNavigation: navigation)
     }
 
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
@@ -517,11 +521,30 @@ extension CoreWebView: WKUIDelegate {
         windowFeatures: WKWindowFeatures
     ) -> WKWebView? {
         guard let from = linkDelegate?.routeLinksFrom else { return nil }
+
+        let router = AppEnvironment.shared.router
+
+        if let targetURL = navigationAction.request.url,
+           router.isRegisteredRoute(targetURL) {
+            let routeOptions = RouteOptions.modal(
+                .fullScreen,
+                isDismissable: false,
+                embedInNav: true,
+                addDoneButton: true
+            )
+            router.route(
+                to: targetURL,
+                from: from,
+                options: routeOptions
+            )
+            return nil
+        }
+
         let controller = CoreWebViewController()
         // Don't change the processPool of this configuration otherwise it will crash
         controller.webView = CoreWebView(externalConfiguration: configuration)
         controller.webView.linkDelegate = linkDelegate
-        AppEnvironment.shared.router.show(
+        router.show(
             controller,
             from: from,
             options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
@@ -690,10 +713,12 @@ extension CoreWebView {
             loadFileURL(
                 URL.Directories.documents,
                 allowingReadAccessTo: URL.Directories.documents
-            )
-            let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
-            // All offline content should have relative links to the documents directory
-            loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
+            ) { [weak self] _ in
+                guard let self else { return }
+                let rawHtmlValue = try? String(contentsOf: filePath, encoding: .utf8)
+                // All offline content should have relative links to the documents directory
+                self.loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
+            }
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }

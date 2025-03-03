@@ -34,7 +34,7 @@ class BackgroundSessionCompletionTests: XCTestCase {
         testee.backgroundOperationsFinished()
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 1)
         XCTAssertNil(testee.callback)
     }
 

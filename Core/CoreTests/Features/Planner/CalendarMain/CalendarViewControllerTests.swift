@@ -56,11 +56,9 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
             "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
         ])
 
-        XCTAssertEqual(controller.monthButton.accessibilityLabel, "Show a month at a time")
-        XCTAssertEqual(controller.monthButton.isSelected, false)
+        XCTAssertEqual(controller.monthButton.accessibilityLabel, "January")
         let deselectedHeight = height
         controller.monthButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.monthButton.isSelected, true)
         XCTAssertEqual(height > deselectedHeight, true)
 
         XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events by Calendars")

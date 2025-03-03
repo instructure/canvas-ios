@@ -28,70 +28,44 @@ class ChatBotInteractorLive: ChatBotInteractor {
     // MARK: - Dependencies
 
     private let canvasApi: API
-    private let cedarBaseUrl: String
     private let model: AIModel
+    private let horizonService: HorizonService
 
     // MARK: - init
 
     init(
         canvasApi: API = AppEnvironment.shared.api,
-        cedarBaseUrl: String = "https://cedar-api-dev.domain-svcs.nonprod.inseng.io",
+        horizonService: HorizonService = .cedar,
         model: AIModel = .claude3Sonnet20240229V10
     ) {
         self.canvasApi = canvasApi
-        self.cedarBaseUrl = cedarBaseUrl
+        self.horizonService = horizonService
         self.model = model
     }
 
     // MARK: - Public
 
     func send(message: ChatBotMessage) -> AnyPublisher<String, Error> {
-        getCedarJWTToken()
-            .flatMap { cedarJwtToken in
-                self.getAnswer(cedarJwtToken: cedarJwtToken, prompt: message.serialize())
+        JWTTokenRequest(.cedar)
+            .api(from: canvasApi)
+            .flatMap { [weak self] api in
+                guard let self = self else {
+                    return Just("")
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.getAnswer(api: api, prompt: message.serialize())
             }
             .eraseToAnyPublisher()
     }
 
     // MARK: - Private
 
-    private func getCedarJWTToken() -> AnyPublisher<String, Error> {
-        canvasApi
-            .makeRequest(GetCedarJWTTokenRequest())
-            .tryMap(tokenResponseToUtf8String)
+    private func getAnswer(api: API, prompt: String) -> AnyPublisher<String, Error> {
+        return api
+            .makeRequest(CedarAnswerPromptMutation(cedarJwtToken: api.loginSession?.accessToken ?? "", prompt: prompt))
+            .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
             .eraseToAnyPublisher()
-    }
-
-    private func getAnswer(cedarJwtToken: String, prompt: String) -> AnyPublisher<String, Error> {
-        guard let baseUrl = URL(string: "https://cedar-api-dev.domain-svcs.nonprod.inseng.io") else {
-            return Fail(error: ChatBotInteractorError.invalidUrl).eraseToAnyPublisher()
-        }
-        return API(
-            LoginSession(
-                accessToken: cedarJwtToken,
-                baseURL: baseUrl,
-                userID: "",
-                userName: ""
-            ),
-            baseURL: baseUrl
-        )
-        .makeRequest(CedarAnswerPromptMutation(cedarJwtToken: cedarJwtToken, prompt: prompt))
-        .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
-        .eraseToAnyPublisher()
-    }
-
-    private func tokenResponseToUtf8String(tokenResponse: GetCedarJWTTokenResponse, urlResponse _: HTTPURLResponse?) throws -> String {
-        guard let decodedToken = Data(base64Encoded: tokenResponse.token) else {
-            throw ChatBotInteractorError.unableToGetCedarToken
-        }
-
-        let utf8EncodedToken = String(data: decodedToken, encoding: .utf8)
-
-        guard let utf8EncodedToken else {
-            throw ChatBotInteractorError.unableToGetCedarToken
-        }
-
-        return utf8EncodedToken
     }
 }
 

@@ -26,6 +26,7 @@ enum HorizonRoutes {
     }
 
     private static let routes = [
+        accountRoutes,
         splashRoutes,
         moduleRoutes,
         pageRoutes,
@@ -36,8 +37,20 @@ enum HorizonRoutes {
         inboxRoutes,
         externalToolRoutes,
         notebookRoutes,
-        aiRoutes
+        aiRoutes,
+        notificationSettings
     ]
+
+    private static var accountRoutes: [RouteHandler] {
+        [
+            RouteHandler("/account/profile") { _, _, _ in
+                ProfileAssembly.makeViewController()
+            },
+            RouteHandler("/account/advanced") { _, _, _ in
+                ProfileAdvancedAssembly.makeViewController()
+            }
+        ]
+    }
 
     private static var splashRoutes: [RouteHandler] {
         [
@@ -202,20 +215,32 @@ enum HorizonRoutes {
     private static var notebookRoutes: [RouteHandler] {
         [
             RouteHandler("/notebook") { _, _, _ in
-                return NotebookCourseListAssembly.makeViewController()
+                return NotebookAssembly.makeViewController()
             },
-            RouteHandler("/notebook/:courseID") { _, params, _ in
-                guard let courseId = params["courseID"] else { return nil }
-                return NotebookCourseAssembly.makeView(courseId: courseId	)
+            RouteHandler("/notebook/:courseID/:itemID/add") { _, params, userInfo in
+                guard let itemId = params["itemID"], let courseId = params["courseID"] else { return nil }
+                guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
+                let router: Router = AppEnvironment.shared.router
+                let notebookHighlight = userInfo?["notebookHighlight"] as? NotebookHighlight
+                router.show(
+                    NotebookNoteAssembly.makeViewNoteViewController(
+                        courseID: courseId,
+                        itemID: itemId,
+                        notebookHighlight: notebookHighlight
+                    ),
+                    from: vc,
+                    options: .modal(.pageSheet, isDismissable: false)
+                )
+                return nil
             },
-            RouteHandler("/notebook/note/:noteID") { _, params, _ in
-                guard let noteId = params["noteID"] else { return nil }
+            RouteHandler("/notebook/note") { _, _, userInfo in
+                guard let courseNotebookNote = userInfo?["note"] as? CourseNotebookNote else { return nil }
                 guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
                 let router: Router = AppEnvironment.shared.router
                 router.show(
-                    NotebookNoteAssembly.makeViewNoteViewController(noteId: noteId),
+                    NotebookNoteAssembly.makeViewNoteViewController(courseNotebookNote: courseNotebookNote),
                     from: vc,
-                    options: .modal(.pageSheet)
+                    options: .modal(.pageSheet, isDismissable: false)
                 )
                 return nil
             }
@@ -229,6 +254,14 @@ enum HorizonRoutes {
             },
             RouteHandler("/summary") { _, _, _ in
                 ChatBotAssembly.makeAISummaryView()
+            }
+        ]
+    }
+
+    private static var notificationSettings: [RouteHandler] {
+        [
+            RouteHandler("/notification-settings") { _, _, _ in
+                NotificationSettingsAssembly.makeView()
             }
         ]
     }
@@ -285,24 +318,37 @@ extension HorizonRoutes {
     private static func pageViewController(
         url: URLComponents,
         params: [String: String],
-        userInfo _: [String: Any]?,
+        userInfo: [String: Any]?,
         environment: AppEnvironment
     ) -> UIViewController? {
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
+
+        let courseId = context.id
+
         if !url.originIsModuleItemDetails, context.contextType == .course {
             return ModuleItemSequenceAssembly.makeItemSequenceView(
                 environment: environment,
-                courseID: context.id,
+                courseID: courseId,
                 assetType: .page,
                 assetID: pageURL,
                 url: url
             )
         }
-        return PageDetailsViewController.create(
+        let viewController = PageDetailsViewController.create(
             context: context,
             pageURL: pageURL,
             app: .student,
-            webView: HorizonWebView(highlightsKey: "pageHighlights")
+            env: .shared
         )
+        if let item = userInfo?["item"] as? HModuleItem,
+           let type = item.type {
+            viewController.webView = HighlightWebView(
+                courseId: courseId,
+                itemId: item.id,
+                moduleType: type,
+                viewController: WeakViewController(viewController)
+            )
+        }
+        return viewController
     }
 }
