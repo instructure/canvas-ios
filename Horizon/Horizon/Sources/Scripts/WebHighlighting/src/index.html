@@ -11,15 +11,27 @@
     <script type="text/javascript">
       const notebookTextSelections = [];
 
-      function onGetSelectionCoordinates() {
+      function onApplyHighlight() {
         const notebookTextSelection = window.getSelectionCoordinates();
         if (notebookTextSelection) {
           notebookTextSelection.backgroundColor = "yellow";
           notebookTextSelection.borderColor = "red";
 
-          window.applyHighlights([notebookTextSelection]);
+          notebookTextSelections.push(notebookTextSelection);
         }
+        window.applyHighlights(notebookTextSelections);
       }
+
+      function applyEvalString() {
+        const evalString = document.getElementById("evalString").value;
+        eval(evalString);
+      }
+
+      function clearHighlights() {
+        notebookTextSelections.length = 0;
+        window.applyHighlights(notebookTextSelections);
+      }
+
     </script>
 
     <div id="parent-container">
@@ -43,9 +55,19 @@
       <p>And a third paragraph</p>
     </div>
 
-    <button onclick="onGetSelectionCoordinates()">Apply Highlight</button>
+    <div>
+      <button onclick="onApplyHighlight()" style="margin-right:16px">Apply Highlight</button>
+      <button onclick="clearHighlights()">Clear Highlights</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <textarea id="evalString" style="width:500px; height:300px;"></textarea>
+    </div>
+
+    <div>
+      <button onclick="applyEvalString()">Apply Eval String</button>
+    </div>
+
+    </textarea>
   </body>
 </html>
-
-[{\"borderColor\":\"#c71f22\",\"selectedText\":\"In this
-lesson\",\"backgroundColor\":\"#c71f2233\",\"range\":{\"startOffset\":0,\"startContainer\":\"\\/p[1]\",\"endOffset\":14,\"endContainer\":\"\\/p[1]\"},\"textPosition\":{\"start\":17,\"end\":31}}]
