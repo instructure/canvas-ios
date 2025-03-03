@@ -5144,6 +5144,12 @@
             "value" : "Estudiant actual: %@"
           }
         },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myfyriwr Presennol: %@"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5226,6 +5232,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Étudiant actuel : %@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac léinn reatha: %@"
           }
         },
         "hi" : {
@@ -16154,6 +16166,12 @@
             "value" : "Toqueu per canviar d'estudiants"
           }
         },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapiwch i newid myfyrwyr"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16236,6 +16254,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tapotez pour changer d’étudiant"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil chun mic léinn a mhalartú"
           }
         },
         "hi" : {
