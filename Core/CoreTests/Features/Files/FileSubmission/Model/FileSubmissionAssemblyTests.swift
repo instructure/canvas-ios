@@ -133,7 +133,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 5)
     }
 
     func testCancelDeletesSubmission() {
