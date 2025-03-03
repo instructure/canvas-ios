@@ -71,11 +71,9 @@ public class PlannerViewController: UIViewController {
         profileButton.accessibilityLabel = String(localized: "Profile Menu", bundle: .core)
         profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
 
-        addButton.target = self
-        addButton.action = nil
-        addButton.menu = addMenu
         addButton.accessibilityIdentifier = "PlannerCalendar.addButton"
         addButton.accessibilityLabel = String(localized: "Add Menu", bundle: .core)
+        updateAddButton()
 
         todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
         todayButton.accessibilityLabel = String(localized: "Go to today", bundle: .core)
@@ -136,10 +134,7 @@ public class PlannerViewController: UIViewController {
         offlineModeInteractor
             .observeIsOfflineMode()
             .sink { [weak self] isOffline in
-                guard let self else { return }
-                addButton.action = isOffline ? #selector(showOfflineAlert) : nil
-                addButton.menu = isOffline ? nil : addMenu
-                addButton.tintColor = isOffline ? .disabledGray : .textLightest.variantForLightMode
+                self?.updateAddButton(isOffline)
             }
             .store(in: &subscriptions)
     }
@@ -151,6 +146,12 @@ public class PlannerViewController: UIViewController {
 
     @objc func openProfile() {
         env.router.route(to: "/profile", from: self, options: .modal())
+    }
+
+    private func updateAddButton(_ isOffline: Bool = false) {
+        addButton.tintColor = isOffline ? .disabledGray : nil
+        addButton.menu = isOffline ? nil : addMenu
+        addButton.action = isOffline ? #selector(showOfflineAlert) : nil
     }
 
     private func addToDo() {
