@@ -213,50 +213,13 @@ public class InboxHelper: BaseHelper {
 }
 
 public class InboxHelperParent: BaseHelper {
-    public static var replyButton: XCUIElement { app.find(id: "ConversationDetail.replyButton") }
-    public static var newMessageButton: XCUIElement { app.find(id: "ConversationList.composeButton") }
 
-    public struct Compose {
-        public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
-        public static var addAttachmentButton: XCUIElement { app.find(label: "Add Attachments", type: .button) }
-        public static var sendButton: XCUIElement { app.find(label: "Send", type: .button) }
-        public static var recipientsButton: XCUIElement { app.find(label: "Edit Recipients", type: .button) }
-        public static var subjectInput: XCUIElement { app.find(id: "Compose.subject") }
-        public static var messageInput: XCUIElement { app.find(id: "Compose.body") }
-    }
-
-    public struct Reply {
-        public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
-        public static var attachButton: XCUIElement { app.find(id: "ComposeReply.attachButton") }
-        public static var sendButton: XCUIElement { app.find(id: "ComposeReply.sendButton") }
-        public static var body: XCUIElement { app.find(id: "ComposeReply.body") }
-    }
-
-    public struct Details {
-        public static var replyButton: XCUIElement { app.find(id: "ConversationDetail.replyButton") }
-
-        public static func subjectLabel(conversation: DSConversation) -> XCUIElement {
-            return app.find(label: conversation.subject, type: .staticText)
+    public struct CoursePicker {
+        public static func studentContext(courseName: String, studentDisplayName: String) -> XCUIElement {
+            return app.find(
+                id: "ParentInboxCoursePickerView.option\(courseName).\(studentDisplayName)",
+                type: .button
+            )
         }
-
-        public static func messageLabel(conversation: DSConversation) -> XCUIElement {
-            return app.find(label: conversation.last_authored_message, type: .textView)
-        }
-
-        public static func cell(conversation: DSConversation) -> XCUIElement {
-            return app.find(id: "ConversationDetailCell.\(conversation.id)")
-        }
-    }
-
-    public static func courseButton(course: DSCourse) -> XCUIElement {
-        return app.find(label: course.name, type: .staticText)
-    }
-
-    public static func conversation(conversation: DSConversation? = nil, conversationId: String? = nil) -> XCUIElement {
-        return app.find(id: "ConversationListCell.\(conversation?.id ?? conversationId!)")
-    }
-
-    public static func conversationBySubject(subject: String) -> XCUIElement {
-        return app.find(labelContaining: subject, type: .cell)
     }
 }

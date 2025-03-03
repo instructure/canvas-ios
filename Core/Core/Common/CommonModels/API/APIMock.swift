@@ -180,7 +180,45 @@ class MockAPITask: APITask {
 }
 
 extension URLRequest {
-    var key: String { "\(httpMethod ?? ""):\(url?.withCanonicalQueryParams?.absoluteString ?? "")" }
+    var key: String {
+        let basicKey = "\(httpMethod ?? ""):\(url?.withCanonicalQueryParams?.absoluteString ?? "")"
+
+        guard
+            let body = httpBody,
+            let header = try? APIJSONDecoder().decode(GraphQLTestBody.self, from: body)
+        else { return basicKey }
+
+        return basicKey + ":\(header.operationName):\(header.variables.hashValue)"
+    }
+}
+
+private struct GraphQLTestBody: Decodable, Equatable {
+    let operationName: String
+    let variables: [String: GraphQLTestValue]
+}
+
+private struct GraphQLTestValue: Decodable, Hashable {
+    let value: AnyHashable?
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+
+        if container.decodeNil() {
+            value = nil
+            return
+        }
+
+        if let string = try? container.decode(String.self) {
+            value = string
+        } else if let number = try? container.decode(Int.self) {
+            value = number
+        } else if let double = try? container.decode(Double.self) {
+            value = double
+        } else if let bool = try? container.decode(Bool.self) {
+            value = bool
+        } else {
+            value = nil
+        }
+    }
 }
 
 class APIMock {

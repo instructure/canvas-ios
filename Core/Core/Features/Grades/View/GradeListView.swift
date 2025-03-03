@@ -28,6 +28,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ObservedObject private var viewModel: GradeListViewModel
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var toggleViewIsVisible = true
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
@@ -68,20 +69,15 @@ public struct GradeListView: View, ScreenViewTrackable {
                     }
                 }
                 whatIfScoreEditorView()
-
-                if viewModel.isLoaderVisible {
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle())
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.backgroundLightest)
-
-                }
             }
             .animation(.smooth, value: isScoreEditorPresented)
         }
         .safeAreaInset(edge: .top, spacing: 0) {
-            if viewModel.gradeHeaderIsVisible {
+            switch viewModel.state {
+            case .data, .empty:
                 courseSummaryView(viewModel.totalGradeText)
+            default:
+                SwiftUI.EmptyView()
             }
         }
         .background(Color.backgroundLightest)
@@ -194,7 +190,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             }
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 20)
+        .padding(.vertical, verticalSizeClass == .regular ? 20 : 5)
         .background(
             Color.backgroundLightest
                 .cornerRadius(6)

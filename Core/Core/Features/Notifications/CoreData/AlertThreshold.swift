@@ -41,7 +41,7 @@ public enum AlertThresholdType: String, CaseIterable, Codable {
         case .assignmentGradeHigh:
             return String(localized: "Assignment grade above", bundle: .core)
         case .institutionAnnouncement:
-            return String(localized: "Institution announcements", bundle: .core)
+            return String(localized: "Global announcements", bundle: .core)
         case .courseAnnouncement:
             return String(localized: "Course announcements", bundle: .core)
         }
@@ -63,7 +63,7 @@ public enum AlertThresholdType: String, CaseIterable, Codable {
         case .courseAnnouncement:
             title = String(localized: "Course Announcement", bundle: .core)
         case .institutionAnnouncement:
-            title = String(localized: "Institution Announcement", bundle: .core)
+            title = String(localized: "Global Announcement", bundle: .core)
         }
         return String.localizedStringWithFormat(title, value ?? 0)
     }

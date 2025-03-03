@@ -143,10 +143,12 @@ class InboxViewModelTests: CoreTestCase {
 }
 
 private class InboxMessageInteractorMock: InboxMessageInteractor {
+
     var state = CurrentValueSubject<StoreState, Never>(.data)
     var messages: CurrentValueSubject<[InboxMessageListItem], Never>
     var courses: CurrentValueSubject<[InboxCourse], Never>
     var hasNextPage = CurrentValueSubject<Bool, Never>(true)
+    var isParentApp: Bool = false
 
     private(set) var refreshCalled = false
     private(set) var loadNextPageCalled = false

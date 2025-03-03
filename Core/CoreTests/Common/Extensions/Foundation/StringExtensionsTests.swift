@@ -94,4 +94,9 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(String.localizedAccessibilityListCount(1), "List, 1 item")
         XCTAssertEqual(String.localizedAccessibilityListCount(5), "List, 5 items")
     }
+
+    func testLocalizedAccessibilityErrorMessage() {
+        XCTAssertEqual(String.localizedAccessibilityErrorMessage("Some error description"), "Error: Some error description")
+        XCTAssertEqual(String.localizedAccessibilityErrorMessage(""), "Error: ")
+    }
 }

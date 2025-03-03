@@ -56,8 +56,12 @@ public enum ComposeMessageAssembly {
         return CoreHostingController(view)
     }
 
-    public static func makeComposeMessageViewController(env: AppEnvironment = .shared, queryItems: [URLQueryItem]) -> UIViewController {
-        makeComposeMessageViewController(env: env, options: ComposeMessageOptions(queryItems: queryItems))
+    public static func makeComposeMessageViewController(env: AppEnvironment = .shared, url: URLComponents) -> UIViewController {
+        if let queryItems = url.queryItems {
+            return makeComposeMessageViewController(env: env, options: ComposeMessageOptions(queryItems: queryItems))
+        } else {
+            return ComposeMessageAssembly.makeComposeMessageViewController()
+        }
     }
 
 #if DEBUG
