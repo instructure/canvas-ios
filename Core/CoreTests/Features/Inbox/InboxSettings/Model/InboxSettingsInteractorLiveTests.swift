@@ -41,8 +41,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )
@@ -85,8 +84,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )
@@ -129,8 +127,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )
@@ -173,8 +170,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )
@@ -216,8 +212,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: false,
-                    userId: userId
+                    useSignature: false
                 )
             )
         )
@@ -259,8 +254,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )
@@ -303,8 +297,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: oldSignatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: oldUseSignature,
-                    userId: userId
+                    useSignature: oldUseSignature
                 )
             )
         )
@@ -350,8 +343,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: newSignatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: newUseSignature,
-                    userId: userId
+                    useSignature: newUseSignature
                 )
             )
         )
@@ -387,8 +379,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )
@@ -428,8 +419,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )
@@ -469,8 +459,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
                     signature: signatureText,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: true,
-                    userId: userId
+                    useSignature: true
                 )
             )
         )

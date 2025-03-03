@@ -58,8 +58,7 @@ class InboxSettingsViewModelTests: CoreTestCase {
                     signature: signature,
                     updatedAt: nil,
                     useOutOfOffice: nil,
-                    useSignature: useSignature,
-                    userId: "1"
+                    useSignature: useSignature
                 )
             )
         )
