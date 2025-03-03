@@ -21,10 +21,10 @@ import Combine
 
 struct KeyboardAdaptiveViewModifier: ViewModifier {
     @State private var keyboardHeight: CGFloat = 0
-
+    private let extraHeight: CGFloat = 30
     func body(content: Content) -> some View {
         content
-            .padding(.bottom, keyboardHeight)
+            .padding(.bottom, keyboardHeight - extraHeight)
             .onAppear {
                 NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
                     .merge(with: NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))

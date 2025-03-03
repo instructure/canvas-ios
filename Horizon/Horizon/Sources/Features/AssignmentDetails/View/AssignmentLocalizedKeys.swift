@@ -47,6 +47,8 @@ enum AssignmentLocalizedKeys {
     case deleteDraftTitle
     case deleteDraftBody
     case draftDeletedAlert
+    case markAsDone
+    case done
 
     var title: String {
         switch self {
@@ -115,7 +117,10 @@ enum AssignmentLocalizedKeys {
             return String(localized: "Once deleted, this draft cannot be recovered.", bundle: .horizon)
         case .draftDeletedAlert:
             return String(localized: "Your draft was deleted.", bundle: .horizon)
-
+        case .markAsDone:
+            return String(localized: "Mark as Done", bundle: .horizon)
+        case .done:
+            return String(localized: "Done", bundle: .horizon)
         }
     }
 }

@@ -25,6 +25,10 @@ final class AssignmentDetailsAssembly {
     static func makeViewModel(
         courseID: String,
         assignmentID: String,
+        isMarkedAsDone: Bool,
+        isCompletedItem: Bool,
+        moduleID: String,
+        itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetailsViewModel {
@@ -33,6 +37,7 @@ final class AssignmentDetailsAssembly {
             assignmentID: assignmentID,
             courseID: courseID
         )
+        let moduleItemInteractor = ModuleItemSequenceInteractorLive(courseID: courseID, assetType: .assignment)
 
         let interactor = AssignmentInteractorLive(
             courseID: courseID,
@@ -51,7 +56,12 @@ final class AssignmentDetailsAssembly {
 
         return AssignmentDetailsViewModel(
             interactor: interactor,
+            moduleItemInteractor: moduleItemInteractor,
             textEntryInteractor: textEntryInteractor,
+            isMarkedAsDone: isMarkedAsDone,
+            isCompletedItem: isCompletedItem,
+            moduleID: moduleID,
+            itemID: itemID,
             router: router,
             courseID: courseID,
             assignmentID: assignmentID,
@@ -63,6 +73,10 @@ final class AssignmentDetailsAssembly {
     static func makeView(
         courseID: String,
         assignmentID: String,
+        isMarkedAsDone: Bool,
+        isCompletedItem: Bool,
+        moduleID: String,
+        itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetails {
@@ -70,6 +84,10 @@ final class AssignmentDetailsAssembly {
             viewModel: makeViewModel(
                 courseID: courseID,
                 assignmentID: assignmentID,
+                isMarkedAsDone: isMarkedAsDone,
+                isCompletedItem: isCompletedItem,
+                moduleID: moduleID,
+                itemID: itemID,
                 onTapAssignmentOptions: onTapAssignmentOptions,
                 didLoadAttemptCount: didLoadAttemptCount
             )
@@ -90,13 +108,17 @@ final class AssignmentDetailsAssembly {
         )
         return AssignmentDetailsViewModel(
             interactor: interactor,
+            moduleItemInteractor: ModuleItemSequenceInteractorPreview(),
             textEntryInteractor: assignmentTextEntryInteractor,
+            isMarkedAsDone: false,
+            isCompletedItem: false,
+            moduleID: "3",
+            itemID: "44",
             router: AppEnvironment.shared.router,
             courseID: "1",
             assignmentID: "assignmentID",
             onTapAssignmentOptions: .init()
         ) { _ in}
-
     }
 #endif
 }

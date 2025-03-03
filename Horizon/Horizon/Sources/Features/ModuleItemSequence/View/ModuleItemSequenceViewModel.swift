@@ -190,7 +190,7 @@ final class ModuleItemSequenceViewModel {
         }
         isLoaderVisible = true
         moduleItemInteractor.markAsDone(
-            item: moduleItem,
+            completed: moduleItem?.completed == false,
             moduleID: moduleID,
             itemID: itemID
         )

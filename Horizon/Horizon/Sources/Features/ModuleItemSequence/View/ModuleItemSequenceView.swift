@@ -247,10 +247,14 @@ private struct ContentView: View {
                     }
                 case .locked(title: let title, lockExplanation: let lockExplanation):
                     ModuleItemSequenceAssembly.makeLockView(title: title, lockExplanation: lockExplanation)
-                case .assignment(courseID: let courseID, assignmentID: let assignmentID):
+                case let .assignment(courseID, assignmentID, isMarkedAsDone, isCompleted, moduleID, itemID):
                     AssignmentDetailsAssembly.makeView(
                         courseID: courseID,
                         assignmentID: assignmentID,
+                        isMarkedAsDone: isMarkedAsDone,
+                        isCompletedItem: isCompleted,
+                        moduleID: moduleID,
+                        itemID: itemID,
                         onTapAssignmentOptions: viewModel.onTapAssignmentOptions,
                         didLoadAttemptCount: viewModel.didLoadAssignmentAttemptCount
                     )

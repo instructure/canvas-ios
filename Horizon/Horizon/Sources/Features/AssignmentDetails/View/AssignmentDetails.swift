@@ -47,8 +47,13 @@ struct AssignmentDetails: View {
                     if !viewModel.hasSubmittedBefore, let date = viewModel.lastDraftSavedAt {
                         draftView(date: date)
                     }
-                    submitButton
-
+                    VStack {
+                        submitButton
+                        if viewModel.isShowMarkAsDoneButton {
+                            markAsDoneButton
+                        }
+                    }
+                    .padding(.bottom, .huiSpaces.space48)
                 }
                 .animation(.smooth, value: viewModel.hasSubmittedBefore)
                 .padding(.huiSpaces.space24)
@@ -58,6 +63,7 @@ struct AssignmentDetails: View {
         .overlay { loaderView }
         .keyboardAdaptive()
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .scrollDismissesKeyboard(isShowHeader ? .immediately : .never)
         .preference(key: AssignmentPreferenceKey.self, value: viewModel.assignmentPreference)
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .huiOverlay(
@@ -142,6 +148,29 @@ struct AssignmentDetails: View {
             .disableWithOpacity(!viewModel.shouldEnableSubmitButton, disabledOpacity: 0.7)
             .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
         }
+    }
+
+    @ViewBuilder
+    private var markAsDoneButton: some View {
+        let text = viewModel.isCompletedItem
+        ? AssignmentLocalizedKeys.done.title
+        : AssignmentLocalizedKeys.markAsDone.title
+
+        let image = viewModel.isCompletedItem
+        ? Image.huiIcons.checkBox
+        : Image.huiIcons.checkBoxOutlineBlank
+
+        HStack {
+            Spacer()
+            HorizonUI.PrimaryButton(
+                text,
+                type: .beige,
+                leading: image
+            ) {
+                viewModel.markAsDone()
+            }
+        }
+        .animation(.smooth, value: viewModel.isCompletedItem)
     }
 
     private func draftView(date: String) -> some View {

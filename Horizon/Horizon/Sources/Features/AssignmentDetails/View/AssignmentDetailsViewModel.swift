@@ -88,7 +88,12 @@ final class AssignmentDetailsViewModel {
 
     let courseID: String
     let assignmentID: String
+    let isShowMarkAsDoneButton: Bool
+    private(set) var isCompletedItem: Bool
+    private let moduleID: String
+    private let itemID: String
     private let interactor: AssignmentInteractor
+    private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let textEntryInteractor: AssignmentTextEntryInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -99,7 +104,12 @@ final class AssignmentDetailsViewModel {
 
     init(
         interactor: AssignmentInteractor,
+        moduleItemInteractor: ModuleItemSequenceInteractor,
         textEntryInteractor: AssignmentTextEntryInteractor,
+        isMarkedAsDone: Bool,
+        isCompletedItem: Bool,
+        moduleID: String,
+        itemID: String,
         router: Router,
         courseID: String,
         assignmentID: String,
@@ -108,7 +118,12 @@ final class AssignmentDetailsViewModel {
         didLoadAttemptCount: @escaping (String?) -> Void
     ) {
         self.interactor = interactor
+        self.moduleItemInteractor = moduleItemInteractor
         self.textEntryInteractor = textEntryInteractor
+        self.isShowMarkAsDoneButton = isMarkedAsDone
+        self.isCompletedItem = isCompletedItem
+        self.moduleID = moduleID
+        self.itemID = itemID
         self.onTapAssignmentOptions = onTapAssignmentOptions
         self.scheduler = scheduler
         self.router = router
@@ -155,11 +170,29 @@ final class AssignmentDetailsViewModel {
             selectedSubmissionIndex = selectedSubmission.index
             return
         }
-        assignmentPreference = .confirmation(viewModel: makeSubmissionAlertViewModel())
+        showConformationModal(viewModel: makeSubmissionAlertViewModel())
     }
 
     func showDraftAlert() {
-        assignmentPreference = .confirmation(viewModel: makeDraftAlertViewModel())
+        showConformationModal(viewModel: makeDraftAlertViewModel())
+    }
+
+    func markAsDone() {
+        isLoaderVisible = true
+        moduleItemInteractor.markAsDone(
+            completed: !isCompletedItem,
+            moduleID: moduleID,
+            itemID: itemID
+        )
+        .sink { [weak self] completion in
+            if case .failure(let error) = completion {
+                self?.errorMessage = error.localizedDescription
+            }
+            self?.isLoaderVisible = false
+        } receiveValue: { [weak self] _ in
+            self?.isCompletedItem.toggle()
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Private Functions
@@ -184,7 +217,7 @@ final class AssignmentDetailsViewModel {
                 selectedSubmission = hasSubmittedBefore ? latestSubmission : selectedSubmission
                 submission = submissions.first
                 assignment?.showSubmitButton = submission?.showSubmitButton ?? false
-                assignmentPreference = .confirmation(viewModel: makeSuccessAlertViewModel(submission: submission))
+                showConformationModal(viewModel: makeSuccessAlertViewModel(submission: submission))
                 hasSubmittedBefore = true
                 isLoaderVisible = false
                 errorMessage = nil
@@ -268,6 +301,7 @@ final class AssignmentDetailsViewModel {
             } receiveValue: { [weak self] _ in
                 self?.htmlContent = ""
                 self?.textEntryInteractor.delete()
+                self?.deleteDraft(isShowToast: false)
                 self?.fetchSubmissions()
             }
             .store(in: &subscriptions)
@@ -296,7 +330,7 @@ final class AssignmentDetailsViewModel {
         }
     }
 
-    private func deleteDraft() {
+    private func deleteDraft(isShowToast: Bool = true) {
         switch selectedSubmission {
         case .text:
             textEntryInteractor.delete()
@@ -312,9 +346,17 @@ final class AssignmentDetailsViewModel {
         }
         let draftToastViewModel = ToastViewModel(
             title: AssignmentLocalizedKeys.draftDeletedAlert.title,
-            isPresented: true
+            isPresented: isShowToast
         )
         assignmentPreference = .toastViewModel(viewModel: draftToastViewModel)
+    }
+
+    private func showConformationModal(viewModel: SubmissionAlertViewModel) {
+        assignmentPreference = .confirmation(viewModel: viewModel)
+        scheduler.schedule(after: scheduler.now.advanced(by: .seconds(0.2))) { [weak self] in
+            viewModel.isPresented = true
+            self?.assignmentPreference = .confirmation(viewModel: viewModel)
+        }
     }
 
     private func makeConfirmationMessage() -> String {
@@ -330,7 +372,6 @@ final class AssignmentDetailsViewModel {
         SubmissionAlertViewModel(
             title: AssignmentLocalizedKeys.confirmSubmission.title,
             body: makeConfirmationMessage(),
-            isPresented: true,
             button: .init(title: AssignmentLocalizedKeys.submitAttempt.title) { [weak self] in
                 self?.performSubmission()
             }
@@ -341,7 +382,6 @@ final class AssignmentDetailsViewModel {
         SubmissionAlertViewModel(
             title: AssignmentLocalizedKeys.deleteDraftTitle.title,
             body: AssignmentLocalizedKeys.deleteDraftBody.title,
-            isPresented: true,
             button: .init(title: AssignmentLocalizedKeys.deleteDraftTitle.title) { [weak self] in
                 self?.deleteDraft()
             }
@@ -352,7 +392,6 @@ final class AssignmentDetailsViewModel {
         SubmissionAlertViewModel(
             title: AssignmentLocalizedKeys.successfullySubmitted.title,
             body: AssignmentLocalizedKeys.successfullySubmittedBody.title,
-            isPresented: true,
             type: .success,
             submission: submission,
             button: .init(title: AssignmentLocalizedKeys.viewSubmission.title) {}
