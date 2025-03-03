@@ -33,7 +33,7 @@ public class GetInboxSettings: APIUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CDInboxSettings.userId), equals: userId, orderBy: #keyPath(CDInboxSettings.userId))
+        return .all
     }
 
     public var request = GetInboxSettingsRequest()

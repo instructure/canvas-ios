@@ -794,6 +794,7 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
     var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, ""))
     var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
     var environmentSettings = CurrentValueSubject<Core.CDEnvironmentSettings?, Never>(nil)
+    var isFeatureEnabled = CurrentValueSubject<Bool, Never>(false)
 
     var secondsBeforeLoad: Int = 0
     var signatureValue: String = ""

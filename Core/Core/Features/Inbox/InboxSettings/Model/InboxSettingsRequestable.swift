@@ -41,7 +41,6 @@ public struct GetInboxSettingsRequest: APIGraphQLRequestable {
                 updatedAt
                 useOutOfOffice
                 useSignature
-                userId
           }
         }
         """
@@ -97,7 +96,6 @@ public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
                 updatedAt
                 useOutOfOffice
                 useSignature
-                userId
             }
           }
         }
@@ -130,6 +128,5 @@ public struct APIInboxSettings: Codable, Equatable {
         let updatedAt: Date?
         let useOutOfOffice: Bool?
         let useSignature: Bool?
-        let userId: String?
     }
 }

@@ -83,6 +83,7 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
     var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((true, ""))
     var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
     var environmentSettings = CurrentValueSubject<Core.CDEnvironmentSettings?, Never>(nil)
+    var isFeatureEnabled = CurrentValueSubject<Bool, Never>(false)
     private var subscriptions = Set<AnyCancellable>()
 
     init(environment: AppEnvironment) {

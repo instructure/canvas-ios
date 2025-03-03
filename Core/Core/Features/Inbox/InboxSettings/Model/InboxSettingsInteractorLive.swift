@@ -21,9 +21,10 @@ import CombineExt
 
 public class InboxSettingsInteractorLive: InboxSettingsInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
-    public let signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, ""))
+    public let signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, nil))
     public let settings = CurrentValueSubject<CDInboxSettings?, Never>(nil)
     public let environmentSettings = CurrentValueSubject<CDEnvironmentSettings?, Never>(nil)
+    public let isFeatureEnabled = CurrentValueSubject<Bool, Never>(false)
 
     private var subscriptions = Set<AnyCancellable>()
     private var settingsStore: ReactiveStore<GetInboxSettings>
@@ -51,9 +52,15 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
         environmentSettingsStore
             .getEntities(keepObservingDatabaseChanges: true)
-            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self, environment] settings in
                 if let settings = settings.first {
                     self?.environmentSettings.send(settings)
+
+                    var isFeatureEnabled = settings.enableInboxSignatureBlock
+                    if (environment.app == .student) {
+                        isFeatureEnabled = isFeatureEnabled && !settings.disableInboxSignatureBlockForStudents
+                    }
+                    self?.isFeatureEnabled.send(isFeatureEnabled)
                 } else {
                     self?.state.send(.error)
                 }

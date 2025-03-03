@@ -369,4 +369,127 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(newUseSignature, useSignatureResult)
         XCTAssertEqual(newSignatureText, signatureResult)
     }
+
+    func testFeatureEnabledFlagEnabledForTeacher() {
+        let signatureText = "Test"
+        environment.app = .teacher
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
+        api.mock(GetInboxSettingsRequest(), value: inboxSettings)
+
+        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+
+        let exp = expectation(description: "settingsLoaded")
+        var isEnabledResult: Bool?
+        var initFlag = false
+        testee.isFeatureEnabled
+            .sink { isEnabled in
+                isEnabledResult = isEnabled
+                if initFlag { exp.fulfill() }
+                initFlag = true
+            }
+            .store(in: &subscriptions)
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(true, isEnabledResult)
+    }
+
+    func testFeatureEnabledFlagDisabledForStudent() {
+        let signatureText = "Test"
+        environment.app = .student
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
+        api.mock(GetInboxSettingsRequest(), value: inboxSettings)
+
+        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+
+        let exp = expectation(description: "settingsLoaded")
+        var isEnabledResult: Bool?
+        var initFlag = false
+        testee.isFeatureEnabled
+            .sink { isEnabled in
+                isEnabledResult = isEnabled
+                if initFlag { exp.fulfill() }
+                initFlag = true
+            }
+            .store(in: &subscriptions)
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(false, isEnabledResult)
+    }
+
+    func testFeatureEnabledFlagDisabledForTeacher() {
+        let signatureText = "Test"
+        environment.app = .teacher
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: false, disable_inbox_signature_block_for_students: true)
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .init(
+            data: .init(
+                myInboxSettings: .init(
+                    _id: "1",
+                    createdAt: nil,
+                    outOfOfficeLastDate: nil,
+                    outOfOfficeMessage: nil,
+                    outOfOfficeSubject: nil,
+                    outOfOfficeFirstDate: nil,
+                    signature: signatureText,
+                    updatedAt: nil,
+                    useOutOfOffice: nil,
+                    useSignature: true,
+                    userId: userId
+                )
+            )
+        )
+        api.mock(GetInboxSettingsRequest(), value: inboxSettings)
+
+        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+
+        let exp = expectation(description: "settingsLoaded")
+        var isEnabledResult: Bool?
+        var initFlag = false
+        testee.isFeatureEnabled
+            .sink { isEnabled in
+                isEnabledResult = isEnabled
+                if initFlag { exp.fulfill() }
+                initFlag = true
+            }
+            .store(in: &subscriptions)
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(false, isEnabledResult)
+    }
 }

@@ -34,8 +34,8 @@ public struct InboxSettingsView: View {
     public var body: some View {
         InstUI.BaseScreen(
             state: viewModel.state
-        ) { _ in
-            contentView
+        ) { geometry in
+            contentView(geometry: geometry)
         }
         .navigationBarTitleView(String(localized: "Inbox Signature", bundle: .core))
         .navigationBarItems(trailing: doneButton)
@@ -55,60 +55,58 @@ public struct InboxSettingsView: View {
         .disabled(!viewModel.enableSaveButton)
     }
 
-    var contentView: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 0) {
-                Spacer(minLength: defaultPadding)
-                Text("Signature will be added to the end of all messaging.", bundle: .core)
-                    .font(.regular14, lineHeight: .condensed)
-                    .foregroundColor(.textDark)
-                    .padding(defaultPadding)
-
-                separator
-
-                Toggle(isOn: $viewModel.useSignature) {
-                    Text("Signature", bundle: .core)
-                        .font(.semibold16, lineHeight: .condensed)
-                        .foregroundColor(.textDarkest)
-                }
-                .tint(.accentColor)
+    func contentView(geometry: GeometryProxy) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Spacer(minLength: defaultPadding)
+            Text("Signature will be added to the end of all messaging.", bundle: .core)
+                .font(.regular14, lineHeight: .condensed)
+                .foregroundColor(.textDark)
                 .padding(defaultPadding)
 
-                separator
+            separator
 
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Signature text", bundle: .core)
-                        .font(.semibold16, lineHeight: .condensed)
-                        .foregroundColor(.textDarkest)
-                        .onTapGesture {
-                            self.focusedInput = .signature
-                        }
-                        .accessibilityHidden(true)
-                        .padding(.vertical, defaultPadding)
-
-                    UITextViewWrapper(text: $viewModel.signature) {
-                        let tv = UITextView()
-                        tv.isScrollEnabled = false
-                        tv.textContainer.widthTracksTextView = true
-                        tv.textContainer.lineBreakMode = .byWordWrapping
-                        tv.font = UIFont.scaledNamedFont(.regular16)
-                        tv.translatesAutoresizingMaskIntoConstraints = false
-                        tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultPadding)).isActive = true
-                        tv.backgroundColor = .backgroundLightest
-                        return tv
-                    }
-                    .font(.regular16, lineHeight: .condensed)
-                    .textInputAutocapitalization(.sentences)
-                    .focused($focusedInput, equals: .signature)
+            Toggle(isOn: $viewModel.useSignature) {
+                Text("Signature", bundle: .core)
+                    .font(.semibold16, lineHeight: .condensed)
                     .foregroundColor(.textDarkest)
-                    .frame(minHeight: 60)
-                    .accessibilityLabel(Text("Signature Input", bundle: .core))
-                    .accessibilityHint(Text("Write your Signature text here", bundle: .core))
-                    .accessibilityIdentifier("InboxSettings.signature")
-                }
-                .padding(defaultPadding)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .tint(.accentColor)
+            .padding(defaultPadding)
+
+            separator
+
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Signature text", bundle: .core)
+                    .font(.semibold16, lineHeight: .condensed)
+                    .foregroundColor(.textDarkest)
+                    .onTapGesture {
+                        self.focusedInput = .signature
+                    }
+                    .accessibilityHidden(true)
+                    .padding(.vertical, defaultPadding)
+
+                UITextViewWrapper(text: $viewModel.signature) {
+                    let tv = UITextView()
+                    tv.isScrollEnabled = false
+                    tv.textContainer.widthTracksTextView = true
+                    tv.textContainer.lineBreakMode = .byWordWrapping
+                    tv.font = UIFont.scaledNamedFont(.regular16)
+                    tv.translatesAutoresizingMaskIntoConstraints = false
+                    tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultPadding)).isActive = true
+                    tv.backgroundColor = .backgroundLightest
+                    return tv
+                }
+                .font(.regular16, lineHeight: .condensed)
+                .textInputAutocapitalization(.sentences)
+                .focused($focusedInput, equals: .signature)
+                .foregroundColor(.textDarkest)
+                .frame(minHeight: 60)
+                .accessibilityLabel(Text("Signature Input", bundle: .core))
+                .accessibilityHint(Text("Write your Signature text here", bundle: .core))
+                .accessibilityIdentifier("InboxSettings.signature")
+            }
+            .padding(defaultPadding)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

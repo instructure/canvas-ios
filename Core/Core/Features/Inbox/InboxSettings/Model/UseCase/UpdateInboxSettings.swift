@@ -33,7 +33,7 @@ public class UpdateInboxSettings: APIUseCase {
     public var cacheKey: String?
 
     public var scope: Scope {
-        return .where(#keyPath(CDInboxSettings.userId), equals: inboxSettings.userId, orderBy: #keyPath(CDInboxSettings.userId))
+        return .all
     }
 
     public var request: UpdateInboxSettingsRequest { UpdateInboxSettingsRequest(inboxSettings: inboxSettings) }

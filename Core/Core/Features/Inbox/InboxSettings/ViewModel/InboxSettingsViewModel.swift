@@ -60,9 +60,7 @@ public class InboxSettingsViewModel: ObservableObject {
             .state
             .sink { [weak self] s in
                 switch(s) {
-                case .data:
-                    self?.state = .data
-                case .empty:
+                case .data, .empty:
                     self?.state = .data
                 case .error:
                     self?.state = .error
@@ -99,22 +97,18 @@ public class InboxSettingsViewModel: ObservableObject {
             })
             .store(in: &subscriptions)
 
-        _useSignature
-            .projectedValue
-            .dropFirst()
-            .dropFirst()
-            .sink { [weak self] _ in
-                self?.enableSaveButton = true
-            }
-            .store(in: &subscriptions)
-
-        _signature
-            .projectedValue
-            .dropFirst()
-            .dropFirst()
-            .sink { [weak self] _ in
-                self?.enableSaveButton = true
-            }
-            .store(in: &subscriptions)
+        Publishers.Merge(
+            _useSignature
+                .projectedValue
+                .mapToVoid(),
+            _signature
+                .projectedValue
+                .mapToVoid()
+        )
+        .dropFirst(4)
+        .sink { [weak self] _ in
+            self?.enableSaveButton = true
+        }
+        .store(in: &subscriptions)
     }
 }

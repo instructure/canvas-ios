@@ -24,6 +24,7 @@ public protocol InboxSettingsInteractor {
     var signature: CurrentValueSubject<(useSignature: Bool, String?), Never> { get }
     var settings: CurrentValueSubject<CDInboxSettings?, Never> { get }
     var environmentSettings: CurrentValueSubject<CDEnvironmentSettings?, Never> { get }
+    var isFeatureEnabled: CurrentValueSubject<Bool, Never> { get }
 
     func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<Void, Error>
 }

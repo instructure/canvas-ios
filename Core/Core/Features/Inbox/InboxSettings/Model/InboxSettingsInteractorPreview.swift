@@ -22,9 +22,10 @@ import CombineExt
 public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
 
-    public let signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, ""))
+    public let signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, nil))
     public let settings = CurrentValueSubject<CDInboxSettings?, Never>(nil)
     public let environmentSettings = CurrentValueSubject<CDEnvironmentSettings?, Never>(nil)
+    public let isFeatureEnabled = CurrentValueSubject<Bool, Never>(false)
 
     public init() { }
 

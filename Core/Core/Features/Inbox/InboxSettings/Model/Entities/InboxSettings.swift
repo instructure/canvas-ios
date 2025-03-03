@@ -30,12 +30,11 @@ final public class CDInboxSettings: NSManagedObject, WriteableModel {
     @NSManaged public var updatedAt: Date?
     @NSManaged public var useOutOfOffice: Bool
     @NSManaged public var useSignature: Bool
-    @NSManaged public var userId: String?
 
     @discardableResult
     public static func save(_ item: APIInboxSettings, in context: NSManagedObjectContext) -> CDInboxSettings {
         let data = item.data.myInboxSettings
-        let dbEntity: CDInboxSettings = context.first(where: #keyPath(CDInboxSettings.userId), equals: data.userId) ?? context.insert()
+        let dbEntity: CDInboxSettings = context.fetch(.all).first ?? context.insert()
         dbEntity.id = data._id ?? ""
         dbEntity.createdAt = data.createdAt
         dbEntity.outOfOfficeLastDate = data.outOfOfficeLastDate
@@ -46,7 +45,6 @@ final public class CDInboxSettings: NSManagedObject, WriteableModel {
         dbEntity.updatedAt = data.updatedAt
         dbEntity.useOutOfOffice = data.useOutOfOffice ?? false
         dbEntity.useSignature = data.useSignature ?? false
-        dbEntity.userId = data.userId
 
         return dbEntity
     }
