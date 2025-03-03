@@ -31,8 +31,10 @@ public struct ParentInboxCoursePickerView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Choose a course to message", bundle: .core)
-                    .font(.regular16)
+                    .font(.regular14)
                     .foregroundColor(.textDark)
+                    .accessibilityAddTraits(.isHeader)
+                    .frame(maxWidth: .infinity, alignment: .center)
 
                 switch(viewModel.state) {
                 case .data:
