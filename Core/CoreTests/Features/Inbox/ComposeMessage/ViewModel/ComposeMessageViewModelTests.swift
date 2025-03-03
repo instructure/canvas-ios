@@ -791,7 +791,7 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
     private var subscriptions: [AnyCancellable] = []
 
     var state = CurrentValueSubject<StoreState, Never>(.data)
-    var signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
+    var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, ""))
     var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
     var environmentSettings = CurrentValueSubject<Core.CDEnvironmentSettings?, Never>(nil)
 
