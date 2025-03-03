@@ -92,7 +92,6 @@ public extension URL {
     enum Paths {
         static let annotatedPDFs = "AnnotatedPDFs"
         static let offline = "Offline"
-        static let offlinePreviewPrefix = "offline_preview_"
 
         public enum Offline {
 
