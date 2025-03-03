@@ -36,9 +36,8 @@ final class ScoresInteractorLive: ScoresInteractor {
             getCourse(courseID: courseID)
         )
         .map { assignmentGroups, course in
-            ScoreDetails(
-                totalScore: course.enrollments.first?.computedFinalScore ?? 0.0,
-                totalGrade: course.enrollments.first?.computedFinalGrade ?? "N/A",
+            self.getScoreDetails(
+                course: course,
                 assignmentGroups: assignmentGroups
             )
         }
@@ -66,44 +65,35 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getTotalScore() {}
-}
-
-struct HAssignmentGroup {
-    let id: String
-    let name: String
-    let groupWeight: Double?
-    let assignments: [HAssignment]
-
-    init(id: String, name: String, groupWeight: Double, assignments: [HAssignment]) {
-        self.id = id
-        self.name = name
-        self.groupWeight = groupWeight
-        self.assignments = assignments
+    private func getScoreDetails(course: ScoresCourse, assignmentGroups: [HAssignmentGroup]) -> ScoreDetails {
+        ScoreDetails(
+            score: calculateFinalScoreAndGradeText(course: course),
+            assignmentGroups: assignmentGroups
+        )
     }
 
-    init(from entity: Core.AssignmentGroup) {
-        self.id = entity.id
-        self.name = entity.name
-        self.groupWeight = entity.groupWeight?.doubleValue
-        if let assignments = entity.assignments {
-            self.assignments = Array(assignments).map { HAssignment(from: $0) }
-        } else {
-            self.assignments = []
+    private func calculateFinalScoreAndGradeText(course: ScoresCourse) -> String {
+        let naText = String(localized: "N/A", bundle: .horizon)
+
+        guard let enrollment = course.enrollments.first else {
+            return naText
         }
-    }
-}
 
-struct ScoreDetails {
-    let totalScore: Double
-    let totalGrade: String
+        if course.settings.hideFinalGrade {
+            return naText
+        }
 
-    var totalGradeText: String {
-        "\(String(totalScore))%"
-    }
+        if course.settings.restrictQuantitativeData,
+           let computedFinalGrade = enrollment.computedFinalGrade {
+            return computedFinalGrade // Returns e.g "C-"
+        } else if let computedFinalScore = enrollment.computedFinalScore,
+                  let computedFinalGrade = enrollment.computedFinalGrade,
+                  let formattedScore = GradeFormatter.numberFormatter.string(
+                      from: GradeFormatter.truncate(computedFinalScore)
+                  ) {
+            return "\(formattedScore)% (\(computedFinalGrade))"
+        }
 
-    let assignmentGroups: [HAssignmentGroup]
-    var assignments: [HAssignment] {
-        assignmentGroups.flatMap { $0.assignments }
+        return naText
     }
 }

@@ -28,7 +28,9 @@ struct ScoresView: View {
             case .loading:
                 loadingView
             case .data:
-                Text(viewModel.scoreDetails?.totalGradeText ?? "No total grade")
+                if let score = viewModel.scoreDetails?.score {
+                    Text("Total: \(score)")
+                }
             case .error:
                 Text("Error loading scores.")
             }

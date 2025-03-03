@@ -106,6 +106,7 @@ public struct APICourseSettings: Codable, Equatable {
     let usage_rights_required: Bool?
     let syllabus_course_summary: Bool?
     let restrict_quantitative_data: Bool?
+    let hide_final_grade: Bool?
 }
 
 public enum CourseDefaultView: String, Codable, CaseIterable {
@@ -216,12 +217,14 @@ extension APICourseSettings {
     public static func make(
         usage_rights_required: Bool = false,
         syllabus_course_summary: Bool = true,
-        restrict_quantitative_data: Bool? = nil
+        restrict_quantitative_data: Bool? = nil,
+        hide_final_grade: Bool? = nil
     ) -> APICourseSettings {
         APICourseSettings(
             usage_rights_required: usage_rights_required,
             syllabus_course_summary: syllabus_course_summary,
-            restrict_quantitative_data: restrict_quantitative_data
+            restrict_quantitative_data: restrict_quantitative_data,
+            hide_final_grade: hide_final_grade
         )
     }
 }

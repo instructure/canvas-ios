@@ -16,31 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct ScoresCourse {
+public struct ScoresCourseEnrollment {
     public let courseID: String
-    public let enrollments: [ScoresCourseEnrollment]
-    public let settings: ScoresCourseSettings
-    
+    public let computedFinalScore: Double?
+    public let computedFinalGrade: String?
+
     public init(
         courseID: String,
-        enrollments: [ScoresCourseEnrollment],
-        settings: ScoresCourseSettings
+        computedFinalScore: Double?,
+        computedFinalGrade: String?
     ) {
         self.courseID = courseID
-        self.enrollments = enrollments
-        self.settings = settings
+        self.computedFinalScore = computedFinalScore
+        self.computedFinalGrade = computedFinalGrade
     }
 
-    public init(from entity: CDScoresCourse) {
+    init(from entity: CDScoresCourseEnrollment) {
         self.courseID = entity.courseID
-        self.enrollments = entity.enrollments.map(ScoresCourseEnrollment.init(from:))
-        if let settings = entity.settings {
-            self.settings = .init(from: settings)
-        } else {
-            self.settings = .init(
-                restrictQuantitativeData: false,
-                hideFinalGrade: false
-            )
-        }
+        self.computedFinalGrade = entity.computedFinalGrade
+        self.computedFinalScore = entity.computedFinalScore?.doubleValue
     }
 }

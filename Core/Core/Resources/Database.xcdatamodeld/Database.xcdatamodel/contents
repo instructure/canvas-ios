@@ -198,12 +198,18 @@
     <entity name="CDScoresCourse" representedClassName="Core.CDScoresCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresCourseEnrollment" inverseName="relationship" inverseEntity="CDScoresCourseEnrollment"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourseSettings" inverseName="course" inverseEntity="CDScoresCourseSettings"/>
     </entity>
     <entity name="CDScoresCourseEnrollment" representedClassName="Core.CDScoresCourseEnrollment" syncable="YES">
         <attribute name="computedFinalGrade" optional="YES" attributeType="String"/>
         <attribute name="computedFinalScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="enrollments" inverseEntity="CDScoresCourse"/>
+    </entity>
+    <entity name="CDScoresCourseSettings" representedClassName="Core.CDScoresCourseSettings" syncable="YES">
+        <attribute name="hideFinalGrade" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="settings" inverseEntity="CDScoresCourse"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
