@@ -156,6 +156,8 @@ private extension View {
     }
 }
 
+#if DEBUG
+
 @available(iOS 17.0, *)
 #Preview(traits: .sizeThatFitsLayout) {
     @Previewable @State var isOn1 = true
@@ -193,3 +195,5 @@ private extension View {
     .font(.regular12)
     .accentColor(.course1)
 }
+
+#endif
