@@ -29,9 +29,8 @@ class ParentInboxCoursePickerViewModelTests: ParentTestCase {
 
     override func setUp() {
         super.setUp()
-        let env = AppEnvironment()
         mockInteractor = ParentInboxCoursePickerInteractorMock(env: env)
-        testee = ParentInboxCoursePickerViewModel(interactor: mockInteractor, router: router)
+        testee = ParentInboxCoursePickerViewModel(interactor: mockInteractor, environment: env, router: router)
     }
 
     func testInteractorStateMappedToViewModel() {
