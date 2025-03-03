@@ -81,7 +81,7 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
 
             // Starts from 0 and reaches 1 when the image is fully pushed out of screen
             let offsetRatio = abs(verticalOffset) / (height / 2)
-            imageOpacity = hideColorOverlay ? 1 : (1 - offsetRatio) * imageOpacity
+            imageOpacity = hideColorOverlay ? 1 : (1 - offsetRatio) * Self.originalImageOpacity
             titleOpacity = 1 - offsetRatio
         } else { // pull to refresh gesture, we allow the image to move along with the content
             verticalOffset = value
