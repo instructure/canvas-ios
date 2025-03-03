@@ -3587,6 +3587,9 @@
         }
       }
     },
+    "Choose a course to message" : {
+
+    },
     "Closed" : {
 
     },
@@ -4106,6 +4109,7 @@
       }
     },
     "Compose new message" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -6411,6 +6415,9 @@
         }
       }
     },
+    "Dismiss menu" : {
+
+    },
     "Domain mismatch" : {
       "localizations" : {
         "ar" : {
@@ -7441,6 +7448,9 @@
     "Expanded" : {
 
     },
+    "Failed to load courses" : {
+
+    },
     "Find School" : {
       "localizations" : {
         "ar" : {
@@ -8210,6 +8220,7 @@
       }
     },
     "Inbox" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -8466,6 +8477,7 @@
       }
     },
     "Inbox Zero" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -11537,6 +11549,9 @@
         }
       }
     },
+    "No courses found" : {
+
+    },
     "No Due Date" : {
       "localizations" : {
         "ar" : {
@@ -13077,6 +13092,7 @@
       }
     },
     "Regarding: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -19481,6 +19497,7 @@
       }
     },
     "You’re all caught up" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

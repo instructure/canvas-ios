@@ -59,12 +59,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.descriptionView.isHidden, true)
 
         controller.composeButton.sendActions(for: .primaryActionTriggered)
-        let compose = router.presented as? ComposeViewController
-        XCTAssertEqual(compose?.context, .course("1"))
-        XCTAssertEqual(compose?.observeeID, "1")
-        XCTAssertEqual(compose?.recipientsView.recipients.map { $0.id }, [ "2" ])
-        XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Assignment - some assignment")
-        XCTAssertEqual(compose?.hiddenMessage, "Regarding: John Doe, \(url)")
+        XCTAssert(router.presented is CoreHostingController<ComposeMessageView>)
     }
 
     func testScoreLayoutWhenQuantitativeDataDisabled() {
