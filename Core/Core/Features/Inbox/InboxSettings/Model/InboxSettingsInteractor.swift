@@ -21,7 +21,7 @@ import CombineExt
 
 public protocol InboxSettingsInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
-    var signature: CurrentValueSubject<(Bool?, String?), Never> { get }
+    var signature: CurrentValueSubject<(useSignature: Bool, String?), Never> { get }
     var settings: CurrentValueSubject<CDInboxSettings?, Never> { get }
     var environmentSettings: CurrentValueSubject<CDEnvironmentSettings?, Never> { get }
 

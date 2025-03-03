@@ -44,7 +44,7 @@ public class InboxSettingsViewModel: ObservableObject {
         inboxSettingsInteractor
             .signature
             .sink { [weak self] (useSignature, signature) in
-                self?.useSignature = useSignature ?? false
+                self?.useSignature = useSignature
                 self?.signature = signature ?? ""
             }
             .store(in: &subscriptions)

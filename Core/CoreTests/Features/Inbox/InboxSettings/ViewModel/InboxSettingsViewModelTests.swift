@@ -80,7 +80,7 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
     private var environment: AppEnvironment
     var refreshCalled = false
     var state = CurrentValueSubject<Core.StoreState, Never>(.data)
-    var signature = CurrentValueSubject<(Bool?, String?), Never>((true, ""))
+    var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((true, ""))
     var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
     var environmentSettings = CurrentValueSubject<Core.CDEnvironmentSettings?, Never>(nil)
     private var subscriptions = Set<AnyCancellable>()

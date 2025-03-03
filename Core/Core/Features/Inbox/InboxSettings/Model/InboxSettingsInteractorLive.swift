@@ -21,10 +21,10 @@ import CombineExt
 
 public class InboxSettingsInteractorLive: InboxSettingsInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
-    public let signature = CurrentValueSubject<(Bool?, String?), Never>((false, ""))
-
+    public let signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, ""))
     public let settings = CurrentValueSubject<CDInboxSettings?, Never>(nil)
     public let environmentSettings = CurrentValueSubject<CDEnvironmentSettings?, Never>(nil)
+
     private var subscriptions = Set<AnyCancellable>()
     private var settingsStore: ReactiveStore<GetInboxSettings>
     private var environmentSettingsStore: ReactiveStore<GetEnvironmentSettings>
