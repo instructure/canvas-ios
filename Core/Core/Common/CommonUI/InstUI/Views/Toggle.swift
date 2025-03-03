@@ -34,7 +34,7 @@ extension InstUI {
         }
 
         public var body: some View {
-            HStack {
+            HStack(spacing: 0) {
                 label()
                     .frame(maxWidth: .infinity, alignment: .leading)
                 toggle
@@ -43,25 +43,6 @@ extension InstUI {
             .accessibilityAddTraitsIsToggle()
             .accessibilityValue(accessibilityValue)
             .addHapticFeedback(isOn: isOn)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation {
-                    isOn.toggle()
-                }
-            }
-            .gesture(DragGesture(minimumDistance: 0)
-                .onChanged { value in
-                    if abs(value.translation.width) < 20 { return }
-
-                    withAnimation {
-                        switch value.translation.width {
-                        case ...0: isOn = false
-                        case 0...: isOn = true
-                        default: break
-                        }
-                    }
-                }
-            )
         }
 
         private var toggle: some View {
@@ -71,6 +52,26 @@ extension InstUI {
                 .overlay(alignment: isOn ? .trailing : .leading) {
                     knob
                 }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    withAnimation {
+                        isOn.toggle()
+                    }
+                }
+                .gesture(DragGesture(minimumDistance: 0)
+                    .onChanged { value in
+                        if abs(value.translation.width) < 20 { return }
+
+                        withAnimation {
+                            switch value.translation.width {
+                            case ...0: isOn = false
+                            case 0...: isOn = true
+                            default: break
+                            }
+                        }
+                    }
+                )
+                .padding(.leading, 8)
         }
 
         private var knob: some View {
@@ -160,35 +161,33 @@ private extension View {
     @Previewable @State var isOn1 = true
     @Previewable @State var isOn2 = false
 
-    HStack(spacing: 20) {
+    @ViewBuilder
+    func factory(title: String) -> some View {
         let label = Text(verbatim: "Toggle Label")
+        VStack(spacing: 20) {
+            Text(title)
+            InstUI.Divider()
+            Text(verbatim: "Active")
+            InstUI.Toggle(isOn: $isOn1) { label }
+            InstUI.Toggle(isOn: $isOn2) { label }
+            InstUI.Divider()
+            Text(verbatim: "Disabled")
+            InstUI.Toggle(isOn: .constant(true)) { label }.disabled(true)
+            InstUI.Toggle(isOn: .constant(false)) { label }.disabled(true)
+            InstUI.Divider()
+            Text(verbatim: "Long Text")
+            InstUI.Toggle(isOn: .constant(true)) {
+                Text(InstUI.PreviewData.loremIpsumMedium)
+            }.disabled(true)
+        }
+        .padding()
+    }
 
-        VStack(spacing: 20) {
-            Text(verbatim: "Light Mode")
-            InstUI.Divider()
-            Text(verbatim: "Active")
-            InstUI.Toggle(isOn: $isOn1) { label }
-            InstUI.Toggle(isOn: $isOn2) { label }
-            InstUI.Divider()
-            Text(verbatim: "Disabled")
-            InstUI.Toggle(isOn: .constant(true)) { label }.disabled(true)
-            InstUI.Toggle(isOn: .constant(false)) { label }.disabled(true)
-        }
-        .padding()
-        VStack(spacing: 20) {
-            Text(verbatim: "Dark Mode")
-            InstUI.Divider()
-            Text(verbatim: "Active")
-            InstUI.Toggle(isOn: $isOn1) { label }
-            InstUI.Toggle(isOn: $isOn2) { label }
-            InstUI.Divider()
-            Text(verbatim: "Disabled")
-            InstUI.Toggle(isOn: .constant(true)) { label }.disabled(true)
-            InstUI.Toggle(isOn: .constant(false)) { label }.disabled(true)
-        }
-        .padding()
-        .background(Color.backgroundLightest)
-        .environment(\.colorScheme, .dark)
+    return HStack(spacing: 20) {
+        factory(title: "Light Mode")
+        factory(title: "Dark Mode")
+            .background(Color.backgroundLightest)
+            .environment(\.colorScheme, .dark)
     }
     .frame(maxWidth: .infinity)
     .font(.regular12)
