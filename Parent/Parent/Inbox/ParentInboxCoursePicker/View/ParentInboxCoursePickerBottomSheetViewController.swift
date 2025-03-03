@@ -34,9 +34,7 @@ public class ParentInboxCoursePickerBottomSheetViewController: UIViewController 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor {
-            $0.isDarkInterface ? .backgroundLight : .backgroundLightest
-        }
+        view.backgroundColor = UIColor { $0.isDarkInterface ? .backgroundLight : .backgroundLightest }
         let viewController = ParentInboxCoursePickerAssembly.makeInboxCoursePickerViewController(env: env)
         let subView = viewController.view!
         addChild(viewController)
