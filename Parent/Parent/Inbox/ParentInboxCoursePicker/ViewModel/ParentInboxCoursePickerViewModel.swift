@@ -25,6 +25,7 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
     // MARK: - Output
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var items: [StudentContextItem] = []
+    @Published public private(set) var isDarkInterface: Bool
 
     // MARK: - Inputs
     public let didTapContext = PassthroughRelay<(WeakViewController, StudentContextItem)>()
@@ -34,10 +35,13 @@ public class ParentInboxCoursePickerViewModel: ObservableObject {
     private let interactor: ParentInboxCoursePickerInteractor
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
+    private let environemnt: AppEnvironment
 
-    init(interactor: ParentInboxCoursePickerInteractor, router: Router) {
+    init(interactor: ParentInboxCoursePickerInteractor, environment: AppEnvironment, router: Router) {
         self.interactor = interactor
         self.router = router
+        self.environemnt = environment
+        self.isDarkInterface = environment.userDefaults?.interfaceStyle == .dark
         setupOutputBindings()
         setupInputBindings()
     }

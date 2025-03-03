@@ -50,6 +50,7 @@ public struct ParentInboxCoursePickerView: View {
             .frame(maxWidth: .infinity)
             .padding(.all, 12)
         }
+        .background(viewModel.isDarkInterface ? Color.backgroundLight : Color.backgroundLightest)
     }
 
     private var contentView: some View {
