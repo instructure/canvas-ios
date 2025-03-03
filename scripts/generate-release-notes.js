@@ -18,6 +18,14 @@
 
 //
 //  Generates release notes from our common commit message format
+//   and adds Fix Versions to related JIRA tickets.
+//  Generates notes only for the selected app, based on each commit's affects field.
+//  To generate notes for 
+//    - a given tag: use the tag as an argument. Example: Student-7.12.0
+//    - the master branch since the latest tag: use the app as an argument. Example: Student
+//  (NOTE: app/tag argument is case sensitive)
+//
+// Fix Versions are only added when the argument is a tag.
 //
 
 const { spawnSync } = require('child_process')
@@ -41,8 +49,11 @@ function run (cmd, args) {
 }
 
 function generateReleaseNotes () {
-  const tag = process.argv[2] || ''
-  const app = tag.split('-')[0]
+  const arg = process.argv[2] || ''
+  const isTag = arg.includes('-')
+  const tag = isTag ? arg : 'master'
+  const app = arg.split('-')[0]
+  
   if (![ 'Parent', 'Student', 'Teacher' ].includes(app)) {
     throw new Error('The tag argument is required and must start with Parent-, Student-, or Teacher-')
   }
@@ -52,15 +63,20 @@ function generateReleaseNotes () {
 
   const tags = run('git', [ 'ls-remote', '--tags', '--sort=v:refname', 'origin', `refs/tags/${app}-*` ])
     .split('\n').map(line => line.split('/').pop()).filter(Boolean)
-  const currentIndex = tags.indexOf(tag)
-  const sinceTag = tags[currentIndex - 1]
-  if (currentIndex < 0) {
+
+  var tagIndex = -1
+  if (isTag) {
+    tagIndex = tags.indexOf(tag)
+  }
+  const sinceTagIndex = isTag ? tagIndex - 1 : tags.length - 1
+  const sinceTag = tags[sinceTagIndex]
+  if (isTag && tagIndex < 0) {
     throw new Error(`${tag} is not a valid tag`)
   } else if (!sinceTag) {
     throw new Error('Could not find a previous tag')
   }
 
-  console.log(`Generating release notes for ${app} ${sinceTag}...${tag}`)
+  console.log(`Generating release notes for ${app} *\`${sinceTag}\`* -> *\`${tag}\`*`)
   let result = run('git', [ 'log', `${sinceTag}...${tag}`, `--pretty=format:commit:%H%n%B${delimiter}`, '--' ])
   return parseGitLog(result, app.toLowerCase(), tag)
 }
@@ -74,8 +90,10 @@ async function parseGitLog (log, app, tag) {
   let totalNumberOfJiras = 0
   let releaseNotes = []
   let allJiras = []
+  let allJiraLinks = []
+  let allJirasPRsNotes = []
   let commitsWithoutJiraTicketNumbers = []
-  let jirasWithoutReleaseNotes = []
+
   for (let commit of commits) {
     let hash = getCommitHash(commit)
     let apps = getAppsAffected(commit)
@@ -92,11 +110,29 @@ async function parseGitLog (log, app, tag) {
       let jiras = getJiras(commit)
       if (jiras.length) {
         totalNumberOfJiras += jiras.length
-       allJiras.push(...jiras)
+        allJiras.push(...jiras)
 
-        if (!note) {
-          jirasWithoutReleaseNotes.push(...jiras)
+        let jiraLinks = getJiraLinks(jiras)
+        allJiraLinks.push(...jiraLinks)
+
+        let prNumber = getPRNumber(commit)
+        let prTitle = getPRTitle(commit)
+        let prLink = '[#' + prNumber + '](https://github.com/instructure/canvas-ios/pull/' + prNumber + ')'
+        
+        var notePart = ''
+        var prTitlePart = ''
+        if (note) {
+          notePart = ' _"' + note + '"_'
+          prTitlePart = ''
+        } else {
+          notePart = ' -'
+          prTitlePart = ': ' + prTitle + ''
         }
+
+        let jirasPRsNotes = jiraLinks.map(jira => {
+          return `[ ` + jira + ' @ ' + prLink + prTitlePart + ' ]' + notePart
+        })
+        allJirasPRsNotes.push(...jirasPRsNotes)
       } else {
         commitsWithoutJiraTicketNumbers.push(hash)
       }
@@ -117,22 +153,22 @@ async function parseGitLog (log, app, tag) {
     console.log(commitsWithoutJiraTicketNumbers.join('\n'))
   }
 
-  if (jirasWithoutReleaseNotes.length > 0) {
-    console.log('')
-    console.log('Jira tickets without release notes:')
-    console.log(jirasWithoutReleaseNotes.join('\n'))
-  }
-
   console.log('')
-  console.log('Jira tickets included in this release:')
-  console.log(allJiras.join('\n'))
+  console.log('Jira tickets & PRs included in this release:')
+  console.log('(generated list, may include false positives)')
   console.log('')
-  console.log('Release Notes:')
+  console.log(allJirasPRsNotes.join('\n'))
+  console.log('')
+  console.log('Generated Release Notes:')
+  console.log('```')
   console.log(releaseNotes.map(item => `- ${item}`).join('\n'))
-  console.log('')
+  console.log('```')
 
-  if (process.env.JIRA_USERNAME && process.env.JIRA_API_TOKEN) {
-    await addFixVersion(tag, allJiras)
+  const arg = process.argv[2] || ''
+  const isTag = arg.includes('-')
+
+  if (isTag && process.env.JIRA_USERNAME && process.env.JIRA_API_TOKEN) {
+    await addFixVersion(tag, allJiraLinks)
   }
 }
 
@@ -190,6 +226,24 @@ function getJiras (commit) {
   })
 
   return jiras
+}
+
+function getJiraLinks (jiras) {
+  jiras = jiras.map(jira => {
+    return '[' + jira + '](https://instructure.atlassian.net/browse/' + jira + ')'
+  })
+
+  return jiras
+}
+
+function getPRNumber (commit) {
+  let number = /(?<=\(#)[^()]*(?=\))/gi.exec(commit)
+  return number
+}
+
+function getPRTitle (commit) {
+  let title = /.*(?= \(#[^()]*\))/gi.exec(commit)
+  return title
 }
 
 function getCommitHash (commit) {
