@@ -16,7 +16,6 @@
     "Core\/Common\/CommonUI\/SwiftUIViews\/",
     "Core\/Common\/CommonUI\/Typography\/",
     "Core\/Common\/CommonUI\/UITestHelpers\/",
-    "Core\/Common\/CommonUI\/UIViews\/HorizontalScrollingStackview.swift",
     "Core\/Common\/CommonUI\/ViewModifiers\/",
     "Core\/Common\/Extensions\/CoreData\/NSPersistentContainerExtensions.swift",
     "Core\/Common\/Extensions\/UIKit\/UIGestureRecognizerExtensions.swift",

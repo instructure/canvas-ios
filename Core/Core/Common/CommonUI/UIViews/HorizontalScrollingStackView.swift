@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class HorizontalScrollingStackview: UIView {
+public class HorizontalScrollingStackView: UIView {
     public var scrollView = UIScrollView()
     private var stackView = UIStackView()
 
