@@ -88,6 +88,8 @@ public struct InboxSettingsView: View {
 
                 UITextViewWrapper(text: $viewModel.signature) {
                     let tv = UITextView()
+                    tv.placeholder = String(localized: "Write your signature here", bundle: .core)
+                    tv.placeholderColor = .textPlaceholder
                     tv.isScrollEnabled = false
                     tv.textContainer.widthTracksTextView = true
                     tv.textContainer.lineBreakMode = .byWordWrapping
