@@ -59,7 +59,7 @@ public class InboxSettingsViewModel: ObservableObject {
         inboxSettingsInteractor
             .state
             .sink { [weak self] s in
-                switch(s) {
+                switch s {
                 case .data, .empty:
                     self?.state = .data
                 case .error:
@@ -74,7 +74,10 @@ public class InboxSettingsViewModel: ObservableObject {
     private func setupInputBindings() {
         didTapSave
             .flatMap { [weak self] controller in
-                guard let self, let newSttings = self.inboxSettings else { return Just(controller).setFailureType(to: Error.self).eraseToAnyPublisher() }
+                guard let self, let newSttings = self.inboxSettings else {
+                    return Just(controller).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+
                 self.state = .loading
 
                 newSttings.useSignature = useSignature

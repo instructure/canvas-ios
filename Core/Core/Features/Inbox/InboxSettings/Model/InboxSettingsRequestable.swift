@@ -31,7 +31,6 @@ public struct GetInboxSettingsRequest: APIGraphQLRequestable {
     static let query = """
         query \(operationName) {
           myInboxSettings {
-                _id
                 createdAt
                 outOfOfficeLastDate
                 outOfOfficeMessage
@@ -86,7 +85,6 @@ public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
         mutation \(operationName)($input: UpdateMyInboxSettingsInput!) {
           updateMyInboxSettings(input: $input) {
             myInboxSettings {
-                _id
                 createdAt
                 outOfOfficeLastDate
                 outOfOfficeMessage
@@ -118,7 +116,6 @@ public struct APIInboxSettings: Codable, Equatable {
     }
 
     struct Data: Codable, Equatable {
-        let _id: String?
         let createdAt: Date?
         let outOfOfficeLastDate: Date?
         let outOfOfficeMessage: String?

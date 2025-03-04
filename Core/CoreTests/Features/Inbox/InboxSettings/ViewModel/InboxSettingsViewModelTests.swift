@@ -49,7 +49,6 @@ class InboxSettingsViewModelTests: CoreTestCase {
         let apiSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,

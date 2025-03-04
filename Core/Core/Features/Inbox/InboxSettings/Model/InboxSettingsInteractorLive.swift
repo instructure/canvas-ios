@@ -43,28 +43,34 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
         settingsStore
             .getEntities(keepObservingDatabaseChanges: true)
-            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] settings in
-                if let value = settings.first {
-                    self?.settings.send(value)
-                } else { self?.state.send(.error) }
-            })
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] settings in
+                    if let value = settings.first {
+                        self?.settings.send(value)
+                    } else { self?.state.send(.error) }
+                }
+            )
             .store(in: &subscriptions)
 
         environmentSettingsStore
             .getEntities(keepObservingDatabaseChanges: true)
-            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self, environment] settings in
-                if let settings = settings.first {
-                    self?.environmentSettings.send(settings)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self, environment] settings in
+                    if let settings = settings.first {
+                        self?.environmentSettings.send(settings)
 
-                    var isFeatureEnabled = settings.enableInboxSignatureBlock
-                    if (environment.app == .student) {
-                        isFeatureEnabled = isFeatureEnabled && !settings.disableInboxSignatureBlockForStudents
+                        var isFeatureEnabled = settings.enableInboxSignatureBlock
+                        if (environment.app == .student) {
+                            isFeatureEnabled = isFeatureEnabled && !settings.disableInboxSignatureBlockForStudents
+                        }
+                        self?.isFeatureEnabled.send(isFeatureEnabled)
+                    } else {
+                        self?.state.send(.error)
                     }
-                    self?.isFeatureEnabled.send(isFeatureEnabled)
-                } else {
-                    self?.state.send(.error)
                 }
-            })
+            )
             .store(in: &subscriptions)
 
         Publishers.CombineLatest(settings, environmentSettings)

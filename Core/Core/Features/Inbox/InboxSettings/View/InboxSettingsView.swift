@@ -51,6 +51,7 @@ public struct InboxSettingsView: View {
             viewModel.didTapSave.accept(controller)
         } label: {
             Text("Save", bundle: .core)
+                .foregroundColor(.accentColor)
         }
         .disabled(!viewModel.enableSaveButton)
     }
@@ -100,6 +101,8 @@ public struct InboxSettingsView: View {
                 .textInputAutocapitalization(.sentences)
                 .focused($focusedInput, equals: .signature)
                 .foregroundColor(.textDarkest)
+                .disabled(!viewModel.useSignature)
+                .opacity(!viewModel.useSignature ? 0.6 : 1)
                 .frame(minHeight: 60)
                 .accessibilityLabel(Text("Signature Input", bundle: .core))
                 .accessibilityHint(Text("Write your Signature text here", bundle: .core))

@@ -198,7 +198,6 @@
     </entity>
     <entity name="CDInboxSettings" representedClassName="Core.CDInboxSettings" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="outOfOfficeFirstDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="outOfOfficeLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="outOfOfficeMessage" optional="YES" attributeType="String"/>

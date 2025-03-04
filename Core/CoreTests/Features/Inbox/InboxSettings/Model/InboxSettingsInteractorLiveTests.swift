@@ -32,7 +32,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -75,7 +74,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -118,7 +116,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -161,7 +158,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -203,7 +199,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -245,7 +240,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -288,7 +282,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -334,7 +327,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let newSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -370,7 +362,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -410,7 +401,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
@@ -450,7 +440,6 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .init(
             data: .init(
                 myInboxSettings: .init(
-                    _id: "1",
                     createdAt: nil,
                     outOfOfficeLastDate: nil,
                     outOfOfficeMessage: nil,
