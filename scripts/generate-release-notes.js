@@ -168,7 +168,7 @@ async function parseGitLog (log, app, tag) {
   const isTag = arg.includes('-')
 
   if (isTag && process.env.JIRA_USERNAME && process.env.JIRA_API_TOKEN) {
-    await addFixVersion(tag, allJiraLinks)
+    await addFixVersion(tag, allJiras)
   }
 }
 
