@@ -201,7 +201,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         let detailLabel = self.isInboxSignatureEnabled
             ? String(localized: "Enabled", bundle: .core)
             : String(localized: "Not set", bundle: .core)
-        
+
         return Section(String(localized: "Inbox", bundle: .core), rows: [
                 Row(String(localized: "Inbox Signature", bundle: .core),
                     detail: detailLabel,
