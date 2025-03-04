@@ -54,7 +54,11 @@ public struct ModuleItemSequenceView: View {
                 .offset(x: viewModel.offsetX)
                 .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
                 .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
-                    isShowHeader = isShow
+                    if isShowModuleNavBar {
+                        isShowHeader = isShow
+                    } else {
+                        isShowHeader = false
+                    }
                 }
                 .onPreferenceChange(AssignmentPreferenceKey.self) { model in
                     if let model {
@@ -65,6 +69,7 @@ public struct ModuleItemSequenceView: View {
                             draftToastViewModel = viewModel
                         case .moduleNavBarButton(isVisible: let isVisible):
                             isShowModuleNavBar = isVisible
+                            isShowHeader = isVisible
                         }
                     }
                 }
@@ -201,11 +206,15 @@ public struct ModuleItemSequenceView: View {
             ) {
                 viewModel.onTapAssignmentOptions.send()
             }
+            let visibleButtons: [ModuleNavBarUtilityButtons] = viewModel.isAssignmentOptionsButtonVisible
+            ? [.chatBot, .assignmentMoreOptions]
+            : [.chatBot, .notebook, .tts]
 
             ModuleItemSequenceAssembly.makeModuleNavBarView(
                 nextButton: nextButton,
                 previousButton: previousButton,
-                assignmentMoreOptionsButton: assignmentOptionsButton
+                assignmentMoreOptionsButton: assignmentOptionsButton,
+                visibleButtons: visibleButtons
             )
             .padding(.vertical, .huiSpaces.space8)
             .padding(.horizontal, .huiSpaces.space16)

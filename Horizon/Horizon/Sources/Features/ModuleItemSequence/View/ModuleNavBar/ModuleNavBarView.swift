@@ -41,20 +41,20 @@ struct ModuleNavBarView: View {
     private let nextButton: ModuleNavBarView.ButtonAttribute
     private let previousButton: ModuleNavBarView.ButtonAttribute
     private let assignmentMoreOptionsButton: ModuleNavBarView.ButtonAttribute?
-    private let isShowUtilityButtons: Bool
+    private let visibleButtons: [ModuleNavBarUtilityButtons]
 
     init(
         router: Router,
         nextButton: ModuleNavBarView.ButtonAttribute,
         previousButton: ModuleNavBarView.ButtonAttribute,
         assignmentMoreOptionsButton: ModuleNavBarView.ButtonAttribute? = nil,
-        isShowUtilityButtons: Bool
+        visibleButtons: [ModuleNavBarUtilityButtons]
     ) {
         self.router = router
         self.nextButton = nextButton
         self.previousButton = previousButton
         self.assignmentMoreOptionsButton = assignmentMoreOptionsButton
-        self.isShowUtilityButtons = isShowUtilityButtons
+        self.visibleButtons = visibleButtons
     }
 
     var body: some View {
@@ -62,13 +62,18 @@ struct ModuleNavBarView: View {
             previousButtonView
 
             Spacer()
-            if isShowUtilityButtons {
-                HStack(spacing: .huiSpaces.space8) {
-                    buttonView(type: .tts)
-                    chatBotButton
-                    buttonView(type: .notebook)
-
-                    assignmentMoreOptionsButtonView
+            HStack(spacing: .huiSpaces.space8) {
+                ForEach(visibleButtons, id: \.self) { button in
+                    switch button {
+                    case .tts:
+                        buttonView(type: .tts)
+                    case .chatBot:
+                        chatBotButton
+                    case .notebook:
+                        buttonView(type: .notebook)
+                    case .assignmentMoreOptions:
+                        assignmentMoreOptionsButtonView
+                    }
                 }
             }
             Spacer()
@@ -91,7 +96,7 @@ struct ModuleNavBarView: View {
     private var assignmentMoreOptionsButtonView: some View {
         if let assignmentMoreOptionsButton {
             HorizonUI.IconButton(
-                ModuleNavBarButtons.assignmentMoreOptions.image,
+                ModuleNavBarUtilityButtons.assignmentMoreOptions.image,
                 type: .white
             ) {
                 assignmentMoreOptionsButton.action()
@@ -112,7 +117,7 @@ struct ModuleNavBarView: View {
         .hidden(!nextButton.isVisible)
     }
 
-    private func buttonView(type: ModuleNavBarButtons) -> some View {
+    private func buttonView(type: ModuleNavBarUtilityButtons) -> some View {
         HorizonUI.IconButton(
             type.image,
             type: .white
@@ -126,7 +131,7 @@ struct ModuleNavBarView: View {
         Button {
             navigateToTutor()
         } label: {
-            ModuleNavBarButtons.chatBot.image
+            ModuleNavBarUtilityButtons.chatBot.image
                 .resizable()
                 .frame(width: 44, height: 44)
                 .huiElevation(level: .level2)

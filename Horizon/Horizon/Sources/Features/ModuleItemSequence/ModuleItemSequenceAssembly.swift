@@ -61,7 +61,7 @@ enum ModuleItemSequenceAssembly {
         nextButton: ModuleNavBarView.ButtonAttribute,
         previousButton: ModuleNavBarView.ButtonAttribute,
         assignmentMoreOptionsButton: ModuleNavBarView.ButtonAttribute? = nil,
-        isShowUtilityButtons: Bool = true
+        visibleButtons: [ModuleNavBarUtilityButtons] = []
     ) -> ModuleNavBarView {
         let router = AppEnvironment.shared.router
         return ModuleNavBarView(
@@ -69,7 +69,7 @@ enum ModuleItemSequenceAssembly {
             nextButton: nextButton,
             previousButton: previousButton,
             assignmentMoreOptionsButton: assignmentMoreOptionsButton,
-            isShowUtilityButtons: isShowUtilityButtons
+            visibleButtons: visibleButtons
         )
     }
 

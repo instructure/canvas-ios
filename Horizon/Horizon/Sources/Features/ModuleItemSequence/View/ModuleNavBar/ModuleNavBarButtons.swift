@@ -21,24 +21,32 @@ import HorizonUI
 
 enum ModuleNavBarButtons {
     case previous
-    case tts
-    case chatBot
-    case notebook
     case next
-    case assignmentMoreOptions
 
     var image: Image {
         switch self {
         case .previous:
             Image.huiIcons.chevronLeft
+        case .next:
+            Image.huiIcons.chevronRight
+        }
+    }
+}
+
+enum ModuleNavBarUtilityButtons {
+    case tts
+    case chatBot
+    case notebook
+    case assignmentMoreOptions
+
+    var image: Image {
+        switch self {
         case .tts:
             Image.huiIcons.volumeUp
         case .chatBot:
             Image(.chatBot)
         case .notebook:
             Image.huiIcons.menuBookNotebook
-        case .next:
-            Image.huiIcons.chevronRight
         case .assignmentMoreOptions:
             Image.huiIcons.moreVert
         }

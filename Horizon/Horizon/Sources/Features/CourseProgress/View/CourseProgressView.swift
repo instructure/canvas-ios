@@ -84,7 +84,7 @@ struct CourseProgressView: View {
         ModuleItemSequenceAssembly.makeModuleNavBarView(
             nextButton: nextButton,
             previousButton: previousButton,
-            isShowUtilityButtons: false
+            visibleButtons: []
         )
     }
 }
