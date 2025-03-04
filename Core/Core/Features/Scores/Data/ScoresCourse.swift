@@ -20,7 +20,7 @@ public struct ScoresCourse {
     public let courseID: String
     public let enrollments: [ScoresCourseEnrollment]
     public let settings: ScoresCourseSettings
-    
+
     public init(
         courseID: String,
         enrollments: [ScoresCourseEnrollment],

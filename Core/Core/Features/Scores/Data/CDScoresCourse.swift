@@ -22,7 +22,7 @@ public final class CDScoresCourse: NSManagedObject {
     @NSManaged public var courseID: String
     @NSManaged public var enrollments: Set<CDScoresCourseEnrollment>
     @NSManaged public var settings: CDScoresCourseSettings?
-    
+
     @discardableResult
     public static func save(
         _ apiEntity: APICourse,
@@ -49,7 +49,7 @@ public final class CDScoresCourse: NSManagedObject {
         } else {
             dbEntity.enrollments = []
         }
-        
+
         if let apiSettings = apiEntity.settings {
             let settingsEntity = CDScoresCourseSettings.save(
                 apiSettings,
