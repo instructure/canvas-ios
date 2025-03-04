@@ -71,7 +71,7 @@ class APIActivityTests: XCTestCase {
             type: .assessmentRequest,
             latest_messages: nil
         )
-        
+
         XCTAssertEqual(activity.updated_at, mockNow)
         XCTAssertEqual(activity.latestRelevantUpdate, mockNow)
     }
@@ -82,8 +82,9 @@ class APIActivityTests: XCTestCase {
             type: .conference,
             latest_messages: []
         )
-        
+
         XCTAssertEqual(activity.updated_at, mockNow)
         XCTAssertEqual(activity.latestRelevantUpdate, mockNow)
     }
 }
+
