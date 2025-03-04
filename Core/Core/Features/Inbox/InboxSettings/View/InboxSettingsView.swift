@@ -66,7 +66,7 @@ public struct InboxSettingsView: View {
 
             separator
 
-            Toggle(isOn: $viewModel.useSignature) {
+            InstUI.Toggle(isOn: $viewModel.useSignature) {
                 Text("Signature", bundle: .core)
                     .font(.semibold16, lineHeight: .condensed)
                     .foregroundColor(.textDarkest)
