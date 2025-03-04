@@ -44,7 +44,7 @@ final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
             .eraseToAnyPublisher()
     }
 
-    func markAsDone(item: HModuleItem?, moduleID: String, itemID: String) -> AnyPublisher<[HModuleItem], Error> {
+    func markAsDone(completed: Bool, moduleID: String, itemID: String) -> AnyPublisher<[HModuleItem], Error> {
         Just([HModuleItem(id: "14", title: "Sub title 2", htmlURL: nil)])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

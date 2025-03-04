@@ -87,7 +87,7 @@ public extension HorizonUI {
                     )
                 }
             }
-            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.horizontal, .huiSpaces.space24)
             .padding(.bottom, .huiSpaces.space24)
             .background {
                 Rectangle()

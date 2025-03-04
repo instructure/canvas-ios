@@ -18,38 +18,34 @@
 
 import Foundation
 import Core
-import SwiftUI
 
-struct FileDetailsAssembly {
+struct MyAssignmentSubmissionAssembly {
     static func makeView(
-        courseID: String,
-        fileID: String,
-        context: Context,
-        fileName: String
-    ) -> FileDetailsView {
-        let interactor = DownloadFileInteractorLive(courseID: courseID)
+        selectedSubmission: AssignmentSubmissionType,
+        submission: HSubmission,
+        courseId: String
+    ) -> MyAssignmentSubmissionsView {
+        let interactor = DownloadFileInteractorLive(courseID: courseId)
         let router = AppEnvironment.shared.router
-        let viewModel = FileDetailsViewModel(interactor: interactor, router: router)
-        return FileDetailsView(
+        let viewModel = MyAssignmentSubmissionsViewModel(interactor: interactor, router: router)
+        return MyAssignmentSubmissionsView(
             viewModel: viewModel,
-            context: context,
-            fileID: fileID,
-            fileName: fileName
+            selectedSubmission: selectedSubmission,
+            submission: submission,
+            courseId: courseId
         )
     }
-
 #if DEBUG
-    static func makePreview() -> FileDetailsView {
+    static func makePreview() -> MyAssignmentSubmissionsView {
         let interactor = DownloadFileInteractorPreview()
         let router = AppEnvironment.shared.router
-        let viewModel = FileDetailsViewModel(interactor: interactor, router: router)
-        let view = FileDetailsView(
+        let viewModel = MyAssignmentSubmissionsViewModel(interactor: interactor, router: router)
+        return MyAssignmentSubmissionsView(
             viewModel: viewModel,
-            context: nil,
-            fileID: "23",
-            fileName: "AI for Everyone.pdf"
+            selectedSubmission: .fileUpload,
+            submission: HSubmission(id: "2", assignmentID: "32"),
+            courseId: "2"
         )
-        return view
     }
 #endif
 }
