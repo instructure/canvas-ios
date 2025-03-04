@@ -18,6 +18,8 @@
 
 import Foundation
 
+/// This is an API agnostic entity model.
+/// It's used in the interactors and can be used in the views, but will normally be translated to a view model before being used in the views.
 struct CourseNotebookNote {
     // MARK: - Required
 

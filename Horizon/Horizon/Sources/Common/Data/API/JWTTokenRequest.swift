@@ -39,6 +39,7 @@ enum JWTTokenRequestError: Error {
     case unableToGetToken
 }
 
+/// Extension for fetching a JWT token or a configured API instance ready to use
 extension JWTTokenRequest {
 
     // MARK: - Public

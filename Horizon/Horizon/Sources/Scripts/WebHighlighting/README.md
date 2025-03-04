@@ -19,7 +19,6 @@ This will build the `WebHighlighting.js` to the Resources directory of the iOS p
 
 ## Debugging
 
-## Directory Structure
+It may be easiest to spin up a server to test the javascript. I did this by running `npx http-server` in the `canvas-ios/Horizon/Horizon/Resources` so that it's running the generated JavaScript. I also copied over the `index.html` file to the `Resources` directory. This will allow you to test the JavaScript in a browser.
 
-/src - contains the typescript files
-/dist - after compiling the typescript, outputs the javascript
+The process isn't very polished, but its an OK starting point.
