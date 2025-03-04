@@ -25,16 +25,19 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
 
     @Binding private var isScrollTopReached: Bool
     @Binding private var isFinishLoading: Bool
+    @Binding private var contentHeight: CGFloat
     private let context: Core.Context?
     private let fileID: String
 
     init(isScrollTopReached: Binding<Bool>,
          isFinishLoading: Binding<Bool>,
+         contentHeight: Binding<CGFloat> = .constant(0.0),
          context: Core.Context?,
          fileID: String
     ) {
         self._isScrollTopReached = isScrollTopReached
         self._isFinishLoading = isFinishLoading
+        self._contentHeight = contentHeight
         self.context = context
         self.fileID = fileID
     }
@@ -43,6 +46,17 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
         let viewController = FileDetailsViewController.create(context: self.context, fileID: fileID)
         viewController.didFinishLoading = {
                 isFinishLoading = true
+            if let scrollView = findScrollView(in: viewController.view) {
+                // Set the file pin at the top.
+                scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                scrollView.isScrollEnabled = false
+                // Wait till render the view
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    contentHeight = max(300, scrollView.contentSize.height)
+                }
+            } else {
+                contentHeight = 300
+            }
         }
         if let scrollView = findScrollView(in: viewController.view) {
             scrollView.delegate = context.coordinator

@@ -19,11 +19,17 @@
 import Core
 import SwiftUI
 import Foundation
+import Combine
 
 final class AssignmentDetailsAssembly {
     static func makeViewModel(
         courseID: String,
         assignmentID: String,
+        isMarkedAsDone: Bool,
+        isCompletedItem: Bool,
+        moduleID: String,
+        itemID: String,
+        onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetailsViewModel {
         let uploadManager = HUploadFileManagerLive(
@@ -31,17 +37,35 @@ final class AssignmentDetailsAssembly {
             assignmentID: assignmentID,
             courseID: courseID
         )
+        let moduleItemInteractor = ModuleItemSequenceInteractorLive(courseID: courseID, assetType: .assignment)
+
         let interactor = AssignmentInteractorLive(
             courseID: courseID,
             assignmentID: assignmentID,
+            userID: AppEnvironment.shared.currentSession?.userID ?? "",
             uploadManager: uploadManager,
             appEnvironment: .shared
         )
+        let userDefaults = AppEnvironment.shared.userDefaults
+        let textEntryInteractor = AssignmentTextEntryInteractorLive(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            userDefaults: userDefaults
+        )
         let router = AppEnvironment.shared.router
+
         return AssignmentDetailsViewModel(
             interactor: interactor,
+            moduleItemInteractor: moduleItemInteractor,
+            textEntryInteractor: textEntryInteractor,
+            isMarkedAsDone: isMarkedAsDone,
+            isCompletedItem: isCompletedItem,
+            moduleID: moduleID,
+            itemID: itemID,
             router: router,
             courseID: courseID,
+            assignmentID: assignmentID,
+            onTapAssignmentOptions: onTapAssignmentOptions,
             didLoadAttemptCount: didLoadAttemptCount
         )
     }
@@ -49,36 +73,52 @@ final class AssignmentDetailsAssembly {
     static func makeView(
         courseID: String,
         assignmentID: String,
-        isShowHeader: Binding<Bool>,
+        isMarkedAsDone: Bool,
+        isCompletedItem: Bool,
+        moduleID: String,
+        itemID: String,
+        onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         didLoadAttemptCount: @escaping (String?) -> Void
     ) -> AssignmentDetails {
         AssignmentDetails(
             viewModel: makeViewModel(
                 courseID: courseID,
                 assignmentID: assignmentID,
+                isMarkedAsDone: isMarkedAsDone,
+                isCompletedItem: isCompletedItem,
+                moduleID: moduleID,
+                itemID: itemID,
+                onTapAssignmentOptions: onTapAssignmentOptions,
                 didLoadAttemptCount: didLoadAttemptCount
-            ),
-            isShowHeader: isShowHeader
+            )
         )
     }
 
 #if DEBUG
     static func makePreview() -> AssignmentDetails {
-        let interactor = AssignmentInteractorPreview()
-        let viewModel = AssignmentDetailsViewModel(
-            interactor: interactor,
-            router: AppEnvironment.shared.router,
-            courseID: "1"
-        ) { _ in}
-        return AssignmentDetails(viewModel: viewModel)
+        return AssignmentDetails(viewModel: makePreviewViewModel())
     }
 
-    static func makeAssignmentSubmissionViewModel() -> AssignmentDetailsViewModel {
+    static func makePreviewViewModel() -> AssignmentDetailsViewModel {
         let interactor = AssignmentInteractorPreview()
+        let assignmentTextEntryInteractor = AssignmentTextEntryInteractorLive(
+            courseID: "courseID",
+            assignmentID: "assignmentID",
+            userDefaults: AppEnvironment.shared.userDefaults
+        )
         return AssignmentDetailsViewModel(
             interactor: interactor,
+            moduleItemInteractor: ModuleItemSequenceInteractorPreview(),
+            textEntryInteractor: assignmentTextEntryInteractor,
+            isMarkedAsDone: false,
+            isCompletedItem: false,
+            moduleID: "3",
+            itemID: "44",
             router: AppEnvironment.shared.router,
-            courseID: "1") { _ in }
+            courseID: "1",
+            assignmentID: "assignmentID",
+            onTapAssignmentOptions: .init()
+        ) { _ in}
     }
 #endif
 }

@@ -17,38 +17,25 @@
 //
 
 import SwiftUI
-import HorizonUI
 
-enum ModuleNavBarButtons {
-    case previous
-    case next
+enum AssignmentPreferenceKeyType: Equatable {
+    case confirmation(viewModel: SubmissionAlertViewModel)
+    case toastViewModel(viewModel: ToastViewModel)
+    case moduleNavBarButton(isVisible: Bool)
+}
 
-    var image: Image {
-        switch self {
-        case .previous:
-            Image.huiIcons.chevronLeft
-        case .next:
-            Image.huiIcons.chevronRight
-        }
+struct HeaderVisibilityKey: PreferenceKey {
+    static var defaultValue: Bool = true
+
+    static func reduce(value: inout Bool, nextValue: () -> Bool) {
+        value = nextValue()
     }
 }
 
-enum ModuleNavBarUtilityButtons {
-    case tts
-    case chatBot
-    case notebook
-    case assignmentMoreOptions
+struct AssignmentPreferenceKey: PreferenceKey {
+    static var defaultValue: AssignmentPreferenceKeyType?
 
-    var image: Image {
-        switch self {
-        case .tts:
-            Image.huiIcons.volumeUp
-        case .chatBot:
-            Image(.chatBot)
-        case .notebook:
-            Image.huiIcons.menuBookNotebook
-        case .assignmentMoreOptions:
-            Image.huiIcons.moreVert
-        }
+    static func reduce(value: inout AssignmentPreferenceKeyType?, nextValue: () -> AssignmentPreferenceKeyType?) {
+        value = nextValue()
     }
 }

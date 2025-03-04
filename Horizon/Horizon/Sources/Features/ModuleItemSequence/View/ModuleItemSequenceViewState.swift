@@ -25,12 +25,28 @@ enum ModuleItemSequenceViewState {
     case moduleItem(controller: UIViewController, id: String)
     case error
     case locked(title: String, lockExplanation: String)
-    case assignment(courseID: String, assignmentID: String)
+    case assignment(
+        courseID: String,
+        assignmentID: String,
+        isMarkedAsDone: Bool,
+        isCompletedItem: Bool,
+        moduleID: String,
+        itemID: String
+    )
     case file(context: Context, fileID: String)
 
     var isModuleItem: Bool {
         switch self {
         case .moduleItem, .assignment, .file:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var isAssignment: Bool {
+        switch self {
+        case .assignment:
             return true
         default:
             return false

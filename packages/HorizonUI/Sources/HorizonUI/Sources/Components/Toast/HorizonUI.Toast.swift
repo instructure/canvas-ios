@@ -50,9 +50,11 @@ public extension HorizonUI {
                     .padding(.top,.huiSpaces.space16)
             }
             .frame(minHeight: 64)
+            .background(Color.huiColors.surface.pageSecondary)
             .huiBorder(level: .level2, color: viewModel.style.color, radius: cornerRadius.attributes.radius)
             .huiCornerRadius(level: cornerRadius)
             .fixedSize(horizontal: false, vertical: true)
+            .padding(.horizontal, .huiSpaces.space24)
         }
         
         private var alertIcon: some View {
@@ -73,11 +75,12 @@ public extension HorizonUI {
         }
         
         private var trailingButtons: some View {
-            HStack(spacing: .huiSpaces.space16) {
+            HStack(alignment: .top, spacing: .huiSpaces.space16) {
                 if case .single(confirmButton: let confirmButton) =  viewModel.buttons {
                     HorizonUI.PrimaryButton(confirmButton.title, type: .black) {
                         confirmButton.action()
                     }
+                    .fixedSize(horizontal: true, vertical: false)
                 }
                 if viewModel.isShowCancelButton {
                     HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
@@ -91,7 +94,7 @@ public extension HorizonUI {
         @ViewBuilder
         private var groupButtons: some View {
             if case let .double(cancelButton: cancelButton, confirmButton: confirmButton) =  viewModel.buttons  {
-                HStack {
+                HStack(alignment: .top) {
                     HorizonUI.PrimaryButton(cancelButton.title, type: .white) {
                         cancelButton.action()
                     }
@@ -117,8 +120,8 @@ public extension HorizonUI.Toast {
             text: String,
             style: HorizonUI.Toast.Style,
             isShowCancelButton: Bool = true,
-            direction: Direction = .bottom,
-            dismissAfter: Double = 2.0,
+            direction: Direction = .top,
+            dismissAfter: Double = 3.0,
             confirmActionButton: HorizonUI.ButtonAttribute? = nil,
             cancelActionButton: HorizonUI.ButtonAttribute? = nil
         ) {
@@ -172,6 +175,9 @@ public extension HorizonUI {
     }
 }
 #Preview {
-    HorizonUI.Toast(viewModel: .init(text: "Alert Toast", style: .info))
-        .padding(5)
+    ZStack {
+        Color.black
+        HorizonUI.Toast(viewModel: .init(text: "Alert Toast", style: .info))
+    }
+
 }

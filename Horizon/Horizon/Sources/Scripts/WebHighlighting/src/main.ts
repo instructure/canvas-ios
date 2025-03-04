@@ -17,8 +17,11 @@
 //
 
 import applyHighlights from "./use_case/ApplyHighlights";
-import getSelectionCoordinates from "./use_case/GetSelectionCoordinates";
+import getCurrentTextSelection from "./use_case/GetCurrentTextSelection";
+import registerNotifyOnTextSelectionChange from "./use_case/NotifyTextSelectionChange";
 
 //This file is just an interface. No implementation details here!
 window.applyHighlights = applyHighlights;
-window.getSelectionCoordinates = getSelectionCoordinates;
+window.getCurrentTextSelection = getCurrentTextSelection;
+
+registerNotifyOnTextSelectionChange();

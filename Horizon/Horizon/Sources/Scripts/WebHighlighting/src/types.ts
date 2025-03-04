@@ -1,6 +1,7 @@
 interface Window {
   applyHighlights: (highlights: [NotebookTextSelection]) => void;
-  getSelectionCoordinates: () => NotebookTextSelection;
+  getCurrentTextSelection: () => NotebookTextSelection;
+  notifyTextSelectionChange: () => void;
   webkit?: any;
 }
 

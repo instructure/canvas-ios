@@ -17,38 +17,35 @@
 //
 
 import SwiftUI
-import HorizonUI
+import Core
 
-enum ModuleNavBarButtons {
-    case previous
-    case next
+struct LTIViewRepresentable: UIViewControllerRepresentable {
+    // MARK: - Dependencies
 
-    var image: Image {
-        switch self {
-        case .previous:
-            Image.huiIcons.chevronLeft
-        case .next:
-            Image.huiIcons.chevronRight
-        }
+    private let environment: AppEnvironment
+    private let tools: LTITools
+    private let name: String?
+
+    init(
+        environment: AppEnvironment,
+        tools: LTITools,
+        name: String?
+    ) {
+        self.environment = environment
+        self.tools = tools
+        self.name = name
     }
-}
 
-enum ModuleNavBarUtilityButtons {
-    case tts
-    case chatBot
-    case notebook
-    case assignmentMoreOptions
-
-    var image: Image {
-        switch self {
-        case .tts:
-            Image.huiIcons.volumeUp
-        case .chatBot:
-            Image(.chatBot)
-        case .notebook:
-            Image.huiIcons.menuBookNotebook
-        case .assignmentMoreOptions:
-            Image.huiIcons.moreVert
-        }
+    func makeUIViewController(context: Self.Context) -> LTIViewController {
+        LTIViewController.create(
+            env: environment,
+            tools: tools,
+            name: name
+        )
     }
+
+    func updateUIViewController(
+        _ uiViewController: LTIViewController,
+        context: Self.Context
+    ) { }
 }

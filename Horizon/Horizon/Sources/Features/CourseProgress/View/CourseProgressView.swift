@@ -67,20 +67,25 @@ struct CourseProgressView: View {
         .padding(.top, .huiSpaces.space24)
     }
 
+    @ViewBuilder
     private var moduleNavBarButtons: some View {
-        ModuleItemSequenceAssembly.makeModuleNavBarView(
-            isNextButtonEnabled: viewModel.isNextButtonEnabled,
-            isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled,
-            isShowUtilityButtons: false
-        ) {
+        let nextButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isNextButtonEnabled) {
             withAnimation {
                 viewModel.goToNextModule()
             }
-        } didTapPrevious: {
+        }
+
+        let previousButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isPreviousButtonEnabled) {
             withAnimation {
                 viewModel.goToPreviousModule()
             }
         }
+
+        ModuleItemSequenceAssembly.makeModuleNavBarView(
+            nextButton: nextButton,
+            previousButton: previousButton,
+            visibleButtons: []
+        )
     }
 }
 

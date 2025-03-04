@@ -21,6 +21,16 @@ import Core
 import HorizonUI
 
 struct ModuleNavBarView: View {
+    struct ButtonAttribute {
+        let isVisible: Bool
+        let action: () -> Void
+
+        init(isVisible: Bool, action: @escaping () -> Void) {
+            self.isVisible = isVisible
+            self.action = action
+        }
+
+    }
     // MARK: - Private Properties
 
     @Environment(\.viewController) private var controller
@@ -28,68 +38,86 @@ struct ModuleNavBarView: View {
     // MARK: - Dependencies
 
     private let router: Router
-    private let isNextButtonEnabled: Bool
-    private let isPreviousButtonEnabled: Bool
-    private let isShowUtilityButtons: Bool
-    private let didTapNext: () -> Void
-    private let didTapPrevious: () -> Void
+    private let nextButton: ModuleNavBarView.ButtonAttribute
+    private let previousButton: ModuleNavBarView.ButtonAttribute
+    private let assignmentMoreOptionsButton: ModuleNavBarView.ButtonAttribute?
+    private let visibleButtons: [ModuleNavBarUtilityButtons]
 
     init(
         router: Router,
-        isNextButtonEnabled: Bool,
-        isPreviousButtonEnabled: Bool,
-        isShowUtilityButtons: Bool = true,
-        didTapNext: @escaping () -> Void,
-        didTapPrevious: @escaping () -> Void
+        nextButton: ModuleNavBarView.ButtonAttribute,
+        previousButton: ModuleNavBarView.ButtonAttribute,
+        assignmentMoreOptionsButton: ModuleNavBarView.ButtonAttribute? = nil,
+        visibleButtons: [ModuleNavBarUtilityButtons]
     ) {
         self.router = router
-        self.isNextButtonEnabled = isNextButtonEnabled
-        self.isPreviousButtonEnabled = isPreviousButtonEnabled
-        self.isShowUtilityButtons = isShowUtilityButtons
-        self.didTapNext = didTapNext
-        self.didTapPrevious = didTapPrevious
+        self.nextButton = nextButton
+        self.previousButton = previousButton
+        self.assignmentMoreOptionsButton = assignmentMoreOptionsButton
+        self.visibleButtons = visibleButtons
     }
 
     var body: some View {
         HStack(spacing: .zero) {
-            previousButton
+            previousButtonView
 
             Spacer()
-            if isShowUtilityButtons {
-                HStack(spacing: .huiSpaces.space8) {
-                    buttonView(type: .tts)
-                    chatBotButton
-                    notebook
+            HStack(spacing: .huiSpaces.space8) {
+                ForEach(visibleButtons, id: \.self) { button in
+                    switch button {
+                    case .tts:
+                        buttonView(type: .tts)
+                    case .chatBot:
+                        chatBotButton
+                    case .notebook:
+                        buttonView(type: .notebook)
+                    case .assignmentMoreOptions:
+                        assignmentMoreOptionsButtonView
+                    }
                 }
             }
             Spacer()
-            nextButton
+            nextButtonView
         }
     }
 
-    private var previousButton: some View {
+    private var previousButtonView: some View {
         HorizonUI.IconButton(
             ModuleNavBarButtons.previous.image,
             type: .white
         ) {
-            didTapPrevious()
+            previousButton.action()
         }
         .huiElevation(level: .level2)
-        .hidden(!isPreviousButtonEnabled)
+        .hidden(!previousButton.isVisible)
     }
 
-    private var nextButton: some View {
+    @ViewBuilder
+    private var assignmentMoreOptionsButtonView: some View {
+        if let assignmentMoreOptionsButton {
+            HorizonUI.IconButton(
+                ModuleNavBarUtilityButtons.assignmentMoreOptions.image,
+                type: .white
+            ) {
+                assignmentMoreOptionsButton.action()
+            }
+            .huiElevation(level: .level2)
+            .hidden(!assignmentMoreOptionsButton.isVisible)
+        }
+    }
+
+    private var nextButtonView: some View {
         HorizonUI.IconButton(
             ModuleNavBarButtons.next.image,
             type: .white
         ) {
-            didTapNext()
+            nextButton.action()
         }
         .huiElevation(level: .level2)
-        .hidden(!isNextButtonEnabled)
+        .hidden(!nextButton.isVisible)
     }
 
-    private func buttonView(type: ModuleNavBarButtons) -> some View {
+    private func buttonView(type: ModuleNavBarUtilityButtons) -> some View {
         HorizonUI.IconButton(
             type.image,
             type: .white
@@ -99,21 +127,11 @@ struct ModuleNavBarView: View {
         .huiElevation(level: .level2)
     }
 
-    private var notebook: some View {
-        HorizonUI.IconButton(
-            ModuleNavBarButtons.notebook.image,
-            type: .white
-        ) {
-            router.route(to: "/notebook", from: controller)
-        }
-        .huiElevation(level: .level2)
-    }
-
     private var chatBotButton: some View {
         Button {
             navigateToTutor()
         } label: {
-            ModuleNavBarButtons.chatBot.image
+            ModuleNavBarUtilityButtons.chatBot.image
                 .resizable()
                 .frame(width: 44, height: 44)
                 .huiElevation(level: .level2)

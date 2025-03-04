@@ -34,6 +34,7 @@ class HighlightWebFeature: CoreWebViewFeature {
 
     private let documentLoadedRelay = CurrentValueRelay<Void>(())
     private let highlightTapRelay = CurrentValueRelay<NotebookTextSelection?>(nil)
+    private let textSelectionChangeRelay = CurrentValueRelay<NotebookTextSelection?>(nil)
 
     // MARK: - Public
 
@@ -53,10 +54,10 @@ class HighlightWebFeature: CoreWebViewFeature {
     }
 
     /// Gets the NotebookTextSelection of the current selection in the web view
-    func getCurrentSelection(webView: WKWebView) async -> NotebookTextSelection? {
+    func getCurrentTextSelection(from webView: WKWebView) async -> NotebookTextSelection? {
         await withCheckedContinuation { continuation in
             DispatchQueue.main.async {
-                webView.evaluateJavaScript("getSelectionCoordinates()") { result, _ in
+                webView.evaluateJavaScript("getCurrentTextSelection()") { result, _ in
                     var notebookTextSelection: NotebookTextSelection?
                     if let result = result,
                           let data = try? JSONSerialization.data(withJSONObject: result) {
@@ -73,6 +74,10 @@ class HighlightWebFeature: CoreWebViewFeature {
         highlightTapRelay.compactMap { $0 }.eraseToAnyPublisher()
     }
 
+    func listenForSelectionChange() -> AnyPublisher<NotebookTextSelection?, Never> {
+        textSelectionChangeRelay.compactMap { $0 }.eraseToAnyPublisher()
+    }
+
     // MARK: - Override
 
     /// Applies the feature to the given web view configuration
@@ -85,6 +90,7 @@ class HighlightWebFeature: CoreWebViewFeature {
         }
 
         NotebookHighlightTapMessageHandler.register(with: userContentController, callback: highlightTapCallback)
+        NotebookTextSelectionChangeMessageHandler.register(with: userContentController, callback: textSelectionChangeCallback)
 
         configuration.userContentController = userContentController
     }
@@ -105,6 +111,10 @@ return nil
 
     private func highlightTapCallback(notebookTextSelection: NotebookTextSelection) {
         highlightTapRelay.accept(notebookTextSelection)
+    }
+
+    private func textSelectionChangeCallback(notebookTextSelection: NotebookTextSelection?) {
+        textSelectionChangeRelay.accept(notebookTextSelection)
     }
 }
 
@@ -136,6 +146,37 @@ private class NotebookHighlightTapMessageHandler: NSObject, WKScriptMessageHandl
                let jsonData = jsonString.data(using: .utf8),
                let notebookTextSelection = try? JSONDecoder().decode(NotebookTextSelection.self, from: jsonData) {
                 self.highlightTapCallback(notebookTextSelection)
+            }
+        }
+    }
+}
+
+// The Message channel called when the text selection changes
+private class NotebookTextSelectionChangeMessageHandler: NSObject, WKScriptMessageHandler {
+    typealias TextSelectionChangeCallback = ((NotebookTextSelection?) -> Void)
+
+    private let textSelectionChangeCallback: TextSelectionChangeCallback
+
+    private static let messageChannelName = "notebookTextSelectionChange"
+
+    static func register(with userContentController: WKUserContentController, callback: @escaping TextSelectionChangeCallback) {
+        userContentController.add(
+            NotebookTextSelectionChangeMessageHandler(textSelectionChangeCallback: callback),
+            name: NotebookTextSelectionChangeMessageHandler.messageChannelName
+        )
+    }
+
+    private init(textSelectionChangeCallback: @escaping TextSelectionChangeCallback) {
+        self.textSelectionChangeCallback = textSelectionChangeCallback
+        super.init()
+    }
+
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == NotebookTextSelectionChangeMessageHandler.messageChannelName {
+            if let jsonString = message.body as? String,
+               let jsonData = jsonString.data(using: .utf8),
+               let notebookTextSelection = try? JSONDecoder().decode(NotebookTextSelection.self, from: jsonData) {
+                self.textSelectionChangeCallback(notebookTextSelection)
             }
         }
     }

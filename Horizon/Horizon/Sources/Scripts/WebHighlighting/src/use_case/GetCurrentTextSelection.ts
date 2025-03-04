@@ -1,7 +1,7 @@
 import { RangeAnchor } from "../util/RangeAnchor";
 import { TextPositionAnchor } from "../util/TextPositionAnchor";
 
-export default function getSelectionCoordinates(): NotebookTextSelection {
+export default function getCurrentTextSelection(): NotebookTextSelection {
   const selection = window.getSelection();
   const range = selection?.getRangeAt(0);
   const parentRef = document.getElementById("parent-container");

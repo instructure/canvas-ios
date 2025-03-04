@@ -49,6 +49,7 @@ final class HighlightWebView: CoreWebView {
 
     private let courseId: String?
     private let courseNoteInteractor: CourseNoteInteractor
+    private var currentNotebookTextSelection: NotebookTextSelection?
     private let itemId: String?
     private let moduleType: ModuleItemType?
     private let router: Router
@@ -74,6 +75,7 @@ final class HighlightWebView: CoreWebView {
 
         super.init(features: [highlightWebFeature])
 
+        listenForSelectionChange()
         listenForHighlightTaps()
     }
 
@@ -92,7 +94,6 @@ final class HighlightWebView: CoreWebView {
     // MARK: - Override Functions
 
     public override func buildMenu(with builder: any UIMenuBuilder) {
-
         let actions: [UIMenuElement] = actionDefinitions.map {
             UIAction(title: $0.1, handler: onMenuAction)
         }
@@ -150,6 +151,15 @@ final class HighlightWebView: CoreWebView {
             .store(in: &subscriptions)
     }
 
+    private func listenForSelectionChange() {
+        highlightWebFeature.listenForSelectionChange()
+            .sink { _ in
+            } receiveValue: { [weak self] notebookTextSelection in
+                self?.currentNotebookTextSelection = notebookTextSelection
+            }
+            .store(in: &subscriptions)
+    }
+
     private func onMenuAction(_ action: UIAction) {
         guard let label = actionDefinitions.first(where: { action.title == $0.title })?.label,
             let courseId = courseId,
@@ -161,7 +171,7 @@ final class HighlightWebView: CoreWebView {
 
         Task { [weak self] in
             guard let self = self,
-                let notebookTextSelection = await highlightWebFeature.getCurrentSelection(webView: self)
+                let notebookTextSelection = await highlightWebFeature.getCurrentTextSelection(from: self)
             else {
                 return
             }

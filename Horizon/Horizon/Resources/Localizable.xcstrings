@@ -4,8 +4,15 @@
     "" : {
 
     },
-    "%lf Points" : {
-
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
     },
     "%lld %@ %lld" : {
       "localizations" : {
@@ -17,9 +24,6 @@
         }
       }
     },
-    "%lld attempt(s)" : {
-
-    },
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
@@ -29,14 +33,13 @@
     "Add a Note" : {
 
     },
-
     "Add a Note (Optional)" : {
 
     },
     "Add Comment" : {
 
     },
-    "Add your text" : {
+    "Add your text entry" : {
 
     },
     "Adelaide (+09:30/+10:30)" : {
@@ -87,6 +90,9 @@
     "Assignment due dates" : {
 
     },
+    "Assignment Successfully Submitted!" : {
+
+    },
     "Astana (+05:00/+05:00)" : {
 
     },
@@ -97,6 +103,15 @@
 
     },
     "Atlantic Time (Canada) (-04:00/-03:00)" : {
+
+    },
+    "Attempt" : {
+
+    },
+    "Attempt History" : {
+
+    },
+    "Attempts" : {
 
     },
     "Auckland (+12:00/+13:00)" : {
@@ -192,6 +207,12 @@
     "Choose and complete one of the required items." : {
 
     },
+    "Choose File" : {
+
+    },
+    "Choose Photo or Video" : {
+
+    },
     "Comments" : {
 
     },
@@ -199,6 +220,9 @@
 
     },
     "Complete all of the required items." : {
+
+    },
+    "Confirm Submission" : {
 
     },
     "Confirmation" : {
@@ -216,10 +240,16 @@
     "Darwin (+09:30)" : {
 
     },
+    "Delete Draft" : {
+
+    },
     "Dhaka (+06:00/+06:00)" : {
 
     },
     "Display Name" : {
+
+    },
+    "Done" : {
 
     },
     "Download File" : {
@@ -235,9 +265,6 @@
 
     },
     "Edinburgh (+00:00/+01:00)" : {
-
-    },
-    "Edit" : {
 
     },
     "Eirunepe (-05:00/-05:00)" : {
@@ -261,7 +288,13 @@
     "Error loading comments." : {
 
     },
+    "External Tool" : {
+
+    },
     "Fiji (+12:00/+12:00)" : {
+
+    },
+    "File Upload" : {
 
     },
     "Filter" : {
@@ -339,6 +372,9 @@
     "Indiana (East) (-05:00/-04:00)" : {
 
     },
+    "Instructions" : {
+
+    },
     "International Date Line West (-12:00)" : {
 
     },
@@ -391,9 +427,6 @@
 
     },
     "Label" : {
-
-    },
-    "Last Submitted: %@" : {
 
     },
     "Learn" : {
@@ -483,6 +516,9 @@
     "Name is required" : {
 
     },
+    "New Attempt" : {
+
+    },
     "New Caledonia (+11:00/+11:00)" : {
 
     },
@@ -525,7 +561,10 @@
     "Ok" : {
 
     },
-    "OK" : {
+    "Once deleted, this draft cannot be recovered." : {
+
+    },
+    "Once you submit this attempt, you won’t be able to make any changes." : {
 
     },
     "Open in a New Tab" : {
@@ -633,7 +672,16 @@
     "Save Changes" : {
 
     },
+    "Saved at " : {
+
+    },
+    "Score" : {
+
+    },
     "Scores" : {
+
+    },
+    "Select a Submission Type" : {
 
     },
     "Seoul (+09:00)" : {
@@ -672,6 +720,9 @@
     "Submit Assignment" : {
 
     },
+    "Submit Attempt" : {
+
+    },
     "Summarize this material" : {
 
     },
@@ -682,6 +733,9 @@
 
     },
     "Taipei (+08:00)" : {
+
+    },
+    "Take Photo or Video" : {
 
     },
     "Tallinn (+02:00/+03:00)" : {
@@ -702,7 +756,13 @@
     "Tell me more about this topic" : {
 
     },
+    "Text" : {
+
+    },
     "There was an error. please try again." : {
+
+    },
+    "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
 
     },
     "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
@@ -720,6 +780,9 @@
     "Tokyo (+09:00)" : {
 
     },
+    "Tools" : {
+
+    },
     "Try Again" : {
 
     },
@@ -729,10 +792,10 @@
     "Unlimited" : {
 
     },
-    "Unlimited Attempts Allowed" : {
+    "Unsupported Item" : {
 
     },
-    "Unsupported Item" : {
+    "Upload File" : {
 
     },
     "Urumqi (+06:00/+06:00)" : {
@@ -744,7 +807,7 @@
     "Vienna (+01:00/+02:00)" : {
 
     },
-    "View coments" : {
+    "View Submission" : {
 
     },
     "Vilnius (+02:00/+03:00)" : {
@@ -757,6 +820,9 @@
 
     },
     "Warsaw (+01:00/+02:00)" : {
+
+    },
+    "We received your submission. You will be notified once it's been reviewed." : {
 
     },
     "Wellington (+12:00/+13:00)" : {
@@ -774,7 +840,25 @@
     "Yes" : {
 
     },
+    "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
+    "You are submitting an uploaded file. Any content in the text field will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes." : {
+
+    },
     "Your Courses" : {
+
+    },
+    "Your draft was deleted." : {
+
+    },
+    "Your Submission" : {
+
+    },
+    "Your Text Submission" : {
+
+    },
+    "Your Uploaded Submission" : {
 
     },
     "Zagreb (+01:00/+02:00)" : {

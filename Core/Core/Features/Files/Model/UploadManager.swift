@@ -191,7 +191,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 return environment.api
             }
         }()
-
+        let shouldAddNoVerifierQuery = environment.app != .horizon
         api.makeRequest(request) { [didUploadFile] response, _, error in
             self.context.performAndWait {
                 defer { callback?() }
@@ -203,7 +203,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 }
                 do {
                     file.size = url.lookupFileSize()
-                    let request = PostFileUploadRequest(fileURL: url, target: target)
+                    let request = PostFileUploadRequest(fileURL: url, target: target, shouldAddNoVerifierQuery: shouldAddNoVerifierQuery)
                     let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
                     var task = try api.uploadTask(request)
                     file.taskID = UUID.string
@@ -362,6 +362,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                             "error": error?.localizedDescription ?? "unknown"
                         ])
                         RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
+                        if let error {
+                            didUploadFile.send(.failure(error))
+                        }
                         self.complete(file: file, error: error)
                         return
                     }
@@ -421,7 +424,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.localFileURL = nil
             }
             try? context.save()
-            if error != nil {
+            if let error {
+                didUploadFile.send(.failure(error))
                 if case let .submission(courseID, assignmentID, _)? = file.context {
                     localNotifications.sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {
