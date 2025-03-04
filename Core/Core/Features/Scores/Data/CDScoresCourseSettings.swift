@@ -19,7 +19,6 @@
 import CoreData
 
 final public class CDScoresCourseSettings: NSManagedObject {
-//    @NSManaged public var courseID: String
     @NSManaged public var restrictQuantitativeData: Bool
     @NSManaged public var hideFinalGrade: Bool
     @NSManaged public var course: CDScoresCourse
@@ -39,7 +38,6 @@ final public class CDScoresCourseSettings: NSManagedObject {
             }
 
             let settings: CDScoresCourseSettings = context.insert()
-//            settings.courseID = course.courseID
             settings.restrictQuantitativeData = false
             settings.hideFinalGrade = false
             return settings
