@@ -18,9 +18,11 @@
 
 import Observation
 import HorizonUI
+import Foundation
 
 @Observable
 final class SubmissionAlertViewModel {
+    let id = UUID().uuidString
     let title: String
     let body: String
     var isPresented: Bool
@@ -50,7 +52,7 @@ final class SubmissionAlertViewModel {
 
 extension SubmissionAlertViewModel: Equatable {
     static func == (lhs: SubmissionAlertViewModel, rhs: SubmissionAlertViewModel) -> Bool {
-        lhs.title == rhs.title && lhs.isPresented == rhs.isPresented
+        lhs.id == rhs.id && lhs.isPresented == rhs.isPresented
     }
 }
 
