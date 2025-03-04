@@ -87,4 +87,3 @@ class APIActivityTests: XCTestCase {
         XCTAssertEqual(activity.latestRelevantUpdate, mockNow)
     }
 }
-
