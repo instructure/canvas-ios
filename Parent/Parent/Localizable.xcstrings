@@ -513,6 +513,9 @@
         }
       }
     },
+    "About" : {
+
+    },
     "Add" : {
       "localizations" : {
         "ar" : {
@@ -2305,6 +2308,9 @@
           }
         }
       }
+    },
+    "Appearance" : {
+
     },
     "Assignment Details" : {
       "localizations" : {
@@ -5647,6 +5653,9 @@
         }
       }
     },
+    "Dark Theme" : {
+
+    },
     "Date" : {
       "localizations" : {
         "ar" : {
@@ -8220,7 +8229,6 @@
       }
     },
     "Inbox" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -8475,6 +8483,9 @@
           }
         }
       }
+    },
+    "Inbox Signature" : {
+
     },
     "Inbox Zero" : {
       "extractionState" : "stale",
@@ -9500,6 +9511,9 @@
           }
         }
       }
+    },
+    "Light Theme" : {
+
     },
     "Location" : {
       "localizations" : {
@@ -12832,6 +12846,9 @@
         }
       }
     },
+    "Preferences" : {
+
+    },
     "Profile Menu" : {
 
     },
@@ -14631,7 +14648,6 @@
       }
     },
     "Settings" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -16166,6 +16182,9 @@
           }
         }
       }
+    },
+    "System Settings" : {
+
     },
     "Tap to switch students" : {
       "extractionState" : "stale",
