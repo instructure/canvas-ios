@@ -230,7 +230,7 @@ final class AssignmentDetailsViewModel {
         isInitialLoading = false
         assignment = response
         self.submissions = submissions
-        // Did't submit before
+        // Didn’t submit before
         isSegmentControlVisible = Set(response.assignmentSubmissionTypes) == Set([.text, .fileUpload])
         let firstSubmission = response.assignmentSubmissionTypes.first ?? .text
         selectedSubmission = isSegmentControlVisible ? .text : firstSubmission
