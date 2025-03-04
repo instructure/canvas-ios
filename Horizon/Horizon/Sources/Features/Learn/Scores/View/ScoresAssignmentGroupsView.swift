@@ -83,7 +83,7 @@ struct ScoresAssignmentGroupsView: View {
                     groups.groupWeightSumString + "%"
                 )
             )
-//                .huiTypography(.h4) // TODO: Add h4 variant
+            .huiTypography(.h4)
             .foregroundStyle(Color.huiColors.text.body)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, .huiSpaces.space16)
