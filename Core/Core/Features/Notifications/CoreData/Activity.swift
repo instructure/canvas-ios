@@ -51,13 +51,7 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.title = item.title
         model.htmlURL = item.html_url
         model.typeRaw = item.type.rawValue
-        model.updatedAt = if item.type == .conversation && item.latest_messages.isNotEmpty {
-            item.latest_messages
-                .max { $0.created_at < $1.created_at }?
-                .created_at
-        } else {
-            item.updated_at
-        }
+        model.updatedAt = item.latestRelevantUpdate
 
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: Context?

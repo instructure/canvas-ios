@@ -41,7 +41,11 @@ public struct APIActivity: Codable {
     let context_type: String?
     let course_id: ID?
     let group_id: ID?
-    let latest_messages: [APIConversationMessage]
+    let latest_messages: [APIActivityMessage]?
+
+    var latestRelevantUpdate: Date {
+        latest_messages?.max()?.created_at ?? updated_at
+    }
 }
 
 #if DEBUG
@@ -57,7 +61,7 @@ extension APIActivity {
         context_type: String = ContextType.course.rawValue,
         course_id: ID? = "1",
         group_id: ID? = nil,
-        latest_messages: [APIConversationMessage] = []
+        latest_messages: [APIActivityMessage]? = nil
     ) -> APIActivity {
         return APIActivity(
             id: id,
