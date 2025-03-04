@@ -41,7 +41,7 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
         }
         return dbEntity
     }
-    
+
     public func update(
         courseID: String,
         apiEntity: APIEnrollment,
@@ -57,6 +57,4 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
             dbEntity.computedFinalScore = NSNumber(value: computedFinalScore)
         }
     }
-    
-    
 }

@@ -18,11 +18,11 @@
 
 import CoreData
 
-final public class CDScoresCourseSettings: NSManagedObject {
+public final class CDScoresCourseSettings: NSManagedObject {
     @NSManaged public var restrictQuantitativeData: Bool
     @NSManaged public var hideFinalGrade: Bool
     @NSManaged public var course: CDScoresCourse
-    
+
     @discardableResult
     static func save(
         _ item: APICourseSettings,
@@ -46,11 +46,11 @@ final public class CDScoresCourseSettings: NSManagedObject {
         if let restrict_quantitative_data = item.restrict_quantitative_data, AppEnvironment.shared.app != .teacher {
             entity.restrictQuantitativeData = restrict_quantitative_data
         }
-        
+
         if let hideFinalGrade = item.restrict_quantitative_data {
             entity.hideFinalGrade = hideFinalGrade
         }
-        
+
         entity.course = course
 
         return entity
