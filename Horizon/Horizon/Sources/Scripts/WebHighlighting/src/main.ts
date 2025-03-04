@@ -23,5 +23,4 @@ import registerNotifyOnTextSelectionChange from "./use_case/NotifyTextSelectionC
 //This file is just an interface. No implementation details here!
 window.applyHighlights = applyHighlights;
 window.getCurrentTextSelection = getCurrentTextSelection;
-
 registerNotifyOnTextSelectionChange();

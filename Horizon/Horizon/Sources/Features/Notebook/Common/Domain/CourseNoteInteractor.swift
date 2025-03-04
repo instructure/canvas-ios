@@ -196,6 +196,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                 )
                 .compactMap { [weak self] (response: RedwoodUpdateNoteMutationResponse?) in
                     self?.getCourseNotesInteractor.refresh()
+                    self?.refreshSubject.send()
                     return response.map { CourseNotebookNote(from: $0.data.updateNote) }
                 }
             }

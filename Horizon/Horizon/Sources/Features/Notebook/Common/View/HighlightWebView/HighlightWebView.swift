@@ -94,6 +94,11 @@ final class HighlightWebView: CoreWebView {
     // MARK: - Override Functions
 
     public override func buildMenu(with builder: any UIMenuBuilder) {
+        // for now at least, don't allow overlapping highlights
+        if isOverlapped {
+            return
+        }
+
         let actions: [UIMenuElement] = actionDefinitions.map {
             UIAction(title: $0.1, handler: onMenuAction)
         }
@@ -116,6 +121,26 @@ final class HighlightWebView: CoreWebView {
 
     private func applyHighlights(_ courseNotebookNotes: [CourseNotebookNote]) {
         self.courseNotebookNotes = courseNotebookNotes
+    }
+
+    private var isOverlapped: Bool {
+        guard let currentNotebookTextSelection = currentNotebookTextSelection else {
+            return false
+        }
+        return courseNotebookNotes.contains { courseNotebookNote in
+            guard let highlightData = courseNotebookNote.highlightData else {
+                return false
+            }
+
+            let startA = highlightData.textPosition.start
+            let endA = highlightData.textPosition.end
+            let startB = currentNotebookTextSelection.textPosition.start
+            let endB = currentNotebookTextSelection.textPosition.end
+
+            return (startA <= endB && endA >= startB) ||
+                (startA >= startB && endA <= endB) ||
+                (startA <= startB && endA >= endB)
+        }
     }
 
     private func listenForHighlights() {
@@ -171,7 +196,7 @@ final class HighlightWebView: CoreWebView {
 
         Task { [weak self] in
             guard let self = self,
-                let notebookTextSelection = await highlightWebFeature.getCurrentTextSelection(from: self)
+                  let notebookTextSelection = self.currentNotebookTextSelection
             else {
                 return
             }
