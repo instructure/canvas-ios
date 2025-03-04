@@ -48,7 +48,7 @@ final class AssignmentDetailsViewModel {
     private(set) var isSegmentControlVisible: Bool = false
     private(set) var selectedSubmission: AssignmentSubmissionType = .text
     var isStartTyping = false
-    var assignmentPreference: AssignmentPreferenceType?
+    var assignmentPreference: AssignmentPreferenceKeyType?
 
     // MARK: - Properties
 
@@ -235,7 +235,7 @@ final class AssignmentDetailsViewModel {
         let firstSubmission = response.assignmentSubmissionTypes.first ?? .text
         selectedSubmission = isSegmentControlVisible ? .text : firstSubmission
 
-        // In case submit before
+        // In case of resubmission
         hasSubmittedBefore = !response.isUnsubmitted
         let latestSubmission = submissions.first?.type ?? .text
         selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission

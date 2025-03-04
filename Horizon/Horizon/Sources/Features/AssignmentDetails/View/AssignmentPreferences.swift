@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-enum AssignmentPreferenceType: Equatable {
+enum AssignmentPreferenceKeyType: Equatable {
     case confirmation(viewModel: SubmissionAlertViewModel)
     case toastViewModel(viewModel: ToastViewModel)
     case moduleNavBarButton(isVisible: Bool)
@@ -33,9 +33,9 @@ struct HeaderVisibilityKey: PreferenceKey {
 }
 
 struct AssignmentPreferenceKey: PreferenceKey {
-    static var defaultValue: AssignmentPreferenceType?
+    static var defaultValue: AssignmentPreferenceKeyType?
 
-    static func reduce(value: inout AssignmentPreferenceType?, nextValue: () -> AssignmentPreferenceType?) {
+    static func reduce(value: inout AssignmentPreferenceKeyType?, nextValue: () -> AssignmentPreferenceKeyType?) {
         value = nextValue()
     }
 }

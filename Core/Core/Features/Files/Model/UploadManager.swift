@@ -191,7 +191,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 return environment.api
             }
         }()
-
+        let shouldAddNoVerifierQuery = environment.app != .horizon
         api.makeRequest(request) { [didUploadFile] response, _, error in
             self.context.performAndWait {
                 defer { callback?() }
@@ -203,7 +203,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 }
                 do {
                     file.size = url.lookupFileSize()
-                    let request = PostFileUploadRequest(fileURL: url, target: target)
+                    let request = PostFileUploadRequest(fileURL: url, target: target, shouldAddNoVerifierQuery: shouldAddNoVerifierQuery)
                     let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
                     var task = try api.uploadTask(request)
                     file.taskID = UUID.string
