@@ -20,8 +20,8 @@ import Foundation
 import UIKit
 
 public class SwitchTableViewCell: UITableViewCell {
-    public let toggle = UISwitch()
-    public var onToggleChange: (UISwitch) -> Void = { _ in }
+    public let toggle = CoreSwitch()
+    public var onToggleChange: (CoreSwitch) -> Void = { _ in }
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -34,17 +34,30 @@ public class SwitchTableViewCell: UITableViewCell {
     }
 
     func setup() {
-        toggle.onTintColor = Brand.shared.primary
+        toggle.tintColor = Brand.shared.primary
         toggle.addTarget(self, action: #selector(toggleChanged(_:)), for: .valueChanged)
-        accessoryView = toggle
+
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(toggle)
+        toggle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        toggle.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
+
         backgroundColor = .backgroundLightest
         directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
         heightAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
         textLabel?.textColor = .textDarkest
         textLabel?.font = .scaledNamedFont(.semibold16)
+        textLabel?.accessibilityElementsHidden = true
     }
 
-    @objc func toggleChanged(_ sender: UISwitch) {
+    @objc func toggleChanged(_ sender: CoreSwitch) {
         onToggleChange(sender)
     }
+}
+
+@available(iOS 17.0, *)
+#Preview {
+    let cell = SwitchTableViewCell(style: .default, reuseIdentifier: nil)
+    cell.textLabel?.text = "test"
+    return cell
 }

@@ -282,13 +282,12 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ViewBuilder
     private func togglesView() -> some View {
         VStack(spacing: 0) {
-            Toggle(isOn: $viewModel.baseOnGradedAssignment) {
+            InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
                 Text("Based on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
                     .multilineTextAlignment(.leading)
             }
-            .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
             .frame(minHeight: 51)
             .padding(.horizontal, 16)
             .accessibilityIdentifier("BasedOnGradedToggle")
@@ -296,13 +295,12 @@ public struct GradeListView: View, ScreenViewTrackable {
             if viewModel.isWhatIfScoreFlagEnabled {
                 Divider()
 
-                Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
+                InstUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
                     Text("Show What-if Score", bundle: .core)
                         .foregroundStyle(Color.textDarkest)
                         .font(.regular16)
                         .multilineTextAlignment(.leading)
                 }
-                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
                 .frame(minHeight: 51)
                 .padding(.horizontal, 16)
             }

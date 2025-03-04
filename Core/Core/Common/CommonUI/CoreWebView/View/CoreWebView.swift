@@ -709,8 +709,9 @@ extension CoreWebView {
         originalBaseURL: URL?
     ) {
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
+
             loadFileURL(
-                URL.Directories.documents,
+                filePath,
                 allowingReadAccessTo: URL.Directories.documents
             ) { [weak self] _ in
                 guard let self else { return }
@@ -718,6 +719,7 @@ extension CoreWebView {
                 // All offline content should have relative links to the documents directory
                 self.loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
             }
+
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }

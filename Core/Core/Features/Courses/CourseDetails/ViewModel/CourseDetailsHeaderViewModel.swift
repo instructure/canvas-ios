@@ -22,12 +22,14 @@ import SwiftUI
 public class CourseDetailsHeaderViewModel: ObservableObject {
     @Published public private(set) var hideColorOverlay: Bool = false
     @Published public private(set) var verticalOffset: CGFloat = 0
-    @Published public private(set) var imageOpacity: CGFloat = 0.4
+    @Published public private(set) var imageOpacity: CGFloat = originalImageOpacity
     @Published public private(set) var titleOpacity: CGFloat = 1
     @Published public private(set) var courseName = ""
     @Published public private(set) var courseColor: UIColor = .clear
     @Published public private(set) var termName = ""
     @Published public private(set) var imageURL: URL?
+
+    private static let originalImageOpacity: CGFloat = 0.16
 
     public let courseTitleShadow = (
         color: Color(UIColor.backgroundDarkest.withAlphaComponent(0.80)),
@@ -79,11 +81,11 @@ public class CourseDetailsHeaderViewModel: ObservableObject {
 
             // Starts from 0 and reaches 1 when the image is fully pushed out of screen
             let offsetRatio = abs(verticalOffset) / (height / 2)
-            imageOpacity = hideColorOverlay ? 1 : (1 - offsetRatio) * 0.4
+            imageOpacity = hideColorOverlay ? 1 : (1 - offsetRatio) * Self.originalImageOpacity
             titleOpacity = 1 - offsetRatio
         } else { // pull to refresh gesture, we allow the image to move along with the content
             verticalOffset = value
-            imageOpacity = hideColorOverlay ? 1 : 0.4
+            imageOpacity = hideColorOverlay ? 1 : Self.originalImageOpacity
             titleOpacity = 1
         }
     }

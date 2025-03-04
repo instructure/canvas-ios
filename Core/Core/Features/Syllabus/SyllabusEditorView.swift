@@ -86,7 +86,7 @@ public struct SyllabusEditorView: View {
                     .frame(height: max(200, rceHeight))
             }
             EditorSection(label: Text("Details", bundle: .core)) {
-                Toggle(isOn: $showSummary) { Text("Show Course Summary", bundle: .core) }
+                InstUI.Toggle(isOn: $showSummary) { Text("Show Course Summary", bundle: .core) }
                     .font(.semibold16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("SyllabusEditor.summaryToggle")
