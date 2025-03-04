@@ -115,6 +115,7 @@ public struct ModuleItemSequenceView: View {
                 Text(submissionAlertModel.body)
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.body)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }

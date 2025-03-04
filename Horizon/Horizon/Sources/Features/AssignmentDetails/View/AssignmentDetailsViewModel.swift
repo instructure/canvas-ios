@@ -353,9 +353,10 @@ final class AssignmentDetailsViewModel {
 
     private func showConformationModal(viewModel: SubmissionAlertViewModel) {
         assignmentPreference = .confirmation(viewModel: viewModel)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        viewModel.isPresented = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             viewModel.isPresented = true
-            self?.assignmentPreference = .confirmation(viewModel: viewModel)
+            self.assignmentPreference = .confirmation(viewModel: viewModel)
         }
     }
 
