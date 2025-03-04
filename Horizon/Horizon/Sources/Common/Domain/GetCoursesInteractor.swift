@@ -61,7 +61,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     private func fetchCourses(courseId: String? = nil) -> AnyPublisher<[HCourse], Never> {
         ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: courseId))
-            .getEntities(ignoreCache: true)
+            .getEntities()
             .replaceError(with: [])
             .flatMap {
                 $0.publisher

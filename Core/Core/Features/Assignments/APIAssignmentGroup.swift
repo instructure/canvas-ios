@@ -32,7 +32,7 @@ extension APIAssignmentGroup {
         id: ID = "1",
         name: String = "Assignment Group A",
         position: Int = 1,
-        group_weight: Double? = 80.0,
+        group_weight: Double? = nil,
         assignments: [APIAssignment]? = nil
         ) -> APIAssignmentGroup {
         return APIAssignmentGroup(
