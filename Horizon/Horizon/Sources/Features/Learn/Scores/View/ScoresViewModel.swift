@@ -37,6 +37,7 @@ final class ScoresViewModel {
         weak var weakSelf = self
 
         interactor.getScores()
+            .print("🟨")
             .sink(receiveCompletion: { _ in
 
             }, receiveValue: { value in

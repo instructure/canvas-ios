@@ -28,8 +28,8 @@ struct ScoresView: View {
             case .loading:
                 loadingView
             case .data:
-                if let score = viewModel.scoreDetails?.score {
-                    Text("Total: \(score)")
+                if let details = viewModel.scoreDetails {
+                    ScoresAssignmentGroupsView(details: details)
                 }
             case .error:
                 Text("Error loading scores.")

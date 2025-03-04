@@ -21,7 +21,7 @@ import Core
 struct ScoreDetails {
     let score: String
     let assignmentGroups: [HAssignmentGroup]
-    
+
     var assignments: [HAssignment] {
         assignmentGroups.flatMap(\.assignments)
     }

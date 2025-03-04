@@ -88,7 +88,7 @@ struct CourseDetailsView: View {
                         modulesView(modules: viewModel.course.modules).id(index)
                     case .overview:
                         overview(htmlString: viewModel.course.overviewDescription).id(index)
-                    case .grades:
+                    case .scores:
                         ScoresAssembly.makeView(courseID: viewModel.courseID)
                             .id(index)
                     case .notebook:
@@ -141,7 +141,7 @@ extension CourseDetailsView {
     enum Tabs: CaseIterable, Identifiable {
         case myProgress
         case overview
-        case grades
+        case scores
         case notebook
         case quickLinks
 
@@ -151,8 +151,8 @@ extension CourseDetailsView {
                 return String(localized: "My Progress", bundle: .horizon)
             case .overview:
                 return String(localized: "Overview", bundle: .horizon)
-            case .grades:
-                return String(localized: "Grades", bundle: .horizon)
+            case .scores:
+                return String(localized: "Scores", bundle: .horizon)
             case .notebook:
                 return String(localized: "Notebook", bundle: .horizon)
             case .quickLinks:

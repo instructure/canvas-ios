@@ -83,6 +83,9 @@
     "Assignment due dates" : {
 
     },
+    "Assignment Group Weights" : {
+
+    },
     "Astana (+05:00/+05:00)" : {
 
     },
@@ -294,9 +297,6 @@
 
     },
     "Give me key takeaways" : {
-
-    },
-    "Grades" : {
 
     },
     "Greenland (-02:00/-01:00)" : {
@@ -728,6 +728,9 @@
     "Tokyo (+09:00)" : {
 
     },
+    "Total Weight: %@" : {
+
+    },
     "Total: %@" : {
 
     },
@@ -768,6 +771,9 @@
 
     },
     "Warsaw (+01:00/+02:00)" : {
+
+    },
+    "Weight: %@" : {
 
     },
     "Wellington (+12:00/+13:00)" : {

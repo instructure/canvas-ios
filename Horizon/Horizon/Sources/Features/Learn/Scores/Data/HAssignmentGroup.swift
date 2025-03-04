@@ -18,10 +18,20 @@
 
 import Core
 
-struct HAssignmentGroup {
+struct HAssignmentGroup: Identifiable {
     let id: String
     let name: String
     let groupWeight: Double?
+    var groupWeightString: String? {
+        if let groupWeight {
+            return GradeFormatter.numberFormatter.string(
+                from: NSNumber(value: groupWeight)
+            )
+        } else {
+            return nil
+        }
+    }
+
     let assignments: [HAssignment]
 
     init(id: String, name: String, groupWeight: Double, assignments: [HAssignment]) {
@@ -40,5 +50,19 @@ struct HAssignmentGroup {
         } else {
             self.assignments = []
         }
+    }
+}
+
+extension Array where Element == HAssignmentGroup {
+    private var groupWeightSum: Double {
+        reduce(0) { result, group in
+            result + (group.groupWeight ?? 0)
+        }
+    }
+
+    var groupWeightSumString: String {
+        GradeFormatter.numberFormatter.string(
+            from: NSNumber(value: groupWeightSum)
+        ) ?? ""
     }
 }
