@@ -398,13 +398,13 @@ class GradesTests: E2ETestCase {
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
         totalGrade.waitUntil(.label(expected: basedOnGradedExpected))
         XCTAssertTrue(basedOnGradedSwitch.isVisible)
-        XCTAssertTrue(basedOnGradedSwitch.hasValue(value: "1"))
+        XCTAssertTrue(basedOnGradedSwitch.hasValue(value: "on"))
         XCTAssertTrue(totalGrade.isVisible)
         XCTAssertTrue(totalGrade.hasLabel(label: basedOnGradedExpected, strict: false))
 
         // MARK: Toggle switch, check Total Grade again
         basedOnGradedSwitch.hit()
-        XCTAssertTrue(basedOnGradedSwitch.waitUntil(.value(expected: "0")).hasValue(value: "0"))
+        XCTAssertTrue(basedOnGradedSwitch.waitUntil(.value(expected: "off")).hasValue(value: "off"))
         XCTAssertTrue(totalGrade.isVisible)
         XCTAssertTrue(totalGrade.hasLabel(label: notBasedOnGradedExpected, strict: false))
     }

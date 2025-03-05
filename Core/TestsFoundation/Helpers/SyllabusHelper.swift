@@ -27,7 +27,7 @@ public class SyllabusHelper: BaseHelper {
         public static var cancel: XCUIElement { app.find(id: "SyllabusEditor.cancel") }
         public static var done: XCUIElement { app.find(id: "SyllabusEditor.done") }
         public static var content: XCUIElement { app.find(id: "RichContentEditor.webView").find(type: .textView) }
-        public static var showSummary: XCUIElement { app.find(id: "SyllabusEditor.summaryToggle").find(type: .switch) }
+        public static var showSummary: XCUIElement { app.find(id: "SyllabusEditor.summaryToggle", type: .toggle) }
     }
 
     public static func summaryAssignmentCell(assignment: DSAssignment) -> XCUIElement {
