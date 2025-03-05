@@ -23,7 +23,7 @@ struct ScoresAssignmentsView: View {
     let details: ScoreDetails
 
     @State private var selectedSortOption = "Due Date"
-    
+
     var body: some View {
         VStack(spacing: .zero) {
             Text("Sort By")
@@ -35,47 +35,50 @@ struct ScoresAssignmentsView: View {
             HorizonUI.SingleSelect(
                 selection: $selectedSortOption,
                 options: ["Due Date", "Assignment Name"]
-            )
-            .background(Color.blue)
-            .padding(.vertical, .huiSpaces.space8)
-            .padding(.horizontal, .huiSpaces.space24)
-            .background(Color.red)
+            ) {
+                VStack(spacing: .zero) {
+                    ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
+                        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+                            Text("Name: \(assignment.name)", bundle: .horizon)
+                            if let dueAtString = assignment.dueAtString {
+                                Text("Due Date: \(dueAtString)", bundle: .horizon)
+                            }
 
-            VStack(spacing: .zero) {
-                ForEach(details.assignments, id: \.id) { assignment in
-                    VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-                        Text("Name: \(assignment.name)", bundle: .horizon)
-                        Text("Date: \(assignment.dueAt)", bundle: .horizon)
-
-                        HStack(spacing: .huiSpaces.space4) {
-                            Text("Status: ")
-                            HorizonUI.Pill(
-                                title: "Submitted",
-                                //                            title: assignment.latestSubmission?.status,
-                                style: .outline(.danger),
-                                isUppercased: false,
-                                icon: nil
-                            )
+                            HStack(spacing: .huiSpaces.space4) {
+                                Text("Status: ")
+                                HorizonUI.Pill(
+                                    title: "Submitted",
+                                    //                            title: assignment.latestSubmission?.status,
+                                    style: .outline(.danger),
+                                    isUppercased: false,
+                                    icon: nil
+                                )
+                            }
+                            Text("Result: XX/XX")
+                            //                    Text("Result: \(assignment.result)", bundle: .horizon)
+                            HStack(spacing: .huiSpaces.space4) {
+                                Text("Feedback: ", bundle: .horizon)
+                                HorizonUI.icons.chat
+                                    .frame(width: 24, height: 24)
+                                Text("1")
+                                //                        Text("\(assignment.latestSubmissionCommentCount)")
+                            }
                         }
-                        Text("Result: XX/XX")
-                        //                    Text("Result: \(assignment.result)", bundle: .horizon)
-                        HStack(spacing: .huiSpaces.space4) {
-                            Text("Feedback: ", bundle: .horizon)
-                            HorizonUI.icons.chat
-                                .frame(width: 24, height: 24)
-                            Text("1")
-                            //                        Text("\(assignment.latestSubmissionCommentCount)")
+                        .huiTypography(.p1)
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+//                        .padding([.leading, .trailing], .huiSpaces.space24)
+                        .padding([.top, .bottom], .huiSpaces.space16)
+
+                        if index != details.assignments.count - 1 {
+                            divider
                         }
                     }
-                    .huiTypography(.p1)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding([.leading, .trailing], .huiSpaces.space24)
-                    .padding([.top, .bottom], .huiSpaces.space16)
-                    divider
                 }
+                Spacer()
             }
-            Spacer()
+            .padding(.vertical, .huiSpaces.space8)
+            .padding(.horizontal, .huiSpaces.space24)
         }
         .background(Color.huiColors.primitives.white10)
         .huiCornerRadius(level: .level5)
@@ -99,7 +102,7 @@ struct ScoresAssignmentsView: View {
                     name: "First assignment",
                     details: nil,
                     pointsPossible: 10,
-                    dueAt: "2025/01/01",
+                    dueAt: Date.now,
                     allowedAttempts: 10,
                     submissionTypes: [],
                     courseID: "1",
@@ -113,7 +116,7 @@ struct ScoresAssignmentsView: View {
                     name: "Second assignment",
                     details: nil,
                     pointsPossible: 5,
-                    dueAt: "2025/01/01",
+                    dueAt: Date.now,
                     allowedAttempts: 10,
                     submissionTypes: [],
                     courseID: "1",

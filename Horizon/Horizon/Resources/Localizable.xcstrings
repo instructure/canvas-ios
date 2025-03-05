@@ -24,9 +24,6 @@
         }
       }
     },
-    "%lld attempt(s)" : {
-
-    },
     "1" : {
 
     },
@@ -93,10 +90,10 @@
     "Assignment due dates" : {
 
     },
-    "Assignment Successfully Submitted!" : {
+    "Assignment Group Weights" : {
 
     },
-    "Assignment Group Weights" : {
+    "Assignment Successfully Submitted!" : {
 
     },
     "Astana (+05:00/+05:00)" : {
@@ -246,7 +243,7 @@
     "Darwin (+09:30)" : {
 
     },
-    "Date: %@" : {
+    "Delete Draft" : {
 
     },
     "Dhaka (+06:00/+06:00)" : {
@@ -262,6 +259,9 @@
 
     },
     "Dublin (+01:00/+00:00)" : {
+
+    },
+    "Due Date: %@" : {
 
     },
     "E-mail" : {
@@ -292,9 +292,6 @@
 
     },
     "Error loading comments." : {
-
-    },
-    "External Tool" : {
 
     },
     "Error loading scores." : {
@@ -528,6 +525,9 @@
     "Name: %@" : {
 
     },
+    "New Attempt" : {
+
+    },
     "New Caledonia (+11:00/+11:00)" : {
 
     },
@@ -696,9 +696,6 @@
     "Scores" : {
 
     },
-    "ScoresAssignmentsView" : {
-
-    },
     "Search" : {
 
     },
@@ -724,6 +721,9 @@
 
     },
     "Solomon Is. (+11:00/+11:00)" : {
+
+    },
+    "Sort By" : {
 
     },
     "Srednekolymsk (+11:00/+11:00)" : {

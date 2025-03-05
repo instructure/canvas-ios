@@ -29,7 +29,10 @@ struct ScoresView: View {
                 loadingView
             case .data:
                 if let details = viewModel.scoreDetails {
-                    ScoresAssignmentGroupsView(details: details)
+                    VStack(spacing: .huiSpaces.space24) {
+                        ScoresAssignmentGroupsView(details: details)
+                        ScoresAssignmentsView(details: details)
+                    }
                 }
             case .error:
                 Text("Error loading scores.", bundle: .horizon)

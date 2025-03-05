@@ -25,7 +25,8 @@ struct HAssignment: Identifiable {
     let duration: String = "20 mins"
     let details: String?
     let pointsPossible: Double?
-    let dueAt: String
+    let dueAt: Date?
+    let dueAtString: String?
     let allowedAttempts: Int
     let submissionTypes: [SubmissionType]
     let courseID: String
@@ -47,7 +48,7 @@ struct HAssignment: Identifiable {
         name: String,
         details: String?,
         pointsPossible: Double?,
-        dueAt: String,
+        dueAt: Date?,
         allowedAttempts: Int,
         submissionTypes: [SubmissionType],
         courseID: String,
@@ -61,6 +62,11 @@ struct HAssignment: Identifiable {
         self.details = details
         self.pointsPossible = pointsPossible
         self.dueAt = dueAt
+        if let dueAt {
+            self.dueAtString = Self.dateFormatter.string(from: dueAt)
+        } else {
+            self.dueAtString = nil
+        }
         self.allowedAttempts = allowedAttempts
         self.submissionTypes = submissionTypes
         self.courseID = courseID
@@ -75,7 +81,12 @@ struct HAssignment: Identifiable {
         self.name = assignment.name
         self.details = assignment.details
         self.pointsPossible = assignment.pointsPossible
-        self.dueAt = assignment.dueText
+        self.dueAt = assignment.dueAt
+        if let dueAt {
+            self.dueAtString = Self.dateFormatter.string(from: dueAt)
+        } else {
+            self.dueAtString = nil
+        }
         self.allowedAttempts = assignment.allowedAttempts
         self.submissionTypes = assignment.submissionTypes
         self.workflowState = assignment.submission?.workflowState
@@ -107,7 +118,7 @@ struct HAssignment: Identifiable {
     }
 
     var allowedContentTypes: [UTType] {
-       let types = fileExtensions.compactMap { $0.uttype }
+        let types = fileExtensions.compactMap { $0.uttype }
         return types.isEmpty ? [.item] : types
     }
 
@@ -120,6 +131,14 @@ struct HAssignment: Identifiable {
     var attemptCount: String? {
         allowedAttempts > 0 ? "\(allowedAttempts)" : String(localized: "Unlimited", bundle: .horizon)
     }
+
+    private static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        formatter.locale = Locale.current
+        return formatter
+    }()
 }
 
 // swiftlint:disable line_length
@@ -134,7 +153,7 @@ extension HAssignment {
             The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
             """,
             pointsPossible: 10,
-            dueAt: "01/12/2024",
+            dueAt: Date.now,
             allowedAttempts: -1,
             submissionTypes: [.online_text_entry],
             courseID: "1",
