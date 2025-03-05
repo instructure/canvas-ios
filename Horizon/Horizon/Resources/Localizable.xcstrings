@@ -24,6 +24,12 @@
         }
       }
     },
+    "%lld attempt(s)" : {
+
+    },
+    "1" : {
+
+    },
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
@@ -240,7 +246,7 @@
     "Darwin (+09:30)" : {
 
     },
-    "Delete Draft" : {
+    "Date: %@" : {
 
     },
     "Dhaka (+06:00/+06:00)" : {
@@ -295,6 +301,9 @@
 
     },
     "External Tool" : {
+
+    },
+    "Feedback: " : {
 
     },
     "Fiji (+12:00/+12:00)" : {
@@ -516,7 +525,7 @@
     "Name is required" : {
 
     },
-    "New Attempt" : {
+    "Name: %@" : {
 
     },
     "New Caledonia (+11:00/+11:00)" : {
@@ -639,6 +648,9 @@
     "Required" : {
 
     },
+    "Result: XX/XX" : {
+
+    },
     "Retry" : {
 
     },
@@ -684,6 +696,9 @@
     "Scores" : {
 
     },
+    "ScoresAssignmentsView" : {
+
+    },
     "Search" : {
 
     },
@@ -718,6 +733,9 @@
 
     },
     "St. Petersburg (+03:00)" : {
+
+    },
+    "Status: " : {
 
     },
     "Stockholm (+01:00/+02:00)" : {

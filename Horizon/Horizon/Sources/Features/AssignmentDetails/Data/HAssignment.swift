@@ -19,7 +19,7 @@
 import Core
 import UniformTypeIdentifiers
 
-struct HAssignment {
+struct HAssignment: Identifiable {
     let id: String
     let name: String
     let duration: String = "20 mins"
