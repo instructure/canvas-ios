@@ -55,7 +55,6 @@ public class SwitchTableViewCell: UITableViewCell {
     }
 }
 
-@available(iOS 17.0, *)
 #Preview {
     let cell = SwitchTableViewCell(style: .default, reuseIdentifier: nil)
     cell.textLabel?.text = "test"

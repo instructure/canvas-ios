@@ -34,7 +34,6 @@ struct SmallAnnouncementsView: View {
             Spacer(minLength: 0)
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-        .compatibleContentMargins()
         .widgetURL(announcement.url)
     }
 

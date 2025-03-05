@@ -60,7 +60,7 @@ public struct RemoteImage: View {
                 }
             }
         }
-        .compatibleGeometryGroup()
+        .geometryGroup()
         .frame(width: width, height: height)
     }
 

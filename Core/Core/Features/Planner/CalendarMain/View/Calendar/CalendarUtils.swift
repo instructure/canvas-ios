@@ -47,13 +47,7 @@ func withAnimation<Result>(
     _ body: () throws -> Result,
     completion: @escaping () -> Void
 ) rethrows -> Result {
-    if #available(iOS 17.0, *) {
-        return try withAnimation(.spring(duration: duration), body, completion: completion)
-    } else {
-        let result = try withAnimation(.spring(duration: duration), body)
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: completion)
-        return result
-    }
+    return try withAnimation(.spring(duration: duration), body, completion: completion)
 }
 
 extension TimeInterval {
