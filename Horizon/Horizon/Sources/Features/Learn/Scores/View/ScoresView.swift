@@ -32,7 +32,7 @@ struct ScoresView: View {
                     ScoresAssignmentGroupsView(details: details)
                 }
             case .error:
-                Text("Error loading scores.")
+                Text("Error loading scores.", bundle: .horizon)
             }
         }
     }

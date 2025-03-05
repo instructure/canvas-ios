@@ -44,9 +44,7 @@ struct ScoresAssignmentGroupsView: View {
             }
             .padding([.leading, .trailing], .huiSpaces.space24)
             .padding(.bottom, isExpanded ? -16 : 0)
-            .onTapGesture {
-                isExpanded.toggle()
-            }
+
             if isExpanded {
                 assignmentGroupList(groups: details.assignmentGroups)
             }
@@ -55,6 +53,9 @@ struct ScoresAssignmentGroupsView: View {
         .padding(.bottom, isExpanded ? 0 : .huiSpaces.space24)
         .background(Color.huiColors.primitives.white10)
         .huiCornerRadius(level: .level5)
+        .onTapGesture {
+            isExpanded.toggle()
+        }
     }
 
     private var arrowIcon: some View {
