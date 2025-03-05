@@ -513,9 +513,6 @@
         }
       }
     },
-    "About" : {
-
-    },
     "Add" : {
       "localizations" : {
         "ar" : {
@@ -3592,6 +3589,9 @@
           }
         }
       }
+    },
+    "Canvas on Github" : {
+
     },
     "Choose a course to message" : {
 
@@ -6942,6 +6942,9 @@
         }
       }
     },
+    "Enabled" : {
+
+    },
     "Event Details" : {
       "localizations" : {
         "ar" : {
@@ -9511,6 +9514,9 @@
           }
         }
       }
+    },
+    "Legal" : {
+
     },
     "Light Theme" : {
 
@@ -12334,6 +12340,9 @@
         }
       }
     },
+    "Not set" : {
+
+    },
     "OK" : {
       "localizations" : {
         "ar" : {
@@ -12847,6 +12856,9 @@
       }
     },
     "Preferences" : {
+
+    },
+    "Privacy Policy" : {
 
     },
     "Profile Menu" : {
@@ -16442,6 +16454,9 @@
           }
         }
       }
+    },
+    "Terms of Use" : {
+
     },
     "The linked item is no longer available." : {
       "localizations" : {

@@ -18,12 +18,15 @@
 
 import Foundation
 import Core
+import Combine
 
 public class ProfileSettingsViewModel: ObservableObject {
-    @Published public var settingsGroups: [SettingsGroup] = []
+    @Published public var settingsGroups: [SettingsGroupView] = []
 
     private let inboxSettingsInteractor: InboxSettingsInteractor
     private let environment: AppEnvironment
+
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(inboxSettingsInteractor: InboxSettingsInteractor, environment: AppEnvironment) {
         self.inboxSettingsInteractor = inboxSettingsInteractor
@@ -33,79 +36,171 @@ public class ProfileSettingsViewModel: ObservableObject {
     }
 
     private func initGroups() {
-        var groups = [SettingsGroup]()
+        initPreferencesGroup()
+        initInboxGroup()
+        initLegalGroup()
+    }
+}
 
-        groups.append(preferencesGroup())
-        groups.append(inboxGroup())
+// MARK: Preferences Group
+extension ProfileSettingsViewModel {
+    private func initPreferencesGroup() {
+        let appearanceView = initAppearanceGroupItem()
+        let groupViewModel = SettingsGroupViewModel(
+            title: String(localized: "Preferences", bundle: .core),
+            itemViews: [appearanceView]
+        )
 
-        settingsGroups = groups
+        let groupView =  SettingsGroupView(
+            viewModel: groupViewModel
+        )
+
+        self.settingsGroups.append(groupView)
     }
 
-    private func preferencesGroup() -> SettingsGroup {
+    private func initAppearanceGroupItem() -> SettingsGroupItemView {
         let options = [
             ItemPickerItem(title: String(localized: "System Settings", bundle: .core)),
             ItemPickerItem(title: String(localized: "Light Theme", bundle: .core)),
             ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core))
         ]
+        let selectedStyleIndex = CurrentValueSubject<Int, Never>(environment.userDefaults?.interfaceStyle?.rawValue ?? 0)
+
+        let itemViewModel = SettingsGroupItemViewModel(
+            title: String(localized: "Appearance", bundle: .core),
+            valueLabel: nil,
+            id: .inboxSignature
+        ) { [weak self] controller in
+            guard let self = self else { return }
+            self.showAppereanceItemPicker(controller: controller, selectedIndex: selectedStyleIndex, options: options)
+        }
+
+        selectedStyleIndex
+            .sink { index in
+                itemViewModel.valueLabel = options[safeIndex: index]?.title
+            }
+            .store(in: &subscriptions)
+
+        return SettingsGroupItemView(viewModel: itemViewModel)
+    }
+
+    private func showAppereanceItemPicker(controller: WeakViewController, selectedIndex: CurrentValueSubject<Int, Never>, options: [ItemPickerItem]) {
         let selectedStyleIndex = environment.userDefaults?.interfaceStyle?.rawValue ?? 0
+        let pickerVC = ItemPickerViewController.create(title: String(localized: "Appearance", bundle: .core),
+                                                       sections: [ ItemPickerSection(items: options) ],
+                                                       selected: IndexPath(row: selectedStyleIndex, section: 0)) { indexPath in
+            if let window = self.environment.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
+                window.updateInterfaceStyle(style)
+                self.environment.userDefaults?.interfaceStyle = style
+            }
 
-        return SettingsGroup(
-            groupTitle: String(localized: "Preferences", bundle: .core),
-            items: [
-                SettingsGroupItem(
-                    id: .appearance,
-                    title: String(localized: "Appearance", bundle: .core),
-                    valueLabel: options[selectedStyleIndex].title,
-                    isSupportedOffline: true
-                ) { [weak self] controller in
-                    guard let self = self else { return }
+            selectedIndex.send(indexPath.row)
+        }
+        controller.value.show(pickerVC, sender: controller)
+    }
+}
 
-                    let selectedStyleIndex = environment.userDefaults?.interfaceStyle?.rawValue ?? 0
-                    let pickerVC = ItemPickerViewController.create(title: String(localized: "Appearance", bundle: .core),
-                                                                   sections: [ ItemPickerSection(items: options) ],
-                                                                   selected: IndexPath(row: selectedStyleIndex, section: 0)) { indexPath in
-                        if let window = self.environment.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
-                            window.updateInterfaceStyle(style)
-                            self.environment.userDefaults?.interfaceStyle = style
-                        }
+// MARK: Inbox Group
+extension ProfileSettingsViewModel {
+    private func initInboxGroup() {
+        let inboxSignatureSettingView = initInboxSignatureGroupItem()
+        let groupViewModel = SettingsGroupViewModel(
+            title: String(localized: "Inbox", bundle: .core),
+            itemViews: [inboxSignatureSettingView]
+        )
 
-                        let item = self.settingsGroups.flatMap { $0.items }.first { $0.id == .appearance }
-                        self.settingsGroups.replace(item)
-                        self.sett
+        let inboxGroupView = SettingsGroupView(viewModel: groupViewModel)
+
+        inboxSettingsInteractor
+            .isFeatureEnabled
+            .sink { [weak self] isEnabled in
+                if isEnabled {
+                    self?.settingsGroups.append(inboxGroupView)
+                } else {
+                    if let inboxIndex = self?.settingsGroups.firstIndex(where: {$0.viewModel.title == inboxGroupView.viewModel.title}) {
+                        self?.settingsGroups.remove(at: inboxIndex)
                     }
-                    controller.value.show(pickerVC, sender: controller)
-                },
-                SettingsGroupItem(
-                    id: .about,
-                    title: String(localized: "About", bundle: .core),
-                    valueLabel: nil,
-                    isSupportedOffline: true
-                ) { [weak self] controller in
-                    guard let self else { return }
-                    self.environment.router.route(to: "/about", from: controller)
                 }
-            ]
-        )
+            }
+            .store(in: &subscriptions)
     }
 
-    private func inboxGroup() -> SettingsGroup {
-        return SettingsGroup(
-            groupTitle: String(localized: "Inbox", bundle: .core),
-            items: [
-                SettingsGroupItem(
-                    id: .inboxSignature,
-                    title: String(localized: "Inbox Signature", bundle: .core),
-                    valueLabel: "Not set",
-                    isSupportedOffline: true
-                ) { [weak self] controller in
-                    guard let self = self else { return }
-                    self.environment.router.route(to: "/conversations/settings", from: controller)
-                }
-            ]
+    private func initInboxSignatureGroupItem() -> SettingsGroupItemView {
+        let itemViewModel = SettingsGroupItemViewModel(
+            title: String(localized: "Inbox Signature", bundle: .core),
+            valueLabel: nil,
+            id: .inboxSignature
+        ) { [weak self] controller in
+            guard let self = self else { return }
+            self.environment.router.route(to: "/conversations/settings", from: controller)
+        }
+
+        inboxSettingsInteractor
+            .signature
+            .sink { (useSignature, _) in
+                let newValue = useSignature
+                ? String(localized: "Enabled", bundle: .core)
+                : String(localized: "Not set", bundle: .core)
+
+                itemViewModel.valueLabel = newValue
+            }
+            .store(in: &subscriptions)
+
+        return SettingsGroupItemView(viewModel: itemViewModel)
+    }
+}
+
+// MARK: Legal Group
+extension ProfileSettingsViewModel {
+    private func initLegalGroup() {
+        let privacyPolicySettingView = initPrivacyPolicyItem()
+        let termsOfUseSettingView = initTermsOfUseItem()
+        let canvasGithubSettingView = initGithubItem()
+        let groupViewModel = SettingsGroupViewModel(
+            title: String(localized: "Legal", bundle: .core),
+            itemViews: [privacyPolicySettingView, termsOfUseSettingView, canvasGithubSettingView]
         )
+
+        let inboxGroupView = SettingsGroupView(viewModel: groupViewModel)
+        self.settingsGroups.append(inboxGroupView)
     }
 
-    private func legalGroup() {
+    private func initPrivacyPolicyItem() -> SettingsGroupItemView {
+        let itemViewModel = SettingsGroupItemViewModel(
+            title: String(localized: "Privacy Policy", bundle: .core),
+            valueLabel: nil,
+            id: .privacyPolicy
+        ) { [weak self] controller in
+            guard let self = self else { return }
+            self.environment.router.route(to: "https://www.instructure.com/canvas/privacy/", from: controller)
+        }
 
+        return SettingsGroupItemView(viewModel: itemViewModel)
+    }
+
+    private func initTermsOfUseItem() -> SettingsGroupItemView {
+        let itemViewModel = SettingsGroupItemViewModel(
+            title: String(localized: "Terms of Use", bundle: .core),
+            valueLabel: nil,
+            id: .termsOfUse
+        ) { [weak self] controller in
+            guard let self = self else { return }
+            self.environment.router.route(to: "/accounts/self/terms_of_service", from: controller)
+        }
+
+        return SettingsGroupItemView(viewModel: itemViewModel)
+    }
+
+    private func initGithubItem() -> SettingsGroupItemView {
+        let itemViewModel = SettingsGroupItemViewModel(
+            title: String(localized: "Canvas on Github", bundle: .core),
+            valueLabel: nil,
+            id: .github
+        ) { [weak self] controller in
+            guard let self = self else { return }
+            self.environment.router.route(to: "https://github.com/instructure/canvas-ios", from: controller)
+        }
+
+        return SettingsGroupItemView(viewModel: itemViewModel)
     }
 }

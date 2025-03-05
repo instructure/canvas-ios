@@ -16,12 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public class SettingsGroup {
-    let groupTitle: String
-    let items: [SettingsGroupItem]
-
-    public init(groupTitle: String, items: [SettingsGroupItem]) {
-        self.groupTitle = groupTitle
-        self.items = items
-    }
+public enum SettingGroupItemId {
+    case appearance, inboxSignature, about, privacyPolicy, termsOfUse, github
 }

@@ -16,34 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import SwiftUI
+import Foundation
 
-public class SettingsGroupItem {
-    let id: SettingGroupItemId
-    let title: String
-    let valueLabel: String?
-    let isSupportedOffline: Bool
-    let discloserIndicator: Image?
-    let onSelect: (WeakViewController) -> Void
+class SettingsGroupViewModel: ObservableObject {
+    @Published var title: String
+    @Published var itemViews: [SettingsGroupItemView]
 
-    public init(
-        id: SettingGroupItemId,
-        title: String,
-        valueLabel: String?,
-        isSupportedOffline: Bool,
-        discloserIndicator: Image? = Image.arrowOpenRightLine,
-        onSelect: @escaping (WeakViewController) -> Void
-    ) {
-        self.id = id
+    init(title: String, itemViews: [SettingsGroupItemView]) {
         self.title = title
-        self.valueLabel = valueLabel
-        self.isSupportedOffline = isSupportedOffline
-        self.discloserIndicator = discloserIndicator
-        self.onSelect = onSelect
+        self.itemViews = itemViews
     }
-}
-
-public enum SettingGroupItemId {
-    case appearance, about, inboxSignature
 }

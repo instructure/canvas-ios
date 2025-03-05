@@ -16,26 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import SwiftUI
 import Core
 
-public struct ProfileSettingsView: View {
-    @ObservedObject private var viewModel: ProfileSettingsViewModel
-    @Environment(\.viewController) private var controller
-    @ScaledMetric private var uiScale: CGFloat = 1
+class SettingsGroupItemViewModel: ObservableObject {
+    @Published var title: String
+    @Published var valueLabel: String?
+    @Published var discloserIndicator: Image?
 
-    public init(viewModel: ProfileSettingsViewModel) {
-        self.viewModel = viewModel
-    }
+    let id: SettingGroupItemId
+    let onSelect: (WeakViewController) -> Void
 
-    public var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(viewModel.settingsGroups, id: \.viewModel.title) { group in
-                    group
-                }
-            }
-        }
-        .navigationBarTitleView(String(localized: "Settings", bundle: .core))
+    init(title: String, valueLabel: String? = nil, discloserIndicator: Image? = Image.arrowOpenRightLine, id: SettingGroupItemId, onSelect: @escaping (WeakViewController) -> Void) {
+        self.title = title
+        self.valueLabel = valueLabel
+        self.discloserIndicator = discloserIndicator
+        self.id = id
+        self.onSelect = onSelect
     }
 }
