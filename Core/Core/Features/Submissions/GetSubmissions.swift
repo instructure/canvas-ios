@@ -99,33 +99,32 @@ public class CreateSubmission: APIUseCase {
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
 
-        environment
-            .api
-            .makeUnfailableRequest(request)
-            .flatMap { response in
+        environment.api.makeRequest(request) { [weak self] response, urlResponse, error in
+            guard let self = self else { return }
 
-                let message: String
-                if response.body != nil, response.error == nil {
-                    message = String(localized: "Successfully submitted!", bundle: .core)
-                } else {
-                    message = String(localized: "Submission Failed", bundle: .core)
-                }
-
-                return UIAccessibility
-                    .announcePersistently(message)
-                    .map { response }
-                    .eraseToAnyPublisher()
+            if error == nil {
+                NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
+                NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
             }
-            .sink { [weak self] response, urlResponse, error in
-                guard let self = self else { return }
 
-                if error == nil {
-                    NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
-                    NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
-                }
-
+            self.announceResponse(isSuccessful: response != nil && error == nil) {
                 completionHandler(response, urlResponse, error)
             }
+        }
+    }
+
+    private func announceResponse(isSuccessful: Bool, _ completion: @escaping () -> Void) {
+
+        let message: String
+        if isSuccessful {
+            message = String(localized: "Successfully submitted!", bundle: .core)
+        } else {
+            message = String(localized: "Submission Failed", bundle: .core)
+        }
+
+        return UIAccessibility
+            .announcePersistently(message)
+            .sink(receiveValue: completion)
             .store(in: &subscriptions)
     }
 

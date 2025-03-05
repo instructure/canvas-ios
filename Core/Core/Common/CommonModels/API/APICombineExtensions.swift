@@ -43,25 +43,6 @@ public extension API {
         }.eraseToAnyPublisher()
     }
 
-    func makeUnfailableRequest<Request: APIRequestable>(
-        _ requestable: Request,
-        refreshToken: Bool = true
-    ) -> AnyPublisher<(body: Request.Response?, urlResponse: HTTPURLResponse?, error: Error?), Never> {
-        Future { promise in
-            self.makeRequest(requestable, refreshToken: refreshToken) { response, urlResponse, error in
-                promise(
-                    .success(
-                        (
-                            body: response,
-                            urlResponse: urlResponse as? HTTPURLResponse,
-                            error: error
-                        )
-                    )
-                )
-            }
-        }.eraseToAnyPublisher()
-    }
-
     func exhaust<Request: APIRequestable>(
         _ requestable: Request
     ) -> AnyPublisher<(body: Request.Response, urlResponse: HTTPURLResponse?), Error>
