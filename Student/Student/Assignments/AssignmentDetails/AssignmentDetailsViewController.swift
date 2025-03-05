@@ -157,11 +157,17 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
                        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.assignmentID = assignmentID
-        controller.courseID = courseID
+        controller.assignmentID = assignmentID.localID
+        controller.courseID = courseID.localID
         controller.fragment = fragment
         controller.env = env
-        controller.presenter = AssignmentDetailsPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
+        controller.presenter = AssignmentDetailsPresenter(
+            env: env,
+            view: controller,
+            courseID: courseID.localID,
+            assignmentID: assignmentID.localID,
+            fragment: fragment
+        )
         controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
