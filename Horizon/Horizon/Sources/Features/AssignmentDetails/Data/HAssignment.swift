@@ -82,7 +82,7 @@ struct HAssignment {
         self.submittedAt = assignment.submission?.submittedAt
         self.courseID = assignment.id
         self.courseName = assignment.course?.name ?? ""
-        self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
+        self.showSubmitButton = false
         self.allowedExtensions = assignment.allowedExtensions
         self.externalToolContentID = assignment.externalToolContentID
         self.isQuizLTI = assignment.isQuizLTI
@@ -91,6 +91,7 @@ struct HAssignment {
         } else {
             self.submissions = []
         }
+        self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
     }
 
     var isUnsubmitted: Bool {
