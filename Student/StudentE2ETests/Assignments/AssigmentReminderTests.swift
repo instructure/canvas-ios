@@ -40,7 +40,7 @@ class AssignmentReminderTests: E2ETestCase {
         let notificationToggle = SettingsAppHelper.CanvasStudent.Notifications.notificationsToggle.waitUntil(.visible)
         XCTAssertTrue(notificationToggle.isVisible)
 
-        if notificationToggle.hasValue(value: "0") {
+        if notificationToggle.hasValue(value: "off") {
             notificationToggle.hit()
         }
         XCTAssertTrue(notificationToggle.waitUntil(.value(expected: "1")).hasValue(value: "1"))

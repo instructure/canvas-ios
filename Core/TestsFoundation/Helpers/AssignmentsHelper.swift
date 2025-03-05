@@ -20,7 +20,7 @@ import Core
 
 public class AssignmentsHelper: BaseHelper {
     public static func navBar(course: DSCourse) -> XCUIElement {
-        return app.find(id: "Assignments, \(course.name)")
+        return app.find(label: "Assignments, \(course.name)", type: .staticText)
     }
 
     public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
@@ -212,7 +212,7 @@ public class AssignmentsHelper: BaseHelper {
         // Teacher
         public struct Submissions {
             public static var needsGradingLabel: XCUIElement { app.find(id: "Needs Grading") }
-            public static var backButton: XCUIElement { app.find(labelContaining: "Assignment Details, ", type: .button) }
+            public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
 
             public static func cell(student: DSUser) -> XCUIElement {
                 return app.find(id: "SubmissionListCell.\(student.id)")

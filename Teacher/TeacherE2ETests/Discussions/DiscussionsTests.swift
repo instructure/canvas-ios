@@ -71,7 +71,7 @@ class DiscussionsTests: E2ETestCase {
         discussionButton.hit()
         let searchField = DetailsHelper.searchField.waitUntil(.visible)
         let filterByLabel = DetailsHelper.filterByLabel.waitUntil(.visible)
-        let sortButton = DetailsHelper.sortButton.waitUntil(.visible)
+        let sortButton = DetailsHelper.sort.waitUntil(.visible)
         let viewSplitScreenButton = DetailsHelper.viewSplitScreenButton.waitUntil(.visible)
         let subscribeButton = DetailsHelper.subscribeButton.waitUntil(.visible)
         let manageDiscussionButton = DetailsHelper.manageDiscussionButton.waitUntil(.visible)
