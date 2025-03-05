@@ -427,7 +427,7 @@ public struct PostFileUploadRequest: APIRequestable {
     public let fileURL: URL
     public let target: FileUploadTarget
     public let loadBodyFromURL: Bool
-
+    public var shouldAddNoVerifierQuery: Bool
     /**
          Creates an `APIRequestable` instance for file upload.
          - Parameters:
@@ -438,10 +438,12 @@ public struct PostFileUploadRequest: APIRequestable {
     public init(
         fileURL: URL,
         target: FileUploadTarget,
-        isBodyFromURL: Bool = true
+        isBodyFromURL: Bool = true,
+        shouldAddNoVerifierQuery: Bool = true
     ) {
         self.fileURL = fileURL
         self.target = target
+        self.shouldAddNoVerifierQuery = shouldAddNoVerifierQuery
         loadBodyFromURL = isBodyFromURL
     }
 

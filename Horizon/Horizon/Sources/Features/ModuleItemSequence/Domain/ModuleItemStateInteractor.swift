@@ -100,7 +100,15 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
             return .externalTool(tools: tools, name: item.title)
 
         case .assignment(let id):
-            return .assignment(courseID: courseID, assignmentID: id)
+            let isMarkedAsDone = item.completionRequirementType == .must_mark_done
+            return .assignment(
+                courseID: courseID,
+                assignmentID: id,
+                isMarkedAsDone: isMarkedAsDone,
+                isCompletedItem: item.completed ?? false,
+                moduleID: moduleID ?? "",
+                itemID: itemID ?? ""
+            )
         case .file(let id):
             guard let url = item.url, let context = Context(path: url.path) else { return nil }
             return .file(context: context, fileID: id)

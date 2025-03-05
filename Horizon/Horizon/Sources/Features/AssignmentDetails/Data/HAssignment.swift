@@ -17,6 +17,7 @@
 //
 
 import Core
+import UniformTypeIdentifiers
 
 struct HAssignment {
     let id: String
@@ -36,6 +37,9 @@ struct HAssignment {
     let submittedAt: Date?
     var showSubmitButton = false
     var allowedExtensions: [String] = []
+    var externalToolContentID: String?
+    var isQuizLTI: Bool?
+
     let submissions: [HSubmission]
 
     init(
@@ -78,8 +82,10 @@ struct HAssignment {
         self.submittedAt = assignment.submission?.submittedAt
         self.courseID = assignment.id
         self.courseName = assignment.course?.name ?? ""
-        self.showSubmitButton = assignment.hasAttemptsLeft
+        self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
         self.allowedExtensions = assignment.allowedExtensions
+        self.externalToolContentID = assignment.externalToolContentID
+        self.isQuizLTI = assignment.isQuizLTI
         if let submissions = assignment.submissions {
             self.submissions = Array(submissions).map { HSubmission(entity: $0) }
         } else {
@@ -87,17 +93,27 @@ struct HAssignment {
         }
     }
 
-    var submitButtonTitle: String {
-        let isUnsubmittedBefore = workflowState == .unsubmitted || submittedAt == nil
-        return isUnsubmittedBefore ? "Submit Assignment" : "Resubmit Assignment"
+    var isUnsubmitted: Bool {
+        workflowState == .unsubmitted || submittedAt == nil
     }
 
-    var assignmentTypes: [AssignmentType] {
-        submissionTypes.compactMap { AssignmentType(rawValue: $0.rawValue) }
+    var assignmentSubmissionTypes: [AssignmentSubmissionType] {
+        submissionTypes.compactMap { AssignmentSubmissionType(rawValue: $0.rawValue) }
     }
 
     var fileExtensions: [UTI] {
-        submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
+        allowedExtensions.compactMap { UTI(extension: $0) }
+    }
+
+    var allowedContentTypes: [UTType] {
+       let types = fileExtensions.compactMap { $0.uttype }
+        return types.isEmpty ? [.item] : types
+    }
+
+    var allowedFileExtensions: String {
+        allowedExtensions.compactMap { $0.split(separator: ".").last }
+            .map { ".\($0)" }
+            .joined(separator: ", ")
     }
 
     var attemptCount: String? {

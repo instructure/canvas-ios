@@ -24,6 +24,7 @@ struct FileDetailsView: View {
     // MARK: - Private Properties
 
     @State private var didFinishRenderingPreview: Bool = false
+    @State private var isShowHeader: Bool = true
     @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
@@ -32,19 +33,16 @@ struct FileDetailsView: View {
     private let context: Context?
     private let fileID: String
     private let fileName: String
-    @Binding var isShowHeader: Bool
 
     init(
         viewModel: FileDetailsViewModel,
         context: Context?,
         fileID: String,
-        fileName: String,
-        isShowHeader: Binding<Bool>
+        fileName: String
     ) {
         self.context = context
         self.fileID = fileID
         self.fileName = fileName
-        self._isShowHeader = isShowHeader
         self.viewModel = viewModel
     }
 
@@ -52,11 +50,12 @@ struct FileDetailsView: View {
         VStack {
             if isShowHeader {
                 FileDownloadStatusView(status: viewModel.viewState, fileName: fileName) {
-                    viewModel.downloadFile(viewController: viewController)
+                    viewModel.downloadFile(viewController: viewController, fileID: fileID)
                 } onTapCancel: {
                     viewModel.cancelDownload()
                 }
-                .padding(.vertical, .huiSpaces.space12)
+                .padding(.top, .huiSpaces.space24)
+                .padding(.bottom, .huiSpaces.space12)
                 .padding(.horizontal, .huiSpaces.space24)
                 .hidden(!didFinishRenderingPreview)
             }
@@ -69,6 +68,7 @@ struct FileDetailsView: View {
         }
         .animation(.smooth, value: viewModel.viewState)
         .animation(.smooth, value: [isShowHeader, didFinishRenderingPreview])
+        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
     }
 }
 #if DEBUG

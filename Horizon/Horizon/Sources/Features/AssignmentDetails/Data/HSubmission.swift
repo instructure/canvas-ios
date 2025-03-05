@@ -16,21 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import Foundation
+import Core
 
-struct HSubmission {
-    // MARK: - Dependencies
-
+struct HSubmission: Hashable, Equatable {
     let id: String
     let assignmentID: String
     let attachments: [File]?
     let body: String?
     let type: AssignmentSubmissionType?
     let attempt: Int
-    let postedAt: Date?
+    let submittedAt: Date?
     let grade: String?
-    let score: Double?
+    let showSubmitButton: Bool
 
     // MARK: - Init
 
@@ -41,9 +39,9 @@ struct HSubmission {
         self.body = entity.body
         self.type = AssignmentSubmissionType(rawValue: entity.type?.rawValue ?? "")
         self.attempt = entity.attempt
-        self.postedAt = entity.postedAt
+        self.submittedAt = entity.submittedAt
         self.grade = entity.grade
-        self.score = entity.score
+        self.showSubmitButton = entity.assignment?.hasAttemptsLeft ?? false
     }
 
     init(
@@ -53,9 +51,9 @@ struct HSubmission {
         body: String? = nil,
         type: AssignmentSubmissionType? = nil,
         attempt: Int = 10,
-        postedAt: Date? = nil,
+        submittedAt: Date? = nil,
         grade: String? = nil,
-        score: Double? = nil
+        showSubmitButton: Bool = true
     ) {
         self.id = id
         self.assignmentID = assignmentID
@@ -63,43 +61,8 @@ struct HSubmission {
         self.body = body
         self.type = type
         self.attempt = attempt
-        self.postedAt = postedAt
+        self.submittedAt = submittedAt
         self.grade = grade
-        self.score = score
-    }
-}
-
-enum AssignmentSubmissionType: String {
-    case text = "online_text_entry"
-    case fileUpload = "online_upload"
-    case externalTool = "external_tool"
-
-    init(index: Int) {
-        switch index {
-        case 0: self = .text
-        case 1: self = .fileUpload
-        case 2: self = .externalTool
-        default: self = .text
-        }
-    }
-
-    var title: String {
-        switch self {
-        case .text: String(localized: "Text", bundle: .horizon)
-        case .fileUpload: String(localized: "File Upload", bundle: .horizon)
-        case .externalTool: String(localized: "External Tool", bundle: .horizon)
-        }
-    }
-
-    static var items: [String] {
-        [Self.text, Self.fileUpload].map(\.title)
-    }
-
-    var index: Int {
-        switch self {
-        case .text: return 0
-        case .fileUpload: return 1
-        case .externalTool: return 2
-        }
+        self.showSubmitButton = showSubmitButton
     }
 }

@@ -39,7 +39,7 @@ public extension HorizonUI.Modal {
                 isPresented: $isShowConfirmModal) { confirmModalContent}
             .huiModal(
                 headerTitle: "Assignment Successfully Submitted!",
-                headerIcon: Image.huiIcons.checkCircle,
+                headerIcon: Image.huiIcons.checkCircleFull,
                 headerIconColor: Color.huiColors.icon.success,
                 isShowCancelButton: false,
                 confirmButton: .init(title: "View Submission") { print("Tapped") },
@@ -47,24 +47,60 @@ public extension HorizonUI.Modal {
         }
 
         private var successModalContent: some View {
-            VStack(spacing: 15) {
+            VStack(spacing: .huiSpaces.space24) {
                 Text(verbatim: "We received your submission. You will be notified once it's been reviewed.")
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: true)
-
-                VStack(alignment: .leading) {
-                    Text(verbatim: "Attempt X")
-                    Text(verbatim: "confirmModalContent")
-                    Text(verbatim: "Score: XX/XX")
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-                .huiBorder(level: .level1, color: .gray, radius: 12)
+                assignmentInfo
             }
+        }
+
+        private var assignmentInfo: some View {
+            VStack(spacing: .huiSpaces.space12) {
+                attemptView
+                Text(verbatim: "Mon XX at XX:XX AM")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(Color.huiColors.text.timestamp)
+                    .huiTypography(.p2)
+                scoreView
+            }
+            .padding(.huiSpaces.space16)
+            .background {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.huiColors.surface.pageSecondary)
+                    .huiBorder(level: .level1,
+                               color: Color.huiColors.lineAndBorders.lineStroke,
+                               radius: 16)
+            }
+        }
+
+        private var attemptView: some View {
+            HStack(spacing: .huiSpaces.space2) {
+                Text(verbatim: "Attempt")
+                Text(verbatim: "10")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(Color.huiColors.text.body)
+            .huiTypography(.p2)
+        }
+
+        @ViewBuilder
+        private var scoreView: some View {
+            HStack(spacing: .huiSpaces.space2) {
+                Text(verbatim: "Score")
+                Text(verbatim: "80/100")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(Color.huiColors.text.body)
+            .huiTypography(.p2)
         }
 
         private var confirmModalContent: some View {
             Text(verbatim: "You are submitting a text-based attempt. Any uploaded files will be deleted upon submission. Once you submit this attempt, you won’t be able to make any changes.")
+                .huiTypography(.p1)
+                .foregroundStyle(Color.huiColors.text.body)
         }
     }
 }

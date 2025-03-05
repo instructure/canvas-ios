@@ -58,20 +58,18 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeModuleNavBarView(
-        isNextButtonEnabled: Bool,
-        isPreviousButtonEnabled: Bool,
-        isShowUtilityButtons: Bool = true,
-        didTapNext: @escaping () -> Void,
-        didTapPrevious: @escaping () -> Void
+        nextButton: ModuleNavBarView.ButtonAttribute,
+        previousButton: ModuleNavBarView.ButtonAttribute,
+        assignmentMoreOptionsButton: ModuleNavBarView.ButtonAttribute? = nil,
+        visibleButtons: [ModuleNavBarUtilityButtons] = []
     ) -> ModuleNavBarView {
         let router = AppEnvironment.shared.router
         return ModuleNavBarView(
             router: router,
-            isNextButtonEnabled: isNextButtonEnabled,
-            isPreviousButtonEnabled: isPreviousButtonEnabled,
-            isShowUtilityButtons: isShowUtilityButtons,
-            didTapNext: didTapNext,
-            didTapPrevious: didTapPrevious
+            nextButton: nextButton,
+            previousButton: previousButton,
+            assignmentMoreOptionsButton: assignmentMoreOptionsButton,
+            visibleButtons: visibleButtons
         )
     }
 
@@ -110,10 +108,9 @@ enum ModuleItemSequenceAssembly {
     }
 
     static func makeModuleItemView(
-        isScrollTopReached: Binding<Bool>,
         viewController: UIViewController
-    ) -> ModuleItemViewRepresentable {
-        ModuleItemViewRepresentable(viewController: viewController, isScrollTopReached: isScrollTopReached)
+    ) -> ModuleItemView {
+        ModuleItemView(viewController: viewController)
     }
 
 #if DEBUG

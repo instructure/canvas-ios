@@ -25,7 +25,9 @@ public struct ModuleItemSequenceView: View {
 
     @State private var isShowMakeAsDoneSheet = false
     @State private var isShowHeader = true
-    @State private var attemptCount: String?
+    @State private var isShowModuleNavBar = true
+    @State private var submissionAlertModel = SubmissionAlertViewModel()
+    @State private var draftToastViewModel = ToastViewModel()
     @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
@@ -43,15 +45,34 @@ public struct ModuleItemSequenceView: View {
 
     public var body: some View {
         ZStack(alignment: .center) {
-
             Color.huiColors.surface.institution
                 .ignoresSafeArea(edges: .top)
             Rectangle()
                 .fill(Color.huiColors.surface.pageSecondary)
                 .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
-            mainContent
+            ContentView(viewModel: viewModel)
                 .offset(x: viewModel.offsetX)
                 .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
+                .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
+                    if isShowModuleNavBar {
+                        isShowHeader = isShow
+                    } else {
+                        isShowHeader = false
+                    }
+                }
+                .onPreferenceChange(AssignmentPreferenceKey.self) { model in
+                    if let model {
+                        switch model {
+                        case .confirmation(viewModel: let viewModel):
+                            submissionAlertModel = viewModel
+                        case .toastViewModel(viewModel: let viewModel):
+                            draftToastViewModel = viewModel
+                        case .moduleNavBarButton(isVisible: let isVisible):
+                            isShowModuleNavBar = isVisible
+                            isShowHeader = isVisible
+                        }
+                    }
+                }
         }
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
@@ -67,6 +88,41 @@ public struct ModuleItemSequenceView: View {
         }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
+        .huiToast(
+            viewModel: .init(
+                text: draftToastViewModel.title,
+                style: .success
+            ),
+            isPresented: $draftToastViewModel.isPresented
+        )
+        .huiModal(headerTitle: submissionAlertModel.title,
+                  headerIcon: submissionAlertModel.type == .success ? Image.huiIcons.checkCircleFull : nil,
+                  headerIconColor: Color.huiColors.icon.success,
+                  isShowCancelButton: submissionAlertModel.type == .confirmation,
+                  confirmButton: submissionAlertModel.button,
+                  isPresented: $submissionAlertModel.isPresented) { assignmentConfirmationView }
+
+    }
+
+    private var assignmentConfirmationView: some View {
+        VStack(spacing: .huiSpaces.space24) {
+            if submissionAlertModel.type == .success, let submission = submissionAlertModel.submission {
+                Text(submissionAlertModel.body)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                AssignmentAttemptsRow(
+                    submission: submission,
+                    isSelected: false
+                )
+            } else {
+                Text(submissionAlertModel.body)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
     }
 
     @ViewBuilder
@@ -85,7 +141,7 @@ public struct ModuleItemSequenceView: View {
                 countOfPoints: viewModel.moduleItem?.points,
                 dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,
-                attemptCount: attemptCount,
+                attemptCount: viewModel.assignmentAttemptCount,
                 onBack: {
                     viewModel.pop(from: viewController)
                 },
@@ -105,17 +161,17 @@ public struct ModuleItemSequenceView: View {
     }
 
     // TODO: - Set the mark done in navBar button later
-//    @ViewBuilder
-//    private var makeAsDoneButton: some View {
-//        if viewModel.moduleItem?.completionRequirementType == .must_mark_done {
-//            Button(action: {
-//                isShowMakeAsDoneSheet = true
-//            }) {
-//                Image.huiIcons.moreHoriz
-//                    .foregroundStyle(Color.huiColors.text.body)
-//            }
-//        }
-//    }
+    //    @ViewBuilder
+    //    private var makeAsDoneButton: some View {
+    //        if viewModel.moduleItem?.completionRequirementType == .must_mark_done {
+    //            Button(action: {
+    //                isShowMakeAsDoneSheet = true
+    //            }) {
+    //                Image.huiIcons.moreHoriz
+    //                    .foregroundStyle(Color.huiColors.text.body)
+    //            }
+    //        }
+    //    }
 
     private func goNext() {
         withAnimation {
@@ -136,70 +192,34 @@ public struct ModuleItemSequenceView: View {
     }
 
     @ViewBuilder
-    private var mainContent: some View {
-        if let state = viewModel.viewState {
-            switch state {
-            case .externalURL(url: let url, name: let name):
-                ModuleItemSequenceAssembly.makeExternalURLView(
-                    name: name,
-                    url: url,
-                    viewController: viewController
-                )
-                .id(url.absoluteString)
-            case .externalTool(tools: let tools, name: let name):
-                ModuleItemSequenceAssembly.makeLTIView(
-                    tools: tools,
-                    name: name
-                )
-                .id(tools.url?.absoluteString)
-            case .moduleItem(controller: let controller, let id):
-                ModuleItemSequenceAssembly.makeModuleItemView(
-                    isScrollTopReached: $isShowHeader,
-                    viewController: controller
-                )
-                .id(id)
-            case .error:
-                ModuleItemSequenceAssembly.makeErrorView {
-                    viewModel.retry()
-                }
-            case .locked(title: let title, lockExplanation: let lockExplanation):
-                ModuleItemSequenceAssembly.makeLockView(title: title, lockExplanation: lockExplanation)
-            case .assignment(courseID: let courseID, assignmentID: let assignmentID):
-                AssignmentDetailsAssembly.makeView(
-                    courseID: courseID,
-                    assignmentID: assignmentID,
-                    isShowHeader: $isShowHeader
-                ) { attemptCount in
-                    self.attemptCount = attemptCount
-                }
-                .onDisappear { self.attemptCount = nil }
-
-            case let .file(context, fileID):
-                FileDetailsAssembly.makeView(
-                    courseID: viewModel.moduleItem?.courseID ?? "",
-                    fileID: fileID,
-                    context: context,
-                    fileName: viewModel.moduleItem?.title ?? "",
-                    isShowHeader: $isShowHeader
-                )
-                .id(fileID)
-            }
-        }
-    }
-
     private var moduleNavBarView: some View {
-        ModuleItemSequenceAssembly.makeModuleNavBarView(
-            isNextButtonEnabled: viewModel.isNextButtonEnabled,
-            isPreviousButtonEnabled: viewModel.isPreviousButtonEnabled
-        ) {
-            goNext()
-        } didTapPrevious: {
-            goPrevious()
+        if isShowModuleNavBar {
+            let nextButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isNextButtonEnabled) {
+                goNext()
+            }
+            let previousButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isPreviousButtonEnabled) {
+                goPrevious()
+            }
+
+            let assignmentOptionsButton = ModuleNavBarView.ButtonAttribute(
+                isVisible: viewModel.isAssignmentOptionsButtonVisible
+            ) {
+                viewModel.onTapAssignmentOptions.send()
+            }
+            let visibleButtons: [ModuleNavBarUtilityButtons] = viewModel.isAssignmentOptionsButtonVisible
+            ? [.chatBot, .assignmentMoreOptions]
+            : [.chatBot, .notebook, .tts]
+
+            ModuleItemSequenceAssembly.makeModuleNavBarView(
+                nextButton: nextButton,
+                previousButton: previousButton,
+                assignmentMoreOptionsButton: assignmentOptionsButton,
+                visibleButtons: visibleButtons
+            )
+            .padding(.vertical, .huiSpaces.space8)
+            .padding(.horizontal, .huiSpaces.space16)
+            .background(Color.huiColors.surface.pagePrimary)
         }
-        .padding(.vertical, .huiSpaces.space8)
-        .padding(.horizontal, .huiSpaces.space16)
-        .background(Color.huiColors.surface.pagePrimary)
-        .frame(height: 56)
     }
 }
 #if DEBUG
@@ -207,3 +227,59 @@ public struct ModuleItemSequenceView: View {
     ModuleItemSequenceAssembly.makeItemSequencePreview()
 }
 #endif
+
+private struct ContentView: View {
+    let viewModel: ModuleItemSequenceViewModel
+
+    var body: some View {
+        VStack {
+            if let state = viewModel.viewState {
+                switch state {
+                case .externalURL(url: let url, name: let name):
+                    ModuleItemSequenceAssembly.makeExternalURLView(
+                        name: name,
+                        url: url,
+                        viewController: .init()
+                    )
+                    .id(url.absoluteString)
+                case .externalTool(tools: let tools, name: let name):
+                    ModuleItemSequenceAssembly.makeLTIView(
+                        tools: tools,
+                        name: name
+                    )
+                    .id(tools.url?.absoluteString)
+                case .moduleItem(controller: let controller, let id):
+                    ModuleItemSequenceAssembly.makeModuleItemView(viewController: controller)
+                        .id(id)
+                case .error:
+                    ModuleItemSequenceAssembly.makeErrorView {
+                        viewModel.retry()
+                    }
+                case .locked(title: let title, lockExplanation: let lockExplanation):
+                    ModuleItemSequenceAssembly.makeLockView(title: title, lockExplanation: lockExplanation)
+                case let .assignment(courseID, assignmentID, isMarkedAsDone, isCompleted, moduleID, itemID):
+                    AssignmentDetailsAssembly.makeView(
+                        courseID: courseID,
+                        assignmentID: assignmentID,
+                        isMarkedAsDone: isMarkedAsDone,
+                        isCompletedItem: isCompleted,
+                        moduleID: moduleID,
+                        itemID: itemID,
+                        onTapAssignmentOptions: viewModel.onTapAssignmentOptions,
+                        didLoadAttemptCount: viewModel.didLoadAssignmentAttemptCount
+                    )
+                    .id(assignmentID)
+
+                case let .file(context, fileID):
+                    FileDetailsAssembly.makeView(
+                        courseID: viewModel.moduleItem?.courseID ?? "",
+                        fileID: fileID,
+                        context: context,
+                        fileName: viewModel.moduleItem?.title ?? ""
+                    )
+                    .id(fileID)
+                }
+            }
+        }
+    }
+}

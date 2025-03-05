@@ -23,6 +23,7 @@ import Combine
 protocol AssignmentInteractor: HUploadFileManager {
     func getAssignmentDetails() -> AnyPublisher<HAssignment, Never>
     func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error>
+    func getSubmissions() -> AnyPublisher<[HSubmission], Never>
 }
 
 final class AssignmentInteractorLive: AssignmentInteractor {
@@ -39,6 +40,7 @@ final class AssignmentInteractorLive: AssignmentInteractor {
 
     private let courseID: String
     private let assignmentID: String
+    private let userID: String
     private let uploadManager: HUploadFileManager
     private let appEnvironment: AppEnvironment
 
@@ -47,11 +49,13 @@ final class AssignmentInteractorLive: AssignmentInteractor {
     init(
         courseID: String,
         assignmentID: String,
+        userID: String,
         uploadManager: HUploadFileManager,
         appEnvironment: AppEnvironment
     ) {
         self.courseID = courseID
         self.assignmentID = assignmentID
+        self.userID = userID
         self.uploadManager = uploadManager
         self.appEnvironment = appEnvironment
 
@@ -102,5 +106,17 @@ final class AssignmentInteractorLive: AssignmentInteractor {
 
     func cancelAllFiles() {
         uploadManager.cancelAllFiles()
+    }
+
+    func getSubmissions() -> AnyPublisher<[HSubmission], Never> {
+        let useCase = GetSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID)
+        return ReactiveStore(useCase: useCase)
+            .getEntities(ignoreCache: true)
+            .replaceError(with: [])
+            .flatMap { Publishers.Sequence(sequence: $0)}
+            .filter { $0.attempt != 0 }
+            .map { HSubmission(entity: $0) }
+            .collect()
+            .eraseToAnyPublisher()
     }
 }

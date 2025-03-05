@@ -32,7 +32,7 @@ protocol ModuleItemSequenceInteractor {
     ) -> AnyPublisher<[HModuleItem], Error>
 
     func markAsDone(
-        item: HModuleItem?,
+        completed: Bool,
         moduleID: String,
         itemID: String
     ) -> AnyPublisher<[HModuleItem], Error>
@@ -130,7 +130,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
     }
 
     func markAsDone(
-        item: HModuleItem?,
+        completed: Bool,
         moduleID: String,
         itemID: String
     ) -> AnyPublisher<[HModuleItem], Error> {
@@ -139,7 +139,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             courseID: courseID,
             moduleID: moduleID,
             moduleItemID: itemID,
-            done: item?.completed == false
+            done: completed
         )
         return ReactiveStore(useCase: useCase)
             .getEntities()
