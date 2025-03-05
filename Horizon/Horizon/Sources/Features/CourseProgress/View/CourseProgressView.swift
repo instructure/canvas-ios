@@ -33,6 +33,7 @@ struct CourseProgressView: View {
                 headerView
                 ModuleItemListView(selectedModuleItem: viewModel.currentModuleItem, items: viewModel.moduleItems) { selectedItem in
                     viewModel.currentModuleItem = selectedItem
+                    viewModel.dimiss(controller: viewController)
                 }
                 .animation(.smooth, value: viewModel.currentModuleItem)
             }
