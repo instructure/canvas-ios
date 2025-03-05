@@ -648,7 +648,7 @@
     "Required" : {
 
     },
-    "Result: XX/XX" : {
+    "Result: %@" : {
 
     },
     "Retry" : {

@@ -43,6 +43,38 @@ struct HAssignment: Identifiable {
 
     let submissions: [HSubmission]
 
+    var mostRecentSubmission: HSubmission? {
+        submissions.first
+    }
+
+    var pointsResult: String {
+        if let pointsPossibleString {
+            return "\(mostRecentSubmissionScoreString)/\(pointsPossibleString)"
+        } else {
+            return "-"
+        }
+    }
+
+    private var mostRecentSubmissionScoreString: String {
+        if let mostRecentSubmission = mostRecentSubmission, let score = mostRecentSubmission.score {
+            return GradeFormatter.numberFormatter.string(
+                from: NSNumber(value: score)
+            ) ?? "-"
+        } else {
+            return "-"
+        }
+    }
+
+    private var pointsPossibleString: String? {
+        if let pointsPossible {
+            return GradeFormatter.numberFormatter.string(
+                from: NSNumber(value: pointsPossible)
+            )
+        } else {
+            return nil
+        }
+    }
+
     init(
         id: String,
         name: String,

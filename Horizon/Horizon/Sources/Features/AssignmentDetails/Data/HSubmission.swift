@@ -28,6 +28,7 @@ struct HSubmission: Hashable, Equatable {
     let attempt: Int
     let submittedAt: Date?
     let grade: String?
+    let score: Double?
     let showSubmitButton: Bool
 
     // MARK: - Init
@@ -41,6 +42,7 @@ struct HSubmission: Hashable, Equatable {
         self.attempt = entity.attempt
         self.submittedAt = entity.submittedAt
         self.grade = entity.grade
+        self.score = entity.score
         self.showSubmitButton = entity.assignment?.hasAttemptsLeft ?? false
     }
 
@@ -53,6 +55,7 @@ struct HSubmission: Hashable, Equatable {
         attempt: Int = 10,
         submittedAt: Date? = nil,
         grade: String? = nil,
+        score: Double? = nil,
         showSubmitButton: Bool = true
     ) {
         self.id = id
@@ -63,6 +66,7 @@ struct HSubmission: Hashable, Equatable {
         self.attempt = attempt
         self.submittedAt = submittedAt
         self.grade = grade
+        self.score = score
         self.showSubmitButton = showSubmitButton
     }
 }

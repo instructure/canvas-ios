@@ -45,7 +45,7 @@ struct ScoresAssignmentsView: View {
                             }
 
                             HStack(spacing: .huiSpaces.space4) {
-                                Text("Status: ")
+                                Text("Status: ", bundle: .horizon)
                                 HorizonUI.Pill(
                                     title: "Submitted",
                                     //                            title: assignment.latestSubmission?.status,
@@ -54,7 +54,7 @@ struct ScoresAssignmentsView: View {
                                     icon: nil
                                 )
                             }
-                            Text("Result: XX/XX")
+                            Text("Result: \(assignment.pointsResult)", bundle: .horizon)
                             //                    Text("Result: \(assignment.result)", bundle: .horizon)
                             HStack(spacing: .huiSpaces.space4) {
                                 Text("Feedback: ", bundle: .horizon)
