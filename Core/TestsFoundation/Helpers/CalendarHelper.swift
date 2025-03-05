@@ -189,7 +189,7 @@ public class CalendarHelper: BaseHelper {
     }
 
     public struct Filter {
-        public static var navBar: XCUIElement { app.find(id: "Calendars") }
+        public static var navBar: XCUIElement { app.find(type: .navigationBar).find(label: "Calendars") }
         public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
         public static var calendarsLabel: XCUIElement { app.find(label: "Calendars", type: .staticText) }
         public static var deselectAllButton: XCUIElement { app.find(labelContaining: "Deselect", type: .button) }
