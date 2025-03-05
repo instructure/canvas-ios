@@ -297,6 +297,9 @@
     "Error loading scores." : {
 
     },
+    "Excused" : {
+
+    },
     "External Tool" : {
 
     },
@@ -432,6 +435,9 @@
     "La Paz (-04:00/-04:00)" : {
 
     },
+    "Late" : {
+
+    },
     "Learn" : {
 
     },
@@ -487,6 +493,9 @@
 
     },
     "Minsk (+03:00/+03:00)" : {
+
+    },
+    "Missing" : {
 
     },
     "Monrovia (+00:00)" : {
@@ -547,6 +556,9 @@
 
     },
     "Noronha (-02:00/-02:00)" : {
+
+    },
+    "Not Submitted" : {
 
     },
     "Notebook" : {
@@ -745,6 +757,9 @@
 
     },
     "Submit Attempt" : {
+
+    },
+    "Submitted" : {
 
     },
     "Summarize this material" : {

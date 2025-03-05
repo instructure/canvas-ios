@@ -21,6 +21,7 @@ import SwiftUI
 
 struct ScoresView: View {
     let viewModel: ScoresViewModel
+    @Environment(\.viewController) private var viewController
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -31,7 +32,9 @@ struct ScoresView: View {
                 if let details = viewModel.scoreDetails {
                     VStack(spacing: .huiSpaces.space24) {
                         ScoresAssignmentGroupsView(details: details)
-                        ScoresAssignmentsView(details: details)
+                        ScoresAssignmentsView(details: details) { url in
+                            viewModel.navigateToCourseDetails(url: url, viewController: viewController)
+                        }
                     }
                 }
             case .error:

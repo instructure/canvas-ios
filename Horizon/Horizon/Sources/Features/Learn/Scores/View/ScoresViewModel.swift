@@ -28,12 +28,27 @@ final class ScoresViewModel {
         case error
     }
 
+    // MARK: - Outputs
+
     private(set) var viewState: ViewState = .loading
     private(set) var scoreDetails: ScoreDetails?
 
+    // MARK: - Dependencies
+
+    private let router: Router
+
+    // MARK: - Private properties
+
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: ScoresInteractor) {
+    // MARK: - Init
+
+    init(
+        interactor: ScoresInteractor,
+        router: Router
+    ) {
+        self.router = router
+
         weak var weakSelf = self
 
         interactor.getScores()
@@ -44,5 +59,12 @@ final class ScoresViewModel {
                 weakSelf?.scoreDetails = value
             })
             .store(in: &subscriptions)
+    }
+
+    // MARK: - Inputs
+
+    func navigateToCourseDetails(url: URL?, viewController: WeakViewController) {
+        guard let url else { return }
+        router.route(to: url, from: viewController)
     }
 }

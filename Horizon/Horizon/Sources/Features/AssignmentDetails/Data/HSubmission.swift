@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Core
+import Foundation
+import HorizonUI
 
 struct HSubmission: Hashable, Equatable {
     let id: String
@@ -27,9 +28,20 @@ struct HSubmission: Hashable, Equatable {
     let type: AssignmentSubmissionType?
     let attempt: Int
     let submittedAt: Date?
+    let late: Bool
+    let missing: Bool
+    let excused: Bool?
     let grade: String?
     let score: Double?
     let showSubmitButton: Bool
+
+    public var status: HSubmission.Status {
+        if late { return .late }
+        if missing { return .missing }
+        if submittedAt != nil { return .submitted }
+        if excused != nil { return .excused }
+        return .notSubmitted
+    }
 
     // MARK: - Init
 
@@ -41,6 +53,9 @@ struct HSubmission: Hashable, Equatable {
         self.type = AssignmentSubmissionType(rawValue: entity.type?.rawValue ?? "")
         self.attempt = entity.attempt
         self.submittedAt = entity.submittedAt
+        self.late = entity.late
+        self.missing = entity.missing
+        self.excused = entity.excused
         self.grade = entity.grade
         self.score = entity.score
         self.showSubmitButton = entity.assignment?.hasAttemptsLeft ?? false
@@ -54,6 +69,9 @@ struct HSubmission: Hashable, Equatable {
         type: AssignmentSubmissionType? = nil,
         attempt: Int = 10,
         submittedAt: Date? = nil,
+        late: Bool = false,
+        missing: Bool = false,
+        excused: Bool? = nil,
         grade: String? = nil,
         score: Double? = nil,
         showSubmitButton: Bool = true
@@ -65,8 +83,36 @@ struct HSubmission: Hashable, Equatable {
         self.type = type
         self.attempt = attempt
         self.submittedAt = submittedAt
+        self.late = late
+        self.missing = missing
+        self.excused = excused
         self.grade = grade
         self.score = score
         self.showSubmitButton = showSubmitButton
+    }
+}
+
+extension HSubmission {
+    enum Status {
+        case late
+        case missing
+        case submitted
+        case notSubmitted
+        case excused
+
+        var text: String {
+            switch self {
+            case .late:
+                return String(localized: "Late", bundle: .horizon)
+            case .missing:
+                return String(localized: "Missing", bundle: .horizon)
+            case .submitted:
+                return String(localized: "Submitted", bundle: .horizon)
+            case .notSubmitted:
+                return String(localized: "Not Submitted", bundle: .horizon)
+            case .excused:
+                return String(localized: "Excused", bundle: .horizon)
+            }
+        }
     }
 }

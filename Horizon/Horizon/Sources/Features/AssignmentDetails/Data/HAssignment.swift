@@ -21,6 +21,7 @@ import UniformTypeIdentifiers
 
 struct HAssignment: Identifiable {
     let id: String
+    let htmlURL: URL?
     let name: String
     let duration: String = "20 mins"
     let details: String?
@@ -77,6 +78,7 @@ struct HAssignment: Identifiable {
 
     init(
         id: String,
+        htmlURL: URL?,
         name: String,
         details: String?,
         pointsPossible: Double?,
@@ -90,6 +92,7 @@ struct HAssignment: Identifiable {
         submissions: [HSubmission]
     ) {
         self.id = id
+        self.htmlURL = htmlURL
         self.name = name
         self.details = details
         self.pointsPossible = pointsPossible
@@ -110,6 +113,7 @@ struct HAssignment: Identifiable {
 
     init(from assignment: Assignment) {
         self.id = assignment.id
+        self.htmlURL = assignment.htmlURL
         self.name = assignment.name
         self.details = assignment.details
         self.pointsPossible = assignment.pointsPossible
@@ -178,6 +182,7 @@ extension HAssignment {
     static func mock() -> HAssignment {
         HAssignment(
             id: "1",
+            htmlURL: nil,
             name: "Text assignment",
             details: """
             Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
