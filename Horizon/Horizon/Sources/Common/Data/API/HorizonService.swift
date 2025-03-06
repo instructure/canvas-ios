@@ -22,12 +22,15 @@ enum HorizonService: String {
 
     // Be careful if renaming these. The rawValue is used in the jwt token request.
     case cedar
+    case pine
     case redwood
 
     var audience: String {
         switch self {
         case .cedar:
             return "cedar-api-dev.domain-svcs.nonprod.inseng.io"
+        case .pine:
+            return "pine-api-dev.domain-svcs.nonprod.inseng.io"
         case .redwood:
             return "redwood-api-dev.domain-svcs.nonprod.inseng.io"
         }

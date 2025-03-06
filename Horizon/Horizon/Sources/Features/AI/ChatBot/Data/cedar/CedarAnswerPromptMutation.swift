@@ -21,26 +21,22 @@ import Core
 class CedarAnswerPromptMutation: APIGraphQLRequestable {
     let variables: Input
 
-    private let cedarJwtToken: String
-
     var path: String {
         "/graphql"
     }
 
     var headers: [String: String?] {
         [
-            "x-apollo-operation-name": "AnswerPrompt",
+            "x-apollo-operation-name": "\(Self.operationName)",
             HttpHeader.accept: "application/json"
         ]
     }
 
     public init(
-        cedarJwtToken: String,
         prompt: String,
         model: AIModel = .claude3Sonnet20240229V10
     ) {
         self.variables = Variables(model: model.rawValue, prompt: prompt)
-        self.cedarJwtToken = cedarJwtToken
     }
 
     public static let operationName: String = "AnswerPrompt"

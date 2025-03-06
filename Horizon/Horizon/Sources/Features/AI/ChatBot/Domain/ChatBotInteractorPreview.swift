@@ -16,12 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-
-class ChatBotInteractorPreview: ChatBotInteractor {
-    func send(message _: ChatBotMessage) -> AnyPublisher<String, Error> {
-        Just("Hello, world!")
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-}
+//import Combine
+//
+//class ChatBotInteractorPreview: ChatBotInteractor {
+//    func send(message _: ChatBotMessage) -> AnyPublisher<String, Error> {
+//        Just("Hello, world!")
+//            .setFailureType(to: Error.self)
+//            .eraseToAnyPublisher()
+//    }
+//}

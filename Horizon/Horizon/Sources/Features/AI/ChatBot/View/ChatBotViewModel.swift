@@ -38,7 +38,7 @@ final class ChatBotViewModel {
 
     // MARK: - Dependencies
 
-    private let chatbotInteractor: ChatBotInteractor
+    private var chatbotInteractor: ChatBotInteractor
     private let router: Router
 
     // MARK: - Private
@@ -49,6 +49,26 @@ final class ChatBotViewModel {
     init(chatbotInteractor: ChatBotInteractor, router: Router) {
         self.router = router
         self.chatbotInteractor = chatbotInteractor
+
+        chatbotInteractor.listen.sink(
+            receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+                switch completion {
+                    // TODO: improve displaying errors
+                case .finished:
+                    break
+                case .failure:
+                    messages = messages.dropLast()
+                }
+            },
+            receiveValue: { [weak self] response in
+                guard let self = self else { return }
+                let message = response.chatHistory.map { $0.text }.last ?? ""
+                let messageModel = ChatBotMessageModel(content: message, isMine: false)
+                self.messages = self.messages.dropLast() + [messageModel]
+            }
+        )
+        .store(in: &subscriptions)
     }
 
     func dismiss(controller: WeakViewController) {
@@ -65,26 +85,7 @@ final class ChatBotViewModel {
         let loaderMessage = ChatBotMessageModel(isMine: false, isLoading: true)
         messages.append(loaderMessage)
 
-        chatbotInteractor
-            .send(message: newChatBotMessage)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    guard let self = self else { return }
-                    switch completion {
-                        // TODO: improve displaying errors
-                    case .finished:
-                        break
-                    case .failure:
-                        messages = messages.dropLast()
-                    }
-                },
-                receiveValue: { [weak self] message in
-                    guard let self = self else { return }
-                    let messageModel = ChatBotMessageModel(content: message, isMine: false)
-                    self.messages = self.messages.dropLast() + [messageModel]
-                }
-            )
-            .store(in: &subscriptions)
+        chatbotInteractor.context = .chat(history: [])
     }
 }
 

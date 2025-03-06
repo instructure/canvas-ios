@@ -109,7 +109,7 @@ struct ChatBotView: View {
 #Preview {
     ChatBotView(
         viewModel: .init(
-            chatbotInteractor: ChatBotInteractorPreview(),
+            chatbotInteractor: ChatBotInteractorLive(),
             router: AppEnvironment.shared.router
         )
     )
