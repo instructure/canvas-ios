@@ -110,7 +110,7 @@ struct CourseDetailsView: View {
     private func modulesView(modules: [HModule]) -> some View {
         VStack(spacing: .huiSpaces.space8) {
             ForEach(modules) { module in
-                ExpandingModuleView(module: module) { url in
+                ExpandingModuleView(module: module, isExpanded: true) { url in
                     viewModel.moduleItemDidTap(url: url, from: viewController)
                 }
                 .frame(minHeight: 44)
