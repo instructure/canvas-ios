@@ -67,18 +67,26 @@ class DashboardViewModel {
             learningObjectCardViewModel: course
                 .incompleteModules
                 .first
-                .flatMap(toLearningObjectCardViewModel)
+                .map { toLearningObjectCardViewModel($0, course: course) }
         )
     }
 
-    private func toLearningObjectCardViewModel(_ module: HModule) -> LearningObjectCardViewModel {
+    private func toLearningObjectCardViewModel(
+        _ module: HModule,
+        course: HCourse
+    ) -> LearningObjectCardViewModel {
         let firstModuleItem = module.items.first
+        /// Get the estimated time and type because they are not available in incompleteModules, which is retrieved from GraphQL.
+        let moduleItems = course.modules.first(where: { $0.id == firstModuleItem?.moduleID })?.items
+        let item = moduleItems?.first(where: { $0.id == firstModuleItem?.id })
+
         return LearningObjectCardViewModel(
             moduleTitle: module.name,
             learningObjectName: firstModuleItem?.title ?? "",
-            type: firstModuleItem?.type?.label,
+            type: item?.type?.label,
             dueDate: firstModuleItem?.dueAt?.relativeShortDateOnlyString,
-            url: firstModuleItem?.htmlURL
+            url: firstModuleItem?.htmlURL,
+            estimatedTime: item?.estimatedDurationFormatted
         )
     }
 
@@ -112,5 +120,6 @@ class DashboardViewModel {
         let type: String?
         let dueDate: String?
         let url: URL?
+        let estimatedTime: String?
     }
 }

@@ -41,6 +41,8 @@ struct HModuleItem: Equatable {
     let completed: Bool?
     let completionRequirementType: CompletionRequirementType?
     let moduleName: String?
+    let estimatedDuration: String?
+    let position: Double
 
     init(
         id: String,
@@ -62,7 +64,9 @@ struct HModuleItem: Equatable {
         isQuizLTI: Bool = false,
         completed: Bool? = false,
         completionRequirementType: CompletionRequirementType? = nil,
-        moduleName: String? = nil
+        moduleName: String? = nil,
+        estimatedDuration: String? = nil,
+        position: Double = 1
 
     ) {
         self.id = id
@@ -86,6 +90,8 @@ struct HModuleItem: Equatable {
         self.completed = completed
         self.completionRequirementType = completionRequirementType
         self.moduleName = moduleName
+        self.estimatedDuration = estimatedDuration
+        self.position = position
     }
 
     init(from entity: ModuleItem) {
@@ -110,6 +116,8 @@ struct HModuleItem: Equatable {
         self.completed = entity.completed
         self.completionRequirementType = entity.completionRequirementType
         self.moduleName = entity.module?.name
+        self.estimatedDuration = entity.estimatedDuration
+        self.position = entity.position
     }
 
     var isOverDue: Bool {
@@ -122,6 +130,11 @@ struct HModuleItem: Equatable {
 
     var status: HorizonUI.LearningObjectItem.Status? {
         isLocked ? .locked : (isCompleted ? .completed : nil)
+    }
+
+    var estimatedDurationFormatted: String? {
+        let formatter = ISO8601DurationFormatter()
+        return formatter.duration(from: estimatedDuration ?? "")
     }
 }
 

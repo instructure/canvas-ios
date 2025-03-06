@@ -34,7 +34,8 @@ public class Module: NSManagedObject {
     @NSManaged var prerequisiteModuleIDsRaw: String
     @NSManaged public var requireSequentialProgressRaw: NSNumber?
     @NSManaged public var unlockAt: Date?
-
+    @NSManaged public var estimatedDuration: String?
+    
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
         set { publishedRaw = NSNumber(value: newValue) }
@@ -100,6 +101,7 @@ public class Module: NSManagedObject {
         module.prerequisiteModuleIDs = item.prerequisite_module_ids
         module.requireSequentialProgress = item.require_sequential_progress
         module.unlockAt = item.unlock_at
+        module.estimatedDuration = item.estimated_duration
         return module
     }
 }

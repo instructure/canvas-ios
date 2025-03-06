@@ -42,6 +42,19 @@ struct HCourse: Identifiable {
         self.overviewDescription = overviewDescription ?? ""
         self.progress = progress
         self.modules = modules
+            .sorted { $0.position < $1.position }
         self.incompleteModules = incompleteModules
+    }
+
+    init(from entity: Course, modulesEntity: [Module]) {
+        self.id = entity.id
+        self.institutionName = ""
+        self.name = entity.name ?? ""
+        self.overviewDescription = entity.syllabusBody ?? ""
+        self.progress = 0
+        self.modules = modulesEntity
+            .map { HModule(from: $0) }
+            .sorted { $0.position > $1.position }
+        self.incompleteModules = []
     }
 }

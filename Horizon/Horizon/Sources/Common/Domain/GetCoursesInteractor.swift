@@ -72,28 +72,13 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                         let name = courseProgression.course.name ?? ""
                         let overviewDescription = courseProgression.course.syllabusBody
                         let progress = courseProgression.completionPercentage
-                        let incompleteModules: [HModule] = courseProgression.incompleteModules.map { .init($0) }
-
-                        if courseId == nil {
-                            return Just(
-                                HCourse(
-                                    id: courseID,
-                                    institutionName: institutionName ?? "",
-                                    name: name,
-                                    overviewDescription: overviewDescription,
-                                    progress: progress,
-                                    modules: [],
-                                    incompleteModules: incompleteModules
-                                )
-                            )
-                            .eraseToAnyPublisher()
-                        }
+                        let incompleteModules: [HModule] = courseProgression.incompleteModules.map { .init(from: $0) }
 
                         // The GetCoursesProgressionUseCase does not return all of the module item data.
                         // Currently, we only use all the module item information when requesting a single course.
                         // Should this change in the future, we should update the GraphQL endpoint in GetCourseProgressionUseCase
                         // to return all the module item information required
-                        return ReactiveStore(useCase: GetModules(courseID: courseProgression.courseID))
+                        return ReactiveStore(useCase: HGetModules(courseID: courseProgression.courseID))
                             .getEntities()
                             .replaceError(with: [])
                             .map {
@@ -103,7 +88,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                                     name: name,
                                     overviewDescription: overviewDescription,
                                     progress: progress,
-                                    modules: $0.map { HModule($0) },
+                                    modules: $0.map { HModule(from: $0) },
                                     incompleteModules: incompleteModules
                                 )
                             }
@@ -112,21 +97,5 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                     .collect()
             }
             .eraseToAnyPublisher()
-    }
-}
-
-extension HModule {
-    init(_ entity: Module) {
-        self.id = entity.id
-        self.name = entity.name
-        self.courseID = entity.courseID
-        self.items = entity.items.map { HModuleItem(from: $0) }
-        self.contentItems = items.filter { $0.type?.isContentItem == true }
-        self.moduleStatus = .init(
-            items: contentItems,
-            state: entity.state,
-            lockMessage: entity.lockedMessage,
-            countOfPrerequisite: entity.prerequisiteModuleIDs.count
-        )
     }
 }

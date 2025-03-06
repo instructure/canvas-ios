@@ -701,6 +701,7 @@
     </entity>
     <entity name="Module" representedClassName="Core.Module" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
+        <attribute name="estimatedDuration" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -717,6 +718,7 @@
         <attribute name="completionRequirementTypeRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="estimatedDuration" optional="YES" attributeType="String"/>
         <attribute name="fileAvailabilityRaw" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
