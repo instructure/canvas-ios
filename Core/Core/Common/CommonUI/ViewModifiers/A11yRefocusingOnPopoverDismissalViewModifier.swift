@@ -27,11 +27,9 @@ struct A11yRefocusingOnPopoverDismissalViewModifier: ViewModifier {
 
     @AccessibilityFocusState
     private var isAccFocused: Bool
-    private let trackingPopoverID: String
 
-    init(trackingPopoverID: String) {
-        self.trackingPopoverID = trackingPopoverID
-    }
+    @State
+    private var trackingPopoverID: String = Foundation.UUID().uuidString
 
     func body(content: Content) -> some View {
         content
@@ -69,11 +67,7 @@ struct A11yRefocusingOnPopoverDismissalViewModifier: ViewModifier {
 extension View {
 
     /// Refocuses VoiceOver after popover dismissal to the element which activated it. Common examples are `DatePicker`s & `Menu`s
-    /// - parameters:
-    ///    - trackingPopoverID: This ID is used to distinguish popover source when there are multiple elements on screen that can activate popovers. It is important to pass a _distinct_ & **stable** value even if you have one single element on screen that can activate popover.
-    public func accessibilityRefocusingOnPopoverDismissal(_ trackingPopoverID: String) -> some View {
-        modifier(
-            A11yRefocusingOnPopoverDismissalViewModifier(trackingPopoverID: trackingPopoverID)
-        )
+    public func accessibilityRefocusingOnPopoverDismissal() -> some View {
+        modifier(A11yRefocusingOnPopoverDismissalViewModifier())
     }
 }

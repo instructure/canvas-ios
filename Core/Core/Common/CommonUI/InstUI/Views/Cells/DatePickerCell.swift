@@ -38,7 +38,6 @@ extension InstUI {
         private let errorMessage: String?
         private let isClearable: Bool
 
-        @State private var trackingPopoverID = Foundation.UUID().uuidString
         @Binding private var date: Date?
 
         public init(
@@ -148,7 +147,7 @@ extension InstUI {
                 displayedComponents: components,
                 label: {}
             )
-            .accessibilityRefocusingOnPopoverDismissal(trackingPopoverID)
+            .accessibilityRefocusingOnPopoverDismissal()
         }
 
         @ViewBuilder
