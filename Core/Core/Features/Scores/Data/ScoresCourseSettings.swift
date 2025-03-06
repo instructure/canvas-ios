@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,32 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-import Combine
-import Foundation
-import Core
+public struct ScoresCourseSettings {
+    public let restrictQuantitativeData: Bool
+    public let hideFinalGrade: Bool
 
-class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourses() -> AnyPublisher<[HCourse], Never> {
-        Just([course])
-            .eraseToAnyPublisher()
+    init(
+        restrictQuantitativeData: Bool,
+        hideFinalGrade: Bool
+    ) {
+        self.restrictQuantitativeData = restrictQuantitativeData
+        self.hideFinalGrade = hideFinalGrade
     }
 
-    func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
-        Just(course)
-            .eraseToAnyPublisher()
-    }
-
-    private var course: HCourse {
-        .init(
-            id: "123",
-            institutionName: "Instructure",
-            name: "Course Name",
-            overviewDescription: "Course Description",
-            progress: 0.5,
-            enrollments: [],
-            modules: []
-        )
+    init(from entity: CDScoresCourseSettings) {
+        self.restrictQuantitativeData = entity.restrictQuantitativeData
+        self.hideFinalGrade = entity.hideFinalGrade
     }
 }
-#endif

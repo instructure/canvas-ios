@@ -27,6 +27,7 @@ final class CourseDetailsViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var title: String = "Biology certificate"
     private(set) var course: HCourse
+    let courseID: String
     private(set) var isLoaderVisible: Bool = false
 
     // MARK: - Private
@@ -46,6 +47,7 @@ final class CourseDetailsViewModel {
         onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
+        self.courseID = courseID
         self.course = course ?? .init()
         self.onShowTabBar = onShowTabBar
         isLoaderVisible = true

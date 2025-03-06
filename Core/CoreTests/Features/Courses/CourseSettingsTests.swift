@@ -22,7 +22,8 @@ import XCTest
 class CourseSettingsTests: CoreTestCase {
     private let emptyAPIResponse = APICourseSettings(usage_rights_required: nil,
                                                      syllabus_course_summary: nil,
-                                                     restrict_quantitative_data: nil)
+                                                     restrict_quantitative_data: nil,
+                                                     hide_final_grade: nil)
 
     func testSavesDefaultValues() {
         let testee = CourseSettings.save(emptyAPIResponse, courseID: "1", in: databaseClient)
@@ -35,7 +36,8 @@ class CourseSettingsTests: CoreTestCase {
     func testSavesAPIValues() {
         let apiResponse = APICourseSettings(usage_rights_required: true,
                                             syllabus_course_summary: true,
-                                            restrict_quantitative_data: true)
+                                            restrict_quantitative_data: true,
+                                            hide_final_grade: nil)
         let testee = CourseSettings.save(apiResponse, courseID: "1", in: databaseClient)
 
         XCTAssertTrue(testee.restrictQuantitativeData)
@@ -47,7 +49,8 @@ class CourseSettingsTests: CoreTestCase {
         AppEnvironment.shared.app = .teacher
         let apiResponse = APICourseSettings(usage_rights_required: true,
                                             syllabus_course_summary: true,
-                                            restrict_quantitative_data: true)
+                                            restrict_quantitative_data: true,
+                                            hide_final_grade: nil)
         let testee = CourseSettings.save(apiResponse, courseID: "1", in: databaseClient)
 
         XCTAssertFalse(testee.restrictQuantitativeData)
