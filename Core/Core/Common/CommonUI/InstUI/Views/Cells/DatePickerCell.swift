@@ -37,8 +37,8 @@ extension InstUI {
         private let validUntil: Date
         private let errorMessage: String?
         private let isClearable: Bool
-        private let trackingPopoverID: String?
 
+        @State private var trackingPopoverID = Foundation.UUID().uuidString
         @Binding private var date: Date?
 
         public init(
@@ -49,7 +49,6 @@ extension InstUI {
             validFrom: Date = .distantPast,
             validUntil: Date = .distantFuture,
             errorMessage: String? = nil,
-            trackingPopoverID: String? = nil,
             isClearable: Bool = false
         ) {
             self.label = label
@@ -59,7 +58,6 @@ extension InstUI {
             self.validFrom = validFrom
             self.validUntil = validUntil
             self.errorMessage = errorMessage
-            self.trackingPopoverID = trackingPopoverID
             self.isClearable = isClearable
         }
 
@@ -144,18 +142,13 @@ extension InstUI {
             case .dateAndTime: [.date, .hourAndMinute]
             }
 
-            let datePickerView = DatePicker(
+            DatePicker(
                 selection: binding,
                 in: validFrom...validUntil,
                 displayedComponents: components,
                 label: {}
             )
-
-            if let trackingPopoverID {
-                datePickerView.accessibilityRefocusingOnPopoverDismissal(trackingPopoverID)
-            } else {
-                datePickerView
-            }
+            .accessibilityRefocusingOnPopoverDismissal(trackingPopoverID)
         }
 
         @ViewBuilder
