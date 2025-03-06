@@ -26,33 +26,36 @@ struct SettingsGroupItemView: View {
     @ObservedObject var viewModel: SettingsGroupItemViewModel
 
     var body: some View {
-        Button {
-            viewModel.onSelect(controller)
-        } label: {
-            HStack(alignment: .center, spacing: 0) {
-                Text(viewModel.title)
-                    .font(.regular17)
-                    .foregroundStyle(Color.textDarkest)
+        if !viewModel.isHidden {
+            Button {
+                viewModel.onSelect(controller)
+            } label: {
+                HStack(alignment: .center, spacing: 0) {
+                    Text(viewModel.title)
+                        .font(.regular17)
+                        .foregroundStyle(Color.textDarkest)
 
-                Spacer()
+                    Spacer()
 
-                if let value = viewModel.valueLabel {
-                    Text(value)
-                        .font(.bold17)
-                        .foregroundStyle(Color.textDark)
+                    if let value = viewModel.valueLabel {
+                        Text(value)
+                            .font(.bold17)
+                            .foregroundStyle(Color.textDark)
+                    }
+
+                    if let icon = viewModel.discloserIndicator {
+                        icon
+                            .resizable()
+                            .frame(width: 16 * uiScale.iconScale, height: 16 * uiScale.iconScale)
+                            .foregroundStyle(Color.textDark)
+                            .padding(.vertical, 8)
+                            .padding(.leading, 4)
+                    }
                 }
-
-                if let icon = viewModel.discloserIndicator {
-                    icon
-                        .resizable()
-                        .frame(width: 16 * uiScale.iconScale, height: 16 * uiScale.iconScale)
-                        .foregroundStyle(Color.textDark)
-                        .padding(.vertical, 8)
-                        .padding(.leading, 4)
-                }
+                .padding(.horizontal, 18)
+                .padding(.vertical, 6)
             }
-            .padding(.horizontal, 18)
-            .padding(.vertical, 6)
+            .disabled(viewModel.disabled)
         }
     }
 }

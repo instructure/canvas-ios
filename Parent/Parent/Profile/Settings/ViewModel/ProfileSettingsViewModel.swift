@@ -24,21 +24,34 @@ public class ProfileSettingsViewModel: ObservableObject {
     @Published public var settingsGroups: [SettingsGroupView] = []
 
     private let inboxSettingsInteractor: InboxSettingsInteractor
+    private let offlineInteractor: OfflineModeInteractor
     private let environment: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(inboxSettingsInteractor: InboxSettingsInteractor, environment: AppEnvironment) {
+    public init(inboxSettingsInteractor: InboxSettingsInteractor, offlineInteractor: OfflineModeInteractor, environment: AppEnvironment) {
         self.inboxSettingsInteractor = inboxSettingsInteractor
+        self.offlineInteractor = offlineInteractor
         self.environment = environment
 
-        initGroups()
+        self.initGroups()
     }
 
     private func initGroups() {
         initPreferencesGroup()
         initInboxGroup()
         initLegalGroup()
+
+        offlineInteractor
+            .observeIsOfflineMode()
+            .sink { [weak self] isOffline in
+                if let items = self?.settingsGroups.flatMap({ $0.viewModel.itemViews.compactMap { $0.viewModel } }) {
+                    items.forEach { item in
+                        item.disabled = !item.availableOffline && isOffline
+                    }
+                }
+            }
+            .store(in: &subscriptions)
     }
 }
 
@@ -46,9 +59,10 @@ public class ProfileSettingsViewModel: ObservableObject {
 extension ProfileSettingsViewModel {
     private func initPreferencesGroup() {
         let appearanceView = initAppearanceGroupItem()
+        let aboutView = initAboutItem()
         let groupViewModel = SettingsGroupViewModel(
             title: String(localized: "Preferences", bundle: .core),
-            itemViews: [appearanceView]
+            itemViews: [appearanceView, aboutView]
         )
 
         let groupView =  SettingsGroupView(
@@ -84,6 +98,19 @@ extension ProfileSettingsViewModel {
         return SettingsGroupItemView(viewModel: itemViewModel)
     }
 
+    private func initAboutItem() -> SettingsGroupItemView {
+        let itemViewModel = SettingsGroupItemViewModel(
+            title: String(localized: "About", bundle: .core),
+            valueLabel: nil,
+            id: .privacyPolicy
+        ) { [weak self] controller in
+            guard let self = self else { return }
+            self.environment.router.route(to: "/about", from: controller)
+        }
+
+        return SettingsGroupItemView(viewModel: itemViewModel)
+    }
+
     private func showAppereanceItemPicker(controller: WeakViewController, selectedIndex: CurrentValueSubject<Int, Never>, options: [ItemPickerItem]) {
         let selectedStyleIndex = environment.userDefaults?.interfaceStyle?.rawValue ?? 0
         let pickerVC = ItemPickerViewController.create(title: String(localized: "Appearance", bundle: .core),
@@ -113,23 +140,22 @@ extension ProfileSettingsViewModel {
 
         inboxSettingsInteractor
             .isFeatureEnabled
-            .sink { [weak self] isEnabled in
-                if isEnabled {
-                    self?.settingsGroups.append(inboxGroupView)
-                } else {
-                    if let inboxIndex = self?.settingsGroups.firstIndex(where: {$0.viewModel.title == inboxGroupView.viewModel.title}) {
-                        self?.settingsGroups.remove(at: inboxIndex)
-                    }
-                }
+            .sink { isEnabled in
+                inboxSignatureSettingView.viewModel.isHidden = !isEnabled
+                groupViewModel.itemViews = groupViewModel.itemViews
             }
             .store(in: &subscriptions)
+
+        self.settingsGroups.append(inboxGroupView)
     }
 
     private func initInboxSignatureGroupItem() -> SettingsGroupItemView {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Inbox Signature", bundle: .core),
             valueLabel: nil,
-            id: .inboxSignature
+            id: .inboxSignature,
+            availableOffline: false,
+            isHidden: true
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "/conversations/settings", from: controller)

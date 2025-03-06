@@ -24,15 +24,31 @@ class SettingsGroupItemViewModel: ObservableObject {
     @Published var title: String
     @Published var valueLabel: String?
     @Published var discloserIndicator: Image?
+    @Published var disabled: Bool = false
+    @Published var isHidden: Bool
 
     let id: SettingGroupItemId
+    let availableInApplications: [AppEnvironment.App]
+    let availableOffline: Bool
     let onSelect: (WeakViewController) -> Void
 
-    init(title: String, valueLabel: String? = nil, discloserIndicator: Image? = Image.arrowOpenRightLine, id: SettingGroupItemId, onSelect: @escaping (WeakViewController) -> Void) {
+    init(
+        title: String,
+        valueLabel: String? = nil,
+        discloserIndicator: Image? = Image.arrowOpenRightLine,
+        id: SettingGroupItemId,
+        availableInApplications: [AppEnvironment.App] = [.parent, .student, .teacher],
+        availableOffline: Bool = true,
+        isHidden: Bool = false,
+        onSelect: @escaping (WeakViewController) -> Void
+    ) {
         self.title = title
         self.valueLabel = valueLabel
         self.discloserIndicator = discloserIndicator
         self.id = id
+        self.availableInApplications = availableInApplications
+        self.availableOffline = availableOffline
+        self.isHidden = isHidden
         self.onSelect = onSelect
     }
 }

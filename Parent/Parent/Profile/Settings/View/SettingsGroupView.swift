@@ -23,17 +23,19 @@ public struct SettingsGroupView: View {
     @ObservedObject var viewModel: SettingsGroupViewModel
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            getGroupTitleView(title: viewModel.title)
+        if viewModel.itemViews.contains(where: { !$0.viewModel.isHidden }) {
+            VStack(alignment: .leading, spacing: 0) {
+                getGroupTitleView(title: viewModel.title)
 
-            ForEach(viewModel.itemViews, id: \.viewModel.id) { view in
-                VStack(alignment: .leading, spacing: 0) {
-                    Separator()
-
-                    view
-
-                    if (view.viewModel.id == viewModel.itemViews.last?.viewModel.id) {
+                ForEach(viewModel.itemViews, id: \.viewModel.id) { view in
+                    VStack(alignment: .leading, spacing: 0) {
                         Separator()
+
+                        view
+
+                        if (view.viewModel.id == viewModel.itemViews.last?.viewModel.id) {
+                            Separator()
+                        }
                     }
                 }
             }

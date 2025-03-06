@@ -36,6 +36,7 @@ public struct ProfileSettingsView: View {
                 }
             }
         }
+        .background(Color.backgroundLightest)
         .navigationBarTitleView(String(localized: "Settings", bundle: .core))
     }
 }

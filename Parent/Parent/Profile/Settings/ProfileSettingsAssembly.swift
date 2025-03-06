@@ -22,7 +22,8 @@ import Core
 enum ProfileSettingsAssembly {
     public static func makeProfileSettingsViewController(env: AppEnvironment = .shared) -> UIViewController {
         let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
-        let viewModel = ProfileSettingsViewModel(inboxSettingsInteractor: inboxSettingsInteractor, environment: env)
+        let offlineInteractor = OfflineModeAssembly.make()
+        let viewModel = ProfileSettingsViewModel(inboxSettingsInteractor: inboxSettingsInteractor, offlineInteractor: offlineInteractor, environment: env)
         return CoreHostingController(ProfileSettingsView(viewModel: viewModel))
     }
 }
