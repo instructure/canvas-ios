@@ -147,6 +147,7 @@ extension InstUI {
                 displayedComponents: components,
                 label: {}
             )
+            .accessibilityRefocusingOnPopoverDismissal()
         }
 
         @ViewBuilder
