@@ -25,9 +25,14 @@ protocol ScoresInteractor {
 
 final class ScoresInteractorLive: ScoresInteractor {
     private let courseID: String
+    private let submissionCommentInteractor: SubmissionCommentInteractor
 
-    init(courseID: String) {
+    init(
+        courseID: String,
+        submissionCommentInteractor: SubmissionCommentInteractor = SubmissionCommentAssembly.makeSubmissionCommentInteractor()
+    ) {
         self.courseID = courseID
+        self.submissionCommentInteractor = submissionCommentInteractor
     }
 
     func getScores() -> AnyPublisher<ScoreDetails, Error> {
@@ -35,7 +40,7 @@ final class ScoresInteractorLive: ScoresInteractor {
             getAssignmentGroups(courseID: courseID),
             getCourse(courseID: courseID)
         )
-        .map { assignmentGroups, course in
+        .flatMap { assignmentGroups, course in
             self.getScoreDetails(
                 course: course,
                 assignmentGroups: assignmentGroups
@@ -65,11 +70,43 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getScoreDetails(course: ScoresCourse, assignmentGroups: [HAssignmentGroup]) -> ScoreDetails {
-        ScoreDetails(
-            score: calculateFinalScoreAndGradeText(course: course),
-            assignmentGroups: assignmentGroups
-        )
+    private func getScoreDetails(course: ScoresCourse, assignmentGroups: [HAssignmentGroup]) -> AnyPublisher<ScoreDetails, Error> {
+        unowned let unownedSelf = self
+
+        return assignmentGroups
+            .publisher
+            .flatMap { assignmentGroup -> AnyPublisher<HAssignmentGroup, Error> in
+                assignmentGroup.assignments
+                    .publisher
+                    .flatMap { assignment -> AnyPublisher<HAssignment, Error> in
+                        unownedSelf.submissionCommentInteractor.getNumberOfComments(
+                            courseID: course.courseID,
+                            assignmentID: assignment.id,
+                            attempt: assignment.mostRecentSubmission?.attempt
+                        )
+                        .map { numberOfComments -> HAssignment in
+                            var updatedSubmissions = assignment.submissions
+                            if let mostRecentSubmission = updatedSubmissions.first {
+                                updatedSubmissions[0] = mostRecentSubmission.update(numberOfComments: numberOfComments)
+                            }
+                            return assignment.update(submissions: updatedSubmissions)
+                        }
+                        .eraseToAnyPublisher()
+                    }
+                    .collect()
+                    .map { updatedAssignments -> HAssignmentGroup in
+                        assignmentGroup.update(assignments: updatedAssignments)
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .collect()
+            .map { assignmentGroups -> ScoreDetails in
+                ScoreDetails(
+                    score: unownedSelf.calculateFinalScoreAndGradeText(course: course),
+                    assignmentGroups: assignmentGroups
+                )
+            }
+            .eraseToAnyPublisher()
     }
 
     private func calculateFinalScoreAndGradeText(course: ScoresCourse) -> String {

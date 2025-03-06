@@ -82,4 +82,14 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func getNumberOfComments(
+        courseID _: String,
+        assignmentID _: String,
+        attempt _: Int?
+    ) -> AnyPublisher<Int, Error> {
+        Just(4)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 }

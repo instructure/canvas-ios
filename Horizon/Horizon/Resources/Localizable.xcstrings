@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "-" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -23,9 +26,6 @@
           }
         }
       }
-    },
-    "1" : {
-
     },
     "Abu Dhabi (+04:00/+04:00)" : {
 
@@ -94,9 +94,6 @@
 
     },
     "Assignment Successfully Submitted!" : {
-
-    },
-    "Assignment Group Weights" : {
 
     },
     "Astana (+05:00/+05:00)" : {
@@ -306,10 +303,7 @@
     "External Tool" : {
 
     },
-    "Error loading scores." : {
-
-    },
-    "External Tool" : {
+    "Feedback: " : {
 
     },
     "Fiji (+12:00/+12:00)" : {

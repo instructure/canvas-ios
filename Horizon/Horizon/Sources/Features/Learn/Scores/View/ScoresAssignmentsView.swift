@@ -22,7 +22,7 @@ import SwiftUI
 struct ScoresAssignmentsView: View {
     let details: ScoreDetails
     let openAssignmentDetails: (URL?) -> Void
-    
+
     @State private var selectedSortOption = "Due Date"
 
     var body: some View {
@@ -59,20 +59,25 @@ struct ScoresAssignmentsView: View {
                             Text("Result: \(assignment.pointsResult)", bundle: .horizon)
                             HStack(spacing: .huiSpaces.space4) {
                                 Text("Feedback: ", bundle: .horizon)
-                                HorizonUI.icons.chat
-                                    .frame(width: 24, height: 24)
-                                Text("1")
+
+                                if let numberOfComments = assignment.mostRecentSubmission?.numberOfComments,
+                                   numberOfComments > 0 {
+                                    HorizonUI.icons.chat
+                                        .frame(width: 24, height: 24)
+                                    Text(String(numberOfComments))
+                                } else {
+                                    Text("-")
+                                }
                             }
                         }
                         .huiTypography(.p1)
                         .foregroundStyle(Color.huiColors.text.body)
                         .frame(maxWidth: .infinity, alignment: .leading)
-//                        .padding([.leading, .trailing], .huiSpaces.space24)
                         .padding([.top, .bottom], .huiSpaces.space16)
                         .onTapGesture {
                             openAssignmentDetails(assignment.htmlURL)
                         }
-                        
+
                         if index != details.assignments.count - 1 {
                             divider
                         }
