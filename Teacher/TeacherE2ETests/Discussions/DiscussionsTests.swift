@@ -82,7 +82,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(searchField.hasValue(value: "Search entries or author..."))
         XCTAssertTrue(filterByLabel.isVisible)
         XCTAssertTrue(sortButton.isVisible)
-        XCTAssertTrue(sortButton.hasLabel(label: "Sorted by Descending", strict: false))
+        XCTAssertTrue(sortButton.hasValue(value: "Newest First", strict: false))
         XCTAssertTrue(viewSplitScreenButton.isVisible)
         XCTAssertTrue(subscribeButton.isVisible)
         XCTAssertTrue(manageDiscussionButton.isVisible)
