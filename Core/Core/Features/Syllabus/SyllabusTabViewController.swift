@@ -24,6 +24,8 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     public var courseID: String = ""
     public var color: UIColor?
     public let env = AppEnvironment.shared
+    private var context: Context?
+
     open lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/assignments/syllabus"
     )
@@ -41,7 +43,15 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     lazy var settings = env.subscribe(GetCourseSettings(courseID: courseID)) { [weak self] in
         self?.update()
     }
+    lazy var permissions = env.subscribe(GetContextPermissions(context: .course(courseID), permissions: [.manageContent, .manageCourseContentEdit])) { [weak self] in
+        self?.update()
+    }
 
+    lazy var editButton = UIBarButtonItem(
+        title: String(localized: "Edit", bundle: .core), style: .plain,
+        target: self, action: #selector(edit)
+    )
+    
     private var emptyPandaViewController: CoreHostingController<InteractivePanda> = {
         let vc = CoreHostingController(
             InteractivePanda(
@@ -54,9 +64,10 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         return vc
     }()
 
-    public static func create(courseID: String) -> SyllabusTabViewController {
+    public static func create(context: Context?, courseID: String) -> SyllabusTabViewController {
         let controller = SyllabusTabViewController(nibName: nil, bundle: nil)
         controller.courseID = courseID
+        controller.context = context
         return controller
     }
 
@@ -69,6 +80,7 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         settings.refresh()
         colors.refresh()
         course.refresh()
+        permissions.refresh()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -77,9 +89,20 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     }
 
     func update() {
-        guard !colors.pending, !course.pending, let course = course.first, !settings.pending else { return }
+        guard !colors.pending,
+              !course.pending,
+              !permissions.pending,
+              !settings.pending,
+              let course = course.first
+        else { return }
+        
         updateNavBar(subtitle: course.name, color: course.color)
-
+        
+        if permissions.first?.manageContent == true || permissions.first?.manageCourseContentEdit == true {
+            editButton.accessibilityIdentifier = "Syllabus.editButton"
+            navigationItem.rightBarButtonItem = editButton
+        }
+        
         layoutViewControllers()
         viewControllers = []
         if course.syllabusBody?.isEmpty == false {
@@ -99,6 +122,11 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         }
         updateFrames()
         reload()
+    }
+    
+    @objc func edit() {
+        env.router.route(
+            to: "\(context?.pathComponent ?? "")/syllabus/edit", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
 }
 

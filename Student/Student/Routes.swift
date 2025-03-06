@@ -129,15 +129,15 @@ let router = Router(routes: [
         return CoreHostingController(AssignmentListScreen(viewModel: viewModel), env: env)
     }),
 
-    RouteHandler("/courses/:courseID/syllabus") { _, params, _ in
+    RouteHandler("/courses/:courseID/syllabus") { url, params, _ in
         guard let courseID = params["courseID"] else { return nil }
-        return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
+        return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         if assignmentID == "syllabus" {
-            return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
+            return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
         }
         if !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
