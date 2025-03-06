@@ -504,7 +504,8 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
                 settings: APICourseSettings(
                     usage_rights_required: nil,
                     syllabus_course_summary: nil,
-                    restrict_quantitative_data: restrict_quantitative_data
+                    restrict_quantitative_data: restrict_quantitative_data,
+                    hide_final_grade: nil
                 )
             )
         )
