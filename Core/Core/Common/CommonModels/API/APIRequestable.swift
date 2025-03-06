@@ -99,10 +99,16 @@ extension Array where Element == String {
     }
 }
 
+extension CodingUserInfoKey {
+    public static let apiBaseURL = CodingUserInfoKey(rawValue: "apiBaseURL")!
+}
+
 public class APIJSONDecoder: JSONDecoder, @unchecked Sendable {
-    public override init() {
+
+    public init(relativeTo baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) {
         super.init()
         dateDecodingStrategy = .iso8601
+        userInfo[.apiBaseURL] = baseURL
     }
 
     // Can decode dates like "2019-06-02T18:07:28.000Z" that RN generates
@@ -169,7 +175,7 @@ public protocol APIRequestable {
     var shouldAddNoVerifierQuery: Bool { get }
 
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
-    func decode(_ data: Data) throws -> Response
+    func decode(_ data: Data, relativeTo: URL?) throws -> Response
     func encode(_ body: Body) throws -> Data
     func encode(response: Response) throws -> Data
 }
@@ -263,8 +269,8 @@ extension APIRequestable {
         return nil
     }
 
-    public func decode(_ data: Data) throws -> Response {
-        try APIJSONDecoder().decode(Response.self, from: data)
+    public func decode(_ data: Data, relativeTo baseURL: URL?) throws -> Response {
+        try APIJSONDecoder(relativeTo: baseURL).decode(Response.self, from: data)
     }
 
     public func encode(_ body: Body) throws -> Data {

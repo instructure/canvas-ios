@@ -29,13 +29,15 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
     public let navBar: (title: String, subtitle: String, color: UIColor, closeButtonTitle: String)
 
     private let submissionUseCase: CreateSubmission
+    private let env: AppEnvironment
 
-    public init(documentURL: URL, courseID: String, assignmentID: String, userID: String, annotatableAttachmentID: String?, assignmentName: String, courseColor: UIColor) {
+    public init(documentURL: URL, courseID: String, assignmentID: String, userID: String, annotatableAttachmentID: String?, assignmentName: String, courseColor: UIColor, env: AppEnvironment) {
         self.documentURL = documentURL
         self.navBar = (title: String(localized: "Student Annotation", bundle: .student),
                        subtitle: assignmentName,
                        color: courseColor,
                        closeButtonTitle: String(localized: "Close", bundle: .student))
+        self.env = env
         self.submissionUseCase = CreateSubmission(context: .course(courseID),
                                                   assignmentID: assignmentID,
                                                   userID: userID,
@@ -46,7 +48,7 @@ public class StudentAnnotationSubmissionViewModel: ObservableObject {
     public func postSubmission() {
         doneButton = Self.makeDoneButton(isSaving: true)
 
-        submissionUseCase.fetch { submission, _, error in performUIUpdate {
+        submissionUseCase.fetch(environment: env) { submission, _, error in performUIUpdate {
             self.doneButton = Self.makeDoneButton(isSaving: false)
 
             if submission != nil {

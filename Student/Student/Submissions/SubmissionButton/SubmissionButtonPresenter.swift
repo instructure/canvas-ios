@@ -188,14 +188,19 @@ class SubmissionButtonPresenter: NSObject {
                 return
             }
 
-            let viewModel = StudentAnnotationSubmissionViewModel(documentURL: docViewerSessionURL.rawValue,
-                                                                 courseID: assignment.courseID,
-                                                                 assignmentID: assignment.id,
-                                                                 userID: userID,
-                                                                 annotatableAttachmentID: assignment.annotatableAttachmentID,
-                                                                 assignmentName: assignment.name,
-                                                                 courseColor: course.color)
+            let viewModel = StudentAnnotationSubmissionViewModel(
+                documentURL: docViewerSessionURL.rawValue,
+                courseID: assignment.courseID,
+                assignmentID: assignment.id,
+                userID: userID,
+                annotatableAttachmentID: assignment.annotatableAttachmentID,
+                assignmentName: assignment.name,
+                courseColor: course.color,
+                env: env
+            )
+
             let submissionView = StudentAnnotationSubmissionView(viewModel: viewModel)
+                .environment(\.appEnvironment, env)
 
             performUIUpdate {
                 let hostingView = CoreHostingController(submissionView)

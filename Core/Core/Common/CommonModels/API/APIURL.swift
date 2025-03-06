@@ -30,8 +30,8 @@ public struct APIURL: Codable, Equatable {
         self.rawValue = rawValue
     }
 
-    public init(from decoder: Decoder) throws {
-        let baseURL = AppEnvironment.shared.currentSession?.baseURL
+    public init(from decoder: any Decoder) throws {
+        let baseURL = decoder.userInfo[.apiBaseURL] as? URL
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self).removingXMLEscaping
         if let url = URL(string: string, relativeTo: baseURL) {
