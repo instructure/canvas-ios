@@ -141,7 +141,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             Button(action: launchLTITool, label: { HStack {
                 types
                 Spacer()
-                DisclosureIndicator().padding(.trailing, 16)
+                InstUI.DisclosureIndicator().padding(.trailing, 16)
             } }).disableWithOpacity(isLocked)
         } else {
             types

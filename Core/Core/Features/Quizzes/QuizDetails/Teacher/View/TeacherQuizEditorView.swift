@@ -251,7 +251,7 @@ public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View
             Text(viewModel.quizType.name)
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
-            DisclosureIndicator()
+            InstUI.DisclosureIndicator()
         })
         .accessibilityIdentifier("QuizEditor.quizType")
     }
@@ -266,7 +266,7 @@ public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View
             Text(viewModel.assignmentGroup?.name ?? "")
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
-            DisclosureIndicator()
+            InstUI.DisclosureIndicator()
         })
         .accessibilityIdentifier("QuizEditor.assignmentGroup")
     }
@@ -281,7 +281,7 @@ public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View
             Text(viewModel.scoreToKeep?.text ?? "")
                 .font(.medium16).foregroundColor(.textDark)
             Spacer().frame(width: 16)
-            DisclosureIndicator()
+            InstUI.DisclosureIndicator()
         })
         .accessibilityIdentifier("QuizEditor.scoreToKeep")
     }

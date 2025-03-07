@@ -31,36 +31,32 @@ extension InstUI {
                        height: uiScale.iconScale * 16)
                 .foregroundStyle(Color.textDark)
         }
+
+        public init() {}
     }
 }
 
 #if DEBUG
 
 #Preview {
-    VStack(spacing: 0) {
-        InstUI.Divider()
-        Cell(title: "InstUI: arrowOpenRightLine") { InstUI.DisclosureIndicator() }
-        Cell(title: "Legacy: arrowOpenRightSolid") { Core.InstDisclosureIndicator() }
-        Cell(title: "Legacy: iOS chevron.right") { Core.DisclosureIndicator() }
-    }
+    Cell(title: "Lorem Ipsum")
 }
 
-private struct Cell<Content: View>: View {
+private struct Cell: View {
     private let title: String
-    @ViewBuilder private let disclosure: Content
 
-    init(title: String, @ViewBuilder disclosure: () -> Content) {
+    init(title: String) {
         self.title = title
-        self.disclosure = disclosure()
     }
 
     var body: some View {
         VStack(spacing: 0) {
+            InstUI.Divider()
             HStack(spacing: 0) {
                 Text(title).textStyle(.cellLabel)
                 Text(verbatim: "Some value").textStyle(.cellValue)
                     .frame(maxWidth: .infinity, alignment: .trailing)
-                disclosure
+                InstUI.DisclosureIndicator()
                     .paddingStyle(.leading, .cellAccessoryPadding)
             }
             .paddingStyle(set: .standardCell)
