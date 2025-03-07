@@ -53,6 +53,7 @@ struct NotebookView: View {
             }
             .padding(.all, .huiSpaces.space16)
         }
+        .navigationBarHidden(true)
         .background(Color.huiColors.surface.pagePrimary)
     }
 
