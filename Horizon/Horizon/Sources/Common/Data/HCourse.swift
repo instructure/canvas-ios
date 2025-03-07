@@ -24,6 +24,7 @@ struct HCourse: Identifiable {
     let name: String
     let overviewDescription: String
     let progress: Double
+    let enrollments: [HEnrollment]
     let modules: [HModule]
     let incompleteModules: [HModule]
 
@@ -33,6 +34,7 @@ struct HCourse: Identifiable {
         name: String = " ",
         overviewDescription: String? = nil,
         progress: Double = 0,
+        enrollments: [HEnrollment] = [],
         modules: [HModule] = [],
         incompleteModules: [HModule] = []
     ) {
@@ -41,6 +43,7 @@ struct HCourse: Identifiable {
         self.name = name
         self.overviewDescription = overviewDescription ?? ""
         self.progress = progress
+        self.enrollments = enrollments
         self.modules = modules
             .sorted { $0.position < $1.position }
         self.incompleteModules = incompleteModules
@@ -52,7 +55,12 @@ struct HCourse: Identifiable {
         self.name = entity.name ?? ""
         self.overviewDescription = entity.syllabusBody ?? ""
         self.progress = 0
-        self.modules = modulesEntity
+        if let enrollments = entity.enrollments {
+            self.enrollments = Array(enrollments).map { HEnrollment(from: $0) }
+        } else {
+            self.enrollments = []
+        }
+       self.modules = modulesEntity
             .map { HModule(from: $0) }
             .sorted { $0.position > $1.position }
         self.incompleteModules = []

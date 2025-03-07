@@ -27,6 +27,11 @@ struct HModule: Identifiable {
     var contentItems: [HModuleItem]
     let estimatedDuration: String?
     let position: Int
+
+    var dueItemsCount: Int {
+        items.filter { $0.isOverDue }.count
+    }
+
     init(
         id: String,
         name: String,
@@ -69,10 +74,6 @@ struct HModule: Identifiable {
             countOfPrerequisite: entity.prerequisiteModuleIDs.count
         )
         self.position = entity.position
-    }
-
-    var dueItemsCount: Int {
-        items.filter { $0.isOverDue }.count
     }
 
     var estimatedDurationFormatted: String? {
