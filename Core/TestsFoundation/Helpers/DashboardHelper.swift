@@ -54,7 +54,7 @@ public class DashboardHelper: BaseHelper {
     public static func turnOnShowGrades() {
         optionsButton.hit()
         dashboardSettingsButton.hit()
-        dashboardSettingsShowGradeToggle.forceTap()
+        dashboardSettingsShowGradeToggle.tap()
         doneButton.hit()
     }
 
