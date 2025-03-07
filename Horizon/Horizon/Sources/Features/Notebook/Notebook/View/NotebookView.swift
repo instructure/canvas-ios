@@ -53,6 +53,7 @@ struct NotebookView: View {
             }
             .padding(.all, .huiSpaces.space16)
         }
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var backButton: some View {

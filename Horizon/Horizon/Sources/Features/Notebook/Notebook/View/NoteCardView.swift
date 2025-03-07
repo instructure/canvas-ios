@@ -40,10 +40,12 @@ struct NoteCardView: View {
                 HStack(alignment: .center) {
                     Text(note.title).font(.regular12)
                     Spacer()
-                    HorizonUI.icons.editNote
-                        .onTapGesture {
-                            onEdit?()
-                        }
+                    if let onEdit = onEdit {
+                        HorizonUI.icons.editNote
+                            .onTapGesture {
+                                onEdit()
+                            }
+                    }
                 }
                 if !note.highlightedText.isEmpty {
                     HighlightedText(note.highlightedText, ofTypes: note.types)
