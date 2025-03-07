@@ -24,6 +24,11 @@ import XCTest
 class ProfileSettingsViewModelTests: ParentTestCase {
     private let inboxSettingsInteractor = InboxSettingsInteractorMock()
     private let offlineInteractor = OfflineInteractorMock()
+    private let options = [
+        ItemPickerItem(title: String(localized: "System Settings", bundle: .core)),
+        ItemPickerItem(title: String(localized: "Light Theme", bundle: .core)),
+        ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core))
+    ]
 
     private var testee: ProfileSettingsViewModel!
 
@@ -47,7 +52,8 @@ class ProfileSettingsViewModelTests: ParentTestCase {
     func testAllGroupItemsAreDisplayed() {
         XCTAssertEqual(testee.settingsGroups[0].viewModel.itemViews.count, 2)
         XCTAssertEqual(testee.settingsGroups[0].viewModel.itemViews[0].viewModel.title, "Appearance")
-        XCTAssertEqual(testee.settingsGroups[0].viewModel.itemViews[0].viewModel.valueLabel, "System Settings")
+        let expectedAppearanceValue = options[env.userDefaults?.interfaceStyle?.rawValue ?? 0].title
+        XCTAssertEqual(testee.settingsGroups[0].viewModel.itemViews[0].viewModel.valueLabel, expectedAppearanceValue)
         XCTAssertEqual(testee.settingsGroups[0].viewModel.itemViews[1].viewModel.title, "About")
         XCTAssertEqual(testee.settingsGroups[0].viewModel.itemViews[1].viewModel.valueLabel, nil)
 
