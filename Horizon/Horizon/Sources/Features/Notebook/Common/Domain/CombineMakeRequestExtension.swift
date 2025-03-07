@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 
-final class NotebookAssembly {
-    static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
-        GetCourseNotesInteractorLive.shared
-    }
-
-    static func makeViewModel() -> NotebookViewModel {
-        NotebookViewModel(
-            getCourseNotesInteractor: makeGetCourseNotesInteractor(),
-            router: AppEnvironment.shared.router
-        )
-    }
-
-    static func makeViewController() -> CoreHostingController<NotebookView>? {
-        CoreHostingController(
-            NotebookView(
-                viewModel: makeViewModel()
-            )
-        )
+extension API {
+    func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
+        let apiResponseSubject = PassthroughSubject<Request.Response?, Error>()
+        makeRequest(requestable) { response, _, _ in
+            apiResponseSubject.send(response)
+        }
+        return apiResponseSubject.eraseToAnyPublisher()
     }
 }

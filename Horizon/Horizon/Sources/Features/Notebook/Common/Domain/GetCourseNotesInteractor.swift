@@ -39,31 +39,21 @@ struct Cursor {
     }
 }
 
-struct CursorFilter {
-    let cursor: Cursor?
-    let filter: CourseNoteLabel?
-
-    static func build(cursor: Cursor?, filter: CourseNoteLabel?) -> CursorFilter? {
-        if filter == nil && cursor == nil {
-            return nil
-        }
-        return CursorFilter(cursor: cursor, filter: filter)
-    }
-}
-
 protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get set }
     var cursor: Cursor? { get set }
-    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError>
+    func get() -> AnyPublisher<[API.CourseNotebookNote], NotebookError>
     func refresh()
 }
 
 final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
+    typealias CursorFilter = (cursor: Cursor?, filter: CourseNoteLabel?)
+
     // MARK: - Dependencies
 
     let canvasApi: API
 
-    static let instance: GetCourseNotesInteractor = GetCourseNotesInteractorLive()
+    static let shared: GetCourseNotesInteractor = GetCourseNotesInteractorLive()
 
     // MARK: - Public
 
@@ -73,7 +63,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         }
         set {
             cursorFilter.accept(
-                CursorFilter.build(cursor: newValue, filter: cursorFilter.value?.filter)
+                newValue == nil && filter == nil ? nil : (cursor: newValue, filter: filter)
             )
         }
     }
@@ -84,7 +74,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         }
         set {
             cursorFilter.accept(
-                CursorFilter.build(cursor: nil, filter: newValue)
+                newValue == nil ? nil : (cursor: nil, filter: newValue)
             )
         }
     }
@@ -129,7 +119,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Public Methods
 
-    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
+    func get() -> AnyPublisher<[API.CourseNotebookNote], NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap(listenToFilters)
@@ -139,14 +129,14 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Private Methods
 
-    private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
+    private func listenToFilters(_ api: API) -> AnyPublisher<[API.CourseNotebookNote], any Error> {
         Publishers.CombineLatest(
             cursorFilter,
             refreshSubject
         )
         .flatMap { [weak self] cursorFilter, _ in
             guard let self = self else {
-                return Just([CourseNotebookNote]())
+                return Just([API.CourseNotebookNote]())
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
@@ -156,7 +146,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
     }
 
     private func listenTo(api: API, filter: CourseNoteLabel?, cursor: Cursor?) -> AnyPublisher<
-        [CourseNotebookNote], any Error
+        [API.CourseNotebookNote], any Error
     > {
         api.makeRequest(request(api: api, labels: filter.map { [$0] }))
             .compactMap { $0?.courseNotebookNotes }
@@ -168,8 +158,8 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 final class GetCourseNotesInteractorPreview: GetCourseNotesInteractor {
     var filter: CourseNoteLabel?
     var cursor: Cursor?
-    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
-        Just([CourseNotebookNote.example])
+    func get() -> AnyPublisher<[API.CourseNotebookNote], NotebookError> {
+        Just([API.CourseNotebookNote.example])
             .setFailureType(to: NotebookError.self)
             .eraseToAnyPublisher()
     }

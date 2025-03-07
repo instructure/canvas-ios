@@ -19,8 +19,6 @@
 import Combine
 import CombineSchedulers
 import Core
-import Observation
-import SwiftUI
 
 @Observable
 final class NotebookNoteViewModel {
@@ -44,7 +42,7 @@ final class NotebookNoteViewModel {
     var isImportant: Bool = false
     var isSaveDisabled: Bool { !isConfusing && !isImportant }
     var isSaveVisible: Bool { isEditing || isAdding }
-    var isTextEditorDisabled: Bool { !isEditing }
+    var isTextEditorEditable: Bool { isEditing }
     var note: String = ""
     var state: InstUI.ScreenState = .data
 
@@ -63,7 +61,7 @@ final class NotebookNoteViewModel {
 
     // MARK: - Private
 
-    private var courseNote: CourseNotebookNote?
+    private var courseNote: API.CourseNotebookNote?
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
@@ -72,7 +70,7 @@ final class NotebookNoteViewModel {
     init(
         courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.instance,
         router: Router = AppEnvironment.shared.router,
-        courseNotebookNote: CourseNotebookNote,
+        courseNotebookNote: API.CourseNotebookNote,
         isEditing: Bool = false,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {

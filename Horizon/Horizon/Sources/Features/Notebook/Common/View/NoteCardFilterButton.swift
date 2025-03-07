@@ -50,5 +50,4 @@ struct NoteCardFilterButton: View {
         NoteCardFilterButton(type: .confusing, selected: false)
         NoteCardFilterButton(type: .important, selected: false)
     }
-
 }

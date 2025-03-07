@@ -19,8 +19,6 @@
 import SwiftUI
 
 struct HighlightedText: View {
-    typealias OnTap = () -> Void
-
     // MARK: - Dependencies
 
     private let text: String

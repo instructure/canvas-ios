@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+struct NotebookHighlight: Codable, Equatable {
+    let selectedText: String
+    let textPosition: TextPosition
+    let range: Range
 
-final class NotebookAssembly {
-    static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
-        GetCourseNotesInteractorLive.shared
+    enum CodingKeys: String, CodingKey {
+        case selectedText, textPosition, range
     }
 
-    static func makeViewModel() -> NotebookViewModel {
-        NotebookViewModel(
-            getCourseNotesInteractor: makeGetCourseNotesInteractor(),
-            router: AppEnvironment.shared.router
-        )
+    struct TextPosition: Codable, Equatable {
+        let start: Int
+        let end: Int
+
+        enum CodingKeys: String, CodingKey {
+            case start, end
+        }
     }
 
-    static func makeViewController() -> CoreHostingController<NotebookView>? {
-        CoreHostingController(
-            NotebookView(
-                viewModel: makeViewModel()
-            )
-        )
+    struct Range: Codable, Equatable {
+        let startContainer: String
+        let startOffset: Int
+        let endContainer: String
+        let endOffset: Int
+
+        enum CodingKeys: String, CodingKey {
+            case startContainer, startOffset, endContainer, endOffset
+        }
     }
 }

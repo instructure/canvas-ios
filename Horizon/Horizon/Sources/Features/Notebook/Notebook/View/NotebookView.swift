@@ -25,15 +25,14 @@ struct NotebookView: View {
     @Bindable var viewModel: NotebookViewModel
     @Environment(\.viewController) private var viewController
 
-    private let navigationBarViewModel: NavigationBarViewModel = .init()
-
     var body: some View {
-        NavigationBarView(
+        InstUI.BaseScreen(
             state: viewModel.state,
-            viewModel: navigationBarViewModel,
-            refreshable: false,
-            isNotebookHidden: true
-        ) {
+            config: .init(
+                refreshable: false,
+                loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
+            )
+        ) { _ in
             VStack {
                 HStack {
                     backButton
@@ -90,9 +89,7 @@ struct NotebookView: View {
         VStack {
             NotebookSectionHeading(title: String(localized: "Notes", bundle: .horizon))
             ForEach(viewModel.notes) { note in
-                NoteCardView(note: note) {
-                    viewModel.editNote(note, viewController: viewController)
-                }
+                NoteCardView(note: note)
                 .onTapGesture {
                     viewModel.goToModuleItem(note, viewController: viewController)
                 }

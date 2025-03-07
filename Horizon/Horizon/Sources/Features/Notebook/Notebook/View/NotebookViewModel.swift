@@ -40,11 +40,11 @@ final class NotebookViewModel {
         }
     }
     var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
-    var isNextDisabled: Bool = true
-    var isPreviousDisabled: Bool = true
-    var notes: [NotebookNote] = []
-    var state: InstUI.ScreenState = .loading
-    var title: String = ""
+    private(set) var isNextDisabled: Bool = true
+    private(set) var isPreviousDisabled: Bool = true
+    private(set) var notes: [NotebookNote] = []
+    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var title: String = ""
 
     // MARK: - Private variables
 
@@ -54,7 +54,7 @@ final class NotebookViewModel {
     // MARK: - Init
 
     init(
-        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.instance,
+        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared,
         router: Router = AppEnvironment.defaultValue.router
     ) {
         self.getCourseNotesInteractor = getCourseNotesInteractor
@@ -76,10 +76,6 @@ final class NotebookViewModel {
 
     func onBack(viewController: WeakViewController) {
         router.pop(from: viewController)
-    }
-
-    func editNote(_ note: NotebookNote, viewController: WeakViewController) {
-        router.route(to: "/notebook/note", userInfo: ["note": note.courseNotebookNote], from: viewController)
     }
 
     func goToModuleItem(_ note: NotebookNote, viewController: WeakViewController) {
@@ -112,7 +108,7 @@ final class NotebookViewModel {
         getCourseNotesInteractor
             .get()
             .replaceError(with: [])
-            .sink { (courseNotes: [CourseNotebookNote]) in
+            .sink { (courseNotes: [API.CourseNotebookNote]) in
                 guard let self = weakSelf else { return }
                 self.notes = courseNotes.map { note in
                     NotebookNote(courseNotebookNote: note)
@@ -126,7 +122,7 @@ final class NotebookViewModel {
 }
 
 struct NotebookNote: Identifiable {
-    let courseNotebookNote: CourseNotebookNote
+    let courseNotebookNote: API.CourseNotebookNote
     var id: String { courseNotebookNote.id }
     var highlightedText: String { courseNotebookNote.highlightData?.selectedText ?? "" }
     var nextCursor: String? { courseNotebookNote.nextCursor }
@@ -137,7 +133,7 @@ struct NotebookNote: Identifiable {
 
     private let formatter = DateFormatter()
 
-    init(courseNotebookNote: CourseNotebookNote) {
+    init(courseNotebookNote: API.CourseNotebookNote) {
         self.courseNotebookNote = courseNotebookNote
 
         formatter.dateFormat = "MMM d, yyyy"

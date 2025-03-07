@@ -27,10 +27,10 @@ final class HighlightWebView: CoreWebView {
 
     // MARK: - Private
 
-    private var courseNotebookNotes: [CourseNotebookNote] = [] {
+    private var courseNotebookNotes: [API.CourseNotebookNote] = [] {
         didSet {
             Task {
-                await highlightWebFeature.apply(
+                await highlightWebFeature?.apply(
                     webView: self,
                     notebookTextSelections: courseNotebookNotes.compactMap { $0.notebookTextSelection }
                 )
@@ -38,7 +38,7 @@ final class HighlightWebView: CoreWebView {
         }
     }
     private var subscriptions = Set<AnyCancellable>()
-    private var highlightWebFeature: HighlightWebFeature!
+    private var highlightWebFeature: HighlightWebFeature?
     private let actionDefinitions = [
         (label: CourseNoteLabel.confusing, title: String(localized: "Confusing", bundle: .horizon)),
         (label: CourseNoteLabel.important, title: String(localized: "Important", bundle: .horizon)),
@@ -71,7 +71,10 @@ final class HighlightWebView: CoreWebView {
         self.router = router
         self.courseNoteInteractor = courseNoteInteractor
         self.viewController = viewController
-        self.highlightWebFeature = HighlightWebFeature()
+
+        let highlightWebFeature = HighlightWebFeature()
+
+        self.highlightWebFeature = highlightWebFeature
 
         super.init(features: [highlightWebFeature])
 
@@ -87,6 +90,7 @@ final class HighlightWebView: CoreWebView {
         self.itemId = nil
         self.moduleType = nil
         self.viewController = nil
+        self.highlightWebFeature = nil
 
         super.init(coder: coder)
     }
@@ -119,7 +123,7 @@ final class HighlightWebView: CoreWebView {
 
     // MARK: - Private
 
-    private func applyHighlights(_ courseNotebookNotes: [CourseNotebookNote]) {
+    private func applyHighlights(_ courseNotebookNotes: [API.CourseNotebookNote]) {
         self.courseNotebookNotes = courseNotebookNotes
     }
 
@@ -159,7 +163,7 @@ final class HighlightWebView: CoreWebView {
     }
 
     private func listenForHighlightTaps() {
-        highlightWebFeature.listenForHighlightTaps()
+        highlightWebFeature?.listenForHighlightTaps()
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
                 guard let self = self,
@@ -177,7 +181,7 @@ final class HighlightWebView: CoreWebView {
     }
 
     private func listenForSelectionChange() {
-        highlightWebFeature.listenForSelectionChange()
+        highlightWebFeature?.listenForSelectionChange()
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
                 self?.currentNotebookTextSelection = notebookTextSelection
@@ -251,7 +255,7 @@ extension NotebookTextSelection {
     }
 }
 
-extension CourseNotebookNote {
+extension API.CourseNotebookNote {
     var notebookTextSelection: NotebookTextSelection? {
         let label = labels?.first
         guard let highlightData = highlightData else {

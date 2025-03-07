@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
 import HorizonUI
+import SwiftUI
 
 struct NoteCardView: View {
 
@@ -83,13 +84,13 @@ struct NoteCardView: View {
     VStack {
         NoteCardView(
             note: NotebookNote(
-                courseNotebookNote: CourseNotebookNote.example.copy(content: "")
+                courseNotebookNote: API.CourseNotebookNote.example.copy(content: "")
             )
         )
 
         NoteCardView(
             note: NotebookNote(
-                courseNotebookNote: CourseNotebookNote.example
+                courseNotebookNote: API.CourseNotebookNote.example
             )
         )
     }

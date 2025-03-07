@@ -18,40 +18,9 @@
 
 import Combine
 import Core
-import CoreData
 
 enum NotebookError: Error {
     case unknown
-}
-
-struct NotebookHighlight: Codable, Equatable {
-    let selectedText: String
-    let textPosition: TextPosition
-    let range: Range
-
-    enum CodingKeys: String, CodingKey {
-        case selectedText, textPosition, range
-    }
-
-    struct TextPosition: Codable, Equatable {
-        let start: Int
-        let end: Int
-
-        enum CodingKeys: String, CodingKey {
-            case start, end
-        }
-    }
-
-    struct Range: Codable, Equatable {
-        let startContainer: String
-        let startOffset: Int
-        let endContainer: String
-        let endOffset: Int
-
-        enum CodingKeys: String, CodingKey {
-            case startContainer, startOffset, endContainer, endOffset
-        }
-    }
 }
 
 protocol CourseNoteInteractor {
@@ -62,21 +31,11 @@ protocol CourseNoteInteractor {
         content: String,
         labels: [CourseNoteLabel],
         notebookHighlight: NotebookHighlight?
-    ) -> AnyPublisher<CourseNotebookNote, NotebookError>
+    ) -> AnyPublisher<API.CourseNotebookNote, NotebookError>
     func delete(id: String) -> AnyPublisher<Void, NotebookError>
-    func get(courseId: String, itemId: String) -> AnyPublisher<[CourseNotebookNote], NotebookError>
+    func get(courseId: String, itemId: String) -> AnyPublisher<[API.CourseNotebookNote], NotebookError>
     func set(id: String, content: String?, labels: [CourseNoteLabel]?, highlightData: NotebookHighlight?)
-        -> AnyPublisher<CourseNotebookNote, NotebookError>
-}
-
-extension API {
-    func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
-        let apiResponseSubject = PassthroughSubject<Request.Response?, Error>()
-        makeRequest(requestable) { response, _, _ in
-            apiResponseSubject.send(response)
-        }
-        return apiResponseSubject.eraseToAnyPublisher()
-    }
+        -> AnyPublisher<API.CourseNotebookNote, NotebookError>
 }
 
 class CourseNoteInteractorLive: CourseNoteInteractor {
@@ -98,7 +57,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
 
     private init(
         canvasApi: API = AppEnvironment.shared.api,
-        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.instance
+        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared
     ) {
         self.canvasApi = canvasApi
         self.getCourseNotesInteractor = getCourseNotesInteractor
@@ -113,7 +72,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         content: String = "",
         labels: [CourseNoteLabel] = [],
         notebookHighlight: NotebookHighlight? = nil
-    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
+    ) -> AnyPublisher<API.CourseNotebookNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
@@ -123,7 +82,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                         note: NewRedwoodNote(
                             courseId: courseId,
                             objectId: itemId,
-                            objectType: moduleType.courseNoteLabel,
+                            objectType: moduleType.apiModuleItemType.rawValue,
                             userText: content,
                             reaction: labels.map { $0.rawValue },
                             highlightData: notebookHighlight
@@ -133,7 +92,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                 .compactMap { [weak self] (response: RedwoodCreateNoteMutationResponse?) in
                     self?.getCourseNotesInteractor.refresh()
                     self?.refreshSubject.send()
-                    return response.map { CourseNotebookNote(from: $0.data.createNote) }
+                    return response.map { API.CourseNotebookNote(from: $0.data.createNote) }
                 }
             }
             .mapError { _ in NotebookError.unknown }
@@ -160,7 +119,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
             .eraseToAnyPublisher()
     }
 
-    func get(courseId: String, itemId: String) -> AnyPublisher<[CourseNotebookNote], NotebookError> {
+    func get(courseId: String, itemId: String) -> AnyPublisher<[API.CourseNotebookNote], NotebookError> {
         Publishers.CombineLatest(
             JWTTokenRequest(.redwood).api(from: canvasApi),
             refreshSubject
@@ -181,7 +140,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         content: String?,
         labels: [CourseNoteLabel]?,
         highlightData: NotebookHighlight?
-    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
+    ) -> AnyPublisher<API.CourseNotebookNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
@@ -197,7 +156,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                 .compactMap { [weak self] (response: RedwoodUpdateNoteMutationResponse?) in
                     self?.getCourseNotesInteractor.refresh()
                     self?.refreshSubject.send()
-                    return response.map { CourseNotebookNote(from: $0.data.updateNote) }
+                    return response.map { API.CourseNotebookNote(from: $0.data.updateNote) }
                 }
             }
             .mapError { _ in NotebookError.unknown }
@@ -206,29 +165,29 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
 }
 
 extension ModuleItemType {
-    var courseNoteLabel: String {
+    var apiModuleItemType: APIModuleItemType {
         switch self {
         case .file:
-            return "file"
-        case .discussion:
-            return "discussion"
-        case .assignment:
-            return "assignment"
-        case .quiz:
-            return "quiz"
-        case .externalURL:
-            return "externalURL"
-        case .externalTool:
-            return "externalTool"
+            return .file
         case .page:
-            return "page"
+            return .page
+        case .discussion:
+            return .discussion
+        case .quiz:
+            return .quiz
+        case .assignment:
+            return .assignment
+        case .externalTool:
+            return .externalTool
         case .subHeader:
-            return "subHeader"
+            return .subHeader
+        case .externalURL:
+            return .externalURL
         }
     }
 }
 
-extension CourseNotebookNote {
+extension API.CourseNotebookNote {
     init(from note: RedwoodNote) {
         self.id = note.id ?? ""
         self.date = note.createdAt ?? Date()
@@ -236,7 +195,7 @@ extension CourseNotebookNote {
         self.objectId = note.objectId
 
         self.content = note.userText
-        self.labels = note.reaction.map { $0.compactMap { CourseNoteLabel(rawValue: $0) } }
+        self.labels = note.reaction?.compactMap { CourseNoteLabel(rawValue: $0) } ?? []
 
         self.highlightData = note.highlightData
     }
