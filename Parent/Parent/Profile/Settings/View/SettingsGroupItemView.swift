@@ -56,6 +56,7 @@ struct SettingsGroupItemView: View {
                 .padding(.vertical, 6)
             }
             .disabled(viewModel.disabled)
+            .opacity(viewModel.disabled ? 0.6 : 1)
         }
     }
 }

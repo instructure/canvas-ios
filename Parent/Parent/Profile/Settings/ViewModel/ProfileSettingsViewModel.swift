@@ -82,8 +82,7 @@ extension ProfileSettingsViewModel {
 
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Appearance", bundle: .core),
-            valueLabel: nil,
-            id: .inboxSignature
+            valueLabel: nil
         ) { [weak self] controller in
             guard let self = self else { return }
             self.showAppereanceItemPicker(controller: controller, selectedIndex: selectedStyleIndex, options: options)
@@ -101,8 +100,7 @@ extension ProfileSettingsViewModel {
     private func initAboutItem() -> SettingsGroupItemView {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "About", bundle: .core),
-            valueLabel: nil,
-            id: .privacyPolicy
+            valueLabel: nil
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "/about", from: controller)
@@ -153,7 +151,6 @@ extension ProfileSettingsViewModel {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Inbox Signature", bundle: .core),
             valueLabel: nil,
-            id: .inboxSignature,
             availableOffline: false,
             isHidden: true
         ) { [weak self] controller in
@@ -194,8 +191,7 @@ extension ProfileSettingsViewModel {
     private func initPrivacyPolicyItem() -> SettingsGroupItemView {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Privacy Policy", bundle: .core),
-            valueLabel: nil,
-            id: .privacyPolicy
+            valueLabel: nil
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "https://www.instructure.com/canvas/privacy/", from: controller)
@@ -207,8 +203,7 @@ extension ProfileSettingsViewModel {
     private func initTermsOfUseItem() -> SettingsGroupItemView {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Terms of Use", bundle: .core),
-            valueLabel: nil,
-            id: .termsOfUse
+            valueLabel: nil
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "/accounts/self/terms_of_service", from: controller)
@@ -220,8 +215,7 @@ extension ProfileSettingsViewModel {
     private func initGithubItem() -> SettingsGroupItemView {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Canvas on Github", bundle: .core),
-            valueLabel: nil,
-            id: .github
+            valueLabel: nil
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "https://github.com/instructure/canvas-ios", from: controller)

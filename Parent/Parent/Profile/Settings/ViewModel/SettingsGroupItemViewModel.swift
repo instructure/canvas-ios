@@ -27,7 +27,6 @@ class SettingsGroupItemViewModel: ObservableObject {
     @Published var disabled: Bool = false
     @Published var isHidden: Bool
 
-    let id: SettingGroupItemId
     let availableOffline: Bool
     let onSelect: (WeakViewController) -> Void
 
@@ -35,7 +34,6 @@ class SettingsGroupItemViewModel: ObservableObject {
         title: String,
         valueLabel: String? = nil,
         discloserIndicator: Image? = Image.arrowOpenRightLine,
-        id: SettingGroupItemId,
         availableOffline: Bool = true,
         isHidden: Bool = false,
         onSelect: @escaping (WeakViewController) -> Void
@@ -43,7 +41,6 @@ class SettingsGroupItemViewModel: ObservableObject {
         self.title = title
         self.valueLabel = valueLabel
         self.discloserIndicator = discloserIndicator
-        self.id = id
         self.availableOffline = availableOffline
         self.isHidden = isHidden
         self.onSelect = onSelect
@@ -57,7 +54,6 @@ extension SettingsGroupItemViewModel {
         let viewModel = SettingsGroupItemViewModel(
             title: title,
             valueLabel: valueLabel,
-            id: .inboxSignature,
             availableOffline: true,
             isHidden: false,
             onSelect: { _ in }

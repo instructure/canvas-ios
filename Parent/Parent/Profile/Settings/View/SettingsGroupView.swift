@@ -27,13 +27,13 @@ public struct SettingsGroupView: View {
             VStack(alignment: .leading, spacing: 0) {
                 getGroupTitleView(title: viewModel.title)
 
-                ForEach(viewModel.itemViews, id: \.viewModel.id) { view in
+                ForEach(viewModel.itemViews, id: \.viewModel.title) { view in
                     VStack(alignment: .leading, spacing: 0) {
                         Separator()
 
                         view
 
-                        if (view.viewModel.id == viewModel.itemViews.last?.viewModel.id) {
+                        if (view.viewModel.title == viewModel.itemViews.last?.viewModel.title) {
                             Separator()
                         }
                     }

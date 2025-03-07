@@ -131,7 +131,6 @@
 		D3E6DFC12D770E3B00A72F5C /* ProfileSettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6DFC02D770E3300A72F5C /* ProfileSettingsAssembly.swift */; };
 		D3E6DFCA2D7841B500A72F5C /* SettingsGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6DFC92D7841B500A72F5C /* SettingsGroupView.swift */; };
 		D3E6DFCC2D7841C400A72F5C /* SettingsGroupItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6DFCB2D7841C400A72F5C /* SettingsGroupItemView.swift */; };
-		D3E6DFD12D78557C00A72F5C /* SettingGroupItemId.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6DFD02D78557B00A72F5C /* SettingGroupItemId.swift */; };
 		D3E6DFD32D787F9900A72F5C /* SettingsGroupItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6DFD22D787F8F00A72F5C /* SettingsGroupItemViewModel.swift */; };
 		D3E6DFD52D78834700A72F5C /* SettingsGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6DFD42D78833200A72F5C /* SettingsGroupViewModel.swift */; };
 		D3E6DFDA2D79C8CA00A72F5C /* ProfileSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6DFD92D79C8C300A72F5C /* ProfileSettingsViewModelTests.swift */; };
@@ -308,7 +307,6 @@
 		D3E6DFC02D770E3300A72F5C /* ProfileSettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsAssembly.swift; sourceTree = "<group>"; };
 		D3E6DFC92D7841B500A72F5C /* SettingsGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroupView.swift; sourceTree = "<group>"; };
 		D3E6DFCB2D7841C400A72F5C /* SettingsGroupItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroupItemView.swift; sourceTree = "<group>"; };
-		D3E6DFD02D78557B00A72F5C /* SettingGroupItemId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGroupItemId.swift; sourceTree = "<group>"; };
 		D3E6DFD22D787F8F00A72F5C /* SettingsGroupItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroupItemViewModel.swift; sourceTree = "<group>"; };
 		D3E6DFD42D78833200A72F5C /* SettingsGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroupViewModel.swift; sourceTree = "<group>"; };
 		D3E6DFD92D79C8C300A72F5C /* ProfileSettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewModelTests.swift; sourceTree = "<group>"; };
@@ -1000,7 +998,6 @@
 		D3E6DFB92D770D5500A72F5C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D3E6DFCF2D78557400A72F5C /* Model */,
 				D3E6DFC02D770E3300A72F5C /* ProfileSettingsAssembly.swift */,
 				D3E6DFBB2D770DEC00A72F5C /* ViewModel */,
 				D3E6DFBA2D770DE700A72F5C /* View */,
@@ -1026,14 +1023,6 @@
 				D3E6DFBE2D770E1800A72F5C /* ProfileSettingsViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D3E6DFCF2D78557400A72F5C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D3E6DFD02D78557B00A72F5C /* SettingGroupItemId.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D3E6DFD62D79C8A700A72F5C /* Profile */ = {
@@ -1421,7 +1410,6 @@
 				D3DFD5A22D6E0FD800C278C2 /* ParentInboxCoursePickerViewModel.swift in Sources */,
 				D3DFD5A32D6E0FD800C278C2 /* StudentContextItem.swift in Sources */,
 				D3E6DFD52D78834700A72F5C /* SettingsGroupViewModel.swift in Sources */,
-				D3E6DFD12D78557C00A72F5C /* SettingGroupItemId.swift in Sources */,
 				D3DFD5A42D6E0FD800C278C2 /* ParentInboxCoursePickerBottomSheetViewController.swift in Sources */,
 				D3DFD5A52D6E0FD800C278C2 /* ParentInboxCoursePickerInteractorPreview.swift in Sources */,
 				D3DFD5A62D6E0FD800C278C2 /* ParentInboxCoursePickerInteractor.swift in Sources */,
