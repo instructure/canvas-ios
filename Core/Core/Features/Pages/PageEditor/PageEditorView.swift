@@ -143,7 +143,7 @@ public struct PageEditorView: View {
                         Text(editingRoles.string)
                             .font(.medium16).foregroundColor(.textDark)
                         Spacer().frame(width: 16)
-                        DisclosureIndicator()
+                        InstUI.DisclosureIndicator()
                     })
                         .identifier("PageEditor.editorsButton")
                 }
