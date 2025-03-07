@@ -116,13 +116,14 @@ class DashboardViewModel {
     func navigateToCourseDetails(url: URL, viewController: WeakViewController) {
         router.route(to: url, from: viewController)
     }
-    
+
     func reload(completion: @escaping () -> Void) {
         getCourses(
             ignoreCache: true,
             completion: completion
         )
     }
+
     struct NextUpViewModel: Identifiable {
         let name: String
         let progress: Double
