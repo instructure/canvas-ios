@@ -35,7 +35,6 @@ public class Module: NSManagedObject {
     @NSManaged public var requireSequentialProgressRaw: NSNumber?
     @NSManaged public var unlockAt: Date?
     @NSManaged public var estimatedDuration: String?
-    
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
         set { publishedRaw = NSNumber(value: newValue) }
