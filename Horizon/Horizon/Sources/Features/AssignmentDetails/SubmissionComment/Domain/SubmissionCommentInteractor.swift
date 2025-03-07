@@ -32,6 +32,11 @@ protocol SubmissionCommentInteractor {
         attempt: Int?,
         text: String
     ) -> AnyPublisher<Void, Error>
+    func getNumberOfComments(
+        courseID: String,
+        assignmentID: String,
+        attempt: Int?
+    ) -> AnyPublisher<Int, Error>
 }
 
 final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
@@ -69,6 +74,20 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
                 .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
+    }
+
+    func getNumberOfComments(
+        courseID: String,
+        assignmentID: String,
+        attempt: Int?
+    ) -> AnyPublisher<Int, Error> {
+        getComments(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            attempt: attempt
+        )
+        .map { $0.count }
+        .eraseToAnyPublisher()
     }
 
     func postComment(

@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 import Core
 import Observation
 
@@ -28,21 +29,59 @@ final class ScoresViewModel {
         case error
     }
 
+    // MARK: - Outputs
+
+    var selectedSortOption: String = ScoreDetails.SortOption.dueDate.localizedTitle {
+        didSet {
+            selectedFilterOptionRelay.accept(ScoreDetails.SortOption(from: selectedSortOption))
+        }
+    }
+
     private(set) var viewState: ViewState = .loading
     private(set) var scoreDetails: ScoreDetails?
 
+    // MARK: - Dependencies
+
+    private let router: Router
+
+    // MARK: - Private properties
+
+    private var selectedFilterOptionRelay = CurrentValueRelay(ScoreDetails.SortOption.dueDate)
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: ScoresInteractor) {
+    // MARK: - Init
+
+    init(
+        interactor: ScoresInteractor,
+        router: Router
+    ) {
+        self.router = router
+
         weak var weakSelf = self
 
-        interactor.getScores()
-            .sink(receiveCompletion: { _ in
+        selectedFilterOptionRelay
+            .flatMap { sortedBy in
+                interactor.getScores(sortedBy: sortedBy)
+            }
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure:
+                    weakSelf?.viewState = .error
+                }
 
             }, receiveValue: { value in
                 weakSelf?.viewState = .data
                 weakSelf?.scoreDetails = value
             })
             .store(in: &subscriptions)
+    }
+
+    // MARK: - Inputs
+
+    func navigateToCourseDetails(url: URL?, viewController: WeakViewController) {
+        guard let url else { return }
+        router.route(to: url, from: viewController)
     }
 }
