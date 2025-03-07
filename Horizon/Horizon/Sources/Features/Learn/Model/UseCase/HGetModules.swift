@@ -32,7 +32,7 @@ final class HGetModules: APIUseCase {
     }
 
     var request: HGetModulesRequest {
-        .init(courseID: courseID)
+        .init(courseID: courseID, perPage: 100)
     }
 
     init(courseID: String) {

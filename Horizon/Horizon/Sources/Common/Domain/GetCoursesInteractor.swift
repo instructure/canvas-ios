@@ -21,8 +21,8 @@ import CombineSchedulers
 import Core
 
 protocol GetCoursesInteractor {
-    func getCourses() -> AnyPublisher<[HCourse], Never>
-    func getCourse(id: String) -> AnyPublisher<HCourse?, Never>
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
+    func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -44,14 +44,14 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     // MARK: - Functions
 
-    func getCourses() -> AnyPublisher<[HCourse], Never> {
-        fetchCourses()
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
+        fetchCourses(ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
-    func getCourse(id: String) -> AnyPublisher<HCourse?, Never> {
-        fetchCourses(courseId: id)
+    func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
+        fetchCourses(courseId: id, ignoreCache: ignoreCache)
             .map { $0.first }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
@@ -59,9 +59,9 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     // MARK: - Private
 
-    private func fetchCourses(courseId: String? = nil) -> AnyPublisher<[HCourse], Never> {
+    private func fetchCourses(courseId: String? = nil, ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: courseId))
-            .getEntities()
+            .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap {
                 $0.publisher
@@ -79,7 +79,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                         // Should this change in the future, we should update the GraphQL endpoint in GetCourseProgressionUseCase
                         // to return all the module item information required
                         return ReactiveStore(useCase: HGetModules(courseID: courseProgression.courseID))
-                            .getEntities()
+                            .getEntities(ignoreCache: ignoreCache)
                             .replaceError(with: [])
                             .map {
                                 HCourse(

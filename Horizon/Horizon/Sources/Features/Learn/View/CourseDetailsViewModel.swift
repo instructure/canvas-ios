@@ -49,7 +49,7 @@ final class CourseDetailsViewModel {
         self.course = course ?? .init()
         self.onShowTabBar = onShowTabBar
         isLoaderVisible = true
-        getCoursesInteractor.getCourse(id: courseID)
+        getCoursesInteractor.getCourse(id: courseID, ignoreCache: false)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
                 self.course = course

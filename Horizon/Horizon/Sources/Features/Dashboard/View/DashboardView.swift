@@ -37,7 +37,8 @@ struct DashboardView: View {
             config: .init(
                 refreshable: true,
                 loaderBackgroundColor: .huiColors.surface.pagePrimary
-            )
+            ),
+            refreshAction: viewModel.reload
         ) { _ in
             LazyVStack(spacing: .zero) {
                 ForEach(viewModel.nextUpViewModels) { nextUpViewModel in

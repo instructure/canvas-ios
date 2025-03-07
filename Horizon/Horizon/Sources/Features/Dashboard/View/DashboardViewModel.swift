@@ -30,6 +30,7 @@ class DashboardViewModel {
     // MARK: - Private variables
 
     private var subscriptions = Set<AnyCancellable>()
+    private let getCoursesInteractor: GetCoursesInteractor
     private let router: Router
 
     // MARK: - Init
@@ -40,16 +41,26 @@ class DashboardViewModel {
         router: Router
     ) {
         self.router = router
-
-        getCoursesInteractor.getCourses()
-            .sink(receiveValue: onGetCoursesResponse(courses:))
-            .store(in: &subscriptions)
+        self.getCoursesInteractor = getCoursesInteractor
+        getCourses()
 
         getUserInteractor.getUser()
             .map { $0.name }
             .map { "Hi, \($0)" }
             .replaceError(with: "")
             .assign(to: \.title, on: self)
+            .store(in: &subscriptions)
+    }
+
+    private func getCourses(
+        ignoreCache: Bool = false,
+        completion: (() -> Void)? = nil
+    ) {
+        getCoursesInteractor.getCourses(ignoreCache: ignoreCache)
+            .sink { [weak self] courses in
+                self?.onGetCoursesResponse(courses: courses)
+                completion?()
+            }
             .store(in: &subscriptions)
     }
 
@@ -105,7 +116,13 @@ class DashboardViewModel {
     func navigateToCourseDetails(url: URL, viewController: WeakViewController) {
         router.route(to: url, from: viewController)
     }
-
+    
+    func reload(completion: @escaping () -> Void) {
+        getCourses(
+            ignoreCache: true,
+            completion: completion
+        )
+    }
     struct NextUpViewModel: Identifiable {
         let name: String
         let progress: Double

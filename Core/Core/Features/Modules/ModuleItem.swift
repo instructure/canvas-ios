@@ -179,7 +179,7 @@ public class ModuleItem: NSManagedObject {
         model.courseID = courseID
         model.fileAvailability = .init(moduleItem: item)
         model.isQuizLTI = item.quiz_lti ?? false
-        model.estimatedDuration = item.estimated_duration
+        model.estimatedDuration = item.estimated_duration ?? model.estimatedDuration
 
         if updateMasteryPath {
             if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {
