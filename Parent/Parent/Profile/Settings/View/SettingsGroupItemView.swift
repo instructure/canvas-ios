@@ -60,7 +60,15 @@ struct SettingsGroupItemView: View {
     }
 }
 
-#Preview {
-    let viewModel = SettingsGroupItemViewModel(title: "Appearance", valueLabel: "Light", id: .appearance) {_ in }
-    SettingsGroupItemView(viewModel: viewModel)
+#if DEBUG
+
+struct SettingsGroupItemView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+    static let viewModel = SettingsGroupItemViewModel.makePreview(title: "Setting 1", valueLabel: "Enabled")
+
+    static var previews: some View {
+        SettingsGroupItemView(viewModel: viewModel)
+    }
 }
+
+#endif

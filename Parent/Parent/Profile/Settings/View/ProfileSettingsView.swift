@@ -40,3 +40,16 @@ public struct ProfileSettingsView: View {
         .navigationBarTitleView(String(localized: "Settings", bundle: .core))
     }
 }
+
+struct ProfileSettingsView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+    static let viewModel = ProfileSettingsViewModel(
+        inboxSettingsInteractor: InboxSettingsInteractorPreview(),
+        offlineInteractor: OfflineModeInteractorMock(),
+        environment: env
+    )
+
+    static var previews: some View {
+        ProfileSettingsView(viewModel: viewModel)
+    }
+}

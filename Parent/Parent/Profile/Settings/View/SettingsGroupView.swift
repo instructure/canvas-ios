@@ -52,7 +52,23 @@ public struct SettingsGroupView: View {
     }
 }
 
-#Preview {
-    let viewModel = SettingsGroupViewModel(title: "Preferences", itemViews: [])
-    SettingsGroupView(viewModel: viewModel)
+#if DEBUG
+
+struct SettingsGroupView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+
+    static var previews: some View {
+        let viewModel = SettingsGroupViewModel.makePreview(
+            title: "Test Group",
+            itemViewModels: [
+                SettingsGroupItemViewModel.makePreview(title: "Setting 1"),
+                SettingsGroupItemViewModel.makePreview(title: "Setting 2", valueLabel: "Enabled"),
+                SettingsGroupItemViewModel.makePreview(title: "Setting 3", valueLabel: "Disabled", isDisabled: true)
+            ]
+        )
+
+        SettingsGroupView(viewModel: viewModel)
+    }
 }
+
+#endif

@@ -27,3 +27,16 @@ class SettingsGroupViewModel: ObservableObject {
         self.itemViews = itemViews
     }
 }
+
+#if DEBUG
+
+extension SettingsGroupViewModel {
+    static func makePreview(title: String, itemViewModels: [SettingsGroupItemViewModel] = []) -> SettingsGroupViewModel {
+        return SettingsGroupViewModel(
+            title: title,
+            itemViews: itemViewModels.map { SettingsGroupItemView(viewModel: $0) }
+        )
+    }
+}
+
+#endif

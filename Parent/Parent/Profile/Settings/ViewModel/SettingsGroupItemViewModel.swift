@@ -49,3 +49,22 @@ class SettingsGroupItemViewModel: ObservableObject {
         self.onSelect = onSelect
     }
 }
+
+#if DEBUG
+
+extension SettingsGroupItemViewModel {
+    static func makePreview(title: String, valueLabel: String? = nil, isDisabled: Bool = false) -> SettingsGroupItemViewModel {
+        let viewModel = SettingsGroupItemViewModel(
+            title: title,
+            valueLabel: valueLabel,
+            id: .inboxSignature,
+            availableOffline: true,
+            isHidden: false,
+            onSelect: { _ in }
+        )
+        viewModel.disabled = isDisabled
+        return viewModel
+    }
+}
+
+#endif
