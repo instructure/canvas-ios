@@ -186,17 +186,3 @@ extension ModuleItemType {
         }
     }
 }
-
-extension API.CourseNotebookNote {
-    init(from note: RedwoodNote) {
-        self.id = note.id ?? ""
-        self.date = note.createdAt ?? Date()
-        self.courseId = note.courseId
-        self.objectId = note.objectId
-
-        self.content = note.userText
-        self.labels = note.reaction?.compactMap { CourseNoteLabel(rawValue: $0) } ?? []
-
-        self.highlightData = note.highlightData
-    }
-}
