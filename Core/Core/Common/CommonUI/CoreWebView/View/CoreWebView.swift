@@ -73,6 +73,7 @@ open class CoreWebView: WKWebView {
 
     public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration) {
         configuration.applyDefaultSettings()
+        let features = features + [.dynamicFontSize]
         features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
