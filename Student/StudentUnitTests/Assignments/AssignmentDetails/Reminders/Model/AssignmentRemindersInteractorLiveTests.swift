@@ -23,20 +23,32 @@ import XCTest
 
 class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     private var mockNotificationCenter: MockUserNotificationCenter!
-    private let context = AssignmentReminderContext(courseId: "1",
-                                                    assignmentId: "2",
-                                                    userId: "3",
-                                                    assignmentName: "test",
-                                                    dueDate: Date().addDays(2))
+    private var context: AssignmentReminderContext!
+
+    override static func setUp() {
+        super.setUp()
+        Clock.mockNow(DateComponents(calendar: Cal.currentCalendar, year: 2000, month: 1, day: 15).date!)
+    }
+
+    override static func tearDown() {
+        Clock.reset()
+        super.tearDown()
+    }
 
     override func setUp() {
         super.setUp()
         mockNotificationCenter = MockUserNotificationCenter()
+        context = AssignmentReminderContext(
+            courseId: "1",
+            assignmentId: "2",
+            userId: "3",
+            assignmentName: "test",
+            dueDate: Clock.now.addDays(2)
+        )
     }
 
     func testReminderSectionVisibleWhenDueDateInFuture() {
         let testee = AssignmentRemindersInteractorLive(notificationCenter: mockNotificationCenter)
-        Clock.mockNow(Date())
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: .distantPast))
@@ -47,7 +59,6 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now.addSeconds(1)))
         XCTAssertTrue(testee.isRemindersSectionVisible.value)
-        Clock.reset()
     }
 
     // MARK: - Reminder Display
