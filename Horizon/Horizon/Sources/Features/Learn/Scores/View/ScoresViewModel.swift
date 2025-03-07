@@ -63,7 +63,13 @@ final class ScoresViewModel {
             .flatMap { sortedBy in
                 interactor.getScores(sortedBy: sortedBy)
             }
-            .sink(receiveCompletion: { _ in
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure:
+                    weakSelf?.viewState = .error
+                }
 
             }, receiveValue: { value in
                 weakSelf?.viewState = .data
