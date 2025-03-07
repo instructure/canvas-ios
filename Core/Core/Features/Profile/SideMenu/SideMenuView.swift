@@ -35,7 +35,7 @@ public struct SideMenuView: View, ScreenViewTrackable {
                     Divider()
                     SideMenuMainSection(enrollment)
                     Divider()
-                    if !environment.k5.isK5Enabled, enrollment == .observer {
+                    if !environment.k5.isK5Enabled, enrollment != .observer {
                         SideMenuOptionsSection()
                         Divider()
                     }
