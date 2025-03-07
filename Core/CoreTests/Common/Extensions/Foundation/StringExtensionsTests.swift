@@ -88,7 +88,7 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("Canvas1".deletingPrefix("Canvas"), "1")
         XCTAssertEqual("1Canvas1".deletingPrefix("Canvas"), "1Canvas1")
     }
-    
+
     func testLocalizedNumberOfItems() {
         XCTAssertEqual(String.localizedNumberOfItems(1), "1 item")
         XCTAssertEqual(String.localizedNumberOfItems(5), "5 items")

@@ -68,7 +68,7 @@ private extension UIContentSizeCategory {
             .accessibilityLarge,
             .accessibilityExtraLarge,
             .accessibilityExtraExtraLarge,
-            .accessibilityExtraExtraExtraLarge,
+            .accessibilityExtraExtraExtraLarge
         ]
     }
 
