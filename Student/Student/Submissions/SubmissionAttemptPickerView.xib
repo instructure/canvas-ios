@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubmissionAttemptPickerView" customModule="Student" customModuleProvider="target">
+            <connections>
+                <outlet property="divider" destination="3iu-gy-FGz" id="Pak-4T-q5G"/>
+                <outlet property="label" destination="Pqo-H9-5xr" id="2pr-8a-V6u"/>
+                <outlet property="pickerButton" destination="38q-UG-x1g" id="7K8-tF-gAX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kE1-DV-RPP">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iu-gy-FGz" userLabel="Divider" customClass="DividerView" customModule="Student" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="3yF-rN-dBJ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Attempt X" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-H9-5xr" userLabel="Label" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                    <rect key="frame" x="16" y="24" width="65" height="812"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="38q-UG-x1g" userLabel="PickerButton" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                    <rect key="frame" x="97" y="413" width="280" height="34"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="4uS-0F-yM8"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="3iu-gy-FGz" firstAttribute="top" secondItem="kE1-DV-RPP" secondAttribute="top" id="AWU-DX-bvl"/>
+                <constraint firstItem="3iu-gy-FGz" firstAttribute="centerX" secondItem="kE1-DV-RPP" secondAttribute="centerX" id="Q3g-2l-Em9"/>
+                <constraint firstAttribute="bottom" secondItem="Pqo-H9-5xr" secondAttribute="bottom" constant="16" id="Z02-KF-xN4"/>
+                <constraint firstItem="3iu-gy-FGz" firstAttribute="width" secondItem="kE1-DV-RPP" secondAttribute="width" id="bKK-ji-Ugz"/>
+                <constraint firstItem="Pqo-H9-5xr" firstAttribute="top" secondItem="kE1-DV-RPP" secondAttribute="top" constant="24" id="c1v-CB-Qcm"/>
+                <constraint firstItem="38q-UG-x1g" firstAttribute="leading" secondItem="Pqo-H9-5xr" secondAttribute="trailing" constant="16" id="fKP-h4-C1A"/>
+                <constraint firstItem="38q-UG-x1g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kE1-DV-RPP" secondAttribute="top" constant="4" id="kEn-v9-dhG"/>
+                <constraint firstItem="Pqo-H9-5xr" firstAttribute="leading" secondItem="kE1-DV-RPP" secondAttribute="leading" constant="16" id="mtK-ey-pXc"/>
+                <constraint firstAttribute="trailing" secondItem="38q-UG-x1g" secondAttribute="trailing" constant="16" id="oXI-hm-WCo"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="38q-UG-x1g" secondAttribute="bottom" constant="4" id="qYV-Kf-fYy"/>
+                <constraint firstItem="38q-UG-x1g" firstAttribute="centerY" secondItem="Pqo-H9-5xr" secondAttribute="centerY" id="uhD-CG-MWR"/>
+            </constraints>
+            <point key="canvasLocation" x="131" y="-32"/>
+        </view>
+    </objects>
+</document>
