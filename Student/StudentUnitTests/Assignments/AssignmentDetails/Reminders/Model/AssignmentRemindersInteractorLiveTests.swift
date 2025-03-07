@@ -25,18 +25,9 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     private var mockNotificationCenter: MockUserNotificationCenter!
     private var context: AssignmentReminderContext!
 
-    override static func setUp() {
-        super.setUp()
-        Clock.mockNow(DateComponents(calendar: Cal.currentCalendar, year: 2000, month: 1, day: 15).date!)
-    }
-
-    override static func tearDown() {
-        Clock.reset()
-        super.tearDown()
-    }
-
     override func setUp() {
         super.setUp()
+        Clock.mockNow(DateComponents(calendar: Cal.currentCalendar, year: 2100, month: 1, day: 15).date!)
         mockNotificationCenter = MockUserNotificationCenter()
         context = AssignmentReminderContext(
             courseId: "1",
@@ -194,7 +185,6 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         // THEN
         wait(for: [duplicateReminderResultReceived], timeout: 5)
         XCTAssertEqual(notificationCenter.requests.count, 1)
-        print("\(notificationCenter.requests)")
         duplicateReminderSubscription.cancel()
     }
 
