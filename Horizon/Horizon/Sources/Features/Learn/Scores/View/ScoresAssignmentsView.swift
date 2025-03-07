@@ -21,9 +21,8 @@ import SwiftUI
 
 struct ScoresAssignmentsView: View {
     let details: ScoreDetails
+    @Binding var selectedSortOption: String
     let openAssignmentDetails: (URL?) -> Void
-
-    @State private var selectedSortOption = "Due Date"
 
     var body: some View {
         VStack(spacing: .zero) {
@@ -35,7 +34,7 @@ struct ScoresAssignmentsView: View {
 
             HorizonUI.SingleSelect(
                 selection: $selectedSortOption,
-                options: ["Due Date", "Assignment Name"]
+                options: ScoreDetails.SortOption.allCases.map(\.localizedTitle)
             ) {
                 VStack(spacing: .zero) {
                     ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
@@ -136,6 +135,9 @@ struct ScoresAssignmentsView: View {
                     submissions: []
                 )
             ])
-        ]
-    ), openAssignmentDetails: { _ in })
+        ],
+        sortOption: .dueDate
+    ),
+    selectedSortOption: .constant("Due Date"),
+    openAssignmentDetails: { _ in })
 }

@@ -20,7 +20,7 @@ import Combine
 import Core
 
 protocol ScoresInteractor {
-    func getScores() -> AnyPublisher<ScoreDetails, Error>
+    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error>
 }
 
 final class ScoresInteractorLive: ScoresInteractor {
@@ -35,7 +35,7 @@ final class ScoresInteractorLive: ScoresInteractor {
         self.submissionCommentInteractor = submissionCommentInteractor
     }
 
-    func getScores() -> AnyPublisher<ScoreDetails, Error> {
+    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error> {
         Publishers.Zip(
             getAssignmentGroups(courseID: courseID),
             getCourse(courseID: courseID)
@@ -43,7 +43,8 @@ final class ScoresInteractorLive: ScoresInteractor {
         .flatMap { assignmentGroups, course in
             self.getScoreDetails(
                 course: course,
-                assignmentGroups: assignmentGroups
+                assignmentGroups: assignmentGroups,
+                sortBy: sortedBy
             )
         }
         .eraseToAnyPublisher()
@@ -70,7 +71,11 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getScoreDetails(course: ScoresCourse, assignmentGroups: [HAssignmentGroup]) -> AnyPublisher<ScoreDetails, Error> {
+    private func getScoreDetails(
+        course: ScoresCourse,
+        assignmentGroups: [HAssignmentGroup],
+        sortBy: ScoreDetails.SortOption
+    ) -> AnyPublisher<ScoreDetails, Error> {
         unowned let unownedSelf = self
 
         return assignmentGroups
@@ -103,7 +108,8 @@ final class ScoresInteractorLive: ScoresInteractor {
             .map { assignmentGroups -> ScoreDetails in
                 ScoreDetails(
                     score: unownedSelf.calculateFinalScoreAndGradeText(course: course),
-                    assignmentGroups: assignmentGroups
+                    assignmentGroups: assignmentGroups,
+                    sortOption: sortBy
                 )
             }
             .eraseToAnyPublisher()

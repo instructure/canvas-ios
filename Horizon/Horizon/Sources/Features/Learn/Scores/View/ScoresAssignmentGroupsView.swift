@@ -131,7 +131,8 @@ struct ScoresAssignmentGroupsView: View {
                 assignmentGroups: [
                     .init(id: "1", name: "Group 1", groupWeight: 20, assignments: []),
                     .init(id: "2", name: "Group 2", groupWeight: 80, assignments: [])
-                ]
+                ],
+                sortOption: .dueDate
             )
         )
     }

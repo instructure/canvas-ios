@@ -20,7 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct ScoresView: View {
-    let viewModel: ScoresViewModel
+    @Bindable var viewModel: ScoresViewModel
     @Environment(\.viewController) private var viewController
 
     var body: some View {
@@ -32,7 +32,10 @@ struct ScoresView: View {
                 if let details = viewModel.scoreDetails {
                     VStack(spacing: .huiSpaces.space24) {
                         ScoresAssignmentGroupsView(details: details)
-                        ScoresAssignmentsView(details: details) { url in
+                        ScoresAssignmentsView(
+                            details: details,
+                            selectedSortOption: $viewModel.selectedSortOption
+                        ) { url in
                             viewModel.navigateToCourseDetails(url: url, viewController: viewController)
                         }
                     }

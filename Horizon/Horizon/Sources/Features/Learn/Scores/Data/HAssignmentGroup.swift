@@ -51,12 +51,12 @@ struct HAssignmentGroup: Identifiable {
             self.assignments = []
         }
     }
-    
+
     func update(assignments: [HAssignment]) -> HAssignmentGroup {
         HAssignmentGroup(
-            id: self.id,
-            name: self.name,
-            groupWeight: self.groupWeight,
+            id: id,
+            name: name,
+            groupWeight: groupWeight,
             assignments: assignments
         )
     }

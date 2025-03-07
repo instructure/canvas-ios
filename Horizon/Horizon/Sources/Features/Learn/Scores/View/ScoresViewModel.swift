@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 import Core
 import Observation
 
@@ -30,6 +31,12 @@ final class ScoresViewModel {
 
     // MARK: - Outputs
 
+    var selectedSortOption: String = ScoreDetails.SortOption.dueDate.localizedTitle {
+        didSet {
+            selectedFilterOptionRelay.accept(ScoreDetails.SortOption(from: selectedSortOption))
+        }
+    }
+
     private(set) var viewState: ViewState = .loading
     private(set) var scoreDetails: ScoreDetails?
 
@@ -39,6 +46,7 @@ final class ScoresViewModel {
 
     // MARK: - Private properties
 
+    private var selectedFilterOptionRelay = CurrentValueRelay(ScoreDetails.SortOption.dueDate)
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -51,7 +59,10 @@ final class ScoresViewModel {
 
         weak var weakSelf = self
 
-        interactor.getScores()
+        selectedFilterOptionRelay
+            .flatMap { sortedBy in
+                interactor.getScores(sortedBy: sortedBy)
+            }
             .sink(receiveCompletion: { _ in
 
             }, receiveValue: { value in

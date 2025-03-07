@@ -35,7 +35,7 @@ struct HSubmission: Hashable, Equatable {
     let score: Double?
     let showSubmitButton: Bool
     private(set) var numberOfComments: Int?
-    
+
     public var status: HSubmission.Status {
         if late { return .late }
         if missing { return .missing }
@@ -94,22 +94,22 @@ struct HSubmission: Hashable, Equatable {
         self.showSubmitButton = showSubmitButton
         self.numberOfComments = numberOfComments
     }
-    
+
     func update(numberOfComments: Int? = nil) -> HSubmission {
         HSubmission(
-            id: self.id,
-            assignmentID: self.assignmentID,
-            attachments: self.attachments,
-            body: self.body,
-            type: self.type,
-            attempt: self.attempt,
-            submittedAt: self.submittedAt,
-            late: self.late,
-            missing: self.missing,
-            excused: self.excused,
-            grade: self.grade,
-            score: self.score,
-            showSubmitButton: self.showSubmitButton,
+            id: id,
+            assignmentID: assignmentID,
+            attachments: attachments,
+            body: body,
+            type: type,
+            attempt: attempt,
+            submittedAt: submittedAt,
+            late: late,
+            missing: missing,
+            excused: excused,
+            grade: grade,
+            score: score,
+            showSubmitButton: showSubmitButton,
             numberOfComments: numberOfComments
         )
     }

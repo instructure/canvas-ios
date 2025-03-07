@@ -93,6 +93,9 @@
     "Assignment Group Weights" : {
 
     },
+    "Assignment Name" : {
+
+    },
     "Assignment Successfully Submitted!" : {
 
     },
@@ -259,6 +262,9 @@
 
     },
     "Dublin (+01:00/+00:00)" : {
+
+    },
+    "Due Date" : {
 
     },
     "Due Date: %@" : {
