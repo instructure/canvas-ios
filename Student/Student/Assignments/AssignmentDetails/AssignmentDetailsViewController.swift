@@ -197,6 +197,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         dueSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.due"
         fileTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.allowedExtensions"
         submissionTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.submissionTypes"
+        attemptPickerSection?.isAccessibilityElement = true
 
         // Localization
         dueSection?.header.text = String(localized: "Due", bundle: .student)
@@ -472,6 +473,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
     func updateAttemptInfo(attemptNumber: String) {
         attemptLabel?.text = attemptNumber
+        updateAttemptPickerAccessibilty()
     }
 
     func updateAttemptPickerButton(isActive: Bool,
@@ -512,6 +514,27 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         }
 
         attemptDateButton?.configuration = buttonConfig
+
+        updateAttemptPickerAccessibilty()
+    }
+
+    private func updateAttemptPickerAccessibilty() {
+        guard let container = attemptPickerSection,
+              let attempt = attemptLabel?.text,
+              let date = attemptDateButton.title(for: .normal)
+        else { return }
+
+        let format = String(localized: "%1$@, submitted on %2$@", bundle: .student, comment: "Attempt 30, submitted on 2025. Feb 6. at 18:21")
+        container.accessibilityLabel = String.localizedStringWithFormat(format, attempt, date)
+        if attemptDateButton.menu != nil {
+            container.accessibilityTraits = [.button]
+            container.accessibilityValue = String(localized: "Collapsed", bundle: .student)
+            container.accessibilityHint = String(localized: "Double tap to select attempt", bundle: .student)
+        } else {
+            container.accessibilityTraits = [.staticText]
+            container.accessibilityValue = nil
+            container.accessibilityHint = nil
+        }
     }
 
     func centerLockedIconContainerView() {
