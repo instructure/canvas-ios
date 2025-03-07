@@ -160,7 +160,7 @@ public struct APIModuleItem: Codable, Equatable {
     }
 }
 
-enum APIModuleItemType: String, Codable {
+public enum APIModuleItemType: String, Codable {
     case file = "File"
     case page = "Page"
     case discussion = "Discussion"

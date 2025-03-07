@@ -21,6 +21,7 @@ import Combine
 
 @IBDesignable
 open class CoreWebView: WKWebView {
+
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
@@ -176,7 +177,7 @@ open class CoreWebView: WKWebView {
         } }
     }
 
-    func html(for content: String) -> String {
+    open func html(for content: String) -> String {
         // If it looks like jQuery is used, include the same version of jQuery as web.
         let jquery = content.contains("$(") || content.contains("$.")
             ? "<script defer src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>"
@@ -420,7 +421,7 @@ extension CoreWebView: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    public func webView(
+    open func webView(
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {
