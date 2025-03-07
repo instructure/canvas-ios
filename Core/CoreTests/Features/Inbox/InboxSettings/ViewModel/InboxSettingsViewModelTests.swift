@@ -103,6 +103,10 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
+    func refresh() {
+        refreshCalled = true
+    }
+
     func setSettings(inboxSettings: CDInboxSettings) {
         settings.send(inboxSettings)
     }

@@ -27,4 +27,5 @@ public protocol InboxSettingsInteractor {
     var isFeatureEnabled: CurrentValueSubject<Bool, Never> { get }
 
     func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<Void, Error>
+    func refresh()
 }

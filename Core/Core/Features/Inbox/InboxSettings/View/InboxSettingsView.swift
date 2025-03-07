@@ -39,6 +39,14 @@ public struct InboxSettingsView: View {
         }
         .navigationBarTitleView(String(localized: "Inbox Signature", bundle: .core))
         .navigationBarItems(trailing: doneButton)
+        .alert(String(localized: "Failed to load Inbox Settings", bundle: .core), isPresented: $viewModel.showFailedToLoadDialog) {
+            Button("Go back", role: .cancel) { viewModel.didTapBack.accept(controller) }
+            Button("Retry") { viewModel.didTapRefresh.accept(controller) }
+        }
+        .alert(String(localized: "Failed to save Inbox Settings", bundle: .core), isPresented: $viewModel.showFailedToSaveDialog) {
+            Button("Ok", role: .cancel) { }
+            Button("Retry") { viewModel.didTapSave.accept(controller) }
+        }
     }
 
     private var separator: some View {

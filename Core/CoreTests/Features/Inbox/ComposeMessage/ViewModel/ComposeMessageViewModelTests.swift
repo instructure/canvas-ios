@@ -812,6 +812,10 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
             .store(in: &subscriptions)
     }
 
+    func refresh() {
+        
+    }
+
     func updateInboxSettings(inboxSettings: Core.CDInboxSettings) -> AnyPublisher<Void, any Error> {
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
