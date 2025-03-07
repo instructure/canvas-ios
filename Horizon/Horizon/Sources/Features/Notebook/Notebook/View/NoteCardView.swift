@@ -82,6 +82,7 @@ struct NoteCardView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     VStack {
         NoteCardView(
@@ -97,3 +98,4 @@ struct NoteCardView: View {
         )
     }
 }
+#endif

@@ -192,6 +192,7 @@ struct NotebookNoteView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NotebookNoteView(
         viewModel: .init(
@@ -199,3 +200,4 @@ struct NotebookNoteView: View {
         )
     )
 }
+#endif

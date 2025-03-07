@@ -134,9 +134,11 @@ struct NotebookView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NotebookView(
         viewModel: .init(
             getCourseNotesInteractor: GetCourseNotesInteractorPreview()
         ))
 }
+#endif
