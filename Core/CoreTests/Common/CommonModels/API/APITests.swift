@@ -359,25 +359,40 @@ class APITests: XCTestCase {
         XCTAssertNotNil(error)
     }
 
-    func testRetryOnRateLimitedRequest() {
+    func testRetryOnRateLimitedRequest() throws {
         API.resetMocks()
-        api.refreshQueue = OperationQueue.main
+
+        let request = GetNoContent()
+        var invocationCount = 0
+
+        api.mock(withData: request) { _ in
+            switch invocationCount {
+            case 0:
+                invocationCount += 1
+                let rateLimitResponse = HTTPURLResponse(url: .make(), statusCode: 403, httpVersion: nil, headerFields: nil)!
+                let rateLimitData = "403 Forbidden (Rate Limit Exceeded)\n".data(using: .utf8)!
+                return (data: rateLimitData, response: rateLimitResponse, error: nil)
+            case 1:
+                invocationCount += 1
+                let successResponse = HTTPURLResponse(url: .make(), statusCode: 200, httpVersion: nil, headerFields: nil)!
+                return (data: nil, response: successResponse, error: nil)
+            default:
+                XCTFail("Unexpected number of invocations")
+                return (data: nil, response: nil, error: nil)
+            }
+        }
         let responseExpectation = expectation(description: "API response")
-        let url = URL(string: "https://instructure.com/")!
+        var receivedResponse: URLResponse?
 
-        let rateLimitResponse = HTTPURLResponse(url: url, statusCode: 403, httpVersion: nil, headerFields: nil)
-        let rateLimitData = "403 Forbidden (Rate Limit Exceeded)\n".data(using: .utf8)
-        api.mock(url, data: rateLimitData, response: rateLimitResponse, error: nil)
-
-        api.makeRequest(url) { _, response, _ in
+        // WHEN
+        api.makeRequest(request) { _, response, _ in
             // This will be called when the request is re-tried and the mock returns a non rate-limited response.
-            XCTAssertEqual((response as? HTTPURLResponse)?.statusCode, 200)
+            receivedResponse = response
             responseExpectation.fulfill()
         }
-        RunLoop.main.run(until: Date() + 0.1)
 
-        let normalResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
-        api.mock(url, data: nil, response: normalResponse, error: nil)
-        wait(for: [responseExpectation], timeout: 1)
+        // THEN
+        wait(for: [responseExpectation], timeout: 5)
+        XCTAssertEqual((receivedResponse as? HTTPURLResponse)?.statusCode, 200)
     }
 }

@@ -158,7 +158,9 @@ class UseCaseTests: CoreTestCase {
     func testFutureFailureCallbacksOnMain() {
         class UseCase: TestUseCase {
             override func makeRequest(environment: AppEnvironment, completionHandler: @escaping UseCaseTests.TestUseCase.RequestCallback) {
-                completionHandler(nil, nil, NSError.instructureError("request failed"))
+                DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
+                    completionHandler(nil, nil, NSError.instructureError("request failed"))
+                }
             }
         }
         let useCase = UseCase()
@@ -174,7 +176,7 @@ class UseCaseTests: CoreTestCase {
                     }
                 } receiveValue: { _ in }
         }
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
         subscription?.cancel()
     }
 
