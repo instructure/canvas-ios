@@ -31,6 +31,7 @@ final class CourseListViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
+    private let interactor: GetCoursesInteractor
 
     // MARK: - Init
 
@@ -39,10 +40,25 @@ final class CourseListViewModel: ObservableObject {
         interactor: GetCoursesInteractor
     ) {
         self.router = router
+        self.interactor = interactor
+        getCourses(ignoreCache: false)
+    }
 
+    func routeToCourse(course: CourseListCourse, vc: WeakViewController) {
+        router.route(to: "/courses/\(course.id)", from: vc)
+    }
+
+    func reload(completion: @escaping () -> Void) {
+        getCourses(
+            ignoreCache: true,
+            completion: completion
+        )
+    }
+
+    private func getCourses(ignoreCache: Bool, completion: (() -> Void)? = nil) {
         unowned let unownedSelf = self
 
-        interactor.getCourses()
+        interactor.getCourses(ignoreCache: ignoreCache)
             .sink { hCourses in
                 unownedSelf.courses = hCourses.map {
                     CourseListCourse(
@@ -54,13 +70,10 @@ final class CourseListViewModel: ObservableObject {
                         progressState: $0.progress.progressState
                     )
                 }
+                completion?()
                 unownedSelf.state = .data
             }
             .store(in: &subscriptions)
-    }
-
-    func routeToCourse(course: CourseListCourse, vc: WeakViewController) {
-        router.route(to: "/courses/\(course.id)", from: vc)
     }
 
     struct CourseListCourse: Identifiable {

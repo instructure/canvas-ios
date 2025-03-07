@@ -30,6 +30,7 @@ class DashboardViewModel {
     // MARK: - Private variables
 
     private var subscriptions = Set<AnyCancellable>()
+    private let getCoursesInteractor: GetCoursesInteractor
     private let router: Router
 
     // MARK: - Init
@@ -40,16 +41,26 @@ class DashboardViewModel {
         router: Router
     ) {
         self.router = router
-
-        getCoursesInteractor.getCourses()
-            .sink(receiveValue: onGetCoursesResponse(courses:))
-            .store(in: &subscriptions)
+        self.getCoursesInteractor = getCoursesInteractor
+        getCourses()
 
         getUserInteractor.getUser()
             .map { $0.name }
             .map { "Hi, \($0)" }
             .replaceError(with: "")
             .assign(to: \.title, on: self)
+            .store(in: &subscriptions)
+    }
+
+    private func getCourses(
+        ignoreCache: Bool = false,
+        completion: (() -> Void)? = nil
+    ) {
+        getCoursesInteractor.getCourses(ignoreCache: ignoreCache)
+            .sink { [weak self] courses in
+                self?.onGetCoursesResponse(courses: courses)
+                completion?()
+            }
             .store(in: &subscriptions)
     }
 
@@ -67,18 +78,26 @@ class DashboardViewModel {
             learningObjectCardViewModel: course
                 .incompleteModules
                 .first
-                .flatMap(toLearningObjectCardViewModel)
+                .map { toLearningObjectCardViewModel($0, course: course) }
         )
     }
 
-    private func toLearningObjectCardViewModel(_ module: HModule) -> LearningObjectCardViewModel {
+    private func toLearningObjectCardViewModel(
+        _ module: HModule,
+        course: HCourse
+    ) -> LearningObjectCardViewModel {
         let firstModuleItem = module.items.first
+        /// Get the estimated time and type because they are not available in incompleteModules, which is retrieved from GraphQL.
+        let moduleItems = course.modules.first(where: { $0.id == firstModuleItem?.moduleID })?.items
+        let item = moduleItems?.first(where: { $0.id == firstModuleItem?.id })
+
         return LearningObjectCardViewModel(
             moduleTitle: module.name,
             learningObjectName: firstModuleItem?.title ?? "",
-            type: firstModuleItem?.type?.label,
+            type: item?.type?.label,
             dueDate: firstModuleItem?.dueAt?.relativeShortDateOnlyString,
-            url: firstModuleItem?.htmlURL
+            url: firstModuleItem?.htmlURL,
+            estimatedTime: item?.estimatedDurationFormatted
         )
     }
 
@@ -98,6 +117,13 @@ class DashboardViewModel {
         router.route(to: url, from: viewController)
     }
 
+    func reload(completion: @escaping () -> Void) {
+        getCourses(
+            ignoreCache: true,
+            completion: completion
+        )
+    }
+
     struct NextUpViewModel: Identifiable {
         let name: String
         let progress: Double
@@ -112,5 +138,6 @@ class DashboardViewModel {
         let type: String?
         let dueDate: String?
         let url: URL?
+        let estimatedTime: String?
     }
 }
