@@ -31,10 +31,11 @@ struct CourseProgressView: View {
         ScrollView {
             VStack(spacing: .huiSpaces.space16) {
                 headerView
-                ModuleItemListView(selectedModuleItem: viewModel.currentModuleItem, items: viewModel.moduleItems) { selectedItem in
-                    viewModel.currentModuleItem = selectedItem
-                    viewModel.dimiss(controller: viewController)
-                }
+                ModuleItemListView(
+                    selectedModuleItem: viewModel.currentModuleItem,
+                    items: viewModel.moduleItems,
+                    onSelectItem: onSelectItem
+                )
                 .animation(.smooth, value: viewModel.currentModuleItem)
             }
         }
@@ -87,6 +88,13 @@ struct CourseProgressView: View {
             previousButton: previousButton,
             visibleButtons: []
         )
+    }
+
+    private func onSelectItem(_ moduleItem: HModuleItem) {
+        viewModel.currentModuleItem = moduleItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            viewModel.dimiss(controller: viewController)
+        }
     }
 }
 
