@@ -41,6 +41,8 @@ public struct ProfileSettingsView: View {
     }
 }
 
+#if DEBUG
+
 struct ProfileSettingsView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
     static let viewModel = ProfileSettingsViewModel(
@@ -53,3 +55,5 @@ struct ProfileSettingsView_Previews: PreviewProvider {
         ProfileSettingsView(viewModel: viewModel)
     }
 }
+
+#endif
