@@ -72,7 +72,7 @@ extension API.CourseNotebookNote {
         nextCursor: String? = nil,
         previousCursor: String? = nil
     ) -> API.CourseNotebookNote {
-        CourseNotebookNote(
+        API.CourseNotebookNote(
             id: self.id,
             date: date ?? self.date,
             courseId: courseId ?? self.courseId,
