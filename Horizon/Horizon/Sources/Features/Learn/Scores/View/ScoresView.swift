@@ -59,3 +59,7 @@ struct ScoresView: View {
         .containerRelativeFrame(.vertical)
     }
 }
+
+#Preview {
+    ScoresAssembly.makePreview()
+}

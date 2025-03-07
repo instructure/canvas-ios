@@ -29,4 +29,13 @@ enum ScoresAssembly {
             )
         )
     }
+
+    static func makePreview() -> ScoresView {
+        ScoresView(
+            viewModel: ScoresViewModel(
+                interactor: ScoresInteractorPreview(),
+                router: AppEnvironment.shared.router
+            )
+        )
+    }
 }
