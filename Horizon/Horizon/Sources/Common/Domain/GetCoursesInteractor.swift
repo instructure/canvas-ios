@@ -72,7 +72,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                         let name = courseProgression.course.name ?? ""
                         let overviewDescription = courseProgression.course.syllabusBody
                         let progress = courseProgression.completionPercentage
-                        let incompleteModules: [HModule] = courseProgression.incompleteModules.map { .init($0) }
+                        let incompleteModules: [HModule] = courseProgression.incompleteModules.map { .init(from: $0) }
 
                         if courseId == nil {
                             return Just(
@@ -103,7 +103,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                                     name: name,
                                     overviewDescription: overviewDescription,
                                     progress: progress,
-                                    modules: $0.map { HModule($0) },
+                                    modules: $0.map { HModule(from: $0) },
                                     incompleteModules: incompleteModules
                                 )
                             }
@@ -112,21 +112,5 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                     .collect()
             }
             .eraseToAnyPublisher()
-    }
-}
-
-extension HModule {
-    init(_ entity: Module) {
-        self.id = entity.id
-        self.name = entity.name
-        self.courseID = entity.courseID
-        self.items = entity.items.map { HModuleItem(from: $0) }
-        self.contentItems = items.filter { $0.type?.isContentItem == true }
-        self.moduleStatus = .init(
-            items: contentItems,
-            state: entity.state,
-            lockMessage: entity.lockedMessage,
-            countOfPrerequisite: entity.prerequisiteModuleIDs.count
-        )
     }
 }

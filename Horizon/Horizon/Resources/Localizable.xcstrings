@@ -90,6 +90,9 @@
     "Assignment Successfully Submitted!" : {
 
     },
+    "Assignment Group Weights" : {
+
+    },
     "Astana (+05:00/+05:00)" : {
 
     },
@@ -288,6 +291,12 @@
     "External Tool" : {
 
     },
+    "Error loading scores." : {
+
+    },
+    "External Tool" : {
+
+    },
     "Fiji (+12:00/+12:00)" : {
 
     },
@@ -319,9 +328,6 @@
 
     },
     "Give me key takeaways" : {
-
-    },
-    "Grades" : {
 
     },
     "Greenland (-02:00/-01:00)" : {
@@ -499,6 +505,9 @@
 
     },
     "My Progress" : {
+
+    },
+    "N/A" : {
 
     },
     "Nairobi (+03:00)" : {
@@ -777,6 +786,12 @@
     "Tools" : {
 
     },
+    "Total Weight: %@" : {
+
+    },
+    "Total: %@" : {
+
+    },
     "Try Again" : {
 
     },
@@ -817,6 +832,9 @@
 
     },
     "We received your submission. You will be notified once it's been reviewed." : {
+
+    },
+    "Weight: %@" : {
 
     },
     "Wellington (+12:00/+13:00)" : {
