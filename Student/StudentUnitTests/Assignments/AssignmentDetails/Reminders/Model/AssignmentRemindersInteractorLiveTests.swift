@@ -157,18 +157,17 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         let testee = AssignmentRemindersInteractorLive(notificationCenter: notificationCenter)
         testee.contextDidUpdate.send(context)
 
-        XCTContext.runActivity(named: "Setup first reminder 1 day before event") { _ in
-            let oneDayReminderSetupCompleted = expectation(description: "oneDayReminderSetupCompleted")
-            let oneDayReminderSubscription = testee
-                .newReminderCreationResult
-                .sink {
-                    oneDayReminderSetupCompleted.fulfill()
-                    XCTAssertEqual($0.isSuccess, true)
-                }
-            testee.newReminderDidSelect.send(DateComponents(day: 1))
-            wait(for: [oneDayReminderSetupCompleted], timeout: 5)
-            oneDayReminderSubscription.cancel()
-        }
+        // Setup first reminder 1 day before event
+        let oneDayReminderSetupCompleted = expectation(description: "oneDayReminderSetupCompleted")
+        let oneDayReminderSubscription = testee
+            .newReminderCreationResult
+            .sink {
+                oneDayReminderSetupCompleted.fulfill()
+                XCTAssertEqual($0.isSuccess, true)
+            }
+        testee.newReminderDidSelect.send(DateComponents(day: 1))
+        wait(for: [oneDayReminderSetupCompleted], timeout: 5)
+        oneDayReminderSubscription.cancel()
 
         let duplicateReminderResultReceived = expectation(description: "New reminder result received")
         let duplicateReminderSubscription = testee
@@ -184,6 +183,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         // THEN
         wait(for: [duplicateReminderResultReceived], timeout: 5)
         XCTAssertEqual(notificationCenter.requests.count, 1)
+        print("\(notificationCenter.requests)")
         duplicateReminderSubscription.cancel()
     }
 
