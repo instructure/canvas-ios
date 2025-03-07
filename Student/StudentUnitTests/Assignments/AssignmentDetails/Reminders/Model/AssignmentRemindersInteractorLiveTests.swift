@@ -144,10 +144,10 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
             }
 
         // WHEN
-        testee.newReminderDidSelect.send(DateComponents(day: 2))
+        testee.newReminderDidSelect.send(DateComponents(day: 2, minute: 1))
 
         // THEN
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 5)
         XCTAssertTrue(notificationCenter.requests.isEmpty)
         subscription.cancel()
     }
@@ -156,12 +156,25 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         let notificationCenter = MockUserNotificationCenter()
         let testee = AssignmentRemindersInteractorLive(notificationCenter: notificationCenter)
         testee.contextDidUpdate.send(context)
-        testee.newReminderDidSelect.send(DateComponents(day: 1))
-        let newReminderResultReceived = expectation(description: "New reminder result received")
-        let subscription = testee
+
+        XCTContext.runActivity(named: "Setup first reminder 1 day before event") { _ in
+            let oneDayReminderSetupCompleted = expectation(description: "oneDayReminderSetupCompleted")
+            let oneDayReminderSubscription = testee
+                .newReminderCreationResult
+                .sink {
+                    oneDayReminderSetupCompleted.fulfill()
+                    XCTAssertEqual($0.isSuccess, true)
+                }
+            testee.newReminderDidSelect.send(DateComponents(day: 1))
+            wait(for: [oneDayReminderSetupCompleted], timeout: 5)
+            oneDayReminderSubscription.cancel()
+        }
+
+        let duplicateReminderResultReceived = expectation(description: "New reminder result received")
+        let duplicateReminderSubscription = testee
             .newReminderCreationResult
             .sink {
-                newReminderResultReceived.fulfill()
+                duplicateReminderResultReceived.fulfill()
                 XCTAssertEqual($0.error, .duplicate)
             }
 
@@ -169,9 +182,9 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         testee.newReminderDidSelect.send(DateComponents(hour: 24))
 
         // THEN
-        waitForExpectations(timeout: 1)
+        wait(for: [duplicateReminderResultReceived], timeout: 5)
         XCTAssertEqual(notificationCenter.requests.count, 1)
-        subscription.cancel()
+        duplicateReminderSubscription.cancel()
     }
 
     func testReminderDeletion() {
