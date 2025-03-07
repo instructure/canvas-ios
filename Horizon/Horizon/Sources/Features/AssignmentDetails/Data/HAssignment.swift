@@ -40,6 +40,8 @@ struct HAssignment {
     var externalToolContentID: String?
     var isQuizLTI: Bool?
 
+    let submissions: [HSubmission]
+
     init(
         id: String,
         name: String,
@@ -51,7 +53,8 @@ struct HAssignment {
         courseID: String,
         courseName: String,
         workflowState: SubmissionWorkflowState?,
-        submittedAt: Date?
+        submittedAt: Date?,
+        submissions: [HSubmission]
     ) {
         self.id = id
         self.name = name
@@ -64,6 +67,7 @@ struct HAssignment {
         self.courseName = courseName
         self.workflowState = workflowState
         self.submittedAt = submittedAt
+        self.submissions = submissions
     }
 
     init(from assignment: Assignment) {
@@ -78,10 +82,16 @@ struct HAssignment {
         self.submittedAt = assignment.submission?.submittedAt
         self.courseID = assignment.id
         self.courseName = assignment.course?.name ?? ""
-        self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
+        self.showSubmitButton = false
         self.allowedExtensions = assignment.allowedExtensions
         self.externalToolContentID = assignment.externalToolContentID
         self.isQuizLTI = assignment.isQuizLTI
+        if let submissions = assignment.submissions {
+            self.submissions = Array(submissions).map { HSubmission(entity: $0) }
+        } else {
+            self.submissions = []
+        }
+        self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
     }
 
     var isUnsubmitted: Bool {
@@ -130,7 +140,8 @@ extension HAssignment {
             courseID: "1",
             courseName: "Design Thinking Workshop",
             workflowState: .unsubmitted,
-            submittedAt: Date()
+            submittedAt: Date(),
+            submissions: []
         )
     }
 }

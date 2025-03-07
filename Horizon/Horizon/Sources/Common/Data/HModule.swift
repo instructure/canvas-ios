@@ -26,6 +26,10 @@ struct HModule: Identifiable {
     let moduleStatus: HModuleStatus
     var contentItems: [HModuleItem]
 
+    var dueItemsCount: Int {
+        items.filter { $0.isOverDue }.count
+    }
+
     init(
         id: String,
         name: String,
@@ -48,7 +52,17 @@ struct HModule: Identifiable {
         )
     }
 
-    var dueItemsCount: Int {
-        items.filter { $0.isOverDue }.count
+    init(from entity: Module) {
+        self.id = entity.id
+        self.name = entity.name
+        self.courseID = entity.courseID
+        self.items = entity.items.map { HModuleItem(from: $0) }
+        self.contentItems = items.filter { $0.type?.isContentItem == true }
+        self.moduleStatus = .init(
+            items: contentItems,
+            state: entity.state,
+            lockMessage: entity.lockedMessage,
+            countOfPrerequisite: entity.prerequisiteModuleIDs.count
+        )
     }
 }
