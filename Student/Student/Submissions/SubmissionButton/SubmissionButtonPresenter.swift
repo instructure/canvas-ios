@@ -194,11 +194,12 @@ class SubmissionButtonPresenter: NSObject {
                                                                  userID: userID,
                                                                  annotatableAttachmentID: assignment.annotatableAttachmentID,
                                                                  assignmentName: assignment.name,
-                                                                 courseColor: course.color)
+                                                                 courseColor: course.color,
+                                                                 environment: env)
             let submissionView = StudentAnnotationSubmissionView(viewModel: viewModel)
 
             performUIUpdate {
-                let hostingView = CoreHostingController(submissionView)
+                let hostingView = CoreHostingController(submissionView, env: self.env)
                 self.env.router.show(hostingView, from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: false))
             }
         }
