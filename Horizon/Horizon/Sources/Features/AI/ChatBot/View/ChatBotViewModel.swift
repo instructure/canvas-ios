@@ -27,6 +27,7 @@ final class ChatBotViewModel {
 
     // MARK: - Output
 
+    private(set) var chipOptions: [String]?
     private(set) var state: InstUI.ScreenState = .data
     private(set) var messages: [ChatBotMessageModel] = [
         .init(content: "Please give me a prompt", isMine: false)
@@ -63,9 +64,13 @@ final class ChatBotViewModel {
             },
             receiveValue: { [weak self] response in
                 guard let self = self else { return }
-                let message = response.chatHistory.map { $0.text }.last ?? ""
-                let messageModel = ChatBotMessageModel(content: message, isMine: false)
-                self.messages = self.messages.dropLast() + [messageModel]
+                let chipOptions = response.chipOptions?.map {
+                    ChatBotMessageModel(content: $0, isMine: false)
+                } ?? []
+                let history = response.chatHistory.map {
+                    ChatBotMessageModel(content: $0.text, isMine: $0.isBot == false)
+                }
+                self.messages = history + chipOptions
             }
         )
         .store(in: &subscriptions)
@@ -76,16 +81,8 @@ final class ChatBotViewModel {
     }
 
     func sendMessage() {
-        let newChatBotMessageModel = ChatBotMessageModel(content: message, isMine: true)
-        let newChatBotMessage = newChatBotMessageModel.toChatBotMessage()
-
-        messages.append(.init(content: message, isMine: true))
-
+        chatbotInteractor.context = .chat(prompt: message)
         message = ""
-        let loaderMessage = ChatBotMessageModel(isMine: false, isLoading: true)
-        messages.append(loaderMessage)
-
-        chatbotInteractor.context = .chat(history: [])
     }
 }
 

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 import Core
 
@@ -48,18 +49,21 @@ struct ChatBotView: View {
 
     private var topHeader: some View {
         ZStack(alignment: .trailingLastTextBaseline) {
-            Text("AI Learning Assist")
-                .foregroundStyle(Color.textLightest)
-                .frame(maxWidth: .infinity)
-                .font(.bold20)
+            HStack {
+                HorizonUI.icons.ai
+                Text("Assist")
+                    .font(.bold20)
+            }
+            .foregroundStyle(Color.textLightest)
+            .frame(maxWidth: .infinity)
 
             Button {
                 viewModel.dismiss(controller: viewController)
             } label: {
                 Image(systemName: "xmark")
-                    .foregroundColor(.textLightest)
+                    .foregroundColor(Color.huiColors.icon.default)
                     .padding()
-                    .background(Color.backgroundLightest.opacity(0.2))
+                    .background(Color.huiColors.surface.pageSecondary)
                     .clipShape(.circle)
             }
         }
@@ -82,25 +86,39 @@ struct ChatBotView: View {
     }
 
     private var sendMessageView: some View {
-        HStack {
-            TextEditor(text: $viewModel.message)
-                .frame(minHeight: 50)
-                .frame(maxHeight: 100)
-                .fixedSize(horizontal: false, vertical: true)
-                .focused($isFocused)
-                .clipShape(.rect(cornerRadius: 8))
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
 
-            Button {
-                viewModel.sendMessage()
-            } label: {
-                Image(systemName: "arrow.up")
-                    .foregroundStyle(viewModel.isDisableSendButton ? Color.textLight : Color.backgroundSuccess)
-                    .padding()
-                    .background(Color.backgroundLightest)
-                    .opacity(viewModel.isDisableSendButton ? 0.3 : 1)
-                    .clipShape(Circle())
+            Text(String(localized: "Enter a Prompt", bundle: .horizon))
+                .huiTypography(.labelLargeBold)
+                .foregroundStyle(Color.huiColors.text.surfaceColored)
+
+            HStack {
+                TextEditor(text: $viewModel.message)
+                    .frame(minHeight: 44)
+                    .frame(maxHeight: 100)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .focused($isFocused)
+                    .cornerRadius(HorizonUI.CornerRadius.level1.attributes.radius)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1.attributes.radius)
+                            .stroke(Color.huiColors.surface.overlayWhite, lineWidth: 1)
+                    )
+                    .foregroundColor(Color.huiColors.text.surfaceColored)
+                    .scrollContentBackground(.hidden)
+                    .background(.clear)
+
+                Button {
+                    viewModel.sendMessage()
+                } label: {
+                    Image(systemName: "arrow.up")
+                        .foregroundStyle(viewModel.isDisableSendButton ? Color.textLight : Color.backgroundSuccess)
+                        .padding()
+                        .background(Color.backgroundLightest)
+                        .opacity(viewModel.isDisableSendButton ? 0.3 : 1)
+                        .clipShape(Circle())
+                }
+                .disabled(viewModel.isDisableSendButton)
             }
-            .disabled(viewModel.isDisableSendButton)
         }
     }
 }

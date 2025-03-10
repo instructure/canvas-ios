@@ -24,8 +24,8 @@ struct HorizonGradientModifier: ViewModifier {
             .background(
                 LinearGradient(
                     gradient: Gradient(colors: [
-                        Color(red: 2/255, green: 103/255, blue: 45/255),
-                        Color(red: 9/255, green: 80/255, blue: 140/255)
+                        Color(red: 34/255, green: 79/255, blue: 138/255),
+                        Color(red: 124/255, green: 34/255, blue: 58/255)
                     ]),
                     startPoint: .top,
                     endPoint: .bottom

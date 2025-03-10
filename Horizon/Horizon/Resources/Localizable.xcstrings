@@ -51,9 +51,6 @@
     "AI Assist" : {
 
     },
-    "AI Learning Assist" : {
-
-    },
     "AI Summary" : {
 
     },
@@ -90,10 +87,13 @@
     "Assignment due dates" : {
 
     },
+    "Assignment Group Weights" : {
+
+    },
     "Assignment Successfully Submitted!" : {
 
     },
-    "Assignment Group Weights" : {
+    "Assist" : {
 
     },
     "Astana (+05:00/+05:00)" : {
@@ -285,13 +285,13 @@
     "Enable iOS Notifications" : {
 
     },
+    "Enter a Prompt" : {
+
+    },
     "Error" : {
 
     },
     "Error loading comments." : {
-
-    },
-    "External Tool" : {
 
     },
     "Error loading scores." : {
@@ -370,6 +370,9 @@
 
     },
     "hours" : {
+
+    },
+    "How can I help today?" : {
 
     },
     "How was this question?" : {

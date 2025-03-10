@@ -21,7 +21,7 @@ import CombineExt
 import Core
 import Foundation
 
-enum ChipOption {
+enum ChipOption: CaseIterable {
     case summarize
     case keyTakeaways
     case tellMeMore
@@ -109,15 +109,31 @@ struct ChatMessage {
 }
 
 struct ChatBotResponse {
-    let chipOptions: [ChipOption]?
+    let chipOptions: [String]?
     let chatHistory: [ChatMessage]
     let flashCards: [FlashCard.FlashCard]?
     let quizItems: [QuizItem]?
 
-    init(chipOptions: [ChipOption] = [], chatHistory: [ChatMessage] = []) {
+    init(chipOptions: [String]) {
         self.chipOptions = chipOptions
-        self.chatHistory = chatHistory
 
+        self.chatHistory = []
+        self.flashCards = nil
+        self.quizItems = nil
+    }
+
+    init(userResponse: String, chatHistory: [ChatMessage] = []) {
+        self.chatHistory = chatHistory + [ChatMessage(text: userResponse, isBot: false)]
+        
+        self.chipOptions = nil
+        self.flashCards = nil
+        self.quizItems = nil
+    }
+
+    init(botResponse: String, chatHistory: [ChatMessage] = []) {
+        self.chatHistory = chatHistory + [ChatMessage(text: botResponse, isBot: true)]
+
+        self.chipOptions = nil
         self.flashCards = nil
         self.quizItems = nil
     }
@@ -194,16 +210,22 @@ class ChatBotInteractorLive: ChatBotInteractor {
     // MARK: - Private
 
     private func basicChat(prompt: String, history: [ChatMessage] = []) -> AnyPublisher<ChatBotResponse, Error> {
-        JWTTokenRequest(.cedar).api(from: canvasApi)
+        let userMessage = ChatBotResponse(userResponse: prompt, chatHistory: history)
+        return Just(userMessage)
+            .flatMap { _ in
+                JWTTokenRequest(.cedar).api(from: self.canvasApi)
+            }
+            .compactMap { $0 }
             .flatMap { cedarApi in
                 cedarApi.makeRequest(
                     CedarAnswerPromptMutation(prompt: prompt)
                 )
             }
             .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
-            .compactMap { answer in
+            .compactMap { response in
                 ChatBotResponse(
-                    chatHistory: history + [ChatMessage(text: answer, isBot: true)]
+                    botResponse: response,
+                    chatHistory: userMessage.chatHistory
                 )
             }
             .eraseToAnyPublisher()
@@ -283,16 +305,27 @@ class ChatBotInteractorLive: ChatBotInteractor {
 
     private func handleContextUpdate(userShortName: String, context: AIContext) -> AnyPublisher<ChatBotResponse, Error> {
         switch context {
-        case .chat(let prompt, let history),
-             .page(let prompt, _, _, let history):
-            return classifierPrompt(prompt: prompt, userShortName: userShortName, context: context, history: history)
+        case .chat(let prompt, let history) where !prompt.isEmpty,
+             .page(let prompt, _, _, let history) where !prompt.isEmpty:
+            return classifierPrompt(
+                prompt: prompt,
+                userShortName: userShortName,
+                context: context,
+                history: history
+            )
         case .chipFile(let chipOption, _, let history),
              .chipPage(let chipOption, _, _, let history):
             return basicChat(prompt: chipOption.prompt(userShortName: userShortName, context: context), history: history)
         default:
-            return Just(ChatBotResponse())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            let chipOptions = context.chipOptions().map {
+                $0.prompt(userShortName: userShortName, context: context)
+            }
+            let chatBotResponse = chipOptions.isEmpty ?
+                ChatBotResponse(botResponse: String(localized: "How can I help today?", bundle: .horizon)) :
+                ChatBotResponse(chipOptions: chipOptions)
+            return Just(chatBotResponse)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
         }
     }
 
@@ -306,7 +339,8 @@ class ChatBotInteractorLive: ChatBotInteractor {
                 .compactMap { documentResponse in
                     documentResponse.map {
                         ChatBotResponse(
-                            chatHistory: [ChatMessage(text: $0.response, isBot: true)] + history
+                            botResponse: $0.response,
+                            chatHistory: history
                         )
                     }
                 }
