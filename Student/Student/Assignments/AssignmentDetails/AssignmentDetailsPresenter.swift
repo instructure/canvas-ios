@@ -31,6 +31,8 @@ enum OnlineUploadState {
 }
 
 protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
+    var accessibilityFocusAfterAttemptSelection: UIView? { get }
+
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
     func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?)
     func showSubmitAssignmentButton(title: String?)
@@ -223,6 +225,8 @@ class AssignmentDetailsPresenter {
                 let attemptNumber = String.localizedAttemptNumber(submission.attempt)
                 return UIAction(title: date, subtitle: attemptNumber) { [weak self] _ in
                     self?.selectedSubmission = submission
+                    let a11yFocusTarget = self?.view?.accessibilityFocusAfterAttemptSelection
+                    UIAccessibility.post(notification: .screenChanged, argument: a11yFocusTarget)
                 }
             }
         }()

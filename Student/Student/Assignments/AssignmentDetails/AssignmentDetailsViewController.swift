@@ -140,6 +140,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
 
+    var accessibilityFocusAfterAttemptSelection: UIView? {
+        attemptPicker
+    }
+
     private var env: AppEnvironment = .defaultValue
     private let webView = CoreWebView()
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight

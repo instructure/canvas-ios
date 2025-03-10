@@ -128,6 +128,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
                 let isSelected = submission.attempt == currentSubmission.attempt
                 return UIAction(title: date, subtitle: attemptNumber, state: isSelected ? .on : .off) { [weak self] _ in
                     self?.presenter?.select(attempt: submission.attempt)
+                    UIAccessibility.post(notification: .screenChanged, argument: self?.attemptPicker)
                 }
             }
         }()
