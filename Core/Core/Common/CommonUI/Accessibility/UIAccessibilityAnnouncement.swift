@@ -132,6 +132,7 @@ public extension UIAccessibility {
 
         return Publishers
             .Merge(readoutPublisher, delayPublisher)
+            .first()
             .eraseToAnyPublisher()
     }
 }
