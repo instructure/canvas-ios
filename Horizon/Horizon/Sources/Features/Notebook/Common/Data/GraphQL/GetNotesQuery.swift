@@ -175,7 +175,7 @@ public struct RedwoodFetchNotesQueryResponse: Codable {
 }
 
 extension RedwoodFetchNotesQueryResponse {
-    var courseNotebookNotes: [API.CourseNotebookNote] {
+    var courseNotebookNotes: [CourseNotebookNote] {
         data.notes.edges.compactMap { edge in
             .init(
                 from: edge,

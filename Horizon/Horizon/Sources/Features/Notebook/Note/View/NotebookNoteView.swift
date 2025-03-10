@@ -196,7 +196,7 @@ struct NotebookNoteView: View {
 #Preview {
     NotebookNoteView(
         viewModel: .init(
-            courseNotebookNote: API.CourseNotebookNote.example
+            courseNotebookNote: CourseNotebookNote.example
         )
     )
 }

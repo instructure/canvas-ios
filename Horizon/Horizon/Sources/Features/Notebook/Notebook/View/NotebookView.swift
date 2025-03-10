@@ -34,11 +34,6 @@ struct NotebookView: View {
             )
         ) { _ in
             VStack {
-                HStack {
-                    backButton
-                    title
-                    backButton.hidden()
-                }
                 ZStack {
                     if viewModel.isEmptyCardVisible {
                         emptyCard
@@ -53,8 +48,9 @@ struct NotebookView: View {
             }
             .padding(.all, .huiSpaces.space16)
         }
-        .navigationBarHidden(true)
         .background(Color.huiColors.surface.pagePrimary)
+        .toolbar(.hidden)
+        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
     }
 
     private var backButton: some View {
@@ -85,6 +81,15 @@ struct NotebookView: View {
             .disabled(viewModel.isNextDisabled)
         }
         .padding(.top, .huiSpaces.space24)
+    }
+
+    private var navigationBar: some View {
+        HStack {
+            backButton
+            title
+            backButton.hidden()
+        }
+        .padding(.horizontal, .huiSpaces.space16)
     }
 
     private var notesBody: some View {

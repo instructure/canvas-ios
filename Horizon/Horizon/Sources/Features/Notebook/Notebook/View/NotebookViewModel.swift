@@ -108,7 +108,7 @@ final class NotebookViewModel {
         getCourseNotesInteractor
             .get()
             .replaceError(with: [])
-            .sink { (courseNotes: [API.CourseNotebookNote]) in
+            .sink { (courseNotes: [CourseNotebookNote]) in
                 guard let self = weakSelf else { return }
                 self.notes = courseNotes.map { note in
                     NotebookNote(courseNotebookNote: note)
@@ -122,7 +122,7 @@ final class NotebookViewModel {
 }
 
 struct NotebookNote: Identifiable {
-    let courseNotebookNote: API.CourseNotebookNote
+    let courseNotebookNote: CourseNotebookNote
     var id: String { courseNotebookNote.id }
     var highlightedText: String { courseNotebookNote.highlightData?.selectedText ?? "" }
     var nextCursor: String? { courseNotebookNote.nextCursor }
@@ -133,7 +133,7 @@ struct NotebookNote: Identifiable {
 
     private let formatter = DateFormatter()
 
-    init(courseNotebookNote: API.CourseNotebookNote) {
+    init(courseNotebookNote: CourseNotebookNote) {
         self.courseNotebookNote = courseNotebookNote
 
         formatter.dateFormat = "MMM d, yyyy"

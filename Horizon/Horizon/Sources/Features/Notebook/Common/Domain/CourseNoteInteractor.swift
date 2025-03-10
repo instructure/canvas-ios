@@ -31,11 +31,11 @@ protocol CourseNoteInteractor {
         content: String,
         labels: [CourseNoteLabel],
         notebookHighlight: NotebookHighlight?
-    ) -> AnyPublisher<API.CourseNotebookNote, NotebookError>
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError>
     func delete(id: String) -> AnyPublisher<Void, NotebookError>
-    func get(courseId: String, itemId: String) -> AnyPublisher<[API.CourseNotebookNote], NotebookError>
+    func get(courseId: String, itemId: String) -> AnyPublisher<[CourseNotebookNote], NotebookError>
     func set(id: String, content: String?, labels: [CourseNoteLabel]?, highlightData: NotebookHighlight?)
-        -> AnyPublisher<API.CourseNotebookNote, NotebookError>
+        -> AnyPublisher<CourseNotebookNote, NotebookError>
 }
 
 class CourseNoteInteractorLive: CourseNoteInteractor {
@@ -72,7 +72,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         content: String = "",
         labels: [CourseNoteLabel] = [],
         notebookHighlight: NotebookHighlight? = nil
-    ) -> AnyPublisher<API.CourseNotebookNote, NotebookError> {
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
@@ -92,7 +92,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                 .compactMap { [weak self] (response: RedwoodCreateNoteMutationResponse?) in
                     self?.getCourseNotesInteractor.refresh()
                     self?.refreshSubject.send()
-                    return response.map { API.CourseNotebookNote(from: $0.data.createNote) }
+                    return response.map { CourseNotebookNote(from: $0.data.createNote) }
                 }
             }
             .mapError { _ in NotebookError.unknown }
@@ -119,7 +119,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
             .eraseToAnyPublisher()
     }
 
-    func get(courseId: String, itemId: String) -> AnyPublisher<[API.CourseNotebookNote], NotebookError> {
+    func get(courseId: String, itemId: String) -> AnyPublisher<[CourseNotebookNote], NotebookError> {
         Publishers.CombineLatest(
             JWTTokenRequest(.redwood).api(from: canvasApi),
             refreshSubject
@@ -140,7 +140,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         content: String?,
         labels: [CourseNoteLabel]?,
         highlightData: NotebookHighlight?
-    ) -> AnyPublisher<API.CourseNotebookNote, NotebookError> {
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
         JWTTokenRequest(.redwood)
             .api(from: canvasApi)
             .flatMap { api in
@@ -156,7 +156,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                 .compactMap { [weak self] (response: RedwoodUpdateNoteMutationResponse?) in
                     self?.getCourseNotesInteractor.refresh()
                     self?.refreshSubject.send()
-                    return response.map { API.CourseNotebookNote(from: $0.data.updateNote) }
+                    return response.map { CourseNotebookNote(from: $0.data.updateNote) }
                 }
             }
             .mapError { _ in NotebookError.unknown }

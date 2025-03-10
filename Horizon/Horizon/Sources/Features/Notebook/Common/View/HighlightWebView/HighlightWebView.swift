@@ -27,7 +27,7 @@ final class HighlightWebView: CoreWebView {
 
     // MARK: - Private
 
-    private var courseNotebookNotes: [API.CourseNotebookNote] = [] {
+    private var courseNotebookNotes: [CourseNotebookNote] = [] {
         didSet {
             Task {
                 await highlightWebFeature?.apply(
@@ -123,7 +123,7 @@ final class HighlightWebView: CoreWebView {
 
     // MARK: - Private
 
-    private func applyHighlights(_ courseNotebookNotes: [API.CourseNotebookNote]) {
+    private func applyHighlights(_ courseNotebookNotes: [CourseNotebookNote]) {
         self.courseNotebookNotes = courseNotebookNotes
     }
 
@@ -250,7 +250,7 @@ extension NotebookTextSelection {
     }
 }
 
-extension API.CourseNotebookNote {
+extension CourseNotebookNote {
     var notebookTextSelection: NotebookTextSelection? {
         let label = labels?.first
         guard let highlightData = highlightData else {

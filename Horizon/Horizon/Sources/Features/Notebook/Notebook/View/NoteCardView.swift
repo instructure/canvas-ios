@@ -87,13 +87,13 @@ struct NoteCardView: View {
     VStack {
         NoteCardView(
             note: NotebookNote(
-                courseNotebookNote: API.CourseNotebookNote.example.copy(content: "")
+                courseNotebookNote: CourseNotebookNote.example.copy(content: "")
             )
         )
 
         NoteCardView(
             note: NotebookNote(
-                courseNotebookNote: API.CourseNotebookNote.example
+                courseNotebookNote: CourseNotebookNote.example
             )
         )
     }

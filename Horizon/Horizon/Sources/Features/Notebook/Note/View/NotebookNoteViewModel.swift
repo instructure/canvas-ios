@@ -61,7 +61,7 @@ final class NotebookNoteViewModel {
 
     // MARK: - Private
 
-    private var courseNote: API.CourseNotebookNote?
+    private var courseNote: CourseNotebookNote?
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
@@ -70,7 +70,7 @@ final class NotebookNoteViewModel {
     init(
         courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.instance,
         router: Router = AppEnvironment.shared.router,
-        courseNotebookNote: API.CourseNotebookNote,
+        courseNotebookNote: CourseNotebookNote,
         isEditing: Bool = false,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {

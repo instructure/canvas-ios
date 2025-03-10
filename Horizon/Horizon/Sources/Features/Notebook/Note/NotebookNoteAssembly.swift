@@ -24,7 +24,7 @@ final class NotebookNoteAssembly {
         CourseNoteInteractorLive.instance
     }
 
-    static func makeViewNoteViewController(courseNotebookNote: API.CourseNotebookNote) -> CoreHostingController<NotebookNoteView> {
+    static func makeViewNoteViewController(courseNotebookNote: CourseNotebookNote) -> CoreHostingController<NotebookNoteView> {
         CoreHostingController(
             NotebookNoteView(
                 viewModel: .init(

@@ -78,6 +78,7 @@ struct DashboardView: View {
                     .padding(.horizontal, .huiSpaces.space24)
                 }
             }
+            .toolbar(.visible)
             .padding(.bottom, .huiSpaces.space16)
         }
     }

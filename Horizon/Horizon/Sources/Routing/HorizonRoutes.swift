@@ -234,7 +234,7 @@ enum HorizonRoutes {
                 return nil
             },
             RouteHandler("/notebook/note") { _, _, userInfo in
-                guard let courseNotebookNote = userInfo?["note"] as? API.CourseNotebookNote else { return nil }
+                guard let courseNotebookNote = userInfo?["note"] as? CourseNotebookNote else { return nil }
                 guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
                 let router: Router = AppEnvironment.shared.router
                 router.show(

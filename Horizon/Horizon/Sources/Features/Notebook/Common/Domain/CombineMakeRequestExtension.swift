@@ -17,14 +17,20 @@
 //
 
 import Combine
+import CombineExt
 import Core
 
 extension API {
     func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
-        let apiResponseSubject = PassthroughSubject<Request.Response?, Error>()
-        makeRequest(requestable) { response, _, _ in
-            apiResponseSubject.send(response)
+        AnyPublisher<Request.Response?, Error> { [weak self] subscriber in
+            self?.makeRequest(requestable) { response, _, error in
+                if let error = error {
+                    subscriber.send(completion: .failure(error))
+                    return
+                }
+                subscriber.send(response)
+            }
+            return AnyCancellable { }
         }
-        return apiResponseSubject.eraseToAnyPublisher()
     }
 }

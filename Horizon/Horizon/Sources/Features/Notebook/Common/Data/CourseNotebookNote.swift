@@ -21,26 +21,24 @@ import Foundation
 
 /// This is an API agnostic entity model.
 /// It's used in the interactors and can be used in the views, but will normally be translated to a view model before being used in the views.
-extension API {
-    struct CourseNotebookNote {
-        // MARK: - Required
+struct CourseNotebookNote {
+    // MARK: - Required
 
-        var id: String
-        var date: Date
-        var courseId: String
-        var objectId: String
+    var id: String
+    var date: Date
+    var courseId: String
+    var objectId: String
 
-        // MARK: - Optional
+    // MARK: - Optional
 
-        var content: String?
-        var highlightData: NotebookHighlight?
-        var labels: [CourseNoteLabel]?
-        var nextCursor: String?
-        var previousCursor: String?
-    }
+    var content: String?
+    var highlightData: NotebookHighlight?
+    var labels: [CourseNoteLabel]?
+    var nextCursor: String?
+    var previousCursor: String?
 }
 
-extension API.CourseNotebookNote {
+extension CourseNotebookNote {
     init(
         from edge: RedwoodFetchNotesQueryResponse.ResponseEdge,
         pageInfo: RedwoodFetchNotesQueryResponse.PageInfo
@@ -71,8 +69,8 @@ extension API.CourseNotebookNote {
         labels: [CourseNoteLabel]? = nil,
         nextCursor: String? = nil,
         previousCursor: String? = nil
-    ) -> API.CourseNotebookNote {
-        API.CourseNotebookNote(
+    ) -> CourseNotebookNote {
+        CourseNotebookNote(
             id: self.id,
             date: date ?? self.date,
             courseId: courseId ?? self.courseId,
@@ -86,7 +84,7 @@ extension API.CourseNotebookNote {
     }
 }
 
-extension API.CourseNotebookNote {
+extension CourseNotebookNote {
     init(from note: RedwoodNote) {
         self.id = note.id ?? ""
         self.date = note.createdAt ?? Date()
@@ -101,9 +99,9 @@ extension API.CourseNotebookNote {
 }
 
 #if DEBUG
-extension API.CourseNotebookNote {
-    static var example: API.CourseNotebookNote {
-        API.CourseNotebookNote(
+extension CourseNotebookNote {
+    static var example: CourseNotebookNote {
+        CourseNotebookNote(
             id: "1",
             date: Date(),
             courseId: "courseID",
