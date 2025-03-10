@@ -37,7 +37,8 @@ struct DashboardView: View {
             config: .init(
                 refreshable: true,
                 loaderBackgroundColor: .huiColors.surface.pagePrimary
-            )
+            ),
+            refreshAction: viewModel.reload
         ) { _ in
             LazyVStack(spacing: .zero) {
                 ForEach(viewModel.nextUpViewModels) { nextUpViewModel in
@@ -66,7 +67,7 @@ struct DashboardView: View {
                                 status: "Default",
                                 moduleTitle: learningObjectCardViewModel.moduleTitle,
                                 learningObjectName: learningObjectCardViewModel.learningObjectName,
-                                duration: "20 Mins",
+                                duration: learningObjectCardViewModel.estimatedTime,
                                 type: learningObjectCardViewModel.type,
                                 dueDate: learningObjectCardViewModel.dueDate
                             ) {

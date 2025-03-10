@@ -159,7 +159,10 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
                 $0.publisher
                     .flatMap { course in
                         ReactiveStore(
-                            useCase: GetModules(courseID: course.id)
+                            useCase: GetModules(
+                                courseID: course.id,
+                                includes: GetModulesRequest.Include.allCases
+                            )
                         )
                         .getEntities()
                         .replaceError(with: [])

@@ -25,6 +25,7 @@ struct HModule: Identifiable {
     let items: [HModuleItem]
     let moduleStatus: HModuleStatus
     var contentItems: [HModuleItem]
+    let estimatedDuration: String?
 
     var dueItemsCount: Int {
         items.filter { $0.isOverDue }.count
@@ -37,13 +38,15 @@ struct HModule: Identifiable {
         items: [HModuleItem],
         state: ModuleState? = .completed,
         lockMessage: String? = nil,
-        countOfPrerequisite: Int = 0
+        countOfPrerequisite: Int = 0,
+        estimatedDuration: String? = nil
     ) {
         self.id = id
         self.name = name
         self.courseID = courseID
         self.items = items
         self.contentItems = []
+        self.estimatedDuration = estimatedDuration
         self.moduleStatus = .init(
             items: items,
             state: state,
@@ -56,13 +59,20 @@ struct HModule: Identifiable {
         self.id = entity.id
         self.name = entity.name
         self.courseID = entity.courseID
-        self.items = entity.items.map { HModuleItem(from: $0) }
-        self.contentItems = items.filter { $0.type?.isContentItem == true }
-        self.moduleStatus = .init(
+        self.items = entity.items
+            .map(HModuleItem.init)
+        contentItems = items.filter { $0.type?.isContentItem == true  }
+        self.estimatedDuration = entity.estimatedDuration
+        moduleStatus = .init(
             items: contentItems,
             state: entity.state,
             lockMessage: entity.lockedMessage,
             countOfPrerequisite: entity.prerequisiteModuleIDs.count
         )
+    }
+
+    var estimatedDurationFormatted: String? {
+        let formatter = ISO8601DurationFormatter()
+        return formatter.duration(from: estimatedDuration ?? "")
     }
 }

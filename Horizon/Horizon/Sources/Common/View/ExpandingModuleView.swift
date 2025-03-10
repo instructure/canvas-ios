@@ -60,7 +60,7 @@ struct ExpandingModuleView: View {
                 status: module.moduleStatus.status,
                 numberOfItems: module.contentItems.count,
                 numberOfPastDueItems: module.dueItemsCount,
-                duration: "76 mins", // TODO: Set actual value
+                duration: module.estimatedDurationFormatted,
                 isCollapsed: isExpanded)
         }
         .buttonStyle(.plain)
