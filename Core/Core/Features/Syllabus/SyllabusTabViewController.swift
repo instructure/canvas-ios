@@ -51,7 +51,7 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         title: String(localized: "Edit", bundle: .core), style: .plain,
         target: self, action: #selector(edit)
     )
-    
+
     private var emptyPandaViewController: CoreHostingController<InteractivePanda> = {
         let vc = CoreHostingController(
             InteractivePanda(
@@ -95,14 +95,14 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
               !settings.pending,
               let course = course.first
         else { return }
-        
+
         updateNavBar(subtitle: course.name, color: course.color)
-        
+
         if permissions.first?.manageContent == true || permissions.first?.manageCourseContentEdit == true {
             editButton.accessibilityIdentifier = "Syllabus.editButton"
             navigationItem.rightBarButtonItem = editButton
         }
-        
+
         layoutViewControllers()
         viewControllers = []
         if course.syllabusBody?.isEmpty == false {
@@ -123,8 +123,8 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
         updateFrames()
         reload()
     }
-    
-    @objc func edit() {
+
+    @objc private func edit() {
         env.router.route(
             to: "\(context?.pathComponent ?? "")/syllabus/edit", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }

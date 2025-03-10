@@ -79,7 +79,7 @@ class SyllabusTabViewControllerTests: CoreTestCase {
         controller.settings.refresh(force: true)
         XCTAssertEqual(controller.menu?.numberOfItems(inSection: 0), 2)
     }
-    
+
     func testEditNotAvailableWithoutPermission() {
         api.mock(controller.permissions, value: .make(manage_content: false, manage_course_content_edit: false))
         controller.view.layoutIfNeeded()
@@ -99,7 +99,7 @@ class SyllabusTabViewControllerTests: CoreTestCase {
     func testEditAvailableForManageCourseContentPermission() {
         api.mock(controller.course, value: .make(syllabus_body: "not empty"))
         api.mock(controller.permissions, value: .make(manage_content: false, manage_course_content_edit: true))
-  
+
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.title, "Edit")
