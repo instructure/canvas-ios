@@ -25,21 +25,15 @@ struct NotebookView: View {
     @Bindable var viewModel: NotebookViewModel
     @Environment(\.viewController) private var viewController
 
-    private let navigationBarViewModel: NavigationBarViewModel = .init()
-
     var body: some View {
-        NavigationBarView(
+        InstUI.BaseScreen(
             state: viewModel.state,
-            viewModel: navigationBarViewModel,
-            refreshable: false,
-            isNotebookHidden: true
-        ) {
+            config: .init(
+                refreshable: false,
+                loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
+            )
+        ) { _ in
             VStack {
-                HStack {
-                    backButton
-                    title
-                    backButton.hidden()
-                }
                 ZStack {
                     if viewModel.isEmptyCardVisible {
                         emptyCard
@@ -54,6 +48,9 @@ struct NotebookView: View {
             }
             .padding(.all, .huiSpaces.space16)
         }
+        .background(Color.huiColors.surface.pagePrimary)
+        .toolbar(.hidden)
+        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
     }
 
     private var backButton: some View {
@@ -86,13 +83,20 @@ struct NotebookView: View {
         .padding(.top, .huiSpaces.space24)
     }
 
+    private var navigationBar: some View {
+        HStack {
+            backButton
+            title
+            backButton.hidden()
+        }
+        .padding(.horizontal, .huiSpaces.space16)
+    }
+
     private var notesBody: some View {
         VStack {
             NotebookSectionHeading(title: String(localized: "Notes", bundle: .horizon))
             ForEach(viewModel.notes) { note in
-                NoteCardView(note: note) {
-                    viewModel.editNote(note, viewController: viewController)
-                }
+                NoteCardView(note: note)
                 .onTapGesture {
                     viewModel.goToModuleItem(note, viewController: viewController)
                 }
@@ -135,9 +139,11 @@ struct NotebookView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NotebookView(
         viewModel: .init(
             getCourseNotesInteractor: GetCourseNotesInteractorPreview()
         ))
 }
+#endif

@@ -30,7 +30,7 @@ final class HighlightWebView: CoreWebView {
     private var courseNotebookNotes: [CourseNotebookNote] = [] {
         didSet {
             Task {
-                await highlightWebFeature.apply(
+                await highlightWebFeature?.apply(
                     webView: self,
                     notebookTextSelections: courseNotebookNotes.compactMap { $0.notebookTextSelection }
                 )
@@ -38,7 +38,7 @@ final class HighlightWebView: CoreWebView {
         }
     }
     private var subscriptions = Set<AnyCancellable>()
-    private var highlightWebFeature: HighlightWebFeature!
+    private var highlightWebFeature: HighlightWebFeature?
     private let actionDefinitions = [
         (label: CourseNoteLabel.confusing, title: String(localized: "Confusing", bundle: .horizon)),
         (label: CourseNoteLabel.important, title: String(localized: "Important", bundle: .horizon)),
@@ -71,7 +71,10 @@ final class HighlightWebView: CoreWebView {
         self.router = router
         self.courseNoteInteractor = courseNoteInteractor
         self.viewController = viewController
-        self.highlightWebFeature = HighlightWebFeature()
+
+        let highlightWebFeature = HighlightWebFeature()
+
+        self.highlightWebFeature = highlightWebFeature
 
         super.init(features: [highlightWebFeature])
 
@@ -87,6 +90,7 @@ final class HighlightWebView: CoreWebView {
         self.itemId = nil
         self.moduleType = nil
         self.viewController = nil
+        self.highlightWebFeature = nil
 
         super.init(coder: coder)
     }
@@ -137,9 +141,8 @@ final class HighlightWebView: CoreWebView {
             let startB = currentNotebookTextSelection.textPosition.start
             let endB = currentNotebookTextSelection.textPosition.end
 
-            return (startA <= endB && endA >= startB) ||
-                (startA >= startB && endA <= endB) ||
-                (startA <= startB && endA >= endB)
+            return (startA <= endB && endA >= startB) || (startA >= startB && endA <= endB)
+                || (startA <= startB && endA >= endB)
         }
     }
 
@@ -153,13 +156,15 @@ final class HighlightWebView: CoreWebView {
         self.courseNoteInteractor.get(courseId: courseId, itemId: itemId)
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: self.applyHighlights
+                receiveValue: { [weak self] courseNotebookNotes in
+                    self?.applyHighlights(courseNotebookNotes)
+                }
             )
-            .store(in: &self.subscriptions)
+            .store(in: &subscriptions)
     }
 
     private func listenForHighlightTaps() {
-        highlightWebFeature.listenForHighlightTaps()
+        highlightWebFeature?.listenForHighlightTaps()
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
                 guard let self = self,
@@ -177,7 +182,7 @@ final class HighlightWebView: CoreWebView {
     }
 
     private func listenForSelectionChange() {
-        highlightWebFeature.listenForSelectionChange()
+        highlightWebFeature?.listenForSelectionChange()
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
                 self?.currentNotebookTextSelection = notebookTextSelection
@@ -194,39 +199,35 @@ final class HighlightWebView: CoreWebView {
             return
         }
 
-        Task { [weak self] in
-            guard let self = self,
-                  let notebookTextSelection = self.currentNotebookTextSelection
-            else {
-                return
-            }
+        guard let notebookTextSelection = self.currentNotebookTextSelection else {
+            return
+        }
 
-            let notebookHighlight = notebookTextSelection.notebookHighlight
+        let notebookHighlight = notebookTextSelection.notebookHighlight
 
-            if label == .other {
-                router.route(
-                    to: "/notebook/\(courseId)/\(itemId)/add", userInfo: ["notebookHighlight": notebookHighlight],
-                    from: viewController)
-            } else if let moduleType = self.moduleType {
-                courseNoteInteractor.add(
-                    courseId: courseId,
-                    itemId: itemId,
-                    moduleType: moduleType,
-                    content: "",
-                    labels: [label],
-                    notebookHighlight: notebookHighlight
-                ).sink(
-                    receiveCompletion: { _ in },
-                    receiveValue: { [weak self] courseNote in
-                        guard let viewController = self?.viewController else {
-                            return
-                        }
-                        if label == .other {
-                            self?.router.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
-                        }
+        if label == .other {
+            router.route(
+                to: "/notebook/\(courseId)/\(itemId)/add", userInfo: ["notebookHighlight": notebookHighlight],
+                from: viewController)
+        } else if let moduleType = self.moduleType {
+            courseNoteInteractor.add(
+                courseId: courseId,
+                itemId: itemId,
+                moduleType: moduleType,
+                content: "",
+                labels: [label],
+                notebookHighlight: notebookHighlight
+            ).sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] courseNote in
+                    guard let viewController = self?.viewController else {
+                        return
                     }
-                ).store(in: &subscriptions)
-            }
+                    if label == .other {
+                        self?.router.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
+                    }
+                }
+            ).store(in: &subscriptions)
         }
     }
 }

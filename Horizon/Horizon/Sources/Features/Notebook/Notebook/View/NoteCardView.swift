@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
 import HorizonUI
+import SwiftUI
 
 struct NoteCardView: View {
 
@@ -39,10 +40,12 @@ struct NoteCardView: View {
                 HStack(alignment: .center) {
                     Text(note.title).font(.regular12)
                     Spacer()
-                    HorizonUI.icons.editNote
-                        .onTapGesture {
-                            onEdit?()
-                        }
+                    if let onEdit = onEdit {
+                        HorizonUI.icons.editNote
+                            .onTapGesture {
+                                onEdit()
+                            }
+                    }
                 }
                 if !note.highlightedText.isEmpty {
                     HighlightedText(note.highlightedText, ofTypes: note.types)
@@ -79,6 +82,7 @@ struct NoteCardView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     VStack {
         NoteCardView(
@@ -94,3 +98,4 @@ struct NoteCardView: View {
         )
     }
 }
+#endif

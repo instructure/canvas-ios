@@ -20,7 +20,7 @@ import Core
 
 final class NotebookAssembly {
     static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
-        GetCourseNotesInteractorLive.instance
+        GetCourseNotesInteractorLive.shared
     }
 
     static func makeViewModel() -> NotebookViewModel {

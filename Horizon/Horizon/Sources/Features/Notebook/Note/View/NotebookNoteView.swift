@@ -33,21 +33,21 @@ struct NotebookNoteView: View {
                 loaderBackgroundColor: .huiColors.surface.pagePrimary
             )
         ) { _ in
-            ScrollView {
-                VStack(spacing: .huiSpaces.space24) {
-                    titleBar
-                    highlightedText
-                    labels
-                    note
+            VStack(spacing: .huiSpaces.space24) {
+                titleBar
+                highlightedText
+                labels
+                note
+                ZStack {
                     VStack(spacing: .huiSpaces.space16) {
                         saveButton
                         cancelButton
                     }
                     deleteButton
                 }
-                .padding(.vertical, .huiSpaces.space36)
-                .padding(.horizontal, .huiSpaces.space24)
             }
+            .padding(.vertical, .huiSpaces.space36)
+            .padding(.horizontal, .huiSpaces.space24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarBackButtonHidden(true)
             .toolbarBackground(Color.huiColors.surface.pagePrimary, for: .navigationBar)
@@ -75,12 +75,13 @@ struct NotebookNoteView: View {
     @ViewBuilder
     private var cancelButton: some View {
         if viewModel.isCancelVisible {
-            Button {
+            HorizonUI.TextButton(
+                String(localized: "Cancel", bundle: .horizon),
+                type: .white,
+                fillsWidth: true
+            ) {
                 viewModel.cancelEditingAndReset()
-            } label: {
-                Text(String(localized: "Cancel", bundle: .horizon))
             }
-            .buttonStyle(.primary(.white, fillsWidth: true))
         }
     }
 
@@ -130,18 +131,25 @@ struct NotebookNoteView: View {
         NotebookSectionHeading(title: String(localized: "Add a Note (Optional)", bundle: .horizon))
 
         ZStack {
-            TextField("", text: $viewModel.note, axis: .vertical)
-                .disabled(viewModel.isTextEditorDisabled)
-                .onTapGesture { viewModel.edit() }
-                .padding(.huiSpaces.space12)
-                .frame(minHeight: 120, alignment: .topLeading)
-                .frame(maxWidth: .infinity)
-                .background(.white)
-                .cornerRadius(.huiSpaces.space12)
-                .huiElevation(level: viewModel.isTextEditorDisabled ? .level0 : .level4)
-                .focused($isTextFieldFocused)
+            UITextViewWrapper(text: $viewModel.note) {
+                let tv = UITextView()
+                tv.translatesAutoresizingMaskIntoConstraints = false
+                tv.isScrollEnabled = false
+                tv.textContainer.widthTracksTextView = true
+                tv.textContainer.lineBreakMode = .byWordWrapping
+                tv.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
+                tv.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - (.huiSpaces.space24 * 2))
+                    .isActive = true
+                tv.backgroundColor = HorizonUI.colors.surface.cardSecondary.uiColor
+                return tv
+            }
+            .frame(minHeight: 120)
+            .onTapGesture { viewModel.edit() }
+            .cornerRadius(.huiSpaces.space12)
+            .huiElevation(level: viewModel.isTextEditorEditable ? .level4 : .level0)
+            .focused($isTextFieldFocused)
 
-            if viewModel.isTextEditorDisabled {
+            if viewModel.isTextEditorEditable == false {
                 Color.clear.contentShape(Rectangle())
                     .onTapGesture { viewModel.edit() }
             }
@@ -184,6 +192,7 @@ struct NotebookNoteView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NotebookNoteView(
         viewModel: .init(
@@ -191,3 +200,4 @@ struct NotebookNoteView: View {
         )
     )
 }
+#endif

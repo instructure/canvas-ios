@@ -19,8 +19,6 @@
 import Combine
 import CombineSchedulers
 import Core
-import Observation
-import SwiftUI
 
 @Observable
 final class NotebookNoteViewModel {
@@ -44,7 +42,7 @@ final class NotebookNoteViewModel {
     var isImportant: Bool = false
     var isSaveDisabled: Bool { !isConfusing && !isImportant }
     var isSaveVisible: Bool { isEditing || isAdding }
-    var isTextEditorDisabled: Bool { !isEditing }
+    var isTextEditorEditable: Bool { isEditing }
     var note: String = ""
     var state: InstUI.ScreenState = .data
 

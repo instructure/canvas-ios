@@ -39,18 +39,6 @@ struct Cursor {
     }
 }
 
-struct CursorFilter {
-    let cursor: Cursor?
-    let filter: CourseNoteLabel?
-
-    static func build(cursor: Cursor?, filter: CourseNoteLabel?) -> CursorFilter? {
-        if filter == nil && cursor == nil {
-            return nil
-        }
-        return CursorFilter(cursor: cursor, filter: filter)
-    }
-}
-
 protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get set }
     var cursor: Cursor? { get set }
@@ -59,11 +47,13 @@ protocol GetCourseNotesInteractor {
 }
 
 final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
+    typealias CursorFilter = (cursor: Cursor?, filter: CourseNoteLabel?)
+
     // MARK: - Dependencies
 
     let canvasApi: API
 
-    static let instance: GetCourseNotesInteractor = GetCourseNotesInteractorLive()
+    static let shared: GetCourseNotesInteractor = GetCourseNotesInteractorLive()
 
     // MARK: - Public
 
@@ -73,7 +63,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         }
         set {
             cursorFilter.accept(
-                CursorFilter.build(cursor: newValue, filter: cursorFilter.value?.filter)
+                newValue == nil && filter == nil ? nil : (cursor: newValue, filter: filter)
             )
         }
     }
@@ -84,7 +74,7 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         }
         set {
             cursorFilter.accept(
-                CursorFilter.build(cursor: nil, filter: newValue)
+                newValue == nil ? nil : (cursor: nil, filter: newValue)
             )
         }
     }
