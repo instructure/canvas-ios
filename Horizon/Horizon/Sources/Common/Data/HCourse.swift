@@ -45,7 +45,6 @@ struct HCourse: Identifiable {
         self.progress = progress
         self.enrollments = enrollments
         self.modules = modules
-            .sorted { $0.position < $1.position }
         self.incompleteModules = incompleteModules
     }
 
@@ -62,7 +61,6 @@ struct HCourse: Identifiable {
         }
        self.modules = modulesEntity
             .map { HModule(from: $0) }
-            .sorted { $0.position > $1.position }
         self.incompleteModules = []
     }
 }

@@ -26,7 +26,6 @@ struct HModule: Identifiable {
     let moduleStatus: HModuleStatus
     var contentItems: [HModuleItem]
     let estimatedDuration: String?
-    let position: Int
 
     var dueItemsCount: Int {
         items.filter { $0.isOverDue }.count
@@ -40,8 +39,7 @@ struct HModule: Identifiable {
         state: ModuleState? = .completed,
         lockMessage: String? = nil,
         countOfPrerequisite: Int = 0,
-        estimatedDuration: String? = nil,
-        position: Int = 1
+        estimatedDuration: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -55,7 +53,6 @@ struct HModule: Identifiable {
             lockMessage: lockMessage,
             countOfPrerequisite: countOfPrerequisite
         )
-        self.position = position
     }
 
     init(from entity: Module) {
@@ -64,7 +61,6 @@ struct HModule: Identifiable {
         self.courseID = entity.courseID
         self.items = entity.items
             .map(HModuleItem.init)
-            .sorted { $0.position < $1.position }
         contentItems = items.filter { $0.type?.isContentItem == true  }
         self.estimatedDuration = entity.estimatedDuration
         moduleStatus = .init(
@@ -73,7 +69,6 @@ struct HModule: Identifiable {
             lockMessage: entity.lockedMessage,
             countOfPrerequisite: entity.prerequisiteModuleIDs.count
         )
-        self.position = entity.position
     }
 
     var estimatedDurationFormatted: String? {

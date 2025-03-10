@@ -78,7 +78,12 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                         // Currently, we only use all the module item information when requesting a single course.
                         // Should this change in the future, we should update the GraphQL endpoint in GetCourseProgressionUseCase
                         // to return all the module item information required
-                        return ReactiveStore(useCase: HGetModules(courseID: courseProgression.courseID))
+                        return ReactiveStore(
+                            useCase: GetModules(
+                                courseID: courseProgression.courseID,
+                                includes: GetModulesRequest.Include.allCases
+                            )
+                        )
                             .getEntities(ignoreCache: ignoreCache)
                             .replaceError(with: [])
                             .map {

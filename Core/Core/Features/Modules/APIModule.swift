@@ -346,8 +346,8 @@ extension APIMasteryPath.Assignment {
 // https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.index
 public struct GetModulesRequest: APIRequestable {
     public typealias Response = [APIModule]
-    public enum Include: String {
-        case content_details, items
+    public enum Include: String, CaseIterable {
+        case content_details, items, estimated_durations
     }
 
     public let courseID: String

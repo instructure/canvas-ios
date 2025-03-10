@@ -42,7 +42,6 @@ struct HModuleItem: Equatable {
     let completionRequirementType: CompletionRequirementType?
     let moduleName: String?
     let estimatedDuration: String?
-    let position: Double
 
     init(
         id: String,
@@ -65,8 +64,7 @@ struct HModuleItem: Equatable {
         completed: Bool? = false,
         completionRequirementType: CompletionRequirementType? = nil,
         moduleName: String? = nil,
-        estimatedDuration: String? = nil,
-        position: Double = 1
+        estimatedDuration: String? = nil
 
     ) {
         self.id = id
@@ -91,7 +89,6 @@ struct HModuleItem: Equatable {
         self.completionRequirementType = completionRequirementType
         self.moduleName = moduleName
         self.estimatedDuration = estimatedDuration
-        self.position = position
     }
 
     init(from entity: ModuleItem) {
@@ -117,7 +114,6 @@ struct HModuleItem: Equatable {
         self.completionRequirementType = entity.completionRequirementType
         self.moduleName = entity.module?.name
         self.estimatedDuration = entity.estimatedDuration
-        self.position = entity.position
     }
 
     var isOverDue: Bool {

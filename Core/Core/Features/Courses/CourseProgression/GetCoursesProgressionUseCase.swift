@@ -28,9 +28,7 @@ public class GetCoursesProgressionUseCase: APIUseCase {
 
     // MARK: - Properties
 
-    public var cacheKey: String? {
-        "User-Courses-Progression"
-    }
+    public var cacheKey: String?
     private let courseId: String?
     private let userId: String
 
