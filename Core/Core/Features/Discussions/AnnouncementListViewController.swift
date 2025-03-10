@@ -200,6 +200,11 @@ class AnnouncementListCell: UITableViewCell {
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var titleLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupInstDisclosureIndicator()
+    }
+
     func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
         iconImageView.icon = .announcementLine
         if isTeacher {

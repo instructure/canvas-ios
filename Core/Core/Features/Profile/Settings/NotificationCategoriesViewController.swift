@@ -197,7 +197,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
             cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = categoryMap[row.category]?.1
             cell.detailTextLabel?.text = row.frequency.name
-            cell.accessoryType = .disclosureIndicator
+            cell.setupInstDisclosureIndicator()
             return cell
         default:
             let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)

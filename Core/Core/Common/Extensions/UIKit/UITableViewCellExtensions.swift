@@ -38,4 +38,11 @@ public extension UITableViewCell {
         self.contentView.alpha = isAvailable ? 1 : 0.3
         self.isUserInteractionEnabled = isUserInteractionEnabled
     }
+
+    func setupInstDisclosureIndicator() {
+        let image = UIImageView(image: UIImage.arrowOpenRightLine)
+        image.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        image.tintColor = .textDark
+        accessoryView = image
+    }
 }
