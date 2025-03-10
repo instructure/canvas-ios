@@ -68,7 +68,7 @@ struct ModuleItemListView: View {
                     requirement: item.isOptional ? .optional : .required,
                     status: item.status,
                     type: itemType,
-                    duration: "20 Mins", // TODO: Set correct value
+                    duration: item.estimatedDurationFormatted,
                     dueDate: item.dueAt?.dateOnlyString,
                     lockedMessage: item.lockedMessage,
                     points: item.points,

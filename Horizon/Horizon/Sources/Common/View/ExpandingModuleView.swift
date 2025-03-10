@@ -25,11 +25,12 @@ struct ExpandingModuleView: View {
 
     let module: HModule
     let routeToURL: (URL) -> Void
-    @State private var isExpanded = false
+    @State private(set) var isExpanded = false
 
-    init(module: HModule, routeToURL: @escaping (URL) -> Void) {
+    init(module: HModule, isExpanded: Bool = false, routeToURL: @escaping (URL) -> Void) {
         self.module = module
         self.routeToURL = routeToURL
+        self._isExpanded = State(initialValue: isExpanded)
     }
 
     var body: some View {
@@ -59,7 +60,7 @@ struct ExpandingModuleView: View {
                 status: module.moduleStatus.status,
                 numberOfItems: module.contentItems.count,
                 numberOfPastDueItems: module.dueItemsCount,
-                duration: "76 mins", // TODO: Set actual value
+                duration: module.estimatedDurationFormatted,
                 isCollapsed: isExpanded)
         }
         .buttonStyle(.plain)
@@ -80,6 +81,19 @@ struct ExpandingModuleView: View {
             courseID: "2",
             items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)]
         ),
+        routeToURL: { _ in }
+    )
+}
+
+#Preview("Expanded") {
+    ExpandingModuleView(
+        module: .init(
+            id: "13",
+            name: "Assignments",
+            courseID: "2",
+            items: [.init(id: "14", title: "Sub title 2", htmlURL: nil)]
+        ),
+        isExpanded: true,
         routeToURL: { _ in }
     )
 }

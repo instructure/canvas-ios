@@ -59,7 +59,8 @@ struct HCourse: Identifiable {
         } else {
             self.enrollments = []
         }
-        self.modules = modulesEntity.map { HModule(from: $0) }
+       self.modules = modulesEntity
+            .map { HModule(from: $0) }
         self.incompleteModules = []
     }
 }
