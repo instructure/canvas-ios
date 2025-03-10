@@ -107,25 +107,13 @@ public class CreateSubmission: APIUseCase {
                 NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
             }
 
-            self.announceResponse(isSuccessful: response != nil && error == nil) {
-                completionHandler(response, urlResponse, error)
-            }
+            UIAccessibility
+                .announceSubmission(isSuccessful: response != nil && error == nil)
+                .sink {
+                    completionHandler(response, urlResponse, error)
+                }
+                .store(in: &subscriptions)
         }
-    }
-
-    private func announceResponse(isSuccessful: Bool, _ completion: @escaping () -> Void) {
-
-        let message: String
-        if isSuccessful {
-            message = String(localized: "Successfully submitted!", bundle: .core)
-        } else {
-            message = String(localized: "Submission Failed", bundle: .core)
-        }
-
-        return UIAccessibility
-            .announcePersistently(message)
-            .sink(receiveValue: completion)
-            .store(in: &subscriptions)
     }
 
     public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

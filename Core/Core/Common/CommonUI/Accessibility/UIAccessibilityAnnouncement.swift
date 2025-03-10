@@ -135,6 +135,16 @@ public extension UIAccessibility {
             .first()
             .eraseToAnyPublisher()
     }
+
+    static func announceSubmission(isSuccessful: Bool, maxAttempts: Int = 3) -> AnyPublisher<Void, Never> {
+        let message: String
+        if isSuccessful {
+            message = String(localized: "Successfully submitted!", bundle: .core)
+        } else {
+            message = String(localized: "Submission Failed", bundle: .core)
+        }
+        return UIAccessibility.announcePersistently(message, maxAttempts: maxAttempts)
+    }
 }
 
 private extension String {
