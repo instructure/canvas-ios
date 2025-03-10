@@ -259,7 +259,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                if !model.isContextDisabled { DisclosureIndicator() }
+                if !model.isContextDisabled { InstUI.DisclosureIndicator() }
             }
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .padding(.vertical, defaultVerticalPaddingValue)
