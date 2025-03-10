@@ -125,7 +125,8 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
         errorView.isHidden = topics.state != .error
         tableView.reloadData()
 
-        if !selectedFirstTopic, topics.state != .loading, let url = topics.first?.htmlURL {
+        if !selectedFirstTopic, topics.state != .loading, let id = topics.first?.id {
+            let url = "\(context.pathComponent)/announcements/\(id)"
             selectedFirstTopic = true
             if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
                 env.router.route(to: url, from: self, options: .detail)
