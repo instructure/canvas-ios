@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class LTIViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
     @IBOutlet weak var spinnerView: CircleProgressView!

@@ -18,6 +18,7 @@
 
 @testable import Core
 import TestsFoundation
+import XCTest
 
 final class AssignmentListPreferencesViewModelTests: CoreTestCase {
     private var testee: AssignmentListPreferencesViewModel!

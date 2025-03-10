@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class StudioTests: E2ETestCase {
 

@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 public enum ContextType: String, Codable {
     case account, course, group, user, section, folder

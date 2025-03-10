@@ -20,6 +20,7 @@ import Combine
 import CombineExt
 import CombineSchedulers
 import Foundation
+import UIKit
 
 public enum GradeArrangementOptions: String, CaseIterable {
     case dueDate

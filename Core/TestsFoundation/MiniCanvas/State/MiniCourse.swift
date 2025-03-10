@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+import UIKit
 
 public class MiniCourse {
     public var api: APICourse

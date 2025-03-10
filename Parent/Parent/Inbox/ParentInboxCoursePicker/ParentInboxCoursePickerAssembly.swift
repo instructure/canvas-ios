@@ -18,6 +18,7 @@
 
 import Core
 import Foundation
+import UIKit
 
 enum ParentInboxCoursePickerAssembly {
     static func makeParentInboxCoursePickerBottomSheetViewController() -> UIViewController {

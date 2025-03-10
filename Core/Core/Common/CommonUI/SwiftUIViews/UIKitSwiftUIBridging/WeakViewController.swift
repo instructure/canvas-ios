@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import UIKit
+
 /**
  This class act as a container to hold a weakly referenced UIViewController. We expose this container to SwiftUI views through an environment variable to prevent SwiftUI views to retain the UIViewController and cause a memory leak.
  */

@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public extension URLComponents {
     /// Returns a URLComponents struct with properties copied from the URL.

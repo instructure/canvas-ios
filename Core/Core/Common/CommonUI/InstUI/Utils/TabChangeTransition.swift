@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import UIKit
+
 extension InstUI {
 
     /// The animation when TabBar changes tabs.

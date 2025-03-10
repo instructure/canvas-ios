@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum InboxCoursePickerAssembly {
     public static func makeInboxCoursePickerViewController(selected: RecipientContext?, didSelect: @escaping ((RecipientContext) -> Void), env: AppEnvironment = .shared) -> UIViewController {

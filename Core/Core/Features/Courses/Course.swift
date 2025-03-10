@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
+import UIKit
 
 final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse

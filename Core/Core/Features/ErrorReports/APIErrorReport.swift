@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 // https://canvas.instructure.com/doc/api/error_reports.html#method.errors.create
 struct PostErrorReportRequest: APIRequestable {

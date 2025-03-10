@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 public final class Conference: NSManagedObject {
     @NSManaged var canvasContextID: String

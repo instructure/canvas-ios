@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public struct DiscussionEditWebViewModel: EmbeddedWebPageViewModel {
     public let urlPathComponent: String
     public let navigationBarTitle: String

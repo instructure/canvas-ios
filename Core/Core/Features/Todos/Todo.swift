@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
+import UIKit
 
 public final class Todo: NSManagedObject, WriteableModel {
     public typealias JSON = APITodo

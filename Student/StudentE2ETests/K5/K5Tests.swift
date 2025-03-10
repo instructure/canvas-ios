@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class K5Tests: K5E2ETestCase {
     typealias Helper = K5Helper

@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UIColorTransformer: NSSecureUnarchiveFromDataTransformer {
     static let name = NSValueTransformerName(rawValue: String(describing: UIColorTransformer.self))

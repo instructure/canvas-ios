@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CoreWebViewThemeSwitcher {
     var currentHeight: CGFloat { get }

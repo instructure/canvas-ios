@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 public enum PlannableType: String, Codable {
     case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request

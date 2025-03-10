@@ -18,6 +18,7 @@
 
 import Foundation
 import Core
+import UIKit
 
 public enum Attendance: String, Codable {
     case present, late, absent

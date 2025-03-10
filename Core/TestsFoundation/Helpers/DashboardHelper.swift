@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class DashboardHelper: BaseHelper {
     public static var dashboardSettings: XCUIElement { app.find(id: "Dashboard.settingsButton", type: .other) }
     public static var optionsButton: XCUIElement { app.find(label: "Dashboard Options", type: .button) }

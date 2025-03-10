@@ -21,6 +21,7 @@ import UIKit
 @testable import Core
 @testable import TestsFoundation
 import WebKit
+import XCTest
 
 class GoogleCloudAssignmentViewControllerTests: CoreTestCase {
     var url = URL(string: "https://google-drive-lti-iad-prod.instructure.com/lti/content-view/cloud-assignment/1")!

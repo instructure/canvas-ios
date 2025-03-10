@@ -20,6 +20,7 @@
 
 import Combine
 import Foundation
+import UIKit
 
 class FileProgressListViewPreview {
     class PreviewViewModel: FileProgressListViewModelProtocol {

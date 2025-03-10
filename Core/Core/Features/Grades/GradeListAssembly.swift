@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum GradListAssembly {
     public static func makeInteractor(

@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class CollaborationsTests: E2ETestCase {
     func testCollaborationsOpensLinkInBrowser() {

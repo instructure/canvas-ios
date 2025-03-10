@@ -17,6 +17,7 @@
 //
 
 import Core
+import UIKit
 
 class TeacherSyllabusTabViewController: SyllabusTabViewController {
 

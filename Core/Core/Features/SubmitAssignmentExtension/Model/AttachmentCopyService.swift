@@ -17,6 +17,8 @@
 //
 
 import Combine
+import Foundation
+import UIKit
 
 /**
  This service copies files from the app where the user hit the share button to the canvas app's shared directory

@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import Foundation
+import UIKit
 
 class CourseSyncSettingsViewModel: ObservableObject {
 

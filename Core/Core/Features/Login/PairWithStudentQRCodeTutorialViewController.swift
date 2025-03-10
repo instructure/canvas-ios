@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PairWithStudentQRCodeTutorialDelegate: AnyObject {
     func pairWithStudentQRCodeTutorialDidFinish(_ controller: PairWithStudentQRCodeTutorialViewController)

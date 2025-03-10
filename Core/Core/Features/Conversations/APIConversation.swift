@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum ConversationWorkflowState: String, Codable {
     case read, unread, archived

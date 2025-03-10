@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum AllCoursesAssembly {
     public static func makeInteractor(env: AppEnvironment) -> AllCoursesInteractor {

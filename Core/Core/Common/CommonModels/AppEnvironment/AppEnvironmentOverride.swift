@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 /// The main purpose of this entity is to create a new `AppEnvironment` that points to a different host
 /// so we can inject this instead of using the `.shared` instance when we need to connect to a different host when a course is on a different URL.

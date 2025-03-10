@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ModulePublishAction: Equatable {
     enum Subject: Equatable {

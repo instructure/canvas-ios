@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+import UIKit
 
 public class MiniCanvasState {
     public var courses: [MiniCourse] = []

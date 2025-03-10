@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum DiscussionHTML {
     // shortcuts to encode text for html
