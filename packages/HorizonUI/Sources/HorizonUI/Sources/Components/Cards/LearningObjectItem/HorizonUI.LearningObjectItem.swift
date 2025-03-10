@@ -32,7 +32,7 @@ public extension HorizonUI {
         private let requirement: RequirementType
         private let status: Status?
         private let type: LearningObjectItem.ItemType
-        private let duration: String
+        private let duration: String?
         private let dueDate: String?
         private let lockedMessage: String?
         private let points: Double?
@@ -46,7 +46,7 @@ public extension HorizonUI {
             requirement: RequirementType,
             status: Status? = nil,
             type: LearningObjectItem.ItemType,
-            duration: String,
+            duration: String?,
             dueDate: String? = nil,
             lockedMessage: String? = nil,
             points: Double? = nil,
@@ -114,10 +114,12 @@ public extension HorizonUI {
                         .huiTypography(.p3)
                         .foregroundStyle(Color.huiColors.text.timestamp)
 
-                    Text(duration)
-                        .foregroundStyle(Color.huiColors.text.timestamp)
-                        .huiTypography(.p3)
-                        .padding(.leading, .huiSpaces.space16)
+                    if let duration {
+                        Text(duration)
+                            .foregroundStyle(Color.huiColors.text.timestamp)
+                            .huiTypography(.p3)
+                            .padding(.leading, .huiSpaces.space16)
+                    }
                 }
 
                 HStack(spacing: .huiSpaces.space16) {

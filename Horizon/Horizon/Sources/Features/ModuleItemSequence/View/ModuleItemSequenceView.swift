@@ -137,7 +137,7 @@ public struct ModuleItemSequenceView: View {
             HorizonUI.IntroBlock(
                 moduleName: viewModel.moduleItem?.moduleName ?? "",
                 moduleItemName: viewModel.moduleItem?.title ?? "",
-                duration: "22 Mins", // TODO Set real value
+                duration: viewModel.estimatedTime,
                 countOfPoints: viewModel.moduleItem?.points,
                 dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,

@@ -30,7 +30,7 @@ public class GetModules: UseCase {
     }
 
     public let courseID: String
-
+    public let includes: [GetModulesRequest.Include]
     public var cacheKey: String? {
         "\(Context(.course, id: courseID).pathComponent)/modules/items"
     }
@@ -44,8 +44,9 @@ public class GetModules: UseCase {
             ])
     }
 
-    public init(courseID: String) {
+    public init(courseID: String, includes: [GetModulesRequest.Include] = []) {
         self.courseID = courseID
+        self.includes = includes
     }
 
     public func reset(context: NSManagedObjectContext) {
@@ -54,7 +55,7 @@ public class GetModules: UseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
-        let request = GetModulesRequest(courseID: courseID)
+        let request = GetModulesRequest(courseID: courseID, include: includes)
         environment.api.exhaust(request) { [courseID] modules, urlResponse, error in
             guard let modules = modules, error == nil else {
                 completionHandler(nil, urlResponse, error)

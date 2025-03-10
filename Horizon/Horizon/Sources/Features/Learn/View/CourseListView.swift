@@ -32,7 +32,7 @@ struct CourseListView: View {
         BaseHorizonScreen {
             InstUI.BaseScreen(
                 state: viewModel.state,
-                config: .init(refreshable: false)
+                refreshAction: viewModel.reload
             ) { _ in
                 ForEach(viewModel.courses) { course in
                     VStack(spacing: 16) {

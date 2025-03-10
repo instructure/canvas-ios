@@ -65,7 +65,7 @@ struct DashboardView: View {
                                 status: "Default",
                                 moduleTitle: learningObjectCardViewModel.moduleTitle,
                                 learningObjectName: learningObjectCardViewModel.learningObjectName,
-                                duration: "20 Mins",
+                                duration: learningObjectCardViewModel.estimatedTime,
                                 type: learningObjectCardViewModel.type,
                                 dueDate: learningObjectCardViewModel.dueDate
                             ) {

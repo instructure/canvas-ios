@@ -45,6 +45,8 @@ public extension HorizonUI {
         private static let manropeB24: VariantAndSize = .init(variant: .manropeBold, size: 24)
         private static let manropeB20: VariantAndSize = .init(variant: .manropeBold, size: 20)
 
+        private static let manropeSB16: VariantAndSize = .init(variant: .manropeSemiBold, size: 16)
+        
         private static let figtreeR16: VariantAndSize = .init(variant: .figreeRegular, size: 16)
         private static let figtreeR14: VariantAndSize = .init(variant: .figreeRegular, size: 14)
         private static let figtreeR12: VariantAndSize = .init(variant: .figreeRegular, size: 12)
@@ -60,6 +62,7 @@ public extension HorizonUI {
             case figreeSemiBold = "Figtree-SemiBold"
             case manropeRegular = "Manrope-Regular"
             case manropeBold = "Manrope-Bold"
+            case manropeSemiBold = "Manrope-SemiBold"
         }
 
         let manropeRegular12: Font = HorizonUI.Fonts.manropeR12.scaledFont()
@@ -68,6 +71,8 @@ public extension HorizonUI {
         let manropeBold24: Font = HorizonUI.Fonts.manropeB24.scaledFont()
         let manropeBold20: Font = HorizonUI.Fonts.manropeB20.scaledFont()
 
+        let manropeSemiBold16: Font = HorizonUI.Fonts.manropeSB16.scaledFont()
+        
         let figtreeRegular16: Font = HorizonUI.Fonts.figtreeR16.scaledFont()
         let figtreeRegular14: Font = HorizonUI.Fonts.figtreeR14.scaledFont()
         let figtreeRegular12: Font = HorizonUI.Fonts.figtreeR12.scaledFont()
@@ -82,6 +87,7 @@ public extension HorizonUI {
             case manropeBold28: return HorizonUI.Fonts.manropeB28.uiFont()
             case manropeBold24: return HorizonUI.Fonts.manropeB24.uiFont()
             case manropeBold20: return HorizonUI.Fonts.manropeB20.uiFont()
+            case manropeSemiBold16: return HorizonUI.Fonts.manropeSB16.uiFont()
             case figtreeRegular16: return HorizonUI.Fonts.figtreeR16.uiFont()
             case figtreeRegular14: return HorizonUI.Fonts.figtreeR14.uiFont()
             case figtreeRegular12: return HorizonUI.Fonts.figtreeR12.uiFont()

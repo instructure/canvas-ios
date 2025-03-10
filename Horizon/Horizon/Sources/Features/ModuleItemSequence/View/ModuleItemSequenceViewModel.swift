@@ -34,6 +34,13 @@ final class ModuleItemSequenceViewModel {
     private(set) var moduleItem: HModuleItem?
     private(set) var assignmentAttemptCount: String?
     private(set) var isAssignmentOptionsButtonVisible: Bool = false
+    var estimatedTime: String? {
+        guard let moduleItem else {
+            return nil
+        }
+        let items = course?.modules.first(where: { $0.id == moduleItem.moduleID })?.items
+        return items?.first(where: { $0.id == moduleItem.id})?.estimatedDurationFormatted
+    }
 
     // MARK: - Input / Output
 

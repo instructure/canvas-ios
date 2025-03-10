@@ -159,7 +159,10 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
                 $0.publisher
                     .flatMap { course in
                         ReactiveStore(
-                            useCase: GetModules(courseID: course.id)
+                            useCase: GetModules(
+                                courseID: course.id,
+                                includes: GetModulesRequest.Include.allCases
+                            )
                         )
                         .getEntities()
                         .replaceError(with: [])
@@ -173,33 +176,5 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
-    }
-}
-
-extension HCourse {
-    init(from entity: Course, modulesEntity: [Module]) {
-        self.id = entity.id
-        self.institutionName = ""
-        self.name = entity.name ?? ""
-        self.overviewDescription = entity.syllabusBody ?? ""
-        self.progress = 0
-        self.modules = modulesEntity.map { HModule(from: $0) }
-        self.incompleteModules = []
-    }
-}
-
-extension HModule {
-    init(from entity: Module) {
-        self.id = entity.id
-        self.name = entity.name
-        self.courseID = entity.courseID
-        self.items = entity.items.map { HModuleItem(from: $0) }
-        contentItems = items.filter { $0.type?.isContentItem == true  }
-        moduleStatus = .init(
-            items: contentItems,
-            state: entity.state,
-            lockMessage: entity.lockedMessage,
-            countOfPrerequisite: entity.prerequisiteModuleIDs.count
-        )
     }
 }
