@@ -81089,6 +81089,7 @@
       }
     },
     "No Submission Date" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
