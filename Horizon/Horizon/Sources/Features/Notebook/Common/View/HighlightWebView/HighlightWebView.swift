@@ -156,7 +156,9 @@ final class HighlightWebView: CoreWebView {
         self.courseNoteInteractor.get(courseId: courseId, itemId: itemId)
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: self.applyHighlights
+                receiveValue: { [weak self] courseNotebookNotes in
+                    self?.applyHighlights(courseNotebookNotes)
+                }
             )
             .store(in: &subscriptions)
     }
