@@ -316,10 +316,7 @@ extension Submission {
 
         switch typeWithQuizLTIMapping {
         case .basic_lti_launch, .external_tool, .online_quiz:
-            return String.localizedStringWithFormat(
-                String(localized: "Attempt %d", bundle: .core),
-                attempt
-            )
+            return String.localizedAttemptNumber(attempt)
         case .discussion_topic:
             return discussionEntriesOrdered.first?.message?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
         case .media_recording:

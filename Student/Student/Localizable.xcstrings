@@ -24456,6 +24456,7 @@
       }
     },
     "Attempt %d" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

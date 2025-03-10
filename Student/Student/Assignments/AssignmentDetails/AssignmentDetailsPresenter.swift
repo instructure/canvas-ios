@@ -219,11 +219,8 @@ class AssignmentDetailsPresenter {
         let items: [UIAction] = {
             guard isActive else { return [] }
             return validSubmissions.map { submission in
-                let attemptNumber = String.localizedStringWithFormat(
-                    String(localized: "Attempt %d", bundle: .student),
-                    submission.attempt
-                )
                 let date = submission.submittedAt?.dateTimeString ?? ""
+                let attemptNumber = String.localizedAttemptNumber(submission.attempt)
                 return UIAction(title: date, subtitle: attemptNumber) { [weak self] _ in
                     self?.selectedSubmission = submission
                 }
@@ -236,10 +233,7 @@ class AssignmentDetailsPresenter {
     }
 
     private func updateAttemptInfo(submission: Submission) {
-        let attemptNumber = String.localizedStringWithFormat(
-            String(localized: "Attempt %d", bundle: .student),
-            submission.attempt
-        )
+        let attemptNumber = String.localizedAttemptNumber(submission.attempt)
         view?.updateAttemptInfo(attemptNumber: attemptNumber)
     }
 
