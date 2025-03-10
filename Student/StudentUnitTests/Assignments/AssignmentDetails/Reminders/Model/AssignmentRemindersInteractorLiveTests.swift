@@ -27,7 +27,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        Clock.mockNow(DateComponents(calendar: Cal.currentCalendar, year: 2100, month: 1, day: 15).date!)
+        Clock.mockNow(Date.make(year: 2100, month: 1, day: 15))
         mockNotificationCenter = MockUserNotificationCenter()
         context = AssignmentReminderContext(
             courseId: "1",
