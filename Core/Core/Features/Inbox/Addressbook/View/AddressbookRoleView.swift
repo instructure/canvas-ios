@@ -51,6 +51,10 @@ struct AddressbookRoleView: View, ScreenViewTrackable {
             text: Binding { viewModel.searchText.value } set: { viewModel.searchText.send($0) },
             placement: .navigationBarDrawer(displayMode: .always)
         )
+        .onAppear {
+            let appearance = UISearchTextField.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+            appearance.backgroundColor = .backgroundLight
+        }
         .refreshable {
             await viewModel.refresh()
         }
