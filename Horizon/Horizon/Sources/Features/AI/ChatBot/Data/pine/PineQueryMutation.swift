@@ -19,7 +19,7 @@
 import Core
 
 class PineQueryMutation: APIGraphQLRequestable {
-    let variables: RagQueryInput
+    let variables: Variables
 
     var path: String {
         "/graphql"
@@ -33,24 +33,34 @@ class PineQueryMutation: APIGraphQLRequestable {
     }
 
     public init(messages: [MessageInput]) {
-        self.variables = RagQueryInput(
-            messages: messages,
-            source: "canvas"
+        self.variables = Variables(
+                input: RagQueryInput(
+                messages: messages,
+                source: "canvas",
+                metadata: ""
+            )
         )
     }
 
     public static let operationName: String = "query"
     public static var query: String = """
         mutation \(operationName)($input: RagQueryInput!) {
-            \(operationName)(input: $input)
+            \(operationName)(input: $input) {
+                response
+            }
         }
     """
 
     typealias Response = RagResponse
 
+    struct Variables: Codable, Equatable {
+        let input: RagQueryInput
+    }
+
     struct RagQueryInput: Codable, Equatable {
         let messages: [MessageInput]
         let source: String
+        let metadata: String
     }
 
     struct MessageInput: Codable, Equatable {

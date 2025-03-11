@@ -29,9 +29,8 @@ final class ChatBotViewModel {
 
     private(set) var chipOptions: [String]?
     private(set) var state: InstUI.ScreenState = .data
-    private(set) var messages: [ChatBotMessageModel] = [
-        .init(content: "Please give me a prompt", isMine: false)
-    ]
+    private(set) var messages: [ChatBotMessageModel] = []
+    private(set) var chips: [String] = []
 
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty
@@ -45,6 +44,13 @@ final class ChatBotViewModel {
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
+    private var chatMessages: [ChatMessage] = [] {
+        didSet {
+            messages = chatMessages.map {
+                ChatBotMessageModel(content: $0.text, isMine: $0.isBot == false)
+            }
+        }
+    }
 
     // MARK: - Init
     init(chatbotInteractor: ChatBotInteractor, router: Router) {
@@ -64,16 +70,13 @@ final class ChatBotViewModel {
             },
             receiveValue: { [weak self] response in
                 guard let self = self else { return }
-                let chipOptions = response.chipOptions?.map {
-                    ChatBotMessageModel(content: $0, isMine: false)
-                } ?? []
-                let history = response.chatHistory.map {
-                    ChatBotMessageModel(content: $0.text, isMine: $0.isBot == false)
-                }
-                self.messages = history + chipOptions
+                self.chatMessages = response.chatHistory
+                self.chips = response.chipOptions ?? []
             }
         )
         .store(in: &subscriptions)
+
+        chatbotInteractor.publish(action: .chat())
     }
 
     func dismiss(controller: WeakViewController) {
@@ -81,7 +84,7 @@ final class ChatBotViewModel {
     }
 
     func sendMessage() {
-        chatbotInteractor.context = .chat(prompt: message)
+        chatbotInteractor.publish(action: .chat(prompt: message, history: chatMessages))
         message = ""
     }
 }
