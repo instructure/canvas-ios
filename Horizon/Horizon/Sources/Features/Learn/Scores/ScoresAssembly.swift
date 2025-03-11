@@ -16,13 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 enum ScoresAssembly {
     static func makeView(courseID: String) -> ScoresView {
         ScoresView(
             viewModel: ScoresViewModel(
                 interactor: ScoresInteractorLive(
                     courseID: courseID
-                )
+                ),
+                router: AppEnvironment.shared.router
+            )
+        )
+    }
+
+    static func makePreview() -> ScoresView {
+        ScoresView(
+            viewModel: ScoresViewModel(
+                interactor: ScoresInteractorPreview(),
+                router: AppEnvironment.shared.router
             )
         )
     }
