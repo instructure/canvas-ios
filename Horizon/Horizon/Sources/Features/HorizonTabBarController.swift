@@ -102,9 +102,9 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
     private func careerTab() -> UIViewController {
         let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(Storybook())
+            rootViewController: SkillSpaceAssembly.makeView()
         )
-        vc.navigationBar.prefersLargeTitles = true
+        vc.navigationBar.prefersLargeTitles = false
         vc.tabBarItem.title = String(localized: "Skillspace", bundle: .horizon)
         vc.tabBarItem.image = getHorizonImage(name: "hub")
         vc.tabBarItem.selectedImage = getHorizonImage(name: "hub_filled")
