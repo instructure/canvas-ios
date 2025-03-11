@@ -321,8 +321,8 @@ class GradesTests: E2ETestCase {
 
         saveButton.hit()
 
-        let labelOfAG1 = GradesHelper.labelOfAG(assignmentGroup: testAG1, numberOfItems: 1).waitUntil(.visible)
-        let labelOfAG2 = GradesHelper.labelOfAG(assignmentGroup: testAG2, numberOfItems: 1).waitUntil(.visible)
+        let labelOfAG1 = GradesHelper.labelOfAssignmentGroup(testAG1, numberOfItems: 1).waitUntil(.visible)
+        let labelOfAG2 = GradesHelper.labelOfAssignmentGroup(testAG2, numberOfItems: 1).waitUntil(.visible)
         XCTAssertTrue(labelOfAG1.isVisible)
         XCTAssertTrue(labelOfAG2.isVisible)
 

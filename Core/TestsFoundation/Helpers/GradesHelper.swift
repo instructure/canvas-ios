@@ -29,7 +29,7 @@ public class GradesHelper: BaseHelper {
         return app.find(label: "Upcoming Assignments, \(itemCountLabel)", type: .staticText)
     }
 
-    public static func labelOfAG(assignmentGroup: DSAssignmentGroup, numberOfItems: Int) -> XCUIElement {
+    public static func labelOfAssignmentGroup(_ assignmentGroup: DSAssignmentGroup, numberOfItems: Int) -> XCUIElement {
         let itemCountLabel = String.localizedNumberOfItems(numberOfItems)
         return app.find(label: "\(assignmentGroup.name), \(itemCountLabel)", type: .staticText)
     }
