@@ -17,6 +17,7 @@
 //
 
 import Core
+import UIKit
 
 let router = Router(routes: [
     RouteHandler("/accounts/:accountID/terms_of_service") { _, _, _ in

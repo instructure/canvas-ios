@@ -20,6 +20,7 @@ import Foundation
 @testable import Core
 @testable import TestsFoundation
 @testable import Student
+import XCTest
 
 class SubmissionCommentsViewControllerTests: StudentTestCase {
     var context = Context(.course, id: "1")

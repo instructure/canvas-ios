@@ -17,6 +17,7 @@
 //
 
 import CoreData
+import UIKit
 
 public final class CDBrandVariables: NSManagedObject {
     /// An `APIBrandVariables` object encoded as JSON.

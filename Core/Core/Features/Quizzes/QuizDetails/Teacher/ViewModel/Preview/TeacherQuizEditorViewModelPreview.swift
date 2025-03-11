@@ -19,6 +19,7 @@
 #if DEBUG
 
 import Combine
+import UIKit
 
 /**
 Use only for SwiftUI previews.

@@ -17,6 +17,8 @@
 //
 
 import Core
+import Foundation
+import XCTest
 
 public class AssignmentsHelper: BaseHelper {
     public static func navBar(course: DSCourse) -> XCUIElement {

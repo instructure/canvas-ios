@@ -16,7 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UserNotifications
+import UIKit
 
 public class TabBarBadgeCounts: NSObject {
     public static var notificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current() {

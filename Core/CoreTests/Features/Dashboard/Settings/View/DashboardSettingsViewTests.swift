@@ -18,6 +18,7 @@
 
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class DashboardSettingsViewTests: CoreTestCase {
 

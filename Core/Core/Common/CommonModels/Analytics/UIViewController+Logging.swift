@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 extension UIViewController {
 
     /// This property returns a human readable name for the given view controller.

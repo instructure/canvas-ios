@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UIKit
 
 final class MultiSelectionViewModel: ObservableObject {
 

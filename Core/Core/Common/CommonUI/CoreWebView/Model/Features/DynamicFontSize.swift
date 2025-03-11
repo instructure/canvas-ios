@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 internal class DynamicFontSize: CoreWebViewFeature {
     private var script: String {
         let css = """

@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class HelpHelper: BaseHelper {
     public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
 

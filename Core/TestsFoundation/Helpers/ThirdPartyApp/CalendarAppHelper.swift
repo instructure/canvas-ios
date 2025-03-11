@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class CalendarAppHelper: BaseHelper {
     public static let calendarApp = XCUIApplication(bundleIdentifier: "com.apple.mobilecal")
     public static var continueButton: XCUIElement { calendarApp.find(label: "Continue", type: .button) }

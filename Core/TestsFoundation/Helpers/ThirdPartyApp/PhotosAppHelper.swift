@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import XCTest
+
 public class PhotosAppHelper: BaseHelper {
     static let defaultTimeout = TimeInterval(10)
     public static let photosApp = XCUIApplication(bundleIdentifier: "com.apple.mobileslideshow")

@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UIKit
 
 public protocol AccessibilityNotificationHandler {
     func post(notification: UIAccessibility.Notification, argument: Any?)
