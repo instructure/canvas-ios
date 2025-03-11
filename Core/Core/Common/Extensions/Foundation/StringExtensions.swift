@@ -126,6 +126,12 @@ extension String {
         return data
     }
 
+    /// - returns: A new string without the given prefix. If the string doesn't have the given prefix this method will return the unmodified string.
+    public func deletingPrefix(_ prefix: String) -> String {
+        guard hasPrefix(prefix) else { return self }
+        return String(dropFirst(prefix.count))
+    }
+
     /// Localized string to be used when we need number of items. Example: "5 items"
     public static func localizedNumberOfItems(_ count: Int) -> String {
         String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), count)
