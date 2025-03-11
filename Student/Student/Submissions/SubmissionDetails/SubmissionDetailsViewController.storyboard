@@ -33,6 +33,16 @@
                                     <constraint firstAttribute="height" priority="250" constant="16" id="dDM-VJ-aAt"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGl-0o-0RI" userLabel="Divider" customClass="DividerView" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="16" y="15" width="343" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="fKZ-4U-Lpu"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ac8-45-rao" customClass="Drawer" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                             </view>
@@ -48,11 +58,14 @@
                             <constraint firstItem="OAc-d9-7i7" firstAttribute="top" secondItem="gAY-Hn-Rdg" secondAttribute="bottom" id="KYL-Ok-7ua"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="gAY-Hn-Rdg" secondAttribute="trailing" id="L34-YA-nwM"/>
                             <constraint firstItem="pNE-3D-zl2" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="Mc9-sM-Te4"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="ZGl-0o-0RI" secondAttribute="trailing" constant="16" id="NDF-gO-xjx"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="EAM-Lb-Jft" secondAttribute="trailing" id="NfL-9z-gwq"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="pNE-3D-zl2" secondAttribute="trailing" id="Nn7-Gn-7L1"/>
                             <constraint firstItem="pNE-3D-zl2" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Osr-nX-LR6"/>
+                            <constraint firstItem="ZGl-0o-0RI" firstAttribute="bottom" secondItem="gAY-Hn-Rdg" secondAttribute="bottom" id="Qf4-3q-YW6"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="EAM-Lb-Jft" secondAttribute="bottom" id="SHX-ME-PMK"/>
                             <constraint firstItem="ac8-45-rao" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Xvg-IC-BXr"/>
+                            <constraint firstItem="ZGl-0o-0RI" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" constant="16" id="Z93-b3-e1p"/>
                             <constraint firstItem="OAc-d9-7i7" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Zqn-R4-3wF"/>
                             <constraint firstItem="ac8-45-rao" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bea-4p-X3b" secondAttribute="top" id="dQD-Sk-A89"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="OAc-d9-7i7" secondAttribute="bottom" constant="50" id="eA4-7r-3Ap"/>

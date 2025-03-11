@@ -62,6 +62,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         emptyView?.submitCallback = { [weak self] button in
             self?.presenter?.submit(button: button)
         }
+        attemptPicker?.hideDivider()
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
