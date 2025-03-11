@@ -91,7 +91,6 @@ extension HorizonUI {
                 }
                 displayedOptions
             }
-            .padding(.vertical, 25)
         }
 
         // MARK: - Private

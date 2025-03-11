@@ -20,7 +20,8 @@ import HorizonUI
 import SwiftUI
 
 struct ScoresView: View {
-    let viewModel: ScoresViewModel
+    @Bindable var viewModel: ScoresViewModel
+    @Environment(\.viewController) private var viewController
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -29,7 +30,15 @@ struct ScoresView: View {
                 loadingView
             case .data:
                 if let details = viewModel.scoreDetails {
-                    ScoresAssignmentGroupsView(details: details)
+                    VStack(spacing: .huiSpaces.space24) {
+                        ScoresAssignmentGroupsView(details: details)
+                        ScoresAssignmentsView(
+                            details: details,
+                            selectedSortOption: $viewModel.selectedSortOption
+                        ) { url in
+                            viewModel.navigateToCourseDetails(url: url, viewController: viewController)
+                        }
+                    }
                 }
             case .error:
                 Text("Error loading scores.", bundle: .horizon)
@@ -49,4 +58,8 @@ struct ScoresView: View {
         .frame(maxWidth: .infinity)
         .containerRelativeFrame(.vertical)
     }
+}
+
+#Preview {
+    ScoresAssembly.makePreview()
 }
