@@ -92,7 +92,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             buttonConfig.baseForegroundColor = Brand.shared.linkColor
             buttonConfig.imagePlacement = .trailing
             buttonConfig.imagePadding = 4
-            buttonConfig.image = .arrowOpenRightSolid
+            buttonConfig.image = .arrowOpenRightLine
                 .scaleTo(.init(width: 14, height: 14))
                 .withRenderingMode(.alwaysTemplate)
             buttonConfig.contentInsets = {

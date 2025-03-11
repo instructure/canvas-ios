@@ -194,6 +194,7 @@ class TodoListCell: UITableViewCell {
         needsGradingView.layer.borderColor = Brand.shared.primary.cgColor
         needsGradingView.layer.borderWidth = 1
         needsGradingView.layer.cornerRadius = needsGradingView.frame.height / 2
+        setupInstDisclosureIndicator()
     }
 
     func update(_ todo: Todo?) {
