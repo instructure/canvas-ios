@@ -83,36 +83,44 @@ final class ScoresInteractorLive: ScoresInteractor {
             .flatMap { assignmentGroup -> AnyPublisher<HAssignmentGroup, Error> in
                 assignmentGroup.assignments
                     .publisher
-                    .flatMap { assignment -> AnyPublisher<HAssignment, Error> in
-                        unownedSelf.submissionCommentInteractor.getNumberOfComments(
+                    .flatMap {
+                        unownedSelf.getCommentsForAsssignment(
                             courseID: course.courseID,
-                            assignmentID: assignment.id,
-                            attempt: assignment.mostRecentSubmission?.attempt
+                            assignment: $0
                         )
-                        .map { numberOfComments -> HAssignment in
-                            var updatedSubmissions = assignment.submissions
-                            if let mostRecentSubmission = updatedSubmissions.first {
-                                updatedSubmissions[0] = mostRecentSubmission.update(numberOfComments: numberOfComments)
-                            }
-                            return assignment.update(submissions: updatedSubmissions)
-                        }
-                        .eraseToAnyPublisher()
                     }
                     .collect()
-                    .map { updatedAssignments -> HAssignmentGroup in
-                        assignmentGroup.update(assignments: updatedAssignments)
-                    }
+                    .map { assignmentGroup.update(assignments: $0) }
                     .eraseToAnyPublisher()
             }
             .collect()
-            .map { assignmentGroups -> ScoreDetails in
+            .map {
                 ScoreDetails(
                     score: unownedSelf.calculateFinalScoreAndGradeText(course: course),
-                    assignmentGroups: assignmentGroups,
+                    assignmentGroups: $0,
                     sortOption: sortBy
                 )
             }
             .eraseToAnyPublisher()
+    }
+
+    private func getCommentsForAsssignment(
+        courseID: String,
+        assignment: HAssignment
+    ) -> AnyPublisher<HAssignment, Error> {
+        submissionCommentInteractor.getNumberOfComments(
+            courseID: courseID,
+            assignmentID: assignment.id,
+            attempt: assignment.mostRecentSubmission?.attempt
+        )
+        .map { numberOfComments -> HAssignment in
+            var updatedSubmissions = assignment.submissions
+            if let mostRecentSubmission = updatedSubmissions.first {
+                updatedSubmissions[0] = mostRecentSubmission.update(numberOfComments: numberOfComments)
+            }
+            return assignment.update(submissions: updatedSubmissions)
+        }
+        .eraseToAnyPublisher()
     }
 
     private func calculateFinalScoreAndGradeText(course: ScoresCourse) -> String {

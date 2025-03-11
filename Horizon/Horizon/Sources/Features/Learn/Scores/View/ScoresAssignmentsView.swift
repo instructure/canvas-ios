@@ -26,7 +26,7 @@ struct ScoresAssignmentsView: View {
 
     var body: some View {
         VStack(spacing: .zero) {
-            Text("Sort By")
+            Text("Sort By", bundle: .horizon)
                 .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.body)
                 .padding([.top, .leading, .trailing], .huiSpaces.space24)

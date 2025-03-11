@@ -48,11 +48,13 @@ struct HAssignment: Identifiable {
         submissions.first
     }
 
+    private static let noDataString = "-"
+
     var pointsResult: String {
         if let pointsPossibleString {
             return "\(mostRecentSubmissionScoreString)/\(pointsPossibleString)"
         } else {
-            return "-"
+            return Self.noDataString
         }
     }
 
@@ -60,9 +62,9 @@ struct HAssignment: Identifiable {
         if let mostRecentSubmission = mostRecentSubmission, let score = mostRecentSubmission.score {
             return GradeFormatter.numberFormatter.string(
                 from: NSNumber(value: score)
-            ) ?? "-"
+            ) ?? Self.noDataString
         } else {
-            return "-"
+            return Self.noDataString
         }
     }
 
