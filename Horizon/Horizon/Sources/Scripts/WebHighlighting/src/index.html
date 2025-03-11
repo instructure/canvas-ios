@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My JavaScript Project</title>
+  </head>
+  <body>
+    <h1>Hello, JavaScript!</h1>
+    <script type="module" src="./WebHighlighting.js"></script>
+    <script type="text/javascript">
+      const notebookTextSelections = [];
+
+      function onApplyHighlight() {
+        const notebookTextSelection = window.getSelectionCoordinates();
+        if (notebookTextSelection) {
+          notebookTextSelection.backgroundColor = "yellow";
+          notebookTextSelection.borderColor = "red";
+
+          notebookTextSelections.push(notebookTextSelection);
+        }
+        window.applyHighlights(notebookTextSelections);
+      }
+
+      function applyEvalString() {
+        const evalString = document.getElementById("evalString").value;
+        eval(evalString);
+      }
+
+      function clearHighlights() {
+        notebookTextSelections.length = 0;
+        window.applyHighlights(notebookTextSelections);
+      }
+
+    </script>
+
+    <div id="parent-container">
+      <p>
+        In this lesson, we'll focus on the importance of regular security
+        assessments and the role they play in maintaining strong security
+        practices. You'll learn how to identify and report improper practices,
+        even subtle ones that don’t align with security standards, and the value
+        of continuous education to stay ahead of emerging threats. Engaging in
+        ongoing training and using company-provided tools will help reinforce a
+        culture of vigilance and proactive security.In this lesson, we'll focus
+        on the importance of regular security assessments and the role they play
+        in maintaining strong security practices. You'll learn how to identify
+        and report improper practices, even subtle ones that don’t align with
+        security standards, and the value of continuous education to stay ahead
+        of emerging threats. Engaging in ongoing training and using
+        company-provided tools will help reinforce a culture of vigilance and
+        proactive security.
+      </p>
+      <p>Here is some more text to play with</p>
+      <p>And a third paragraph</p>
+    </div>
+
+    <div>
+      <button onclick="onApplyHighlight()" style="margin-right:16px">Apply Highlight</button>
+      <button onclick="clearHighlights()">Clear Highlights</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <textarea id="evalString" style="width:500px; height:300px;"></textarea>
+    </div>
+
+    <div>
+      <button onclick="applyEvalString()">Apply Eval String</button>
+    </div>
+
+    </textarea>
+  </body>
+</html>

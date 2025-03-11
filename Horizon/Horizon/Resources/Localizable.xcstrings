@@ -36,6 +36,9 @@
     "Add a Note" : {
 
     },
+    "Add a Note (Optional)" : {
+
+    },
     "Add Comment" : {
 
     },
@@ -369,6 +372,9 @@
     "Helsinki (+02:00/+03:00)" : {
 
     },
+    "Highlight" : {
+
+    },
     "Hobart (+10:00/+11:00)" : {
 
     },
@@ -445,6 +451,9 @@
 
     },
     "Late" : {
+
+    },
+    "Label" : {
 
     },
     "Learn" : {
@@ -574,9 +583,6 @@
 
     },
     "Notebook" : {
-
-    },
-    "Notebook for Course %@" : {
 
     },
     "Notes" : {
@@ -720,9 +726,6 @@
     "Scores" : {
 
     },
-    "Search" : {
-
-    },
     "Select a Submission Type" : {
 
     },
@@ -814,6 +817,9 @@
 
     },
     "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
+
+    },
+    "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
 
     },
     "Tijuana (-08:00/-07:00)" : {

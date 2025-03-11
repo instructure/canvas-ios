@@ -24,11 +24,10 @@ enum CourseNoteLabel: String, CaseIterable {
     case important = "Important"
     case other = "Other"
 
-    var color: Color? {
+    var color: Color {
         switch self {
-        case .confusing: .huiColors.icon.error
         case .important: .huiColors.icon.action
-        default: nil
+        default: .huiColors.icon.error
         }
     }
 
@@ -40,11 +39,17 @@ enum CourseNoteLabel: String, CaseIterable {
 
     var image: some View {
         self == .confusing ?
-        Image.huiIcons.help.foregroundStyle(self.color ?? .huiColors.icon.default) :
-        Image.huiIcons.flag2.foregroundStyle(self.color ?? .huiColors.icon.default)
+        Image.huiIcons.help.foregroundStyle(self.color) :
+        Image.huiIcons.flag2.foregroundStyle(self.color)
     }
 
     static func color(_ label: CourseNoteLabel) -> Color? {
         label.color
+    }
+}
+
+extension String {
+    func toCourseNoteLabel() -> CourseNoteLabel? {
+        CourseNoteLabel(rawValue: self)
     }
 }

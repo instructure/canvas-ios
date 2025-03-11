@@ -115,7 +115,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")
-            let itemViewController = environment.router.match(preparedURL)
+            let itemViewController = environment.router.match(preparedURL, userInfo: ["item": item])
             if let itemViewController, let routeTemplate = environment.router.template(for: preparedURL) {
                 RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: itemViewController)
             }
