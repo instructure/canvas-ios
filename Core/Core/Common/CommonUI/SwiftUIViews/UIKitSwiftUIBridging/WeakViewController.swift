@@ -32,7 +32,6 @@ public class WeakViewController {
 
     public func setValue(_ value: UIViewController) {
         weakValue = value
-        let x = URL(string: "")
     }
 }
 
