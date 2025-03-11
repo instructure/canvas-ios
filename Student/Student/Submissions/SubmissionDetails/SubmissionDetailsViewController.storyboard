@@ -29,6 +29,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAY-Hn-Rdg" userLabel="Attempt Picker" customClass="SubmissionAttemptPickerView" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="16"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPicker"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="16" id="dDM-VJ-aAt"/>
                                 </constraints>

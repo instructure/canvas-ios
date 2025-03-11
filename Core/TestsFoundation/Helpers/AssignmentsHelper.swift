@@ -118,9 +118,10 @@ public class AssignmentsHelper: BaseHelper {
         }
 
         public struct SubmissionDetails {
-            public static var attemptPickerToggle: XCUIElement { app.find(id: "SubmissionDetails.attemptPickerToggle") }
             public static var attemptPicker: XCUIElement { app.find(id: "SubmissionDetails.attemptPicker") }
-            public static var pickerWheel: XCUIElement { attemptPicker.find(type: .pickerWheel) }
+            public static var attemptPickerItems: [XCUIElement] {
+                app.findAll(idStartingWith: "SubmissionDetails.attemptPickerItem.")
+            }
             public static var drawerGripper: XCUIElement { app.find(id: "SubmissionDetails.drawerGripper") }
         }
 

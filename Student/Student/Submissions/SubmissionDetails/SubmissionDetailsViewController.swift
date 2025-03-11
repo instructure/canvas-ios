@@ -127,10 +127,12 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
                 let date = submission.submittedAt?.dateTimeString ?? ""
                 let attemptNumber = String.localizedAttemptNumber(submission.attempt)
                 let isSelected = submission.attempt == currentSubmission.attempt
-                return UIAction(title: date, subtitle: attemptNumber, state: isSelected ? .on : .off) { [weak self] _ in
+                let action = UIAction(title: date, subtitle: attemptNumber, state: isSelected ? .on : .off) { [weak self] _ in
                     self?.presenter?.select(attempt: submission.attempt)
                     UIAccessibility.post(notification: .screenChanged, argument: self?.attemptPicker)
                 }
+                action.accessibilityIdentifier = "SubmissionDetails.attemptPickerItem.\(submission.attempt)"
+                return action
             }
         }()
 
