@@ -17,7 +17,6 @@
 //
 
 import CoreData
-import Foundation
 import UIKit
 
 final public class Course: NSManagedObject, WriteableModel {

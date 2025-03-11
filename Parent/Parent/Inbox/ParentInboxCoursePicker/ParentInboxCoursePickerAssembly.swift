@@ -17,7 +17,6 @@
 //
 
 import Core
-import Foundation
 import UIKit
 
 enum ParentInboxCoursePickerAssembly {

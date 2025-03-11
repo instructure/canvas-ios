@@ -17,7 +17,6 @@
 //
 
 import CoreData
-import Foundation
 import UIKit
 
 public final class Todo: NSManagedObject, WriteableModel {

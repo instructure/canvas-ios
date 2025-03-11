@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 /**
@@ -33,6 +32,7 @@ public class WeakViewController {
 
     public func setValue(_ value: UIViewController) {
         weakValue = value
+        let x = URL(string: "")
     }
 }
 

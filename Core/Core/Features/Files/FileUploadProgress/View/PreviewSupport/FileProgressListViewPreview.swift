@@ -19,7 +19,6 @@
 #if DEBUG
 
 import Combine
-import Foundation
 import UIKit
 
 class FileProgressListViewPreview {

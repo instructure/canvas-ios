@@ -19,7 +19,6 @@
 import Core
 import Combine
 import CombineSchedulers
-import Foundation
 import UIKit
 
 public class AssignmentRemindersViewModel: ObservableObject {

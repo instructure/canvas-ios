@@ -19,7 +19,6 @@
 import Combine
 import CombineExt
 import CombineSchedulers
-import Foundation
 import UIKit
 
 final class ComposeMessageViewModel: ObservableObject {
