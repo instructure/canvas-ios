@@ -88,7 +88,7 @@ struct CourseSyncSettingsView: View {
                         .foregroundColor(.textDark)
                         .font(.regular14)
                         .padding(.trailing, 15)
-                    InstDisclosureIndicator()
+                    InstUI.DisclosureIndicator()
                 }
                 .padding(.horizontal, 16)
                 .accessibilityHint(viewModel.labels.syncFrequency)

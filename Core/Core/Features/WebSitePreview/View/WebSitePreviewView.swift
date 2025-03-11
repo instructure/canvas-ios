@@ -79,7 +79,7 @@ public struct WebSitePreviewView: View {
                 Text(verbatim: "Launch Session")
                     .foregroundColor(Color(Brand.shared.linkColor))
                 Spacer()
-                InstDisclosureIndicator()
+                InstUI.DisclosureIndicator()
             }
         }
     }

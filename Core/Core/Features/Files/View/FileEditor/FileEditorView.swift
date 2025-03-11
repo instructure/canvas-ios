@@ -140,7 +140,7 @@ public struct FileEditorView: View {
                 }, content: {
                     Text(access.label)
                     Spacer()
-                    DisclosureIndicator()
+                    InstUI.DisclosureIndicator()
                 })
                 .identifier("FileEditor.accessButton")
                 .accessibility(label: Text("Access", bundle: .core))
@@ -192,7 +192,7 @@ public struct FileEditorView: View {
                     }, content: {
                         Text(justification.label)
                         Spacer()
-                        DisclosureIndicator()
+                        InstUI.DisclosureIndicator()
                     })
                         .identifier("FileEditor.justificationButton")
                     if justification == .creative_commons {
@@ -211,7 +211,7 @@ public struct FileEditorView: View {
                         }, content: {
                             Text(license.label)
                             Spacer()
-                            DisclosureIndicator()
+                            InstUI.DisclosureIndicator()
                         })
                             .identifier("FileEditor.licenseButton")
                     }
