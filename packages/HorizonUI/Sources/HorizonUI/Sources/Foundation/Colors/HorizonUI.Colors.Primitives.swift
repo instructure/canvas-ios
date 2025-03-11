@@ -78,8 +78,8 @@ public extension HorizonUI.Colors {
 
         // MARK: - Beige
 
-        public let beige10 = Color(hexString: "#FFFDFA")
-        public let beige11 = Color(hexString: "#FBF5ED")
+        public let beige10 = Color(hexString: "#F9F9F9")
+        public let beige11 = Color(hexString: "#F2F4F4")
         public let beige12 = Color(hexString: "#FDEACC")
         public let beige15 = Color(hexString: "#E3D0B2")
         public let beige19 = Color(hexString: "#CAB79A")
@@ -89,7 +89,7 @@ public extension HorizonUI.Colors {
         public let beige69 = Color(hexString: "#645844")
         public let beige100 = Color(hexString: "#4A4131")
         public let beige147 = Color(hexString: "#2F271B")
-        public let beigeGradient = [Color(hexString: "#FFFDFA"), Color(hexString: "#FBF5ED")]
+        public let beigeGradient = [Color(hexString: "#F9F9F9"), Color(hexString: "#F2F4F4")]
 
         // MARK: - Additional Primitives
         // MARK: - Rose

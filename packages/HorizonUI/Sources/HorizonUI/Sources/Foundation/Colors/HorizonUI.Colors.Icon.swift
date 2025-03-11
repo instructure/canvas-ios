@@ -22,8 +22,8 @@ public extension HorizonUI.Colors {
     struct IconColor: Sendable, ColorCollection {
         public let action = Color(hexString: "#0E68B3")
         public let actionSecondary = Color(hexString: "#0A5A9E")
-        public let beigePrimary = Color(hexString: "#FBF5ED")
-        public let beigeSecondary = Color(hexString: "#FFFDFA")
+        public let beigePrimary = Color(hexString: "#F2F4F4")
+        public let beigeSecondary = Color(hexString: "#F9F9F9")
         public let `default` = Color(hexString: "#273540")
         public let error = Color(hexString: "#C71F23")
         public let light = Color(hexString: "#9EA6AD")

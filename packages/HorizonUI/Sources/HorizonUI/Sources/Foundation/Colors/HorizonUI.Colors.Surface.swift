@@ -23,7 +23,7 @@ public extension HorizonUI.Colors {
         public let attention = Color(hexString: "#2B7ABC")
         public let attentionSecondary = Color(hexString: "#0A5A9E")
         public let cardPrimary = Color(hexString: "#FFFFFF")
-        public let cardSecondary = Color(hexString: "#FFFDFA")
+        public let cardSecondary = Color(hexString: "#F9F9F9")
         public let divider = Color(hexString: "#E8EAEC")
         public let error = Color(hexString: "#C71F23")
         public var institution: Color { Color(uiColor: Self.institutionWrapper.color) }
@@ -31,7 +31,7 @@ public extension HorizonUI.Colors {
         public let inverseSecondary = Color(hexString: "#0A1B2A")
         public let overlayGrey = Color(hexString: "#586874")
         public let overlayWhite = Color(hexString: "#FFFFFF")
-        public let pagePrimary = Color(hexString: "#FBF5ED")
+        public let pagePrimary = Color(hexString: "#F2F4F4")
         public let pageSecondary = Color(hexString: "#FFFFFF")
         public let pageTertiary = Color(hexString: "#E8EAEC")
         public let warning = Color(hexString: "#CF4A00")
