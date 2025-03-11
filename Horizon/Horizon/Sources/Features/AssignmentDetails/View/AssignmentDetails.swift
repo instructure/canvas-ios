@@ -102,7 +102,7 @@ struct AssignmentDetails: View {
     private var loaderView: some View {
         if viewModel.isLoaderVisible {
             ZStack {
-                Color.huiColors.surface.inverseSecondary.opacity(0.01)
+                Color.huiColors.surface.pageSecondary
                     .ignoresSafeArea()
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
