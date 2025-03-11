@@ -255,7 +255,10 @@ open class CoreWebView: WKWebView {
         let font: String
         let fontCSS: String
         let style = Typography.Style.body
-        let uiFont = style.uiFont
+        // This is to avoid double scaling both from the font and from the script.
+        let isDynamicFontScalingEnabled = features.contains { $0 is DynamicFontSize }
+        let uiFont = isDynamicFontScalingEnabled ? UIFont.applicationFont(ofSize: 16, weight: .regular)
+                                                 : style.uiFont
         let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
         if AppEnvironment.shared.k5.isK5Enabled {
