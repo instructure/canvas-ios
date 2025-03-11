@@ -17,7 +17,6 @@
 //
 
 import CoreData
-import Foundation
 @testable import Core
 import UIKit
 
