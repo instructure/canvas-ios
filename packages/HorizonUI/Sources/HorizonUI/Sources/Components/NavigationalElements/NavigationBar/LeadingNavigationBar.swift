@@ -33,7 +33,6 @@ public extension HorizonUI.NavigationBar {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 118, height: 44)
-                    .background(Color.huiColors.surface.pageTertiary)
             }
         }
     }

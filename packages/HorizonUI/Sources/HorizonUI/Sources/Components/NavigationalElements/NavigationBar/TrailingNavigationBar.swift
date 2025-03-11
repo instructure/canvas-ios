@@ -39,7 +39,7 @@ public extension HorizonUI.NavigationBar {
         }
 
         public var body: some View {
-            HStack(spacing: .zero) {
+            HStack(spacing: .huiSpaces.space8) {
 
                 if let onNotebookDidTap = onNotebookDidTap {
                     Button {
