@@ -83,7 +83,7 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
             field.accessibilityLabel = type.name
             field.attributedPlaceholder = NSAttributedString(
                 string: field.placeholder ?? "",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.textDark]
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.textPlaceholder]
             )
         }
         for toggle in alertSwitches {
