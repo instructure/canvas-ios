@@ -16,17 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct APIActivityMessage: Codable, Comparable {
+public struct APIActivityMessage: Codable {
     let id: ID
     let created_at: Date
     let body: String?
     let author_id: String
     let message: String
     let participating_user_ids: [String]
-
-    public static func < (lhs: APIActivityMessage, rhs: APIActivityMessage) -> Bool {
-        lhs.created_at < rhs.created_at
-    }
 }
 
 #if DEBUG

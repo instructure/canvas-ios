@@ -44,7 +44,7 @@ public struct APIActivity: Codable {
     let latest_messages: [APIActivityMessage]?
 
     var latestRelevantUpdate: Date {
-        latest_messages?.max()?.created_at ?? updated_at
+        latest_messages?.max { $0.created_at < $1.created_at}?.created_at ?? updated_at
     }
 }
 
