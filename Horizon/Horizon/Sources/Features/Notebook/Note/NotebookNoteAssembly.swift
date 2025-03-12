@@ -16,21 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import Core
+import UIKit
 
 final class NotebookNoteAssembly {
-    static func makeNotebookNoteInteractor() -> NotebookNoteInteractor {
-        .init(courseNotesRepository: CourseNotesRepositoryPreview.instance)
+    static func makeCourseNoteInteractor() -> CourseNoteInteractor {
+        CourseNoteInteractorLive.instance
     }
 
-    static func makeViewNoteViewController(noteId: String) -> CoreHostingController<NotebookNoteView> {
+    static func makeViewNoteViewController(courseNotebookNote: CourseNotebookNote) -> CoreHostingController<NotebookNoteView> {
         CoreHostingController(
             NotebookNoteView(
                 viewModel: .init(
-                    notebookNoteInteractor: makeNotebookNoteInteractor(),
+                    courseNoteInteractor: makeCourseNoteInteractor(),
                     router: AppEnvironment.shared.router,
-                    noteId: noteId
+                    courseNotebookNote: courseNotebookNote
+                )
+            )
+        )
+    }
+
+    static func makeViewNoteViewController(courseID: String, itemID: String, notebookHighlight: NotebookHighlight? = nil) -> CoreHostingController<NotebookNoteView> {
+        CoreHostingController(
+            NotebookNoteView(
+                viewModel: .init(
+                    courseNoteInteractor: makeCourseNoteInteractor(),
+                    router: AppEnvironment.shared.router,
+                    courseId: courseID,
+                    itemId: itemID,
+                    notebookHighlight: notebookHighlight
                 )
             )
         )

@@ -150,8 +150,11 @@ final class AssignmentDetailsViewModel {
             submissions: submissions,
             selectedSubmission: submission
         ) { [weak self] selectedSubmission in
-            self?.hasSubmittedBefore = true
-            self?.submission = selectedSubmission
+            guard let self, selectedSubmission != submission else {
+                return
+            }
+            hasSubmittedBefore = true
+            submission = selectedSubmission
         }
         router.show(view, from: controller, options: .modal(isDismissable: false))
     }

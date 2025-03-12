@@ -78,6 +78,7 @@ struct AssignmentAttemptsView: View {
                 ForEach(submissions, id: \.self) { submission in
                     Button {
                         selectedSubmission = submission
+                        dismissView()
                     } label: {
                         AssignmentAttemptsRow(
                             submission: submission,
@@ -86,6 +87,13 @@ struct AssignmentAttemptsView: View {
                     }
                 }
             }
+        }
+    }
+
+    private func dismissView() {
+        didSelectSubmission(selectedSubmission)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            dismiss()
         }
     }
 }

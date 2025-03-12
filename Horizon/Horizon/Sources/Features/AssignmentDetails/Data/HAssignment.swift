@@ -19,13 +19,15 @@
 import Core
 import UniformTypeIdentifiers
 
-struct HAssignment {
+struct HAssignment: Identifiable {
     let id: String
+    let htmlURL: URL?
     let name: String
     let duration: String = "20 mins"
     let details: String?
     let pointsPossible: Double?
-    let dueAt: String
+    let dueAt: Date?
+    let dueAtString: String?
     let allowedAttempts: Int
     let submissionTypes: [SubmissionType]
     let courseID: String
@@ -42,12 +44,47 @@ struct HAssignment {
 
     let submissions: [HSubmission]
 
+    var mostRecentSubmission: HSubmission? {
+        submissions.first
+    }
+
+    private static let noDataString = "-"
+
+    var pointsResult: String {
+        if let pointsPossibleString {
+            return "\(mostRecentSubmissionScoreString)/\(pointsPossibleString)"
+        } else {
+            return Self.noDataString
+        }
+    }
+
+    private var mostRecentSubmissionScoreString: String {
+        if let mostRecentSubmission = mostRecentSubmission, let score = mostRecentSubmission.score {
+            return GradeFormatter.numberFormatter.string(
+                from: NSNumber(value: score)
+            ) ?? Self.noDataString
+        } else {
+            return Self.noDataString
+        }
+    }
+
+    private var pointsPossibleString: String? {
+        if let pointsPossible {
+            return GradeFormatter.numberFormatter.string(
+                from: NSNumber(value: pointsPossible)
+            )
+        } else {
+            return nil
+        }
+    }
+
     init(
         id: String,
+        htmlURL: URL?,
         name: String,
         details: String?,
         pointsPossible: Double?,
-        dueAt: String,
+        dueAt: Date?,
         allowedAttempts: Int,
         submissionTypes: [SubmissionType],
         courseID: String,
@@ -57,10 +94,16 @@ struct HAssignment {
         submissions: [HSubmission]
     ) {
         self.id = id
+        self.htmlURL = htmlURL
         self.name = name
         self.details = details
         self.pointsPossible = pointsPossible
         self.dueAt = dueAt
+        if let dueAt {
+            self.dueAtString = Self.dateFormatter.string(from: dueAt)
+        } else {
+            self.dueAtString = nil
+        }
         self.allowedAttempts = allowedAttempts
         self.submissionTypes = submissionTypes
         self.courseID = courseID
@@ -72,10 +115,16 @@ struct HAssignment {
 
     init(from assignment: Assignment) {
         self.id = assignment.id
+        self.htmlURL = assignment.htmlURL
         self.name = assignment.name
         self.details = assignment.details
         self.pointsPossible = assignment.pointsPossible
-        self.dueAt = assignment.dueText
+        self.dueAt = assignment.dueAt
+        if let dueAt {
+            self.dueAtString = Self.dateFormatter.string(from: dueAt)
+        } else {
+            self.dueAtString = nil
+        }
         self.allowedAttempts = assignment.allowedAttempts
         self.submissionTypes = assignment.submissionTypes
         self.workflowState = assignment.submission?.workflowState
@@ -94,6 +143,24 @@ struct HAssignment {
         self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
     }
 
+    func update(submissions: [HSubmission]) -> HAssignment {
+        HAssignment(
+            id: id,
+            htmlURL: htmlURL,
+            name: name,
+            details: details,
+            pointsPossible: pointsPossible,
+            dueAt: dueAt,
+            allowedAttempts: allowedAttempts,
+            submissionTypes: submissionTypes,
+            courseID: courseID,
+            courseName: courseName,
+            workflowState: workflowState,
+            submittedAt: submittedAt,
+            submissions: submissions
+        )
+    }
+
     var isUnsubmitted: Bool {
         workflowState == .unsubmitted || submittedAt == nil
     }
@@ -107,7 +174,7 @@ struct HAssignment {
     }
 
     var allowedContentTypes: [UTType] {
-       let types = fileExtensions.compactMap { $0.uttype }
+        let types = fileExtensions.compactMap { $0.uttype }
         return types.isEmpty ? [.item] : types
     }
 
@@ -120,6 +187,14 @@ struct HAssignment {
     var attemptCount: String? {
         allowedAttempts > 0 ? "\(allowedAttempts)" : String(localized: "Unlimited", bundle: .horizon)
     }
+
+    private static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        formatter.locale = Locale.current
+        return formatter
+    }()
 }
 
 // swiftlint:disable line_length
@@ -127,6 +202,7 @@ extension HAssignment {
     static func mock() -> HAssignment {
         HAssignment(
             id: "1",
+            htmlURL: nil,
             name: "Text assignment",
             details: """
             Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
@@ -134,7 +210,7 @@ extension HAssignment {
             The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
             """,
             pointsPossible: 10,
-            dueAt: "01/12/2024",
+            dueAt: Date.now,
             allowedAttempts: -1,
             submissionTypes: [.online_text_entry],
             courseID: "1",

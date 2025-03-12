@@ -22,14 +22,14 @@ public extension HorizonUI.NavigationBar {
     struct Trailing: View {
         // MARK: - Dependencies
 
-        private let onNotebookDidTap: () -> Void
+        private let onNotebookDidTap: (() -> Void)?
         private let onNotificationDidTap: () -> Void
         private let onMailDidTap: () -> Void
 
         // MARK: - Init
 
         public init(
-            onNotebookDidTap: @escaping () -> Void,
+            onNotebookDidTap: (() -> Void)? = nil,
             onNotificationDidTap: @escaping () -> Void,
             onMailDidTap: @escaping () -> Void
         ) {
@@ -39,12 +39,15 @@ public extension HorizonUI.NavigationBar {
         }
 
         public var body: some View {
-            HStack(spacing: .zero) {
-                Button {
-                    onNotebookDidTap()
-                } label: {
-                    Image.huiIcons.menuBookNotebook
-                        .dropShadow()
+            HStack(spacing: .huiSpaces.space8) {
+
+                if let onNotebookDidTap = onNotebookDidTap {
+                    Button {
+                        onNotebookDidTap()
+                    } label: {
+                        Image.huiIcons.menuBookNotebook
+                            .dropShadow()
+                    }
                 }
 
                 Button {

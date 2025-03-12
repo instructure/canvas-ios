@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "-" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -31,6 +34,9 @@
 
     },
     "Add a Note" : {
+
+    },
+    "Add a Note (Optional)" : {
 
     },
     "Add Comment" : {
@@ -88,6 +94,9 @@
 
     },
     "Assignment Group Weights" : {
+
+    },
+    "Assignment Name" : {
 
     },
     "Assignment Successfully Submitted!" : {
@@ -258,6 +267,12 @@
     "Dublin (+01:00/+00:00)" : {
 
     },
+    "Due Date" : {
+
+    },
+    "Due Date: %@" : {
+
+    },
     "E-mail" : {
 
     },
@@ -291,7 +306,13 @@
     "Error loading scores." : {
 
     },
+    "Excused" : {
+
+    },
     "External Tool" : {
+
+    },
+    "Feedback: " : {
 
     },
     "Fiji (+12:00/+12:00)" : {
@@ -349,6 +370,9 @@
 
     },
     "Helsinki (+02:00/+03:00)" : {
+
+    },
+    "Highlight" : {
 
     },
     "Hobart (+10:00/+11:00)" : {
@@ -429,6 +453,12 @@
     "La Paz (-04:00/-04:00)" : {
 
     },
+    "Label" : {
+
+    },
+    "Late" : {
+
+    },
     "Learn" : {
 
     },
@@ -489,6 +519,9 @@
     "Minsk (+03:00/+03:00)" : {
 
     },
+    "Missing" : {
+
+    },
     "Monrovia (+00:00)" : {
 
     },
@@ -522,6 +555,9 @@
     "Name is required" : {
 
     },
+    "Name: %@" : {
+
+    },
     "New Attempt" : {
 
     },
@@ -546,10 +582,10 @@
     "Noronha (-02:00/-02:00)" : {
 
     },
-    "Notebook" : {
+    "Not Submitted" : {
 
     },
-    "Notebook for Course %@" : {
+    "Notebook" : {
 
     },
     "Notes" : {
@@ -645,6 +681,9 @@
     "Required" : {
 
     },
+    "Result: %@" : {
+
+    },
     "Retry" : {
 
     },
@@ -690,9 +729,6 @@
     "Scores" : {
 
     },
-    "Search" : {
-
-    },
     "Select a Submission Type" : {
 
     },
@@ -717,6 +753,9 @@
     "Solomon Is. (+11:00/+11:00)" : {
 
     },
+    "Sort By" : {
+
+    },
     "Srednekolymsk (+11:00/+11:00)" : {
 
     },
@@ -726,6 +765,9 @@
     "St. Petersburg (+03:00)" : {
 
     },
+    "Status: " : {
+
+    },
     "Stockholm (+01:00/+02:00)" : {
 
     },
@@ -733,6 +775,9 @@
 
     },
     "Submit Attempt" : {
+
+    },
+    "Submitted" : {
 
     },
     "Summarize this material" : {
@@ -775,6 +820,9 @@
 
     },
     "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
+
+    },
+    "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
 
     },
     "Tijuana (-08:00/-07:00)" : {
