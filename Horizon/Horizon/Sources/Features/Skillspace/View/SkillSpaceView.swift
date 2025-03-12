@@ -16,25 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import SwiftUI
+import HorizonUI
 
-struct SkillSpaceAssembly {
-    static private func makeViewModel() -> HEmbeddedWebPageContainerViewModel {
-        let environment = AppEnvironment.shared
-        let skillSpaceinboxViewModel = SkillSpaceViewModel(
-            baseURL: environment.api.baseURL,
-            router: environment.router
-        )
-        let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPage: skillSpaceinboxViewModel,
-            navigationDelegate: skillSpaceinboxViewModel
-        )
-        return viewModel
+struct SkillSpaceView: View {
+    // TODO: - Set with correct url later
+    private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
+
+    let viewModel: HEmbeddedWebPageContainerViewModel
+
+    var body: some View {
+        HEmbeddedWebPageContainerView(viewModel: viewModel)
+            .toolbar(.hidden)
+            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
     }
 
-    static func makeView() -> UIViewController {
-        CoreHostingController(
-            SkillSpaceView(viewModel: makeViewModel())
-        )
+    private var navigationBar: some View {
+        HStack(spacing: .zero) {
+            HorizonUI.NavigationBar.Leading(logoURL: logoURL)
+            Spacer()
+        }
+        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.bottom, .huiSpaces.space4)
     }
 }

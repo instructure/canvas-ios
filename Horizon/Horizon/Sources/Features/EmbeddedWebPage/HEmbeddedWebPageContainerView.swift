@@ -43,7 +43,6 @@ struct HEmbeddedWebPageContainerView: View {
             contentView(url: url)
                 .navigationBarTitleView(title: viewModel.navTitle, subtitle: nil)
                 .toolbar(.visible)
-                .background(Color.huiColors.surface.pagePrimary)
         }
     }
 
