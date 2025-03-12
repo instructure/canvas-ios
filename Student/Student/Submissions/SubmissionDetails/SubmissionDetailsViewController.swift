@@ -43,10 +43,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var drawer: Drawer?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var lockedEmptyView: SubmissionDetailsLockedEmptyView?
-    @IBOutlet weak var attemptLabel: UILabel!
-    @IBOutlet weak var pickerButton: DynamicButton?
-    @IBOutlet weak var pickerButtonDivider: DividerView?
-    @IBOutlet weak var picker: UIPickerView?
+    @IBOutlet weak var attemptPicker: SubmissionAttemptPickerView?
 
     static func create(env: AppEnvironment, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) -> SubmissionDetailsViewController {
         let controller = loadFromStoryboard()
@@ -64,16 +61,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         emptyView?.submitCallback = { [weak self] button in
             self?.presenter?.submit(button: button)
         }
-        picker?.dataSource = self
-        picker?.delegate = self
-        picker?.backgroundColor = .backgroundLightest
-        pickerButton?.textColorName = "textDark"
-        pickerButton?.isEnabled = false
-        attemptLabel.isEnabled = false
-        attemptLabel.font = .scaledNamedFont(.regular14)
-        attemptLabel.textColor = .textDark
-
-        pickerButtonDivider?.isHidden = true
+        attemptPicker?.hideDivider()
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
@@ -85,18 +73,11 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         _ = setDrawerPositionOnce
         drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 0
         contentView?.accessibilityElementsHidden = drawer?.height != 0
-        pickerButton?.accessibilityElementsHidden = drawer?.height == drawer?.maxDrawerHeight
     }
 
     func reload() {
         guard let presenter = presenter, let assignment = presenter.currentAssignment else {
             return
-        }
-        picker?.reloadAllComponents()
-
-        if let selectedAttempt = presenter.selectedAttempt,
-           let pickerRow = presenter.pickerSubmissions.firstIndex(where: { $0.attempt == selectedAttempt}) {
-            picker?.selectRow(pickerRow, inComponent: 0, animated: false)
         }
 
         let submission = presenter.currentSubmission
@@ -109,56 +90,54 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         emptyView?.isHidden = isSubmitted || title == nil || assignment.isSubmittable == false || isLocked
         emptyView?.dueText = assignment.assignmentDueByText
         emptyView?.submitButtonTitle = title
-        pickerButton?.isHidden = !isSubmitted
-        attemptLabel?.isHidden = !isSubmitted
-        pickerButtonDivider?.isHidden = !isSubmitted
-        if let submittedAt = submission?.submittedAt, let attempt = submission?.attempt {
-            let title = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
-            updateAttemptPickerButton(isActive: presenter.pickerSubmissions.count > 1, title: title)
-            attemptLabel.isEnabled = presenter.pickerSubmissions.count > 1
-            let format = String(localized: "Attempt %d", bundle: .student)
-            attemptLabel?.text = String.localizedStringWithFormat(format, attempt)
-        }
-        if presenter.pickerSubmissions.count <= 1 || assignment.isExternalToolAssignment {
-            picker?.isHidden = true
-        }
+
+        updateAttemptPicker(
+            assignment: assignment,
+            submissions: presenter.pickerSubmissions,
+            currentSubmission: submission,
+            isSubmitted: isSubmitted
+        )
 
         lockedEmptyView?.isHidden = !isLocked
         lockedEmptyView?.headerLabel.text = presenter.lockedEmptyViewHeader()
     }
 
-    private func updateAttemptPickerButton(isActive: Bool, title: String) {
-        pickerButton?.isEnabled = isActive
-        pickerButton?.setTitle(title, for: .normal)
+    private func updateAttemptPicker(
+        assignment: Assignment,
+        submissions: [Submission],
+        currentSubmission: Submission?,
+        isSubmitted: Bool
+    ) {
+        attemptPicker?.isHidden = !isSubmitted
 
-        var buttonConfig = UIButton.Configuration.plain()
-        if isActive {
-            if picker?.isHidden == true {
-                buttonConfig.image = .arrowOpenDownSolid
-                    .scaleTo(.init(width: 14, height: 14))
-                    .withRenderingMode(.alwaysTemplate)
-            } else {
-                buttonConfig.image = .arrowOpenUpSolid
-                    .scaleTo(.init(width: 14, height: 14))
-                    .withRenderingMode(.alwaysTemplate)
+        guard let attemptPicker,
+              let currentSubmission,
+              let currentAttemptDate = currentSubmission.submittedAt
+        else { return }
+
+        let isActive = submissions.count > 1 && !assignment.isExternalToolAssignment
+
+        let currentAttemptNumber = String.localizedAttemptNumber(currentSubmission.attempt)
+
+        let items: [UIAction] = {
+            guard isActive else { return [] }
+
+            return submissions.map { submission in
+                let date = submission.submittedAt?.dateTimeString ?? ""
+                let attemptNumber = String.localizedAttemptNumber(submission.attempt)
+                let isSelected = submission.attempt == currentSubmission.attempt
+                let action = UIAction(title: date, subtitle: attemptNumber, state: isSelected ? .on : .off) { [weak self] _ in
+                    self?.presenter?.select(attempt: submission.attempt)
+                    UIAccessibility.post(notification: .screenChanged, argument: self?.attemptPicker)
+                }
+                action.accessibilityIdentifier = "SubmissionDetails.attemptPickerItem.\(submission.attempt)"
+                return action
             }
-            buttonConfig.imagePlacement = .trailing
-            buttonConfig.imagePadding = 6
-        }
-
-        buttonConfig.contentInsets = {
-            var result = buttonConfig.contentInsets
-            result.trailing = 0
-            return result
         }()
-        buttonConfig.indicator = .none
 
-        buttonConfig.titleTextAttributesTransformer = .init { attributes in
-            var result = attributes
-            result.font = UIFont.scaledNamedFont(.regular14)
-            return result
-        }
-        pickerButton?.configuration = buttonConfig
+        attemptPicker.updateLabel(text: currentAttemptNumber)
+        attemptPicker.updatePickerButton(isActive: isActive, attemptDate: currentAttemptDate.dateTimeString, items: items)
+
     }
 
     func reloadNavBar() {
@@ -203,94 +182,5 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
             drawer.moveTo(height: drawer.midDrawerHeight, velocity: 1)
         }
         UIAccessibility.post(notification: .screenChanged, argument: drawerContentViewController)
-    }
-
-    @IBAction func pickerButtonTapped(_ sender: Any) {
-        picker?.isHidden = picker?.isHidden == false
-        if picker?.isHidden == true {
-            pickerButton?.configuration?.image = .arrowOpenDownSolid
-                .scaleTo(.init(width: 14, height: 14))
-                .withRenderingMode(.alwaysTemplate)
-        } else {
-            pickerButton?.configuration?.image = .arrowOpenUpSolid
-                .scaleTo(.init(width: 14, height: 14))
-                .withRenderingMode(.alwaysTemplate)
-        }
-    }
-}
-
-extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return presenter?.pickerSubmissions.count ?? 0
-    }
-
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        guard presenter?.pickerSubmissions.isEmpty == false else { return 40 }
-
-        let renderSize = CGSize(width: pickerView.frame.width, height: .infinity)
-        let text = text(forRow: 0)
-        let textHeight = text.boundingRect(with: renderSize,
-                                           options: [.usesLineFragmentOrigin, .usesFontLeading],
-                                           context: nil).height
-        // Increase height to have some top/bottom padding
-        return textHeight + 2 * 8
-    }
-
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let label = UILabel()
-        label.attributedText = text(forRow: row)
-        label.textAlignment = .right
-        label.numberOfLines = 0
-        return label
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard let attempt = presenter?.pickerSubmissions[row].attempt else { return }
-        presenter?.select(attempt: attempt)
-    }
-
-    private func text(forRow row: Int) -> NSAttributedString {
-        let submissionDateText: String = {
-            guard let submittedAt = presenter?.pickerSubmissions[row].submittedAt else {
-                return String(localized: "No Submission Date", bundle: .student)
-            }
-
-            return DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
-        }()
-        let attemptText: String = {
-            guard let attempt = presenter?.pickerSubmissions[row].attempt else {
-                return ""
-            }
-
-            let format = String(localized: "Attempt %d", bundle: .student)
-            return String.localizedStringWithFormat(format, attempt)
-        }()
-
-        let text = NSMutableAttributedString(string: "\(submissionDateText)\n\(attemptText)")
-        let paragraphStyle = NSMutableParagraphStyle()
-        // This visually will match the top/bottom padding cells have
-        paragraphStyle.tailIndent = -12
-        text.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: text.length))
-        let dateRange = text.mutableString.range(of: submissionDateText)
-        let attemptRange = text.mutableString.range(of: attemptText)
-
-        if dateRange.location != NSNotFound, attemptRange.location != NSNotFound {
-            text.addAttributes([
-                                .font: UIFont.scaledNamedFont(.regular20),
-                                .foregroundColor: UIColor.textDarkest
-                               ],
-                               range: dateRange)
-            text.addAttributes([
-                                .font: UIFont.scaledNamedFont(.regular17),
-                                .foregroundColor: UIColor.textDarkest
-                                ],
-                               range: attemptRange)
-        }
-
-        return text
     }
 }
