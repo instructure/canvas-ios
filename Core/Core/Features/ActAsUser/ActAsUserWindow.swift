@@ -34,7 +34,7 @@ public class ActAsUserWindow: UIWindow {
 
         super.layoutSubviews()
 
-        if isTopAnOverlayException { return }
+        if isPresentingSystemPicker { return }
 
         overlay.frame = bounds
         bringSubviewToFront(overlay)
@@ -85,17 +85,17 @@ public class ActAsUserWindow: UIWindow {
         )
     }
 
-    private var isTopAnOverlayException: Bool {
+    private var isPresentingSystemPicker: Bool {
+        guard let topController = rootViewController?.topMostViewController()
+        else { return false }
 
-        if let topController = rootViewController?.topMostViewController() {
-            if topController.isOverlayException {
-                return true
-            } else if let presenting = topController.presentingViewController {
-                return presenting.isOverlayException
-            }
+        if topController.isSystemAssetPicker {
+            return true
+        } else if let presentingController = topController.presentingViewController {
+            return presentingController.isSystemAssetPicker
+        } else {
+            return false
         }
-
-        return false
     }
 }
 
@@ -204,7 +204,7 @@ class ActAsUserOverlay: UIView {
 
 private extension UIViewController {
 
-    var isOverlayException: Bool {
+    var isSystemAssetPicker: Bool {
         switch self {
         case
             is UIDocumentPickerViewController,
