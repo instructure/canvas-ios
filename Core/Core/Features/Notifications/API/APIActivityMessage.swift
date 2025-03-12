@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
+
 public struct APIActivityMessage: Codable {
     let id: ID
     let created_at: Date
