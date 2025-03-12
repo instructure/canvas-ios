@@ -306,7 +306,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     private var promptText: Text {
         Text(String(localized: "Type to search", bundle: .core))
-            .foregroundColor(.textDark)
+            .foregroundColor(.textPlaceholder)
     }
 
     private var toRecipientText: some View {
