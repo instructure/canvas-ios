@@ -42,6 +42,7 @@ struct HEmbeddedWebPageContainerView: View {
         if let url = viewModel.url {
             contentView(url: url)
                 .navigationBarTitleView(title: viewModel.navTitle, subtitle: nil)
+                .toolbar(.visible)
         }
     }
 
