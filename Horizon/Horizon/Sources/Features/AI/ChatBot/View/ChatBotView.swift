@@ -75,6 +75,7 @@ struct ChatBotView: View {
                 ForEach(viewModel.messages) { message in
                     ChatBotMessageBubbleView(message: message)
                         .id(message.id)
+                        .transition(.scaleAndFade)
                 }
             }
             .onChange(of: viewModel.messages) {
@@ -108,7 +109,7 @@ struct ChatBotView: View {
                     .background(.clear)
 
                 Button {
-                    viewModel.sendMessage()
+                    viewModel.send()
                 } label: {
                     Image(systemName: "arrow.up")
                         .foregroundStyle(viewModel.isDisableSendButton ? Color.textLight : Color.backgroundSuccess)
@@ -123,11 +124,30 @@ struct ChatBotView: View {
     }
 }
 
+extension AnyTransition {
+    static var scaleAndFade: AnyTransition {
+        AnyTransition.opacity
+            .combined(with: .modifier(
+                active: ScaleEffectModifier(scale: 0.8),
+                identity: ScaleEffectModifier(scale: 1.0)
+            ))
+    }
+}
+
+struct ScaleEffectModifier: ViewModifier {
+    let scale: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .scaleEffect(scale)
+    }
+}
+
 #if DEBUG
 #Preview {
     ChatBotView(
         viewModel: .init(
-            chatbotInteractor: ChatBotInteractorLive(),
+            chatBotInteractor: ChatBotInteractorLive(),
             router: AppEnvironment.shared.router
         )
     )

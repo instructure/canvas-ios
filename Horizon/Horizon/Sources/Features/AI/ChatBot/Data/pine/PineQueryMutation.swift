@@ -32,7 +32,7 @@ class PineQueryMutation: APIGraphQLRequestable {
         ]
     }
 
-    public init(messages: [MessageInput]) {
+    public init(messages: [APIMessageInput]) {
         self.variables = Variables(
                 input: RagQueryInput(
                 messages: messages,
@@ -51,19 +51,19 @@ class PineQueryMutation: APIGraphQLRequestable {
         }
     """
 
-    typealias Response = RagResponse
+    typealias Response = RagData
 
     struct Variables: Codable, Equatable {
         let input: RagQueryInput
     }
 
     struct RagQueryInput: Codable, Equatable {
-        let messages: [MessageInput]
+        let messages: [APIMessageInput]
         let source: String
         let metadata: String
     }
 
-    struct MessageInput: Codable, Equatable {
+    struct APIMessageInput: Codable, Equatable {
         let role: Role
         let text: String
 
@@ -71,6 +71,14 @@ class PineQueryMutation: APIGraphQLRequestable {
             self.text = text
             self.role = role
         }
+    }
+
+    struct RagData: Codable {
+        let data: RagQuery
+    }
+
+    struct RagQuery: Codable {
+        let query: RagResponse
     }
 
     struct RagResponse: Codable {

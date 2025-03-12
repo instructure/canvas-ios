@@ -18,16 +18,25 @@
 
 import SwiftUI
 
-struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
-    typealias ViewGenerator = (Model) -> V
-    var models: [Model]
-    var viewGenerator: ViewGenerator
-    var horizontalSpacing: CGFloat = 5
-    var verticalSpacing: CGFloat = 5
+public struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
+    public typealias ViewGenerator = (Model) -> V
+    public var models: [Model]
+    public var viewGenerator: ViewGenerator
+
+    private var horizontalSpacing: CGFloat = 5
+    private var verticalSpacing: CGFloat = 5
 
     @State private var totalHeight = CGFloat.zero
 
-    var body: some View {
+    public init(
+        models: [Model],
+        viewGenerator: @escaping ViewGenerator
+    ) {
+        self.models = models
+        self.viewGenerator = viewGenerator
+    }
+
+    public var body: some View {
         VStack {
             GeometryReader { geometry in
                 self.generateContent(in: geometry)

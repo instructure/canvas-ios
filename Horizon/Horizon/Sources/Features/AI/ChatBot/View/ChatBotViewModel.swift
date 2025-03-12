@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import SwiftUI
 
 @Observable
 final class ChatBotViewModel {
@@ -38,26 +39,21 @@ final class ChatBotViewModel {
 
     // MARK: - Dependencies
 
-    private var chatbotInteractor: ChatBotInteractor
+    private var chatBotInteractor: ChatBotInteractor
     private let router: Router
 
     // MARK: - Private
 
+    private var chatMessages: [ChatMessage] = []
+    private var dispatchWorkItem: DispatchWorkItem?
     private var subscriptions = Set<AnyCancellable>()
-    private var chatMessages: [ChatMessage] = [] {
-        didSet {
-            messages = chatMessages.map {
-                ChatBotMessageModel(content: $0.text, isMine: $0.isBot == false)
-            }
-        }
-    }
 
     // MARK: - Init
-    init(chatbotInteractor: ChatBotInteractor, router: Router) {
+    init(chatBotInteractor: ChatBotInteractor, router: Router) {
         self.router = router
-        self.chatbotInteractor = chatbotInteractor
+        self.chatBotInteractor = chatBotInteractor
 
-        chatbotInteractor.listen.sink(
+        chatBotInteractor.listen.sink(
             receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
                 switch completion {
@@ -70,45 +66,89 @@ final class ChatBotViewModel {
             },
             receiveValue: { [weak self] response in
                 guard let self = self else { return }
+
+                // How the chips are displayed will depend on the history
+                // If we have no history, they are displayed as semitransparent message bubbles
+                // If we do have a history, they are pills at the end of the last message
+
                 self.chatMessages = response.chatHistory
-                self.chips = response.chipOptions ?? []
+
+                var newMessages: [ChatBotMessageModel] = []
+                if response.chatHistory.isEmpty {
+                    let chipOptions = response.chipOptions ?? []
+                    newMessages = chipOptions.map { chipOption in
+                        ChatBotMessageModel(
+                            content: chipOption.chip,
+                            style: .semitransparent,
+                            onTap: { [weak self] in
+                                self?.send(chipOption: chipOption)
+                            }
+                        )
+                    }
+                } else {
+                    newMessages = response.chatHistory.map { chatMessage in
+                        ChatBotMessageModel(
+                            id: chatMessage.id,
+                            content: chatMessage.text,
+                            style: chatMessage.isBot ? .transparent : .white,
+                            chipOptions: chatMessage == response.chatHistory.last ? (response.chipOptions ?? []) : [],
+                            onTapChipOption: { [weak self] quickResponse in
+                                self?.send(chipOption: quickResponse)
+                            }
+                        )
+                    }
+                }
+
+                if response.isLoading {
+                    dispatchWorkItem?.cancel()
+                    dispatchWorkItem = DispatchWorkItem { [weak self] in
+                        newMessages.append(ChatBotMessageModel())
+                        withAnimation {
+                            self?.messages = newMessages
+                        }
+                    }
+
+                    if let dispatchWorkItem = dispatchWorkItem {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: dispatchWorkItem)
+                    }
+                }
+
+                let messages = self.messages
+                let addedMessages = newMessages.filter { newMessage in
+                    !messages.contains { message in
+                        message.id == newMessage.id
+                    }
+                }
+
+                withAnimation { [weak self] in
+                    self?.messages.removeAll { $0.isLoading }
+                    addedMessages.forEach { message in
+                        self?.messages.append(message)
+                    }
+                }
             }
         )
         .store(in: &subscriptions)
 
-        chatbotInteractor.publish(action: .chat())
+        chatBotInteractor.publish(action: .chat())
     }
+
+    // MARK: - Inputs
 
     func dismiss(controller: WeakViewController) {
         router.dismiss(controller)
     }
 
-    func sendMessage() {
-        chatbotInteractor.publish(action: .chat(prompt: message, history: chatMessages))
-        message = ""
+    func send() {
+        send(message: message)
     }
-}
 
-extension Array where Element == ChatBotMessageModel {
-    var chatBotMessages: [ChatBotMessage] {
-        map { $0.toChatBotMessage() }
+    func send(chipOption: ChipOption) {
+        chatBotInteractor.publish(action: .chip(option: chipOption, history: chatMessages))
     }
-}
 
-extension Array where Element == ChatBotMessage {
-    var chatBotMessageModels: [ChatBotMessageModel] {
-        map { $0.toChatBotMessageModel() }
-    }
-}
-
-extension ChatBotMessageModel {
-    func toChatBotMessage() -> ChatBotMessage {
-        .init(text: content, role: isMine ? .user : .assistant)
-    }
-}
-
-extension ChatBotMessage {
-    func toChatBotMessageModel() -> ChatBotMessageModel {
-        .init(content: text, isMine: role == .user)
+    func send(message: String) {
+        chatBotInteractor.publish(action: .chat(prompt: message, history: chatMessages))
+        self.message = ""
     }
 }

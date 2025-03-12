@@ -16,48 +16,63 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import Core
+import HorizonUI
+import SwiftUI
 
 struct ChatBotMessageBubbleView: View {
     let message: ChatBotMessageModel
 
     var body: some View {
-        HStack {
-            if message.isMine {
-                Spacer()
+        VStack {
+            HStack {
+                if message.isLoading {
+                    TypingAnimationView(background: message.backgroundColor)
+                } else {
+                    messageContent
+                }
             }
+            .onTapGesture {
+                message.onTap?()
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            WrappingHStack(models: message.chipOptions) { quickResponse in
+                HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
+                    .onTapGesture {
+                        message.onTapChipOption?(quickResponse)
+                    }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
 
-            if message.isLoading {
-                TypingAnimationView()
-            } else {
-                messageContent
-            }
-
-            if !message.isMine {
-                Spacer()
-            }
         }
     }
 
     private var messageContent: some View {
         Text(message.content.toAttributedStringWithLinks())
+            .frame(maxWidth: message.maxWidth, alignment: .leading)
             .padding()
-            .background(message.isMine ? Color.backgroundLightest : Color.backgroundLightest.opacity(0.2))
-            .foregroundColor(message.isMine ? Color.textDarkest : Color.backgroundLightest)
-            .cornerRadius(16)
-            .containerRelativeFrame(.horizontal, alignment: message.isMine ? .trailing : .leading) { width, _ in
-                width * 0.9
-            }
+            .background(message.backgroundColor)
+            .foregroundColor(message.foregroundColor)
+            .cornerRadius(message.cornerRadius)
     }
 }
 
 #if DEBUG
 #Preview {
     VStack {
-        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", isMine: true))
-        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", isMine: false))
-        ChatBotMessageBubbleView(message: .init(isMine: false, isLoading: true))
+        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", style: .semitransparent))
+        ChatBotMessageBubbleView(message: .init(content: "Hi Horizon App", style: .white))
+        ChatBotMessageBubbleView(message: .init())
+        ChatBotMessageBubbleView(message: .init(
+            content: "You are a duck",
+            style: .transparent,
+            chipOptions: [
+                ChipOption(chip: "Quick Response 1"),
+                ChipOption(chip: "Quick Response 2"),
+                ChipOption(chip: "Quick Response 3"),
+                ChipOption(chip: "Quick Response 4")
+            ]
+        ))
     }
     .frame(maxHeight: .infinity)
     .applyHorizonGradient()

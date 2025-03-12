@@ -17,10 +17,95 @@
 //
 
 import Foundation
+import HorizonUI
+import SwiftUI
 
 struct ChatBotMessageModel: Identifiable, Equatable {
-    let id = UUID()
-    var content: String = ""
-    let isMine: Bool // Whether the message is from the user or AI
-    var isLoading: Bool = false
+    typealias OnTapChipOption = (ChipOption) -> Void
+    typealias OnTap = () -> Void
+
+    enum Style {
+        case white
+        case semitransparent
+        case transparent
+    }
+
+    let id: UUID
+    let content: String
+    let style: Style
+    let isLoading: Bool
+    let chipOptions: [ChipOption]
+    let onTap: OnTap?
+    let onTapChipOption: OnTapChipOption?
+
+    init(
+        id: UUID = UUID(),
+        content: String = "",
+        style: Style = .white,
+        isLoading: Bool = false,
+        chipOptions: [ChipOption] = [],
+        onTapChipOption: OnTapChipOption? = nil,
+        onTap: OnTap? = nil
+    ) {
+        self.id = id
+        self.content = content
+        self.style = style
+        self.isLoading = isLoading
+        self.chipOptions = chipOptions
+        self.onTapChipOption = onTapChipOption
+        self.onTap = onTap
+    }
+
+    /// For when it's just a loading spinner
+    init() {
+        self.id = UUID()
+        self.isLoading = true
+        self.content = ""
+        self.style = .transparent
+        self.chipOptions = []
+        self.onTapChipOption = nil
+        self.onTap = nil
+    }
+
+    static func == (lhs: ChatBotMessageModel, rhs: ChatBotMessageModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    var maxWidth: CGFloat? {
+        switch style {
+        case .white:
+            return nil
+        default:
+            return .infinity
+        }
+    }
+
+    var backgroundColor: Color {
+        switch style {
+        case .white:
+            return Color.huiColors.surface.cardPrimary
+        case .semitransparent:
+            return  Color.huiColors.surface.cardPrimary.opacity(0.1)
+        case .transparent:
+            return .clear
+        }
+    }
+
+    var cornerRadius: CGFloat {
+        switch style {
+        case .transparent:
+            return 0
+        default:
+            return HorizonUI.CornerRadius.level3.attributes.radius
+        }
+    }
+
+    var foregroundColor: Color {
+        switch style {
+        case .white:
+            return Color.huiColors.text.body
+        default:
+            return Color.huiColors.text.surfaceColored
+        }
+    }
 }

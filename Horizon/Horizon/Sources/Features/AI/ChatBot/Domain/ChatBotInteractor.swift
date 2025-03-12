@@ -89,10 +89,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
         switch action {
         case .chat(let prompt, _) where !prompt.isEmpty,
              .page(let prompt, _, _, _) where !prompt.isEmpty:
-            return publish(
-                using: action,
-                with: userShortName
-            )
+            return publish( using: action, with: userShortName)
             .flatMap { newHistory in
                 self.classifier(
                     prompt: prompt,
@@ -110,39 +107,32 @@ class ChatBotInteractorLive: ChatBotInteractor {
                 }
             }
             .eraseToAnyPublisher()
-        case .chipFile(let chipOption, _, _),
-             .chipPage(let chipOption, _, _, _):
-            return publish(
-                using: action,
-                with: userShortName
-            )
-            .flatMap { [weak self] newHistory in
-                guard let self = self else {
-                    return Empty<ChatBotResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+        case .chip(let option, _, _),
+             .chipPage(let option, _, _, _):
+            return publish(using: action, with: userShortName)
+                .flatMap { [weak self] newHistory in
+                    guard let self = self else {
+                        return Empty<ChatBotResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+                    }
+                    return self.basicChat(
+                        prompt: option.prompt,
+                        history: newHistory
+                    )
+                    .map { botResponse in
+                        ChatBotResponse(message: ChatMessage(botResponse: botResponse), chatHistory: newHistory)
+                    }
+                    .eraseToAnyPublisher()
                 }
-                return self.basicChat(
-                    prompt:
-                        chipOption.prompt(
-                            action: action,
-                            userShortName: userShortName
-                        ),
-                    history: newHistory
-                )
-                .map { botResponse in
-                    ChatBotResponse(message: ChatMessage(botResponse: botResponse), chatHistory: newHistory)
-                }
+                .compactMap { $0 }
                 .eraseToAnyPublisher()
-            }
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
         default:
-            let chipOptions = action.chipOptions().map { chipOption in
-                chipOption.prompt(action: action, userShortName: userShortName)
+            let options = action.defaultChipOptions.map { option in
+                ChipOption(option, action: action, userShortName: userShortName)
             }
             let message = String(localized: "How can I help today?", bundle: .horizon)
-            let chatBotResponse = chipOptions.isEmpty ?
-                ChatBotResponse(message: ChatMessage(botResponse: message)) :
-                ChatBotResponse(chipOptions: chipOptions)
+            let chatBotResponse = options.isEmpty ?
+                ChatBotResponse(message: ChatMessage(prompt: nil, text: message, isBot: true)) :
+                ChatBotResponse(chipOptions: options)
 
             return Just(chatBotResponse)
                 .setFailureType(to: Error.self)
@@ -158,21 +148,24 @@ class ChatBotInteractorLive: ChatBotInteractor {
                 .page(let prompt, _, _, let history):
             response = ChatBotResponse(
                 message: ChatMessage(userResponse: prompt),
-                chatHistory: history
+                chatHistory: history,
+                isLoading: true
             )
-        case .chipFile(let chipOption, _, let history),
-                .chipPage(let chipOption, _, _, let history):
+        case .chip(let option, let history, _),
+                .chipPage(let option, _, _, let history):
             response = ChatBotResponse(
                 message: ChatMessage(
-                    prompt: chipOption.prompt(action: action, userShortName: userShortName),
-                    text: chipOption.rawValue
+                    prompt: option.prompt,
+                    text: option.chip
                 ),
-                chatHistory: history
+                chatHistory: history,
+                isLoading: true
             )
         case .file(let prompt, _, let history):
             response = ChatBotResponse(
                 message: ChatMessage(userResponse: prompt),
-                chatHistory: history
+                chatHistory: history,
+                isLoading: true
             )
         }
 
@@ -182,6 +175,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
             .eraseToAnyPublisher()
     }
 
+    // TODO: It looks like I'm not using history here. Should I be?
     /// Makes a request to the cedar endpoint using the given prompt and returns an answer
     private func basicChat(prompt: String, history: [ChatMessage] = []) -> AnyPublisher<String, Error> {
         JWTTokenRequest(.cedar)
@@ -193,6 +187,36 @@ class ChatBotInteractorLive: ChatBotInteractor {
             }
             .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
             .eraseToAnyPublisher()
+    }
+
+    private func chipGenerator(history: [ChatMessage]) -> AnyPublisher<[ChipOption], Error> {
+        var chatHistoryJson = "[]"
+
+        if let encoded = try? JSONEncoder().encode(history) {
+            chatHistoryJson = String(data: encoded, encoding: .utf8) ?? "[]"
+        }
+
+        // swiftlint:disable:next line_length
+        let prompt = """
+            You are an agent designed to prepare potential quick response chips to show in a Learning Management System app based on an assistant agent's conversation with a learner. I'll provide you with the message history from the learner and the assistant. Please create 1-3 quick response chips based off how you think the learner might want to continue the conversation. We only want to show useful response chips, so don't feel obligated to produce 3. Answer in JSON with this format: [{chip: "", prompt: ""}, ...]. The chip should be a 1-2 word description of the follow-up (like "summarize", "more detail", or "explain X"), and the prompt is the full prompt to send back to the conversation agent if the learner taps on the chip. Don't include anything in the output besides the JSON. Here's the chat history in JSON: \(chatHistoryJson).
+        """
+
+        return basicChat(prompt: prompt)
+            .map(toChipOptions)
+            .eraseToAnyPublisher()
+    }
+
+    private func toChipOptions(_ responseJson: String) -> [ChipOption] {
+        guard let data = responseJson.data(using: .utf8) else {
+            return []
+        }
+
+        do {
+            let chipOptions = try JSONDecoder().decode([ChipOption].self, from: data)
+            return chipOptions
+        } catch {
+            return []
+        }
     }
 
     private func classifier(
@@ -223,6 +247,20 @@ class ChatBotInteractorLive: ChatBotInteractor {
         switch classifierOption {
         case .chat:
             return advancedChat(with: history)
+                .flatMap { [weak self] response in
+                    guard let self = self else {
+                        return Empty<ChatBotResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+                    }
+                    return self.chipGenerator(history: response.chatHistory)
+                        .map { chipOptions in
+                            ChatBotResponse(
+                                chipOptions: chipOptions,
+                                chatHistory: response.chatHistory
+                            )
+                        }
+                        .eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
         case .flashcards:
             return flashcards(
                 action: action,
@@ -243,12 +281,18 @@ class ChatBotInteractorLive: ChatBotInteractor {
             .api(from: canvasApi)
             .flatMap { pineApi in
                 pineApi.makeRequest(
-                    PineQueryMutation(messages: history.map { PineQueryMutation.MessageInput(text: $0.text, role: $0.isBot ? .Assistant : .User) })
+                    PineQueryMutation(
+                        messages: history
+                            .compactMap {
+                                guard let prompt = $0.prompt else { return nil }
+                                return PineQueryMutation.APIMessageInput(text: prompt, role: $0.isBot ? .Assistant : .User)
+                            }
+                    )
                 )
-                .compactMap { documentResponse in
-                    documentResponse.map {
+                .compactMap { ragData in
+                    ragData.map {
                         ChatBotResponse(
-                            message: ChatMessage(botResponse: $0.response),
+                            message: ChatMessage(botResponse: $0.data.query.response),
                             chatHistory: history
                         )
                     }
@@ -267,7 +311,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
             .flatMap { cedarApi in
                 cedarApi.makeRequest(
                     CedarGenerateQuizMutation(
-                        context: ChipOption.quiz.prompt(action: action, userShortName: userShortName)
+                        context: ChipOption(DefaultChipOption.quiz, action: action, userShortName: userShortName).prompt
                     )
                 )
                 .compactMap { (quizData: CedarGenerateQuizMutation.QuizData?) in
@@ -288,11 +332,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
         userShortName: String
     ) -> AnyPublisher<ChatBotResponse, Error> {
         basicChat(
-            prompt: ChipOption.flashcards.prompt(
-                action: action,
-                userShortName: userShortName
-            ),
-            history: history
+            prompt: ChipOption(DefaultChipOption.flashcards, action: action, userShortName: userShortName).prompt
         )
         .compactMap { response in
             ChatBotResponse(

@@ -27,6 +27,11 @@ struct TypingAnimationView: View {
     private let animationDuration: Double = 0.6
     private let circleCount = 3
     @State private var animate = false
+    private let background: Color
+
+    init(background: Color = .backgroundLightest.opacity(0.2)) {
+        self.background = background
+    }
 
     var body: some View {
         HStack(spacing: spacing) {
@@ -45,7 +50,7 @@ struct TypingAnimationView: View {
         .onAppear { animate = true }
         .foregroundColor(Color.backgroundLightest)
         .padding()
-        .background(Color.backgroundLightest.opacity(0.2))
+        .background(background)
         .cornerRadius(16)
         .frame(maxWidth: 250, alignment: .leading)
     }

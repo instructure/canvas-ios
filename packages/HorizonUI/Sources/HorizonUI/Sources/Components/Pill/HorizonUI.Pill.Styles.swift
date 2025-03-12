@@ -36,6 +36,12 @@ public extension HorizonUI.Pill.Style {
             textColor: .huiColors.text.error,
             iconColor: .huiColors.text.error
         )
+
+        public static let light = Outline(
+            borderColor: .huiColors.surface.overlayWhite,
+            textColor: .huiColors.text.surfaceColored,
+            iconColor: .huiColors.text.surfaceColored
+        )
     }
     
     struct Solid: Sendable {

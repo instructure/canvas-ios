@@ -16,9 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct ChatMessage {
+import Foundation
+
+struct ChatMessage: Codable, Equatable {
+
+    let id = UUID()
+
     /// The prompt that was sent to the AI. Not shown to the user
-    let prompt: String
+    /// If set to null, then it is removed from the list of messages sent to the AI
+    let prompt: String?
 
     /// The text shown to the user in the history. This may be different from the prompt sent to the AI
     let text: String
@@ -38,10 +44,10 @@ struct ChatMessage {
         isBot = false
     }
 
-    init(prompt: String, text: String) {
+    init(prompt: String?, text: String, isBot: Bool = false) {
         self.prompt = prompt
         self.text = text
 
-        isBot = false
+        self.isBot = isBot
     }
 }

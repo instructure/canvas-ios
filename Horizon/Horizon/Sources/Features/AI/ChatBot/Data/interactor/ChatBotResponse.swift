@@ -24,16 +24,16 @@ struct ChatBotResponse {
 
     // MARK: - Optional
 
-    let chipOptions: [String]?
+    let chipOptions: [ChipOption]?
     let flashCards: [FlashCard.FlashCard]?
+    let isLoading: Bool
     let quizItems: [QuizItem]?
 
-    /// The user will have chip options to choose from
-    /// This only happens when there is no history
-    init(chipOptions: [String]) {
+    init(chipOptions: [ChipOption], chatHistory: [ChatMessage] = []) {
         self.chipOptions = chipOptions
+        self.chatHistory = chatHistory
 
-        self.chatHistory = []
+        self.isLoading = false
         self.flashCards = nil
         self.quizItems = nil
     }
@@ -43,6 +43,7 @@ struct ChatBotResponse {
         self.flashCards = flashCards
         self.chatHistory = chatHistory
 
+        self.isLoading = false
         self.chipOptions = nil
         self.quizItems = nil
     }
@@ -52,21 +53,18 @@ struct ChatBotResponse {
         self.chatHistory = chatHistory
         self.quizItems = quizItems
 
+        self.isLoading = false
         self.chipOptions = nil
         self.flashCards = nil
     }
 
     /// Publishing an updated chat history. This happens when chatting with the bot
-    init(message: ChatMessage, chatHistory: [ChatMessage] = []) {
+    init(message: ChatMessage, chatHistory: [ChatMessage] = [], isLoading: Bool = false) {
         self.chatHistory = chatHistory + [message]
+        self.isLoading = isLoading
 
         self.chipOptions = nil
         self.flashCards = nil
         self.quizItems = nil
     }
-
-    /// The last response from the bot
-//    var response: String? {
-//        chatHistory.last?.text
-//    }
 }

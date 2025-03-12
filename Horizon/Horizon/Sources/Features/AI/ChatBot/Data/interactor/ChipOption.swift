@@ -16,26 +16,44 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum ChipOption: String, CaseIterable {
+enum DefaultChipOption: String, CaseIterable {
     case summarize = "Summarize"
     case keyTakeaways = "Key takeaways"
     case tellMeMore = "Tell me more"
     case flashcards = "Flashcards"
     case quiz = "Quiz"
+}
 
-    func prompt(action: ChatBotAction, userShortName: String) -> String {
+struct ChipOption: Codable, Hashable {
+    let chip: String
+    let prompt: String
+
+    init(chip: String, prompt: String = "") {
+        self.chip = chip
+        self.prompt = prompt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        chip = try container.decode(String.self, forKey: .chip)
+        prompt = try container.decode(String.self, forKey: .prompt)
+    }
+
+    init(_ option: DefaultChipOption, action: ChatBotAction, userShortName: String) {
+        chip = option.rawValue
+
         let introduction = "You can address me as \(userShortName)."
-        switch self {
+        switch option {
         case .summarize:
-            return "\(introduction) Give me a 1-2 paragraph summary of the content; don't use any information besides the provided content. Return the response as HTML paragraphs. \(action.promptContextString)"
+            prompt = "\(introduction) Give me a 1-2 paragraph summary of the content; don't use any information besides the provided content. Return the response as HTML paragraphs. \(action.promptContextString)"
         case .keyTakeaways:
-            return "\(introduction) Give some key takeaways from this content; don't use any information besides the provided content. Return the response as an HTML unordered list. \(action.promptContextString)"
+            prompt = "\(introduction) Give some key takeaways from this content; don't use any information besides the provided content. Return the response as an HTML unordered list. \(action.promptContextString)"
         case .tellMeMore:
-            return "\(introduction) In 1-2 paragraphs, tell me more about this content. Return the response as HTML paragraphs. \(action.promptContextString)"
+            prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content. Return the response as HTML paragraphs. \(action.promptContextString)"
         case .flashcards:
-            return "\(introduction) Here is the content from a course in html format, i need 7 questions with answers, like a quiz, based on the content, give back in jason format like: {data: [{question: '', answer: ''}, {question: '', answer: ''}, ...]} without any further description or text. \(action.promptContextString)"
+            prompt = "\(introduction) Here is the content from a course in html format, i need 7 questions with answers, like a quiz, based on the content, give back in jason format like: {data: [{question: '', answer: ''}, {question: '', answer: ''}, ...]} without any further description or text. \(action.promptContextString)"
         case .quiz:
-            return "\(introduction). \(action.promptContextString)"
+            prompt = "\(introduction). \(action.promptContextString)"
         }
     }
 }

@@ -91,8 +91,8 @@ public extension HorizonUI {
             title: String,
             style: Pill.Style = .outline(Style.Outline.default),
             isSmall: Bool = false,
-            isUppercased: Bool,
-            icon: Image?
+            isUppercased: Bool = false,
+            icon: Image? = nil
         ) {
             self.title = title
             self.style = style

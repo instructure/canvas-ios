@@ -24,10 +24,10 @@ enum ChatBotAction {
     case chat(prompt: String = "", history: [ChatMessage] = [])
 
     /// the user has selected a chip while viewing a file
-    case chipFile(chipOption: ChipOption, file: File, history: [ChatMessage])
+    case chip(option: ChipOption, history: [ChatMessage], file: File? = nil)
 
     /// the user has selected a chip while viewing a page
-    case chipPage(chipOption: ChipOption, title: String, body: String, history: [ChatMessage])
+    case chipPage(option: ChipOption, title: String, body: String, history: [ChatMessage])
 
     /// the user is being shown a document (pdf, docx, etc) and asks something about
     case file(prompt: String, file: File, history: [ChatMessage])
@@ -36,7 +36,7 @@ enum ChatBotAction {
     case page(prompt: String, title: String, body: String, history: [ChatMessage])
 
     /// The available chipOptions for the current action
-    func chipOptions() -> [ChipOption] {
+    var defaultChipOptions: [DefaultChipOption] {
         switch self {
         case .page:
             return [.summarize, .keyTakeaways, .tellMeMore, .flashcards, .quiz]
