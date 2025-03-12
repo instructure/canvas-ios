@@ -19,6 +19,7 @@
 @testable import Core
 import Foundation
 import TestsFoundation
+import XCTest
 
 class GradeListInteractorLiveTests: CoreTestCase {
     lazy var groups: [APIAssignmentGroup] = [

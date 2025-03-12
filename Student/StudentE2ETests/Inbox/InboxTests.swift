@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class InboxTests: E2ETestCase {
     typealias Helper = InboxHelper

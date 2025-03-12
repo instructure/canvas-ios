@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ProfileTests: E2ETestCase {
     func testProfile() {

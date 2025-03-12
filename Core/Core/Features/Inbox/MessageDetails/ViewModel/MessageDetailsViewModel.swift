@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 class MessageDetailsViewModel: ObservableObject {
     // MARK: - Outputs

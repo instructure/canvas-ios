@@ -20,6 +20,7 @@ import SwiftUI
 import Combine
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class FileEditorViewTests: CoreTestCase {
     lazy var controller: CoreHostingController<FileEditorView> = {

@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 // https://canvas.instructure.com/doc/api/conversations.html#method.conversations.create
 public struct CreateDSCalendarEventRequest: APIRequestable {

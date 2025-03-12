@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UIKit
 
 public class CourseSyncNotificationInteractor {
     private let localNotifications: LocalNotificationsInteractor

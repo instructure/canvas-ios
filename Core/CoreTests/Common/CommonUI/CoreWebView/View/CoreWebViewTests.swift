@@ -298,4 +298,16 @@ class CoreWebViewTests: CoreTestCase {
             animated: true
         ))
     }
+
+    func test_addsDynamicFontFeature_whenLoaded() {
+        var testee = CoreWebView(features: [])
+        XCTAssertEqual(testee.features.count, 1)
+        XCTAssertTrue(testee.features.first is DynamicFontSize)
+
+        testee = CoreWebView()
+        XCTAssertEqual(testee.features.count, 0)
+
+        testee = CoreWebView(frame: .zero)
+        XCTAssertEqual(testee.features.count, 0)
+    }
 }

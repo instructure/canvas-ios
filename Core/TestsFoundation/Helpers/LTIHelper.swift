@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class LTIHelper: BaseHelper {
     public struct Studio {
         public static var course: DSCourse = DSCourse(id: "3503791", name: "iOS Studio Test Course")

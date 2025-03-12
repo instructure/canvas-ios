@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class SafariAppHelper: BaseHelper {
     public static let safariApp = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
     public static var tabBarItemTitle: XCUIElement { safariApp.find(id: "TabBarItemTitle") }

@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 public enum AllCoursesAssembly {
     public static func makeInteractor(env: AppEnvironment) -> AllCoursesInteractor {

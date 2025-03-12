@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class OfflineContentSyncTests: OfflineE2ETest {
     typealias Dashboard = DashboardHelper

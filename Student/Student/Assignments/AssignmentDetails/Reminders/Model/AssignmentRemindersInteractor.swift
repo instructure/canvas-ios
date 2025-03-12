@@ -18,6 +18,8 @@
 
 import Core
 import Combine
+import Foundation
+import UserNotifications
 
 public typealias NewReminderResult = Result<Void, AssignmentReminderError>
 public enum AssignmentReminderError: Error, Equatable {

@@ -97,7 +97,7 @@ struct SubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: Vie
                     }
                 }
                     .padding(16)
-                DisclosureIndicator().padding(.trailing, 16)
+                InstUI.DisclosureIndicator().padding(.trailing, 16)
             }
                 // Fix tapping in whitespace, without covering divider in DiscussionDetails
                 .background(Color.backgroundLightest.padding(.bottom, 1))

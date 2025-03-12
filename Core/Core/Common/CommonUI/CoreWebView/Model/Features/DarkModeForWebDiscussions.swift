@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 private class DarkModeForWebDiscussions: CoreWebViewFeature {
     private let script: String = {
         let textLight = UIColor.textDark.hexString(userInterfaceStyle: .dark)

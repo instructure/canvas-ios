@@ -18,6 +18,7 @@
 
 import Combine
 import CombineSchedulers
+import Foundation
 
 public struct CourseSyncCleanupInteractor {
     private let applicationOfflineFolder: URL

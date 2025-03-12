@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class SettingsAppHelper: BaseHelper {
     public static let app = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
     public static var canvasStudentButton: XCUIElement { app.find(label: "Canvas Student", type: .staticText) }

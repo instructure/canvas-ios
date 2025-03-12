@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UserNotifications
 
 public class LocalNotificationsInteractor {
     public let notificationCenter: UserNotificationCenterProtocol

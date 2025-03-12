@@ -45,7 +45,7 @@ public struct K5ResourcesApplicationView: View {
                     .font(.regular17)
                     .padding(.leading, 8)
                 Spacer()
-                InstDisclosureIndicator().padding(.leading, 10)
+                InstUI.DisclosureIndicator().padding(.leading, 10)
             }
             .padding(.leading, 13)
             .padding(.trailing, 18)

@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public struct DSCalendarEvent: Codable {
     public let id: String
     public let title: String

@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class GradingStandardsTests: E2ETestCase {
     func testGradingStandards() {

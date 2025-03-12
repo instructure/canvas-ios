@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import XCTest
+
 public class CalendarHelper: BaseHelper {
     public struct SampleEvents {
         public var yesterdays: DSCalendarEvent?

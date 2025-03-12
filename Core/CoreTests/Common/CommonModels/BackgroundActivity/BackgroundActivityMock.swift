@@ -18,6 +18,7 @@
 
 import Combine
 @testable import Core
+import Foundation
 
 class BackgroundActivityMock: BackgroundActivity {
     var startInvoked = false

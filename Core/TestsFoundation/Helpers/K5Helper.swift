@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import XCTest
+
 public class K5Helper: BaseHelper {
     static let dateFormatter = DateFormatter()
     public static var homeroom: XCUIElement { app.find(label: "Homeroom", type: .button) }

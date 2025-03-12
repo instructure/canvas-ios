@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ActAsUserTests: E2ETestCase {
     func testActAsUser() {

@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 public struct CreateDSConferencesRequest: APIRequestable {
     public typealias Response = DSConference

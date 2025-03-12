@@ -19,6 +19,7 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class GradeFormatterTests: CoreTestCase {
     let formatter = GradeFormatter()

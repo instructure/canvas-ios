@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 struct CreateDSUserRequest: APIRequestable {
     public typealias Response = DSUser

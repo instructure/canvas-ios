@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class GradesTests: E2ETestCase {
     func testGrades() {

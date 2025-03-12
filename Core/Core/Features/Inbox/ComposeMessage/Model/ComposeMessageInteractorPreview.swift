@@ -20,6 +20,7 @@
 
 import Combine
 import CombineExt
+import Foundation
 
 public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
     public var attachments = CurrentValueSubject<[File], Never>([])

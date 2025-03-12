@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public protocol PlannablesInteractor: AnyObject {
     var state: CurrentValueSubject<StoreState, Never> { get }

@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class ConferencesHelper: BaseHelper {
     public static var navBar: XCUIElement { app.find(id: "Conferences", type: .navigationBar) }
     public static var emptyLabel: XCUIElement { app.find(id: "ConferenceList.emptyTitleLabel", type: .staticText) }

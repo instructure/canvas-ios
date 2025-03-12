@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,15 +15,15 @@
             <objects>
                 <viewController storyboardIdentifier="PageListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JGx-7A-Apd" customClass="PageListViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xd4-nP-FkO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-hN-714">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="zel-h8-3v4" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="239.5" width="375" height="245.5"/>
+                                    <rect key="frame" x="0.0" y="250.5" width="375" height="245.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksX-Wo-aaV" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
@@ -97,7 +97,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="PageListFrontPageCell" id="bvq-Al-4Yo" customClass="PageListFrontPageCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="119.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="119.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bvq-Al-4Yo" id="fSH-Ma-RNS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
@@ -132,15 +132,15 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowOpenRightSolid" translatesAutoresizingMaskIntoConstraints="NO" id="MRG-6a-5mX" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowOpenRightLine" translatesAutoresizingMaskIntoConstraints="NO" id="MRG-6a-5mX" customClass="IconView" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="301" y="31" width="16" height="16"/>
-                                                            <color key="tintColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="tintColor" name="textDark"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="2B6-At-L9y"/>
                                                                 <constraint firstAttribute="width" constant="16" id="feS-ZN-ZwY"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightLine"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
@@ -178,10 +178,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="PageListCell" id="K47-fz-UXy" customClass="PageListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="164" width="375" height="53"/>
+                                        <rect key="frame" x="0.0" y="169.5" width="375" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K47-fz-UXy" id="h18-Ci-Mgd">
-                                            <rect key="frame" x="0.0" y="0.0" width="350.5" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348.5" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZj-us-baR" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
@@ -192,7 +192,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="SYx-zd-ZSF">
-                                                    <rect key="frame" x="58" y="8.5" width="284.5" height="36.5"/>
+                                                    <rect key="frame" x="58" y="8.5" width="282.5" height="36.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Page Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-LP-q9h" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="75" height="19.5"/>
@@ -265,41 +265,15 @@
             <point key="canvasLocation" x="-391.304347826087" y="89.673913043478265"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="1s1-Cn-Jrv">
-            <size key="intrinsicContentSize" width="101.5" height="24"/>
-        </designable>
-        <designable name="MRG-6a-5mX">
-            <size key="intrinsicContentSize" width="24" height="24"/>
-        </designable>
-        <designable name="V3l-L4-N2h">
-            <size key="intrinsicContentSize" width="300" height="162"/>
-        </designable>
-        <designable name="Zla-nM-E34">
-            <size key="intrinsicContentSize" width="245" height="19.5"/>
-        </designable>
-        <designable name="bRn-mG-uYY">
-            <size key="intrinsicContentSize" width="21" height="21"/>
-        </designable>
-        <designable name="oQL-N1-MIR">
-            <size key="intrinsicContentSize" width="88.5" height="24"/>
-        </designable>
-        <designable name="paN-70-GrB">
-            <size key="intrinsicContentSize" width="66" height="17"/>
-        </designable>
-        <designable name="qIt-LP-q9h">
-            <size key="intrinsicContentSize" width="75" height="19.5"/>
-        </designable>
-        <designable name="zZH-IU-giM">
-            <size key="intrinsicContentSize" width="155" height="17"/>
-        </designable>
-    </designables>
     <resources>
         <image name="PandaPapers" width="300" height="162"/>
-        <image name="arrowOpenRightSolid" width="24" height="24"/>
+        <image name="arrowOpenRightLine" width="24" height="24"/>
         <image name="shadow" width="21" height="21"/>
         <namedColor name="backgroundLightest">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textDark">
+            <color red="0.40000000000000002" green="0.44313725490196076" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

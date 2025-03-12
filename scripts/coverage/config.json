@@ -24,6 +24,7 @@
     "Core\/Common\/Extensions\/UIKit\/UITabBarControllerExtensions.swift",
     "Core\/Features\/DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
     "Core\/Features\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
+    "Core\/Features\/Grades\/Model\/Entities\/GradeListData.swift",
     "Core\/Features\/Planner\/CalendarMain",
     "Core\/Features\/WebSitePreview\/",
     "Student\/BackgroundProcessing\/CoreTaskSchedulerLive.swift",

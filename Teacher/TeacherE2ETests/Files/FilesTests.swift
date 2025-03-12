@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class FilesTests: E2ETestCase {
     typealias Helper = FilesHelper

@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+import XCTest
 
 extension URLRequest {
     public func decodeBody<T: Decodable>() -> T? {

@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UIKit
 
 public protocol CalendarEventInteractor: AnyObject {
     typealias SeriesModificationType = APICalendarEventSeriesModificationType

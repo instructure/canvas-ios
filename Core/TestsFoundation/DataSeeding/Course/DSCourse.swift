@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public struct DSCourse: Codable {
     public let id: String
     public let name: String

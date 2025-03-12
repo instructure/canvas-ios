@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 public struct DSAssignment: Codable {
     public let name: String

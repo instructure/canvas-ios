@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public class InterprocessNotificationCenter {
     public static let shared = InterprocessNotificationCenter()

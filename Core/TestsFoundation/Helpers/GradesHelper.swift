@@ -17,6 +17,7 @@
 //
 
 import Core
+import XCTest
 
 public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }

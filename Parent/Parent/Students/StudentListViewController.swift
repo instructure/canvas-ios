@@ -116,6 +116,11 @@ class StudentListCell: UITableViewCell {
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var nameLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupInstDisclosureIndicator()
+    }
+
     func update(_ student: User?, indexPath: IndexPath) {
         backgroundColor = .backgroundLightest
         accessibilityIdentifier = "StudentListCell.\(indexPath.row)"

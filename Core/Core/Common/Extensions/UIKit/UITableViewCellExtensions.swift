@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 public extension UITableViewCell {
@@ -37,5 +36,12 @@ public extension UITableViewCell {
     func setCellState(isAvailable: Bool, isUserInteractionEnabled: Bool = false) {
         self.contentView.alpha = isAvailable ? 1 : 0.3
         self.isUserInteractionEnabled = isUserInteractionEnabled
+    }
+
+    func setupInstDisclosureIndicator() {
+        let image = UIImageView(image: UIImage.arrowOpenRightLine)
+        image.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        image.tintColor = .textDark
+        accessoryView = image
     }
 }

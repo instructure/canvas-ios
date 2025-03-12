@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 extension OutputStream {
 
     static func += (outputStream: inout OutputStream, string: String) {

@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class ManageStudentsHelper: BaseHelper {
     public struct Details {
         public static var backButton: XCUIElement { app.find(label: "Manage Students", type: .button) }

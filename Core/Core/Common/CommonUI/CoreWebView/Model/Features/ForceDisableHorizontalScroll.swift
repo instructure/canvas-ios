@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 private class ForceDisableHorizontalScroll: CoreWebViewFeature {
     private let scrollDelegate = DisableHorizontalScrollDelegate()
 

@@ -19,6 +19,7 @@
 import SwiftUI
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class SyllabusEditorViewTests: CoreTestCase {
     lazy var controller: CoreHostingController<SyllabusEditorView> = {

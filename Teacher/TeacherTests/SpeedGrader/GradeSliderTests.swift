@@ -19,6 +19,7 @@
 import SwiftUI
 @testable import Teacher
 import TestsFoundation
+import XCTest
 
 class GradeSliderTests: TeacherTestCase {
 

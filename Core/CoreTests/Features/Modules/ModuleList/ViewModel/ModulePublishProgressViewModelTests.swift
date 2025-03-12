@@ -19,6 +19,8 @@
 import Combine
 @testable import Core
 import TestsFoundation
+import UIKit
+import XCTest
 
 final class ModulePublishProgressViewModelTests: CoreTestCase {
 

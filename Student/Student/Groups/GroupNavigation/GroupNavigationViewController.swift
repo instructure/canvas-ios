@@ -93,7 +93,7 @@ extension GroupNavigationViewController {
         cell.textLabel?.text = tab?.label
         cell.imageView?.image = tab?.icon
         cell.imageView?.tintColor = color
-        cell.accessoryType = .disclosureIndicator
+        cell.setupInstDisclosureIndicator()
         return cell
     }
 

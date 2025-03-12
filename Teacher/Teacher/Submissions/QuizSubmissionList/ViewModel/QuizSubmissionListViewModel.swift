@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import Foundation
 
 class QuizSubmissionListViewModel: ObservableObject {
     // MARK: - Outputs

@@ -20,6 +20,7 @@ import Foundation
 import WebKit
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class LoginWebViewControllerTests: CoreTestCase {
     var opened: URL?

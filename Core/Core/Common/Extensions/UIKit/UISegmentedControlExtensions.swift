@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 public extension UISegmentedControl {
     static func updateFontAppearance() {
         Self.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular13)], for: .normal)

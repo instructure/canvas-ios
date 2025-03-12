@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 extension DataSeeder {
     public func createEnrollmentTerm(name: String, startAt: Date, endAt: Date) -> DSEnrollmentTerm {
         let requestedBody = CreateDSEnrollmentTermRequest.Body(enrollment_term: .init(name: name, startAt: startAt, endAt: endAt))

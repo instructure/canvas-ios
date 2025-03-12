@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 // https://canvas.instructure.com/doc/api/external_tools.html#method.external_tools.all_visible_nav_tools
 public struct GetCourseNavigationToolsRequest: APIRequestable {
     public typealias Response = [CourseNavigationTool]

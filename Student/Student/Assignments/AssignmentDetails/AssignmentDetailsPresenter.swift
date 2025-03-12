@@ -19,6 +19,7 @@
 import Foundation
 import Core
 import CoreData
+import UIKit
 
 struct SubmissionAction: Equatable {
     let title: String

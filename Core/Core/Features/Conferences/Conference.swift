@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 public final class Conference: NSManagedObject {
     @NSManaged var canvasContextID: String

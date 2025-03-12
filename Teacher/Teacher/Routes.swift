@@ -17,6 +17,7 @@
 //
 
 import Core
+import UIKit
 
 let router = Router(routes: [
     RouteHandler("/accounts/:accountID/terms_of_service") { _, _, _ in
@@ -502,7 +503,7 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
 
 private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
-    return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+    return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
 }
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

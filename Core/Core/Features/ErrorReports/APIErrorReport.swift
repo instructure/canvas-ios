@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 // https://canvas.instructure.com/doc/api/error_reports.html#method.errors.create
 struct PostErrorReportRequest: APIRequestable {

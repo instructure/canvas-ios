@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public class K5ScheduleViewModel: ObservableObject {
     public let weekModels: [K5ScheduleWeekViewModel]
     public private(set) var defaultWeekIndex = 26

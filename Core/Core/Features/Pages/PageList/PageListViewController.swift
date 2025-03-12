@@ -230,6 +230,11 @@ class PageListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupInstDisclosureIndicator()
+    }
+
     func update(_ page: Page?, indexPath: IndexPath, color: UIColor?) {
         backgroundColor = .backgroundLightest
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"

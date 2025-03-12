@@ -18,6 +18,7 @@
 
 import Combine
 import CombineSchedulers
+import Foundation
 
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     // MARK: - Outputs

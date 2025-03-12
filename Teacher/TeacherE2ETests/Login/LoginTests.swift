@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class LoginTests: E2ETestCase {
     func testLoginHappyPath() {

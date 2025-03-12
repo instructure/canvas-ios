@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import Foundation
 
 extension LoginSession {
     public static func make(

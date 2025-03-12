@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public struct StudioOfflineVideo: Equatable {
     public let ltiLaunchID: String
     public let videoRelativePath: String

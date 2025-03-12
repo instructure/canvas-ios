@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 extension UITabBarController {
     // Call this whenever you really want to get to the root of the specified view controller

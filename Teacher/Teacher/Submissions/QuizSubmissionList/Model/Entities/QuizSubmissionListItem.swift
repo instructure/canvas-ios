@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 public struct QuizSubmissionListItem: Equatable {
     public let id: String

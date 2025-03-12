@@ -86,6 +86,7 @@ public struct Typography {
 
         public var uiFont: UIFont { UIFont.scaledNamedFont(fontName) }
         public var font: Font { Font(uiFont) }
+        public static var unscaledBodyUIFont: UIFont { UIFont.applicationFont(ofSize: 16, weight: .regular) }
 
         private var k5: Bool { AppEnvironment.shared.k5.isK5Enabled }
     }

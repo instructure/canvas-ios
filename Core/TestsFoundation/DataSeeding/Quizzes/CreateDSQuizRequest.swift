@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 // https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.create
 public struct CreateDSQuizRequest: APIRequestable {

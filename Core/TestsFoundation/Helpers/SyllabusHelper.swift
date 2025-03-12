@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class SyllabusHelper: BaseHelper {
     // MARK: UI Elements
     public static var syllabusTab: XCUIElement { app.find(id: "Syllabus.syllabusMenuItem") }

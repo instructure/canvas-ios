@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class ActAsUserHelper: BaseHelper {
     public static var actAsUserButton: XCUIElement { app.find(id: "ActAsUser.actAsUserButton") }
     public static var domainField: XCUIElement { app.find(id: "ActAsUser.domainField") }

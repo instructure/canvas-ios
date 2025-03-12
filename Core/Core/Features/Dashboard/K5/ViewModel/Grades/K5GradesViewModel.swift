@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
+
 public class K5GradesViewModel: ObservableObject {
 
     @Published public private(set) var grades: [K5GradeCellViewModel] = []

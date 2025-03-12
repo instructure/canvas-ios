@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,11 +13,11 @@
             <objects>
                 <viewController storyboardIdentifier="ErrorReportViewController" title="Report a Problem" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PvC-F6-8XD" customClass="ErrorReportViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="07N-bz-ibZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7T-zY-mIK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5e-lJ-7Bu">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
@@ -151,10 +151,10 @@
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightLine"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJ2-KZ-oWP" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJ2-KZ-oWP" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                                                 <inset key="contentEdgeInsets" minX="72" minY="0.0" maxX="36" maxY="0.0"/>
                                                                 <state key="normal" title="Select One"/>
@@ -195,7 +195,7 @@
                                                         <rect key="frame" x="0.0" y="165" width="375" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Describe the problem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-Ma-rdc" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="12" width="156.5" height="19.5"/>
+                                                                <rect key="frame" x="16" y="12" width="164.5" height="20.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <bool key="isElement" value="NO"/>
                                                                 </accessibility>
@@ -249,6 +249,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="4eN-vB-wr0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="D7T-zY-mIK" firstAttribute="leading" secondItem="4eN-vB-wr0" secondAttribute="leading" id="Hh8-aM-dPu"/>
@@ -258,7 +259,6 @@
                             <constraint firstItem="E5e-lJ-7Bu" firstAttribute="trailing" secondItem="4eN-vB-wr0" secondAttribute="trailing" id="tnX-bA-QyM"/>
                             <constraint firstItem="4eN-vB-wr0" firstAttribute="trailing" secondItem="D7T-zY-mIK" secondAttribute="trailing" id="yXe-2K-9Vb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="4eN-vB-wr0"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>

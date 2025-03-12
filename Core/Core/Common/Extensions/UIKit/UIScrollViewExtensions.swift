@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 extension UIScrollView {
     /// Whether or not the scroll view has reached the bottom using a threshold.

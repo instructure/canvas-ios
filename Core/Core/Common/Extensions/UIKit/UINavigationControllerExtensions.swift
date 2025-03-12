@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 extension UINavigationController {
     // Sets the barTintColor on self as well as a detail in a split view controller situation

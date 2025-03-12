@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 // https://canvas.instructure.com/doc/api/grading_period_sets.html#method.grading_period_sets.create
 public struct CreateDSGradingPeriodSetRequest: APIRequestable {

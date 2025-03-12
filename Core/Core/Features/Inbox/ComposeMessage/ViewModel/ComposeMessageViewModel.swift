@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import CombineSchedulers
+import UIKit
 
 final class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs

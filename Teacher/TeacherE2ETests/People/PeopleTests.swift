@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class PeopleTests: E2ETestCase {
     func testPeopleListAndContextCard() {

@@ -158,6 +158,11 @@ class ConferenceListCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupInstDisclosureIndicator()
+    }
+
     func update(_ conference: Conference?, color: UIColor?) {
         backgroundColor = .backgroundLightest
         iconView.icon = .conferences

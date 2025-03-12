@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class CalendarTests: E2ETestCase {
     func testCalendar() {

@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class DashboardTests: E2ETestCase {
     typealias Helper = DashboardHelper

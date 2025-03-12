@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import XCTest
+
 public enum DiscussionLabelTypes: Int {
     case lastPost = 0
     case replies = 1

@@ -19,6 +19,7 @@
 import Foundation
 import Core
 import CoreData
+import UIKit
 
 protocol SubmissionCommentAttemptDelegate: AnyObject {
     func updateComments(for attempt: Int?)

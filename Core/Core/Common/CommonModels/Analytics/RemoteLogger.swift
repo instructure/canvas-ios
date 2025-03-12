@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 public protocol RemoteLogHandler: AnyObject {
     func handleError(_ name: String, reason: String)
     func handleBreadcrumb(_ name: String)

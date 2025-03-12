@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 /**
  When a split view controller is in split mode it's a common behavior that when a view controller is pushed
  to the master area another view controller also shows up in the split view's detail area.

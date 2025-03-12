@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: View {
     @Environment(\.appEnvironment) var env

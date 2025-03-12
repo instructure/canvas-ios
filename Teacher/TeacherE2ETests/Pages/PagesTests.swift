@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class PagesTests: E2ETestCase {
     typealias Helper = PagesHelper

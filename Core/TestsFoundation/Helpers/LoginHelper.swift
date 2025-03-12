@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class LoginHelper: BaseHelper {
     public struct Start {
         public static var canvasLogo: XCUIElement { app.find(id: "instructureLine") }

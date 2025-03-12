@@ -21,6 +21,7 @@ import Combine
 @testable import Core
 @testable import Teacher
 import TestsFoundation
+import XCTest
 
 class SpeedGraderViewControllerTests: TeacherTestCase {
     lazy var controller = SpeedGraderViewController(

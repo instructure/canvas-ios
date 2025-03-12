@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 extension DataSeeder {
     public func createCourse(
         name: String = "DS iOS Course \(Int(Date().timeIntervalSince1970))",

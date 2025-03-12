@@ -18,6 +18,7 @@
 
 import Combine
 import CombineExt
+import Foundation
 
 /**
  This class returns the base url for a given context. To achieve this it requests the HEAD of the given context

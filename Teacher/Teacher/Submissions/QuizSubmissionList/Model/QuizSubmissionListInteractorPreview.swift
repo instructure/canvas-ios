@@ -20,6 +20,7 @@
 
 import Combine
 import Core
+import Foundation
 
 public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
     // MARK: - Outputs
