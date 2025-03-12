@@ -128,7 +128,13 @@ public struct LoginSession: Codable, Hashable {
         )
     }
 
-    public func refresh(accessToken: String, expiresAt: Date?) -> LoginSession {
+    /// - parameters:
+    ///   - refreshToken: If `nil` is passed here then the old refresh token will be kept.
+    public func refresh(
+        accessToken: String,
+        expiresAt: Date?,
+        refreshToken: String? = nil
+    ) -> LoginSession {
         return LoginSession(
             accessToken: accessToken,
             baseURL: baseURL,
@@ -136,7 +142,7 @@ public struct LoginSession: Codable, Hashable {
             lastUsedAt: lastUsedAt,
             locale: locale,
             masquerader: masquerader,
-            refreshToken: refreshToken,
+            refreshToken: refreshToken ?? self.refreshToken,
             userAvatarURL: userAvatarURL,
             userID: userID,
             userName: userName,
