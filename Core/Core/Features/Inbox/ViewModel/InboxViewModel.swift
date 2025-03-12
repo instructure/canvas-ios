@@ -177,7 +177,7 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         newMessageDidTap
-            .sink { [router, didSendMailSuccessfully, messageInteractor] source in
+            .sink { [didSendMailSuccessfully, messageInteractor] source in
                 // In the parent app we need a different logic for student context picker
                 if messageInteractor.isParentApp {
                     if let bottomSheet = router.match("/conversations/new_message") {
