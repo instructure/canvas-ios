@@ -19,27 +19,38 @@
 import Core
 import WebKit
 
-final class SkillSpaceViewModel: EmbeddedWebPageViewModel {
+final class SkillSpaceViewModel: EmbeddedWebPageViewModel, EmbeddedWebPageNavigation {
     var urlPathComponent: String
-
     var queryItems: [URLQueryItem] = []
-
     var navigationBarTitle: String
 
-    init() {
+    // MARK: - Dependencies
+
+    private let baseURL: URL
+    private let router: Router
+
+    init(
+        baseURL: URL,
+        router: Router
+    ) {
+        self.baseURL = baseURL
+        self.router = router
         urlPathComponent = "/skillspace"
         navigationBarTitle = String(localized: "Skillspace", bundle: .horizon)
     }
 
-    func webView(
-        _ webView: WKWebView,
-        didStartProvisionalNavigation navigation: WKNavigation!
-    ) {
-        guard let url = webView.url else {
-            return
+    func openURL(_ url: URL, viewController: WeakViewController) {
+        if url.absoluteString.contains("learn/"), let courseID = url.pathComponents.last {
+            navigateCourseDetails(courseID: courseID, viewController: viewController)
+        } else {
+            router.route(to: url, from: viewController)
         }
+    }
 
-        print(url)
-
+    private func navigateCourseDetails(courseID: String, viewController: WeakViewController) {
+        var courseURL = baseURL
+        courseURL.appendPathComponent("courses")
+        courseURL.appendPathComponent(courseID)
+        router.route(to: courseURL, from: viewController)
     }
 }

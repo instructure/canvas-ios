@@ -18,14 +18,10 @@
 
 import SwiftUI
 import Core
+import WebKit
 
 struct HEmbeddedWebPageContainerView: View {
-    private let viewModel: HEmbeddedWebPageContainerViewModel
-
-    init(viewModel: HEmbeddedWebPageContainerViewModel) {
-        self.viewModel = viewModel
-    }
-
+    @Environment(\.viewController) private var viewController
     private var features: [CoreWebViewFeature] = [
         .disableZoom,
         .darkModeForWebDiscussions,
@@ -33,18 +29,37 @@ struct HEmbeddedWebPageContainerView: View {
         .hidePeerReviewLinkInWebDiscussions
     ]
 
+    // MARK: - Dependencies
+
+    private let viewModel: HEmbeddedWebPageContainerViewModel
+
+    init(viewModel: HEmbeddedWebPageContainerViewModel) {
+        self.viewModel = viewModel
+        features.append(.pullToRefresh(color: UIColor(Color.huiColors.surface.institution)))
+    }
+
     var body: some View {
+        if let url = viewModel.url {
+            contentView(url: url)
+                .navigationBarTitleView(title: viewModel.navTitle, subtitle: nil)
+        }
+    }
+
+    private func contentView(url: URL) -> some View {
         WebSession(url: viewModel.url) { sessionURL in
             WebView(
                 url: sessionURL,
                 features: features,
                 canToggleTheme: true,
-                configuration: viewModel.webViewConfig
+                configuration: .defaultConfiguration
             )
+            .onLink { url in
+                viewModel.openURL(url, viewController: viewController)
+                return true
+            }
             .onProvisionalNavigationStarted { webView, navigation in
                 viewModel.webView(webView, didStartProvisionalNavigation: navigation)
             }
         }
-        .navigationBarTitleView(title: viewModel.navTitle, subtitle: nil)
     }
 }

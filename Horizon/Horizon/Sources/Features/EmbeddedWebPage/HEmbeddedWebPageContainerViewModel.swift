@@ -25,38 +25,47 @@ import Observation
 final class HEmbeddedWebPageContainerViewModel {
     // MARK: - Outputs
 
-    var webViewConfig: WKWebViewConfiguration { .defaultConfiguration }
-    let url: URL
+    private(set) var url: URL?
     let navTitle: String
 
     // MARK: - Dependencies
 
-   private let webPageModel: EmbeddedWebPageViewModel
+    private let webPage: EmbeddedWebPageViewModel
+    private weak var navigationDelegate: EmbeddedWebPageNavigation?
 
     // MARK: - Init
 
-    init(webPageModel: EmbeddedWebPageViewModel) {
-        self.webPageModel = webPageModel
-        self.navTitle = webPageModel.navigationBarTitle
-        self.url = {
-            guard var baseURL = URL(string: "https://dev.cd.canvashorizon.com") else {
-                return URL(string: "/")! // should never happen
-            }
+    init(
+        webPage: EmbeddedWebPageViewModel,
+        navigationDelegate: EmbeddedWebPageNavigation? = nil
+    ) {
+        self.webPage = webPage
+        self.navigationDelegate = navigationDelegate
+        self.navTitle = webPage.navigationBarTitle
+        self.url = constructURL(from: webPage)
+    }
 
-            baseURL.appendPathComponent(webPageModel.urlPathComponent)
-            baseURL.append(queryItems: webPageModel.queryItems)
-            baseURL.append(queryItems: [
-                URLQueryItem(name: "embed", value: "true"),
-                URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
-                URLQueryItem(name: "session_locale", value: Locale.current.identifier.replacingOccurrences(of: "_", with: "-"))
-            ])
+    // MARK: - Private Functions
 
-            return baseURL
-        }()
+    private func constructURL(from webPage: EmbeddedWebPageViewModel) -> URL? {
+        var baseURL = URL(string: "https://dev.cd.canvashorizon.com")
+        baseURL?.appendPathComponent(webPage.urlPathComponent)
+        baseURL?.append(queryItems: webPage.queryItems)
+        baseURL?.append(queryItems: [
+            URLQueryItem(name: "embedded", value: "true")
+        ])
+
+        return baseURL
+    }
+
+    // MARK: - Actions Functions
+
+    func openURL(_ url: URL, viewController: WeakViewController) {
+        navigationDelegate?.openURL(url, viewController: viewController)
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        webPageModel.webView(
+        webPage.webView(
             webView,
             didStartProvisionalNavigation: navigation
         )

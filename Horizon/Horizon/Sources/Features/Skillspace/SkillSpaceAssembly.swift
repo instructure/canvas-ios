@@ -20,11 +20,15 @@ import Core
 
 struct SkillSpaceAssembly {
     static func makeView() -> UIViewController {
-        let inboxViewModel = SkillSpaceViewModel()
-        let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPageModel: inboxViewModel
+        let environment = AppEnvironment.shared
+        let skillSpaceinboxViewModel = SkillSpaceViewModel(
+            baseURL: environment.api.baseURL,
+            router: environment.router
         )
-
+        let viewModel = HEmbeddedWebPageContainerViewModel(
+            webPage: skillSpaceinboxViewModel,
+            navigationDelegate: skillSpaceinboxViewModel
+        )
         let viewController = CoreHostingController(
             HEmbeddedWebPageContainerView(
                 viewModel: viewModel

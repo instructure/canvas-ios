@@ -18,20 +18,6 @@
 
 import Core
 
-struct HInboxAssembly {
-    static func makeView() -> UIViewController {
-        let inboxViewModel = HInboxViewModel()
-        let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPage: inboxViewModel
-        )
-
-        let viewController = CoreHostingController(
-            HEmbeddedWebPageContainerView(
-                viewModel: viewModel
-            )
-        )
-        let nav = CoreNavigationController(rootViewController: viewController)
-        nav.navigationBar.useGlobalNavStyle()
-        return viewController
-    }
+protocol EmbeddedWebPageNavigation: AnyObject {
+    func openURL(_ url: URL, viewController: WeakViewController)
 }

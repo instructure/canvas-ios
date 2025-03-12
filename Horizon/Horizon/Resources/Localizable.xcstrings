@@ -87,10 +87,10 @@
     "Assignment due dates" : {
 
     },
-    "Assignment Successfully Submitted!" : {
+    "Assignment Group Weights" : {
 
     },
-    "Assignment Group Weights" : {
+    "Assignment Successfully Submitted!" : {
 
     },
     "Astana (+05:00/+05:00)" : {
@@ -288,9 +288,6 @@
     "Error loading comments." : {
 
     },
-    "External Tool" : {
-
-    },
     "Error loading scores." : {
 
     },
@@ -370,6 +367,9 @@
 
     },
     "Important" : {
+
+    },
+    "Inbox" : {
 
     },
     "Indiana (East) (-05:00/-04:00)" : {
