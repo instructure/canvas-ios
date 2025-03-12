@@ -21,12 +21,14 @@ import CoreData
 import Core
 import Combine
 
-class DashboardViewController: ScreenViewTrackableViewController, ErrorViewController {
+class DashboardViewController: ScreenViewTrackableViewController, ErrorViewController, SnackBarProvider {
     @IBOutlet weak var studentListStack: UIStackView!
     @IBOutlet weak var studentListView: UIView!
     lazy var studentListHiddenHeight = studentListView.heightAnchor.constraint(equalToConstant: 0)
     @IBOutlet weak var tabsContainer: UIView!
     let tabsController = UITabBarController()
+
+    let snackBarViewModel = SnackBarViewModel()
 
     var badgeCount: UInt = 0 {
         didSet { headerViewModel.didUpdateBadgeCount.send(Int(badgeCount)) }
@@ -85,6 +87,8 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         if env.userDefaults?.interfaceStyle == nil {
             env.userDefaults?.interfaceStyle = .light
         }
+
+        addSnackBar()
     }
 
     /// When the app was started in light mode and turned to dark the selected color was not updated so we do a force refresh.
