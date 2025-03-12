@@ -18,9 +18,13 @@
 
 import Foundation
 import Core
+import Combine
+import UIKit
 
 protocol PostGradesViewProtocol: ErrorViewController {
-    func update(_ viewModel: APIPostPolicyInfo)
+    func update(_ viewModel: APIPostPolicy)
+    func nextPageLoaded(_ viewModel: APIPostPolicy)
+    func nextPageLoadingFailed(_ error: Error)
     func updateCourseColor(_ color: UIColor)
     func didHideGrades()
     func didPostGrades()
@@ -40,6 +44,8 @@ class PostGradesPresenter {
     let env: AppEnvironment
     let courseID: String
     let assignmentID: String
+
+    private var subscriptions = Set<AnyCancellable>()
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateColor()
@@ -70,22 +76,64 @@ class PostGradesPresenter {
     }
 
     func refresh() {
-        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
-        env.api.makeRequest(req, callback: { [weak self] data, _, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    self?.view?.showError(APIError.from(data: nil, response: nil, error: error))
-                } else if let data = data {
-                    self?.updateView(data: data)
-                }
+        let courseSections = env.api
+            .makeRequest(GetPostPolicyCourseSectionsRequest(courseID: courseID))
+            .map({ $0.body })
+        let assignmentSubmissions = env.api
+            .makeRequest(GetPostPolicyAssignmentSubmissionsRequest(assignmentID: assignmentID))
+            .map({ $0.body })
+
+        courseSections
+            .combineLatest(assignmentSubmissions)
+            .map { (sections, submissions) in
+                return APIPostPolicy(assignment: submissions, course: sections)
             }
-        })
+            .mapError({ APIError.from(data: nil, response: nil, error: $0) })
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.view?.showError(error)
+                }
+            } receiveValue: { [weak self] policy in
+                self?.updateView(data: policy)
+            }
+            .store(in: &subscriptions)
     }
 
-    func updateView(data: APIPostPolicyInfo) {
-        if data.submissions.count == data.submissions.hiddenCount {
+    func fetchNextPage(to data: APIPostPolicy) {
+        guard let course = data.course,
+              let nextCursor = course.pageInfo?.nextCursor
+        else { return }
+
+        env.api
+            .makeRequest(
+                GetPostPolicyCourseSectionsRequest(courseID: courseID, cursor: nextCursor)
+            )
+            .map { result in
+                var courseCopy = course
+                courseCopy.appendSections(result.body)
+
+                return APIPostPolicy(
+                    assignment: data.assignment,
+                    course: courseCopy
+                )
+            }
+            .mapError({ APIError.from(data: nil, response: nil, error: $0) })
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.view?.nextPageLoadingFailed(error)
+                }
+            } receiveValue: { [weak self] policy in
+                self?.view?.nextPageLoaded(policy)
+            }
+            .store(in: &subscriptions)
+    }
+
+    func updateView(data: APIPostPolicy) {
+        if data.submissionsCount == data.submissions?.hiddenCount {
             view?.showAllHiddenView()
-        } else if data.submissions.count == data.submissions.postedCount {
+        } else if data.submissionsCount == data.submissions?.postedCount {
             view?.showAllPostedView()
         }
 

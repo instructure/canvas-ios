@@ -21,6 +21,7 @@ import TestsFoundation
 import SwiftUI
 import Combine
 @testable import Core
+import XCTest
 
 class SearchViewContextTests: CoreTestCase {
 

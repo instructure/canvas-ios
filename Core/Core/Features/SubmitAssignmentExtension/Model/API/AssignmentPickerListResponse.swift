@@ -16,7 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct AssignmentPickerListResponse: Codable, Equatable {
+public struct AssignmentPickerListResponse: PagedResponse, Equatable {
+    public typealias Page = [Assignment]
     public struct Assignment: Codable, Equatable {
         struct LockInfo: Codable, Equatable {
             let isLocked: Bool
@@ -36,13 +37,40 @@ public struct AssignmentPickerListResponse: Codable, Equatable {
         struct Course: Codable, Equatable {
             struct AssignmentsConnection: Codable, Equatable {
                 let nodes: [Assignment]
+                let pageInfo: APIPageInfo?
             }
             let assignmentsConnection: AssignmentsConnection
         }
         let course: Course
     }
 
-    public var assignments: [Assignment] { data.course.assignmentsConnection.nodes.map { $0 } }
-
     let data: Self.Data
+
+    var pageInfo: APIPageInfo? { data.course.assignmentsConnection.pageInfo }
+    var assignments: [Assignment] { data.course.assignmentsConnection.nodes }
+    public var page: [Assignment] { assignments }
 }
+
+#if DEBUG
+
+extension AssignmentPickerListResponse.Assignment {
+    public static func make(
+        id: String,
+        name: String,
+        submission_types: [SubmissionType] = [],
+        allowedExtensions: [String]? = [],
+        isLocked: Bool = false,
+        gradeAsGroup: Bool = false
+    ) -> AssignmentPickerListResponse.Assignment {
+        AssignmentPickerListResponse.Assignment(
+            name: name,
+            _id: id,
+            submissionTypes: submission_types,
+            allowedExtensions: allowedExtensions,
+            lockInfo: LockInfo(isLocked: isLocked),
+            gradeAsGroup: gradeAsGroup
+        )
+    }
+}
+
+#endif

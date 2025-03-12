@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="23H222" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D70" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -186,6 +186,13 @@
     </entity>
     <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="observedUserDisplayName" optional="YES" attributeType="String"/>
+        <attribute name="observedUserId" optional="YES" attributeType="String"/>
+        <attribute name="userId" attributeType="String"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>

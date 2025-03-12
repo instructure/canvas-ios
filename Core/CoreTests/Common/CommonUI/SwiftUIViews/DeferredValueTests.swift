@@ -19,6 +19,7 @@
 import Foundation
 import TestsFoundation
 @testable import Core
+import XCTest
 
 class DeferredValueTests: CoreTestCase {
 

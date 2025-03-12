@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+import XCTest
 
 enum MiniCanvasEndpoints {
     private enum Pattern {
@@ -160,22 +161,6 @@ enum MiniCanvasEndpoints {
         },
         .apiRequest(GetAssignmentRequest(courseID: Pattern.courseID, assignmentID: Pattern.assignmentID, include: [])) { request in
             try lookupAssignment(forRequest: request).api
-        },
-        .graphQL(AssignmentListRequestable.self) { request in
-            let vars = request.body.variables
-            let assignments: [APIAssignmentListAssignment] = try lookupCourse(forRequest: request).assignments.map { assignment in
-                APIAssignmentListAssignment.make(
-                    id: assignment.api.id,
-                    name: assignment.api.name,
-                    dueAt: assignment.api.due_at,
-                    lockAt: assignment.api.lock_at,
-                    unlockAt: assignment.api.unlock_at,
-                    htmlUrl: "\(assignment.api.html_url)",
-                    submissionTypes: assignment.api.submission_types,
-                    quizID: assignment.api.quiz_id
-                )
-            }
-            return APIAssignmentListResponse.make(groups: [.make(assignments: assignments)])
         },
 
         // MARK: Brand

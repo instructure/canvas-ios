@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 private let scheme = "canvas-courses://"
 private var host: String? { AppEnvironment.shared.currentSession?.baseURL.host }

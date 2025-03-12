@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public extension API {
 
@@ -58,6 +59,23 @@ public extension API {
                     // swiftlint:disable:next force_cast
                     promise(.success((body: APINoContent() as! Request.Response,
                                       urlResponse: urlResponse as? HTTPURLResponse)))
+                } else {
+                    promise(.failure(NSError.instructureError("No response or error received.")))
+                }
+            })
+        }.eraseToAnyPublisher()
+    }
+
+    func exhaust<Request: APIPagedRequestable>(
+        _ requestable: Request
+    ) -> AnyPublisher<(body: Request.Response.Page, urlResponse: HTTPURLResponse?), Error> {
+        Future { promise in
+            self.exhaust(requestable, callback: { response, urlResponse, error in
+                if let response {
+                    promise(.success((body: response,
+                                      urlResponse: urlResponse as? HTTPURLResponse)))
+                } else if let error {
+                    promise(.failure(error))
                 } else {
                     promise(.failure(NSError.instructureError("No response or error received.")))
                 }

@@ -17,6 +17,7 @@
 //
 
 import CoreData
+import UIKit
 
 public final class DashboardCard: NSManagedObject {
     typealias JSON = APIDashboardCard

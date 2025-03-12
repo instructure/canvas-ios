@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 /**
  This is an in-memory, thread-safe storage to keep track of which files are being uploaded.
  */

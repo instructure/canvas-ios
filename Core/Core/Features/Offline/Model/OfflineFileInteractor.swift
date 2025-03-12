@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public protocol OfflineFileInteractor {
     func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String

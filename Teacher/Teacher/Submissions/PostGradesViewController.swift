@@ -33,8 +33,9 @@ class PostGradesViewController: UIViewController {
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
     private var postPolicy: PostGradePolicy = .everyone
+    lazy var paging = PagingPresenter(controller: self)
     var presenter: PostGradesPresenter!
-    var viewModel: APIPostPolicyInfo?
+    var viewModel = APIPostPolicy()
     var color: UIColor = .textInfo
 
     static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
@@ -50,6 +51,9 @@ class PostGradesViewController: UIViewController {
 
         view.backgroundColor = .backgroundLightest
         postGradesButton.setTitle(String(localized: "Post Grades", bundle: .teacher), for: .normal)
+        postGradesButton.setTitleColor(.textLightest, for: .normal)
+        postGradesButton.textStyle = UIFont.Name.semibold16.rawValue
+        postGradesButton.backgroundColor = .textInfo
 
         allGradesPostedView.backgroundColor = .backgroundLightest
         allGradesPostedView.isHidden = true
@@ -62,24 +66,40 @@ class PostGradesViewController: UIViewController {
         tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(SectionCell.self)
         tableView.registerCell(PostToCell.self)
+        tableView.registerCell(PageLoadingCell.self)
     }
 
     func setupSections() {
-        sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
+        sectionToggles = Array(repeating: false, count: viewModel.sectionsCount)
     }
 
     @IBAction func actionUserDidClickPostGrades(_ sender: Any) {
-        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
+        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel.sections?[i].id : nil }
         presenter.postGrades(postPolicy: postPolicy, sectionIDs: sectionIDs)
     }
 }
 
 extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
+
+    private var rowsCount: Int {
+        return Row.allCases.count +  (showSections ? viewModel.sectionsCount : 0)
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Row.allCases.count +  (showSections ? (viewModel?.sections.count ?? 0) : 0)
+        return section == 0 ? rowsCount : 1
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return showSections ? (paging.hasMore ? 2 : 1) : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.section == 0 else {
+            return tableView
+                .dequeue(PageLoadingCell.self, for: indexPath)
+                .setup(with: paging)
+        }
+
         let cell: UITableViewCell
         if indexPath.row == 0 {
             cell = tableView.dequeue(for: indexPath) as PostToCell
@@ -95,28 +115,30 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.textLabel?.text = String(localized: "Post to...", bundle: .teacher)
                 cell.detailTextLabel?.text = postPolicy.title
                 cell.detailTextLabel?.accessibilityIdentifier = "PostPolicy.postToValue"
-                cell.accessoryType = .disclosureIndicator
+                cell.setupInstDisclosureIndicator()
                 cell.selectionStyle = .default
                 cell.accessibilityIdentifier = "PostPolicy.postTo"
             case .section:
                 cell.textLabel?.text = String(localized: "Specific Sections", bundle: .teacher)
                 cell.selectionStyle = .none
                 if let cell = cell as? SectionCell {
+                    cell.toggle.accessibilityLabel = cell.textLabel?.text
                     cell.toggle.isOn = showSections
-                    cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
+                    cell.toggle.tintColor = Brand.shared.buttonPrimaryBackground
                     cell.toggle.accessibilityIdentifier = "PostPolicy.togglePostToSections"
                     cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                 }
             }
         } else {    //  sections
             let index = abs(indexPath.row - Row.allCases.count)
-            cell.textLabel?.text = viewModel?.sections[index].name
+            cell.textLabel?.text = viewModel.sections?[index].name
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
+                cell.toggle.accessibilityLabel = cell.textLabel?.text
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
-                cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
-                cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel?.sections[index].id ?? "")"
+                cell.toggle.tintColor = Brand.shared.buttonPrimaryBackground
+                cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel.sections?[index].id ?? "")"
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
             }
         }
@@ -127,7 +149,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localizedFormat = String(localized: "grades_currently_hidden", bundle: .teacher, comment: "number of grades hidden")
-            return String(format: localizedFormat, viewModel?.submissions.hiddenCount ?? 0)
+            return String(format: localizedFormat, viewModel.submissions?.hiddenCount ?? 0)
         }
         return nil
     }
@@ -149,31 +171,50 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        paging.willDisplayRow(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        paging.willSelectRow(at: indexPath)
+        return nil
+    }
+
     @objc
-    func actionDidToggleShowSections(sender: UISwitch) {
+    func actionDidToggleShowSections(sender: CoreSwitch) {
         showSections = sender.isOn
         tableView.reloadData()
     }
 
     @objc
-    func actionDidToggleSection(toggle: UISwitch) {
+    func actionDidToggleSection(toggle: CoreSwitch) {
         sectionToggles[toggle.tag] = toggle.isOn
     }
 
     class SectionCell: UITableViewCell {
-        var toggle: UISwitch
+        var toggle: CoreSwitch
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+            toggle = CoreSwitch()
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             backgroundColor = .backgroundLightest
             textLabel?.textColor = .textDarkest
             textLabel?.font = .scaledNamedFont(.semibold16)
-            accessoryView = toggle
+            textLabel?.accessibilityElementsHidden = true
+
+            toggle.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(toggle)
+            toggle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+            toggle.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
         }
 
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
+        }
+
+        override func prepareForReuse() {
+            super.prepareForReuse()
+            toggle.removeTarget(nil, action: nil, for: .valueChanged)
         }
     }
 
@@ -200,9 +241,22 @@ extension PostGradesViewController: ItemPickerDelegate {
 }
 
 extension PostGradesViewController: PostGradesViewProtocol {
-    func update(_ viewModel: APIPostPolicyInfo) {
+    func update(_ viewModel: APIPostPolicy) {
         self.viewModel = viewModel
+        self.paging.onPageLoaded(viewModel)
         setupSections()
+        tableView.reloadData()
+    }
+
+    func nextPageLoadingFailed(_ error: any Error) {
+        self.paging.onPageLoadingFailed()
+    }
+
+    func nextPageLoaded(_ viewModel: APIPostPolicy) {
+        let newSectionsCount = max(viewModel.sectionsCount - self.viewModel.sectionsCount, 0)
+        sectionToggles.append(contentsOf: Array(repeating: false, count: newSectionsCount))
+        self.viewModel = viewModel
+        self.paging.onPageLoaded(viewModel)
         tableView.reloadData()
     }
 
@@ -237,5 +291,21 @@ extension PostGradePolicy {
         case .graded:
             return String(localized: "Grades will be made visible to students with graded submissions", bundle: .teacher)
         }
+    }
+}
+
+extension PostGradesViewController: PagingViewController {
+    typealias Page = APIPostPolicy
+
+    func isMoreRow(at indexPath: IndexPath) -> Bool {
+        indexPath.section == 1 && indexPath.row == 0
+    }
+
+    func reloadMorePageRow() {
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .none)
+    }
+
+    func loadNextPage() {
+        presenter.fetchNextPage(to: viewModel)
     }
 }

@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import SwiftUI
+
 /**
  Model for a single day in the schedule view, this holds multiple subjects.
  */

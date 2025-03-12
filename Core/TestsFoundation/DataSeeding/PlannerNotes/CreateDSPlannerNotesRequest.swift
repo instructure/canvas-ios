@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 // https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
 public struct CreateDSPlannerNotesRequest: APIRequestable {

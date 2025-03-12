@@ -33,7 +33,7 @@ extension UINavigationBar {
         }
     }
 
-    public func useContextColor(_ color: UIColor?, isTranslucent: Bool = false) {
+    public func useContextColor(_ color: UIColor?) {
         guard let color else { return }
         let foreground = UIColor.textLightest
         let background = color
@@ -41,7 +41,6 @@ extension UINavigationBar {
         tintColor = foreground
         barTintColor = background
         barStyle = .black
-        self.isTranslucent = isTranslucent
 
         applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
     }
@@ -53,7 +52,6 @@ extension UINavigationBar {
         tintColor = foreground
         barTintColor = background
         barStyle = background.luminance < 0.5 ? .black : .default
-        isTranslucent = false
 
         applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
     }
@@ -79,22 +77,16 @@ extension UINavigationBar {
         tintColor = foreground
         barTintColor = backgroundColor
         barStyle = .default
-        isTranslucent = false
 
         applyAppearanceChanges(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
     }
 
     private func applyAppearanceChanges(backgroundColor: UIColor?, foregroundColor: UIColor?) {
         let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
 
-        if isTranslucent {
-            appearance.configureWithTransparentBackground()
-        } else {
-            appearance.configureWithDefaultBackground()
-
-            if let backgroundColor {
-                appearance.backgroundColor = backgroundColor
-            }
+        if let backgroundColor {
+            appearance.backgroundColor = backgroundColor
         }
 
         if let foregroundColor {

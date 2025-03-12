@@ -17,7 +17,6 @@
 //
 
 import Combine
-import Foundation
 import UIKit
 
 class ModuleItemCell: UITableViewCell {

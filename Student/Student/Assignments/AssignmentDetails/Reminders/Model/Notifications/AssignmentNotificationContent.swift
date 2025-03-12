@@ -17,6 +17,7 @@
 //
 
 import Core
+import UserNotifications
 
 extension UNNotificationContent {
     enum AssignmentReminderKeys: String {

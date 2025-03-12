@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 extension UIColor {
@@ -103,9 +102,9 @@ extension UIColor {
 #endif
 
     // MARK: App Logo Colors
-    public static var parentLogoColor = UIColor(hexString: "#008EE2")!
-    public static var studentLogoColor = UIColor(hexString: "#D64027")!
-    public static var teacherLogoColor = UIColor(hexString: "#FFC100")!
+    public static var parentLogoColor = UIColor { $0.isLightInterface ? UIColor(hexString: "#2573DF")! : UIColor(hexString: "#6B80EA")! }
+    public static var studentLogoColor = UIColor { $0.isLightInterface ? UIColor(hexString: "#E62429")! : UIColor(hexString: "#FF3653")! }
+    public static var teacherLogoColor = UIColor { $0.isLightInterface ? UIColor(hexString: "#9E58BD")! : UIColor(hexString: "#B966D1")! }
 
     public static func currentLogoColor(for identifier: String? = Bundle.main.bundleIdentifier) -> UIColor {
         switch identifier {

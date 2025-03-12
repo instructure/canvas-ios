@@ -19,6 +19,7 @@
 import Foundation
 import Swifter
 @testable import Core
+import XCTest
 
 enum ServerError: Error {
     case responseError(HttpResponse)

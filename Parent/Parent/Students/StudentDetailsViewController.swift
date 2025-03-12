@@ -23,7 +23,7 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     @IBOutlet var alertFields: [UITextField]!
     @IBOutlet weak var alertHeaderLabel: UILabel!
     @IBOutlet var alertLabels: [UILabel]!
-    @IBOutlet var alertSwitches: [UISwitch]!
+    @IBOutlet var alertSwitches: [CoreSwitch]!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
     @IBOutlet weak var loadingView: CircleProgressView!
@@ -86,6 +86,7 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
             let type = AlertThresholdType.allCases[toggle.tag]
             toggle.accessibilityIdentifier = "AlertThreshold.\(type.rawValue)"
             toggle.accessibilityLabel = type.name
+            toggle.tintColor = ColorScheme.observee(studentID).color
         }
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
@@ -133,7 +134,7 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
         }
     }
 
-    @IBAction func switchChanged(_ sender: UISwitch) {
+    @IBAction func switchChanged(_ sender: CoreSwitch) {
         for field in alertFields where field.isEditing {
             field.endEditing(true)
         }

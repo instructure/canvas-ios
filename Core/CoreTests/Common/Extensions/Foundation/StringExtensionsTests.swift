@@ -84,6 +84,11 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(results.last, "<iframe></iframe>")
     }
 
+    func testDeletesPrefix() {
+        XCTAssertEqual("Canvas1".deletingPrefix("Canvas"), "1")
+        XCTAssertEqual("1Canvas1".deletingPrefix("Canvas"), "1Canvas1")
+    }
+
     func testLocalizedNumberOfItems() {
         XCTAssertEqual(String.localizedNumberOfItems(1), "1 item")
         XCTAssertEqual(String.localizedNumberOfItems(5), "5 items")
@@ -93,5 +98,10 @@ class StringExtensionsTests: XCTestCase {
     func testLocalizedAccessibilityListCount() {
         XCTAssertEqual(String.localizedAccessibilityListCount(1), "List, 1 item")
         XCTAssertEqual(String.localizedAccessibilityListCount(5), "List, 5 items")
+    }
+
+    func testLocalizedAccessibilityErrorMessage() {
+        XCTAssertEqual(String.localizedAccessibilityErrorMessage("Some error description"), "Error: Some error description")
+        XCTAssertEqual(String.localizedAccessibilityErrorMessage(""), "Error: ")
     }
 }

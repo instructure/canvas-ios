@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 public enum InboxCoursePickerAssembly {
     public static func makeInboxCoursePickerViewController(selected: RecipientContext?, didSelect: @escaping ((RecipientContext) -> Void), env: AppEnvironment = .shared) -> UIViewController {

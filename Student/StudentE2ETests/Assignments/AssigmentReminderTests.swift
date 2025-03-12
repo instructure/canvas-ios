@@ -16,7 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import TestsFoundation
+import XCTest
 
 class AssignmentReminderTests: E2ETestCase {
     typealias Helper = AssignmentsHelper

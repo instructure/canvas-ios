@@ -43,36 +43,34 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.viewWillAppear(false)
 
         waitUntil(1, shouldFail: true) {
-            vc.dropdownButton.accessibilityLabel == "Current student: Short Name (Pro/Noun)"
+            vc.headerViewModel.accessibilityLabel == "Current student: Short Name (Pro/Noun)"
         }
-        XCTAssertEqual(vc.avatarView.name, "Full Name")
-        XCTAssertEqual(vc.titleLabel.text, "Short Name (Pro/Noun)")
-        XCTAssertEqual(vc.dropdownButton.accessibilityHint, "Tap to switch students")
+        XCTAssertEqual(vc.headerViewModel.state, .student(name: "Short Name (Pro/Noun)", avatarURL: nil))
+        XCTAssertEqual(vc.headerViewModel.accessibilityHint, "Double tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
-        XCTAssertEqual(vc.headerView.backgroundColor?.hexString, vc.currentColor.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+        XCTAssertEqual(
+            vc.headerViewModel.backgroundColor.hexString,
+            vc.currentColor.hexString
+        )
 
         XCTAssert(vc.tabsController.viewControllers?[0] is Parent.CourseListViewController)
         XCTAssert(vc.tabsController.viewControllers?[1] is PlannerViewController)
         XCTAssert(vc.tabsController.viewControllers?[2] is ObserverAlertListViewController)
 
-        XCTAssertEqual(vc.profileButton.accessibilityLabel, "Settings")
-        XCTAssertEqual(vc.profileButton.accessibilityHint, "3 unread conversations")
-        vc.profileButton.sendActions(for: .primaryActionTriggered)
+        vc.headerViewModel.didTapMenuButton.send(vc)
         XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))
 
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
-        vc.dropdownButton.sendActions(for: .primaryActionTriggered)
+        vc.headerViewModel.didTapStudentView.send(())
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, false)
 
         (vc.studentListStack.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
 
         waitUntil(1, shouldFail: true) {
-            vc.dropdownButton.accessibilityLabel == "Current student: Bob"
+            vc.headerViewModel.accessibilityLabel == "Current student: Bob"
         }
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
-        XCTAssertEqual(vc.avatarView.name, "Bob")
-        XCTAssertEqual(vc.titleLabel.text, "Bob")
-        XCTAssertEqual(vc.dropdownButton.accessibilityHint, "Tap to switch students")
+        XCTAssertEqual(vc.headerViewModel.accessibilityHint, "Double tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
 
         (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
@@ -98,10 +96,6 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
-        XCTAssertEqual(vc.avatarView.isHidden, true)
-        XCTAssertEqual(vc.titleLabel.text, "Add Student")
-        XCTAssertEqual(vc.dropdownView.isHidden, true)
-        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Add Student")
         XCTAssertTrue(vc.tabsController.viewControllers?.first is AdminViewController)
     }
 
@@ -138,7 +132,7 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
-        XCTAssertEqual(vc.titleLabel.text, "User 3")
+        XCTAssertEqual(vc.headerViewModel.state, .student(name: "User 3", avatarURL: nil))
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1)
     }
 
@@ -155,7 +149,7 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
-        XCTAssertEqual(vc.titleLabel.text, "User 2")
+        XCTAssertEqual(vc.headerViewModel.state, .student(name: "User 2", avatarURL: nil))
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1)
     }
 }
