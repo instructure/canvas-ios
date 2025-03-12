@@ -18,7 +18,6 @@
 
 import Foundation
 
-
 public struct APIActivityMessage: Codable {
     let id: ID
     let created_at: Date
