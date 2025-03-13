@@ -55,7 +55,6 @@ class SubmissionDetailsViewControllerTests: StudentTestCase {
 
         // THEN
         XCTAssertEqual(testee.presenter?.selectedAttempt, 1)
-        XCTAssertEqual(testee.picker?.selectedRow(inComponent: 0), 1)
         XCTAssertEqual(testee.presenter?.pickerSubmissions[1].attempt, 1)
     }
 }

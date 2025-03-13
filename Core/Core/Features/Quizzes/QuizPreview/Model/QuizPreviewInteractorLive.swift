@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public class QuizPreviewInteractorLive: QuizPreviewInteractor {
     public let state = CurrentValueSubject<QuizPreviewInteractorState, Never>(.loading)

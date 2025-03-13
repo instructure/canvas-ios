@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class OfflineTests: OfflineE2ETest {
     func testNetworkConnectionLose() {

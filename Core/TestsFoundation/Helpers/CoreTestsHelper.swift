@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import XCTest
+
 public func waitUntil(
     _ timeout: TimeInterval = 10,
     shouldFail: Bool = false,

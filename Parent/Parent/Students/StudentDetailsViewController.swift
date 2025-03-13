@@ -81,6 +81,10 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
             let type = AlertThresholdType.allCases[field.tag]
             field.accessibilityIdentifier = "AlertThreshold.\(type.rawValue)"
             field.accessibilityLabel = type.name
+            field.attributedPlaceholder = NSAttributedString(
+                string: field.placeholder ?? "",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.textPlaceholder]
+            )
         }
         for toggle in alertSwitches {
             let type = AlertThresholdType.allCases[toggle.tag]

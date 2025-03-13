@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UIKit
 
 class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!

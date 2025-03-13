@@ -20,6 +20,7 @@ import Foundation
 @testable import Core
 @testable import TestsFoundation
 import CoreData
+import XCTest
 
 class GetModuleItemTests: CoreTestCase {
     func testUseCase() {

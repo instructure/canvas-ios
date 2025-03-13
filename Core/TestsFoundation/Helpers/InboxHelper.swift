@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class InboxHelper: BaseHelper {
     public static var profileButton: XCUIElement { app.find(id: "Inbox.profileButton", type: .button) }
     public static var newMessageButton: XCUIElement { app.find(id: "Inbox.newMessageButton", type: .button) }

@@ -19,6 +19,7 @@
 #if DEBUG
 
 import Combine
+import Foundation
 
 class AllCoursesInteractorPreview: AllCoursesInteractor {
     // MARK: - Outputs
