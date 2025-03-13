@@ -63,4 +63,7 @@
    <FileRef
       location = "group:package.json">
    </FileRef>
+   <FileRef
+      location = "group:ModuleItemView.swift">
+   </FileRef>
 </Workspace>
