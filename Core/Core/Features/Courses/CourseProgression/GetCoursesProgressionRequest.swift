@@ -41,8 +41,8 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                             course {
                                 id: _id
                                 name
-                                image_download_url: imageUrl
-                                syllabus_body: syllabusBody
+                                imageUrl
+                                syllabusBody
                                 account {
                                   name
                                 }

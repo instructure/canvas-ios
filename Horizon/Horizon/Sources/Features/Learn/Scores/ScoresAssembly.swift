@@ -30,6 +30,19 @@ enum ScoresAssembly {
         )
     }
 
+    static func makeView(viewModel: ScoresViewModel) -> ScoresView {
+        ScoresView(viewModel: viewModel)
+    }
+
+    static func makeViewModel(courseID: String) -> ScoresViewModel {
+        ScoresViewModel(
+            interactor: ScoresInteractorLive(
+                courseID: courseID
+            ),
+            router: AppEnvironment.shared.router
+        )
+    }
+
     static func makePreview() -> ScoresView {
         ScoresView(
             viewModel: ScoresViewModel(
