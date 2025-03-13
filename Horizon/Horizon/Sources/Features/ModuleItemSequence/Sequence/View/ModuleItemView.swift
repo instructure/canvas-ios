@@ -16,8 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import Core
+import SwiftUI
+
+struct ModuleItemView: View {
+    @State private var isShowHeader: Bool = true
+    private let viewController: UIViewController
+
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+    }
+
+    var body: some View {
+        ModuleItemViewRepresentable(
+            viewController: viewController,
+            isScrollTopReached: $isShowHeader
+        )
+        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
+    }
+}
 
 private struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Dependencies
@@ -81,22 +98,5 @@ private struct ModuleItemViewRepresentable: UIViewControllerRepresentable {
             let yOffset = scrollView.contentOffset.y
             didScroll(yOffset > threshold)
         }
-    }
-}
-
-struct ModuleItemView: View {
-    @State private var isShowHeader: Bool = true
-    private let viewController: UIViewController
-
-    init(viewController: UIViewController) {
-        self.viewController = viewController
-    }
-
-    var body: some View {
-        ModuleItemViewRepresentable(
-            viewController: viewController,
-            isScrollTopReached: $isShowHeader
-        )
-        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
     }
 }
