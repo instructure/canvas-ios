@@ -29,7 +29,7 @@ enum ScoresAssembly {
             )
         )
     }
-    
+
     static func makeView(viewModel: ScoresViewModel) -> ScoresView {
         ScoresView(viewModel: viewModel)
     }
@@ -42,7 +42,7 @@ enum ScoresAssembly {
             router: AppEnvironment.shared.router
         )
     }
-    
+
     static func makePreview() -> ScoresView {
         ScoresView(
             viewModel: ScoresViewModel(

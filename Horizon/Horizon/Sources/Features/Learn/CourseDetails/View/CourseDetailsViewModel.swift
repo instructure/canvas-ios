@@ -53,7 +53,7 @@ final class CourseDetailsViewModel {
         self.onShowTabBar = onShowTabBar
         self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID)
         self.isLoaderVisible = true
-        
+
         getCoursesInteractor.getCourse(id: courseID, ignoreCache: false)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
