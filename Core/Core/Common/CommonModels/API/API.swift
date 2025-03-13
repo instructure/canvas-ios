@@ -46,9 +46,7 @@ public class API {
             }
 
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
-            let handler = { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
-                guard let self else { return }
-
+            let handler = { [refreshTokenInteractor, weak self] (data: Data?, response: URLResponse?, error: Error?) in
                 if response?.isUnauthorized == true, refreshToken {
                     refreshTokenInteractor.addRequestWaitingForToken { [weak self] in
                         self?.makeRequest(requestable, refreshToken: false, callback: callback)

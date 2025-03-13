@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 class APITokenRefreshInteractor {
     private unowned var api: API
@@ -47,7 +47,6 @@ class APITokenRefreshInteractor {
         }
         let client = APIVerifyClient(authorized: true, base_url: api.baseURL, client_id: clientID, client_secret: clientSecret)
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-        isTokenRefreshInProgress = true
         api.makeRequest(request, refreshToken: false) { [weak self] response, _, error in
             guard let self else { return }
 
@@ -56,21 +55,72 @@ class APITokenRefreshInteractor {
                 isTokenRefreshInProgress = false
                 releaseWaitingRequests()
             } else if isRefreshTokenInvalid(error) {
-                // pop up login screen
+                DispatchQueue.main.async {
+                    self.showLoginDialog()
+                }
             } else {
                 isTokenRefreshInProgress = false
                 releaseWaitingRequests()
             }
         }
+        isTokenRefreshInProgress = true
     }
 
     // MARK: - Private Methods
+
+    private func showLoginDialog() {
+        let message = String(
+            localized: "You'll need to log in again due to your institute's security policy. Once logged in, you can continue working seamlessly.",
+            bundle: .core
+        )
+        let alert = UIAlertController(
+            title: nil,
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { [weak self] _ in
+            self?.showLoginWebViewController()
+        })
+        AppEnvironment.shared.window?.rootViewController?.present(alert, animated: true)
+    }
+
+    private func showLoginWebViewController() {
+        guard
+            let host = api.loginSession?.baseURL.host(percentEncoded: false),
+            let rootViewContoller = AppEnvironment.shared.window?.rootViewController
+        else {
+            return
+        }
+        let controller = LoginWebViewController.create(host: host, loginDelegate: nil, method: .normalLogin)
+        controller.loginCompletion = { [weak self] newSession in
+            controller.dismiss(animated: true) {
+                self?.handleNewLoginSessionReceived(newSession)
+            }
+        }
+        controller.navigationItem.rightBarButtonItem = UIBarButtonItemWithCompletion(title: String(localized: "Cancel", bundle: .core), actionHandler: { [weak controller] in
+            controller?.dismiss(animated: true)
+        })
+
+        let navController = CoreNavigationController(rootViewController: controller)
+        AppEnvironment.shared.router.show(navController, from: rootViewContoller, analyticsRoute: "/login/weblogin")
+    }
 
     private func isRefreshTokenInvalid(_ error: Error?) -> Bool {
         if let apiError = error as? APIError, case APIError.invalidGrant = apiError {
             return true
         }
         return false
+    }
+
+    private func handleNewLoginSessionReceived(_ newSession: LoginSession) {
+        // TODO: check if session matches the currently active
+        api.loginSession = newSession
+        LoginSession.add(newSession)
+        if newSession == AppEnvironment.shared.currentSession {
+            AppEnvironment.shared.currentSession = newSession
+        }
+        isTokenRefreshInProgress = false
+        releaseWaitingRequests()
     }
 
     private func handleAccessTokenReceived(
