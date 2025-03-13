@@ -18,6 +18,29 @@
 
 import SwiftUI
 
+<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/AI/AIQuiz/View/FeedbackType.swift
+enum FeedbackType: CaseIterable {
+    case like
+    case dislike
+
+    var selectedImage: String {
+        switch self {
+        case .like:
+            "hand.thumbsup.fill"
+        case .dislike:
+            "hand.thumbsdown.fill"
+        }
+    }
+
+    var unselectedImage: String {
+        switch self {
+        case .like:
+            "hand.thumbsup"
+        case .dislike:
+            "hand.thumbsdown"
+        }
+    }
+========
 public protocol SearchViewsProvider {
     associatedtype Filter: SearchPreference
     associatedtype FilterEditor: View
@@ -32,4 +55,5 @@ public protocol SearchViewsProvider {
 
 public protocol SearchPreference {
     var isActive: Bool { get }
+>>>>>>>> origin/master:Core/Core/Features/Search/View/SearchViewsProvider.swift
 }

@@ -67,14 +67,15 @@ extension SubmissionViewable {
 
         return String(localized: "Submitted", bundle: .core)
     }
+
     public var submissionDateText: String? {
         submission?.submittedAt?.dateTimeString
     }
+
     public var submissionAttemptNumberText: String? {
         guard let attempt = submission?.attempt else { return nil }
 
-        let format = String(localized: "Attempt %d", bundle: .core)
-        return String.localizedStringWithFormat(format, attempt)
+        return String.localizedAttemptNumber(attempt)
     }
 
     public var hasLatePenalty: Bool {

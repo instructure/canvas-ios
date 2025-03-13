@@ -513,6 +513,11 @@ class FileListCell: UITableViewCell {
 
     private var fileID: String?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupInstDisclosureIndicator()
+    }
+
     func update(item: FolderItem?, color: UIColor?, isOffline: Bool, isAvailable: Bool) {
         fileID = item?.id
         if isOffline {

@@ -48,7 +48,7 @@ extension InstUI {
             validFrom: Date = .distantPast,
             validUntil: Date = .distantFuture,
             errorMessage: String? = nil,
-            isClearable: Bool
+            isClearable: Bool = false
         ) {
             self.label = label
             self._date = date
@@ -62,36 +62,60 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                ViewThatFits {
-                    HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
-                        dateRow
+                VStack(spacing: 0) {
+                    ViewThatFits {
+                        HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+                            labelView
+                            datePickerView
+                        }
+                        VStack(alignment: .leading, spacing: InstUI.Styles.Padding.textVertical.rawValue) {
+                            labelView
+                            datePickerView
+                        }
                     }
-                    VStack(alignment: .leading) {
-                        dateRow
-                    }
-                }
-                .frame(minHeight: 36) // To always have the same height despite datepicker visibility
+                    .frame(minHeight: 36) // To always have the same height despite datepicker visibility
 
-                if let errorMessage {
-                    Text(errorMessage)
-                        .textStyle(.errorMessage)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(.top, 8)
+                    if let errorMessage {
+                        Text(errorMessage)
+                            .textStyle(.errorMessage)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.top, 8)
+                            .accessibilityHidden(true) // it is included in the label's a11yValue
+                    }
                 }
+                .paddingStyle(.leading, .standard)
+                .paddingStyle(.trailing, .standard)
+                // best effort estimations to match the height of other cells, correcting for DatePicker
+                .padding(.top, 5)
+                .padding(.bottom, 7)
+                .accessibilityElement(children: .contain)
+
+                InstUI.Divider()
             }
-            .paddingStyle(.leading, .standard)
-            .paddingStyle(.trailing, .standard)
-            // best effort estimations to match the height of other cells, correcting for DatePicker
-            .padding(.top, 5)
-            .padding(.bottom, 7)
-
-            InstUI.Divider()
         }
 
         @ViewBuilder
-        private var dateRow: some View {
+        private var labelView: some View {
+            let dateTimeValue = switch mode {
+            case .dateOnly: date?.dateOnlyString
+            case .timeOnly: date?.timeOnlyString
+            case .dateAndTime: date?.dateTimeString
+            }
+
+            let errorValue: String? = {
+                guard let errorMessage else { return nil }
+                return String.localizedAccessibilityErrorMessage(errorMessage)
+            }()
+
+            let value = [dateTimeValue, errorValue].compactMap { $0 }.joined(separator: ", ")
+
             label
                 .textStyle(.cellLabel)
+                .accessibilityValue(value)
+        }
+
+        @ViewBuilder
+        private var datePickerView: some View {
             HStack {
                 if date != nil {
                     datePicker
@@ -110,20 +134,20 @@ extension InstUI {
                 get: { date ?? defaultDate },
                 set: { newDate in date = newDate }
             )
+
+            let components: DatePickerComponents = switch mode {
+            case .dateOnly: [.date]
+            case .timeOnly: [.hourAndMinute]
+            case .dateAndTime: [.date, .hourAndMinute]
+            }
+
             DatePicker(
                 selection: binding,
                 in: validFrom...validUntil,
                 displayedComponents: components,
                 label: {}
             )
-        }
-
-        private var components: DatePicker<Label>.Components {
-            switch mode {
-            case .dateOnly: [.date]
-            case .timeOnly: [.hourAndMinute]
-            case .dateAndTime: [.date, .hourAndMinute]
-            }
+            .accessibilityRefocusingOnPopoverDismissal()
         }
 
         @ViewBuilder
@@ -178,11 +202,10 @@ extension InstUI {
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(nil), isClearable: true)
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: true)
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: false)
-        InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), errorMessage: "Someting is wrong here.", isClearable: false)
+        InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), errorMessage: "Someting is wrong here.")
         InstUI.DatePickerCell(
             label: Text(verbatim: "Important Date").foregroundStyle(Color.red).textStyle(.heading),
-            date: .constant(.now),
-            isClearable: false
+            date: .constant(.now)
         )
     }
 }

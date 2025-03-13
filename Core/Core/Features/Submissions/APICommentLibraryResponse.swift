@@ -16,7 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct APICommentLibraryResponse: Codable, Equatable {
+public struct APICommentLibraryResponse: PagedResponse, Equatable {
+    public typealias Page = [CommentBankItem]
 
     struct Data: Codable, Equatable {
         let user: User
@@ -29,14 +30,22 @@ public struct APICommentLibraryResponse: Codable, Equatable {
 
     struct CommentBankConnection: Codable, Equatable {
         let nodes: [CommentBankItem]
+        let pageInfo: APIPageInfo?
     }
 
-    struct CommentBankItem: Codable, Equatable {
+    public struct CommentBankItem: Codable, Equatable {
         let id: String
         let comment: String
     }
 
     let data: Self.Data
 
-    public var comments: [(id: String, comment: String)] { data.user.commentBankItems.nodes.map { ($0.id, $0.comment) } }
+    public var pageInfo: APIPageInfo? { data.user.commentBankItems.pageInfo }
+    public var comments: [(id: String, comment: String)] {
+        data.user.commentBankItems.nodes.map { ($0.id, $0.comment) }
+    }
+
+    public var page: [CommentBankItem] {
+        data.user.commentBankItems.nodes
+    }
 }

@@ -17,6 +17,7 @@
 //
 
 import Core
+import UIKit
 
 let router = Router(routes: [
     RouteHandler("/accounts/:accountID/terms_of_service") { _, _, _ in
@@ -52,12 +53,14 @@ let router = Router(routes: [
     },
 
     RouteHandler("/conversations"),
+
+    // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
+    RouteHandler("/conversations/new_message") { url, _, _ in
+        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    },
+
     RouteHandler("/conversations/compose") { url, _, _ in
-        if let queryItems = url.queryItems {
-            return ComposeMessageAssembly.makeComposeMessageViewController(queryItems: queryItems)
-        } else {
-            return ComposeMessageAssembly.makeComposeMessageViewController()
-        }
+        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
     },
 
     RouteHandler("/conversations/:conversationID") { _, params, userInfo in
@@ -500,7 +503,7 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
 
 private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
-    return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+    return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
 }
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

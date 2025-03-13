@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 /**
  The purpose of this property wrapper is to allow decoding of URLs from Strings with non url safe characters.
  The non-safe characters are percent encoded before decoding.

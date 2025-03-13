@@ -17,12 +17,14 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class InboxTests: E2ETestCase {
-    typealias Helper = InboxHelperParent
-    typealias ComposeHelper = Helper.Compose
+    typealias Helper = InboxHelper
+    typealias ComposeHelper = Helper.Composer
     typealias DetailsHelper = Helper.Details
-    typealias ReplyHelper = Helper.Reply
+    typealias FilterHelper = Helper.Filter
+    typealias ParentCoursePicker = InboxHelperParent.CoursePicker
 
     func testSendMessage() {
         // MARK: Seed the usual stuff
@@ -53,10 +55,8 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(newMessageButton.isVisible)
 
         newMessageButton.hit()
-        let courseButton = Helper.courseButton(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseButton.isVisible)
-
-        courseButton.hit()
+        let studentContextButton = ParentCoursePicker.studentContext(courseName: course.name, studentDisplayName: student.name)
+        studentContextButton.hit()
 
         // MARK: Check visibility of elements
         let cancelButton = ComposeHelper.cancelButton.waitUntil(.visible)
@@ -67,15 +67,17 @@ class InboxTests: E2ETestCase {
 
         var sendButton = ComposeHelper.sendButton.waitUntil(.visible)
         XCTAssertTrue(sendButton.isVisible)
-        XCTAssertTrue(sendButton.isDisabled)
 
-        let recipientsButton = ComposeHelper.recipientsButton.waitUntil(.visible)
+        let selectedRecipient = ComposeHelper.recipientPillById(recipient: teacher).waitUntil(.visible)
+        XCTAssertTrue(selectedRecipient.isVisible)
+
+        let recipientsButton = ComposeHelper.addRecipientButton.waitUntil(.visible)
         XCTAssertTrue(recipientsButton.isVisible)
 
         let subjectInput = ComposeHelper.subjectInput.waitUntil(.visible)
         XCTAssertTrue(subjectInput.isVisible)
 
-        let messageInput = ComposeHelper.messageInput.waitUntil(.visible)
+        let messageInput = ComposeHelper.bodyInput.waitUntil(.visible)
         XCTAssertTrue(messageInput.isVisible)
 
         // MARK: Fill "Subject" and "Message" inputs
@@ -91,6 +93,17 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(sendButton.isEnabled)
 
         sendButton.hit()
+
+        // MARK: Check message in "Sent" filter tab
+        let filterByTypeButton = Helper.filterByTypeButton.waitUntil(.visible)
+        XCTAssertTrue(filterByTypeButton.isVisible)
+
+        filterByTypeButton.hit()
+        let filterBySentButton = FilterHelper.sent.waitUntil(.visible)
+        XCTAssertTrue(filterBySentButton.isVisible)
+
+        filterBySentButton.hit()
+
         let conversation = Helper.conversationBySubject(subject: subject).waitUntil(.visible)
         XCTAssertTrue(conversation.isVisible)
     }
@@ -122,13 +135,10 @@ class InboxTests: E2ETestCase {
         messageButton.hit()
 
         // MARK: Check message details
-        let subjectLabel = DetailsHelper.subjectLabel(conversation: conversation).waitUntil(.visible)
+        let subjectLabel = DetailsHelper.subjectLabel.waitUntil(.visible)
         XCTAssertTrue(subjectLabel.isVisible)
 
-        let messageLabel = DetailsHelper.messageLabel(conversation: conversation).waitUntil(.visible)
+        let messageLabel = DetailsHelper.bodyLabel.waitUntil(.visible)
         XCTAssertTrue(messageLabel.isVisible)
-
-        let replyButton = DetailsHelper.replyButton.waitUntil(.visible)
-        XCTAssertTrue(replyButton.isVisible)
     }
 }

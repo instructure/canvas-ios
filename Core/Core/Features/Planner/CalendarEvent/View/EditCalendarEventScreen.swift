@@ -53,26 +53,25 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                         InstUI.DatePickerCell(
                             label: Text("Date", bundle: .core),
                             date: $viewModel.date,
-                            mode: .dateOnly,
-                            isClearable: false
+                            mode: .dateOnly
                         )
 
                         InstUI.ToggleCell(label: Text("All Day", bundle: .core), value: $viewModel.isAllDay)
 
                         if !viewModel.isAllDay {
                             InstUI.DatePickerCell(
-                                label: Text("From", bundle: .core),
+                                label: Text("From", bundle: .core)
+                                    .accessibilityLabel(Text("Start time", bundle: .core)),
                                 date: $viewModel.startTime,
-                                mode: .timeOnly,
-                                isClearable: false
+                                mode: .timeOnly
                             )
 
                             InstUI.DatePickerCell(
-                                label: Text("To", bundle: .core),
+                                label: Text("To", bundle: .core)
+                                    .accessibilityLabel(Text("End time", bundle: .core)),
                                 date: $viewModel.endTime,
                                 mode: .timeOnly,
-                                errorMessage: viewModel.endTimeErrorMessage,
-                                isClearable: false
+                                errorMessage: viewModel.endTimeErrorMessage
                             )
                         }
 

@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ModulesTests: E2ETestCase {
     typealias Helper = ModulesHelper

@@ -16,8 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Foundation
+import UIKit
 
 public enum LocalizationManager {
     private static let instUserLocale = "InstUserLocale"

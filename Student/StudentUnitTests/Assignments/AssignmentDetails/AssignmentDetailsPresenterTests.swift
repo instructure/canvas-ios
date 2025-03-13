@@ -52,7 +52,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         }
     }
     lazy var mockButton = MockButton(env: env, view: mockView, assignmentID: "1")
-    lazy var mockView: MockView = {
+    private lazy var mockView: MockView = {
         let view = MockView()
         view.test = self
         return view
@@ -631,8 +631,12 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 }
 
-class MockView: UIViewController, AssignmentDetailsViewProtocol {
+private class MockView: UIViewController, AssignmentDetailsViewProtocol {
     weak var test: AssignmentDetailsPresenterTests?
+
+    var accessibilityFocusAfterAttemptSelection: UIView? {
+        nil
+    }
 
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
         test?.presentedView = viewControllerToPresent

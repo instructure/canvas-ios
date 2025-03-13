@@ -19,6 +19,14 @@
 @testable import Core
 import XCTest
 
+<<<<<<<< HEAD:Core/CoreTests/Features/Planner/CalendarEvent/Model/Helpers/RecurrenceRule+SelectionDescriptionTests.swift
+final class RecurrenceRuleSelectionDescriptionTests: XCTestCase {
+    func test_selectionText() {
+        XCTAssertEqual(RecurrenceFrequency.daily.selectionText, String(localized: "Daily", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.weekly.selectionText, String(localized: "Weekly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.monthly.selectionText, String(localized: "Monthly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.yearly.selectionText, String(localized: "Yearly", bundle: .core))
+========
 class CourseSmartSearchViewAttributesTests: CoreTestCase {
 
     func test_default_properties() {
@@ -37,5 +45,6 @@ class CourseSmartSearchViewAttributesTests: CoreTestCase {
         XCTAssertEqual(testee.context, .course("1"))
         XCTAssertEqual(testee.accentColor, .red)
         XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
+>>>>>>>> origin/master:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
     }
 }

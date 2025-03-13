@@ -69,7 +69,7 @@ struct DateSection<ViewModel: DateSectionViewModelProtocol>: View {
                 .font(.regular16).foregroundColor(.textDarkest)
                 .padding(16)
             if viewModel.isButton {
-                DisclosureIndicator().padding(.trailing, 16)
+                InstUI.DisclosureIndicator().padding(.trailing, 16)
             }
         } })
             .accessibility(hint: Text("Due Dates, Double tap for details.", bundle: .core))

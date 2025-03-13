@@ -17,6 +17,7 @@
 //
 
 import Core
+import Combine
 import SwiftUI
 
 class SubmissionCommentLibraryViewModel: ObservableObject {
@@ -28,40 +29,49 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
     }
 
     @Published public private(set) var state: ViewModelState<[LibraryComment]> = .loading
-    private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
+    @Published public var endCursor: String?
+
     public var shouldShow: Bool {
         settings.first?.commentLibrarySuggestionsEnabled ?? false
     }
-    public var comment: String = "" {
-        didSet {
-            updateFilteredComments()
-        }
+
+    public var comment: String {
+        get { commentSubject.value }
+        set { commentSubject.send(newValue) }
     }
+
+    private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
+    private var commentSubject = CurrentValueSubject<String, Never>("")
+
     private let env = AppEnvironment.shared
-    private var filteredComments: [LibraryComment] = [] {
-        didSet {
-            withAnimation {
-                if filteredComments.isEmpty {
-                    state = .empty
-                } else {
-                    state = .data(filteredComments)
+    private var subscriptions = Set<AnyCancellable>()
+    private var comments: [LibraryComment] = []
+
+    init() {
+        commentSubject
+            .debounce(for: 0.5, scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .mapToVoid()
+            .flatMap({
+                return Future { [weak self] promise in
+                    self?.refresh(completion: { promise(.success) })
                 }
-            }
-        }
+            })
+            .sink(receiveValue: {})
+            .store(in: &subscriptions)
     }
-    private var comments: [LibraryComment] = [] {
-        didSet {
-            updateFilteredComments()
+
+    func viewDidAppear(completion: (() -> Void)? = nil) {
+        fetchSettings {
+            if self.shouldShow {
+                self.refresh(completion: { completion?() })
+            }
         }
     }
 
-    func viewDidAppear() {
-        fetchSettings {
-            if self.shouldShow {
-                Task {
-                    await self.refresh()
-                }
-            }
+    private func fetchSettings(_ completion: @escaping () -> Void) {
+        settings.refresh(force: true) { _ in
+            completion()
         }
     }
 
@@ -73,14 +83,11 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
         }
     }
 
-    private func fetchSettings(_ completion: @escaping () -> Void) {
-        settings.refresh(force: true) { _ in
+    func loadNextPage(completion: @escaping () -> Void) {
+        Task { @MainActor in
+            await self.fetchNextPage()
             completion()
         }
-    }
-
-    private func updateFilteredComments() {
-        filteredComments = comments.filter { comment.isEmpty || $0.text.lowercased().contains(comment.lowercased()) }
     }
 }
 
@@ -94,24 +101,40 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
         }
     }
 
+    @MainActor
     public func refresh() async {
-        performUIUpdate { [weak self] in
-            self?.state = .loading
-        }
+        self.state = .loading
+
         let userId = env.currentSession?.userID ?? ""
-        let requestable = APICommentLibraryRequest(userId: userId)
-        return await withCheckedContinuation { [weak self] continuation in
-            guard let self else {
-                continuation.resume()
-                return
-            }
-            env.api.makeRequest(requestable) { [weak self] response, _, _  in
-                performUIUpdate {
-                    defer { continuation.resume() }
-                    guard let response, let self else { return }
-                    self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-                }
-            }
+        let requestable = APICommentLibraryRequest(query: comment, userId: userId)
+
+        do {
+            let response = try await env.api.makeRequest(requestable)
+            let comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+            self.comments = comments
+            self.endCursor = response.pageInfo?.nextCursor
+            self.state = .data(comments)
+        } catch { }
+    }
+
+    @MainActor
+    public func fetchNextPage() async {
+        guard let endCursor else { return }
+
+        let userId = env.currentSession?.userID ?? ""
+        let requestable = APICommentLibraryRequest(
+            query: comment,
+            userId: userId,
+            cursor: endCursor
+        )
+
+        if let response = try? await env.api.makeRequest(requestable) {
+            let newComments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+            let allComments = self.comments + newComments
+            self.comments = allComments
+
+            self.state = .data(allComments)
+            self.endCursor = response.pageInfo?.nextCursor
         }
     }
 }

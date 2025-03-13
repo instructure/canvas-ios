@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 protocol LoginQRCodeTutorialDelegate: AnyObject {
@@ -27,20 +26,21 @@ class LoginQRCodeTutorialViewController: UIViewController {
     weak var delegate: LoginQRCodeTutorialDelegate?
 
     static func create() -> LoginQRCodeTutorialViewController {
-        return loadFromStoryboard()
+        let vc = loadFromStoryboard()
+        let next = UIBarButtonItem(
+            title: String(localized: "Next", bundle: .core),
+            style: .plain,
+            target: vc,
+            action: #selector(done(_:))
+        )
+        vc.addNavigationButton(next, side: .right)
+        return vc
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = String(localized: "Locate QR Code", bundle: .core)
-        let next = UIBarButtonItem(
-            title: String(localized: "Next", bundle: .core),
-            style: .plain,
-            target: self,
-            action: #selector(done(_:))
-        )
-        addNavigationButton(next, side: .right)
     }
 
     @objc func done(_ sender: UIBarButtonItem) {

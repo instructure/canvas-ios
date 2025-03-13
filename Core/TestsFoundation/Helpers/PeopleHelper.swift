@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class PeopleHelper: BaseHelper {
     public static var filterButton: XCUIElement {app.find(label: "Filter", type: .button) }
     public static var clearFilterButton: XCUIElement {app.find(label: "Clear filter", type: .button) }

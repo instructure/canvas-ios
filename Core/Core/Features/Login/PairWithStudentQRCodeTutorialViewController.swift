@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 protocol PairWithStudentQRCodeTutorialDelegate: AnyObject {
     func pairWithStudentQRCodeTutorialDidFinish(_ controller: PairWithStudentQRCodeTutorialViewController)
@@ -28,7 +28,16 @@ public class PairWithStudentQRCodeTutorialViewController: UIViewController {
     weak var delegate: PairWithStudentQRCodeTutorialDelegate?
 
     static func create() -> PairWithStudentQRCodeTutorialViewController {
-        return loadFromStoryboard()
+        let vc = loadFromStoryboard()
+        let next = UIBarButtonItem(
+            title: String(localized: "Next", bundle: .core),
+            style: .plain,
+            target: vc,
+            action: #selector(done(_:))
+        )
+        next.accessibilityIdentifier = "PairWithStudentQRCodeTutorial.nextButton"
+        vc.addNavigationButton(next, side: .right)
+        return vc
     }
 
     public override func viewDidLoad() {
@@ -40,14 +49,6 @@ public class PairWithStudentQRCodeTutorialViewController: UIViewController {
         If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.
         """, bundle: .core)
         headerLabel.accessibilityIdentifier = "PairWithStudentQRCodeTutorial.headerLabel"
-        let next = UIBarButtonItem(
-            title: String(localized: "Next", bundle: .core),
-            style: .plain,
-            target: self,
-            action: #selector(done(_:))
-        )
-        next.accessibilityIdentifier = "PairWithStudentQRCodeTutorial.nextButton"
-        addNavigationButton(next, side: .right)
     }
 
     @objc func done(_ sender: UIBarButtonItem) {

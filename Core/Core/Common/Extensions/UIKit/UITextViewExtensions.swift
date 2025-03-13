@@ -16,7 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
+
+private var internalDelegateKey: UInt8 = 0
 
 private var internalDelegateKey: UInt8 = 0
 

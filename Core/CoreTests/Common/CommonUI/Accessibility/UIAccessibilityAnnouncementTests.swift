@@ -17,39 +17,138 @@
 //
 
 import UIKit
+import Combine
 import XCTest
+import Core
 
 class UIAccessibilityAnnouncementTests: XCTestCase {
 
-    func testAnnouncementRetryIfInterrupted() {
-        let announcementReceived = expectation(description: "Announcement request received")
-        announcementReceived.expectedFulfillmentCount = 2
+    private var handler: MockAccessabilityHandler!
+    private var subscription: AnyCancellable?
 
-        UIAccessibility.announce("Test Announcement", announcementHandler: { notificationType, announcementString in
-            announcementReceived.fulfill()
-            XCTAssertEqual(notificationType, .announcement)
-            XCTAssertEqual((announcementString as? NSAttributedString)?.string, "Test Announcement")
-        }, isVoiceOverRunning: {
-            true
-        })
+    override func setUp() {
+        super.setUp()
+        handler = MockAccessabilityHandler()
+    }
+
+    override func tearDown() {
+        handler = nil
+        subscription?.cancel()
+        subscription = nil
+        super.tearDown()
+    }
+
+    func testAnnouncementRetryIfInterrupted() {
+        let message = "Test Announcement"
+
+        UIAccessibility.announce(message, handler: handler)
 
         // Simulate that announcement gets interrupted by a system sound, this should trigger a retry
-        postAnnouncementNotification(isSuccessful: false)
+        postAnnouncementNotification(message, isSuccessful: false)
 
         // Simulate that announcement was successfully announced
-        postAnnouncementNotification(isSuccessful: true)
+        postAnnouncementNotification(message, isSuccessful: true)
 
         // After successful announcement no more retries should occur
-        postAnnouncementNotification(isSuccessful: false)
+        postAnnouncementNotification(message, isSuccessful: false)
 
-        wait(for: [announcementReceived], timeout: 1)
+        XCTAssertEqual(handler.attempts.count, 2)
+        XCTAssertTrue(handler.attempts.allSatisfy({ $0.value == message }))
     }
 
-    private func postAnnouncementNotification(isSuccessful: Bool) {
+    func testAnnouncementPersistently_Successful() {
+        let message = "Test Persistent Announcement"
+        let valuePublished = expectation(description: "Announcement finished")
+        valuePublished.expectedFulfillmentCount = 1
+
+        subscription = UIAccessibility
+            .announcePersistently(
+                message,
+                handler: handler
+            )
+            .sink(receiveValue: { valuePublished.fulfill() })
+
+        // Finished
+        postAnnouncementNotification(message, isSuccessful: true)
+
+        wait(for: [valuePublished], timeout: 2)
+        XCTAssertEqual(handler.attempts.count, 1)
+    }
+
+    func testAnnouncementPersistently_MaxAttempts() {
+        let message = "Test Persistent Announcement"
+        let valuePublished = expectation(description: "Announcement finished")
+        valuePublished.expectedFulfillmentCount = 1
+
+        subscription = UIAccessibility
+            .announcePersistently(
+                message,
+                maxAttempts: 3,
+                handler: handler
+            )
+            .sink(receiveValue: { valuePublished.fulfill() })
+
+        // Attempt 2
+        postAnnouncementNotification(message, isSuccessful: false)
+        // Attempt 3
+        postAnnouncementNotification(message, isSuccessful: false)
+        // Finish
+        postAnnouncementNotification(message, isSuccessful: false)
+
+        wait(for: [valuePublished], timeout: 2)
+        XCTAssertEqual(handler.attempts.count, 3)
+    }
+
+    func testAnnouncementPersistently_MaxDuration() {
+        let message = "Test Persistent Announcement"
+        let valuePublished = expectation(description: "Announcement finished")
+        valuePublished.expectedFulfillmentCount = 1
+
+        subscription = UIAccessibility
+            .announcePersistently(
+                message,
+                maxDuration: 2,
+                handler: handler
+            )
+            .sink(receiveValue: { valuePublished.fulfill() })
+
+        let timeElapsed = expectation(description: "Time elapsed")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            timeElapsed.fulfill()
+        }
+
+        wait(for: [timeElapsed, valuePublished], timeout: 5)
+        XCTAssertEqual(handler.attempts.count, 1)
+    }
+
+    private func postAnnouncementNotification(
+        _ message: String,
+        isSuccessful: Bool
+    ) {
         let userInfo: [String: Any] = [
-            UIAccessibility.announcementStringValueUserInfoKey: "Test Announcement",
+            UIAccessibility.announcementStringValueUserInfoKey: message,
             UIAccessibility.announcementWasSuccessfulUserInfoKey: isSuccessful
         ]
-        NotificationCenter.default.post(name: UIAccessibility.announcementDidFinishNotification, object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(
+            name: UIAccessibility.announcementDidFinishNotification,
+            object: nil,
+            userInfo: userInfo
+        )
     }
+}
+
+class MockAccessabilityHandler: AccessibilityNotificationHandler {
+
+    struct Attempt {
+        let notificaiton: UIAccessibility.Notification
+        let value: String?
+    }
+
+    private(set) var attempts: [Attempt] = []
+    func post(notification: UIAccessibility.Notification, argument: Any?) {
+        let message = (argument as? NSAttributedString)?.string
+        attempts.append(Attempt(notificaiton: notification, value: message))
+    }
+
+    var isVoiceOverRunning: Bool = true
 }

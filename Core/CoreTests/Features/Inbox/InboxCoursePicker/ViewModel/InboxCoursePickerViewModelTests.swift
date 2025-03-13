@@ -33,17 +33,25 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
 
     func testInteractorStateMappedToViewModel() {
         XCTAssertEqual(testee.state, mockInteractor.state.value)
-        XCTAssertEqual(testee.courses.count, 2)
+        XCTAssertEqual(testee.favoriteCourses.count, 1)
+        XCTAssertEqual(testee.moreCourses.count, 2)
         XCTAssertEqual(testee.groups.count, 1)
-        XCTAssertEqual(testee.courses.first?.name, "Course 1")
+        XCTAssertEqual(testee.favoriteCourses.first?.name, "Course 3 (favorite)")
+        XCTAssertEqual(testee.moreCourses.first?.name, "Course 1")
         XCTAssertEqual(testee.groups.first?.name, "Group 1")
     }
 
-    func testCourseSelection() {
-        let context = testee.courses.first!
+    func testFavoriteCourseSelection() {
+        let context = testee.favoriteCourses.first!
         testee.onSelect(selected: context)
         XCTAssertEqual(testee.selectedRecipientContext?.context.id, context.id)
 
+    }
+
+    func testMoreCourseSelection() {
+        let context = testee.moreCourses.first!
+        testee.onSelect(selected: context)
+        XCTAssertEqual(testee.selectedRecipientContext?.context.id, context.id)
     }
 
     func testGroupSelection() {
@@ -55,12 +63,16 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
 }
 
 private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
-    public var state = CurrentValueSubject<StoreState, Never>(.data)
-    public var courses = CurrentValueSubject<[Course], Never>([])
-    public var groups = CurrentValueSubject<[Group], Never>([])
+    var favoriteCourses: CurrentValueSubject<[Core.Course], Never>
+    var moreCourses: CurrentValueSubject<[Core.Course], Never>
+    var groups = CurrentValueSubject<[Group], Never>([])
+    var state = CurrentValueSubject<StoreState, Never>(.data)
 
-    public init(env: AppEnvironment) {
-        self.courses = CurrentValueSubject<[Course], Never>([
+    init(env: AppEnvironment) {
+        self.favoriteCourses = CurrentValueSubject<[Course], Never>([
+            .save(.make(id: "3", name: "Course 3 (favorite)", is_favorite: true), in: env.database.viewContext)
+        ])
+        self.moreCourses = CurrentValueSubject<[Course], Never>([
             .save(.make(id: "1", name: "Course 1"), in: env.database.viewContext),
             .save(.make(id: "2", name: "Course 2"), in: env.database.viewContext)
         ])
@@ -72,5 +84,4 @@ private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
     func refresh() -> AnyPublisher<[Void], Never> {
         return Future<[Void], Never> { _ in }.eraseToAnyPublisher()
     }
-
 }

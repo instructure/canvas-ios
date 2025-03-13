@@ -97,7 +97,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     private var monthDaysCell: some View {
         return InstUI.SelectionMenuCell(
-            label: Text("On", bundle: .core),
+            label: onLabel,
             options: viewModel.dayOfMonthOptions(for: viewModel.proposedDate),
             text: \.title,
             defaultValue: viewModel.proposedDayOfMonth,
@@ -108,14 +108,14 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     @ViewBuilder
     private var yearDayCell: some View {
         InstUI.LabelValueCell(
-            label: Text("On", bundle: .core),
+            label: onLabel,
             value: viewModel.dayOfYear.title
         )
     }
 
     private var weekDaysCell: some View {
         InstUI.DropDownCell(
-            label: Text("On", bundle: .core),
+            label: onLabel,
             state: $weekDayDropDownState) {
 
                 if viewModel.daysOfTheWeek.isEmpty {
@@ -128,6 +128,16 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                     }
                 }
             }
+    }
+
+    private var onLabel: Text {
+        let label = String(
+            localized: "recurs_on",
+            defaultValue: "On",
+            bundle: .core,
+            comment: "Event recurs ON a specific day of the month, week, or year."
+        )
+        return Text(label)
     }
 
     private var endModeCell: some View {
@@ -156,8 +166,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             date: $viewModel.endDate,
             mode: .dateOnly,
             defaultDate: Clock.now.addYears(1),
-            validFrom: viewModel.proposedDate,
-            isClearable: false
+            validFrom: viewModel.proposedDate
         )
     }
 

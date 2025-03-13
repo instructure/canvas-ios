@@ -17,6 +17,9 @@
 //
 
 #if DEBUG
+
+import UIKit
+
 /**
 Use only for SwiftUI previews.
 */
