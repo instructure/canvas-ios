@@ -54,24 +54,30 @@ public extension UISegmentedControl {
         )
     }
 
-    func setFontStyle() {
-        let style: [NSAttributedString.Key: Any] = [
+    func setFontStyle(_ selectionColor: UIColor?) {
+
+        let normalStyle: [NSAttributedString.Key: Any] = [
             .font: UIFont.scaledNamedFont(.regular14),
             .foregroundColor: UIColor.textDark
         ]
 
-        setTitleTextAttributes(style, for: .normal)
-        setTitleTextAttributes(style, for: .selected)
+        let selectedStyle: [NSAttributedString.Key: Any] = [
+            .font: UIFont.scaledNamedFont(.bold14),
+            .foregroundColor: selectionColor ?? .textDark
+        ]
+
+        setTitleTextAttributes(normalStyle, for: .normal)
+        setTitleTextAttributes(selectedStyle, for: .selected)
     }
 
-    func addUnderlineForSelectedSegment() {
+    func addUnderlineForSelectedSegment(_ selectionColor: UIColor?) {
         if let existingView = viewWithTag(1) {
             existingView.frame.size.width = self.bounds.size.width / CGFloat(self.numberOfSegments)
             existingView.frame.origin.x = selectedSegmentOriginX
             return
         }
         removeBorders()
-        setFontStyle()
+        setFontStyle(selectionColor)
         let underlineWidth: CGFloat = bounds.size.width / CGFloat(numberOfSegments)
         let underlineHeight: CGFloat = 1.5
         let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
@@ -79,7 +85,7 @@ public extension UISegmentedControl {
         let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
         let underline = UIView(frame: underlineFrame)
         underline.translatesAutoresizingMaskIntoConstraints = false
-        underline.backgroundColor = .backgroundInfo
+        underline.backgroundColor = selectionColor ?? .backgroundInfo
         underline.tag = 1
         addSubview(underline)
     }

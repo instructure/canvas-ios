@@ -26,6 +26,8 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     var contentViewController: UIViewController?
     var drawerContentViewController: UIViewController?
     var env: AppEnvironment?
+    private var context: Context?
+
     public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
         let courseID = presenter?.course.first?.id ?? ""
         let assignmentID = presenter?.assignmentID ?? ""
@@ -48,6 +50,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     static func create(env: AppEnvironment, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) -> SubmissionDetailsViewController {
         let controller = loadFromStoryboard()
         controller.env = env
+        controller.context = context
         controller.presenter = SubmissionDetailsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID, selectedAttempt: selectedAttempt)
         return controller
     }
@@ -57,6 +60,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         view.backgroundColor = .backgroundLightest
 
         setupTitleViewInNavbar(title: String(localized: "Submission", bundle: .student))
+        drawer?.selectionColor = env.flatMap({ context?.color(in: $0.database.viewContext) })
         drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
         emptyView?.submitCallback = { [weak self] button in
             self?.presenter?.submit(button: button)
