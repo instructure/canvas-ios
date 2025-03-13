@@ -95,14 +95,14 @@ class SyllabusTests: E2ETestCase {
         XCTAssertTrue(doneButton.isVisible)
         XCTAssertTrue(contentField.isVisible)
         XCTAssertTrue(summaryToggle.isVisible)
-        XCTAssertTrue(summaryToggle.hasValue(value: "1"))
+        XCTAssertTrue(summaryToggle.hasValue(value: "on"))
 
         // MARK: Edit syllabus
         contentField.cutText()
         contentField.writeText(text: newContent)
         summaryToggle.hit()
         XCTAssertTrue(contentField.hasValue(value: newContent))
-        XCTAssertTrue(summaryToggle.hasValue(value: "0"))
+        XCTAssertTrue(summaryToggle.hasValue(value: "off"))
 
         // MARK: Check if editing was successful
         doneButton.hit()

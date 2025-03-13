@@ -101,7 +101,7 @@ public class AssignmentsHelper: BaseHelper {
 
         // Other
         public static var backButton: XCUIElement {
-            app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
+            return app.find(type: .navigationBar).find(label: "Back", type: .button)
         }
 
         public static func navBar(course: DSCourse) -> XCUIElement {

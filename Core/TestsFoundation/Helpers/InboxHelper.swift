@@ -106,7 +106,7 @@ public class InboxHelper: BaseHelper {
         public static var sendButton: XCUIElement { app.find(id: "ComposeMessage.send") }
         public static var selectCourseButton: XCUIElement { app.find(id: "ComposeMessage.course", type: .button) }
         public static var subjectInput: XCUIElement { app.find(id: "ComposeMessage.subjectInput") }
-        public static var individualToggle: XCUIElement { app.find(id: "ComposeMessage.individual").find(type: .switch) }
+        public static var individualToggle: XCUIElement { app.find(id: "ComposeMessage.individual", type: .toggle) }
         public static var addAttachmentButton: XCUIElement { app.find(id: "ComposeMessage.attachment") }
         public static var addRecipientButton: XCUIElement { app.find(id: "ComposeMessage.addRecipient", type: .button) }
         public static var bodyInput: XCUIElement { app.find(id: "ComposeMessage.body") }
