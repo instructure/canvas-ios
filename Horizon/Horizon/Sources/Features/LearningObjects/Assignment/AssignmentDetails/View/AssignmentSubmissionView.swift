@@ -175,7 +175,7 @@ struct AssignmentSubmissionView: View {
             ]
         )
         .padding(.horizontal, isLTI ? -padding : 0)
-        .frame(height: isLTI ? 700 : 400)
+        .frame(height: isLTI ? 1000 : 400, alignment: .top)
     }
 
     private func makeFileUploadButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
