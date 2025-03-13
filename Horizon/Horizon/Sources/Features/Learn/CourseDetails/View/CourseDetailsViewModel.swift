@@ -29,6 +29,7 @@ final class CourseDetailsViewModel {
     private(set) var course: HCourse
     let courseID: String
     private(set) var isLoaderVisible: Bool = false
+    let scoresViewModel: ScoresViewModel
 
     // MARK: - Private
 
@@ -50,7 +51,9 @@ final class CourseDetailsViewModel {
         self.courseID = courseID
         self.course = course ?? .init()
         self.onShowTabBar = onShowTabBar
-        isLoaderVisible = true
+        self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID)
+        self.isLoaderVisible = true
+        
         getCoursesInteractor.getCourse(id: courseID, ignoreCache: false)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }

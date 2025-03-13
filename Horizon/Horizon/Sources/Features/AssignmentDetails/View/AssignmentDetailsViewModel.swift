@@ -202,7 +202,7 @@ final class AssignmentDetailsViewModel {
 
     private func fetchAssignmentDetails() {
         Publishers.Zip(interactor.getAssignmentDetails(), interactor.getSubmissions())
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .sink { [weak self] assignmentDetails, submissions in
                 self?.configAssignmentDetails(response: assignmentDetails, submissions: submissions)
             }

@@ -85,24 +85,23 @@ struct CourseDetailsView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     switch tab {
                     case .myProgress:
-                        modulesView(modules: viewModel.course.modules).id(index)
-                    case .overview:
-                        overview(htmlString: viewModel.course.overviewDescription).id(index)
-                    case .scores:
-                        ScoresAssembly.makeView(courseID: viewModel.courseID)
+                        modulesView(modules: viewModel.course.modules)
                             .id(index)
+                    case .overview:
+                        overview(htmlString: viewModel.course.overviewDescription)
+                            .id(index)
+                    case .scores:
+                        ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
                     case .notebook:
                         Text(verbatim: "Notebook")
                             .id(index)
-                    case .quickLinks:
-                        Text(verbatim: "Quick Links")
-                            .id(index)
                     }
                 }
+                .scaleEffect(index == selectedTabIndex ? 1 : 0.8)
                 .tag(index)
             }
+            .padding(.horizontal, .huiSpaces.space24)
         }
-        .padding(.horizontal, .huiSpaces.space24)
         .tabViewStyle(.page(indexDisplayMode: .never))
         .animation(.smooth, value: selectedTabIndex)
     }
@@ -143,7 +142,7 @@ extension CourseDetailsView {
         case overview
         case scores
         case notebook
-        case quickLinks
+//        case quickLinks
 
         var localizedString: String {
             switch self {
@@ -155,8 +154,8 @@ extension CourseDetailsView {
                 return String(localized: "Scores", bundle: .horizon)
             case .notebook:
                 return String(localized: "Notebook", bundle: .horizon)
-            case .quickLinks:
-                return String(localized: "Quick Links", bundle: .horizon)
+//            case .quickLinks:
+//                return String(localized: "Quick Links", bundle: .horizon)
             }
         }
 
