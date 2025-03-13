@@ -24,6 +24,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 	<key>CFBundleSpokenName</key>
 	<string>Canvas Horizon</string>
 	<key>CFBundleURLTypes</key>
