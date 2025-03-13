@@ -16,11 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct FontAppearance {
+public struct Appearance {
 
     public static func update() {
         UIBarButtonItem.updateFontAppearance()
         UISegmentedControl.updateFontAppearance()
-        UISearchTextField.updateFontAppearance()
+        UISearchTextField.updateAppearance()
     }
 }

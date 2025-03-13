@@ -22,12 +22,12 @@ import XCTest
 class FontAppearanceTests: XCTestCase {
 
     func testBarButtonItemFont() {
-        FontAppearance.update()
+        Appearance.update()
         XCTAssertEqual(UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).titleTextAttributes(for: .normal)![.font] as! UIFont, UIFont.scaledNamedFont(.regular17))
     }
 
     func testSegmentedControlFont() {
-        FontAppearance.update()
+        Appearance.update()
         XCTAssertEqual(UISegmentedControl.appearance().titleTextAttributes(for: .normal)![.font] as! UIFont, UIFont.scaledNamedFont(.regular13))
         XCTAssertEqual(UISegmentedControl.appearance().titleTextAttributes(for: .selected)![.font] as! UIFont, UIFont.scaledNamedFont(.bold13))
     }
