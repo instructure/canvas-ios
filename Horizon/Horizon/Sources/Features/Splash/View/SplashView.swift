@@ -18,6 +18,7 @@
 
 import Core
 import SwiftUI
+import HorizonUI
 
 struct SplashView: View {
     @ObservedObject private var viewModel: SplashViewModel
@@ -31,7 +32,7 @@ struct SplashView: View {
         Image.instructureSolid
             .resizable()
             .frame(width: 64, height: 64)
-            .foregroundColor(.orange)
+            .foregroundColor(Color.huiColors.primitives.blue45)
             .rotationEffect(.degrees(rotationDegree))
             .onAppear {
                 withAnimation(.linear(duration: 1).speed(0.1).repeatForever(autoreverses: false)) {
