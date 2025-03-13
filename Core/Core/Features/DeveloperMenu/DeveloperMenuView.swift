@@ -149,6 +149,7 @@ public struct DeveloperMenuView: View {
                     return
                 }
                 session = session.refresh(accessToken: UUID.string, expiresAt: Date().addYears(1))
+                LoginSession.add(session)
                 env.api.loginSession = session
                 snackBarViewModel.showSnack("Access Token Invalidated")
             },
@@ -164,6 +165,7 @@ public struct DeveloperMenuView: View {
                     expiresAt: session.expiresAt,
                     refreshToken: UUID.string
                 )
+                LoginSession.add(session)
                 env.api.loginSession = session
                 snackBarViewModel.showSnack("Refresh Token Invalidated")
             }
