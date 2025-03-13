@@ -17,24 +17,21 @@
 //
 
 import SwiftUI
+import Combine
 
-enum AssignmentPreferenceKeyType: Equatable {
-    case confirmation(viewModel: SubmissionAlertViewModel)
-    case toastViewModel(viewModel: ToastViewModel)
-}
+@Observable
+final class KeyboardObserver {
 
-struct HeaderVisibilityKey: PreferenceKey {
-    static var defaultValue: Bool = true
+    private(set) var isKeyboardVisible: Bool = false
+    private var cancellables: Set<AnyCancellable> = []
 
-    static func reduce(value: inout Bool, nextValue: () -> Bool) {
-        value = nextValue()
-    }
-}
+    init() {
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] _ in self?.isKeyboardVisible = true }
+            .store(in: &cancellables)
 
-struct AssignmentPreferenceKey: PreferenceKey {
-    static var defaultValue: AssignmentPreferenceKeyType?
-
-    static func reduce(value: inout AssignmentPreferenceKeyType?, nextValue: () -> AssignmentPreferenceKeyType?) {
-        value = nextValue()
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] _ in self?.isKeyboardVisible = false }
+            .store(in: &cancellables)
     }
 }

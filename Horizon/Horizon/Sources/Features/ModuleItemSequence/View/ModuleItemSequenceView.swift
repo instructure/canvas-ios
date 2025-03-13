@@ -28,7 +28,9 @@ public struct ModuleItemSequenceView: View {
     @State private var isShowModuleNavBar = true
     @State private var submissionAlertModel = SubmissionAlertViewModel()
     @State private var draftToastViewModel = ToastViewModel()
+    @State private var showingHeaderIsAnimated = true
     @Environment(\.viewController) private var viewController
+    private let keyboardObserver = KeyboardObserver()
 
     // MARK: - Dependencies
 
@@ -54,6 +56,7 @@ public struct ModuleItemSequenceView: View {
                 .offset(x: viewModel.offsetX)
                 .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
                 .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
+                    showingHeaderIsAnimated = true
                     if isShowModuleNavBar {
                         isShowHeader = isShow
                     } else {
@@ -67,9 +70,6 @@ public struct ModuleItemSequenceView: View {
                             submissionAlertModel = viewModel
                         case .toastViewModel(viewModel: let viewModel):
                             draftToastViewModel = viewModel
-                        case .moduleNavBarButton(isVisible: let isVisible):
-                            isShowModuleNavBar = isVisible
-                            isShowHeader = isVisible
                         }
                     }
                 }
@@ -77,7 +77,7 @@ public struct ModuleItemSequenceView: View {
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
-        .animation(.linear, value: isShowHeader)
+        .animation(showingHeaderIsAnimated ? .linear : nil, value: isShowHeader)
         .confirmationDialog("", isPresented: $isShowMakeAsDoneSheet, titleVisibility: .hidden) {
             makeAsDoneSheetButtons
         }
@@ -101,6 +101,11 @@ public struct ModuleItemSequenceView: View {
                   isShowCancelButton: submissionAlertModel.type == .confirmation,
                   confirmButton: submissionAlertModel.button,
                   isPresented: $submissionAlertModel.isPresented) { assignmentConfirmationView }
+            .onChange(of: keyboardObserver.isKeyboardVisible) { _, newValue in
+                showingHeaderIsAnimated = false
+                self.isShowHeader = !newValue
+                self.isShowModuleNavBar = !newValue
+            }
 
     }
 

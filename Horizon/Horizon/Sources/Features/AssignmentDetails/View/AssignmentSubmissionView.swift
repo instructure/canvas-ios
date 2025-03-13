@@ -125,7 +125,6 @@ struct AssignmentSubmissionView: View {
             }
         case .externalTool:
             externalToolView
-                .frame(height: 322)
         case .fileUpload:
             VStack(spacing: .huiSpaces.space8) {
                 HorizonUI.FileDrop(
@@ -153,7 +152,6 @@ struct AssignmentSubmissionView: View {
         .id(rceID)
         .focused($focusedInput)
         .onChange(of: focusedInput) { _, newValue in
-            viewModel.assignmentPreference = .moduleNavBarButton(isVisible: !newValue)
             viewModel.isStartTyping = newValue
             if newValue {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -167,14 +165,17 @@ struct AssignmentSubmissionView: View {
 
     @ViewBuilder
     private var externalToolView: some View {
-        let tools = LTITools(
-            context: .course(viewModel.courseID),
-            id: viewModel.assignment?.externalToolContentID,
-            launchType: .assessment,
-            isQuizLTI: viewModel.assignment?.isQuizLTI,
-            assignmentID: viewModel.assignmentID
+        let padding: CGFloat = .huiSpaces.space24
+        let isLTI = viewModel.assignment?.isQuizLTI == true
+        WebView(
+            url: viewModel.externalURL,
+            features: [
+                .invertColorsInDarkMode,
+                .hideReturnButtonInQuizLTI
+            ]
         )
-        LTIViewRepresentable(environment: .shared, tools: tools, name: nil)
+        .padding(.horizontal, isLTI ? -padding : 0)
+        .frame(height: isLTI ? 700 : 400)
     }
 
     private func makeFileUploadButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
