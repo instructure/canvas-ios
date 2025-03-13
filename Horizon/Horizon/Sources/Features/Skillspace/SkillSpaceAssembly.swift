@@ -17,9 +17,10 @@
 //
 
 import Core
+import UIKit
 
 struct SkillSpaceAssembly {
-    static private func makeViewModel() -> HEmbeddedWebPageContainerViewModel {
+    private static func makeViewModel() -> HEmbeddedWebPageContainerViewModel {
         let environment = AppEnvironment.shared
         let skillSpaceinboxViewModel = SkillSpaceViewModel(
             baseURL: environment.api.baseURL,

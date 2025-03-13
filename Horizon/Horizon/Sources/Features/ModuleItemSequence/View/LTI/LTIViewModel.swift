@@ -16,12 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Observation
 import Core
+import Foundation
+import Observation
 
 @Observable
 final class LTIViewModel {
-
     // MARK: - Outputs
 
     let urlToDisplay: URL?
@@ -34,7 +34,7 @@ final class LTIViewModel {
 
     init(
         tools: LTITools = .init(isQuizLTI: false),
-        name: String? = nil
+        name _: String? = nil
     ) {
         self.tools = tools
         self.urlToDisplay = tools.url

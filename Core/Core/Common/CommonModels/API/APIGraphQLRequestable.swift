@@ -34,7 +34,7 @@ public protocol APIPagedRequestable: APIRequestable where Response: PagedRespons
     func nextPageRequest(from response: Response) -> NextRequest?
 }
 
-protocol APIGraphQLRequestable: APIRequestable {
+public protocol APIGraphQLRequestable: APIRequestable {
     associatedtype Variables: Codable, Equatable
 
     static var query: String { get }
@@ -42,17 +42,17 @@ protocol APIGraphQLRequestable: APIRequestable {
     var variables: Variables { get }
 }
 
-extension APIGraphQLRequestable {
-    public var method: APIMethod {
+public extension APIGraphQLRequestable {
+    var method: APIMethod {
         .post
     }
-    public var path: String {
+    var path: String {
         "/api/graphql"
     }
-    public static var operationName: String {
+    static var operationName: String {
         "\(self)"
     }
-    public var body: GraphQLBody<Variables>? {
+    var body: GraphQLBody<Variables>? {
         GraphQLBody(query: Self.query, operationName: Self.operationName, variables: variables)
     }
 }

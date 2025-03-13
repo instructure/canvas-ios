@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/AI/AIQuiz/View/FeedbackType.swift
 enum FeedbackType: CaseIterable {
     case like
     case dislike
@@ -40,20 +39,4 @@ enum FeedbackType: CaseIterable {
             "hand.thumbsdown"
         }
     }
-========
-public protocol SearchViewsProvider {
-    associatedtype Filter: SearchPreference
-    associatedtype FilterEditor: View
-    associatedtype Support: SearchSupportAction
-    associatedtype SearchContent: View
-
-    var supportButtonModel: SearchSupportButtonModel<Support>? { get }
-
-    func contentView(_ filter: Binding<Filter?>) -> SearchContent
-    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
-}
-
-public protocol SearchPreference {
-    var isActive: Bool { get }
->>>>>>>> origin/master:Core/Core/Features/Search/View/SearchViewsProvider.swift
 }

@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 protocol AssignmentTextEntryInteractor {
     func save(_ text: String)
@@ -90,17 +91,17 @@ struct AssignmentTextEntryModel: Codable {
 
 // MARK: - Helpers
 
-fileprivate extension String {
+private extension String {
     func decoded<T: Decodable>() -> T? {
         let decoder = JSONDecoder()
-        if let data = self.data(using: .utf8) {
+        if let data = data(using: .utf8) {
             return try? decoder.decode(T.self, from: data)
         }
         return nil
     }
 }
 
-fileprivate extension Encodable {
+private extension Encodable {
     var encode: String {
         let encoder = JSONEncoder()
         if let encode = try? encoder.encode(self) {

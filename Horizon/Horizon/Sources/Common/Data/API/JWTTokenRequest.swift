@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import Foundation
 
 struct JWTTokenRequest: APIRequestable {
     typealias Response = JWTTokenResponse
@@ -41,7 +42,6 @@ enum JWTTokenRequestError: Error {
 
 /// Extension for fetching a JWT token or a configured API instance ready to use
 extension JWTTokenRequest {
-
     // MARK: - Public
 
     func get(from api: API) -> AnyPublisher<String, Error> {

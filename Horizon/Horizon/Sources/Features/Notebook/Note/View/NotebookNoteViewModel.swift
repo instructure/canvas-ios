@@ -19,11 +19,13 @@
 import Combine
 import CombineSchedulers
 import Core
+import Foundation
+import Observation
 
 @Observable
 final class NotebookNoteViewModel {
-
     // MARK: - Outputs
+
     var closeButtonOpacity: Double { isEditing && !isAdding ? 0 : 1 }
     var courseNoteLabels: [CourseNoteLabel] {
         [
@@ -31,6 +33,7 @@ final class NotebookNoteViewModel {
             isConfusing ? .confusing : nil
         ].compactMap { $0 }
     }
+
     var highlightedText: String = ""
     var isDeleteButtonVisible: Bool { !isEditing && !isAdding }
     var isCancelVisible: Bool { isEditing && !isAdding }
@@ -39,6 +42,7 @@ final class NotebookNoteViewModel {
     var isHighlightedTextVisible: Bool {
         !highlightedText.isEmpty
     }
+
     var isImportant: Bool = false
     var isSaveDisabled: Bool { !isConfusing && !isImportant }
     var isSaveVisible: Bool { isEditing || isAdding }
@@ -150,7 +154,7 @@ final class NotebookNoteViewModel {
     func saveAndDismiss(viewController: WeakViewController) {
         let saveSuccess = saveContent()
 
-        if isAdding && saveSuccess {
+        if isAdding, saveSuccess {
             router.dismiss(viewController)
         } else {
             isEditing = false

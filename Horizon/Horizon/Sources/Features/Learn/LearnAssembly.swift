@@ -17,6 +17,7 @@
 //
 
 import Core
+import UIKit
 
 final class LearnAssembly {
     static func makeGetCoursesInteractor() -> GetCoursesInteractor {

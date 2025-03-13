@@ -20,8 +20,6 @@ import UIKit
 
 private var internalDelegateKey: UInt8 = 0
 
-private var internalDelegateKey: UInt8 = 0
-
 extension UITextView {
 
     private class PlaceholderLabel: UILabel { }
