@@ -88,4 +88,19 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("Canvas1".deletingPrefix("Canvas"), "1")
         XCTAssertEqual("1Canvas1".deletingPrefix("Canvas"), "1Canvas1")
     }
+
+    func testJoinedForOptionalStrings() {
+        var texts: [String?] = ["one", nil, "three"]
+        XCTAssertEqual(texts.joined(separator: ","), "one,three")
+        XCTAssertEqual(texts.joined(separator: ""), "onethree")
+
+        texts = ["1", "", "3"]
+        XCTAssertEqual(texts.joined(separator: ","), "1,,3")
+
+        texts = ["3"]
+        XCTAssertEqual(texts.joined(separator: ","), "3")
+
+        texts = []
+        XCTAssertEqual(texts.joined(separator: "."), "")
+    }
 }

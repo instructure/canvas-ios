@@ -121,7 +121,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
             isExpanded
                 ? String(localized: "expanded", bundle: .core)
                 : String(localized: "collapsed", bundle: .core)
-        ].compactMap { $0 }.joined(separator: ", ")
+        ].joined(separator: ", ")
     }
 
     private func updatePublishedState(_ module: Module) {

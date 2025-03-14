@@ -107,7 +107,7 @@ extension InstUI {
                 return String.localizedAccessibilityErrorMessage(errorMessage)
             }()
 
-            let value = [dateTimeValue, errorValue].compactMap { $0 }.joined(separator: ", ")
+            let value = [dateTimeValue, errorValue].joined(separator: ", ")
 
             label
                 .textStyle(.cellLabel)
