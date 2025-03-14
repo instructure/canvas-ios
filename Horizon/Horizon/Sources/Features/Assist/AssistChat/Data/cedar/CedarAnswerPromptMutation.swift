@@ -56,7 +56,7 @@ class CedarAnswerPromptMutation: APIGraphQLRequestable {
     }
 
     struct DocumentBlock: Codable, Equatable {
-        let format: Format
+        let format: AssistChatDocumentType
         let base64Source: String
     }
 }
@@ -69,4 +69,21 @@ struct CedarAnswerPromptMutationResponse: Codable {
     }
 
     let data: ResponseData
+}
+
+extension CedarAnswerPromptMutation.DocumentBlock {
+    /// A document block can be included  in the CedarAnswerPromptMutation to provide additional context for the model to generate a response.
+    /// This is used when the user is viewing a document and wants to generate a response based on the document.
+    static func build(from pageContext: AssistChatPageContext?) -> CedarAnswerPromptMutation.DocumentBlock? {
+        guard let pageContext = pageContext,
+              let documentFormat = pageContext.format,
+              let source = pageContext.source
+        else {
+            return nil
+        }
+        return CedarAnswerPromptMutation.DocumentBlock(
+            format: documentFormat,
+            base64Source: source
+        )
+    }
 }

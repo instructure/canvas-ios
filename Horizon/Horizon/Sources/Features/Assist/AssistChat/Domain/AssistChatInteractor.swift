@@ -41,57 +41,30 @@ class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - init
 
+    /// Initializes the interactor when viewing a page for context
     convenience init(courseId: String, pageUrl: String, canvasApi: API = AppEnvironment.shared.api) {
-        let pageContextPublisher = ReactiveStore(
-            useCase: GetPage(context: .course(courseId), url: pageUrl)
-        )
-        .getEntities()
-        .map { AssistChatPageContext(title: $0.first?.title ?? "", body: $0.first?.body ?? "") }
-        .eraseToAnyPublisher()
-
         self.init(
-            pageContextPublisher: pageContextPublisher,
+            pageContextPublisher: AssistChatInteractorLive.pageContextPublisher(
+                courseId: courseId,
+                pageUrl: pageUrl
+            ),
             canvasApi: canvasApi
         )
     }
 
+    /// Initializes the interactor when viewing a file for context
     convenience init(
         courseId: String,
         fileId: String,
         downloadFileInteractor: DownloadFileInteractor,
         canvasApi: API = AppEnvironment.shared.api
     ) {
-        let base64FileContextPublisher = ReactiveStore(useCase: GetFile(context: .course(courseId), fileID: fileId))
-            .getEntities()
-            .map { files in files.first }
-            .flatMap { (file: File?) in
-                guard let file = file,
-                    let format = Format.from(mimeType: file.contentType)
-                else {
-                    // no reason to download the file if we can't determine the format
-                    return Just(AssistChatPageContext()).setFailureType(to: Error.self).eraseToAnyPublisher()
-                }
-                return
-                    downloadFileInteractor
-                    .download(fileID: fileId)
-                    .map { try? Data(contentsOf: $0) }
-                    .map { $0?.base64EncodedString() }
-                    .map { (base64String: String?) in
-                        guard let base64String = base64String else {
-                            return AssistChatPageContext()
-                        }
-                        return AssistChatPageContext(
-                            format: format,
-                            name: file.filename,
-                            source: base64String
-                        )
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
-
         self.init(
-            pageContextPublisher: base64FileContextPublisher,
+            pageContextPublisher: AssistChatInteractorLive.pageContextPublisher(
+                downloadFileInteractor: downloadFileInteractor,
+                courseId: courseId,
+                fileId: fileId
+            ),
             canvasApi: canvasApi,
             downloadFileInteractor: downloadFileInteractor
         )
@@ -133,10 +106,12 @@ class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Inputs
 
+    /// Publishes a new user action to the interactor
     func publish(action: AssistChatAction) {
         actionPublisher.accept(action)
     }
 
+    /// Subscribe to the responses from the interactor
     var listen: AnyPublisher<AssistChatResponse, Error> {
         responsePublisher
             .eraseToAnyPublisher()
@@ -144,6 +119,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
 
     // MARK: - Private
 
+    /// When a new action comes in from the user, this function starts processing it
     private func actionHandler(
         action: AssistChatAction,
         pageContext: AssistChatPageContext,
@@ -160,22 +136,9 @@ class AssistChatInteractorLive: AssistChatInteractor {
             useAdvancedChat = false
         }
 
+        // This should really only happen when the user first opens the chat
         if prompt.isEmpty {
-            let options = pageContext.chips.map { option in
-                AssistChipOption(
-                    option,
-                    userShortName: userShortName
-                )
-            }
-            let message = String(localized: "How can I help today?", bundle: .horizon)
-            let chatBotResponse =
-                options.isEmpty
-                ? AssistChatResponse(message: AssistChatMessage(prompt: nil, text: message, role: .Assistant))
-                : AssistChatResponse(chipOptions: options)
-
-            return Just(chatBotResponse)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            return buildInitialResponse(for: pageContext).eraseToAnyPublisher()
         }
 
         return publish(using: action, with: userShortName)
@@ -201,30 +164,84 @@ class AssistChatInteractorLive: AssistChatInteractor {
             .eraseToAnyPublisher()
     }
 
-    /// publishes an updated history based on the action the user took, then returns that updated history
-    private func publish(using action: AssistChatAction, with userShortName: String) -> AnyPublisher<[AssistChatMessage], Never> {
-        var response: AssistChatResponse!
-        switch action {
-        case .chat(let prompt, let history):
-            response = AssistChatResponse(
-                message: AssistChatMessage(userResponse: prompt),
-                chatHistory: history,
-                isLoading: true
-            )
-        case .chip(let option, let history):
-            response = AssistChatResponse(
-                message: AssistChatMessage(
-                    prompt: option.prompt,
-                    text: option.chip
-                ),
-                chatHistory: history,
-                isLoading: true
+    /// Makes a request to the pine endpoint using the given history
+    private func advancedChat(history: [AssistChatMessage]) -> AnyPublisher<String, Error> {
+        JWTTokenRequest(.pine)
+            .api(from: canvasApi)
+            .flatMap { pineApi in
+                pineApi.makeRequest(
+                    PineQueryMutation(
+                        messages: history.reversed().filter { $0.prompt != nil }.map {
+                            PineQueryMutation.APIMessageInput(
+                                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
+                        }
+                    )
+                )
+                .compactMap { ragData in
+                    ragData.map { $0.data.query.response }
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    /// Returns any configured chips to show based on the context. If there are none, we return a default message
+    private func buildInitialResponse(for pageContext: AssistChatPageContext) -> AnyPublisher<AssistChatResponse, Error> {
+        let options = pageContext.chips.map { option in
+            AssistChipOption(
+                option,
+                userShortName: userShortName
             )
         }
+        let message = String(localized: "How can I help today?", bundle: .horizon)
+        let chatBotResponse =
+            options.isEmpty
+            ? AssistChatResponse(message: AssistChatMessage(prompt: nil, text: message, role: .Assistant))
+            : AssistChatResponse(chipOptions: options)
 
-        responsePublisher.send(response)
+        return Just(chatBotResponse)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 
-        return Just(response.chatHistory)
+    /// If necessary, downloads the file and returns the page context.
+    /// If we can't determine the format, we return an empty page context
+    private static func pageContextPublisher(
+        downloadFileInteractor: DownloadFileInteractor,
+        courseId: String,
+        fileId: String
+    ) -> AnyPublisher<AssistChatPageContext, Error> {
+        ReactiveStore(useCase: GetFile(context: .course(courseId), fileID: fileId))
+            .getEntities()
+            .map { files in files.first }
+            .flatMap { (file: File?) in
+                guard let file = file,
+                      let format = AssistChatDocumentType.from(mimeType: file.contentType) else {
+                    return Just(AssistChatPageContext()).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+                return downloadFileInteractor
+                    .download(fileID: fileId)
+                    .map { try? Data(contentsOf: $0) }
+                    .map { $0?.base64EncodedString() }
+                    .map { (base64String: String?) in
+                        guard let base64String = base64String else {
+                            return AssistChatPageContext()
+                        }
+                        return AssistChatPageContext(
+                            format: format,
+                            name: file.filename,
+                            source: base64String
+                        )
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    /// Fetches a page to use for AI context
+    private static func pageContextPublisher(courseId: String, pageUrl: String) -> AnyPublisher<AssistChatPageContext, Error> {
+        ReactiveStore(useCase: GetPage(context: .course(courseId), url: pageUrl))
+            .getEntities()
+            .map { AssistChatPageContext(title: $0.first?.title ?? "", body: $0.first?.body ?? "") }
             .eraseToAnyPublisher()
     }
 
@@ -235,29 +252,16 @@ class AssistChatInteractorLive: AssistChatInteractor {
     ) -> AnyPublisher<String, Error> {
         JWTTokenRequest(.cedar)
             .api(from: self.canvasApi)
-            .flatMap { [weak self] cedarApi in
+            .flatMap { cedarApi in
                 cedarApi.makeRequest(
                     CedarAnswerPromptMutation(
                         prompt: prompt,
-                        document: self?.buildDocumentBlock(pageContext: pageContext)
+                        document: CedarAnswerPromptMutation.DocumentBlock.build(from: pageContext)
                     )
                 )
             }
             .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
             .eraseToAnyPublisher()
-    }
-
-    private func buildDocumentBlock(pageContext: AssistChatPageContext?) -> CedarAnswerPromptMutation.DocumentBlock? {
-        guard let pageContext = pageContext,
-            let documentFormat = pageContext.format,
-            let source = pageContext.source
-        else {
-            return nil
-        }
-        return CedarAnswerPromptMutation.DocumentBlock(
-            format: documentFormat,
-            base64Source: source
-        )
     }
 
     private func chipGenerator(history: [AssistChatMessage], pageContext: AssistChatPageContext) -> AnyPublisher<[AssistChipOption], Error> {
@@ -268,23 +272,11 @@ class AssistChatInteractorLive: AssistChatInteractor {
         // swiftlint:enable line_length
 
         return basicChat(prompt: prompt, pageContext: pageContext)
-            .map(toChipOptions)
+            .map{ $0.toChipOptions() }
             .eraseToAnyPublisher()
     }
 
-    private func toChipOptions(_ responseJson: String) -> [AssistChipOption] {
-        guard let data = responseJson.data(using: .utf8) else {
-            return []
-        }
-
-        do {
-            let chipOptions = try JSONDecoder().decode([AssistChipOption].self, from: data)
-            return chipOptions
-        } catch {
-            return []
-        }
-    }
-
+    /// Given the prompt, ask the AI to classify it to one of our ClassifierOptions (e.g., chat, flashcards, quiz)
     private func classifier(
         prompt: String,
         pageContext: AssistChatPageContext,
@@ -302,6 +294,29 @@ class AssistChatInteractorLive: AssistChatInteractor {
         // swiftlint:enable line_length
 
         return basicChat(prompt: classifierPrompt, pageContext: pageContext)
+    }
+
+    /// Calls the basic chat endpoint to generate flashcards
+    private func flashcards(
+        action: AssistChatAction,
+        pageContext: AssistChatPageContext,
+        history: [AssistChatMessage] = [],
+        userShortName: String
+    ) -> AnyPublisher<AssistChatResponse, Error> {
+        let chipPrompt = AssistChipOption(AssistChipOption.Default.flashcards, userShortName: userShortName).prompt
+        let pageContextPrompt = pageContext.prompt ?? ""
+        let prompt = "\(chipPrompt) \(pageContextPrompt) \(history.json)"
+        return basicChat(
+            prompt: prompt,
+            pageContext: pageContext
+        )
+        .compactMap { response in
+            AssistChatResponse(
+                flashCards: AssistChatFlashCard.build(from: response) ?? [],
+                chatHistory: history
+            )
+        }
+        .eraseToAnyPublisher()
     }
 
     // Given the classification string returned from the simpleChat,
@@ -356,25 +371,34 @@ class AssistChatInteractorLive: AssistChatInteractor {
         }
     }
 
-    private func advancedChat(history: [AssistChatMessage]) -> AnyPublisher<String, Error> {
-        JWTTokenRequest(.pine)
-            .api(from: canvasApi)
-            .flatMap { pineApi in
-                pineApi.makeRequest(
-                    PineQueryMutation(
-                        messages: history.reversed().filter { $0.prompt != nil }.map {
-                            PineQueryMutation.APIMessageInput(
-                                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
-                        }
-                    )
-                )
-                .compactMap { ragData in
-                    ragData.map { $0.data.query.response }
-                }
-            }
+    /// publishes an updated history based on the action the user took, then returns that updated history
+    private func publish(using action: AssistChatAction, with userShortName: String) -> AnyPublisher<[AssistChatMessage], Never> {
+        var response: AssistChatResponse!
+        switch action {
+        case .chat(let prompt, let history):
+            response = AssistChatResponse(
+                message: AssistChatMessage(userResponse: prompt),
+                chatHistory: history,
+                isLoading: true
+            )
+        case .chip(let option, let history):
+            response = AssistChatResponse(
+                message: AssistChatMessage(
+                    prompt: option.prompt,
+                    text: option.chip
+                ),
+                chatHistory: history,
+                isLoading: true
+            )
+        }
+
+        responsePublisher.send(response)
+
+        return Just(response.chatHistory)
             .eraseToAnyPublisher()
     }
 
+    /// Calls the cedar endpoint to generate a quiz
     private func quiz(
         action: AssistChatAction,
         pageContext: AssistChatPageContext,
@@ -410,100 +434,57 @@ class AssistChatInteractorLive: AssistChatInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func flashcards(
-        action: AssistChatAction,
-        pageContext: AssistChatPageContext,
-        history: [AssistChatMessage] = [],
-        userShortName: String
-    ) -> AnyPublisher<AssistChatResponse, Error> {
-        let chipPrompt = AssistChipOption(AssistChipOption.Default.flashcards, userShortName: userShortName).prompt
-        let pageContextPrompt = pageContext.prompt ?? ""
-        let prompt = "\(chipPrompt) \(pageContextPrompt) \(history.json)"
-        return basicChat(
-            prompt: prompt,
-            pageContext: pageContext
-        )
-        .compactMap { response in
-            AssistChatResponse(
-                flashCards: FlashCard.build(from: response) ?? [],
-                chatHistory: history
-            )
-        }
-        .eraseToAnyPublisher()
-    }
-
+    /// Fetches the user's short name
     private var userShortNamePublisher: AnyPublisher<String, Error> {
         ReactiveStore(useCase: GetUserProfile())
             .getEntities()
             .map { $0.first?.shortName ?? String(localized: "Learner", bundle: .horizon) }
             .eraseToAnyPublisher()
     }
-}
 
-// MARK: - Enums
+    // MARK: - Enum
 
-enum ChatBotInteractorError: Error {
-    case failedToDecodeToken
-    case unableToGetCedarToken
-    case invalidUrl
-    case unknownError
-}
+    /// When requesting classification from basic chat, these are the options asked for
+    private enum ClassifierOption: String, CaseIterable {
+        case chat
+        case flashcards
+        case quiz
 
-/// When requesting classification from basic chat, these are the options asked for
-enum ClassifierOption: String, CaseIterable {
-    case chat
-    case flashcards
-    case quiz
+        static var defaultOption: ClassifierOption {
+            .chat
+        }
 
-    static var defaultOption: ClassifierOption {
-        .chat
-    }
-
-    var longExplanation: String {
-        switch self {
-        case .chat:
-            return "chat (an assistant that has access to knowledge about their current course content and structure)"
-        case .flashcards:
-            return "flashcards (an assistant to help learner check their understanding with flashcards"
-        case .quiz:
-            // swiftlint:disable line_length
-            return
-                "quiz (an assistant that will prepare multiple choice quiz questions to help a user check their understanding); intended for terms/definitions or memorization). You should only respond with this if they are asking for a quiz."
-            // swiftlint:enable line_length
+        var longExplanation: String {
+            switch self {
+            case .chat:
+                return "chat (an assistant that has access to knowledge about their current course content and structure)"
+            case .flashcards:
+                return "flashcards (an assistant to help learner check their understanding with flashcards)"
+            case .quiz:
+                // swiftlint:disable line_length
+                return
+                    "quiz (an assistant that will prepare multiple choice quiz questions to help a user check their understanding); intended for terms/definitions or memorization). You should only respond with this if they are asking for a quiz."
+                // swiftlint:enable line_length
+            }
         }
     }
 }
 
 // MARK: - Extensions
 
-struct FlashCard {
-    static func build(from string: String?) -> [FlashCard]? {
-        guard let data = string?.data(using: .utf8) else {
-            return nil
+private extension CedarGenerateQuizMutation.QuizOutput {
+    var quizItems: [AssistChatResponse.QuizItem] {
+        data.generateQuiz.map {
+            AssistChatResponse.QuizItem(
+                question: $0.question,
+                answers: $0.options,
+                correctAnswerIndex: $0.result
+            )
         }
-        let flashCards = try? JSONDecoder().decode([FlashCard].self, from: data)
-        return flashCards
-    }
-
-    struct FlashCard: Codable {
-        let question: String
-        let answer: String
     }
 }
 
-struct QuizItem {
-    let question: String
-    let answers: [String]
-    let correctAnswerIndex: Int
-}
-
-extension CedarGenerateQuizMutation.QuizOutput {
-    var quizItems: [QuizItem] {
-        data.generateQuiz.map { QuizItem(question: $0.question, answers: $0.options, correctAnswerIndex: $0.result) }
-    }
-}
-
-extension Array where Element == AssistChatMessage {
+private extension Array where Element == AssistChatMessage {
     var json: String {
         guard let encoded = try? JSONEncoder().encode(self) else {
             return "[]"
@@ -512,27 +493,17 @@ extension Array where Element == AssistChatMessage {
     }
 }
 
-enum Format: String, Codable, CaseIterable {
-    case pdf
-    case csv
-    case docx
-    case doc
-    case xlsx
-    case xls
-    case html
-    case txt
-    case md
+private extension String {
+    func toChipOptions() -> [AssistChipOption] {
+        guard let data = self.data(using: .utf8) else {
+            return []
+        }
 
-    static func from(mimeType: String?) -> Format? {
-        [
-            "text/plain": Format.txt,
-            "text/html": Format.html,
-            "text/csv": Format.csv,
-            "application/pdf": Format.pdf,
-            "application/msword": Format.doc,
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document": Format.docx,
-            "application/vnd.ms-excel": Format.xls,
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": Format.xlsx
-        ][mimeType ?? ""]
+        do {
+            let chipOptions = try JSONDecoder().decode([AssistChipOption].self, from: data)
+            return chipOptions
+        } catch {
+            return []
+        }
     }
 }

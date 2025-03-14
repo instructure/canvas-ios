@@ -213,13 +213,15 @@ final class AssistChatViewModel {
     }
 }
 
-extension Array where Element == FlashCard.FlashCard {
+// MARK: - Extensions
+
+private extension Array where Element == AssistChatFlashCard {
     var flashCardModels: [AssistFlashCardModel] {
         self.map(\.flashCardModel)
     }
 }
 
-extension FlashCard.FlashCard {
+private extension AssistChatFlashCard {
     var flashCardModel: AssistFlashCardModel {
         AssistFlashCardModel(
             frontContent: self.question,
@@ -228,7 +230,7 @@ extension FlashCard.FlashCard {
     }
 }
 
-extension AssistChipOption {
+private extension AssistChipOption {
     func viewModel(onTap: AssistChatMessageViewModel.OnTap?) -> AssistChatMessageViewModel {
         AssistChatMessageViewModel(
             content: self.chip,
@@ -238,7 +240,7 @@ extension AssistChipOption {
     }
 }
 
-extension AssistChatMessage {
+private extension AssistChatMessage {
     func viewModel(response: AssistChatResponse, onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil) -> AssistChatMessageViewModel {
         AssistChatMessageViewModel(
             id: self.id,

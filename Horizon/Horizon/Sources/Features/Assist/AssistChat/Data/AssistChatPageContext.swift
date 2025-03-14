@@ -22,7 +22,7 @@ struct AssistChatPageContext {
     let title: String?
     let body: String?
 
-    let format: Format?
+    let format: AssistChatDocumentType?
     let name: String?
     let source: String?
 
@@ -48,7 +48,7 @@ struct AssistChatPageContext {
         chips = [.summarize, .keyTakeaways, .tellMeMore, .flashcards, .quiz]
     }
 
-    init(format: Format, name: String, source: String) {
+    init(format: AssistChatDocumentType, name: String, source: String) {
         self.format = format
         self.name = name
         self.source = source
