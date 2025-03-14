@@ -30,25 +30,23 @@ class SubmissionCommentAttemptCell: UITableViewCell {
     }
 
     func update(comment: SubmissionComment, submission: Submission?, onFileTap: @escaping (Submission?, File?) -> Void) {
+        guard let submission else { return } // it will never happen
+
         accessibilityIdentifier = "SubmissionComments.attemptCell.\(comment.id)"
-        accessibilityLabel = String.localizedStringWithFormat(
-            String(localized: "On %@ %@ submitted the following", bundle: .student),
-            comment.createdAtLocalizedString,
-            comment.authorName
-        )
+
         self.onFileTap = onFileTap
 
         for view in stackView?.arrangedSubviews ?? [] { view.removeFromSuperview() }
-        if submission?.type == .online_upload, let files = submission?.attachments?.sorted(by: File.idCompare) {
+        if submission.type == .online_upload, let files = submission.attachments?.sorted(by: File.idCompare) {
             for file in files {
                 let view = SubmissionCommentFileView.loadFromXib()
-                view.update(file: file)
+                view.update(file: file, submission: submission)
                 view.onTap = { [weak self] in
                     self?.onFileTap?(submission, file)
                 }
                 stackView?.addArrangedSubview(view)
             }
-        } else if let submission = submission, submission.submittedAt != nil {
+        } else if submission.submittedAt != nil {
             let view = SubmissionCommentFileView.loadFromXib()
             view.update(submission: submission)
             view.onTap = { [weak self] in

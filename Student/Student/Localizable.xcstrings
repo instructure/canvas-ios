@@ -4481,6 +4481,9 @@
         }
       }
     },
+    "%1$@ commented on %2$@: %3$@" : {
+      "comment" : "John Doe commented on 1948.12.02. at 11:42: This is my comment"
+    },
     "%1$@ is due in %2$@" : {
       "comment" : "local notification countdown alert",
       "extractionState" : "manual",
@@ -4744,6 +4747,12 @@
           }
         }
       }
+    },
+    "%1$@ left a video comment on %2$@" : {
+      "comment" : "John Doe left a video comment on 1948.12.02. at 11:42"
+    },
+    "%1$@ left an audio comment on %2$@" : {
+      "comment" : "John Doe left an audio comment on 1948.12.02. at 11:42"
     },
     "%1$@ out of %2$@" : {
       "comment" : "88 out of 100 points",
@@ -23405,6 +23414,9 @@
           }
         }
       }
+    },
+    "Attached file" : {
+      "comment" : "Describes an attached file, not the act of attaching."
     },
     "Attachment" : {
       "comment" : "An item for attaching to a discussion",
@@ -45134,6 +45146,12 @@
       }
     },
     "Double tap to select attempt" : {
+
+    },
+    "Double tap to view attempt" : {
+
+    },
+    "Double tap to view file" : {
 
     },
     "Download Canceled" : {
@@ -86051,6 +86069,7 @@
       }
     },
     "On %@ %@ commented \"%@\"" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -86307,6 +86326,7 @@
       }
     },
     "On %@ %@ left a video comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -86563,6 +86583,7 @@
       }
     },
     "On %@ %@ left an audio comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -86819,6 +86840,7 @@
       }
     },
     "On %@ %@ submitted the following" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -114772,6 +114794,9 @@
         }
       }
     },
+    "Submitted by %1$@, on %2$@" : {
+      "comment" : "Submitted by John Doe, on 1948.12.02. at 11:42"
+    },
     "Submitting..." : {
       "localizations" : {
         "ar" : {
@@ -138882,6 +138907,7 @@
       }
     },
     "View file %@ %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -139395,6 +139421,7 @@
       }
     },
     "View submission attempt %d. %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
