@@ -18,11 +18,13 @@
 
 import Combine
 import Core
+import Foundation
 import Observation
 
 @Observable
 final class ModuleItemSequenceViewModel {
     typealias AssetType = GetModuleItemSequenceRequest.AssetType
+
     // MARK: - Output
 
     private(set) var viewState: ModuleItemSequenceViewState?
@@ -39,7 +41,7 @@ final class ModuleItemSequenceViewModel {
             return nil
         }
         let items = course?.modules.first(where: { $0.id == moduleItem.moduleID })?.items
-        return items?.first(where: { $0.id == moduleItem.id})?.estimatedDurationFormatted
+        return items?.first(where: { $0.id == moduleItem.id })?.estimatedDurationFormatted
     }
 
     // MARK: - Input / Output
@@ -47,9 +49,10 @@ final class ModuleItemSequenceViewModel {
     var offsetX: CGFloat = 0
     var isShowErrorAlert: Bool = false
     var onTapAssignmentOptions = PassthroughSubject<Void, Never>()
-    var didLoadAssignmentAttemptCount: (String?) -> Void = { _ in}
+    var didLoadAssignmentAttemptCount: (String?) -> Void = { _ in }
 
     // MARK: - Private Properties
+
     private var moduleID: String?
     private var itemID: String?
     private var subscriptions = Set<AnyCancellable>()
@@ -92,7 +95,7 @@ final class ModuleItemSequenceViewModel {
             }
             .store(in: &subscriptions)
 
-        didLoadAssignmentAttemptCount = { [weak self] value in
+        self.didLoadAssignmentAttemptCount = { [weak self] value in
             self?.assignmentAttemptCount = value
         }
     }
@@ -171,7 +174,7 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func markAsViewed() {
-        guard let moduleID, let itemID, let moduleItem  else {
+        guard let moduleID, let itemID, let moduleItem else {
             return
         }
 
@@ -202,13 +205,13 @@ final class ModuleItemSequenceViewModel {
             itemID: itemID
         )
         .sink { [weak self] completion in
-            if case .failure(let error) = completion {
+            if case let .failure(error) = completion {
                 self?.isShowErrorAlert = true
                 self?.errorMessage = error.localizedDescription
             }
             self?.isLoaderVisible = false
-        } receiveValue: { _ in}
-            .store(in: &subscriptions)
+        } receiveValue: { _ in }
+        .store(in: &subscriptions)
     }
 
     func retry() {

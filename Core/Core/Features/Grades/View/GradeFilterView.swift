@@ -45,6 +45,7 @@ public struct GradeFilterView: View {
             .navigationBarItems(leading: cancelButton, trailing: sendButton)
             .navigationBarStyle(.modal)
         }
+        .background(Color.backgroundLightest)
     }
 
     private var gradingPeriodSection: some View {

@@ -20,8 +20,8 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/enrollments.html#Enrollment
 public struct APIEnrollment: Codable, Equatable {
-    let id: ID?
-    let course_id: ID?
+    public let id: ID?
+    public let course_id: ID?
     // let sis_course_id: String?
     // let course_integration_id: String?
     let course_section_id: ID?

@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 class ModulesAssembly {
     private static var publishInteractorsByCourseIds: [String: ModulePublishInteractor] = [:]

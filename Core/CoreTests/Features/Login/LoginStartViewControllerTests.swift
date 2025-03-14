@@ -53,8 +53,9 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.animatableLogo.alpha, 1)
         XCTAssertTrue(isUIHiddenButAnimatedLogo())
         controller.viewDidAppear(false)
-        drainMainQueue()
-        XCTAssertEqual(controller.animatableLogo.alpha, 0)
+        waitUntil(5, shouldFail: true) {
+            controller.animatableLogo.alpha == 0
+        }
         XCTAssertFalse(isUIHiddenButAnimatedLogo())
     }
 

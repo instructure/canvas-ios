@@ -101,7 +101,7 @@ public struct K5ScheduleEntryView: View {
     }
 
     private var disclosureIndicator: some View {
-        InstDisclosureIndicator()
+        InstUI.DisclosureIndicator()
             .padding(.leading, 10)
             .hidden(!viewModel.isTappable)
     }

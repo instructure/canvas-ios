@@ -18,6 +18,7 @@
 
 import Combine
 import CombineSchedulers
+import Foundation
 
 class BulkPublishInteractor {
     typealias ProgressId = String

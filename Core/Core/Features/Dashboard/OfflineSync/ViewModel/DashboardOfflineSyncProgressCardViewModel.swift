@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import CombineSchedulers
+import Foundation
 
 class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
     enum ViewState: Equatable {

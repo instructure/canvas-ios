@@ -218,6 +218,10 @@ public extension Date {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
     }
 
+    var timeOnlyString: String {
+        formatted(.dateTime.hour().minute())
+    }
+
     var dateTimeString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .short)
     }

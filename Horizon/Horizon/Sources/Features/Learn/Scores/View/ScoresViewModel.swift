@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import Core
+import Foundation
 import Observation
 
 @Observable

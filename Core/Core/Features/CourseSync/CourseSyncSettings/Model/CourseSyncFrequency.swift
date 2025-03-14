@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public enum CourseSyncFrequency: Int, CaseIterable {
     #if DEBUG
     case osBased

@@ -17,11 +17,13 @@
 //
 
 import Core
+import UIKit
 
 struct AssignmentAttemptsAssembly {
-    static func makeView(submissions: [HSubmission],
-                         selectedSubmission: HSubmission?,
-                         didSelectSubmission: @escaping (HSubmission?) -> Void
+    static func makeView(
+        submissions: [HSubmission],
+        selectedSubmission: HSubmission?,
+        didSelectSubmission: @escaping (HSubmission?) -> Void
     ) -> UIViewController {
         let view = AssignmentAttemptsView(
             submissions: submissions,

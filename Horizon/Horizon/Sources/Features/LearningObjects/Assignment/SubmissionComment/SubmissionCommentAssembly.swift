@@ -17,6 +17,7 @@
 //
 
 import Core
+import UIKit
 
 enum SubmissionCommentAssembly {
     static func makeSubmissionCommentInteractor() -> SubmissionCommentInteractor {
@@ -32,7 +33,7 @@ enum SubmissionCommentAssembly {
         assignmentID: String,
         attempt: Int?
     ) -> UIViewController {
-      let view = SubmissionCommentView(
+        let view = SubmissionCommentView(
             viewModel: SubmissionCommentViewModel(
                 courseID: courseID,
                 assignmentID: assignmentID,
@@ -48,7 +49,6 @@ enum SubmissionCommentAssembly {
             presentationController.preferredCornerRadius = 32
         }
         return viewController
-
     }
 
     static func makePreview() -> SubmissionCommentView {

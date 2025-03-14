@@ -24,7 +24,7 @@ public extension View {
     }
 }
 
-struct FirstAppearViewModifier: ViewModifier {
+private struct FirstAppearViewModifier: ViewModifier {
     @State private var didAppearOnce = false
     private let action: (() -> Void)?
 

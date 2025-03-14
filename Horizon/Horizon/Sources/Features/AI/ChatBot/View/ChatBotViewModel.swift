@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import Foundation
 
 @Observable
 final class ChatBotViewModel {
@@ -46,6 +47,7 @@ final class ChatBotViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
+
     init(chatbotInteractor: ChatBotInteractor, router: Router) {
         self.router = router
         self.chatbotInteractor = chatbotInteractor
@@ -71,7 +73,7 @@ final class ChatBotViewModel {
                 receiveCompletion: { [weak self] completion in
                     guard let self = self else { return }
                     switch completion {
-                        // TODO: improve displaying errors
+                    // TODO: improve displaying errors
                     case .finished:
                         break
                     case .failure:

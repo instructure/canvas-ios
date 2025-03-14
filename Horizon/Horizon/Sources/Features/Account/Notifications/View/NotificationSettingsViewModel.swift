@@ -18,9 +18,11 @@
 
 import Combine
 import CombineExt
-import Core
-import Observation
 import CombineSchedulers
+import Core
+import Foundation
+import Observation
+import UIKit
 
 @Observable
 final class NotificationSettingsViewModel {
@@ -172,7 +174,7 @@ final class NotificationSettingsViewModel {
 
         isPushConfigured = preferences.isPushNotificationConfigured()
         viewState = .data
-        self.notificationPreferences = preferences
+        notificationPreferences = preferences
     }
 
     // MARK: - Inputs

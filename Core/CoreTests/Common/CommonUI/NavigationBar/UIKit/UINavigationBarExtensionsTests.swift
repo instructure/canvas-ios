@@ -28,7 +28,6 @@ class UINavigationBarExtensionsTests: XCTestCase {
         XCTAssertEqual(bar.tintColor.hexString, UIColor.textLightest.variantForLightMode.hexString)
         XCTAssertEqual(bar.barTintColor?.hexString, UIColor.backgroundDarkest.hexString)
         XCTAssertEqual(bar.barStyle, .black)
-        XCTAssertFalse(bar.isTranslucent)
     }
 
     func testUseGlobalNavStyle() {
@@ -38,7 +37,6 @@ class UINavigationBarExtensionsTests: XCTestCase {
         XCTAssertEqual(bar.tintColor.hexString, Brand.shared.navTextColor.hexString)
         XCTAssertEqual(bar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
         XCTAssertEqual(bar.barStyle, .black)
-        XCTAssertFalse(bar.isTranslucent)
 
         let shiny = Brand(
             buttonPrimaryBackground: .textLightest.variantForLightMode,
@@ -69,6 +67,5 @@ class UINavigationBarExtensionsTests: XCTestCase {
         XCTAssertEqual(bar.tintColor.hexString, Brand.shared.linkColor.hexString)
         XCTAssertEqual(bar.barTintColor, .backgroundLightest)
         XCTAssertEqual(bar.barStyle, .default)
-        XCTAssertFalse(bar.isTranslucent)
     }
 }

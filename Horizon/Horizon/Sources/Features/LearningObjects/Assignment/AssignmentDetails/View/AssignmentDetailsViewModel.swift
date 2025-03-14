@@ -19,6 +19,7 @@
 import Combine
 import CombineSchedulers
 import Core
+import Foundation
 import Observation
 
 @Observable
@@ -33,6 +34,7 @@ final class AssignmentDetailsViewModel {
             }
         }
     }
+
     var isOverlayToolsPresented = false
 
     // MARK: - Output
@@ -188,14 +190,14 @@ final class AssignmentDetailsViewModel {
             itemID: itemID
         )
         .sink { [weak self] completion in
-            if case .failure(let error) = completion {
+            if case let .failure(error) = completion {
                 self?.errorMessage = error.localizedDescription
             }
             self?.isLoaderVisible = false
         } receiveValue: { [weak self] _ in
             self?.isCompletedItem.toggle()
-            }
-            .store(in: &subscriptions)
+        }
+        .store(in: &subscriptions)
     }
 
     // MARK: - Private Functions
@@ -273,7 +275,7 @@ final class AssignmentDetailsViewModel {
                 case .success:
                     self?.fetchSubmissions()
                     self?.interactor.cancelAllFiles()
-                case .failure(let error):
+                case let .failure(error):
                     self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
                     self?.interactor.cancelAllFiles()
@@ -297,7 +299,7 @@ final class AssignmentDetailsViewModel {
     private func submitTextEntry() {
         interactor.submitTextEntry(with: htmlContent)
             .sink { [weak self] completion in
-                if case .failure(let error) = completion {
+                if case let .failure(error) = completion {
                     self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
                 }
@@ -366,8 +368,8 @@ final class AssignmentDetailsViewModel {
             return AssignmentLocalizedKeys.confirmationNormalBody.title
         }
         return selectedSubmission == .text
-        ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
-        : AssignmentLocalizedKeys.submitUploadFileWithText.title
+            ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
+            : AssignmentLocalizedKeys.submitUploadFileWithText.title
     }
 
     private func makeSubmissionAlertViewModel() -> SubmissionAlertViewModel {

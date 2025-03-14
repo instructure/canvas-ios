@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 public protocol CourseColorsInteractor {
     /// These are the pre-defined course colors the user can choose from. The values are the color names for accessibility.

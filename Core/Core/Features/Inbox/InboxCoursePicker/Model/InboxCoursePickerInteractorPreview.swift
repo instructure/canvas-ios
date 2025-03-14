@@ -24,11 +24,15 @@ import Combine
 class InboxCoursePickerInteractorPreview: InboxCoursePickerInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.data)
-    public var courses = CurrentValueSubject<[Course], Never>([])
+    public var favoriteCourses = CurrentValueSubject<[Course], Never>([])
+    public var moreCourses = CurrentValueSubject<[Course], Never>([])
     public var groups = CurrentValueSubject<[Group], Never>([])
 
     public init(env: AppEnvironment) {
-        self.courses = CurrentValueSubject<[Course], Never>([
+        self.favoriteCourses = CurrentValueSubject<[Course], Never>([
+            .save(.make(id: "3", name: "Course 3 (favorite)", is_favorite: true), in: env.database.viewContext)
+        ])
+        self.moreCourses = CurrentValueSubject<[Course], Never>([
             .save(.make(id: "1", name: "Course 1"), in: env.database.viewContext),
             .save(.make(id: "2", name: "Course 2"), in: env.database.viewContext)
         ])

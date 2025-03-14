@@ -19,6 +19,7 @@
 #if DEBUG
 
 import Combine
+import Foundation
 
 class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteractor {
     private let env = PreviewEnvironment()

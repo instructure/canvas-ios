@@ -17,9 +17,9 @@
 //
 
 import Core
+import UIKit
 
 struct CourseProgressAssembly {
-
     static func makeView(
         course: HCourse,
         currentModuleItem: HModuleItem?,
@@ -64,11 +64,11 @@ struct CourseProgressAssembly {
             overviewDescription: "overview Description",
             modules: modules
         )
-       let viewModel = CourseProgressViewModel(
+        let viewModel = CourseProgressViewModel(
             router: AppEnvironment.shared.router,
             course: course,
             currentModuleItem: moduleItems.first
-       ) { _ in }
+        ) { _ in }
         return CourseProgressView(viewModel: viewModel)
     }
 }

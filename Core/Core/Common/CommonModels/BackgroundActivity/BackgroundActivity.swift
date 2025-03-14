@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public class BackgroundActivity {
     private let processManager: ProcessManager

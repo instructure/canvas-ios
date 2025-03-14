@@ -20,6 +20,7 @@ import Combine
 import Core
 import Foundation
 import HorizonUI
+import UIKit
 
 final class SplashViewModel: ObservableObject {
     // MARK: - Input
@@ -81,7 +82,8 @@ final class SplashViewModel: ObservableObject {
                     loginDelegate: interactor,
                     app: .horizon
                 )
-            )        }
+            )
+        }
         return Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 

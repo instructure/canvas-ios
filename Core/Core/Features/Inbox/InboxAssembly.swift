@@ -43,6 +43,20 @@ public enum InboxAssembly {
         return nav
     }
 
+    public static func makeInboxViewControllerForParent() -> UIViewController {
+        let env = AppEnvironment.shared
+        let messageInteractor = InboxMessageInteractorLive(env: env, tabBarCountUpdater: .init(), messageListStateUpdater: .init())
+        let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let viewModel = InboxViewModel(messageInteractor: messageInteractor, favouriteInteractor: favouriteInteractor, router: env.router)
+
+        let controller = CoreHostingController(InboxView(model: viewModel))
+
+        let titleView = TitleSubtitleView.create()
+        titleView.title = String(localized: "Inbox", bundle: .core)
+        controller.navigationItem.titleView = titleView
+        return controller
+    }
+
 #if DEBUG
 
     public static func makePreview(environment: AppEnvironment,

@@ -19,6 +19,8 @@
 import Combine
 import CombineExt
 import Core
+import Foundation
+import UserNotifications
 
 protocol NotificationSettingsInteractor {
     func getNotificationPreferences() -> AnyPublisher<[NotificationPreference], Error>

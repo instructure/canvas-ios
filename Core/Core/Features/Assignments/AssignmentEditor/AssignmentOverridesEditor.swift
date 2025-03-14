@@ -48,7 +48,7 @@ public struct AssignmentOverridesEditor: View {
                     Text(override.title ?? everyone)
                         .font(.medium16).foregroundColor(.textDark)
                     Spacer().frame(width: 16)
-                    DisclosureIndicator()
+                    InstUI.DisclosureIndicator()
                 })
                 Divider()
 

@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct InboxCoursePickerView: View {
     @ObservedObject private var viewModel: InboxCoursePickerViewModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(viewModel: InboxCoursePickerViewModel) {
         self.viewModel = viewModel
@@ -47,74 +48,61 @@ public struct InboxCoursePickerView: View {
 
     @ViewBuilder
     private var content: some View {
-            switch viewModel.state {
-            case .loading:
-                VStack {
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle())
-                        .padding(12)
-                }
-            case .data:
-                VStack(spacing: 0) {
-                    courses(courses: viewModel.courses)
-                    groups(groups: viewModel.groups)
-                }
-            case .empty, .error:
-                Text("Some error occured", bundle: .core)
-                    .font(.regular17)
-                    .foregroundColor(.textDarkest)
+        switch viewModel.state {
+        case .loading:
+            VStack {
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+                    .padding(12)
             }
+        case .data:
+            VStack(spacing: 0) {
+                courses(favorites: viewModel.favoriteCourses, more: viewModel.moreCourses)
+                groups(viewModel.groups)
+            }
+        case .empty, .error:
+            Text("Some error occured", bundle: .core)
+                .font(.regular17)
+                .foregroundColor(.textDarkest)
         }
-
-    private var separator: some View {
-        Color.borderMedium
-            .frame(height: 0.5)
     }
 
-    private func courses(courses: [Course]) -> some View {
+    private func courses(favorites: [Course], more: [Course]) -> some View {
         VStack(spacing: 0) {
-            if !courses.isEmpty {
-                Section(header:
-                        VStack(spacing: 0) {
-                    Text("Courses", bundle: .core)
-                        .font(.regular14)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.textDarkest)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 16)
-                        .background(Color.backgroundLight)
-                        .accessibilityHeading(.h1)
-                    separator
-                    }
-                ) {
-                    ForEach(courses, id: \.id) { course in
-                        courseRow(course)
-                    }
-                }
+            switch (favorites.isNotEmpty, more.isNotEmpty) {
+            case (true, true):
+                courseSection(with: favorites, title: String(localized: "Favorite Courses", bundle: .core))
+                courseSection(with: more, title: String(localized: "More Courses", bundle: .core))
+            case (true, false):
+                courseSection(with: favorites, title: String(localized: "Courses", bundle: .core))
+            case (false, true):
+                courseSection(with: more, title: String(localized: "Courses", bundle: .core))
+            case (false, false):
+                SwiftUI.EmptyView()
             }
         }
     }
 
-    private func groups(groups: [Group]) -> some View {
+    private func courseSection(with courses: [Course], title: String) -> some View {
         VStack(spacing: 0) {
-            if !groups.isEmpty {
-                Section(header:
-                    VStack(spacing: 0) {
-                    Text("Groups", bundle: .core)
-                        .font(.regular14)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.textDarkest)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 16)
-                        .background(Color.backgroundLight)
-                        .accessibilityHeading(.h1)
-                    separator
+            Section {
+                ForEach(courses, id: \.id) { courseRow($0) }
+            } header: {
+                InstUI.ListSectionHeader(title: title)
+            }
+        }
+    }
+
+    private func groups(_ groups: [Group]) -> some View {
+        VStack(spacing: 0) {
+            if groups.isNotEmpty {
+                Section {
+                    ForEach(groups, id: \.id) { group in
+                        groupRow(group)
                     }
-                ) {
+                } header: {
                     VStack(spacing: 0) {
-                        ForEach(groups, id: \.id) { group in
-                            groupRow(group)
-                        }
+                        InstUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core))
                     }
                 }
             }
@@ -137,8 +125,11 @@ public struct InboxCoursePickerView: View {
                 viewModel.onSelect(selected: course)
             } label: {
                 HStack {
-                    Circle().fill(Color(course.color)).frame(width: 20, height: 20)
-                        .padding(.leading, 22).padding(.trailing, 12)
+                    Circle()
+                        .fill(Color(course.color))
+                        .frame(width: 20, height: 20)
+                        .padding(.leading, 22)
+                        .padding(.trailing, 12)
                     Text(courseName)
                         .font(.regular16)
                         .multilineTextAlignment(.leading)
@@ -156,7 +147,7 @@ public struct InboxCoursePickerView: View {
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.course.\(course.id)")
 
-            separator
+            InstUI.Divider()
         }
     }
 
@@ -168,8 +159,11 @@ public struct InboxCoursePickerView: View {
                 viewModel.onSelect(selected: group)
             } label: {
                 HStack {
-                    Circle().fill(Color(group.color)).frame(width: 20, height: 20)
-                        .padding(.leading, 22).padding(.trailing, 12)
+                    Circle()
+                        .fill(Color(group.color))
+                        .frame(width: 20, height: 20)
+                        .padding(.leading, 22)
+                        .padding(.trailing, 12)
                     Text(groupName)
                         .font(.regular16)
                         .multilineTextAlignment(.leading)
@@ -186,7 +180,7 @@ public struct InboxCoursePickerView: View {
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.group.\(group.id)")
 
-            separator
+            InstUI.Divider()
         }
     }
 }

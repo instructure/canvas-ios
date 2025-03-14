@@ -21,31 +21,41 @@ import XCTest
 
 class APIPostPolicyInfoTests: XCTestCase {
     func testSubmissionNodeIsPosted() {
-        let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: Date())
+        let node = APIPostPolicy.AssignmentInfo.SubmissionNode(
+            score: 0.5, excused: false, state: "graded", postedAt: Date()
+        )
         XCTAssertTrue(node.isPosted)
     }
 
     func testSubmissionNodeIsNotPosted() {
-        let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: nil)
+        let node = APIPostPolicy.AssignmentInfo.SubmissionNode(
+            score: 0.5, excused: false, state: "graded", postedAt: nil
+        )
         XCTAssertFalse(node.isPosted)
     }
 
     func testSubmissionNodeIsHidden() {
-        let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: nil)
+        let node = APIPostPolicy.AssignmentInfo.SubmissionNode(
+            score: 0.5, excused: false, state: "graded", postedAt: nil
+        )
         XCTAssertTrue(node.isHidden)
     }
 
     func testSubmissionNodeIsHiddenWhenExcused() {
-        let node = APIPostPolicyInfo.SubmissionNode(score: nil, excused: true, state: "not graded", postedAt: nil)
+        let node = APIPostPolicy.AssignmentInfo.SubmissionNode(
+            score: nil, excused: true, state: "not graded", postedAt: nil
+        )
         XCTAssertTrue(node.isHidden)
     }
 
     func testSubmissionNodeIsNotHidden() {
-        let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: Date())
+        let node = APIPostPolicy.AssignmentInfo.SubmissionNode(
+            score: 0.5, excused: false, state: "graded", postedAt: Date()
+        )
         XCTAssertFalse(node.isHidden)
     }
 
-    func testDecode() {
+    func test_course_sections_decode() {
         let str = """
         {
             "data": {
@@ -54,9 +64,37 @@ class APIPostPolicyInfoTests: XCTestCase {
                         "nodes": [{
                             "id": "1",
                             "name": "Quiz Questions"
-                        }]
+                        }],
+                        "pageInfo": {
+                            "endCursor": "example_cursor",
+                            "hasNextPage": true
+                        }
                     }
-                },
+                }
+            }
+        }
+        """
+        let data = str.data(using: .utf8)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let model = try? decoder.decode(APIPostPolicy.CourseInfo.self, from: data!)
+
+        XCTAssertNotNil(model)
+        XCTAssertEqual(model?.page.count, 1)
+
+        let section = model?.page.first
+        XCTAssertEqual(section?.name, "Quiz Questions")
+        XCTAssertEqual(section?.id, "1")
+
+        let pageInfo = model?.pageInfo
+        XCTAssertEqual(pageInfo?.endCursor, "example_cursor")
+        XCTAssertEqual(pageInfo?.hasNextPage, true)
+    }
+
+    func test_submissions_decode() {
+        let str = """
+        {
+            "data": {
                 "assignment": {
                     "submissions": {
                         "nodes": [{
@@ -70,20 +108,16 @@ class APIPostPolicyInfoTests: XCTestCase {
             }
         }
         """
+
         let data = str.data(using: .utf8)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        let model = try? decoder.decode(APIPostPolicyInfo.self, from: data!)
+        let model = try? decoder.decode(APIPostPolicy.AssignmentInfo.self, from: data!)
 
         XCTAssertNotNil(model)
-        XCTAssertEqual(model?.sections.count, 1)
-        XCTAssertEqual(model?.submissions.count, 1)
+        XCTAssertEqual(model?.nodes.count, 1)
 
-        let section = model?.sections.first
-        XCTAssertEqual(section?.name, "Quiz Questions")
-        XCTAssertEqual(section?.id, "1")
-
-        let submission = model?.submissions.first
+        let submission = model?.nodes.first
         XCTAssertEqual(submission?.score, 0.5)
         XCTAssertEqual(submission?.state, "graded")
         XCTAssertEqual(submission?.excused, false)
@@ -175,12 +209,12 @@ class HideAssignmentGradesForSectionPostPolicyRequestTests: XCTestCase {
     }
 }
 
-class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {
-    var req: GetAssignmentPostPolicyInfoRequest!
+class GetPostPolicyCourseSectionsRequestTests: XCTestCase {
+    var req: GetPostPolicyCourseSectionsRequest!
 
     override func setUp() {
         super.setUp()
-        req = .init(courseID: "1", assignmentID: "2")
+        req = .init(courseID: "1")
     }
     func testPath() {
         XCTAssertEqual(req.path, "/api/graphql")
@@ -188,9 +222,35 @@ class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {
 
     func testBody() {
         req.assertBodyEquals(GraphQLBody(
-            query: GetAssignmentPostPolicyInfoRequest.query,
-            operationName: "GetAssignmentPostPolicyInfoRequest",
-            variables: .init(courseID: "1", assignmentID: "2")
+            query: GetPostPolicyCourseSectionsRequest.query,
+            operationName: "GetPostPolicyCourseSectionsRequest",
+            variables: .init(
+                courseID: "1",
+                cursor: nil,
+                pageSize: 20
+            )
+        ))
+    }
+}
+
+class GetPostPolicyAssignmentSubmissionsRequestTests: XCTestCase {
+    var req: GetPostPolicyAssignmentSubmissionsRequest!
+
+    override func setUp() {
+        super.setUp()
+        req = .init(assignmentID: "1")
+    }
+    func testPath() {
+        XCTAssertEqual(req.path, "/api/graphql")
+    }
+
+    func testBody() {
+        req.assertBodyEquals(GraphQLBody(
+            query: GetPostPolicyAssignmentSubmissionsRequest.query,
+            operationName: "GetPostPolicyAssignmentSubmissionsRequest",
+            variables: .init(
+                assignmentID: "1"
+            )
         ))
     }
 }

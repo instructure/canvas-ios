@@ -19,5 +19,5 @@
 import Foundation
 
 public extension HorizonUI {
-    struct Controls { }
+    struct Controls {}
 }

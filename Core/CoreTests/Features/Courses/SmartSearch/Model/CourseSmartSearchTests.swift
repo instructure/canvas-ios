@@ -20,6 +20,7 @@ import Foundation
 import TestsFoundation
 import SwiftUI
 @testable import Core
+import XCTest
 
 class CourseSmartSearchTests: CoreTestCase {
 

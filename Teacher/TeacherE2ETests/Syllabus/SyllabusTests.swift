@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class SyllabusTests: E2ETestCase {
     typealias Helper = SyllabusHelper

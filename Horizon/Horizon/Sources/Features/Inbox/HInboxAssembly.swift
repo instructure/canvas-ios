@@ -17,6 +17,7 @@
 //
 
 import Core
+import UIKit
 
 struct HInboxAssembly {
     static func makeView() -> UIViewController {
