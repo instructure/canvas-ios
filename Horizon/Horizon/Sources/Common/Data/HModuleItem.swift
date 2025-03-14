@@ -38,7 +38,6 @@ struct HModuleItem: Equatable {
     let lockExplanation: String?
     let courseID: String
     let isQuizLTI: Bool
-    let completed: Bool?
     let completionRequirementType: CompletionRequirementType?
     let moduleName: String?
     let estimatedDuration: String?
@@ -61,7 +60,6 @@ struct HModuleItem: Equatable {
         courseID: String = "courseID",
         moduleID: String = "moduleID",
         isQuizLTI: Bool = false,
-        completed: Bool? = false,
         completionRequirementType: CompletionRequirementType? = nil,
         moduleName: String? = nil,
         estimatedDuration: String? = nil
@@ -85,7 +83,6 @@ struct HModuleItem: Equatable {
         self.lockExplanation = lockExplanation
         self.courseID = courseID
         self.isQuizLTI = isQuizLTI
-        self.completed = completed
         self.completionRequirementType = completionRequirementType
         self.moduleName = moduleName
         self.estimatedDuration = estimatedDuration
@@ -98,7 +95,7 @@ struct HModuleItem: Equatable {
         self.isCompleted = entity.completed ?? false
         self.dueAt = entity.dueAt
         self.type = entity.type
-        self.isLocked = entity.visibleWhenLocked == false && entity.lockedForUser == true
+        self.isLocked = entity.lockExplanation?.isEmpty == false
         self.moduleState = entity.module?.state
         self.points = entity.pointsPossible
         self.isOptional = entity.completionRequirement == nil
@@ -110,7 +107,6 @@ struct HModuleItem: Equatable {
         self.lockExplanation = entity.lockExplanation
         self.courseID = entity.courseID
         self.isQuizLTI = entity.isQuizLTI
-        self.completed = entity.completed
         self.completionRequirementType = entity.completionRequirementType
         self.moduleName = entity.module?.name
         self.estimatedDuration = entity.estimatedDuration
