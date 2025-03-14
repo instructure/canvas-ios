@@ -175,6 +175,7 @@ struct AssignmentSubmissionView: View {
             ]
         )
         .padding(.horizontal, isLTI ? -padding : 0)
+        /// I set 1000 as a temporary value until the front-end team removes the ScrollView embedded in the WebView in quiz.
         .frame(height: isLTI ? 1000 : 400, alignment: .top)
     }
 

@@ -28,7 +28,7 @@ public struct ModuleItemSequenceView: View {
     @State private var isShowModuleNavBar = true
     @State private var submissionAlertModel = SubmissionAlertViewModel()
     @State private var draftToastViewModel = ToastViewModel()
-    @State private var showingHeaderIsAnimated = true
+    @State private var isHeaderAnimationEnabled = true
     @Environment(\.viewController) private var viewController
     private let keyboardObserver = KeyboardObserver()
 
@@ -56,7 +56,7 @@ public struct ModuleItemSequenceView: View {
                 .offset(x: viewModel.offsetX)
                 .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
                 .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
-                    showingHeaderIsAnimated = true
+                    isHeaderAnimationEnabled = true
                     if isShowModuleNavBar {
                         isShowHeader = isShow
                     } else {
@@ -77,7 +77,7 @@ public struct ModuleItemSequenceView: View {
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
-        .animation(showingHeaderIsAnimated ? .linear : nil, value: isShowHeader)
+        .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
         .confirmationDialog("", isPresented: $isShowMakeAsDoneSheet, titleVisibility: .hidden) {
             makeAsDoneSheetButtons
         }
@@ -102,11 +102,10 @@ public struct ModuleItemSequenceView: View {
                   confirmButton: submissionAlertModel.button,
                   isPresented: $submissionAlertModel.isPresented) { assignmentConfirmationView }
             .onChange(of: keyboardObserver.isKeyboardVisible) { _, newValue in
-                showingHeaderIsAnimated = false
+                isHeaderAnimationEnabled = false
                 self.isShowHeader = !newValue
                 self.isShowModuleNavBar = !newValue
             }
-
     }
 
     private var assignmentConfirmationView: some View {
