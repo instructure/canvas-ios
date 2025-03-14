@@ -32,6 +32,9 @@ public class ActAsUserWindow: UIWindow {
         )
 
         super.layoutSubviews()
+
+        if isPresentingSystemPicker { return }
+
         overlay.frame = bounds
         bringSubviewToFront(overlay)
         if let button = uiTestHelper {
@@ -79,6 +82,19 @@ public class ActAsUserWindow: UIWindow {
             object: nil,
             userInfo: ["style": traitCollection.userInterfaceStyle]
         )
+    }
+
+    private var isPresentingSystemPicker: Bool {
+        guard let topController = rootViewController?.topMostViewController()
+        else { return false }
+
+        if topController.isSystemAssetPicker {
+            return true
+        } else if let presentingController = topController.presentingViewController {
+            return presentingController.isSystemAssetPicker
+        } else {
+            return false
+        }
     }
 }
 
@@ -180,5 +196,34 @@ class ActAsUserOverlay: UIView {
             return button
         }
         return nil
+    }
+}
+
+// MARK: - Overlay Exceptions
+
+private extension UIViewController {
+
+    var isSystemAssetPicker: Bool {
+        switch self {
+        case
+            is UIDocumentPickerViewController,
+            is UIImagePickerController:
+            return true
+        default:
+            break
+        }
+
+        let typeName = String(describing: type(of: self))
+
+        switch typeName {
+        case
+            "PUPhotoPickerHostViewController",
+            "CAMImagePickerCameraViewController":
+            return true
+        default:
+            break
+        }
+
+        return false
     }
 }

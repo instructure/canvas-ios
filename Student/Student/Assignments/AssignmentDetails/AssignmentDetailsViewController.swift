@@ -25,9 +25,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
     @IBOutlet weak var statusLabel: UILabel?
-    @IBOutlet weak var attemptPickerSection: UIView?
-    @IBOutlet weak var attemptLabel: UILabel?
-    @IBOutlet weak var attemptDateButton: DynamicButton!
+    @IBOutlet weak var attemptPicker: SubmissionAttemptPickerView?
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
@@ -141,6 +139,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
+
+    var accessibilityFocusAfterAttemptSelection: UIView? {
+        attemptPicker
+    }
 
     private var env: AppEnvironment = .defaultValue
     private let webView = CoreWebView()
@@ -471,47 +473,11 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     }
 
     func updateAttemptInfo(attemptNumber: String) {
-        attemptLabel?.text = attemptNumber
+        attemptPicker?.updateLabel(text: attemptNumber)
     }
 
-    func updateAttemptPickerButton(isActive: Bool,
-                                   attemptDate: String,
-                                   items: [UIAction]) {
-        attemptDateButton.isEnabled = isActive
-        attemptDateButton.setTitle(attemptDate, for: .normal)
-        attemptDateButton.setTitleColor(.textDark, for: .normal)
-        attemptDateButton.setTitleColor(.textDark, for: .disabled)
-
-        var buttonConfig = attemptDateButton.configuration ?? .plain()
-        buttonConfig.contentInsets = {
-            var result = buttonConfig.contentInsets
-            result.trailing = 0
-            return result
-        }()
-        buttonConfig.titleTextAttributesTransformer = .init { attributes in
-            var result = attributes
-            result.font = UIFont.scaledNamedFont(.regular14)
-            return result
-        }
-
-        // Since submissions can't be deleted we don't have to handle the case of
-        // turning the active picker to inactive
-        if isActive {
-            buttonConfig.imagePlacement = .trailing
-            buttonConfig.imagePadding = 6
-            buttonConfig.image = .arrowOpenDownSolid
-                .scaleTo(.init(width: 14, height: 14))
-                .withRenderingMode(.alwaysTemplate)
-            buttonConfig.indicator = .none
-
-            attemptDateButton.changesSelectionAsPrimaryAction = true
-            attemptDateButton.showsMenuAsPrimaryAction = true
-            attemptDateButton.menu = UIMenu(children: items)
-        } else {
-            attemptDateButton.accessibilityTraits = .staticText
-        }
-
-        attemptDateButton?.configuration = buttonConfig
+    func updateAttemptPickerButton(isActive: Bool, attemptDate: String, items: [UIAction]) {
+        attemptPicker?.updatePickerButton(isActive: isActive, attemptDate: attemptDate, items: items)
     }
 
     func centerLockedIconContainerView() {
@@ -600,7 +566,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     }
 
     func hideGradeCell() {
-        attemptPickerSection?.isHidden = true
+        attemptPicker?.isHidden = true
         gradeSection?.isHidden = true
         gradeSectionBottomSpacer?.isHidden = true
     }
