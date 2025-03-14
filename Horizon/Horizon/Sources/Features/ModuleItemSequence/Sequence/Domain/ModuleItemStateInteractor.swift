@@ -79,9 +79,8 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
     ) -> ModuleItemSequenceViewState? {
         guard let item else { return nil }
 
-        let showLocked = item.visibleWhenLocked != true && item.lockedForUser == true
-        if showLocked {
-            return .locked(title: item.title, lockExplanation: item.lockExplanation ?? "")
+        if let lockExplanation = item.lockExplanation {
+            return .locked(title: item.title, lockExplanation: lockExplanation)
         }
 
         switch item.type {
@@ -106,7 +105,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
                 courseID: courseID,
                 assignmentID: id,
                 isMarkedAsDone: isMarkedAsDone,
-                isCompletedItem: item.completed ?? false,
+                isCompletedItem: item.isCompleted,
                 moduleID: moduleID ?? "",
                 itemID: itemID ?? ""
             )

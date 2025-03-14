@@ -44,7 +44,8 @@ enum ModuleItemSequenceAssembly {
             moduleItemStateInteractor: stateInteractor,
             router: environment.router,
             assetType: assetType,
-            assetID: assetID
+            assetID: assetID,
+            courseID: courseID
         )
 
         let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
@@ -121,7 +122,8 @@ enum ModuleItemSequenceAssembly {
             moduleItemStateInteractor: ModuleItemStateInteractorPreview(),
             router: AppEnvironment.shared.router,
             assetType: .moduleItem,
-            assetID: "assetID"
+            assetID: "assetID",
+            courseID: "12"
         )
         let view = ModuleItemSequenceView(viewModel: viewModel, onShowNavigationBarAndTabBar: { _ in })
         return view

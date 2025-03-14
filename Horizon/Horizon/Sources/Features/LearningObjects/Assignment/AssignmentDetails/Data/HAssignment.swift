@@ -41,7 +41,8 @@ struct HAssignment: Identifiable {
     var allowedExtensions: [String] = []
     var externalToolContentID: String?
     var isQuizLTI: Bool?
-
+    let isLocked: Bool
+    let lockExplanation: String?
     let submissions: [HSubmission]
 
     var mostRecentSubmission: HSubmission? {
@@ -91,7 +92,9 @@ struct HAssignment: Identifiable {
         courseName: String,
         workflowState: SubmissionWorkflowState?,
         submittedAt: Date?,
-        submissions: [HSubmission]
+        submissions: [HSubmission],
+        isLocked: Bool = false,
+        lockExplanation: String? = nil
     ) {
         self.id = id
         self.htmlURL = htmlURL
@@ -111,6 +114,8 @@ struct HAssignment: Identifiable {
         self.workflowState = workflowState
         self.submittedAt = submittedAt
         self.submissions = submissions
+        self.isLocked = isLocked
+        self.lockExplanation = lockExplanation
     }
 
     init(from assignment: Assignment) {
@@ -140,6 +145,8 @@ struct HAssignment: Identifiable {
         } else {
             self.submissions = []
         }
+        self.isLocked = assignment.lockedForUser
+        self.lockExplanation = assignment.lockExplanation
         self.showSubmitButton = assignment.hasAttemptsLeft && (assignmentSubmissionTypes.first != .externalTool)
     }
 

@@ -101,7 +101,7 @@ final class AssignmentDetailsViewModel {
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var onTapAssignmentOptions: PassthroughSubject<Void, Never>
-    private let didLoadAttemptCount: (String?) -> Void
+    private let didLoadAssignment: (String?, HModuleItem) -> Void
 
     // MARK: - Init
 
@@ -118,7 +118,7 @@ final class AssignmentDetailsViewModel {
         assignmentID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
-        didLoadAttemptCount: @escaping (String?) -> Void
+        didLoadAssignment: @escaping (String?, HModuleItem) -> Void
     ) {
         self.interactor = interactor
         self.moduleItemInteractor = moduleItemInteractor
@@ -132,7 +132,7 @@ final class AssignmentDetailsViewModel {
         self.router = router
         self.courseID = courseID
         self.assignmentID = assignmentID
-        self.didLoadAttemptCount = didLoadAttemptCount
+        self.didLoadAssignment = didLoadAssignment
         bindSubmissionAssignmentEvents()
         fetchAssignmentDetails()
     }
@@ -246,7 +246,7 @@ final class AssignmentDetailsViewModel {
         let latestSubmission = submissions.first?.type ?? .text
         selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission
         submission = submissions.first
-        didLoadAttemptCount(response.attemptCount)
+        didLoadAssignment(response.attemptCount, getModuleItem(assignment: response))
         if selectedSubmission == .externalTool {
             fetchExternalURL()
         }
@@ -266,6 +266,26 @@ final class AssignmentDetailsViewModel {
             self?.isLoaderVisible = false
             self?.externalURL = value?.url
         }
+    }
+
+    private func getModuleItem(assignment: HAssignment) -> HModuleItem {
+        HModuleItem(
+            id: assignment.id,
+            title: assignment.name,
+            htmlURL: nil,
+            isCompleted: false,
+            dueAt: assignment.dueAt,
+            type: .assignment(assignment.id),
+            isLocked: assignment.isLocked,
+            points: assignment.pointsPossible,
+            lockedDate: "",
+            visibleWhenLocked: true,
+            lockedForUser: false,
+            lockExplanation: assignment.lockExplanation,
+            courseID: assignment.courseID,
+            moduleID: "",
+            isQuizLTI: assignment.isQuizLTI ?? false
+        )
     }
 
     private func bindSubmissionAssignmentEvents() {
@@ -388,8 +408,8 @@ final class AssignmentDetailsViewModel {
             return AssignmentLocalizedKeys.confirmationNormalBody.title
         }
         return selectedSubmission == .text
-            ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
-            : AssignmentLocalizedKeys.submitUploadFileWithText.title
+        ? AssignmentLocalizedKeys.submitTextWithUploadFile.title
+        : AssignmentLocalizedKeys.submitUploadFileWithText.title
     }
 
     private func makeSubmissionAlertViewModel() -> SubmissionAlertViewModel {
