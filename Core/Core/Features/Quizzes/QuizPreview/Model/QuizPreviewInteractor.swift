@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public enum QuizPreviewInteractorState: Equatable {
     case loading

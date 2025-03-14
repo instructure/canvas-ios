@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 struct ScoreDetails {
     enum SortOption: String, CaseIterable {

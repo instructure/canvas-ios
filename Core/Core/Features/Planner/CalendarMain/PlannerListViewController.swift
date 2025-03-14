@@ -230,6 +230,7 @@ class PlannerListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         pointsDivider.setText(pointsDivider.text, style: .textCellSupportingText)
+        setupInstDisclosureIndicator()
     }
 
     func update(_ p: Plannable?) {
@@ -264,8 +265,6 @@ class PlannerListCell: UITableViewCell {
         }
         points.setText(pointsText, style: .textCellSupportingText)
         pointsDivider.isHidden = dueDate.text == nil || pointsText == nil
-
-        accessoryType = .disclosureIndicator
     }
 
     private func contextName(for plannable: Plannable?) -> String? {

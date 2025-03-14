@@ -24,6 +24,16 @@ public struct GraphQLBody<Variables: Codable & Equatable>: Codable, Equatable {
     let variables: Variables
 }
 
+public protocol PagedResponse: Codable {
+    associatedtype Page: Codable, RangeReplaceableCollection
+    var page: Page { get }
+}
+
+public protocol APIPagedRequestable: APIRequestable where Response: PagedResponse {
+    associatedtype NextRequest = Self
+    func nextPageRequest(from response: Response) -> NextRequest?
+}
+
 public protocol APIGraphQLRequestable: APIRequestable {
     associatedtype Variables: Codable, Equatable
 
@@ -32,17 +42,19 @@ public protocol APIGraphQLRequestable: APIRequestable {
     var variables: Variables { get }
 }
 
-extension APIGraphQLRequestable {
-    public var method: APIMethod {
+public extension APIGraphQLRequestable {
+    var method: APIMethod {
         .post
     }
-    public var path: String {
+    var path: String {
         "/api/graphql"
     }
-    public static var operationName: String {
+    static var operationName: String {
         "\(self)"
     }
-    public var body: GraphQLBody<Variables>? {
+    var body: GraphQLBody<Variables>? {
         GraphQLBody(query: Self.query, operationName: Self.operationName, variables: variables)
     }
 }
+
+typealias APIGraphQLPagedRequestable = APIGraphQLRequestable & APIPagedRequestable

@@ -18,6 +18,7 @@
 
 import Core
 import HorizonUI
+import Foundation
 
 struct HModuleItem: Equatable {
     let id: String

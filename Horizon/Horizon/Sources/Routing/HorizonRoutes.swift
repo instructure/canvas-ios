@@ -19,6 +19,7 @@
 import Core
 import Foundation
 import SwiftUI
+import UIKit
 
 enum HorizonRoutes {
     static func routeHandlers() -> [RouteHandler] {
@@ -163,7 +164,7 @@ enum HorizonRoutes {
             RouteHandler("/courses/:courseID/assignments/:assignmentID") { url, params, _, env in
                 guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
                 if assignmentID == "syllabus" {
-                    return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
+                    return SyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
                 }
                 if !url.originIsModuleItemDetails {
                     return ModuleItemSequenceAssembly.makeItemSequenceView(
@@ -215,7 +216,7 @@ enum HorizonRoutes {
     private static var notebookRoutes: [RouteHandler] {
         [
             RouteHandler("/notebook") { _, _, _ in
-                return NotebookAssembly.makeViewController()
+                NotebookAssembly.makeViewController()
             },
             RouteHandler("/notebook/:courseID/:itemID/add") { _, params, userInfo in
                 guard let itemId = params["itemID"], let courseId = params["courseID"] else { return nil }

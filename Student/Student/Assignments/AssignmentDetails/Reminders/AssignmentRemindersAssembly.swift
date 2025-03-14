@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import UIKit
 
 enum AssignmentRemindersAssembly {
 

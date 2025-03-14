@@ -19,6 +19,7 @@
 import Combine
 import CombineSchedulers
 import Core
+import Foundation
 import Observation
 
 @Observable
@@ -33,6 +34,7 @@ final class AssignmentDetailsViewModel {
             }
         }
     }
+
     var isOverlayToolsPresented = false
 
     // MARK: - Output
@@ -47,6 +49,7 @@ final class AssignmentDetailsViewModel {
     private(set) var submission: HSubmission?
     private(set) var isSegmentControlVisible: Bool = false
     private(set) var selectedSubmission: AssignmentSubmissionType = .text
+    private(set) var externalURL: URL?
     var isStartTyping = false
     var assignmentPreference: AssignmentPreferenceKeyType?
 
@@ -188,14 +191,14 @@ final class AssignmentDetailsViewModel {
             itemID: itemID
         )
         .sink { [weak self] completion in
-            if case .failure(let error) = completion {
+            if case let .failure(error) = completion {
                 self?.errorMessage = error.localizedDescription
             }
             self?.isLoaderVisible = false
         } receiveValue: { [weak self] _ in
             self?.isCompletedItem.toggle()
-            }
-            .store(in: &subscriptions)
+        }
+        .store(in: &subscriptions)
     }
 
     // MARK: - Private Functions
@@ -244,6 +247,25 @@ final class AssignmentDetailsViewModel {
         selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission
         submission = submissions.first
         didLoadAssignment(response.attemptCount, getModuleItem(assignment: response))
+        if selectedSubmission == .externalTool {
+            fetchExternalURL()
+        }
+    }
+
+    private func fetchExternalURL() {
+        let tools = LTITools(
+            context: .course(courseID),
+            id: assignment?.externalToolContentID,
+            launchType: .assessment,
+            isQuizLTI: assignment?.isQuizLTI,
+            assignmentID: assignmentID
+        )
+
+        isLoaderVisible = true
+        tools.getSessionlessLaunch { [weak self] value in
+            self?.isLoaderVisible = false
+            self?.externalURL = value?.url
+        }
     }
 
     private func getModuleItem(assignment: HAssignment) -> HModuleItem {
@@ -293,7 +315,7 @@ final class AssignmentDetailsViewModel {
                 case .success:
                     self?.fetchSubmissions()
                     self?.interactor.cancelAllFiles()
-                case .failure(let error):
+                case let .failure(error):
                     self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
                     self?.interactor.cancelAllFiles()
@@ -317,7 +339,7 @@ final class AssignmentDetailsViewModel {
     private func submitTextEntry() {
         interactor.submitTextEntry(with: htmlContent)
             .sink { [weak self] completion in
-                if case .failure(let error) = completion {
+                if case let .failure(error) = completion {
                     self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
                 }

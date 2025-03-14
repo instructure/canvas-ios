@@ -61,7 +61,7 @@ struct AssignmentDetails: View {
         }
         .hidden(viewModel.isInitialLoading)
         .overlay { loaderView }
-        .keyboardAdaptive()
+        .keyboardAdaptive(isEnabled: viewModel.selectedSubmission == .text)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .scrollDismissesKeyboard(isShowHeader ? .immediately : .never)
         .preference(key: AssignmentPreferenceKey.self, value: viewModel.assignmentPreference)

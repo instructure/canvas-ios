@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public class StaffContactInfoService {
     private let courseIds: [String]
     private let synchronizerQueue = DispatchQueue(label: "com.instructure.staffcontactinfoservice")

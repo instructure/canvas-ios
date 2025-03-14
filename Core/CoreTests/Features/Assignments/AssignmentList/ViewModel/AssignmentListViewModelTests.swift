@@ -18,6 +18,7 @@
 
 import TestsFoundation
 @testable import Core
+import XCTest
 
 class AssignmentListViewModelTests: CoreTestCase {
 

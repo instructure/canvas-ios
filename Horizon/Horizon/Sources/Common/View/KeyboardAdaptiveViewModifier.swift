@@ -46,7 +46,11 @@ struct KeyboardAdaptiveViewModifier: ViewModifier {
 }
 
 extension View {
-    func keyboardAdaptive() -> some View {
-        self.modifier(KeyboardAdaptiveViewModifier())
+    func keyboardAdaptive(isEnabled: Bool = true) -> some View {
+        if isEnabled {
+            AnyView(self.modifier(KeyboardAdaptiveViewModifier()))
+        } else {
+            AnyView(self)
+        }
     }
 }

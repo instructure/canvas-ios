@@ -16,10 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Observation
 import Combine
-import Core
 import CombineSchedulers
+import Core
+import Foundation
+import Observation
 
 @Observable
 final class MyAssignmentSubmissionsViewModel {
@@ -58,7 +59,7 @@ final class MyAssignmentSubmissionsViewModel {
             .receive(on: scheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
-                    if case .failure(let error)  = completion {
+                    if case let .failure(error) = completion {
                         self?.viewState = .error(error.localizedDescription)
                     }
                 }, receiveValue: { [weak self] url in
@@ -66,7 +67,6 @@ final class MyAssignmentSubmissionsViewModel {
                     self?.showShareSheet(fileURL: url, viewController: viewController)
                 }
             )
-
     }
 
     func cancelDownload() {

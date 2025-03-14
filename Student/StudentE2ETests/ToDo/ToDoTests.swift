@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ToDoTests: E2ETestCase {
     func testToDo() {

@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public protocol CourseSyncDiscussionsInteractor: CourseSyncContentInteractor {}
 public extension CourseSyncDiscussionsInteractor {

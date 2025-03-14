@@ -21,7 +21,6 @@ import SwiftUI
 enum AssignmentPreferenceKeyType: Equatable {
     case confirmation(viewModel: SubmissionAlertViewModel)
     case toastViewModel(viewModel: ToastViewModel)
-    case moduleNavBarButton(isVisible: Bool)
 }
 
 struct HeaderVisibilityKey: PreferenceKey {

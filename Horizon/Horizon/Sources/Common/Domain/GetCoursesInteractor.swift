@@ -19,6 +19,7 @@
 import Combine
 import CombineSchedulers
 import Core
+import Foundation
 
 protocol GetCoursesInteractor {
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
@@ -84,20 +85,20 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                                 includes: GetModulesRequest.Include.allCases
                             )
                         )
-                            .getEntities(ignoreCache: ignoreCache)
-                            .replaceError(with: [])
-                            .map {
-                                HCourse(
-                                    id: courseID,
-                                    institutionName: institutionName ?? "",
-                                    name: name,
-                                    overviewDescription: overviewDescription,
-                                    progress: progress,
-                                    modules: $0.map { HModule(from: $0) },
-                                    incompleteModules: incompleteModules
-                                )
-                            }
-                            .eraseToAnyPublisher()
+                        .getEntities(ignoreCache: ignoreCache)
+                        .replaceError(with: [])
+                        .map {
+                            HCourse(
+                                id: courseID,
+                                institutionName: institutionName ?? "",
+                                name: name,
+                                overviewDescription: overviewDescription,
+                                progress: progress,
+                                modules: $0.map { HModule(from: $0) },
+                                incompleteModules: incompleteModules
+                            )
+                        }
+                        .eraseToAnyPublisher()
                     }
                     .collect()
             }

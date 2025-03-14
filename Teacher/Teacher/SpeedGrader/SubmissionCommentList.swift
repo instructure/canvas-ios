@@ -40,6 +40,8 @@ struct SubmissionCommentList: View {
     @State var showMediaOptions = false
     @State var showCommentLibrary = false
 
+    @AccessibilityFocusState private var focusedTab: SubmissionGrader.GraderTab?
+
     init(
         assignment: Assignment,
         submission: Submission,
@@ -48,7 +50,8 @@ struct SubmissionCommentList: View {
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
         enteredComment: Binding<String>,
-        commentLibrary: SubmissionCommentLibraryViewModel
+        commentLibrary: SubmissionCommentLibraryViewModel,
+        focusedTab: AccessibilityFocusState<SubmissionGrader.GraderTab?>
     ) {
         self.assignment = assignment
         self.submission = submission
@@ -58,6 +61,7 @@ struct SubmissionCommentList: View {
         self._comment = enteredComment
         self.attempts = attempts
         self.commentLibrary = commentLibrary
+        self._focusedTab = focusedTab
 
         _viewModel = StateObject(wrappedValue: SubmissionCommentListViewModel(
             attempt: attempt.wrappedValue,
@@ -163,6 +167,7 @@ struct SubmissionCommentList: View {
                 containerHeight: containerHeight
             )
                 .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
+                .accessibilityFocused($focusedTab, equals: .comments)
         }
             .background(Color.backgroundLight)
     }

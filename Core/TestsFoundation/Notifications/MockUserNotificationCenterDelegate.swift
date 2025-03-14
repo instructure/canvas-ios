@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UserNotifications
+
 public class MockUserNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
     public override init() {}
 

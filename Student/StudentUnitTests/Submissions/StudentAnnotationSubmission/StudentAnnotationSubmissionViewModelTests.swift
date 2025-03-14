@@ -22,13 +22,16 @@ import TestsFoundation
 import XCTest
 
 class StudentAnnotationSubmissionViewModelTests: StudentTestCase {
-    private let testee = StudentAnnotationSubmissionViewModel(documentURL: URL(string: "a.b")!,
-                                                              courseID: "123",
-                                                              assignmentID: "321",
-                                                              userID: "111",
-                                                              annotatableAttachmentID: "3",
-                                                              assignmentName: "Test Assignment",
-                                                              courseColor: UIColor(hexString: "#BEEF00")!)
+    private lazy var testee = StudentAnnotationSubmissionViewModel(
+        documentURL: URL(string: "a.b")!,
+        courseID: "123",
+        assignmentID: "321",
+        userID: "111",
+        annotatableAttachmentID: "3",
+        assignmentName: "Test Assignment",
+        courseColor: UIColor(hexString: "#BEEF00")!,
+        environment: env
+    )
 
     func testDocumentURL() {
         XCTAssertEqual(testee.documentURL, URL(string: "a.b")!)

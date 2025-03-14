@@ -22,26 +22,80 @@ import XCTest
 
 class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
 
-    override func setUp() {
-        super.setUp()
+    func testFetchComments() {
+        // Given
+        api.mock(GetUserSettingsRequest(userID: "self"),
+                 value: APIUserSettings.make(comment_library_suggestions_enabled: true))
+
         let comments = [APICommentLibraryResponse.CommentBankItem(id: "1", comment: "First comment"),
                         APICommentLibraryResponse.CommentBankItem(id: "2", comment: "Second comment") ]
-        let response =  APICommentLibraryResponse(data: .init(user: .init(id: "1", commentBankItems: .init(nodes: comments ))))
+        let response =  APICommentLibraryResponse(
+            data: .init(
+                user: .init(
+                    id: "1",
+                    commentBankItems: .init(
+                        nodes: comments,
+                        pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: true)
+                    )
+                )
+            )
+        )
         api.mock(APICommentLibraryRequest(userId: "1"), value: response)
-    }
 
-    func testFechComments() {
+        // When
         let testee = SubmissionCommentLibraryViewModel()
-        testee.viewDidAppear()
-        switch testee.state {
-        case .data(let comments):
-            XCTAssertEqual(comments[0].id, "1")
-            XCTAssertEqual(comments[0].text, "First comment")
-            XCTAssertEqual(comments[1].id, "2")
-            XCTAssertEqual(comments[1].text, "Second comment")
-        case .loading, .empty:
-            break
+
+        let exp1 = expectation(description: "fetch completed")
+        testee.viewDidAppear(completion: { exp1.fulfill() })
+
+        wait(for: [exp1], timeout: 2)
+
+        // Then
+        XCTAssertEqual(testee.endCursor, "next_cursor")
+
+        guard case .data(let loaded) = testee.state  else {
+            XCTFail("Data state expected!")
+            return
         }
 
+        XCTAssertEqual(loaded[0].id, "1")
+        XCTAssertEqual(loaded[0].text, "First comment")
+        XCTAssertEqual(loaded[1].id, "2")
+        XCTAssertEqual(loaded[1].text, "Second comment")
+
+        // MARK: - Loading Next Page
+
+        // Given
+        let nextPage = [APICommentLibraryResponse.CommentBankItem(id: "3", comment: "Third comment"),
+                        APICommentLibraryResponse.CommentBankItem(id: "4", comment: "Fourth comment") ]
+        let pageResponse =  APICommentLibraryResponse(
+            data: .init(
+                user: .init(
+                    id: "1",
+                    commentBankItems: .init(
+                        nodes: nextPage,
+                        pageInfo: APIPageInfo(endCursor: "finish_cursor", hasNextPage: false)
+                    )
+                )
+            )
+        )
+        api.mock(APICommentLibraryRequest(userId: "1", cursor: "next_cursor"), value: pageResponse)
+
+        // When
+        let exp2 = expectation(description: "page loaded")
+        testee.loadNextPage(completion: { exp2.fulfill() })
+
+        wait(for: [exp2], timeout: 2)
+
+        // Then
+        XCTAssertNil(testee.endCursor)
+
+        guard case .data(let loaded) = testee.state  else {
+            XCTFail("Data state expected!")
+            return
+        }
+
+        let expected = (comments + nextPage).map({ LibraryComment(id: $0.id, text: $0.comment) })
+        XCTAssertEqual(loaded, expected)
     }
 }

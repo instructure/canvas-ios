@@ -18,6 +18,7 @@
 
 import AVFoundation
 import UniformTypeIdentifiers
+import UIKit
 
 extension Sequence where Element == URL {
     public var pathExtensions: Set<String> {

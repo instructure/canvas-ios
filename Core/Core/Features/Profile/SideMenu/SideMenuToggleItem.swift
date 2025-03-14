@@ -27,7 +27,7 @@ struct SideMenuToggleItem: View {
     @Binding var isOn: Bool
 
     var body: some View {
-        Toggle(isOn: $isOn, label: {
+        InstUI.Toggle(isOn: $isOn, label: {
             HStack(spacing: 20) {
                 image
                 title
@@ -40,12 +40,6 @@ struct SideMenuToggleItem: View {
         .contentShape(Rectangle())
         .accessibility(label: title)
         .identifier("Profile.\(id)Toggle")
-        .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-        .onChange(of: isOn) { _ in
-            // Binding change doesn't generate haptic feedback so we manually trigger one
-            let feedback = UIImpactFeedbackGenerator(style: .medium)
-            feedback.impactOccurred()
-        }
     }
 }
 

@@ -16,19 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct APICommentLibraryRequest: APIGraphQLRequestable {
+public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
     public typealias Response = APICommentLibraryResponse
 
     public static let operationName = "CommentLibraryQuery"
     public static let query = """
-        query \(operationName)($userId: ID!) {
+        query \(operationName)($query: String, $userId: ID!, $pageSize: Int!, $cursor: String) {
             user: legacyNode(_id: $userId, type: User) {
                 ... on User {
                     id: _id
-                    commentBankItems: commentBankItemsConnection(query: "") {
+                    commentBankItems: commentBankItemsConnection(query: $query, first: $pageSize, after: $cursor) {
                         nodes {
                             comment: comment
                             id: _id
+                        }
+                        pageInfo {
+                            endCursor
+                            hasNextPage
                         }
                     }
                 }
@@ -37,12 +41,33 @@ public struct APICommentLibraryRequest: APIGraphQLRequestable {
         """
 
     public struct Variables: Codable, Equatable {
+        public let query: String
         public let userId: String
+        public let cursor: String?
+        public let pageSize: Int
     }
 
     public let variables: Variables
 
-    public init(userId: String) {
-        variables = Variables(userId: userId)
+    public init(query: String = "", userId: String, pageSize: Int = 20, cursor: String? = nil) {
+        variables = Variables(
+            query: query,
+            userId: userId,
+            cursor: cursor,
+            pageSize: pageSize
+        )
+    }
+
+    public func nextPageRequest(from response: APICommentLibraryResponse) -> APICommentLibraryRequest? {
+        guard let pageInfo = response.data.user.commentBankItems.pageInfo,
+              pageInfo.hasNextPage
+        else { return nil }
+
+        return APICommentLibraryRequest(
+            query: variables.query,
+            userId: variables.userId,
+            pageSize: variables.pageSize,
+            cursor: pageInfo.endCursor
+        )
     }
 }

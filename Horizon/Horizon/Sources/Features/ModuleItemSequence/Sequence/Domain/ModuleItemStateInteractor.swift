@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import Foundation
 
 protocol ModuleItemStateInteractor {
     func getModuleItemState(
@@ -71,7 +72,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
         }
     }
 
-   private func getModuleItemDetailsState(
+    private func getModuleItemDetailsState(
         item: HModuleItem?,
         moduleID: String?,
         itemID: String?
@@ -83,7 +84,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
         }
 
         switch item.type {
-        case .externalURL(let url):
+        case let .externalURL(url):
             return .externalURL(url: url, name: item.title)
         case let .externalTool(toolID, url):
             let tools = LTITools(
@@ -98,7 +99,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
             )
             return .externalTool(tools: tools, name: item.title)
 
-        case .assignment(let id):
+        case let .assignment(id):
             let isMarkedAsDone = item.completionRequirementType == .must_mark_done
             return .assignment(
                 courseID: courseID,
@@ -108,7 +109,7 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
                 moduleID: moduleID ?? "",
                 itemID: itemID ?? ""
             )
-        case .file(let id):
+        case let .file(id):
             guard let url = item.url, let context = Context(path: url.path) else { return nil }
             return .file(context: context, fileID: id)
         default:

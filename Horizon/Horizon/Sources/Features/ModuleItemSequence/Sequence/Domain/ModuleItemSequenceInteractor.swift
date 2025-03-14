@@ -17,8 +17,9 @@
 //
 
 import Combine
-import Core
 import CombineSchedulers
+import Core
+import Foundation
 
 protocol ModuleItemSequenceInteractor {
     func fetchModuleItems(
@@ -28,8 +29,7 @@ protocol ModuleItemSequenceInteractor {
     ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never>
 
     func markAsViewed(moduleID: String,
-                      itemID: String
-    ) -> AnyPublisher<[HModuleItem], Error>
+                      itemID: String) -> AnyPublisher<[HModuleItem], Error>
 
     func markAsDone(
         completed: Bool,
@@ -105,7 +105,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
             }
             .removeDuplicates(by: { $0.0 == $1.0 && $0.1 == $1.1 })
             .receive(on: scheduler)
-            .compactMap { (moduleItemSequence, moduleItems) -> (HModuleItemSequence?, HModuleItem?) in
+            .compactMap { moduleItemSequence, moduleItems -> (HModuleItemSequence?, HModuleItem?) in
                 (moduleItemSequence.first, moduleItems.first)
             }
             .eraseToAnyPublisher()
@@ -134,7 +134,6 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
         moduleID: String,
         itemID: String
     ) -> AnyPublisher<[HModuleItem], Error> {
-
         let useCase = MarkModuleItemDone(
             courseID: courseID,
             moduleID: moduleID,

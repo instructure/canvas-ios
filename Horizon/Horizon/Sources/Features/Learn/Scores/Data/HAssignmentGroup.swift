@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 struct HAssignmentGroup: Identifiable {
     let id: String

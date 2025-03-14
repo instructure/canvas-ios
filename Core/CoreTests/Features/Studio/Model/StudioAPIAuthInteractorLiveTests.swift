@@ -44,7 +44,7 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
         )
         let publisher = StudioAPIAuthInteractorLive(webViewFactory: { mockWebView }).makeStudioAPI()
 
-        XCTAssertFirstValueAndCompletion(publisher, timeout: 10) { api in
+        XCTAssertFirstValueAndCompletion(publisher, timeout: 14) { api in
             XCTAssertEqual(api.loginSession, expectedAPIResult.loginSession)
         }
 

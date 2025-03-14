@@ -18,6 +18,8 @@
 
 import Combine
 import Core
+import Foundation
+import UIKit
 
 enum LoginError: Error {
     case loggedOut

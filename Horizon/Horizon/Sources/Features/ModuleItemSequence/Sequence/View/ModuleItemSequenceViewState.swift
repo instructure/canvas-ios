@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Core
+import Foundation
+import UIKit
 
 enum ModuleItemSequenceViewState {
     case externalURL(url: URL, name: String)

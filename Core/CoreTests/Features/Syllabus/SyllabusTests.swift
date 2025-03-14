@@ -19,6 +19,7 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class SyllabusTests: CoreTestCase {
     func testMake() {

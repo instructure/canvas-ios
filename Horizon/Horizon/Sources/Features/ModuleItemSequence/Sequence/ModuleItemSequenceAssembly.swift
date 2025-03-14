@@ -19,6 +19,7 @@
 import Foundation
 import SwiftUI
 import Core
+import UIKit
 
 enum ModuleItemSequenceAssembly {
     static func makeItemSequenceView(

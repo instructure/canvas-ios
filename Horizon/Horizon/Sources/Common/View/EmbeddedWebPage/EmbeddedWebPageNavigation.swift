@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 protocol EmbeddedWebPageNavigation: AnyObject {
     func openURL(_ url: URL, viewController: WeakViewController)
