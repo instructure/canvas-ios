@@ -144,13 +144,14 @@ struct ModuleNavBarView: View {
     }
 
     private func navigateToTutor(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) {
-        var path = "/assistant"
-        if let courseId = courseId, let pageUrl = pageUrl {
-            path += "/\(courseId)/page/\(pageUrl)"
-        }
-        if let courseId = courseId, let fileId = fileId {
-            path += "/\(courseId)/file/\(fileId)"
-        }
-        router.route(to: path, from: controller, options: .modal())
+        let params = [
+            "courseId": courseId,
+            "pageUrl": pageUrl,
+            "fileId": fileId
+        ].map { key, value in
+            guard let value = value else { return nil }
+            return "\(key)=\(value)"
+        }.compactMap { $0 }.joined(separator: "&")
+        router.route(to: "/assistant?\(params)", from: controller, options: .modal())
     }
 }

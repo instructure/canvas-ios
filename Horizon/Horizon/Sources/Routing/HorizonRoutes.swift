@@ -249,18 +249,45 @@ enum HorizonRoutes {
 
     private static var aiRoutes: [RouteHandler] {
         [
-            RouteHandler("/assistant") { _, _, _ in
-                ChatBotAssembly.makeChatBotView()
+            RouteHandler("/assistant") { url, _, _ in
+
+                let queryItems = url.queryItems ?? []
+
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+
+                return CoreHostingController(
+                    AssistAssembly.makeAssistChatView(
+                        courseId: courseId,
+                        pageUrl: pageUrl,
+                        fileId: fileId
+                    )
+                )
             },
-            RouteHandler("/assistant/:courseId/page/:pageUrl") { _, params, _ in
-                guard let courseId = params["courseId"],
-                      let pageUrl = params["pageUrl"] else { return nil }
-                return ChatBotAssembly.makeChatBotView(courseId: courseId, pageUrl: pageUrl)
+            RouteHandler("/assistant/flashcards") { _, _, userInfo in
+                let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
+                return CoreHostingController(
+                    AssistAssembly.makeAIFlashCardView(flashCards: flashCards)
+                )
             },
-            RouteHandler("/assistant/:courseId/file/:fileId") { _, params, _ in
-                guard let courseId = params["courseId"],
-                      let fileId = params["fileId"] else { return nil }
-                return ChatBotAssembly.makeChatBotView(courseId: courseId, fileId: fileId)
+            RouteHandler("/assistant/quiz") { url, _, userInfo in
+                let queryItems = url.queryItems ?? []
+
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+
+                let quizModel = userInfo?["quizModel"] as? AssistQuizModel
+
+                let quizView = AssistAssembly.makeAIQuizView(
+                    courseId: courseId,
+                    fileId: fileId,
+                    pageUrl: pageUrl,
+                    quizModel: quizModel
+                )
+
+                return CoreHostingController(quizView)
             }
         ]
     }
