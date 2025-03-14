@@ -16,13 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-
-/// ChatBotActions are published to the  ChatBotInteractor. The Interactor reacts to the action and publishes one or more ChatBotResponses.
-enum ChatBotAction {
-    /// the user is chatting with the bot
-    case chat(prompt: String = "", history: [ChatMessage] = [])
-
-    /// the user has selected a chip while viewing a file
-    case chip(option: ChipOption, history: [ChatMessage])
+enum AIModel: String {
+    case claude3Sonnet20240229V10 = "anthropic.claude-3-sonnet-20240229-v1:0"
 }

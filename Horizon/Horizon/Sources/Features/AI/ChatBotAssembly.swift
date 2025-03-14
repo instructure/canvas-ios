@@ -22,26 +22,28 @@ import Core
 
 final class ChatBotAssembly {
 
-    static func makeChatBotView() -> ChatBotView {
-        let router = AppEnvironment.shared.router
-        let chatbotInteractor = makeChatBotInteractor()
-        let viewModel = ChatBotViewModel(chatBotInteractor: chatbotInteractor, router: router)
-        return ChatBotView(viewModel: viewModel)
+    static func makeChatBotView(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) -> UIViewController {
+        CoreHostingController(
+            ChatBotView(
+                viewModel: ChatBotViewModel(
+                    chatBotInteractor: makeChatBotInteractor(courseId: courseId, pageUrl: pageUrl, fileId: fileId)
+                )
+            )
+        )
     }
 
-    static func makeChatBotInteractor() -> ChatBotInteractor {
-        ChatBotInteractorLive()
-    }
-
-    static func makeAITutorView() -> UIViewController {
-        let appEnvironment = AppEnvironment.shared
-        let viewModel = AITutorViewModel(router: appEnvironment.router)
-        let view = AITutorView(viewModel: viewModel)
-        return CoreHostingController(view)
-    }
-
-    static func makeAISummaryView() -> UIViewController {
-        CoreHostingController(AISummaryView())
+    static func makeChatBotInteractor(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) -> ChatBotInteractor {
+        if let courseId = courseId, let pageUrl = pageUrl {
+            return ChatBotInteractorLive(courseId: courseId, pageUrl: pageUrl)
+        }
+        if let courseId = courseId, let fileId = fileId {
+            return ChatBotInteractorLive(
+                courseId: courseId,
+                fileId: fileId,
+                downloadFileInteractor: DownloadFileInteractorLive(courseID: courseId)
+            )
+        }
+        return ChatBotInteractorLive()
     }
 
     static func makeAIQuizView() -> AIQuizView {

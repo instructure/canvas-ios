@@ -249,11 +249,18 @@ enum HorizonRoutes {
 
     private static var aiRoutes: [RouteHandler] {
         [
-            RouteHandler("/tutor") { _, _, _ in
-                ChatBotAssembly.makeAITutorView()
+            RouteHandler("/assistant") { _, _, _ in
+                ChatBotAssembly.makeChatBotView()
             },
-            RouteHandler("/summary") { _, _, _ in
-                ChatBotAssembly.makeAISummaryView()
+            RouteHandler("/assistant/:courseId/page/:pageUrl") { _, params, _ in
+                guard let courseId = params["courseId"],
+                      let pageUrl = params["pageUrl"] else { return nil }
+                return ChatBotAssembly.makeChatBotView(courseId: courseId, pageUrl: pageUrl)
+            },
+            RouteHandler("/assistant/:courseId/file/:fileId") { _, params, _ in
+                guard let courseId = params["courseId"],
+                      let fileId = params["fileId"] else { return nil }
+                return ChatBotAssembly.makeChatBotView(courseId: courseId, fileId: fileId)
             }
         ]
     }

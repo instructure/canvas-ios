@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
 import HorizonUI
+import SwiftUI
 
 enum ModuleNavBarButtons {
     case previous
@@ -33,9 +34,9 @@ enum ModuleNavBarButtons {
     }
 }
 
-enum ModuleNavBarUtilityButtons {
+enum ModuleNavBarUtilityButtons: Hashable {
     case tts
-    case chatBot
+    case chatBot(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) /// provide either no values, or course ID and either pageUr, or fileId
     case notebook
     case assignmentMoreOptions
 

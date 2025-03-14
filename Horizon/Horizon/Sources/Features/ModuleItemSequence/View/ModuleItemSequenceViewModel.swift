@@ -34,6 +34,9 @@ final class ModuleItemSequenceViewModel {
     private(set) var moduleItem: HModuleItem?
     private(set) var assignmentAttemptCount: String?
     private(set) var isAssignmentOptionsButtonVisible: Bool = false
+    var visibleButtons: [ModuleNavBarUtilityButtons] {
+        getVisibleButtons()
+    }
     var estimatedTime: String? {
         guard let moduleItem else {
             return nil
@@ -154,6 +157,18 @@ final class ModuleItemSequenceViewModel {
         }
         viewState = currentState
         offsetX = 0
+    }
+
+    private func getVisibleButtons() -> [ModuleNavBarUtilityButtons] {
+        var chatBot = ModuleNavBarUtilityButtons.chatBot()
+        if case let .file(fileId) = moduleItem?.type {
+            chatBot = .chatBot(courseId: course?.id, fileId: fileId)
+        }
+        if case let .page(pageUrl) = moduleItem?.type {
+            chatBot = .chatBot(courseId: course?.id, pageUrl: pageUrl)
+        }
+
+        return [chatBot] + [isAssignmentOptionsButtonVisible ? .assignmentMoreOptions : .notebook]
     }
 
     private func getCurrentState(item: HModuleItem?) -> ModuleItemSequenceViewState? {

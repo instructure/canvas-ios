@@ -19,7 +19,7 @@
 import Core
 
 class CedarGenerateQuizMutation: APIGraphQLRequestable {
-    let variables: GenerateQuizInput
+    let variables: Input
 
     var path: String {
         "/graphql"
@@ -38,35 +38,41 @@ class CedarGenerateQuizMutation: APIGraphQLRequestable {
         numberOfOptionsPerQuestion: Int = 4,
         maxLengthOfQuestions: Int = 100
     ) {
-        self.variables = GenerateQuizInput(
-            context: context,
-            numberOfQuestions: numberOfQuestions,
-            numberOfOptionsPerQuestion: numberOfOptionsPerQuestion,
-            maxLengthOfQuestions: maxLengthOfQuestions
+        self.variables = Input(
+            input: QuizInput(
+                context: context,
+                numberOfQuestions: numberOfQuestions,
+                numberOfOptionsPerQuestion: numberOfOptionsPerQuestion,
+                maxLengthOfQuestions: maxLengthOfQuestions
+            )
         )
     }
 
     public static let operationName: String = "GenerateQuiz"
     public static var query: String = """
-            mutation \(operationName)($input: GenerateQuizInput!) {
-                generateQuiz(input: $input) {
-                    question
-                    options
-                    result
-                }
+        mutation \(operationName)($input: QuizInput!) {
+            generateQuiz(input: $input) {
+                question
+                options
+                result
             }
-        """
+        }
+    """
 
-    typealias Response = QuizData
+    typealias Response = QuizOutput
 
-    struct GenerateQuizInput: Codable, Equatable {
+    struct Input: Codable, Equatable {
+        let input: QuizInput
+    }
+
+    struct QuizInput: Codable, Equatable {
         let context: String
         let numberOfQuestions: Int
         let numberOfOptionsPerQuestion: Int
         let maxLengthOfQuestions: Int
     }
 
-    struct QuizData: Codable {
+    struct QuizOutput: Codable {
         let data: Quiz
     }
 

@@ -206,15 +206,12 @@ public struct ModuleItemSequenceView: View {
             ) {
                 viewModel.onTapAssignmentOptions.send()
             }
-            let visibleButtons: [ModuleNavBarUtilityButtons] = viewModel.isAssignmentOptionsButtonVisible
-            ? [.chatBot, .assignmentMoreOptions]
-            : [.chatBot, .notebook, .tts]
 
             ModuleItemSequenceAssembly.makeModuleNavBarView(
                 nextButton: nextButton,
                 previousButton: previousButton,
                 assignmentMoreOptionsButton: assignmentOptionsButton,
-                visibleButtons: visibleButtons
+                visibleButtons: viewModel.visibleButtons
             )
             .padding(.vertical, .huiSpaces.space8)
             .padding(.horizontal, .huiSpaces.space16)

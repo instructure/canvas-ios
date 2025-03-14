@@ -78,10 +78,8 @@ struct ChatBotView: View {
                         .transition(.scaleAndFade)
                 }
             }
-            .onChange(of: viewModel.messages) {
-                if let lastMessage = viewModel.messages.last {
-                    scrollViewProxy.scrollTo(lastMessage.id, anchor: .bottom)
-                }
+            .onAppear {
+                viewModel.scrollViewProxy = scrollViewProxy
             }
         }
     }

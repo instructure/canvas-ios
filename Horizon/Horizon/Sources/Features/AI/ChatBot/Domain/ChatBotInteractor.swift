@@ -27,40 +27,144 @@ protocol ChatBotInteractor {
     var listen: AnyPublisher<ChatBotResponse, Error> { get }
 }
 
+struct PageContext {
+    let title: String?
+    let body: String?
+
+    let format: Format?
+    let name: String?
+    let source: String?
+
+    let chips: [DefaultChipOption]
+
+    init() {
+        title = nil
+        body = nil
+        format = nil
+        name = nil
+        source = nil
+        chips = []
+    }
+
+    init(title: String, body: String) {
+        self.title = title
+        self.body = body
+
+        format = nil
+        name = nil
+        source = nil
+
+        chips = [.summarize, .keyTakeaways, .tellMeMore, .flashcards, .quiz]
+    }
+
+    init(format: Format, name: String, source: String) {
+        self.format = format
+        self.name = name
+        self.source = source
+
+        title = nil
+        body = nil
+
+        chips = [.summarize, .keyTakeaways, .tellMeMore, .flashcards]
+    }
+
+    var prompt: String {
+        if let title = title, let body = body {
+            return "This is a document with the title '\(title)' and the body '\(body)'"
+        }
+        if let format = format, let name = name, let source = source {
+            return "This is a file with the format '\(format)', the name '\(name)', and the source '\(source)'"
+        }
+        return ""
+    }
+}
+
 class ChatBotInteractorLive: ChatBotInteractor {
     // MARK: - Dependencies
 
     private let canvasApi: API
-    private let model: AIModel
-    private let horizonService: HorizonService
 
     // MARK: - Private
 
-    private var subscriptions = Set<AnyCancellable>()
     private let actionPublisher = CurrentValueRelay<ChatBotAction?>(nil)
+    private let downloadFileInteractor: DownloadFileInteractor?
+    private let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     private let responsePublisher = PassthroughSubject<ChatBotResponse, Error>()
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - init
 
+    convenience init(courseId: String, pageUrl: String, canvasApi: API = AppEnvironment.shared.api) {
+        let pageContextPublisher = ReactiveStore(
+            useCase: GetPage(context: .course(courseId), url: pageUrl)
+        )
+        .getEntities()
+        .map { PageContext(title: $0.first?.title ?? "", body: $0.first?.body ?? "") }
+        .eraseToAnyPublisher()
+
+        self.init(pageContextPublisher: pageContextPublisher, canvasApi: canvasApi)
+    }
+
+    convenience init(
+        courseId: String,
+        fileId: String,
+        downloadFileInteractor: DownloadFileInteractor,
+        canvasApi: API = AppEnvironment.shared.api
+    ) {
+        let base64FileContextPublisher = ReactiveStore(useCase: GetFile(context: .course(courseId), fileID: fileId))
+            .getEntities()
+            .map { files in files.first }
+            .flatMap { (file: File?) in
+                guard let file = file,
+                      let format = Format.from(mimeType: file.contentType)
+                    else {
+                    // no reason to download the file if we can't determine the format
+                    return Just(PageContext()).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+                return downloadFileInteractor
+                    .download(fileID: fileId)
+                    .map { try? Data(contentsOf: $0) }
+                    .map { $0?.base64EncodedString() }
+                    .map { (base64String: String?) in
+                        guard let base64String = base64String else {
+                            return PageContext()
+                        }
+                        return PageContext(
+                            format: format,
+                            name: file.filename,
+                            source: base64String
+                        )
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+
+        self.init(pageContextPublisher: base64FileContextPublisher, canvasApi: canvasApi, downloadFileInteractor: downloadFileInteractor)
+    }
+
     init(
+        pageContextPublisher: AnyPublisher<PageContext, Error>? = nil,
         canvasApi: API = AppEnvironment.shared.api,
-        horizonService: HorizonService = .cedar,
-        model: AIModel = .claude3Sonnet20240229V10
+        downloadFileInteractor: DownloadFileInteractor? = nil
     ) {
         self.canvasApi = canvasApi
-        self.horizonService = horizonService
-        self.model = model
+        self.downloadFileInteractor = downloadFileInteractor
 
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
             actionPublisher.setFailureType(to: Error.self),
+            pageContextPublisher ?? Just(PageContext()).setFailureType(to: Error.self).eraseToAnyPublisher(),
             userShortNamePublisher
         )
-        .flatMap { [weak self] action, userShortName in
+        .flatMap { [weak self] action, pageContext, userShortName in
             guard let self = self,
                   let action = action else {
                 return Empty<ChatBotResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
             }
-            return self.actionHandler(action: action, userShortName: userShortName)
+            return self.actionHandler(
+                action: action,
+                pageContext: pageContext,
+                userShortName: userShortName
+            )
         }
         .sink(
             receiveCompletion: { _ in },
@@ -84,15 +188,18 @@ class ChatBotInteractorLive: ChatBotInteractor {
 
     // MARK: - Private
 
-    // TODO: What to do about a file?
-    private func actionHandler(action: ChatBotAction, userShortName: String) -> AnyPublisher<ChatBotResponse, any Error> {
+    private func actionHandler(
+        action: ChatBotAction,
+        pageContext: PageContext,
+        userShortName: String
+    ) -> AnyPublisher<ChatBotResponse, any Error> {
         switch action {
-        case .chat(let prompt, _) where !prompt.isEmpty,
-             .page(let prompt, _, _, _) where !prompt.isEmpty:
-            return publish( using: action, with: userShortName)
+        case .chat(let prompt, _) where !prompt.isEmpty:
+            return publish(using: action, with: userShortName)
             .flatMap { newHistory in
                 self.classifier(
                     prompt: prompt,
+                    pageContext: pageContext,
                     userShortName: userShortName,
                     action: action,
                     history: newHistory
@@ -101,37 +208,45 @@ class ChatBotInteractorLive: ChatBotInteractor {
                     self.handleClassifierPromptResponse(
                         classification: classification,
                         action: action,
+                        pageContext: pageContext,
                         history: newHistory,
                         userShortName: userShortName
                     )
                 }
             }
             .eraseToAnyPublisher()
-        case .chip(let option, _, _),
-             .chipPage(let option, _, _, _):
+        case .chip(let option, _):
             return publish(using: action, with: userShortName)
-                .flatMap { [weak self] newHistory in
-                    guard let self = self else {
-                        return Empty<ChatBotResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
-                    }
-                    return self.basicChat(
-                        prompt: option.prompt,
-                        history: newHistory
+            .flatMap { newHistory in
+                self.classifier(
+                    prompt: option.prompt,
+                    pageContext: pageContext,
+                    userShortName: userShortName,
+                    action: action,
+                    history: newHistory
+                )
+                .flatMap { classification in
+                    self.handleClassifierPromptResponse(
+                        classification: classification,
+                        action: action,
+                        pageContext: pageContext,
+                        history: newHistory,
+                        userShortName: userShortName,
+                        useAdvancedChat: false
                     )
-                    .map { botResponse in
-                        ChatBotResponse(message: ChatMessage(botResponse: botResponse), chatHistory: newHistory)
-                    }
-                    .eraseToAnyPublisher()
                 }
-                .compactMap { $0 }
-                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
         default:
-            let options = action.defaultChipOptions.map { option in
-                ChipOption(option, action: action, userShortName: userShortName)
+            let options = pageContext.chips.map { option in
+                ChipOption(
+                    option,
+                    userShortName: userShortName
+                )
             }
             let message = String(localized: "How can I help today?", bundle: .horizon)
             let chatBotResponse = options.isEmpty ?
-                ChatBotResponse(message: ChatMessage(prompt: nil, text: message, isBot: true)) :
+            ChatBotResponse(message: ChatMessage(prompt: nil, text: message, role: .Assistant)) :
                 ChatBotResponse(chipOptions: options)
 
             return Just(chatBotResponse)
@@ -144,26 +259,18 @@ class ChatBotInteractorLive: ChatBotInteractor {
     private func publish(using action: ChatBotAction, with userShortName: String) -> AnyPublisher<[ChatMessage], Never> {
         var response: ChatBotResponse!
         switch action {
-        case .chat(let prompt, let history),
-                .page(let prompt, _, _, let history):
+        case .chat(let prompt, let history):
             response = ChatBotResponse(
                 message: ChatMessage(userResponse: prompt),
                 chatHistory: history,
                 isLoading: true
             )
-        case .chip(let option, let history, _),
-                .chipPage(let option, _, _, let history):
+        case .chip(let option, let history):
             response = ChatBotResponse(
                 message: ChatMessage(
                     prompt: option.prompt,
                     text: option.chip
                 ),
-                chatHistory: history,
-                isLoading: true
-            )
-        case .file(let prompt, _, let history):
-            response = ChatBotResponse(
-                message: ChatMessage(userResponse: prompt),
                 chatHistory: history,
                 isLoading: true
             )
@@ -175,33 +282,45 @@ class ChatBotInteractorLive: ChatBotInteractor {
             .eraseToAnyPublisher()
     }
 
-    // TODO: It looks like I'm not using history here. Should I be?
     /// Makes a request to the cedar endpoint using the given prompt and returns an answer
-    private func basicChat(prompt: String, history: [ChatMessage] = []) -> AnyPublisher<String, Error> {
+    private func basicChat(
+        prompt: String,
+        pageContext: PageContext? = nil
+    ) -> AnyPublisher<String, Error> {
         JWTTokenRequest(.cedar)
             .api(from: self.canvasApi)
-            .flatMap { cedarApi in
+            .flatMap { [weak self] cedarApi in
                 cedarApi.makeRequest(
-                    CedarAnswerPromptMutation(prompt: prompt)
+                    CedarAnswerPromptMutation(
+                        prompt: prompt,
+                        document: self?.buildDocumentBlock(pageContext: pageContext)
+                    )
                 )
             }
             .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
             .eraseToAnyPublisher()
     }
 
-    private func chipGenerator(history: [ChatMessage]) -> AnyPublisher<[ChipOption], Error> {
-        var chatHistoryJson = "[]"
-
-        if let encoded = try? JSONEncoder().encode(history) {
-            chatHistoryJson = String(data: encoded, encoding: .utf8) ?? "[]"
+    private func buildDocumentBlock(pageContext: PageContext?) -> CedarAnswerPromptMutation.DocumentBlock? {
+        guard let pageContext = pageContext,
+              let documentFormat = pageContext.format,
+              let source = pageContext.source else {
+            return nil
         }
+        return CedarAnswerPromptMutation.DocumentBlock(
+            format: documentFormat,
+            base64Source: source
+        )
+    }
 
-        // swiftlint:disable:next line_length
+    private func chipGenerator(history: [ChatMessage], pageContext: PageContext) -> AnyPublisher<[ChipOption], Error> {
+        // swiftlint:disable line_length
         let prompt = """
-            You are an agent designed to prepare potential quick response chips to show in a Learning Management System app based on an assistant agent's conversation with a learner. I'll provide you with the message history from the learner and the assistant. Please create 1-3 quick response chips based off how you think the learner might want to continue the conversation. We only want to show useful response chips, so don't feel obligated to produce 3. Answer in JSON with this format: [{chip: "", prompt: ""}, ...]. The chip should be a 1-2 word description of the follow-up (like "summarize", "more detail", or "explain X"), and the prompt is the full prompt to send back to the conversation agent if the learner taps on the chip. Don't include anything in the output besides the JSON. Here's the chat history in JSON: \(chatHistoryJson).
+            You are an agent designed to prepare potential quick response chips to show in a Learning Management System app based on an assistant agent's conversation with a learner. I'll provide you with the message history from the learner and the assistant. Create 1-3 quick response chips based off how you think the learner might want to continue the conversation. We only want to show useful response chips, so don't feel obligated to produce 3. Answer in JSON with this format: [{chip: "", prompt: ""}, {chip: "", prompt: ""}, ...]. The chip should be a 1-2 word description of the follow-up. Some good examples are \"summarize\", \"key takeaways\", \"tell me more\", \"flashcards\", or \"quiz\". Do not include chips that have been chosen previously in the chat. The prompt is the full prompt to send back to the conversation agent if the learner taps on the chip. Do not include anything in your response that is not JSON. For instance, do not return, \"Here are 3 potential quick response chips based on the conversation:\". Here's the chat history in JSON: \(history.json).
         """
+        // swiftlint:enable line_length
 
-        return basicChat(prompt: prompt)
+        return basicChat(prompt: prompt, pageContext: pageContext)
             .map(toChipOptions)
             .eraseToAnyPublisher()
     }
@@ -221,6 +340,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
 
     private func classifier(
         prompt: String,
+        pageContext: PageContext,
         userShortName: String,
         action: ChatBotAction,
         history: [ChatMessage]
@@ -228,10 +348,11 @@ class ChatBotInteractorLive: ChatBotInteractor {
         let longExplanations = ClassifierOption.allCases.map { $0.longExplanation }.joined(separator: ", ")
         let defaultOption = ClassifierOption.defaultOption.rawValue
         let shortOptions = ClassifierOption.allCases.map { $0.rawValue }.joined(separator: ", ")
-        // swiftlint:disable:next line_length
-        let classifierPrompt = "You are an agent designed to route a learner's question to the appropriate assistant. The possible assistants are \(longExplanations). If you're not sure, choose \(defaultOption). ALWAYS answer with a single word - either \(shortOptions). Here's the learner's question: \(prompt). \(action.promptContextString)"
 
-        return basicChat(prompt: classifierPrompt, history: history)
+        // swiftlint:disable:next line_length
+        let classifierPrompt = "You are an agent designed to route a learner's question to the appropriate assistant. The possible assistants are \(longExplanations). If you're not sure, choose \(defaultOption). ALWAYS answer with a single word - either \(shortOptions). Here's the learner's question: \(prompt). Here is our chat history in JSON: \(history.json)"
+
+        return basicChat(prompt: classifierPrompt, pageContext: pageContext)
     }
 
     // Given the classification string returned from the simpleChat,
@@ -239,19 +360,23 @@ class ChatBotInteractorLive: ChatBotInteractor {
     private func handleClassifierPromptResponse(
         classification: String,
         action: ChatBotAction,
+        pageContext: PageContext,
         history: [ChatMessage],
-        userShortName: String
+        userShortName: String,
+        useAdvancedChat: Bool = true
     ) -> AnyPublisher<ChatBotResponse, Error> {
         let defaultOption = ClassifierOption.defaultOption
         let classifierOption = ClassifierOption(rawValue: classification) ?? defaultOption
         switch classifierOption {
         case .chat:
-            return advancedChat(with: history)
+            let chatMethod = useAdvancedChat ? advancedChat(history: history) : basicChat(prompt: "\(history.json) \(pageContext.prompt)", pageContext: pageContext)
+            return chatMethod
+                .map { ChatBotResponse(message: ChatMessage(botResponse: $0), chatHistory: history) }
                 .flatMap { [weak self] response in
                     guard let self = self else {
                         return Empty<ChatBotResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
                     }
-                    return self.chipGenerator(history: response.chatHistory)
+                    return self.chipGenerator(history: response.chatHistory, pageContext: pageContext)
                         .map { chipOptions in
                             ChatBotResponse(
                                 chipOptions: chipOptions,
@@ -264,38 +389,33 @@ class ChatBotInteractorLive: ChatBotInteractor {
         case .flashcards:
             return flashcards(
                 action: action,
+                pageContext: pageContext,
                 history: history,
                 userShortName: userShortName
             )
         case .quiz:
             return quiz(
                 action: action,
+                pageContext: pageContext,
                 history: history,
                 userShortName: userShortName
             )
         }
     }
 
-    private func advancedChat(with history: [ChatMessage]) -> AnyPublisher<ChatBotResponse, Error> {
+    private func advancedChat(history: [ChatMessage]) -> AnyPublisher<String, Error> {
         JWTTokenRequest(.pine)
             .api(from: canvasApi)
             .flatMap { pineApi in
                 pineApi.makeRequest(
                     PineQueryMutation(
-                        messages: history
-                            .compactMap {
-                                guard let prompt = $0.prompt else { return nil }
-                                return PineQueryMutation.APIMessageInput(text: prompt, role: $0.isBot ? .Assistant : .User)
-                            }
+                        messages: history.reversed().filter { $0.prompt != nil }.map {
+                            PineQueryMutation.APIMessageInput(text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
+                        }
                     )
                 )
                 .compactMap { ragData in
-                    ragData.map {
-                        ChatBotResponse(
-                            message: ChatMessage(botResponse: $0.data.query.response),
-                            chatHistory: history
-                        )
-                    }
+                    ragData.map { $0.data.query.response }
                 }
             }
             .eraseToAnyPublisher()
@@ -303,6 +423,7 @@ class ChatBotInteractorLive: ChatBotInteractor {
 
     private func quiz(
         action: ChatBotAction,
+        pageContext: PageContext,
         history: [ChatMessage],
         userShortName: String
     ) -> AnyPublisher<ChatBotResponse, Error> {
@@ -310,11 +431,9 @@ class ChatBotInteractorLive: ChatBotInteractor {
             .api(from: canvasApi)
             .flatMap { cedarApi in
                 cedarApi.makeRequest(
-                    CedarGenerateQuizMutation(
-                        context: ChipOption(DefaultChipOption.quiz, action: action, userShortName: userShortName).prompt
-                    )
+                    CedarGenerateQuizMutation(context: pageContext.prompt)
                 )
-                .compactMap { (quizData: CedarGenerateQuizMutation.QuizData?) in
+                .compactMap { (quizData: CedarGenerateQuizMutation.QuizOutput?) in
                     quizData.map {
                         ChatBotResponse(
                             quizItems: $0.quizItems,
@@ -328,11 +447,13 @@ class ChatBotInteractorLive: ChatBotInteractor {
 
     private func flashcards(
         action: ChatBotAction,
+        pageContext: PageContext,
         history: [ChatMessage] = [],
         userShortName: String
     ) -> AnyPublisher<ChatBotResponse, Error> {
         basicChat(
-            prompt: ChipOption(DefaultChipOption.flashcards, action: action, userShortName: userShortName).prompt
+            prompt: ChipOption(DefaultChipOption.flashcards, userShortName: userShortName).prompt,
+            pageContext: pageContext
         )
         .compactMap { response in
             ChatBotResponse(
@@ -382,10 +503,6 @@ enum ClassifierOption: String, CaseIterable {
     }
 }
 
-enum AIModel: String {
-    case claude3Sonnet20240229V10 = "anthropic.claude-3-sonnet-20240229-v1:0"
-}
-
 // MARK: - Extensions
 
 extension ChatBotMessage {
@@ -418,8 +535,42 @@ struct QuizItem {
     let correctAnswerIndex: Int
 }
 
-extension CedarGenerateQuizMutation.QuizData {
+extension CedarGenerateQuizMutation.QuizOutput {
     var quizItems: [QuizItem] {
         data.generateQuiz.map { QuizItem(question: $0.question, answers: $0.options, correctAnswerIndex: $0.result) }
+    }
+}
+
+extension Array where Element == ChatMessage {
+    var json: String {
+        guard let encoded = try? JSONEncoder().encode(self) else {
+            return "[]"
+        }
+        return String(data: encoded, encoding: .utf8) ?? "[]"
+    }
+}
+
+enum Format: String, Codable, CaseIterable {
+    case pdf
+    case csv
+    case docx
+    case doc
+    case xlsx
+    case xls
+    case html
+    case txt
+    case md
+
+    static func from(mimeType: String?) -> Format? {
+        [
+            "text/plain": Format.txt,
+            "text/html": Format.html,
+            "text/csv": Format.csv,
+            "application/pdf": Format.pdf,
+            "application/msword": Format.doc,
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document": Format.docx,
+            "application/vnd.ms-excel": Format.xls,
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": Format.xlsx
+        ][mimeType ?? ""]
     }
 }

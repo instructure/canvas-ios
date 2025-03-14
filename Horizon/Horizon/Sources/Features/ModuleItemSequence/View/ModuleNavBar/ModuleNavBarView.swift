@@ -66,11 +66,13 @@ struct ModuleNavBarView: View {
                 ForEach(visibleButtons, id: \.self) { button in
                     switch button {
                     case .tts:
-                        buttonView(type: .tts)
-                    case .chatBot:
-                        chatBotButton
+                        buttonView(type: .tts) {}
+                    case .chatBot(let courseId, let pageUrl, let fileId):
+                        chatBotButton(courseId: courseId, pageUrl: pageUrl, fileId: fileId)
                     case .notebook:
-                        buttonView(type: .notebook)
+                        buttonView(type: .notebook) {
+                            router.route(to: "/notebook", from: controller)
+                        }
                     case .assignmentMoreOptions:
                         assignmentMoreOptionsButtonView
                     }
@@ -117,28 +119,38 @@ struct ModuleNavBarView: View {
         .hidden(!nextButton.isVisible)
     }
 
-    private func buttonView(type: ModuleNavBarUtilityButtons) -> some View {
+    private func buttonView(type: ModuleNavBarUtilityButtons, onTap: @escaping (() -> Void)) -> some View {
         HorizonUI.IconButton(
             type.image,
-            type: .white
-        ) {
-            navigateToTutor()
-        }
+            type: .white,
+            action: onTap
+        )
         .huiElevation(level: .level2)
     }
 
-    private var chatBotButton: some View {
+    private func chatBotButton(
+        courseId: String? = nil,
+        pageUrl: String? = nil,
+        fileId: String? = nil
+    ) -> some View {
         Button {
-            navigateToTutor()
+            navigateToTutor(courseId: courseId, pageUrl: pageUrl, fileId: fileId)
         } label: {
-            ModuleNavBarUtilityButtons.chatBot.image
+            ModuleNavBarUtilityButtons.chatBot().image
                 .resizable()
                 .frame(width: 44, height: 44)
                 .huiElevation(level: .level2)
         }
     }
 
-    private func navigateToTutor() {
-        router.route(to: "/tutor", from: controller, options: .modal())
+    private func navigateToTutor(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) {
+        var path = "/assistant"
+        if let courseId = courseId, let pageUrl = pageUrl {
+            path += "/\(courseId)/page/\(pageUrl)"
+        }
+        if let courseId = courseId, let fileId = fileId {
+            path += "/\(courseId)/file/\(fileId)"
+        }
+        router.route(to: path, from: controller, options: .modal())
     }
 }

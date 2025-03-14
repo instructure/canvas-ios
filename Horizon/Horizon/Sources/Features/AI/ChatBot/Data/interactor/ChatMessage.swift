@@ -20,7 +20,7 @@ import Foundation
 
 struct ChatMessage: Codable, Equatable {
 
-    let id = UUID()
+    let id: UUID
 
     /// The prompt that was sent to the AI. Not shown to the user
     /// If set to null, then it is removed from the list of messages sent to the AI
@@ -30,24 +30,39 @@ struct ChatMessage: Codable, Equatable {
     let text: String
 
     /// Whether or not this came from the AI
-    let isBot: Bool
+    let role: Role
 
     init(botResponse: String) {
         prompt = botResponse
         text = botResponse
-        isBot = true
+        role = .Assistant
+        id = UUID()
     }
 
     init(userResponse: String) {
         prompt = userResponse
         text = userResponse
-        isBot = false
+        role = .User
+        id = UUID()
     }
 
-    init(prompt: String?, text: String, isBot: Bool = false) {
+    init(prompt: String?, text: String, role: Role = .User) {
         self.prompt = prompt
         self.text = text
+        id = UUID()
 
-        self.isBot = isBot
+        self.role = role
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(prompt, forKey: .prompt)
+        try container.encode(text, forKey: .text)
+        try container.encode(role, forKey: .role)
+    }
+
+    enum Role: String, Codable, Equatable {
+        case Assistant
+        case User
     }
 }

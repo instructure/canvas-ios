@@ -34,15 +34,16 @@ class CedarAnswerPromptMutation: APIGraphQLRequestable {
 
     public init(
         prompt: String,
+        document: DocumentBlock? = nil,
         model: AIModel = .claude3Sonnet20240229V10
     ) {
-        self.variables = Variables(model: model.rawValue, prompt: prompt)
+        self.variables = Variables(model: model.rawValue, prompt: prompt, document: document)
     }
 
     public static let operationName: String = "AnswerPrompt"
     public static var query: String = """
-        mutation \(operationName)($model: String!, $prompt: String!) {
-            answerPrompt(input: { model: $model, prompt: $prompt })
+        mutation \(operationName)($model: String!, $prompt: String!, $document: DocumentBlock) {
+            answerPrompt(input: { model: $model, prompt: $prompt, document: $document})
         }
     """
 
@@ -51,6 +52,12 @@ class CedarAnswerPromptMutation: APIGraphQLRequestable {
     struct Input: Codable, Equatable {
         let model: String
         let prompt: String
+        let document: DocumentBlock?
+    }
+
+    struct DocumentBlock: Codable, Equatable {
+        let format: Format
+        let base64Source: String
     }
 }
 

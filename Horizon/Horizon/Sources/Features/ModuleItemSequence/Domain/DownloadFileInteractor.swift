@@ -47,6 +47,9 @@ final class DownloadFileInteractorLive: DownloadFileInteractor {
         )
         .getEntities(ignoreCache: true)
         .flatMap { [weak self] files -> AnyPublisher<URL, Error> in
+            if self == nil {
+                print("What?")
+            }
             guard let self,
                   let file = files.first,
                   let url = file.url

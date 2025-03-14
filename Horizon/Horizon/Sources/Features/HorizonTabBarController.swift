@@ -53,7 +53,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
     // MARK: - Functions
 
     private func presentChatBot() {
-        let vc = CoreHostingController(ChatBotAssembly.makeChatBotView())
+        let vc = ChatBotAssembly.makeChatBotView()
         vc.modalPresentationStyle = .pageSheet
         router.show(vc, from: self, options: .modal(isDismissable: false))
     }

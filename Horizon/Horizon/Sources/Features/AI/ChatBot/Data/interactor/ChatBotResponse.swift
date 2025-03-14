@@ -59,11 +59,16 @@ struct ChatBotResponse {
     }
 
     /// Publishing an updated chat history. This happens when chatting with the bot
-    init(message: ChatMessage, chatHistory: [ChatMessage] = [], isLoading: Bool = false) {
+    init(
+        message: ChatMessage,
+        chipOptions: [ChipOption] = [],
+        chatHistory: [ChatMessage] = [],
+        isLoading: Bool = false
+    ) {
         self.chatHistory = chatHistory + [message]
+        self.chipOptions = chipOptions
         self.isLoading = isLoading
 
-        self.chipOptions = nil
         self.flashCards = nil
         self.quizItems = nil
     }

@@ -39,21 +39,23 @@ struct ChipOption: Codable, Hashable {
         prompt = try container.decode(String.self, forKey: .prompt)
     }
 
-    init(_ option: DefaultChipOption, action: ChatBotAction, userShortName: String) {
+    // swiftlint:disable line_length
+    init(_ option: DefaultChipOption, userShortName: String) {
         chip = option.rawValue
 
         let introduction = "You can address me as \(userShortName)."
         switch option {
         case .summarize:
-            prompt = "\(introduction) Give me a 1-2 paragraph summary of the content; don't use any information besides the provided content. Return the response as HTML paragraphs. \(action.promptContextString)"
+            prompt = "\(introduction) Give me a 1-2 paragraph summary of the content; don't use any information besides the provided content."
         case .keyTakeaways:
-            prompt = "\(introduction) Give some key takeaways from this content; don't use any information besides the provided content. Return the response as an HTML unordered list. \(action.promptContextString)"
+            prompt = "\(introduction) Give some key takeaways from this content; don't use any information besides the provided content. Return the response as a bulleted list."
         case .tellMeMore:
-            prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content. Return the response as HTML paragraphs. \(action.promptContextString)"
+            prompt = "\(introduction) In 1-2 paragraphs, tell me more about this content."
         case .flashcards:
-            prompt = "\(introduction) Here is the content from a course in html format, i need 7 questions with answers, like a quiz, based on the content, give back in jason format like: {data: [{question: '', answer: ''}, {question: '', answer: ''}, ...]} without any further description or text. \(action.promptContextString)"
+            prompt = "\(introduction) Here is the content from a course in html format, i need 7 questions with answers, like a quiz, based on the content, give back in jason format like: {data: [{question: '', answer: ''}, {question: '', answer: ''}, ...]} without any further description or text."
         case .quiz:
-            prompt = "\(introduction). \(action.promptContextString)"
+            prompt = "Generate a quiz"
         }
     }
+    // swiftlint:enable line_length
 }
