@@ -16,28 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 
 class APITokenRefreshViewModel {
 
-    func reLoginUser(
+    func loginUserManually(
         host: String,
         rootViewController: UIViewController,
-        router: Router,
-        completion: @escaping (LoginSession?) -> Void
-    ) {
-        Task {
-            await showLoginDialog(rootViewController: rootViewController)
-            let newSession = await showLoginWebViewController(host: host, rootViewController: rootViewController, router: router)
-            completion(newSession)
-        }
+        router: Router
+    ) -> AnyPublisher<LoginSession, APITokenRefreshInteractor.ManualLoginError> {
+        Just(())
+            .receive(on: DispatchQueue.main)
+            .flatMap { Self.showLoginDialog(rootViewController: rootViewController) }
+            .flatMap { Self.showLoginWebViewController(host: host, rootViewController: rootViewController, router: router) }
+            .eraseToAnyPublisher()
     }
 
-    @MainActor
-    private func showLoginDialog(
+    private static func showLoginDialog(
         rootViewController: UIViewController
-    ) async {
-        await withCheckedContinuation { continuation in
+    ) -> AnyPublisher<Void, Never> {
+        Future { promise in
             let message = String(
                 localized: "You'll need to log in again due to your institute's security policy.\nOnce logged in, you can continue working seamlessly.",
                 bundle: .core
@@ -48,30 +47,30 @@ class APITokenRefreshViewModel {
                 preferredStyle: .alert
             )
             alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
-                continuation.resume()
+                promise(.success)
             })
             rootViewController.present(alert, animated: true)
         }
+        .eraseToAnyPublisher()
     }
 
-    @MainActor
-    private func showLoginWebViewController(
+    private static func showLoginWebViewController(
         host: String,
         rootViewController: UIViewController,
         router: Router
-    ) async -> LoginSession? {
-        await withCheckedContinuation { continuation in
+    ) -> AnyPublisher<LoginSession, APITokenRefreshInteractor.ManualLoginError> {
+        Future { promise in
             let controller = LoginWebViewController.create(host: host, loginDelegate: nil, method: .normalLogin)
             controller.loginCompletion = { [unowned controller] newSession in
                 controller.dismiss(animated: true) {
-                    continuation.resume(returning: newSession)
+                    promise(.success(newSession))
                 }
             }
             let cancelButton = UIBarButtonItemWithCompletion(
                 title: String(localized: "Cancel", bundle: .core),
                 actionHandler: { [weak controller] in
                     controller?.dismiss(animated: true) {
-                        continuation.resume(returning: nil)
+                        promise(.failure(.canceledByUser))
                     }
                 }
             )
@@ -89,5 +88,6 @@ class APITokenRefreshViewModel {
                 analyticsRoute: "/login/weblogin"
             )
         }
+        .eraseToAnyPublisher()
     }
 }

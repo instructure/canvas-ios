@@ -38,7 +38,7 @@ public class API {
         callback: @escaping (Request.Response?, URLResponse?, Error?) -> Void
     ) -> APITask? {
         do {
-            if refreshTokenInteractor.isTokenRefreshInProgress {
+            if refreshTokenInteractor.isTokenRefreshInProgress, !(requestable is PostLoginOAuthRequest) {
                 refreshTokenInteractor.addRequestWaitingForToken { [weak self] in
                     self?.makeRequest(requestable, callback: callback)
                 }
@@ -46,15 +46,17 @@ public class API {
             }
 
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
-            let handler = { [refreshTokenInteractor, weak self] (data: Data?, response: URLResponse?, error: Error?) in
+            let handler = { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
                 if response?.isUnauthorized == true, refreshToken {
-                    refreshTokenInteractor.addRequestWaitingForToken { [weak self] in
-                        self?.makeRequest(requestable, refreshToken: false, callback: callback)
+                    if let self {
+                        if refreshTokenInteractor.isTokenRefreshInProgress == false {
+                            refreshTokenInteractor.refreshToken()
+                        }
+                        refreshTokenInteractor.addRequestWaitingForToken { [weak self] in
+                            self?.makeRequest(requestable, refreshToken: false, callback: callback)
+                        }
+                        return
                     }
-                    if refreshTokenInteractor.isTokenRefreshInProgress == false {
-                        refreshTokenInteractor.refreshToken()
-                    }
-                    return
                 }
 
                 // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime

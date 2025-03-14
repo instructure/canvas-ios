@@ -16,12 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 
 class APITokenRefreshInteractor {
-    private unowned var api: API
+    enum ManualLoginError: Error {
+        case canceledByUser
+        case loggedInWithDifferentUser
+    }
+    enum AccessTokenRefreshError: Error {
+        case unknownError
+        case expiredRefreshToken
+    }
+
+    private unowned let api: API
     private let waitingRequestsQueue = OperationQueue()
     private let viewModel = APITokenRefreshViewModel()
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Public Interface
 
@@ -29,7 +40,7 @@ class APITokenRefreshInteractor {
 
     init(api: API) {
         self.api = api
-        waitingRequestsQueue.isSuspended = true
+        self.waitingRequestsQueue.isSuspended = true
     }
 
     func addRequestWaitingForToken(_ request: @escaping () -> Void) {
@@ -37,87 +48,110 @@ class APITokenRefreshInteractor {
     }
 
     func refreshToken() {
+        guard let oldLoginSession = api.loginSession else {
+            return
+        }
+
+        isTokenRefreshInProgress = true
+        unowned let uself = self
+
+        Just(())
+            .flatMap { uself.refreshAccessToken() }
+            .receive(on: RunLoop.main)
+            .tryCatch { error in
+                try uself.loginUserManuallyIfRefreshTokenIsInvalid(error)
+            }
+            .sink(receiveCompletion: { completion in
+                defer { uself.isTokenRefreshInProgress = false }
+
+                switch completion {
+                case .finished:
+                    uself.releaseWaitingRequests()
+                case .failure(let error):
+                    switch error {
+                    case ManualLoginError.canceledByUser, ManualLoginError.loggedInWithDifferentUser:
+                        uself.cancelWaitingRequests()
+                        uself.logoutUser(oldSession: oldLoginSession)
+                    default:
+                        uself.releaseWaitingRequests()
+                    }
+                }
+            }, receiveValue: { newSession in
+                uself.handleNewLoginSessionReceived(newSession, oldSession: oldLoginSession)
+            })
+            .store(in: &subscriptions)
+    }
+
+    // MARK: - Private Methods
+
+    private func loginUserManuallyIfRefreshTokenIsInvalid(_ error: Error) throws -> AnyPublisher<LoginSession, ManualLoginError> {
+        guard
+            let host = api.loginSession?.baseURL.host(percentEncoded: false),
+            let rootViewController = AppEnvironment.shared.window?.rootViewController
+        else {
+            throw error
+        }
+        return viewModel.loginUserManually(
+            host: host,
+            rootViewController: rootViewController,
+            router: AppEnvironment.shared.router
+        )
+        .flatMap { newSession in
+            if newSession != AppEnvironment.shared.currentSession {
+                return Fail(outputType: LoginSession.self, failure: ManualLoginError.loggedInWithDifferentUser)
+                    .eraseToAnyPublisher()
+            }
+            return Just(newSession).setFailureType(to: ManualLoginError.self)
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func refreshAccessToken() -> AnyPublisher<LoginSession, AccessTokenRefreshError> {
         guard
             let oldLoginSession = api.loginSession,
             let refreshToken = oldLoginSession.refreshToken,
             let clientID = oldLoginSession.clientID,
             let clientSecret = oldLoginSession.clientSecret
         else {
-            RemoteLogger.shared.logError(name: "Failed to refresh access token.", reason: "No old login session found.")
-            return releaseWaitingRequests()
+            return Fail(
+                outputType: LoginSession.self,
+                failure: AccessTokenRefreshError.unknownError
+            )
+            .eraseToAnyPublisher()
         }
+
         let client = APIVerifyClient(authorized: true, base_url: api.baseURL, client_id: clientID, client_secret: clientSecret)
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-        api.makeRequest(request, refreshToken: false) { response, _, error in performUIUpdate { [weak self] in
-            guard let self else { return }
 
-            if let response, error == nil {
-                handleAccessTokenReceived(response, oldLoginSession: oldLoginSession)
-                isTokenRefreshInProgress = false
-                releaseWaitingRequests()
-            } else if isRefreshTokenInvalid(error),
-                   let host = api.loginSession?.baseURL.host(percentEncoded: false),
-                   let rootViewController = AppEnvironment.shared.window?.rootViewController {
-                viewModel.reLoginUser(
-                    host: host,
-                    rootViewController: rootViewController,
-                    router: AppEnvironment.shared.router
-                ) { [weak self] in
-                    self?.handleNewLoginSessionReceived($0, oldSession: oldLoginSession)
-                }
-            } else {
-                isTokenRefreshInProgress = false
-                releaseWaitingRequests()
+        return api.makeRequest(request, refreshToken: false)
+            .map {
+                oldLoginSession.refresh(
+                    accessToken: $0.body.access_token,
+                    expiresAt: $0.body.expires_in.flatMap { Clock.now + $0 }
+                )
             }
-        }}
-        isTokenRefreshInProgress = true
-    }
-
-    // MARK: - Private Methods
-
-    private func isRefreshTokenInvalid(_ error: Error?) -> Bool {
-        if let apiError = error as? APIError, case APIError.invalidGrant = apiError {
-            return true
-        }
-        return false
+            .mapError { error in
+                if error.isRefreshTokenInvalid {
+                    return .expiredRefreshToken
+                } else {
+                    return .unknownError
+                }
+            }
+            .eraseToAnyPublisher()
     }
 
     private func handleNewLoginSessionReceived(
-        _ newSession: LoginSession?,
+        _ newSession: LoginSession,
         oldSession: LoginSession
     ) {
-        guard
-            let newSession,
-            newSession == AppEnvironment.shared.currentSession
-        else {
-            // Login failed or logged in with a different user
-            cancelWaitingRequests()
-            performUIUpdate {
-                AppEnvironment.shared.loginDelegate?.userDidLogout(session: oldSession)
-            }
-            return
-        }
-
         api.loginSession = newSession
         LoginSession.add(newSession)
         AppEnvironment.shared.currentSession = newSession
-        isTokenRefreshInProgress = false
-        releaseWaitingRequests()
     }
 
-    private func handleAccessTokenReceived(
-        _ response: APIOAuthToken,
-        oldLoginSession: LoginSession
-    ) {
-        let newSession = oldLoginSession.refresh(
-            accessToken: response.access_token,
-            expiresAt: response.expires_in.flatMap { Clock.now + $0 }
-        )
-        LoginSession.add(newSession)
-        if newSession == AppEnvironment.shared.currentSession {
-            AppEnvironment.shared.currentSession = newSession
-        }
-        api.loginSession = newSession
+    private func logoutUser(oldSession: LoginSession) {
+        AppEnvironment.shared.loginDelegate?.userDidLogout(session: oldSession)
     }
 
     private func releaseWaitingRequests() {
@@ -129,6 +163,7 @@ class APITokenRefreshInteractor {
 
     private func cancelWaitingRequests() {
         waitingRequestsQueue.cancelAllOperations()
-        waitingRequestsQueue.isSuspended = false
+        // This is because canceled tasks are not removed from the queue.
+        releaseWaitingRequests()
     }
 }
