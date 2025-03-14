@@ -40,8 +40,9 @@ struct EmptyView: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .compatibleContentMargins()
-        .compatibleContainerBackground()
+        .containerBackground(for: .widget) {
+            SwiftUI.EmptyView()
+        }
     }
 
     private let title: Text

@@ -56,7 +56,6 @@ struct MediumLargeGradesView: View {
                 Spacer()
             }.padding(.top, 4) // This is to vertically center the first header with the logo
         }
-        .compatibleContentMargins()
     }
 
     private let model: GradeModel
@@ -73,10 +72,14 @@ struct MediumLargeGradesView: View {
 struct MediumLargeGradesViewPreviews: PreviewProvider {
     static var previews: some View {
         MediumLargeGradesView(model: .make(), lineCount: 2)
-            .compatibleContainerBackground()
+            .containerBackground(for: .widget) {
+                SwiftUI.EmptyView()
+            }
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         MediumLargeGradesView(model: .make(), lineCount: 5)
-            .compatibleContainerBackground()
+            .containerBackground(for: .widget) {
+                SwiftUI.EmptyView()
+            }
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
