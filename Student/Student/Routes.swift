@@ -54,6 +54,14 @@ let router = Router(routes: [
 
     RouteHandler("/conversations"),
 
+    RouteHandler("/conversations/settings") { _, _, _ in
+        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    },
+
+    RouteHandler("/conversations/compose") { url, _, _ in
+        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    },
+
     // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
     RouteHandler("/conversations/new_message") { url, _, _ in
         return ComposeMessageAssembly.makeComposeMessageViewController(url: url)

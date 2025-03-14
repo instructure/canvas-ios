@@ -19,6 +19,8 @@
 public struct GetEnvironmentSettingsRequest: APIRequestable {
     public struct Response: Codable {
         public let calendar_contexts_limit: Int?
+        public let enable_inbox_signature_block: Bool?
+        public let disable_inbox_signature_block_for_students: Bool?
     }
 
     public let path = "settings/environment.json"

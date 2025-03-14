@@ -134,7 +134,7 @@ class CalendarFilterInteractorTests: CoreTestCase {
         let settingsRequest = GetEnvironmentSettingsRequest()
         api.mock(
             settingsRequest,
-            value: .init(calendar_contexts_limit: 10)
+            value: .init(calendar_contexts_limit: 10, enable_inbox_signature_block: false, disable_inbox_signature_block_for_students: false)
         )
 
         let testee = CalendarFilterInteractorLive(
