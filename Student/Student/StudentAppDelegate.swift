@@ -20,7 +20,7 @@ import AVKit
 import Combine
 import Core
 import Firebase
-import Heap
+import Pendo
 import PSPDFKit
 import UIKit
 import UserNotifications
@@ -165,7 +165,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         })
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme?.range(of: "pendo") != nil {
+            PendoManager.shared().initWith(url)
+            return true
+        }
         if options[.sourceApplication] as? String == Bundle.teacherBundleID,
            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
            components.path.contains("student_view"),
@@ -291,9 +295,9 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 extension StudentAppDelegate: Core.AnalyticsHandler {
 
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        if Heap.isTrackingEnabled() {
-            Heap.track(name, withProperties: parameters)
-        }
+//        if Heap.isTrackingEnabled() {
+//            Heap.track(name, withProperties: parameters)
+//        }
 
         PageViewEventController.instance.logPageView(
             name,
@@ -304,22 +308,28 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
     private func initializeTracking() {
         guard
             let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let heapID = Secret.heapID.string
+            !ProcessInfo.isUITest
         else {
             return
         }
 
         let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-        let options = HeapOptions()
-        options.disableTracking = !isSendUsageMetricsEnabled
-        Heap.initialize(heapID, with: options)
-        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-        environment.heapID = Heap.userId()
+//        let options = HeapOptions()
+//        options.disableTracking = !isSendUsageMetricsEnabled
+//        Heap.initialize(heapID, with: options)
+//        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+//        environment.heapID = Heap.userId()
+        PendoManager.shared().setup("")
+        PendoManager.shared().startSession(
+            nil,
+            accountId: nil,
+            visitorData: nil,
+            accountData: nil
+        )
     }
 
     private func disableTracking() {
-        Heap.setTrackingEnabled(false)
+        PendoManager.shared().endSession()
     }
 }
 
@@ -560,4 +570,13 @@ extension StudentAppDelegate {
             activities.refreshData(force: true)
         }
     }
+}
+
+
+import CryptoKit
+
+func hashUserId(_ userId: String) -> String {
+    let inputData = Data(userId.utf8)
+    let hashedData = SHA256.hash(data: inputData)
+    return hashedData.map { String(format: "%02x", $0) }.joined()
 }

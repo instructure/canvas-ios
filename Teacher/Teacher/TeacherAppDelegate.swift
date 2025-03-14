@@ -19,10 +19,11 @@
 import AVKit
 import Combine
 import Core
+import Firebase
 import FirebaseCrashlyticsSwift
 import FirebaseRemoteConfigSwift
-import Firebase
 import Heap
+import Pendo
 import PSPDFKit
 import SafariServices
 import UIKit
@@ -188,6 +189,10 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme?.range(of: "pendo") != nil {
+            PendoManager.shared().initWith(url)
+            return true
+        }
         return openURL(url)
     }
 
@@ -262,22 +267,28 @@ extension TeacherAppDelegate: AnalyticsHandler {
     private func initializeTracking() {
         guard
             let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let heapID = Secret.heapID.string
+            !ProcessInfo.isUITest
         else {
             return
         }
 
         let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-        let options = HeapOptions()
-        options.disableTracking = !isSendUsageMetricsEnabled
-        Heap.initialize(heapID, with: options)
-        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-        environment.heapID = Heap.userId()
+//        let options = HeapOptions()
+//        options.disableTracking = !isSendUsageMetricsEnabled
+//        Heap.initialize(heapID, with: options)
+//        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+//        environment.heapID = Heap.userId()
+        PendoManager.shared().setup("")
+        PendoManager.shared().startSession(
+            nil,
+            accountId: nil,
+            visitorData: nil,
+            accountData: nil
+        )
     }
 
     private func disableTracking() {
-        Heap.setTrackingEnabled(false)
+        PendoManager.shared().endSession()
     }
 }
 

@@ -21,6 +21,7 @@ import Combine
 import Core
 import Firebase
 import Heap
+import Pendo
 import SafariServices
 import UIKit
 import UserNotifications
@@ -74,6 +75,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme?.range(of: "pendo") != nil {
+            PendoManager.shared().initWith(url)
+            return true
+        }
         if url.scheme == "canvas-parent" {
             environment.router.route(to: url, from: topMostViewController()!, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
         }
@@ -304,22 +309,29 @@ extension ParentAppDelegate: AnalyticsHandler {
     private func initializeTracking() {
         guard
             let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let heapID = Secret.heapID.string
+            !ProcessInfo.isUITest
+//            let heapID = Secret.heapID.string
         else {
             return
         }
 
         let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-        let options = HeapOptions()
-        options.disableTracking = !isSendUsageMetricsEnabled
-        Heap.initialize(heapID, with: options)
-        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-        environment.heapID = Heap.userId()
+//        let options = HeapOptions()
+//        options.disableTracking = !isSendUsageMetricsEnabled
+//        Heap.initialize(heapID, with: options)
+//        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+//        environment.heapID = Heap.userId()
+        PendoManager.shared().setup("")
+        PendoManager.shared().startSession(
+            nil,
+            accountId: nil,
+            visitorData: nil,
+            accountData: nil
+        )
     }
 
     private func disableTracking() {
-        Heap.setTrackingEnabled(false)
+//        Heap.setTrackingEnabled(false)
     }
 }
 
