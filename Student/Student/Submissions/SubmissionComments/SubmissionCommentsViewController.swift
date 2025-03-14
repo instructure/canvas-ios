@@ -259,14 +259,14 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
             return cell
         }
 
-        if comment.mediaURL != nil, comment.mediaType == .some(.audio) {
+        if comment.mediaURL != nil, comment.mediaType == .audio {
             let cell: SubmissionCommentAudioCell = tableView.dequeue(for: indexPath)
             cell.update(comment: comment, parent: self)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }
 
-        if comment.mediaURL != nil, comment.mediaType == .some(.video) {
+        if comment.mediaURL != nil, comment.mediaType == .video {
             let cell: SubmissionCommentVideoCell = tableView.dequeue(for: indexPath)
             cell.update(comment: comment, parent: self)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)

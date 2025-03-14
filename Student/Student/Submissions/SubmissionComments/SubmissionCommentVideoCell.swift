@@ -40,11 +40,6 @@ class SubmissionCommentVideoCell: UITableViewCell {
 
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.videoCell.\(comment.id)"
-        accessibilityLabel = String.localizedStringWithFormat(
-            String(localized: "On %@ %@ left a video comment", bundle: .student),
-            comment.createdAtLocalizedString,
-            comment.authorName
-        )
 
         playerViewController.player = comment.mediaLocalOrRemoteURL.flatMap { AVPlayer(url: $0) }
         if playerViewController.view?.superview == nil, let view = containerView {

@@ -119,36 +119,70 @@ class SubmissionTests: CoreTestCase {
         let submission = Submission.make(from: .make(
             attachments: [ .make(size: 1234) ],
             attempt: 1,
-            body: "<a style=\"stuff\">Text</z>",
-            discussion_entries: [ .make(message: "<p>reply<p>") ],
+            body: "<a style=\"stuff\">Some text</z><br>New line<div>And another</div>",
+            discussion_entries: [ .make(message: "<p>reply<p><br>New line<div>And another</div>") ],
             url: URL(string: "https://instructure.com")
         ))
-        let map: [SubmissionType: String] = [
-            .basic_lti_launch: "Attempt 1",
+        let map: [SubmissionType: String?] = [
+            .discussion_topic: "reply New line And another",
             .external_tool: "Attempt 1",
-            .discussion_topic: "reply",
+            // .media_recording: nil, // testing variants below
+            .none: nil,
+            .not_graded: nil,
             .online_quiz: "Attempt 1",
-            .online_text_entry: "Text",
-            .online_url: "https://instructure.com"
+            .online_text_entry: "Some text New line And another",
+            .online_upload: "1 KB",
+            .online_url: "https://instructure.com",
+            .on_paper: nil,
+            .basic_lti_launch: "Attempt 1",
+            .wiki_page: nil,
+            .student_annotation: nil
         ]
         for (type, subtitle) in map {
             submission.type = type
             XCTAssertEqual(submission.attemptSubtitle, subtitle)
         }
+
         submission.type = .media_recording
         submission.mediaComment = MediaComment.make(from: .make(media_type: .audio))
         XCTAssertEqual(submission.attemptSubtitle, "Audio")
         submission.mediaComment?.mediaType = .video
         XCTAssertEqual(submission.attemptSubtitle, "Video")
+    }
 
-        submission.type = .online_upload
-        XCTAssertEqual(submission.attemptSubtitle, "1 KB")
+    func testAttemptAccessibilityDescription() {
+        let submission = Submission.make(from: .make(
+            attachments: [ .make(size: 1234) ],
+            attempt: 1,
+            body: "<a style=\"stuff\">Some text</z><br>New line<div>And another</div>",
+            discussion_entries: [ .make(message: "<p>reply<p><br>New line<div>And another</div>") ],
+            url: URL(string: "https://instructure.com")
+        ))
+        let map: [SubmissionType: String?] = [
+            .discussion_topic: "Discussion Comment, reply",
+            .external_tool: "External Tool",
+            // .media_recording: nil, // testing variants below
+            .none: "No Submission",
+            .not_graded: "Not Graded",
+            .online_quiz: "Quiz",
+            .online_text_entry: "Text Entry, Some text",
+            .online_upload: "File Upload",
+            .online_url: "Website URL, https://instructure.com",
+            .on_paper: "On Paper",
+            .basic_lti_launch: "External Tool",
+            .wiki_page: "Page",
+            .student_annotation: "Student Annotation"
+        ]
+        for (type, subtitle) in map {
+            submission.type = type
+            XCTAssertEqual(submission.attemptAccessibilityDescription, subtitle)
+        }
 
-        submission.type = .on_paper
-        XCTAssertNil(submission.attemptSubtitle)
-
-        submission.type = nil
-        XCTAssertNil(submission.attemptSubtitle)
+        submission.type = .media_recording
+        submission.mediaComment = MediaComment.make(from: .make(media_type: .audio))
+        XCTAssertEqual(submission.attemptAccessibilityDescription, "Media Recording, Audio")
+        submission.mediaComment?.mediaType = .video
+        XCTAssertEqual(submission.attemptAccessibilityDescription, "Media Recording, Video")
     }
 
     func testAttemptPropertiesWhenQuizLTI() {
