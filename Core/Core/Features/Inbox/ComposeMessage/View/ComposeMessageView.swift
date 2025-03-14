@@ -304,7 +304,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
     }
 
-    private var promptText: Text {
+    private var toPromptText: Text {
         Text(String(localized: "Type to search", bundle: .core))
             .foregroundColor(.textPlaceholder)
     }
