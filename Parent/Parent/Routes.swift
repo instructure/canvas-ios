@@ -50,6 +50,10 @@ let router = Router(routes: [
         return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
     },
 
+    RouteHandler("/conversations/settings") { _, _, _ in
+        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    },
+
     RouteHandler("/conversations/:conversationID") { _, params, _ in
         guard let conversationID = params["conversationID"] else { return nil }
         return MessageDetailsAssembly.makeViewController(env: .shared, conversationID: conversationID, allowArchive: true)
@@ -103,6 +107,10 @@ let router = Router(routes: [
 
     RouteHandler("/profile") { _, _, _ in
         return CoreHostingController(SideMenuView(.observer), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
+    },
+
+    RouteHandler("/profile/settings") { _, _, _ in
+        return ProfileSettingsAssembly.makeProfileSettingsViewController()
     },
 
     RouteHandler("/profile/observees") { _, _, _ in

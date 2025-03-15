@@ -24,15 +24,18 @@ import XCTest
 class InboxViewModelTests: CoreTestCase {
     private var mockInteractor: InboxMessageInteractorMock!
     private var messageInteractor: InboxMessageFavouriteInteractorMock!
+    private var inboxSettingsInteractor: InboxSettingsInteractor!
     var testee: InboxViewModel!
 
     override func setUp() {
         super.setUp()
         messageInteractor = InboxMessageFavouriteInteractorMock()
         mockInteractor = InboxMessageInteractorMock(context: databaseClient)
+        inboxSettingsInteractor = InboxSettingsInteractorPreview()
         testee = InboxViewModel(
             messageInteractor: mockInteractor,
             favouriteInteractor: messageInteractor,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             router: router
         )
     }

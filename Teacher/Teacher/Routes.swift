@@ -63,6 +63,10 @@ let router = Router(routes: [
         return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
     },
 
+    RouteHandler("/conversations/settings") { _, _, _ in
+        return InboxSettingsAssembly.makeInboxSettingsViewController()
+    },
+
     RouteHandler("/conversations/:conversationID") { _, params, userInfo in
         guard let conversationID = params["conversationID"] else { return nil }
         let allowArchive: Bool = {
