@@ -24,22 +24,23 @@ class APITokenRefreshInteractor {
         case canceledByUser
         case loggedInWithDifferentUser
     }
-    enum AccessTokenRefreshError: Error {
-        case unknownError
-        case expiredRefreshToken
-    }
 
     private unowned let api: API
     private let waitingRequestsQueue = OperationQueue()
     private let viewModel = APITokenRefreshViewModel()
     private var subscriptions = Set<AnyCancellable>()
+    private var accessTokenRefreshInteractor: AccessTokenRefreshInteractor
 
     // MARK: - Public Interface
 
     public private(set) var isTokenRefreshInProgress = false
 
-    init(api: API) {
+    init(
+        api: API,
+        accessTokenRefreshInteractor: AccessTokenRefreshInteractor = AccessTokenRefreshInteractor()
+    ) {
         self.api = api
+        self.accessTokenRefreshInteractor = accessTokenRefreshInteractor
         self.waitingRequestsQueue.isSuspended = true
     }
 
@@ -56,7 +57,7 @@ class APITokenRefreshInteractor {
         unowned let uself = self
 
         Just(())
-            .flatMap { uself.refreshAccessToken() }
+            .flatMap { uself.accessTokenRefreshInteractor.refreshAccessToken(api: uself.api) }
             .receive(on: RunLoop.main)
             .tryCatch { error in
                 try uself.loginUserManuallyIfRefreshTokenIsInvalid(error)
@@ -105,40 +106,6 @@ class APITokenRefreshInteractor {
                 .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()
-    }
-
-    private func refreshAccessToken() -> AnyPublisher<LoginSession, AccessTokenRefreshError> {
-        guard
-            let oldLoginSession = api.loginSession,
-            let refreshToken = oldLoginSession.refreshToken,
-            let clientID = oldLoginSession.clientID,
-            let clientSecret = oldLoginSession.clientSecret
-        else {
-            return Fail(
-                outputType: LoginSession.self,
-                failure: AccessTokenRefreshError.unknownError
-            )
-            .eraseToAnyPublisher()
-        }
-
-        let client = APIVerifyClient(authorized: true, base_url: api.baseURL, client_id: clientID, client_secret: clientSecret)
-        let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-
-        return api.makeRequest(request, refreshToken: false)
-            .map {
-                oldLoginSession.refresh(
-                    accessToken: $0.body.access_token,
-                    expiresAt: $0.body.expires_in.flatMap { Clock.now + $0 }
-                )
-            }
-            .mapError { error in
-                if error.isRefreshTokenInvalid {
-                    return .expiredRefreshToken
-                } else {
-                    return .unknownError
-                }
-            }
-            .eraseToAnyPublisher()
     }
 
     private func handleNewLoginSessionReceived(
