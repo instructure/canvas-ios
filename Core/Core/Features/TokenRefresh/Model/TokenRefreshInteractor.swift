@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Foundation
 
 class TokenRefreshInteractor {
@@ -27,9 +28,10 @@ class TokenRefreshInteractor {
 
     private unowned let api: API
     private let waitingRequestsQueue = OperationQueue()
-    private let viewModel = APITokenRefreshViewModel()
+    private let loginAgainViewModel: LoginAgainViewModel
     private var subscriptions = Set<AnyCancellable>()
     private var accessTokenRefreshInteractor: AccessTokenRefreshInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Public Interface
 
@@ -37,11 +39,15 @@ class TokenRefreshInteractor {
 
     init(
         api: API,
-        accessTokenRefreshInteractor: AccessTokenRefreshInteractor = AccessTokenRefreshInteractor()
+        accessTokenRefreshInteractor: AccessTokenRefreshInteractor = AccessTokenRefreshInteractor(),
+        loginAgainViewModel: LoginAgainViewModel = LoginAgainViewModel(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.api = api
         self.accessTokenRefreshInteractor = accessTokenRefreshInteractor
         self.waitingRequestsQueue.isSuspended = true
+        self.loginAgainViewModel = loginAgainViewModel
+        self.scheduler = scheduler
     }
 
     func addRequestWaitingForToken(_ request: @escaping () -> Void) {
@@ -58,7 +64,7 @@ class TokenRefreshInteractor {
 
         Just(())
             .flatMap { uself.accessTokenRefreshInteractor.refreshAccessToken(api: uself.api) }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .tryCatch { error in
                 try uself.loginUserManuallyIfRefreshTokenIsInvalid(error)
             }
@@ -92,7 +98,7 @@ class TokenRefreshInteractor {
         else {
             throw error
         }
-        return viewModel.loginUserManually(
+        return loginAgainViewModel.loginUserManually(
             host: host,
             rootViewController: rootViewController,
             router: AppEnvironment.shared.router

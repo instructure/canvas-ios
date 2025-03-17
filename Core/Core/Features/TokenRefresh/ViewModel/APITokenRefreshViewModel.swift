@@ -19,7 +19,7 @@
 import Combine
 import UIKit
 
-class APITokenRefreshViewModel {
+class LoginAgainViewModel {
 
     func loginUserManually(
         host: String,

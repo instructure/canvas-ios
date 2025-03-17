@@ -22,17 +22,10 @@ import XCTest
 
 class AccessTokenRefreshInteractorTests: CoreTestCase {
     var testee: AccessTokenRefreshInteractor!
-    var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
         testee = AccessTokenRefreshInteractor()
-    }
-
-    override func tearDown() {
-        testee = nil
-        subscriptions.removeAll()
-        super.tearDown()
     }
 
     // MARK: - Success Scenario
@@ -167,7 +160,7 @@ class AccessTokenRefreshInteractorTests: CoreTestCase {
 extension LoginSession {
     static func mock(
         accessToken: String? = "test_access_token",
-        baseURL: URL = .make(),
+        baseURL: URL = .make("https://instructure.com"),
         expiresAt: Date? = Clock.now,
         lastUsedAt: Date = Clock.now,
         locale: String? = "en_US",
