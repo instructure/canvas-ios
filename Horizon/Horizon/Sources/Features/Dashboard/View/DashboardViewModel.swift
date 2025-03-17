@@ -124,6 +124,17 @@ class DashboardViewModel {
         )
     }
 
+    func getStatus(percent: Double) -> String {
+        switch percent {
+        case 0..<1:
+            return String(localized: "In Progress", bundle: .horizon)
+        case 1:
+            return String(localized: "Completed", bundle: .horizon)
+        default:
+            return String(localized: "Not Started", bundle: .horizon)
+        }
+    }
+
     struct NextUpViewModel: Identifiable {
         let name: String
         let progress: Double
