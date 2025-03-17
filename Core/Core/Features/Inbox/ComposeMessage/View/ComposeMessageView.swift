@@ -278,7 +278,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .accessibilitySortPriority(1)
                 }
 
-                TextField("", text: $model.textRecipientSearch, prompt: promptText)
+                TextField("", text: $model.textRecipientSearch, prompt: toPromptText)
                     .font(.regular16)
                     .focused($focusedInput, equals: .search)
                     .foregroundColor(.textDark)
