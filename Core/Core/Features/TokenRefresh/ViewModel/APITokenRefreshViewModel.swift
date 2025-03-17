@@ -25,7 +25,7 @@ class APITokenRefreshViewModel {
         host: String,
         rootViewController: UIViewController,
         router: Router
-    ) -> AnyPublisher<LoginSession, APITokenRefreshInteractor.ManualLoginError> {
+    ) -> AnyPublisher<LoginSession, TokenRefreshInteractor.ManualLoginError> {
         Just(())
             .receive(on: DispatchQueue.main)
             .flatMap { Self.showLoginDialog(rootViewController: rootViewController) }
@@ -58,7 +58,7 @@ class APITokenRefreshViewModel {
         host: String,
         rootViewController: UIViewController,
         router: Router
-    ) -> AnyPublisher<LoginSession, APITokenRefreshInteractor.ManualLoginError> {
+    ) -> AnyPublisher<LoginSession, TokenRefreshInteractor.ManualLoginError> {
         Future { promise in
             let controller = LoginWebViewController.create(host: host, loginDelegate: nil, method: .normalLogin)
             controller.loginCompletion = { [unowned controller] newSession in

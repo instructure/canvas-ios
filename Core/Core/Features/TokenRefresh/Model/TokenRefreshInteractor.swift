@@ -19,7 +19,7 @@
 import Combine
 import Foundation
 
-class APITokenRefreshInteractor {
+class TokenRefreshInteractor {
     enum ManualLoginError: Error {
         case canceledByUser
         case loggedInWithDifferentUser

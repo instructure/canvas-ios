@@ -23,7 +23,7 @@ public class API {
     public let baseURL: URL
     public let urlSession: URLSession
 
-    private lazy var refreshTokenInteractor = APITokenRefreshInteractor(api: self)
+    private lazy var refreshTokenInteractor = TokenRefreshInteractor(api: self)
 
     public init(_ loginSession: LoginSession? = nil, baseURL: URL? = nil, urlSession: URLSession = .ephemeral) {
         self.loginSession = loginSession

@@ -216,7 +216,6 @@ class APITests: XCTestCase {
         )
         AppEnvironment.shared.currentSession = session
         api.loginSession = session
-        api.refreshQueue = OperationQueue.main
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         api.mock(url: url, response: response)
@@ -260,7 +259,6 @@ class APITests: XCTestCase {
             clientSecret: "client-secret"
         )
         api.loginSession = session
-        api.refreshQueue = OperationQueue.main
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         api.mock(url: url, response: response)
@@ -291,7 +289,6 @@ class APITests: XCTestCase {
             clientSecret: "client-secret"
         )
         api.loginSession = session
-        api.refreshQueue = OperationQueue.main
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         api.mock(url: url, response: response, error: NSError.internalError())
@@ -318,7 +315,6 @@ class APITests: XCTestCase {
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         api.mock(url: url, response: response, error: NSError.internalError())
         api.makeRequest(url) { _, _, error in XCTAssertNotNil(error) }
-        api.refreshQueue.waitUntilAllOperationsAreFinished()
     }
 
     func testExhaust() {

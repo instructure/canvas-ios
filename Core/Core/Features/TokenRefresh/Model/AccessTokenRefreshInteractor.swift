@@ -20,12 +20,12 @@ import Combine
 import Foundation
 
 class AccessTokenRefreshInteractor {
-    enum AccessTokenRefreshError: Error {
+    enum TokenError: Error {
         case unknownError
         case expiredRefreshToken
     }
 
-    func refreshAccessToken(api :API) -> AnyPublisher<LoginSession, AccessTokenRefreshError> {
+    func refreshAccessToken(api: API) -> AnyPublisher<LoginSession, TokenError> {
         guard
             let oldLoginSession = api.loginSession,
             let refreshToken = oldLoginSession.refreshToken,
@@ -34,7 +34,7 @@ class AccessTokenRefreshInteractor {
         else {
             return Fail(
                 outputType: LoginSession.self,
-                failure: AccessTokenRefreshError.unknownError
+                failure: TokenError.unknownError
             )
             .eraseToAnyPublisher()
         }
