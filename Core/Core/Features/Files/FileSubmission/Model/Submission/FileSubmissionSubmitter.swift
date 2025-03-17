@@ -25,6 +25,7 @@ import CoreData
 public class FileSubmissionSubmitter {
     private let api: API
     private let context: NSManagedObjectContext
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(api: API, context: NSManagedObjectContext) {
         self.api = api
@@ -69,8 +70,20 @@ public class FileSubmissionSubmitter {
                 body: .init(submission: requestedSubmission)
             )
             API(self.api.loginSession, baseURL: baseURL)
-                .makeRequest(request) { [self] response, _, error in
-                    handleResponse(response, error: error, fileSubmissionID: fileSubmissionID, promise: promise)
+                .makeRequest(request) { [weak self] response, _, error in
+                    guard let self else { return }
+
+                    UIAccessibility
+                        .announceSubmission(isSuccessful: response != nil && error == nil)
+                        .sink { [weak self] in
+                            self?.handleResponse(
+                                response,
+                                error: error,
+                                fileSubmissionID: fileSubmissionID,
+                                promise: promise
+                            )
+                        }
+                        .store(in: &subscriptions)
                 }
         }
     }
