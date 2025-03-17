@@ -51,9 +51,11 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Dependencies
 
-    let canvasApi: API
+    private let redwoodDomainService: DomainService
 
-    static let shared: GetCourseNotesInteractor = GetCourseNotesInteractorLive()
+    static let shared: GetCourseNotesInteractor = GetCourseNotesInteractorLive(
+        redwoodDomainService: DomainService(.redwood)
+    )
 
     // MARK: - Public
 
@@ -86,9 +88,26 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Private
 
-    private var subscriptions = Set<AnyCancellable>()
-    private let refreshSubject = CurrentValueRelay<Void>(())
     private var cursorFilter: CurrentValueRelay<CursorFilter?> = CurrentValueRelay(nil)
+    private let refreshSubject = CurrentValueRelay<Void>(())
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Init
+
+    private init(redwoodDomainService: DomainService) {
+        self.redwoodDomainService = redwoodDomainService
+    }
+
+    // MARK: - Public Methods
+
+    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
+        self.redwoodDomainService.api()
+            .flatMap(listenToFilters)
+            .mapError { _ in NotebookError.unknown }
+            .eraseToAnyPublisher()
+    }
+
+    // MARK: - Private Methods
 
     private func request(api: API, labels: [CourseNoteLabel]? = nil) -> GetNotesQuery {
         let accessToken = api.loginSession?.accessToken ?? ""
@@ -110,24 +129,6 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
             reactions: reactions
         )
     }
-
-    // MARK: - Init
-
-    private init(api: API = AppEnvironment.shared.api) {
-        self.canvasApi = api
-    }
-
-    // MARK: - Public Methods
-
-    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
-        JWTTokenRequest(.redwood)
-            .api(from: canvasApi)
-            .flatMap(listenToFilters)
-            .mapError { _ in NotebookError.unknown }
-            .eraseToAnyPublisher()
-    }
-
-    // MARK: - Private Methods
 
     private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
         Publishers.CombineLatest(

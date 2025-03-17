@@ -46,7 +46,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
 
     // MARK: - Dependencies
 
-    private let canvasApi: API
+    private let redwoodDomainService: DomainService
     private let getCourseNotesInteractor: GetCourseNotesInteractor
 
     // MARK: - Private
@@ -56,10 +56,10 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
     // MARK: - Init
 
     private init(
-        canvasApi: API = AppEnvironment.shared.api,
+        redwoodDomainService: DomainService = DomainService(.redwood),
         getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared
     ) {
-        self.canvasApi = canvasApi
+        self.redwoodDomainService = redwoodDomainService
         self.getCourseNotesInteractor = getCourseNotesInteractor
     }
 
@@ -73,8 +73,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         labels: [CourseNoteLabel] = [],
         notebookHighlight: NotebookHighlight? = nil
     ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
-        JWTTokenRequest(.redwood)
-            .api(from: canvasApi)
+        redwoodDomainService.api()
             .flatMap { api in
                 api.makeRequest(
                     RedwoodCreateNoteMutation(
@@ -100,8 +99,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
     }
 
     func delete(id: String) -> AnyPublisher<Void, NotebookError> {
-        JWTTokenRequest(.redwood)
-            .api(from: canvasApi)
+        redwoodDomainService.api()
             .flatMap { api in
                 api.makeRequest(
                     RedwoodDeleteNoteMutation(
@@ -121,7 +119,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
 
     func get(courseId: String, itemId: String) -> AnyPublisher<[CourseNotebookNote], NotebookError> {
         Publishers.CombineLatest(
-            JWTTokenRequest(.redwood).api(from: canvasApi),
+            redwoodDomainService.api(),
             refreshSubject
         )
         .flatMap { api, _ in
@@ -141,8 +139,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         labels: [CourseNoteLabel]?,
         highlightData: NotebookHighlight?
     ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
-        JWTTokenRequest(.redwood)
-            .api(from: canvasApi)
+        redwoodDomainService.api()
             .flatMap { api in
                 api.makeRequest(
                     RedwoodUpdateNoteMutation(

@@ -43,7 +43,10 @@ final class AssistAssembly {
 
     static func makeChatBotInteractor(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) -> AssistChatInteractor {
         if let courseId = courseId, let pageUrl = pageUrl {
-            return AssistChatInteractorLive(courseId: courseId, pageUrl: pageUrl)
+            return AssistChatInteractorLive(
+                courseId: courseId,
+                pageUrl: pageUrl
+            )
         }
         if let courseId = courseId, let fileId = fileId {
             return AssistChatInteractorLive(

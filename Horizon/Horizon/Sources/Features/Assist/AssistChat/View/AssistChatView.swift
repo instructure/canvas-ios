@@ -142,7 +142,7 @@ struct ScaleEffectModifier: ViewModifier {
 #Preview {
     AssistChatView(
         viewModel: .init(
-            chatBotInteractor: AssistChatInteractorLive(),
+            chatBotInteractor: AssistChatInteractorPreview(),
             router: AppEnvironment.shared.router
         )
     )

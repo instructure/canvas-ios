@@ -29,12 +29,13 @@ protocol AssistChatInteractor {
 class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Dependencies
 
-    private let canvasApi: API
+    private let cedarDomainService: DomainService
+    private let downloadFileInteractor: DownloadFileInteractor?
+    private let pineDomainService: DomainService
 
     // MARK: - Private
 
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
-    private let downloadFileInteractor: DownloadFileInteractor?
     private let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     private let responsePublisher = PassthroughSubject<AssistChatResponse, Error>()
     private var subscriptions = Set<AnyCancellable>()
@@ -42,13 +43,19 @@ class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - init
 
     /// Initializes the interactor when viewing a page for context
-    convenience init(courseId: String, pageUrl: String, canvasApi: API = AppEnvironment.shared.api) {
+    convenience init(
+        courseId: String,
+        pageUrl: String,
+        cedarDomainService: DomainService = DomainService(.cedar),
+        pineDomainService: DomainService = DomainService(.pine)
+    ) {
         self.init(
             pageContextPublisher: AssistChatInteractorLive.pageContextPublisher(
                 courseId: courseId,
                 pageUrl: pageUrl
             ),
-            canvasApi: canvasApi
+            cedarDomainService: cedarDomainService,
+            pineDomainService: pineDomainService
         )
     }
 
@@ -57,7 +64,8 @@ class AssistChatInteractorLive: AssistChatInteractor {
         courseId: String,
         fileId: String,
         downloadFileInteractor: DownloadFileInteractor,
-        canvasApi: API = AppEnvironment.shared.api
+        cedarDomainService: DomainService = DomainService(.cedar),
+        pineDomainService: DomainService = DomainService(.pine)
     ) {
         self.init(
             pageContextPublisher: AssistChatInteractorLive.pageContextPublisher(
@@ -65,17 +73,20 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 courseId: courseId,
                 fileId: fileId
             ),
-            canvasApi: canvasApi,
+            cedarDomainService: cedarDomainService,
+            pineDomainService: pineDomainService,
             downloadFileInteractor: downloadFileInteractor
         )
     }
 
     init(
         pageContextPublisher: AnyPublisher<AssistChatPageContext, Error>? = nil,
-        canvasApi: API = AppEnvironment.shared.api,
+        cedarDomainService: DomainService = DomainService(.cedar),
+        pineDomainService: DomainService = DomainService(.pine),
         downloadFileInteractor: DownloadFileInteractor? = nil
     ) {
-        self.canvasApi = canvasApi
+        self.cedarDomainService = cedarDomainService
+        self.pineDomainService = pineDomainService
         self.downloadFileInteractor = downloadFileInteractor
 
         Publishers.CombineLatest3(
@@ -169,8 +180,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
 
     /// Makes a request to the pine endpoint using the given history
     private func advancedChat(history: [AssistChatMessage]) -> AnyPublisher<String, Error> {
-        JWTTokenRequest(.pine)
-            .api(from: canvasApi)
+        pineDomainService.api()
             .flatMap { pineApi in
                 pineApi.makeRequest(
                     PineQueryMutation(
@@ -253,8 +263,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         prompt: String,
         pageContext: AssistChatPageContext? = nil
     ) -> AnyPublisher<String, Error> {
-        JWTTokenRequest(.cedar)
-            .api(from: self.canvasApi)
+        cedarDomainService.api()
             .flatMap { cedarApi in
                 cedarApi.makeRequest(
                     CedarAnswerPromptMutation(
@@ -408,8 +417,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         history: [AssistChatMessage],
         userShortName: String
     ) -> AnyPublisher<AssistChatResponse, Error> {
-        JWTTokenRequest(.cedar)
-            .api(from: canvasApi)
+        cedarDomainService.api()
             .flatMap { cedarApi in
                 // swiftlint:disable line_length
                 let prompt =
@@ -509,4 +517,9 @@ private extension String {
             return []
         }
     }
+}
+
+struct AssistChatInteractorPreview: AssistChatInteractor {
+    func publish(action: AssistChatAction) {}
+    var listen: AnyPublisher<AssistChatResponse, Error> = Empty().eraseToAnyPublisher()
 }
