@@ -17,21 +17,6 @@
 //
 
 import Foundation
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Assist/AssistChat/Data/AssistChatFlashCard.swift
-
-struct AssistChatFlashCard: Codable {
-
-    let question: String
-    let answer: String
-
-    static func build(from string: String?) -> [AssistChatFlashCard]? {
-        guard let data = string?.data(using: .utf8) else {
-            return nil
-        }
-        let flashCards = try? JSONDecoder().decode([AssistChatFlashCard].self, from: data)
-        return flashCards
-    }
-========
 import Combine
 import Core
 
@@ -42,5 +27,4 @@ protocol ParentInboxCoursePickerInteractor {
 
     func getCourseURL(courseId: String) -> String
     func refresh() -> AnyPublisher<[Void], Never>
->>>>>>>> feature/horizon:Parent/Parent/Inbox/ParentInboxCoursePicker/Model/ParentInboxCoursePickerInteractor.swift
 }
