@@ -293,11 +293,10 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 // MARK: - Usage Analytics
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
-
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-//        if Heap.isTrackingEnabled() {
-//            Heap.track(name, withProperties: parameters)
-//        }
+        if environmentFeatureFlags?.isFeatureEnabled(.send_usage_metrics) == true {
+            PendoManager.shared().track(name, properties: parameters)
+        }
 
         PageViewEventController.instance.logPageView(
             name,
@@ -308,24 +307,29 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
     private func initializeTracking() {
         guard
             let environmentFeatureFlags,
-            !ProcessInfo.isUITest
+            !ProcessInfo.isUITest,
+            let pendoApiKey = Secret.pendoApiKey.string,
+            let metadataInteractor = AnalyticsMetadataInteractorLive(
+                loginSession: LoginSession.mostRecent,
+                environmentFeatureFlags: environmentFeatureFlags
+            )
         else {
             return
         }
 
-        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-//        let options = HeapOptions()
-//        options.disableTracking = !isSendUsageMetricsEnabled
-//        Heap.initialize(heapID, with: options)
-//        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-//        environment.heapID = Heap.userId()
-        PendoManager.shared().setup("")
-        PendoManager.shared().startSession(
-            nil,
-            accountId: nil,
-            visitorData: nil,
-            accountData: nil
-        )
+        if environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) {
+            let metadata = metadataInteractor.getMetadata()
+            environment.pendoID = metadata.userId
+            PendoManager.shared().setup(pendoApiKey)
+            PendoManager.shared().startSession(
+                metadata.userId,
+                accountId: metadata.accountUUID,
+                visitorData: metadata.visitorData.toMap(),
+                accountData: metadata.accountData.toMap()
+            )
+        } else {
+            PendoManager.shared().endSession()
+        }
     }
 
     private func disableTracking() {
@@ -570,13 +574,4 @@ extension StudentAppDelegate {
             activities.refreshData(force: true)
         }
     }
-}
-
-
-import CryptoKit
-
-func hashUserId(_ userId: String) -> String {
-    let inputData = Data(userId.utf8)
-    let hashedData = SHA256.hash(data: inputData)
-    return hashedData.map { String(format: "%02x", $0) }.joined()
 }

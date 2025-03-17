@@ -302,36 +302,38 @@ extension ParentAppDelegate: RemoteLogHandler {
 }
 
 extension ParentAppDelegate: AnalyticsHandler {
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-    }
+    func handleEvent(_: String, parameters _: [String: Any]?) {}
 
     private func initializeTracking() {
         guard
             let environmentFeatureFlags,
-            !ProcessInfo.isUITest
-//            let heapID = Secret.heapID.string
+            !ProcessInfo.isUITest,
+            let pendoApiKey = Secret.pendoApiKey.string,
+            let metadataInteractor = AnalyticsMetadataInteractorLive(
+                loginSession: LoginSession.mostRecent,
+                environmentFeatureFlags: environmentFeatureFlags
+            )
         else {
             return
         }
 
-        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-//        let options = HeapOptions()
-//        options.disableTracking = !isSendUsageMetricsEnabled
-//        Heap.initialize(heapID, with: options)
-//        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-//        environment.heapID = Heap.userId()
-        PendoManager.shared().setup("")
-        PendoManager.shared().startSession(
-            nil,
-            accountId: nil,
-            visitorData: nil,
-            accountData: nil
-        )
+        if environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) {
+            let metadata = metadataInteractor.getMetadata()
+            environment.pendoID = metadata.userId
+            PendoManager.shared().setup(pendoApiKey)
+            PendoManager.shared().startSession(
+                metadata.userId,
+                accountId: metadata.accountUUID,
+                visitorData: metadata.visitorData.toMap(),
+                accountData: metadata.accountData.toMap()
+            )
+        } else {
+            PendoManager.shared().endSession()
+        }
     }
 
     private func disableTracking() {
-//        Heap.setTrackingEnabled(false)
+        PendoManager.shared().endSession()
     }
 }
 
