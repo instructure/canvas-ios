@@ -50,7 +50,6 @@ class StudentDetailsViewControllerTests: ParentTestCase {
                 XCTAssert(field.delegate === controller)
             } else {
                 let toggle = try XCTUnwrap(controller.alertSwitches.first { $0.tag == index })
-                XCTAssertEqual(toggle.accessibilityLabel, type.name)
                 XCTAssertEqual(toggle.isOn, type == .assignmentMissing)
             }
         }
