@@ -34,6 +34,8 @@ open class CoreWebView: WKWebView {
     }()
     public static let processPool = WKProcessPool()
 
+    private var attachmentPrompt = AttachmentPrompt()
+
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
@@ -458,6 +460,17 @@ extension CoreWebView: WKNavigationDelegate {
         linkDelegate?.coreWebView(self, didStartProvisionalNavigation: navigation)
     }
 
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy {
+        if attachmentPrompt.shouldPrompt(for: navigationResponse.response) {
+            return .download
+        }
+        return .allow
+    }
+
+    public func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload) {
+        download.delegate = self
+    }
+
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         RemoteLogger.shared.logError(name: "WebKit process terminated", reason: nil)
         CoreWebViewContentErrorViewEmbed.embed(errorDelegate: errorDelegate)
@@ -727,5 +740,26 @@ extension CoreWebView {
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }
+    }
+}
+
+// MARK: - Download Delegate's Method
+
+extension CoreWebView: WKDownloadDelegate {
+
+    public func download(_ download: WKDownload, decideDestinationUsing response: URLResponse, suggestedFilename: String) async -> URL? {
+
+        let headers = (response as? HTTPURLResponse)?.allHeaderFields
+        let contentType = headers?["Content-Type"] as? String
+
+        return await attachmentPrompt.show(download: download, suggestedName: suggestedFilename, contentType: contentType)
+    }
+
+    public func download(_ download: WKDownload, didFailWithError error: any Error, resumeData: Data?) {
+        attachmentPrompt.downloadFailed(error)
+    }
+
+    public func downloadDidFinish(_ download: WKDownload) {
+        attachmentPrompt.downloadFinished(in: self)
     }
 }
