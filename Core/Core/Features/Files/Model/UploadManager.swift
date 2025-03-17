@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
 import Combine
+import UIKit
 
 /// Errors most likely caused by our code.
 enum FileUploaderError: Error {

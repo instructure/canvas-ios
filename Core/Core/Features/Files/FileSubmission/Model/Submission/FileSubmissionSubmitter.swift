@@ -18,6 +18,7 @@
 
 import Combine
 import CoreData
+import UIKit
 
 /**
  This class submits all the files with `apiID` to the assignment in the given `FileSubmission`.
