@@ -27,17 +27,19 @@ struct DashboardView: View {
     // TODO: - Set with correct url later
     private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
 
-    private let navigationBarViewModel: NavigationBarViewModel = .init()
-
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        NavigationBarView(
+        InstUI.BaseScreen(
             state: viewModel.state,
-            viewModel: navigationBarViewModel
-        ) {
+            config: .init(
+                refreshable: true,
+                loaderBackgroundColor: .huiColors.surface.pagePrimary
+            ),
+            refreshAction: viewModel.reload
+        ) { _ in
             LazyVStack(spacing: .zero) {
                 ForEach(viewModel.nextUpViewModels) { nextUpViewModel in
                     VStack(alignment: .leading, spacing: .zero) {
@@ -78,7 +80,6 @@ struct DashboardView: View {
                     .padding(.horizontal, .huiSpaces.space24)
                 }
             }
-            .toolbar(.visible)
             .padding(.bottom, .huiSpaces.space16)
         }
         .toolbar(.hidden)
