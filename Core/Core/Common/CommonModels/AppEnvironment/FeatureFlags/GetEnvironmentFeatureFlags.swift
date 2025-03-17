@@ -22,6 +22,7 @@ import Foundation
 public enum EnvironmentFeatureFlags: String {
     case send_usage_metrics
     case mobile_offline_mode
+    case account_survey_notifications
 }
 
 public class GetEnvironmentFeatureFlags: CollectionUseCase {
