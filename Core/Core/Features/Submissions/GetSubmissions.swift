@@ -19,6 +19,7 @@
 import Foundation
 import CoreData
 import Combine
+import UIKit
 
 public struct GetRecentlyGradedSubmissions: CollectionUseCase {
     public typealias Model = SubmissionList

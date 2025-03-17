@@ -19,6 +19,7 @@
 import Foundation
 import CoreData
 import Combine
+import UIKit
 
 /// Errors most likely caused by our code.
 enum FileUploaderError: Error {
