@@ -267,7 +267,7 @@ extension TeacherAppDelegate: AnalyticsHandler {
         guard
             let environmentFeatureFlags,
             !ProcessInfo.isUITest,
-            let pendoApiKey = Secret.pendoApiKey.string,
+            let pendoApiKey = Secret.pendoApiKey.string, !pendoApiKey.isEmpty,
             let metadataInteractor = AnalyticsMetadataInteractorLive(
                 loginSession: LoginSession.mostRecent,
                 environmentFeatureFlags: environmentFeatureFlags
