@@ -29,9 +29,11 @@ enum ModuleItemSequenceAssembly {
         assetID: String,
         url: URLComponents
     ) -> UIViewController {
+        let getCoursesInteractor = GetCoursesInteractorLive()
         let interactor = ModuleItemSequenceInteractorLive(
             courseID: courseID,
-            assetType: assetType
+            assetType: assetType,
+            getCoursesInteractor: getCoursesInteractor
         )
         let stateInteractor = ModuleItemStateInteractorLive(
             environment: environment,

@@ -69,7 +69,7 @@ class DashboardViewModel {
     private func onGetCoursesResponse(courses: [HCourse]) {
         state = .data
         nextUpViewModels = courses
-            .filter { $0.incompleteModules.count > 0 }
+            .filter { $0.incompleteModule != nil }
             .map(toNextUpViewModel)
     }
 
@@ -78,27 +78,25 @@ class DashboardViewModel {
             name: course.name,
             progress: course.progress / 100.0,
             learningObjectCardViewModel: course
-                .incompleteModules
-                .first
+                .incompleteModule
                 .map { toLearningObjectCardViewModel($0, course: course) }
         )
     }
 
     private func toLearningObjectCardViewModel(
-        _ module: HModule,
+        _ module: IncompleteModule,
         course: HCourse
     ) -> LearningObjectCardViewModel {
-        let firstModuleItem = module.items.first
         /// Get the estimated time and type because they are not available in incompleteModules, which is retrieved from GraphQL.
-        let moduleItems = course.modules.first(where: { $0.id == firstModuleItem?.moduleID })?.items
-        let item = moduleItems?.first(where: { $0.id == firstModuleItem?.id })
+        let moduleItems = course.modules.first(where: { $0.id == module.moduleId })
+        let item = moduleItems?.items.first(where: { $0.id == module.moduleItemId })
 
         return LearningObjectCardViewModel(
-            moduleTitle: module.name,
-            learningObjectName: firstModuleItem?.title ?? "",
+            moduleTitle: moduleItems?.name ?? "",
+            learningObjectName: item?.title ?? "",
             type: item?.type?.label,
-            dueDate: firstModuleItem?.dueAt?.relativeShortDateOnlyString,
-            url: firstModuleItem?.htmlURL,
+            dueDate: item?.dueAt?.relativeShortDateOnlyString,
+            url: item?.htmlURL,
             estimatedTime: item?.estimatedDurationFormatted
         )
     }
