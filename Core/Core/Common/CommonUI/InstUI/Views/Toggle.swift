@@ -42,7 +42,7 @@ extension InstUI {
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isToggle)
             .accessibilityValue(accessibilityValue)
-            .sensoryFeedback(.selection, trigger: isOn)
+            .sensoryFeedback(.impact, trigger: isOn)
         }
 
         private var toggle: some View {
