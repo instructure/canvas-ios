@@ -1281,6 +1281,9 @@
         }
       }
     },
+    "Add custom grade" : {
+
+    },
     "All grades are currently hidden." : {
       "localizations" : {
         "ar" : {
