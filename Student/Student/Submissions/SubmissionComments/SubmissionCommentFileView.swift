@@ -36,31 +36,23 @@ class SubmissionCommentFileView: UIControl {
     }
 
     // This method (and the whole class) is used only for files in attempts, not for files in simple comments
-    func update(file: File, submission: Submission) {
+    func update(comment: SubmissionComment, file: File, submission: Submission) {
         iconView?.image = file.icon
         nameLabel?.text = file.displayName
         sizeLabel?.text = file.size.humanReadableFileSize
 
         accessibilityIdentifier = "SubmissionComments.fileView.\(file.id ?? "")"
-        accessibilityLabel = [
-            String.localizedAttemptNumber(submission.attempt),
-            submission.attemptAccessibilityDescription,
-            file.displayName,
-            file.size.humanReadableFileSize
-        ].joined(separator: ", ")
+        accessibilityLabel = comment.accessibilityLabelForAttemptAttachment(file, submission: submission)
         accessibilityHint = String(localized: "Double tap to view file", bundle: .core)
     }
 
-    func update(submission: Submission) {
+    func update(comment: SubmissionComment, submission: Submission) {
         iconView?.image = submission.attemptIcon
         nameLabel?.text = submission.attemptTitle
         sizeLabel?.text = submission.attemptSubtitle
 
         accessibilityIdentifier = "SubmissionComments.attemptView.\(submission.attempt)"
-        accessibilityLabel = [
-            String.localizedAttemptNumber(submission.attempt),
-            submission.attemptAccessibilityDescription
-        ].joined(separator: ", ")
+        accessibilityLabel = comment.accessibilityLabelForAttempt(submission: submission)
         accessibilityHint = String(localized: "Double tap to view attempt", bundle: .core)
     }
 

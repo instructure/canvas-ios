@@ -4481,9 +4481,6 @@
         }
       }
     },
-    "%1$@ commented on %2$@: %3$@" : {
-      "comment" : "John Doe commented on 1948.12.02. at 11:42: This is my comment"
-    },
     "%1$@ is due in %2$@" : {
       "comment" : "local notification countdown alert",
       "extractionState" : "manual",
@@ -4747,12 +4744,6 @@
           }
         }
       }
-    },
-    "%1$@ left a video comment on %2$@" : {
-      "comment" : "John Doe left a video comment on 1948.12.02. at 11:42"
-    },
-    "%1$@ left an audio comment on %2$@" : {
-      "comment" : "John Doe left an audio comment on 1948.12.02. at 11:42"
     },
     "%1$@ out of %2$@" : {
       "comment" : "88 out of 100 points",
@@ -23414,9 +23405,6 @@
           }
         }
       }
-    },
-    "Attached file" : {
-      "comment" : "Describes an attached file, not the act of attaching."
     },
     "Attachment" : {
       "comment" : "An item for attaching to a discussion",
@@ -114793,9 +114781,6 @@
           }
         }
       }
-    },
-    "Submitted by %1$@, on %2$@" : {
-      "comment" : "Submitted by John Doe, on 1948.12.02. at 11:42"
     },
     "Submitting..." : {
       "localizations" : {

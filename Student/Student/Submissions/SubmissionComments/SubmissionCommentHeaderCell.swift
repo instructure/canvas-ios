@@ -39,37 +39,6 @@ class SubmissionCommentHeaderCell: UITableViewCell {
         chatBubbleView?.isHidden = comment.attempt != nil || comment.mediaURL != nil
 
         isAccessibilityElement = true
-
-        if let attempt = comment.attempt {
-            let attemptString = String.localizedAttemptNumber(attempt)
-            let submissionInfo = String.localizedStringWithFormat(
-                String(localized: "Submitted by %1$@, on %2$@", bundle: .student, comment: "Submitted by John Doe, on 1948.12.02. at 11:42"),
-                comment.authorName,
-                comment.createdAtLocalizedString
-            )
-            accessibilityLabel = "\(attemptString), \(submissionInfo)"
-        } else if let mediaType = comment.mediaType, comment.mediaURL != nil {
-            switch mediaType {
-            case .audio:
-                accessibilityLabel = String.localizedStringWithFormat(
-                    String(localized: "%1$@ left an audio comment on %2$@", bundle: .student, comment: "John Doe left an audio comment on 1948.12.02. at 11:42"),
-                    comment.authorName,
-                    comment.createdAtLocalizedString
-                )
-            case .video:
-                accessibilityLabel = String.localizedStringWithFormat(
-                    String(localized: "%1$@ left a video comment on %2$@", bundle: .student, comment: "John Doe left a video comment on 1948.12.02. at 11:42"),
-                    comment.authorName,
-                    comment.createdAtLocalizedString
-                )
-            }
-        } else {
-            accessibilityLabel = String.localizedStringWithFormat(
-                String(localized: "%1$@ commented on %2$@: %3$@", bundle: .student, comment: "John Doe commented on 1948.12.02. at 11:42: This is my comment"),
-                comment.authorName,
-                comment.createdAtLocalizedString,
-                comment.comment
-            )
-        }
+        accessibilityLabel = comment.accessibilityLabelForHeader
     }
 }

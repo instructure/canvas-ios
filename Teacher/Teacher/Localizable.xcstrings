@@ -8963,6 +8963,15 @@
         }
       }
     },
+    "Double tap to view attempt" : {
+
+    },
+    "Double tap to view file" : {
+
+    },
+    "Double tap to view profile" : {
+
+    },
     "Edit" : {
       "localizations" : {
         "ar" : {
@@ -34405,6 +34414,7 @@
       }
     },
     "View file %@ %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -35174,6 +35184,7 @@
       }
     },
     "View submission attempt %lld. %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

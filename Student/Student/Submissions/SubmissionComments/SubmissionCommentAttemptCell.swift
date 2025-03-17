@@ -40,7 +40,7 @@ class SubmissionCommentAttemptCell: UITableViewCell {
         if submission.type == .online_upload, let files = submission.attachments?.sorted(by: File.idCompare) {
             for file in files {
                 let view = SubmissionCommentFileView.loadFromXib()
-                view.update(file: file, submission: submission)
+                view.update(comment: comment, file: file, submission: submission)
                 view.onTap = { [weak self] in
                     self?.onFileTap?(submission, file)
                 }
@@ -48,7 +48,7 @@ class SubmissionCommentAttemptCell: UITableViewCell {
             }
         } else if submission.submittedAt != nil {
             let view = SubmissionCommentFileView.loadFromXib()
-            view.update(submission: submission)
+            view.update(comment: comment, submission: submission)
             view.onTap = { [weak self] in
                 self?.onFileTap?(submission, nil)
             }

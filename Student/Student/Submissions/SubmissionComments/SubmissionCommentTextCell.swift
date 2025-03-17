@@ -66,10 +66,7 @@ class SubmissionCommentTextCell: UITableViewCell {
             button.imageView?.contentMode = .scaleAspectFit
             button.setTitle(attachment.displayName, for: .normal)
             button.setTitleColor(color, for: .normal)
-            button.accessibilityLabel = [
-                String(localized: "Attached file", bundle: .core, comment: "Describes an attached file, not the act of attaching."),
-                attachment.displayName
-            ].joined(separator: ", ")
+            button.accessibilityLabel = comment.accessibilityLabelForCommentAttachment(attachment)
             button.accessibilityHint = String(localized: "Double tap to view file", bundle: .core)
 
             button.layer.cornerRadius = 4
