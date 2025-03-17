@@ -20,11 +20,10 @@ import SwiftUI
 
 public struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
     public typealias ViewGenerator = (Model) -> V
-    public var models: [Model]
-    public var viewGenerator: ViewGenerator
-
-    private var horizontalSpacing: CGFloat = 5
-    private var verticalSpacing: CGFloat = 5
+    var models: [Model]
+    var viewGenerator: ViewGenerator
+    var horizontalSpacing: CGFloat = 5
+    var verticalSpacing: CGFloat = 5
 
     @State private var totalHeight = CGFloat.zero
 
