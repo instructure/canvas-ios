@@ -126,11 +126,13 @@ class AssistChatInteractorLive: AssistChatInteractor {
         userShortName: String
     ) -> AnyPublisher<AssistChatResponse, any Error> {
         var prompt: String!
-        var useAdvancedChat = true
+        var useAdvancedChat = false
 
         switch action {
         case .chat(let message, _):
             prompt = message
+            // only use the advanced chat if we don't have a document context
+            useAdvancedChat = pageContext.prompt == nil
         case .chip(let option, _):
             prompt = option.prompt
             useAdvancedChat = false
@@ -138,7 +140,8 @@ class AssistChatInteractorLive: AssistChatInteractor {
 
         // This should really only happen when the user first opens the chat
         if prompt.isEmpty {
-            return buildInitialResponse(for: pageContext).eraseToAnyPublisher()
+            return buildInitialResponse(for: pageContext, with: userShortName)
+                .eraseToAnyPublisher()
         }
 
         return publish(using: action, with: userShortName)
@@ -185,7 +188,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     /// Returns any configured chips to show based on the context. If there are none, we return a default message
-    private func buildInitialResponse(for pageContext: AssistChatPageContext) -> AnyPublisher<AssistChatResponse, Error> {
+    private func buildInitialResponse(for pageContext: AssistChatPageContext, with userShortName: String) -> AnyPublisher<AssistChatResponse, Error> {
         let options = pageContext.chips.map { option in
             AssistChipOption(
                 option,
@@ -272,7 +275,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         // swiftlint:enable line_length
 
         return basicChat(prompt: prompt, pageContext: pageContext)
-            .map{ $0.toChipOptions() }
+            .map { $0.toChipOptions() }
             .eraseToAnyPublisher()
     }
 
