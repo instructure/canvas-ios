@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UserNotifications
 
 extension UNNotificationContent {
     public static let RouteURLKey = "com.instructure.core.router.notification-url"

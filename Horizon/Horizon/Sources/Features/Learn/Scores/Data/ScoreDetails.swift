@@ -17,12 +17,47 @@
 //
 
 import Core
+import Foundation
 
 struct ScoreDetails {
+    enum SortOption: String, CaseIterable {
+        case dueDate
+        case assignmentName
+
+        var localizedTitle: String {
+            switch self {
+            case .dueDate:
+                return String(localized: "Due Date", bundle: .horizon)
+            case .assignmentName:
+                return String(localized: "Assignment Name", bundle: .horizon)
+            }
+        }
+
+        init(from string: String) {
+            switch string {
+            case String(localized: "Due Date", bundle: .horizon):
+                self = .dueDate
+            case String(localized: "Assignment Name", bundle: .horizon):
+                self = .assignmentName
+            default:
+                fatalError()
+            }
+        }
+    }
+
     let score: String
     let assignmentGroups: [HAssignmentGroup]
+    let sortOption: SortOption
 
     var assignments: [HAssignment] {
         assignmentGroups.flatMap(\.assignments)
+            .sorted { lhs, rhs in
+                switch sortOption {
+                case .dueDate:
+                    return (lhs.dueAt ?? Date.distantFuture) < (rhs.dueAt ?? Date.distantFuture)
+                case .assignmentName:
+                    return lhs.name < rhs.name
+                }
+            }
     }
 }

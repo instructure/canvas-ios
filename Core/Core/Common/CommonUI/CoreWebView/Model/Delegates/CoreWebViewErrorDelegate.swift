@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 /**
  This delegate is used to communicate a rendering failure when the underlying web process terminates.
  */

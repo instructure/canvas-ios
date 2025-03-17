@@ -25,13 +25,18 @@ class AssignmentPickerListServiceTests: CoreTestCase {
     private var receivedResult: Result<[APIAssignmentPickerListItem], AssignmentPickerListServiceError>?
     private var resultSubscription: AnyCancellable?
 
+    private var expectation: XCTestExpectation?
+
+    private func expect() {
+        expectation = expectation(description: "result received")
+    }
+
     override func setUp() {
         super.setUp()
         testee = AssignmentPickerListService()
 
-        let resultExpectation = expectation(description: "result received")
         resultSubscription = testee.result.sink { [weak self] result in
-            resultExpectation.fulfill()
+            self?.expectation?.fulfill()
             self?.receivedResult = result
         }
     }
@@ -43,34 +48,91 @@ class AssignmentPickerListServiceTests: CoreTestCase {
 
     func testAPIError() {
         api.mock(AssignmentPickerListRequest(courseID: "failingID"), data: nil, response: nil, error: NSError.instructureError("Custom error"))
+
+        expect()
         testee.courseID = "failingID"
         waitForExpectations(timeout: 1)
+
         XCTAssertEqual(receivedResult, .failure(.failedToGetAssignments))
     }
 
     func testAssignmentFetchSuccessful() {
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "unknown submission type"),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
-            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
+            .make(id: "A1", name: "unknown submission type"),
+            .make(id: "A2", name: "online upload", submission_types: [.online_upload]),
+            .make(id: "A3", name: "online upload, locked", submission_types: [.online_upload], isLocked: true),
+            .make(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
+
+        expect()
         testee.courseID = "successID"
         waitForExpectations(timeout: 1)
+
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: false)
         ]))
     }
 
+    func testAssignment_Pages_Exhaust_Fetch() {
+        // First Fetch
+        api.mock(
+            AssignmentPickerListRequest(courseID: "successID"),
+            value: mockAssignments(
+                [
+                    .make(id: "A1", name: "Assignment 1", submission_types: [.online_upload]),
+                    .make(id: "A2", name: "Assignment 2", submission_types: [.online_upload])
+                ],
+                pageInfo: APIPageInfo(endCursor: "next_cursor", hasNextPage: true)
+            )
+        )
+
+        // Next Page
+        api.mock(
+            AssignmentPickerListRequest(courseID: "successID", cursor: "next_cursor"),
+            value: mockAssignments(
+                [
+                    .make(id: "A3", name: "Assignment 3", submission_types: [.online_upload]),
+                    .make(id: "A4", name: "Assignment 4", submission_types: [.online_upload])
+                ],
+                pageInfo: APIPageInfo(endCursor: "final_cursor", hasNextPage: false)
+            )
+        )
+
+        // Final Page
+        api.mock(
+            AssignmentPickerListRequest(courseID: "successID", cursor: "final_cursor"),
+            value: mockAssignments(
+                [
+                    .make(id: "A5", name: "Assignment 5", submission_types: [.online_upload])
+                ],
+                pageInfo: nil
+            )
+        )
+
+        expect()
+        testee.courseID = "successID"
+        waitForExpectations(timeout: 5)
+
+        XCTAssertEqual(receivedResult, .success([
+            .init(id: "A1", name: "Assignment 1", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A2", name: "Assignment 2", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A3", name: "Assignment 3", allowedExtensions: [], gradeAsGroup: false),
+            .init(id: "A4", name: "Assignment 4", allowedExtensions: [], gradeAsGroup: false)
+        ]))
+    }
+
     func testGroupGradedAssignmentFetchSuccessful() {
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "unknown submission type"),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload], gradeAsGroup: true),
-            mockAssignment(id: "A3", isLocked: true, name: "online upload, locked", submission_types: [.online_upload]),
-            mockAssignment(id: "A4", name: "external tool", submission_types: [.external_tool])
+            .make(id: "A1", name: "unknown submission type"),
+            .make(id: "A2", name: "online upload", submission_types: [.online_upload], gradeAsGroup: true),
+            .make(id: "A3", name: "online upload, locked", submission_types: [.online_upload], isLocked: true),
+            .make(id: "A4", name: "external tool", submission_types: [.external_tool])
         ]))
+
+        expect()
         testee.courseID = "successID"
         waitForExpectations(timeout: 1)
+
         XCTAssertEqual(receivedResult, .success([
             .init(id: "A2", name: "online upload", allowedExtensions: [], gradeAsGroup: true)
         ]))
@@ -81,9 +143,11 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         Analytics.shared.handler = analyticsHandler
 
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
-            mockAssignment(id: "A1", name: "online upload", submission_types: [.online_upload]),
-            mockAssignment(id: "A2", name: "online upload", submission_types: [.online_upload])
+            .make(id: "A1", name: "online upload", submission_types: [.online_upload]),
+            .make(id: "A2", name: "online upload", submission_types: [.online_upload])
         ]))
+
+        expect()
         testee.courseID = "successID"
         waitForExpectations(timeout: 1)
 
@@ -96,7 +160,9 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
 
-        api.mock(AssignmentPickerListRequest(courseID: "successID"), error: NSError.instructureError("custom error"))
+        api.mock(AssignmentPickerListRequest(courseID: "failureID"), error: NSError.instructureError("custom error"))
+
+        expect()
         testee.courseID = "failureID"
         waitForExpectations(timeout: 1)
 
@@ -105,11 +171,16 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
     }
 
-    private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment]) -> AssignmentPickerListRequest.Response {
-        return AssignmentPickerListRequest.Response(data: .init(course: .init(assignmentsConnection: .init(nodes: assignments))))
-    }
-
-    private func mockAssignment(id: String, isLocked: Bool = false, name: String, submission_types: [SubmissionType] = [], gradeAsGroup: Bool = false) -> AssignmentPickerListResponse.Assignment {
-        .init(name: name, _id: id, submissionTypes: submission_types, allowedExtensions: [], lockInfo: .init(isLocked: isLocked), gradeAsGroup: gradeAsGroup)
+    private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment], pageInfo: APIPageInfo? = nil) -> AssignmentPickerListRequest.Response {
+        return AssignmentPickerListRequest.Response(
+            data: .init(
+                course: .init(
+                    assignmentsConnection: .init(
+                        nodes: assignments,
+                        pageInfo: pageInfo
+                    )
+                )
+            )
+        )
     }
 }

@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "-" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -82,6 +85,9 @@
 
     },
     "Assignment Group Weights" : {
+
+    },
+    "Assignment Name" : {
 
     },
     "Assignment Successfully Submitted!" : {
@@ -255,6 +261,12 @@
     "Dublin (+01:00/+00:00)" : {
 
     },
+    "Due Date" : {
+
+    },
+    "Due Date: %@" : {
+
+    },
     "E-mail" : {
 
     },
@@ -291,7 +303,13 @@
     "Error loading scores." : {
 
     },
+    "Excused" : {
+
+    },
     "External Tool" : {
+
+    },
+    "Feedback: " : {
 
     },
     "Fiji (+12:00/+12:00)" : {
@@ -369,6 +387,9 @@
     "Important" : {
 
     },
+    "Inbox" : {
+
+    },
     "Indiana (East) (-05:00/-04:00)" : {
 
     },
@@ -427,6 +448,9 @@
 
     },
     "Label" : {
+
+    },
+    "Late" : {
 
     },
     "Learn" : {
@@ -492,6 +516,9 @@
     "Minsk (+03:00/+03:00)" : {
 
     },
+    "Missing" : {
+
+    },
     "Monrovia (+00:00)" : {
 
     },
@@ -525,6 +552,9 @@
     "Name is required" : {
 
     },
+    "Name: %@" : {
+
+    },
     "New Attempt" : {
 
     },
@@ -547,6 +577,9 @@
 
     },
     "Noronha (-02:00/-02:00)" : {
+
+    },
+    "Not Submitted" : {
 
     },
     "Notebook" : {
@@ -627,9 +660,6 @@
     "Question" : {
 
     },
-    "Quick Links" : {
-
-    },
     "Quito (-05:00/-05:00)" : {
 
     },
@@ -640,6 +670,9 @@
 
     },
     "Required" : {
+
+    },
+    "Result: %@" : {
 
     },
     "Retry" : {
@@ -711,6 +744,9 @@
     "Solomon Is. (+11:00/+11:00)" : {
 
     },
+    "Sort By" : {
+
+    },
     "Srednekolymsk (+11:00/+11:00)" : {
 
     },
@@ -720,6 +756,9 @@
     "St. Petersburg (+03:00)" : {
 
     },
+    "Status: " : {
+
+    },
     "Stockholm (+01:00/+02:00)" : {
 
     },
@@ -727,6 +766,9 @@
 
     },
     "Submit Attempt" : {
+
+    },
+    "Submitted" : {
 
     },
     "Support" : {

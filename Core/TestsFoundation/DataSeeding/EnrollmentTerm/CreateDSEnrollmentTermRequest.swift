@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 // https://canvas.instructure.com/doc/api/enrollment_terms.html#method.terms.create
 public struct CreateDSEnrollmentTermRequest: APIRequestable {

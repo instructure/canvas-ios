@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 struct HAssignmentGroup: Identifiable {
     let id: String
@@ -34,7 +35,7 @@ struct HAssignmentGroup: Identifiable {
 
     let assignments: [HAssignment]
 
-    init(id: String, name: String, groupWeight: Double, assignments: [HAssignment]) {
+    init(id: String, name: String, groupWeight: Double?, assignments: [HAssignment]) {
         self.id = id
         self.name = name
         self.groupWeight = groupWeight
@@ -50,6 +51,15 @@ struct HAssignmentGroup: Identifiable {
         } else {
             self.assignments = []
         }
+    }
+
+    func update(assignments: [HAssignment]) -> HAssignmentGroup {
+        HAssignmentGroup(
+            id: id,
+            name: name,
+            groupWeight: groupWeight,
+            assignments: assignments
+        )
     }
 }
 

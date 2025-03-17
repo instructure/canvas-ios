@@ -17,8 +17,8 @@
 //
 
 import Core
-import SwiftUI
 import HorizonUI
+import SwiftUI
 
 struct DashboardView: View {
     @Bindable private var viewModel: DashboardViewModel
@@ -81,6 +81,27 @@ struct DashboardView: View {
             .toolbar(.visible)
             .padding(.bottom, .huiSpaces.space16)
         }
+        .toolbar(.hidden)
+        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+        .scrollIndicators(.hidden, axes: .vertical)
+        .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var navigationBar: some View {
+        HStack(spacing: .zero) {
+            HorizonUI.NavigationBar.Leading(logoURL: logoURL)
+            Spacer()
+            HorizonUI.NavigationBar.Trailing {
+                viewModel.notebookDidTap(viewController: viewController)
+            } onNotificationDidTap: {
+                viewModel.notificationsDidTap()
+            } onMailDidTap: {
+                viewModel.mailDidTap(viewController: viewController)
+            }
+        }
+        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.bottom, .huiSpaces.space4)
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var nameLabel: some View {

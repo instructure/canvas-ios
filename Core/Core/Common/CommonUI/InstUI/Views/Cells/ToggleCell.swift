@@ -33,14 +33,13 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                Toggle(isOn: $value) { label.allowsHitTesting(false) }
+                InstUI.Toggle(isOn: $value) { label.allowsHitTesting(false) }
                     .textStyle(.cellLabel)
                     .paddingStyle(.leading, .standard)
                     .paddingStyle(.trailing, .standard)
                     // best effort estimations to match the height of other cells, correcting for Toggle
-                    .padding(.top, 6)
+                    .padding(.top, 10)
                     .padding(.bottom, 8)
-
                 InstUI.Divider()
             }
         }

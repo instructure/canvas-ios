@@ -31,6 +31,12 @@ public extension HorizonUI.Pill.Style {
             iconColor: .huiColors.text.body
         )
         
+        public static let institution = Outline(
+            borderColor: .huiColors.surface.institution,
+            textColor: .huiColors.surface.institution,
+            iconColor: .huiColors.surface.institution
+        )
+        
         public static let danger = Outline(
             borderColor: .huiColors.surface.error,
             textColor: .huiColors.text.error,

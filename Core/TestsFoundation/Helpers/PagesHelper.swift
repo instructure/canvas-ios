@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class PagesHelper: BaseHelper {
     public static var frontPage: XCUIElement { app.find(id: "PageList.frontPage") }
     public static var frontPageHeading: XCUIElement { app.find(id: "PageList.frontPageHeading") }

@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 import UserNotifications
 import Core
@@ -33,7 +32,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var reminderDateButton: UIButton!
     @IBOutlet weak var reminderHeadingLabel: UILabel!
     @IBOutlet weak var reminderMessageLabel: UILabel!
-    @IBOutlet weak var reminderSwitch: UISwitch!
+    @IBOutlet weak var reminderSwitch: CoreSwitch!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var statusIconView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
@@ -112,6 +111,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         reminderMessageLabel.text = String(localized: "Set a date and time to be notified of this event.", bundle: .parent)
         reminderSwitch.accessibilityLabel = String(localized: "Remind Me", bundle: .parent)
         reminderSwitch.isEnabled = false
+        reminderSwitch.tintColor = ColorScheme.observee(studentID).color
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
         reminderDateButton.setTitleColor(
@@ -259,7 +259,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     @IBAction func compose() {
-        guard let assignment = assignment.first, let name = student.first?.fullName else { return }
+        guard let assignment = assignment.first,
+              let name = student.first?.fullName,
+              let course = course.first
+        else { return }
+
         let subject = String.localizedStringWithFormat(
             String(localized: "Regarding: %@, Assignment - %@", bundle: .parent, comment: "Regarding <Name>, Assignment - <Assignment Name>"),
             name,
@@ -271,14 +275,21 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             assignment.htmlURL?.absoluteString ?? ""
         )
 
-        let compose = ComposeViewController.create(
-            context: .course(courseID),
-            observeeID: studentID,
-            recipients: teachers.all,
-            subject: subject,
-            hiddenMessage: hiddenMessage
+        let options = ComposeMessageOptions(
+            disabledFields: .init(
+                contextDisabled: true
+            ),
+            fieldsContents: .init(
+                selectedContext: .init(course: course),
+                subjectText: subject
+            ),
+            extras: .init(
+                hiddenMessage: hiddenMessage,
+                autoTeacherSelect: true
+            )
         )
-        env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
+        env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 
     @IBAction func submissionAndRubricButtonPressed(_ sender: Any) {

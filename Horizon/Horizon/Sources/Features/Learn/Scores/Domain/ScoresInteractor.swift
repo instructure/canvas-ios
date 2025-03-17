@@ -20,25 +20,31 @@ import Combine
 import Core
 
 protocol ScoresInteractor {
-    func getScores() -> AnyPublisher<ScoreDetails, Error>
+    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error>
 }
 
 final class ScoresInteractorLive: ScoresInteractor {
     private let courseID: String
+    private let submissionCommentInteractor: SubmissionCommentInteractor
 
-    init(courseID: String) {
+    init(
+        courseID: String,
+        submissionCommentInteractor: SubmissionCommentInteractor = SubmissionCommentAssembly.makeSubmissionCommentInteractor()
+    ) {
         self.courseID = courseID
+        self.submissionCommentInteractor = submissionCommentInteractor
     }
 
-    func getScores() -> AnyPublisher<ScoreDetails, Error> {
+    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error> {
         Publishers.Zip(
             getAssignmentGroups(courseID: courseID),
             getCourse(courseID: courseID)
         )
-        .map { assignmentGroups, course in
+        .flatMap { assignmentGroups, course in
             self.getScoreDetails(
                 course: course,
-                assignmentGroups: assignmentGroups
+                assignmentGroups: assignmentGroups,
+                sortBy: sortedBy
             )
         }
         .eraseToAnyPublisher()
@@ -65,11 +71,56 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getScoreDetails(course: ScoresCourse, assignmentGroups: [HAssignmentGroup]) -> ScoreDetails {
-        ScoreDetails(
-            score: calculateFinalScoreAndGradeText(course: course),
-            assignmentGroups: assignmentGroups
+    private func getScoreDetails(
+        course: ScoresCourse,
+        assignmentGroups: [HAssignmentGroup],
+        sortBy: ScoreDetails.SortOption
+    ) -> AnyPublisher<ScoreDetails, Error> {
+        unowned let unownedSelf = self
+
+        return assignmentGroups
+            .publisher
+            .flatMap { assignmentGroup -> AnyPublisher<HAssignmentGroup, Error> in
+                assignmentGroup.assignments
+                    .publisher
+                    .flatMap {
+                        unownedSelf.getCommentsForAsssignment(
+                            courseID: course.courseID,
+                            assignment: $0
+                        )
+                    }
+                    .collect()
+                    .map { assignmentGroup.update(assignments: $0) }
+                    .eraseToAnyPublisher()
+            }
+            .collect()
+            .map {
+                ScoreDetails(
+                    score: unownedSelf.calculateFinalScoreAndGradeText(course: course),
+                    assignmentGroups: $0,
+                    sortOption: sortBy
+                )
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func getCommentsForAsssignment(
+        courseID: String,
+        assignment: HAssignment
+    ) -> AnyPublisher<HAssignment, Error> {
+        submissionCommentInteractor.getNumberOfComments(
+            courseID: courseID,
+            assignmentID: assignment.id,
+            attempt: assignment.mostRecentSubmission?.attempt
         )
+        .map { numberOfComments -> HAssignment in
+            var updatedSubmissions = assignment.submissions
+            if let mostRecentSubmission = updatedSubmissions.first {
+                updatedSubmissions[0] = mostRecentSubmission.update(numberOfComments: numberOfComments)
+            }
+            return assignment.update(submissions: updatedSubmissions)
+        }
+        .eraseToAnyPublisher()
     }
 
     private func calculateFinalScoreAndGradeText(course: ScoresCourse) -> String {

@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ManageStudentsTests: E2ETestCase {
     func testManageStudents() {

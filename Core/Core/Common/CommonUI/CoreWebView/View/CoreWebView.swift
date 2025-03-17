@@ -74,6 +74,7 @@ open class CoreWebView: WKWebView {
 
     public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration) {
         configuration.applyDefaultSettings()
+        let features = features + [.dynamicFontSize]
         features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
@@ -255,7 +256,10 @@ open class CoreWebView: WKWebView {
         let font: String
         let fontCSS: String
         let style = Typography.Style.body
-        let uiFont = style.uiFont
+        // This is to avoid double scaling both from the font and from the script.
+        let isDynamicFontScalingEnabled = features.contains { $0 is DynamicFontSize }
+        let uiFont = isDynamicFontScalingEnabled ? Typography.Style.unscaledBodyUIFont
+                                                 : style.uiFont
         let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
         if AppEnvironment.shared.k5.isK5Enabled {
@@ -710,8 +714,9 @@ extension CoreWebView {
         originalBaseURL: URL?
     ) {
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
+
             loadFileURL(
-                URL.Directories.documents,
+                filePath,
                 allowingReadAccessTo: URL.Directories.documents
             ) { [weak self] _ in
                 guard let self else { return }
@@ -719,6 +724,7 @@ extension CoreWebView {
                 // All offline content should have relative links to the documents directory
                 self.loadHTMLString(rawHtmlValue ?? "", baseURL: URL.Directories.documents)
             }
+
         } else {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }

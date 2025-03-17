@@ -22,7 +22,7 @@ public extension HorizonUI {
     struct Toast: View {
         // MARK: - Properties
         
-        private let cornerRadius = CornerRadius.level3
+        private let cornerRadius = CornerRadius.level2
         
         // MARK: - Dependencies
         
@@ -38,6 +38,18 @@ public extension HorizonUI {
         }
         
         public var body: some View {
+            ZStack {
+                RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
+                    .fill(Color.huiColors.surface.pageSecondary)
+                    .stroke(viewModel.style.color, lineWidth: HorizonUI.Borders.level2.rawValue)
+                
+                contentView
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.horizontal, .huiSpaces.space24)
+        }
+        
+        private var contentView: some View {
             HStack(alignment: .top, spacing: .zero) {
                 alertIcon
                 VStack(alignment: .leading, spacing: .zero) {
@@ -50,17 +62,13 @@ public extension HorizonUI {
                     .padding(.top,.huiSpaces.space16)
             }
             .frame(minHeight: 64)
-            .background(Color.huiColors.surface.pageSecondary)
-            .huiBorder(level: .level2, color: viewModel.style.color, radius: cornerRadius.attributes.radius)
-            .huiCornerRadius(level: cornerRadius)
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.horizontal, .huiSpaces.space24)
         }
         
         private var alertIcon: some View {
             Rectangle()
                 .fill(viewModel.style.color)
                 .frame(width: 50)
+                .huiCornerRadius(level: cornerRadius, corners: [.topLeft, .bottomLeft])
                 .overlay {
                     viewModel.style.image
                         .foregroundStyle(Color.huiColors.icon.surfaceColored)
@@ -83,8 +91,11 @@ public extension HorizonUI {
                     .fixedSize(horizontal: true, vertical: false)
                 }
                 if viewModel.isShowCancelButton {
-                    HorizonUI.IconButton( HorizonUI.icons.close, type: .white) {
+                    Button {
                         onTapDismiss?()
+                    } label: {
+                        HorizonUI.icons.close
+                            .foregroundStyle(Color.huiColors.icon.default)
                     }
                     .padding(.trailing, .huiSpaces.space16)
                 }
@@ -179,5 +190,4 @@ public extension HorizonUI {
         Color.black
         HorizonUI.Toast(viewModel: .init(text: "Alert Toast", style: .info))
     }
-
 }

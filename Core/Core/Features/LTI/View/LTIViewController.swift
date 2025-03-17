@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
 public class LTIViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
     @IBOutlet weak var spinnerView: CircleProgressView!

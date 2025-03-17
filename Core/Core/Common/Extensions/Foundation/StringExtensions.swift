@@ -126,18 +126,10 @@ extension String {
         return data
     }
 
-    /// Localized string to be used when we need number of items. Example: "5 items"
-    public static func localizedNumberOfItems(_ count: Int) -> String {
-        String.localizedStringWithFormat(String(localized: "d_items", bundle: .core), count)
-    }
-
-    /// Localized string to be used as `accessibilityLabel` for lists without a section header. Example: "List, 5 items"
-    public static func localizedAccessibilityListCount(_ count: Int) -> String {
-        let listText = String(localized: "List", bundle: .core)
-        let countText = String.localizedNumberOfItems(count)
-        // It's okay to not translate the comma, because VoiceOver (with captions enabled) uses commas for separation,
-        // even when language & region both are set to a language which doesn't (like Danish)
-        return "\(listText), \(countText)"
+    /// - returns: A new string without the given prefix. If the string doesn't have the given prefix this method will return the unmodified string.
+    public func deletingPrefix(_ prefix: String) -> String {
+        guard hasPrefix(prefix) else { return self }
+        return String(dropFirst(prefix.count))
     }
 }
 

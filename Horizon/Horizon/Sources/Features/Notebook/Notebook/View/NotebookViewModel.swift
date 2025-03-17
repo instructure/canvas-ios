@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import Combine
+import Core
+import Foundation
 
 @Observable
 final class NotebookViewModel {
@@ -30,6 +31,7 @@ final class NotebookViewModel {
     var courseNoteLabels: [CourseNoteLabel] {
         CourseNoteLabel.allCases.filter { $0 != .other }
     }
+
     var filter: CourseNoteLabel? {
         get {
             getCourseNotesInteractor.filter
@@ -39,6 +41,7 @@ final class NotebookViewModel {
             getCourseNotesInteractor.filter = (self.filter == newValue ? nil : newValue)
         }
     }
+
     var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
     private(set) var isNextDisabled: Bool = true
     private(set) var isPreviousDisabled: Bool = true
@@ -60,7 +63,7 @@ final class NotebookViewModel {
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
 
-        title = String(localized: "Notebook", bundle: .horizon)
+        self.title = String(localized: "Notebook", bundle: .horizon)
 
         loadNotes()
     }

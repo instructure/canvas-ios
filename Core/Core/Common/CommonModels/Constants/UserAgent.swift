@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 public enum UserAgent: CustomStringConvertible {
@@ -31,6 +30,8 @@ public enum UserAgent: CustomStringConvertible {
             return "iosTeacher"
         case Bundle.parentBundleID:
             return "iosParent"
+        case Bundle.horizonBundleID:
+            return "iosCareer"
         default:
             return "iCanvas"
         }

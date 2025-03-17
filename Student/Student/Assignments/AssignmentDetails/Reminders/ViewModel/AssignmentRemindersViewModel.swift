@@ -19,6 +19,7 @@
 import Core
 import Combine
 import CombineSchedulers
+import UIKit
 
 public class AssignmentRemindersViewModel: ObservableObject {
     // MARK: - Outputs

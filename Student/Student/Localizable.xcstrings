@@ -5009,6 +5009,9 @@
         }
       }
     },
+    "%1$@, submitted on %2$@" : {
+      "comment" : "Attempt 30, submitted on 2025. Feb 6. at 18:21"
+    },
     "%1$@. %2$@. Type: %3$@." : {
       "comment" : "String to be read for the blind users. Name of item in module, then type of thing.",
       "extractionState" : "manual",
@@ -16457,7 +16460,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuir Ceangaltán leis"
+            "value" : "Add Attachment"
           }
         },
         "hi" : {
@@ -16984,7 +16987,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuir Ráiteas leis"
+            "value" : "Add Comment"
           }
         },
         "hi" : {
@@ -24453,6 +24456,7 @@
       }
     },
     "Attempt %d" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -32813,6 +32817,9 @@
         }
       }
     },
+    "Collapsed" : {
+
+    },
     "Comment" : {
       "comment" : "Add message button for teacher or ta",
       "localizations" : {
@@ -33972,7 +33979,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Críochnaithe"
+            "value" : "Complete"
           }
         },
         "hi" : {
@@ -43153,7 +43160,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ruaig"
+            "value" : "Dún"
           }
         },
         "hi" : {
@@ -44619,6 +44626,9 @@
           }
         }
       }
+    },
+    "Double tap to select attempt" : {
+
     },
     "Download Canceled" : {
       "comment" : "Shown when we cancel a file download",
@@ -49975,7 +49985,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Earráid"
+            "value" : "Error"
           }
         },
         "hi" : {
@@ -60995,7 +61005,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folaigh Marcanna"
+            "value" : "Hide Grades"
           }
         },
         "hi" : {
@@ -63346,7 +63356,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neamhiomlán"
+            "value" : "Incomplete"
           }
         },
         "hi" : {
@@ -81080,6 +81090,7 @@
       }
     },
     "No Submission Date" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -87984,7 +87995,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oscail an Tráth na gCeist"
+            "value" : "Oscail an Quiz"
           }
         },
         "hi" : {
@@ -102904,7 +102915,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuardaigh faighteoirí"
+            "value" : "Search for recipients"
           }
         },
         "hi" : {

@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class CourseDetailsHelper: BaseHelper {
     public enum CellType: String {
         case home = "home"

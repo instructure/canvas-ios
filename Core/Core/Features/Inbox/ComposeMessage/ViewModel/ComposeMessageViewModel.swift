@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import CombineSchedulers
+import UIKit
 
 final class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
@@ -136,7 +137,7 @@ final class ComposeMessageViewModel: ObservableObject {
 
     private func getRecipients() {
         recipientInteractor
-            .getRecipients(by: selectedContext?.context)
+            .getRecipients(by: selectedContext?.context, qualifier: nil)
             .map { [selectedRecipients] values in
                 values.filter { recipient in
                     !selectedRecipients.value.contains(where: { selectedRecipient in recipient == selectedRecipient })
@@ -146,6 +147,15 @@ final class ComposeMessageViewModel: ObservableObject {
                 self?.allRecipients.send(result)
             }
             .store(in: &subscriptions)
+
+        if autoTeacherSelect {
+            recipientInteractor
+                .getRecipients(by: selectedContext?.context, qualifier: .teachers)
+                .sink { [weak self] result in
+                    self?.selectedRecipients.send(result)
+                }
+                .store(in: &subscriptions)
+        }
     }
 
     private func bindSearchRecipients() {
@@ -364,7 +374,6 @@ final class ComposeMessageViewModel: ObservableObject {
         self.selectedRecipients.value = fieldContents.selectedRecipients
         self.subject = fieldContents.subjectText
         self.bodyText = fieldContents.bodyText
-        getRecipients()
         let extras = options.extras
         self.hiddenMessage = extras.hiddenMessage
         self.autoTeacherSelect = extras.autoTeacherSelect
@@ -376,9 +385,7 @@ final class ComposeMessageViewModel: ObservableObject {
         initialMessageProperties.message = bodyText
         initialMessageProperties.subject = subject
 
-        if autoTeacherSelect {
-            selectedRecipients.send([.init(ids: [], name: String(localized: "Teachers"), avatarURL: nil)])
-        }
+        getRecipients()
     }
 
     private func setIncludedMessages(messageType: ComposeMessageOptions.MessageType) {

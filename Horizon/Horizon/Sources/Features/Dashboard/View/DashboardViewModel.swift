@@ -18,6 +18,8 @@
 
 import Combine
 import Core
+import Foundation
+import Observation
 
 @Observable
 class DashboardViewModel {
@@ -65,8 +67,8 @@ class DashboardViewModel {
     }
 
     private func onGetCoursesResponse(courses: [HCourse]) {
-        self.state = .data
-        self.nextUpViewModels = courses
+        state = .data
+        nextUpViewModels = courses
             .filter { $0.incompleteModules.count > 0 }
             .map(toNextUpViewModel)
     }
@@ -103,7 +105,7 @@ class DashboardViewModel {
 
     // MARK: - Inputs
 
-    func notebookDidTap(viewController: WeakViewController ) {
+    func notebookDidTap(viewController: WeakViewController) {
         router.route(to: "/notebook", from: viewController)
     }
 

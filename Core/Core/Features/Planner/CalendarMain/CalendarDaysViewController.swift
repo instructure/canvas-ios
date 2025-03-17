@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 class CalendarDaysViewController: UIViewController {
@@ -197,9 +196,8 @@ class CalendarDayButton: UIButton {
             for (d, dot) in dotContainer.arrangedSubviews.enumerated() {
                 dot.isHidden = d >= activityDotCount
             }
-            accessibilityLabel = String.localizedStringWithFormat(
-                String(localized: "date_d_events", bundle: .core),
-                DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none),
+            accessibilityValue = String.localizedStringWithFormat(
+                String(localized: "d_events", bundle: .core),
                 activityDotCount
             )
         }
@@ -244,7 +242,7 @@ class CalendarDayButton: UIButton {
         let month = String(calendar.component(.month, from: date))
         let day = String(calendar.component(.day, from: date))
         accessibilityIdentifier = "PlannerCalendar.dayButton.\(year)-\(month)-\(day)"
-        accessibilityLabel = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+        accessibilityLabel = date.formatted(.dateTime.year().month().day().weekday(.wide))
 
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(circleView)

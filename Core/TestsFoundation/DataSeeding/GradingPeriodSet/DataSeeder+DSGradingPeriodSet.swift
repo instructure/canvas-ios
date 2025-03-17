@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 extension DataSeeder {
     public func createGradingPeriodSet(title: String, enrollmentTerms: [DSEnrollmentTerm]) -> DSGradingPeriodSet {
         let enrollmentTermIds = enrollmentTerms.map { $0.id }
