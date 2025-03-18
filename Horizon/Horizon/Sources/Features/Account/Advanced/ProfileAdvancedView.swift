@@ -30,19 +30,23 @@ struct ProfileAdvancedView: View {
 
     var body: some View {
         ProfileBody(String(localized: "Advanced", bundle: .horizon)) {
-            HorizonUI.SingleSelect(
-                label: String(localized: "Time Zone", bundle: .horizon),
-                selection: $viewModel.timeZone,
-                options: viewModel.timeZones,
-                disabled: viewModel.isSelectDisabled,
-                focused: $focused
-            )
-            SavingButton(
-                title: String(localized: "Save Changes", bundle: .horizon),
-                isLoading: $viewModel.isLoading,
-                isDisabled: $viewModel.isSaveDisabled,
-                onSave: viewModel.save
-            )
+            VStack(alignment: .leading) {
+                HorizonUI.SingleSelect(
+                    selection: $viewModel.timeZone,
+                    focused: $focused,
+                    label: String(localized: "Time Zone", bundle: .horizon),
+                    options: viewModel.timeZones,
+                    disabled: viewModel.isSelectDisabled
+                )
+                SavingButton(
+                    title: String(localized: "Save Changes", bundle: .horizon),
+                    isLoading: $viewModel.isLoading,
+                    isDisabled: $viewModel.isSaveDisabled,
+                    onSave: viewModel.save
+                )
+            }
+            .frame(maxHeight: .infinity, alignment: .top)
+            .padding(.huiSpaces.space32)
         }
         .onTapGesture {
             print("On Tap")

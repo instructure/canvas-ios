@@ -20,13 +20,15 @@ import SwiftUI
 
 extension HorizonUI.SingleSelect {
     struct Storybook: View {
-        
+
+        @State var focused = false
         @State var selection = "Option 1"
 
         var body: some View {
             HorizonUI.SingleSelect(
-                label: "Label",
                 selection: $selection,
+                focused: $focused,
+                label: "Label",
                 options: Array(1 ... 20).map { "Option \($0)" }
             )
             .frame(maxHeight: .infinity, alignment: .top)

@@ -22,19 +22,19 @@ import SwiftUI
 struct ScoresAssignmentsView: View {
     let details: ScoreDetails
     @Binding var selectedSortOption: String
+    @State private var selectionSortFocused: Bool = false
     let openAssignmentDetails: (URL?) -> Void
 
     var body: some View {
         VStack(spacing: .zero) {
-            Text("Sort By", bundle: .horizon)
-                .huiTypography(.labelLargeBold)
-                .foregroundStyle(Color.huiColors.text.body)
-                .padding([.top, .leading, .trailing], .huiSpaces.space24)
-                .frame(maxWidth: .infinity, alignment: .leading)
             HorizonUI.SingleSelect(
                 selection: $selectedSortOption,
+                focused: $selectionSortFocused,
+                label: String(localized: "Sort By", bundle: .horizon),
                 options: ScoreDetails.SortOption.allCases.map(\.localizedTitle)
             )
+            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.top, .huiSpaces.space16)
             VStack(spacing: .zero) {
                 ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
                     VStack(alignment: .leading, spacing: .huiSpaces.space8) {
