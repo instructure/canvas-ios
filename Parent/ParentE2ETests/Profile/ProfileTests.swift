@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ProfileTests: E2ETestCase {
     func testProfile() {
@@ -45,7 +46,7 @@ class ProfileTests: E2ETestCase {
         XCTAssertTrue(inboxButton.isVisible)
         XCTAssertTrue(manageStudentsButton.isVisible)
         XCTAssertTrue(darkModeToggle.isVisible)
-        XCTAssertTrue(darkModeToggle.hasValue(value: "0"))
+        XCTAssertTrue(darkModeToggle.hasValue(value: "off"))
         XCTAssertTrue(helpButton.isVisible)
         XCTAssertTrue(changeUserButton.isVisible)
         XCTAssertTrue(logOutButton.isVisible)

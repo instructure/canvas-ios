@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ManageStudentsTests: E2ETestCase {
     func testManageStudents() {
@@ -77,21 +78,21 @@ class ManageStudentsTests: E2ETestCase {
         institutionAnnouncements.hit()
         XCTAssertTrue(courseGradeAbove.waitUntil(.value(expected: highPercent)).hasValue(value: highPercent))
         XCTAssertTrue(courseGradeBelow.waitUntil(.value(expected: lowPercent)).hasValue(value: lowPercent))
-        XCTAssertTrue(assignmentMissing.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        XCTAssertTrue(assignmentMissing.waitUntil(.value(expected: "on")).hasValue(value: "on"))
         XCTAssertTrue(assignmentGradeAbove.waitUntil(.value(expected: highPercent)).hasValue(value: highPercent))
         XCTAssertTrue(assignmentGradeBelow.waitUntil(.value(expected: lowPercent)).hasValue(value: lowPercent))
-        XCTAssertTrue(courseAnnouncements.waitUntil(.value(expected: "1")).hasValue(value: "1"))
-        XCTAssertTrue(institutionAnnouncements.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        XCTAssertTrue(courseAnnouncements.waitUntil(.value(expected: "on")).hasValue(value: "on"))
+        XCTAssertTrue(institutionAnnouncements.waitUntil(.value(expected: "on")).hasValue(value: "on"))
 
         // MARK: Go back, then open details and check if the new values got saved
         backButton.hit()
         student1cell.hit()
         XCTAssertTrue(courseGradeAbove.waitUntil(.visible).hasValue(value: highPercent))
         XCTAssertTrue(courseGradeBelow.waitUntil(.visible).hasValue(value: lowPercent))
-        XCTAssertTrue(assignmentMissing.waitUntil(.visible).hasValue(value: "1"))
+        XCTAssertTrue(assignmentMissing.waitUntil(.visible).hasValue(value: "on"))
         XCTAssertTrue(assignmentGradeAbove.waitUntil(.visible).hasValue(value: highPercent))
         XCTAssertTrue(assignmentGradeBelow.waitUntil(.visible).hasValue(value: lowPercent))
-        XCTAssertTrue(courseAnnouncements.waitUntil(.visible).hasValue(value: "1"))
-        XCTAssertTrue(institutionAnnouncements.waitUntil(.visible).hasValue(value: "1"))
+        XCTAssertTrue(courseAnnouncements.waitUntil(.visible).hasValue(value: "on"))
+        XCTAssertTrue(institutionAnnouncements.waitUntil(.visible).hasValue(value: "on"))
     }
 }

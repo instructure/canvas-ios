@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class CoursesTests: E2ETestCase {
     typealias DetailsHelper = CourseDetailsHelperParent

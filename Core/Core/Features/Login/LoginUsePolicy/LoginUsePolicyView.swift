@@ -37,7 +37,7 @@ struct LoginUsePolicyView: View {
                     Text("Acceptable Use Policy", bundle: .core)
                         .font(.semibold16).foregroundColor(.textDarkest)
                     Spacer()
-                    InstDisclosureIndicator()
+                    InstUI.DisclosureIndicator()
                 }
                 .padding()
                 .frame(height: 47)

@@ -23,20 +23,23 @@ import XCTest
 
 class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     private var mockNotificationCenter: MockUserNotificationCenter!
-    private let context = AssignmentReminderContext(courseId: "1",
-                                                    assignmentId: "2",
-                                                    userId: "3",
-                                                    assignmentName: "test",
-                                                    dueDate: Date().addDays(2))
+    private var context: AssignmentReminderContext!
 
     override func setUp() {
         super.setUp()
+        Clock.mockNow(Date.make(year: 2100, month: 1, day: 15))
         mockNotificationCenter = MockUserNotificationCenter()
+        context = AssignmentReminderContext(
+            courseId: "1",
+            assignmentId: "2",
+            userId: "3",
+            assignmentName: "test",
+            dueDate: Clock.now.addDays(2)
+        )
     }
 
     func testReminderSectionVisibleWhenDueDateInFuture() {
         let testee = AssignmentRemindersInteractorLive(notificationCenter: mockNotificationCenter)
-        Clock.mockNow(Date())
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: .distantPast))
@@ -47,7 +50,6 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now.addSeconds(1)))
         XCTAssertTrue(testee.isRemindersSectionVisible.value)
-        Clock.reset()
     }
 
     // MARK: - Reminder Display
@@ -144,10 +146,10 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
             }
 
         // WHEN
-        testee.newReminderDidSelect.send(DateComponents(day: 2))
+        testee.newReminderDidSelect.send(DateComponents(day: 2, minute: 1))
 
         // THEN
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 5)
         XCTAssertTrue(notificationCenter.requests.isEmpty)
         subscription.cancel()
     }
@@ -156,12 +158,24 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         let notificationCenter = MockUserNotificationCenter()
         let testee = AssignmentRemindersInteractorLive(notificationCenter: notificationCenter)
         testee.contextDidUpdate.send(context)
-        testee.newReminderDidSelect.send(DateComponents(day: 1))
-        let newReminderResultReceived = expectation(description: "New reminder result received")
-        let subscription = testee
+
+        // Setup first reminder 1 day before event
+        let oneDayReminderSetupCompleted = expectation(description: "oneDayReminderSetupCompleted")
+        let oneDayReminderSubscription = testee
             .newReminderCreationResult
             .sink {
-                newReminderResultReceived.fulfill()
+                oneDayReminderSetupCompleted.fulfill()
+                XCTAssertEqual($0.isSuccess, true)
+            }
+        testee.newReminderDidSelect.send(DateComponents(day: 1))
+        wait(for: [oneDayReminderSetupCompleted], timeout: 5)
+        oneDayReminderSubscription.cancel()
+
+        let duplicateReminderResultReceived = expectation(description: "New reminder result received")
+        let duplicateReminderSubscription = testee
+            .newReminderCreationResult
+            .sink {
+                duplicateReminderResultReceived.fulfill()
                 XCTAssertEqual($0.error, .duplicate)
             }
 
@@ -169,9 +183,9 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         testee.newReminderDidSelect.send(DateComponents(hour: 24))
 
         // THEN
-        waitForExpectations(timeout: 1)
+        wait(for: [duplicateReminderResultReceived], timeout: 5)
         XCTAssertEqual(notificationCenter.requests.count, 1)
-        subscription.cancel()
+        duplicateReminderSubscription.cancel()
     }
 
     func testReminderDeletion() {

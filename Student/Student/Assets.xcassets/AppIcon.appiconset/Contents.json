@@ -106,7 +106,7 @@
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "1024x1024.png",
+      "filename" : "student 16.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -313,7 +313,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "1024x1024 1.png",
+      "filename" : "student dark.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -520,7 +520,7 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "1024x1024 2.png",
+      "filename" : "student tinted 15.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 public enum ContextType: String, Codable {
     case account, course, group, user, section, folder

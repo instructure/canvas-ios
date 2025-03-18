@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class ModulesHelper: BaseHelper {
     public static var publishOptionsButton: XCUIElement { app.find(id: "ModuleList.publishOptions") }
 

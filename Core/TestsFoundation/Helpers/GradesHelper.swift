@@ -17,16 +17,22 @@
 //
 
 import Core
+import XCTest
 
 public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }
-    public static var upcomingAssignmentsLabel: XCUIElement { app.find(label: "Upcoming Assignments", type: .staticText) }
     public static var filterButton: XCUIElement { app.find(id: "GradeList.filterButton") }
     public static var lockIcon: XCUIElement { app.find(id: "lockIcon") }
-    public static var basedOnGradedSwitch: XCUIElement { app.find(id: "BasedOnGradedToggle").find(type: .switch) }
+    public static var basedOnGradedSwitch: XCUIElement { app.find(id: "BasedOnGradedToggle", type: .toggle) }
 
-    public static func labelOfAG(assignmentGroup: DSAssignmentGroup) -> XCUIElement {
-        return app.find(label: assignmentGroup.name, type: .staticText)
+    public static func upcomingAssignmentsSectionTitle(numberOfItems: Int) -> XCUIElement {
+        let itemCountLabel = String.localizedNumberOfItems(numberOfItems)
+        return app.find(label: "Upcoming Assignments, \(itemCountLabel)", type: .staticText)
+    }
+
+    public static func labelOfAssignmentGroup(_ assignmentGroup: DSAssignmentGroup, numberOfItems: Int) -> XCUIElement {
+        let itemCountLabel = String.localizedNumberOfItems(numberOfItems)
+        return app.find(label: "\(assignmentGroup.name), \(itemCountLabel)", type: .staticText)
     }
 
     public static func cell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {

@@ -41,6 +41,7 @@ extension InstUI {
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isToggle)
+            .accessibilityRemoveTraits(.isStaticText)
             .accessibilityValue(accessibilityValue)
             .sensoryFeedback(.impact, trigger: isOn)
         }

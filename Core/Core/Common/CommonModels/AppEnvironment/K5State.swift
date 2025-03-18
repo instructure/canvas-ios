@@ -20,7 +20,7 @@ public class K5State {
     /** This flag indicates that the logged in user is under a K5 enabled account. The app might not follow this if the K5 feature flag is turned off. */
     public private(set) var isK5Account = false {
         didSet {
-            FontAppearance.update()
+            Appearance.update()
         }
     }
     public var isRemoteFeatureFlagEnabled: Bool { ExperimentalFeature.K5Dashboard.isEnabled }

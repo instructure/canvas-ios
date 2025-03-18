@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class DashboardHelper: BaseHelper {
     public static var dashboardSettings: XCUIElement { app.find(id: "Dashboard.settingsButton", type: .other) }
     public static var optionsButton: XCUIElement { app.find(label: "Dashboard Options", type: .button) }
@@ -28,7 +30,7 @@ public class DashboardHelper: BaseHelper {
     public static var favoriteButton: XCUIElement { app.find(label: "Favorite", type: .button) }
     public static var noCoursesLabel: XCUIElement { app.find(label: "No Courses") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
-        app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
+        app.find(id: "DashboardSettings.showGradesToggle", type: .toggle)
     }
 
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
@@ -54,7 +56,7 @@ public class DashboardHelper: BaseHelper {
     public static func turnOnShowGrades() {
         optionsButton.hit()
         dashboardSettingsButton.hit()
-        dashboardSettingsShowGradeToggle.forceTap()
+        dashboardSettingsShowGradeToggle.tap()
         doneButton.hit()
     }
 

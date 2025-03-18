@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ConferencesTests: E2ETestCase {
     typealias Helper = ConferencesHelper

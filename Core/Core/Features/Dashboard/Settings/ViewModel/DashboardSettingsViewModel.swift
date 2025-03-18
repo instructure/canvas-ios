@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public class DashboardSettingsViewModel: ObservableObject {
     // MARK: - Inputs & Outputs

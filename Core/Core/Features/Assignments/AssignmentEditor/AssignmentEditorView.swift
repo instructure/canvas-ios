@@ -167,7 +167,7 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
                 Text(gradingType.string)
                     .font(.medium16).foregroundColor(.textDark)
                 Spacer().frame(width: 16)
-                DisclosureIndicator()
+                InstUI.DisclosureIndicator()
             })
             .identifier("AssignmentEditor.gradingTypeButton")
             if !published || canUnpublish {

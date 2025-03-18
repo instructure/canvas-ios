@@ -32,5 +32,9 @@ public extension WKWebViewConfiguration {
         allowsPictureInPictureMediaPlayback = true
         allowsAirPlayForMediaPlayback = true
         processPool = CoreWebView.processPool
+
+        // This is to make -webkit-text-size-adjust work on iPads.
+        // https://trac.webkit.org/changeset/261940/webkit
+        defaultWebpagePreferences.preferredContentMode = .mobile
     }
 }

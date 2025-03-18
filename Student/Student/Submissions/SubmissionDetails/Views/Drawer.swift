@@ -34,6 +34,7 @@ class Drawer: UIView {
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint?
 
+    var selectionColor: UIColor?
     var height: CGFloat = 0
     // this number doesnt seem to be accurate all the time, especially on iphones with a notch
     // Thus this number is more of a starting place. There is a constraint on the drawer to prevent
@@ -82,7 +83,7 @@ class Drawer: UIView {
         super.layoutSubviews()
         DispatchQueue.main.async { [weak self] in
             self?.drawerControls?.roundCorners(corners: [.topLeft, .topRight], radius: 10)
-            self?.tabs?.addUnderlineForSelectedSegment()
+            self?.tabs?.addUnderlineForSelectedSegment(self?.selectionColor)
         }
         addDropShadow()
     }

@@ -115,7 +115,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.textLabel?.text = String(localized: "Post to...", bundle: .teacher)
                 cell.detailTextLabel?.text = postPolicy.title
                 cell.detailTextLabel?.accessibilityIdentifier = "PostPolicy.postToValue"
-                cell.accessoryType = .disclosureIndicator
+                cell.setupInstDisclosureIndicator()
                 cell.selectionStyle = .default
                 cell.accessibilityIdentifier = "PostPolicy.postTo"
             case .section:

@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.create
 struct CreateDSCourseRequest: APIRequestable {
