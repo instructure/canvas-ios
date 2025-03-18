@@ -26,14 +26,21 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
 
     public init?(
         loginSession: LoginSession?,
-        environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>
+        environment: AppEnvironment = .shared
     ) {
         if let loginSession {
             self.loginSession = loginSession
         } else {
             return nil
         }
-        self.environmentFeatureFlags = environmentFeatureFlags
+
+        self.environmentFeatureFlags = environment
+            .subscribe(
+                GetEnvironmentFeatureFlags(
+                    context: Context.currentUser
+                )
+            )
+            .refresh()
     }
 
     public func getMetadata() -> AnalyticsMetadata {
