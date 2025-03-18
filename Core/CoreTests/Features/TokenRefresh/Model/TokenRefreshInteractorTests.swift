@@ -37,7 +37,7 @@ class TokenRefreshInteractorTests: CoreTestCase {
             api: api,
             accessTokenRefreshInteractor: mockAccessTokenRefreshInteractor,
             loginAgainInteractor: mockLoginAgainInteractor,
-            scheduler: DispatchQueue.immediate.eraseToAnyScheduler()
+            mainThread: DispatchQueue.immediate.eraseToAnyScheduler()
         )
         api.loginSession = expiredSession
         AppEnvironment.shared.currentSession = expiredSession
@@ -51,6 +51,7 @@ class TokenRefreshInteractorTests: CoreTestCase {
         mockAccessTokenRefreshInteractor.mockResultPublisher.send(refreshedSession)
 
         // THEN
+        waitUntil(1, shouldFail: true) { !testee.isTokenRefreshInProgress() }
         XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
         XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)
     }
@@ -62,6 +63,7 @@ class TokenRefreshInteractorTests: CoreTestCase {
         mockLoginAgainInteractor.mockResultPublisher.send(refreshedSession)
 
         // THEN
+        waitUntil(1, shouldFail: true) { !testee.isTokenRefreshInProgress() }
         XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
         XCTAssertEqual(api.loginSession?.refreshToken, refreshedSession.refreshToken)
         XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)

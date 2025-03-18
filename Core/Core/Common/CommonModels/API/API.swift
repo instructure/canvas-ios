@@ -38,7 +38,7 @@ public class API {
         callback: @escaping (Request.Response?, URLResponse?, Error?) -> Void
     ) -> APITask? {
         do {
-            if refreshTokenInteractor.isTokenRefreshInProgress, !(requestable is PostLoginOAuthRequest) {
+            if refreshTokenInteractor.isTokenRefreshInProgress(), !(requestable is PostLoginOAuthRequest) {
                 refreshTokenInteractor.addRequestWaitingForToken { [weak self] in
                     self?.makeRequest(requestable, callback: callback)
                 }
@@ -49,7 +49,7 @@ public class API {
             let handler = { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
                 if response?.isUnauthorized == true, refreshToken {
                     if let self {
-                        if refreshTokenInteractor.isTokenRefreshInProgress == false {
+                        if refreshTokenInteractor.isTokenRefreshInProgress() == false {
                             refreshTokenInteractor.refreshToken()
                         }
                         refreshTokenInteractor.addRequestWaitingForToken { [weak self] in

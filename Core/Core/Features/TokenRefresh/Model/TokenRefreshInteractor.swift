@@ -25,24 +25,31 @@ class TokenRefreshInteractor {
     private let waitingRequestsQueue = OperationQueue()
     private let loginAgainInteractor: LoginAgainInteractor
     private let accessTokenRefreshInteractor: AccessTokenRefreshInteractor
-    private let scheduler: AnySchedulerOf<DispatchQueue>
+    private let mainThread: AnySchedulerOf<DispatchQueue>
+    private let synchronizer = DispatchQueue(
+        label: "TokenRefreshInteractor.synchronizer",
+        target: .global(qos: .userInitiated)
+    )
     private var subscriptions = Set<AnyCancellable>()
+    private var refreshingToken = false
 
     // MARK: - Public Interface
-
-    public private(set) var isTokenRefreshInProgress = false
 
     init(
         api: API,
         accessTokenRefreshInteractor: AccessTokenRefreshInteractor = AccessTokenRefreshInteractor(),
         loginAgainInteractor: LoginAgainInteractor = LoginAgainInteractor(),
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        mainThread: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.api = api
         self.accessTokenRefreshInteractor = accessTokenRefreshInteractor
         self.waitingRequestsQueue.isSuspended = true
         self.loginAgainInteractor = loginAgainInteractor
-        self.scheduler = scheduler
+        self.mainThread = mainThread
+    }
+
+    func isTokenRefreshInProgress() -> Bool {
+        synchronizer.sync { refreshingToken }
     }
 
     func addRequestWaitingForToken(_ request: @escaping () -> Void) {
@@ -54,17 +61,18 @@ class TokenRefreshInteractor {
             return
         }
 
-        isTokenRefreshInProgress = true
+        synchronizer.sync { refreshingToken = true }
         unowned let uself = self
 
         Just(())
             .flatMap { uself.accessTokenRefreshInteractor.refreshAccessToken(api: uself.api) }
-            .receive(on: scheduler)
+            .receive(on: mainThread)
             .tryCatch { error in
                 try uself.loginAgainInteractor.loginAgainOnExpiredRefreshToken(tokenRefreshError: error, api: uself.api)
             }
+            .receive(on: synchronizer)
             .sink(receiveCompletion: { completion in
-                defer { uself.isTokenRefreshInProgress = false }
+                defer { uself.refreshingToken = false }
 
                 switch completion {
                 case .finished:
@@ -99,7 +107,9 @@ class TokenRefreshInteractor {
     }
 
     private func logoutUser(oldSession: LoginSession) {
-        AppEnvironment.shared.loginDelegate?.userDidLogout(session: oldSession)
+        mainThread.schedule {
+            AppEnvironment.shared.loginDelegate?.userDidLogout(session: oldSession)
+        }
     }
 
     private func releaseWaitingRequests() {
