@@ -22,99 +22,156 @@ import XCTest
 import TestsFoundation
 
 class TokenRefreshInteractorTests: CoreTestCase {
+    var mockAccessTokenRefreshInteractor: MockAccessTokenRefreshInteractor!
+    var mockLoginAgainInteractor: MockLoginAgainInteractor!
+    var testee: TokenRefreshInteractor!
 
-    func test_manualLogin_afterAccessTokenRenewalFailed() {
-        let mockAccessTokenRefreshInteractor = MockAccessTokenRefreshInteractor()
-        mockAccessTokenRefreshInteractor.mockResult = .failure(.expiredRefreshToken)
-        let refreshedToken = LoginSession.mock(refreshToken: "refreshed!")
-        let mockLoginAgainInteractor = MockLoginAgainInteractor()
-        let expiredSession = LoginSession.mock(refreshToken: "oldToken")
-        let api = API()
-        api.loginSession = expiredSession
-        AppEnvironment.shared.currentSession = expiredSession
-        let testee = TokenRefreshInteractor(
+    let refreshedSession = LoginSession.mock(accessToken: "newAccessToken", refreshToken: "newRefreshToken")
+    let expiredSession = LoginSession.mock(accessToken: "oldAccessToken", refreshToken: "oldRefreshToken")
+
+    override func setUp() {
+        super.setUp()
+        mockAccessTokenRefreshInteractor = MockAccessTokenRefreshInteractor()
+        mockLoginAgainInteractor = MockLoginAgainInteractor()
+        testee = TokenRefreshInteractor(
             api: api,
             accessTokenRefreshInteractor: mockAccessTokenRefreshInteractor,
             loginAgainInteractor: mockLoginAgainInteractor,
             scheduler: DispatchQueue.immediate.eraseToAnyScheduler()
         )
-        api.refreshTokenInteractor = testee
-        let requestFailedExpectation = expectation(description: "Request failed due to expired auth token")
-        let requestTriedAgainExpectation = expectation(description: "Request tried again")
-        var requestCount = 0
-        let request = GetCourseRequest(courseID: "1")
-        let successResponseData = APICourse.make()
-        api.mock(request) { _ in
-            requestCount += 1
-            switch requestCount {
-            case 1:
-                let unauthorizedResponse = HTTPURLResponse(
-                    url: .make(),
-                    statusCode: 401,
-                    httpVersion: nil,
-                    headerFields: nil
-                )
-                requestFailedExpectation.fulfill()
-                return (nil, unauthorizedResponse, nil)
-            case 2:
-                requestTriedAgainExpectation.fulfill()
-                return (successResponseData, nil, nil)
-            default:
-                XCTFail("Invalid invocation count \(requestCount)")
-                return (nil, nil, nil)
-            }
-        }
-        let requestCompletedExpectation = expectation(description: "Request completed")
+        api.loginSession = expiredSession
+        AppEnvironment.shared.currentSession = expiredSession
+    }
 
+    // MARK: - Success Scenarios
+
+    func test_accessTokenRenewalSucceeds() {
         // WHEN
-        api.makeRequest(request) { response, urlResponse, error in
-            requestCompletedExpectation.fulfill()
-            XCTAssertEqual(response, successResponseData)
-            XCTAssertNil(urlResponse)
-            XCTAssertNil(error)
-        }
+        testee.refreshToken()
+        mockAccessTokenRefreshInteractor.mockResultPublisher.send(refreshedSession)
 
         // THEN
-        wait(for: [requestFailedExpectation], timeout: 1)
-        waitUntil(1, shouldFail: true) {
-            testee.isTokenRefreshInProgress == true &&
-            mockAccessTokenRefreshInteractor.receivedAPI === api
+        XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
+        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)
+    }
+
+    func test_refreshesRefreshToken_whenItExpired() {
+        // WHEN
+        testee.refreshToken()
+        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+        mockLoginAgainInteractor.mockResultPublisher.send(refreshedSession)
+
+        // THEN
+        XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
+        XCTAssertEqual(api.loginSession?.refreshToken, refreshedSession.refreshToken)
+        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)
+        XCTAssertEqual(AppEnvironment.shared.currentSession?.refreshToken, refreshedSession.refreshToken)
+    }
+
+    func test_executesQueuedRequests_whenAccessTokenRefreshSucceeds() {
+        let queuedRequest = expectation(description: "Request should be canceled")
+        testee.addRequestWaitingForToken {
+            queuedRequest.fulfill()
         }
 
         // WHEN
-        mockLoginAgainInteractor.mockResultPublisher.send(refreshedToken)
+        testee.refreshToken()
+        mockAccessTokenRefreshInteractor.mockResultPublisher.send(refreshedSession)
 
         // THEN
-        wait(for: [requestTriedAgainExpectation, requestCompletedExpectation], timeout: 1)
-        XCTAssertEqual(testee.isTokenRefreshInProgress, false)
+        waitForExpectations(timeout: 1)
+    }
+
+    func test_executesQueuedRequests_whenRefreshTokenRefreshSucceeds() {
+        let queuedRequest = expectation(description: "Request should be canceled")
+        testee.addRequestWaitingForToken {
+            queuedRequest.fulfill()
+        }
+
+        // WHEN
+        testee.refreshToken()
+        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+        mockLoginAgainInteractor.mockResultPublisher.send(refreshedSession)
+
+        // THEN
+        waitForExpectations(timeout: 1)
+    }
+
+    // MARK: - Failure Scenarios
+
+    func test_logout_whenUserCancelsReLogin() {
+        let queuedRequest = expectation(description: "Request should be canceled")
+        queuedRequest.isInverted = true
+        testee.addRequestWaitingForToken {
+            queuedRequest.fulfill()
+        }
+        login.session = expiredSession
+
+        // WHEN
+        testee.refreshToken()
+        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+        mockLoginAgainInteractor.mockResultPublisher.send(completion: .failure(.canceledByUser))
+
+        // THEN
+        waitForExpectations(timeout: 1)
+        XCTAssertNil(login.session)
+    }
+
+    func test_logout_whenUserLogsInWithDifferentUser() {
+        let queuedRequest = expectation(description: "Request should be canceled")
+        queuedRequest.isInverted = true
+        testee.addRequestWaitingForToken {
+            queuedRequest.fulfill()
+        }
+        login.session = expiredSession
+
+        // WHEN
+        testee.refreshToken()
+        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+        mockLoginAgainInteractor.mockResultPublisher.send(completion: .failure(.loggedInWithDifferentUser))
+
+        // THEN
+        waitForExpectations(timeout: 1)
+        XCTAssertNil(login.session)
+    }
+
+    func test_releasesQueuedRequests_onNetworkFailure() {
+        let queuedRequest = expectation(description: "Request should be canceled")
+        testee.addRequestWaitingForToken {
+            queuedRequest.fulfill()
+        }
+
+        // WHEN
+        testee.refreshToken()
+        mockLoginAgainInteractor.mockedThrownError = NSError.internalError()
+        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.unknownError))
+
+        // THEN
+        waitForExpectations(timeout: 1)
     }
 }
 
-private class MockAccessTokenRefreshInteractor: AccessTokenRefreshInteractor {
-    var mockResult: Result<LoginSession, TokenError>?
-
-    private(set) var receivedAPI: API?
+class MockAccessTokenRefreshInteractor: AccessTokenRefreshInteractor {
+    var mockResultPublisher = PassthroughSubject<LoginSession, TokenError>()
 
     override func refreshAccessToken(api: API) -> AnyPublisher<LoginSession, TokenError> {
-        receivedAPI = api
-
-        return Future<LoginSession, TokenError> { promise in
-            guard let result = self.mockResult else {
-                return assertionFailure("no mock found")
-            }
-            promise(result)
-        }
-        .eraseToAnyPublisher()
+        mockResultPublisher
+            .first()
+            .eraseToAnyPublisher()
     }
 }
 
-private class MockLoginAgainInteractor: LoginAgainInteractor {
+class MockLoginAgainInteractor: LoginAgainInteractor {
     var mockResultPublisher = PassthroughSubject<LoginSession, LoginAgainInteractor.LoginError>()
+    var mockedThrownError: Error?
 
     override func loginAgainOnExpiredRefreshToken(
         tokenRefreshError: Error,
         api: API
-    ) -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
+    ) throws -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
+        if let mockedThrownError {
+            throw mockedThrownError
+        }
         return mockResultPublisher.first().eraseToAnyPublisher()
     }
 }

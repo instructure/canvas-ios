@@ -24,9 +24,9 @@ class TokenRefreshInteractor {
     private unowned let api: API
     private let waitingRequestsQueue = OperationQueue()
     private let loginAgainInteractor: LoginAgainInteractor
-    private var subscriptions = Set<AnyCancellable>()
-    private var accessTokenRefreshInteractor: AccessTokenRefreshInteractor
+    private let accessTokenRefreshInteractor: AccessTokenRefreshInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Public Interface
 
