@@ -68,7 +68,7 @@ struct DashboardView: View {
                                 }
                             } label: {
                                 HorizonUI.LearningObjectCard(
-                                    status: "Default",
+                                    status: viewModel.getStatus(percent: nextUpViewModel.progress),
                                     moduleTitle: learningObjectCardViewModel.moduleTitle,
                                     learningObjectName: learningObjectCardViewModel.learningObjectName,
                                     duration: learningObjectCardViewModel.estimatedTime,
