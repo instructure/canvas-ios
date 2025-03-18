@@ -317,13 +317,13 @@ extension Submission {
         case .basic_lti_launch, .external_tool, .online_quiz:
             return String.localizedAttemptNumber(attempt)
         case .discussion_topic:
-            return discussionEntriesOrdered.first?.message?.htmlToSubtitle(lineBreaks: " ")
+            return discussionEntriesOrdered.first?.message?.htmlToPlainText(lineBreaks: " ")
         case .media_recording:
             return mediaComment?.mediaType == .audio
                 ? String(localized: "Audio", bundle: .core)
                 : String(localized: "Video", bundle: .core)
         case .online_text_entry:
-            return body?.htmlToSubtitle(lineBreaks: " ")
+            return body?.htmlToPlainText(lineBreaks: " ")
         case .online_upload:
             return attachments?.first?.size.humanReadableFileSize
         case .online_url:
@@ -344,12 +344,12 @@ extension Submission {
             nil
         case .discussion_topic:
             discussionEntriesOrdered.first?.message?
-                .htmlToSubtitle(lineBreaks: "\n")
+                .htmlToPlainText(lineBreaks: "\n")
                 .components(separatedBy: "\n")
                 .first
         case .online_text_entry:
             body?
-                .htmlToSubtitle(lineBreaks: "\n")
+                .htmlToPlainText(lineBreaks: "\n")
                 .components(separatedBy: "\n")
                 .first
         case .online_upload:
@@ -364,7 +364,7 @@ extension Submission {
 }
 
 private extension String {
-    func htmlToSubtitle(lineBreaks lineBreakReplacement: String) -> String {
+    func htmlToPlainText(lineBreaks lineBreakReplacement: String) -> String {
         self
             .replacingOccurrences(of: "<div>", with: lineBreakReplacement)
             .replacingOccurrences(of: "<br>", with: lineBreakReplacement)
