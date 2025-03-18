@@ -98,7 +98,7 @@ class TokenRefreshInteractor {
         else {
             throw error
         }
-        return loginAgainViewModel.loginUserManually(
+        return loginAgainViewModel.askUserToLogin(
             host: host,
             rootViewController: rootViewController,
             router: AppEnvironment.shared.router

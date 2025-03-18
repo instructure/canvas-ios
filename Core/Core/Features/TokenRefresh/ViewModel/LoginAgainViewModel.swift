@@ -21,20 +21,23 @@ import UIKit
 
 class LoginAgainViewModel {
 
-    func loginUserManually(
+    func askUserToLogin(
         host: String,
         rootViewController: UIViewController,
         router: Router
     ) -> AnyPublisher<LoginSession, TokenRefreshInteractor.ManualLoginError> {
         Just(())
             .receive(on: DispatchQueue.main)
-            .flatMap { Self.showLoginDialog(rootViewController: rootViewController) }
+            .flatMap { Self.showSessionExpiredDialog(rootViewController: rootViewController, router: router) }
             .flatMap { Self.showLoginWebViewController(host: host, rootViewController: rootViewController, router: router) }
             .eraseToAnyPublisher()
     }
 
-    private static func showLoginDialog(
-        rootViewController: UIViewController
+    // MARK: - Private
+
+    internal static func showSessionExpiredDialog(
+        rootViewController: UIViewController,
+        router: Router
     ) -> AnyPublisher<Void, Never> {
         Future { promise in
             let message = String(
@@ -49,12 +52,12 @@ class LoginAgainViewModel {
             alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
                 promise(.success)
             })
-            rootViewController.present(alert, animated: true)
+            router.show(alert, from: rootViewController)
         }
         .eraseToAnyPublisher()
     }
 
-    private static func showLoginWebViewController(
+    internal static func showLoginWebViewController(
         host: String,
         rootViewController: UIViewController,
         router: Router
@@ -62,14 +65,14 @@ class LoginAgainViewModel {
         Future { promise in
             let controller = LoginWebViewController.create(host: host, loginDelegate: nil, method: .normalLogin)
             controller.loginCompletion = { [unowned controller] newSession in
-                controller.dismiss(animated: true) {
+                router.dismiss(controller) {
                     promise(.success(newSession))
                 }
             }
             let cancelButton = UIBarButtonItemWithCompletion(
                 title: String(localized: "Cancel", bundle: .core),
-                actionHandler: { [weak controller] in
-                    controller?.dismiss(animated: true) {
+                actionHandler: { [unowned controller] in
+                    router.dismiss(controller) {
                         promise(.failure(.canceledByUser))
                     }
                 }

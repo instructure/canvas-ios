@@ -115,7 +115,7 @@ private class MockLoginAgainViewModel: LoginAgainViewModel {
     private(set) var receivedRootViewController: UIViewController?
     private(set) var receivedRouter: Router?
 
-    override func loginUserManually(
+    override func askUserToLogin(
         host: String,
         rootViewController: UIViewController,
         router: Router
