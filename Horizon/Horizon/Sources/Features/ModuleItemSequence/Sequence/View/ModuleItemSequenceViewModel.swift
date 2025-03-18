@@ -43,6 +43,17 @@ final class ModuleItemSequenceViewModel {
         let items = course?.modules.first(where: { $0.id == moduleItem.moduleID })?.items
         return items?.first(where: { $0.id == moduleItem.id })?.estimatedDurationFormatted
     }
+    var visibleButtons: [ModuleNavBarUtilityButtons] {
+        var chatBot = ModuleNavBarUtilityButtons.chatBot()
+        if case let .file(fileId) = moduleItem?.type {
+            chatBot = .chatBot(courseId: course?.id, fileId: fileId)
+        }
+        if case let .page(pageUrl) = moduleItem?.type {
+            chatBot = .chatBot(courseId: course?.id, pageUrl: pageUrl)
+        }
+
+        return [chatBot] + [isAssignmentOptionsButtonVisible ? .assignmentMoreOptions : .notebook]
+    }
 
     // MARK: - Input / Output
 
