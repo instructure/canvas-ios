@@ -37,7 +37,12 @@ final class AssignmentDetailsAssembly {
             assignmentID: assignmentID,
             courseID: courseID
         )
-        let moduleItemInteractor = ModuleItemSequenceInteractorLive(courseID: courseID, assetType: .assignment)
+        let getCoursesInteractor = GetCoursesInteractorLive()
+        let moduleItemInteractor = ModuleItemSequenceInteractorLive(
+            courseID: courseID,
+            assetType: .assignment,
+            getCoursesInteractor: getCoursesInteractor
+        )
 
         let interactor = AssignmentInteractorLive(
             courseID: courseID,

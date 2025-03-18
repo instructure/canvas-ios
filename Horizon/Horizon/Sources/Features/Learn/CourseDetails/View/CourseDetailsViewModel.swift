@@ -25,7 +25,6 @@ final class CourseDetailsViewModel {
     // MARK: - Outputs
 
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var title: String = "Biology certificate"
     private(set) var course: HCourse
     let courseID: String
     private(set) var isLoaderVisible: Bool = false

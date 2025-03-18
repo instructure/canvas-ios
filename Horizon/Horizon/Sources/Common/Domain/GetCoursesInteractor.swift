@@ -24,6 +24,7 @@ import Foundation
 protocol GetCoursesInteractor {
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
     func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
+    func getInstitutionName() -> AnyPublisher<String, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -58,6 +59,14 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
+    func getInstitutionName() -> AnyPublisher<String, Never> {
+        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
+            .getEntities()
+            .replaceError(with: [])
+            .compactMap { $0.first?.institutionName }
+            .eraseToAnyPublisher()
+    }
+
     // MARK: - Private
 
     private func fetchCourses(courseId: String? = nil, ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
@@ -73,7 +82,10 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                         let name = courseProgression.course.name ?? ""
                         let overviewDescription = courseProgression.course.syllabusBody
                         let progress = courseProgression.completionPercentage
-                        let incompleteModules: [HModule] = courseProgression.incompleteModules.map { .init(from: $0) }
+                        let incompleteModule = IncompleteModule(
+                            moduleId: courseProgression.nextModuleID,
+                            moduleItemId: courseProgression.nextModuleItemID
+                        )
 
                         // The GetCoursesProgressionUseCase does not return all of the module item data.
                         // Currently, we only use all the module item information when requesting a single course.
@@ -95,7 +107,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                                 overviewDescription: overviewDescription,
                                 progress: progress,
                                 modules: $0.map { HModule(from: $0) },
-                                incompleteModules: incompleteModules
+                                incompleteModule: incompleteModule
                             )
                         }
                         .eraseToAnyPublisher()

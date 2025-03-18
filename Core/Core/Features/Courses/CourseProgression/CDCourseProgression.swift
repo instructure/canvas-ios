@@ -28,11 +28,8 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
     @NSManaged public var course: Course
     @NSManaged public var institutionName: String?
     @NSManaged public var incompleteModulesRaw: NSOrderedSet?
-
-    public var incompleteModules: [Module] {
-        get { incompleteModulesRaw?.array as? [Module] ?? [] }
-        set { incompleteModulesRaw = NSOrderedSet(array: newValue) }
-    }
+    @NSManaged public var nextModuleItemID: String?
+    @NSManaged public var nextModuleID: String?
 
     @discardableResult
     public static func save(
@@ -95,10 +92,10 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
         model.courseID = courseId
         model.institutionName = institutionName
         model.completionPercentage = completionPercentage ?? 100.0
-        model.incompleteModules = incompleteModules
-            .map { Module.save($0, for: courseId, in: context) }
-            .compactMap { $0 }
-
+        let nextModule = incompleteModules.first?.module
+        let nextModuleItem = incompleteModules.first?.incompleteItemsConnection?.nodes.first
+        model.nextModuleID = nextModule?.id
+        model.nextModuleItemID = nextModuleItem?.id
         return model
     }
 
@@ -112,65 +109,5 @@ public final class CDCourseProgression: NSManagedObject, WriteableModel {
         course.name = enrollmentModelCourse.name
         course.syllabusBody = enrollmentModelCourse.syllabusBody
         return course
-    }
-}
-
-extension Module {
-    static func save(
-        _ item: GetCoursesProgressionResponse.IncompleteNode,
-        for courseID: String,
-        in context: NSManagedObjectContext
-    ) -> Module? {
-        guard let responseModule = item.module else { return nil }
-        let incompleteItems = item.incompleteItemsConnection?.nodes ?? []
-
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), responseModule.id)
-        let newModule: Module = context.fetch(predicate).first ?? context.insert()
-        let moduleID = responseModule.id
-
-        newModule.id = moduleID
-        newModule.courseID = courseID
-        newModule.name = responseModule.name
-        newModule.position = responseModule.position ?? 0
-
-        newModule.items = incompleteItems.map {
-            ModuleItem.save($0, for: courseID, for: moduleID, in: context)
-        }
-
-        return newModule
-    }
-}
-
-extension ModuleItem {
-    static func save(
-        _ item: GetCoursesProgressionResponse.ModuleContent,
-        for courseID: String,
-        for moduleID: String,
-        in context: NSManagedObjectContext
-    ) -> ModuleItem {
-        let id = item.id
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
-            NSPredicate(key: #keyPath(ModuleItem.id), equals: id)
-        ])
-        let loadedModule: ModuleItem? = context.fetch(predicate).first
-        let module: ModuleItem = loadedModule ?? context.insert()
-
-        module.courseID = courseID
-        module.moduleID = moduleID
-        module.htmlURL = URL(string: item.url ?? "")
-        module.title = item.content?.title ?? ""
-        module.position = item.content?.position ?? 0.0
-        module.dueAt = item.content?.dueAt
-
-        if loadedModule == nil {
-            module.id = id
-            module.indent = 0
-            module.canBeUnpublished = false
-            module.lockedForUser = false
-            module.isQuizLTI = false
-        }
-
-        return module
     }
 }
