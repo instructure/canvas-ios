@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CryptoKit
 import Foundation
 
 public struct LoginSession: Codable, Hashable {

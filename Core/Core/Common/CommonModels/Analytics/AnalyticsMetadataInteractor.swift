@@ -17,7 +17,6 @@
 //
 
 import Combine
-import CryptoKit
 import Foundation
 
 public protocol AnalyticsMetadataInteractor {
@@ -33,7 +32,7 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
             .compactMap { $0 }
 
         let userStore = ReactiveStore(useCase: GetSelfUser())
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .map { $0.first }
             .compactMap { $0 }
 
