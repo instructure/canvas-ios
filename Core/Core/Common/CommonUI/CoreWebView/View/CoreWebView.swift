@@ -806,7 +806,7 @@ extension CoreWebView: WKDownloadDelegate {
     }
 }
 
-// MARK:  - Utils
+// MARK: - Utils
 
 private extension URLResponse {
 
