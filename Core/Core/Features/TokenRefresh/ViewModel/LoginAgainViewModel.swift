@@ -25,7 +25,7 @@ class LoginAgainViewModel {
         host: String,
         rootViewController: UIViewController,
         router: Router
-    ) -> AnyPublisher<LoginSession, TokenRefreshInteractor.ManualLoginError> {
+    ) -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
         Just(())
             .receive(on: DispatchQueue.main)
             .flatMap { Self.showSessionExpiredDialog(rootViewController: rootViewController, router: router) }
@@ -61,7 +61,7 @@ class LoginAgainViewModel {
         host: String,
         rootViewController: UIViewController,
         router: Router
-    ) -> AnyPublisher<LoginSession, TokenRefreshInteractor.ManualLoginError> {
+    ) -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
         Future { promise in
             let controller = LoginWebViewController.create(host: host, loginDelegate: nil, method: .normalLogin)
             controller.loginCompletion = { [unowned controller] newSession in

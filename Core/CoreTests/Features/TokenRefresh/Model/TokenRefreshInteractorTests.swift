@@ -27,7 +27,7 @@ class TokenRefreshInteractorTests: CoreTestCase {
         let mockAccessTokenRefreshInteractor = MockAccessTokenRefreshInteractor()
         mockAccessTokenRefreshInteractor.mockResult = .failure(.expiredRefreshToken)
         let refreshedToken = LoginSession.mock(refreshToken: "refreshed!")
-        let mockLoginAgainViewModel = MockLoginAgainViewModel()
+        let mockLoginAgainInteractor = MockLoginAgainInteractor()
         let expiredSession = LoginSession.mock(refreshToken: "oldToken")
         let api = API()
         api.loginSession = expiredSession
@@ -35,7 +35,7 @@ class TokenRefreshInteractorTests: CoreTestCase {
         let testee = TokenRefreshInteractor(
             api: api,
             accessTokenRefreshInteractor: mockAccessTokenRefreshInteractor,
-            loginAgainViewModel: mockLoginAgainViewModel,
+            loginAgainInteractor: mockLoginAgainInteractor,
             scheduler: DispatchQueue.immediate.eraseToAnyScheduler()
         )
         api.refreshTokenInteractor = testee
@@ -82,7 +82,7 @@ class TokenRefreshInteractorTests: CoreTestCase {
         }
 
         // WHEN
-        mockLoginAgainViewModel.mockResultPublisher.send(refreshedToken)
+        mockLoginAgainInteractor.mockResultPublisher.send(refreshedToken)
 
         // THEN
         wait(for: [requestTriedAgainExpectation, requestCompletedExpectation], timeout: 1)
@@ -108,22 +108,13 @@ private class MockAccessTokenRefreshInteractor: AccessTokenRefreshInteractor {
     }
 }
 
-private class MockLoginAgainViewModel: LoginAgainViewModel {
-    var mockResultPublisher = PassthroughSubject<LoginSession, TokenRefreshInteractor.ManualLoginError>()
+private class MockLoginAgainInteractor: LoginAgainInteractor {
+    var mockResultPublisher = PassthroughSubject<LoginSession, LoginAgainInteractor.LoginError>()
 
-    private(set) var receivedHost: String?
-    private(set) var receivedRootViewController: UIViewController?
-    private(set) var receivedRouter: Router?
-
-    override func askUserToLogin(
-        host: String,
-        rootViewController: UIViewController,
-        router: Router
-    ) -> AnyPublisher<LoginSession, TokenRefreshInteractor.ManualLoginError> {
-        receivedHost = host
-        receivedRootViewController = rootViewController
-        receivedRouter = router
-
+    override func loginAgainOnExpiredRefreshToken(
+        tokenRefreshError: Error,
+        api: API
+    ) -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
         return mockResultPublisher.first().eraseToAnyPublisher()
     }
 }

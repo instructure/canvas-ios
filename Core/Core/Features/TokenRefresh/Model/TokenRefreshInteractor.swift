@@ -21,14 +21,9 @@ import CombineSchedulers
 import Foundation
 
 class TokenRefreshInteractor {
-    enum ManualLoginError: Error {
-        case canceledByUser
-        case loggedInWithDifferentUser
-    }
-
     private unowned let api: API
     private let waitingRequestsQueue = OperationQueue()
-    private let loginAgainViewModel: LoginAgainViewModel
+    private let loginAgainInteractor: LoginAgainInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var accessTokenRefreshInteractor: AccessTokenRefreshInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -40,13 +35,13 @@ class TokenRefreshInteractor {
     init(
         api: API,
         accessTokenRefreshInteractor: AccessTokenRefreshInteractor = AccessTokenRefreshInteractor(),
-        loginAgainViewModel: LoginAgainViewModel = LoginAgainViewModel(),
+        loginAgainInteractor: LoginAgainInteractor = LoginAgainInteractor(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.api = api
         self.accessTokenRefreshInteractor = accessTokenRefreshInteractor
         self.waitingRequestsQueue.isSuspended = true
-        self.loginAgainViewModel = loginAgainViewModel
+        self.loginAgainInteractor = loginAgainInteractor
         self.scheduler = scheduler
     }
 
@@ -66,7 +61,7 @@ class TokenRefreshInteractor {
             .flatMap { uself.accessTokenRefreshInteractor.refreshAccessToken(api: uself.api) }
             .receive(on: scheduler)
             .tryCatch { error in
-                try uself.loginUserManuallyIfRefreshTokenIsInvalid(error)
+                try uself.loginAgainInteractor.loginAgainOnExpiredRefreshToken(tokenRefreshError: error, api: uself.api)
             }
             .sink(receiveCompletion: { completion in
                 defer { uself.isTokenRefreshInProgress = false }
@@ -76,7 +71,7 @@ class TokenRefreshInteractor {
                     uself.releaseWaitingRequests()
                 case .failure(let error):
                     switch error {
-                    case ManualLoginError.canceledByUser, ManualLoginError.loggedInWithDifferentUser:
+                    case LoginAgainInteractor.LoginError.canceledByUser, LoginAgainInteractor.LoginError.loggedInWithDifferentUser:
                         uself.cancelWaitingRequests()
                         uself.logoutUser(oldSession: oldLoginSession)
                     default:
@@ -90,29 +85,6 @@ class TokenRefreshInteractor {
     }
 
     // MARK: - Private Methods
-
-    private func loginUserManuallyIfRefreshTokenIsInvalid(_ error: Error) throws -> AnyPublisher<LoginSession, ManualLoginError> {
-        guard
-            let host = api.loginSession?.baseURL.host(percentEncoded: false),
-            let rootViewController = AppEnvironment.shared.window?.rootViewController
-        else {
-            throw error
-        }
-        return loginAgainViewModel.askUserToLogin(
-            host: host,
-            rootViewController: rootViewController,
-            router: AppEnvironment.shared.router
-        )
-        .flatMap { newSession in
-            if newSession != AppEnvironment.shared.currentSession {
-                return Fail(outputType: LoginSession.self, failure: ManualLoginError.loggedInWithDifferentUser)
-                    .eraseToAnyPublisher()
-            }
-            return Just(newSession).setFailureType(to: ManualLoginError.self)
-                .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
-    }
 
     private func handleNewLoginSessionReceived(
         _ newSession: LoginSession,
