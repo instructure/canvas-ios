@@ -235,7 +235,7 @@ class APITests: XCTestCase {
         api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
         api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
         refresh.resume()
-        XCTAssertEqual(api.loginSession?.accessToken, "new-token")
+        waitUntil(5) { api.loginSession?.accessToken == "new-token" }
         XCTAssertEqual(api.loginSession?.expiresAt, Clock.now.addingTimeInterval(3600))
         XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
         XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
@@ -275,7 +275,7 @@ class APITests: XCTestCase {
             value: .make(accessToken: "new-token")
         )
         api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
-        XCTAssertEqual(api.loginSession?.accessToken, "new-token")
+        waitUntil(5) { api.loginSession?.accessToken == "new-token" }
         XCTAssertNotEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
         XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
     }

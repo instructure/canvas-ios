@@ -120,7 +120,10 @@ class TokenRefreshInteractor {
     ) {
         api.loginSession = newSession
         LoginSession.add(newSession)
-        AppEnvironment.shared.currentSession = newSession
+
+        if AppEnvironment.shared.currentSession == newSession {
+            AppEnvironment.shared.currentSession = newSession
+        }
     }
 
     private func logoutUser(oldSession: LoginSession) {
