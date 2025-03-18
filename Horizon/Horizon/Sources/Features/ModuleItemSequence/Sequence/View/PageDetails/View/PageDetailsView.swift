@@ -42,7 +42,7 @@ struct PageDetailsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
+            VStack(spacing: .zero) {
                 topView
                 WebView(
                     html: viewModel.content,

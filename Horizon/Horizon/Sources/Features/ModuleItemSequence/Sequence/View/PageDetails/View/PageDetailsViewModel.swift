@@ -28,7 +28,7 @@ final class PageDetailsViewModel {
     private(set) var url: URL?
     private(set) var content: String?
     private(set) var isCompletedItem: Bool
-    private(set) var isLoaderVisible = false
+    private(set) var isLoaderVisible = true
     private(set) var errorMessage = ""
 
     // MARK: - Input / Output
@@ -69,6 +69,7 @@ final class PageDetailsViewModel {
             let page = values.first
             self?.content = page?.body
             self?.url = page?.htmlURL
+            self?.isLoaderVisible = false
         }
         .store(in: &subscriptions)
     }
