@@ -16,47 +16,64 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import Foundation
+
 public protocol AnalyticsMetadataInteractor {
-    func getMetadata() -> AnalyticsMetadata
+    func getMetadata() async throws -> AnalyticsMetadata
 }
 
 public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
-    private let loginSession: LoginSession
-    private let environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>
+    public init() {}
 
-    public init?(
-        loginSession: LoginSession?,
-        environment: AppEnvironment = .shared
-    ) {
-        if let loginSession {
-            self.loginSession = loginSession
-        } else {
-            return nil
-        }
+    public func getMetadata() async throws -> AnalyticsMetadata {
+        let flagsStore = ReactiveStore(useCase: GetEnvironmentFeatureFlags(context: Context.currentUser))
+            .getEntities()
+            .compactMap { $0 }
+        
+        let userStore = ReactiveStore(useCase: GetSelfUser())
+            .getEntities()
+            .map { $0.first }
+            .compactMap { $0 }
+        
+        async let flagsPublisher = flagsStore.asyncPublisher()
+        async let userPublisher = userStore.asyncPublisher()
+        
+        let flags = try await flagsPublisher
+        let user = try await userPublisher
 
-        self.environmentFeatureFlags = environment
-            .subscribe(
-                GetEnvironmentFeatureFlags(
-                    context: Context.currentUser
-                )
-            )
-            .refresh()
-    }
-
-    public func getMetadata() -> AnalyticsMetadata {
-        let userId = loginSession.hashedUserId()
-        let accountId = ""
+        let userUUID = user.uuid ?? ""
+        let accountUUID = user.accountUUID ?? ""
+        
         return AnalyticsMetadata(
-            userId: userId,
-            accountUUID: accountId,
+            userId: userUUID,
+            accountUUID: accountUUID,
             visitorData: .init(
-                id: userId,
-                locale: loginSession.locale ?? ""
+                id: userUUID,
+                locale: user.locale ?? ""
             ),
             accountData: .init(
-                id: accountId,
-                surveyOptOut: environmentFeatureFlags.isFeatureEnabled(.account_survey_notifications)
+                id: accountUUID,
+                surveyOptOut: flags.isFeatureEnabled(.account_survey_notifications)
             )
         )
+    }
+}
+
+private extension Publisher {
+    func asyncPublisher() async throws -> Output {
+        try await withCheckedThrowingContinuation { continuation in
+            var cancellable: AnyCancellable?
+            cancellable = self.first()
+                .sink(receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        continuation.resume(throwing: error)
+                    }
+                    cancellable?.cancel()
+                }, receiveValue: { value in
+                    continuation.resume(returning: value)
+                    cancellable?.cancel()
+                })
+        }
     }
 }

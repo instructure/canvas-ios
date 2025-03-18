@@ -139,6 +139,8 @@ public struct APIProfile: Codable, Equatable {
     public let calendar: APICalendar?
     public let pronouns: String?
     public let k5_user: Bool?
+    public let uuid: String?
+    public let account_uuid: String?
 }
 
 #if DEBUG
@@ -231,7 +233,9 @@ extension APIProfile {
         avatar_url: URL? = nil,
         calendar: APIProfile.APICalendar? = .make(),
         pronouns: String? = nil,
-        k5_user: Bool? = nil
+        k5_user: Bool? = nil,
+        uuid: String? = nil,
+        account_uuid: String? = nil
     ) -> APIProfile {
         return APIProfile(
             id: id,
@@ -242,7 +246,9 @@ extension APIProfile {
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             calendar: calendar,
             pronouns: pronouns,
-            k5_user: k5_user
+            k5_user: k5_user,
+            uuid: uuid,
+            account_uuid: account_uuid
         )
     }
 }
@@ -442,6 +448,19 @@ public struct GetUserProfileRequest: APIRequestable {
     public init(userID: String) {
         self.userID = userID
     }
+}
+
+// https://canvas.instructure.com/doc/api/users.html
+public struct GetSelfUserRequest: APIRequestable {
+    public typealias Response = APIProfile
+
+    public var path: String { "users/self" }
+
+    public let query: [APIQueryItem] = [
+        .include(["uuid"]),
+    ]
+
+    public init() {}
 }
 
 // https://canvas.instructure.com/doc/api/user_observees.html#method.user_observees.create

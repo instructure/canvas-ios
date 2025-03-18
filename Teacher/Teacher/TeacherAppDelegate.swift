@@ -267,24 +267,23 @@ extension TeacherAppDelegate: AnalyticsHandler {
         guard
             let environmentFeatureFlags,
             !ProcessInfo.isUITest,
-            let pendoApiKey = Secret.pendoApiKey.string, !pendoApiKey.isEmpty,
-            let metadataInteractor = AnalyticsMetadataInteractorLive(
-                loginSession: LoginSession.mostRecent
-            )
+            let pendoApiKey = Secret.pendoApiKey.string, !pendoApiKey.isEmpty
         else {
             return
         }
 
         if environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) {
-            let metadata = metadataInteractor.getMetadata()
-            environment.pendoID = metadata.userId
-            PendoManager.shared().setup(pendoApiKey)
-            PendoManager.shared().startSession(
-                metadata.userId,
-                accountId: metadata.accountUUID,
-                visitorData: metadata.visitorData.toMap(),
-                accountData: metadata.accountData.toMap()
-            )
+            Task.detached { [weak environment] in
+                let metadata = try await AnalyticsMetadataInteractorLive().getMetadata()
+                environment?.pendoID = metadata.userId
+                PendoManager.shared().setup(pendoApiKey)
+                PendoManager.shared().startSession(
+                    metadata.userId,
+                    accountId: metadata.accountUUID,
+                    visitorData: metadata.visitorData.toMap(),
+                    accountData: metadata.accountData.toMap()
+                )
+            }
         } else {
             PendoManager.shared().endSession()
         }

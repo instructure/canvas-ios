@@ -29,6 +29,8 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var calendarURL: URL?
     @NSManaged public var pronouns: String?
     @NSManaged public var isK5User: Bool
+    @NSManaged public var uuid: String?
+    @NSManaged public var accountUUID: String?
 }
 
 extension UserProfile: WriteableModel {
@@ -70,5 +72,19 @@ public struct GetUserProfile: APIUseCase {
             return .where(#keyPath(UserProfile.id), equals: userID)
         }
         return .where(#keyPath(UserProfile.id), equals: userID)
+    }
+}
+
+public struct GetSelfUser: APIUseCase {
+    public typealias Model = UserProfile
+
+    public init () {}
+
+    public var cacheKey: String? {
+        return "get-self-user"
+    }
+
+    public var request: GetSelfUserRequest {
+        return GetSelfUserRequest()
     }
 }

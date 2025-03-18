@@ -76,3 +76,13 @@ extension Store where U == GetEnvironmentFeatureFlags {
         return featureFlagToFind?.enabled ?? false
     }
 }
+
+extension Collection where Element == FeatureFlag  {
+    public func isFeatureEnabled(_ featureFlag: EnvironmentFeatureFlags) -> Bool {
+        let featureFlagToFind = self
+            .filter { $0.name == featureFlag.rawValue}
+            .first
+
+        return featureFlagToFind?.enabled ?? false
+    }
+}
