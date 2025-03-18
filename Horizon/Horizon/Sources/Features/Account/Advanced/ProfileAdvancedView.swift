@@ -22,7 +22,7 @@ import SwiftUI
 struct ProfileAdvancedView: View {
 
     @Bindable private var viewModel: ProfileAdvancedViewModel
-    @FocusState private var focused: Bool
+    @State private var focused: Bool = false
 
     init(viewModel: ProfileAdvancedViewModel = ProfileAdvancedViewModel()) {
         self.viewModel = viewModel
@@ -30,24 +30,19 @@ struct ProfileAdvancedView: View {
 
     var body: some View {
         ProfileBody(String(localized: "Advanced", bundle: .horizon)) {
-            ZStack {
-                HorizonUI.SingleSelect(
-                    label: String(localized: "Time Zone", bundle: .horizon),
-                    selection: $viewModel.timeZone,
-                    options: viewModel.timeZones,
-                    disabled: viewModel.isSelectDisabled,
-                    focused: _focused
-                ) {
-                    SavingButton(
-                        title: String(localized: "Save Changes", bundle: .horizon),
-                        isLoading: $viewModel.isLoading,
-                        isDisabled: $viewModel.isSaveDisabled,
-                        onSave: viewModel.save
-                    )
-                }
-            }
-            .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, .huiSpaces.space36)
+            HorizonUI.SingleSelect(
+                label: String(localized: "Time Zone", bundle: .horizon),
+                selection: $viewModel.timeZone,
+                options: viewModel.timeZones,
+                disabled: viewModel.isSelectDisabled,
+                focused: $focused
+            )
+            SavingButton(
+                title: String(localized: "Save Changes", bundle: .horizon),
+                isLoading: $viewModel.isLoading,
+                isDisabled: $viewModel.isSaveDisabled,
+                onSave: viewModel.save
+            )
         }
         .onTapGesture {
             print("On Tap")
