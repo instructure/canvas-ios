@@ -48,16 +48,19 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
     private let courseID: String
     private let assetType: AssetType
     private let offlineModeInteractor: OfflineModeInteractor
+    private let getCoursesInteractor: GetCoursesInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         courseID: String,
         assetType: AssetType,
+        getCoursesInteractor: GetCoursesInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) {
         self.courseID = courseID
         self.assetType = assetType
+        self.getCoursesInteractor = getCoursesInteractor
         self.scheduler = scheduler
         self.offlineModeInteractor = offlineModeInteractor
     }
@@ -150,30 +153,9 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
     }
 
     func getCourse() -> AnyPublisher<HCourse, Never> {
-        ReactiveStore(useCase: GetCourse(courseID: courseID))
-            .getEntities()
-            .replaceError(with: [])
-            .compactMap { $0.first }
-            .flatMap {
-                $0.publisher
-                    .flatMap { course in
-                        ReactiveStore(
-                            useCase: GetModules(
-                                courseID: course.id,
-                                includes: GetModulesRequest.Include.allCases
-                            )
-                        )
-                        .getEntities()
-                        .replaceError(with: [])
-                        .map {
-                            HCourse(
-                                from: course,
-                                modulesEntity: $0
-                            )
-                        }
-                    }
-            }
-            .receive(on: scheduler)
+        getCoursesInteractor
+            .getCourse(id: courseID, ignoreCache: false)
+            .compactMap { $0 }
             .eraseToAnyPublisher()
     }
 }

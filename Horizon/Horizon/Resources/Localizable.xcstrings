@@ -225,6 +225,9 @@
     "Complete all of the required items." : {
 
     },
+    "Completed" : {
+
+    },
     "Confirm Submission" : {
 
     },
@@ -387,6 +390,9 @@
     "Important" : {
 
     },
+    "In Progress" : {
+
+    },
     "Inbox" : {
 
     },
@@ -468,7 +474,7 @@
     "Ljubljana (+01:00/+02:00)" : {
 
     },
-    "Locked" : {
+    "Locked Content" : {
 
     },
     "Logout" : {
@@ -577,6 +583,9 @@
 
     },
     "Noronha (-02:00/-02:00)" : {
+
+    },
+    "Not Started" : {
 
     },
     "Not Submitted" : {

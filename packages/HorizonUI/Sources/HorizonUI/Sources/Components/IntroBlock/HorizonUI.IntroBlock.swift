@@ -31,6 +31,7 @@ public extension HorizonUI {
         let attemptCount: String?
         let backgroundColor: Color
         let foregroundColor: Color
+        let isMenuButtonVisible: Bool
         let onBack: () -> Void
         let onMenu: () -> Void
 
@@ -46,6 +47,7 @@ public extension HorizonUI {
             attemptCount: String? = nil,
             backgroundColor: Color = Color.huiColors.surface.institution,
             foregroundColor: Color = Color.huiColors.text.surfaceColored,
+            isMenuButtonVisible: Bool = true,
             onBack: @escaping () -> Void,
             onMenu: @escaping () -> Void
         ) {
@@ -58,6 +60,7 @@ public extension HorizonUI {
             self.attemptCount = attemptCount
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
+            self.isMenuButtonVisible = isMenuButtonVisible
             self.onBack = onBack
             self.onMenu = onMenu
         }
@@ -114,15 +117,18 @@ public extension HorizonUI {
                 Image.huiIcons.arrowLeftAlt
                     .foregroundColor(foregroundColor)
             }
-            .frame(width: 24, height: 24)
+            .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
         }
 
+        @ViewBuilder
         private var menuButton: some View {
-            Button(action: onMenu) {
-                Image.huiIcons.listAlt
-                    .foregroundColor(foregroundColor)
+            if isMenuButtonVisible {
+                Button(action: onMenu) {
+                    Image.huiIcons.listAlt
+                        .foregroundColor(foregroundColor)
+                }
+                .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
             }
-            .frame(width: 24, height: 24)
         }
 
         private var moduleInfoView: some View {
