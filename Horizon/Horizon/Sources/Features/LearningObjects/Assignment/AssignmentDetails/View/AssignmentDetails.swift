@@ -150,27 +150,10 @@ struct AssignmentDetails: View {
         }
     }
 
-    @ViewBuilder
     private var markAsDoneButton: some View {
-        let text = viewModel.isCompletedItem
-        ? AssignmentLocalizedKeys.done.title
-        : AssignmentLocalizedKeys.markAsDone.title
-
-        let image = viewModel.isCompletedItem
-        ? Image.huiIcons.checkBox
-        : Image.huiIcons.checkBoxOutlineBlank
-
-        HStack {
-            Spacer()
-            HorizonUI.PrimaryButton(
-                text,
-                type: .beige,
-                leading: image
-            ) {
-                viewModel.markAsDone()
-            }
+        MarkAsDoneButton(isCompleted: viewModel.isCompletedItem) {
+            viewModel.markAsDone()
         }
-        .animation(.smooth, value: viewModel.isCompletedItem)
     }
 
     private func draftView(date: String) -> some View {

@@ -418,6 +418,7 @@ public extension HorizonUI {
         public let aiFilled = Image(.aiFilled)
         public let menuBookNotebook = Image(.menuBookNotebook)
         public let camera = Image(.camera)
+        public let notifications = Image(.notifications)
 
         func allImages() -> [Image] {
             let mirror = Mirror(reflecting: self)
