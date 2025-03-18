@@ -64,4 +64,13 @@ enum ModuleItemSequenceViewState {
             return false
         }
     }
+
+    var isExternalURL: Bool {
+        switch self {
+        case .externalURL:
+            return true
+        default:
+            return false
+        }
+    }
 }

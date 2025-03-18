@@ -69,6 +69,14 @@ public extension HorizonUI.Pill.Style {
         let textColor: Color
         var iconColor: Color = .clear
 
+        public init(
+            textColor: Color,
+            iconColor: Color = .clear
+        ) {
+            self.textColor = textColor
+            self.iconColor = iconColor
+        }
+
         public static let `default` = Inline(
             textColor: .huiColors.text.body,
             iconColor: .huiColors.text.body

@@ -142,6 +142,7 @@ public struct ModuleItemSequenceView: View {
                 dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,
                 attemptCount: viewModel.assignmentAttemptCount,
+                isMenuButtonVisible: viewModel.isNextButtonEnabled || viewModel.isPreviousButtonEnabled,
                 onBack: {
                     viewModel.pop(from: viewController)
                 },
@@ -208,7 +209,7 @@ public struct ModuleItemSequenceView: View {
 
 private struct ContentView: View {
     let viewModel: ModuleItemSequenceViewModel
-
+    @Environment(\.viewController) private var viewController
     var body: some View {
         VStack {
             if let state = viewModel.viewState {
@@ -217,7 +218,7 @@ private struct ContentView: View {
                     ModuleItemSequenceAssembly.makeExternalURLView(
                         name: name,
                         url: url,
-                        viewController: .init()
+                        viewController: viewController
                     )
                     .id(url.absoluteString)
                 case .externalTool(tools: let tools, name: let name):
@@ -254,7 +255,7 @@ private struct ContentView: View {
                         moduleID: moduleID,
                         itemID: itemID,
                         onTapAssignmentOptions: viewModel.onTapAssignmentOptions,
-                        didLoadAttemptCount: viewModel.didLoadAssignmentAttemptCount
+                        didLoadAssignment: viewModel.didLoadAssignment
                     )
                     .id(assignmentID)
 

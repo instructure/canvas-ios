@@ -28,7 +28,8 @@ struct PageDetailsAssembly {
 
         let interactor = ModuleItemSequenceInteractorLive(
             courseID: context.id,
-            assetType: .page
+            assetType: .page,
+            getCoursesInteractor: GetCoursesInteractorLive()
         )
         let viewModel = PageDetailsViewModel(
             moduleItemInteractor: interactor,

@@ -30,14 +30,19 @@ final class AssignmentDetailsAssembly {
         moduleID: String,
         itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
-        didLoadAttemptCount: @escaping (String?) -> Void
+        didLoadAssignment: @escaping (String?, HModuleItem) -> Void
     ) -> AssignmentDetailsViewModel {
         let uploadManager = HUploadFileManagerLive(
             uploadManager: .shared,
             assignmentID: assignmentID,
             courseID: courseID
         )
-        let moduleItemInteractor = ModuleItemSequenceInteractorLive(courseID: courseID, assetType: .assignment)
+        let getCoursesInteractor = GetCoursesInteractorLive()
+        let moduleItemInteractor = ModuleItemSequenceInteractorLive(
+            courseID: courseID,
+            assetType: .assignment,
+            getCoursesInteractor: getCoursesInteractor
+        )
 
         let interactor = AssignmentInteractorLive(
             courseID: courseID,
@@ -66,7 +71,7 @@ final class AssignmentDetailsAssembly {
             courseID: courseID,
             assignmentID: assignmentID,
             onTapAssignmentOptions: onTapAssignmentOptions,
-            didLoadAttemptCount: didLoadAttemptCount
+            didLoadAssignment: didLoadAssignment
         )
     }
 
@@ -78,7 +83,7 @@ final class AssignmentDetailsAssembly {
         moduleID: String,
         itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
-        didLoadAttemptCount: @escaping (String?) -> Void
+        didLoadAssignment: @escaping (String?, HModuleItem) -> Void
     ) -> AssignmentDetails {
         AssignmentDetails(
             viewModel: makeViewModel(
@@ -89,7 +94,7 @@ final class AssignmentDetailsAssembly {
                 moduleID: moduleID,
                 itemID: itemID,
                 onTapAssignmentOptions: onTapAssignmentOptions,
-                didLoadAttemptCount: didLoadAttemptCount
+                didLoadAssignment: didLoadAssignment
             )
         )
     }
@@ -118,7 +123,7 @@ final class AssignmentDetailsAssembly {
             courseID: "1",
             assignmentID: "assignmentID",
             onTapAssignmentOptions: .init()
-        ) { _ in}
+        ) { _, _ in}
     }
 #endif
 }

@@ -70,7 +70,7 @@ public extension HorizonUI {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.huiColors.surface.institution)
                     .huiTypography(.h3)
-                    .padding(.top, .huiSpaces.space10)
+                    .padding(.top, .huiSpaces.space4)
 
                 courseInfoView()
                     .padding(.top, .huiSpaces.space48)
