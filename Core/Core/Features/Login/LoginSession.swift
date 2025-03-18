@@ -264,12 +264,6 @@ public struct LoginSession: Codable, Hashable {
     private static func setSessions(_ sessions: Set<LoginSession>, in keychain: Keychain = .app, forKey key: Key = .users) {
         _ = try? keychain.setJSON(sessions, for: key.rawValue)
     }
-    
-    public func hashedUserId() -> String {
-        let inputData = Data(userID.utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        return hashedData.map { String(format: "%02x", $0) }.joined()
-    }
 }
 
 // MARK: - Utils

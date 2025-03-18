@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CryptoKit
 import Foundation
 
 public protocol AnalyticsMetadataInteractor {
@@ -30,21 +31,21 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
         let flagsStore = ReactiveStore(useCase: GetEnvironmentFeatureFlags(context: Context.currentUser))
             .getEntities()
             .compactMap { $0 }
-        
+
         let userStore = ReactiveStore(useCase: GetSelfUser())
             .getEntities()
             .map { $0.first }
             .compactMap { $0 }
-        
+
         async let flagsPublisher = flagsStore.asyncPublisher()
         async let userPublisher = userStore.asyncPublisher()
-        
+
         let flags = try await flagsPublisher
         let user = try await userPublisher
 
-        let userUUID = user.uuid ?? ""
+        let userUUID = user.uuid?.sha256() ?? ""
         let accountUUID = user.accountUUID ?? ""
-        
+
         return AnalyticsMetadata(
             userId: userUUID,
             accountUUID: accountUUID,
@@ -60,13 +61,21 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
     }
 }
 
+private extension String {
+    func sha256() -> String {
+        let inputData = Data(utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        return hashedData.map { String(format: "%02x", $0) }.joined()
+    }
+}
+
 private extension Publisher {
     func asyncPublisher() async throws -> Output {
         try await withCheckedThrowingContinuation { continuation in
             var cancellable: AnyCancellable?
             cancellable = self.first()
                 .sink(receiveCompletion: { completion in
-                    if case .failure(let error) = completion {
+                    if case let .failure(error) = completion {
                         continuation.resume(throwing: error)
                     }
                     cancellable?.cancel()
