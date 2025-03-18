@@ -313,7 +313,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
             return
         }
 
-        if environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) {            
+        if environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) {
             Task.detached { [weak environment] in
                 let metadata = try await AnalyticsMetadataInteractorLive().getMetadata()
                 environment?.pendoID = metadata.userId

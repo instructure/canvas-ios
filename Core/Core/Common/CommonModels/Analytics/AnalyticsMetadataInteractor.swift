@@ -61,14 +61,6 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
     }
 }
 
-private extension String {
-    func sha256() -> String {
-        let inputData = Data(utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        return hashedData.map { String(format: "%02x", $0) }.joined()
-    }
-}
-
 private extension Publisher {
     func asyncPublisher() async throws -> Output {
         try await withCheckedThrowingContinuation { continuation in

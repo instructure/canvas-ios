@@ -131,6 +131,14 @@ extension String {
         guard hasPrefix(prefix) else { return self }
         return String(dropFirst(prefix.count))
     }
+    
+    public extension String {
+        func sha256() -> String {
+            let inputData = Data(utf8)
+            let hashedData = SHA256.hash(data: inputData)
+            return hashedData.map { String(format: "%02x", $0) }.joined()
+        }
+    }
 }
 
 extension ReferenceWritableKeyPath {

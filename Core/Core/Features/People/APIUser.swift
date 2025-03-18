@@ -457,7 +457,7 @@ public struct GetSelfUserRequest: APIRequestable {
     public var path: String { "users/self" }
 
     public let query: [APIQueryItem] = [
-        .include(["uuid"]),
+        .include(["uuid"])
     ]
 
     public init() {}

@@ -46,6 +46,8 @@ extension UserProfile: WriteableModel {
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
+        model.uuid = item.uuid
+        model.accountUUID = item.account_uuid
         return model
     }
 }
