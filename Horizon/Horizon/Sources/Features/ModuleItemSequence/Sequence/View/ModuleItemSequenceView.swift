@@ -23,7 +23,6 @@ import Core
 public struct ModuleItemSequenceView: View {
     // MARK: - Private Properties
 
-    @State private var isShowMakeAsDoneSheet = false
     @State private var isShowHeader = true
     @State private var isShowModuleNavBar = true
     @State private var submissionAlertModel = SubmissionAlertViewModel()
@@ -78,9 +77,6 @@ public struct ModuleItemSequenceView: View {
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
-        .confirmationDialog("", isPresented: $isShowMakeAsDoneSheet, titleVisibility: .hidden) {
-            makeAsDoneSheetButtons
-        }
         .alert(String(localized: "Error", bundle: .core), isPresented: $viewModel.isShowErrorAlert) {
             Button(String(localized: "Ok", bundle: .core), role: .cancel) { }
         } message: {
@@ -146,6 +142,7 @@ public struct ModuleItemSequenceView: View {
                 dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,
                 attemptCount: viewModel.assignmentAttemptCount,
+                isMenuButtonVisible: viewModel.isNextButtonEnabled || viewModel.isPreviousButtonEnabled,
                 onBack: {
                     viewModel.pop(from: viewController)
                 },
@@ -154,28 +151,6 @@ public struct ModuleItemSequenceView: View {
             .transition(.move(edge: .top).combined(with: .opacity))
         }
     }
-
-    @ViewBuilder
-    private var makeAsDoneSheetButtons: some View {
-        let title = viewModel.moduleItem?.completed == true
-        ? String(localized: "Mark as Undone", bundle: .core)
-        : String(localized: "Mark as Done", bundle: .core)
-        Button(title) { viewModel.markAsDone()}
-        Button(String(localized: "Cancel", bundle: .core), role: .cancel) {}
-    }
-
-    // TODO: - Set the mark done in navBar button later
-    //    @ViewBuilder
-    //    private var makeAsDoneButton: some View {
-    //        if viewModel.moduleItem?.completionRequirementType == .must_mark_done {
-    //            Button(action: {
-    //                isShowMakeAsDoneSheet = true
-    //            }) {
-    //                Image.huiIcons.moreHoriz
-    //                    .foregroundStyle(Color.huiColors.text.body)
-    //            }
-    //        }
-    //    }
 
     private func goNext() {
         withAnimation {
@@ -234,7 +209,7 @@ public struct ModuleItemSequenceView: View {
 
 private struct ContentView: View {
     let viewModel: ModuleItemSequenceViewModel
-
+    @Environment(\.viewController) private var viewController
     var body: some View {
         VStack {
             if let state = viewModel.viewState {
@@ -243,7 +218,7 @@ private struct ContentView: View {
                     ModuleItemSequenceAssembly.makeExternalURLView(
                         name: name,
                         url: url,
-                        viewController: .init()
+                        viewController: viewController
                     )
                     .id(url.absoluteString)
                 case .externalTool(tools: let tools, name: let name):
@@ -252,6 +227,16 @@ private struct ContentView: View {
                         name: name
                     )
                     .id(tools.url?.absoluteString)
+                case let .page(context, pageURL, isMarkedAsDoneButtonVisible, isCompleted, moduleID, itemID):
+                    PageDetailsAssembly.makeView(
+                        context: context,
+                        pageURL: pageURL,
+                        isCompletedItem: isCompleted,
+                        isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible,
+                        moduleID: moduleID,
+                        itemID: itemID
+                    )
+                    .id(pageURL)
                 case .moduleItem(controller: let controller, let id):
                     ModuleItemSequenceAssembly.makeModuleItemView(viewController: controller)
                         .id(id)
@@ -270,7 +255,7 @@ private struct ContentView: View {
                         moduleID: moduleID,
                         itemID: itemID,
                         onTapAssignmentOptions: viewModel.onTapAssignmentOptions,
-                        didLoadAttemptCount: viewModel.didLoadAssignmentAttemptCount
+                        didLoadAssignment: viewModel.didLoadAssignment
                     )
                     .id(assignmentID)
 

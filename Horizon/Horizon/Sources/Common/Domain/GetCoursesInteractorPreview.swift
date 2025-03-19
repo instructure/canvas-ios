@@ -22,6 +22,11 @@ import Foundation
 import Core
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
+    func getInstitutionName() -> AnyPublisher<String, Never> {
+        Just("Canvas Career")
+            .eraseToAnyPublisher()
+    }
+
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         Just([course])
             .eraseToAnyPublisher()

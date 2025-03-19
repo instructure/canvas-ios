@@ -79,9 +79,8 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
     ) -> ModuleItemSequenceViewState? {
         guard let item else { return nil }
 
-        let showLocked = item.visibleWhenLocked != true && item.lockedForUser == true
-        if showLocked {
-            return .locked(title: item.title, lockExplanation: item.lockExplanation ?? "")
+        if let lockExplanation = item.lockExplanation {
+            return .locked(title: item.title, lockExplanation: lockExplanation)
         }
 
         switch item.type {
@@ -106,13 +105,23 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
                 courseID: courseID,
                 assignmentID: id,
                 isMarkedAsDone: isMarkedAsDone,
-                isCompletedItem: item.completed ?? false,
+                isCompletedItem: item.isCompleted,
                 moduleID: moduleID ?? "",
                 itemID: itemID ?? ""
             )
         case let .file(id):
             guard let url = item.url, let context = Context(path: url.path) else { return nil }
             return .file(context: context, fileID: id)
+        case .page(let pageURL):
+            let isMarkedAsDone = item.completionRequirementType == .must_mark_done
+            return .page(
+                context: .course(courseID),
+                pageURL: pageURL,
+                isMarkedAsDoneButtonVisible: isMarkedAsDone,
+                isCompletedItem: item.isCompleted,
+                moduleID: moduleID ?? "",
+                itemID: itemID ?? ""
+            )
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")

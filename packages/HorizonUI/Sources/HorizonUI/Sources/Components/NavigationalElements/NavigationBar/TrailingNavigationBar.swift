@@ -53,7 +53,7 @@ public extension HorizonUI.NavigationBar {
                 Button {
                     onNotificationDidTap()
                 } label: {
-                    Image.huiIcons.notificationsUnread
+                    Image.huiIcons.notifications
                         .dropShadow()
                 }
 

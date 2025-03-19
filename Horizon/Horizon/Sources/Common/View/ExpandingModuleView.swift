@@ -44,10 +44,9 @@ struct ExpandingModuleView: View {
                 ModuleItemListView(items: module.items) { selectedItem in
                     handleItemTap(selectedItem)
                 }
-                .padding(.bottom, .huiSpaces.space36)
+                .padding([.horizontal, .bottom], .huiSpaces.space16)
             }
         }
-        .padding(.horizontal, .huiSpaces.space16)
     }
 
     private var header: some View {

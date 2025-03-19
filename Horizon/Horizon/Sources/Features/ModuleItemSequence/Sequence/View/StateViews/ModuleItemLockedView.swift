@@ -35,30 +35,24 @@ struct ModuleItemLockedView: View {
     }
 
     var body: some View {
-        VStack {
-            Text(title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(Color.huiColors.text.body)
-                .huiTypography(.h2)
-
-            Spacer()
-
-            Image("PandaLocked", bundle: .core)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 240, height: 128)
-
-            Text("Locked", bundle: .horizon)
-                .foregroundStyle(Color.huiColors.text.body)
-                .huiTypography(.h3)
-                .padding(.top, .huiSpaces.space24)
+        VStack(alignment: .leading) {
+            HorizonUI.Pill(
+                title: String(localized: "Locked Content", bundle: .horizon),
+                    style: .inline(.init(
+                        textColor: Color.huiColors.text.body,
+                        iconColor: Color.huiColors.surface.institution
+                    )),
+                    isUppercased: false,
+                    icon: Image.huiIcons.lock
+                )
 
             WebView(html: "<p class=\"lock-explanation\">\(lockExplanation)</p>")
                 .frameToFit()
+                .padding(.horizontal, -(.huiSpaces.space24))
 
             Spacer()
         }
-        .padding(.huiSpaces.space16)
+        .padding(.huiSpaces.space24)
     }
 }
 

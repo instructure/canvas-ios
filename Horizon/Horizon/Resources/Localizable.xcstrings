@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "-" : {
 
     },
@@ -231,6 +228,9 @@
     "Complete all of the required items." : {
 
     },
+    "Completed" : {
+
+    },
     "Confirm Submission" : {
 
     },
@@ -393,6 +393,9 @@
     "Important" : {
 
     },
+    "In Progress" : {
+
+    },
     "Inbox" : {
 
     },
@@ -471,7 +474,7 @@
     "Ljubljana (+01:00/+02:00)" : {
 
     },
-    "Locked" : {
+    "Locked Content" : {
 
     },
     "Logout" : {
@@ -490,9 +493,6 @@
 
     },
     "Mark as Done" : {
-
-    },
-    "Mark as Undone" : {
 
     },
     "Marshall Is. (+12:00/+12:00)" : {
@@ -570,9 +570,6 @@
     "Newfoundland (-03:30/-02:30)" : {
 
     },
-    "Next Up" : {
-
-    },
     "No" : {
 
     },
@@ -580,6 +577,9 @@
 
     },
     "Noronha (-02:00/-02:00)" : {
+
+    },
+    "Not Started" : {
 
     },
     "Not Submitted" : {
@@ -679,6 +679,9 @@
 
     },
     "Result: %@" : {
+
+    },
+    "Resume Learning" : {
 
     },
     "Retry" : {

@@ -34,11 +34,22 @@ enum ModuleItemSequenceViewState {
         moduleID: String,
         itemID: String
     )
-    case file(context: Context, fileID: String)
+    case file(
+        context: Context,
+        fileID: String
+    )
+    case page(
+        context: Context,
+        pageURL: String,
+        isMarkedAsDoneButtonVisible: Bool,
+        isCompletedItem: Bool,
+        moduleID: String,
+        itemID: String
+    )
 
     var isModuleItem: Bool {
         switch self {
-        case .moduleItem, .assignment, .file:
+        case .moduleItem, .assignment, .file, .page:
             return true
         default:
             return false
@@ -48,6 +59,15 @@ enum ModuleItemSequenceViewState {
     var isAssignment: Bool {
         switch self {
         case .assignment:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var isExternalURL: Bool {
+        switch self {
+        case .externalURL:
             return true
         default:
             return false

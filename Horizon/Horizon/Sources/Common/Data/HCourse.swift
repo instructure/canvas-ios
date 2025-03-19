@@ -26,7 +26,7 @@ struct HCourse: Identifiable {
     let progress: Double
     let enrollments: [HEnrollment]
     let modules: [HModule]
-    let incompleteModules: [HModule]
+    let incompleteModule: IncompleteModule?
 
     init(
         id: String = "",
@@ -36,7 +36,7 @@ struct HCourse: Identifiable {
         progress: Double = 0,
         enrollments: [HEnrollment] = [],
         modules: [HModule] = [],
-        incompleteModules: [HModule] = []
+        incompleteModule: IncompleteModule? = nil
     ) {
         self.id = id
         self.institutionName = institutionName
@@ -45,7 +45,7 @@ struct HCourse: Identifiable {
         self.progress = progress
         self.enrollments = enrollments
         self.modules = modules
-        self.incompleteModules = incompleteModules
+        self.incompleteModule = incompleteModule
     }
 
     init(from entity: Course, modulesEntity: [Module]) {
@@ -61,6 +61,6 @@ struct HCourse: Identifiable {
         }
        self.modules = modulesEntity
             .map { HModule(from: $0) }
-        self.incompleteModules = []
+        self.incompleteModule = nil
     }
 }

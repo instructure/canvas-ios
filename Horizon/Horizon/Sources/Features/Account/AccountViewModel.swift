@@ -26,8 +26,7 @@ final class AccountViewModel {
     // MARK: - Outputs
 
     private(set) var name: String = ""
-    // TODO: set actual value when PR #3100 is merged
-    private(set) var institution: String = "Institution Name"
+    private(set) var institution: String = ""
     var isShowingLogoutConfirmationAlert = false
 
     // MARK: - Dependencies
@@ -49,6 +48,7 @@ final class AccountViewModel {
 
     init(
         getUserInteractor: GetUserInteractor,
+        getCoursesInteractor: GetCoursesInteractor,
         sessionInteractor: SessionInteractor,
         router: Router = AppEnvironment.shared.router
     ) {
@@ -65,6 +65,11 @@ final class AccountViewModel {
             .sink {
                 sessionInteractor.logout()
             }
+            .store(in: &subscriptions)
+
+        getCoursesInteractor
+            .getInstitutionName()
+            .assign(to: \.institution, on: self)
             .store(in: &subscriptions)
     }
 

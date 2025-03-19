@@ -49,7 +49,8 @@ final class ModuleItemSequenceViewModel {
     var offsetX: CGFloat = 0
     var isShowErrorAlert: Bool = false
     var onTapAssignmentOptions = PassthroughSubject<Void, Never>()
-    var didLoadAssignmentAttemptCount: (String?) -> Void = { _ in }
+    var didLoadAssignment: (String?, HModuleItem) -> Void = { _, _ in }
+    private var isAssignmentAvailableInItemSequence = true
 
     // MARK: - Private Properties
 
@@ -66,6 +67,7 @@ final class ModuleItemSequenceViewModel {
     private let router: Router
     private let assetType: AssetType
     private let assetID: String
+    private let courseID: String
 
     // MARK: - Init
 
@@ -78,13 +80,15 @@ final class ModuleItemSequenceViewModel {
         moduleItemStateInteractor: ModuleItemStateInteractor,
         router: Router,
         assetType: AssetType,
-        assetID: String
+        assetID: String,
+        courseID: String
     ) {
         self.moduleItemInteractor = moduleItemInteractor
         self.moduleItemStateInteractor = moduleItemStateInteractor
         self.router = router
         self.assetType = assetType
         self.assetID = assetID
+        self.courseID = courseID
 
         fetchModuleItemSequence(assetId: assetID)
 
@@ -95,8 +99,11 @@ final class ModuleItemSequenceViewModel {
             }
             .store(in: &subscriptions)
 
-        self.didLoadAssignmentAttemptCount = { [weak self] value in
-            self?.assignmentAttemptCount = value
+        didLoadAssignment = { [weak self] count, moduleItem in
+            self?.assignmentAttemptCount = count
+            if self?.isAssignmentAvailableInItemSequence == false {
+                self?.moduleItem = moduleItem
+            }
         }
     }
 
@@ -159,8 +166,19 @@ final class ModuleItemSequenceViewModel {
         offsetX = 0
     }
 
+    private func getAssignmentModuleItem() -> ModuleItemSequenceViewState {
+        .assignment(
+            courseID: courseID,
+            assignmentID: assetID,
+            isMarkedAsDone: false,
+            isCompletedItem: false,
+            moduleID: "", // No needed for  moduleID & itemID in this case
+            itemID: ""
+        )
+    }
+
     private func getCurrentState(item: HModuleItem?) -> ModuleItemSequenceViewState? {
-        let state = moduleItemStateInteractor.getModuleItemState(
+        var state = moduleItemStateInteractor.getModuleItemState(
             sequence: sequence,
             item: item,
             moduleID: moduleID,
@@ -170,6 +188,11 @@ final class ModuleItemSequenceViewModel {
             markAsViewed()
         }
         isAssignmentOptionsButtonVisible = state?.isAssignment ?? false
+        /// In some cases, the module sequence API returns an empty response for assignment type only.
+        if state?.isExternalURL == true, assetType == .assignment {
+            state = getAssignmentModuleItem()
+            isAssignmentAvailableInItemSequence = false
+        }
         return state
     }
 
@@ -184,7 +207,7 @@ final class ModuleItemSequenceViewModel {
         ])
 
         guard moduleItem.completionRequirementType == .must_view,
-              moduleItem.completed == false,
+              moduleItem.isCompleted == false,
               moduleItem.lockedForUser == false else {
             return
         }
@@ -192,26 +215,6 @@ final class ModuleItemSequenceViewModel {
             .markAsViewed(moduleID: moduleID, itemID: itemID)
             .sink()
             .store(in: &subscriptions)
-    }
-
-    func markAsDone() {
-        guard let moduleID, let itemID else {
-            return
-        }
-        isLoaderVisible = true
-        moduleItemInteractor.markAsDone(
-            completed: moduleItem?.completed == false,
-            moduleID: moduleID,
-            itemID: itemID
-        )
-        .sink { [weak self] completion in
-            if case let .failure(error) = completion {
-                self?.isShowErrorAlert = true
-                self?.errorMessage = error.localizedDescription
-            }
-            self?.isLoaderVisible = false
-        } receiveValue: { _ in }
-        .store(in: &subscriptions)
     }
 
     func retry() {
