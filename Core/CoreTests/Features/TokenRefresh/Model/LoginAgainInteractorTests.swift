@@ -63,6 +63,23 @@ class LoginAgainInteractorTests: CoreTestCase {
         wait(for: [streamFinished], timeout: 1)
     }
 
+    func test_discoversTopViewController_toPresentLoginAgainViewController() throws {
+        let rootViewController = try XCTUnwrap(AppEnvironment.shared.window?.rootViewController)
+        let presentedViewController = UIViewController()
+        rootViewController.present(presentedViewController, animated: false)
+
+        try testee.loginAgainOnExpiredRefreshToken(
+            tokenRefreshError: AccessTokenRefreshInteractor.TokenError.expiredRefreshToken,
+            api: api
+        )
+        .ignoreOutput()
+        .ignoreFailure()
+        .sink()
+        .store(in: &subscriptions)
+
+        XCTAssertEqual(mockLoginAgainViewModel.receivedRootViewController, presentedViewController)
+    }
+
     // MARK: - Failure Scenarios
 
     func test_reThrowsError_onInvalidHost() {
@@ -161,12 +178,14 @@ class LoginAgainInteractorTests: CoreTestCase {
 
 class LoginAgainViewModelMock: LoginAgainViewModel {
     var mockResultPublisher = PassthroughSubject<LoginSession, LoginAgainInteractor.LoginError>()
+    var receivedRootViewController: UIViewController?
 
     override func askUserToLogin(
         host: String,
         rootViewController: UIViewController,
         router: Router
     ) -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
-        mockResultPublisher.first().eraseToAnyPublisher()
+        receivedRootViewController = rootViewController
+        return mockResultPublisher.first().eraseToAnyPublisher()
     }
 }
