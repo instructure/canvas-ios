@@ -115,7 +115,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
 
             // NotificationManager.registerForRemoteNotifications is not called in UITests,
             // so we need to requestAuthorization in order to be able to test notification related logic like

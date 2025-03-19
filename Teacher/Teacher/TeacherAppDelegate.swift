@@ -99,7 +99,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
 
             self.isK5User = apiProfile.k5_user == true
             Analytics.shared.logSession(session)
