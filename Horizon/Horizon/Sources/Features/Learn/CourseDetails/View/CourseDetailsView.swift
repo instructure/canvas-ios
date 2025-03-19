@@ -25,8 +25,11 @@ struct CourseDetailsView: View {
     @Environment(\.viewController) private var viewController
     @State var selectedTabIndex: Int = 0
 
+    private let notebookView: NotebookView
+
     init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
+        self.notebookView = NotebookAssembly.makeView(courseId: viewModel.courseID)
     }
 
     var body: some View {
@@ -93,7 +96,7 @@ struct CourseDetailsView: View {
                     case .scores:
                         ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
                     case .notebook:
-                        NotebookAssembly.makeView(courseId: viewModel.courseID)
+                        notebookView
                     }
                 }
                 .scaleEffect(index == selectedTabIndex ? 1 : 0.8)

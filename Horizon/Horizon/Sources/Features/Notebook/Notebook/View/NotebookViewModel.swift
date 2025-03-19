@@ -19,6 +19,7 @@
 import Combine
 import Core
 import Foundation
+import SwiftUI
 
 @Observable
 final class NotebookViewModel {
@@ -118,12 +119,15 @@ final class NotebookViewModel {
             .replaceError(with: [])
             .sink { (courseNotes: [CourseNotebookNote]) in
                 guard let self = weakSelf else { return }
-                self.notes = courseNotes.map { note in
-                    NotebookNote(courseNotebookNote: note)
+
+                withAnimation {
+                    self.notes = courseNotes.map { note in
+                        NotebookNote(courseNotebookNote: note)
+                    }
+                    self.isNextDisabled = courseNotes.last?.nextCursor == nil
+                    self.isPreviousDisabled = courseNotes.first?.previousCursor == nil
+                    self.state = .data
                 }
-                self.isNextDisabled = courseNotes.last?.nextCursor == nil
-                self.isPreviousDisabled = courseNotes.first?.previousCursor == nil
-                self.state = .data
             }
             .store(in: &subscriptions)
     }
