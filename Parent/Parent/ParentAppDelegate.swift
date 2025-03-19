@@ -21,7 +21,6 @@ import Combine
 import Core
 import Firebase
 import Heap
-import Pendo
 import SafariServices
 import UIKit
 import UserNotifications
@@ -43,6 +42,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
+
+    private lazy var analyticsTracker: PendoAnalyticsTracker = {
+        .init(environment: environment)
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
@@ -76,7 +79,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme?.range(of: "pendo") != nil {
-            PendoManager.shared().initWith(url)
+            analyticsTracker.initManager(with: url)
             return true
         }
         if url.scheme == "canvas-parent" {
@@ -99,7 +102,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         environmentFeatureFlags?.refresh(force: true) { _ in
             defer { self.environmentFeatureFlags = nil }
             guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-            self.initializeTracking()
+            self.initializeTracking(environmentFeatureFlags: envFlags.all)
         }
 
         updateInterfaceStyle(for: window)
@@ -304,34 +307,14 @@ extension ParentAppDelegate: RemoteLogHandler {
 extension ParentAppDelegate: AnalyticsHandler {
     func handleEvent(_: String, parameters _: [String: Any]?) {}
 
-    private func initializeTracking() {
-        guard
-            let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let pendoApiKey = Secret.pendoApiKey.string, !pendoApiKey.isEmpty
-        else {
-            return
-        }
+    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
+        guard !ProcessInfo.isUITest else { return }
 
-        if environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) {
-            Task.detached { [weak environment] in
-                let metadata = try await AnalyticsMetadataInteractorLive().getMetadata()
-                environment?.pendoID = metadata.userId
-                PendoManager.shared().setup(pendoApiKey)
-                PendoManager.shared().startSession(
-                    metadata.userId,
-                    accountId: metadata.accountUUID,
-                    visitorData: metadata.visitorData.toMap(),
-                    accountData: metadata.accountData.toMap()
-                )
-            }
-        } else {
-            PendoManager.shared().endSession()
-        }
+        analyticsTracker.initializeTracking(environmentFeatureFlags: environmentFeatureFlags)
     }
 
     private func disableTracking() {
-        PendoManager.shared().endSession()
+        analyticsTracker.disableTracking()
     }
 }
 

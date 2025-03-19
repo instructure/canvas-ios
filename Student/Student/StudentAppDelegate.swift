@@ -20,7 +20,6 @@ import AVKit
 import Combine
 import Core
 import Firebase
-import Pendo
 import PSPDFKit
 import UIKit
 import UserNotifications
@@ -41,6 +40,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
+
+    private lazy var analyticsTracker: PendoAnalyticsTracker = {
+        .init(environment: environment)
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
@@ -110,7 +113,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             self.environmentFeatureFlags?.refresh(force: true) { _ in
                 defer { self.environmentFeatureFlags = nil }
                 guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-                self.initializeTracking()
+                self.initializeTracking(environmentFeatureFlags: envFlags.all)
             }
 
             self.updateInterfaceStyle(for: self.window)
@@ -167,9 +170,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func application(_: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme?.range(of: "pendo") != nil {
-            PendoManager.shared().initWith(url)
+            analyticsTracker.initManager(with: url)
             return true
         }
+
         if options[.sourceApplication] as? String == Bundle.teacherBundleID,
            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
            components.path.contains("student_view"),
@@ -178,6 +182,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             userDidLogin(session: fakeStudent)
             return true
         }
+
         return openURL(url)
     }
 
@@ -294,9 +299,11 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        if environmentFeatureFlags?.isFeatureEnabled(.send_usage_metrics) == true {
-            PendoManager.shared().track(name, properties: parameters)
-        }
+        analyticsTracker.track(
+            name,
+            properties: parameters,
+            environmentFeatureFlags: environmentFeatureFlags?.all ?? []
+        )
 
         PageViewEventController.instance.logPageView(
             name,
@@ -304,34 +311,14 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         )
     }
 
-    private func initializeTracking() {
-        guard
-            let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let pendoApiKey = Secret.pendoApiKey.string, !pendoApiKey.isEmpty
-        else {
-            return
-        }
+    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
+        guard !ProcessInfo.isUITest else { return }
 
-        if environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) {
-            Task.detached { [weak environment] in
-                let metadata = try await AnalyticsMetadataInteractorLive().getMetadata()
-                environment?.pendoID = metadata.userId
-                PendoManager.shared().setup(pendoApiKey)
-                PendoManager.shared().startSession(
-                    metadata.userId,
-                    accountId: metadata.accountUUID,
-                    visitorData: metadata.visitorData.toMap(),
-                    accountData: metadata.accountData.toMap()
-                )
-            }
-        } else {
-            PendoManager.shared().endSession()
-        }
+        analyticsTracker.initializeTracking(environmentFeatureFlags: environmentFeatureFlags)
     }
 
     private func disableTracking() {
-        PendoManager.shared().endSession()
+        analyticsTracker.disableTracking()
     }
 }
 
