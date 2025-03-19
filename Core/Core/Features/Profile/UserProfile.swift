@@ -46,7 +46,7 @@ extension UserProfile: WriteableModel {
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
-        
+
         // The "/users/self/profile" api does not return accountUUID and since they share
         // the same Core Data entity, it would get overriden with a null value after fetching "/users/self"
         if model.uuid == nil {

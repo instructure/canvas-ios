@@ -88,4 +88,14 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("Canvas1".deletingPrefix("Canvas"), "1")
         XCTAssertEqual("1Canvas1".deletingPrefix("Canvas"), "1Canvas1")
     }
+
+    func testSHA256() {
+        let text1 = "Some text 1"
+        let text2 = "Some text 2"
+
+        let hash1 = text1.sha256()
+        let hash2 = text2.sha256()
+        XCTAssertEqual(hash1 != hash2, true)
+        XCTAssertEqual(hash1, text1.sha256())
+    }
 }

@@ -133,12 +133,11 @@ extension String {
         return String(dropFirst(prefix.count))
     }
 
-    func sha256() -> String {
+    public func sha256() -> String {
         let inputData = Data(utf8)
         let hashedData = SHA256.hash(data: inputData)
         return hashedData.map { String(format: "%02x", $0) }.joined()
     }
-
 }
 
 extension ReferenceWritableKeyPath {

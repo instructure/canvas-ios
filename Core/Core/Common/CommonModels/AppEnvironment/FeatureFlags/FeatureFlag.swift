@@ -56,3 +56,19 @@ public final class FeatureFlag: NSManagedObject, WriteableModel {
         return flag
     }
 }
+
+extension Collection where Element == FeatureFlag {
+    public func isFeatureFlagEnabled(_ key: APIFeatureFlag.Key) -> Bool {
+        isFeatureFlagEnabled(name: key.rawValue)
+    }
+
+    public func isFeatureEnabled(_ featureFlag: EnvironmentFeatureFlags) -> Bool {
+        isFeatureFlagEnabled(name: featureFlag.rawValue)
+    }
+
+    private func isFeatureFlagEnabled(name: String) -> Bool {
+        contains { flag in
+            flag.name == name && flag.enabled
+        }
+    }
+}
