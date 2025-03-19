@@ -563,6 +563,6 @@ class FileListCell: UITableViewCell {
 
     func updateAccessibilityLabel() {
         accessibilityLabel = [ iconView.accessibilityLabel, nameLabel.text, sizeLabel.text ]
-            .compactMap { $0 }.joined(separator: ", ")
+            .joined(separator: ", ")
     }
 }

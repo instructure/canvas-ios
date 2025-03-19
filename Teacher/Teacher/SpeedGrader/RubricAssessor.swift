@@ -153,7 +153,8 @@ struct RubricAssessor: View {
                 Image.addSolid
             }
         }
-        .accessibility(label: Text("Customize Grade", bundle: .teacher))
+        .accessibilityLabel(Text("Add custom grade", bundle: .teacher))
+        .accessibilityRemoveTraits(.isImage)
         .alignmentGuide(.leading, computeValue: leading)
         .alignmentGuide(.top, computeValue: top)
     }

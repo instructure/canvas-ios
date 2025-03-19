@@ -45136,6 +45136,12 @@
     "Double tap to select attempt" : {
 
     },
+    "Double tap to view attempt" : {
+
+    },
+    "Double tap to view file" : {
+
+    },
     "Download Canceled" : {
       "comment" : "Shown when we cancel a file download",
       "extractionState" : "manual",
@@ -86051,6 +86057,7 @@
       }
     },
     "On %@ %@ commented \"%@\"" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -86307,6 +86314,7 @@
       }
     },
     "On %@ %@ left a video comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -86563,6 +86571,7 @@
       }
     },
     "On %@ %@ left an audio comment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -86819,6 +86828,7 @@
       }
     },
     "On %@ %@ submitted the following" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -138882,6 +138892,7 @@
       }
     },
     "View file %@ %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -139395,6 +139406,7 @@
       }
     },
     "View submission attempt %d. %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
