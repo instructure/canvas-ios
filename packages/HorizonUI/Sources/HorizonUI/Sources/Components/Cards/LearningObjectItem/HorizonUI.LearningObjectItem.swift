@@ -75,7 +75,7 @@ public extension HorizonUI {
                 )
             }
             .padding(.vertical, .huiSpaces.space12)
-            .padding(.horizontal, .huiSpaces.space10)
+            .padding(.horizontal, .huiSpaces.space16)
             .background {
                 Rectangle()
                     .fill(Color.huiColors.surface.cardPrimary)
@@ -89,7 +89,7 @@ public extension HorizonUI {
         }
 
         private var contentView: some View {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: .zero) {
                 Text(name)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.huiColors.text.body)
@@ -111,28 +111,31 @@ public extension HorizonUI {
                     )
                     Text(itemStatusText)
                         .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.p3)
+                        .huiTypography(.labelSmall)
                         .foregroundStyle(Color.huiColors.text.timestamp)
 
                     if let duration {
                         Text(duration)
                             .foregroundStyle(Color.huiColors.text.timestamp)
-                            .huiTypography(.p3)
+                            .huiTypography(.labelSmall)
                             .padding(.leading, .huiSpaces.space16)
                     }
                 }
+                .padding(.top, .huiSpaces.space12)
 
                 HStack(spacing: .huiSpaces.space16) {
                     if let dueDate {
                         dueDateView(dueDate)
+                            .padding(.top, .huiSpaces.space24)
                     }
 
                     if let points {
                         Text("\(points.description) pts")
                             .foregroundStyle(Color.huiColors.text.timestamp)
+                            .padding(.top, .huiSpaces.space24)
                     }
                 }
-                .huiTypography(.p3)
+                .huiTypography(.labelSmall)
             }
         }
 
@@ -148,6 +151,7 @@ public extension HorizonUI {
             let dueText = isOverdue ? String(localized: "Past Due") : String(localized: "Due")
             Text("\(dueText) \(date)")
                 .foregroundStyle(isOverdue ? Color.huiColors.text.error : Color.huiColors.text.timestamp)
+                .huiTypography(.labelSmall)
         }
     }
 }

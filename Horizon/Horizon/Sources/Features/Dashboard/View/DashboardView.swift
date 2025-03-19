@@ -46,7 +46,7 @@ struct DashboardView: View {
                         Text(nextUpViewModel.name)
                             .huiTypography(.h1)
                             .foregroundStyle(Color.huiColors.text.title)
-                            .padding(.top, .huiSpaces.space24)
+                            .padding(.top, .huiSpaces.space48)
                             .padding(.bottom, .huiSpaces.space16)
 
                         HorizonUI.ProgressBar(
@@ -56,24 +56,25 @@ struct DashboardView: View {
                         )
 
                         if let learningObjectCardViewModel = nextUpViewModel.learningObjectCardViewModel {
-                            Text("Next Up", bundle: .horizon)
+                            Text("Resume Learning", bundle: .horizon)
                                 .huiTypography(.h3)
                                 .foregroundStyle(Color.huiColors.text.title)
                                 .padding(.top, .huiSpaces.space36)
                                 .padding(.bottom, .huiSpaces.space12)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-
-                            HorizonUI.LearningObjectCard(
-                                status: viewModel.getStatus(percent: nextUpViewModel.progress),
-                                moduleTitle: learningObjectCardViewModel.moduleTitle,
-                                learningObjectName: learningObjectCardViewModel.learningObjectName,
-                                duration: learningObjectCardViewModel.estimatedTime,
-                                type: learningObjectCardViewModel.type,
-                                dueDate: learningObjectCardViewModel.dueDate
-                            ) {
+                            Button {
                                 if let url = learningObjectCardViewModel.url {
                                     viewModel.navigateToCourseDetails(url: url, viewController: viewController)
                                 }
+                            } label: {
+                                HorizonUI.LearningObjectCard(
+                                    status: viewModel.getStatus(percent: nextUpViewModel.progress),
+                                    moduleTitle: learningObjectCardViewModel.moduleTitle,
+                                    learningObjectName: learningObjectCardViewModel.learningObjectName,
+                                    duration: learningObjectCardViewModel.estimatedTime,
+                                    type: learningObjectCardViewModel.type,
+                                    dueDate: learningObjectCardViewModel.dueDate
+                                )
                             }
                         }
                     }
@@ -100,7 +101,8 @@ struct DashboardView: View {
                 viewModel.mailDidTap(viewController: viewController)
             }
         }
-        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.horizontal, .huiSpaces.space10)
+        .padding(.top, .huiSpaces.space10)
         .padding(.bottom, .huiSpaces.space4)
         .background(Color.huiColors.surface.pagePrimary)
     }

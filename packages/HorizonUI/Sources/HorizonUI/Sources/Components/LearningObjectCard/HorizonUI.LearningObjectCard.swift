@@ -28,7 +28,6 @@ public extension HorizonUI {
         private let duration: String?
         private let type: String?
         private let dueDate: String?
-        private let onTapButton: () -> Void
 
         // MARK: - Init
 
@@ -38,8 +37,7 @@ public extension HorizonUI {
             learningObjectName: String,
             duration: String? = nil,
             type: String? = nil,
-            dueDate: String? = nil,
-            onTapButton: @escaping () -> Void = { }
+            dueDate: String? = nil
         ) {
             self.status = status
             self.moduleTitle = moduleTitle
@@ -47,7 +45,6 @@ public extension HorizonUI {
             self.duration = duration
             self.type = type
             self.dueDate = dueDate
-            self.onTapButton = onTapButton
         }
 
 
@@ -84,7 +81,7 @@ public extension HorizonUI {
             HStack(alignment: .bottom) {
                 setCoursePropertiesView()
                 Spacer()
-                iconButton
+                arrowIcon
             }
         }
 
@@ -122,20 +119,15 @@ public extension HorizonUI {
             }
         }
 
-        // TODO: will reuse iconButton component
-        private var iconButton: some View {
-            Button {
-                onTapButton()
-            } label: {
-                Rectangle()
-                    .fill(Color.huiColors.surface.institution)
-                    .frame(width: 44, height: 44)
-                    .huiCornerRadius(level: .level6)
-                    .overlay {
-                        Image.huiIcons.arrowForward
-                            .foregroundStyle(Color.huiColors.icon.surfaceColored)
-                    }
-            }
+        private var arrowIcon: some View {
+            Rectangle()
+                .fill(Color.huiColors.surface.institution)
+                .frame(width: 44, height: 44)
+                .huiCornerRadius(level: .level6)
+                .overlay {
+                    Image.huiIcons.arrowForward
+                        .foregroundStyle(Color.huiColors.icon.surfaceColored)
+                }
         }
     }
 }

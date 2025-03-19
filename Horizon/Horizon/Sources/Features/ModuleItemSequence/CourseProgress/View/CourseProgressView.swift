@@ -45,7 +45,7 @@ struct CourseProgressView: View {
         .padding(.horizontal, .huiSpaces.space24)
         .animation(.smooth, value: viewModel.currentModuleItem)
         .overlay(alignment: .topTrailing) {
-            HorizonUI.IconButton(Image.huiIcons.close, type: .white) {
+            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
                 viewModel.dimiss(controller: viewController)
             }
             .huiElevation(level: .level4)
@@ -55,7 +55,7 @@ struct CourseProgressView: View {
     }
 
     private var headerView: some View {
-        VStack(spacing: .huiSpaces.space24) {
+        VStack(spacing: .huiSpaces.space32) {
             Text("My Progress", bundle: .horizon)
                 .foregroundStyle(Color.huiColors.text.title)
                 .frame(maxWidth: .infinity)
@@ -66,7 +66,7 @@ struct CourseProgressView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .huiTypography(.labelLargeBold)
         }
-        .padding(.top, .huiSpaces.space24)
+        .padding(.top, .huiSpaces.space32)
     }
 
     @ViewBuilder

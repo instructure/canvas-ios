@@ -112,6 +112,16 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
         case let .file(id):
             guard let url = item.url, let context = Context(path: url.path) else { return nil }
             return .file(context: context, fileID: id)
+        case .page(let pageURL):
+            let isMarkedAsDone = item.completionRequirementType == .must_mark_done
+            return .page(
+                context: .course(courseID),
+                pageURL: pageURL,
+                isMarkedAsDoneButtonVisible: isMarkedAsDone,
+                isCompletedItem: item.isCompleted,
+                moduleID: moduleID ?? "",
+                itemID: itemID ?? ""
+            )
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")

@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "-" : {
 
     },
@@ -498,9 +495,6 @@
     "Mark as Done" : {
 
     },
-    "Mark as Undone" : {
-
-    },
     "Marshall Is. (+12:00/+12:00)" : {
 
     },
@@ -574,9 +568,6 @@
 
     },
     "Newfoundland (-03:30/-02:30)" : {
-
-    },
-    "Next Up" : {
 
     },
     "No" : {
@@ -688,6 +679,9 @@
 
     },
     "Result: %@" : {
+
+    },
+    "Resume Learning" : {
 
     },
     "Retry" : {
