@@ -102,7 +102,7 @@ struct DashboardView: View {
             }
         }
         .padding(.horizontal, .huiSpaces.space10)
-        .padding(.top, .huiSpaces.space24)
+        .padding(.top, .huiSpaces.space10)
         .padding(.bottom, .huiSpaces.space4)
         .background(Color.huiColors.surface.pagePrimary)
     }

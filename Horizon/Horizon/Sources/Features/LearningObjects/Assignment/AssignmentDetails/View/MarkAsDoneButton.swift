@@ -21,6 +21,7 @@ import HorizonUI
 
 struct MarkAsDoneButton: View {
     let isCompleted: Bool
+    let isLoading: Bool
     let onTap: () -> Void
 
     var body: some View {
@@ -34,18 +35,32 @@ struct MarkAsDoneButton: View {
 
         HStack(spacing: .huiSpaces.space10) {
             Spacer()
-            HorizonUI.PrimaryButton(
-                text,
-                type: .beige,
-                leading: image
-            ) {
-                onTap()
+            if isLoading {
+                HorizonUI.Spinner(size: .xSmall, showBackground: false)
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.vertical, .huiSpaces.space10)
+                    .background {
+                        Capsule()
+                            .fill( Color.huiColors.surface.pagePrimary)
+                    }
+            } else {
+                HorizonUI.PrimaryButton(
+                    text,
+                    type: .beige,
+                    leading: image
+                ) {
+                    onTap()
+                }
             }
         }
-        .animation(.smooth, value: isCompleted)
+        .animation(.smooth, value: [isCompleted, isLoading])
     }
 }
 
 #Preview {
-    MarkAsDoneButton(isCompleted: true) {}
+    MarkAsDoneButton(
+        isCompleted: true,
+        isLoading: true
+    ) {}
+        .padding()
 }

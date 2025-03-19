@@ -28,16 +28,11 @@ struct PageDetailsView: View {
     // MARK: - Dependencies
 
     @State private var viewModel: PageDetailsViewModel
-    private let isMarkedAsDoneButtonVisible: Bool
 
     // MARK: - Init
 
-    init(
-        viewModel: PageDetailsViewModel,
-        isMarkedAsDoneButtonVisible: Bool
-    ) {
+    init(viewModel: PageDetailsViewModel) {
         self.viewModel = viewModel
-        self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
     }
 
     var body: some View {
@@ -51,8 +46,11 @@ struct PageDetailsView: View {
                 .frameToFit()
             }
 
-            if isMarkedAsDoneButtonVisible {
-                MarkAsDoneButton(isCompleted: viewModel.isCompletedItem) {
+            if viewModel.isMarkedAsDoneButtonVisible {
+                MarkAsDoneButton(
+                    isCompleted: viewModel.isCompletedItem,
+                    isLoading: viewModel.isMarkAsDoneLoaderVisible
+                ) {
                     viewModel.markAsDone()
                 }
                 .padding(.huiSpaces.space24)

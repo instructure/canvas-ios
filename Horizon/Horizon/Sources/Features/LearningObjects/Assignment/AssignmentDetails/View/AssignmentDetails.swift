@@ -59,7 +59,6 @@ struct AssignmentDetails: View {
                 .padding(.huiSpaces.space24)
             }
         }
-        .hidden(viewModel.isInitialLoading)
         .overlay { loaderView }
         .keyboardAdaptive(isEnabled: viewModel.selectedSubmission == .text)
         .ignoresSafeArea(.keyboard, edges: .bottom)
@@ -151,7 +150,10 @@ struct AssignmentDetails: View {
     }
 
     private var markAsDoneButton: some View {
-        MarkAsDoneButton(isCompleted: viewModel.isCompletedItem) {
+        MarkAsDoneButton(
+            isCompleted: viewModel.isCompletedItem,
+            isLoading: viewModel.isMarkAsDoneLoaderVisible
+        ) {
             viewModel.markAsDone()
         }
     }

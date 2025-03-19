@@ -41,7 +41,7 @@ final class AssignmentDetailsViewModel {
 
     private(set) var assignment: HAssignment?
     private(set) var isLoaderVisible = true
-    private(set) var isInitialLoading = true
+    private(set) var isMarkAsDoneLoaderVisible = false
     private(set) var attachedFiles: [File] = []
     private(set) var submitButtonTitle = ""
     private(set) var errorMessage: String?
@@ -184,7 +184,7 @@ final class AssignmentDetailsViewModel {
     }
 
     func markAsDone() {
-        isLoaderVisible = true
+        isMarkAsDoneLoaderVisible = true
         moduleItemInteractor.markAsDone(
             completed: !isCompletedItem,
             moduleID: moduleID,
@@ -194,7 +194,7 @@ final class AssignmentDetailsViewModel {
             if case let .failure(error) = completion {
                 self?.errorMessage = error.localizedDescription
             }
-            self?.isLoaderVisible = false
+            self?.isMarkAsDoneLoaderVisible = false
         } receiveValue: { [weak self] _ in
             self?.isCompletedItem.toggle()
         }
@@ -233,7 +233,6 @@ final class AssignmentDetailsViewModel {
 
     private func configAssignmentDetails(response: HAssignment, submissions: [HSubmission]) {
         isLoaderVisible = false
-        isInitialLoading = false
         assignment = response
         self.submissions = submissions
         // Didn’t submit before

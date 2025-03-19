@@ -29,6 +29,7 @@ final class PageDetailsViewModel {
     private(set) var content: String?
     private(set) var isCompletedItem: Bool
     private(set) var isLoaderVisible = true
+    private(set) var isMarkAsDoneLoaderVisible = false
     private(set) var errorMessage = ""
 
     // MARK: - Input / Output
@@ -44,6 +45,7 @@ final class PageDetailsViewModel {
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let moduleID: String
     private let itemID: String
+    let isMarkedAsDoneButtonVisible: Bool
 
     // MARK: - Init
 
@@ -53,12 +55,14 @@ final class PageDetailsViewModel {
         pageURL: String,
         isCompletedItem: Bool,
         moduleID: String,
-        itemID: String
+        itemID: String,
+        isMarkedAsDoneButtonVisible: Bool
     ) {
         self.moduleItemInteractor = moduleItemInteractor
         self.isCompletedItem = isCompletedItem
         self.moduleID = moduleID
         self.itemID = itemID
+        self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
 
         ReactiveStore(
             useCase: GetPage(context: context, url: pageURL)
@@ -75,7 +79,7 @@ final class PageDetailsViewModel {
     }
 
     func markAsDone() {
-        isLoaderVisible = true
+        isMarkAsDoneLoaderVisible = true
         moduleItemInteractor.markAsDone(
             completed: !isCompletedItem,
             moduleID: moduleID,
@@ -86,7 +90,7 @@ final class PageDetailsViewModel {
                 self?.errorMessage = error.localizedDescription
                 self?.isShowErrorAlert = true
             }
-            self?.isLoaderVisible = false
+            self?.isMarkAsDoneLoaderVisible = false
         } receiveValue: { [weak self] _ in
             self?.isCompletedItem.toggle()
         }

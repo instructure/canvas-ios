@@ -37,11 +37,9 @@ struct PageDetailsAssembly {
             pageURL: pageURL,
             isCompletedItem: isCompletedItem,
             moduleID: moduleID,
-            itemID: itemID
-        )
-        return PageDetailsView(
-            viewModel: viewModel,
+            itemID: itemID,
             isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible
         )
+        return PageDetailsView(viewModel: viewModel)
     }
 }
