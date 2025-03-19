@@ -93,8 +93,7 @@ struct CourseDetailsView: View {
                     case .scores:
                         ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
                     case .notebook:
-                        Text(verbatim: "Notebook")
-                            .id(index)
+                        NotebookAssembly.makeView(courseId: viewModel.courseID)
                     }
                 }
                 .scaleEffect(index == selectedTabIndex ? 1 : 0.8)

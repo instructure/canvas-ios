@@ -28,6 +28,8 @@ final class NotebookViewModel {
 
     // MARK: - Outputs
 
+    let contentOnly: Bool
+
     var courseNoteLabels: [CourseNoteLabel] {
         CourseNoteLabel.allCases.filter { $0 != .other }
     }
@@ -57,13 +59,16 @@ final class NotebookViewModel {
     // MARK: - Init
 
     init(
+        courseId: String? = nil,
         getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared,
         router: Router = AppEnvironment.defaultValue.router
     ) {
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
-
         self.title = String(localized: "Notebook", bundle: .horizon)
+        self.contentOnly = courseId != nil
+
+        self.getCourseNotesInteractor.set(courseId: courseId)
 
         loadNotes()
     }
@@ -95,13 +100,13 @@ final class NotebookViewModel {
     func nextPage() {
         guard let cursor = notes.last?.nextCursor else { return }
         state = .loading
-        getCourseNotesInteractor.cursor = Cursor(next: cursor)
+        getCourseNotesInteractor.set(cursor: Cursor(next: cursor))
     }
 
     func previousPage() {
         guard let cursor = notes.first?.previousCursor else { return }
         state = .loading
-        getCourseNotesInteractor.cursor = Cursor(previous: cursor)
+        getCourseNotesInteractor.set(cursor: Cursor(previous: cursor))
     }
 
     // MARK: - Private functions

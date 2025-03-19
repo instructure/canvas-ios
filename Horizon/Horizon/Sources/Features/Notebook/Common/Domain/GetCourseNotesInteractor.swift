@@ -21,29 +21,12 @@ import CombineExt
 import Core
 import Foundation
 
-/// Cursor to paginate the notes
-/// If previous is set, it'll get the prior results
-/// If next is set, it'll get the next results
-struct Cursor {
-    let cursor: String
-    let isBefore: Bool // if it's not before, it's "after"
-
-    init(previous cursor: String) {
-        self.cursor = cursor
-        isBefore = true
-    }
-
-    init(next cursor: String) {
-        self.cursor = cursor
-        isBefore = false
-    }
-}
-
 protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get set }
-    var cursor: Cursor? { get set }
     func get() -> AnyPublisher<[CourseNotebookNote], NotebookError>
     func refresh()
+    func set(courseId: String?)
+    func set(cursor: Cursor?)
 }
 
 final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
@@ -59,24 +42,20 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Public
 
-    var cursor: Cursor? {
-        get {
-            cursorFilter.value?.cursor
-        }
-        set {
-            cursorFilter.accept(
-                newValue == nil && filter == nil ? nil : (cursor: newValue, filter: filter)
-            )
-        }
+    func set(courseId: String?) {
+        courseIdFilter.accept(courseId)
+    }
+
+    func set(cursor: Cursor?) {
+        cursorFilter.accept(
+            cursor == nil && filter == nil ? nil : (cursor: cursor, filter: filter)
+        )
     }
 
     var filter: CourseNoteLabel? {
-        get {
-            cursorFilter.value?.filter
-        }
-        set {
+        didSet {
             cursorFilter.accept(
-                newValue == nil ? nil : (cursor: nil, filter: newValue)
+                filter == nil ? nil : (cursor: nil, filter: filter)
             )
         }
     }
@@ -88,6 +67,10 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Private
 
+    private var cursor: Cursor? {
+        cursorFilter.value?.cursor
+    }
+    private var courseIdFilter: CurrentValueRelay<String?> = CurrentValueRelay(nil)
     private var cursorFilter: CurrentValueRelay<CursorFilter?> = CurrentValueRelay(nil)
     private let refreshSubject = CurrentValueRelay<Void>(())
     private var subscriptions = Set<AnyCancellable>()
@@ -109,49 +92,84 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Private Methods
 
-    private func request(api: API, labels: [CourseNoteLabel]? = nil) -> GetNotesQuery {
+    private func request(
+        api: API,
+        labels: [CourseNoteLabel]? = nil,
+        courseId: String? = nil
+    ) -> GetNotesQuery {
         let accessToken = api.loginSession?.accessToken ?? ""
         let reactions = labels?.map(\.rawValue)
 
         guard let cursorValue = cursor?.cursor else {
-            return .init(jwt: accessToken, reactions: reactions)
+            return .init(jwt: accessToken, courseId: courseId, reactions: reactions)
         }
         if cursor?.isBefore == true {
             return .init(
                 jwt: accessToken,
                 before: cursorValue,
-                reactions: reactions
+                reactions: reactions,
+                courseId: courseId
             )
         }
         return .init(
             jwt: accessToken,
             after: cursorValue,
-            reactions: reactions
+            reactions: reactions,
+            courseId: courseId
         )
     }
 
     private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
             cursorFilter,
+            courseIdFilter,
             refreshSubject
         )
-        .flatMap { [weak self] cursorFilter, _ in
+        .flatMap { [weak self] cursorFilter, courseId, _ in
             guard let self = self else {
                 return Just([CourseNotebookNote]())
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            return self.listenTo(api: api, filter: cursorFilter?.filter, cursor: cursorFilter?.cursor)
+            return self.listenTo(api: api, cursorFilter: cursorFilter, courseId: courseId)
         }
         .eraseToAnyPublisher()
     }
 
-    private func listenTo(api: API, filter: CourseNoteLabel?, cursor: Cursor?) -> AnyPublisher<
+    private func listenTo(
+        api: API,
+        cursorFilter: CursorFilter? = nil,
+        courseId: String? = nil
+    ) -> AnyPublisher<
         [CourseNotebookNote], any Error
     > {
-        api.makeRequest(request(api: api, labels: filter.map { [$0] }))
-            .compactMap { $0?.courseNotebookNotes }
-            .eraseToAnyPublisher()
+        api.makeRequest(
+            request(
+                api: api,
+                labels: cursorFilter?.filter.map { [$0] },
+                courseId: courseId
+            )
+        )
+        .compactMap { $0?.courseNotebookNotes }
+        .eraseToAnyPublisher()
+    }
+}
+
+/// Cursor to paginate the notes
+/// If previous is set, it'll get the prior results
+/// If next is set, it'll get the next results
+struct Cursor {
+    let cursor: String
+    let isBefore: Bool // if it's not before, it's "after"
+
+    init(previous cursor: String) {
+        self.cursor = cursor
+        isBefore = true
+    }
+
+    init(next cursor: String) {
+        self.cursor = cursor
+        isBefore = false
     }
 }
 
@@ -165,5 +183,7 @@ final class GetCourseNotesInteractorPreview: GetCourseNotesInteractor {
             .eraseToAnyPublisher()
     }
     func refresh() {}
+    func set(courseId: String?) {}
+    func set(cursor: Cursor?) {}
 }
 #endif

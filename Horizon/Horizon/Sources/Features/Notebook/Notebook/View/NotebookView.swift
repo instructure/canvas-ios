@@ -26,31 +26,39 @@ struct NotebookView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(
-                refreshable: false,
-                loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
-            )
-        ) { _ in
-            VStack {
-                ZStack {
-                    if viewModel.isEmptyCardVisible {
-                        emptyCard
-                    } else {
-                        VStack {
-                            filterButtons
-                            notesBody
-                            forwardBackButtons
-                        }
+        if viewModel.contentOnly {
+            content
+        } else {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                config: .init(
+                    refreshable: false,
+                    loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
+                )
+            ) { _ in
+                content
+                    .padding(.all, .huiSpaces.space16)
+            }
+            .background(Color.huiColors.surface.pagePrimary)
+            .toolbar(.hidden)
+            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+        }
+    }
+
+    private var content: some View {
+        VStack {
+            ZStack {
+                if viewModel.isEmptyCardVisible {
+                    emptyCard
+                } else {
+                    VStack {
+                        filterButtons
+                        notesBody
+                        forwardBackButtons
                     }
                 }
             }
-            .padding(.all, .huiSpaces.space16)
         }
-        .background(Color.huiColors.surface.pagePrimary)
-        .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
     }
 
     private var backButton: some View {
