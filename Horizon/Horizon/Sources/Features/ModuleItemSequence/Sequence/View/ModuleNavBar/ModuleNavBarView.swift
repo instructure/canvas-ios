@@ -71,7 +71,8 @@ struct ModuleNavBarView: View {
     private var previousButtonView: some View {
         HorizonUI.IconButton(
             ModuleNavBarButtons.previous.image,
-            type: .white
+            type: .white,
+            isSmall: true
         ) {
             previousButton.action()
         }
@@ -82,7 +83,8 @@ struct ModuleNavBarView: View {
     private var nextButtonView: some View {
         HorizonUI.IconButton(
             ModuleNavBarButtons.next.image,
-            type: .white
+            type: .white,
+            isSmall: true
         ) {
             nextButton.action()
         }
@@ -93,7 +95,8 @@ struct ModuleNavBarView: View {
     private func buttonView(_ button: ModuleNavBarUtilityButtons) -> some View {
         HorizonUI.IconButton(
             button.image,
-            type: button.buttonStyle
+            type: button.buttonStyle,
+            isSmall: true
         ) {
             button.onTap?(controller)
         }

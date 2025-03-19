@@ -23,7 +23,6 @@ import Core
 public struct ModuleItemSequenceView: View {
     // MARK: - Private Properties
 
-    @State private var isShowMakeAsDoneSheet = false
     @State private var isShowHeader = true
     @State private var isShowModuleNavBar = true
     @State private var submissionAlertModel = SubmissionAlertViewModel()
@@ -78,9 +77,6 @@ public struct ModuleItemSequenceView: View {
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
-        .confirmationDialog("", isPresented: $isShowMakeAsDoneSheet, titleVisibility: .hidden) {
-            makeAsDoneSheetButtons
-        }
         .alert(String(localized: "Error", bundle: .core), isPresented: $viewModel.isShowErrorAlert) {
             Button(String(localized: "Ok", bundle: .core), role: .cancel) { }
         } message: {
@@ -156,28 +152,6 @@ public struct ModuleItemSequenceView: View {
         }
     }
 
-    @ViewBuilder
-    private var makeAsDoneSheetButtons: some View {
-        let title = viewModel.moduleItem?.isCompleted == true
-        ? String(localized: "Mark as Undone", bundle: .core)
-        : String(localized: "Mark as Done", bundle: .core)
-        Button(title) { viewModel.markAsDone()}
-        Button(String(localized: "Cancel", bundle: .core), role: .cancel) {}
-    }
-
-    // TODO: - Set the mark done in navBar button later
-    //    @ViewBuilder
-    //    private var makeAsDoneButton: some View {
-    //        if viewModel.moduleItem?.completionRequirementType == .must_mark_done {
-    //            Button(action: {
-    //                isShowMakeAsDoneSheet = true
-    //            }) {
-    //                Image.huiIcons.moreHoriz
-    //                    .foregroundStyle(Color.huiColors.text.body)
-    //            }
-    //        }
-    //    }
-
     private func goNext() {
         withAnimation {
             viewModel.offsetX = -UIScreen.main.bounds.width * 2
@@ -243,6 +217,16 @@ private struct ContentView: View {
                         name: name
                     )
                     .id(tools.url?.absoluteString)
+                case let .page(context, pageURL, isMarkedAsDoneButtonVisible, isCompleted, moduleID, itemID):
+                    PageDetailsAssembly.makeView(
+                        context: context,
+                        pageURL: pageURL,
+                        isCompletedItem: isCompleted,
+                        isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible,
+                        moduleID: moduleID,
+                        itemID: itemID
+                    )
+                    .id(pageURL)
                 case .moduleItem(controller: let controller, let id):
                     ModuleItemSequenceAssembly.makeModuleItemView(viewController: controller)
                         .id(id)

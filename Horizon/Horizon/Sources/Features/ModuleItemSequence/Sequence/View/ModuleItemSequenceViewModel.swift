@@ -257,26 +257,6 @@ final class ModuleItemSequenceViewModel {
             .store(in: &subscriptions)
     }
 
-    func markAsDone() {
-        guard let moduleID, let itemID else {
-            return
-        }
-        isLoaderVisible = true
-        moduleItemInteractor.markAsDone(
-            completed: moduleItem?.isCompleted == false,
-            moduleID: moduleID,
-            itemID: itemID
-        )
-        .sink { [weak self] completion in
-            if case let .failure(error) = completion {
-                self?.isShowErrorAlert = true
-                self?.errorMessage = error.localizedDescription
-            }
-            self?.isLoaderVisible = false
-        } receiveValue: { _ in }
-        .store(in: &subscriptions)
-    }
-
     func retry() {
         fetchModuleItemSequence(assetId: moduleItem?.id ?? assetID)
     }
