@@ -450,8 +450,8 @@ public struct GetUserProfileRequest: APIRequestable {
     }
 }
 
-// https://canvas.instructure.com/doc/api/users.html
-public struct GetSelfUserRequest: APIRequestable {
+// https://canvas.instructure.com/doc/api/users.html#method.users.api_show
+public struct GetSelfUserIncludingUUIDRequest: APIRequestable {
     public typealias Response = APIProfile
 
     public var path: String { "users/self" }

@@ -84,7 +84,7 @@ public struct GetUserProfile: APIUseCase {
     }
 }
 
-public struct GetSelfUser: APIUseCase {
+public struct GetSelfUserIncludingUUID: APIUseCase {
     public typealias Model = UserProfile
 
     public init () {}
@@ -93,7 +93,7 @@ public struct GetSelfUser: APIUseCase {
         return "get-self-user"
     }
 
-    public var request: GetSelfUserRequest {
-        return GetSelfUserRequest()
+    public var request: GetSelfUserIncludingUUIDRequest {
+        return GetSelfUserIncludingUUIDRequest()
     }
 }

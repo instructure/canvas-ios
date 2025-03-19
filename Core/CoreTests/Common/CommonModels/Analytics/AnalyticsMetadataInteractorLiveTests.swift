@@ -29,7 +29,7 @@ class AnalyticsMetadataInteractorLiveTests: CoreTestCase {
         )
 
         api.mock(
-            GetSelfUserRequest(),
+            GetSelfUserIncludingUUIDRequest(),
             value: .make(locale: "en-US", uuid: "1", account_uuid: "2")
         )
 
@@ -50,7 +50,7 @@ class AnalyticsMetadataInteractorLiveTests: CoreTestCase {
         )
 
         api.mock(
-            GetSelfUserRequest(),
+            GetSelfUserIncludingUUIDRequest(),
             value: .make(locale: "en-US", uuid: "1", account_uuid: "2")
         )
 

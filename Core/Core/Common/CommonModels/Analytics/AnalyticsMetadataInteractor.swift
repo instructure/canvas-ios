@@ -31,7 +31,7 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
             .getEntities()
             .compactMap { $0 }
 
-        let userStore = ReactiveStore(useCase: GetSelfUser())
+        let userStore = ReactiveStore(useCase: GetSelfUserIncludingUUID())
             .getEntities(ignoreCache: true)
             .map { $0.first }
             .compactMap { $0 }
