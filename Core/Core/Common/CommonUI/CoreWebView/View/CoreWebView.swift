@@ -34,8 +34,6 @@ open class CoreWebView: WKWebView {
     }()
     public static let processPool = WKProcessPool()
 
-    private var downloadingAttachment: CoreWebAttachment?
-
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
@@ -46,6 +44,8 @@ open class CoreWebView: WKWebView {
             addContentInputAccessoryView()
         }
     }
+
+    var downloadingAttachment: CoreWebAttachment?
 
     private(set) var features: [CoreWebViewFeature] = []
     private var htmlString: String?
@@ -461,7 +461,10 @@ extension CoreWebView: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy {
-        if navigationResponse.response.httpHeaders.hasAttachmentContentDisposition { return .download }
+        if let httpResponse = navigationResponse.response as? HTTPURLResponse,
+           httpResponse.hasAttachmentContentDispositionHeader {
+            return .download
+        }
         return .allow
     }
 
@@ -739,99 +742,4 @@ extension CoreWebView {
             loadHTMLString(content ?? "", baseURL: originalBaseURL)
         }
     }
-}
-
-// MARK: - Attachment Download
-
-public struct CoreWebAttachment {
-    let url: URL
-    let contentType: String?
-
-    fileprivate init(url: URL, contentType: String?) {
-        self.url = url
-        self.contentType = contentType
-    }
-}
-
-extension CoreWebView: WKDownloadDelegate {
-
-    public var isDownloadingAttachment: Bool { downloadingAttachment != nil }
-
-    public func download(_ download: WKDownload, decideDestinationUsing response: URLResponse, suggestedFilename: String) async -> URL? {
-
-        guard response.httpHeaders.hasAttachmentContentDisposition else { return nil }
-
-        let suggestedUrl = URL.Directories.temporary.appending(component: suggestedFilename)
-        let attachment = CoreWebAttachment(
-            url: suggestedUrl,
-            contentType: response.httpHeaders.contentType
-        )
-
-        downloadingAttachment = attachment
-
-        do {
-            if FileManager.default.fileExists(atPath: suggestedUrl.path()) {
-                try FileManager.default.removeItem(at: suggestedUrl)
-            }
-
-            linkDelegate?.coreWebView(self, didStartDownloadAttachment: attachment)
-
-            return suggestedUrl
-        } catch {
-
-            return nil
-        }
-    }
-
-    public func download(_ download: WKDownload, didFailWithError error: any Error, resumeData: Data?) {
-        guard
-            let attachment = downloadingAttachment,
-            let fileURL = download.progress.fileURL,
-            fileURL == attachment.url
-        else { return }
-
-        linkDelegate?.coreWebView(self, didFailAttachmentDownload: attachment, with: error)
-        downloadingAttachment = nil
-    }
-
-    public func downloadDidFinish(_ download: WKDownload) {
-        guard
-            let attachment = downloadingAttachment,
-            let fileURL = download.progress.fileURL,
-            fileURL == attachment.url
-        else { return }
-
-        linkDelegate?.coreWebView(self, didFinishAttachmentDownload: attachment)
-        downloadingAttachment = nil
-    }
-}
-
-// MARK: - Utils
-
-private extension URLResponse {
-
-    struct HTTPHeaders {
-        let response: URLResponse
-
-        var contentDisposition: String? {
-            headerValue(of: "content-disposition")
-        }
-
-        var hasAttachmentContentDisposition: Bool {
-            return contentDisposition.flatMap({ $0.hasPrefix("attachment") }) ?? false
-        }
-
-        var contentType: String? {
-            headerValue(of: "content-type")
-        }
-
-        private func headerValue(of key: String) -> String? {
-            guard let headers = (response as? HTTPURLResponse)?.allHeaderFields else { return nil }
-            return headers
-                .first(where: { ($0.key as? String)?.lowercased() == key.lowercased() })?
-                .value as? String
-        }
-    }
-
-    var httpHeaders: HTTPHeaders { HTTPHeaders(response: self) }
 }
