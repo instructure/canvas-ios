@@ -192,7 +192,7 @@ public class CalendarHelper: BaseHelper {
     }
 
     public struct Filter {
-        public static var navBar: XCUIElement { app.find(id: "Calendars") }
+        public static var navBar: XCUIElement { app.find(type: .navigationBar).find(label: "Calendars") }
         public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
         public static var calendarsLabel: XCUIElement { app.find(label: "Calendars", type: .staticText) }
         public static var deselectAllButton: XCUIElement { app.find(labelContaining: "Deselect", type: .button) }
@@ -208,7 +208,7 @@ public class CalendarHelper: BaseHelper {
         public static var saveButton: XCUIElement { app.find(label: "Save", type: .button) }
         public static var titleInput: XCUIElement { app.find(id: "Calendar.Todo.title") }
         public static var calendarSelector: XCUIElement { app.find(id: "Calendar.Todo.calendar") }
-        public static var datePickerContainer: XCUIElement { app.find(id: "Calendar.Todo.datePicker", type: .datePicker) }
+        public static var datePickerContainer: XCUIElement { app.find(id: "Calendar.Todo.datePicker") }
 
         public static var datePicker: XCUIElement {
             datePickerContainer.find(type: .button).findAll(type: .button, minimumCount: 2)[0]
@@ -221,7 +221,7 @@ public class CalendarHelper: BaseHelper {
         public static var detailsInput: XCUIElement { app.find(id: "Calendar.Todo.details") }
 
         public struct CalendarSelector {
-            public static var newToDoButton: XCUIElement { app.find(label: "New To Do", type: .button) }
+            public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
 
             public static func userItem(user: DSUser) -> XCUIElement {
                 return app.find(label: user.name, type: .switch)
