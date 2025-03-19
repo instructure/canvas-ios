@@ -206,16 +206,9 @@ public struct ModuleItemSequenceView: View {
                 goPrevious()
             }
 
-            let assignmentOptionsButton = ModuleNavBarView.ButtonAttribute(
-                isVisible: viewModel.isAssignmentOptionsButtonVisible
-            ) {
-                viewModel.onTapAssignmentOptions.send()
-            }
-
             ModuleItemSequenceAssembly.makeModuleNavBarView(
                 nextButton: nextButton,
                 previousButton: previousButton,
-                assignmentMoreOptionsButton: assignmentOptionsButton,
                 visibleButtons: viewModel.visibleButtons
             )
             .padding(.vertical, .huiSpaces.space8)

@@ -64,7 +64,6 @@ enum ModuleItemSequenceAssembly {
     static func makeModuleNavBarView(
         nextButton: ModuleNavBarView.ButtonAttribute,
         previousButton: ModuleNavBarView.ButtonAttribute,
-        assignmentMoreOptionsButton: ModuleNavBarView.ButtonAttribute? = nil,
         visibleButtons: [ModuleNavBarUtilityButtons] = []
     ) -> ModuleNavBarView {
         let router = AppEnvironment.shared.router
@@ -72,7 +71,6 @@ enum ModuleItemSequenceAssembly {
             router: router,
             nextButton: nextButton,
             previousButton: previousButton,
-            assignmentMoreOptionsButton: assignmentMoreOptionsButton,
             visibleButtons: visibleButtons
         )
     }

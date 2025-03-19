@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
@@ -33,22 +34,68 @@ enum ModuleNavBarButtons {
     }
 }
 
-enum ModuleNavBarUtilityButtons: Hashable {
-    case tts
-    case chatBot(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) /// provide either no values, or course ID and either pageUr, or fileId
-    case notebook
-    case assignmentMoreOptions
+enum ModuleNavBarUtilityButtons: Equatable, Hashable {
+    typealias OnTap = (WeakViewController) -> Void
 
-    var image: Image {
+    case tts(OnTap? = nil)
+    case chatBot(OnTap? = nil)
+    case notebook(OnTap? = nil)
+    case assignmentMoreOptions(OnTap? = nil)
+
+    var image: Image? {
         switch self {
         case .tts:
             Image.huiIcons.volumeUp
         case .chatBot:
-            Image(.chatBot)
+            nil // use the default for the buttonStyle
         case .notebook:
             Image.huiIcons.menuBookNotebook
         case .assignmentMoreOptions:
             Image.huiIcons.moreVert
+        }
+    }
+
+    var buttonStyle: HorizonUI.ButtonStyles.ButtonType {
+        switch self {
+        case .chatBot:
+            return .ai
+        default:
+            return .white
+        }
+    }
+
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .tts:
+            hasher.combine("tts")
+        case .chatBot:
+            hasher.combine("chatBot")
+        case .notebook:
+            hasher.combine("notebook")
+        case .assignmentMoreOptions:
+            hasher.combine("assignmentMoreOptions")
+        }
+    }
+
+    var onTap: OnTap? {
+        switch self {
+        case .tts(let onTap),
+                .chatBot(let onTap),
+                .notebook(let onTap),
+                .assignmentMoreOptions(let onTap):
+            return onTap
+        }
+    }
+
+    static func == (lhs: ModuleNavBarUtilityButtons, rhs: ModuleNavBarUtilityButtons) -> Bool {
+        switch (lhs, rhs) {
+        case (.tts, .tts),
+             (.chatBot, .chatBot),
+             (.notebook, .notebook),
+             (.assignmentMoreOptions, .assignmentMoreOptions):
+            return true
+        default:
+            return false
         }
     }
 }
