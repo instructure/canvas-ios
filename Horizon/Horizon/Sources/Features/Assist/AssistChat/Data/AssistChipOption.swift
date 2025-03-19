@@ -31,12 +31,27 @@ struct AssistChipOption: Codable, Hashable {
         prompt = try container.decode(String.self, forKey: .prompt)
     }
 
-    enum Default: String, CaseIterable {
-        case summarize = "Summarize"
-        case keyTakeaways = "Key takeaways"
-        case tellMeMore = "Tell me more"
-        case flashcards = "Flash cards"
-        case quiz = "Quiz"
+    enum Default: CaseIterable {
+        case summarize
+        case keyTakeaways
+        case tellMeMore
+        case flashcards
+        case quiz
+
+        var rawValue: String {
+            switch self {
+            case .summarize:
+                return String(localized: "Summarize", bundle: .horizon)
+            case .keyTakeaways:
+                return String(localized: "Key takeaways", bundle: .horizon)
+            case .tellMeMore:
+                return String(localized: "Tell me more", bundle: .horizon)
+            case .flashcards:
+                return String(localized: "Flash cards", bundle: .horizon)
+            case .quiz:
+                return String(localized: "Quiz", bundle: .horizon)
+            }
+        }
     }
 
     // swiftlint:disable line_length

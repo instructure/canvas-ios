@@ -52,7 +52,6 @@ struct TypingAnimationView: View {
         .padding()
         .background(background)
         .cornerRadius(16)
-        .frame(maxWidth: 250, alignment: .leading)
     }
 }
 

@@ -71,12 +71,12 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         return lhs.id == rhs.id
     }
 
-    var maxWidth: CGFloat? {
+    var alignment: Alignment {
         switch style {
         case .white:
-            return nil
+            return .trailing
         default:
-            return .infinity
+            return .center
         }
     }
 
@@ -106,6 +106,24 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
             return Color.huiColors.text.body
         default:
             return Color.huiColors.text.surfaceColored
+        }
+    }
+
+    var maxWidth: CGFloat? {
+        switch style {
+        case .white:
+            return nil
+        default:
+            return .infinity
+        }
+    }
+
+    var padding: CGFloat {
+        switch style {
+        case .transparent:
+            return 0
+        default:
+            return .huiSpaces.space16
         }
     }
 }

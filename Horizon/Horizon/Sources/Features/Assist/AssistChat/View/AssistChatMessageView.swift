@@ -32,10 +32,10 @@ struct AssistChatMessageView: View {
                     messageContent
                 }
             }
+            .frame(maxWidth: .infinity, alignment: message.alignment)
             .onTapGesture {
                 message.onTap?()
             }
-            .frame(maxWidth: .infinity, alignment: .trailing)
             WrappingHStack(models: message.chipOptions) { quickResponse in
                 HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
                     .onTapGesture {
@@ -43,14 +43,13 @@ struct AssistChatMessageView: View {
                     }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-
         }
     }
 
     private var messageContent: some View {
         Text(message.content.toAttributedStringWithLinks())
             .frame(maxWidth: message.maxWidth, alignment: .leading)
-            .padding()
+            .padding(message.padding)
             .background(message.backgroundColor)
             .foregroundColor(message.foregroundColor)
             .cornerRadius(message.cornerRadius)

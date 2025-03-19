@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import Observation
@@ -49,6 +50,7 @@ final class AssistQuizViewModel {
     private let chatBotInteractor: AssistChatInteractor
     private var chatHistory: [AssistChatMessage] = []
     private let router: Router
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -56,12 +58,14 @@ final class AssistQuizViewModel {
     init(
         chatBotInteractor: AssistChatInteractor,
         quizModel: AssistQuizModel? = nil,
-        router: Router = AppEnvironment.defaultValue.router
+        router: Router = AppEnvironment.defaultValue.router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.chatBotInteractor = chatBotInteractor
         self.router = router
+        self.scheduler = scheduler
 
-        self.chatBotInteractor.listen.receive(on: DispatchQueue.main).sink(
+        self.chatBotInteractor.listen.receive(on: scheduler).sink(
             receiveCompletion: { _ in },
             receiveValue: { [weak self] message in
                 self?.onMessage(message)
