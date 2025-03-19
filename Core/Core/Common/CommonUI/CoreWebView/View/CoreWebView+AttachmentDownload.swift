@@ -19,6 +19,25 @@
 import Foundation
 import WebKit
 
+// MARK: Navigation's Delegate Methods
+
+extension CoreWebView {
+
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy {
+        if let httpResponse = navigationResponse.response as? HTTPURLResponse,
+           httpResponse.hasAttachmentContentDispositionHeader {
+            return .download
+        }
+        return .allow
+    }
+
+    public func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload) {
+        download.delegate = self
+    }
+}
+
+// MARK: - Model
+
 public struct CoreWebAttachment {
     let url: URL
     let contentType: String?
@@ -28,6 +47,8 @@ public struct CoreWebAttachment {
         self.contentType = contentType
     }
 }
+
+// MARK: - Download Delegate's Methods
 
 extension CoreWebView: WKDownloadDelegate {
 

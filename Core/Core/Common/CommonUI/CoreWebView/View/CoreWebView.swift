@@ -460,18 +460,6 @@ extension CoreWebView: WKNavigationDelegate {
         linkDelegate?.coreWebView(self, didStartProvisionalNavigation: navigation)
     }
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy {
-        if let httpResponse = navigationResponse.response as? HTTPURLResponse,
-           httpResponse.hasAttachmentContentDispositionHeader {
-            return .download
-        }
-        return .allow
-    }
-
-    public func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload) {
-        download.delegate = self
-    }
-
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         RemoteLogger.shared.logError(name: "WebKit process terminated", reason: nil)
         CoreWebViewContentErrorViewEmbed.embed(errorDelegate: errorDelegate)
