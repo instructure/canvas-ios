@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class FileSubmissionAssemblyTests: CoreTestCase {
@@ -88,9 +89,10 @@ class FileSubmissionAssemblyTests: CoreTestCase {
 
         urlSessionDelegate.urlSession?(session, dataTask: mockDataTask, didReceive: uploadResponse)
         urlSessionDelegate.urlSession?(session, task: mockDataTask, didCompleteWithError: nil)
-        drainMainQueue()
 
-        XCTAssertFalse(FileManager.default.fileExists(atPath: testFileURL.relativePath))
+        waitUntil(5, shouldFail: true) {
+            FileManager.default.fileExists(atPath: testFileURL.relativePath) == false
+        }
     }
 
     func testBackgroundURLSessionCompletionWithoutOngoingTasks() {
@@ -99,13 +101,15 @@ class FileSubmissionAssemblyTests: CoreTestCase {
             sessionConfigurationProtocolClasses: [URLProtocolDidFinishLoadingMock.self]
         )
         let session = testee.backgroundURLSessionProvider.session
+        let dataTask = session.dataTask(with: URLRequest(url: .make()))
 
         // MARK: - WHEN
-        session.dataTask(with: URLRequest(url: .make())).resume()
+        dataTask.resume()
 
         // MARK: - THEN
-        drainMainQueue()
-
+        waitUntil(5, shouldFail: true) {
+            dataTask.state == .completed
+        }
         let expectation = expectation(description: "Completion is called.")
         testee.connectToBackgroundURLSession {
             expectation.fulfill()
