@@ -115,7 +115,7 @@ class DateExtensionsTests: XCTestCase {
     }
 
     func testTimeOnlyString() {
-        XCTAssertEqual(Date.make(year: 2000, month: 12, day: 25, hour: 11, minute: 45).timeOnlyString, "11:45 AM")
+        XCTAssertEqual(Date.make(calendar: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).timeOnlyString, "11:45 AM")
     }
 
     func testRelativeDateOnlyString() {

@@ -5,7 +5,7 @@ options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
   deploymentTarget:
-    iOS: 16.0
+    iOS: 17.0
   createIntermediateGroups: true
 settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true

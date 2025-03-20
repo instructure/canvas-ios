@@ -106,7 +106,7 @@ extension InstUI {
                 InstUI.Divider(dividerStyle)
             }
             .accessibilityRepresentation {
-                Toggle(isOn: $isSelected) {
+                SwiftUI.Toggle(isOn: $isSelected) {
                     Text(title)
                 }
             }

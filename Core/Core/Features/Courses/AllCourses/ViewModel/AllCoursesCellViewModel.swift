@@ -79,11 +79,11 @@ public class AllCoursesCellViewModel: ObservableObject {
             isItemAvailableOffline = false
         }
 
-        setuProperties()
+        setupProperties()
         setupBindings()
     }
 
-    private func setuProperties() {
+    private func setupProperties() {
         isCellDisabled = !item.isDetailsAvailable || !calculateIsCourseEnabled(offlineModeInteractor.isOfflineModeEnabled())
         isOfflineIndicatorVisible = isItemAvailableOffline
         isFavoriteStarDisabled = offlineModeInteractor.isOfflineModeEnabled()
@@ -99,7 +99,7 @@ public class AllCoursesCellViewModel: ObservableObject {
             offlineText,
             publishedText
         ]
-        .compactMap { $0 }.joined(separator: ", ")
+        .joined(separator: ", ")
 
         favoriteButtonAccessibilityText = pending ? String(localized: "Updating", bundle: .core) : String(localized: "Favorite", bundle: .core)
         favoriteButtonTraits = (item.isFavourite && !pending) ? .isSelected : []

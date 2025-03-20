@@ -48,7 +48,7 @@ public struct AssignmentRemindersView: View {
             .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
                                presenting: viewModel.confirmAlert)
             .animation(.default, value: viewModel.reminders)
-            .compatibleGeometryGroup()
+            .geometryGroup()
             .onAppear {
                 viewController.value.view.backgroundColor = .backgroundLightest
             }
@@ -63,7 +63,7 @@ public struct AssignmentRemindersView: View {
                                            viewModel.reminderDeleteDidTap(reminderModel)
                                        })
             .transition(.asymmetric(insertion: .opacity, removal: .move(edge: .trailing)))
-            .compatibleGeometryGroup()
+            .geometryGroup()
         }
     }
 
@@ -107,7 +107,7 @@ public struct AssignmentRemindersView: View {
         .accessibilityAction {
             viewModel.newReminderDidTap(view: viewController.value)
         }
-        .compatibleGeometryGroup()
+        .geometryGroup()
     }
 
     private var divider: some View {
