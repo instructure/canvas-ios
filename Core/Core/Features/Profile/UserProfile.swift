@@ -29,6 +29,8 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var calendarURL: URL?
     @NSManaged public var pronouns: String?
     @NSManaged public var isK5User: Bool
+    @NSManaged public var uuid: String?
+    @NSManaged public var accountUUID: String?
 }
 
 extension UserProfile: WriteableModel {
@@ -44,6 +46,15 @@ extension UserProfile: WriteableModel {
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
+
+        // The "/users/self/profile" api does not return accountUUID and since they share
+        // the same Core Data entity, it would get overriden with a null value after fetching "/users/self"
+        if model.uuid == nil {
+            model.uuid = item.uuid
+        }
+        if model.accountUUID == nil {
+            model.accountUUID = item.account_uuid
+        }
         return model
     }
 }
@@ -70,5 +81,19 @@ public struct GetUserProfile: APIUseCase {
             return .where(#keyPath(UserProfile.id), equals: userID)
         }
         return .where(#keyPath(UserProfile.id), equals: userID)
+    }
+}
+
+public struct GetSelfUserIncludingUUID: APIUseCase {
+    public typealias Model = UserProfile
+
+    public init () {}
+
+    public var cacheKey: String? {
+        return "get-self-user"
+    }
+
+    public var request: GetSelfUserIncludingUUIDRequest {
+        return GetSelfUserIncludingUUIDRequest()
     }
 }

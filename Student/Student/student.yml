@@ -1,6 +1,6 @@
 ---
 targets:
-  Student:    
+  Student:
     type: application
     platform: iOS
     transitivelyLinkDependencies: false
@@ -18,7 +18,7 @@ targets:
       - path: ../Settings.bundle
     dependencies:
       - package: PSPDFKit
-      - package: Heap
+      - package: Pendo
       - package: FirebaseCrashlytics
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift
@@ -49,7 +49,7 @@ schemes:
     test:
       language: en
       region: US
-      targets: 
+      targets:
         - Core/CoreTests
         - StudentUnitTests
         - name: Core/CoreTester

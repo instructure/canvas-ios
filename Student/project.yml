@@ -1,8 +1,6 @@
 ---
 name: Student
-attributes: {
-  LastUpgradeCheck: "1600"
-}
+attributes: { LastUpgradeCheck: "1600" }
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
@@ -10,8 +8,8 @@ options:
     iOS: 17.0
   createIntermediateGroups: true
 settings:
-  CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
-  DEVELOPMENT_TEAM: B6333T4PXQ ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
+  CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
+  DEVELOPMENT_TEAM: B6333T4PXQ ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
   ENABLE_USER_SCRIPT_SANDBOXING: true
@@ -32,9 +30,9 @@ projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
 packages:
-  Heap:
-    url: https://github.com/heap/heap-ios-sdk.git
-    exactVersion: 9.1.0
+  Pendo:
+    url: https://github.com/pendo-io/pendo-mobile-sdk
+    exactVersion: 3.6.1
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.9.1
@@ -47,4 +45,3 @@ packages:
   FirebaseRemoteConfigSwift:
     url: https://github.com/firebase/firebase-ios-sdk.git
     exactVersion: 10.23.1
-

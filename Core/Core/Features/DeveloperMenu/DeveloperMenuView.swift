@@ -120,9 +120,9 @@ public struct DeveloperMenuView: View {
             DeveloperMenuItem("View Logs") {
                 router.route(to: "/logs", from: controller)
             },
-            DeveloperMenuItem("HeapID\n\(env.heapID ?? "N/A")", icon: .toClipboard) {
-                UIPasteboard.general.string = env.heapID
-                snackBarViewModel.showSnack("HeapID copied to clipboard.")
+            DeveloperMenuItem("PendoID\n\(env.pendoID ?? "N/A")", icon: .toClipboard) {
+                UIPasteboard.general.string = env.pendoID
+                snackBarViewModel.showSnack("PendoID copied to clipboard.")
             },
             DeveloperMenuItem("App Directory\n\(appDir)", icon: .toClipboard) {
                 UIPasteboard.general.string = appDir
