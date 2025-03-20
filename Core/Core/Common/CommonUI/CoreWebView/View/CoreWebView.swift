@@ -45,6 +45,8 @@ open class CoreWebView: WKWebView {
         }
     }
 
+    var downloadingAttachment: CoreWebAttachment?
+
     private(set) var features: [CoreWebViewFeature] = []
     private var htmlString: String?
     private var baseURL: URL?

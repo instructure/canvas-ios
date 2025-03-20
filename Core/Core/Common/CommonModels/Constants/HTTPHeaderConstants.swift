@@ -23,6 +23,7 @@ public struct HttpHeader {
     public static let accept = "Accept"
     public static let authorization = "Authorization"
     public static let contentType = "Content-Type"
+    public static let contentDisposition = "Content-Disposition"
     public static let cookie = "Cookie"
     public static let location = "Location"
 }

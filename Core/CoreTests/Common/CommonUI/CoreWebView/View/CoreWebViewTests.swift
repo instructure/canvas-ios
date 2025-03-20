@@ -137,6 +137,16 @@ class CoreWebViewTests: CoreTestCase {
         }
     }
 
+    class MockNavigationResponse: WKNavigationResponse {
+        let mockResponse: URLResponse
+        override var response: URLResponse { mockResponse }
+
+        init(response: URLResponse) {
+            mockResponse = response
+            super.init()
+        }
+    }
+
     func testDecidePolicyForFragment() {
         let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
         let linkDelegate = LinkDelegate { _ in
@@ -309,5 +319,26 @@ class CoreWebViewTests: CoreTestCase {
 
         testee = CoreWebView(frame: .zero)
         XCTAssertEqual(testee.features.count, 0)
+    }
+
+    @MainActor
+    func test_attachment_downloads() async {
+        let delegate = LinkDelegate()
+        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        view.linkDelegate = delegate
+
+        let httpResponse = HTTPURLResponse(
+            url: URL(string: "http://")!,
+            statusCode: 200,
+            httpVersion: "3.0",
+            headerFields: [
+                "Content-Disposition": "attachment; filename=\"example.mp4\"",
+                "Content-Type": "video/mp4"
+            ]
+        )!
+
+        let response = MockNavigationResponse(response: httpResponse)
+        let policy = await view.webView(view, decidePolicyFor: response)
+        XCTAssertEqual(policy, .download)
     }
 }

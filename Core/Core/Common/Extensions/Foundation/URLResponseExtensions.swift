@@ -62,3 +62,12 @@ extension URLResponse {
         return httpResponse.statusCode == 403 && stringData.hasPrefix("403 Forbidden (Rate Limit Exceeded)")
     }
 }
+
+extension HTTPURLResponse {
+
+    public var hasAttachmentContentDispositionHeader: Bool {
+        guard let contentDisposition = value(forHTTPHeaderField: HttpHeader.contentDisposition)
+        else { return false }
+        return contentDisposition.lowercased().hasPrefix("attachment")
+    }
+}
