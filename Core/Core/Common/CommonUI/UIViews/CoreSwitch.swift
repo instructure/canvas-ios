@@ -127,7 +127,6 @@ private struct ToggleWrapper: View {
     }
 }
 
-@available(iOS 17.0, *)
 #Preview(traits: .sizeThatFitsLayout) {
     let createSwitchView: () -> CoreSwitch = {
         let result = CoreSwitch(frame: .zero)
