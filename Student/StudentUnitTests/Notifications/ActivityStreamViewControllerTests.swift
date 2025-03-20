@@ -36,7 +36,10 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         api.mock(controller.activities, value: [
             APIActivity.make(id: "1", updated_at: mockNow.addDays(-2)),
             APIActivity.make(id: "2", title: "grouptitle", message: "groupMessage", updated_at: mockNow.addDays(-3), context_type: ContextType.group.rawValue, course_id: nil, group_id: "2"),
-            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.addDays(-4), course_id: "2")
+            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.addDays(-4), course_id: "2"),
+            APIActivity.make(id: "4", title: "title3", updated_at: mockNow, latest_messages: [.make(created_at: mockNow.addDays(-6))]),
+            APIActivity.make(id: "5", title: "title4", updated_at: mockNow.addDays(-7), latest_messages: []),
+            APIActivity.make(id: "6", title: "title5", updated_at: mockNow.addDays(-8))
         ])
         Clock.mockNow( mockNow )
     }
@@ -57,6 +60,9 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         let expectedDateCell0 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-2))
         let expectedDateCell1 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-3))
         let expectedDateCell2 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-4))
+        let expectedDateCell3 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-6))
+        let expectedDateCell4 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-7))
+        let expectedDateCell5 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-8))
 
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor(hexString: "#f00")!.ensureContrast(against: .backgroundLightest).hexString)
@@ -76,6 +82,18 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         XCTAssertEqual(cell?.titleLabel.text, "title2")
         XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell2)
         XCTAssertEqual(cell?.icon.image, UIImage.assignmentLine)
+
+        cell = controller.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? ActivityCell
+        XCTAssertEqual(cell?.titleLabel.text, "title3")
+        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell3)
+
+        cell = controller.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? ActivityCell
+        XCTAssertEqual(cell?.titleLabel.text, "title4")
+        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell4)
+
+        cell = controller.tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? ActivityCell
+        XCTAssertEqual(cell?.titleLabel.text, "title5")
+        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell5)
     }
 
     func testEmptyState() {
