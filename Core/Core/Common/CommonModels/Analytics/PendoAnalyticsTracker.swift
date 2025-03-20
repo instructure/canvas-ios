@@ -22,10 +22,23 @@ import Pendo
 public final class PendoAnalyticsTracker {
 
     private weak var environment: AppEnvironment?
+    private let interactor: AnalyticsMetadataInteractor
     private let pendoManager: PendoManager
 
-    public init(environment: AppEnvironment, pendoManager: PendoManager = .shared()) {
+    private lazy var pendoApiKey: String? = {
+        Secret.pendoApiKey.string?.nilIfEmpty
+    }()
+
+    private var isSetupCalled: Bool = false
+    private var isSessionInProgress: Bool = false
+
+    public init(
+        environment: AppEnvironment,
+        interactor: AnalyticsMetadataInteractor = AnalyticsMetadataInteractorLive(),
+        pendoManager: PendoManager = .shared()
+    ) {
         self.environment = environment
+        self.interactor = interactor
         self.pendoManager = pendoManager
     }
 
@@ -33,37 +46,40 @@ public final class PendoAnalyticsTracker {
         pendoManager.initWith(url)
     }
 
-    public func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
-        guard let pendoApiKey = Secret.pendoApiKey.string?.nilIfEmpty else {
-            return
+    public func startSession() {
+        guard let pendoApiKey else { return }
+
+        if !isSetupCalled {
+            // This should be called only once during the application lifecycle.
+            pendoManager.setup(pendoApiKey)
+            isSetupCalled = true
         }
 
-        guard environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) else {
-            pendoManager.endSession()
-            return
-        }
+        Task.detached { [weak self] in
+            guard let self else { return }
 
-        Task.detached { [weak environment, weak pendoManager] in
-            let metadata = try await AnalyticsMetadataInteractorLive().getMetadata()
+            let metadata = try await interactor.getMetadata()
 
             environment?.pendoID = metadata.userId
 
-            pendoManager?.setup(pendoApiKey)
-            pendoManager?.startSession(
+            // This will also terminate the current session if there is one.
+            pendoManager.startSession(
                 metadata.userId,
                 accountId: metadata.accountUUID,
                 visitorData: metadata.visitorData.toMap(),
                 accountData: metadata.accountData.toMap()
             )
+            isSessionInProgress = true
         }
     }
 
-    public func disableTracking() {
+    public func endSession() {
+        isSessionInProgress = false
         pendoManager.endSession()
     }
 
-    public func track(_ name: String, properties: [String: Any]?, environmentFeatureFlags: [FeatureFlag]) {
-        guard environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics) else { return }
+    public func track(_ name: String, properties: [String: Any]?) {
+        guard isSessionInProgress else { return }
 
         pendoManager.track(name, properties: properties)
     }

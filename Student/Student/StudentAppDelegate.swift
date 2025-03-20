@@ -299,11 +299,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        analyticsTracker.track(
-            name,
-            properties: parameters,
-            environmentFeatureFlags: environmentFeatureFlags?.all ?? []
-        )
+        analyticsTracker.track(name, properties: parameters)
 
         PageViewEventController.instance.logPageView(
             name,
@@ -314,11 +310,17 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
     private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
         guard !ProcessInfo.isUITest else { return }
 
-        analyticsTracker.initializeTracking(environmentFeatureFlags: environmentFeatureFlags)
+        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+
+        if isTrackingEnabled {
+            analyticsTracker.startSession()
+        } else {
+            analyticsTracker.endSession()
+        }
     }
 
     private func disableTracking() {
-        analyticsTracker.disableTracking()
+        analyticsTracker.endSession()
     }
 }
 

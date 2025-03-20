@@ -310,11 +310,17 @@ extension ParentAppDelegate: AnalyticsHandler {
     private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
         guard !ProcessInfo.isUITest else { return }
 
-        analyticsTracker.initializeTracking(environmentFeatureFlags: environmentFeatureFlags)
+        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+
+        if isTrackingEnabled {
+            analyticsTracker.startSession()
+        } else {
+            analyticsTracker.endSession()
+        }
     }
 
     private func disableTracking() {
-        analyticsTracker.disableTracking()
+        analyticsTracker.endSession()
     }
 }
 
