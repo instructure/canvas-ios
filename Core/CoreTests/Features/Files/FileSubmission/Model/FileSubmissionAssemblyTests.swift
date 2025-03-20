@@ -89,9 +89,10 @@ class FileSubmissionAssemblyTests: CoreTestCase {
 
         urlSessionDelegate.urlSession?(session, dataTask: mockDataTask, didReceive: uploadResponse)
         urlSessionDelegate.urlSession?(session, task: mockDataTask, didCompleteWithError: nil)
-        drainMainQueue()
 
-        XCTAssertFalse(FileManager.default.fileExists(atPath: testFileURL.relativePath))
+        waitUntil(5, shouldFail: true) {
+            FileManager.default.fileExists(atPath: testFileURL.relativePath) == false
+        }
     }
 
     func testBackgroundURLSessionCompletionWithoutOngoingTasks() {
