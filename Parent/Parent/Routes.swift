@@ -109,6 +109,10 @@ let router = Router(routes: [
         return CoreHostingController(SideMenuView(.observer), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },
 
+    RouteHandler("/profile/settings") { _, _, _ in
+        return ProfileSettingsAssembly.makeProfileSettingsViewController()
+    },
+
     RouteHandler("/profile/observees") { _, _, _ in
         return StudentListViewController.create()
     },

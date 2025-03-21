@@ -513,6 +513,9 @@
         }
       }
     },
+    "About" : {
+
+    },
     "Add" : {
       "localizations" : {
         "ar" : {
@@ -2306,6 +2309,9 @@
         }
       }
     },
+    "Appearance" : {
+
+    },
     "Assignment Details" : {
       "localizations" : {
         "ar" : {
@@ -3586,6 +3592,9 @@
           }
         }
       }
+    },
+    "Canvas on Github" : {
+
     },
     "Choose a course to message" : {
 
@@ -6153,6 +6162,9 @@
         }
       }
     },
+    "Dark Theme" : {
+
+    },
     "Date" : {
       "localizations" : {
         "ar" : {
@@ -7691,6 +7703,9 @@
           }
         }
       }
+    },
+    "Enabled" : {
+
     },
     "Event Details" : {
       "localizations" : {
@@ -9232,7 +9247,6 @@
       }
     },
     "Inbox" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -9487,6 +9501,9 @@
           }
         }
       }
+    },
+    "Inbox Signature" : {
+
     },
     "Inbox Zero" : {
       "extractionState" : "stale",
@@ -10512,6 +10529,12 @@
           }
         }
       }
+    },
+    "Legal" : {
+
+    },
+    "Light Theme" : {
+
     },
     "Location" : {
       "localizations" : {
@@ -13332,6 +13355,9 @@
         }
       }
     },
+    "Not set" : {
+
+    },
     "OK" : {
       "localizations" : {
         "ar" : {
@@ -13843,6 +13869,12 @@
           }
         }
       }
+    },
+    "Preferences" : {
+
+    },
+    "Privacy Policy" : {
+
     },
     "Profile Menu" : {
       "localizations" : {
@@ -15896,7 +15928,6 @@
       }
     },
     "Settings" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -17432,6 +17463,9 @@
         }
       }
     },
+    "System Settings" : {
+
+    },
     "Tap to switch students" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -17688,6 +17722,9 @@
           }
         }
       }
+    },
+    "Terms of Use" : {
+
     },
     "The linked item is no longer available." : {
       "localizations" : {
