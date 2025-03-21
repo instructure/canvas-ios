@@ -139,12 +139,37 @@ public struct DeveloperMenuView: View {
         }
 
         #if DEBUG
-        items.append(
+        items.append(contentsOf: [
             DeveloperMenuItem("Access Token\n\(env.currentSession?.accessToken ?? "N/A")", icon: .toClipboard) {
                 UIPasteboard.general.string = env.currentSession?.accessToken
                 snackBarViewModel.showSnack("Access Token copied to clipboard.")
+            },
+            DeveloperMenuItem("Invalidate access token") {
+                guard var session = env.api.loginSession else {
+                    return
+                }
+                session = session.refresh(accessToken: UUID.string, expiresAt: Date().addYears(1))
+                LoginSession.add(session)
+                env.api.loginSession = session
+                snackBarViewModel.showSnack("Access Token Invalidated")
+            },
+            DeveloperMenuItem("Invalidate refresh token") {
+                guard
+                    var session = env.api.loginSession,
+                    let accessToken = session.accessToken
+                else {
+                    return
+                }
+                session = session.refresh(
+                    accessToken: accessToken,
+                    expiresAt: session.expiresAt,
+                    refreshToken: UUID.string
+                )
+                LoginSession.add(session)
+                env.api.loginSession = session
+                snackBarViewModel.showSnack("Refresh Token Invalidated")
             }
-        )
+        ])
         #endif
     }
 

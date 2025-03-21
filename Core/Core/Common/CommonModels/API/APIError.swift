@@ -28,10 +28,12 @@ public enum HttpError {
 
 public enum APIError: LocalizedError {
     case unauthorized(localizedMessage: String) // Permission issue even after a successful token refresh
+    case invalidGrant(message: String) // Invalid refresh token
 
     public var errorDescription: String? {
         switch self {
         case .unauthorized(let message): return message
+        case .invalidGrant(let message): return message
         }
     }
 
@@ -42,6 +44,11 @@ public enum APIError: LocalizedError {
             if response?.isUnauthorized == true {
                 let defaultMessage = String(localized: "You are not authorized to perform this action", bundle: .core, comment: "User is missing a necessary permission")
                 return unauthorized(localizedMessage: message ?? defaultMessage)
+            }
+
+            if json["error"] as? String == "invalid_grant" {
+                let message = json["error_description"] as? String
+                return invalidGrant(message: message ?? "Invalid refresh token")
             }
 
             if let message = message {

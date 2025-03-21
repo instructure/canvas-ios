@@ -128,4 +128,28 @@ class APIErrorTests: XCTestCase {
         XCTAssertEqual(nsError.code, HttpError.unexpected)
     }
 
+    func testRefreshTokenError() throws {
+        let response = HTTPURLResponse(url: .make(), statusCode: 400, httpVersion: nil, headerFields: nil)
+        let responseBody = """
+        {
+            "error": "invalid_grant",
+            "error_description": "refresh_token not found"
+        }
+        """
+        let responseData = try XCTUnwrap(responseBody.data(using: .utf8))
+        enum TestCodingKeys: CodingKey {
+            case error
+        }
+        let decodingError = DecodingError.keyNotFound(TestCodingKeys.error, .init(codingPath: [], debugDescription: ""))
+        let error = APIError.from(data: responseData, response: response, error: decodingError)
+
+        // WHEN
+        let apiError = try XCTUnwrap(error as? APIError)
+
+        // THEN
+        guard case APIError.invalidGrant(message: "refresh_token not found") = apiError else {
+            return XCTFail()
+        }
+        XCTAssertEqual(error.localizedDescription, "refresh_token not found")
+    }
 }

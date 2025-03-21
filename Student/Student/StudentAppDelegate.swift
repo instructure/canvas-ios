@@ -115,7 +115,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
 
             // NotificationManager.registerForRemoteNotifications is not called in UITests,
             // so we need to requestAuthorization in order to be able to test notification related logic like
@@ -465,7 +465,7 @@ extension StudentAppDelegate: LoginDelegate {
     func changeUser() {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .student)
     }

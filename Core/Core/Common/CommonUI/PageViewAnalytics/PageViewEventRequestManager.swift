@@ -83,7 +83,10 @@ class PageViewEventRequestManager {
         let taskName = "fetch pandata token"
         self.backgroundAppHelper?.startBackgroundTask(taskName: taskName)
 
-        env.api.makeRequest(PostPandataEventsTokenRequest()) { [weak self] (token, _, _) in
+        // If the user logs out from the app due to expired tokens we don't want this call to
+        // display a dialog for the user to log in so we don't request a token refresh.
+        // During normal app usage sending these events will be retried at a later time.
+        env.api.makeRequest(PostPandataEventsTokenRequest(), refreshToken: false) { [weak self] (token, _, _) in
             if let token = token {
                 self?.storePandataEndpointInfo(token)
             }
