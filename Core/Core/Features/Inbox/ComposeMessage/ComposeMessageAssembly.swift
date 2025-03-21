@@ -38,7 +38,7 @@ public enum ComposeMessageAssembly {
             publisherProvider: URLSessionDataTaskPublisherProviderLive()
         )
         let recipientInteractor = RecipientInteractorLive()
-        let settingsInteractor = InboxSettingsInteractorLive(userId: env.currentSession?.userID ?? "", environment: env)
+        let settingsInteractor = InboxSettingsInteractorLive(environment: env)
         let audioSession = AVAudioSession.sharedInstance()
         let cameraPermissionService = AVCaptureDevice.self
         let viewModel = ComposeMessageViewModel(
