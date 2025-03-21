@@ -24,8 +24,7 @@ public enum ComposeMessageAssembly {
 
     public static func makeComposeMessageViewController(
         env: AppEnvironment = .shared,
-        options: ComposeMessageOptions = ComposeMessageOptions(),
-        sentMailEvent: PassthroughSubject<Void, Never>? = nil
+        options: ComposeMessageOptions = ComposeMessageOptions()
     ) -> UIViewController {
 
         let batchId = UUID.string
@@ -45,7 +44,6 @@ public enum ComposeMessageAssembly {
             options: options,
             interactor: interactor,
             recipientInteractor: recipientInteractor,
-            sentMailEvent: sentMailEvent,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -73,7 +71,6 @@ public enum ComposeMessageAssembly {
             options: options,
             interactor: interactor,
             recipientInteractor: RecipientInteractorLive(),
-            sentMailEvent: nil,
             audioSession: AVAudioSession.sharedInstance(),
             cameraPermissionService: AVCaptureDevice.self
         )
