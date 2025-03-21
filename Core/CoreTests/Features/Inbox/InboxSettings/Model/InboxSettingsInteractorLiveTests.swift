@@ -36,7 +36,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
         var useSignatureResult: Bool?
@@ -67,7 +67,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
         var useSignatureResult: Bool?
@@ -98,7 +98,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
         var useSignatureResult: Bool?
@@ -129,7 +129,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
         var useSignatureResult: Bool?
@@ -159,7 +159,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: false)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
         var useSignatureResult: Bool?
@@ -189,7 +189,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "signatureLoaded")
         var useSignatureResult: Bool?
@@ -220,7 +220,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: oldSignatureText, useSignature: oldUseSignature)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let loadExp = expectation(description: "signatureLoaded")
         let updateExp = expectation(description: "signatureUpdated")
@@ -275,7 +275,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "settingsLoaded")
         var isEnabledResult: Bool?
@@ -303,7 +303,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "settingsLoaded")
         var isEnabledResult: Bool?
@@ -331,7 +331,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
         let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
-        testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
+        testee = InboxSettingsInteractorLive(environment: environment)
 
         let exp = expectation(description: "settingsLoaded")
         var isEnabledResult: Bool?
