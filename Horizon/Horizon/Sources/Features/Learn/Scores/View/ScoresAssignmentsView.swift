@@ -22,64 +22,62 @@ import SwiftUI
 struct ScoresAssignmentsView: View {
     let details: ScoreDetails
     @Binding var selectedSortOption: String
+    @State private var selectionSortFocused: Bool = false
     let openAssignmentDetails: (URL?) -> Void
 
     var body: some View {
         VStack(spacing: .zero) {
-            Text("Sort By", bundle: .horizon)
-                .huiTypography(.labelLargeBold)
-                .foregroundStyle(Color.huiColors.text.body)
-                .padding([.top, .leading, .trailing], .huiSpaces.space24)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
             HorizonUI.SingleSelect(
                 selection: $selectedSortOption,
+                focused: $selectionSortFocused,
+                label: String(localized: "Sort By", bundle: .horizon),
                 options: ScoreDetails.SortOption.allCases.map(\.localizedTitle)
-            ) {
-                VStack(spacing: .zero) {
-                    ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
-                        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
-                            Text("Name: \(assignment.name)", bundle: .horizon)
-                            if let dueAtString = assignment.dueAtString {
-                                Text("Due Date: \(dueAtString)", bundle: .horizon)
-                            }
-
-                            let submissionStatus = assignment.mostRecentSubmission?.status ?? .notSubmitted
-
-                            HStack(spacing: .huiSpaces.space4) {
-                                Text("Status: ", bundle: .horizon)
-                                HorizonUI.Pill(
-                                    title: submissionStatus.text,
-                                    style: submissionStatus == .missing ? .outline(.danger) : .outline(.institution),
-                                    isUppercased: false,
-                                    icon: nil
-                                )
-                            }
-                            Text("Result: \(assignment.pointsResult)", bundle: .horizon)
-                            HStack(spacing: .huiSpaces.space4) {
-                                Text("Feedback: ", bundle: .horizon)
-
-                                if let numberOfComments = assignment.mostRecentSubmission?.numberOfComments,
-                                   numberOfComments > 0 {
-                                    HorizonUI.icons.chat
-                                        .frame(width: 24, height: 24)
-                                    Text(String(numberOfComments))
-                                } else {
-                                    Text("-")
-                                }
-                            }
-                        }
-                        .huiTypography(.p1)
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding([.top, .bottom], .huiSpaces.space16)
-                        .onTapGesture {
-                            openAssignmentDetails(assignment.htmlURL)
+            )
+            .padding(.horizontal, .huiSpaces.space16)
+            .padding(.top, .huiSpaces.space16)
+            VStack(spacing: .zero) {
+                ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
+                    VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+                        Text("Name: \(assignment.name)", bundle: .horizon)
+                        if let dueAtString = assignment.dueAtString {
+                            Text("Due Date: \(dueAtString)", bundle: .horizon)
                         }
 
-                        if index != details.assignments.count - 1 {
-                            divider
+                        let submissionStatus = assignment.mostRecentSubmission?.status ?? .notSubmitted
+
+                        HStack(spacing: .huiSpaces.space4) {
+                            Text("Status: ", bundle: .horizon)
+                            HorizonUI.Pill(
+                                title: submissionStatus.text,
+                                style: submissionStatus == .missing ? .outline(.danger) : .outline(.institution),
+                                isUppercased: false,
+                                icon: nil
+                            )
                         }
+                        Text("Result: \(assignment.pointsResult)", bundle: .horizon)
+                        HStack(spacing: .huiSpaces.space4) {
+                            Text("Feedback: ", bundle: .horizon)
+
+                            if let numberOfComments = assignment.mostRecentSubmission?.numberOfComments,
+                               numberOfComments > 0 {
+                                HorizonUI.icons.chat
+                                    .frame(width: 24, height: 24)
+                                Text(String(numberOfComments))
+                            } else {
+                                Text("-")
+                            }
+                        }
+                    }
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding([.top, .bottom], .huiSpaces.space16)
+                    .onTapGesture {
+                        openAssignmentDetails(assignment.htmlURL)
+                    }
+
+                    if index != details.assignments.count - 1 {
+                        divider
                     }
                 }
                 Spacer()

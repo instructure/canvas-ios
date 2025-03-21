@@ -132,31 +132,29 @@ struct SubmissionCommentView: View {
     }
 
     private var navigationBar: some View {
-        HStack(alignment: .center, spacing: .zero) {
-            HorizonUI.IconButton(
-                HorizonUI.icons.arrowBack,
-                type: .white
-            ) {
-//                viewModel.goBack(from: viewController)
-                // TODO: Align with design if back and close is both needed.
-                dismiss()
+        ZStack {
+            HStack(spacing: .zero) {
+                Spacer()
+                HStack(spacing: .huiSpaces.space8) {
+                    HorizonUI.icons.chat
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 24, height: 24)
+                    Text("Comments", bundle: .horizon)
+                        .huiTypography(.h3)
+                        .foregroundStyle(Color.huiColors.text.title)
+                }
+                Spacer()
             }
-            Spacer()
-            HStack(spacing: .huiSpaces.space8) {
-                HorizonUI.icons.chat
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 24, height: 24)
-                Text("Comments", bundle: .horizon)
-                    .huiTypography(.h3)
-                    .foregroundStyle(Color.huiColors.text.title)
-            }
-            Spacer()
-            HorizonUI.IconButton(
-                HorizonUI.icons.close,
-                type: .white
-            ) {
-                dismiss()
+
+            HStack(spacing: .zero) {
+                Spacer()
+                HorizonUI.IconButton(
+                    HorizonUI.icons.close,
+                    type: .white
+                ) {
+                    dismiss()
+                }
             }
         }
         .frame(height: 44)
