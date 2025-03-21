@@ -39,7 +39,14 @@ public class CoreSwitch: UIControl {
         CGSize(width: 44, height: 28)
     }
     public override var accessibilityLabel: String? {
-        didSet { toggleViewModel.accessibilityLabel = accessibilityLabel ?? "" }
+        // If we don't return nil here the label will appear duplicated in the automation elements tree.
+        get { nil }
+        set { toggleViewModel.accessibilityLabel = newValue ?? "" }
+    }
+    public override var accessibilityIdentifier: String? {
+        // If we don't return nil here the id will appear duplicated in the automation elements tree.
+        get { nil }
+        set { toggleViewModel.accessibilityIdentifier = newValue }
     }
 
     // MARK: - Private Properties
@@ -98,6 +105,7 @@ private class ToggleViewModel: ObservableObject {
     @Published var isOn = false
     @Published var isEnabled = true
     @Published var tintColor: Color?
+    @Published var accessibilityIdentifier: String?
     @Published var accessibilityLabel: String = ""
 }
 
@@ -111,6 +119,7 @@ private struct ToggleWrapper: View {
             .environment(\.isEnabled, toggleViewModel.isEnabled)
             .accentColor(toggleViewModel.tintColor)
             .accessibilityLabel(toggleViewModel.accessibilityLabel)
+            .accessibilityIdentifier(toggleViewModel.accessibilityIdentifier)
             // Voiceover recognizes the toggle's check icon and adds the image trait automatically.
             // If we hide that image from accessibility the whole switch will be inaccessible,
             // so we just remove the image trait.
@@ -118,7 +127,6 @@ private struct ToggleWrapper: View {
     }
 }
 
-@available(iOS 17.0, *)
 #Preview(traits: .sizeThatFitsLayout) {
     let createSwitchView: () -> CoreSwitch = {
         let result = CoreSwitch(frame: .zero)

@@ -32,11 +32,6 @@ class SubmissionCommentAudioCell: UITableViewCell {
 
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.audioCell.\(comment.id)"
-        accessibilityLabel = String.localizedStringWithFormat(
-            String(localized: "On %@ %@ left an audio comment", bundle: .student),
-            comment.createdAtLocalizedString,
-            comment.authorName
-        )
 
         guard let mediaURL = comment.mediaURL else { return } // The cell should always have a valid mediaURL
         player.accessibilityPrefix = "SubmissionComments.audioCell.\(comment.id)."

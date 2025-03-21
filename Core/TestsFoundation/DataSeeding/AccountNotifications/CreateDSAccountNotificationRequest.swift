@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 // https://canvas.instructure.com/doc/api/account_notifications.html#method.account_notifications.create
 public struct CreateDSAccountNotificationRequest: APIRequestable {

@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 extension NSItemProvider {
     public static var SupportedUTIs: [UTI] = [.image, .fileURL, .any] // in priority order
 

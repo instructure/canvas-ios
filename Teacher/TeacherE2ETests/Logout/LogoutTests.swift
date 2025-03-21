@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class LogoutTests: E2ETestCase {
     func testLogout() {

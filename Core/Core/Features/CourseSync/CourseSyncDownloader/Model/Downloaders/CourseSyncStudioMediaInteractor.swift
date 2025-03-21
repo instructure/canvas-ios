@@ -18,6 +18,7 @@
 
 import Combine
 import CombineSchedulers
+import Foundation
 
 public protocol CourseSyncStudioMediaInteractor {
     func getContent(courseIDs: [String]) -> AnyPublisher<Void, Never>

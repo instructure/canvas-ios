@@ -17,6 +17,8 @@
 //
 
 import Core
+import Foundation
+import XCTest
 
 public class DataSeeder {
     public struct Retry {

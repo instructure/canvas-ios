@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 public protocol CalendarToDoInteractor: AnyObject {
     func getToDo(id: String) -> AnyPublisher<Plannable, Error>

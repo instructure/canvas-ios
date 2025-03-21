@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public struct DSPairingCode: Codable {
     public let user_id: String
     public let code: String

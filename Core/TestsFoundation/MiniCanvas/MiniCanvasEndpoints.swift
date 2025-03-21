@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+import XCTest
 
 enum MiniCanvasEndpoints {
     private enum Pattern {

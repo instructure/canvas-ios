@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 extension DataSeeder {
 

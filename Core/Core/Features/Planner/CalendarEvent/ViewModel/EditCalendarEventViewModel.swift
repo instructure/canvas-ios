@@ -258,11 +258,11 @@ final class EditCalendarEventViewModel: ObservableObject {
         isAllDay = event?.isAllDay ?? false
 
         if isAllDay {
-            startTime = defaultStartTime
-            endTime = defaultEndTime
+            startTime = defaultStartTime(onDate: date!)
+            endTime = defaultEndTime(for: startTime!)
         } else {
-            startTime = event?.startAt ?? defaultStartTime
-            endTime = event?.endAt ?? defaultEndTime
+            startTime = event?.startAt ?? defaultStartTime(onDate: date!)
+            endTime = event?.endAt ?? defaultEndTime(for: startTime!)
         }
 
         location = event?.locationName ?? ""
@@ -271,16 +271,24 @@ final class EditCalendarEventViewModel: ObservableObject {
         frequency = event?.frequencySelection
     }
 
-    private var defaultStartTime: Date {
+    private func defaultStartTime(onDate date: Date) -> Date {
         // 11:46 -> 12:00
-        Clock.now.startOfHour().addHours(1)
+        // 23:46 -> 00:00 (on the day of `date`)
+        let hours = Clock.now.startOfHour().addHours(1).hours
+        return date.startOfDay().addHours(hours)
     }
 
-    private var defaultEndTime: Date {
+    private func defaultEndTime(for startTime: Date) -> Date {
         // 11:46 -> start 12:00, end 13:00
-        let startTime = startTime ?? defaultStartTime
-        let hours = startTime.hours + 1
-        return startTime.startOfDay().addHours(hours)
+        // 22:46 -> start 23:00, end 23:59 (on the day of `date`)
+        let hours = startTime.addHours(1).hours
+        let proposedEndTime = startTime.startOfDay().addHours(hours)
+
+        if proposedEndTime >= startTime {
+            return proposedEndTime
+        } else {
+            return startTime.endOfDay()
+        }
     }
 
     private func resetFrequencySelection(given newDate: Date) {

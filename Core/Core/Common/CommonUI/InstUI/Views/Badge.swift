@@ -74,7 +74,6 @@ extension View {
     }
 }
 
-@available(iOS 17.0, *)
 #Preview {
     @Previewable @State var badgeValueIndex: Int = 0
     let badgeValues: [Int?] = [nil, 1, 99, 100]

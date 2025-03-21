@@ -153,6 +153,7 @@ class QuizListCell: UITableViewCell {
         super.awakeFromNib()
         statusDot.setText(statusDot.text, style: .textCellSupportingText)
         pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
+        setupInstDisclosureIndicator()
     }
 
     func update(quiz: Quiz?, isTeacher: Bool, color: UIColor?) {

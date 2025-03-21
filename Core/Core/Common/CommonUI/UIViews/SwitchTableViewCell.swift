@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 public class SwitchTableViewCell: UITableViewCell {
@@ -55,7 +54,6 @@ public class SwitchTableViewCell: UITableViewCell {
     }
 }
 
-@available(iOS 17.0, *)
 #Preview {
     let cell = SwitchTableViewCell(style: .default, reuseIdentifier: nil)
     cell.textLabel?.text = "test"

@@ -17,8 +17,8 @@
 //
 
 import CoreData
-import Foundation
 @testable import Core
+import UIKit
 
 extension ContextColor {
     @discardableResult
