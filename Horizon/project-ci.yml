@@ -8,7 +8,7 @@ options:
   createIntermediateGroups: true
 configFiles:
   Debug: Horizon/Config/Debug.xcconfig
-  Debug: Horizon/Config/Debug.xcconfig
+  Release: Horizon/Config/Debug.xcconfig
 settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
@@ -29,7 +29,7 @@ packages:
   # Local
   HorizonUI:
     path: ../packages/HorizonUI
-  
+
   # Remote
   Heap:
     url: https://github.com/heap/heap-ios-sdk.git
