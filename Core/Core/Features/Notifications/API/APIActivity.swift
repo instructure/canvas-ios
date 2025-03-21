@@ -41,6 +41,10 @@ public struct APIActivity: Codable {
     let context_type: String?
     let course_id: ID?
     let group_id: ID?
+    let score: Double?
+    let grade: String?
+    let read_state: Bool?
+    let notification_category: String?
 }
 
 #if DEBUG
@@ -55,7 +59,11 @@ extension APIActivity {
         type: ActivityType = .message,
         context_type: String = ContextType.course.rawValue,
         course_id: ID? = "1",
-        group_id: ID? = nil
+        group_id: ID? = nil,
+        score: Double? = nil,
+        grade: String? = "12",
+        read_state: Bool? = true,
+        notification_category: String? = "Due Date"
     ) -> APIActivity {
         return APIActivity(
             id: id,
@@ -67,7 +75,11 @@ extension APIActivity {
             type: type,
             context_type: context_type,
             course_id: course_id,
-            group_id: group_id
+            group_id: group_id,
+            score: score,
+            grade: grade,
+            read_state: read_state,
+            notification_category: notification_category
         )
     }
 }
@@ -76,9 +88,11 @@ extension APIActivity {
 public struct GetActivitiesRequest: APIRequestable {
     public typealias Response = [APIActivity]
     let perPage: Int?
+    let onlyActiveCourses: Bool
 
-    public init(perPage: Int? = nil) {
+    public init(perPage: Int? = nil, onlyActiveCourses: Bool = true) {
         self.perPage = perPage
+        self.onlyActiveCourses = onlyActiveCourses
     }
 
     public var path: String {
@@ -86,8 +100,17 @@ public struct GetActivitiesRequest: APIRequestable {
         return "\(context.pathComponent)/activity_stream"
     }
 
-    public var query: [APIQueryItem] {[
-        .value("only_active_courses", "true"),
-        .perPage(perPage)
-    ]}
+    public var query: [APIQueryItem] {
+        var items: [APIQueryItem] = []
+
+        if onlyActiveCourses {
+            items.append(.value("only_active_courses", "true"))
+        }
+
+        if let perPage = perPage {
+            items.append(.perPage(perPage))
+        }
+
+        return items
+    }
 }

@@ -107,7 +107,9 @@ class DashboardViewModel {
         router.route(to: "/notebook", from: viewController)
     }
 
-    func notificationsDidTap() {}
+    func notificationsDidTap(viewController: WeakViewController) {
+        router.show(NotificationAssembly.makeView(), from: viewController)
+    }
 
     func mailDidTap(viewController: WeakViewController) {
         router.route(to: "/conversations", from: viewController)

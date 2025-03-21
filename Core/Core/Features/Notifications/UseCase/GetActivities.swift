@@ -25,8 +25,13 @@ public class GetActivities: CollectionUseCase {
     public typealias Response = Request.Response
 
     private let context: Context?
-    public init(context: Context? = nil) {
+    private let onlyActiveCourses: Bool
+    public init(
+        context: Context? = nil,
+        onlyActiveCourses: Bool = true
+    ) {
         self.context = context
+        self.onlyActiveCourses = onlyActiveCourses
     }
 
     public var cacheKey: String? {
@@ -50,6 +55,6 @@ public class GetActivities: CollectionUseCase {
     }
 
     public var request: GetActivitiesRequest {
-        return GetActivitiesRequest()
+        return GetActivitiesRequest(onlyActiveCourses: onlyActiveCourses)
     }
 }
