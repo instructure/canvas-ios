@@ -92,8 +92,11 @@ struct SideMenuMainSection: View {
             Button {
                 route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
             } label: {
-                    SideMenuItem(id: "settings", image: .settingsLine,
-                             title: Text("Settings", bundle: .core))
+                    SideMenuItem(
+                        id: "settings",
+                        image: .settingsLine,
+                        title: Text("Settings", bundle: .core)
+                    )
             }
             .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
         }
