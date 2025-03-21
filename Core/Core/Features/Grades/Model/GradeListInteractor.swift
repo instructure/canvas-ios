@@ -340,7 +340,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 baseOnGradedAssignments: baseOnGradedAssignments,
                 courseEnrollment: courseEnrollment,
                 gradeEnrollment: gradeEnrollment,
-                gradingPeriodID: gradingPeriodID
+                gradingPeriodID: gradingPeriodID,
+                gradingScheme: course.gradingScheme
             ))
             .eraseToAnyPublisher()
         }
@@ -399,7 +400,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
         baseOnGradedAssignments: Bool,
         courseEnrollment: Enrollment?,
         gradeEnrollment: Enrollment?,
-        gradingPeriodID: String?
+        gradingPeriodID: String?,
+        gradingScheme: GradingScheme
     ) -> String? {
         var letterGrade: String?
         var localGrade: String?
@@ -417,19 +419,19 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
         func getGradeForGradingPeriod(gradingPeriodID: String) {
             if baseOnGradedAssignments {
-                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID, gradingScheme: gradingScheme)
                 letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID)
             } else {
-                localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: gradingPeriodID)
+                localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: gradingPeriodID, gradingScheme: gradingScheme)
                 letterGrade = gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
             }
         }
 
         func getGradeForNoGradingPeriod() {
             if baseOnGradedAssignments {
-                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
+                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: nil, gradingScheme: gradingScheme)
             } else {
-                localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: nil)
+                localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: nil, gradingScheme: gradingScheme)
             }
             if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
                 letterGrade = nil
