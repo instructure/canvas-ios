@@ -21,6 +21,7 @@ import Core
 
 public struct SettingsGroupView: View {
     @ObservedObject var viewModel: SettingsGroupViewModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     public var body: some View {
         if viewModel.itemViews.contains(where: { !$0.viewModel.isHidden }) {
@@ -29,17 +30,22 @@ public struct SettingsGroupView: View {
 
                 ForEach(viewModel.itemViews, id: \.viewModel.title) { view in
                     VStack(alignment: .leading, spacing: 0) {
-                        Separator()
+                        separator
 
                         view
 
                         if (view.viewModel.title == viewModel.itemViews.last?.viewModel.title) {
-                            Separator()
+                            separator
                         }
                     }
                 }
             }
         }
+    }
+
+    private var separator: some View {
+        Color.borderMedium
+            .frame(height: 0.5)
     }
 
     private func getGroupTitleView(title: String) -> some View {
@@ -49,6 +55,7 @@ public struct SettingsGroupView: View {
             .padding(.horizontal, 12)
             .padding(.top, 12)
             .padding(.bottom, 4)
+            .accessibilityAddTraits([.isHeader])
     }
 }
 

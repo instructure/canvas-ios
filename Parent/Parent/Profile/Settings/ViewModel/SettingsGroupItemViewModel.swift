@@ -26,6 +26,7 @@ class SettingsGroupItemViewModel: ObservableObject {
     @Published var discloserIndicator: Image?
     @Published var disabled: Bool = false
     @Published var isHidden: Bool
+    @Published var isLink: Bool
 
     let availableOffline: Bool
     let onSelect: (WeakViewController) -> Void
@@ -36,6 +37,7 @@ class SettingsGroupItemViewModel: ObservableObject {
         discloserIndicator: Image? = Image.arrowOpenRightLine,
         availableOffline: Bool = true,
         isHidden: Bool = false,
+        isLink: Bool = false,
         onSelect: @escaping (WeakViewController) -> Void
     ) {
         self.title = title
@@ -43,6 +45,7 @@ class SettingsGroupItemViewModel: ObservableObject {
         self.discloserIndicator = discloserIndicator
         self.availableOffline = availableOffline
         self.isHidden = isHidden
+        self.isLink = isLink
         self.onSelect = onSelect
     }
 }

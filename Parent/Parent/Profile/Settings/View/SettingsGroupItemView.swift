@@ -27,37 +27,53 @@ struct SettingsGroupItemView: View {
 
     var body: some View {
         if !viewModel.isHidden {
-            Button {
-                viewModel.onSelect(controller)
-            } label: {
-                HStack(alignment: .center, spacing: 0) {
-                    Text(viewModel.title)
-                        .font(.regular17)
-                        .foregroundStyle(Color.textDarkest)
-
-                    Spacer()
-
-                    if let value = viewModel.valueLabel {
-                        Text(value)
-                            .font(.bold17)
-                            .foregroundStyle(Color.textDark)
-                    }
-
-                    if let icon = viewModel.discloserIndicator {
-                        icon
-                            .resizable()
-                            .frame(width: 16 * uiScale.iconScale, height: 16 * uiScale.iconScale)
-                            .foregroundStyle(Color.textDark)
-                            .padding(.vertical, 8)
-                            .padding(.leading, 4)
-                    }
+            if viewModel.isLink {
+                Button {
+                    viewModel.onSelect(controller)
+                } label: {
+                    itemView
                 }
-                .padding(.horizontal, 18)
-                .padding(.vertical, 6)
+                .disabled(viewModel.disabled)
+                .opacity(viewModel.disabled ? 0.6 : 1)
+                .accessibilityAddTraits(.isLink)
+                .accessibilityRemoveTraits(.isButton)
+            } else {
+                Button {
+                    viewModel.onSelect(controller)
+                } label: {
+                    itemView
+                }
+                .disabled(viewModel.disabled)
+                .opacity(viewModel.disabled ? 0.6 : 1)
             }
-            .disabled(viewModel.disabled)
-            .opacity(viewModel.disabled ? 0.6 : 1)
         }
+    }
+
+    private var itemView: some View {
+        HStack(alignment: .center, spacing: 0) {
+            Text(viewModel.title)
+                .font(.regular17)
+                .foregroundStyle(Color.textDarkest)
+
+            Spacer()
+
+            if let value = viewModel.valueLabel {
+                Text(value)
+                    .font(.bold17)
+                    .foregroundStyle(Color.textDark)
+            }
+
+            if let icon = viewModel.discloserIndicator {
+                icon
+                    .resizable()
+                    .frame(width: 16 * uiScale.iconScale, height: 16 * uiScale.iconScale)
+                    .foregroundStyle(Color.textDark)
+                    .padding(.vertical, 8)
+                    .padding(.leading, 4)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.vertical, 6)
     }
 }
 
