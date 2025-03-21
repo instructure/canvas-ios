@@ -19,6 +19,7 @@
 import Foundation
 import Core
 import Combine
+import UIKit
 
 public class ProfileSettingsViewModel: ObservableObject {
     @Published public var settingsGroups: [SettingsGroupView] = []

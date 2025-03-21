@@ -26,7 +26,7 @@ public enum InboxAssembly {
                                                     tabBarCountUpdater: .init(),
                                                     messageListStateUpdater: .init())
         let favouriteInteractor = InboxMessageFavouriteInteractorLive()
-        let inboxSettingsInteractor = InboxSettingsInteractorLive(userId: env.currentSession?.userID ?? "", environment: env)
+        let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
