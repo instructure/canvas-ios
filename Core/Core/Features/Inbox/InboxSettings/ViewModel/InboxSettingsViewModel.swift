@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
 import CombineExt
+import UIKit
 
 public class InboxSettingsViewModel: ObservableObject {
     @Published public var useSignature: Bool = false

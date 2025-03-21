@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
 @testable import Core
 import XCTest
@@ -27,23 +28,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
 
     func testEnvironmentFlagDisabledSignatureFlagEnabledResultsFalse() {
         let signatureText = "Test"
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: false, disable_inbox_signature_block_for_students: false)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: false,
+            disable_inbox_signature_block_for_students: false
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -69,23 +59,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
     func testEnvironmentFlagStudentDisabledSignatureFlagEnabledResultsTrueInTeacher() {
         let signatureText = "Test"
         environment.app = .teacher
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: true
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -111,23 +90,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
     func testEnvironmentFlagStudentDisabledSignatureFlagEnabledResultsTrueInParent() {
         let signatureText = "Test"
         environment.app = .parent
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: true
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -153,23 +121,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
     func testEnvironmentFlagStudentDisabledSignatureFlagEnabledResultsFalseInStudent() {
         let signatureText = "Test"
         environment.app = .student
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: true
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -194,23 +151,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
 
     func testEnvironmentFlagEnabledSignatureFlagDisabledResultsFalse() {
         let signatureText = "Test"
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: false)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: false
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: false
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: false)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -235,23 +181,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
 
     func testEnvironmentFlagEnabledSignatureFlagEnabledResultsTrue() {
         let signatureText = "Test"
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: false)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: false
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -277,23 +212,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
     func testSignatureUpdate() {
         let oldSignatureText = " Old Text"
         let oldUseSignature = false
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: false)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: oldSignatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: oldUseSignature
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: false
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: oldSignatureText, useSignature: oldUseSignature)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -324,21 +248,7 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
 
         let newSignatureText = "Test"
         let newUseSignature = true
-        let newSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: newSignatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: newUseSignature
-                )
-            )
-        )
+        let newSettings: APIInboxSettings = .make(signature: newSignatureText, useSignature: newUseSignature)
 
         let settingsEntity = CDInboxSettings.save(newSettings, in: databaseClient)
         api.mock(
@@ -357,23 +267,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
     func testFeatureEnabledFlagEnabledForTeacher() {
         let signatureText = "Test"
         environment.app = .teacher
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: true
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -396,23 +295,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
     func testFeatureEnabledFlagDisabledForStudent() {
         let signatureText = "Test"
         environment.app = .student
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: true, disable_inbox_signature_block_for_students: true)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: true,
+            disable_inbox_signature_block_for_students: true
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)
@@ -435,23 +323,12 @@ class InboxSettingsInteractorLiveTests: CoreTestCase {
     func testFeatureEnabledFlagDisabledForTeacher() {
         let signatureText = "Test"
         environment.app = .teacher
-        let environmentSettings: GetEnvironmentSettingsRequest.Response = .init(calendar_contexts_limit: 20, enable_inbox_signature_block: false, disable_inbox_signature_block_for_students: true)
-        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
-        let inboxSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signatureText,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: true
-                )
-            )
+        let environmentSettings: GetEnvironmentSettingsRequest.Response = .make(
+            enable_inbox_signature_block: false,
+            disable_inbox_signature_block_for_students: true
         )
+        api.mock(GetEnvironmentSettingsRequest(), value: environmentSettings)
+        let inboxSettings: APIInboxSettings = .make(signature: signatureText, useSignature: true)
         api.mock(GetInboxSettingsRequest(), value: inboxSettings)
 
         testee = InboxSettingsInteractorLive(userId: userId, environment: environment)

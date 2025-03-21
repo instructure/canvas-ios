@@ -27,3 +27,21 @@ public struct GetEnvironmentSettingsRequest: APIRequestable {
 
     public init() {}
 }
+
+#if DEBUG
+
+extension GetEnvironmentSettingsRequest.Response {
+    public static func make(
+        calendar_contexts_limit: Int? = nil,
+        enable_inbox_signature_block: Bool? = nil,
+        disable_inbox_signature_block_for_students: Bool? = nil
+    ) -> GetEnvironmentSettingsRequest.Response {
+        return GetEnvironmentSettingsRequest.Response(
+            calendar_contexts_limit: calendar_contexts_limit,
+            enable_inbox_signature_block: enable_inbox_signature_block,
+            disable_inbox_signature_block_for_students: disable_inbox_signature_block_for_students
+        )
+    }
+}
+
+#endif

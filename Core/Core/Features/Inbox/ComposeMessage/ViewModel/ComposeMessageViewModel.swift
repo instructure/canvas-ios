@@ -365,7 +365,7 @@ final class ComposeMessageViewModel: ObservableObject {
         settingsInteractor.signature
             .timeout(.seconds(3), scheduler: DispatchQueue.main)
             .sink { [weak self] (useSignature, signature) in
-                if useSignature == true, let signature, signature.isNotEmpty {
+                if useSignature, let signature, signature.isNotEmpty {
                     self?.bodyText.append("\n\n---\n\(signature)")
                 }
             }

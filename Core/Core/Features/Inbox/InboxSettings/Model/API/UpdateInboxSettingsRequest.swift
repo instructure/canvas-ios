@@ -16,34 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GetInboxSettingsRequest: APIGraphQLRequestable {
-    public typealias Response = APIInboxSettings
-
-    public struct Variables: Codable, Equatable {
-    }
-    public let variables: Variables
-
-    public init() {
-        variables = Variables()
-    }
-
-    static let operationName = "InboxSettings"
-    static let query = """
-        query \(operationName) {
-          myInboxSettings {
-                createdAt
-                outOfOfficeLastDate
-                outOfOfficeMessage
-                outOfOfficeSubject
-                outOfOfficeFirstDate
-                signature
-                updatedAt
-                useOutOfOffice
-                useSignature
-          }
-        }
-        """
-}
+import Foundation
 
 public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
     public typealias Response = APIUpdateInboxSettings
@@ -67,7 +40,7 @@ public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
         variables = Variables(input: input)
     }
 
-    public init (inboxSettings: CDInboxSettings) {
+    public init(inboxSettings: CDInboxSettings) {
         let input = Input(
             outOfOfficeLastDate: inboxSettings.outOfOfficeLastDate,
             outOfOfficeMessage: inboxSettings.outOfOfficeMessage,
@@ -98,32 +71,4 @@ public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
           }
         }
         """
-}
-
-public struct APIUpdateInboxSettings: Codable, Equatable {
-    let data: UpdateMyInboxSettings
-
-    struct UpdateMyInboxSettings: Codable, Equatable {
-        let updateMyInboxSettings: APIInboxSettings.MyInboxSettings
-    }
-}
-
-public struct APIInboxSettings: Codable, Equatable {
-    let data: APIInboxSettings.MyInboxSettings
-
-    struct MyInboxSettings: Codable, Equatable {
-        let myInboxSettings: APIInboxSettings.Data
-    }
-
-    struct Data: Codable, Equatable {
-        let createdAt: Date?
-        let outOfOfficeLastDate: Date?
-        let outOfOfficeMessage: String?
-        let outOfOfficeSubject: String?
-        let outOfOfficeFirstDate: Date?
-        let signature: String?
-        let updatedAt: Date?
-        let useOutOfOffice: Bool?
-        let useSignature: Bool?
-    }
 }

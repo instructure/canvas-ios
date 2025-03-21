@@ -17,12 +17,32 @@
 //
 
 import Foundation
-import UIKit
 
-public enum InboxSettingsAssembly {
-    public static func makeInboxSettingsViewController() -> UIViewController {
-        let interactor = InboxSettingsInteractorLive()
-        let viewModel = InboxSettingsViewModel(interactor: interactor, router: AppEnvironment.shared.router)
-        return CoreHostingController(InboxSettingsView(viewModel: viewModel))
+public struct GetInboxSettingsRequest: APIGraphQLRequestable {
+    public typealias Response = APIInboxSettings
+
+    public struct Variables: Codable, Equatable {
     }
+    public let variables: Variables
+
+    public init() {
+        variables = Variables()
+    }
+
+    static let operationName = "InboxSettings"
+    static let query = """
+        query \(operationName) {
+          myInboxSettings {
+                createdAt
+                outOfOfficeLastDate
+                outOfOfficeMessage
+                outOfOfficeSubject
+                outOfOfficeFirstDate
+                signature
+                updatedAt
+                useOutOfOffice
+                useSignature
+          }
+        }
+        """
 }

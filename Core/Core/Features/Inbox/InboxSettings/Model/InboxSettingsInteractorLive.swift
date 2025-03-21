@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
-import CombineExt
 
 public class InboxSettingsInteractorLive: InboxSettingsInteractor {
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
@@ -32,11 +32,8 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
     private let environment: AppEnvironment
 
-    public convenience init(environment: AppEnvironment = .shared) {
-        self.init(userId: environment.currentSession?.userID ?? "", environment: environment)
-    }
-
-    public init(userId: String, environment: AppEnvironment) {
+    public init(environment: AppEnvironment = .shared) {
+        let userId = environment.currentSession?.userID ?? ""
         self.settingsStore = ReactiveStore(useCase: GetInboxSettings(userId: userId))
         self.environmentSettingsStore = ReactiveStore(useCase: GetEnvironmentSettings())
         self.environment = environment
@@ -56,7 +53,9 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
                 receiveValue: { [weak self] settings in
                     if let value = settings.first {
                         self?.settings.send(value)
-                    } else { self?.state.send(.error) }
+                    } else {
+                        self?.state.send(.error)
+                    }
                 }
             )
             .store(in: &subscriptions)
