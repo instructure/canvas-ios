@@ -35,29 +35,25 @@ class SubmissionCommentFileView: UIControl {
         addTarget(self, action: #selector(didTapFile), for: .touchUpInside)
     }
 
-    func update(file: File) {
-        let id = file.id ?? ""
-        accessibilityIdentifier = "SubmissionComments.fileView.\(id)"
-        accessibilityLabel = String.localizedStringWithFormat(
-            String(localized: "View file %@ %@", bundle: .student),
-            file.displayName ?? "",
-            file.size.humanReadableFileSize
-        )
+    // This method (and the whole class) is used only for files in attempts, not for files in simple comments
+    func update(comment: SubmissionComment, file: File, submission: Submission) {
         iconView?.image = file.icon
         nameLabel?.text = file.displayName
         sizeLabel?.text = file.size.humanReadableFileSize
+
+        accessibilityIdentifier = "SubmissionComments.fileView.\(file.id ?? "")"
+        accessibilityLabel = comment.accessibilityLabelForAttemptAttachment(file, submission: submission)
+        accessibilityHint = String(localized: "Double tap to view file", bundle: .core)
     }
 
-    func update(submission: Submission) {
-        accessibilityIdentifier = "SubmissionComments.attemptView.\(submission.attempt)"
-        accessibilityLabel = String.localizedStringWithFormat(
-            String(localized: "View submission attempt %d. %@", bundle: .student),
-            submission.attempt,
-            submission.attemptTitle ?? ""
-        )
+    func update(comment: SubmissionComment, submission: Submission) {
         iconView?.image = submission.attemptIcon
         nameLabel?.text = submission.attemptTitle
         sizeLabel?.text = submission.attemptSubtitle
+
+        accessibilityIdentifier = "SubmissionComments.attemptView.\(submission.attempt)"
+        accessibilityLabel = comment.accessibilityLabelForAttempt(submission: submission)
+        accessibilityHint = String(localized: "Double tap to view attempt", bundle: .core)
     }
 
     @IBAction func didTapFile(_ sender: UIControl) {

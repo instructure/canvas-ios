@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class CalendarTests: E2ETestCase {
     typealias Helper = CalendarHelper
@@ -304,16 +305,16 @@ class CalendarTests: E2ETestCase {
         // MARK: Fill the form, tap "Done" button
         titleInput.writeText(text: title)
         calendarSelector.hit()
-        let newToDoButton = Helper.Todo.CalendarSelector.newToDoButton.waitUntil(.visible)
+        let backButton = Helper.Todo.CalendarSelector.backButton.waitUntil(.visible)
         let courseItem = Helper.Todo.CalendarSelector.courseItem(course: course).waitUntil(.visible)
-        XCTAssertTrue(newToDoButton.isVisible)
+        XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(courseItem.isVisible)
         XCTAssertTrue(courseItem.hasValue(value: "0"))
 
         courseItem.hit()
         XCTAssertTrue(courseItem.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
-        newToDoButton.hit()
+        backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
         XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
 
@@ -393,13 +394,13 @@ class CalendarTests: E2ETestCase {
         // MARK: Fill the form, tap "Done" button
         titleInput.writeText(text: title)
         calendarSelector.hit()
-        let newToDoButton = Helper.Todo.CalendarSelector.newToDoButton.waitUntil(.visible)
+        let backButton = Helper.Todo.CalendarSelector.backButton.waitUntil(.visible)
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
-        XCTAssertTrue(newToDoButton.isVisible)
+        XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
         XCTAssertTrue(userItem.hasValue(value: "1"))
 
-        newToDoButton.hit()
+        backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
         XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
 
@@ -479,13 +480,13 @@ class CalendarTests: E2ETestCase {
 
         titleInput.writeText(text: title)
         calendarSelector.hit()
-        let newToDoButton = Helper.Todo.CalendarSelector.newToDoButton.waitUntil(.visible)
+        let backButton = Helper.Todo.CalendarSelector.backButton.waitUntil(.visible)
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
-        XCTAssertTrue(newToDoButton.isVisible)
+        XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
         XCTAssertTrue(userItem.hasValue(value: "1"))
 
-        newToDoButton.hit()
+        backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
         XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
 
@@ -599,13 +600,13 @@ class CalendarTests: E2ETestCase {
 
         titleInput.writeText(text: title)
         calendarSelector.hit()
-        let newToDoButton = Helper.Todo.CalendarSelector.newToDoButton.waitUntil(.visible)
+        let backButton = Helper.Todo.CalendarSelector.backButton.waitUntil(.visible)
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
-        XCTAssertTrue(newToDoButton.isVisible)
+        XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
         XCTAssertTrue(userItem.hasValue(value: "1"))
 
-        newToDoButton.hit()
+        backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
         XCTAssertTrue(timePicker.waitUntil(.visible).isVisible)
 

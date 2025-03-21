@@ -19,6 +19,7 @@
 #if DEBUG
 
 import Combine
+import UIKit
 
 public class CalendarFilterInteractorPreview: CalendarFilterInteractor {
     public var filters = CurrentValueSubject<[CDCalendarFilterEntry], Never>([])

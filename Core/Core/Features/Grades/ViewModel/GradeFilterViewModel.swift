@@ -19,6 +19,7 @@
 import Foundation
 import Combine
 import CombineExt
+import UIKit
 
 public final class GradeFilterViewModel: ObservableObject {
 

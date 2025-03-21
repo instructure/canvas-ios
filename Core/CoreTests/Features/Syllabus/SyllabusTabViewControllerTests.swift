@@ -22,7 +22,7 @@ import XCTest
 @testable import TestsFoundation
 
 class SyllabusTabViewControllerTests: CoreTestCase {
-    lazy var controller = SyllabusTabViewController.create(courseID: "1")
+    lazy var controller = SyllabusTabViewController.create(context: .course("1"), courseID: "1")
 
     func testLayout() {
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
@@ -78,5 +78,38 @@ class SyllabusTabViewControllerTests: CoreTestCase {
         api.mock(controller.settings, value: .make(syllabus_course_summary: true))
         controller.settings.refresh(force: true)
         XCTAssertEqual(controller.menu?.numberOfItems(inSection: 0), 2)
+    }
+
+    func testEditNotAvailableWithoutPermission() {
+        api.mock(controller.permissions, value: .make(manage_content: false, manage_course_content_edit: false))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertNil(controller.navigationItem.rightBarButtonItem)
+    }
+
+    func testEditAvailableForManageContentPermission() {
+        api.mock(controller.course, value: .make(syllabus_body: "not empty"))
+        api.mock(controller.permissions, value: .make(manage_content: true, manage_course_content_edit: false))
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.title, "Edit")
+    }
+
+    func testEditAvailableForManageCourseContentPermission() {
+        api.mock(controller.course, value: .make(syllabus_body: "not empty"))
+        api.mock(controller.permissions, value: .make(manage_content: false, manage_course_content_edit: true))
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.title, "Edit")
+    }
+
+    func testEditButton() {
+        api.mock(controller.permissions, value: .make(manage_content: true))
+        controller.view.layoutIfNeeded()
+        controller.viewDidLoad()
+        _ = controller.editButton.target?.perform(controller.editButton.action)
+        XCTAssert(router.lastRoutedTo(.parse("courses/1/syllabus/edit")))
     }
 }

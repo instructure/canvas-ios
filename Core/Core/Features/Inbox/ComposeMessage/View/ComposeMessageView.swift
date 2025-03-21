@@ -259,7 +259,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                if !model.isContextDisabled { DisclosureIndicator() }
+                if !model.isContextDisabled { InstUI.DisclosureIndicator() }
             }
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .padding(.vertical, defaultVerticalPaddingValue)
@@ -278,7 +278,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .accessibilitySortPriority(1)
                 }
 
-                TextField(String(localized: "Search", bundle: .core), text: $model.textRecipientSearch)
+                TextField("", text: $model.textRecipientSearch, prompt: toPromptText)
                     .font(.regular16)
                     .focused($focusedInput, equals: .search)
                     .foregroundColor(.textDark)
@@ -302,6 +302,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
+    }
+
+    private var toPromptText: Text {
+        Text(String(localized: "Type to search", bundle: .core))
+            .foregroundColor(.textPlaceholder)
     }
 
     private var toRecipientText: some View {
@@ -351,7 +356,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     private var individualView: some View {
-        Toggle(isOn: $model.sendIndividual) {
+        InstUI.Toggle(isOn: $model.sendIndividual) {
             VStack(alignment: .leading, spacing: .zero) {
                 Text("Send individual message to each recipient", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)

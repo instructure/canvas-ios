@@ -123,7 +123,7 @@ struct AllCoursesCellView: View {
                 Image.noSolid.foregroundColor(.textDark)
             icon.padding(.trailing, 16)
         } else {
-            InstDisclosureIndicator()
+            InstUI.DisclosureIndicator()
                 .padding(.trailing, 16)
                 .hidden(viewModel.isCellDisabled)
         }

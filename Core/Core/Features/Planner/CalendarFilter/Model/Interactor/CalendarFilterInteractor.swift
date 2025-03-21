@@ -18,6 +18,7 @@
 
 import Combine
 import CombineSchedulers
+import Foundation
 
 public protocol CalendarFilterInteractor: AnyObject {
     var filters: CurrentValueSubject<[CDCalendarFilterEntry], Never> { get }

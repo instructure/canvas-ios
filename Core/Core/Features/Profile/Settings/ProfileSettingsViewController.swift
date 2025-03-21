@@ -71,7 +71,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         title = String(localized: "Settings", bundle: .core)
 
         view.backgroundColor = .backgroundLightest
-        tableView.backgroundColor = .backgroundGrouped
+        tableView.backgroundColor = .backgroundLightest
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = CircleRefreshControl()
@@ -368,7 +368,11 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = row.title
             cell.detailTextLabel?.text = row.detail
-            cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
+            if row.hasDisclosure {
+                cell.setupInstDisclosureIndicator()
+            } else {
+                cell.accessoryView = nil
+            }
             let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline
             cell.contentView.alpha = isAvailable ? 1 : 0.5
             if let accessibilityTraits = row.accessibilityTraits {

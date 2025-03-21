@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 /**
  File viewing related page view events and API calls don't trigger a file access report entry for the user in a course.

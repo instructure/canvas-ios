@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import XCTest
+
 public enum DiscussionLabelTypes: Int {
     case lastPost = 0
     case replies = 1
@@ -66,7 +69,7 @@ public class DiscussionsHelper: BaseHelper {
             app.find(id: "DiscussionDetails.body").findAll(labelContaining: "Reply", type: .link)[threadIndex]
         }
         public static var backButton: XCUIElement {
-            app.find(idStartingWith: "Discussion Details", type: .navigationBar).find(label: "Back", type: .button)
+            app.find(label: "Back", type: .button)
         }
 
         public struct Reply {
@@ -84,9 +87,9 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     public struct NewDetails {
-        public static var searchField: XCUIElement { app.find(type: .textField) }
+        public static var searchField: XCUIElement { app.find(label: "Search entries or author...", type: .textField) }
         public static var filterByLabel: XCUIElement { app.find(label: "Filter by", type: .staticText) }
-        public static var sortButton: XCUIElement { app.find(labelContaining: "Sorted by", type: .button) }
+        public static var sort: XCUIElement { app.find(label: "Sort by", type: .textField) }
         public static var viewSplitScreenButton: XCUIElement { app.find(labelContaining: "View Split Screen", type: .button) }
         public static var viewInlineButton: XCUIElement { app.find(labelContaining: "View Inline", type: .button) }
         public static var manageDiscussionButton: XCUIElement { app.find(label: "Manage Discussion", type: .button) }

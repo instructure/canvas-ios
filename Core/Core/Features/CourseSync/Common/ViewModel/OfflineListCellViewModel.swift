@@ -144,7 +144,6 @@ class OfflineListCellViewModel: ObservableObject {
             collapseText.nilIfEmpty,
             progressText.nilIfEmpty
         ]
-            .compactMap({ $0 })
             .joined(separator: ", ")
     }
 

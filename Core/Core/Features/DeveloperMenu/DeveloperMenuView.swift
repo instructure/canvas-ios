@@ -43,7 +43,7 @@ public struct DeveloperMenuView: View {
 
                             switch item.icon {
                             case .disclosure:
-                                InstDisclosureIndicator()
+                                InstUI.DisclosureIndicator()
                             case .toClipboard:
                                 Image(systemName: "doc.on.clipboard")
                                     .frame(width: 20, height: 20)

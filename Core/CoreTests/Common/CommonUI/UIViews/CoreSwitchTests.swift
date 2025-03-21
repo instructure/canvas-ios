@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,27 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
+import XCTest
 
-public struct DisclosureIndicator: View {
-    public init() {}
+class CoreSwitchTests: XCTestCase {
+    private var switchToggledByUser = false
 
-    public var body: some View {
-        Image(systemName: "chevron.right")
-            .flipsForRightToLeftLayoutDirection(true)
-            .foregroundColor(.borderMedium)
+    override func setUp() {
+        super.setUp()
+        switchToggledByUser = false
     }
-}
 
-public struct InstDisclosureIndicator: View {
-    @ScaledMetric private var uiScale: CGFloat = 1
+    func test_sendsNoValueChangedAction_whenStateUpdatedProgramatically() {
+        let testee = CoreSwitch()
+        testee.addTarget(self, action: #selector(didToggleSwitch), for: .valueChanged)
 
-    public var body: some View {
-        Image.arrowOpenRightSolid
-            .resizable()
-            .scaledToFit()
-            .frame(width: uiScale.iconScale * 16,
-                   height: uiScale.iconScale * 16)
-            .foregroundColor(.textDark)
+        // WHEN
+        testee.isOn = true
+        testee.isOn = false
+
+        // THEN
+        XCTAssertEqual(switchToggledByUser, false)
+    }
+
+    @objc
+    private func didToggleSwitch() {
+        switchToggledByUser = true
     }
 }

@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public struct DSGradingPeriodSetResponse: Codable {
     public let grading_period_set: DSGradingPeriodSet
 }

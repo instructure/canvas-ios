@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class DashboardTests: E2ETestCase {
     typealias Helper = DashboardHelper
@@ -203,11 +204,11 @@ class DashboardTests: E2ETestCase {
         dashboardSettingsButton.hit()
         var showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
-        XCTAssertTrue(showGradeToggle.hasValue(value: "0"))
+        XCTAssertTrue(showGradeToggle.hasValue(value: "off"))
 
         // MARK: Tap Show Grade toggle and check value again
-        showGradeToggle.forceTap()
-        XCTAssertTrue(showGradeToggle.hasValue(value: "1"))
+        showGradeToggle.tap()
+        XCTAssertTrue(showGradeToggle.hasValue(value: "on"))
 
         // MARK: Tap Done button then check visibility of course again
         var doneButton = Helper.doneButton.waitUntil(.visible)
@@ -235,7 +236,7 @@ class DashboardTests: E2ETestCase {
         showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
 
-        showGradeToggle.forceTap()
+        showGradeToggle.tap()
         doneButton = Helper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
 

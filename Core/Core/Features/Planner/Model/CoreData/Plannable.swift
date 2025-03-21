@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 public enum PlannableType: String, Codable {
     case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request

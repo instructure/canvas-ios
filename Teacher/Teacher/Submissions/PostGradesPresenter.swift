@@ -19,6 +19,7 @@
 import Foundation
 import Core
 import Combine
+import UIKit
 
 protocol PostGradesViewProtocol: ErrorViewController {
     func update(_ viewModel: APIPostPolicy)

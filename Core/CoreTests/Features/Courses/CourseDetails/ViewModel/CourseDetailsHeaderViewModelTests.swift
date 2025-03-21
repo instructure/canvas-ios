@@ -33,7 +33,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
 
         XCTAssertTrue(testee.hideColorOverlay)
         XCTAssertEqual(testee.verticalOffset, 0)
-        XCTAssertEqual(testee.imageOpacity, 0.4)
+        XCTAssertEqual(testee.imageOpacity, 0.16)
         XCTAssertEqual(testee.titleOpacity, 1)
         XCTAssertEqual(testee.courseName, "Course One")
         XCTAssertEqual(testee.courseColor.hexString, UIColor(hexString: "#FF0000")!.ensureContrast(against: .backgroundLightest).hexString)
@@ -55,7 +55,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
         testee.scrollPositionChanged([.init(viewId: 0, bounds: .init(x: 0, y: testee.height, width: 0, height: 0))])
 
         XCTAssertEqual(testee.verticalOffset, testee.height)
-        XCTAssertEqual(testee.imageOpacity, 0.4)
+        XCTAssertEqual(testee.imageOpacity, 0.16)
         XCTAssertEqual(testee.titleOpacity, 1)
     }
 

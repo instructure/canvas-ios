@@ -27,14 +27,14 @@ public extension WKWebViewConfiguration {
     }
 
     func applyDefaultSettings() {
-        if #available(iOS 17, *) {
-            // iOS 16 has issues with the webview's content size
-            // after exiting fullscreen mode so we allow only iOS 17
-            preferences.isElementFullscreenEnabled = true
-        }
+        preferences.isElementFullscreenEnabled = true
         allowsInlineMediaPlayback = true
         allowsPictureInPictureMediaPlayback = true
         allowsAirPlayForMediaPlayback = true
         processPool = CoreWebView.processPool
+
+        // This is to make -webkit-text-size-adjust work on iPads.
+        // https://trac.webkit.org/changeset/261940/webkit
+        defaultWebpagePreferences.preferredContentMode = .mobile
     }
 }
