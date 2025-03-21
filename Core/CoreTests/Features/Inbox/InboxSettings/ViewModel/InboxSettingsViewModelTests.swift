@@ -27,7 +27,7 @@ class InboxSettingsViewModelTests: CoreTestCase {
     var testee: InboxSettingsViewModel!
 
     func testOutputValues() {
-        mockInteractor = InboxSettingsInteractorMock()
+        mockInteractor = InboxSettingsInteractorMock(environment: environment)
         testee = InboxSettingsViewModel(interactor: mockInteractor, router: router)
 
         mockInteractor.setEnvironmentSettings(settings: getEnvironmentSettings(enableSignature: true, disableSignatureForStudent: false))
@@ -46,27 +46,12 @@ class InboxSettingsViewModelTests: CoreTestCase {
     }
 
     private func getInboxSettings(useSignature: Bool, signature: String) -> CDInboxSettings {
-        let apiSettings: APIInboxSettings = .init(
-            data: .init(
-                myInboxSettings: .init(
-                    createdAt: nil,
-                    outOfOfficeLastDate: nil,
-                    outOfOfficeMessage: nil,
-                    outOfOfficeSubject: nil,
-                    outOfOfficeFirstDate: nil,
-                    signature: signature,
-                    updatedAt: nil,
-                    useOutOfOffice: nil,
-                    useSignature: useSignature
-                )
-            )
-        )
+        let apiSettings: APIInboxSettings = .make(signature: signature, useSignature: useSignature)
         return CDInboxSettings.save(apiSettings, in: databaseClient)
     }
 
     private func getEnvironmentSettings(enableSignature: Bool, disableSignatureForStudent: Bool) -> CDEnvironmentSettings {
-        let apiSettings = GetEnvironmentSettingsRequest.Response(
-            calendar_contexts_limit: 10,
+        let apiSettings = GetEnvironmentSettingsRequest.Response.make(
             enable_inbox_signature_block: enableSignature,
             disable_inbox_signature_block_for_students: disableSignatureForStudent
         )
@@ -78,11 +63,24 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
     var refreshCalled = false
     var updateCalled = false
     var state = CurrentValueSubject<Core.StoreState, Never>(.data)
-    var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((true, ""))
+    var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, ""))
     var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
     var environmentSettings = CurrentValueSubject<Core.CDEnvironmentSettings?, Never>(nil)
     var isFeatureEnabled = CurrentValueSubject<Bool, Never>(false)
     private var subscriptions = Set<AnyCancellable>()
+
+    init(environment: AppEnvironment) {
+        Publishers.CombineLatest(settings, environmentSettings)
+            .sink { [weak self, environment] (settings, environmentSettings) in
+                guard let settings, let environmentSettings else { return }
+                var useSignature = settings.useSignature && environmentSettings.enableInboxSignatureBlock
+                if environment.app == .student {
+                    useSignature = useSignature && !environmentSettings.disableInboxSignatureBlockForStudents
+                }
+                self?.signature.send((useSignature, settings.signature))
+            }
+            .store(in: &subscriptions)
+    }
 
     func updateInboxSettings(inboxSettings: Core.CDInboxSettings) -> AnyPublisher<Void, any Error> {
         updateCalled = true
