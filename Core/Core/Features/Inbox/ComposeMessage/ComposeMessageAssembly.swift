@@ -38,6 +38,7 @@ public enum ComposeMessageAssembly {
             publisherProvider: URLSessionDataTaskPublisherProviderLive()
         )
         let recipientInteractor = RecipientInteractorLive()
+        let settingsInteractor = InboxSettingsInteractorLive(environment: env)
         let audioSession = AVAudioSession.sharedInstance()
         let cameraPermissionService = AVCaptureDevice.self
         let viewModel = ComposeMessageViewModel(
@@ -45,6 +46,7 @@ public enum ComposeMessageAssembly {
             options: options,
             interactor: interactor,
             recipientInteractor: recipientInteractor,
+            inboxSettingsInteractor: settingsInteractor,
             sentMailEvent: sentMailEvent,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
@@ -73,6 +75,7 @@ public enum ComposeMessageAssembly {
             options: options,
             interactor: interactor,
             recipientInteractor: RecipientInteractorLive(),
+            inboxSettingsInteractor: InboxSettingsInteractorPreview(),
             sentMailEvent: nil,
             audioSession: AVAudioSession.sharedInstance(),
             cameraPermissionService: AVCaptureDevice.self

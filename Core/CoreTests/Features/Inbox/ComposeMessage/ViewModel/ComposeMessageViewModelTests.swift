@@ -25,6 +25,7 @@ import XCTest
 class ComposeMessageViewModelTests: CoreTestCase {
     private var mockInteractor: ComposeMessageInteractorMock!
     private var recipientInteractorMock: RecipientInteractorMock!
+    private var inboxSettingsInteractor: InboxSettingsInteractorMock!
     private var audioSession: AudioSessionMock!
     private var cameraPermissionService = CameraPermissionServiceMock.self
     var testee: ComposeMessageViewModel!
@@ -34,6 +35,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         super.setUp()
         recipientInteractorMock = RecipientInteractorMock()
         mockInteractor = ComposeMessageInteractorMock()
+        inboxSettingsInteractor = InboxSettingsInteractorMock()
         audioSession = AudioSessionMock()
         testee = ComposeMessageViewModel(
             router: router,
@@ -42,6 +44,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             ),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -54,6 +57,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -66,6 +70,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -78,6 +83,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -236,6 +242,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .reply(conversation: conversation, message: message2)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -258,6 +265,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .reply(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -279,6 +287,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -300,6 +309,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .replyAll(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -322,6 +332,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: message2)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -344,6 +355,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -478,6 +490,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             options: .init(fromType: .forward(conversation: conversation, message: nil)),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -550,6 +563,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
             ),
             interactor: mockInteractor,
             recipientInteractor: recipientInteractorMock,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             audioSession: audioSession,
             cameraPermissionService: cameraPermissionService
         )
@@ -665,6 +679,50 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee.selectedRecipients.send(recipientNotExceedMaxLimit)
         XCTAssertFalse(testee.sendIndividual)
     }
+
+    func testSignatureIsInsertedIfFlagIsTrue() {
+        let signatureValue = "Test"
+        let useSignatureValue = true
+        inboxSettingsInteractor.reloadValues(secondsBeforeLoad: 0, signatureValue: signatureValue, useSignature: useSignatureValue)
+        let exp = expectation(description: "signatureLoaded")
+        testee.$bodyText
+            .dropFirst()
+            .sink { _ in
+                exp.fulfill()
+            }
+            .store(in: &subscriptions)
+        wait(for: [exp], timeout: 1)
+
+        XCTAssertEqual(testee.bodyText, "\n\n---\n\(signatureValue)")
+    }
+
+    func testSignatureIsNotInsertedIfFlagIsFalse() {
+        let signatureValue = "Test"
+        let useSignatureValue = false
+        inboxSettingsInteractor.reloadValues(secondsBeforeLoad: 0, signatureValue: signatureValue, useSignature: useSignatureValue)
+        let pub = testee.$bodyText.dropFirst().eraseToAnyPublisher()
+
+        XCTAssertNoOutput(pub)
+    }
+
+    func testSignatureIsNotInsertedIfDataIsLate() {
+        let signatureValue = "Test"
+        let useSignatureValue = true
+        inboxSettingsInteractor.reloadValues(secondsBeforeLoad: 4, signatureValue: signatureValue, useSignature: useSignatureValue)
+        let exp = expectation(description: "signatureLoaded")
+        var initFlag = false
+        inboxSettingsInteractor.signature
+            .sink { _ in
+                if initFlag { exp.fulfill() }
+                initFlag = true
+            }
+            .store(in: &subscriptions)
+        wait(for: [exp], timeout: 5)
+
+        let pub = testee.$bodyText.dropFirst().eraseToAnyPublisher()
+
+        XCTAssertNoOutput(pub)
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
@@ -726,5 +784,37 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
         Future<URLResponse?, Error> { promise in
             promise(.success(nil))
         }
+    }
+}
+
+private class InboxSettingsInteractorMock: InboxSettingsInteractor {
+    private var subscriptions: [AnyCancellable] = []
+
+    var state = CurrentValueSubject<StoreState, Never>(.data)
+    var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((false, ""))
+    var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
+    var environmentSettings = CurrentValueSubject<Core.CDEnvironmentSettings?, Never>(nil)
+    var isFeatureEnabled = CurrentValueSubject<Bool, Never>(false)
+
+    var secondsBeforeLoad: Int = 0
+    var signatureValue: String = ""
+    var useSignature: Bool = false
+
+    func reloadValues(secondsBeforeLoad: Int = 0, signatureValue: String = "", useSignature: Bool = false) {
+        self.secondsBeforeLoad = secondsBeforeLoad
+        self.signatureValue = signatureValue
+        self.useSignature = useSignature
+        Just(()).eraseToAnyPublisher()
+            .delay(for: .seconds(secondsBeforeLoad), scheduler: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.signature.send((useSignature, signatureValue))
+            }
+            .store(in: &subscriptions)
+    }
+
+    func refresh() { }
+
+    func updateInboxSettings(inboxSettings: Core.CDInboxSettings) -> AnyPublisher<Void, any Error> {
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
