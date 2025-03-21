@@ -465,7 +465,7 @@ extension StudentAppDelegate: LoginDelegate {
     func changeUser() {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .student)
     }

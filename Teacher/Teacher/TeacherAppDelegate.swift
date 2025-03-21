@@ -283,7 +283,7 @@ extension TeacherAppDelegate: AnalyticsHandler {
 
 extension TeacherAppDelegate: LoginDelegate {
     func changeUser() {
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window = window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .teacher)
     }
