@@ -124,6 +124,10 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
     func modifyIsFeatureEnabled(isEnabled: Bool) {
         self.isFeatureEnabled.send(isEnabled)
     }
+
+    func refresh() {
+
+    }
 }
 
 private class OfflineInteractorMock: OfflineModeInteractor {
