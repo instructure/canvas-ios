@@ -48,7 +48,6 @@ class MessageDetailsViewModel: ObservableObject {
     public let updateState = PassthroughSubject<ConversationWorkflowState, Never>()
 
     // MARK: - Private
-    private var didSendMailSuccessfully = PassthroughSubject<Void, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: MessageDetailsInteractor
     private let router: Router
@@ -191,8 +190,7 @@ class MessageDetailsViewModel: ObservableObject {
             router.show(
                 ComposeMessageAssembly.makeComposeMessageViewController(
                     options: .init(
-                        fromType: .forward(conversation: conversation, message: message)),
-                    sentMailEvent: didSendMailSuccessfully
+                        fromType: .forward(conversation: conversation, message: message))
                 ),
                 from: viewController,
                 options: .modal(
@@ -208,7 +206,7 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message)), sentMailEvent: didSendMailSuccessfully),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -218,7 +216,7 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyAllTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message)), sentMailEvent: didSendMailSuccessfully),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -313,12 +311,6 @@ class MessageDetailsViewModel: ObservableObject {
                     self?.router.dismiss(viewController)
                 }
                 self?.refreshDidTrigger.send({ })
-            }
-            .store(in: &subscriptions)
-
-        didSendMailSuccessfully
-            .sink { [weak self] in
-                self?.snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
             }
             .store(in: &subscriptions)
     }
