@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import UIKit
+
 public enum InboxSettingsAssembly {
     public static func makeInboxSettingsViewController() -> UIViewController {
         let interactor = InboxSettingsInteractorLive()

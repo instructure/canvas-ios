@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
-import CombineExt
 
 public protocol InboxSettingsInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
@@ -27,4 +27,5 @@ public protocol InboxSettingsInteractor {
     var isFeatureEnabled: CurrentValueSubject<Bool, Never> { get }
 
     func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<Void, Error>
+    func refresh()
 }

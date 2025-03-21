@@ -16,16 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
 import CombineExt
+import UIKit
 
 public class InboxSettingsViewModel: ObservableObject {
     @Published public var useSignature: Bool = false
     @Published public var signature: String = ""
     @Published public var enableSaveButton: Bool = false
     @Published public var state: InstUI.ScreenState = .loading
+    @Published public var showFailedToSaveDialog: Bool = false
+    @Published public var showFailedToLoadDialog: Bool = false
 
     public let didTapSave = PassthroughRelay<WeakViewController>()
+    public let didTapRefresh = PassthroughRelay<WeakViewController>()
+    public let didTapBack = PassthroughRelay<WeakViewController>()
 
     private let inboxSettingsInteractor: InboxSettingsInteractor
     private var subscriptions = Set<AnyCancellable>()
@@ -64,6 +70,7 @@ public class InboxSettingsViewModel: ObservableObject {
                     self?.state = .data
                 case .error:
                     self?.state = .error
+                    self?.showFailedToLoadDialog = true
                 case .loading:
                     self?.state = .loading
                 }
@@ -75,7 +82,7 @@ public class InboxSettingsViewModel: ObservableObject {
         didTapSave
             .flatMap { [weak self] controller in
                 guard let self, let newSttings = self.inboxSettings else {
-                    return Just(controller).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    return Just(controller).ignoreOutput(setOutputType: WeakViewController?.self).eraseToAnyPublisher()
                 }
 
                 self.state = .loading
@@ -85,19 +92,30 @@ public class InboxSettingsViewModel: ObservableObject {
                 return self.inboxSettingsInteractor
                     .updateInboxSettings(inboxSettings: newSttings)
                     .map { _ in controller }
+                    .replaceError(with: nil)
                     .eraseToAnyPublisher()
             }
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] result in
-                switch(result) {
-                case .failure:
-                    self?.state = .error
-                default:
-                    self?.state = .data
+            .sink { [weak self, router] controller in
+                if let controller {
+                    _ = UIAccessibility.announcePersistently(String(localized: "Changes successfully saved", bundle: .core))
+                    router.pop(from: controller)
+                } else {
+                    self?.showFailedToSaveDialog = true
                 }
-            }, receiveValue: { [router] controller in
+            }
+            .store(in: &subscriptions)
+
+        didTapRefresh
+            .sink { [weak self] _ in
+                self?.inboxSettingsInteractor.refresh()
+            }
+            .store(in: &subscriptions)
+
+        didTapBack
+            .sink { [router] controller in
                 router.pop(from: controller)
-            })
+            }
             .store(in: &subscriptions)
 
         Publishers.Merge(

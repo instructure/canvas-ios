@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
-import CombineExt
 
 public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
@@ -32,4 +32,6 @@ public class InboxSettingsInteractorPreview: InboxSettingsInteractor {
     public func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<Void, Error> {
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
+
+    public func refresh() { }
 }

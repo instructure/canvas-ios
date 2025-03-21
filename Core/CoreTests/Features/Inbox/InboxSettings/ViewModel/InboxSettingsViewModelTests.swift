@@ -16,18 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 @testable import Core
 import CoreData
 import XCTest
 import Combine
-import CombineExt
 
 class InboxSettingsViewModelTests: CoreTestCase {
     private var mockInteractor: InboxSettingsInteractorMock!
     var testee: InboxSettingsViewModel!
 
     func testOutputValues() {
-        mockInteractor = InboxSettingsInteractorMock(environment: environment)
+        mockInteractor = InboxSettingsInteractorMock()
         testee = InboxSettingsViewModel(interactor: mockInteractor, router: router)
 
         mockInteractor.setEnvironmentSettings(settings: getEnvironmentSettings(enableSignature: true, disableSignatureForStudent: false))
@@ -75,8 +75,8 @@ class InboxSettingsViewModelTests: CoreTestCase {
 }
 
 private class InboxSettingsInteractorMock: InboxSettingsInteractor {
-    private var environment: AppEnvironment
     var refreshCalled = false
+    var updateCalled = false
     var state = CurrentValueSubject<Core.StoreState, Never>(.data)
     var signature = CurrentValueSubject<(useSignature: Bool, String?), Never>((true, ""))
     var settings = CurrentValueSubject<Core.CDInboxSettings?, Never>(nil)
@@ -84,23 +84,13 @@ private class InboxSettingsInteractorMock: InboxSettingsInteractor {
     var isFeatureEnabled = CurrentValueSubject<Bool, Never>(false)
     private var subscriptions = Set<AnyCancellable>()
 
-    init(environment: AppEnvironment) {
-        self.environment = environment
-        Publishers.CombineLatest(settings, environmentSettings)
-            .sink { [weak self, environment] (settings, environmentSettings) in
-                guard let settings, let environmentSettings else { return }
-                var useSignature = settings.useSignature && environmentSettings.enableInboxSignatureBlock
-                if environment.app == .student {
-                    useSignature = useSignature && !environmentSettings.disableInboxSignatureBlockForStudents
-                }
-                self?.signature.send((useSignature, settings.signature))
-            }
-            .store(in: &subscriptions)
+    func updateInboxSettings(inboxSettings: Core.CDInboxSettings) -> AnyPublisher<Void, any Error> {
+        updateCalled = true
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func updateInboxSettings(inboxSettings: Core.CDInboxSettings) -> AnyPublisher<Void, any Error> {
+    func refresh() {
         refreshCalled = true
-        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
     func setSettings(inboxSettings: CDInboxSettings) {

@@ -39,6 +39,15 @@ public struct InboxSettingsView: View {
         }
         .navigationBarTitleView(String(localized: "Inbox Signature", bundle: .core))
         .navigationBarItems(trailing: doneButton)
+        .navigationBarStyle(.modal)
+        .alert(String(localized: "Failed to load Inbox Settings", bundle: .core), isPresented: $viewModel.showFailedToLoadDialog) {
+            Button("Go back", role: .cancel) { viewModel.didTapBack.accept(controller) }
+            Button("Retry") { viewModel.didTapRefresh.accept(controller) }
+        }
+        .alert(String(localized: "Failed to save Inbox Settings", bundle: .core), isPresented: $viewModel.showFailedToSaveDialog) {
+            Button("OK", role: .cancel) { }
+            Button("Retry") { viewModel.didTapSave.accept(controller) }
+        }
     }
 
     private var separator: some View {
@@ -56,7 +65,7 @@ public struct InboxSettingsView: View {
         .disabled(!viewModel.enableSaveButton)
     }
 
-    func contentView(geometry: GeometryProxy) -> some View {
+    private func contentView(geometry: GeometryProxy) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer(minLength: defaultPadding)
             Text("Signature will be added to the end of all messaging.", bundle: .core)
@@ -66,7 +75,7 @@ public struct InboxSettingsView: View {
 
             separator
 
-            Toggle(isOn: $viewModel.useSignature) {
+            InstUI.Toggle(isOn: $viewModel.useSignature) {
                 Text("Signature", bundle: .core)
                     .font(.semibold16, lineHeight: .condensed)
                     .foregroundColor(.textDarkest)
