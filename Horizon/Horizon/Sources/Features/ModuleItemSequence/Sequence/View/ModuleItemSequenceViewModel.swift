@@ -43,6 +43,10 @@ final class ModuleItemSequenceViewModel {
         let items = course?.modules.first(where: { $0.id == moduleItem.moduleID })?.items
         return items?.first(where: { $0.id == moduleItem.id })?.estimatedDurationFormatted
     }
+    var visibleButtons: [ModuleNavBarUtilityButtons] {
+        [ModuleNavBarUtilityButtons.chatBot(navigateToTutor)] +
+            [isAssignmentOptionsButtonVisible ? .assignmentMoreOptions(assignmentOptionsTapped) : .notebook(navigateToNotebook)]
+    }
 
     // MARK: - Input / Output
 
@@ -135,6 +139,10 @@ final class ModuleItemSequenceViewModel {
 
     // MARK: - Private Functions
 
+    private func assignmentOptionsTapped(_: WeakViewController) {
+        onTapAssignmentOptions.send()
+    }
+
     private func fetchModuleItemSequence(assetId: String) {
         isLoaderVisible = true
         moduleItemInteractor.fetchModuleItems(
@@ -152,6 +160,38 @@ final class ModuleItemSequenceViewModel {
             self?.updateModuleItemDetails()
         }
         .store(in: &subscriptions)
+    }
+
+    private func navigateToNotebook(viewController: WeakViewController) {
+        router.route(to: "/notebook", from: viewController)
+    }
+
+    private func navigateToTutor(viewController: WeakViewController) {
+        guard let courseId = moduleItem?.courseID else {
+            return
+        }
+
+        var fileId: String?
+        var pageUrl: String?
+
+        switch moduleItem?.type {
+        case .file(let id):
+                fileId = id
+        case .page(let url):
+                pageUrl = url
+        default:
+            break
+        }
+
+        let params = [
+            "courseId": courseId,
+            "pageUrl": pageUrl,
+            "fileId": fileId
+        ].map { key, value in
+            guard let value = value else { return nil }
+            return "\(key)=\(value)"
+        }.compactMap { $0 }.joined(separator: "&")
+        router.route(to: "/assistant?\(params)", from: viewController, options: .modal())
     }
 
     private func updateModuleItemDetails() {

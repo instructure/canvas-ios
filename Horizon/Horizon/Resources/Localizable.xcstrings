@@ -51,15 +51,6 @@
     "AI Assist" : {
 
     },
-    "AI Learning Assist" : {
-
-    },
-    "AI Summary" : {
-
-    },
-    "AI Tutor" : {
-
-    },
     "Alaska (-09:00/-08:00)" : {
 
     },
@@ -97,6 +88,9 @@
 
     },
     "Assignment Successfully Submitted!" : {
+
+    },
+    "Assist" : {
 
     },
     "Astana (+05:00/+05:00)" : {
@@ -297,6 +291,9 @@
     "Enable iOS Notifications" : {
 
     },
+    "Enter a Prompt" : {
+
+    },
     "Error" : {
 
     },
@@ -324,13 +321,13 @@
     "Filter" : {
 
     },
+    "Flash cards" : {
+
+    },
     "Fortaleza (-03:00/-03:00)" : {
 
     },
     "Full Name" : {
-
-    },
-    "Generate some study flashcards" : {
 
     },
     "Georgetown (-04:00/-04:00)" : {
@@ -343,9 +340,6 @@
 
     },
     "Get a notification anytime you receive a course announcement or a new message." : {
-
-    },
-    "Give me key takeaways" : {
 
     },
     "Greenland (-02:00/-01:00)" : {
@@ -387,7 +381,7 @@
     "hours" : {
 
     },
-    "How was this question?" : {
+    "How can I help today?" : {
 
     },
     "Important" : {
@@ -438,6 +432,9 @@
     "Kathmandu (+05:45/+05:45)" : {
 
     },
+    "Key takeaways" : {
+
+    },
     "Kolkata (+05:30)" : {
 
     },
@@ -463,6 +460,9 @@
 
     },
     "Learn" : {
+
+    },
+    "Learner" : {
 
     },
     "Lima (-05:00/-05:00)" : {
@@ -666,7 +666,7 @@
     "Quito (-05:00/-05:00)" : {
 
     },
-    "Quiz me on this material" : {
+    "Quiz" : {
 
     },
     "Rangoon (+06:30/+06:30)" : {
@@ -780,7 +780,7 @@
     "Submitted" : {
 
     },
-    "Summarize this material" : {
+    "Summarize" : {
 
     },
     "Support" : {
@@ -810,7 +810,7 @@
     "Tehran (+03:30/+03:30)" : {
 
     },
-    "Tell me more about this topic" : {
+    "Tell me more" : {
 
     },
     "Text" : {

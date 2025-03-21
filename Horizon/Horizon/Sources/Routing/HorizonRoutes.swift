@@ -250,11 +250,45 @@ enum HorizonRoutes {
 
     private static var aiRoutes: [RouteHandler] {
         [
-            RouteHandler("/tutor") { _, _, _ in
-                ChatBotAssembly.makeAITutorView()
+            RouteHandler("/assistant") { url, _, _ in
+
+                let queryItems = url.queryItems ?? []
+
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+
+                return CoreHostingController(
+                    AssistAssembly.makeAssistChatView(
+                        courseId: courseId,
+                        pageUrl: pageUrl,
+                        fileId: fileId
+                    )
+                )
             },
-            RouteHandler("/summary") { _, _, _ in
-                ChatBotAssembly.makeAISummaryView()
+            RouteHandler("/assistant/flashcards") { _, _, userInfo in
+                let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
+                return CoreHostingController(
+                    AssistAssembly.makeAIFlashCardView(flashCards: flashCards)
+                )
+            },
+            RouteHandler("/assistant/quiz") { url, _, userInfo in
+                let queryItems = url.queryItems ?? []
+
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
+
+                let quizModel = userInfo?["quizModel"] as? AssistQuizModel
+
+                let quizView = AssistAssembly.makeAIQuizView(
+                    courseId: courseId,
+                    fileId: fileId,
+                    pageUrl: pageUrl,
+                    quizModel: quizModel
+                )
+
+                return CoreHostingController(quizView)
             }
         ]
     }

@@ -37,30 +37,32 @@ class GetNotesQuery: APIGraphQLRequestable {
         ]
     }
 
-    public init(jwt: String, after: String, reactions: [String]? = nil) {
+    public init(jwt: String, after: String, reactions: [String]? = nil, courseId: String? = nil) {
         self.jwt = jwt
+
+        let filter = GetNotesQuery.NoteFilterInput.build(courseId: courseId, reactions: reactions)
+
         self.variables = GetNotesQueryInput(
             after: after,
-            filter: reactions.map { GetNotesQuery.NoteFilterInput(reactions: $0) }
+            filter: filter
         )
     }
 
-    public init(jwt: String, before: String, reactions: [String]? = nil) {
+    public init(jwt: String, before: String, reactions: [String]? = nil, courseId: String? = nil) {
         self.jwt = jwt
+        let filter = GetNotesQuery.NoteFilterInput.build(courseId: courseId, reactions: reactions)
+
         self.variables = GetNotesQueryInput(
             before: before,
-            filter: reactions.map { GetNotesQuery.NoteFilterInput(reactions: $0) }
+            filter: filter
         )
     }
 
-    public init(jwt: String, reactions: [String]? = nil) {
+    public init(jwt: String, courseId: String? = nil, reactions: [String]? = nil) {
         self.jwt = jwt
-        self.variables = GetNotesQueryInput(filter: reactions.map { GetNotesQuery.NoteFilterInput(reactions: $0) })
-    }
-
-    public init(jwt: String, courseId: String) {
-        self.jwt = jwt
-        self.variables = GetNotesQueryInput(filter: GetNotesQuery.NoteFilterInput(courseId: courseId))
+        self.variables = GetNotesQueryInput(
+            filter: GetNotesQuery.NoteFilterInput.build(courseId: courseId, reactions: reactions)
+        )
     }
 
     public static let operationName: String = "FetchNotes"
@@ -136,14 +138,16 @@ class GetNotesQuery: APIGraphQLRequestable {
         let reactions: [String]?
         let courseId: String?
 
-        init(courseId: String) {
+        init(courseId: String? = nil, reactions: [String]? = nil) {
             self.courseId = courseId
-            self.reactions = nil
+            self.reactions = reactions
         }
 
-        init(reactions: [String]) {
-            self.reactions = reactions
-            self.courseId = nil
+        static func build(courseId: String? = nil, reactions: [String]? = nil) -> NoteFilterInput? {
+            if courseId == nil && (reactions == nil || reactions?.isEmpty == true) {
+                return nil
+            }
+            return .init(courseId: courseId, reactions: reactions)
         }
     }
 }
