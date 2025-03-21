@@ -95,7 +95,7 @@ struct DashboardView: View {
             HorizonUI.NavigationBar.Trailing {
                 viewModel.notebookDidTap(viewController: viewController)
             } onNotificationDidTap: {
-                viewModel.notificationsDidTap()
+                viewModel.notificationsDidTap(viewController: viewController)
             } onMailDidTap: {
                 viewModel.mailDidTap(viewController: viewController)
             }
