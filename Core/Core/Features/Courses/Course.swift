@@ -32,6 +32,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var courseColor: String?
     @NSManaged var defaultViewRaw: String?
     @NSManaged public var enrollments: Set<Enrollment>?
+    @NSManaged public var gradingStandardId: String?
     @NSManaged public var grades: Set<Grade>?
     @NSManaged public var gradingPeriods: Set<GradingPeriod>?
     @NSManaged public var hideFinalGrades: Bool
@@ -51,9 +52,20 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var gradingSchemeRaw: NSOrderedSet?
     @NSManaged public var roles: String?
 
-    public var gradingScheme: [GradingSchemeEntry] {
+    @NSManaged public var scalingFactor: Double
+    @NSManaged public var pointsBasedGradingScheme: Bool
+
+    public var gradingSchemeEntries: [GradingSchemeEntry] {
         get { gradingSchemeRaw?.array as? [GradingSchemeEntry] ?? [] }
         set { gradingSchemeRaw = NSOrderedSet(array: newValue) }
+    }
+
+    public var gradingScheme: GradingScheme {
+        return GradingScheme(
+            pointsBased: pointsBasedGradingScheme,
+            scaleFactor: scalingFactor,
+            entries: gradingSchemeEntries
+        )
     }
 
     public var defaultView: CourseDefaultView? {
@@ -100,6 +112,11 @@ final public class Course: NSManagedObject, WriteableModel {
             }
             model.gradingPeriods = Set(gradingPeriods)
         }
+
+        model.gradingStandardId = item.grading_standard_id?.value
+        model.scalingFactor = item.scaling_factor ?? 0
+        model.pointsBasedGradingScheme = item.points_based_grading_scheme ?? false
+
         model.hideFinalGrades = item.hide_final_grades ?? false
         model.isCourseDeleted = item.workflow_state == .deleted
         model.isPastEnrollment = (
@@ -151,7 +168,7 @@ final public class Course: NSManagedObject, WriteableModel {
         }
 
         if let gradingScheme = item.grading_scheme {
-            model.gradingScheme = gradingScheme.compactMap {
+            model.gradingSchemeEntries = gradingScheme.compactMap {
                 guard let apiEntry = APIGradingSchemeEntry(courseGradingScheme: $0) else {
                     return nil
                 }

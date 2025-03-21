@@ -33,7 +33,7 @@ public struct APICourse: Codable, Equatable {
     let account_id: String?
     // let root_account_id: String?
     // let enrollment_term_id: String?
-    // let grading_standard_id: String?
+    let grading_standard_id: ID?
     let start_at: Date?
     let end_at: Date?
     let locale: String?
@@ -76,8 +76,11 @@ public struct APICourse: Codable, Equatable {
     let sections: [SectionRef]? // include[]=sections
     let tabs: [APITab]? // include[]=tabs
     let settings: APICourseSettings? // include[]=settings
+
     /// Example format: [["A",0.94],["A-",0.9],["B+",0.87] ... ["D",0.64],["D-",0.61],["F",0.0]]
     let grading_scheme: [[TypeSafeCodable<String, Double>]]? // include[]=grading_scheme
+    let scaling_factor: Double?
+    let points_based_grading_scheme: Bool?
 
     public var context: Context { Context(.course, id: id.rawValue) }
 
@@ -140,6 +143,7 @@ extension APICourse {
         course_color: String? = nil,
         workflow_state: CourseWorkflowState? = nil,
         account_id: String? = nil,
+        grading_standard_id: ID? = nil,
         start_at: Date? = nil,
         end_at: Date? = nil,
         locale: String? = nil,
@@ -164,7 +168,9 @@ extension APICourse {
         sections: [SectionRef]? = nil,
         tabs: [APITab]? = nil,
         settings: APICourseSettings? = nil,
-        grading_scheme: [[TypeSafeCodable<String, Double>]]? = nil
+        grading_scheme: [[TypeSafeCodable<String, Double>]]? = nil,
+        scaling_factor: Double? = nil,
+        points_based_grading_scheme: Bool? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -173,6 +179,7 @@ extension APICourse {
             course_color: course_color,
             workflow_state: workflow_state,
             account_id: account_id,
+            grading_standard_id: grading_standard_id,
             start_at: start_at,
             end_at: end_at,
             locale: locale,
@@ -191,7 +198,9 @@ extension APICourse {
             sections: sections,
             tabs: tabs,
             settings: settings,
-            grading_scheme: grading_scheme
+            grading_scheme: grading_scheme,
+            scaling_factor: scaling_factor,
+            points_based_grading_scheme: points_based_grading_scheme
         )
     }
 }

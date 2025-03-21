@@ -28,7 +28,7 @@ struct ContextCardGradesView: View {
     private var gradeSelected = false
     private var unpostedSelected = false
 
-    init(grades: Grade, color: Color, gradingScheme: [GradingSchemeEntry], hideQunatitativeData: Bool) {
+    init(grades: Grade, color: Color, gradingScheme: GradingScheme, hideQunatitativeData: Bool) {
         self.grades = grades
         self.color = color
 
@@ -114,9 +114,9 @@ struct ContextCardGradesView_Previews: PreviewProvider {
         grade.overrideGrade = "C"
         grade.unpostedCurrentScore = 33
         return SwiftUI.Group {
-            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: [], hideQunatitativeData: false)
+            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: .empty, hideQunatitativeData: false)
                 .previewLayout(.sizeThatFits)
-            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: [], hideQunatitativeData: false)
+            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: .empty, hideQunatitativeData: false)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
         }

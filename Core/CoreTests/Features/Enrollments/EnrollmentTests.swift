@@ -161,8 +161,8 @@ class EnrollmentTests: CoreTestCase {
             )
             enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
             enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)
-            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1"), "10%")
-            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil), "100%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1", gradingScheme: .empty), "10%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil, gradingScheme: .empty), "100%")
         }
 
         XCTContext.runActivity(named: "When totalsForAllGradingPeriodsOption is false") { _ in
@@ -179,8 +179,8 @@ class EnrollmentTests: CoreTestCase {
             )
             enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
             enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)
-            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1"), "10%")
-            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil), "N/A")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1", gradingScheme: .empty), "10%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil, gradingScheme: .empty), "N/A")
         }
 
         XCTContext.runActivity(named: "When totalsForAllGradingPeriodsOption is false and MGP false") { _ in
@@ -196,8 +196,8 @@ class EnrollmentTests: CoreTestCase {
             )
             enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
             enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)
-            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1"), "10%")
-            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil), "100%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1", gradingScheme: .empty), "10%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil, gradingScheme: .empty), "100%")
 
         }
     }
