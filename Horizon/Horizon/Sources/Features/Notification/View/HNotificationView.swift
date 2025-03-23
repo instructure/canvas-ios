@@ -22,7 +22,7 @@ import Core
 
 struct HNotificationView: View {
     // MARK: - Private Properties
-    
+
     @Environment(\.dismiss) private var dismiss
 
     // MARK: - Dependencies
