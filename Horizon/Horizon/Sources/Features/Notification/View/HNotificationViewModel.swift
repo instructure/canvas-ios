@@ -63,14 +63,14 @@ final class HNotificationViewModel {
         notifications = paginatedNotifications[safe: currentPage] ?? []
     }
 
+    @MainActor
     func refresh() async {
         await withCheckedContinuation { continuation in
             interactor.getNotifications(ignoreCache: true)
-                .sink(receiveCompletion: { _ in
+                .sink { [weak self] notifications in
                     continuation.resume()
-                }, receiveValue: { [weak self] notifications in
                     self?.handleResponse(notifications: notifications)
-                })
+                }
                 .store(in: &subscriptions)
         }
     }

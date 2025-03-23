@@ -21,7 +21,12 @@ import HorizonUI
 import Core
 
 struct HNotificationView: View {
+    // MARK: - Private Properties
+    
     @Environment(\.dismiss) private var dismiss
+
+    // MARK: - Dependencies
+
     private let viewModel: HNotificationViewModel
     private let onShowNavigationBarAndTabBar: (Bool) -> Void
 
@@ -92,7 +97,7 @@ struct HNotificationView: View {
 
             HStack(alignment: .top) {
                 Text(notification.title)
-                    .huiTypography(.labelLargeBold)
+                    .huiTypography(notification.isRead ? .p1 : .labelLargeBold)
                     .foregroundStyle(Color.huiColors.text.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 if !notification.isRead {
