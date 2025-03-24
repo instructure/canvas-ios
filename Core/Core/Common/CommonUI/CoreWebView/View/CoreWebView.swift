@@ -422,7 +422,7 @@ extension CoreWebView: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    public func webView(
+    open func webView(
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {

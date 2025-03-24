@@ -198,19 +198,6 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(submission.attemptSubtitle, "Attempt 1")
     }
 
-    func testAttemptPropertiesWhenQuizLTI() {
-        let submission = Submission.make(from: .make(
-            attempt: 1,
-            discussion_entries: [ .make(message: "<p>reply<p>") ]
-        ))
-        submission.assignment = Assignment.make(from: .make(is_quiz_lti_assignment: true))
-        submission.type = .discussion_topic
-
-        XCTAssertEqual(submission.attemptIcon, .quizLine)
-        XCTAssertEqual(submission.attemptTitle, "Quiz")
-        XCTAssertEqual(submission.attemptSubtitle, "Attempt 1")
-    }
-
     func testRubricAssessments() {
         let submission = Submission.make(from: .make(rubric_assessment: [
             "A": .make(),

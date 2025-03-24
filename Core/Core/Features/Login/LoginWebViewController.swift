@@ -291,8 +291,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                 )
                 if let completion = self.loginCompletion {
                     completion(session)
-                } else {
-                if AppEnvironment.shared.app == .horizon {
+                } else if AppEnvironment.shared.app == .horizon {
                     self.loginDelegate?.userDidLogin(session: session)
                     self.env.router.route(to: "/splash", from: self)
                 } else {

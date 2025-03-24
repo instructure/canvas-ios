@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Combine
 
 public enum LocalizationManager {
     private static let instUserLocale = "InstUserLocale"
