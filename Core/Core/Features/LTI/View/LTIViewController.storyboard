@@ -113,9 +113,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="UeY-1V-yl8" id="NLq-d6-P7g"/>
                         <outlet property="descriptionLabel" destination="gdo-sp-Qqp" id="SJx-RO-PTP"/>
                         <outlet property="nameLabel" destination="2dW-v6-GRg" id="dFI-r3-Uuv"/>
                         <outlet property="openButton" destination="FEg-ym-aNw" id="Aok-f3-jIU"/>
+                        <outlet property="scrollView" destination="83F-H3-eHy" id="ird-4Q-xBk"/>
                         <outlet property="spinnerView" destination="37k-c3-ELz" id="Y0P-OK-dVi"/>
                     </connections>
                 </viewController>
