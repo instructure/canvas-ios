@@ -18,44 +18,32 @@
 
 import Foundation
 
-public struct GradingScheme {
+public protocol GradingScheme {
+    var entries: [GradingSchemeEntry] { get }
 
-    public let pointsBased: Bool
-    public let scaleFactor: Double
-    public let entries: [GradingSchemeEntry]
+    func convertScoreToLetterGrade(score: Double) -> String?
+    func formattedScore(from value: Double) -> String?
+}
 
-    fileprivate init(pointsBased: Bool, scaleFactor: Double, entries: [GradingSchemeEntry]) {
-        self.pointsBased = pointsBased
-        self.scaleFactor = scaleFactor
-        self.entries = entries
-    }
+public extension GradingScheme {
 
-    public func convertScoreToLetterGrade(score: Double) -> String? {
+    func convertScoreToLetterGrade(score: Double) -> String? {
         let normalizedScore = score / 100.0
         return entries.first { normalizedScore >= $0.value }?.name
     }
+}
 
-    public func formattedScore(from value: Double) -> String? {
-        guard pointsBased else {
-            return Self.percentFormatter.string(from: NSNumber(value: value))
-        }
+public struct PercentageBasedGradingScheme: GradingScheme {
 
-        let normalizedScore = value / 100.0
-        let number = NSNumber(value: normalizedScore * scaleFactor)
+    public let entries: [GradingSchemeEntry]
 
-        return Self.pointsFormatter.string(from: number)
+    fileprivate init(entries: [GradingSchemeEntry]) {
+        self.entries = entries
     }
 
-    // MARK: Formatters
-
-    private static let pointsFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 2
-        formatter.roundingMode = .halfEven
-        return formatter
-    }()
+    public func formattedScore(from value: Double) -> String? {
+        Self.percentFormatter.string(from: NSNumber(value: value))
+    }
 
     private static let percentFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -68,18 +56,47 @@ public struct GradingScheme {
     }()
 }
 
+public struct PointsBasedGradingScheme: GradingScheme {
+
+    public let scaleFactor: Double
+    public let entries: [GradingSchemeEntry]
+
+    fileprivate init(scaleFactor: Double, entries: [GradingSchemeEntry]) {
+        self.scaleFactor = scaleFactor
+        self.entries = entries
+    }
+
+    public func formattedScore(from value: Double) -> String? {
+        let normalizedScore = value / 100.0
+        let number = NSNumber(value: normalizedScore * scaleFactor)
+        return Self.pointsFormatter.string(from: number)
+    }
+
+    private static let pointsFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.multiplier = 1
+        formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .halfEven
+        return formatter
+    }()
+}
+
 // MARK: - Schemes for Previews & Testing
 
 #if DEBUG
 
-public extension GradingScheme {
+public extension GradingScheme where Self == PercentageBasedGradingScheme {
 
     static var percentageBased: GradingScheme {
-        GradingScheme(pointsBased: false, scaleFactor: 1, entries: [])
+        PercentageBasedGradingScheme(entries: [])
     }
+}
+
+public extension GradingScheme where Self == PointsBasedGradingScheme {
 
     static var pointsBased: GradingScheme {
-        GradingScheme(pointsBased: true, scaleFactor: 4, entries: [])
+        PointsBasedGradingScheme(scaleFactor: 4, entries: [])
     }
 }
 
@@ -90,10 +107,10 @@ public extension GradingScheme {
 extension Course {
 
     public var gradingScheme: GradingScheme {
-        return GradingScheme(
-            pointsBased: pointsBasedGradingScheme,
-            scaleFactor: scalingFactor,
-            entries: gradingSchemeEntries
-        )
+        if pointsBasedGradingScheme {
+            return PointsBasedGradingScheme(scaleFactor: scalingFactor, entries: gradingSchemeEntries)
+        } else {
+            return PercentageBasedGradingScheme(entries: gradingSchemeEntries)
+        }
     }
 }
