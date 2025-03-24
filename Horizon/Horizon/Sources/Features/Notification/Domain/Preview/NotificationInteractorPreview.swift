@@ -19,6 +19,7 @@
 import Foundation
 import Combine
 
+#if DEBUG
 final class NotificationInteractorPreview: NotificationInteractor {
     func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
         Just([
