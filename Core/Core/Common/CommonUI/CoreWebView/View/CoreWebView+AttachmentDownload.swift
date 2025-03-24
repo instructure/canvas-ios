@@ -38,7 +38,7 @@ extension CoreWebView {
 
 // MARK: - Model
 
-public struct CoreWebAttachment {
+public struct CoreWebAttachment: Equatable {
     let url: URL
     let contentType: String?
 

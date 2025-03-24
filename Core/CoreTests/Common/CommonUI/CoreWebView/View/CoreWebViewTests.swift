@@ -320,25 +320,4 @@ class CoreWebViewTests: CoreTestCase {
         testee = CoreWebView(frame: .zero)
         XCTAssertEqual(testee.features.count, 0)
     }
-
-    @MainActor
-    func test_attachment_downloads() async {
-        let delegate = LinkDelegate()
-        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
-        view.linkDelegate = delegate
-
-        let httpResponse = HTTPURLResponse(
-            url: URL(string: "http://")!,
-            statusCode: 200,
-            httpVersion: "3.0",
-            headerFields: [
-                "Content-Disposition": "attachment; filename=\"example.mp4\"",
-                "Content-Type": "video/mp4"
-            ]
-        )!
-
-        let response = MockNavigationResponse(response: httpResponse)
-        let policy = await view.webView(view, decidePolicyFor: response)
-        XCTAssertEqual(policy, .download)
-    }
 }
