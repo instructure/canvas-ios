@@ -192,15 +192,6 @@ final public class Course: NSManagedObject, WriteableModel {
 }
 
 extension Course {
-    public static let scoreFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.decimalSeparator = "."
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 3
-        formatter.roundingMode = .down
-        return formatter
-    }()
 
     public var displayGrade: String {
         /// We want to use the special enrollment that was downloaded along the course because that contains the
@@ -226,7 +217,8 @@ extension Course {
             return grade ?? enrollment.computedCurrentLetterGrade ?? String(localized: "N/A", bundle: .core)
         }
 
-        guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
+        guard let scoreNotNil = score,
+              let scoreString = gradingScheme.formattedScore(from: scoreNotNil) else {
             return grade ?? String(localized: "N/A", bundle: .core)
         }
 
