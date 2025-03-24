@@ -55,6 +55,7 @@ public class InboxViewModel: ObservableObject {
     private static let DefaultScope: InboxMessageScope = .inbox
     private let messageInteractor: InboxMessageInteractor
     private let favouriteInteractor: InboxMessageFavouriteInteractor
+    private let inboxSettingsInteractor: InboxSettingsInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
     private var didSendMailSuccessfully = PassthroughSubject<Void, Never>()
@@ -63,10 +64,12 @@ public class InboxViewModel: ObservableObject {
     public init(
         messageInteractor: InboxMessageInteractor,
         favouriteInteractor: InboxMessageFavouriteInteractor,
+        inboxSettingsInteractor: InboxSettingsInteractor,
         router: Router
     ) {
         self.messageInteractor = messageInteractor
         self.favouriteInteractor = favouriteInteractor
+        self.inboxSettingsInteractor = inboxSettingsInteractor
         self.isShowMenuButton = !messageInteractor.isParentApp
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
@@ -108,6 +111,11 @@ public class InboxViewModel: ObservableObject {
             .assign(to: &$courses)
         messageInteractor.hasNextPage
             .assign(to: &$hasNextPage)
+
+        // Prefetch inbox settings value so cached value will be loaded on the compose screen
+        inboxSettingsInteractor.signature
+            .sink()
+            .store(in: &subscriptions)
     }
 
     private func bindInputsToDataSource() {
