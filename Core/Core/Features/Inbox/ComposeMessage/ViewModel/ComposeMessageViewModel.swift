@@ -96,6 +96,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let recipientInteractor: RecipientInteractor
+    private let settingsInteractor: InboxSettingsInteractor
     private let audioSession: AudioSessionProtocol
     private let cameraPermissionService: CameraPermissionService.Type
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -114,6 +115,7 @@ final class ComposeMessageViewModel: ObservableObject {
         interactor: ComposeMessageInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
+        inboxSettingsInteractor: InboxSettingsInteractor,
         audioSession: AudioSessionProtocol,
         cameraPermissionService: CameraPermissionService.Type
     ) {
@@ -122,6 +124,7 @@ final class ComposeMessageViewModel: ObservableObject {
         self.scheduler = scheduler
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
+        self.settingsInteractor = inboxSettingsInteractor
         self.audioSession = audioSession
         self.cameraPermissionService = cameraPermissionService
         setIncludedMessages(messageType: options.messageType)
@@ -352,6 +355,15 @@ final class ComposeMessageViewModel: ObservableObject {
                     self.sendIndividual = true
                 } else {
                     self.sendIndividual = sendIndividualToggleLastValue
+                }
+            }
+            .store(in: &subscriptions)
+
+        settingsInteractor.signature
+            .timeout(.seconds(3), scheduler: DispatchQueue.main)
+            .sink { [weak self] (useSignature, signature) in
+                if useSignature, let signature, signature.isNotEmpty {
+                    self?.bodyText.append("\n\n---\n\(signature)")
                 }
             }
             .store(in: &subscriptions)
