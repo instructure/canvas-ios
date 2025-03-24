@@ -32,7 +32,6 @@ final class DashboardAssembly {
         DashboardView(
             viewModel: .init(
                 getCoursesInteractor: makeGetCoursesInteractor(),
-                getUserInteractor: makeGetUserInteractor(),
                 router: AppEnvironment.shared.router
             )
         )
@@ -41,10 +40,8 @@ final class DashboardAssembly {
     #if DEBUG
     static func makePreview() -> DashboardView {
         let getCoursesInteractorPreview = GetCoursesInteractorPreview()
-        let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = DashboardViewModel(
             getCoursesInteractor: getCoursesInteractorPreview,
-            getUserInteractor: getUserInteractorPreview,
             router: AppEnvironment.shared.router
         )
         return DashboardView(viewModel: viewModel)

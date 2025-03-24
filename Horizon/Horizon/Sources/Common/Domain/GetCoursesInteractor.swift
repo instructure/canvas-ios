@@ -25,6 +25,7 @@ protocol GetCoursesInteractor {
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
     func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
     func getInstitutionName() -> AnyPublisher<String, Never>
+    func getNextUpModuleItems(ignoreCache: Bool) -> AnyPublisher<[NextUpViewModel], Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -67,6 +68,62 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
+    func getNextUpModuleItems(ignoreCache: Bool) -> AnyPublisher<[NextUpViewModel], Never> {
+        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
+            .getEntities(ignoreCache: ignoreCache)
+            .replaceError(with: [])
+            .flatMap {
+                $0.publisher
+                    .flatMap { courseProgression -> AnyPublisher<NextUpViewModel?, Never> in
+                        let courseID = courseProgression.courseID
+                        let name = courseProgression.course.name ?? ""
+                        let progress = courseProgression.completionPercentage / 100.0
+                        let moduleID = courseProgression.nextModuleID
+                        let itemID = courseProgression.nextModuleItemID
+
+                        guard let moduleID, let itemID else {
+                            return Just(nil)
+                                .eraseToAnyPublisher()
+                        }
+                        // The GetCoursesProgressionUseCase does not return all of the module item data.
+                        // Currently, we only use all the module item information when requesting a single course.
+                        // Should this change in the future, we should update the GraphQL endpoint in GetCourseProgressionUseCase
+                        // to return all the module item information required
+                        return ReactiveStore(
+                            useCase: GetModuleItem(
+                                courseID: courseID,
+                                moduleID: moduleID,
+                                itemID: itemID
+                            )
+                        )
+                        .getEntities(ignoreCache: ignoreCache)
+                        .replaceError(with: [])
+                        .compactMap { $0.first }
+                        .map { HModuleItem(from: $0) }
+                        .map { item in
+                            let moduleItem = LearningObjectCardViewModel(
+                                moduleTitle: item.moduleName ?? "",
+                                learningObjectName: item.title,
+                                type: item.type?.label,
+                                dueDate: item.dueAt?.relativeShortDateOnlyString,
+                                url: item.htmlURL,
+                                estimatedTime: item.estimatedDurationFormatted
+                            )
+
+                            return NextUpViewModel(
+                                name: name,
+                                progress: progress,
+                                learningObjectCardViewModel: moduleItem
+                            )
+                        }
+                        .eraseToAnyPublisher()
+                    }
+                    .compactMap { $0 }
+                    .collect()
+            }
+            .eraseToAnyPublisher()
+    }
+
     // MARK: - Private
 
     private func fetchCourses(courseId: String? = nil, ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
@@ -86,11 +143,6 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                             moduleId: courseProgression.nextModuleID,
                             moduleItemId: courseProgression.nextModuleItemID
                         )
-
-                        // The GetCoursesProgressionUseCase does not return all of the module item data.
-                        // Currently, we only use all the module item information when requesting a single course.
-                        // Should this change in the future, we should update the GraphQL endpoint in GetCourseProgressionUseCase
-                        // to return all the module item information required
                         return ReactiveStore(
                             useCase: GetModules(
                                 courseID: courseProgression.courseID,
