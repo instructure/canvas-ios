@@ -86,17 +86,35 @@ public struct PointsBasedGradingScheme: GradingScheme {
 
 #if DEBUG
 
-public extension GradingScheme where Self == PercentageBasedGradingScheme {
-
-    static var percentageBased: GradingScheme {
+public extension PercentageBasedGradingScheme {
+    static var `default`: Self {
         PercentageBasedGradingScheme(entries: [])
+    }
+
+    static func make(entries: [GradingSchemeEntry]) -> Self {
+        PercentageBasedGradingScheme(entries: entries)
+    }
+}
+
+public extension PointsBasedGradingScheme {
+    static var `default`: Self {
+        PointsBasedGradingScheme(scaleFactor: 4, entries: [])
+    }
+
+    static func make(scaleFactor: Double, entries: [GradingSchemeEntry]) -> Self {
+        PointsBasedGradingScheme(scaleFactor: scaleFactor, entries: entries)
+    }
+}
+
+public extension GradingScheme where Self == PercentageBasedGradingScheme {
+    static var defaultPercentageBased: GradingScheme {
+        PercentageBasedGradingScheme.default
     }
 }
 
 public extension GradingScheme where Self == PointsBasedGradingScheme {
-
-    static var pointsBased: GradingScheme {
-        PointsBasedGradingScheme(scaleFactor: 4, entries: [])
+    static var defaultPointsBased: GradingScheme {
+        PointsBasedGradingScheme.default
     }
 }
 

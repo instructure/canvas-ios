@@ -35,7 +35,7 @@ class GradingSchemeTests: CoreTestCase {
             return [entryA, entryB, entryF]
         }()
 
-        let testee = GradingScheme(pointsBased: false, scaleFactor: 1, entries: entries)
+        let testee = PercentageBasedGradingScheme.make(entries: entries)
 
         var result = testee.convertScoreToLetterGrade(score: 90)
         XCTAssertEqual(result, "A")
@@ -48,7 +48,7 @@ class GradingSchemeTests: CoreTestCase {
     }
 
     func testScoreConversionWithEmptyScheme() {
-        let testee = GradingScheme.empty
+        let testee = PercentageBasedGradingScheme.default
         let result = testee.convertScoreToLetterGrade(score: 30)
         XCTAssertNil(result)
     }
@@ -61,14 +61,14 @@ class GradingSchemeTests: CoreTestCase {
             return [entry]
         }()
 
-        let testee = GradingScheme(pointsBased: false, scaleFactor: 1, entries: entries)
+        let testee = PercentageBasedGradingScheme.make(entries: entries)
         let result = testee.convertScoreToLetterGrade(score: 30)
 
         XCTAssertNil(result)
     }
 
     func testFormattedScorePointBasedOn() {
-        let testee = GradingScheme(pointsBased: true, scaleFactor: 5, entries: [])
+        let testee = PointsBasedGradingScheme.make(scaleFactor: 5, entries: [])
 
         var result = testee.formattedScore(from: 80)
         XCTAssertEqual(result, "4")
@@ -81,7 +81,7 @@ class GradingSchemeTests: CoreTestCase {
     }
 
     func testFormattedScorePointBasedOff() {
-        let testee = GradingScheme(pointsBased: false, scaleFactor: 5, entries: [])
+        let testee = PercentageBasedGradingScheme.default
 
         var result = testee.formattedScore(from: 80)
         XCTAssertEqual(result, "80%")

@@ -114,9 +114,9 @@ struct ContextCardGradesView_Previews: PreviewProvider {
         grade.overrideGrade = "C"
         grade.unpostedCurrentScore = 33
         return SwiftUI.Group {
-            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: .percentageBased, hideQunatitativeData: false)
+            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: .defaultPercentageBased, hideQunatitativeData: false)
                 .previewLayout(.sizeThatFits)
-            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: .percentageBased, hideQunatitativeData: false)
+            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: .defaultPercentageBased, hideQunatitativeData: false)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
         }
