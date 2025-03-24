@@ -138,10 +138,7 @@ open class CoreWebView: WKWebView {
         isOpaque = false
         backgroundColor = UIColor.clear
         translatesAutoresizingMaskIntoConstraints = false
-
-        if #available(iOS 16.4, *) {
-            isInspectable = true
-        }
+        isInspectable = true
 
         addScript(js)
         handle("resize") { [weak self] message in
@@ -425,7 +422,7 @@ extension CoreWebView: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    open func webView(
+    public func webView(
         _ webView: WKWebView,
         didFinish navigation: WKNavigation!
     ) {

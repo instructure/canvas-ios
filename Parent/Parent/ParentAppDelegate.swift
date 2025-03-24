@@ -54,7 +54,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
-        FontAppearance.update()
+        Appearance.update()
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
@@ -167,7 +167,7 @@ extension ParentAppDelegate: LoginDelegate {
     var findSchoolButtonTitle: String { String(localized: "Find School", bundle: .parent) }
 
     func changeUser() {
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window = window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)

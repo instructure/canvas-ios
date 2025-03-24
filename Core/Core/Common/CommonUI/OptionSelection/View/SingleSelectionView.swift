@@ -89,9 +89,7 @@ public struct SingleSelectionView: View {
     }
 
     private func accessibilityIdentifier(for item: OptionItem) -> String {
-        [accessibilityIdentifier ?? "", item.id]
-            .compactMap { $0 }
-            .joined(separator: ".")
+        [accessibilityIdentifier, item.id].joined(separator: ".")
     }
 }
 

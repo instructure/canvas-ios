@@ -31,17 +31,9 @@ public class PushNotificationsInteractor {
     private let notificationCenterDelegate: UNUserNotificationCenterDelegate
 
     private let logger: LoggerProtocol
-    private var deviceToken: Data? {
-        didSet {
-            subscribeToCanvasPushNotificationsIfNecessary()
-        }
-    }
-
-    private var loginSession: LoginSession? {
-        didSet {
-            subscribeToCanvasPushNotificationsIfNecessary()
-        }
-    }
+    private var deviceToken: Data?
+    private var loginSession: LoginSession?
+    private var api: API?
 
     init(
         notificationCenter: UserNotificationCenterProtocol,
@@ -68,12 +60,16 @@ public class PushNotificationsInteractor {
         }
 
         self.deviceToken = deviceToken
+        subscribeToCanvasPushNotificationsIfNecessary()
     }
 
     public func userDidLogin(
-        loginSession: LoginSession
+        api: API
     ) {
-        if loginSession.isFakeStudent {
+        guard
+            let loginSession = api.loginSession,
+            !loginSession.isFakeStudent
+        else {
             return
         }
 
@@ -86,38 +82,39 @@ public class PushNotificationsInteractor {
         }
 
         self.loginSession = loginSession
+        self.api = api
+        subscribeToCanvasPushNotificationsIfNecessary()
     }
 
     public func unsubscribeFromCanvasPushNotifications() {
-        guard let deviceToken, let loginSession else {
+        guard let deviceToken, let api else {
             return
         }
-        let api = API(loginSession)
-        self.loginSession = nil
         api.makeRequest(DeletePushChannelRequest(pushToken: deviceToken)) { _, _, error in
             guard let error else { return }
             self.logger.error(error.localizedDescription)
         }
+        loginSession = nil
+        self.api = nil
     }
 
     private func subscribeToCanvasPushNotificationsIfNecessary() {
-        guard let deviceToken, let loginSession else {
+        guard let deviceToken, let api else {
             return
         }
 
-        createPushChannel(deviceToken: deviceToken, session: loginSession)
+        createPushChannel(deviceToken: deviceToken, api: api)
     }
 
     private func createPushChannel(
         deviceToken: Data,
-        session: LoginSession,
+        api: API,
         retriesLeft: Int = 4
     ) {
-        let api = API(session)
         api.makeRequest(PostCommunicationChannelRequest(pushToken: deviceToken)) { channel, _, error in
             let retryCodes = [Int(ECONNABORTED), NSURLErrorNetworkConnectionLost]
             if let code = (error as NSError?)?.code, retryCodes.contains(code), retriesLeft > 0 {
-                return self.createPushChannel(deviceToken: deviceToken, session: session, retriesLeft: retriesLeft - 1)
+                return self.createPushChannel(deviceToken: deviceToken, api: api, retriesLeft: retriesLeft - 1)
             }
             guard let channelID = channel?.id.value, error == nil else {
                 // Hide error alert when "Users can edit their communication channels" setting is turned off

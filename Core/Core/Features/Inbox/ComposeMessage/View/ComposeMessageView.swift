@@ -278,7 +278,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .accessibilitySortPriority(1)
                 }
 
-                TextField(String(localized: "Search", bundle: .core), text: $model.textRecipientSearch)
+                TextField("", text: $model.textRecipientSearch, prompt: toPromptText)
                     .font(.regular16)
                     .focused($focusedInput, equals: .search)
                     .foregroundColor(.textDark)
@@ -302,6 +302,11 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .padding(.horizontal, defaultHorizontalPaddingValue)
         .disabled(model.isRecipientsDisabled)
         .opacity(model.isRecipientsDisabled ? 0.6 : 1)
+    }
+
+    private var toPromptText: Text {
+        Text(String(localized: "Type to search", bundle: .core))
+            .foregroundColor(.textPlaceholder)
     }
 
     private var toRecipientText: some View {

@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
 import Combine
+import UIKit
 
 /// Errors most likely caused by our code.
 enum FileUploaderError: Error {
@@ -69,6 +69,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         decoder.dateDecodingStrategy = .iso8601
         return decoder
     }()
+
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(env: AppEnvironment, identifier: String, sharedContainerIdentifier: String? = nil) {
         self.identifier = identifier
@@ -350,42 +352,50 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 task?.cancel()
             }
             self.submissionsStatus.addTasks(fileIDs: fileIDs)
-            task = self.environment.api.makeRequest(requestable) { response, _, error in
-                self.context.performAndWait {
-                    defer {
-                        self.submissionsStatus.removeTasks(fileIDs: fileIDs)
-                        semaphore.signal()
-                    }
-                    guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
-                    guard let submission = response, error == nil else {
-                        Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
-                            "error": error?.localizedDescription ?? "unknown"
-                        ])
-                        RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
-                        if let error {
-                            didUploadFile.send(.failure(error))
-                        }
-                        self.complete(file: file, error: error)
-                        return
-                    }
-                    didUploadFile.send(.success)
-                    NotificationCenter.default.post(
-                        name: UploadManager.AssignmentSubmittedNotification,
-                        object: nil,
-                        userInfo: ["assignmentID": assignmentID, "submission": submission]
+            task = self.environment.api.makeRequest(requestable) { [weak self] response, _, error in
+                guard let self else { return }
+
+                UIAccessibility
+                    .announceSubmission(
+                        isSuccessful: response != nil && error == nil,
+                        maxAttempts: 5
                     )
-                    NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
-                    if submission.late != true {
-                        NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
-                            "assignmentID": assignmentID
-                        ])
+                    .sink { [weak self] in
+                        guard let self else { return }
+
+                        self.context.performAndWait {
+                            defer {
+                                self.submissionsStatus.removeTasks(fileIDs: fileIDs)
+                                semaphore.signal()
+                            }
+                            guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
+                            guard let submission = response, error == nil else {
+                                Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
+                                    "error": error?.localizedDescription ?? "unknown"
+                                ])
+                                RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
+                                self.complete(file: file, error: error)
+                                return
+                            }
+                            NotificationCenter.default.post(
+                                name: UploadManager.AssignmentSubmittedNotification,
+                                object: nil,
+                                userInfo: ["assignmentID": assignmentID, "submission": submission]
+                            )
+                            NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+                            if submission.late != true {
+                                NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
+                                    "assignmentID": assignmentID
+                                ])
+                            }
+                            if let userID = file.userID, let batchID = file.batchID {
+                                self.delete(userID: userID, batchID: batchID, in: self.context)
+                            }
+                            Analytics.shared.logEvent("submit_fileupload_succeeded")
+                            self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                        }
                     }
-                    if let userID = file.userID, let batchID = file.batchID {
-                        self.delete(userID: userID, batchID: batchID, in: self.context)
-                    }
-                    Analytics.shared.logEvent("submit_fileupload_succeeded")
-                    self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
-                }
+                    .store(in: &subscriptions)
             }
             semaphore.wait()
         }

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Splash/SplashAssembly.swift
 import Core
 import Foundation
 import UIKit
@@ -30,4 +31,22 @@ final class SplashAssembly {
         let view = SplashView(viewModel: viewModel)
         return CoreHostingController(view)
     }
+========
+import SwiftUI
+
+public protocol SearchViewsProvider {
+    associatedtype Filter: SearchPreference
+    associatedtype FilterEditor: View
+    associatedtype Support: SearchSupportAction
+    associatedtype SearchContent: View
+
+    var supportButtonModel: SearchSupportButtonModel<Support>? { get }
+
+    func contentView(_ filter: Binding<Filter?>) -> SearchContent
+    func filterEditorView(_ filter: Binding<Filter?>) -> FilterEditor
+}
+
+public protocol SearchPreference {
+    var isActive: Bool { get }
+>>>>>>>> origin/master:Core/Core/Features/Search/View/SearchViewsProvider.swift
 }

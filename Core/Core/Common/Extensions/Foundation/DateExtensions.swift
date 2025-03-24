@@ -297,8 +297,8 @@ extension DateFormatter {
 
 #if DEBUG
 public extension Date {
-    static func make(calendar: Calendar = .current, year: Int, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {
-        DateComponents(calendar: calendar, year: year, month: month, day: day, hour: hour, minute: minute, second: second).date!
+    static func make(calendar: Calendar = Cal.currentCalendar, year: Int, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {
+        return DateComponents(calendar: calendar, year: year, month: month, day: day, hour: hour, minute: minute, second: second).date!
     }
 }
 #endif

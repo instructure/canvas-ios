@@ -16,19 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
 import SwiftUI
 
-public extension View {
-
-    @available(iOSApplicationExtension,
-               obsoleted: 17.0,
-               message: "Use geometryGroup() directly.")
-    @ViewBuilder
-    func compatibleGeometryGroup() -> some View {
-        if #available(iOS 17.0, *) {
-            self.geometryGroup()
-        } else {
-            self
-        }
+extension UIColor {
+    public var asColor: Color {
+        Color(self)
     }
 }

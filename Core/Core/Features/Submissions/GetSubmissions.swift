@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Combine
+import UIKit
 
 public struct GetRecentlyGradedSubmissions: CollectionUseCase {
     public typealias Model = SubmissionList
@@ -44,6 +45,8 @@ public class CreateSubmission: APIUseCase {
     let userID: String
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
+
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(
         context: Context,
@@ -95,13 +98,21 @@ public class CreateSubmission: APIUseCase {
     ) }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
+
         environment.api.makeRequest(request) { [weak self] response, urlResponse, error in
             guard let self = self else { return }
+
             if error == nil {
                 NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
                 NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
             }
-            completionHandler(response, urlResponse, error)
+
+            UIAccessibility
+                .announceSubmission(isSuccessful: response != nil && error == nil)
+                .sink {
+                    completionHandler(response, urlResponse, error)
+                }
+                .store(in: &subscriptions)
         }
     }
 

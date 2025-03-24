@@ -23,14 +23,12 @@ public class API {
     public let baseURL: URL
     public let urlSession: URLSession
 
-    var refreshTask: APITask?
-    var refreshQueue = OperationQueue()
+    internal lazy var refreshTokenInteractor = TokenRefreshInteractor(api: self)
 
     public init(_ loginSession: LoginSession? = nil, baseURL: URL? = nil, urlSession: URLSession = .ephemeral) {
         self.loginSession = loginSession
         self.baseURL = baseURL ?? loginSession?.baseURL ?? URL(string: "https://canvas.instructure.com/")!
         self.urlSession = urlSession
-        refreshQueue.isSuspended = true
     }
 
     @discardableResult
@@ -40,27 +38,30 @@ public class API {
         callback: @escaping (Request.Response?, URLResponse?, Error?) -> Void
     ) -> APITask? {
         do {
-            guard refreshTask?.state != .running else {
-                refreshQueue.addOperation { [weak self] in
+            if refreshTokenInteractor.isTokenRefreshInProgress(), !(requestable is PostLoginOAuthRequest) {
+                refreshTokenInteractor.addRequestWaitingForToken { [weak self] in
                     self?.makeRequest(requestable, callback: callback)
                 }
                 return nil
             }
+
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let handler = { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
                 if response?.isUnauthorized == true, refreshToken {
-                    self?.refreshQueue.addOperation { [weak self] in
-                        self?.makeRequest(requestable, refreshToken: false, callback: callback)
+                    if let self {
+                        if refreshTokenInteractor.isTokenRefreshInProgress() == false {
+                            refreshTokenInteractor.refreshToken()
+                        }
+                        refreshTokenInteractor.addRequestWaitingForToken { [weak self] in
+                            self?.makeRequest(requestable, refreshToken: false, callback: callback)
+                        }
+                        return
                     }
-                    if self?.refreshTask?.state != .running {
-                        self?.refreshToken()
-                    }
-                    return
                 }
 
                 // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime
                 if response?.exceededLimit(responseData: data) == true {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
                         self?.makeRequest(requestable, callback: callback)
                     }
                     return
@@ -159,40 +160,6 @@ public class API {
             let url = URL.Directories.temporary.appendingPathComponent(UUID.string)
             try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
             return urlSession.uploadTask(with: request, fromFile: url)
-        }
-    }
-
-    func refreshToken() {
-        guard
-            let loginSession = loginSession,
-            let refreshToken = loginSession.refreshToken,
-            let clientID = loginSession.clientID,
-            let clientSecret = loginSession.clientSecret
-        else {
-            return flushRefreshQueue()
-        }
-        let client = APIVerifyClient(authorized: true, base_url: baseURL, client_id: clientID, client_secret: clientSecret)
-        let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-        refreshTask = makeRequest(request, refreshToken: false) { [weak self] response, _, error in
-            if let response = response, error == nil {
-                let session = loginSession.refresh(
-                    accessToken: response.access_token,
-                    expiresAt: response.expires_in.flatMap { Clock.now + $0 }
-                )
-                LoginSession.add(session)
-                if loginSession == AppEnvironment.shared.currentSession {
-                    AppEnvironment.shared.currentSession = session
-                }
-                self?.loginSession = session
-            }
-            self?.flushRefreshQueue()
-        }
-    }
-
-    private func flushRefreshQueue() {
-        refreshQueue.isSuspended = false
-        refreshQueue.addOperation { [weak self] in
-            self?.refreshQueue.isSuspended = true
         }
     }
 

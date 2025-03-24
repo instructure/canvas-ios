@@ -41,13 +41,8 @@ extension UINavigationBar {
         tintColor = foreground
         barTintColor = background
         barStyle = .black
-        // TODO: Remove the isHorizon condition once horizon-specific logic is no longer needed.
-        let isHorizon = AppEnvironment.shared.app == .horizon
-        if isHorizon {
-            clearNavigation()
-        } else {
-            applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
-        }
+
+        applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
     }
 
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
@@ -92,14 +87,8 @@ extension UINavigationBar {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
 
-        if isTranslucent {
-            appearance.configureWithTransparentBackground()
-        } else {
-            appearance.configureWithDefaultBackground()
-
-            if let backgroundColor {
-                appearance.backgroundColor = backgroundColor
-            }
+        if let backgroundColor {
+            appearance.backgroundColor = backgroundColor
         }
 
         if let foregroundColor {

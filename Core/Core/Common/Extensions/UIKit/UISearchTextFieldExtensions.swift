@@ -20,8 +20,9 @@ import UIKit
 
 extension UISearchTextField {
 
-    public static func updateFontAppearance() {
+    public static func updateAppearance() {
         let appearance = UISearchTextField.appearance()
         appearance.font = .scaledNamedFont(.regular17)
+        appearance.backgroundColor = .backgroundLight
     }
 }

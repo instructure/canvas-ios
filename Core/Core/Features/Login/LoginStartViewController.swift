@@ -517,3 +517,16 @@ extension LoginStartViewController: PairWithStudentQRCodeTutorialDelegate {
         }
     }
 }
+
+extension UIWindow {
+
+    public var isShowingLoginStartViewController: Bool {
+        guard
+            let rootViewController = rootViewController as? LoginNavigationController
+        else {
+            return false
+        }
+
+        return rootViewController.topViewController is LoginStartViewController
+    }
+}

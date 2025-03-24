@@ -42,6 +42,13 @@ public extension Error {
         nsError.domain == AVFoundationErrorDomain && nsError.code == AVError.Code.noSourceTrack.rawValue
     }
 
+    var isRefreshTokenInvalid: Bool {
+        if let apiError = self as? APIError, case APIError.invalidGrant = apiError {
+            return true
+        }
+        return false
+    }
+
     private var nsError: NSError {
         self as NSError
     }

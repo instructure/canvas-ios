@@ -48,6 +48,9 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var authenticationProvider: String?
     var method = AuthenticationMethod.normalLogin
     var pairingCode: String?
+    /// If this block has a value then when the login finishes the session object will be passed through this,
+    /// otherwise the regular login flow will be invoked.
+    var loginCompletion: ((LoginSession) -> Void)?
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .nonPersistent()
@@ -286,7 +289,9 @@ extension LoginWebViewController: WKNavigationDelegate {
                     clientID: mobileVerify.client_id,
                     clientSecret: mobileVerify.client_secret
                 )
-
+                if let completion = self.loginCompletion {
+                    completion(session)
+                } else {
                 if AppEnvironment.shared.app == .horizon {
                     self.loginDelegate?.userDidLogin(session: session)
                     self.env.router.route(to: "/splash", from: self)
@@ -294,7 +299,6 @@ extension LoginWebViewController: WKNavigationDelegate {
                     self.env.router.show(LoadingViewController.create(), from: self)
                     self.loginDelegate?.userDidLogin(session: session)
                 }
-
             } }
             return decisionHandler(.cancel)
         } else if queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {
