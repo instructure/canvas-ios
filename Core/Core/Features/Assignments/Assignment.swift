@@ -108,10 +108,10 @@ public class Assignment: NSManagedObject {
         return course?.hideQuantitativeData ?? false
     }
 
-    public var gradingScheme: GradingScheme {
+    public var gradingScheme: GradingScheme? {
         guard let course: Course = managedObjectContext?.first(where: #keyPath(Course.id),
                                                                equals: courseID)
-        else { return .empty }
+        else { return nil }
 
         return course.gradingScheme
     }

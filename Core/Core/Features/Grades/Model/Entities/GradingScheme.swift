@@ -19,15 +19,12 @@
 import Foundation
 
 public struct GradingScheme {
-    public static var empty: GradingScheme {
-        GradingScheme(pointsBased: false, scaleFactor: 1, entries: [])
-    }
 
     public let pointsBased: Bool
     public let scaleFactor: Double
     public let entries: [GradingSchemeEntry]
 
-    public init(pointsBased: Bool, scaleFactor: Double, entries: [GradingSchemeEntry]) {
+    fileprivate init(pointsBased: Bool, scaleFactor: Double, entries: [GradingSchemeEntry]) {
         self.pointsBased = pointsBased
         self.scaleFactor = scaleFactor
         self.entries = entries
@@ -40,16 +37,16 @@ public struct GradingScheme {
 
     public func formattedScore(from value: Double) -> String? {
         guard pointsBased else {
-            return Course.scoreFormatter.string(from: NSNumber(value: value))
+            return Self.percentFormatter.string(from: NSNumber(value: value))
         }
-
-        guard (0 ... 100).contains(value) else { return nil }
 
         let normalizedScore = value / 100.0
         let number = NSNumber(value: normalizedScore * scaleFactor)
 
         return Self.pointsFormatter.string(from: number)
     }
+
+    // MARK: Formatters
 
     private static let pointsFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -59,4 +56,44 @@ public struct GradingScheme {
         formatter.roundingMode = .halfEven
         return formatter
     }()
+
+    private static let percentFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.decimalSeparator = "."
+        formatter.multiplier = 1
+        formatter.maximumFractionDigits = 3
+        formatter.roundingMode = .down
+        return formatter
+    }()
+}
+
+// MARK: - Schemes for Previews & Testing
+
+#if DEBUG
+
+public extension GradingScheme {
+
+    static var percentageBased: GradingScheme {
+        GradingScheme(pointsBased: false, scaleFactor: 1, entries: [])
+    }
+
+    static var pointsBased: GradingScheme {
+        GradingScheme(pointsBased: true, scaleFactor: 4, entries: [])
+    }
+}
+
+#endif
+
+// MARK: - As Course's property
+
+extension Course {
+
+    public var gradingScheme: GradingScheme {
+        return GradingScheme(
+            pointsBased: pointsBasedGradingScheme,
+            scaleFactor: scalingFactor,
+            entries: gradingSchemeEntries
+        )
+    }
 }

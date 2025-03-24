@@ -59,15 +59,7 @@ final public class Course: NSManagedObject, WriteableModel {
         get { gradingSchemeRaw?.array as? [GradingSchemeEntry] ?? [] }
         set { gradingSchemeRaw = NSOrderedSet(array: newValue) }
     }
-
-    public var gradingScheme: GradingScheme {
-        return GradingScheme(
-            pointsBased: pointsBasedGradingScheme,
-            scaleFactor: scalingFactor,
-            entries: gradingSchemeEntries
-        )
-    }
-
+    
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
         set { defaultViewRaw = newValue?.rawValue }
