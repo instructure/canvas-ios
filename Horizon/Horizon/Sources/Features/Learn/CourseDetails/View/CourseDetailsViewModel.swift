@@ -80,7 +80,6 @@ final class CourseDetailsViewModel {
         }
     }
 
-
     func moduleItemDidTap(url: URL, from: WeakViewController) {
         router.route(to: url, from: from)
     }
