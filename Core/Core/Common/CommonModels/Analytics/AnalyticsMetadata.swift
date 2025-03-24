@@ -23,6 +23,11 @@ public struct AnalyticsMetadata {
         let id: String
         let locale: String
 
+        public init(id: String, locale: String) {
+            self.id = id
+            self.locale = locale
+        }
+
         public func toMap() -> [String: Any]? {
             guard let data = try? JSONEncoder().encode(self) else {
                 return nil
@@ -34,6 +39,11 @@ public struct AnalyticsMetadata {
     public struct AccountData: Codable {
         let id: String
         let surveyOptOut: Bool
+
+        public init(id: String, surveyOptOut: Bool) {
+            self.id = id
+            self.surveyOptOut = surveyOptOut
+        }
 
         public func toMap() -> [String: Any]? {
             guard let data = try? JSONEncoder().encode(self) else {
@@ -55,3 +65,18 @@ public struct AnalyticsMetadata {
         self.accountData = accountData
     }
 }
+
+#if DEBUG
+
+extension AnalyticsMetadata {
+    public static func make(
+        userId: String = "",
+        accountUUID: String = "",
+        visitorData: VisitorData = .init(id: "", locale: ""),
+        accountData: AccountData = .init(id: "", surveyOptOut: false)
+    ) -> AnalyticsMetadata {
+        .init(userId: userId, accountUUID: accountUUID, visitorData: visitorData, accountData: accountData)
+    }
+}
+
+#endif

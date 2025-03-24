@@ -19,11 +19,22 @@
 import Foundation
 import Pendo
 
+// This is only needed to make testing possible
+public protocol PendoManagerWrapper: AnyObject {
+    func initWith(_ url: URL)
+    func setup(_ appKey: String)
+    func startSession(_ visitorId: String?, accountId: String?, visitorData: [AnyHashable: Any]?, accountData: [AnyHashable: Any]?)
+    func endSession()
+    func track(_ event: String, properties: [AnyHashable: Any]?)
+}
+
+extension PendoManager: PendoManagerWrapper {}
+
 public final class PendoAnalyticsTracker {
 
     private weak var environment: AppEnvironment?
     private let interactor: AnalyticsMetadataInteractor
-    private let pendoManager: PendoManager
+    private let pendoManager: PendoManagerWrapper
 
     private lazy var pendoApiKey: String? = {
         Secret.pendoApiKey.string?.nilIfEmpty
@@ -35,7 +46,7 @@ public final class PendoAnalyticsTracker {
     public init(
         environment: AppEnvironment,
         interactor: AnalyticsMetadataInteractor = AnalyticsMetadataInteractorLive(),
-        pendoManager: PendoManager = .shared()
+        pendoManager: PendoManagerWrapper = PendoManager.shared()
     ) {
         self.environment = environment
         self.interactor = interactor
@@ -46,41 +57,52 @@ public final class PendoAnalyticsTracker {
         pendoManager.initWith(url)
     }
 
+    // Setup should be called only once during the application lifecycle.
+    private func setupManagerIfNeeded(apiKey: String) {
+        guard !isSetupCalled else { return }
+
+        isSetupCalled = true
+        pendoManager.setup(apiKey)
+    }
+
+    /// Start the session asynchronously
     public func startSession() {
-        guard let pendoApiKey else { return }
-
-        if !isSetupCalled {
-            // This should be called only once during the application lifecycle.
-            pendoManager.setup(pendoApiKey)
-            isSetupCalled = true
-        }
-
-        Task.detached { [weak self] in
-            guard let self else { return }
-
-            let metadata = try await interactor.getMetadata()
-
-            environment?.pendoID = metadata.userId
-
-            // This will also terminate the current session if there is one.
-            pendoManager.startSession(
-                metadata.userId,
-                accountId: metadata.accountUUID,
-                visitorData: metadata.visitorData.toMap(),
-                accountData: metadata.accountData.toMap()
-            )
-            isSessionInProgress = true
+        Task { [weak self] in
+            try? await self?.startSessionAsync()
         }
     }
 
+    // extracted for testing purposes
+    internal func startSessionAsync() async throws {
+        guard let pendoApiKey else { return }
+        setupManagerIfNeeded(apiKey: pendoApiKey)
+
+        let metadata = try await interactor.getMetadata()
+
+        environment?.pendoID = metadata.userId
+
+        // This will also terminate the current session if there is one.
+        pendoManager.startSession(
+            metadata.userId,
+            accountId: metadata.accountUUID,
+            visitorData: metadata.visitorData.toMap(),
+            accountData: metadata.accountData.toMap()
+        )
+
+        isSessionInProgress = true
+    }
+
     public func endSession() {
+        guard let pendoApiKey else { return }
+        setupManagerIfNeeded(apiKey: pendoApiKey)
+
         isSessionInProgress = false
         pendoManager.endSession()
     }
 
-    public func track(_ name: String, properties: [String: Any]?) {
+    public func track(_ eventName: String, properties: [String: Any]?) {
         guard isSessionInProgress else { return }
 
-        pendoManager.track(name, properties: properties)
+        pendoManager.track(eventName, properties: properties)
     }
 }

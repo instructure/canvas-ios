@@ -21,7 +21,7 @@ import Combine
 import TestsFoundation
 import XCTest
 
-class AnalyticsMetadataInteractorLiveTests: CoreTestCase {
+class AnalyticsMetadataInteractorTests: CoreTestCase {
     func testMappingWhenSurveyFlagIsOff() async throws {
         api.mock(
             GetEnvironmentFeatureFlagsRequest(context: Context.currentUser),
@@ -34,7 +34,6 @@ class AnalyticsMetadataInteractorLiveTests: CoreTestCase {
         )
 
         let metadata = try await AnalyticsMetadataInteractorLive().getMetadata()
-        print(metadata)
         XCTAssertEqual(metadata.userId, "1".sha256())
         XCTAssertEqual(metadata.accountUUID, "2")
         XCTAssertEqual(metadata.visitorData.id, "1".sha256())
