@@ -34,7 +34,12 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         environment = .init()
         interactor = .init()
         pendoManager = .init()
-        testee = .init(environment: environment, interactor: interactor, pendoManager: pendoManager)
+        testee = .init(
+            environment: environment,
+            interactor: interactor,
+            pendoManager: pendoManager,
+            pendoApiKey: "some api key"
+        )
     }
 
     override func tearDown() {
@@ -61,6 +66,7 @@ class PendoAnalyticsTrackerTests: XCTestCase {
     func test_setup_whenStartWasCalledRepeatedly_shouldBeCalledOnlyOnce() async throws {
         try await testee.startSessionAsync()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
+        XCTAssertEqual(pendoManager.setupInput, "some api key")
 
         try await testee.startSessionAsync()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
@@ -88,6 +94,7 @@ class PendoAnalyticsTrackerTests: XCTestCase {
     func test_setup_whenEndWasCalledRepeatedly_shouldBeCalledOnlyOnce() async throws {
         testee.endSession()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
+        XCTAssertEqual(pendoManager.setupInput, "some api key")
 
         testee.endSession()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
@@ -179,9 +186,10 @@ private final class PendoManagerMock: PendoManagerWrapper {
     // MARK: - setup
 
     var setupCallsCount: Int = 0
+    var setupInput: String?
 
     func setup(_ appKey: String) {
-        // setupInput = appKey - Do NOT test this input!
+        setupInput = appKey
         setupCallsCount += 1
     }
 

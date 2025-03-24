@@ -35,10 +35,7 @@ public final class PendoAnalyticsTracker {
     private weak var environment: AppEnvironment?
     private let interactor: AnalyticsMetadataInteractor
     private let pendoManager: PendoManagerWrapper
-
-    private lazy var pendoApiKey: String? = {
-        Secret.pendoApiKey.string?.nilIfEmpty
-    }()
+    private let pendoApiKey: String?
 
     private var isSetupCalled: Bool = false
     private var isSessionInProgress: Bool = false
@@ -46,11 +43,13 @@ public final class PendoAnalyticsTracker {
     public init(
         environment: AppEnvironment,
         interactor: AnalyticsMetadataInteractor = AnalyticsMetadataInteractorLive(),
-        pendoManager: PendoManagerWrapper = PendoManager.shared()
+        pendoManager: PendoManagerWrapper = PendoManager.shared(),
+        pendoApiKey: String? = nil
     ) {
         self.environment = environment
         self.interactor = interactor
         self.pendoManager = pendoManager
+        self.pendoApiKey = (pendoApiKey ?? Secret.pendoApiKey.string)?.nilIfEmpty
     }
 
     public func initManager(with url: URL) {
