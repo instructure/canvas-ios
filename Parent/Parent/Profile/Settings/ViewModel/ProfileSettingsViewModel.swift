@@ -194,7 +194,8 @@ extension ProfileSettingsViewModel {
     private func initPrivacyPolicyItem() -> SettingsGroupItemView {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Privacy Policy", bundle: .core),
-            valueLabel: nil
+            valueLabel: nil,
+            isLink: true
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "https://www.instructure.com/canvas/privacy/", from: controller)
@@ -218,7 +219,8 @@ extension ProfileSettingsViewModel {
     private func initGithubItem() -> SettingsGroupItemView {
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Canvas on Github", bundle: .core),
-            valueLabel: nil
+            valueLabel: nil,
+            isLink: true
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "https://github.com/instructure/canvas-ios", from: controller)
