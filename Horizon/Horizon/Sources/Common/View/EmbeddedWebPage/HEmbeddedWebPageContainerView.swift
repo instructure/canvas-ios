@@ -42,7 +42,7 @@ struct HEmbeddedWebPageContainerView: View {
         if let url = viewModel.url {
             contentView(url: url)
                 .navigationBarTitleView(title: viewModel.navTitle, subtitle: nil)
-                .toolbar(.visible)
+                .toolbar(.hidden)
         }
     }
 
@@ -52,14 +52,18 @@ struct HEmbeddedWebPageContainerView: View {
                 url: sessionURL,
                 features: features,
                 canToggleTheme: true,
-                configuration: .defaultConfiguration
+                configuration: viewModel.configuration
             )
             .onLink { url in
                 viewModel.openURL(url, viewController: viewController)
                 return true
             }
             .onProvisionalNavigationStarted { webView, navigation in
-                viewModel.webView(webView, didStartProvisionalNavigation: navigation)
+                viewModel.webView(
+                    webView,
+                    didStartProvisionalNavigation: navigation,
+                    viewController: viewController
+                )
             }
         }
     }

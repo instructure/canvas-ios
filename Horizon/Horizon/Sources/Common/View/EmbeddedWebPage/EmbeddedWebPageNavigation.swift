@@ -18,7 +18,14 @@
 
 import Core
 import Foundation
+import WebKit
 
 protocol EmbeddedWebPageNavigation: AnyObject {
     func openURL(_ url: URL, viewController: WeakViewController)
+    func observer(scriptMessage: WKScriptMessage, viewController: WeakViewController)
+}
+
+extension EmbeddedWebPageNavigation {
+    func openURL(_ url: URL, viewController: WeakViewController) {}
+    func observer(scriptMessage: WKScriptMessage, viewController: WeakViewController) {}
 }

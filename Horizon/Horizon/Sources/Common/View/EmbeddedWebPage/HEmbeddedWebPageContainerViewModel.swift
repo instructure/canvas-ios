@@ -27,23 +27,52 @@ final class HEmbeddedWebPageContainerViewModel {
 
     private(set) var url: URL?
     let navTitle: String
-
+    private(set) var configuration: WKWebViewConfiguration = .defaultConfiguration
+    
     // MARK: - Dependencies
 
     private let webPage: EmbeddedWebPageViewModel
     private weak var navigationDelegate: EmbeddedWebPageNavigation?
+    private let javaScript: String?
+    private let observeKey: String?
+    var viewController: WeakViewController = .init()
 
     // MARK: - Init
 
     init(
         webPage: EmbeddedWebPageViewModel,
-        navigationDelegate: EmbeddedWebPageNavigation? = nil
+        navigationDelegate: EmbeddedWebPageNavigation? = nil,
+        javaScript: String? = nil,
+        observeKey: String? = nil
     ) {
         self.webPage = webPage
         self.navigationDelegate = navigationDelegate
         self.navTitle = webPage.navigationBarTitle
+        self.javaScript = javaScript
+        self.observeKey = observeKey
         self.url = constructURL(from: webPage)
+
+        if let javaScript, let observeKey {
+            addObservation(javaScript: javaScript, observeKey: observeKey)
+        }
     }
+
+    private func addObservation(javaScript js: String, observeKey: String) {
+        let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        configuration.userContentController.addUserScript(script)
+        handle(observeKey) { [weak self] message in
+            guard let self else {
+                return
+            }
+            self.navigationDelegate?.observer(scriptMessage: message, viewController: self.viewController)
+        }
+    }
+
+    private func handle(_ name: String, handler: @escaping MessageHandler) {
+         let passer = MessagePasser(handler: handler)
+         configuration.userContentController.removeScriptMessageHandler(forName: name)
+         configuration.userContentController.add(passer, name: name)
+     }
 
     // MARK: - Private Functions
 
@@ -64,7 +93,8 @@ final class HEmbeddedWebPageContainerViewModel {
         navigationDelegate?.openURL(url, viewController: viewController)
     }
 
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!, viewController: WeakViewController) {
+        self.viewController = viewController
         webPage.webView(
             webView,
             didStartProvisionalNavigation: navigation

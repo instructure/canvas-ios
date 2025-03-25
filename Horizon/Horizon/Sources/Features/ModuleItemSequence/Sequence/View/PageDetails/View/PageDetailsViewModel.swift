@@ -28,7 +28,6 @@ final class PageDetailsViewModel {
     private(set) var url: URL?
     private(set) var content: String?
     private(set) var isCompletedItem: Bool
-    private(set) var isLoaderVisible = true
     private(set) var isMarkAsDoneLoaderVisible = false
     private(set) var errorMessage = ""
 
@@ -44,7 +43,9 @@ final class PageDetailsViewModel {
 
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let moduleID: String
-    private let itemID: String
+    let context: Core.Context
+    let itemID: String
+    let pageURL: String
     let isMarkedAsDoneButtonVisible: Bool
 
     // MARK: - Init
@@ -59,23 +60,12 @@ final class PageDetailsViewModel {
         isMarkedAsDoneButtonVisible: Bool
     ) {
         self.moduleItemInteractor = moduleItemInteractor
+        self.context = context
         self.isCompletedItem = isCompletedItem
+        self.pageURL = pageURL
         self.moduleID = moduleID
         self.itemID = itemID
         self.isMarkedAsDoneButtonVisible = isMarkedAsDoneButtonVisible
-
-        ReactiveStore(
-            useCase: GetPage(context: context, url: pageURL)
-        )
-        .getEntities()
-        .replaceError(with: [])
-        .sink { [weak self] values in
-            let page = values.first
-            self?.content = page?.body
-            self?.url = page?.htmlURL
-            self?.isLoaderVisible = false
-        }
-        .store(in: &subscriptions)
     }
 
     func markAsDone() {

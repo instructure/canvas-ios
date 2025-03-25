@@ -138,7 +138,8 @@ struct MyAssignmentSubmissionsView: View {
                 isFinishLoading: .constant(false),
                 contentHeight: $uploadedFileHeight,
                 context: .course(courseId),
-                fileID: fileID
+                fileID: fileID,
+                isScrollEnabled: false
             )
             .id(fileID)
             .frame(height: uploadedFileHeight)

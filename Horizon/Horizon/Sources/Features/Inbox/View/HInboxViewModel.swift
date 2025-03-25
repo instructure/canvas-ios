@@ -18,8 +18,9 @@
 
 import Core
 import Foundation
+import WebKit
 
-final class HInboxViewModel: EmbeddedWebPageViewModel {
+final class HInboxViewModel: EmbeddedWebPageViewModel, EmbeddedWebPageNavigation {
     var urlPathComponent: String
     var queryItems: [URLQueryItem] = []
     var navigationBarTitle: String
@@ -27,5 +28,12 @@ final class HInboxViewModel: EmbeddedWebPageViewModel {
     init() {
         urlPathComponent = "/inbox"
         navigationBarTitle = String(localized: "Inbox", bundle: .horizon)
+    }
+
+    func observer(scriptMessage: WKScriptMessage, viewController: WeakViewController) {
+        let body = scriptMessage.body as? String
+        if body == "Back" {
+            AppEnvironment.shared.router.pop(from: viewController)
+        }
     }
 }

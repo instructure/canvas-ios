@@ -16,51 +16,43 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import HorizonUI
 import Core
+import SwiftUI
 
-struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
+struct PageViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Dependencies
 
     @Binding private var isScrollTopReached: Bool
-    @Binding private var isFinishLoading: Bool
-    @Binding private var contentHeight: CGFloat
-    private let context: Core.Context?
-    private let fileID: String
-    private let isScrollEnabled: Bool
+    let context: Core.Context
+    let pageURL: String
+    let itemID: String
 
-    init(isScrollTopReached: Binding<Bool>,
-         isFinishLoading: Binding<Bool>,
-         contentHeight: Binding<CGFloat> = .constant(0.0),
-         context: Core.Context?,
-         fileID: String,
-         isScrollEnabled: Bool = true
+    init(
+        isScrollTopReached: Binding<Bool>,
+        context: Core.Context,
+        pageURL: String,
+        itemID: String
     ) {
         self._isScrollTopReached = isScrollTopReached
-        self._isFinishLoading = isFinishLoading
-        self._contentHeight = contentHeight
         self.context = context
-        self.fileID = fileID
-        self.isScrollEnabled = isScrollEnabled
+        self.pageURL = pageURL
+        self.itemID = itemID
     }
 
     func makeUIViewController(context: Self.Context) -> UIViewController {
-        let viewController = FileDetailsViewController.create(context: self.context, fileID: fileID)
-        viewController.didFinishLoading = {
-                isFinishLoading = true
-            if let scrollView = findScrollView(in: viewController.view) {
-                // Set the file pin at the top.
-                scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-                scrollView.isScrollEnabled = isScrollEnabled
-                // Wait till render the view
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    contentHeight = max(300, scrollView.contentSize.height)
-                }
-            } else {
-                contentHeight = 300
-            }
-        }
+        let viewController = PageDetailsViewController.create(
+            context: self.context,
+            pageURL: pageURL,
+            app: .student,
+            env: .shared
+        )
+
+        viewController.webView = HighlightWebView(
+            courseId: self.context.id,
+            itemId: itemID,
+            moduleType: .page(pageURL),
+            viewController: WeakViewController(viewController)
+        )
         if let scrollView = findScrollView(in: viewController.view) {
             scrollView.delegate = context.coordinator
         }
