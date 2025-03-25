@@ -120,59 +120,56 @@ extension Enrollment {
     }
 
     // Used when "Base on graded assignment" is ON
-    public func formattedCurrentScore(gradingPeriodID: String?) -> String {
+    public func formattedCurrentScore(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
         if let score = currentScore(gradingPeriodID: gradingPeriodID) {
-            return Course.scoreFormatter.string(from: NSNumber(value: score)) ?? notAvailable
+            return gradingScheme.formattedScore(from: score) ?? notAvailable
         }
         return notAvailable
     }
 
     // Used when "Base on graded assignment" is OFF
-    public func formattedFinalScore(gradingPeriodID: String?) -> String {
+    public func formattedFinalScore(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
         if let score = finalScore(gradingPeriodID: gradingPeriodID) {
-            return Course.scoreFormatter.string(from: NSNumber(value: score)) ?? notAvailable
+            return gradingScheme.formattedScore(from: score) ?? notAvailable
         }
         return notAvailable
     }
 
     // Used when "Base on graded assignment" is ON
-    public func convertedLetterGrade(gradingPeriodID: String?, gradingScheme: [GradingSchemeEntry]) -> String {
+    public func convertedLetterGrade(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
         if let score = currentScore(gradingPeriodID: gradingPeriodID) {
-            let normalizedScore = score / 100.0
-            return gradingScheme.convertScoreToLetterGrade(score: normalizedScore) ?? notAvailable
+            return gradingScheme.convertScoreToLetterGrade(score: score) ?? notAvailable
         }
         return notAvailable
     }
 
     // Used when "Base on graded assignment" is OFF
-    public func convertedFinalLetterGrade(gradingPeriodID: String?, gradingScheme: [GradingSchemeEntry]) -> String {
+    public func convertedFinalLetterGrade(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
         }
         if let score = finalScore(gradingPeriodID: gradingPeriodID) {
-            let normalizedScore = score / 100.0
-            return gradingScheme.convertScoreToLetterGrade(score: normalizedScore) ?? notAvailable
+            return gradingScheme.convertScoreToLetterGrade(score: score) ?? notAvailable
         }
         return notAvailable
     }
 
-    public func convertedLetterGrade(scorePercentage: Double, gradingScheme: [GradingSchemeEntry]) -> String {
+    public func convertedLetterGrade(scorePercentage: Double, gradingScheme: GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
-        let normalizedScore = scorePercentage / 100.0
-        return gradingScheme.convertScoreToLetterGrade(score: normalizedScore) ?? notAvailable
+        return gradingScheme.convertScoreToLetterGrade(score: scorePercentage) ?? notAvailable
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D70" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="23H420" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -318,6 +318,7 @@
         <attribute name="courseCode" optional="YES" attributeType="String"/>
         <attribute name="courseColor" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
+        <attribute name="gradingStandardId" optional="YES" attributeType="String"/>
         <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
@@ -327,7 +328,9 @@
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPublished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pointsBasedGradingScheme" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="roles" optional="YES" attributeType="String"/>
+        <attribute name="scalingFactor" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>

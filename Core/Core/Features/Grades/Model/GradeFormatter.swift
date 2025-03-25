@@ -125,7 +125,7 @@ public class GradeFormatter {
         case .points:
             if hideScores {
                 if let normalizedScore = submission.normalizedScore,
-                   let converterLetterGrade =  submission.assignment?.gradingScheme.convertScoreToLetterGrade(score: normalizedScore) {
+                   let converterLetterGrade =  submission.assignment?.gradingScheme?.convertScoreToLetterGrade(score: normalizedScore) {
                     return converterLetterGrade
                 } else {
                     return placeholder
@@ -152,7 +152,7 @@ public class GradeFormatter {
         case .percent:
             if hideScores {
                 if let normalizedScore = submission.normalizedScore,
-                   let converterLetterGrade =  submission.assignment?.gradingScheme.convertScoreToLetterGrade(score: normalizedScore) {
+                   let converterLetterGrade =  submission.assignment?.gradingScheme?.convertScoreToLetterGrade(score: normalizedScore) {
                     return converterLetterGrade
                 } else {
                     return placeholder
