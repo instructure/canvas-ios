@@ -17,7 +17,7 @@
 //
 
 import XCTest
-import Core
+@testable import Core
 
 public class TestRouter: Router {
     public init() {
@@ -59,6 +59,12 @@ public class TestRouter: Router {
         return routes[url]?()
     }
 
+    public override func isRegisteredRoute(_ url: URLComponents) -> Bool {
+        routes.keys.contains { route in
+            route.path == url.path
+        }
+    }
+
     public var routeExpectation = XCTestExpectation(description: "route")
     public override func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
         calls.append((url, from, options))
@@ -80,11 +86,18 @@ public class TestRouter: Router {
         popExpectation.fulfill()
     }
 
+    public override func popToRoot(from: UIViewController) {
+        popped = from
+        popExpectation.fulfill()
+    }
+
+    public var dismissExpectation = XCTestExpectation(description: "dismiss")
     public override func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
         dismissed = view
         if viewControllerCalls.last?.0 == view {
             viewControllerCalls.removeLast()
         }
+        dismissExpectation.fulfill()
         completion?()
     }
 

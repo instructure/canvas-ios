@@ -61,10 +61,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         #endif
 
         DocViewerViewController.setup(.studentPSPDFKitLicense)
-        prepareReactNative()
         setupDefaultErrorHandling()
         setupPageViewLogging()
-        TabBarBadgeCounts.application = UIApplication.shared
         PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
@@ -86,7 +84,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
-            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
         setupAWS()
         setupBugfender()
@@ -161,13 +159,31 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 ReactiveStore(useCase: GetBrandVariables())
                     .getEntities()
                     .receive(on: RunLoop.main)
-                    .sink(receiveCompletion: { _ in }) { brandVars in
+                    .replaceError(with: [])
+                    .sink { [weak self] brandVars in
                         brandVars.first?.applyBrandTheme()
-                        NativeLoginManager.login(as: session)
+                        self?.setTabBarController()
                     }
                     .store(in: &self.subscriptions)
             }
         }}
+    }
+
+    func setTabBarController() {
+        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
+        appearance.barTintColor = nil
+        appearance.tintColor = nil
+        appearance.titleTextAttributes = nil
+
+        guard let window = self.window else { return }
+        let controller = StudentTabBarController()
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            window.rootViewController = controller
+        }, completion: { _ in
+            self.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        })
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -176,9 +192,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
            components.path.contains("student_view"),
            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
             shouldSetK5StudentView = components.path.contains("k5")
-            if environment.currentSession != nil {
-                NativeLoginManager.shared().logout() // Cleanup old to prevent token errors
-            }
             userDidLogin(session: fakeStudent)
             return true
         }
@@ -214,7 +227,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
             setupFileSubmissionAssemblyForBackgroundUploads(completion: completionHandler)
         } else {
-            let manager = UploadManager(identifier: identifier)
+            let manager = UploadManager(env: environment, identifier: identifier)
             manager.completionHandler = {
                 DispatchQueue.main.async {
                     completionHandler()
@@ -285,7 +298,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        PushNotifications.record(response.notification)
         if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
@@ -296,18 +308,19 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
+// MARK: - Usage Analytics
+
 extension StudentAppDelegate: Core.AnalyticsHandler {
 
-    func handleScreenView(screenName: String, screenClass: String, application: String) {
-        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
-    }
-
-    func handleError(_ name: String, reason: String) {
-        let model = ExceptionModel(name: name, reason: reason)
-        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
-    }
-
     func handleEvent(_ name: String, parameters: [String: Any]?) {
+        if Heap.isTrackingEnabled() {
+            Heap.track(name, withProperties: parameters)
+        }
+
+        PageViewEventController.instance.logPageView(
+            name,
+            attributes: parameters
+        )
     }
 
     private func initializeTracking() {
@@ -366,8 +379,8 @@ extension StudentAppDelegate {
             FirebaseApp.configure()
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
+            RemoteLogger.shared.handler = self
         }
-        CanvasCrashlytics.setupForReactNative()
     }
 
     func setupDebugCrashLogging() {
@@ -378,6 +391,18 @@ extension StudentAppDelegate {
                 print("  \(symbol)")
             }
         }
+    }
+}
+
+extension StudentAppDelegate: RemoteLogHandler {
+
+    func handleBreadcrumb(_ name: String) {
+        Firebase.Crashlytics.crashlytics().log(name)
+    }
+
+    func handleError(_ name: String, reason: String) {
+        let model = ExceptionModel(name: name, reason: reason)
+        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
     }
 }
 
@@ -423,7 +448,7 @@ extension StudentAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
-            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
@@ -458,7 +483,7 @@ extension StudentAppDelegate {
 
 // MARK: - Login Delegate
 
-extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+extension StudentAppDelegate: LoginDelegate {
     func changeUser() {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()

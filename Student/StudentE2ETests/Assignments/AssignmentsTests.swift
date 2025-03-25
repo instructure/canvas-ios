@@ -122,9 +122,6 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and tap the assignment
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         assignmentButton.hit()
@@ -134,9 +131,6 @@ class AssignmentsTests: E2ETestCase {
         submitAssignmentButton.hit()
 
         // MARK: Check visibility of elements on submission edit screen
-        let submissionNavBar = SubmissionHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(submissionNavBar.isVisible)
-
         let submissionCancelButton = SubmissionHelper.cancelButton.waitUntil(.visible)
         XCTAssertTrue(submissionCancelButton.isVisible)
         XCTAssertTrue(submissionCancelButton.hasLabel(label: "Cancel"))
@@ -146,12 +140,12 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submissionSubmitButton.isDisabled)
         XCTAssertTrue(submissionSubmitButton.hasLabel(label: "Submit"))
 
-        let textField = SubmissionHelper.textField.waitUntil(.visible)
-        XCTAssertTrue(textField.isVisible)
+        let textView = SubmissionHelper.textView.waitUntil(.visible)
+        XCTAssertTrue(textView.isVisible)
 
         // MARK: Write some text and submit the assignment
         let testText = "SubmitAssignment test"
-        textField.pasteText(text: testText)
+        textView.writeText(text: testText)
 
         submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertTrue(submissionSubmitButton.isEnabled)

@@ -51,7 +51,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     private var attempt: Int?
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) {}
 
-    init(env: AppEnvironment = .shared, view: SubmissionCommentsViewProtocol, context: Context, assignmentID: String, userID: String, submissionID: String) {
+    init(env: AppEnvironment, view: SubmissionCommentsViewProtocol, context: Context, assignmentID: String, userID: String, submissionID: String) {
         self.assignmentID = assignmentID
         self.context = context
         self.env = env
@@ -87,6 +87,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
 
     func addComment(text: String) {
         CreateTextComment(
+            env: env,
             courseID: context.id,
             assignmentID: assignmentID,
             userID: userID,
@@ -96,12 +97,15 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(String(localized: "Could not save the comment", bundle: .student)))
+            } else {
+                UIAccessibility.announce(String(localized: "Comment sent successfully", bundle: .student))
             }
         }
     }
 
     func addMediaComment(type: MediaCommentType, url: URL) {
         UploadMediaComment(
+            env: env,
             courseID: context.id,
             assignmentID: assignmentID,
             userID: userID,
@@ -118,6 +122,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
 
     func addFileComment(batchID: String) {
         UploadFileComment(
+            env: env,
             courseID: context.id,
             assignmentID: assignmentID,
             userID: userID,

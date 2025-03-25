@@ -30,7 +30,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        viewController = AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID)
+        viewController = AssignmentDetailsViewController
+            .create(env: env, courseID: courseID, assignmentID: assignmentID)
         prevSpeed = AppEnvironment.shared.window?.layer.speed ?? 1
         AppEnvironment.shared.window?.layer.speed = 100
     }
@@ -74,7 +75,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
         viewController.updateNavBar(subtitle: "hello", backgroundColor: .red)
         XCTAssertEqual(viewController.titleSubtitleView.subtitle, "hello")
-        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor?.hexString, UIColor.red.darkenToEnsureContrast(against: .white).hexString)
+        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor?.hexString, UIColor.red.hexString)
     }
 
     func testShowSubmitAssignmentButton() {

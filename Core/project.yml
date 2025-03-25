@@ -1,7 +1,7 @@
 ---
 name: Core
 attributes: {
-  LastUpgradeCheck: "1500"
+  LastUpgradeCheck: "1600"
 }
 options:
   groupSortPosition: top
@@ -15,6 +15,7 @@ settings:
   APPLICATION_EXTENSION_API_ONLY: true
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
+  ENABLE_USER_SCRIPT_SANDBOXING: true
   platform: iOS
 packages:
   CombineSchedulers:
@@ -28,7 +29,7 @@ packages:
     exactVersion: 3.5.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.0.1
+    exactVersion: 13.9.1
   CombineReachability:
     url: https://github.com/istvan-kreisz/CombineReachability.git
     branch: master
@@ -56,9 +57,11 @@ targets:
       - package: mobile-offline-downloader-ios
       - package: SwiftUIIntrospect
     preBuildScripts:
-      - path: ../scripts/swiftLint.sh
+      - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/.swiftlint.yml
     settings:
       SWIFT_EMIT_LOC_STRINGS: true
   CoreTests:    
@@ -95,9 +98,11 @@ targets:
       - target: Core
       - package: Swifter
     preBuildScripts:
-      - path: ../scripts/swiftLint.sh
+      - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/.swiftlint.yml
 schemes:
   Core:
     build:

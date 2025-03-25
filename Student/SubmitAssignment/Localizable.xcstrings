@@ -109,7 +109,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Assignment"
+            "value" : "Tasc"
           }
         },
         "hi" : {
@@ -1113,7 +1113,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cursos"
+            "value" : "Asignaturas"
           }
         },
         "fi" : {

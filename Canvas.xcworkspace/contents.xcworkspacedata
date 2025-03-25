@@ -2,62 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CanvasCore/CanvasCore.xcodeproj">
+      location = "group:Core/Core.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Core/Core.xcodeproj">
+      location = "group:Student/Student.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Parent/Parent.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <Group
-      location = "group:rn/Teacher"
-      name = "rn/Teacher">
-      <FileRef
-         location = "group:flow">
-      </FileRef>
-      <FileRef
-         location = "group:i18n">
-      </FileRef>
-      <FileRef
-         location = "group:src">
-      </FileRef>
-      <FileRef
-         location = "group:test">
-      </FileRef>
-      <FileRef
-         location = "group:app.json">
-      </FileRef>
-      <FileRef
-         location = "group:babel.config.js">
-      </FileRef>
-      <FileRef
-         location = "group:index.ios.js">
-      </FileRef>
-      <FileRef
-         location = "group:metro.config.js">
-      </FileRef>
-      <FileRef
-         location = "group:package.json">
-      </FileRef>
-      <FileRef
-         location = "group:README.md">
-      </FileRef>
-      <FileRef
-         location = "group:rn-mods.sh">
-      </FileRef>
-      <FileRef
-         location = "group:yarn.lock">
-      </FileRef>
-   </Group>
-   <FileRef
-      location = "group:Student/Student.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:rn/Teacher/ios/Teacher.xcodeproj">
+      location = "group:Teacher/Teacher.xcodeproj">
    </FileRef>
    <Group
       location = "container:TestPlans"
@@ -90,6 +44,9 @@
          location = "group:TeacherE2E.xctestplan">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:.bitrise">
+   </FileRef>
    <FileRef
       location = "group:dangerfile.js">
    </FileRef>

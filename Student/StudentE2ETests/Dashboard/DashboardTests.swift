@@ -307,7 +307,7 @@ class DashboardTests: E2ETestCase {
 
         for courseColor in Helper.CourseOptions.CustomizeCourse.CourseColor.allCases {
             let colorButton = Helper.CourseOptions.CustomizeCourse.colorButton(color: courseColor).waitUntil(.visible)
-            XCTAssertTrue(colorButton.isVisible)
+            XCTAssertTrue(colorButton.isVisible, "\(courseColor.rawValue) course color is not visible")
         }
 
         // MARK: Set nickname and color for course

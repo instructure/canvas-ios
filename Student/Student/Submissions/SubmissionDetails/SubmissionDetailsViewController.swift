@@ -49,10 +49,10 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var pickerButtonDivider: DividerView?
     @IBOutlet weak var picker: UIPickerView?
 
-    static func create(env: AppEnvironment = .shared, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) -> SubmissionDetailsViewController {
+    static func create(env: AppEnvironment, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) -> SubmissionDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.presenter = SubmissionDetailsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID, selectedAttempt: selectedAttempt)
         controller.env = env
+        controller.presenter = SubmissionDetailsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID, selectedAttempt: selectedAttempt)
         return controller
     }
 
@@ -203,6 +203,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         if let drawer = drawer, drawer.height == 0 {
             drawer.moveTo(height: drawer.midDrawerHeight, velocity: 1)
         }
+        UIAccessibility.post(notification: .screenChanged, argument: drawerContentViewController)
     }
 
     @IBAction func pickerButtonTapped(_ sender: Any) {

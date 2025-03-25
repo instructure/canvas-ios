@@ -112,7 +112,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             submissionRubricButton?.makeUnavailableInOfflineMode()
         }
     }
-    /** The view containing a separator and the rubruc button. */
+    /** The view containing a separator and the rubric button. */
     @IBOutlet weak var submissionRubricButtonSection: UIView?
 
     @IBOutlet weak var lockedIconContainerView: UIView!
@@ -134,7 +134,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
     var assignmentID = ""
     var courseID = ""
-    let env = AppEnvironment.shared
     var fragment: String?
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
@@ -142,6 +141,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
+
+    private var env: AppEnvironment = .defaultValue
     private let webView = CoreWebView()
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
@@ -149,7 +150,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
     private lazy var remindersInteractor = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
 
-    static func create(courseID: String,
+    static func create(env: AppEnvironment,
+                       courseID: String,
                        assignmentID: String,
                        fragment: String? = nil,
                        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
@@ -158,7 +160,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.fragment = fragment
-        controller.presenter = AssignmentDetailsPresenter(view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
+        controller.env = env
+        controller.presenter = AssignmentDetailsPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
         controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
@@ -245,13 +248,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         submittedIcon?.image = .completeLine.withRenderingMode(.alwaysTemplate)
         submittedIcon?.tintColor = .textDarkest
 
-        gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak gradeBorderLayer] gradeSection, _ in
-            gradeBorderLayer?.frame = gradeSection.bounds
-            gradeBorderLayer?.path = UIBezierPath(roundedRect: gradeSection.bounds,
-                                                  cornerRadius: 6).cgPath
-            // Remove the placeholder border
-            gradeSection.layer.borderColor = nil
-            gradeSection.layer.borderWidth = 0
+        gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak self] gradeSection, _ in
+            self?.updateGradeBorder(using: gradeSection)
         }
         presenter?.viewIsReady()
     }
@@ -347,14 +345,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         switch state {
         case .reSubmissionFailed:
             submittedLabel?.text = String(localized: "Resubmission Failed", bundle: .student)
-            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .textLightest.variantForLightMode)
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .failed:
             submittedLabel?.text = String(localized: "Submission Failed", bundle: .student)
-            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .textLightest.variantForLightMode)
             submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(String(localized: "Tap to view details", bundle: .student), for: .normal)
             changeSubmittedIconVisibility(to: false)
@@ -390,13 +388,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
         pointsLabel?.isHidden = pointsLabel?.text == nil
-        let status = assignment.submission?.status ?? .notSubmitted
+        let displayProperties = assignment.submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
-        statusIconView?.image = status.icon
-        statusIconView?.tintColor = status.color
+        statusIconView?.image = displayProperties.icon
+        statusIconView?.tintColor = displayProperties.color
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
-        statusLabel?.textColor = status.color
-        statusLabel?.text = submission?.statusText
+        statusLabel?.textColor = displayProperties.color
+        statusLabel?.text = displayProperties.text
         dueSection?.subHeader.text = assignment.dueAt.flatMap {
             $0.dateTimeString
         } ?? String(localized: "No Due Date", bundle: .student)
@@ -421,8 +419,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: presenter?.assignmentDescription(),
-            originalBaseURL: baseURL,
-            offlineBaseURL: URL.Paths.Offline.rootURL(sessionID: env.currentSession?.uniqueID ?? "")
+            originalBaseURL: baseURL
         )
 
         updateGradeCell(assignment, submission: submission)
@@ -504,6 +501,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             attemptDateButton.changesSelectionAsPrimaryAction = true
             attemptDateButton.showsMenuAsPrimaryAction = true
             attemptDateButton.menu = UIMenu(children: items)
+        } else {
+            attemptDateButton.accessibilityTraits = .staticText
         }
 
         attemptDateButton?.configuration = buttonConfig
@@ -576,6 +575,15 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor)
         ])
         reminderSection.didMove(toParent: self)
+    }
+
+    private func updateGradeBorder(using gradeSection: UIStackView) {
+        gradeBorderLayer?.frame = gradeSection.bounds
+        gradeBorderLayer?.path = UIBezierPath(roundedRect: gradeSection.bounds,
+                                              cornerRadius: 6).cgPath
+        // Remove the placeholder border
+        gradeSection.layer.borderColor = nil
+        gradeSection.layer.borderWidth = 0
     }
 
     // MARK: - Show / Hide Sections

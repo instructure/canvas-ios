@@ -42,14 +42,10 @@ public class AnnouncementsHelper: BaseHelper {
     public struct Editor {
         public static var navBar: XCUIElement { app.find(id: "New Announcement") }
         public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
-        public static var attachment: XCUIElement { app.find(id: "DiscussionEditor.attachmentButton", type: .button) }
-        public static var done: XCUIElement { app.find(id: "DiscussionEditor.doneButton") }
-        public static var title: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
-        public static var description: XCUIElement { app.find(label: "Description", type: .textField) }
-        public static var sections: XCUIElement { app.find(id: "DiscussionEditor.sectionsButton") }
-        public static var delayed: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtToggle").find(type: .switch) }
-        public static var locked: XCUIElement { app.find(id: "DiscussionEditor.lockedToggle").find(type: .switch) }
-        public static var allowRating: XCUIElement { app.find(id: "DiscussionEditor.allowRatingToggle").find(type: .switch) }
+        public static var attachment: XCUIElement { app.find(label: "Attach", type: .button) }
+        public static var title: XCUIElement { app.find(value: "Topic Title", type: .textField) }
+        public static var description: XCUIElement { app.find(label: "Rich Text Area. Press OPTION+F8 for Rich Content Editor shortcuts.", type: .other) }
+        public static var publishButton: XCUIElement { app.find(label: "Publish", type: .button) }
     }
 
     public static func notificationTitle(announcement: DSAccountNotification) -> XCUIElement {

@@ -43,9 +43,9 @@ class ParentTestCase: XCTestCase {
         Clock.reset()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         AppEnvironment.shared = env
+        AppEnvironment.shared.uploadManager = MockUploadManager(env: env)
         API.resetMocks()
         MockUploadManager.reset()
-        UploadManager.shared = MockUploadManager()
         ExperimentalFeature.allEnabled = false
         Parent.currentStudentID = "1"
         UIView.setAnimationsEnabled(false)

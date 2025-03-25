@@ -1,5 +1,8 @@
 ---
 name: Student
+attributes: {
+  LastUpgradeCheck: "1600"
+}
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas.2u
@@ -9,6 +12,7 @@ options:
 settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
+  ENABLE_USER_SCRIPT_SANDBOXING: true
   CURRENT_PROJECT_VERSION: 0.0.1
   MARKETING_VERSION: 0.0.1
   platform: iOS
@@ -23,8 +27,6 @@ include:
   - StudentE2ETests/student-e2e-tests.yml
   - StudentUnitTests/student-unit-tests.yml
 projectReferences:
-  CanvasCore:
-    path: ../CanvasCore/CanvasCore.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
 packages:
@@ -33,10 +35,19 @@ packages:
     exactVersion: 9.1.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.0.1
+    exactVersion: 13.9.1
   BugfenderLibrary:
     url: https://github.com/bugfender/BugfenderSDK-iOS
     exactVersion: 1.13.2
   AWSSDK:
     url: https://github.com/aws-amplify/aws-sdk-ios-spm
     exactVersion: 2.33.10
+  FirebaseCrashlytics:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1
+  FirebaseRemoteConfig:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1
+  FirebaseRemoteConfigSwift:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1

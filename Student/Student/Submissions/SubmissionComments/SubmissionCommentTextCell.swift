@@ -69,7 +69,7 @@ class SubmissionCommentTextCell: UITableViewCell {
             button.setTitleColor(color, for: .normal)
 
             button.layer.cornerRadius = 4
-            button.layer.borderColor = UIColor.borderMedium.ensureContrast(against: .white).cgColor
+            button.layer.borderColor = UIColor.borderMedium.ensureContrast(against: .textLightest.variantForLightMode).cgColor
             button.layer.borderWidth = 1
             button.tag = index
             button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .touchUpInside)

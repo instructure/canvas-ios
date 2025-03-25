@@ -36,7 +36,6 @@ public extension Sequence where Element == UNNotificationRequest {
                 return userInfo[Keys.assignmentId.rawValue] as? String == assignmentId
             }()
             return hasCourseId && hasAssignmentId && hasUserId
-
         }
     }
 

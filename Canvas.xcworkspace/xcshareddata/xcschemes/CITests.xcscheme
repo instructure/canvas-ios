@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1520"
+   LastUpgradeVersion = "1600"
    version = "2.1">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -45,21 +45,7 @@
                BlueprintIdentifier = "B15CA25C221DDB820014FB02"
                BuildableName = "TeacherTests.xctest"
                BlueprintName = "TeacherTests"
-               ReferencedContainer = "container:rn/Teacher/ios/Teacher.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDDDC5B1E7D6809AA82A8C5C"
-               BuildableName = "TestsFoundation.framework"
-               BlueprintName = "TestsFoundation"
-               ReferencedContainer = "container:TestsFoundation/TestsFoundation.xcodeproj">
+               ReferencedContainer = "container:Teacher/Teacher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry

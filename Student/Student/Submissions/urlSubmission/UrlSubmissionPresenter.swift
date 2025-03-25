@@ -31,7 +31,7 @@ class UrlSubmissionPresenter {
     let userID: String
     let env: AppEnvironment
 
-    init(view: UrlSubmissionViewProtocol?, courseID: String, assignmentID: String, userID: String, env: AppEnvironment = .shared) {
+    init(env: AppEnvironment, view: UrlSubmissionViewProtocol?, courseID: String, assignmentID: String, userID: String) {
         self.view = view
         self.env = env
         self.assignmentID = assignmentID

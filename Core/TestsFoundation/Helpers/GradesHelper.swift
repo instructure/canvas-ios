@@ -20,7 +20,8 @@ import Core
 
 public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }
-    public static var filterButton: XCUIElement { app.find(type: .popUpButton) }
+    public static var upcomingAssignmentsLabel: XCUIElement { app.find(label: "Upcoming Assignments", type: .staticText) }
+    public static var filterButton: XCUIElement { app.find(id: "GradeList.filterButton") }
     public static var lockIcon: XCUIElement { app.find(id: "lockIcon") }
     public static var basedOnGradedSwitch: XCUIElement { app.find(id: "BasedOnGradedToggle").find(type: .switch) }
 
@@ -74,9 +75,14 @@ public class GradesHelper: BaseHelper {
     }
 
     public struct Filter {
+        public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+        public static var sortByGroupSwitch: XCUIElement { app.find(id: "GradeFilter.sortModeOptions.groupName") }
+        public static var sortByDateSwitch: XCUIElement { app.find(id: "GradeFilter.sortModeOptions.dueDate") }
+        public static var saveButton: XCUIElement { app.find(id: "GradeFilter.saveButton", type: .button) }
+
         public static func optionButton(gradingPeriod: DSGradingPeriod? = nil) -> XCUIElement {
-            let label = gradingPeriod?.title ?? "All"
-            return app.find(type: .collectionView).find(label: label, type: .button)
+            let label = gradingPeriod?.title ?? "All Grading Periods"
+            return app.find(label: label, type: .switch)
         }
     }
 

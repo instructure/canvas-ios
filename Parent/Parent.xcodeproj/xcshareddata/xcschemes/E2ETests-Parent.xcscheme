@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1500"
+   LastUpgradeVersion = "1600"
    version = "1.7">
    <BuildAction
-      parallelizeBuildables = "NO"
+      parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -60,14 +60,14 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492704721CF4AF7100C631C6"
+            BlueprintIdentifier = "8FD2A76760D57F6AC5D5C101"
             BuildableName = "Student.app"
             BlueprintName = "Student"
             ReferencedContainer = "container:../Student/Student.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1BB7A8122BAC820006CA068"
+            BlueprintIdentifier = "CF1908FC2672DCE67A245687"
             BuildableName = "SubmitAssignment.appex"
             BlueprintName = "SubmitAssignment"
             ReferencedContainer = "container:../Student/Student.xcodeproj">

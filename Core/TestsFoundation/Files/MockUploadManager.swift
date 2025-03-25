@@ -19,17 +19,17 @@
 import CoreData
 @testable import Core
 
-public class MockUploadManager: UploadManager {
+public final class MockUploadManager: UploadManager, @unchecked Sendable {
     public static func reset() {
     }
 
-    public var uploadWasCalled = false
-    public var addWasCalled = false
-    public var cancelWasCalled = false
-    public var canceledBatchID: String?
+    public nonisolated(unsafe) var uploadWasCalled = false
+    public nonisolated(unsafe) var addWasCalled = false
+    public nonisolated(unsafe) var cancelWasCalled = false
+    public nonisolated(unsafe) var canceledBatchID: String?
 
-   public init() {
-        super.init(identifier: "mock")
+    public init(env: AppEnvironment) {
+        super.init(env: env, identifier: "mock")
     }
 
     public override var database: NSPersistentContainer {
@@ -41,26 +41,26 @@ public class MockUploadManager: UploadManager {
         return try super.add(url: url, batchID: batchID)
     }
 
-    open override func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    public override func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
     }
 
-    open override func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
-        uploadWasCalled = true
-        callback?()
-    }
-
-    open override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, baseURL: URL? = nil, callback: (() -> Void)? = nil) {
+    public override func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
         callback?()
     }
 
-    open override func cancel(batchID: String) {
+    public override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, baseURL: URL? = nil, callback: (() -> Void)? = nil) {
+        uploadWasCalled = true
+        callback?()
+    }
+
+    public override func cancel(batchID: String) {
         cancelWasCalled = true
         canceledBatchID = batchID
     }
 
-    open override func cancel(file: File) {
+    public override func cancel(file: File) {
         cancelWasCalled = true
     }
 }

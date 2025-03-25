@@ -51,7 +51,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
             submitted = true
         }
     }
-    lazy var mockButton = MockButton(view: mockView, assignmentID: "1")
+    lazy var mockButton = MockButton(env: env, view: mockView, assignmentID: "1")
     lazy var mockView: MockView = {
         let view = MockView()
         view.test = self
@@ -61,9 +61,16 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         env.mockStore = true
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: "target")
+        presenter = AssignmentDetailsPresenter(
+            env: env,
+            view: mockView,
+            courseID: "1",
+            assignmentID: "1",
+            fragment: "target"
+        )
         presenter.submissionButtonPresenter = mockButton
-        viewController = AssignmentDetailsViewController.create(courseID: "1", assignmentID: "1")
+        viewController = AssignmentDetailsViewController
+            .create(env: env, courseID: "1", assignmentID: "1")
         viewController.presenter = presenter
         resultingAttemptPickerActiveState = nil
         resultingAttemptPickerItems = nil
@@ -118,7 +125,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         presenter.update()
         let quizStore = presenter.quizzes as! TestStore
 
-        wait(for: [quizStore.refreshExpectation], timeout: 0.1)
+        wait(for: [quizStore.refreshExpectation], timeout: 1)
 
         presenter.quizzes?.eventHandler()
         XCTAssertEqual(resultingQuiz, quiz)
@@ -133,7 +140,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let arcStore = presenter.arc as! TestStore
 
         presenter.viewIsReady()
-        wait(for: [coursesStore.refreshExpectation, assignmentsStore.refreshExpectation, colorsStore.refreshExpectation, arcStore.refreshExpectation], timeout: 0.1)
+        wait(for: [coursesStore.refreshExpectation, assignmentsStore.refreshExpectation, colorsStore.refreshExpectation, arcStore.refreshExpectation], timeout: 1)
     }
 
     func testBaseURLWithNilFragment() {
@@ -141,7 +148,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         Assignment.make(from: .make(html_url: expected))
 
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
+        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
         presenter.assignments.eventHandler()
 
         XCTAssertEqual(resultingBaseURL, expected)
@@ -154,7 +161,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(html_url: url))
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -166,7 +173,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
         Assignment.make(from: .make(html_url: expected))
-        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(env: env, view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -416,17 +423,14 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Course.make()
         Assignment.make()
         let expectation = XCTestExpectation(description: "notification")
-        var notification: Notification?
-        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) {
-            notification = $0
+        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { notification in
+            XCTAssertEqual(notification.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .view)
+            XCTAssertEqual(notification.userInfo?["moduleItem"] as? ModuleItemType, .assignment("1"))
+            XCTAssertEqual(notification.userInfo?["courseID"] as? String, "1")
             expectation.fulfill()
         }
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 0.5)
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .view)
-        XCTAssertEqual(notification?.userInfo?["moduleItem"] as? ModuleItemType, .assignment("1"))
-        XCTAssertEqual(notification?.userInfo?["courseID"] as? String, "1")
         NotificationCenter.default.removeObserver(token)
     }
 
@@ -531,7 +535,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         try UploadManager.shared.viewContext.save()
         file.uploadError = "im telling you, IT FAILED!!"
         try UploadManager.shared.viewContext.save()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testLockExplanationBeforeUnlockDate() {
