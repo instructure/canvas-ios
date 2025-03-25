@@ -91,7 +91,6 @@ final class ComposeMessageViewModel: ObservableObject {
     // MARK: - Private
     private var initialMessageProperties = ComposeMessageProperties()
     private var changedMessageProperties = ComposeMessageProperties()
-    private var didSentMailSuccessfully: PassthroughSubject<Void, Never>?
     public let didTapRetry = PassthroughRelay<WeakViewController>()
     private var viewController  = WeakViewController()
     private var subscriptions = Set<AnyCancellable>()
@@ -117,7 +116,6 @@ final class ComposeMessageViewModel: ObservableObject {
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
         inboxSettingsInteractor: InboxSettingsInteractor,
-        sentMailEvent: PassthroughSubject<Void, Never>? = nil,
         audioSession: AudioSessionProtocol,
         cameraPermissionService: CameraPermissionService.Type
     ) {
@@ -127,7 +125,6 @@ final class ComposeMessageViewModel: ObservableObject {
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
         self.settingsInteractor = inboxSettingsInteractor
-        self.didSentMailSuccessfully = sentMailEvent
         self.audioSession = audioSession
         self.cameraPermissionService = cameraPermissionService
         setIncludedMessages(messageType: options.messageType)
@@ -555,7 +552,7 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     private func didSendMessage(viewController: WeakViewController) {
-        didSentMailSuccessfully?.send()
+        viewController.findSnackBarViewModel()?.showSnack(InboxMessageScope.sent.localizedName)
         router.dismiss(viewController)
     }
 
