@@ -20,7 +20,6 @@ import AVKit
 import AWSLambda
 import AWSSNS
 import BugfenderSDK
-import CanvasCore
 import Combine
 import Core
 import Firebase

@@ -26,7 +26,6 @@ targets:
       - package: AWSSDK
         product: AWSSNS
       - package: BugfenderLibrary
-      - target: CanvasCore/CanvasCore
       - package: FirebaseCrashlytics
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift

@@ -81,7 +81,7 @@ targets:
     platform: iOS
     transitivelyLinkDependencies: false
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.CoreTester
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.CoreTester.2u
       CODE_SIGN_ENTITLEMENTS: CoreTester/CoreTester.entitlements
     sources:
       - path: CoreTester

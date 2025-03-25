@@ -150,6 +150,7 @@ extension CoreHostingController: DownloadsProgressBarHidden {
             toggleDownloadingBarView(hidden: false)
         }
     }
+}
     
 // MARK: - Appearance View Modifiers
 
