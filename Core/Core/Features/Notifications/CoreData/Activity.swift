@@ -51,7 +51,7 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.title = item.title
         model.htmlURL = item.html_url
         model.typeRaw = item.type.rawValue
-        model.updatedAt = item.updated_at
+        model.updatedAt = item.latestRelevantUpdate
 
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: Context?

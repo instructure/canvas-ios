@@ -99,7 +99,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
 
             self.isK5User = apiProfile.k5_user == true
             Analytics.shared.logSession(session)
@@ -283,7 +283,7 @@ extension TeacherAppDelegate: AnalyticsHandler {
 
 extension TeacherAppDelegate: LoginDelegate {
     func changeUser() {
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window = window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .teacher)
     }
