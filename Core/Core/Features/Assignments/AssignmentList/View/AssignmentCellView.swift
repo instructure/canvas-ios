@@ -126,7 +126,7 @@ public struct AssignmentCellView: View {
     }
 
     private var score: some View {
-        Text(viewModel.scoreLabel ?? "")
+        Text(GradeFormatter.string(from: viewModel.assignment, style: .medium) ?? "")
             .style(.textCellSupportingText)
             .foregroundColor(viewModel.courseColor)
     }
