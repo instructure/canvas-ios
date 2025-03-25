@@ -22,7 +22,6 @@ import Core
 import Firebase
 import FirebaseCrashlyticsSwift
 import FirebaseRemoteConfigSwift
-import Heap
 import PSPDFKit
 import SafariServices
 import UIKit
