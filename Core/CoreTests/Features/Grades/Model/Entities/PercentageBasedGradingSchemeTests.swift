@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,23 +19,10 @@
 @testable import Core
 import XCTest
 
-class GradingSchemeTests: CoreTestCase {
+class PercentageBasedGradingSchemeTests: GradingSchemeTestCase {
 
     func testScoreConversion() {
-        let entries: [GradingSchemeEntry] = {
-            let entryA: GradingSchemeEntry = databaseClient.insert()
-            entryA.name = "A"
-            entryA.value = 0.9
-            let entryB: GradingSchemeEntry = databaseClient.insert()
-            entryB.name = "B"
-            entryB.value = 0.3
-            let entryF: GradingSchemeEntry = databaseClient.insert()
-            entryF.name = "F"
-            entryF.value = 0
-            return [entryA, entryB, entryF]
-        }()
-
-        let testee = PercentageBasedGradingScheme.make(entries: entries)
+        let testee = PercentageBasedGradingScheme(entries: scoreConversionEntries())
 
         var result = testee.convertScoreToLetterGrade(score: 90)
         XCTAssertEqual(result, "A")
@@ -54,30 +41,10 @@ class GradingSchemeTests: CoreTestCase {
     }
 
     func testScoreConversionWithInvalidScheme() {
-        let entries: [GradingSchemeEntry] = {
-            let entry: GradingSchemeEntry = databaseClient.insert()
-            entry.name = "A"
-            entry.value = 90
-            return [entry]
-        }()
-
-        let testee = PercentageBasedGradingScheme.make(entries: entries)
+        let testee = PercentageBasedGradingScheme(entries: invalidConversionEntries())
         let result = testee.convertScoreToLetterGrade(score: 30)
 
         XCTAssertNil(result)
-    }
-
-    func testFormattedScorePointBasedOn() {
-        let testee = PointsBasedGradingScheme.make(scaleFactor: 5, entries: [])
-
-        var result = testee.formattedScore(from: 80)
-        XCTAssertEqual(result, "4")
-
-        result = testee.formattedScore(from: 45.76)
-        XCTAssertEqual(result, "2.29")
-
-        result = testee.formattedScore(from: 33.43)
-        XCTAssertEqual(result, "1.67")
     }
 
     func testFormattedScorePointBasedOff() {
