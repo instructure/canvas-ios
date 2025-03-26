@@ -160,7 +160,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
             .store(in: &subscriptions)
 
         if let context = context, context.contextType == .course {
-            courses = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in }
+            courses = env.subscribe(GetCourse(courseID: context.id)) { }
         }
 
     }

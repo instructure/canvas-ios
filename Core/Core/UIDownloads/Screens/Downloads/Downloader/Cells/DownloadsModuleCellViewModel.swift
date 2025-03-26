@@ -82,7 +82,7 @@ final class DownloadsModuleCellViewModel: ObservableObject {
         if let moduleItem = try? ModuleItem.fromOfflineModel(dataModel) {
             return image(moduleItem.type)
         }
-        if let file = try? File.fromOfflineModel(dataModel) {
+        if let _ = try? File.fromOfflineModel(dataModel) {
             return .documentSolid
         }
         return nil
@@ -98,7 +98,7 @@ final class DownloadsModuleCellViewModel: ObservableObject {
         if let moduleItem = try? ModuleItem.fromOfflineModel(dataModel) {
             return moduleItem.type
         }
-        if let moduleItem = try? ModuleItem.fromOfflineModel(dataModel) {
+        if let _ = try? ModuleItem.fromOfflineModel(dataModel) {
             return .file("")
         }
         return nil

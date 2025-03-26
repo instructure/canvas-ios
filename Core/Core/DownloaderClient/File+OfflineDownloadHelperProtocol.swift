@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import mobile_offline_downloader_ios
+@preconcurrency import mobile_offline_downloader_ios
 
 extension File: OfflineDownloadTypeProtocol {
     public static func canDownload(entry: OfflineDownloaderEntry) -> Bool {

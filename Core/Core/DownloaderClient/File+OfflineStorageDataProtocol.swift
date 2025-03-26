@@ -22,7 +22,6 @@ extension File: OfflineStorageDataProtocol {
     public static func fromOfflineModel(_ model: OfflineStorageDataModel) throws -> File {
         let env = AppEnvironment.shared
         if model.type == OfflineContentType.file.rawValue {
-            let data = model.json.data(using: .utf8)
             let context = env.database.viewContext
             let predicate = NSPredicate(format: "%K == %@", #keyPath(File.id), model.id)
             if let file: File = context.fetch(predicate).first { return file }

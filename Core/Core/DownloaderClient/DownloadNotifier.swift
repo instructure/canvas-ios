@@ -80,7 +80,7 @@ final class DownloadNotifier: Reachabilitable {
                 content: content,
                 trigger: nil
             )
-            UNUserNotificationCenter.current().add(request)
+            _ = UNUserNotificationCenter.current().add(request)
         }
     }
 }

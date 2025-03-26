@@ -17,13 +17,14 @@
 //
 
 import Foundation
-import mobile_offline_downloader_ios
+@preconcurrency import mobile_offline_downloader_ios
 
 extension Page: OfflineDownloadTypeProtocol {
     public static func canDownload(entry: OfflineDownloaderEntry) -> Bool {
         return entry.dataModel.type.lowercased().contains(OfflineContentType.page.rawValue)
     }
 
+    @MainActor
     public static func prepareForDownload(entry: OfflineDownloaderEntry) async throws {
         return try await withCheckedThrowingContinuation({[weak entry] continuation in
             guard let entry = entry else { return }

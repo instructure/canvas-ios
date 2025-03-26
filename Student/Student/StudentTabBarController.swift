@@ -37,11 +37,11 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
-//            // Setting the horizontal size class will force the tab bar
-//            // to be displayed at the bottom.
-//            traitOverrides.horizontalSizeClass = .compact
-//        }
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            // Setting the horizontal size class will force the tab bar
+            // to be displayed at the bottom.
+            traitOverrides.horizontalSizeClass = .compact
+        }
 
         delegate = self
         viewControllers = [
