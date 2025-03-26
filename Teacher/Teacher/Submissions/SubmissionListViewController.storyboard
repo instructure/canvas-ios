@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wwR-75-jKJ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="pvC-67-F5M" customClass="ListBackgroundView" customModule="Core">
-                                    <rect key="frame" x="0.0" y="139" width="414" height="273"/>
+                                    <rect key="frame" x="0.0" y="164" width="414" height="273"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7H-yZ-5vC" customClass="CircleProgressView" customModule="Core">
@@ -96,10 +95,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmissionListCell" id="Qq8-M9-JaO" customClass="SubmissionListCell" customModule="Teacher" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="83"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qq8-M9-JaO" id="HV8-Ab-8pM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YvL-iT-nuf" customClass="AvatarView" customModule="Teacher" customModuleProvider="target">
@@ -113,7 +112,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="sX9-Js-lDT">
-                                                    <rect key="frame" x="68" y="12" width="130.5" height="58.5"/>
+                                                    <rect key="frame" x="68" y="12" width="130.5" height="61.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronnie Matthews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVt-aq-E1l" customClass="DynamicLabel" customModule="Core">
                                                             <rect key="frame" x="0.0" y="0.0" width="130.5" height="19.5"/>
@@ -125,18 +124,30 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Not Submitted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5h-QB-zhC" customClass="DynamicLabel" customModule="Core">
-                                                            <rect key="frame" x="0.0" y="21.5" width="96.5" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-5F-LBf">
+                                                            <rect key="frame" x="0.0" y="21.5" width="120.5" height="20"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="completeLine" translatesAutoresizingMaskIntoConstraints="NO" id="b8i-Le-D5p">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="ZNT-c2-ViX"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="etr-Ek-rZT"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Not Submitted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5h-QB-zhC" customClass="DynamicLabel" customModule="Core">
+                                                                    <rect key="frame" x="24" y="0.0" width="96.5" height="20"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-rs-FUr">
-                                                            <rect key="frame" x="0.0" y="40.5" width="96.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="43.5" width="96.5" height="18"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="749" text="NEEDS GRADING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GK-Jx-kr8" customClass="DynamicLabel" customModule="Core">
                                                                     <rect key="frame" x="6" y="3" width="84.5" height="12"/>
@@ -159,7 +170,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="U6T-fa-VUU">
-                                                    <rect key="frame" x="350.5" y="29.5" width="47.5" height="24"/>
+                                                    <rect key="frame" x="350.5" y="31" width="47.5" height="24"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYs-f3-j5U" customClass="DynamicLabel" customModule="Core">
                                                             <rect key="frame" x="0.0" y="3.5" width="13.5" height="17"/>
@@ -205,6 +216,7 @@
                                             <outlet property="nameLabel" destination="bVt-aq-E1l" id="NKd-yh-Nus"/>
                                             <outlet property="needsGradingLabel" destination="3GK-Jx-kr8" id="z4I-Pn-BuN"/>
                                             <outlet property="needsGradingView" destination="DGo-rs-FUr" id="Prg-IH-Nx0"/>
+                                            <outlet property="statusIconView" destination="b8i-Le-D5p" id="rEo-sX-MSZ"/>
                                             <outlet property="statusLabel" destination="g5h-QB-zhC" id="8Hg-iH-Mun"/>
                                         </connections>
                                     </tableViewCell>
@@ -240,40 +252,15 @@
             <point key="canvasLocation" x="140.57971014492756" y="133.92857142857142"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="3GK-Jx-kr8">
-            <size key="intrinsicContentSize" width="84.5" height="12"/>
-        </designable>
-        <designable name="591-je-mfD">
-            <size key="intrinsicContentSize" width="24" height="24"/>
-        </designable>
-        <designable name="F3u-Sj-TvD">
-            <size key="intrinsicContentSize" width="380" height="19.5"/>
-        </designable>
-        <designable name="bVt-aq-E1l">
-            <size key="intrinsicContentSize" width="130.5" height="19.5"/>
-        </designable>
-        <designable name="bYs-f3-j5U">
-            <size key="intrinsicContentSize" width="13.5" height="17"/>
-        </designable>
-        <designable name="g5h-QB-zhC">
-            <size key="intrinsicContentSize" width="96.5" height="17"/>
-        </designable>
-        <designable name="kJu-ge-UKj">
-            <size key="intrinsicContentSize" width="220" height="170"/>
-        </designable>
-        <designable name="xo4-us-LZA">
-            <size key="intrinsicContentSize" width="151.5" height="24"/>
-        </designable>
-    </designables>
     <resources>
         <image name="PandaSpace" width="220" height="170"/>
+        <image name="completeLine" width="24" height="24"/>
         <image name="offLine" width="24" height="24"/>
         <namedColor name="textDanger">
-            <color red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.90196078431372551" green="0.14117647058823529" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textInfo">
-            <color red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.16862745098039217" green="0.47843137254901963" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
