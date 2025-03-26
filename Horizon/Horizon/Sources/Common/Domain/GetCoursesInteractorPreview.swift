@@ -22,7 +22,7 @@ import Foundation
 import Core
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getNextUpModuleItems(ignoreCache: Bool) -> AnyPublisher<[NextUpViewModel], Never> {
+    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
         Just(
             [.init(
                 name: "AI Introductions",

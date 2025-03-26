@@ -18,14 +18,14 @@
 
 import Foundation
 
-struct NextUpViewModel: Identifiable {
+struct DashboardCourse: Identifiable {
     let name: String
     let progress: Double
-    let learningObjectCardViewModel: LearningObjectCardViewModel?
+    let learningObjectCardViewModel: LearningObjectCard?
     var id: String { name }
 }
 
-struct LearningObjectCardViewModel {
+struct LearningObjectCard {
     let moduleTitle: String
     let learningObjectName: String
     let type: String?

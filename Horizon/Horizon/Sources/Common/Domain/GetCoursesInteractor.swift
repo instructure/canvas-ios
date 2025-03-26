@@ -25,7 +25,7 @@ protocol GetCoursesInteractor {
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
     func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
     func getInstitutionName() -> AnyPublisher<String, Never>
-    func getNextUpModuleItems(ignoreCache: Bool) -> AnyPublisher<[NextUpViewModel], Never>
+    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -68,13 +68,13 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getNextUpModuleItems(ignoreCache: Bool) -> AnyPublisher<[NextUpViewModel], Never> {
+    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
         ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId))
             .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap {
                 $0.publisher
-                    .flatMap { courseProgression -> AnyPublisher<NextUpViewModel?, Never> in
+                    .flatMap { courseProgression -> AnyPublisher<DashboardCourse?, Never> in
                         let courseID = courseProgression.courseID
                         let name = courseProgression.course.name ?? ""
                         let progress = courseProgression.completionPercentage / 100.0
@@ -101,7 +101,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                         .compactMap { $0.first }
                         .map { HModuleItem(from: $0) }
                         .map { item in
-                            let moduleItem = LearningObjectCardViewModel(
+                            let moduleItem = LearningObjectCard(
                                 moduleTitle: item.moduleName ?? "",
                                 learningObjectName: item.title,
                                 type: item.type?.label,
@@ -110,7 +110,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                                 estimatedTime: item.estimatedDurationFormatted
                             )
 
-                            return NextUpViewModel(
+                            return DashboardCourse(
                                 name: name,
                                 progress: progress,
                                 learningObjectCardViewModel: moduleItem

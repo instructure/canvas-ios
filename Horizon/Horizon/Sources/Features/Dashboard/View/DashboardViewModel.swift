@@ -27,7 +27,7 @@ class DashboardViewModel {
 
     private(set) var state: InstUI.ScreenState = .loading
     var title: String = ""
-    var nextUpViewModels: [NextUpViewModel] = []
+    var nextUpViewModels: [DashboardCourse] = []
 
     // MARK: - Private variables
 
@@ -50,7 +50,7 @@ class DashboardViewModel {
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
-        getCoursesInteractor.getNextUpModuleItems(ignoreCache: ignoreCache)
+        getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
                 self?.nextUpViewModels  = items
                 self?.state = .data
