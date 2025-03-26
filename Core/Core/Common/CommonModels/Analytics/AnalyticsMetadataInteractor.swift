@@ -24,22 +24,33 @@ public protocol AnalyticsMetadataInteractor {
 }
 
 public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
+
+    private struct UserMetadata {
+        let uuid: String?
+        var locale: String?
+        let accountUUID: String?
+    }
+
     public init() {}
 
     public func getMetadata() async throws -> AnalyticsMetadata {
-        let flagsStore = ReactiveStore(useCase: GetEnvironmentFeatureFlags(context: Context.currentUser))
+        let flagEnabledStore = ReactiveStore(useCase: GetEnvironmentFeatureFlags(context: Context.currentUser))
             .getEntities()
-            .compactMap { $0 }
+            .compactMap { $0.isFeatureEnabled(.account_survey_notifications) }
 
         let userStore = ReactiveStore(useCase: GetSelfUserIncludingUUID())
             .getEntities(ignoreCache: true)
-            .map { $0.first }
-            .compactMap { $0 }
+            .compactMap { $0.first }
+            .map {
+                UserMetadata(uuid: $0.uuid, locale: $0.locale, accountUUID: $0.accountUUID)
+            }
 
-        async let flagsPublisher = flagsStore.asyncPublisher()
+        // Both stores publish non-managed-object values to avoid accessing the managed objects
+        //  from arbitrary threads which happen to call this method
+        async let flagEnabledPublisher = flagEnabledStore.asyncPublisher()
         async let userPublisher = userStore.asyncPublisher()
 
-        let flags = try await flagsPublisher
+        let isFlagEnabled = try await flagEnabledPublisher
         let user = try await userPublisher
 
         let userUUID = user.uuid?.sha256() ?? ""
@@ -54,7 +65,7 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
             ),
             accountData: .init(
                 id: accountUUID,
-                surveyOptOut: flags.isFeatureEnabled(.account_survey_notifications)
+                surveyOptOut: isFlagEnabled
             )
         )
     }
