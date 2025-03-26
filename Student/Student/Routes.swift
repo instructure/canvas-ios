@@ -258,8 +258,8 @@ let router = Router(routes: [
 
     RouteHandler("/accounts/:accountID/external_tools/:toolID") { _, params, _ in
         guard let accountID = params["accountID"], let toolID = params["toolID"] else { return nil }
-        guard let vc = HelmManager.shared.topMostViewController() else { return nil }
-        let tools = LTITools(context: .account(accountID), id: toolID)
+        guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
+        let tools = LTITools(context: .account(accountID), id: toolID, isQuizLTI: nil)
         tools.presentTool(from: vc, animated: true)
         return nil
     },

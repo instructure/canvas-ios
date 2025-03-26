@@ -110,7 +110,7 @@ public class LTIWebViewController: UIViewController, ColoredNavViewProtocol, Err
         if let moduleItem = moduleItem {
             controller = LTIViewController.create(tools: tools, moduleItem: moduleItem)
         } else {
-            controller = LTIViewController.create(tools: tools, name: name)
+            controller = LTIViewController.create(env: env, tools: tools, name: name)
         }
 
         guard let controller = controller else { return }

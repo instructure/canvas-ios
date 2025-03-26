@@ -33,6 +33,9 @@ public extension UIColor {
     static let textPlaceholder = UIColor(resource: .textPlaceholder)
     static let textSuccess = UIColor(resource: .textSuccess)
     static let textWarning = UIColor(resource: .textWarning)
+    
+    static let edxColor: UIColor = UIColor(red: 0.00, green: 0.15, blue: 0.17, alpha: 1.00)
+    static let edxAcceptColor: UIColor =  UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00)
 }
 
 public extension Color {

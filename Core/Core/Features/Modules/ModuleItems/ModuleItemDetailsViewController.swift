@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public final class ModuleItemDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController, DownloadableViewController {
+public final class ModuleItemDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
     var onEmbedContainer: ((UIViewController) -> Void)?
 
     var courseID: String!

@@ -31,7 +31,7 @@ public struct DownloadsModuleCellView: View {
             viewModel.type.flatMap(image)
             Text(viewModel.title)
                 .font(.semibold16)
-                .foregroundColor(.oxford)
+                .foregroundColor(.textDarkest.variantForLightMode)
             Spacer()
             InstDisclosureIndicator()
         }
@@ -53,6 +53,6 @@ public struct DownloadsModuleCellView: View {
         }
         return Image(uiImage: uiImage)
             .frame(width: 20, height: 20)
-            .foregroundColor(.oxford)
+            .foregroundColor(.textDarkest.variantForLightMode)
     }
 }
