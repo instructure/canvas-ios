@@ -164,10 +164,6 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
-                },
-                Row(String(localized: "Canvas on GitHub", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
-                    guard let self = self else { return }
-                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 }
             ])
         )
