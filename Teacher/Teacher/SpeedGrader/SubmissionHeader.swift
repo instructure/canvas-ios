@@ -25,6 +25,7 @@ struct SubmissionHeader: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     var isGroupSubmission: Bool { !assignment.gradedIndividually && submission.groupID != nil }
     var groupName: String? { isGroupSubmission ? submission.groupName : nil }
@@ -45,8 +46,14 @@ struct SubmissionHeader: View {
                     VStack(alignment: .leading, spacing: 2) {
                         nameText
                             .font(.semibold16).foregroundColor(.textDarkest)
-                        Text(submission.status.text)
-                            .font(.medium14).foregroundColor(Color(submission.status.color))
+                        HStack(spacing: 2) {
+                            Image(uiImage: submission.status.icon)
+                                .resizable()
+                                .frame(width: uiScale.iconScale * 18, height: uiScale.iconScale * 18)
+                                .foregroundStyle(Color(submission.status.color))
+                            Text(submission.status.text)
+                                .font(.medium14).foregroundColor(Color(submission.status.color))
+                        }
                     }
                         .padding(.leading, 12)
                 }
