@@ -92,10 +92,10 @@
 		97F69BA723F1D232009622E3 /* AddStudentControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69BA623F1D232009622E3 /* AddStudentControllerTests.swift */; };
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */; };
-		B49725D3290C06050067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725D2290C06050067B91E /* Heap */; };
 		B4D2B40B2C77437800905BED /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B4D2B40A2C77437800905BED /* FirebaseCrashlytics */; };
 		B4D2B40D2C77437800905BED /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = B4D2B40C2C77437800905BED /* FirebaseRemoteConfig */; };
 		B4D2B40F2C77437800905BED /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4D2B40E2C77437800905BED /* FirebaseRemoteConfigSwift */; };
+		B4DAD5392D845A8B005F9CD5 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = B4DAD5382D845A8B005F9CD5 /* Pendo */; };
 		CF04D3182BC572C4009D8C86 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF04D3172BC572C4009D8C86 /* PrivacyInfo.xcprivacy */; };
 		CF20B5C42B1F9D5700C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */; };
 		CF34EC472C08C6700085EA33 /* ObserverAlertsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34EC462C08C6700085EA33 /* ObserverAlertsInteractor.swift */; };
@@ -344,10 +344,10 @@
 				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
 				B4D2B40F2C77437800905BED /* FirebaseRemoteConfigSwift in Frameworks */,
 				B4D2B40D2C77437800905BED /* FirebaseRemoteConfig in Frameworks */,
+				B4DAD5392D845A8B005F9CD5 /* Pendo in Frameworks */,
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
-				B49725D3290C06050067B91E /* Heap in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,11 +1110,11 @@
 			);
 			name = Parent;
 			packageProductDependencies = (
-				B49725D2290C06050067B91E /* Heap */,
 				CFAA401C2AE26302002C7AAE /* PSPDFKit */,
 				B4D2B40A2C77437800905BED /* FirebaseCrashlytics */,
 				B4D2B40C2C77437800905BED /* FirebaseRemoteConfig */,
 				B4D2B40E2C77437800905BED /* FirebaseRemoteConfigSwift */,
+				B4DAD5382D845A8B005F9CD5 /* Pendo */,
 			);
 			productName = Parent;
 			productReference = 5E6441871C3EE2E0003D7397 /* Parent.app */;
@@ -1230,9 +1230,9 @@
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			packageReferences = (
-				B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 				CFAA401B2AE26302002C7AAE /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
 				B4D2B4092C77437800905BED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B4DAD5372D845A7A005F9CD5 /* XCRemoteSwiftPackageReference "pendo-mobile-sdk" */,
 			);
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
 			projectDirPath = "";
@@ -1799,20 +1799,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/heap/heap-ios-sdk.git";
-			requirement = {
-				kind = exactVersion;
-				version = 9.1.0;
-			};
-		};
 		B4D2B4092C77437800905BED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = exactVersion;
 				version = 10.23.1;
+			};
+		};
+		B4DAD5372D845A7A005F9CD5 /* XCRemoteSwiftPackageReference "pendo-mobile-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pendo-io/pendo-mobile-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 3.6.1;
 			};
 		};
 		CFAA401B2AE26302002C7AAE /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */ = {
@@ -1826,11 +1826,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B49725D2290C06050067B91E /* Heap */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */;
-			productName = Heap;
-		};
 		B4D2B40A2C77437800905BED /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4D2B4092C77437800905BED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1845,6 +1840,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4D2B4092C77437800905BED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
+		};
+		B4DAD5382D845A8B005F9CD5 /* Pendo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4DAD5372D845A7A005F9CD5 /* XCRemoteSwiftPackageReference "pendo-mobile-sdk" */;
+			productName = Pendo;
 		};
 		CFAA401C2AE26302002C7AAE /* PSPDFKit */ = {
 			isa = XCSwiftPackageProductDependency;

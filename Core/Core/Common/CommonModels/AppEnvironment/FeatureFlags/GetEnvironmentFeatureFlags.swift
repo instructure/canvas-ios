@@ -22,6 +22,7 @@ import Foundation
 public enum EnvironmentFeatureFlags: String {
     case send_usage_metrics
     case mobile_offline_mode
+    case account_survey_notifications
 }
 
 public class GetEnvironmentFeatureFlags: CollectionUseCase {
@@ -68,10 +69,6 @@ public class GetEnvironmentFeatureFlags: CollectionUseCase {
 
 extension Store where U == GetEnvironmentFeatureFlags {
     public func isFeatureEnabled(_ featureFlag: EnvironmentFeatureFlags) -> Bool {
-        let featureFlagToFind = all
-            .filter { $0.name == featureFlag.rawValue}
-            .first
-
-        return featureFlagToFind?.enabled ?? false
+        all.isFeatureEnabled(featureFlag)
     }
 }
