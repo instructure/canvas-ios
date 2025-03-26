@@ -36,13 +36,14 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
     public func getMetadata() async throws -> AnalyticsMetadata {
         let flagEnabledStore = ReactiveStore(useCase: GetEnvironmentFeatureFlags(context: Context.currentUser))
             .getEntities()
-            .compactMap { $0.isFeatureEnabled(.account_survey_notifications) }
+            .map { $0.isFeatureEnabled(.account_survey_notifications) }
 
         let userStore = ReactiveStore(useCase: GetSelfUserIncludingUUID())
             .getEntities(ignoreCache: true)
-            .compactMap { $0.first }
-            .map {
-                UserMetadata(uuid: $0.uuid, locale: $0.locale, accountUUID: $0.accountUUID)
+            .tryMap {
+                guard let user = $0.first else { throw NSError.internalError() }
+
+                return UserMetadata(uuid: user.uuid, locale: user.locale, accountUUID: user.accountUUID)
             }
 
         // Both stores publish non-managed-object values to avoid accessing the managed objects
