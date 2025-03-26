@@ -61,16 +61,13 @@ class ProfileSettingsViewModelTests: ParentTestCase {
         XCTAssertEqual(testee.settingsGroups[1].viewModel.itemViews[0].viewModel.title, "Inbox Signature")
         XCTAssertEqual(testee.settingsGroups[1].viewModel.itemViews[0].viewModel.valueLabel, "Enabled")
 
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews.count, 3)
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews.count, 2)
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[0].viewModel.title, "Privacy Policy")
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[0].viewModel.valueLabel, nil)
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[0].viewModel.isLink, true)
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.title, "Terms of Use")
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.valueLabel, nil)
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.isLink, false)
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[2].viewModel.title, "Canvas on Github")
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[2].viewModel.valueLabel, nil)
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[2].viewModel.isLink, true)
     }
 
     func testInboxStates() {

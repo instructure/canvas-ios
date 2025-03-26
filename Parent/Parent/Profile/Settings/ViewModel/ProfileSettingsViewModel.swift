@@ -181,10 +181,9 @@ extension ProfileSettingsViewModel {
     private func initLegalGroup() {
         let privacyPolicySettingView = initPrivacyPolicyItem()
         let termsOfUseSettingView = initTermsOfUseItem()
-        let canvasGithubSettingView = initGithubItem()
         let groupViewModel = SettingsGroupViewModel(
             title: String(localized: "Legal", bundle: .core),
-            itemViews: [privacyPolicySettingView, termsOfUseSettingView, canvasGithubSettingView]
+            itemViews: [privacyPolicySettingView, termsOfUseSettingView]
         )
 
         let inboxGroupView = SettingsGroupView(viewModel: groupViewModel)
@@ -211,19 +210,6 @@ extension ProfileSettingsViewModel {
         ) { [weak self] controller in
             guard let self = self else { return }
             self.environment.router.route(to: "/accounts/self/terms_of_service", from: controller)
-        }
-
-        return SettingsGroupItemView(viewModel: itemViewModel)
-    }
-
-    private func initGithubItem() -> SettingsGroupItemView {
-        let itemViewModel = SettingsGroupItemViewModel(
-            title: String(localized: "Canvas on Github", bundle: .core),
-            valueLabel: nil,
-            isLink: true
-        ) { [weak self] controller in
-            guard let self = self else { return }
-            self.environment.router.route(to: "https://github.com/instructure/canvas-ios", from: controller)
         }
 
         return SettingsGroupItemView(viewModel: itemViewModel)

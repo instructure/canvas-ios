@@ -148,7 +148,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         var sections: [Section] = [preferencesSection]
 
         if showInboxSignatureSettings {
-            sections.append(inboxSignatureSetingsSection)
+            sections.append(inboxSignatureSettingsSection)
         }
 
         if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
@@ -164,10 +164,6 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
-                },
-                Row(String(localized: "Canvas on GitHub", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
-                    guard let self = self else { return }
-                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 }
             ])
         )
@@ -197,7 +193,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                ])
     }
 
-    private var inboxSignatureSetingsSection: Section {
+    private var inboxSignatureSettingsSection: Section {
         let detailLabel = isInboxSignatureEnabled
             ? String(localized: "Enabled", bundle: .core)
             : String(localized: "Not set", bundle: .core)
