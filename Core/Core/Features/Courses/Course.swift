@@ -60,6 +60,17 @@ final public class Course: NSManagedObject, WriteableModel {
         set { gradingSchemeRaw = NSOrderedSet(array: newValue) }
     }
 
+    public var gradingScheme: GradingScheme {
+        if pointsBasedGradingScheme {
+            PointsBasedGradingScheme(
+                scaleFactor: scalingFactor,
+                entries: gradingSchemeEntries
+            )
+        } else {
+            PercentageBasedGradingScheme(entries: gradingSchemeEntries)
+        }
+    }
+
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
         set { defaultViewRaw = newValue?.rawValue }
