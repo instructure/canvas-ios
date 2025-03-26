@@ -24,6 +24,8 @@ public struct GradeRowView: View {
     public let isWhatIfScoreModeOn: Bool
     public let editScoreButtonDidTap: () -> Void
 
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     public var body: some View {
         HStack(alignment: .top, spacing: 0) {
             assignmentIcon
@@ -64,9 +66,16 @@ public struct GradeRowView: View {
             let submission = assignment.submissions?.first { $0.userID == userID }
             let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
 
-            Text(displayProperties.text)
-                .foregroundStyle(Color(displayProperties.color))
-                .font(.regular14)
+            HStack(spacing: 2) {
+                Image(uiImage: displayProperties.icon)
+                    .resizable()
+                    .frame(width: uiScale.iconScale * 18, height: uiScale.iconScale * 18)
+                    .foregroundColor(Color(displayProperties.color))
+
+                Text(displayProperties.text)
+                    .foregroundStyle(Color(displayProperties.color))
+                    .font(.regular14)
+            }
         }
     }
 
