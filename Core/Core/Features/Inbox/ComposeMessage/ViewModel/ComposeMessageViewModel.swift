@@ -360,6 +360,8 @@ final class ComposeMessageViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         settingsInteractor.signature
+            // If the signature is not returned within 3 seconds, we won't insert it, as per product decision.
+            // It might be confusing for users with bad network connection if the body changed while they are already editing.
             .timeout(.seconds(3), scheduler: DispatchQueue.main)
             .sink { [weak self] (useSignature, signature) in
                 if useSignature, let signature, signature.isNotEmpty {

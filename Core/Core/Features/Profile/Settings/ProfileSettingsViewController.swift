@@ -148,7 +148,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         var sections: [Section] = [preferencesSection]
 
         if showInboxSignatureSettings {
-            sections.append(inboxSignatureSetingsSection)
+            sections.append(inboxSignatureSettingsSection)
         }
 
         if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
@@ -193,7 +193,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                ])
     }
 
-    private var inboxSignatureSetingsSection: Section {
+    private var inboxSignatureSettingsSection: Section {
         let detailLabel = isInboxSignatureEnabled
             ? String(localized: "Enabled", bundle: .core)
             : String(localized: "Not set", bundle: .core)
