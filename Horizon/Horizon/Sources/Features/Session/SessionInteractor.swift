@@ -66,7 +66,7 @@ final class SessionInteractor: NSObject, LoginDelegate {
             .compactMap { $0.first }
             .flatMap { userProfile in
                 CoreWebView.keepCookieAlive(for: unownedSelf.environment)
-                PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+                PushNotificationsInteractor.shared.userDidLogin(api: unownedSelf.environment.api)
 
                 return ReactiveStore(
                     useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)

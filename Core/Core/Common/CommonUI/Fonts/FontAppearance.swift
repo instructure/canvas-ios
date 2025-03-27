@@ -18,11 +18,11 @@
 
 import UIKit
 
-public struct FontAppearance {
+public struct Appearance {
 
     public static func update() {
         UIBarButtonItem.updateFontAppearance()
         UISegmentedControl.updateFontAppearance()
-        UISearchTextField.updateFontAppearance()
+        UISearchTextField.updateAppearance()
     }
 }

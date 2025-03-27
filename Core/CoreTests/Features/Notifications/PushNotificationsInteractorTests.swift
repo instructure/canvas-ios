@@ -64,7 +64,7 @@ class PushNotificationsInteractorTests: CoreTestCase {
         }
 
         // WHEN
-        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(api: api)
         pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
 
         // THEN
@@ -90,8 +90,8 @@ class PushNotificationsInteractorTests: CoreTestCase {
 
         // WHEN
         pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
-        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(api: api)
+        pushNotificationsInteractor.userDidLogin(api: api)
         pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
 
         // THEN
@@ -108,7 +108,7 @@ class PushNotificationsInteractorTests: CoreTestCase {
             return (nil, nil, nil)
         }
         pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(api: api)
 
         // WHEN
         pushNotificationsInteractor.unsubscribeFromCanvasPushNotifications()
@@ -131,11 +131,11 @@ class PushNotificationsInteractorTests: CoreTestCase {
             return (nil, nil, nil)
         }
         pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(api: api)
         pushNotificationsInteractor.unsubscribeFromCanvasPushNotifications()
 
         // WHEN
-        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(api: api)
 
         // THEN
         wait(for: [postsPushNotificationRequest, deletesPushNotificationRequest])
@@ -150,7 +150,7 @@ class PushNotificationsInteractorTests: CoreTestCase {
         }
 
         pushNotificationsInteractor.applicationDidRegisterForPushNotifications(deviceToken: deviceToken)
-        pushNotificationsInteractor.userDidLogin(loginSession: loginSession)
+        pushNotificationsInteractor.userDidLogin(api: api)
 
         let newDeviceToken = Data([32])
         let postsNewPushNotificationRequest = expectation(description: "postsNewPushNotificationRequest")

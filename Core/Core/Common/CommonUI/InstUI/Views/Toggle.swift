@@ -40,9 +40,10 @@ extension InstUI {
                 toggle
             }
             .accessibilityElement(children: .combine)
-            .accessibilityAddTraitsIsToggle()
+            .accessibilityAddTraits(.isToggle)
+            .accessibilityRemoveTraits(.isStaticText)
             .accessibilityValue(accessibilityValue)
-            .addHapticFeedback(isOn: isOn)
+            .sensoryFeedback(.impact, trigger: isOn)
         }
 
         private var toggle: some View {
@@ -88,7 +89,7 @@ extension InstUI {
                     .animation(.none, value: isOn)
             }
             .padding(.horizontal, 1.4)
-            .compatibleGeometryGroup()
+            .geometryGroup()
         }
 
         private var backgroundColor: Color {
@@ -129,36 +130,8 @@ extension InstUI {
     }
 }
 
-private extension View {
-
-    @available(iOSApplicationExtension,
-               obsoleted: 17.0,
-               message: "Use `accessibilityAddTraits(.isToggle)` directly.")
-    @ViewBuilder
-    func accessibilityAddTraitsIsToggle() -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
-            self.accessibilityAddTraits(.isToggle)
-        } else {
-            self
-        }
-    }
-
-    @available(iOSApplicationExtension,
-               obsoleted: 17.0,
-               message: "Use `sensoryFeedback(.selection, trigger: isOn)` directly.")
-    @ViewBuilder
-    func addHapticFeedback(isOn: Bool) -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
-            self.sensoryFeedback(.impact, trigger: isOn)
-        } else {
-            self
-        }
-    }
-}
-
 #if DEBUG
 
-@available(iOS 17.0, *)
 #Preview(traits: .sizeThatFitsLayout) {
     @Previewable @State var isOn1 = true
     @Previewable @State var isOn2 = false

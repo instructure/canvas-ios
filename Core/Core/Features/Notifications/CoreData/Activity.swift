@@ -57,7 +57,6 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.title = item.title
         model.htmlURL = item.html_url
         model.typeRaw = item.type.rawValue
-        model.updatedAt = item.updated_at
         model.grade = item.grade
         model.notification_category = item.notification_category
         model.context_type = item.context_type
@@ -65,6 +64,7 @@ public final class Activity: NSManagedObject, WriteableModel {
         if let score = item.score {
             model.score = String(score)
         }
+        model.updatedAt = item.latestRelevantUpdate
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: Context?
             switch contextType {

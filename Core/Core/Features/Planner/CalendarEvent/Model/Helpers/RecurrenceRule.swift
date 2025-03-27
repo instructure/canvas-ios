@@ -422,7 +422,7 @@ extension RecurrenceRule {
         }()
         subRules.append(endString)
 
-        return "RRULE:" + subRules.compactMap({ $0 }).joined(separator: ";")
+        return "RRULE:" + subRules.joined(separator: ";")
     }
 }
 

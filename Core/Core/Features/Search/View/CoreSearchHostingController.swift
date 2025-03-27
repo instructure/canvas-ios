@@ -113,6 +113,10 @@ public class CoreSearchHostingController<
         searchView.field.placeholder = searchContext.searchPrompt
         searchView.field.accessibilityIdentifier = "ui_search_field"
         searchView.field.delegate = self
+        searchView.field.attributedPlaceholder = NSAttributedString(
+            string: searchView.field.placeholder ?? "",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.textPlaceholder]
+        )
 
         if let clearColor = searchContext.accentColor {
             searchView.field.clearButtonColor = clearColor

@@ -32,12 +32,13 @@ class SubmissionCommentHeaderCell: UITableViewCell {
 
     func update(comment: SubmissionComment) {
         backgroundColor = .backgroundLightest
-        isAccessibilityElement = false
-        accessibilityElementsHidden = true
         authorAvatarView?.name = comment.authorName
         authorAvatarView?.url = comment.authorAvatarURL
         authorNameLabel?.text = User.displayName(comment.authorName, pronouns: comment.authorPronouns)
         createdAtLabel?.text = comment.createdAtLocalizedString
         chatBubbleView?.isHidden = comment.attempt != nil || comment.mediaURL != nil
+
+        isAccessibilityElement = true
+        accessibilityLabel = comment.accessibilityLabelForHeader
     }
 }

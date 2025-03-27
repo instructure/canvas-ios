@@ -75,7 +75,7 @@ extension InstUI {
                     selectedValue = value
                 }
 
-                Toggle(isOn: binding) {
+                SwiftUI.Toggle(isOn: binding) {
                     Text(title)
                 }
             }
