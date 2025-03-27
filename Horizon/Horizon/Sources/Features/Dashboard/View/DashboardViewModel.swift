@@ -27,7 +27,7 @@ class DashboardViewModel {
 
     private(set) var state: InstUI.ScreenState = .loading
     var title: String = ""
-    var nextUpViewModels: [NextUpViewModel] = []
+    var nextUpViewModels: [DashboardCourse] = []
 
     // MARK: - Private variables
 
@@ -39,66 +39,24 @@ class DashboardViewModel {
 
     init(
         getCoursesInteractor: GetCoursesInteractor,
-        getUserInteractor: GetUserInteractor,
         router: Router
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
-        getCourses()
-
-        getUserInteractor.getUser()
-            .map { $0.name }
-            .map { "Hi, \($0)" }
-            .replaceError(with: "")
-            .assign(to: \.title, on: self)
-            .store(in: &subscriptions)
+        self.getCourses()
     }
 
     private func getCourses(
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
-        getCoursesInteractor.getCourses(ignoreCache: ignoreCache)
-            .sink { [weak self] courses in
-                self?.onGetCoursesResponse(courses: courses)
+        getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
+            .sink { [weak self] items in
+                self?.nextUpViewModels  = items
+                self?.state = .data
                 completion?()
             }
             .store(in: &subscriptions)
-    }
-
-    private func onGetCoursesResponse(courses: [HCourse]) {
-        state = .data
-        nextUpViewModels = courses
-            .filter { $0.incompleteModule != nil }
-            .map(toNextUpViewModel)
-    }
-
-    private func toNextUpViewModel(_ course: HCourse) -> NextUpViewModel {
-        .init(
-            name: course.name,
-            progress: course.progress / 100.0,
-            learningObjectCardViewModel: course
-                .incompleteModule
-                .map { toLearningObjectCardViewModel($0, course: course) }
-        )
-    }
-
-    private func toLearningObjectCardViewModel(
-        _ module: IncompleteModule,
-        course: HCourse
-    ) -> LearningObjectCardViewModel {
-        /// Get the estimated time and type because they are not available in incompleteModules, which is retrieved from GraphQL.
-        let moduleItems = course.modules.first(where: { $0.id == module.moduleId })
-        let item = moduleItems?.items.first(where: { $0.id == module.moduleItemId })
-
-        return LearningObjectCardViewModel(
-            moduleTitle: moduleItems?.name ?? "",
-            learningObjectName: item?.title ?? "",
-            type: item?.type?.label,
-            dueDate: item?.dueAt?.relativeShortDateOnlyString,
-            url: item?.htmlURL,
-            estimatedTime: item?.estimatedDurationFormatted
-        )
     }
 
     // MARK: - Inputs
@@ -135,22 +93,5 @@ class DashboardViewModel {
         default:
             return String(localized: "Not Started", bundle: .horizon)
         }
-    }
-
-    struct NextUpViewModel: Identifiable {
-        let name: String
-        let progress: Double
-        let learningObjectCardViewModel: LearningObjectCardViewModel?
-
-        var id: String { name }
-    }
-
-    struct LearningObjectCardViewModel {
-        let moduleTitle: String
-        let learningObjectName: String
-        let type: String?
-        let dueDate: String?
-        let url: URL?
-        let estimatedTime: String?
     }
 }

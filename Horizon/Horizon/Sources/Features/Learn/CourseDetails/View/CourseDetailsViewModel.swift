@@ -35,6 +35,7 @@ final class CourseDetailsViewModel {
     private let onShowTabBar: (Bool) -> Void
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
+    private let getCoursesInteractor: GetCoursesInteractor
 
     // MARK: - Init
 
@@ -47,6 +48,7 @@ final class CourseDetailsViewModel {
         onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
+        self.getCoursesInteractor = getCoursesInteractor
         self.courseID = courseID
         self.course = course ?? .init()
         self.onShowTabBar = onShowTabBar
@@ -64,6 +66,19 @@ final class CourseDetailsViewModel {
     }
 
     // MARK: - Inputs
+
+    @MainActor
+    func refresh() async {
+        await withCheckedContinuation { continuation in
+            getCoursesInteractor.getCourse(id: courseID, ignoreCache: true)
+                .sink { [weak self] course in
+                    continuation.resume()
+                    guard let course = course, let self = self else { return }
+                    self.course = course
+                }
+                .store(in: &subscriptions)
+        }
+    }
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
         router.route(to: url, from: from)

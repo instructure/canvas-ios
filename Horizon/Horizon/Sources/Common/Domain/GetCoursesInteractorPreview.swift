@@ -22,6 +22,18 @@ import Foundation
 import Core
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
+    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
+        Just(
+            [.init(
+                name: "AI Introductions",
+                progress: 0.2,
+                learningObjectCardViewModel: nil
+            )
+            ]
+        )
+        .eraseToAnyPublisher()
+    }
+
     func getInstitutionName() -> AnyPublisher<String, Never> {
         Just("Canvas Career")
             .eraseToAnyPublisher()

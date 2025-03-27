@@ -46,6 +46,9 @@ struct CourseDetailsView: View {
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
         }
+        .refreshable {
+            await viewModel.refresh()
+        }
     }
 
     private var headerView: some View {
