@@ -33,9 +33,13 @@ struct HEmbeddedWebPageContainerView: View {
 
     private let viewModel: HEmbeddedWebPageContainerViewModel
 
-    init(viewModel: HEmbeddedWebPageContainerViewModel) {
+    init(
+        viewModel: HEmbeddedWebPageContainerViewModel,
+        features: [CoreWebViewFeature] = []
+    ) {
         self.viewModel = viewModel
-        features.append(.pullToRefresh(color: UIColor(Color.huiColors.surface.institution)))
+        self.features.append(contentsOf: features)
+        self.features.append(.pullToRefresh(color: UIColor(Color.huiColors.surface.institution)))
     }
 
     var body: some View {
@@ -52,7 +56,7 @@ struct HEmbeddedWebPageContainerView: View {
                 url: sessionURL,
                 features: features,
                 canToggleTheme: true,
-                configuration: viewModel.configuration
+                configuration: .defaultConfiguration
             )
             .onLink { url in
                 viewModel.openURL(url, viewController: viewController)
@@ -61,8 +65,7 @@ struct HEmbeddedWebPageContainerView: View {
             .onProvisionalNavigationStarted { webView, navigation in
                 viewModel.webView(
                     webView,
-                    didStartProvisionalNavigation: navigation,
-                    viewController: viewController
+                    didStartProvisionalNavigation: navigation
                 )
             }
         }

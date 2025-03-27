@@ -23,32 +23,12 @@ struct HInboxAssembly {
     static func makeView() -> UIViewController {
         let inboxViewModel = HInboxViewModel()
         let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPage: inboxViewModel,
-            navigationDelegate: inboxViewModel,
-            javaScript: buttonTappedJS,
-            observeKey: "buttonTapped"
+            webPage: inboxViewModel
         )
 
         let viewController = CoreHostingController(
-            HEmbeddedWebPageContainerView(
-                viewModel: viewModel
-            )
+            HInboxView(viewModel: viewModel)
         )
         return viewController
-    }
-
-    private static var buttonTappedJS: String {
-         """
-        document.addEventListener('click', function(event) {
-            var element = event.target;
-            while (element) {
-                if (element.tagName === 'BUTTON') {
-                    window.webkit.messageHandlers.buttonTapped.postMessage(element.innerText);
-                    break;
-                }
-                element = element.parentElement;
-            }
-        });
-        """
     }
 }

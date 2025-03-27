@@ -59,12 +59,4 @@ struct PageDetailsView: View {
             Alert(title: Text(viewModel.errorMessage))
         }
     }
-
-    private var topView: some View {
-        Color.clear
-            .frame(height: 0)
-            .readingFrame { frame in
-                isShowHeader = frame.minY > -100
-            }
-    }
 }

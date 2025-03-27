@@ -48,7 +48,7 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Self.Context) -> UIViewController {
         let viewController = FileDetailsViewController.create(context: self.context, fileID: fileID)
         viewController.didFinishLoading = {
-                isFinishLoading = true
+            isFinishLoading = true
             if let scrollView = findScrollView(in: viewController.view) {
                 // Set the file pin at the top.
                 scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -97,16 +97,52 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     // MARK: - Coordinator
 
     final class Coordinator: NSObject, UIScrollViewDelegate {
-        let didScroll: (Bool) -> Void
         private let threshold: CGFloat = 100
+        private var lastYOffset: CGFloat = 0
+        private var lastZoomScale: CGFloat = 1.0
+        private let minDelta: CGFloat = 0.1
+        private let minScrollThreshold: CGFloat = 5.0
+        private var yOffsets: [CGFloat] = []
+
+        var isZoomingIn = false
+        let didScroll: (Bool) -> Void
 
         init(didScroll: @escaping (Bool) -> Void) {
             self.didScroll = didScroll
         }
 
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            let yOffset = scrollView.contentOffset.y
-            didScroll(yOffset > threshold)
+            let yOffset = scrollView.contentOffset.y.rounded()
+            let delta = abs(yOffset - lastYOffset)
+
+            guard delta > minScrollThreshold else { return }
+
+            lastYOffset = yOffset
+            yOffsets.append(yOffset)
+
+            if yOffsets.count == 10 {
+                let averageYOffset = yOffsets.reduce(0, +) / CGFloat(yOffsets.count)
+                didScroll(isZoomingIn || averageYOffset > threshold)
+                yOffsets.removeAll()
+            }
+        }
+
+        func scrollViewDidZoom(_ scrollView: UIScrollView) {
+            let zoomScale = scrollView.zoomScale
+            guard abs(zoomScale - lastZoomScale) > minDelta else { return }
+
+            isZoomingIn = zoomScale > 1
+            lastZoomScale = zoomScale
+        }
+
+        func scrollViewDidEndZooming(
+            _ scrollView: UIScrollView,
+            with view: UIView?,
+            atScale scale: CGFloat
+        ) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                self?.isZoomingIn = false
+            }
         }
     }
 }
