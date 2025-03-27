@@ -300,7 +300,7 @@ public struct GetCoursesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         var includes = Include.allCases
-        if AppEnvironment.shared.k5.isK5Enabled {
+        if !AppEnvironment.shared.k5.isK5Enabled {
             includes.removeAll { $0 == .course_subject_tabs }
         }
         return [

@@ -63,10 +63,15 @@ public class K5SubjectViewModel: ObservableObject {
 
     private func tabsUpdated() {
         guard topBarViewModel == nil, !tabs.isEmpty else { return }
+
         var tabItems: [TopBarItemViewModel] = []
-        tabs.filter({ $0.type == .internal && !($0.hidden ?? false)}).forEach { tab in
+
+        tabs.filter({ tab in
+            tab.type == .internal && !(tab.hidden ?? false) && tab.id != "search"
+        }).forEach { tab in
             tabItems.append(TopBarItemViewModel(tab: tab, iconImage: tabIconImage(for: tab.id)))
         }
+
         if !tabs.filter({$0.id.contains("context_external_tool_") && !($0.hidden ?? false) }).isEmpty {
             let resurceTabItem = TopBarItemViewModel(id: "resources", icon: .k5resources, label: Text("Resources", bundle: .core))
             tabItems.append(resurceTabItem)
