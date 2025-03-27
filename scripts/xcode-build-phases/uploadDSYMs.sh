@@ -16,6 +16,10 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+if [ "$CONFIGURATION" == "Release" ]; then
+    UPLOAD_DSYM=true
+fi
+
 if [ -z ${UPLOAD_DSYM+x} ]; then
     echo "Skipping dSYM upload because the UPLOAD_DSYM variable is not set."
 else
