@@ -16,10 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
 import Core
-import Foundation
-import WebKit
 
-protocol EmbeddedWebPageNavigation: AnyObject {
-    func openURL(_ url: URL, viewController: WeakViewController)
+struct HInboxView: View {
+    @Environment(\.dismiss) private var dismiss
+    let viewModel: HEmbeddedWebPageContainerViewModel
+
+    var body: some View {
+        HEmbeddedWebPageContainerView(
+            viewModel: viewModel,
+            features: [.onTapBackButton { dismiss() }]
+        )
+        .background(Color.huiColors.surface.pagePrimary)
+    }
 }

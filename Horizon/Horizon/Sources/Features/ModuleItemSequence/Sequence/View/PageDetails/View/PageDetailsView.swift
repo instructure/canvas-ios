@@ -36,16 +36,13 @@ struct PageDetailsView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: .zero) {
-                topView
-                WebView(
-                    html: viewModel.content,
-                    baseURL: viewModel.url
-                )
-                .frameToFit()
-            }
-
+        ZStack(alignment: .bottomTrailing) {
+            PageViewRepresentable(
+                isScrollTopReached: $isShowHeader,
+                context: viewModel.context,
+                pageURL: viewModel.pageURL,
+                itemID: viewModel.itemID
+            )
             if viewModel.isMarkedAsDoneButtonVisible {
                 MarkAsDoneButton(
                     isCompleted: viewModel.isCompletedItem,
@@ -53,28 +50,13 @@ struct PageDetailsView: View {
                 ) {
                     viewModel.markAsDone()
                 }
-                .padding(.huiSpaces.space24)
+                .padding(.horizontal, .huiSpaces.space24)
+                .padding(.bottom, .huiSpaces.space16)
             }
         }
-        .overlay { loaderView }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .alert(isPresented: $viewModel.isShowErrorAlert) {
             Alert(title: Text(viewModel.errorMessage))
         }
-    }
-
-    @ViewBuilder
-    private var loaderView: some View {
-        if viewModel.isLoaderVisible {
-            HorizonUI.Spinner(size: .small, showBackground: true)
-        }
-    }
-
-    private var topView: some View {
-        Color.clear
-            .frame(height: 0)
-            .readingFrame { frame in
-                isShowHeader = frame.minY > -100
-            }
     }
 }

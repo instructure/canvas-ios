@@ -18,6 +18,7 @@
 
 import Core
 import Foundation
+import WebKit
 
 final class HInboxViewModel: EmbeddedWebPageViewModel {
     var urlPathComponent: String

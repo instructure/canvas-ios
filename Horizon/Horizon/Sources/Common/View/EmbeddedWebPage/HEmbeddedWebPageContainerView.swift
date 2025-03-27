@@ -24,25 +24,27 @@ struct HEmbeddedWebPageContainerView: View {
     @Environment(\.viewController) private var viewController
     private var features: [CoreWebViewFeature] = [
         .disableZoom,
-        .darkModeForWebDiscussions,
         .forceDisableHorizontalScroll,
-        .hidePeerReviewLinkInWebDiscussions
+        .pullToRefresh(color: UIColor(Color.huiColors.surface.institution))
     ]
 
     // MARK: - Dependencies
 
     private let viewModel: HEmbeddedWebPageContainerViewModel
 
-    init(viewModel: HEmbeddedWebPageContainerViewModel) {
+    init(
+        viewModel: HEmbeddedWebPageContainerViewModel,
+        features: [CoreWebViewFeature] = []
+    ) {
         self.viewModel = viewModel
-        features.append(.pullToRefresh(color: UIColor(Color.huiColors.surface.institution)))
+        self.features.append(contentsOf: features)
     }
 
     var body: some View {
         if let url = viewModel.url {
             contentView(url: url)
                 .navigationBarTitleView(title: viewModel.navTitle, subtitle: nil)
-                .toolbar(.visible)
+                .toolbar(.hidden)
         }
     }
 
@@ -59,7 +61,10 @@ struct HEmbeddedWebPageContainerView: View {
                 return true
             }
             .onProvisionalNavigationStarted { webView, navigation in
-                viewModel.webView(webView, didStartProvisionalNavigation: navigation)
+                viewModel.webView(
+                    webView,
+                    didStartProvisionalNavigation: navigation
+                )
             }
         }
     }

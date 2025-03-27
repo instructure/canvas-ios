@@ -64,8 +64,7 @@ final class HEmbeddedWebPageContainerViewModel {
         navigationDelegate?.openURL(url, viewController: viewController)
     }
 
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        webPage.webView(
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {        webPage.webView(
             webView,
             didStartProvisionalNavigation: navigation
         )

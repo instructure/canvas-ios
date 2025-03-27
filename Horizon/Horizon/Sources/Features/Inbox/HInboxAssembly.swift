@@ -27,12 +27,8 @@ struct HInboxAssembly {
         )
 
         let viewController = CoreHostingController(
-            HEmbeddedWebPageContainerView(
-                viewModel: viewModel
-            )
+            HInboxView(viewModel: viewModel)
         )
-        let nav = CoreNavigationController(rootViewController: viewController)
-        nav.navigationBar.useGlobalNavStyle()
         return viewController
     }
 }
