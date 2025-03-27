@@ -23,8 +23,8 @@ import WebKit
 struct HEmbeddedWebPageContainerView: View {
     @Environment(\.viewController) private var viewController
     private var features: [CoreWebViewFeature] = [
-//        .disableZoom,
-//        .forceDisableHorizontalScroll,
+        .disableZoom,
+        .forceDisableHorizontalScroll,
         .pullToRefresh(color: UIColor(Color.huiColors.surface.institution))
     ]
 
