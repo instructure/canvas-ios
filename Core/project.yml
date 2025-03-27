@@ -27,6 +27,9 @@ packages:
   Lottie:
     url: https://github.com/airbnb/lottie-ios.git
     exactVersion: 3.5.0
+  Pendo:
+    url: https://github.com/pendo-io/pendo-mobile-sdk
+    exactVersion: 3.6.1
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.9.1
@@ -43,6 +46,7 @@ targets:
       - package: CombineSchedulers
       - package: CombineExt
       - package: Lottie
+      - package: Pendo
       - package: PSPDFKit
     preBuildScripts:
       - path: ../scripts/xcode-build-phases/swiftLint.sh
