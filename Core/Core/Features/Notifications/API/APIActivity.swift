@@ -45,6 +45,7 @@ public struct APIActivity: Codable {
     let grade: String?
     let read_state: Bool?
     let notification_category: String?
+    let latest_messages: [APIActivityMessage]?
     var latestRelevantUpdate: Date {
         latest_messages?.max { $0.created_at < $1.created_at}?.created_at ?? updated_at
     }
@@ -66,7 +67,7 @@ extension APIActivity {
         score: Double? = nil,
         grade: String? = "12",
         read_state: Bool? = true,
-        notification_category: String? = "Due Date"
+        notification_category: String? = "Due Date",
         latest_messages: [APIActivityMessage]? = nil
     ) -> APIActivity {
         return APIActivity(
@@ -83,7 +84,7 @@ extension APIActivity {
             score: score,
             grade: grade,
             read_state: read_state,
-            notification_category: notification_category
+            notification_category: notification_category,
             latest_messages: latest_messages
         )
     }
