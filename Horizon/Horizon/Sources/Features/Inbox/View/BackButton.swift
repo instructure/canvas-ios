@@ -31,7 +31,7 @@ private class BackButton: CoreWebViewFeature {
             document.addEventListener('click', function(event) {
                 var element = event.target;
                 while (element) {
-                    if (element.id === 'ios-inbox-back-button') {
+                    if (element.id === 'native-inbox-back-button') {
                         window.webkit.messageHandlers.buttonTapped.postMessage(element.innerText);
                         break;
                     }
