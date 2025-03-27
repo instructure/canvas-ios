@@ -267,6 +267,7 @@ public struct GetCoursesRequest: APIRequestable {
         case total_scores
         case settings
         case grading_scheme
+        case course_subject_tabs  // for k5 tabs
     }
 
     let enrollmentState: EnrollmentState?
@@ -298,8 +299,10 @@ public struct GetCoursesRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        [
-            .include(Include.allCases.map { $0.rawValue }),
+        let isK5 = AppEnvironment.shared.k5.isK5Enabled
+        let includes = isK5 ? Include.allCases : Include.allCases.filter { $0 != .course_subject_tabs }
+        return [
+            .include(includes.map { $0.rawValue }),
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", (state ?? []).map { $0.rawValue }),
