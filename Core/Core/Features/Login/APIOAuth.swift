@@ -179,7 +179,6 @@ struct PostLoginOAuthRequest: APIRequestable {
     }
 
     let oauthType: OAuthType
-//    let client: APIVerifyClient
 
     init(oauthType: OAuthType, code: String) {
         self.oauthType = oauthType
@@ -200,45 +199,6 @@ struct PostLoginOAuthRequest: APIRequestable {
     let headers: [String: String?] = [
         HttpHeader.authorization: nil
     ]
-}
-
-public struct ManualOAuthAttributes: Codable {
-    let baseURL: URL?
-    let clientID: String?
-    let clientSecret: String?
-    
-    init(baseURL: URL?, clientID: String?, clientSecret: String?) {
-        self.baseURL = baseURL
-        self.clientID = clientID
-        self.clientSecret = clientSecret
-    }
-    
-    init(client: APIVerifyClient) {
-        self.baseURL = client.base_url
-        self.clientID = client.client_id
-        self.clientSecret = client.client_secret
-    }
-}
-
-
-public struct PKCEOAuthAttributes: Codable {
-    let baseURL: URL
-    let clientID: String
-    let codeVerifier: String
-}
-
-public enum OAuthType: Codable {
-    case manual(ManualOAuthAttributes)
-    case pkce(PKCEOAuthAttributes)
-
-    var baseURL: URL? {
-        switch self {
-        case let .manual(attributes):
-            return attributes.baseURL
-        case let .pkce(attributes):
-            return attributes.baseURL
-        }
-    }
 }
 
 // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#delete-login-oauth2-token

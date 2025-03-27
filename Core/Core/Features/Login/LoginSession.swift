@@ -30,7 +30,7 @@ public struct LoginSession: Codable, Hashable {
     public let userID: String
     public let userName: String
     public let userEmail: String?
-
+    
     public let oauthType: OAuthType?
     
     /** Returns the acted user's ID. If the session isn't masquaraded this property returns nil. */

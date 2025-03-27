@@ -63,6 +63,7 @@ struct LoginWebRequestPKCE: APIRequestable {
     let host: URL
     let challenge: PKCEChallenge.ChallengePair
     let shouldAddNoVerifierQuery = false
+    let isSiteAdminLogin: Bool
 
     var path: String {
         return "https://\(host)/login/oauth2/auth"
@@ -78,7 +79,13 @@ struct LoginWebRequestPKCE: APIRequestable {
     ]
     }
 
-    let headers: [String: String?] = [
-        HttpHeader.userAgent: UserAgent.safari.description
-    ]
+    var headers: [String: String?] {
+        var headers = [
+            HttpHeader.userAgent: UserAgent.safari.description
+        ]
+        if isSiteAdminLogin {
+            headers[HttpHeader.cookie] = "canvas_sa_delegated=1"
+        }
+        return headers
+    }
 }

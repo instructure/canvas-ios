@@ -204,7 +204,11 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
             showFailedPanda(reason: .invalidDomain)
             return
         }
-        let requestable = LoginWebRequest(authMethod: method, clientID: clientID, provider: authenticationProvider)
+        let requestable = LoginWebRequest(
+            authMethod: method,
+            clientID: clientID,
+            provider: authenticationProvider
+        )
         if var request = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil) {
             request.timeoutInterval = 30
             webView.load(request)
@@ -217,7 +221,12 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         }
         self.challenge = challenge
 
-        let requestable = LoginWebRequestPKCE(clientID: Secret.appClientID.string!, host: hostURL, challenge: challenge)
+        let requestable = LoginWebRequestPKCE(
+            clientID: Secret.appClientID.string!,
+            host: hostURL,
+            challenge: challenge,
+            isSiteAdminLogin: method == .siteAdminLogin
+        )
         if var request = try? requestable.urlRequest(relativeTo: hostURL, accessToken: nil, actAsUserID: nil) {
             request.timeoutInterval = 30
             webView.load(request)
