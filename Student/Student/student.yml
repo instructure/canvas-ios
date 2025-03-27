@@ -18,7 +18,6 @@ targets:
       - path: ../Settings.bundle
     dependencies:
       - package: PSPDFKit
-      - package: Pendo
       - package: FirebaseCrashlytics
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift
