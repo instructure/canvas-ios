@@ -153,6 +153,11 @@ class AccessTokenRefreshInteractorTests: CoreTestCase {
         // THEN
         XCTAssertFailureEquals(publisher, expectedError)
     }
+
+    func test_refreshErrorHelper() {
+        XCTAssertEqual(NSError.internalError().isExpiredRefreshTokenError, false)
+        XCTAssertEqual(AccessTokenRefreshInteractor.TokenError.expiredRefreshToken.isExpiredRefreshTokenError, true)
+    }
 }
 
 // MARK: - Mocks
