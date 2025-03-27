@@ -30,6 +30,9 @@ projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
 packages:
+  Pendo:
+    url: https://github.com/pendo-io/pendo-mobile-sdk
+    exactVersion: 3.6.1
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.9.1

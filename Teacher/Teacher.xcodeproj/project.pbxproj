@@ -100,6 +100,7 @@
 		B43562182C77486A00402DAE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B43562162C77486A00402DAE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4707B052B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4707B042B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift */; };
 		B4D8E5382C773F3E0001A506 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4D8E5372C773F3E0001A506 /* FirebaseRemoteConfigSwift */; };
+		B4DAD5362D84566E005F9CD5 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = B4DAD5352D84566E005F9CD5 /* Pendo */; };
 		CF04D3162BC5714F009D8C86 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF04D3152BC5714F009D8C86 /* PrivacyInfo.xcprivacy */; };
 		CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */; };
 		CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */; };
@@ -353,6 +354,7 @@
 				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
 				B42B0E762C7741880038EE67 /* FirebaseCrashlytics in Frameworks */,
+				B4DAD5362D84566E005F9CD5 /* Pendo in Frameworks */,
 				B4D8E5382C773F3E0001A506 /* FirebaseRemoteConfigSwift in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
 				B43562172C77486A00402DAE /* Core.framework in Frameworks */,
@@ -881,6 +883,7 @@
 				B4D8E5372C773F3E0001A506 /* FirebaseRemoteConfigSwift */,
 				B42B0E752C7741880038EE67 /* FirebaseCrashlytics */,
 				B42B0E772C7741880038EE67 /* FirebaseRemoteConfig */,
+				B4DAD5352D84566E005F9CD5 /* Pendo */,
 			);
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* Teacher.app */;
@@ -1040,6 +1043,7 @@
 			packageReferences = (
 				CFAA40212AE2633A002C7AAE /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
 				B4D8E5342C773F3E0001A506 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B4DAD5342D8455C4005F9CD5 /* XCRemoteSwiftPackageReference "pendo-mobile-sdk" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -1742,6 +1746,14 @@
 				version = 10.23.1;
 			};
 		};
+		B4DAD5342D8455C4005F9CD5 /* XCRemoteSwiftPackageReference "pendo-mobile-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pendo-io/pendo-mobile-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 3.6.1;
+			};
+		};
 		CFAA40212AE2633A002C7AAE /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/PSPDFKit/PSPDFKit-SP";
@@ -1767,6 +1779,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4D8E5342C773F3E0001A506 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
+		};
+		B4DAD5352D84566E005F9CD5 /* Pendo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4DAD5342D8455C4005F9CD5 /* XCRemoteSwiftPackageReference "pendo-mobile-sdk" */;
+			productName = Pendo;
 		};
 		CFAA40222AE2633A002C7AAE /* PSPDFKit */ = {
 			isa = XCSwiftPackageProductDependency;
