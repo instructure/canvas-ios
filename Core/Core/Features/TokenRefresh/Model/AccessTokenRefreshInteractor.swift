@@ -29,8 +29,7 @@ class AccessTokenRefreshInteractor {
         guard
             let oldLoginSession = api.loginSession,
             let refreshToken = oldLoginSession.refreshToken,
-            let clientID = oldLoginSession.clientID,
-            let clientSecret = oldLoginSession.clientSecret
+            let oauthType = oldLoginSession.oauthType
         else {
             return Fail(
                 outputType: LoginSession.self,
@@ -39,13 +38,7 @@ class AccessTokenRefreshInteractor {
             .eraseToAnyPublisher()
         }
 
-        let client = APIVerifyClient(
-            authorized: true,
-            base_url: api.baseURL,
-            client_id: clientID,
-            client_secret: clientSecret
-        )
-        let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
+        let request = PostLoginOAuthRequest(oauthType: oauthType, refreshToken: refreshToken)
 
         return api.makeRequest(request, refreshToken: false)
             .map {

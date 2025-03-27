@@ -41,6 +41,8 @@ public enum Secret {
 
     /// The value used for testing that Secret is working properly
     case testSecret
+    
+    case appClientID
 
     public var string: String? {
         guard let data = NSDataAsset(name: String(describing: self), bundle: .core)?.data else { return nil }

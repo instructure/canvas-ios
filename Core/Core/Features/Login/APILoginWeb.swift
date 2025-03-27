@@ -56,3 +56,29 @@ struct LoginWebRequest: APIRequestable {
         return headers
     }
 }
+
+struct LoginWebRequestPKCE: APIRequestable {
+    typealias Response = String
+    let clientID: String
+    let host: URL
+    let challenge: PKCEChallenge.ChallengePair
+    let shouldAddNoVerifierQuery = false
+
+    var path: String {
+        return "https://\(host)/login/oauth2/auth"
+    }
+
+    var query: [APIQueryItem] { [
+        .value("client_id", clientID),
+        .value("redirect_uri", "https://canvas/login"),
+        .value("response_type", "code"),
+        .value("code_challenge", challenge.codeChallenge),
+        .value("code_challenge_method", "S256"),
+        .value("mobile", "1")
+    ]
+    }
+
+    let headers: [String: String?] = [
+        HttpHeader.userAgent: UserAgent.safari.description
+    ]
+}

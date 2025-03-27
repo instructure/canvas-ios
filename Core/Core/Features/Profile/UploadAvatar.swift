@@ -94,8 +94,7 @@ public class UploadAvatar {
                     userID: session.userID,
                     userName: session.userName,
                     userEmail: session.userEmail,
-                    clientID: session.clientID,
-                    clientSecret: session.clientSecret
+                    oauthType: session.oauthType
                 )
                 self.env.currentSession = updated
                 if LoginSession.sessions.contains(updated) {
