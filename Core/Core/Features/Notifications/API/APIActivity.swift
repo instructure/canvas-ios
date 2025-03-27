@@ -41,8 +41,10 @@ public struct APIActivity: Codable {
     let context_type: String?
     let course_id: ID?
     let group_id: ID?
-    let latest_messages: [APIActivityMessage]?
-
+    let score: Double?
+    let grade: String?
+    let read_state: Bool?
+    let notification_category: String?
     var latestRelevantUpdate: Date {
         latest_messages?.max { $0.created_at < $1.created_at}?.created_at ?? updated_at
     }
@@ -61,6 +63,10 @@ extension APIActivity {
         context_type: String = ContextType.course.rawValue,
         course_id: ID? = "1",
         group_id: ID? = nil,
+        score: Double? = nil,
+        grade: String? = "12",
+        read_state: Bool? = true,
+        notification_category: String? = "Due Date"
         latest_messages: [APIActivityMessage]? = nil
     ) -> APIActivity {
         return APIActivity(
@@ -74,6 +80,10 @@ extension APIActivity {
             context_type: context_type,
             course_id: course_id,
             group_id: group_id,
+            score: score,
+            grade: grade,
+            read_state: read_state,
+            notification_category: notification_category
             latest_messages: latest_messages
         )
     }
@@ -83,9 +93,11 @@ extension APIActivity {
 public struct GetActivitiesRequest: APIRequestable {
     public typealias Response = [APIActivity]
     let perPage: Int?
+    let onlyActiveCourses: Bool
 
-    public init(perPage: Int? = nil) {
+    public init(perPage: Int? = nil, onlyActiveCourses: Bool = true) {
         self.perPage = perPage
+        self.onlyActiveCourses = onlyActiveCourses
     }
 
     public var path: String {
@@ -93,8 +105,17 @@ public struct GetActivitiesRequest: APIRequestable {
         return "\(context.pathComponent)/activity_stream"
     }
 
-    public var query: [APIQueryItem] {[
-        .value("only_active_courses", "true"),
-        .perPage(perPage)
-    ]}
+    public var query: [APIQueryItem] {
+        var items: [APIQueryItem] = []
+
+        if onlyActiveCourses {
+            items.append(.value("only_active_courses", "true"))
+        }
+
+        if let perPage = perPage {
+            items.append(.perPage(perPage))
+        }
+
+        return items
+    }
 }

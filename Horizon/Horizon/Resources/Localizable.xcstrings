@@ -4,6 +4,12 @@
     "-" : {
 
     },
+    "'s score is now available" : {
+
+    },
+    "'s score weight was changed  " : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -63,6 +69,9 @@
     "Amsterdam (+01:00/+02:00)" : {
 
     },
+    "Announcement from" : {
+
+    },
     "Announcements and Messages" : {
 
     },
@@ -85,6 +94,9 @@
 
     },
     "Assignment Name" : {
+
+    },
+    "Assignment Scored" : {
 
     },
     "Assignment Successfully Submitted!" : {
@@ -264,6 +276,9 @@
     "Due Date" : {
 
     },
+    "Due Date Changed" : {
+
+    },
     "Due Date: %@" : {
 
     },
@@ -403,6 +418,9 @@
 
     },
     "Irkutsk (+08:00/+08:00)" : {
+
+    },
+    "is due on " : {
 
     },
     "Islamabad (+05:00)" : {
@@ -573,6 +591,9 @@
     "No" : {
 
     },
+    "No notification activity yet." : {
+
+    },
     "Norfolk Island (+11:00/+12:00)" : {
 
     },
@@ -729,6 +750,9 @@
     "Scores" : {
 
     },
+    "Scoring Weight Changed" : {
+
+    },
     "Select a Submission Type" : {
 
     },
@@ -850,6 +874,12 @@
 
     },
     "Ulaanbaatar (+08:00/+08:00)" : {
+
+    },
+    "Unknown Course" : {
+
+    },
+    "Unknown date" : {
 
     },
     "Unlimited" : {
