@@ -23,10 +23,9 @@ import WebKit
 struct HEmbeddedWebPageContainerView: View {
     @Environment(\.viewController) private var viewController
     private var features: [CoreWebViewFeature] = [
-        .disableZoom,
-        .darkModeForWebDiscussions,
-        .forceDisableHorizontalScroll,
-        .hidePeerReviewLinkInWebDiscussions
+//        .disableZoom,
+//        .forceDisableHorizontalScroll,
+        .pullToRefresh(color: UIColor(Color.huiColors.surface.institution))
     ]
 
     // MARK: - Dependencies
@@ -39,7 +38,6 @@ struct HEmbeddedWebPageContainerView: View {
     ) {
         self.viewModel = viewModel
         self.features.append(contentsOf: features)
-        self.features.append(.pullToRefresh(color: UIColor(Color.huiColors.surface.institution)))
     }
 
     var body: some View {
