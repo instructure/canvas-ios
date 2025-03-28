@@ -78,7 +78,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
-        controller.fileID = fileID
+        controller.fileID = fileID.expand(with: context?.id)
         controller.originURL = originURL
         controller.offlineFileInteractor = offlineFileInteractor
         controller.canEdit = canEdit && controller.env.app == .teacher

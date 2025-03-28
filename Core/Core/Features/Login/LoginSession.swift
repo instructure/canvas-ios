@@ -60,6 +60,20 @@ public struct LoginSession: Codable, Hashable {
         .joined(separator: "-")
     }
 
+    public func uniqueID(local: Bool = false) -> String {
+        if local {
+            return [
+                baseURL.host,
+                originalBaseURL?.host,
+                userID.localID,
+                originalUserID?.localID
+            ]
+                .joined(separator: "-")
+        } else {
+            return uniqueID
+        }
+    }
+
     public init(
         accessToken: String? = nil,
         baseURL: URL,

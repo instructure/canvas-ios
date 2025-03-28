@@ -80,7 +80,6 @@ public enum CourseSyncDownloaderAssembly {
         let sessionId = loginSession?.uniqueID ?? ""
 
         let interactor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
             sectionName: section.rawValue,
             scheduler: scheduler
         )

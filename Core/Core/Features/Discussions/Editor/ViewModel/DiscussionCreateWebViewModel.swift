@@ -84,7 +84,7 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
             return
         }
         let useCase = GetDiscussionTopic(context: context, topicID: topicId)
-        useCase.fetch()
+        useCase.fetch(environment: .shared)
     }
 
     private func dismissCreateScreenAndShowNewDiscussion(

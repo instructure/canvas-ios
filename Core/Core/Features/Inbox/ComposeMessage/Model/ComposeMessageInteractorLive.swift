@@ -131,7 +131,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             attachmentIDs: parameters.attachmentIDs,
             bulkMessage: parameters.bulkMessage
         )
-        .fetchWithFuture()
+        .fetchWithFuture(environment: env)
     }
 
     public func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
@@ -143,7 +143,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
                 recipientIDs: parameters.recipientIDs,
                 includedMessages: parameters.includedMessages
             )
-            .fetchWithFuture()
+            .fetchWithFuture(environment: env)
         } else {
             return Future<URLResponse?, Error> { promise in
                 promise(.failure(NSError.instructureError(String(localized: "Invalid conversation ID", bundle: .core))))

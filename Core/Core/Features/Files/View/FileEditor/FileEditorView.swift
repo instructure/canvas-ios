@@ -238,7 +238,7 @@ public struct FileEditorView: View {
         switch itemID {
         case .file(let fileID):
             let useCase = GetFile(context: context, fileID: fileID)
-            useCase.fetch { _, response, error in performUIUpdate {
+            useCase.fetch(environment: env) { _, response, error in performUIUpdate {
                 if let error {
                     if (response as? HTTPURLResponse)?.statusCode == 404 {
                         alertItem = .itemDoesNotExist
@@ -314,7 +314,7 @@ public struct FileEditorView: View {
             legal_copyright: copyright.trimmingCharacters(in: .whitespacesAndNewlines),
             license: justification == .creative_commons ? license.rawValue : nil,
             use_justification: justification
-        )).fetch { result, _, error in performUIUpdate {
+        )).fetch(environment: env) { result, _, error in performUIUpdate {
             if let error {
                 alertItem = .error(error)
             }
@@ -332,10 +332,10 @@ public struct FileEditorView: View {
         switch itemID {
         case .file(let fileID):
             DeleteFile(fileID: fileID)
-                .fetch { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
+                .fetch(environment: env) { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
         case .folder(let folderID):
             DeleteFolder(folderID: folderID, force: true)
-                .fetch { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
+                .fetch(environment: env) { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
         }
     }
 
@@ -353,7 +353,7 @@ public struct FileEditorView: View {
     func loadCourseSettings() {
         guard isFile, let context = context, context.contextType == .course else { return }
         let useCase = GetCourseSettings(courseID: context.id)
-        useCase.fetch { _, _, _ in performUIUpdate {
+        useCase.fetch(environment: env) { _, _, _ in performUIUpdate {
             let settings: CourseSettings? = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.usageRightsRequired = settings?.usageRightsRequired == true
         } }

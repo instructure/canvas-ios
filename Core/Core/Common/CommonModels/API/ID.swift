@@ -138,6 +138,12 @@ public extension String {
         return self
     }
 
+    func expand(with id: String?) -> String {
+        guard hasShardID == false, let shardID = id?.shardID
+        else { return self }
+        return ID(rawValue: "\(shardID)~\(localID)").value
+    }
+
     private static let Formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 0

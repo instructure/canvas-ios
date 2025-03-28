@@ -28,18 +28,26 @@ public enum StoreError: Error {
 public class ReactiveStore<U: UseCase> {
     private let offlineModeInteractor: OfflineModeInteractor?
     internal let useCase: U
+    private let env: AppEnvironment
     private let context: NSManagedObjectContext
 
     // MARK: - Init
 
     public init(
         offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make(),
-        context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
+        env: AppEnvironment = .shared,
+        context: NSManagedObjectContext? = nil,
         useCase: U
     ) {
         self.offlineModeInteractor = offlineModeInteractor
         self.useCase = useCase
-        self.context = context
+        self.env = env
+
+        if context?.persistentStoreCoordinator == env.database.persistentStoreCoordinator {
+            self.context = context ?? env.database.viewContext
+        } else {
+            self.context = env.database.viewContext
+        }
     }
 
     /// Produces a list of entities for the given UseCase.
@@ -78,12 +86,12 @@ public class ReactiveStore<U: UseCase> {
                     useCase: useCase,
                     loadAllPages: loadAllPages,
                     fetchRequest: request,
-                    context: context
+                    env: env
                 ) :
                 Self.fetchEntitiesFromCache(
                     useCase: useCase,
                     fetchRequest: request,
-                    context: context
+                    env: env
                 )
         }
 
@@ -130,9 +138,10 @@ public class ReactiveStore<U: UseCase> {
     private static func fetchEntitiesFromCache<T: NSManagedObject>(
         useCase: U,
         fetchRequest: NSFetchRequest<T>,
-        context: NSManagedObjectContext
+        env: AppEnvironment
     ) -> AnyPublisher<[T], Error> {
-        return useCase.hasCacheExpired()
+        return useCase
+            .hasCacheExpired(environment: env)
             .setFailureType(to: Error.self)
             .flatMap { hasExpired -> AnyPublisher<[T], Error> in
                 if hasExpired {
@@ -140,10 +149,10 @@ public class ReactiveStore<U: UseCase> {
                         useCase: useCase,
                         loadAllPages: false,
                         fetchRequest: fetchRequest,
-                        context: context
+                        env: env
                     )
                 } else {
-                    return Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
+                    return Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: env.database.viewContext)
                 }
             }
             .eraseToAnyPublisher()
@@ -154,14 +163,14 @@ public class ReactiveStore<U: UseCase> {
         getNextUseCase: GetNextUseCase<U>? = nil,
         loadAllPages: Bool,
         fetchRequest: NSFetchRequest<T>,
-        context: NSManagedObjectContext
+        env: AppEnvironment
     ) -> AnyPublisher<[T], Error> {
         let useCaseToFetch: Future<URLResponse?, Error>
 
         if let getNextUseCase {
-            useCaseToFetch = getNextUseCase.fetchWithFuture()
+            useCaseToFetch = getNextUseCase.fetchWithFuture(environment: env)
         } else {
-            useCaseToFetch = useCase.fetchWithFuture()
+            useCaseToFetch = useCase.fetchWithFuture(environment: env)
         }
 
         return useCaseToFetch
@@ -178,10 +187,10 @@ public class ReactiveStore<U: UseCase> {
                     loadAllPages: loadAllPages,
                     nextResponse: $0,
                     fetchRequest: fetchRequest,
-                    context: context
+                    env: env
                 )
             }
-            .flatMap { _ in Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context) }
+            .flatMap { _ in Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: env.database.viewContext) }
             .eraseToAnyPublisher()
     }
 
@@ -190,7 +199,7 @@ public class ReactiveStore<U: UseCase> {
         loadAllPages: Bool,
         nextResponse: GetNextRequest<U.Response>?,
         fetchRequest: NSFetchRequest<T>,
-        context: NSManagedObjectContext
+        env: AppEnvironment
     ) -> AnyPublisher<Void, Error> {
         let voidPublisher: () -> AnyPublisher<Void, Error> = {
             Just(())
@@ -211,7 +220,7 @@ public class ReactiveStore<U: UseCase> {
                         getNextUseCase: nextPageUseCase,
                         loadAllPages: true,
                         fetchRequest: fetchRequest,
-                        context: context
+                        env: env
                     )
                     .map { _ in () }
                     .eraseToAnyPublisher()

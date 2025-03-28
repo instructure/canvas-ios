@@ -27,6 +27,6 @@ public final class InboxMessageFavouriteInteractorLive: InboxMessageFavouriteInt
 
     public init() { }
     public func updateStarred(to newValue: Bool, messageId: String) -> Future<URLResponse?, Error> {
-        StarConversation(id: messageId, starred: newValue).fetchWithFuture()
+        StarConversation(id: messageId, starred: newValue).fetchWithFuture(environment: .shared)
     }
 }

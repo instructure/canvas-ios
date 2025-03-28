@@ -41,18 +41,26 @@ public protocol CourseSyncFilesInteractor {
 }
 
 public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
-    private let env: AppEnvironment
+    private var env: AppEnvironment = .shared
     private let fileManager: FileManager
     private let offlineFileInteractor: OfflineFileInteractor
 
     public init(
-        env: AppEnvironment = .shared,
         fileManager: FileManager = .default,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) {
-        self.env = env
         self.fileManager = fileManager
         self.offlineFileInteractor = offlineFileInteractor
+    }
+
+    func updateSession(given courseId: String) -> AnyPublisher<Void, Never> {
+        Publishers
+            .appEnvironment(ofCourse: courseId)
+            .map { [weak self] e in
+                self?.env = e
+                return ()
+            }
+            .eraseToAnyPublisher()
     }
 
     /// Recursively looks up every file and folder under the specified `courseId` and returns a list of `File`.
@@ -62,14 +70,17 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
     ) -> AnyPublisher<[File], Error> {
         unowned let unownedSelf = self
 
-        let store = ReactiveStore(
-            useCase: GetFolderByPath(
-                context: .course(courseId)
-            )
-        )
-        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities(ignoreCache: true)
-
-        return publisher
+        return updateSession(given: courseId)
+            .flatMap({ _ -> AnyPublisher<[Folder], Error> in
+                let store = ReactiveStore(
+                    env: unownedSelf.env,
+                    useCase: GetFolderByPath(
+                        context: .course(courseId)
+                    )
+                )
+                return (useCache ? store.getEntitiesFromDatabase() : store.getEntities(ignoreCache: true))
+                    .eraseToAnyPublisher()
+            })
             .flatMap {
                 Publishers.Sequence(sequence: $0)
                     .filter { !$0.lockedForUser && !$0.hiddenForUser }
@@ -123,6 +134,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
 
     private func getFolderItems(folderID: String, useCache: Bool) -> AnyPublisher<([FolderItem], [String]), Error> {
         let store = ReactiveStore(
+            env: env,
             useCase: GetFolderItems(
                 folderID: folderID
             )

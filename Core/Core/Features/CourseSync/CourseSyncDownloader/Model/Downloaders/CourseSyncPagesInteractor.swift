@@ -32,25 +32,42 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
     }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
-        Publishers.Zip(
-            ReactiveStore(
-                useCase: GetFrontPage(
-                    context: .course(courseId)
-                )
-            )
-            .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser),
+        Publishers
+            .appEnvironment(ofCourse: courseId)
+            .flatMap { env in
 
-            ReactiveStore(
-                useCase: GetPages(
-                    context: .course(courseId)
+                Publishers.Zip(
+                    ReactiveStore(
+                        env: env,
+                        useCase: GetFrontPage(
+                            context: .course(courseId)
+                        )
+                    )
+                    .getEntities(ignoreCache: true)
+                    .map({ pages in
+
+                        print(pages.first?.id)
+                        print(pages.first?.title)
+                        print(pages.first?.isFrontPage)
+                        print(pages.first)
+                        print(">>")
+
+                        return pages
+                    })
+                    .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: self.htmlParser),
+
+                    ReactiveStore(
+                        env: env,
+                        useCase: GetPages(
+                            context: .course(courseId)
+                        )
+                    )
+                    .getEntities(ignoreCache: true)
+                    .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: self.htmlParser)
                 )
-            )
-            .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
-        )
-        .map { _ in () }
-        .eraseToAnyPublisher()
+                .map { _ in () }
+            }
+            .eraseToAnyPublisher()
     }
 
     public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
@@ -61,5 +78,21 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
         )
 
         return FileManager.default.removeItemPublisher(at: rootURL)
+    }
+}
+
+
+extension Publishers {
+
+    static func appEnvironment(ofCourse courseId: String) -> AnyPublisher<AppEnvironment, Never> {
+        ReactiveStore(useCase: GetContextTabs(context: .course(courseId)))
+            .getEntities()
+            .map { tabs in
+                var url = URLComponents()
+                url.host = tabs.first?.apiBaseURL?.host()
+                return AppEnvironment.resolved(for: url)
+            }
+            .replaceError(with: .shared)
+            .eraseToAnyPublisher()
     }
 }

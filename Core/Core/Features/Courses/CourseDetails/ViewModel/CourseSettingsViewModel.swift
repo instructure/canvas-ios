@@ -87,21 +87,26 @@ public class CourseSettingsViewModel: ObservableObject {
         }
 
         state = .saving
-        UpdateCourse(courseID: context.id,
-                     name: newName,
-                     defaultView: newDefaultView).fetch { [weak self] result, _, error in performUIUpdate {
-            guard let self = self else { return }
-            self.state = .ready
+        UpdateCourse(
+            courseID: context.id,
+            name: newName,
+            defaultView: newDefaultView
+        )
+        .fetch(environment: env) { [weak self] result, _, error in
+            performUIUpdate {
+                guard let self = self else { return }
+                self.state = .ready
 
-            if error != nil {
-                self.errorText = error?.localizedDescription
-                self.showError = true
-            }
+                if error != nil {
+                    self.errorText = error?.localizedDescription
+                    self.showError = true
+                }
 
-            if result != nil {
-                router.dismiss(viewController)
+                if result != nil {
+                    router.dismiss(viewController)
+                }
             }
-        } }
+        }
     }
 
     private func courseDidUpdate() {

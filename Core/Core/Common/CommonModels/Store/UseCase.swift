@@ -106,7 +106,7 @@ public extension UseCase {
         }
     }
 
-    func hasCacheExpired(environment: AppEnvironment = .shared) -> Future<Bool, Never> {
+    func hasCacheExpired(environment: AppEnvironment) -> Future<Bool, Never> {
         Future<Bool, Never> { promise in
             environment.database.performWriteTask { context in
                 promise(.success(self.hasExpired(in: context)))
@@ -114,7 +114,7 @@ public extension UseCase {
         }
     }
 
-    func fetchWithFuture(environment: AppEnvironment = .shared) -> Future<URLResponse?, Error> {
+    func fetchWithFuture(environment: AppEnvironment) -> Future<URLResponse?, Error> {
         Future<URLResponse?, Error> { promise in
             self.makeRequest(environment: environment) { response, urlResponse, error in
                 if let error = error {

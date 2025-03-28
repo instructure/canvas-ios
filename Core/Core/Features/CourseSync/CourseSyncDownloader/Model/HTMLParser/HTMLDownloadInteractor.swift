@@ -46,23 +46,34 @@ protocol HTMLDownloadInteractor {
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     public let sectionName: String
-    private let loginSession: LoginSession?
+    private var env: AppEnvironment = .shared
+    private var loginSession: LoginSession? { env.currentSession }
+
+    //private let loginSession: LoginSession?
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let fileManager: FileManager
     private let downloadTaskProvider: URLSessionDataTaskPublisherProvider
 
     init(
-        loginSession: LoginSession?,
         sectionName: String,
         scheduler: AnySchedulerOf<DispatchQueue>,
         fileManager: FileManager = .default,
         downloadTaskProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
     ) {
-        self.loginSession = loginSession
         self.sectionName = sectionName
         self.scheduler = scheduler
         self.fileManager = fileManager
         self.downloadTaskProvider = downloadTaskProvider
+    }
+
+    func updateSession(given courseId: String) -> AnyPublisher<Void, Never> {
+        Publishers
+            .appEnvironment(ofCourse: courseId)
+            .map { [weak self] e in
+                self?.env = e
+                return ()
+            }
+            .eraseToAnyPublisher()
     }
 
     func downloadFile(
@@ -71,12 +82,13 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         resourceId: String
     ) -> AnyPublisher<String, Never> {
         let fileID = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
-        return Just(url)
+        return updateSession(given: courseId)
+            .flatMap({ Just(url) })
             .setFailureType(to: Error.self)
-            .flatMap { url in
+            .flatMap { [weak self] url in
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let context = Context(url: url)
-                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileID))
+                    return ReactiveStore(env: self?.env ?? .shared, useCase: GetFile(context: context, fileID: fileID))
                         .getEntities(ignoreCache: false)
                         .map { files in
                             return files.first?.url ?? url
@@ -125,29 +137,37 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         resourceId: String,
         documentsDirectory: URL
     ) -> AnyPublisher<String, Error> {
-        guard
-            let loginSession,
-            let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
-        else {
-            return Fail(error: NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))).eraseToAnyPublisher()
-        }
-        return downloadTaskProvider
-            .getPublisher(for: request)
-            .receive(on: scheduler)
-            .flatMap { [fileManager, sectionName] (tempURL: URL, fileName: String) in
-                return Self.copy(
-                    tempURL,
-                    fileId: nil,
-                    fileName: fileName,
-                    courseId: courseId,
-                    resourceId: resourceId,
-                    fileManager: fileManager,
-                    sectionName: sectionName,
-                    loginSession: loginSession
-                )
-                .map { fileUrl in
-                    fileUrl.replacing(documentsDirectory.path(), with: "")
+
+        return updateSession(given: courseId)
+            .flatMap {
+
+                guard
+                    let loginSession = self.loginSession,
+                    let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
+                else {
+                    return Fail<String, any Error>(error: NSError.instructureError(String(localized: "Failed to construct request", bundle: .core)) as Error)
+                        .eraseToAnyPublisher()
                 }
+
+                return self.downloadTaskProvider
+                    .getPublisher(for: request)
+                    .receive(on: self.scheduler)
+                    .flatMap { [fileManager = self.fileManager, sectionName = self.sectionName] (tempURL: URL, fileName: String) in
+                        return Self.copy(
+                            tempURL,
+                            fileId: nil,
+                            fileName: fileName,
+                            courseId: courseId,
+                            resourceId: resourceId,
+                            fileManager: fileManager,
+                            sectionName: sectionName,
+                            loginSession: loginSession
+                        )
+                        .map { fileUrl in
+                            fileUrl.replacing(documentsDirectory.path(), with: "")
+                        }
+                    }
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }

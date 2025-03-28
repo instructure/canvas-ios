@@ -172,7 +172,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
     func ignoreTodo(at indexPath: IndexPath) {
         guard let todo = todos[indexPath], let ignoreURL = todo.ignoreURL else { return }
         Analytics.shared.logEvent("todo_ignored")
-        DeleteTodo(id: todo.id, ignoreURL: ignoreURL).fetch { [weak self] _, _, error in performUIUpdate {
+        DeleteTodo(id: todo.id, ignoreURL: ignoreURL).fetch(environment: env) { [weak self] _, _, error in performUIUpdate {
             if let error = error { self?.showError(error) }
         } }
     }

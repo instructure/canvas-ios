@@ -429,16 +429,16 @@ let router = Router(routes: [
         LogEventListViewController.create()
     },
 
-    RouteHandler("/offline/sync_picker") { _, _, _ in
+    RouteHandler("/offline/sync_picker") { _, _, _, env in
         CourseSyncSelectorAssembly.makeViewController(env: .shared)
     },
-    RouteHandler("/offline/sync_picker/:courseID") { _, params, _ in
+    RouteHandler("/offline/sync_picker/:courseID") { _, params, _, env in
         CourseSyncSelectorAssembly.makeViewController(env: .shared, courseID: params["courseID"])
     },
-    RouteHandler("/offline/progress") { _, _, _ in
+    RouteHandler("/offline/progress") { _, _, _, env in
         CourseSyncProgressAssembly.makeViewController(env: .shared)
     },
-    RouteHandler("/offline/settings") { _, _, _ in
+    RouteHandler("/offline/settings") { _, _, _, env in
         guard let sessionDefaults = AppEnvironment.shared.userDefaults else {
             return nil
         }

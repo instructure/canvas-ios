@@ -99,7 +99,7 @@ public class InboxSettingsInteractorLive: InboxSettingsInteractor {
 
     public func updateInboxSettings(inboxSettings: CDInboxSettings) -> AnyPublisher<Void, Error> {
         return UpdateInboxSettings(inboxSettings: inboxSettings)
-            .fetchWithFuture()
+            .fetchWithFuture(environment: environment)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

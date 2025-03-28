@@ -33,6 +33,12 @@ public class URLSessionDataTaskPublisherProviderLive: URLSessionDataTaskPublishe
                     let (url, result) = try await URLSession.shared.download(for: request)
                     promise(.success((tempURL: url, fileName: result.url?.lastPathComponent ?? request.url?.lastPathComponent ?? "")))
                 } catch {
+
+                    print("DOWNLOAD FAIL:")
+                    print(request)
+                    print(error)
+
+
                     promise(.failure(NSError.instructureError(error.localizedDescription)))
                 }
             }

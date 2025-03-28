@@ -191,7 +191,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
     func delete(fileID: String, fileName: String) {
         showDeleteAlert(name: fileName) { [weak self] _ in
-            DeleteFile(fileID: fileID).fetch { _, _, error in
+            DeleteFile(fileID: fileID).fetch(environment: self?.env ?? .shared) { _, _, error in
                 performUIUpdate {
                     if let error = error {
                         self?.showError(error)
@@ -205,7 +205,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
     func delete(folder: Folder) {
         showDeleteAlert(name: folder.name) { [weak self] _ in
-            DeleteFolder(folderID: folder.id, force: true).fetch { _, _, error in
+            DeleteFolder(folderID: folder.id, force: true).fetch(environment: self?.env ?? .shared) { _, _, error in
                 performUIUpdate {
                     if let error = error {
                         self?.showError(error)
@@ -351,7 +351,7 @@ extension FileListViewController: FilePickerDelegate {
 
     func addFolder(name: String) {
         guard let folderID = folder.first?.id else { return }
-        CreateFolder(context: context, name: name, parentFolderID: folderID).fetch()
+        CreateFolder(context: context, name: name, parentFolderID: folderID).fetch(environment: env)
     }
 
     public func filePicker(didPick url: URL) {

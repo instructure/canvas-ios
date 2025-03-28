@@ -96,7 +96,7 @@ public struct SyllabusEditorView: View {
 
     func loadCourseSettings() {
         let useCase = GetCourseSettings(courseID: courseID)
-        useCase.fetch { _, _, _ in performUIUpdate {
+        useCase.fetch(environment: env) { _, _, _ in performUIUpdate {
             let settings: CourseSettings? = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.showSummary = settings?.syllabusCourseSummary == true
         } }
@@ -106,7 +106,7 @@ public struct SyllabusEditorView: View {
         guard !isLoaded else { return }
         loadCourseSettings()
         let useCase = GetCourse(courseID: courseID)
-        useCase.fetch { _, _, error in performUIUpdate {
+        useCase.fetch(environment: env) { _, _, error in performUIUpdate {
             let course: Course? = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.html = course?.syllabusBody ?? ""
             self.isLoading = false
@@ -118,7 +118,7 @@ public struct SyllabusEditorView: View {
     func save() {
         controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
-        UpdateCourse(courseID: courseID, syllabusBody: html, syllabusSummary: showSummary).fetch { result, _, error in performUIUpdate {
+        UpdateCourse(courseID: courseID, syllabusBody: html, syllabusSummary: showSummary).fetch(environment: env) { result, _, error in performUIUpdate {
                 self.error = error
                 self.isSaving = false
                 if result != nil {

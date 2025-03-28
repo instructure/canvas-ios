@@ -141,7 +141,7 @@ public class AllCoursesCellViewModel: ObservableObject {
             MarkFavoriteGroup(
                 groupID: item.id,
                 markAsFavorite: !item.isFavourite
-            ).fetch { _, _, _ in
+            ).fetch(environment: .shared) { _, _, _ in
                 performUIUpdate {
                     withAnimation { [weak self] in
                         self?.pending = false
@@ -152,7 +152,7 @@ public class AllCoursesCellViewModel: ObservableObject {
             MarkFavoriteCourse(
                 courseID: item.id, markAsFavorite:
                 !item.isFavourite
-            ).fetch { _, _, _ in
+            ).fetch(environment: .shared) { _, _, _ in
                 performUIUpdate {
                     withAnimation { [weak self] in
                         self?.pending = false

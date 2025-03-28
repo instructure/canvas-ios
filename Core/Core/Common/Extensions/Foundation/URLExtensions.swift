@@ -144,7 +144,7 @@ public extension URL {
                 sectionName: String,
                 resourceId: String
             ) -> URL {
-                Paths.Offline.courseSectionFolderURL(
+                courseSectionFolderURL(
                     sessionId: sessionId,
                     courseId: courseId,
                     sectionName: sectionName

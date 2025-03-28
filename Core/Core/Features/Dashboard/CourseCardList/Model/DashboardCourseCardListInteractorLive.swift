@@ -100,6 +100,6 @@ public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInter
 
     public func uploadCardPositions() {
         guard case .data = state.value else { return }
-        PutDashboardCardPositions(cards: courseCardList.value).fetch()
+        PutDashboardCardPositions(cards: courseCardList.value).fetch(environment: .shared)
     }
 }

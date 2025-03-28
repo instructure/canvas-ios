@@ -51,7 +51,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
 
         saveLayoutToDefaultsOnChange()
         saveGradesToDefaultsOnChange()
-        saveOverlayOnChange()
+        saveOverlayOnChange(environment: environment)
         updateLayoutFromDefaultsOnChange()
 
         logAnalytics()
@@ -87,12 +87,12 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
             .store(in: &subscriptions)
     }
 
-    private func saveOverlayOnChange() {
+    private func saveOverlayOnChange(environment: AppEnvironment) {
         colorOverlay
             .dropFirst()
             .removeDuplicates()
             .sink { colorOverlay in
-                UpdateUserSettings(hide_dashcard_color_overlays: !colorOverlay).fetch()
+                UpdateUserSettings(hide_dashcard_color_overlays: !colorOverlay).fetch(environment: environment)
             }
             .store(in: &subscriptions)
     }

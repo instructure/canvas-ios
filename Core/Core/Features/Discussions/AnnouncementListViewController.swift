@@ -152,7 +152,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
         )
         alert.addAction(AlertAction(String(localized: "Delete", bundle: .core), style: .destructive) { _ in
             let useCase = DeleteDiscussionTopic(context: self.context, topicID: topicID)
-            useCase.fetch { [weak self] _, _, error in performUIUpdate {
+            useCase.fetch(environment: self.env) { [weak self] _, _, error in performUIUpdate {
                 if let error = error { self?.showError(error) }
             } }
         })

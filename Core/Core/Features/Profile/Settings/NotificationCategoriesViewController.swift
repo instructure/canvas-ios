@@ -241,7 +241,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
 
     func update(_ category: String, notifications: [String], frequency: NotificationFrequency) {
         let useCase = PutNotificationCategory(channelID: channelID, category: category, notifications: notifications, frequency: frequency)
-        useCase.fetch { [weak self] (response, _, error) in
+        useCase.fetch(environment: env) { [weak self] (response, _, error) in
             if let error = error {
                 self?.showError(error)
             } else if response == nil {

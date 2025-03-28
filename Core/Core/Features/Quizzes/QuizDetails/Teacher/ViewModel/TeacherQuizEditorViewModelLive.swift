@@ -65,7 +65,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
 
     func fetchQuiz() {
         let useCase = GetQuiz(courseID: courseID, quizID: quizID)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -87,7 +87,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
         }
 
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -103,7 +103,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
 
     func fetchAssignmentGroups() {
         let useCase = GetAssignmentGroups(courseID: courseID)
-        useCase.fetch(force: true) { _, _, fetchError in
+        useCase.fetch(environment: env, force: true) { _, _, fetchError in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 if fetchError != nil {
@@ -205,7 +205,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
                     return
                 } else {
                     GetQuiz(courseID: self.courseID, quizID: self.quizID)
-                        .fetch(force: true)
+                        .fetch(environment: self.env, force: true)
                     self.saveAssignment(router: router, viewController: viewController)
                 }
             }
@@ -279,7 +279,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
             pointsPossible: assignment.pointsPossible,
             published: published,
             unlockAt: unlockAt
-        ).fetch { [weak self] result, _, error in performUIUpdate {
+        ).fetch(environment: env) { [weak self] result, _, error in performUIUpdate {
             guard let self = self else { return }
             if error != nil {
                 // Practice quizzes don't necessary have assignments
@@ -288,7 +288,7 @@ public class TeacherQuizEditorViewModelLive: TeacherQuizEditorViewModel {
             }
             if result != nil {
                 GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
-                    .fetch(force: true)
+                    .fetch(environment: self.env, force: true)
                 self.dismiss(router: router, viewController: viewController.value)
             }
         } }
