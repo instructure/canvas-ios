@@ -157,6 +157,7 @@ extension K5SubjectViewModel {
         case "schedule": return .k5schedule
         case "modules": return .moduleLine
         case "grades": return .k5grades
+        case "groups": return .groupLine
         default: return nil
         }
     }
