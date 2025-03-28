@@ -48,8 +48,7 @@ struct SubmissionHeader: View {
                             .font(.semibold16).foregroundColor(.textDarkest)
                         HStack(spacing: 2) {
                             Image(uiImage: submission.status.icon)
-                                .resizable()
-                                .frame(width: uiScale.iconScale * 18, height: uiScale.iconScale * 18)
+                                .size(uiScale.iconScale * 18)
                                 .foregroundStyle(Color(submission.status.color))
                             Text(submission.status.text)
                                 .font(.medium14).foregroundColor(Color(submission.status.color))

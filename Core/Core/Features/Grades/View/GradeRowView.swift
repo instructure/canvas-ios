@@ -68,8 +68,7 @@ public struct GradeRowView: View {
 
             HStack(spacing: 2) {
                 Image(uiImage: displayProperties.icon)
-                    .resizable()
-                    .frame(width: uiScale.iconScale * 18, height: uiScale.iconScale * 18)
+                    .size(uiScale.iconScale * 18)
                     .foregroundColor(Color(displayProperties.color))
 
                 Text(displayProperties.text)
