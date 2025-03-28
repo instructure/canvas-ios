@@ -467,12 +467,12 @@
 		7D0A28E0251A8104004FB3B6 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
-				CF0605DA2D95AAE90014C2EC /* StudentPager */,
-				CF0605D82D95A9340014C2EC /* MainLayout */,
-				CF0605D32D95A83D0014C2EC /* Grading */,
-				CF0605CF2D95A5A40014C2EC /* SubmissionRenderer */,
-				CF0605CD2D95A56C0014C2EC /* Comments */,
 				CF0605CB2D95A4FA0014C2EC /* CommentLibrary */,
+				CF0605CD2D95A56C0014C2EC /* Comments */,
+				CF0605D32D95A83D0014C2EC /* Grading */,
+				CF0605D82D95A9340014C2EC /* MainLayout */,
+				CF0605DA2D95AAE90014C2EC /* StudentPager */,
+				CF0605CF2D95A5A40014C2EC /* SubmissionRenderer */,
 				CF93FCB72D5A5AF000C4538F /* SpeedGraderAssembly.swift */,
 			);
 			path = SpeedGrader;
@@ -481,12 +481,12 @@
 		7D3DC0C4252432B000B0EBC1 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
-				EB71A24D261206CA0003241C /* GradeSliderTests.swift */,
-				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
-				CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */,
-				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
-				EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */,
-				B417C2E52B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift */,
+				CF0606022D96E4920014C2EC /* CommentLibrary */,
+				CF0606052D96E4C20014C2EC /* Comments */,
+				CF0605F92D96E4190014C2EC /* Grading */,
+				CF0606002D96E4750014C2EC /* MainLayout */,
+				CF0605FC2D96E43B0014C2EC /* StudentPager */,
+				CF0605FE2D96E4570014C2EC /* SubmissionRenderer */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -897,6 +897,110 @@
 				7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CF0605F92D96E4190014C2EC /* Grading */ = {
+			isa = PBXGroup;
+			children = (
+				CF0605FA2D96E4250014C2EC /* Points */,
+			);
+			path = Grading;
+			sourceTree = "<group>";
+		};
+		CF0605FA2D96E4250014C2EC /* Points */ = {
+			isa = PBXGroup;
+			children = (
+				CF0605FB2D96E42C0014C2EC /* View */,
+			);
+			path = Points;
+			sourceTree = "<group>";
+		};
+		CF0605FB2D96E42C0014C2EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB71A24D261206CA0003241C /* GradeSliderTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF0605FC2D96E43B0014C2EC /* StudentPager */ = {
+			isa = PBXGroup;
+			children = (
+				CF0605FD2D96E4440014C2EC /* View */,
+			);
+			path = StudentPager;
+			sourceTree = "<group>";
+		};
+		CF0605FD2D96E4440014C2EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF0605FE2D96E4570014C2EC /* SubmissionRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				CF0605FF2D96E4600014C2EC /* ViewModel */,
+			);
+			path = SubmissionRenderer;
+			sourceTree = "<group>";
+		};
+		CF0605FF2D96E4600014C2EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF0606002D96E4750014C2EC /* MainLayout */ = {
+			isa = PBXGroup;
+			children = (
+				CF0606012D96E47E0014C2EC /* View */,
+			);
+			path = MainLayout;
+			sourceTree = "<group>";
+		};
+		CF0606012D96E47E0014C2EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF0606022D96E4920014C2EC /* CommentLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				CF0606032D96E4A00014C2EC /* ViewModel */,
+			);
+			path = CommentLibrary;
+			sourceTree = "<group>";
+		};
+		CF0606032D96E4A00014C2EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF0606052D96E4C20014C2EC /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				CF0606062D96E4C90014C2EC /* ViewModel */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		CF0606062D96E4C90014C2EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B417C2E52B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CF13E549299D08E000F57F69 /* QuizSubmissionList */ = {
