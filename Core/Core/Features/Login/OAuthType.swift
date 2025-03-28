@@ -37,13 +37,13 @@ public struct ManualOAuthAttributes: Codable {
     let clientID: String?
     let clientSecret: String?
 
-    init(baseURL: URL?, clientID: String?, clientSecret: String?) {
+    public init(baseURL: URL?, clientID: String?, clientSecret: String?) {
         self.baseURL = baseURL
         self.clientID = clientID
         self.clientSecret = clientSecret
     }
 
-    init(client: APIVerifyClient) {
+    public init(client: APIVerifyClient) {
         self.baseURL = client.base_url
         self.clientID = client.client_id
         self.clientSecret = client.client_secret

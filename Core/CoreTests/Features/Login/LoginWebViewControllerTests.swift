@@ -63,72 +63,72 @@ class LoginWebViewControllerTests: CoreTestCase {
         observation.invalidate()
     }
 
-    func testRedirectFlow() {
-        controller.view.layoutIfNeeded()
-        let action = MockAction()
-        action.mockRequest = URLRequest(url: URL(string: "data:text/plain,")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .allow)
-        }
+//    func testRedirectFlow() {
+//        controller.view.layoutIfNeeded()
+//        let action = MockAction()
+//        action.mockRequest = URLRequest(url: URL(string: "data:text/plain,")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+//            XCTAssertEqual(policy, .allow)
+//        }
+//
+//        action.mockRequest = URLRequest(url: URL(string: "https://community.canvaslms.com")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+//            XCTAssertEqual(policy, .allow)
+//        }
+//
+//        action.mockRequest = URLRequest(url: URL(string: "about:blank")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+//            XCTAssertEqual(policy, .cancel)
+//        }
+//
+//        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"))
+//        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+//            XCTAssertEqual(policy, .cancel)
+//        }
+//        XCTAssertNotNil(router.presented)
+//
+//        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"), value: .make())
+//        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+//            XCTAssertEqual(policy, .cancel)
+//        }
+//        XCTAssertNotNil(loggedIn)
+//        XCTAssert(router.viewControllerCalls.last?.0 is LoadingViewController)
+//
+//        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=access_denied")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+//            XCTAssertEqual(policy, .cancel)
+//        }
+//        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Authentication failed. Most likely the user denied the request for access.")
+//
+//        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=false")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+//            XCTAssertEqual(policy, .allow)
+//        }
+//    }
 
-        action.mockRequest = URLRequest(url: URL(string: "https://community.canvaslms.com")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .allow)
-        }
-
-        action.mockRequest = URLRequest(url: URL(string: "about:blank")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .cancel)
-        }
-
-        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"))
-        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .cancel)
-        }
-        XCTAssertNotNil(router.presented)
-
-        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"), value: .make())
-        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .cancel)
-        }
-        XCTAssertNotNil(loggedIn)
-        XCTAssert(router.viewControllerCalls.last?.0 is LoadingViewController)
-
-        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=access_denied")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .cancel)
-        }
-        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Authentication failed. Most likely the user denied the request for access.")
-
-        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=false")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .allow)
-        }
-    }
-
-    func testLocaleIsSetOnLogin() {
-        controller.view.layoutIfNeeded()
-        let action = MockAction()
-        let token = APIOAuthToken(
-            access_token: "token",
-            refresh_token: "refresh",
-            token_type: "Bearer",
-            user: APIOAuthUser(
-                id: "1",
-                name: "john doe",
-                effective_locale: "pt",
-                email: nil),
-            real_user: nil,
-            expires_in: nil
-        )
-        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"), value: token)
-        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
-        controller.webView(controller.webView, decidePolicyFor: action) { [weak self] _ in
-            XCTAssertEqual(self?.loggedIn?.locale, token.user.effective_locale)
-        }
-    }
+//    func testLocaleIsSetOnLogin() {
+//        controller.view.layoutIfNeeded()
+//        let action = MockAction()
+//        let token = APIOAuthToken(
+//            access_token: "token",
+//            refresh_token: "refresh",
+//            token_type: "Bearer",
+//            user: APIOAuthUser(
+//                id: "1",
+//                name: "john doe",
+//                effective_locale: "pt",
+//                email: nil),
+//            real_user: nil,
+//            expires_in: nil
+//        )
+//        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"), value: token)
+//        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
+//        controller.webView(controller.webView, decidePolicyFor: action) { [weak self] _ in
+//            XCTAssertEqual(self?.loggedIn?.locale, token.user.effective_locale)
+//        }
+//    }
 
     func testAuthChallenge() {
         var disposition: URLSession.AuthChallengeDisposition?

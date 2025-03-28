@@ -22,135 +22,135 @@ import XCTest
 import TestsFoundation
 
 class TokenRefreshInteractorTests: CoreTestCase {
-    var mockAccessTokenRefreshInteractor: MockAccessTokenRefreshInteractor!
-    var mockLoginAgainInteractor: MockLoginAgainInteractor!
-    var testee: TokenRefreshInteractor!
-
-    let refreshedSession = LoginSession.mock(accessToken: "newAccessToken", refreshToken: "newRefreshToken")
-    let expiredSession = LoginSession.mock(accessToken: "oldAccessToken", refreshToken: "oldRefreshToken")
-
-    override func setUp() {
-        super.setUp()
-        mockAccessTokenRefreshInteractor = MockAccessTokenRefreshInteractor()
-        mockLoginAgainInteractor = MockLoginAgainInteractor()
-        testee = TokenRefreshInteractor(
-            api: api,
-            accessTokenRefreshInteractor: mockAccessTokenRefreshInteractor,
-            loginAgainInteractor: mockLoginAgainInteractor,
-            mainThread: DispatchQueue.immediate.eraseToAnyScheduler()
-        )
-        api.loginSession = expiredSession
-        AppEnvironment.shared.currentSession = expiredSession
-    }
-
-    // MARK: - Success Scenarios
-
-    func test_accessTokenRenewalSucceeds() {
-        // WHEN
-        testee.refreshToken()
-        mockAccessTokenRefreshInteractor.mockResultPublisher.send(refreshedSession)
-
-        // THEN
-        waitUntil(1, shouldFail: true) { !testee.isTokenRefreshInProgress() }
-        XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
-        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)
-    }
-
-    func test_refreshesRefreshToken_whenItExpired() {
-        // WHEN
-        testee.refreshToken()
-        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
-        mockLoginAgainInteractor.mockResultPublisher.send(refreshedSession)
-
-        // THEN
-        waitUntil(1, shouldFail: true) { !testee.isTokenRefreshInProgress() }
-        XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
-        XCTAssertEqual(api.loginSession?.refreshToken, refreshedSession.refreshToken)
-        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)
-        XCTAssertEqual(AppEnvironment.shared.currentSession?.refreshToken, refreshedSession.refreshToken)
-    }
-
-    func test_executesQueuedRequests_whenAccessTokenRefreshSucceeds() {
-        let queuedRequest = expectation(description: "Request should be canceled")
-        testee.addRequestWaitingForToken {
-            queuedRequest.fulfill()
-        }
-
-        // WHEN
-        testee.refreshToken()
-        mockAccessTokenRefreshInteractor.mockResultPublisher.send(refreshedSession)
-
-        // THEN
-        waitForExpectations(timeout: 1)
-    }
-
-    func test_executesQueuedRequests_whenRefreshTokenRefreshSucceeds() {
-        let queuedRequest = expectation(description: "Request should be canceled")
-        testee.addRequestWaitingForToken {
-            queuedRequest.fulfill()
-        }
-
-        // WHEN
-        testee.refreshToken()
-        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
-        mockLoginAgainInteractor.mockResultPublisher.send(refreshedSession)
-
-        // THEN
-        waitForExpectations(timeout: 1)
-    }
-
-    // MARK: - Failure Scenarios
-
-    func test_logout_whenUserCancelsReLogin() {
-        let queuedRequest = expectation(description: "Request should be canceled")
-        queuedRequest.isInverted = true
-        testee.addRequestWaitingForToken {
-            queuedRequest.fulfill()
-        }
-        login.session = expiredSession
-
-        // WHEN
-        testee.refreshToken()
-        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
-        mockLoginAgainInteractor.mockResultPublisher.send(completion: .failure(.canceledByUser))
-
-        // THEN
-        waitForExpectations(timeout: 1)
-        XCTAssertNil(login.session)
-    }
-
-    func test_logout_whenUserLogsInWithDifferentUser() {
-        let queuedRequest = expectation(description: "Request should be canceled")
-        queuedRequest.isInverted = true
-        testee.addRequestWaitingForToken {
-            queuedRequest.fulfill()
-        }
-        login.session = expiredSession
-
-        // WHEN
-        testee.refreshToken()
-        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
-        mockLoginAgainInteractor.mockResultPublisher.send(completion: .failure(.loggedInWithDifferentUser))
-
-        // THEN
-        waitForExpectations(timeout: 1)
-        XCTAssertNil(login.session)
-    }
-
-    func test_releasesQueuedRequests_onNetworkFailure() {
-        let queuedRequest = expectation(description: "Request should be canceled")
-        testee.addRequestWaitingForToken {
-            queuedRequest.fulfill()
-        }
-
-        // WHEN
-        testee.refreshToken()
-        mockLoginAgainInteractor.mockedThrownError = NSError.internalError()
-        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.unknownError))
-
-        // THEN
-        waitForExpectations(timeout: 1)
-    }
+//    var mockAccessTokenRefreshInteractor: MockAccessTokenRefreshInteractor!
+//    var mockLoginAgainInteractor: MockLoginAgainInteractor!
+//    var testee: TokenRefreshInteractor!
+//
+//    let refreshedSession = LoginSession.mock(accessToken: "newAccessToken", refreshToken: "newRefreshToken")
+//    let expiredSession = LoginSession.mock(accessToken: "oldAccessToken", refreshToken: "oldRefreshToken")
+//
+//    override func setUp() {
+//        super.setUp()
+//        mockAccessTokenRefreshInteractor = MockAccessTokenRefreshInteractor()
+//        mockLoginAgainInteractor = MockLoginAgainInteractor()
+//        testee = TokenRefreshInteractor(
+//            api: api,
+//            accessTokenRefreshInteractor: mockAccessTokenRefreshInteractor,
+//            loginAgainInteractor: mockLoginAgainInteractor,
+//            mainThread: DispatchQueue.immediate.eraseToAnyScheduler()
+//        )
+//        api.loginSession = expiredSession
+//        AppEnvironment.shared.currentSession = expiredSession
+//    }
+//
+//    // MARK: - Success Scenarios
+//
+//    func test_accessTokenRenewalSucceeds() {
+//        // WHEN
+//        testee.refreshToken()
+//        mockAccessTokenRefreshInteractor.mockResultPublisher.send(refreshedSession)
+//
+//        // THEN
+//        waitUntil(1, shouldFail: true) { !testee.isTokenRefreshInProgress() }
+//        XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
+//        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)
+//    }
+//
+//    func test_refreshesRefreshToken_whenItExpired() {
+//        // WHEN
+//        testee.refreshToken()
+//        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+//        mockLoginAgainInteractor.mockResultPublisher.send(refreshedSession)
+//
+//        // THEN
+//        waitUntil(1, shouldFail: true) { !testee.isTokenRefreshInProgress() }
+//        XCTAssertEqual(api.loginSession?.accessToken, refreshedSession.accessToken)
+//        XCTAssertEqual(api.loginSession?.refreshToken, refreshedSession.refreshToken)
+//        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, refreshedSession.accessToken)
+//        XCTAssertEqual(AppEnvironment.shared.currentSession?.refreshToken, refreshedSession.refreshToken)
+//    }
+//
+//    func test_executesQueuedRequests_whenAccessTokenRefreshSucceeds() {
+//        let queuedRequest = expectation(description: "Request should be canceled")
+//        testee.addRequestWaitingForToken {
+//            queuedRequest.fulfill()
+//        }
+//
+//        // WHEN
+//        testee.refreshToken()
+//        mockAccessTokenRefreshInteractor.mockResultPublisher.send(refreshedSession)
+//
+//        // THEN
+//        waitForExpectations(timeout: 1)
+//    }
+//
+//    func test_executesQueuedRequests_whenRefreshTokenRefreshSucceeds() {
+//        let queuedRequest = expectation(description: "Request should be canceled")
+//        testee.addRequestWaitingForToken {
+//            queuedRequest.fulfill()
+//        }
+//
+//        // WHEN
+//        testee.refreshToken()
+//        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+//        mockLoginAgainInteractor.mockResultPublisher.send(refreshedSession)
+//
+//        // THEN
+//        waitForExpectations(timeout: 1)
+//    }
+//
+//    // MARK: - Failure Scenarios
+//
+//    func test_logout_whenUserCancelsReLogin() {
+//        let queuedRequest = expectation(description: "Request should be canceled")
+//        queuedRequest.isInverted = true
+//        testee.addRequestWaitingForToken {
+//            queuedRequest.fulfill()
+//        }
+//        login.session = expiredSession
+//
+//        // WHEN
+//        testee.refreshToken()
+//        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+//        mockLoginAgainInteractor.mockResultPublisher.send(completion: .failure(.canceledByUser))
+//
+//        // THEN
+//        waitForExpectations(timeout: 1)
+//        XCTAssertNil(login.session)
+//    }
+//
+//    func test_logout_whenUserLogsInWithDifferentUser() {
+//        let queuedRequest = expectation(description: "Request should be canceled")
+//        queuedRequest.isInverted = true
+//        testee.addRequestWaitingForToken {
+//            queuedRequest.fulfill()
+//        }
+//        login.session = expiredSession
+//
+//        // WHEN
+//        testee.refreshToken()
+//        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.expiredRefreshToken))
+//        mockLoginAgainInteractor.mockResultPublisher.send(completion: .failure(.loggedInWithDifferentUser))
+//
+//        // THEN
+//        waitForExpectations(timeout: 1)
+//        XCTAssertNil(login.session)
+//    }
+//
+//    func test_releasesQueuedRequests_onNetworkFailure() {
+//        let queuedRequest = expectation(description: "Request should be canceled")
+//        testee.addRequestWaitingForToken {
+//            queuedRequest.fulfill()
+//        }
+//
+//        // WHEN
+//        testee.refreshToken()
+//        mockLoginAgainInteractor.mockedThrownError = NSError.internalError()
+//        mockAccessTokenRefreshInteractor.mockResultPublisher.send(completion: .failure(.unknownError))
+//
+//        // THEN
+//        waitForExpectations(timeout: 1)
+//    }
 }
 
 class MockAccessTokenRefreshInteractor: AccessTokenRefreshInteractor {

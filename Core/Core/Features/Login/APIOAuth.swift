@@ -19,7 +19,7 @@
 import Foundation
 
 // Not documented in canvas rest api
-struct APIVerifyClient: Codable, Equatable {
+public struct APIVerifyClient: Codable, Equatable {
     let authorized: Bool
     let base_url: URL?
     let client_id: String?
