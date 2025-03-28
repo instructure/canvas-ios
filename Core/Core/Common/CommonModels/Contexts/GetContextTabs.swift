@@ -32,6 +32,8 @@ public class GetContextTabs: CollectionUseCase {
     }
 
     public var request: GetTabsRequest {
+        // For mixed accounts (users enrolled in both k5 and regular courses) the API returns the k5 tabs only.
+        // Once it gets fixed, we should not only check the feature enablement but the k5 status of the course too.
         if AppEnvironment.shared.k5.isK5Enabled {
             return GetTabsRequest(context: context, include: [.course_subject_tabs])
         }
