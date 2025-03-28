@@ -112,11 +112,11 @@ async function pushToS3(toUpload) {
 
 async function exportLocalizations(outputPath) {
   await run('xcodebuild', [
-    '-sdk',
-    'iphonesimulator',
     '-exportLocalizations',
     '-workspace',
     'Canvas.xcworkspace',
+    '-sdk',
+    'iphonesimulator',
     '-localizationPath',
     outputPath,
     '-n'
