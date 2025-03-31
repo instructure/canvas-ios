@@ -186,6 +186,7 @@ struct NotebookNoteView: View {
             HorizonUI.IconButton(.huiIcons.close, type: .white) {
                 viewModel.close(viewController: viewController)
             }
+            .huiElevation(level: .level4)
             .opacity(viewModel.closeButtonOpacity)
         }
         .background(HorizonUI.colors.surface.pagePrimary)

@@ -68,6 +68,7 @@ struct NotebookView: View {
         ) {
             viewModel.onBack(viewController: viewController)
         }
+        .huiElevation(level: .level4)
     }
 
     private var forwardBackButtons: some View {
