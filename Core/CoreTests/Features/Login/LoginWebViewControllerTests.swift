@@ -34,10 +34,17 @@ class LoginWebViewControllerTests: CoreTestCase {
     }
 
     func testLayout() {
+        controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin, clientID: "1")
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.view.backgroundColor, .textLightest.variantForLightMode)
-        XCTAssertEqual(controller.webView.url, URL(string: "https://localhost/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"))
+        XCTAssertTrue(
+            controller.webView.url?.absoluteString.range(
+                // swiftlint:disable:next line_length
+                of: #"^https:\/\/localhost\/login\/oauth2\/auth\?client_id=1&redirect_uri=https:\/\/canvas\/login&response_type=code&code_challenge=[A-Za-z0-9_-]+&code_challenge_method=S256&mobile=1$"#,
+                options: .regularExpression
+            ) != nil
+        )
     }
 
     func testPreloaded() {
