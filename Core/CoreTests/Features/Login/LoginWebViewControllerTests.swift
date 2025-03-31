@@ -201,6 +201,7 @@ class LoginWebViewControllerTests: CoreTestCase {
     }
 
     func testAuthChallenge() {
+        controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin, clientID: "client-id")
         var disposition: URLSession.AuthChallengeDisposition?
         var credential: URLCredential?
         controller.view.layoutIfNeeded()
@@ -221,6 +222,7 @@ class LoginWebViewControllerTests: CoreTestCase {
     }
 
     func testAuthChallengeCancel() {
+        controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin, clientID: "client-id")
         controller.view.layoutIfNeeded()
         var disposition: URLSession.AuthChallengeDisposition?
         var credential: URLCredential?
@@ -248,6 +250,7 @@ class LoginWebViewControllerTests: CoreTestCase {
     }
 
     func testOpenTab() {
+        controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin, clientID: "client-id")
         controller.view.layoutIfNeeded()
         let mockAction = MockAction()
         mockAction.mockRequest = URLRequest(url: URL(string: "data:text/plain,")!)
