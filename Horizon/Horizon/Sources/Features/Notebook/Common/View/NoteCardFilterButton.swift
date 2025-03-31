@@ -28,7 +28,7 @@ struct NoteCardFilterButton: View {
 
     var body: some View {
         VStack {
-            type.image
+            type.image(selected: selected)
                 .frame(width: .huiSpaces.space24, height: .huiSpaces.space24)
             Text(type.label)
                 .huiTypography(.buttonTextLarge)
@@ -38,16 +38,15 @@ struct NoteCardFilterButton: View {
         .background(
             RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level2.attributes.radius)
                 .fill(Color.huiColors.surface.cardPrimary)
-                .stroke(type.color, lineWidth: selected ? 2 : 0)
+                .stroke(selected ? type.color : HorizonUI.colors.lineAndBorders.containerStroke, lineWidth: 1)
         )
         .cornerRadius(16)
-        .huiElevation(level: selected ? .level0 : .level4)
     }
 }
 
 #Preview {
     HStack(spacing: 16) {
-        NoteCardFilterButton(type: .confusing, selected: false)
+        NoteCardFilterButton(type: .confusing, selected: true)
         NoteCardFilterButton(type: .important, selected: false)
     }
 }

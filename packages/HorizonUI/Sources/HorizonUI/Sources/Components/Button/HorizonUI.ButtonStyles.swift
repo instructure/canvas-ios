@@ -32,7 +32,7 @@ extension HorizonUI {
         private let fillsWidth: Bool
         private let leading: Image?
         private let trailing: Image?
-        private let smallButtonSize = 40.0
+        private let smallButtonSize = 32.0
         private let largeButtonSize = 44.0
         private let isTextUnderlined: Bool
 

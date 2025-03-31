@@ -45,6 +45,7 @@ final class NotebookNoteViewModel {
 
     var isImportant: Bool = false
     var isSaveDisabled: Bool { !isConfusing && !isImportant }
+    var isSavedToastVisible: Bool = false
     var isSaveVisible: Bool { isEditing || isAdding }
     var isTextEditorEditable: Bool { isEditing }
     var note: String = ""
@@ -67,7 +68,6 @@ final class NotebookNoteViewModel {
 
     private var courseNote: CourseNotebookNote?
     private let scheduler: AnySchedulerOf<DispatchQueue>
-    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
@@ -130,17 +130,20 @@ final class NotebookNoteViewModel {
 
     func deleteNoteAndDismiss(viewController: WeakViewController) {
         guard let noteId = courseNote?.id else { return }
+
         state = .loading
-        courseNoteInteractor.delete(id: noteId)
-            .receive(on: scheduler)
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] _ in
-                    self?.state = .data
-                    self?.router.dismiss(viewController)
-                }
-            )
-            .store(in: &subscriptions)
+
+        Task {
+            do {
+                try await courseNoteInteractor.delete(id: noteId)
+                    .receive(on: scheduler)
+                    .values
+                    .first { _ in true }
+            } catch { }
+
+            state = .data
+            router.dismiss(viewController)
+        }
     }
 
     func edit() {
@@ -151,23 +154,46 @@ final class NotebookNoteViewModel {
         isDeleteAlertPresented = true
     }
 
+    @MainActor
     func saveAndDismiss(viewController: WeakViewController) {
-        let saveSuccess = saveContent()
+        note = note.trimmed()
 
-        if isAdding, saveSuccess {
-            router.dismiss(viewController)
-        } else {
-            isEditing = false
+        if isSaveDisabled {
+            return
+        }
+
+        state = .loading
+
+        Task {
+
+            let updated = await tryUpdate()
+            if !updated {
+                _ = await tryAdd()
+            }
+
+            isSavedToastVisible = true
+
+            do {
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+            } catch { }
+
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+
+                self.router.dismiss(viewController)
+            }
         }
     }
 
     func toggleConfusing() {
         isEditing = true
+        isImportant = false
         isConfusing.toggle()
     }
 
     func toggleImportant() {
         isEditing = true
+        isConfusing = false
         isImportant.toggle()
     }
 
@@ -177,57 +203,11 @@ final class NotebookNoteViewModel {
         courseNote == nil
     }
 
-    private func saveContent() -> Bool {
-        note = note.trimmed()
-
-        if isSaveDisabled {
-            return false
-        }
-
-        let labels: [CourseNoteLabel] = [
+    private var labels: [CourseNoteLabel] {
+        [
             isConfusing ? .confusing : nil,
             isImportant ? .important : nil
         ].compactMap { $0 }
-
-        if let noteId = courseNote?.id {
-            state = .loading
-            courseNoteInteractor
-                .set(
-                    id: noteId,
-                    content: note,
-                    labels: labels,
-                    highlightData: courseNote?.highlightData
-                )
-                .sink(
-                    receiveCompletion: { _ in },
-                    receiveValue: { [weak self] _ in
-                        self?.state = .data
-                    }
-                )
-                .store(in: &subscriptions)
-        }
-
-        if let courseId = courseId, let itemId = itemId {
-            state = .loading
-            courseNoteInteractor
-                .add(
-                    courseId: courseId,
-                    itemId: itemId,
-                    moduleType: .subHeader,
-                    content: note,
-                    labels: labels,
-                    notebookHighlight: notebookHighlight
-                )
-                .sink(
-                    receiveCompletion: { _ in },
-                    receiveValue: { [weak self] _ in
-                        self?.state = .data
-                    }
-                )
-                .store(in: &subscriptions)
-        }
-
-        return true
     }
 
     private func initUI() {
@@ -242,5 +222,41 @@ final class NotebookNoteViewModel {
 
         isImportant = courseNote?.labels?.contains { $0 == .important } ?? false
         isImportantSaved = isImportant
+    }
+
+    private func tryAdd() async -> Bool {
+        guard let courseId = courseId, let itemId = itemId else { return false }
+        do {
+            _ = try await courseNoteInteractor
+                .add(
+                    courseId: courseId,
+                    itemId: itemId,
+                    moduleType: .subHeader,
+                    content: note,
+                    labels: labels,
+                    notebookHighlight: notebookHighlight
+                )
+                .values
+                .first { _ in true }
+        } catch { }
+
+        return true
+    }
+
+    private func tryUpdate() async -> Bool {
+        guard let noteId = courseNote?.id else { return false }
+        do {
+            _ = try await courseNoteInteractor
+                .set(
+                    id: noteId,
+                    content: note,
+                    labels: labels,
+                    highlightData: courseNote?.highlightData
+                )
+                .values
+                .first { _ in true }
+        } catch { }
+
+        return true
     }
 }

@@ -26,6 +26,23 @@ struct NotebookNoteView: View {
     @FocusState var isTextFieldFocused: Bool
 
     var body: some View {
+        ZStack(alignment: .bottom) {
+            baseScreen
+            HorizonUI.Toast(
+                viewModel: .init(
+                    text: String(localized: "Your note has been successfully saved", bundle: .horizon),
+                    style: .success,
+                    isShowCancelButton: false
+                )
+            )
+            .opacity(viewModel.isSavedToastVisible ? 1 : 0)
+            .animation(.easeInOut, value: viewModel.isSavedToastVisible)
+        }
+        .frame(maxHeight: .infinity)
+        .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var baseScreen: some View {
         InstUI.BaseScreen(
             state: viewModel.state,
             config: .init(
@@ -51,7 +68,6 @@ struct NotebookNoteView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarBackButtonHidden(true)
             .toolbarBackground(Color.huiColors.surface.pagePrimary, for: .navigationBar)
-            .background(Color.huiColors.surface.pagePrimary)
             .alert(isPresented: $viewModel.isDeleteAlertPresented) {
                 Alert(
                     title: Text(String(localized: "Confirmation", bundle: .horizon)),
@@ -68,8 +84,6 @@ struct NotebookNoteView: View {
                 }
             }
         }
-        .frame(maxHeight: .infinity, alignment: .top)
-        .background(Color.huiColors.surface.pagePrimary)
     }
 
     @ViewBuilder
@@ -146,7 +160,10 @@ struct NotebookNoteView: View {
             .frame(minHeight: 120)
             .onTapGesture { viewModel.edit() }
             .cornerRadius(.huiSpaces.space12)
-            .huiElevation(level: viewModel.isTextEditorEditable ? .level4 : .level0)
+            .background(
+                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                    .stroke(HorizonUI.colors.lineAndBorders.containerStroke, lineWidth: 1)
+            )
             .focused($isTextFieldFocused)
 
             if viewModel.isTextEditorEditable == false {
@@ -178,12 +195,14 @@ struct NotebookNoteView: View {
 
             HStack {
                 HorizonUI.icons.menuBookNotebook
+                    .frame(width: 24, height: 24)
+
                 Text("Notebook", bundle: .horizon)
                     .huiTypography(.h3)
             }
             .frame(maxWidth: .infinity)
 
-            HorizonUI.IconButton(.huiIcons.close, type: .white) {
+            HorizonUI.IconButton(.huiIcons.close, type: .white, isSmall: true) {
                 viewModel.close(viewController: viewController)
             }
             .huiElevation(level: .level4)

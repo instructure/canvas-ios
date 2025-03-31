@@ -67,7 +67,7 @@ struct NoteCardView: View {
 
     private func noteCardLabelView(type: CourseNoteLabel) -> some View {
         HStack {
-            type.image
+            type.image()
             Text(type.label)
                 .font(.regular12)
                 .foregroundStyle(type.color)

@@ -64,7 +64,8 @@ struct NotebookView: View {
     private var backButton: some View {
         HorizonUI.IconButton(
             .huiIcons.arrowBack,
-            type: .white
+            type: .white,
+            isSmall: true
         ) {
             viewModel.onBack(viewController: viewController)
         }
