@@ -36,7 +36,6 @@ final class NotebookNoteViewModel {
 
     var highlightedText: String = ""
     var isDeleteButtonVisible: Bool { !isEditing && !isAdding }
-    var isCancelVisible: Bool { isEditing && !isAdding }
     var isConfusing: Bool = false
     var isDeleteAlertPresented: Bool = false
     var isHighlightedTextVisible: Bool {
@@ -117,17 +116,11 @@ final class NotebookNoteViewModel {
 
     // MARK: - Inputs
 
-    func cancelEditingAndReset() {
-        isEditing = false
-        note = noteSaved
-        isConfusing = isConfusingSaved
-        isImportant = isImportantSaved
-    }
-
     func close(viewController: WeakViewController) {
         router.dismiss(viewController)
     }
 
+    @MainActor
     func deleteNoteAndDismiss(viewController: WeakViewController) {
         guard let noteId = courseNote?.id else { return }
 
@@ -142,7 +135,10 @@ final class NotebookNoteViewModel {
             } catch { }
 
             state = .data
-            router.dismiss(viewController)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                router.dismiss(viewController)
+            }
         }
     }
 
@@ -188,13 +184,13 @@ final class NotebookNoteViewModel {
     func toggleConfusing() {
         isEditing = true
         isImportant = false
-        isConfusing.toggle()
+        isConfusing = true
     }
 
     func toggleImportant() {
         isEditing = true
         isConfusing = false
-        isImportant.toggle()
+        isImportant = true
     }
 
     // MARK: - Private

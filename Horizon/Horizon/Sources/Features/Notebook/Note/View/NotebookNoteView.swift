@@ -30,7 +30,7 @@ struct NotebookNoteView: View {
             baseScreen
             HorizonUI.Toast(
                 viewModel: .init(
-                    text: String(localized: "Your note has been successfully saved", bundle: .horizon),
+                    text: String(localized: "Your note has been saved", bundle: .horizon),
                     style: .success,
                     isShowCancelButton: false
                 )
@@ -56,10 +56,7 @@ struct NotebookNoteView: View {
                 labels
                 note
                 ZStack {
-                    VStack(spacing: .huiSpaces.space16) {
-                        saveButton
-                        cancelButton
-                    }
+                    saveButton
                     deleteButton
                 }
             }
@@ -82,19 +79,6 @@ struct NotebookNoteView: View {
                 if isTextFieldFocused {
                     isTextFieldFocused = false
                 }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var cancelButton: some View {
-        if viewModel.isCancelVisible {
-            HorizonUI.TextButton(
-                String(localized: "Cancel", bundle: .horizon),
-                type: .white,
-                fillsWidth: true
-            ) {
-                viewModel.cancelEditingAndReset()
             }
         }
     }
