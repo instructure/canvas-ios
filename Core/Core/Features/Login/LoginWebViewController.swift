@@ -115,6 +115,10 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         setupProgressView()
         setupIndeterminateLoadingIndicator()
 
+        guard clientID != nil else {
+            fatalError("App Client ID not set")
+        }
+        
         // If ManualOAuth was selected, we provide the client_id and client_secret to the oauth request.
         if let mobileVerifyModel {
             // Modify the title to include the url scheme to easily catch http/https errors.
