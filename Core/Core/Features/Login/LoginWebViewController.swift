@@ -54,6 +54,10 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     /// Challenge pair used for PKCE OAuth login
     var challenge: PKCEChallenge.ChallengePair?
 
+    /// App Client ID used for PKCE Login. In release/debug mode it should be set from Secrets.
+    /// Additionally, it can be injected through the viewController's create method for testing purposes.
+    var clientID: String?
+
     var authenticationProvider: String?
     var method = AuthenticationMethod.normalLogin
     var pairingCode: String?
@@ -84,7 +88,8 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         mdmLogin: MDMLogin? = nil,
         loginDelegate: LoginDelegate?,
         method: AuthenticationMethod,
-        pairingCode: String? = nil
+        pairingCode: String? = nil,
+        clientID: String? = Secret.appClientID.string // Used for PKCE Login, defaults to Secrets. Can be overriden for testing purposes. 
     ) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.title = host
@@ -96,6 +101,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         controller.loginDelegate = loginDelegate
         controller.method = method
         controller.pairingCode = pairingCode
+        controller.clientID = clientID
         return controller
     }
 
@@ -216,13 +222,13 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     }
 
     private func loadPKCEOauthLoginWebRequest() {
-        guard let challenge = PKCEChallenge().generateChallenge(), let hostURL else {
+        guard let challenge = PKCEChallenge().generateChallenge(), let hostURL, let clientID else {
             return
         }
         self.challenge = challenge
 
         let requestable = LoginWebRequestPKCE(
-            clientID: Secret.appClientID.string!,
+            clientID: clientID,
             host: hostURL,
             challenge: challenge,
             isSiteAdminLogin: method == .siteAdminLogin
@@ -320,11 +326,11 @@ extension LoginWebViewController: WKNavigationDelegate {
                     }
                 }
 
-            } else if let challenge = challenge, let hostURLWithHttpsPrefix {
+            } else if let challenge = challenge, let hostURLWithHttpsPrefix, let clientID {
                 let oauthType = OAuthType.pkce(
                     .init(
                         baseURL: hostURLWithHttpsPrefix,
-                        clientID: Secret.appClientID.string!,
+                        clientID: clientID,
                         codeVerifier: challenge.codeVerifier
                     )
                 )

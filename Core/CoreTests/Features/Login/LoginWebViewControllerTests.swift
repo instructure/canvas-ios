@@ -64,6 +64,7 @@ class LoginWebViewControllerTests: CoreTestCase {
     }
 
     func testPKCERedirectFlow() {
+        controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin, clientID: "client-id")
         controller.view.layoutIfNeeded()
         let action = MockAction()
         action.mockRequest = URLRequest(url: URL(string: "data:text/plain,")!)
@@ -162,6 +163,7 @@ class LoginWebViewControllerTests: CoreTestCase {
     }
 
     func testLocaleIsSetOnLogin() {
+        controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin, clientID: "client-id")
         controller.view.layoutIfNeeded()
         let action = MockAction()
         let token = APIOAuthToken(
