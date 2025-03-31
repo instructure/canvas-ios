@@ -147,12 +147,12 @@ struct HNotificationView: View {
 
     private var footerView: some View {
         HStack(spacing: .huiSpaces.space8) {
-            HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .black, isSmall: true) {
+            HorizonUI.IconButton(Image.huiIcons.chevronLeft, type: .black) {
                 viewModel.goPrevious()
             }
             .disabled(!viewModel.isPreviousButtonEnabled)
 
-            HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .black, isSmall: true) {
+            HorizonUI.IconButton(Image.huiIcons.chevronRight, type: .black) {
                 viewModel.goNext()
             }
             .disabled(!viewModel.isNextButtonEnabled)
