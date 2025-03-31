@@ -41,7 +41,7 @@ public enum Secret {
 
     /// The value used for testing that Secret is working properly
     case testSecret
-    
+
     /// The clientID required for OAuth. Currently only Horizon uses it with PKCE login, regular Canvas apps use the Mobile Verify endpoint to obtain clientID (and other required properties).
     case appClientID
 

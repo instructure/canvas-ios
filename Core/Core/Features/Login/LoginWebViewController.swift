@@ -44,7 +44,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
 
     var mobileVerifyModel: APIVerifyClient?
     var mdmLogin: MDMLogin?
-    
+
     /// Passed as a string parameter e.g.: institution.instructure.com
     var host = ""
     /// Returns host in URL format e.g.: institution.instructure.com
@@ -119,7 +119,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
             loadPKCEOauthLoginWebRequest()
         }
     }
-    
+
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)

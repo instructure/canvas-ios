@@ -141,27 +141,27 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertEqual(opened, whatsNewURL)
     }
 
-//    func testQRCode() throws {
-//        let domain = "mobiledev"
-//        let code = "abc123"
-//        let qrCode = "https://sso.canvaslms.com/canvas/login?domain=\(domain)&code=\(code)"
-//        let client = APIVerifyClient.make()
-//        api.mock(GetMobileVerifyRequest(domain: domain), value: client)
-//        let task = api.mock(PostLoginOAuthRequest(client: client, code: code), value: .make())
-//        task.suspend()
-//        controller.view.layoutIfNeeded()
-//        XCTAssertFalse(controller.useQRCodeButton.isHidden)
-//        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
-//        controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
-//        let tutorial = try XCTUnwrap(router.presented as? LoginQRCodeTutorialViewController)
-//        tutorial.delegate?.loginQRCodeTutorialDidFinish(tutorial)
-//        let scanner = router.presented as! ScannerViewController
-//        controller.scanner(scanner, didScanCode: qrCode)
-//        let loading = try XCTUnwrap(router.presented as? UIAlertController)
-//        XCTAssertEqual(loading.title, "Logging you in")
-//        task.resume()
-//        XCTAssertNotNil(loggedIn)
-//    }
+    func testQRCode() throws {
+        let domain = "mobiledev"
+        let code = "abc123"
+        let qrCode = "https://sso.canvaslms.com/canvas/login?domain=\(domain)&code=\(code)"
+        let client = APIVerifyClient.make()
+        api.mock(GetMobileVerifyRequest(domain: domain), value: client)
+        let task = api.mock(PostLoginOAuthRequest(oauthType: .manual(.init(client: client)), code: code), value: .make())
+        task.suspend()
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
+        controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
+        let tutorial = try XCTUnwrap(router.presented as? LoginQRCodeTutorialViewController)
+        tutorial.delegate?.loginQRCodeTutorialDidFinish(tutorial)
+        let scanner = router.presented as! ScannerViewController
+        controller.scanner(scanner, didScanCode: qrCode)
+        let loading = try XCTUnwrap(router.presented as? UIAlertController)
+        XCTAssertEqual(loading.title, "Logging you in")
+        task.resume()
+        XCTAssertNotNil(loggedIn)
+    }
 
     func testQRCodeError() throws {
         let qrCode = "invalid"

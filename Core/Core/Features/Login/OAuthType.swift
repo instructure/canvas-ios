@@ -30,6 +30,33 @@ public enum OAuthType: Codable {
             return attributes.baseURL
         }
     }
+
+    var clientID: String {
+        switch self {
+        case let .manual(attributes):
+            return attributes.clientID ?? ""
+        case let .pkce(attributes):
+            return attributes.clientID
+        }
+    }
+
+    var clientSecret: String {
+        switch self {
+        case let .manual(attributes):
+            return attributes.clientSecret ?? ""
+        case .pkce:
+            fatalError("Client secret not available for PKCE")
+        }
+    }
+
+    var codeVerifier: String {
+        switch self {
+        case .manual:
+            fatalError("Code Verifier not available for ManualOAuth")
+        case let .pkce(attributes):
+            return attributes.codeVerifier
+        }
+    }
 }
 
 public struct ManualOAuthAttributes: Codable {
