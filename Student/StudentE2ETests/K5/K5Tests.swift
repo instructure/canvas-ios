@@ -114,7 +114,7 @@ class K5Tests: K5E2ETestCase {
 
         let courseProgressCard = Helper.Grades.courseProgressCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseProgressCard.isVisible)
-        XCTAssertTrue(courseProgressCard.labelHasSuffix("100%"))
+        courseProgressCard.assertLabelHasSuffix("100%")
 
         courseProgressCard.hit()
 
@@ -214,7 +214,11 @@ class K5Tests: K5E2ETestCase {
 
         let courseCardAssigmentMissingButton = DashboardHelper.courseCardAssignmentMissingButton(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardAssigmentMissingButton.isVisible)
-        XCTAssertTrue(courseCardAssigmentMissingButton.hasLabel(label: "\(assignmentsCount) missing", caseSensitive: false))
+        courseCardAssigmentMissingButton.assertLabelEquals(
+            "\(assignmentsCount) missing",
+            caseSensitive: false,
+            messageSuffix: " [Known flaky test]"
+        )
     }
 
     // Covers MBL-15776 bug

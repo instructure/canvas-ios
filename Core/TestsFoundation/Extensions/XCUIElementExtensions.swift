@@ -78,6 +78,57 @@ public extension XCUIElement {
         return strict ? elementValue == expectedValue : elementValue.contains(expectedValue)
     }
 
+    var stringValue: String? {
+        value as? String
+    }
+
+    func assertLabelEquals(
+        _ expected: String,
+        caseSensitive: Bool = true,
+        messageSuffix: String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        if caseSensitive {
+            XCTAssertEqual(label, expected, messageSuffix, file: file, line: line)
+        }
+
+        XCTAssert(
+            label.lowercased() == expected.lowercased(),
+            "\(label.testDescription) is not equal ignoring case to \(expected.testDescription)" + messageSuffix,
+            file: file,
+            line: line
+        )
+    }
+
+    func assertLabelHasSuffix(
+        _ suffix: String,
+        messageSuffix: String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        XCTAssert(
+            label.hasSuffix(suffix),
+            "\(label.testDescription) has no suffix \(suffix.testDescription)" + messageSuffix,
+            file: file,
+            line: line
+        )
+    }
+
+    func assertLabelHasPrefix(
+        _ prefix: String,
+        messageSuffix: String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        XCTAssert(
+            label.hasPrefix(prefix),
+            "\(label.testDescription) has no prefix \(prefix.testDescription)" + messageSuffix,
+            file: file,
+            line: line
+        )
+    }
+
     func hasLabel(label expectedLabel: String, strict: Bool = true, caseSensitive: Bool = true) -> Bool {
         let act = caseSensitive ? label : label.lowercased()
         let exp = caseSensitive ? expectedLabel : expectedLabel.lowercased()
@@ -386,5 +437,11 @@ public extension XCUIElement {
 
     func findAlertStaticText(label: String) -> XCUIElement {
         return descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).firstMatch
+    }
+}
+
+private extension String {
+    var testDescription: String {
+        "(\"" + self + "\")"
     }
 }
