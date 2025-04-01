@@ -43,7 +43,8 @@ public struct APIRubricSettings: Codable, Equatable {
     let points_possible: Double?
 }
 
-public typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
+public typealias RubricID = String
+public typealias APIRubricAssessmentMap = [RubricID: APIRubricAssessment]
 
 // https://canvas.instructure.com/doc/api/rubrics.html#RubricAssessment
 public struct APIRubricAssessment: Codable, Equatable {

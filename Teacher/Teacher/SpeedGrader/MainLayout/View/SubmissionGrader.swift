@@ -57,6 +57,7 @@ struct SubmissionGrader: View {
     @State private var lastPresentedLayout: Layout = .portrait
     @State private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     @State private var selectedIndex = 0
+    @StateObject private var rubricsViewModel: RubricsViewModel
 
     @AccessibilityFocusState private var focusedTab: GraderTab?
 
@@ -87,6 +88,7 @@ struct SubmissionGrader: View {
         attempt = submission.attempt
         self.handleRefresh = handleRefresh
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
+        _rubricsViewModel = StateObject(wrappedValue: RubricsViewModel(assignment: assignment, submission: submission))
     }
 
     var body: some View {
@@ -308,7 +310,7 @@ struct SubmissionGrader: View {
 
                 let isGradesOnScreen = isGraderTabOnScreen(.grades, isDrawer: isDrawer)
                 VStack(spacing: 0) {
-                    SubmissionGrades(assignment: assignment, containerHeight: geometry.size.height, submission: submission)
+                    SubmissionGrades(assignment: assignment, containerHeight: geometry.size.height, submission: submission, rubricsViewModel: rubricsViewModel)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }

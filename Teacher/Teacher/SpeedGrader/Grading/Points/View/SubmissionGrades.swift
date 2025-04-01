@@ -35,31 +35,12 @@ struct SubmissionGrades: View {
     @State var sliderTimer: Timer?
     @State var sliderValue: Double?
 
-    @State var rubricComment: String = ""
-    @State var rubricCommentID: String?
-    @State var rubricAssessments: APIRubricAssessmentMap = [:]
-
-    var isRubricScoreAvailable: Bool {
-        guard assignment.useRubricForGrading else { return false }
-        return rubricAssessments.contains { _, assessment in
-            assessment.points != nil
-        }
-    }
+    @ObservedObject var rubricsViewModel: RubricsViewModel
 
     var hasLateDeduction: Bool {
         submission.late &&
             (submission.pointsDeducted ?? 0) > 0 &&
             submission.grade?.isEmpty == false
-    }
-
-    var currentRubricScore: Double {
-        let assessments = submission.rubricAssessments // create map only once
-        var points = 0.0
-        for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
-            points += rubricAssessments[criteria.id]?.points as? Double ??
-                assessments?[criteria.id]?.points as? Double ?? 0
-        }
-        return points
     }
 
     var body: some View {
@@ -90,7 +71,7 @@ struct SubmissionGrades: View {
                                     Text(GradeFormatter.longString(
                                         for: assignment,
                                         submission: submission,
-                                        rubricScore: isRubricScoreAvailable ? currentRubricScore : nil,
+                                        rubricScore: rubricsViewModel.totalRubricScore(),
                                         final: false
                                     ))
                                 } else {
@@ -128,34 +109,30 @@ struct SubmissionGrades: View {
                         slider
                     }
 
-                    if assignment.rubric?.isEmpty == false {
+                    if assignment.rubric?.isEmpty == false, let rubricScore = rubricsViewModel.totalRubricScore() {
                         Divider().padding(.horizontal, 16)
                         RubricAssessor(
-                            assignment: assignment,
-                            submission: submission,
-                            currentScore: currentRubricScore,
+                            currentScore: rubricScore,
                             containerFrameInGlobal: geometry.frame(in: .global),
-                            comment: $rubricComment,
-                            commentID: $rubricCommentID,
-                            assessments: $rubricAssessments
+                            viewModel: rubricsViewModel
                         )
                     }
                 }.padding(.bottom, 16)
             } }
-            if let id = rubricCommentID {
+            if let id = rubricsViewModel.rubricCommentID {
                 commentEditor(id: id)
             }
         }
     }
 
     private func commentEditor(id: String) -> some View {
-        CommentEditor(text: $rubricComment,
+        CommentEditor(text: $rubricsViewModel.rubricComment,
                       shouldShowCommentLibrary: false,
                       showCommentLibrary: .constant(false),
                       action: {
             var points: Double?
             var ratingID = ""
-            if let assessment = rubricAssessments[id] {
+            if let assessment = rubricsViewModel.assessments[id] {
                 points = assessment.points
                 ratingID = assessment.rating_id ?? ""
             } else if let assessment = submission.rubricAssessments?[id] {
@@ -163,8 +140,8 @@ struct SubmissionGrades: View {
                 ratingID = assessment.ratingID
             }
             withAnimation(.default) {
-                rubricCommentID = nil
-                rubricAssessments[id] = .init(comments: rubricComment, points: points, rating_id: ratingID)
+                rubricsViewModel.rubricCommentID = nil
+                rubricsViewModel.assessments[id] = .init(comments: rubricsViewModel.rubricComment, points: points, rating_id: ratingID)
             }
         }, containerHeight: containerHeight)
             .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))

@@ -117,4 +117,12 @@ public final class RubricAssessment: NSManagedObject {
         model.submissionID = submissionID
         return model
     }
+
+    public var apiEntity: APIRubricAssessment {
+        APIRubricAssessment(
+            comments: comments,
+            points: points,
+            rating_id: ratingID
+        )
+    }
 }
