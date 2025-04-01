@@ -44,7 +44,8 @@ class AccessTokenRefreshInteractor {
             .map {
                 oldLoginSession.refresh(
                     accessToken: $0.body.access_token,
-                    expiresAt: $0.body.expires_in.flatMap { Clock.now + $0 }
+                    expiresAt: $0.body.expires_in.flatMap { Clock.now + $0 },
+                    refreshToken: $0.body.refresh_token
                 )
             }
             .mapError { error in
