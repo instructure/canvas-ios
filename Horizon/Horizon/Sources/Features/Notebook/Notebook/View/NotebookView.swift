@@ -26,22 +26,20 @@ struct NotebookView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        if viewModel.contentOnly {
+        InstUI.BaseScreen(
+            state: viewModel.state,
+            config: .init(
+                refreshable: false,
+                loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
+            )
+        ) { _ in
             content
-        } else {
-            InstUI.BaseScreen(
-                state: viewModel.state,
-                config: .init(
-                    refreshable: false,
-                    loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
-                )
-            ) { _ in
-                content
-                    .padding(.all, .huiSpaces.space16)
-            }
-            .background(Color.huiColors.surface.pagePrimary)
-            .toolbar(.hidden)
-            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+                .padding(.all, .huiSpaces.space16)
+        }
+        .background(Color.huiColors.surface.pagePrimary)
+        .toolbar(.hidden)
+        .safeAreaInset(edge: .top, spacing: .zero) {
+            navigationBar
         }
     }
 
@@ -61,22 +59,12 @@ struct NotebookView: View {
         }
     }
 
-    private var backButton: some View {
-        HorizonUI.IconButton(
-            .huiIcons.arrowBack,
-            type: .white,
-            isSmall: true
-        ) {
-            viewModel.onBack(viewController: viewController)
-        }
-        .huiElevation(level: .level4)
-    }
-
     private var forwardBackButtons: some View {
         HStack {
             HorizonUI.IconButton(
                 .huiIcons.chevronLeft,
-                type: .black
+                type: .black,
+                isSmall: true
             ) {
                 viewModel.previousPage()
             }
@@ -84,7 +72,8 @@ struct NotebookView: View {
 
             HorizonUI.IconButton(
                 .huiIcons.chevronRight,
-                type: .black
+                type: .black,
+                isSmall: true
             ) {
                 viewModel.nextPage()
             }
@@ -94,16 +83,16 @@ struct NotebookView: View {
     }
 
     private var navigationBar: some View {
-        HStack {
-            backButton
-            title
-            backButton.hidden()
-        }
+        NotebookTitleBar(
+            onBack: viewModel.isBackVisible ? viewModel.onBack : nil,
+            onClose: viewModel.isCloseVisible ? viewModel.onClose : nil
+        )
+        .padding(.top, viewModel.navigationBarTopPadding)
         .padding(.horizontal, .huiSpaces.space16)
     }
 
     private var notesBody: some View {
-        VStack {
+        VStack(spacing: .huiSpaces.space12) {
             NotebookSectionHeading(title: String(localized: "Notes", bundle: .horizon))
             ForEach(viewModel.notes) { note in
                 NoteCardView(note: note)
@@ -116,17 +105,19 @@ struct NotebookView: View {
 
     @ViewBuilder
     private var filterButtons: some View {
-        NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
+        if viewModel.isFiltersVisible {
+            NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
 
-        HStack(spacing: .huiSpaces.space16) {
-            ForEach(viewModel.courseNoteLabels, id: \.rawValue) { filter in
-                NoteCardFilterButton(type: filter, selected: viewModel.isEnabled(filter: filter))
-                    .onTapGesture {
-                        viewModel.filter = filter
-                    }
+            HStack(spacing: .huiSpaces.space12) {
+                ForEach(viewModel.courseNoteLabels, id: \.rawValue) { filter in
+                    NoteCardFilterButton(type: filter, selected: viewModel.isEnabled(filter: filter))
+                        .onTapGesture {
+                            viewModel.filter = filter
+                        }
+                }
             }
+            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity)
     }
 
     private var emptyCard: some View {
@@ -140,12 +131,6 @@ struct NotebookView: View {
         }
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.vertical, .huiSpaces.space32)
-    }
-
-    private var title: some View {
-        Text("Notebook", bundle: .horizon)
-            .frame(maxWidth: .infinity)
-            .huiTypography(.h3)
     }
 }
 

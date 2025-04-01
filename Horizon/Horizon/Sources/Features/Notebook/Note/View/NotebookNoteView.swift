@@ -26,7 +26,7 @@ struct NotebookNoteView: View {
     @FocusState var isTextFieldFocused: Bool
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .top) {
             baseScreen
             HorizonUI.Toast(
                 viewModel: .init(
@@ -35,6 +35,7 @@ struct NotebookNoteView: View {
                     isShowCancelButton: false
                 )
             )
+            .padding(.top, .huiSpaces.space32)
             .opacity(viewModel.isSavedToastVisible ? 1 : 0)
             .animation(.easeInOut, value: viewModel.isSavedToastVisible)
         }
@@ -50,7 +51,7 @@ struct NotebookNoteView: View {
                 loaderBackgroundColor: .huiColors.surface.pagePrimary
             )
         ) { _ in
-            VStack(spacing: .huiSpaces.space24) {
+            VStack(spacing: 0) {
                 titleBar
                 highlightedText
                 labels
@@ -59,6 +60,7 @@ struct NotebookNoteView: View {
                     saveButton
                     deleteButton
                 }
+                .padding(.top, .huiSpaces.space16)
             }
             .padding(.vertical, .huiSpaces.space36)
             .padding(.horizontal, .huiSpaces.space24)
@@ -86,7 +88,7 @@ struct NotebookNoteView: View {
     @ViewBuilder
     private var deleteButton: some View {
         if viewModel.isDeleteButtonVisible {
-            HorizonUI.IconButton(.huiIcons.delete, type: .red) {
+            HorizonUI.IconButton(.huiIcons.delete, type: .red, isSmall: true) {
                 viewModel.presentDeleteAlert()
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -101,6 +103,7 @@ struct NotebookNoteView: View {
             HighlightedText(viewModel.highlightedText, ofTypes: viewModel.courseNoteLabels)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .huiTypography(.p1)
+                .padding(.top, .huiSpaces.space12)
         }
     }
 
@@ -122,6 +125,7 @@ struct NotebookNoteView: View {
                 viewModel.toggleImportant()
             }
         }
+        .padding(.top, .huiSpaces.space12)
     }
 
     @ViewBuilder
@@ -155,6 +159,7 @@ struct NotebookNoteView: View {
                     .onTapGesture { viewModel.edit() }
             }
         }
+        .padding(.top, .huiSpaces.space12)
     }
 
     @ViewBuilder
@@ -173,26 +178,9 @@ struct NotebookNoteView: View {
     }
 
     private var titleBar: some View {
-        HStack {
-            HorizonUI.IconButton(.huiIcons.arrowBack, type: .white) {}
-                .hidden()
-
-            HStack {
-                HorizonUI.icons.menuBookNotebook
-                    .frame(width: 24, height: 24)
-
-                Text("Notebook", bundle: .horizon)
-                    .huiTypography(.h3)
-            }
-            .frame(maxWidth: .infinity)
-
-            HorizonUI.IconButton(.huiIcons.close, type: .white, isSmall: true) {
-                viewModel.close(viewController: viewController)
-            }
-            .huiElevation(level: .level4)
-            .opacity(viewModel.closeButtonOpacity)
-        }
-        .background(HorizonUI.colors.surface.pagePrimary)
+        NotebookTitleBar(
+            onClose: viewModel.closeButtonDisabled ? nil : viewModel.close
+        )
     }
 }
 

@@ -26,7 +26,7 @@ import Observation
 final class NotebookNoteViewModel {
     // MARK: - Outputs
 
-    var closeButtonOpacity: Double { isEditing && !isAdding ? 0 : 1 }
+    var closeButtonDisabled: Bool { isEditing && !isAdding }
     var courseNoteLabels: [CourseNoteLabel] {
         [
             isImportant ? .important : nil,
@@ -116,7 +116,7 @@ final class NotebookNoteViewModel {
 
     // MARK: - Inputs
 
-    func close(viewController: WeakViewController) {
+    func close(_ viewController: WeakViewController) {
         router.dismiss(viewController)
     }
 

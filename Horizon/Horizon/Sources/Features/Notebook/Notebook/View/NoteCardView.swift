@@ -38,7 +38,8 @@ struct NoteCardView: View {
         NotebookCard {
             VStack(alignment: .leading, spacing: .huiSpaces.space16) {
                 HStack(alignment: .center) {
-                    Text(note.title).font(.regular12)
+                    Text(note.title)
+                        .huiTypography(.labelSmall)
                     Spacer()
                     if let onEdit = onEdit {
                         HorizonUI.icons.editNote
@@ -73,12 +74,11 @@ struct NoteCardView: View {
                 .foregroundStyle(type.color)
         }
         .padding()
-        .frame(height: 31)
+        .frame(height: 34)
         .background(
-            RoundedRectangle(cornerRadius: 15.5)
-                .stroke(type.color, lineWidth: 2)
+            RoundedRectangle(cornerRadius: 17)
+                .stroke(type.color, lineWidth: 1)
         )
-        .huiCornerRadius(level: .level3)
     }
 }
 
