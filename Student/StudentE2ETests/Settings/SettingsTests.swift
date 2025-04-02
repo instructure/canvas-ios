@@ -65,9 +65,6 @@ class SettingsTests: E2ETestCase {
 
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
         XCTAssertTrue(termsOfUse.isVisible)
-
-        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(.visible)
-        XCTAssertTrue(canvasOnGitHub.isVisible)
     }
 
     func testLandingPageSetting() {
@@ -335,34 +332,5 @@ class SettingsTests: E2ETestCase {
         termsOfUse.hit()
         let termsOfUseNavBar = SubSettingsHelper.termsOfUseNavBar.waitUntil(.visible)
         XCTAssertTrue(termsOfUseNavBar.isVisible)
-    }
-
-    func testCanvasOnGitHub() {
-        // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
-
-        // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
-        Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
-
-        // MARK: Select "Canvas on GitHub", check if Safari opens
-        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(.visible)
-        XCTAssertTrue(canvasOnGitHub.isVisible)
-
-        canvasOnGitHub.hit()
-        XCTAssertTrue(SafariAppHelper.safariApp.wait(for: .runningForeground, timeout: 15))
-
-        // MARK: Check URL
-        let url = SafariAppHelper.browserURL
-        XCTAssertEqual(url, "https://github.com/instructure/canvas-ios")
     }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,21 +19,10 @@
 @testable import Core
 import XCTest
 
-class GradingSchemeEntryTests: CoreTestCase {
+class PercentageBasedGradingSchemeTests: GradingSchemeTestCase {
 
     func testScoreConversion() {
-        let testee: [GradingSchemeEntry] = {
-            let entryA: GradingSchemeEntry = databaseClient.insert()
-            entryA.name = "A"
-            entryA.value = 90
-            let entryB: GradingSchemeEntry = databaseClient.insert()
-            entryB.name = "B"
-            entryB.value = 30
-            let entryF: GradingSchemeEntry = databaseClient.insert()
-            entryF.name = "F"
-            entryF.value = 0
-            return [entryA, entryB, entryF]
-        }()
+        let testee = PercentageBasedGradingScheme(entries: scoreConversionEntries())
 
         var result = testee.convertScoreToLetterGrade(score: 90)
         XCTAssertEqual(result, "A")
@@ -46,21 +35,31 @@ class GradingSchemeEntryTests: CoreTestCase {
     }
 
     func testScoreConversionWithEmptyScheme() {
-        let testee: [GradingSchemeEntry] = []
+        let testee = PercentageBasedGradingScheme.default
         let result = testee.convertScoreToLetterGrade(score: 30)
         XCTAssertNil(result)
     }
 
     func testScoreConversionWithInvalidScheme() {
-        let testee: [GradingSchemeEntry] = {
-            let entry: GradingSchemeEntry = databaseClient.insert()
-            entry.name = "A"
-            entry.value = 90
-            return [entry]
-        }()
-
+        let testee = PercentageBasedGradingScheme(entries: invalidConversionEntries())
         let result = testee.convertScoreToLetterGrade(score: 30)
 
         XCTAssertNil(result)
+    }
+
+    func testFormattedScorePointBasedOff() {
+        let testee = PercentageBasedGradingScheme.default
+
+        var result = testee.formattedScore(from: 80)
+        XCTAssertEqual(result, "80%")
+
+        result = testee.formattedScore(from: 45.766777)
+        XCTAssertEqual(result, "45.766%")
+
+        result = testee.formattedScore(from: 33.43)
+        XCTAssertEqual(result, "33.43%")
+
+        result = testee.formattedScore(from: 87.40)
+        XCTAssertEqual(result, "87.4%")
     }
 }

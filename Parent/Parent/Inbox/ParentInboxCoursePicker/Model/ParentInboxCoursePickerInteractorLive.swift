@@ -66,7 +66,7 @@ class ParentInboxCoursePickerInteractorLive: ParentInboxCoursePickerInteractor {
             },
             receiveValue: { [weak self] items in
                 self?.state.send(items.isEmpty ? .empty : .data)
-                self?.studentContextItems.send(items)
+                self?.studentContextItems.send(items.removingDuplicates())
             })
             .store(in: &subscriptions)
     }

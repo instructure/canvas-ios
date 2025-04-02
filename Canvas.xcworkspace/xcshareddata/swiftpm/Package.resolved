@@ -1,5 +1,5 @@
 {
-  "originHash" : "0ad268b08401283782af7df64dff9e2df1a4d73a50e3d7d3161d25cd005214c9",
+  "originHash" : "1938f50a45023c49d6afa0af67eb28d16dd06f6e6c0be2d110cbf60511c764ae",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -92,15 +92,6 @@
       }
     },
     {
-      "identity" : "heap-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/heap/heap-ios-sdk.git",
-      "state" : {
-        "revision" : "ebb29dcd3181f11715b07b54dff909e3bdedba3b",
-        "version" : "9.1.0"
-      }
-    },
-    {
       "identity" : "interop-ios-for-google-sdks",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/interop-ios-for-google-sdks.git",
@@ -134,6 +125,15 @@
       "state" : {
         "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
         "version" : "2.30910.0"
+      }
+    },
+    {
+      "identity" : "pendo-mobile-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pendo-io/pendo-mobile-sdk",
+      "state" : {
+        "revision" : "350cc267066c7f933b5939513b596cd922e22f08",
+        "version" : "3.6.1"
       }
     },
     {

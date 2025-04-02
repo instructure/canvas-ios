@@ -53,7 +53,15 @@ extension SubmissionViewable {
     }
 
     public var submissionStatusIcon: UIImage {
-        return isSubmitted ? .completeSolid : .noSolid
+        if !isSubmitted {
+            return .noSolid
+        }
+
+        if submission?.workflowState == .graded {
+            return .completeSolid
+        }
+
+        return .completeLine
     }
 
     public var submissionStatusText: String {
