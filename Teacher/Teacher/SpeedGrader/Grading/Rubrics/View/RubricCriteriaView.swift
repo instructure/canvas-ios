@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct RubricCriteriaAssessor: View {
+struct RubricCriteriaView: View {
     @Environment(\.viewController) var controller
     private let containerFrameInGlobal: CGRect
     @ObservedObject var viewModel: RubricCriteriaViewModel
@@ -45,7 +45,7 @@ struct RubricCriteriaAssessor: View {
 
             FlowStack(spacing: UIOffset(horizontal: 8, vertical: 8)) { leading, top in
                 preDefinedRubricRatingButtons(leading: leading, top: top)
-                customRatingButton(leading: leading, top: top)
+                RubricCustomRatingView(viewModel: viewModel.customRatingViewModel, leading: leading, top: top)
             }
             .padding(.top, 8)
 
@@ -57,6 +57,10 @@ struct RubricCriteriaAssessor: View {
                     showLong: showLong
                 )
             }
+
+//            if let comments = assessment?.comments, !comments.isEmpty {
+//                freeFormRubricCommentBubbleWithEditButton(comments, criteriaID: criteria.id)
+//            }
         }
     }
 
@@ -67,22 +71,7 @@ struct RubricCriteriaAssessor: View {
     ) -> some View {
         if viewModel.shouldShowRubricRatings {
             ForEach(viewModel.ratingViewModels) { ratingViewModel in
-                let binding = Binding(
-                    get: { ratingViewModel.isSelected },
-                    set: { ratingViewModel.isSelected = $0 }
-                )
-                let value = Text(ratingViewModel.value)
-                RubricCircle(
-                    isOn: binding,
-                    tooltip: ratingViewModel.tooltip,
-                    containerFrame: containerFrameInGlobal
-                ) {
-                    value
-                }
-                .accessibility(value: value)
-                .accessibility(label: Text(ratingViewModel.accessibilityLabel))
-                .alignmentGuide(.leading, computeValue: leading)
-                .alignmentGuide(.top, computeValue: top)
+                RubricRatingView(viewModel: ratingViewModel, leading: leading, top: top, containerFrameInGlobal: containerFrameInGlobal)
             }
         }
     }
@@ -126,34 +115,6 @@ struct RubricCriteriaAssessor: View {
             }
         }
         .padding(.top, 8)
-    }
-
-    private func customRatingButton(
-        leading: @escaping (ViewDimensions) -> CGFloat,
-        top: @escaping (ViewDimensions) -> CGFloat
-    ) -> some View {
-        let isOnBinding = Binding(
-            get: { viewModel.customGrade != nil },
-            set: { isSelected in
-                if isSelected {
-                    viewModel.didTapAddCustomScoreButton()
-                } else {
-                    viewModel.didTapClearCustomScoreButton()
-                }
-            }
-        )
-
-        return RubricCircle(isOn: isOnBinding) {
-            if let grade = viewModel.customGrade {
-                Text(grade)
-            } else {
-                Image.addSolid
-            }
-        }
-        .accessibilityLabel(Text("Add custom grade", bundle: .teacher))
-        .accessibilityRemoveTraits(.isImage)
-        .alignmentGuide(.leading, computeValue: leading)
-        .alignmentGuide(.top, computeValue: top)
     }
 
     private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {

@@ -25,9 +25,10 @@ class RubricsViewModel: ObservableObject {
     @Published private(set) var isSaving = false
     @Published var rubricComment: String = ""
     @Published var rubricCommentID: String?
-    public let assignment: Assignment
+    let assignment: Assignment
     @Published var submission: Submission
-    public private(set) var criteriaViewModels: [RubricCriteriaViewModel] = []
+    private(set) var criteriaViewModels: [RubricCriteriaViewModel] = []
+
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Inputs
@@ -70,10 +71,14 @@ class RubricsViewModel: ObservableObject {
         }
 
         assessments
+            .dropFirst()
             .sink { [weak self] _ in
                 self?.rubricAssessmentDidChange()
             }
             .store(in: &subscriptions)
+
+        let loadedAssessments = (submission.rubricAssessments ?? [:]).mapValues { $0.apiEntity }
+        assessments.send(loadedAssessments)
     }
 
     func assessmentForCriteriaID(_ criteriaID: String) -> APIRubricAssessment? {

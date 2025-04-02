@@ -111,7 +111,7 @@ struct SubmissionGrades: View {
 
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)
-                        RubricAssessor(
+                        RubricsView(
                             currentScore: rubricsViewModel.totalRubricScore(),
                             containerFrameInGlobal: geometry.frame(in: .global),
                             viewModel: rubricsViewModel

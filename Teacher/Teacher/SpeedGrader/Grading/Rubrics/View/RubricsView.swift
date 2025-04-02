@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct RubricAssessor: View {
+struct RubricsView: View {
     let currentScore: Double
     let containerFrameInGlobal: CGRect
     @ObservedObject var viewModel: RubricsViewModel
@@ -47,7 +47,7 @@ struct RubricAssessor: View {
 
         VStack(spacing: 12) {
             ForEach(viewModel.criteriaViewModels) { viewModel in
-                RubricCriteriaAssessor(
+                RubricCriteriaView(
                     containerFrameInGlobal: containerFrameInGlobal,
                     viewModel: viewModel
                 )
