@@ -137,15 +137,18 @@ struct AssignmentDetails: View {
         }
     }
 
+    @ViewBuilder
     private var submitButton: some View {
-        HStack {
-            Spacer()
-            HorizonUI.PrimaryButton(viewModel.submitButtonTitle) {
-                dismissKeyboard.toggle()
-                viewModel.submit()
+        if !viewModel.isSubmitButtonHidden {
+            HStack {
+                Spacer()
+                HorizonUI.PrimaryButton(viewModel.submitButtonTitle) {
+                    dismissKeyboard.toggle()
+                    viewModel.submit()
+                }
+                .disableWithOpacity(!viewModel.shouldEnableSubmitButton, disabledOpacity: 0.7)
+                .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
             }
-            .disableWithOpacity(!viewModel.shouldEnableSubmitButton, disabledOpacity: 0.7)
-            .hidden(!(viewModel.assignment?.showSubmitButton ?? false))
         }
     }
 

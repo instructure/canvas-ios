@@ -52,6 +52,9 @@ final class AssignmentDetailsViewModel {
     private(set) var externalURL: URL?
     var isStartTyping = false
     var assignmentPreference: AssignmentPreferenceKeyType?
+    var isSubmitButtonHidden: Bool {
+        assignment?.submissionTypes.contains(.none) == true && assignment?.submissionTypes.count == 1
+    }
 
     // MARK: - Properties
 
