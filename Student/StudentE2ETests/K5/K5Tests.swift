@@ -197,7 +197,10 @@ class K5Tests: K5E2ETestCase {
     }
 
     // Covers MBL-15737 bug
-    func testK5DashboardNotificationLimit() {
+    // The relevant API test (for endpoint `users/<userId>/missing_submissions`) is skipped as well.
+    // From the description there: There is a MissingPolicyApplicator running in every 5 minutes and polling the missing submissions, but it cannot be invoked 'manually'.
+    func testK5DashboardNotificationLimit() throws {
+        try XCTSkipIf(true, "Skipped because backend polls the related data every 5 minutes and it cannot be invoked manually.")
         // MARK: Seed the usual stuff with homeroom and 12 missed assignments
         let student = seeder.createK5User()
         let homeroom = seeder.createK5Course()
