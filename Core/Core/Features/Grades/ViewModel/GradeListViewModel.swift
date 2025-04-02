@@ -219,10 +219,10 @@ public final class GradeListViewModel: ObservableObject {
         gradingPeriods: [GradingPeriod]
     ) -> String? {
         let currentId = gradeFilterInteractor.selectedGradingId
-        guard !gradingPeriods.isEmpty else {
-            gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
-            return currentGradingPeriodID
-        }
+//        guard !gradingPeriods.isEmpty else {
+//            gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
+//            return currentGradingPeriodID
+//        }
 
         if let currentId {
             if currentId == gradeFilterInteractor.gradingShowAllId {
@@ -230,12 +230,12 @@ public final class GradeListViewModel: ObservableObject {
             } else if gradingPeriods.contains(where: { $0.id == currentId }) {
                 return currentId
             } else {
-                gradeFilterInteractor.saveSelectedGradingPeriod(id: gradingPeriods.first?.id)
+//                gradeFilterInteractor.saveSelectedGradingPeriod(id: gradingPeriods.first?.id)
                 gradeFilterInteractor.saveSortByOption(type: .dueDate)
                 return gradingPeriods.first?.id
             }
         }
-        gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
+//        gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
         return currentGradingPeriodID
     }
 
