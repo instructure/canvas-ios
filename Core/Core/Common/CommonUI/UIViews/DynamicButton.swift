@@ -70,22 +70,18 @@ open class DynamicButton: UIButton {
         }
     }
 
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        subscribeForTraitChanges()
+    }
+
     open override var isHighlighted: Bool {
         didSet {
             tintColor = titleColor(for: state)
-        }
-    }
-
-    /// Border is set by using `cgColor` which doesn't change when
-    /// the light/dark theme changes so we have to manually force an update.
-    override open func traitCollectionDidChange(
-        _ previousTraitCollection: UITraitCollection?
-    ) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        /// Setting an invalid color will spam "CUICatalog: Invalid asset name supplied: ''" error to the console
-        if borderColorName != "" {
-            didSetBorderColorName()
         }
     }
 
@@ -96,5 +92,17 @@ open class DynamicButton: UIButton {
         }
         layer.borderWidth = 0.5
         layer.borderColor = color.cgColor
+    }
+
+    private func subscribeForTraitChanges() {
+        /// Border is set by using `cgColor` which doesn't change when
+        /// the light/dark theme changes so we have to manually force an update.
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: Self, _) in
+            /// Setting an invalid color will spam "CUICatalog: Invalid asset name supplied: ''" error to the console
+            if self.borderColorName != "" {
+                self.didSetBorderColorName()
+            }
+        }
     }
 }

@@ -42,6 +42,7 @@ public class CoreSplitViewController: UISplitViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         preferredDisplayMode = .oneBesideSecondary
+        subscribeForTraitChangessubscribeForTraitChanges()
     }
 
     private func setupBackgroundStateObservers() {
@@ -76,13 +77,6 @@ public class CoreSplitViewController: UISplitViewController {
         return masterNavigationController?.prefersStatusBarHidden ?? false
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
-        NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
-        updateTitleViews()
-    }
-
     public override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
         super.showDetailViewController(vc, sender: sender)
         self.masterNavigationController?.syncStyles()
@@ -113,6 +107,15 @@ public class CoreSplitViewController: UISplitViewController {
             String(localized: "Collapse detail view", bundle: .core) :
             String(localized: "Expand detail view", bundle: .core)
         return prettyButton
+    }
+
+    private func subscribeForTraitChangessubscribeForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (vc: CoreSplitViewController, _) in
+            let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
+            NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
+            vc.updateTitleViews()
+        }
     }
 }
 

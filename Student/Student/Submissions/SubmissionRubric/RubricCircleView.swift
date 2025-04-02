@@ -144,6 +144,8 @@ class RubricCircleView: UIView {
             let h = RubricCircleView.computedHeight(rubric: rubric, maxWidth: frame.size.width)
             addConstraintsWithVFL("V:[view(h)]", metrics: ["h": h])
         }
+
+        subscribeForTraitChanges()
     }
 
     var isAnimating = false
@@ -260,10 +262,12 @@ class RubricCircleView: UIView {
         return (rows * w) + ((rows - 1) * space)
     }
 
-    internal override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if buttonsDidLayout {
-            setupButtons()
+    private func subscribeForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: Self, _) in
+            if self.buttonsDidLayout {
+                self.setupButtons()
+            }
         }
     }
 }

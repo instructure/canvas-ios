@@ -47,6 +47,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
         addSnackBar()
+        subscribeForTraitChanges()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,12 +61,14 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     /// When the app was started in light mode and turned to dark the selected color was not updated so we do a force refresh.
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        tabBar.useGlobalNavStyle()
+    private func subscribeForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: Self, _) in
+            self.tabBar.useGlobalNavStyle()
 
-        // This changes the elevated tab bar's text color (but for some reason only in light mode)
-        view.tintColor = Brand.shared.tabBarHighlightColor
+            // This changes the elevated tab bar's text color (but for some reason only in light mode)
+            self.view.tintColor = Brand.shared.tabBarHighlightColor
+        }
     }
 
     func dashboardTab() -> UIViewController {
