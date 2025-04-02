@@ -46,9 +46,8 @@ struct RubricAssessor: View {
         .padding(.horizontal, 16).padding(.vertical, 12)
 
         VStack(spacing: 12) {
-            ForEach(viewModel.assignment.rubric ?? [], id: \.id) { criteria in
+            ForEach(viewModel.criteriaViewModels) { viewModel in
                 RubricCriteriaAssessor(
-                    criteria: criteria,
                     containerFrameInGlobal: containerFrameInGlobal,
                     viewModel: viewModel
                 )
@@ -59,27 +58,5 @@ struct RubricAssessor: View {
         .onAppear {
             viewModel.controller = controller
         }
-    }
-
-    private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
-        HStack {
-            Text(comment)
-                .font(.regular14)
-                .foregroundColor(.textDarkest)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(CommentBackground()
-                    .fill(Color.backgroundLight)
-                )
-            Spacer()
-            Button(action: { withAnimation(.default) {
-                viewModel.rubricComment = comment
-                viewModel.rubricCommentID = criteriaID
-            } }, label: {
-                Text("Edit", bundle: .teacher)
-                    .font(.medium14).foregroundColor(.accentColor)
-            })
-        }
-        .padding(.top, 8)
     }
 }

@@ -21,70 +21,38 @@ import SwiftUI
 
 struct RubricCriteriaAssessor: View {
     @Environment(\.viewController) var controller
-    private var criteria: Rubric
     private let containerFrameInGlobal: CGRect
-    private let assessment: APIRubricAssessment?
-    @ObservedObject var viewModel: RubricsViewModel
+    @ObservedObject var viewModel: RubricCriteriaViewModel
 
     init(
-        criteria: Rubric,
         containerFrameInGlobal: CGRect,
-        viewModel: RubricsViewModel
+        viewModel: RubricCriteriaViewModel
     ) {
-        self.criteria = criteria
         self.containerFrameInGlobal = containerFrameInGlobal
         self.viewModel = viewModel
-        assessment = viewModel.assessmentForCriteriaID(criteria.id)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack { Spacer() }
-            Text(criteria.desc)
+            Text(viewModel.description)
                 .font(.semibold16).foregroundColor(.textDarkest)
-            if criteria.ignoreForScoring {
+            if viewModel.shouldShowRubricNotUsedForScoringMessage {
                 Text("This criterion will not impact the score.", bundle: .teacher)
                     .font(.regular12).foregroundColor(.textDark)
                     .padding(.top, 2)
             }
 
             FlowStack(spacing: UIOffset(horizontal: 8, vertical: 8)) { leading, top in
-                if !viewModel.assignment.freeFormCriterionCommentsOnRubric, let ratings = criteria.ratings {
-                    ForEach(ratings.reversed(), id: \.id) { rating in
-                        let isSelected = assessment?.rating_id == rating.id
-                        let value = Text((isSelected ? assessment?.points : nil) ?? rating.points)
-                        let tooltip = rating.desc + (rating.longDesc.isEmpty ? "" : "\n" + rating.longDesc)
-
-                        RubricCircle(isOn: Binding(get: { isSelected }, set: { newValue in
-                            viewModel.assessments[criteria.id] = newValue ? APIRubricAssessment(
-                                comments: assessment?.comments,
-                                points: rating.points,
-                                rating_id: rating.id
-                            ) : APIRubricAssessment(comments: assessment?.comments)
-                        }), tooltip: tooltip, containerFrame: containerFrameInGlobal) {
-                            value
-                        }
-                        .accessibility(value: value)
-                        .accessibility(label: rating.desc.isEmpty ? value : Text(rating.desc))
-                        .alignmentGuide(.leading, computeValue: leading)
-                        .alignmentGuide(.top, computeValue: top)
-                    }
-                }
-                customGradeToggle(
-                    criteria: criteria,
-                    assessment: assessment,
-                    leading: leading,
-                    top: top
-                )
+                preDefinedRubricRatingButtons(leading: leading, top: top)
+                customRatingButton(leading: leading, top: top)
             }
             .padding(.top, 8)
 
-            let showAdd = viewModel.assignment.freeFormCriterionCommentsOnRubric && assessment?.comments?.isEmpty != false
-            let showLong = criteria.longDesc.isEmpty == false
+            let showAdd = viewModel.shouldShowAddFreeFormCommentButton
+            let showLong = viewModel.shouldShowLongDescriptionButton
             if showAdd || showLong {
                 addButtons(
-                    criteria: criteria,
-                    assessment: assessment,
                     showAdd: showAdd,
                     showLong: showLong
                 )
@@ -92,9 +60,34 @@ struct RubricCriteriaAssessor: View {
         }
     }
 
+    @ViewBuilder
+    private func preDefinedRubricRatingButtons(
+        leading: @escaping (ViewDimensions) -> CGFloat,
+        top: @escaping (ViewDimensions) -> CGFloat
+    ) -> some View {
+        if viewModel.shouldShowRubricRatings {
+            ForEach(viewModel.ratingViewModels) { ratingViewModel in
+                let binding = Binding(
+                    get: { ratingViewModel.isSelected },
+                    set: { ratingViewModel.isSelected = $0 }
+                )
+                let value = Text(ratingViewModel.value)
+                RubricCircle(
+                    isOn: binding,
+                    tooltip: ratingViewModel.tooltip,
+                    containerFrame: containerFrameInGlobal
+                ) {
+                    value
+                }
+                .accessibility(value: value)
+                .accessibility(label: Text(ratingViewModel.accessibilityLabel))
+                .alignmentGuide(.leading, computeValue: leading)
+                .alignmentGuide(.top, computeValue: top)
+            }
+        }
+    }
+
     private func addButtons(
-        criteria: Rubric,
-        assessment: APIRubricAssessment?,
         showAdd: Bool,
         showLong: Bool
     ) -> some View {
@@ -103,8 +96,7 @@ struct RubricCriteriaAssessor: View {
                 Button(
                     action: {
                         withAnimation(.default) {
-                            viewModel.rubricComment = ""
-                            viewModel.rubricCommentID = criteria.id
+                            viewModel.didTapAddCommentButton()
                         }
                     },
                     label: {
@@ -113,7 +105,7 @@ struct RubricCriteriaAssessor: View {
                             .foregroundColor(.accentColor)
                     }
                 )
-                .identifier("SpeedGrader.Rubric.\(criteria.id).addCommentButton")
+                .identifier(viewModel.addCommentButtonA11yID)
             }
             if showAdd, showLong {
                 Text(verbatim: "•")
@@ -123,7 +115,7 @@ struct RubricCriteriaAssessor: View {
             if showLong {
                 Button(
                     action: {
-                        viewModel.showLongDescription(rubric: criteria)
+                        viewModel.didTapShowLongDescriptionButton()
                     },
                     label: {
                         Text("View Long Description", bundle: .teacher)
@@ -136,31 +128,23 @@ struct RubricCriteriaAssessor: View {
         .padding(.top, 8)
     }
 
-    private func customGradeToggle(
-        criteria: Rubric,
-        assessment: APIRubricAssessment?,
+    private func customRatingButton(
         leading: @escaping (ViewDimensions) -> CGFloat,
         top: @escaping (ViewDimensions) -> CGFloat
     ) -> some View {
-        let customGrade = (
-            viewModel.assignment.freeFormCriterionCommentsOnRubric ||
-            assessment?.rating_id.isNilOrEmpty == true
-        )
-            ? assessment?.points : nil
-
-        let binding = Binding(
-            get: { customGrade != nil },
-            set: { newValue in
-                if newValue {
-                    viewModel.promptCustomGrade(criteria, rubricAssessmentComment: assessment?.comments)
+        let isOnBinding = Binding(
+            get: { viewModel.customGrade != nil },
+            set: { isSelected in
+                if isSelected {
+                    viewModel.didTapAddCustomScoreButton()
                 } else {
-                    viewModel.assessments[criteria.id] = APIRubricAssessment(comments: assessment?.comments)
+                    viewModel.didTapClearCustomScoreButton()
                 }
             }
         )
 
-        return RubricCircle(isOn: binding) {
-            if let grade = customGrade {
+        return RubricCircle(isOn: isOnBinding) {
+            if let grade = viewModel.customGrade {
                 Text(grade)
             } else {
                 Image.addSolid
@@ -170,5 +154,27 @@ struct RubricCriteriaAssessor: View {
         .accessibilityRemoveTraits(.isImage)
         .alignmentGuide(.leading, computeValue: leading)
         .alignmentGuide(.top, computeValue: top)
+    }
+
+    private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
+        HStack {
+            Text(comment)
+                .font(.regular14)
+                .foregroundColor(.textDarkest)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(CommentBackground()
+                    .fill(Color.backgroundLight)
+                )
+            Spacer()
+            Button(action: { withAnimation(.default) {
+                viewModel.rubricComment = comment
+                viewModel.rubricCommentID = criteriaID
+            } }, label: {
+                Text("Edit", bundle: .teacher)
+                    .font(.medium14).foregroundColor(.accentColor)
+            })
+        }
+        .padding(.top, 8)
     }
 }

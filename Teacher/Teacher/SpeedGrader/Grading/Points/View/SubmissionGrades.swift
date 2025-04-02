@@ -71,7 +71,7 @@ struct SubmissionGrades: View {
                                     Text(GradeFormatter.longString(
                                         for: assignment,
                                         submission: submission,
-                                        rubricScore: rubricsViewModel.totalRubricScore(),
+                                        rubricScore: rubricsViewModel.isRubricScoreAvailable() ? rubricsViewModel.totalRubricScore() : nil,
                                         final: false
                                     ))
                                 } else {
@@ -109,10 +109,10 @@ struct SubmissionGrades: View {
                         slider
                     }
 
-                    if assignment.rubric?.isEmpty == false, let rubricScore = rubricsViewModel.totalRubricScore() {
+                    if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)
                         RubricAssessor(
-                            currentScore: rubricScore,
+                            currentScore: rubricsViewModel.totalRubricScore(),
                             containerFrameInGlobal: geometry.frame(in: .global),
                             viewModel: rubricsViewModel
                         )
@@ -132,7 +132,7 @@ struct SubmissionGrades: View {
                       action: {
             var points: Double?
             var ratingID = ""
-            if let assessment = rubricsViewModel.assessments[id] {
+            if let assessment = rubricsViewModel.assessments.value[id] {
                 points = assessment.points
                 ratingID = assessment.rating_id ?? ""
             } else if let assessment = submission.rubricAssessments?[id] {
@@ -141,7 +141,9 @@ struct SubmissionGrades: View {
             }
             withAnimation(.default) {
                 rubricsViewModel.rubricCommentID = nil
-                rubricsViewModel.assessments[id] = .init(comments: rubricsViewModel.rubricComment, points: points, rating_id: ratingID)
+                var assessments = rubricsViewModel.assessments.value
+                assessments[id] = .init(comments: rubricsViewModel.rubricComment, points: points, rating_id: ratingID)
+                rubricsViewModel.assessments.send(assessments)
             }
         }, containerHeight: containerHeight)
             .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))

@@ -17,22 +17,25 @@
 //
 
 import Core
+import Combine
 import SwiftUI
 
 class RubricsViewModel: ObservableObject {
-    @Published var assessments: APIRubricAssessmentMap = [:] {
-        didSet {
-            rubricAssessmentDidChange()
-        }
-    }
+    let assessments = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
     @Published private(set) var isSaving = false
     @Published var rubricComment: String = ""
     @Published var rubricCommentID: String?
     public let assignment: Assignment
     @Published var submission: Submission
+    public private(set) var criteriaViewModels: [RubricCriteriaViewModel] = []
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Inputs
-    var controller = WeakViewController()
+    var controller = WeakViewController() {
+        didSet {
+            criteriaViewModels.forEach { $0.controller = controller }
+        }
+    }
 
     // MARK: - Private
     private var assessmentsChangedDuringUpload = false
@@ -48,65 +51,55 @@ class RubricsViewModel: ObservableObject {
         self.assignment = assignment
         self.submission = submission
         self.router = router
+        criteriaViewModels = (assignment.rubric ?? []).map { [unowned self] criteria in
+            let rubricCommentBinding = Binding(
+                get: { self.rubricComment },
+                set: { self.rubricComment = $0 }
+            )
+            let rubricCommentIdBinding = Binding(
+                get: { self.rubricCommentID },
+                set: { self.rubricCommentID = $0 }
+            )
+            return RubricCriteriaViewModel(
+                criteria: criteria,
+                isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
+                assessments: assessments,
+                rubricComment: rubricCommentBinding,
+                rubricCommentID: rubricCommentIdBinding
+            )
+        }
+
+        assessments
+            .sink { [weak self] _ in
+                self?.rubricAssessmentDidChange()
+            }
+            .store(in: &subscriptions)
     }
 
     func assessmentForCriteriaID(_ criteriaID: String) -> APIRubricAssessment? {
-        let inMemoryAssessment = assessments[criteriaID]
+        let inMemoryAssessment = assessments.value[criteriaID]
         let databaseAssessment = submission.rubricAssessments?[criteriaID]?.apiEntity
         return inMemoryAssessment ?? databaseAssessment
     }
 
-    func showLongDescription(rubric: Rubric) {
-        let web = CoreWebViewController()
-        web.title = rubric.desc
-        web.webView.loadHTMLString(rubric.longDesc)
-        web.addDoneButton(side: .right)
-        router.show(web, from: controller, options: .modal(embedInNav: true))
-    }
-
-    func promptCustomGrade(_ criteria: Rubric, rubricAssessmentComment: String?) {
-        let format = String(localized: "out_of_g_pts", bundle: .core)
-        let message = String.localizedStringWithFormat(format, criteria.points)
-        let prompt = UIAlertController(title: String(localized: "Customize Grade", bundle: .teacher), message: message, preferredStyle: .alert)
-        prompt.addTextField { field in
-            field.placeholder = ""
-            field.returnKeyType = .done
-            field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
-            field.accessibilityLabel = String(localized: "Grade", bundle: .teacher)
-        }
-        prompt.addAction(AlertAction(String(localized: "OK", bundle: .teacher)) { [weak self] _ in
-            let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            self?.assessments[criteria.id] = APIRubricAssessment(
-                comments: rubricAssessmentComment,
-                points: DoubleFieldRow.formatter.number(from: text)?.doubleValue
-            )
-        })
-        prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
-        AppEnvironment.shared.router.show(prompt, from: controller, options: .modal())
-    }
-
-    func totalRubricScore() -> Double? {
-        guard isRubricScoreAvailable() else {
-            return nil
-        }
-
+    func totalRubricScore() -> Double {
         let assessments = submission.rubricAssessments // create map only once
         var points = 0.0
         for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
-            points += self.assessments[criteria.id]?.points as? Double ??
+            points += self.assessments.value[criteria.id]?.points as? Double ??
                 assessments?[criteria.id]?.points as? Double ?? 0
         }
         return points
     }
 
-    // MARK: - Private Methods
-
-    private func isRubricScoreAvailable() -> Bool {
+    func isRubricScoreAvailable() -> Bool {
         guard assignment.useRubricForGrading else { return false }
-        return assessments.contains { _, assessment in
+        return assessments.value.contains { _, assessment in
             assessment.points != nil
         }
     }
+
+    // MARK: - Private Methods
 
     private func rubricAssessmentDidChange() {
         if isSaving {
@@ -117,7 +110,7 @@ class RubricsViewModel: ObservableObject {
     }
 
     private func uploadRubricAssessments() {
-        if assessments.isEmpty {
+        if assessments.value.isEmpty {
             isSaving = false
             return
         }
@@ -127,7 +120,7 @@ class RubricsViewModel: ObservableObject {
         var nextAssessments: APIRubricAssessmentMap = [:]
 
         for criteria in assignment.rubric ?? [] {
-            nextAssessments[criteria.id] = assessments[criteria.id] ?? prevAssessments?[criteria.id].map {
+            nextAssessments[criteria.id] = assessments.value[criteria.id] ?? prevAssessments?[criteria.id].map {
                 APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
             }
         }
