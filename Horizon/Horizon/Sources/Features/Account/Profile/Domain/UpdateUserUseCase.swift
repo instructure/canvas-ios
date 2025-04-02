@@ -75,11 +75,11 @@ struct PutUserInfoRequest: APIRequestable {
     struct User: Encodable {
         let name: String?
         let short_name: String?
-        let default_time_zone: String?
+        let time_zone: String?
     }
     let method = APIMethod.put
     let path = "users/self"
     var body: Body? {
-        return Body(user: User(name: name, short_name: shortName, default_time_zone: timeZone))
+        return Body(user: User(name: name, short_name: shortName, time_zone: timeZone))
     }
 }

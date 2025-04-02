@@ -47,7 +47,7 @@ extension UserProfile: WriteableModel {
         model.calendarURL = item.calendar?.ics
         model.pronouns = item.pronouns
         model.isK5User = (item.k5_user == true)
-        model.defaultTimeZone = item.default_time_zone
+        model.defaultTimeZone = item.time_zone
         return model
     }
 }
