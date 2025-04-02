@@ -132,7 +132,7 @@ struct SubmissionGrades: View {
                       action: {
             var points: Double?
             var ratingID = ""
-            if let assessment = rubricsViewModel.assessments.value[id] {
+            if let assessment = rubricsViewModel.interactor.assessments.value[id] {
                 points = assessment.points
                 ratingID = assessment.rating_id ?? ""
             } else if let assessment = submission.rubricAssessments?[id] {
@@ -141,9 +141,9 @@ struct SubmissionGrades: View {
             }
             withAnimation(.default) {
                 rubricsViewModel.rubricCommentID = nil
-                var assessments = rubricsViewModel.assessments.value
+                var assessments = rubricsViewModel.interactor.assessments.value
                 assessments[id] = .init(comments: rubricsViewModel.rubricComment, points: points, rating_id: ratingID)
-                rubricsViewModel.assessments.send(assessments)
+                rubricsViewModel.interactor.assessments.send(assessments)
             }
         }, containerHeight: containerHeight)
             .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))

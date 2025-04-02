@@ -21,15 +21,13 @@ import Combine
 import SwiftUI
 
 class RubricsViewModel: ObservableObject {
-    let assessments = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
     @Published private(set) var isSaving = false
     @Published var rubricComment: String = ""
     @Published var rubricCommentID: String?
     let assignment: Assignment
     @Published var submission: Submission
     private(set) var criteriaViewModels: [RubricCriteriaViewModel] = []
-
-    private var subscriptions = Set<AnyCancellable>()
+    let interactor: RubricGradingInteractor
 
     // MARK: - Inputs
     var controller = WeakViewController() {
@@ -39,18 +37,20 @@ class RubricsViewModel: ObservableObject {
     }
 
     // MARK: - Private
-    private var assessmentsChangedDuringUpload = false
     private let router: Router
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Public Methods
 
     init(
         assignment: Assignment,
         submission: Submission,
+        interactor: RubricGradingInteractor,
         router: Router = AppEnvironment.shared.router
     ) {
         self.assignment = assignment
         self.submission = submission
+        self.interactor = interactor
         self.router = router
         criteriaViewModels = (assignment.rubric ?? []).map { [unowned self] criteria in
             let rubricCommentBinding = Binding(
@@ -64,34 +64,29 @@ class RubricsViewModel: ObservableObject {
             return RubricCriteriaViewModel(
                 criteria: criteria,
                 isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
-                assessments: assessments,
+                assessments: interactor.assessments,
                 rubricComment: rubricCommentBinding,
                 rubricCommentID: rubricCommentIdBinding
             )
         }
 
-        assessments
-            .dropFirst()
-            .sink { [weak self] _ in
-                self?.rubricAssessmentDidChange()
+        interactor
+            .isSaving
+            .assign(to: &$isSaving)
+
+        interactor
+            .showSaveError
+            .sink { [weak self] error in
+                self?.showError(error)
             }
             .store(in: &subscriptions)
-
-        let loadedAssessments = (submission.rubricAssessments ?? [:]).mapValues { $0.apiEntity }
-        assessments.send(loadedAssessments)
-    }
-
-    func assessmentForCriteriaID(_ criteriaID: String) -> APIRubricAssessment? {
-        let inMemoryAssessment = assessments.value[criteriaID]
-        let databaseAssessment = submission.rubricAssessments?[criteriaID]?.apiEntity
-        return inMemoryAssessment ?? databaseAssessment
     }
 
     func totalRubricScore() -> Double {
         let assessments = submission.rubricAssessments // create map only once
         var points = 0.0
         for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
-            points += self.assessments.value[criteria.id]?.points as? Double ??
+            points += interactor.assessments.value[criteria.id]?.points as? Double ??
                 assessments?[criteria.id]?.points as? Double ?? 0
         }
         return points
@@ -99,60 +94,12 @@ class RubricsViewModel: ObservableObject {
 
     func isRubricScoreAvailable() -> Bool {
         guard assignment.useRubricForGrading else { return false }
-        return assessments.value.contains { _, assessment in
+        return interactor.assessments.value.contains { _, assessment in
             assessment.points != nil
         }
     }
 
     // MARK: - Private Methods
-
-    private func rubricAssessmentDidChange() {
-        if isSaving {
-            assessmentsChangedDuringUpload = true
-        } else {
-            uploadRubricAssessments()
-        }
-    }
-
-    private func uploadRubricAssessments() {
-        if assessments.value.isEmpty {
-            isSaving = false
-            return
-        }
-
-        isSaving = true
-        let prevAssessments = submission.rubricAssessments // create map only once
-        var nextAssessments: APIRubricAssessmentMap = [:]
-
-        for criteria in assignment.rubric ?? [] {
-            nextAssessments[criteria.id] = assessments.value[criteria.id] ?? prevAssessments?[criteria.id].map {
-                APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
-            }
-        }
-
-        GradeSubmission(
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            rubricAssessment: nextAssessments
-        ).fetch { [weak self] _, _, error in performUIUpdate {
-            self?.handleUploadFinished(error: error)
-        } }
-    }
-
-    private func handleUploadFinished(error: Error?) {
-        if assessmentsChangedDuringUpload {
-            assessmentsChangedDuringUpload = false
-            uploadRubricAssessments()
-            return
-        }
-
-        isSaving = false
-
-        if let error = error {
-            showError(error)
-        }
-    }
 
     private func showError(_ error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
