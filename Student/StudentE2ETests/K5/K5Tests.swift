@@ -104,7 +104,7 @@ class K5Tests: K5E2ETestCase {
 
         let selectGradingPeriodButton = Helper.Grades.selectGradingPeriodButton.waitUntil(.visible)
         XCTAssertTrue(selectGradingPeriodButton.isVisible)
-        XCTAssertTrue(selectGradingPeriodButton.labelHasSuffix("Closed"))
+        XCTAssertHasSuffix(selectGradingPeriodButton.label, "Closed")
 
         selectGradingPeriodButton.hit()
         let currentGradingPeriodButton = Helper.Grades.currentGradingPeriodButton.waitUntil(.visible)
@@ -114,7 +114,7 @@ class K5Tests: K5E2ETestCase {
 
         let courseProgressCard = Helper.Grades.courseProgressCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseProgressCard.isVisible)
-        courseProgressCard.assertLabelHasSuffix("100%")
+        XCTAssertHasSuffix(courseProgressCard.label, "100%")
 
         courseProgressCard.hit()
 
@@ -214,11 +214,7 @@ class K5Tests: K5E2ETestCase {
 
         let courseCardAssigmentMissingButton = DashboardHelper.courseCardAssignmentMissingButton(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardAssigmentMissingButton.isVisible)
-        courseCardAssigmentMissingButton.assertLabelEquals(
-            "\(assignmentsCount) missing",
-            caseSensitive: false,
-            messageSuffix: " [Known flaky test]"
-        )
+        XCTAssertEqualIgnoringCase(courseCardAssigmentMissingButton.label, "\(assignmentsCount) missing")
     }
 
     // Covers MBL-15776 bug
