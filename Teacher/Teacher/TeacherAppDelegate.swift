@@ -366,8 +366,7 @@ extension TeacherAppDelegate: LoginDelegate {
             userID: fakeStudentID,
             userName: String(localized: "Test Student", bundle: .teacher),
             userEmail: session.userEmail,
-            clientID: session.clientID,
-            clientSecret: session.clientSecret
+            oauthType: session.oauthType
         )
         LoginSession.add(entry, to: .shared, forKey: .fakeStudents)
         var deepLink = "canvas-student:student_view"

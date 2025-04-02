@@ -30,8 +30,8 @@ public struct LoginSession: Codable, Hashable {
     public let userID: String
     public let userName: String
     public let userEmail: String?
-    public let clientID: String?
-    public let clientSecret: String?
+
+    public let oauthType: OAuthType?
 
     /** Returns the acted user's ID. If the session isn't masquaraded this property returns nil. */
     public var actAsUserID: String? {
@@ -72,8 +72,7 @@ public struct LoginSession: Codable, Hashable {
         userID: String,
         userName: String,
         userEmail: String? = nil,
-        clientID: String? = nil,
-        clientSecret: String? = nil,
+        oauthType: OAuthType? = nil,
         isFakeStudent: Bool = false
     ) {
         self.accessToken = accessToken
@@ -90,8 +89,7 @@ public struct LoginSession: Codable, Hashable {
         self.userID = userID
         self.userName = userName
         self.userEmail = userEmail
-        self.clientID = clientID
-        self.clientSecret = clientSecret
+        self.oauthType = oauthType
     }
 
     // Only keep 1 entry per account user
@@ -122,8 +120,7 @@ public struct LoginSession: Codable, Hashable {
             userID: userID,
             userName: userName,
             userEmail: userEmail,
-            clientID: clientID,
-            clientSecret: clientSecret
+            oauthType: oauthType
         )
     }
 
@@ -146,8 +143,7 @@ public struct LoginSession: Codable, Hashable {
             userID: userID,
             userName: userName,
             userEmail: userEmail,
-            clientID: clientID,
-            clientSecret: clientSecret
+            oauthType: oauthType
         )
     }
 

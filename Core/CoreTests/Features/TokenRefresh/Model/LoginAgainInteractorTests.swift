@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
+@testable import Core
 import UIKit
 import XCTest
 
@@ -82,8 +82,21 @@ class LoginAgainInteractorTests: CoreTestCase {
 
     // MARK: - Failure Scenarios
 
-    func test_reThrowsError_onInvalidHost() {
-        api.loginSession = .mock(baseURL: .make())
+    func test_manualOAuth_reThrowsError_onInvalidHost() {
+        api.loginSession = .mockManualOAuth(baseURL: .make())
+
+        XCTAssertThrowsError(
+            try testee.loginAgainOnExpiredRefreshToken(
+                tokenRefreshError: NSError.internalError(),
+                api: api
+            )
+        ) { error in
+            XCTAssertEqual(error as NSError, NSError.internalError())
+        }
+    }
+
+    func test_pkceOAuth_reThrowsError_onInvalidHost() {
+        api.loginSession = .mockPKCEOAuth(baseURL: .make())
 
         XCTAssertThrowsError(
             try testee.loginAgainOnExpiredRefreshToken(
@@ -119,9 +132,9 @@ class LoginAgainInteractorTests: CoreTestCase {
         }
     }
 
-    func test_throwsError_whenLoggedInWithDifferentUser() throws {
+    func test_pkceOAuth_throwsError_whenLoggedInWithDifferentUser() throws {
         // baseURL, userID and masquerader are compared if the session belongs to the same user
-        let differentUserSession = LoginSession.mock(
+        let differentUserSession = LoginSession.mockPKCEOAuth(
             baseURL: AppEnvironment.shared.currentSession!.baseURL,
             masquerader: AppEnvironment.shared.currentSession!.masquerader,
             userID: UUID.string
@@ -134,7 +147,38 @@ class LoginAgainInteractorTests: CoreTestCase {
         )
         .sink(
             receiveCompletion: { completion in
-                if case .failure(let failure) = completion {
+                if case let .failure(failure) = completion {
+                    XCTAssertEqual(failure, .loggedInWithDifferentUser)
+                    streamFailed.fulfill()
+                }
+            },
+            receiveValue: { _ in
+                XCTFail("There should be no new session")
+            }
+        )
+        .store(in: &subscriptions)
+
+        mockLoginAgainViewModel.mockResultPublisher.send(differentUserSession)
+
+        wait(for: [streamFailed], timeout: 1)
+    }
+
+    func test_manualOAuth_throwsError_whenLoggedInWithDifferentUser() throws {
+        // baseURL, userID and masquerader are compared if the session belongs to the same user
+        let differentUserSession = LoginSession.mockManualOAuth(
+            baseURL: AppEnvironment.shared.currentSession!.baseURL,
+            masquerader: AppEnvironment.shared.currentSession!.masquerader,
+            userID: UUID.string
+        )
+        let streamFailed = expectation(description: "Stream failed")
+
+        try testee.loginAgainOnExpiredRefreshToken(
+            tokenRefreshError: AccessTokenRefreshInteractor.TokenError.expiredRefreshToken,
+            api: api
+        )
+        .sink(
+            receiveCompletion: { completion in
+                if case let .failure(failure) = completion {
                     XCTAssertEqual(failure, .loggedInWithDifferentUser)
                     streamFailed.fulfill()
                 }
@@ -159,7 +203,7 @@ class LoginAgainInteractorTests: CoreTestCase {
         )
         .sink(
             receiveCompletion: { completion in
-                if case .failure(let failure) = completion {
+                if case let .failure(failure) = completion {
                     XCTAssertEqual(failure, .canceledByUser)
                     streamFailed.fulfill()
                 }
@@ -181,9 +225,9 @@ class LoginAgainViewModelMock: LoginAgainViewModel {
     var receivedRootViewController: UIViewController?
 
     override func askUserToLogin(
-        host: String,
+        host _: String,
         rootViewController: UIViewController,
-        router: Router
+        router _: Router
     ) -> AnyPublisher<LoginSession, LoginAgainInteractor.LoginError> {
         receivedRootViewController = rootViewController
         return mockResultPublisher.first().eraseToAnyPublisher()

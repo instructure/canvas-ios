@@ -32,8 +32,7 @@ extension LoginSession {
         userID: String = "1",
         userName: String = "Eve",
         userEmail: String? = nil,
-        clientID: String? = nil,
-        clientSecret: String? = nil
+        oauthType: OAuthType? = nil
     ) -> LoginSession {
         return LoginSession(
             accessToken: accessToken,
@@ -47,8 +46,7 @@ extension LoginSession {
             userID: userID,
             userName: userName,
             userEmail: userEmail,
-            clientID: clientID,
-            clientSecret: clientSecret
+            oauthType: oauthType
         )
     }
 }
