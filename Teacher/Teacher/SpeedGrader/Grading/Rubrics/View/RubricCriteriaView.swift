@@ -58,9 +58,9 @@ struct RubricCriteriaView: View {
                 )
             }
 
-//            if let comments = assessment?.comments, !comments.isEmpty {
-//                freeFormRubricCommentBubbleWithEditButton(comments, criteriaID: criteria.id)
-//            }
+            if let comment = viewModel.userComment {
+                freeFormRubricCommentBubbleWithEditButton(comment, criteriaID: viewModel.criteriaID)
+            }
         }
     }
 

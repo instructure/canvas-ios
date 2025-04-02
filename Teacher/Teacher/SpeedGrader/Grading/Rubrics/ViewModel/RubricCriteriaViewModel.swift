@@ -31,6 +31,7 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
     }
     @Binding var rubricComment: String
     @Binding var rubricCommentID: String?
+    @Published var userComment: String?
 
     // MARK: - Outputs
 
@@ -52,6 +53,9 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
     var addCommentButtonA11yID: String {
         "SpeedGrader.Rubric.\(criteria.id).addCommentButton"
     }
+    var criteriaID: String {
+        criteria.id
+    }
     var ratingViewModels: [RubricRatingViewModel]
     var customRatingViewModel: RubricCustomRatingViewModel
 
@@ -64,7 +68,6 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
         assessmentsPublisher.value[criteria.id]
     }
     private let assessmentsPublisher: CurrentValueSubject<APIRubricAssessmentMap, Never>
-    private var subscriptions = Set<AnyCancellable>()
 
     init(
         criteria: Rubric,
@@ -90,6 +93,12 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
                 )
             }
         customRatingViewModel = RubricCustomRatingViewModel(rubric: criteria, assessments: assessments)
+
+        assessmentsPublisher
+            .map { assessments in
+                assessments[criteria.id]?.comments
+            }
+            .assign(to: &$userComment)
     }
 
     // MARK: - User Actions

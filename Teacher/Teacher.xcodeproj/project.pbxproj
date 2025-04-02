@@ -873,10 +873,8 @@
 		CF0605D72D95A8E30014C2EC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CFCADAF52D9D89CE003796E7 /* RubricCustomRatingView.swift */,
-				CFCADAF32D9D871C003796E7 /* RubricRatingView.swift */,
+				CFCADAF72D9D9086003796E7 /* Ratings */,
 				CF06060B2D96EA100014C2EC /* RubricCriteriaView.swift */,
-				CF0605E22D95C5A00014C2EC /* RubricCircle.swift */,
 				7D742F372554D01400FD6CF1 /* RubricsView.swift */,
 			);
 			path = View;
@@ -1024,8 +1022,7 @@
 		CF0606132D9A9ABB0014C2EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CFCADAF12D9D6FDF003796E7 /* RubricCustomRatingViewModel.swift */,
-				CFCADAEF2D9D6E1B003796E7 /* RubricRatingViewModel.swift */,
+				CFCADAF82D9D909A003796E7 /* Ratings */,
 				CFCADAE92D9BE213003796E7 /* RubricCriteriaViewModel.swift */,
 				CF0606112D9A9A950014C2EC /* RubricsViewModel.swift */,
 			);
@@ -1080,6 +1077,25 @@
 				D9624A5129B0E90800F5303F /* QuizSubmissionListFilter.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		CFCADAF72D9D9086003796E7 /* Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				CF0605E22D95C5A00014C2EC /* RubricCircle.swift */,
+				CFCADAF52D9D89CE003796E7 /* RubricCustomRatingView.swift */,
+				CFCADAF32D9D871C003796E7 /* RubricRatingView.swift */,
+			);
+			path = Ratings;
+			sourceTree = "<group>";
+		};
+		CFCADAF82D9D909A003796E7 /* Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				CFCADAF12D9D6FDF003796E7 /* RubricCustomRatingViewModel.swift */,
+				CFCADAEF2D9D6E1B003796E7 /* RubricRatingViewModel.swift */,
+			);
+			path = Ratings;
 			sourceTree = "<group>";
 		};
 		D9624A7B29C4AECB00F5303F /* QuizSubmissionList */ = {
