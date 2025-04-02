@@ -93,15 +93,15 @@ public class ActAsUserWindow: UIWindow {
 
     private func subscribeForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (self: Self, previousTraitCollection: UITraitCollection) in
-            guard previousTraitCollection.userInterfaceStyle != self.traitCollection.userInterfaceStyle else {
+        registerForTraitChanges(traits) { (actAsUserWindow: Self, previousTraitCollection: UITraitCollection) in
+            guard previousTraitCollection.userInterfaceStyle != actAsUserWindow.traitCollection.userInterfaceStyle else {
                 return
             }
 
             NotificationCenter.default.post(
                 name: .windowUserInterfaceStyleDidChange,
                 object: nil,
-                userInfo: ["style": self.traitCollection.userInterfaceStyle]
+                userInfo: ["style": actAsUserWindow.traitCollection.userInterfaceStyle]
             )
         }
     }

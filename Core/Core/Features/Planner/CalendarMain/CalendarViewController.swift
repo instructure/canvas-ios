@@ -231,14 +231,14 @@ class CalendarViewController: ScreenViewTrackableViewController {
 
     func subscribeForTraitChanges() {
         let traits = [UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (self: Self, previousTraitCollection: UITraitCollection) in
+        registerForTraitChanges(traits) { (controller: CalendarViewController, previousTraitCollection: UITraitCollection) in
             // Manually trigger a calendar height update upon rotation
-            if self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass {
+            if controller.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass {
                 // On iOS 17 embedded VC traits need to be updated first, otherwise the size values from
                 // the embedded VC will be outdated in `updateExpanded()`.
                 // This would be also needed if we used `registerForTraitChanges()`, unfortunately.
-                self.updateTraitsIfNeeded()
-                self.updateExpanded()
+                controller.updateTraitsIfNeeded()
+                controller.updateExpanded()
             }
         }
     }

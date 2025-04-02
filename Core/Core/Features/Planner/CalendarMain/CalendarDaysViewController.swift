@@ -308,13 +308,13 @@ class CalendarDayButton: UIButton {
         }
         dotContainer.isHidden = isSelected
     }
-    
+
     func subscribeForTraitChanges() {
         let traits = [UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (self: Self, previousTraitCollection: UITraitCollection) in
+        registerForTraitChanges(traits) { (button: CalendarDayButton, previousTraitCollection: UITraitCollection) in
             // Manually refresh the spacing upon rotation
-            if self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass {
-                self.dotSpacingConstraint?.constant = self.dotSpacing
+            if button.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass {
+                button.dotSpacingConstraint?.constant = button.dotSpacing
             }
         }
     }

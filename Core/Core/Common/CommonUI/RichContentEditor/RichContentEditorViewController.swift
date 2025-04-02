@@ -248,10 +248,9 @@ public class RichContentEditorViewController: UIViewController {
 
     private func subscribeForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) {
-            (vc: RichContentEditorViewController, previousTraitCollection: UITraitCollection) in
-            guard previousTraitCollection.userInterfaceStyle != vc.traitCollection.userInterfaceStyle else { return }
-            vc.getHTML { [weak self] htmlString in
+        registerForTraitChanges(traits) { (controller: RichContentEditorViewController, previousTraitCollection: UITraitCollection) in
+            guard previousTraitCollection.userInterfaceStyle != controller.traitCollection.userInterfaceStyle else { return }
+            controller.getHTML { [weak self] htmlString in
                 self?.html = htmlString
             }
         }

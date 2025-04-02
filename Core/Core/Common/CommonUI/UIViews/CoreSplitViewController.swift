@@ -111,10 +111,10 @@ public class CoreSplitViewController: UISplitViewController {
 
     private func subscribeForTraitChangessubscribeForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (vc: CoreSplitViewController, _) in
+        registerForTraitChanges(traits) { (controller: CoreSplitViewController, _) in
             let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
             NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
-            vc.updateTitleViews()
+            controller.updateTitleViews()
         }
     }
 }

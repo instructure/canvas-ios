@@ -264,9 +264,9 @@ class RubricCircleView: UIView {
 
     private func subscribeForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (self: Self, _) in
-            if self.buttonsDidLayout {
-                self.setupButtons()
+        registerForTraitChanges(traits) { (view: RubricCircleView, _) in
+            if view.buttonsDidLayout {
+                view.setupButtons()
             }
         }
     }
