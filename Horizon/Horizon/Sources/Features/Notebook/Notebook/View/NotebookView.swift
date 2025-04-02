@@ -89,6 +89,7 @@ struct NotebookView: View {
         )
         .padding(.top, viewModel.navigationBarTopPadding)
         .padding(.horizontal, .huiSpaces.space16)
+        .background(Color.huiColors.surface.pagePrimary)
     }
 
     private var notesBody: some View {

@@ -35,7 +35,7 @@ final class ModuleItemSequenceViewModel {
     private(set) var courseName = ""
     private(set) var moduleItem: HModuleItem?
     private(set) var assignmentAttemptCount: String?
-    private(set) var isAssignmentOptionsButtonVisible: Bool = false
+    private var isAssignmentOptionsButtonVisible: Bool = false
     var estimatedTime: String? {
         guard let moduleItem else {
             return nil
@@ -43,9 +43,16 @@ final class ModuleItemSequenceViewModel {
         let items = course?.modules.first(where: { $0.id == moduleItem.moduleID })?.items
         return items?.first(where: { $0.id == moduleItem.id })?.estimatedDurationFormatted
     }
+
     var visibleButtons: [ModuleNavBarUtilityButtons] {
-        [ModuleNavBarUtilityButtons.chatBot(navigateToTutor)] +
-            [isAssignmentOptionsButtonVisible ? .assignmentMoreOptions(assignmentOptionsTapped) : .notebook(navigateToNotebook)]
+        var buttons: [ModuleNavBarUtilityButtons] = [.chatBot(navigateToTutor)]
+        if isAssignmentOptionsButtonVisible, moduleItem?.isQuizLTI == false {
+          buttons.append(.assignmentMoreOptions(assignmentOptionsTapped))
+          assignmentAttemptCount = moduleItem?.isQuizLTI == true ? nil : assignmentAttemptCount
+        } else if moduleItem?.type?.assetType == .page && isNotebookDisabled == false {
+          buttons.append(.notebook(navigateToNotebook))
+        }
+        return buttons
     }
 
     // MARK: - Input / Output
@@ -72,6 +79,7 @@ final class ModuleItemSequenceViewModel {
     private let assetType: AssetType
     private let assetID: String
     private let courseID: String
+    private let isNotebookDisabled: Bool
 
     // MARK: - Init
 
@@ -85,7 +93,8 @@ final class ModuleItemSequenceViewModel {
         router: Router,
         assetType: AssetType,
         assetID: String,
-        courseID: String
+        courseID: String,
+        isNotebookDisabled: Bool = false
     ) {
         self.moduleItemInteractor = moduleItemInteractor
         self.moduleItemStateInteractor = moduleItemStateInteractor
@@ -93,6 +102,7 @@ final class ModuleItemSequenceViewModel {
         self.assetType = assetType
         self.assetID = assetID
         self.courseID = courseID
+        self.isNotebookDisabled = isNotebookDisabled
 
         fetchModuleItemSequence(assetId: assetID)
 

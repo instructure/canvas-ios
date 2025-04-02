@@ -39,7 +39,6 @@ final class NotebookViewModel {
             getCourseNotesInteractor.filter
         }
         set {
-            state = .loading
             getCourseNotesInteractor.filter = (self.filter == newValue ? nil : newValue)
         }
     }
@@ -95,8 +94,14 @@ final class NotebookViewModel {
     }
 
     func goToModuleItem(_ note: NotebookNote, viewController: WeakViewController) {
+        // This is just a business rule that says if the user got here from viewing a module,
+        // We should not allow them to then navigate to it again.
+        let isDisabled = courseId != nil
+        if isDisabled {
+            return
+        }
         router.route(
-            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)",
+            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)?notebook_disabled=true",
             from: viewController
         )
     }
