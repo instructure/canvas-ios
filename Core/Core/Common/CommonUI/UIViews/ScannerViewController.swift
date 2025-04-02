@@ -205,12 +205,13 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         guard
             let previewLayer = previewLayer,
             let connection = previewLayer.connection,
-            connection.isVideoOrientationSupported,
-            let videoOrientation = AVCaptureVideoOrientation(rawValue: orientation.rawValue)
+            connection.isVideoRotationAngleSupported(CGFloat(orientation.rawValue)),
+            let videoCaptureDevice = AVCaptureDevice.default(for: .video)
         else { return }
 
+        let rotationCoordinator = AVCaptureDevice.RotationCoordinator(device: videoCaptureDevice, previewLayer: previewLayer)
+        connection.videoRotationAngle = rotationCoordinator.videoRotationAngleForHorizonLevelCapture
         previewLayer.frame = view.layer.bounds
-        connection.videoOrientation = videoOrientation
     }
 }
 

@@ -85,12 +85,15 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         if env.userDefaults?.interfaceStyle == nil {
             env.userDefaults?.interfaceStyle = .light
         }
+        subscribeForTraitChanges()
     }
 
     /// When the app was started in light mode and turned to dark the selected color was not updated so we do a force refresh.
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        tabsController.tabBar.useGlobalNavStyle()
+    private func subscribeForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (controller: DashboardViewController, _) in
+            controller.tabsController.tabBar.useGlobalNavStyle()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

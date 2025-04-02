@@ -39,7 +39,7 @@ struct CommentLibrarySheet: View {
                     action: editorAction, containerHeight: geometry.size.height
                 )
                     .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-                    .background(Color.backgroundLight).onChange(of: comment) { text in
+                    .background(Color.backgroundLight).onChange(of: comment) { _, text in
                         viewModel.comment = text
                     }
             }.onAppear {
