@@ -71,7 +71,7 @@ struct SubmissionGrades: View {
                                     Text(GradeFormatter.longString(
                                         for: assignment,
                                         submission: submission,
-                                        rubricScore: rubricsViewModel.isRubricScoreAvailable() ? rubricsViewModel.totalRubricScore() : nil,
+                                        rubricScore: rubricsViewModel.isRubricScoreAvailable ? rubricsViewModel.totalRubricScore : nil,
                                         final: false
                                     ))
                                 } else {
@@ -112,7 +112,7 @@ struct SubmissionGrades: View {
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)
                         RubricsView(
-                            currentScore: rubricsViewModel.totalRubricScore(),
+                            currentScore: rubricsViewModel.totalRubricScore,
                             containerFrameInGlobal: geometry.frame(in: .global),
                             viewModel: rubricsViewModel
                         )

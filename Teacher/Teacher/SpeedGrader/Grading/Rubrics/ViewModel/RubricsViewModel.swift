@@ -28,6 +28,8 @@ class RubricsViewModel: ObservableObject {
     @Published var submission: Submission
     private(set) var criteriaViewModels: [RubricCriteriaViewModel] = []
     let interactor: RubricGradingInteractor
+    @Published var totalRubricScore: Double = 0
+    @Published var isRubricScoreAvailable = false
 
     // MARK: - Inputs
     var controller = WeakViewController() {
@@ -75,28 +77,19 @@ class RubricsViewModel: ObservableObject {
             .assign(to: &$isSaving)
 
         interactor
+            .isRubricScoreAvailable
+            .assign(to: &$isRubricScoreAvailable)
+
+        interactor
+            .totalRubricScore
+            .assign(to: &$totalRubricScore)
+
+        interactor
             .showSaveError
             .sink { [weak self] error in
                 self?.showError(error)
             }
             .store(in: &subscriptions)
-    }
-
-    func totalRubricScore() -> Double {
-        let assessments = submission.rubricAssessments // create map only once
-        var points = 0.0
-        for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
-            points += interactor.assessments.value[criteria.id]?.points as? Double ??
-                assessments?[criteria.id]?.points as? Double ?? 0
-        }
-        return points
-    }
-
-    func isRubricScoreAvailable() -> Bool {
-        guard assignment.useRubricForGrading else { return false }
-        return interactor.assessments.value.contains { _, assessment in
-            assessment.points != nil
-        }
     }
 
     // MARK: - Private Methods

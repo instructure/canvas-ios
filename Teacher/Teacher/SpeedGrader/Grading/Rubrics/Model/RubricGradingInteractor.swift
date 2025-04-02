@@ -23,6 +23,8 @@ class RubricGradingInteractor {
     let isSaving = CurrentValueSubject<Bool, Never>(false)
     let assessments = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
     let showSaveError = PassthroughSubject<Error, Never>()
+    let totalRubricScore = CurrentValueSubject<Double, Never>(0)
+    let isRubricScoreAvailable = CurrentValueSubject<Bool, Never>(false)
 
     private var assessmentsChangedDuringUpload = false
     private var subscriptions = Set<AnyCancellable>()
@@ -36,18 +38,53 @@ class RubricGradingInteractor {
         self.assignment = assignment
         self.submission = submission
 
-        assessments
-            .dropFirst()
-            .sink { [weak self] _ in
-                self?.rubricAssessmentDidChange()
-            }
-            .store(in: &subscriptions)
+        uploadGradesOnAssessmentChange()
+        calculateRubricScoreOnAssessmentChange()
+        calculateRubricScoreAvailabilityOnAssessmentChange(useRubricForGrading: assignment.useRubricForGrading)
 
         let loadedAssessments = (submission.rubricAssessments ?? [:]).mapValues { $0.apiEntity }
         assessments.send(loadedAssessments)
     }
 
     // MARK: - Private Methods
+
+    private func calculateRubricScoreOnAssessmentChange() {
+        assessments
+            .map { [assignment] in
+                var points = 0.0
+                for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
+                    points += $0[criteria.id]?.points as? Double ?? 0
+                }
+                return points
+            }
+            .sink { [weak totalRubricScore] in
+                totalRubricScore?.send($0)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func calculateRubricScoreAvailabilityOnAssessmentChange(useRubricForGrading: Bool) {
+        assessments
+            .map {
+                guard useRubricForGrading else { return false }
+                return $0.contains { _, assessment in
+                    assessment.points != nil
+                }
+            }
+            .sink { [weak isRubricScoreAvailable] in
+                isRubricScoreAvailable?.send($0)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func uploadGradesOnAssessmentChange() {
+        assessments
+            .dropFirst(2) // 1st is the initial value, 2nd is the load from the submission
+            .sink { [weak self] _ in
+                self?.rubricAssessmentDidChange()
+            }
+            .store(in: &subscriptions)
+    }
 
     private func rubricAssessmentDidChange() {
         if isSaving.value {
@@ -64,20 +101,12 @@ class RubricGradingInteractor {
         }
 
         isSaving.send(true)
-        let prevAssessments = submission.rubricAssessments // create map only once
-        var nextAssessments: APIRubricAssessmentMap = [:]
-
-        for criteria in assignment.rubric ?? [] {
-            nextAssessments[criteria.id] = assessments.value[criteria.id] ?? prevAssessments?[criteria.id].map {
-                APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
-            }
-        }
 
         GradeSubmission(
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
-            rubricAssessment: nextAssessments
+            rubricAssessment: assessments.value
         ).fetch { [weak self] _, _, error in performUIUpdate {
             self?.handleUploadFinished(error: error)
         } }
