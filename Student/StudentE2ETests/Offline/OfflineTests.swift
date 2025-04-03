@@ -19,7 +19,7 @@
 import TestsFoundation
 import XCTest
 
-class OfflineTests: OfflineE2ETest {
+class OfflineTests: OfflineE2ETestCase {
     func testNetworkConnectionLose() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()

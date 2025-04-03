@@ -19,7 +19,7 @@
 import TestsFoundation
 import XCTest
 
-class OfflineContentSyncTests: OfflineE2ETest {
+class OfflineContentSyncTests: OfflineE2ETestCase {
     typealias Dashboard = DashboardHelper
     typealias Offline = Dashboard.Options.OfflineContent
 

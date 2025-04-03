@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-open class OfflineE2ETest: E2ETestCase {
+open class OfflineE2ETestCase: E2ETestCase {
     open override func tearDown() {
         // In case the tests fail at a point where the internet connection is turned off
         setNetworkStateOnline()
