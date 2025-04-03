@@ -48,7 +48,7 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
         !isFreeFormCommentsEnabled
     }
     var shouldShowAddFreeFormCommentButton: Bool {
-        isFreeFormCommentsEnabled && assessment?.comments?.isEmpty != false
+        isFreeFormCommentsEnabled && !interactor.hasAssessmentUserComment(criterionId: criteria.id)
     }
     var addCommentButtonA11yID: String {
         "SpeedGrader.Rubric.\(criteria.id).addCommentButton"
@@ -64,9 +64,6 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
     private let criteria: Rubric
     private let isFreeFormCommentsEnabled: Bool
     private let router: Router
-    private var assessment: APIRubricAssessment? {
-        interactor.assessments.value[criteria.id]
-    }
     private let interactor: RubricGradingInteractor
 
     init(

@@ -43,9 +43,6 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Private Properties
 
-    private var assessment: APIRubricAssessment? {
-        interactor.assessments.value[rubric.id]
-    }
     private let rubric: Rubric
     private let interactor: RubricGradingInteractor
 
@@ -84,20 +81,18 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
             guard let self else { return }
             let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             let points = DoubleFieldRow.formatter.number(from: text)?.doubleValue
-            var assessments = interactor.assessments.value
-            assessments[rubric.id] = APIRubricAssessment(
-                comments: assessment?.comments,
-                points: points
-            )
-            interactor.assessments.send(assessments)
+
+            if let points {
+                interactor.selectRating(criterionId: rubric.id, points: points, ratingId: .customRating)
+            } else {
+                interactor.clearRating(criterionId: rubric.id)
+            }
         })
         prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
         router.show(prompt, from: controller, options: .modal())
     }
 
     func didTapClearCustomScoreButton() {
-        var assessments = interactor.assessments.value
-        assessments[rubric.id] = APIRubricAssessment(comments: assessment?.comments)
-        interactor.assessments.send(assessments)
+        interactor.clearRating(criterionId: rubric.id)
     }
 }

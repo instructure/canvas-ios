@@ -20,8 +20,9 @@ import Combine
 import Core
 
 class RubricGradingInteractor {
+    let assessments: AnyPublisher<APIRubricAssessmentMap, Never>
+
     let isSaving = CurrentValueSubject<Bool, Never>(false)
-    let assessments = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
     let showSaveError = PassthroughSubject<Error, Never>()
     let totalRubricScore = CurrentValueSubject<Double, Never>(0)
     let isRubricScoreAvailable = CurrentValueSubject<Bool, Never>(false)
@@ -30,6 +31,8 @@ class RubricGradingInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private let assignment: Assignment
     private let submission: Submission
+    /// Modification is only allowed internally to keep logic inside this class. Read-only values are accessible via the `assessments` property.
+    private let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
 
     init(
         assignment: Assignment,
@@ -37,19 +40,60 @@ class RubricGradingInteractor {
     ) {
         self.assignment = assignment
         self.submission = submission
+        self.assessments = assessmentsSubject.eraseToAnyPublisher()
 
         uploadGradesOnAssessmentChange()
         calculateRubricScoreOnAssessmentChange()
         calculateRubricScoreAvailabilityOnAssessmentChange(useRubricForGrading: assignment.useRubricForGrading)
 
         let loadedAssessments = (submission.rubricAssessments ?? [:]).mapValues { $0.apiEntity }
-        assessments.send(loadedAssessments)
+        assessmentsSubject.send(loadedAssessments)
+    }
+
+    /// Clears the grade but keeps the comment on the criterion.
+    func clearRating(criterionId: String) {
+        var assessments = assessmentsSubject.value
+        let assessmentForCriterion = assessments[criterionId]
+        assessments[criterionId] = APIRubricAssessment(comments: assessmentForCriterion?.comments)
+        assessmentsSubject.send(assessments)
+    }
+
+    /// Selects the given rating on the criterion while keeping the previously added comment.
+    func selectRating(
+        criterionId: String,
+        points: Double,
+        ratingId: RubricRatingId
+    ) {
+        var assessments = assessmentsSubject.value
+        let oldCommentOnCriterion = assessments[criterionId]?.comments
+        assessments[criterionId] = APIRubricAssessment(
+            comments: oldCommentOnCriterion,
+            points: points,
+            rating_id: ratingId
+        )
+        assessmentsSubject.send(assessments)
+    }
+
+    func hasAssessmentUserComment(criterionId: String) -> Bool {
+        assessmentsSubject.value[criterionId]?.comments?.isNotEmpty == true
+    }
+
+    /// Updates the comment but leaves the point and rating id intact on the assessment.
+    func updateComment(criterionId: String, comment: String?) {
+        var assessments = assessmentsSubject.value
+        let oldAssessment = assessments[criterionId]
+        assessments[criterionId] = APIRubricAssessment(
+            comments: comment,
+            points: oldAssessment?.points,
+            rating_id: oldAssessment?.rating_id ?? .customRating
+        )
+        assessmentsSubject.send(assessments)
     }
 
     // MARK: - Private Methods
 
     private func calculateRubricScoreOnAssessmentChange() {
-        assessments
+        assessmentsSubject
             .map { [assignment] in
                 var points = 0.0
                 for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
@@ -64,7 +108,7 @@ class RubricGradingInteractor {
     }
 
     private func calculateRubricScoreAvailabilityOnAssessmentChange(useRubricForGrading: Bool) {
-        assessments
+        assessmentsSubject
             .map {
                 guard useRubricForGrading else { return false }
                 return $0.contains { _, assessment in
@@ -78,7 +122,7 @@ class RubricGradingInteractor {
     }
 
     private func uploadGradesOnAssessmentChange() {
-        assessments
+        assessmentsSubject
             .dropFirst(2) // 1st is the initial value, 2nd is the load from the submission
             .sink { [weak self] _ in
                 self?.rubricAssessmentDidChange()
@@ -95,7 +139,7 @@ class RubricGradingInteractor {
     }
 
     private func uploadRubricAssessments() {
-        if assessments.value.isEmpty {
+        if assessmentsSubject.value.isEmpty {
             isSaving.send(false)
             return
         }
@@ -106,7 +150,7 @@ class RubricGradingInteractor {
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
-            rubricAssessment: assessments.value
+            rubricAssessment: assessmentsSubject.value
         ).fetch { [weak self] _, _, error in performUIUpdate {
             self?.handleUploadFinished(error: error)
         } }

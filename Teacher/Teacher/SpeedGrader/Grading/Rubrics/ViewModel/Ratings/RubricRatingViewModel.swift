@@ -25,9 +25,13 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
     @Published var isSelected: Bool = false {
         didSet {
             if isSelected {
-                didSelectRating()
+                interactor.selectRating(
+                    criterionId: rubricId,
+                    points: rating.points,
+                    ratingId: rating.id
+                )
             } else {
-                didClearRating()
+                interactor.clearRating(criterionId: rubricId)
             }
         }
     }
@@ -37,9 +41,6 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Private Properties
 
-    private var assessment: APIRubricAssessment? {
-        interactor.assessments.value[rubricId]
-    }
     private let rating: RubricRating
     private let rubricId: String
     private let interactor: RubricGradingInteractor
@@ -64,21 +65,5 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
             }
             .removeDuplicates()
             .assign(to: &$isSelected)
-    }
-
-    private func didSelectRating() {
-        var assessments = interactor.assessments.value
-        assessments[rubricId] = APIRubricAssessment(
-            comments: assessment?.comments,
-            points: rating.points,
-            rating_id: rating.id
-        )
-        interactor.assessments.send(assessments)
-    }
-
-    private func didClearRating() {
-        var assessments = interactor.assessments.value
-        assessments[rubricId] = APIRubricAssessment(comments: assessment?.comments)
-        interactor.assessments.send(assessments)
     }
 }

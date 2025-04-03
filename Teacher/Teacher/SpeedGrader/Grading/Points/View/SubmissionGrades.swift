@@ -126,28 +126,17 @@ struct SubmissionGrades: View {
     }
 
     private func commentEditor(id: String) -> some View {
-        CommentEditor(text: $rubricsViewModel.rubricComment,
-                      shouldShowCommentLibrary: false,
-                      showCommentLibrary: .constant(false),
-                      action: {
-            var points: Double?
-            var ratingID = ""
-            if let assessment = rubricsViewModel.interactor.assessments.value[id] {
-                points = assessment.points
-                ratingID = assessment.rating_id ?? ""
-            } else if let assessment = submission.rubricAssessments?[id] {
-                points = assessment.points
-                ratingID = assessment.ratingID
-            }
-            withAnimation(.default) {
-                rubricsViewModel.rubricCommentID = nil
-                var assessments = rubricsViewModel.interactor.assessments.value
-                assessments[id] = .init(comments: rubricsViewModel.rubricComment, points: points, rating_id: ratingID)
-                rubricsViewModel.interactor.assessments.send(assessments)
-            }
-        }, containerHeight: containerHeight)
-            .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-            .background(Color.backgroundLight)
+        CommentEditor(
+            text: $rubricsViewModel.rubricComment,
+            shouldShowCommentLibrary: false,
+            showCommentLibrary: .constant(false),
+            action: {
+                rubricsViewModel.saveComment()
+            },
+            containerHeight: containerHeight
+        )
+        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+        .background(Color.backgroundLight)
     }
 
     // MARK: Slider

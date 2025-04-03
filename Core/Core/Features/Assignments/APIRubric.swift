@@ -46,6 +46,11 @@ public struct APIRubricSettings: Codable, Equatable {
 public typealias RubricID = String
 public typealias APIRubricAssessmentMap = [RubricID: APIRubricAssessment]
 
+public typealias RubricRatingId = String
+extension RubricRatingId {
+    public static var customRating: RubricRatingId { "" }
+}
+
 // https://canvas.instructure.com/doc/api/rubrics.html#RubricAssessment
 public struct APIRubricAssessment: Codable, Equatable {
     /** This is the user entered comment for the rubric. Used when free-form rubric comments are enabled on the assignment. */
@@ -55,7 +60,11 @@ public struct APIRubricAssessment: Codable, Equatable {
     /** This is the selected pre-defined rating for the rubric. Use empty string to reset a rubric's rating to empty. */
     public let rating_id: String?
 
-    public init(comments: String? = nil, points: Double? = nil, rating_id: String = "") {
+    public init(
+        comments: String? = nil,
+        points: Double? = nil,
+        rating_id: RubricRatingId = .customRating
+    ) {
         self.comments = comments
         self.points = points
         self.rating_id = rating_id

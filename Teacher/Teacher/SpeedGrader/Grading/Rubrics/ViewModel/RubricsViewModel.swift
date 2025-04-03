@@ -92,6 +92,14 @@ class RubricsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    func saveComment() {
+        guard let rubricCommentID else {
+            return
+        }
+        interactor.updateComment(criterionId: rubricCommentID, comment: rubricComment)
+        self.rubricCommentID = nil
+    }
+
     // MARK: - Private Methods
 
     private func showError(_ error: Error) {
