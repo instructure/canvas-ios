@@ -346,7 +346,7 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Check attemptSelector
         let attemptPicker = DetailsHelper.SubmissionDetails.attemptPicker.waitUntil(.visible)
         XCTAssert(attemptPicker.isVisible)
-        XCTAssert(attemptPicker.labelHasPrefix("Attempt 2"))
+        XCTAssertHasPrefix(attemptPicker.label, "Attempt 2")
 
         attemptPicker.tap()
         let attemptPickerItems = DetailsHelper.SubmissionDetails.attemptPickerItems.map { $0.waitUntil(.visible) }
@@ -358,7 +358,7 @@ class AssignmentsTests: E2ETestCase {
 
             attemptPickerItems[1].tap()
             attemptPicker.waitUntil(.visible)
-            XCTAssert(attemptPicker.labelHasPrefix("Attempt 1"))
+            XCTAssertHasPrefix(attemptPicker.label, "Attempt 1")
         } else {
             XCTFail("Invalid count")
         }

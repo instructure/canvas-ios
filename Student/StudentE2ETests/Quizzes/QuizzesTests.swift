@@ -149,7 +149,7 @@ class QuizzesTests: E2ETestCase {
         XCTAssertTrue(detailsStatusLabel.isVisible)
 
         detailsStatusLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .labelHasPrefix(expected: "Submitted"))
-        XCTAssertTrue(detailsStatusLabel.labelHasPrefix("Submitted"))
+        XCTAssertHasPrefix(detailsStatusLabel.label, "Submitted")
 
         detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitUntil(.visible)
         XCTAssertTrue(detailsTakeQuizButton.isVisible)

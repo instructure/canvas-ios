@@ -88,14 +88,6 @@ public extension XCUIElement {
         return strict ? act == exp : act.contains(exp)
     }
 
-    func labelHasSuffix(_ suffix: String) -> Bool {
-        return label.hasSuffix(suffix)
-    }
-
-    func labelHasPrefix(_ prefix: String) -> Bool {
-        return label.hasPrefix(prefix)
-    }
-
     func hasPlaceholderValue(placeholderValue expectedPlaceholderValue: String, strict: Bool = true) -> Bool {
         let elementPlaceholderValue = placeholderValue ?? ""
         return strict ? elementPlaceholderValue == expectedPlaceholderValue : elementPlaceholderValue.contains(expectedPlaceholderValue)
