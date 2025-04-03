@@ -38,25 +38,25 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
     // MARK: - Private Properties
 
     private var assessment: APIRubricAssessment? {
-        assessmentsPublisher.value[rubricId]
+        interactor.assessments.value[rubricId]
     }
     private let rating: RubricRating
     private let rubricId: String
-    private let assessmentsPublisher: CurrentValueSubject<APIRubricAssessmentMap, Never>
+    private let interactor: RubricGradingInteractor
 
     init(
         rating: RubricRating,
         rubricId: String,
-        assessments: CurrentValueSubject<APIRubricAssessmentMap, Never>
+        interactor: RubricGradingInteractor
     ) {
         self.rating = rating
         self.rubricId = rubricId
-        self.assessmentsPublisher = assessments
+        self.interactor = interactor
 
         tooltip = rating.desc + (rating.longDesc.isEmpty ? "" : "\n" + rating.longDesc)
         value = "\(rating.points.formatted())"
         accessibilityLabel = rating.desc.isEmpty ? value : rating.desc
-        assessments
+        interactor.assessments
             .map {
                 let assessmentForRubric = $0[rubricId]
                 let isThisRatingSelected = assessmentForRubric?.rating_id == rating.id
@@ -67,18 +67,18 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
     }
 
     private func didSelectRating() {
-        var assessments = assessmentsPublisher.value
+        var assessments = interactor.assessments.value
         assessments[rubricId] = APIRubricAssessment(
             comments: assessment?.comments,
             points: rating.points,
             rating_id: rating.id
         )
-        assessmentsPublisher.send(assessments)
+        interactor.assessments.send(assessments)
     }
 
     private func didClearRating() {
-        var assessments = assessmentsPublisher.value
+        var assessments = interactor.assessments.value
         assessments[rubricId] = APIRubricAssessment(comments: assessment?.comments)
-        assessmentsPublisher.send(assessments)
+        interactor.assessments.send(assessments)
     }
 }

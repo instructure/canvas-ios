@@ -65,21 +65,21 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
     private let isFreeFormCommentsEnabled: Bool
     private let router: Router
     private var assessment: APIRubricAssessment? {
-        assessmentsPublisher.value[criteria.id]
+        interactor.assessments.value[criteria.id]
     }
-    private let assessmentsPublisher: CurrentValueSubject<APIRubricAssessmentMap, Never>
+    private let interactor: RubricGradingInteractor
 
     init(
         criteria: Rubric,
         isFreeFormCommentsEnabled: Bool,
-        assessments: CurrentValueSubject<APIRubricAssessmentMap, Never>,
+        interactor: RubricGradingInteractor,
         rubricComment: Binding<String>,
         rubricCommentID: Binding<String?>,
         router: Router = AppEnvironment.shared.router
     ) {
         self.criteria = criteria
         self.isFreeFormCommentsEnabled = isFreeFormCommentsEnabled
-        self.assessmentsPublisher = assessments
+        self.interactor = interactor
         self._rubricComment = rubricComment
         self._rubricCommentID = rubricCommentID
         self.router = router
@@ -89,12 +89,12 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
                 RubricRatingViewModel(
                     rating: $0,
                     rubricId: criteria.id,
-                    assessments: assessments
+                    interactor: interactor
                 )
             }
-        customRatingViewModel = RubricCustomRatingViewModel(rubric: criteria, assessments: assessments)
+        customRatingViewModel = RubricCustomRatingViewModel(rubric: criteria, interactor: interactor)
 
-        assessmentsPublisher
+        interactor.assessments
             .map { assessments in
                 assessments[criteria.id]?.comments
             }

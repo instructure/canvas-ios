@@ -66,7 +66,7 @@ class RubricsViewModel: ObservableObject {
             return RubricCriteriaViewModel(
                 criteria: criteria,
                 isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
-                assessments: interactor.assessments,
+                interactor: interactor,
                 rubricComment: rubricCommentBinding,
                 rubricCommentID: rubricCommentIdBinding
             )

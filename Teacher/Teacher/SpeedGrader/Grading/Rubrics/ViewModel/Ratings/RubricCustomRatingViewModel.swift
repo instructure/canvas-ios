@@ -44,19 +44,19 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
     // MARK: - Private Properties
 
     private var assessment: APIRubricAssessment? {
-        assessmentsPublisher.value[rubric.id]
+        interactor.assessments.value[rubric.id]
     }
     private let rubric: Rubric
-    private let assessmentsPublisher: CurrentValueSubject<APIRubricAssessmentMap, Never>
+    private let interactor: RubricGradingInteractor
 
     init(
         rubric: Rubric,
-        assessments: CurrentValueSubject<APIRubricAssessmentMap, Never>
+        interactor: RubricGradingInteractor
     ) {
         self.rubric = rubric
-        self.assessmentsPublisher = assessments
+        self.interactor = interactor
 
-        assessments
+        interactor.assessments
             .map { assessments -> State in
                 let assessmentForRubric = assessments[rubric.id]
                 if let customScore = assessmentForRubric?.points, assessmentForRubric?.rating_id.isNilOrEmpty == true {
@@ -84,20 +84,20 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
             guard let self else { return }
             let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             let points = DoubleFieldRow.formatter.number(from: text)?.doubleValue
-            var assessments = assessmentsPublisher.value
+            var assessments = interactor.assessments.value
             assessments[rubric.id] = APIRubricAssessment(
                 comments: assessment?.comments,
                 points: points
             )
-            assessmentsPublisher.send(assessments)
+            interactor.assessments.send(assessments)
         })
         prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
         router.show(prompt, from: controller, options: .modal())
     }
 
     func didTapClearCustomScoreButton() {
-        var assessments = assessmentsPublisher.value
+        var assessments = interactor.assessments.value
         assessments[rubric.id] = APIRubricAssessment(comments: assessment?.comments)
-        assessmentsPublisher.send(assessments)
+        interactor.assessments.send(assessments)
     }
 }
