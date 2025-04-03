@@ -44,12 +44,12 @@ class DiscussionsTests: E2ETestCase {
         let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)!.waitUntil(.visible)
         let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)!.waitUntil(.visible)
         XCTAssertTrue(discussionButton.isVisible)
-        XCTAssertTrue(discussionButton.hasLabel(label: discussion.title, strict: false))
+        XCTAssertContains(discussionButton.label, discussion.title)
         XCTAssertTrue(discussionLastPostLabel.isVisible)
         XCTAssertTrue(discussionRepliesLabel.isVisible)
-        XCTAssertTrue(discussionRepliesLabel.hasLabel(label: "\(discussion.discussion_subentry_count) Replies"))
+        XCTAssertEqual(discussionRepliesLabel.label, "\(discussion.discussion_subentry_count) Replies")
         XCTAssertTrue(discussionUnreadLabel.isVisible)
-        XCTAssertTrue(discussionUnreadLabel.hasLabel(label: "\(discussion.unread_count) Unread"))
+        XCTAssertEqual(discussionUnreadLabel.label, "\(discussion.unread_count) Unread")
     }
 
     func testDiscussionDetails() {

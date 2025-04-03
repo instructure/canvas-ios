@@ -47,7 +47,7 @@ class SyllabusTests: E2ETestCase {
         XCTAssertTrue(syllabusTab.isVisible)
         XCTAssertTrue(summaryTab.isVisible)
         XCTAssertTrue(syllabusBodyLabel.isVisible)
-        XCTAssertTrue(syllabusBodyLabel.hasLabel(label: course.syllabus_body!))
+        XCTAssertEqual(syllabusBodyLabel.label, course.syllabus_body!)
 
         // MARK: Check "Summary" tab
         summaryTab.hit()
@@ -57,10 +57,10 @@ class SyllabusTests: E2ETestCase {
         let summaryCalendarEventTitle = Helper.summaryCalendarEventTitle(calendarEvent: calendarEvent).waitUntil(.visible)
         XCTAssertTrue(summaryAssignmentItem.isVisible)
         XCTAssertTrue(summaryAssignmentTitle.isVisible)
-        XCTAssertTrue(summaryAssignmentTitle.hasLabel(label: assignment.name))
+        XCTAssertEqual(summaryAssignmentTitle.label, assignment.name)
         XCTAssertTrue(summaryCalendarEventItem.isVisible)
         XCTAssertTrue(summaryCalendarEventTitle.isVisible)
-        XCTAssertTrue(summaryCalendarEventTitle.hasLabel(label: calendarEvent.title))
+        XCTAssertEqual(summaryCalendarEventTitle.label, calendarEvent.title)
     }
 
     func testSyllabusEditor() {
@@ -109,6 +109,6 @@ class SyllabusTests: E2ETestCase {
         XCTAssertTrue(syllabusTab.waitUntil(.vanish).isVanished)
         XCTAssertTrue(summaryTab.waitUntil(.vanish).isVanished)
         XCTAssertTrue(syllabusBodyLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(syllabusBodyLabel.waitUntil(.label(expected: newContent)).hasLabel(label: newContent))
+        XCTAssertEqual(syllabusBodyLabel.waitUntil(.label(expected: newContent)).label, newContent)
     }
 }

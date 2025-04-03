@@ -122,7 +122,7 @@ class DashboardTests: E2ETestCase {
         logInDSUser(student)
         let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        XCTAssertTrue(courseCard.hasLabel(label: course.name, strict: false))
+        XCTAssertContains(courseCard.label, course.name)
     }
 
     func testDashboardEditButtonDisplaysCorrectCourses() {
@@ -141,11 +141,11 @@ class DashboardTests: E2ETestCase {
         logInDSUser(student)
         var courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
-        XCTAssertTrue(courseCard1.hasLabel(label: courses[0].name, strict: false))
+        XCTAssertContains(courseCard1.label, courses[0].name)
 
         var courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
-        XCTAssertTrue(courseCard2.hasLabel(label: courses[1].name, strict: false))
+        XCTAssertContains(courseCard2.label, courses[1].name)
 
         // MARK: Tap edit button
         Helper.editButton.hit()
@@ -153,15 +153,15 @@ class DashboardTests: E2ETestCase {
         // MARK: Completed, Active, Invited courses should be listed
         courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
-        XCTAssertTrue(courseCard1.hasLabel(label: courses[0].name, strict: false))
+        XCTAssertContains(courseCard1.label, courses[0].name)
 
         courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
-        XCTAssertTrue(courseCard2.hasLabel(label: courses[1].name, strict: false))
+        XCTAssertContains(courseCard2.label, courses[1].name)
 
         let courseCard3 = Helper.courseCard(course: courses[2]).waitUntil(.visible)
         XCTAssertTrue(courseCard3.isVisible)
-        XCTAssertTrue(courseCard3.hasLabel(label: courses[2].name, strict: false))
+        XCTAssertContains(courseCard3.label, courses[2].name)
 
         // MARK: Creation Pending, Deleted, Inactive, Rejected should not be listed
         let courseCard4 = Helper.courseCard(course: courses[3]).waitUntil(.vanish)
@@ -322,6 +322,6 @@ class DashboardTests: E2ETestCase {
 
         randomColorButton.hit()
         doneButton.hit()
-        XCTAssertTrue(courseCard.waitUntil(.visible).hasLabel(label: courseNickname, strict: false))
+        XCTAssertContains(courseCard.waitUntil(.visible).label, courseNickname)
     }
 }

@@ -42,7 +42,7 @@ class ChangeUserTests: E2ETestCase {
         let usernameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
         XCTAssertTrue(changeUserButton.isVisible)
         XCTAssertTrue(usernameLabel.isVisible)
-        XCTAssertTrue(usernameLabel.hasLabel(label: parent1.name))
+        XCTAssertEqual(usernameLabel.label, parent1.name)
 
         changeUserButton.hit()
         logInDSUser(parent2)
@@ -50,6 +50,6 @@ class ChangeUserTests: E2ETestCase {
 
         profileButton.hit()
         XCTAssertTrue(usernameLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(usernameLabel.hasLabel(label: parent2.name))
+        XCTAssertEqual(usernameLabel.label, parent2.name)
     }
 }

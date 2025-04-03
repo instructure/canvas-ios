@@ -43,7 +43,7 @@ class GradingStandardsTests: E2ETestCase {
         GradesHelper.navigateToGrades(course: course)
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
         let assignmentItem = GradesHelper.cell(assignment: assignments.first).waitUntil(.visible)
-        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is N/A"))
+        XCTAssertEqual(totalGrade.label, "Total grade is N/A")
         XCTAssertTrue(assignmentItem.isVisible)
 
         // MARK: Check if total is updating accordingly

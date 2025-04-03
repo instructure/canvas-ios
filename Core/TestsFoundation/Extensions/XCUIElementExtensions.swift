@@ -62,11 +62,16 @@ public extension XCUIElement {
     static let defaultTimeout: TimeInterval = 20
     static var defaultGracePeriod: TimeInterval = 1
 
-    // MARK: Private vars
+    // MARK: Properties
+
     var isVisible: Bool { exists }
     var isDisabled: Bool { !isEnabled }
     var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
+
+    var stringValue: String? {
+        value as? String
+    }
 
     // MARK: Functions
     func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
@@ -78,14 +83,8 @@ public extension XCUIElement {
         return strict ? elementValue == expectedValue : elementValue.contains(expectedValue)
     }
 
-    var stringValue: String? {
-        value as? String
-    }
-
-    func hasLabel(label expectedLabel: String, strict: Bool = true, caseSensitive: Bool = true) -> Bool {
-        let act = caseSensitive ? label : label.lowercased()
-        let exp = caseSensitive ? expectedLabel : expectedLabel.lowercased()
-        return strict ? act == exp : act.contains(exp)
+    private func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
+        return strict ? label == expectedLabel : label.contains(expectedLabel)
     }
 
     @discardableResult

@@ -46,7 +46,7 @@ class GradeTotalsTests: E2ETestCase {
         // MARK: See if total grades is N/A
         GradesHelper.navigateToGrades(course: course)
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
-        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is N/A"))
+        XCTAssertEqual(totalGrade.label, "Total grade is N/A")
 
         // MARK: Check if total is updating accordingly
         let grades = ["100", "25"]

@@ -35,7 +35,7 @@ class ActAsUserTests: E2ETestCase {
 
         profileButton.hit()
         let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: admin.name))
+        XCTAssertEqual(userNameLabel.label, admin.name)
 
         var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(.visible)
         XCTAssertTrue(actAsUserButton.isVisible)
@@ -59,7 +59,7 @@ class ActAsUserTests: E2ETestCase {
         profileButton.hit()
         userNameLabel.waitUntil(.visible)
         XCTAssertTrue(userNameLabel.isVisible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: teacher.name))
+        XCTAssertEqual(userNameLabel.label, teacher.name)
 
         let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(.visible)
         XCTAssertTrue(endActAsUserButton.isVisible)
@@ -73,6 +73,6 @@ class ActAsUserTests: E2ETestCase {
         profileButton.hit()
         userNameLabel.waitUntil(.visible)
         XCTAssertTrue(userNameLabel.isVisible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: admin.name))
+        XCTAssertEqual(userNameLabel.label, admin.name)
     }
 }

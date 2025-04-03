@@ -46,19 +46,19 @@ class QuizzesTests: E2ETestCase {
 
         let titleLabel = Helper.titleLabel(cell: quizCell).waitUntil(.visible)
         XCTAssertTrue(titleLabel.isVisible)
-        XCTAssertTrue(titleLabel.hasLabel(label: quiz.title))
+        XCTAssertEqual(titleLabel.label, quiz.title)
 
         let dueDateLabel = Helper.dueDateLabel(cell: quizCell).waitUntil(.visible)
         XCTAssertTrue(dueDateLabel.isVisible)
-        XCTAssertTrue(dueDateLabel.hasLabel(label: "No Due Date"))
+        XCTAssertEqual(dueDateLabel.label, "No Due Date")
 
         let pointsLabel = Helper.pointsLabel(cell: quizCell).waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertTrue(pointsLabel.hasLabel(label: "\(Int(quiz.points_possible!)) pts"))
+        XCTAssertEqual(pointsLabel.label, "\(Int(quiz.points_possible!)) pts")
 
         let questionsLabel = Helper.questionsLabel(cell: quizCell).waitUntil(.visible)
         XCTAssertTrue(questionsLabel.isVisible)
-        XCTAssertTrue(questionsLabel.hasLabel(label: "\(quiz.question_count) Questions"))
+        XCTAssertEqual(questionsLabel.label, "\(quiz.question_count) Questions")
 
         // MARK: Check Quiz details
         quizCell.hit()
@@ -67,31 +67,31 @@ class QuizzesTests: E2ETestCase {
 
         let detailsTitleLabel = DetailsHelper.nameLabel.waitUntil(.visible)
         XCTAssertTrue(detailsTitleLabel.isVisible)
-        XCTAssertTrue(detailsTitleLabel.hasLabel(label: quiz.title))
+        XCTAssertEqual(detailsTitleLabel.label, quiz.title)
 
         let detailsPointsLabel = DetailsHelper.pointsLabel.waitUntil(.visible)
         XCTAssertTrue(detailsPointsLabel.isVisible)
-        XCTAssertTrue(detailsPointsLabel.hasLabel(label: "\(Int(quiz.points_possible!)) pts"))
+        XCTAssertEqual(detailsPointsLabel.label, "\(Int(quiz.points_possible!)) pts")
 
         let detailsStatusLabel = DetailsHelper.statusLabel.waitUntil(.visible)
         XCTAssertTrue(detailsStatusLabel.isVisible)
-        XCTAssertTrue(detailsStatusLabel.hasLabel(label: "Not Submitted"))
+        XCTAssertEqual(detailsStatusLabel.label, "Not Submitted")
 
         let detailsDueDateLabel = DetailsHelper.dueLabel.waitUntil(.visible)
         XCTAssertTrue(detailsDueDateLabel.isVisible)
-        XCTAssertTrue(detailsDueDateLabel.hasLabel(label: "No Due Date"))
+        XCTAssertEqual(detailsDueDateLabel.label, "No Due Date")
 
         let detailsQuestionsLabel = DetailsHelper.questionsLabel.waitUntil(.visible)
         XCTAssertTrue(detailsQuestionsLabel.isVisible)
-        XCTAssertTrue(detailsQuestionsLabel.hasLabel(label: String(quiz.question_count)))
+        XCTAssertEqual(detailsQuestionsLabel.label, String(quiz.question_count))
 
         let detailsTimeLimitLabel = DetailsHelper.timeLimitLabel.waitUntil(.visible)
         XCTAssertTrue(detailsTimeLimitLabel.isVisible)
-        XCTAssertTrue(detailsTimeLimitLabel.hasLabel(label: "None"))
+        XCTAssertEqual(detailsTimeLimitLabel.label, "None")
 
         let detailsAllowedAttemptsLabel = DetailsHelper.attemptsLabel.waitUntil(.visible)
         XCTAssertTrue(detailsAllowedAttemptsLabel.isVisible)
-        XCTAssertTrue(detailsAllowedAttemptsLabel.hasLabel(label: String(quiz.allowed_attempts!)))
+        XCTAssertEqual(detailsAllowedAttemptsLabel.label, String(quiz.allowed_attempts!))
 
         let detailsDescriptionLabel = DetailsHelper.descriptionLabel(quiz: quiz).waitUntil(.visible)
         XCTAssertTrue(detailsDescriptionLabel.isVisible)
@@ -153,7 +153,7 @@ class QuizzesTests: E2ETestCase {
 
         detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitUntil(.visible)
         XCTAssertTrue(detailsTakeQuizButton.isVisible)
-        XCTAssertTrue(detailsTakeQuizButton.hasLabel(label: "View Results"))
+        XCTAssertEqual(detailsTakeQuizButton.label, "View Results")
     }
 
     func testNewQuiz() throws {
@@ -181,7 +181,7 @@ class QuizzesTests: E2ETestCase {
         let quizCell = Helper.cell(index: 0).waitUntil(.visible)
         let titleLabel = Helper.titleLabel(cell: quizCell).waitUntil(.visible)
         XCTAssertTrue(quizCell.isVisible)
-        XCTAssertTrue(titleLabel.hasLabel(label: quiz.title))
+        XCTAssertEqual(titleLabel.label, quiz.title)
 
         quizCell.hit()
         let launchExternalToolButton = AssignmentsHelper.Details.submitAssignmentButton.waitUntil(.visible)

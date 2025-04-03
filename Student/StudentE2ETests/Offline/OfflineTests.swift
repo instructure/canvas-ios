@@ -76,7 +76,7 @@ class OfflineTests: OfflineE2ETest {
         let valueOfOfflineSync = SettingsHelper.valueOfMenuItem(item: .synchronization)!.waitUntil(.visible)
         XCTAssertTrue(offlineSync.isVisible)
         XCTAssertTrue(valueOfOfflineSync.isVisible)
-        XCTAssertTrue(valueOfOfflineSync.hasLabel(label: "Manual"))
+        XCTAssertEqual(valueOfOfflineSync.label, "Manual")
 
         offlineSync.hit()
 
@@ -92,7 +92,7 @@ class OfflineTests: OfflineE2ETest {
         let syncContentOverWifiOnlySwitch = SettingsHelper.OfflineSync.wifiOnlySwitch.waitUntil(.visible)
         XCTAssertTrue(autoContentSyncSwitch.hasValue(value: "on"))
         XCTAssertTrue(syncFrequencyButton.isVisible)
-        XCTAssertTrue(syncFrequencyButton.hasLabel(label: "Daily", strict: false))
+        XCTAssertContains(syncFrequencyButton.label, "Daily")
         XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
         XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "on"))
 
@@ -108,7 +108,7 @@ class OfflineTests: OfflineE2ETest {
         weekly.hit()
         syncFrequencyButton.waitUntil(.visible)
         XCTAssertTrue(syncFrequencyButton.isVisible)
-        XCTAssertTrue(syncFrequencyButton.hasLabel(label: "Weekly", strict: false))
+        XCTAssertContains(syncFrequencyButton.label, "Weekly")
         XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
         XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "on"))
 
@@ -129,7 +129,7 @@ class OfflineTests: OfflineE2ETest {
         valueOfOfflineSync.waitUntil(.visible)
         XCTAssertTrue(offlineSync.isVisible)
         XCTAssertTrue(valueOfOfflineSync.isVisible)
-        XCTAssertTrue(valueOfOfflineSync.hasLabel(label: "Weekly Auto"))
+        XCTAssertEqual(valueOfOfflineSync.label, "Weekly Auto")
     }
 
     func testManageOfflineContentScreen() {
@@ -161,19 +161,19 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(headerLabel.isVisible)
         XCTAssertTrue(storageInfoLabel.isVisible)
         XCTAssertTrue(courseButton.isVisible)
-        XCTAssertTrue(courseButton.hasLabel(label: "Deselected", strict: false))
+        XCTAssertContains(courseButton.label, "Deselected")
         XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
         XCTAssertTrue(selectedTickerOfCourseButton.isVanished)
         XCTAssertTrue(syncButton.isVisible)
 
         unselectedTickerOfCourseButton.hit()
-        XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Selected")).hasLabel(label: "Selected", strict: false))
+        XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Selected")).label, "Selected")
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.visible).isVisible)
         XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
 
         selectedTickerOfCourseButton.hit()
-        XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Deselected")).hasLabel(label: "Deselected", strict: false))
+        XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Deselected")).label, "Deselected")
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.visible).isVisible)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
 
@@ -192,8 +192,7 @@ class OfflineTests: OfflineE2ETest {
         discussionsButton.hit()
         let partiallySelectedTickerOfCourse = DashboardHelper.Options.OfflineContent.partiallySelectedTickerOfCourseButton(course: course)
             .waitUntil(.visible)
-        XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Partially selected"))
-            .hasLabel(label: "Partially selected", strict: false))
+        XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Partially selected")).label, "Partially selected")
         XCTAssertTrue(partiallySelectedTickerOfCourse.isVisible)
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.vanish).isVanished)

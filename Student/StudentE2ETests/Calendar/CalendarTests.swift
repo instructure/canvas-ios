@@ -60,15 +60,15 @@ class CalendarTests: E2ETestCase {
 
         let eventTitleLabel = Helper.titleLabelOfEvent(eventCell: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventTitleLabel.isVisible)
-        XCTAssertTrue(eventTitleLabel.hasLabel(label: event.title))
+        XCTAssertEqual(eventTitleLabel.label, event.title)
 
         let eventDateLabel = Helper.dateLabelOfEvent(eventCell: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventDateLabel.isVisible)
-        XCTAssertTrue(eventDateLabel.hasLabel(label: Helper.formatDateForDateLabel(event: event)))
+        XCTAssertEqual(eventDateLabel.label, Helper.formatDateForDateLabel(event: event))
 
         let eventCourseLabel = Helper.courseLabelOfEvent(eventCell: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventCourseLabel.isVisible)
-        XCTAssertTrue(eventCourseLabel.hasLabel(label: course.name))
+        XCTAssertEqual(eventCourseLabel.label, course.name)
     }
 
     func testCalendarEventDetails() {
@@ -161,17 +161,17 @@ class CalendarTests: E2ETestCase {
         let recurringEventItem1 = Helper.navigateToEvent(event: events.recurring!)
         let recurringEventTitle1 = Helper.titleLabelOfEvent(eventCell: recurringEventItem1).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem1.isVisible)
-        XCTAssertTrue(recurringEventTitle1.hasLabel(label: events.recurring!.title))
+        XCTAssertEqual(recurringEventTitle1.label, events.recurring!.title)
 
         let recurringEventItem2 = Helper.navigateToEvent(event: events.recurring!.duplicates![0].calendar_event)
         let recurringEventTitle2 = Helper.titleLabelOfEvent(eventCell: recurringEventItem2).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem2.isVisible)
-        XCTAssertTrue(recurringEventTitle2.hasLabel(label: events.recurring!.duplicates![0].calendar_event.title))
+        XCTAssertEqual(recurringEventTitle2.label, events.recurring!.duplicates![0].calendar_event.title)
 
         let recurringEventItem3 = Helper.navigateToEvent(event: events.recurring!.duplicates![1].calendar_event)
         let recurringEventTitle3 = Helper.titleLabelOfEvent(eventCell: recurringEventItem3).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem3.isVisible)
-        XCTAssertTrue(recurringEventTitle3.hasLabel(label: events.recurring!.duplicates![1].calendar_event.title))
+        XCTAssertEqual(recurringEventTitle3.label, events.recurring!.duplicates![1].calendar_event.title)
     }
 
     func testCourseFilter() {

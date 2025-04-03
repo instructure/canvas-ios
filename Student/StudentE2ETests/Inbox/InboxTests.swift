@@ -87,7 +87,7 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(recipientButton.isVisible)
 
         recipientButton.hit()
-        XCTAssertTrue(recipientButton.hasLabel(label: "Selected", strict: false))
+        XCTAssertContains(recipientButton.label, "Selected")
 
         doneButton.hit()
         let recipientPill = ComposerHelper.recipientPillById(recipient: student2).waitUntil(.visible)
@@ -192,13 +192,13 @@ class InboxTests: E2ETestCase {
         let messageTitleLabel = Helper.conversationTitleLabel(conversation: conversation).waitUntil(.visible)
         let messageMessageLabel = Helper.conversationMessageLabel(conversation: conversation).waitUntil(.visible)
         XCTAssertTrue(messageButton.isVisible)
-        XCTAssertTrue(messageButton.hasLabel(label: "Unread", strict: false))
+        XCTAssertContains(messageButton.label, "Unread")
         XCTAssertTrue(messageParticipantLabel.isVisible)
         XCTAssertTrue(messageDateLabel.isVisible)
         XCTAssertTrue(messageTitleLabel.isVisible)
-        XCTAssertTrue(messageTitleLabel.hasLabel(label: conversation.subject))
+        XCTAssertEqual(messageTitleLabel.label, conversation.subject)
         XCTAssertTrue(messageMessageLabel.isVisible)
-        XCTAssertTrue(messageMessageLabel.hasLabel(label: conversation.last_authored_message))
+        XCTAssertEqual(messageMessageLabel.label, conversation.last_authored_message)
 
         messageButton.hit()
 
@@ -222,7 +222,7 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(bodyLabel.isVisible)
         XCTAssertTrue(subjectLabel.isVisible)
         XCTAssertTrue(bodyLabel.hasValue(value: conversation.last_authored_message))
-        XCTAssertTrue(subjectLabel.hasLabel(label: conversation.subject))
+        XCTAssertEqual(subjectLabel.label, conversation.subject)
 
         // MARK: Check "More options"
         moreButton.hit()

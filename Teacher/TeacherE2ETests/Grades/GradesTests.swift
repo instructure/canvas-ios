@@ -153,6 +153,6 @@ class GradesTests: E2ETestCase {
         doneButton.hit()
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertTrue(pointsLabel.hasLabel(label: "\(newScore) pts"))
+        XCTAssertEqual(pointsLabel.label, "\(newScore) pts")
     }
 }

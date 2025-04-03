@@ -86,7 +86,7 @@ public class FilesHelper: BaseHelper {
             allFiles[0].waitUntil(.visible)
             guard allFiles.count > filesCount else { return false }
 
-            let theFolder = allFiles.filter { $0.hasLabel(label: name, strict: false) }
+            let theFolder = allFiles.filter { $0.label.contains(name) }
             theFolder[0].hit()
             return true
         }

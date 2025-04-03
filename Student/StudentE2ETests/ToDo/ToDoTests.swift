@@ -49,8 +49,8 @@ class ToDoTests: E2ETestCase {
         let quizItemTitle = ToDoHelper.cellItemTitle(cell: quizItem).waitUntil(.visible)
         XCTAssertTrue(assignmentItemTitle.isVisible)
         XCTAssertTrue(quizItemTitle.isVisible)
-        XCTAssertTrue(assignmentItemTitle.hasLabel(label: assignment.name))
-        XCTAssertTrue(quizItemTitle.hasLabel(label: quiz.title))
+        XCTAssertEqual(assignmentItemTitle.label, assignment.name)
+        XCTAssertEqual(quizItemTitle.label, quiz.title)
 
         // MARK: Tap on each item
         assignmentItem.hit()

@@ -110,7 +110,7 @@ public class DashboardHelper: BaseHelper {
                 let deadline = Date().addingTimeInterval(timeout)
                 while Date() < deadline {
                     let courseButtons = app.findAll(labelContaining: course.name, type: .button)
-                    for b in courseButtons where b.hasLabel(label: "elected", strict: false) {
+                    for b in courseButtons where b.label.contains("elected") {
                         return b
                     }
                     tacticalSleep(1)

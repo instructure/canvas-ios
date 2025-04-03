@@ -68,7 +68,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -125,7 +125,7 @@ class AssignmentReminderTests: E2ETestCase {
         XCUIDevice.shared.press(.home)
         let notificationBanner = ReminderHelper.notificationBanner.waitUntil(.visible, timeout: 90)
         XCTAssertTrue(notificationBanner.isVisible)
-        XCTAssertTrue(notificationBanner.hasLabel(label: "This assignment is due in 5 minutes", strict: false))
+        XCTAssertContains(notificationBanner.label, "This assignment is due in 5 minutes")
     }
 
     func testAssignmentReminderWithCustomDate() {
@@ -146,7 +146,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -201,7 +201,7 @@ class AssignmentReminderTests: E2ETestCase {
         XCUIDevice.shared.press(.home)
         let notificationBanner = ReminderHelper.notificationBanner.waitUntil(.visible, timeout: 90)
         XCTAssertTrue(notificationBanner.isVisible)
-        XCTAssertTrue(notificationBanner.hasLabel(label: "This assignment is due in 3 hours", strict: false))
+        XCTAssertContains(notificationBanner.label, "This assignment is due in 3 hours")
     }
 
     func testRemoveAssignmentReminder() {
@@ -222,7 +222,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -303,7 +303,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
