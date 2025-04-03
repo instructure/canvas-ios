@@ -29,8 +29,7 @@ final class NotebookViewModel {
 
     // MARK: - Outputs
 
-    let contentOnly: Bool
-
+    private let courseId: String?
     var courseNoteLabels: [CourseNoteLabel] {
         CourseNoteLabel.allCases.filter { $0 != .other }
     }
@@ -40,14 +39,17 @@ final class NotebookViewModel {
             getCourseNotesInteractor.filter
         }
         set {
-            state = .loading
             getCourseNotesInteractor.filter = (self.filter == newValue ? nil : newValue)
         }
     }
 
     var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
+    var isBackVisible: Bool { courseId == nil }
+    var isCloseVisible: Bool { courseId != nil }
+    var isFiltersVisible: Bool { courseId == nil }
     private(set) var isNextDisabled: Bool = true
     private(set) var isPreviousDisabled: Bool = true
+    var navigationBarTopPadding: CGFloat { courseId == nil ? .zero : .huiSpaces.space24 }
     private(set) var notes: [NotebookNote] = []
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var title: String = ""
@@ -64,10 +66,10 @@ final class NotebookViewModel {
         getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared,
         router: Router = AppEnvironment.defaultValue.router
     ) {
+        self.courseId = courseId
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
         self.title = String(localized: "Notebook", bundle: .horizon)
-        self.contentOnly = courseId != nil
 
         self.getCourseNotesInteractor.set(courseId: courseId)
 
@@ -83,13 +85,23 @@ final class NotebookViewModel {
         )
     }
 
-    func onBack(viewController: WeakViewController) {
+    func onBack(_ viewController: WeakViewController) {
         router.pop(from: viewController)
     }
 
+    func onClose(_ viewController: WeakViewController) {
+        router.dismiss(viewController)
+    }
+
     func goToModuleItem(_ note: NotebookNote, viewController: WeakViewController) {
+        // This is just a business rule that says if the user got here from viewing a module,
+        // We should not allow them to then navigate to it again.
+        let isDisabled = courseId != nil
+        if isDisabled {
+            return
+        }
         router.route(
-            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)",
+            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)?notebook_disabled=true",
             from: viewController
         )
     }

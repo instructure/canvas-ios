@@ -37,10 +37,11 @@ enum CourseNoteLabel: String, CaseIterable {
             String(localized: "Important", bundle: .horizon)
     }
 
-    var image: some View {
-        self == .confusing ?
-        Image.huiIcons.help.foregroundStyle(self.color) :
-        Image.huiIcons.flag2.foregroundStyle(self.color)
+    func image(selected: Bool = true) -> some View {
+        let color = selected ? self.color : HorizonUI.colors.lineAndBorders.containerStroke
+        return self == .confusing ?
+        Image.huiIcons.help.foregroundStyle(color) :
+        Image.huiIcons.flag2.foregroundStyle(color)
     }
 
     static func color(_ label: CourseNoteLabel) -> Color? {

@@ -37,9 +37,9 @@ final class NotebookAssembly {
         )
     }
 
-    static func makeViewController() -> CoreHostingController<NotebookView>? {
+    static func makeViewController(courseId: String? = nil) -> CoreHostingController<NotebookView> {
         CoreHostingController(
-            makeView()
+            makeView(courseId: courseId)
         )
     }
 }
