@@ -26,12 +26,12 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
         didSet {
             if isSelected {
                 interactor.selectRating(
-                    criterionId: rubricId,
+                    criterionId: criterionId,
                     points: rating.points,
                     ratingId: rating.id
                 )
             } else {
-                interactor.clearRating(criterionId: rubricId)
+                interactor.clearRating(criterionId: criterionId)
             }
         }
     }
@@ -42,16 +42,16 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
     // MARK: - Private Properties
 
     private let rating: RubricRating
-    private let rubricId: String
+    private let criterionId: String
     private let interactor: RubricGradingInteractor
 
     init(
         rating: RubricRating,
-        rubricId: String,
+        criterionId: String,
         interactor: RubricGradingInteractor
     ) {
         self.rating = rating
-        self.rubricId = rubricId
+        self.criterionId = criterionId
         self.interactor = interactor
 
         tooltip = rating.desc + (rating.longDesc.isEmpty ? "" : "\n" + rating.longDesc)
@@ -59,7 +59,7 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
         accessibilityLabel = rating.desc.isEmpty ? value : rating.desc
         interactor.assessments
             .map {
-                let assessmentForRubric = $0[rubricId]
+                let assessmentForRubric = $0[criterionId]
                 let isThisRatingSelected = assessmentForRubric?.rating_id == rating.id
                 return isThisRatingSelected
             }

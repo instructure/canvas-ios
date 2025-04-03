@@ -19,7 +19,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/assignments.html#RubricCriteria
-public struct APIRubric: Codable, Equatable {
+public struct APIRubricCriterion: Codable, Equatable {
     let criterion_use_range: Bool
     let description: String
     let id: ID
@@ -72,7 +72,7 @@ public struct APIRubricAssessment: Codable, Equatable {
 }
 
 #if DEBUG
-extension APIRubric {
+extension APIRubricCriterion {
     public static func make(
         criterion_use_range: Bool = false,
         description: String = "Effort",
@@ -81,8 +81,8 @@ extension APIRubric {
         long_description: String? = "Did you even try?",
         points: Double = 25.0,
         ratings: [APIRubricRating]? = [ .make() ]
-    ) -> APIRubric {
-        return APIRubric(
+    ) -> APIRubricCriterion {
+        return APIRubricCriterion(
             criterion_use_range: criterion_use_range,
             description: description,
             id: id,

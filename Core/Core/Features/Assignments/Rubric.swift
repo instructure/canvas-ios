@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public final class Rubric: NSManagedObject {
-    public typealias JSON = APIRubric
+    public typealias JSON = APIRubricCriterion
 
     @NSManaged public var assignmentID: String
     @NSManaged public var criterionUseRange: Bool
@@ -37,7 +37,7 @@ public final class Rubric: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIRubric, assignmentID: String, in context: NSManagedObjectContext) -> Rubric {
+    public static func save(_ item: APIRubricCriterion, assignmentID: String, in context: NSManagedObjectContext) -> Rubric {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
             #keyPath(Rubric.id), item.id.value,
             #keyPath(Rubric.assignmentID), assignmentID

@@ -23,7 +23,7 @@ import Foundation
 extension Rubric {
     @discardableResult
     public static func make(
-        from api: APIRubric = .make(),
+        from api: APIRubricCriterion = .make(),
         assignmentID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Rubric {

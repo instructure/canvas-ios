@@ -36,32 +36,32 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
     // MARK: - Outputs
 
     var shouldShowLongDescriptionButton: Bool {
-        criteria.longDesc.isEmpty == false
+        criterion.longDesc.isEmpty == false
     }
     var shouldShowRubricNotUsedForScoringMessage: Bool {
-        criteria.ignoreForScoring
+        criterion.ignoreForScoring
     }
     var description: String {
-        criteria.desc
+        criterion.desc
     }
     var shouldShowRubricRatings: Bool {
         !isFreeFormCommentsEnabled
     }
     var shouldShowAddFreeFormCommentButton: Bool {
-        isFreeFormCommentsEnabled && !interactor.hasAssessmentUserComment(criterionId: criteria.id)
+        isFreeFormCommentsEnabled && !interactor.hasAssessmentUserComment(criterionId: criterion.id)
     }
     var addCommentButtonA11yID: String {
-        "SpeedGrader.Rubric.\(criteria.id).addCommentButton"
+        "SpeedGrader.Rubric.\(criterion.id).addCommentButton"
     }
     var criteriaID: String {
-        criteria.id
+        criterion.id
     }
     var ratingViewModels: [RubricRatingViewModel]
     var customRatingViewModel: RubricCustomRatingViewModel
 
     // MARK: - Private Properties
 
-    private let criteria: Rubric
+    private let criterion: Rubric
     private let isFreeFormCommentsEnabled: Bool
     private let router: Router
     private let interactor: RubricGradingInteractor
@@ -74,7 +74,7 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
         rubricCommentID: Binding<String?>,
         router: Router = AppEnvironment.shared.router
     ) {
-        self.criteria = criteria
+        self.criterion = criteria
         self.isFreeFormCommentsEnabled = isFreeFormCommentsEnabled
         self.interactor = interactor
         self._rubricComment = rubricComment
@@ -85,7 +85,7 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
             .map {
                 RubricRatingViewModel(
                     rating: $0,
-                    rubricId: criteria.id,
+                    criterionId: criteria.id,
                     interactor: interactor
                 )
             }
@@ -102,13 +102,13 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
 
     func didTapAddCommentButton() {
         rubricComment = ""
-        rubricCommentID = criteria.id
+        rubricCommentID = criterion.id
     }
 
     func didTapShowLongDescriptionButton() {
         let web = CoreWebViewController()
-        web.title = criteria.desc
-        web.webView.loadHTMLString(criteria.longDesc)
+        web.title = criterion.desc
+        web.webView.loadHTMLString(criterion.longDesc)
         web.addDoneButton(side: .right)
         router.show(web, from: controller, options: .modal(embedInNav: true))
     }
