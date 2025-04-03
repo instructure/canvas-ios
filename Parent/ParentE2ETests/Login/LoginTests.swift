@@ -57,7 +57,7 @@ class LoginTests: E2ETestCase {
         let findSchoolInput = LoginHelper.FindSchool.searchField.waitUntil(.visible)
         XCTAssertTrue(findSchoolInput.isVisible)
         XCTAssertTrue(findSchoolInput.hasLabel(label: "School’s name"))
-        XCTAssertTrue(findSchoolInput.hasPlaceholderValue(placeholderValue: "Find your school or district"))
+        XCTAssertEqual(findSchoolInput.placeholderValue, "Find your school or district")
 
         let nextButton = LoginHelper.nextButton.waitUntil(.vanish)
         XCTAssertTrue(nextButton.isVanished)
@@ -78,11 +78,11 @@ class LoginTests: E2ETestCase {
 
         let emailInput = LoginHelper.Login.emailField.waitUntil(.visible)
         XCTAssertTrue(emailInput.isVisible)
-        XCTAssertTrue(emailInput.hasPlaceholderValue(placeholderValue: "Email"))
+        XCTAssertEqual(emailInput.placeholderValue, "Email")
 
         let passwordInput = LoginHelper.Login.passwordField.waitUntil(.visible)
         XCTAssertTrue(passwordInput.isVisible)
-        XCTAssertTrue(passwordInput.hasPlaceholderValue(placeholderValue: "Password"))
+        XCTAssertEqual(passwordInput.placeholderValue, "Password")
 
         let loginButton = LoginHelper.Login.loginButton.waitUntil(.visible)
         XCTAssertTrue(loginButton.isVisible)

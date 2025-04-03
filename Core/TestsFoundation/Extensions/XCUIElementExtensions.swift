@@ -88,11 +88,6 @@ public extension XCUIElement {
         return strict ? act == exp : act.contains(exp)
     }
 
-    func hasPlaceholderValue(placeholderValue expectedPlaceholderValue: String, strict: Bool = true) -> Bool {
-        let elementPlaceholderValue = placeholderValue ?? ""
-        return strict ? elementPlaceholderValue == expectedPlaceholderValue : elementPlaceholderValue.contains(expectedPlaceholderValue)
-    }
-
     @discardableResult
     func hit() -> XCUIElement {
         waitUntil(.visible).waitUntil(.hittable, timeout: 5)
