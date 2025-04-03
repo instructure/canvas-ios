@@ -265,6 +265,7 @@ class DashboardTests: E2ETestCase {
         let courseCard1FrameBefore = courseCard1.frame
         let courseCard2FrameBefore = courseCard2.frame
         courseCard1.tapAndHoldAndDragToElement(element: courseCard2)
+        courseCard1.tacticalSleep(2) // wait for animation to finish
         let courseCard1FrameAfter = courseCard1.frame
         let courseCard2FrameAfter = courseCard2.frame
         XCTAssertEqual(courseCard1FrameAfter, courseCard2FrameBefore)
