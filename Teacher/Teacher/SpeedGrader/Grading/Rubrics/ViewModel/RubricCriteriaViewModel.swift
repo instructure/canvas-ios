@@ -53,7 +53,7 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
     var addCommentButtonA11yID: String {
         "SpeedGrader.Rubric.\(criterion.id).addCommentButton"
     }
-    var criteriaID: String {
+    var criterionId: String {
         criterion.id
     }
     var ratingViewModels: [RubricRatingViewModel]
@@ -61,39 +61,39 @@ class RubricCriteriaViewModel: ObservableObject, Identifiable {
 
     // MARK: - Private Properties
 
-    private let criterion: Rubric
+    private let criterion: CDRubricCriterion
     private let isFreeFormCommentsEnabled: Bool
     private let router: Router
     private let interactor: RubricGradingInteractor
 
     init(
-        criteria: Rubric,
+        criterion: CDRubricCriterion,
         isFreeFormCommentsEnabled: Bool,
         interactor: RubricGradingInteractor,
         rubricComment: Binding<String>,
         rubricCommentID: Binding<String?>,
         router: Router = AppEnvironment.shared.router
     ) {
-        self.criterion = criteria
+        self.criterion = criterion
         self.isFreeFormCommentsEnabled = isFreeFormCommentsEnabled
         self.interactor = interactor
         self._rubricComment = rubricComment
         self._rubricCommentID = rubricCommentID
         self.router = router
-        ratingViewModels = (criteria.ratings ?? [])
+        ratingViewModels = (criterion.ratings ?? [])
             .reversed()
             .map {
                 RubricRatingViewModel(
                     rating: $0,
-                    criterionId: criteria.id,
+                    criterionId: criterion.id,
                     interactor: interactor
                 )
             }
-        customRatingViewModel = RubricCustomRatingViewModel(rubric: criteria, interactor: interactor)
+        customRatingViewModel = RubricCustomRatingViewModel(criterion: criterion, interactor: interactor)
 
         interactor.assessments
             .map { assessments in
-                assessments[criteria.id]?.comments
+                assessments[criterion.id]?.comments
             }
             .assign(to: &$userComment)
     }

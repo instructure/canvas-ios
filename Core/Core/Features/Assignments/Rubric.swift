@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public final class Rubric: NSManagedObject {
+public final class CDRubricCriterion: NSManagedObject {
     public typealias JSON = APIRubricCriterion
 
     @NSManaged public var assignmentID: String
@@ -37,12 +37,12 @@ public final class Rubric: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIRubricCriterion, assignmentID: String, in context: NSManagedObjectContext) -> Rubric {
+    public static func save(_ item: APIRubricCriterion, assignmentID: String, in context: NSManagedObjectContext) -> CDRubricCriterion {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-            #keyPath(Rubric.id), item.id.value,
-            #keyPath(Rubric.assignmentID), assignmentID
+            #keyPath(CDRubricCriterion.id), item.id.value,
+            #keyPath(CDRubricCriterion.assignmentID), assignmentID
         )
-        let model: Rubric = context.fetch(predicate).first ?? context.insert()
+        let model: CDRubricCriterion = context.fetch(predicate).first ?? context.insert()
         model.assignmentID = assignmentID
         model.criterionUseRange = item.criterion_use_range
         model.desc = item.description

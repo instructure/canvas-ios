@@ -317,7 +317,7 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignment?.rubric?.first?.id, "2")
 
         //  make sure old existing rubrics were deleted
-        let rubrics: [Rubric] = databaseClient.fetch()
+        let rubrics: [CDRubricCriterion] = databaseClient.fetch()
         XCTAssertEqual(rubrics.count, 1)
     }
 

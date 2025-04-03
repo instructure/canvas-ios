@@ -54,7 +54,7 @@ class RubricsViewModel: ObservableObject {
         self.submission = submission
         self.interactor = interactor
         self.router = router
-        criteriaViewModels = (assignment.rubric ?? []).map { [unowned self] criteria in
+        criteriaViewModels = (assignment.rubric ?? []).map { [unowned self] criterion in
             let rubricCommentBinding = Binding(
                 get: { self.rubricComment },
                 set: { self.rubricComment = $0 }
@@ -64,7 +64,7 @@ class RubricsViewModel: ObservableObject {
                 set: { self.rubricCommentID = $0 }
             )
             return RubricCriteriaViewModel(
-                criteria: criteria,
+                criterion: criterion,
                 isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
                 interactor: interactor,
                 rubricComment: rubricCommentBinding,

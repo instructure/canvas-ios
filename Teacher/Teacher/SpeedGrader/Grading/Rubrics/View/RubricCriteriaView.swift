@@ -59,7 +59,7 @@ struct RubricCriteriaView: View {
             }
 
             if let comment = viewModel.userComment {
-                freeFormRubricCommentBubbleWithEditButton(comment, criteriaID: viewModel.criteriaID)
+                freeFormRubricCommentBubbleWithEditButton(comment, criteriaID: viewModel.criterionId)
             }
         }
     }

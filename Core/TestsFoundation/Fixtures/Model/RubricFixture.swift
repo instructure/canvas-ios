@@ -20,14 +20,14 @@ import CoreData
 import Foundation
 @testable import Core
 
-extension Rubric {
+extension CDRubricCriterion {
     @discardableResult
     public static func make(
         from api: APIRubricCriterion = .make(),
         assignmentID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> Rubric {
-        let model = Rubric.save(api, assignmentID: assignmentID, in: context)
+    ) -> CDRubricCriterion {
+        let model = CDRubricCriterion.save(api, assignmentID: assignmentID, in: context)
         try! context.save()
         return model
     }

@@ -43,19 +43,19 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Private Properties
 
-    private let rubric: Rubric
+    private let criterion: CDRubricCriterion
     private let interactor: RubricGradingInteractor
 
     init(
-        rubric: Rubric,
+        criterion: CDRubricCriterion,
         interactor: RubricGradingInteractor
     ) {
-        self.rubric = rubric
+        self.criterion = criterion
         self.interactor = interactor
 
         interactor.assessments
             .map { assessments -> State in
-                let assessmentForRubric = assessments[rubric.id]
+                let assessmentForRubric = assessments[criterion.id]
                 if let customScore = assessmentForRubric?.points, assessmentForRubric?.rating_id.isNilOrEmpty == true {
                     return .value("\(customScore.formatted())")
                 } else {
@@ -69,7 +69,7 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
 
     func didTapAddCustomScoreButton() {
         let format = String(localized: "out_of_g_pts", bundle: .core)
-        let message = String.localizedStringWithFormat(format, rubric.points)
+        let message = String.localizedStringWithFormat(format, criterion.points)
         let prompt = UIAlertController(title: String(localized: "Customize Grade", bundle: .teacher), message: message, preferredStyle: .alert)
         prompt.addTextField { field in
             field.placeholder = ""
@@ -83,9 +83,9 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
             let points = DoubleFieldRow.formatter.number(from: text)?.doubleValue
 
             if let points {
-                interactor.selectRating(criterionId: rubric.id, points: points, ratingId: .customRating)
+                interactor.selectRating(criterionId: criterion.id, points: points, ratingId: .customRating)
             } else {
-                interactor.clearRating(criterionId: rubric.id)
+                interactor.clearRating(criterionId: criterion.id)
             }
         })
         prompt.addAction(AlertAction(String(localized: "Cancel", bundle: .teacher), style: .cancel))
@@ -93,6 +93,6 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
     }
 
     func didTapClearCustomScoreButton() {
-        interactor.clearRating(criterionId: rubric.id)
+        interactor.clearRating(criterionId: criterion.id)
     }
 }
