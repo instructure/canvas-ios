@@ -125,7 +125,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(searchField.isVisible)
         XCTAssertTrue(filterByLabel.isVisible)
         XCTAssertTrue(sortButton.isVisible)
-        XCTAssertTrue(sortButton.hasValue(value: "Newest First", strict: false))
+        XCTAssertContains(sortButton.stringValue, "Newest First")
         XCTAssertTrue(viewSplitScreenButton.isVisible)
         XCTAssertTrue(subscribeButton.isVisible)
         XCTAssertTrue(manageDiscussionButton.isVisible)

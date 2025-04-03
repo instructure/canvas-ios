@@ -221,7 +221,7 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(dateLabel.isVisible)
         XCTAssertTrue(bodyLabel.isVisible)
         XCTAssertTrue(subjectLabel.isVisible)
-        XCTAssertTrue(bodyLabel.hasValue(value: conversation.last_authored_message))
+        XCTAssertEqual(bodyLabel.stringValue, conversation.last_authored_message)
         XCTAssertEqual(subjectLabel.label, conversation.subject)
 
         // MARK: Check "More options"

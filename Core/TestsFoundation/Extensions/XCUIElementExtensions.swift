@@ -78,7 +78,7 @@ public extension XCUIElement {
 
     func idContains(expected: String) -> Bool { identifier.contains(expected) }
 
-    func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
+    private func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
         let elementValue = value as? String ?? ""
         return strict ? elementValue == expectedValue : elementValue.contains(expectedValue)
     }

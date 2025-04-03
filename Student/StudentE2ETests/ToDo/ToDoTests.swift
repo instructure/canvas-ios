@@ -36,7 +36,7 @@ class ToDoTests: E2ETestCase {
 
         let toDoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
         XCTAssertTrue(toDoTab.isVisible)
-        XCTAssertTrue(toDoTab.hasValue(value: "2 items"))
+        XCTAssertEqual(toDoTab.stringValue, "2 items")
 
         // MARK: Tap ToDo button and check the 3 items
         toDoTab.hit()

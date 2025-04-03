@@ -159,7 +159,7 @@ class ModulesTests: E2ETestCase {
         XCTAssertTrue(doneButton.isVisible)
         XCTAssertTrue(progressTitle.isVisible)
         XCTAssertTrue(progressIndicator.isVisible)
-        XCTAssertTrue(progressIndicator.waitUntil(.value(expected: "100%")).hasValue(value: "100%"))
+        XCTAssertEqual(progressIndicator.waitUntil(.value(expected: "100%")).stringValue, "100%")
 
         // MARK: Tap "Done" button, check result
         doneButton.hit()
@@ -251,7 +251,7 @@ class ModulesTests: E2ETestCase {
         XCTAssertTrue(doneButton.isVisible)
         XCTAssertTrue(progressTitle.isVisible)
         XCTAssertTrue(progressIndicator.isVisible)
-        XCTAssertTrue(progressIndicator.waitUntil(.value(expected: "100%")).hasValue(value: "100%"))
+        XCTAssertEqual(progressIndicator.waitUntil(.value(expected: "100%")).stringValue, "100%")
 
         // MARK: Tap "Done" button, check result
         doneButton.hit()
@@ -346,7 +346,7 @@ class ModulesTests: E2ETestCase {
         XCTAssertTrue(doneButton.isVisible)
         XCTAssertTrue(progressTitle.isVisible)
         XCTAssertTrue(progressIndicator.isVisible)
-        XCTAssertTrue(progressIndicator.waitUntil(.value(expected: "100%")).hasValue(value: "100%"))
+        XCTAssertEqual(progressIndicator.waitUntil(.value(expected: "100%")).stringValue, "100%")
 
         // MARK: Tap "Done" button, check result
         doneButton.hit()

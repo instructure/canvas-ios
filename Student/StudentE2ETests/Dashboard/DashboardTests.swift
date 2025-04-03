@@ -204,11 +204,11 @@ class DashboardTests: E2ETestCase {
         dashboardSettingsButton.hit()
         var showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
-        XCTAssertTrue(showGradeToggle.hasValue(value: "off"))
+        XCTAssertEqual(showGradeToggle.stringValue, "off")
 
         // MARK: Tap Show Grade toggle and check value again
         showGradeToggle.tap()
-        XCTAssertTrue(showGradeToggle.hasValue(value: "on"))
+        XCTAssertEqual(showGradeToggle.stringValue, "on")
 
         // MARK: Tap Done button then check visibility of course again
         var doneButton = Helper.doneButton.waitUntil(.visible)

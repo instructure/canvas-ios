@@ -82,11 +82,11 @@ class GradesTests: E2ETestCase {
         speedGraderGradeSlider.waitUntil(.visible)
         XCTAssertTrue(speedGraderGradeButton.isVisible)
         XCTAssertTrue(speedGraderGradeSlider.isVisible)
-        XCTAssertTrue(speedGraderGradeSlider.hasValue(value: "0"))
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "0")
 
         speedGraderGradeSlider.swipeRight()
         speedGraderGradeSlider.waitUntil(.value(expected: "1"))
-        XCTAssertTrue(speedGraderGradeSlider.hasValue(value: "1"))
+        XCTAssertEqual(speedGraderGradeSlider.stringValue, "1")
 
         speedGraderDoneButton.hit()
         submissionItem.waitUntil(.vanish)
@@ -136,15 +136,15 @@ class GradesTests: E2ETestCase {
         let titleField = EditorHelper.titleField.waitUntil(.visible)
         let pointsField = EditorHelper.pointsField.waitUntil(.visible)
         XCTAssertTrue(titleField.isVisible)
-        XCTAssertTrue(titleField.hasValue(value: assignment.name))
+        XCTAssertEqual(titleField.stringValue, assignment.name)
         XCTAssertTrue(pointsField.isVisible)
-        XCTAssertTrue(pointsField.hasValue(value: score))
+        XCTAssertEqual(pointsField.stringValue, score)
 
         let newScore = "0"
         pointsField.cutText()
         pointsField.writeText(text: newScore)
         pointsField.waitUntil(.value(expected: newScore))
-        XCTAssertTrue(pointsField.hasValue(value: newScore))
+        XCTAssertEqual(pointsField.stringValue, newScore)
 
         let doneButton = EditorHelper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)

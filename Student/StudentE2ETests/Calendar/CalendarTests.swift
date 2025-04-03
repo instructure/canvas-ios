@@ -217,17 +217,17 @@ class CalendarTests: E2ETestCase {
 
         let courseCell1 = FilterHelper.courseCell(course: course1).waitUntil(.visible)
         XCTAssertTrue(courseCell1.isVisible)
-        XCTAssertTrue(courseCell1.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        XCTAssertEqual(courseCell1.waitUntil(.value(expected: "1")).stringValue, "1")
 
         let courseCell2 = FilterHelper.courseCell(course: course2).waitUntil(.visible)
         XCTAssertTrue(courseCell2.isVisible)
-        XCTAssertTrue(courseCell2.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        XCTAssertEqual(courseCell2.waitUntil(.value(expected: "1")).stringValue, "1")
 
         // MARK: Change filter to first course
         courseCell1.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"), gracePeriod: 3)
         courseCell2.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
-        XCTAssertTrue(courseCell1.hasValue(value: "1"))
-        XCTAssertTrue(courseCell2.hasValue(value: "0"))
+        XCTAssertEqual(courseCell1.stringValue, "1")
+        XCTAssertEqual(courseCell2.stringValue, "0")
 
         doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(.visible)
@@ -239,8 +239,8 @@ class CalendarTests: E2ETestCase {
         filterButton.hit()
         courseCell1.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
         courseCell2.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"), gracePeriod: 3)
-        XCTAssertTrue(courseCell1.hasValue(value: "0"))
-        XCTAssertTrue(courseCell2.hasValue(value: "1"))
+        XCTAssertEqual(courseCell1.stringValue, "0")
+        XCTAssertEqual(courseCell2.stringValue, "1")
 
         doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 3)
@@ -252,8 +252,8 @@ class CalendarTests: E2ETestCase {
         filterButton.hit()
         courseCell1.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
         courseCell2.actionUntilElementCondition(action: .tap, condition: .value(expected: "0"), gracePeriod: 3)
-        XCTAssertTrue(courseCell1.hasValue(value: "0"))
-        XCTAssertTrue(courseCell2.hasValue(value: "0"))
+        XCTAssertEqual(courseCell1.stringValue, "0")
+        XCTAssertEqual(courseCell2.stringValue, "0")
 
         doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 3)
@@ -309,10 +309,10 @@ class CalendarTests: E2ETestCase {
         let courseItem = Helper.Todo.CalendarSelector.courseItem(course: course).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(courseItem.isVisible)
-        XCTAssertTrue(courseItem.hasValue(value: "0"))
+        XCTAssertEqual(courseItem.stringValue, "0")
 
         courseItem.hit()
-        XCTAssertTrue(courseItem.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        XCTAssertEqual(courseItem.waitUntil(.value(expected: "1")).stringValue, "1")
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
@@ -333,8 +333,8 @@ class CalendarTests: E2ETestCase {
         hourWheel.adjust(toPickerWheelValue: newHourValue)
         meridiemWheel.adjust(toPickerWheelValue: meridiemWheelValue)
         let newHourWheelValue = "\(newHourValue) o’clock"
-        XCTAssertTrue(hourWheel.waitUntil(.value(expected: newHourWheelValue)).hasValue(value: newHourWheelValue))
-        XCTAssertTrue(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).hasValue(value: meridiemWheelValue))
+        XCTAssertEqual(hourWheel.waitUntil(.value(expected: newHourWheelValue)).stringValue, newHourWheelValue)
+        XCTAssertEqual(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).stringValue, meridiemWheelValue)
         XCTAssertTrue(titleInput.waitUntil(.visible).isVisible)
 
         titleInput.forceTap()
@@ -398,7 +398,7 @@ class CalendarTests: E2ETestCase {
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
-        XCTAssertTrue(userItem.hasValue(value: "1"))
+        XCTAssertEqual(userItem.stringValue, "1")
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
@@ -419,8 +419,8 @@ class CalendarTests: E2ETestCase {
         hourWheel.adjust(toPickerWheelValue: newHourValue)
         meridiemWheel.adjust(toPickerWheelValue: meridiemWheelValue)
         let newHourWheelValue = "\(newHourValue) o’clock"
-        XCTAssertTrue(hourWheel.waitUntil(.value(expected: newHourWheelValue)).hasValue(value: newHourWheelValue))
-        XCTAssertTrue(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).hasValue(value: meridiemWheelValue))
+        XCTAssertEqual(hourWheel.waitUntil(.value(expected: newHourWheelValue)).stringValue, newHourWheelValue)
+        XCTAssertEqual(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).stringValue, meridiemWheelValue)
         XCTAssertTrue(titleInput.waitUntil(.visible).isVisible)
 
         titleInput.forceTap()
@@ -484,7 +484,7 @@ class CalendarTests: E2ETestCase {
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
-        XCTAssertTrue(userItem.hasValue(value: "1"))
+        XCTAssertEqual(userItem.stringValue, "1")
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
@@ -505,8 +505,8 @@ class CalendarTests: E2ETestCase {
         hourWheel.adjust(toPickerWheelValue: newHourValue)
         meridiemWheel.adjust(toPickerWheelValue: meridiemWheelValue)
         let newHourWheelValue = "\(newHourValue) o’clock"
-        XCTAssertTrue(hourWheel.waitUntil(.value(expected: newHourWheelValue)).hasValue(value: newHourWheelValue))
-        XCTAssertTrue(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).hasValue(value: meridiemWheelValue))
+        XCTAssertEqual(hourWheel.waitUntil(.value(expected: newHourWheelValue)).stringValue, newHourWheelValue)
+        XCTAssertEqual(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).stringValue, meridiemWheelValue)
         XCTAssertTrue(titleInput.waitUntil(.visible).isVisible)
 
         titleInput.forceTap()
@@ -604,7 +604,7 @@ class CalendarTests: E2ETestCase {
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
-        XCTAssertTrue(userItem.hasValue(value: "1"))
+        XCTAssertEqual(userItem.stringValue, "1")
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
@@ -625,8 +625,8 @@ class CalendarTests: E2ETestCase {
         hourWheel.adjust(toPickerWheelValue: newHourValue)
         meridiemWheel.adjust(toPickerWheelValue: meridiemWheelValue)
         let newHourWheelValue = "\(newHourValue) o’clock"
-        XCTAssertTrue(hourWheel.waitUntil(.value(expected: newHourWheelValue)).hasValue(value: newHourWheelValue))
-        XCTAssertTrue(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).hasValue(value: meridiemWheelValue))
+        XCTAssertEqual(hourWheel.waitUntil(.value(expected: newHourWheelValue)).stringValue, newHourWheelValue)
+        XCTAssertEqual(meridiemWheel.waitUntil(.value(expected: meridiemWheelValue)).stringValue, meridiemWheelValue)
         XCTAssertTrue(titleInput.waitUntil(.visible).isVisible)
 
         titleInput.forceTap()

@@ -193,7 +193,7 @@ class QuizzesTests: E2ETestCase {
         url.waitUntil(.value(expected: "mobileqa.quiz-lti-iad-prod.instructure.com", strict: false))
         let externalTitleLabel = app.find(label: quiz.title, type: .staticText).waitUntil(.visible)
         XCTAssertTrue(url.isVisible)
-        XCTAssertTrue(url.hasValue(value: "mobileqa.quiz-lti-iad-prod.instructure.com", strict: false))
+        XCTAssertContains(url.stringValue, "mobileqa.quiz-lti-iad-prod.instructure.com")
         XCTAssertTrue(externalTitleLabel.isVisible)
     }
 }

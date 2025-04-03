@@ -230,7 +230,7 @@ class SettingsTests: E2ETestCase {
 
         let subscriptionUrlElement = CalendarAppHelper.subscriptionUrl.waitUntil(.visible)
         XCTAssertTrue(subscriptionUrlElement.isVisible)
-        XCTAssertTrue(subscriptionUrlElement.hasValue(value: user.host, strict: false))
+        XCTAssertContains(subscriptionUrlElement.stringValue, user.host)
     }
 
     func testAbout() {

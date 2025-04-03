@@ -83,18 +83,18 @@ class OfflineTests: OfflineE2ETest {
         let autoContentSyncSwitch = SettingsHelper.OfflineSync.autoContentSyncSwitch.waitUntil(.visible)
         let backButton = SettingsHelper.OfflineSync.backButton.waitUntil(.visible)
         XCTAssertTrue(autoContentSyncSwitch.isVisible)
-        XCTAssertTrue(autoContentSyncSwitch.hasValue(value: "off"))
+        XCTAssertEqual(autoContentSyncSwitch.stringValue, "off")
         XCTAssertTrue(backButton.isVisible)
 
         // MARK: Turn on "Auto Content Sync", check the changes
         autoContentSyncSwitch.hit()
         let syncFrequencyButton = SettingsHelper.OfflineSync.syncFrequencyButton.waitUntil(.visible)
         let syncContentOverWifiOnlySwitch = SettingsHelper.OfflineSync.wifiOnlySwitch.waitUntil(.visible)
-        XCTAssertTrue(autoContentSyncSwitch.hasValue(value: "on"))
+        XCTAssertEqual(autoContentSyncSwitch.stringValue, "on")
         XCTAssertTrue(syncFrequencyButton.isVisible)
         XCTAssertContains(syncFrequencyButton.label, "Daily")
         XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
-        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "on"))
+        XCTAssertEqual(syncContentOverWifiOnlySwitch.stringValue, "on")
 
         // MARK: Change "Sync Frequency" from "Daily" to "Weekly"
         syncFrequencyButton.hit()
@@ -110,7 +110,7 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(syncFrequencyButton.isVisible)
         XCTAssertContains(syncFrequencyButton.label, "Weekly")
         XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
-        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "on"))
+        XCTAssertEqual(syncContentOverWifiOnlySwitch.stringValue, "on")
 
         // MARK: Turn off "Sync Content Over Wifi Only"
         syncContentOverWifiOnlySwitch.hit()
@@ -121,7 +121,7 @@ class OfflineTests: OfflineE2ETest {
 
         turnOffButton.hit()
         syncContentOverWifiOnlySwitch.waitUntil(.value(expected: "off"))
-        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "off"))
+        XCTAssertEqual(syncContentOverWifiOnlySwitch.stringValue, "off")
         XCTAssertTrue(backButton.isVisible)
 
         backButton.hit()
