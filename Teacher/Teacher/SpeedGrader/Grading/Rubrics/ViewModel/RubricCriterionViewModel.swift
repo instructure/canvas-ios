@@ -20,7 +20,7 @@ import Combine
 import Core
 import SwiftUI
 
-class RubricCriteriaViewModel: ObservableObject, Identifiable {
+class RubricCriterionViewModel: ObservableObject, Identifiable {
 
     // MARK: - Inputs
 

@@ -33,7 +33,7 @@ struct RubricsView: View {
                 Text("Rubric", bundle: .teacher)
                     .font(.heavy24).foregroundColor(.textDarkest)
                     .accessibilityAddTraits(.isHeader)
-                Text("\(currentScore, specifier: "%g") out of \(viewModel.assignment.rubricPointsPossible ?? 0, specifier: "%g")", bundle: .teacher)
+                Text("\(currentScore, specifier: "%g") out of \(viewModel.maximumRubricPoints, specifier: "%g")", bundle: .teacher)
                     .font(.medium14).foregroundColor(.textDark)
             }
             Spacer()
@@ -46,8 +46,8 @@ struct RubricsView: View {
         .padding(.horizontal, 16).padding(.vertical, 12)
 
         VStack(spacing: 12) {
-            ForEach(viewModel.criteriaViewModels) { viewModel in
-                RubricCriteriaView(
+            ForEach(viewModel.criterionViewModels) { viewModel in
+                RubricCriterionView(
                     containerFrameInGlobal: containerFrameInGlobal,
                     viewModel: viewModel
                 )

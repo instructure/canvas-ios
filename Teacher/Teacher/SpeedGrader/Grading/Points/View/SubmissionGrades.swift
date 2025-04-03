@@ -119,20 +119,18 @@ struct SubmissionGrades: View {
                     }
                 }.padding(.bottom, 16)
             } }
-            if let id = rubricsViewModel.rubricCommentID {
-                commentEditor(id: id)
+            if rubricsViewModel.commentingOnCriterionID != nil {
+                commentEditor()
             }
         }
     }
 
-    private func commentEditor(id: String) -> some View {
+    private func commentEditor() -> some View {
         CommentEditor(
-            text: $rubricsViewModel.rubricComment,
+            text: $rubricsViewModel.criterionComment,
             shouldShowCommentLibrary: false,
             showCommentLibrary: .constant(false),
-            action: {
-                rubricsViewModel.saveComment()
-            },
+            action: rubricsViewModel.saveComment,
             containerHeight: containerHeight
         )
         .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))

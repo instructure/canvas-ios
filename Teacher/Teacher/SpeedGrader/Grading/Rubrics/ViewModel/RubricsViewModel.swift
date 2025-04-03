@@ -21,24 +21,32 @@ import Combine
 import SwiftUI
 
 class RubricsViewModel: ObservableObject {
+
+    // MARK: - Input / Output
+
+    @Published var criterionComment: String = ""
+    @Published var commentingOnCriterionID: String?
+
+    // MARK: - Outputs
+
     @Published private(set) var isSaving = false
-    @Published var rubricComment: String = ""
-    @Published var rubricCommentID: String?
-    let assignment: Assignment
-    @Published var submission: Submission
-    private(set) var criteriaViewModels: [RubricCriteriaViewModel] = []
+    @Published private(set) var submission: Submission
+    @Published private(set) var totalRubricScore: Double = 0
+    @Published private(set) var isRubricScoreAvailable = false
+    private(set) var criterionViewModels: [RubricCriterionViewModel] = []
     let interactor: RubricGradingInteractor
-    @Published var totalRubricScore: Double = 0
-    @Published var isRubricScoreAvailable = false
+    let maximumRubricPoints: Double
 
     // MARK: - Inputs
+
     var controller = WeakViewController() {
         didSet {
-            criteriaViewModels.forEach { $0.controller = controller }
+            criterionViewModels.forEach { $0.controller = controller }
         }
     }
 
     // MARK: - Private
+
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
@@ -50,20 +58,20 @@ class RubricsViewModel: ObservableObject {
         interactor: RubricGradingInteractor,
         router: Router = AppEnvironment.shared.router
     ) {
-        self.assignment = assignment
         self.submission = submission
         self.interactor = interactor
         self.router = router
-        criteriaViewModels = (assignment.rubric ?? []).map { [unowned self] criterion in
+        self.maximumRubricPoints = assignment.rubricPointsPossible ?? 0
+        criterionViewModels = (assignment.rubric ?? []).map { [unowned self] criterion in
             let rubricCommentBinding = Binding(
-                get: { self.rubricComment },
-                set: { self.rubricComment = $0 }
+                get: { self.criterionComment },
+                set: { self.criterionComment = $0 }
             )
             let rubricCommentIdBinding = Binding(
-                get: { self.rubricCommentID },
-                set: { self.rubricCommentID = $0 }
+                get: { self.commentingOnCriterionID },
+                set: { self.commentingOnCriterionID = $0 }
             )
-            return RubricCriteriaViewModel(
+            return RubricCriterionViewModel(
                 criterion: criterion,
                 isFreeFormCommentsEnabled: assignment.freeFormCriterionCommentsOnRubric,
                 interactor: interactor,
@@ -93,11 +101,11 @@ class RubricsViewModel: ObservableObject {
     }
 
     func saveComment() {
-        guard let rubricCommentID else {
+        guard let commentingOnCriterionID else {
             return
         }
-        interactor.updateComment(criterionId: rubricCommentID, comment: rubricComment)
-        self.rubricCommentID = nil
+        interactor.updateComment(criterionId: commentingOnCriterionID, comment: criterionComment)
+        self.commentingOnCriterionID = nil
     }
 
     // MARK: - Private Methods

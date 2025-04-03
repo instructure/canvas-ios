@@ -33,7 +33,7 @@ struct RubricViewModel: Hashable, Equatable {
     let ratings: [Double]
     let descriptions: [String]
     let comment: String?
-    let rubricRatings: [RubricRating]
+    let rubricRatings: [CDRubricRating]
     var isCustomAssessment: Bool = false
     var hideRubricPoints: Bool
     var freeFormCriterionComments: Bool
@@ -101,13 +101,13 @@ class RubricPresenter {
         }
     }
 
-    func transformRubricsToViewModels(_ rubrics: [Rubric], assessments: RubricAssessments?, hideRubricPoints: Bool, freeFormCriterionComments: Bool) -> [RubricViewModel] {
+    func transformRubricsToViewModels(_ rubrics: [CDRubricCriterion], assessments: RubricAssessments?, hideRubricPoints: Bool, freeFormCriterionComments: Bool) -> [RubricViewModel] {
         var models = [RubricViewModel]()
         for rubric in rubrics {
             guard var ratings = rubric.ratings.flatMap(Array.init) else { continue }
             let assessment = assessments?[rubric.id]
             ratings = ratings.sorted { $0.points < $1.points }
-            var selected: RubricRating?
+            var selected: CDRubricRating?
             var selectedIndex: Int?
             let comments = assessment?.comments
             var description = ""

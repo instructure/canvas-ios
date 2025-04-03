@@ -20,6 +20,7 @@ import Combine
 import Core
 
 class RubricRatingViewModel: ObservableObject, Identifiable {
+
     // MARK: - Outputs
 
     @Published var isSelected: Bool = false {
@@ -41,12 +42,12 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Private Properties
 
-    private let rating: RubricRating
+    private let rating: CDRubricRating
     private let criterionId: String
     private let interactor: RubricGradingInteractor
 
     init(
-        rating: RubricRating,
+        rating: CDRubricRating,
         criterionId: String,
         interactor: RubricGradingInteractor
     ) {

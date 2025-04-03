@@ -31,8 +31,8 @@ public final class CDRubricCriterion: NSManagedObject {
     @NSManaged public var points: Double
     @NSManaged public var ratingsRaw: NSOrderedSet?
 
-    public var ratings: [RubricRating]? {
-        get { ratingsRaw?.array as? [RubricRating] }
+    public var ratings: [CDRubricRating]? {
+        get { ratingsRaw?.array as? [CDRubricRating] }
         set { ratingsRaw = newValue.map { NSOrderedSet(array: $0) } }
     }
 
@@ -56,14 +56,14 @@ public final class CDRubricCriterion: NSManagedObject {
             model.ratings = nil
         }
         if let ratings = item.ratings {
-            model.ratings = ratings.map { RubricRating.save($0, assignmentID: assignmentID, in: context) }
+            model.ratings = ratings.map { CDRubricRating.save($0, assignmentID: assignmentID, in: context) }
         }
 
         return model
     }
 }
 
-public final class RubricRating: NSManagedObject {
+public final class CDRubricRating: NSManagedObject {
     public typealias JSON = APIRubricRating
 
     @NSManaged public var assignmentID: String
@@ -74,12 +74,12 @@ public final class RubricRating: NSManagedObject {
     @NSManaged public var position: Int
 
     @discardableResult
-    public static func save(_ item: APIRubricRating, assignmentID: String, in context: NSManagedObjectContext) -> RubricRating {
+    public static func save(_ item: APIRubricRating, assignmentID: String, in context: NSManagedObjectContext) -> CDRubricRating {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-            #keyPath(RubricRating.id), item.id.value,
-            #keyPath(RubricRating.assignmentID), assignmentID
+            #keyPath(CDRubricRating.id), item.id.value,
+            #keyPath(CDRubricRating.assignmentID), assignmentID
         )
-        let model: RubricRating = context.fetch(predicate).first ?? context.insert()
+        let model: CDRubricRating = context.fetch(predicate).first ?? context.insert()
         model.assignmentID = assignmentID
         model.desc = item.description
         model.id = item.id.value

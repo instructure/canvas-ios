@@ -227,8 +227,8 @@ class RubricPresenterTests: StudentTestCase {
     }
 
     func testRubricViewModelRatingBlurb() {
-        let r = Rubric.make()
-        let rating = RubricRating.make()
+        let r = CDRubricCriterion.make()
+        let rating = CDRubricRating.make()
         let model = RubricViewModel(
             id: r.id,
             title: r.desc,

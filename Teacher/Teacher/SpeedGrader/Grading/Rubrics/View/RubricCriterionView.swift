@@ -19,14 +19,14 @@
 import Core
 import SwiftUI
 
-struct RubricCriteriaView: View {
+struct RubricCriterionView: View {
     @Environment(\.viewController) var controller
     private let containerFrameInGlobal: CGRect
-    @ObservedObject var viewModel: RubricCriteriaViewModel
+    @ObservedObject var viewModel: RubricCriterionViewModel
 
     init(
         containerFrameInGlobal: CGRect,
-        viewModel: RubricCriteriaViewModel
+        viewModel: RubricCriterionViewModel
     ) {
         self.containerFrameInGlobal = containerFrameInGlobal
         self.viewModel = viewModel

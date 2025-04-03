@@ -20,12 +20,16 @@ import Combine
 import Core
 
 class RubricGradingInteractor {
-    let assessments: AnyPublisher<APIRubricAssessmentMap, Never>
 
+    // MARK: - Public Properties
+
+    let assessments: AnyPublisher<APIRubricAssessmentMap, Never>
     let isSaving = CurrentValueSubject<Bool, Never>(false)
     let showSaveError = PassthroughSubject<Error, Never>()
     let totalRubricScore = CurrentValueSubject<Double, Never>(0)
     let isRubricScoreAvailable = CurrentValueSubject<Bool, Never>(false)
+
+    // MARK: - Private Properties
 
     private var assessmentsChangedDuringUpload = false
     private var subscriptions = Set<AnyCancellable>()
@@ -33,6 +37,8 @@ class RubricGradingInteractor {
     private let submission: Submission
     /// Modification is only allowed internally to keep logic inside this class. Read-only values are accessible via the `assessments` property.
     private let assessmentsSubject = CurrentValueSubject<APIRubricAssessmentMap, Never>([:])
+
+    // MARK: - Public Methods
 
     init(
         assignment: Assignment,
