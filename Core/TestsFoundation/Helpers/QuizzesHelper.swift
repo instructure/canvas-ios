@@ -73,7 +73,7 @@ public class QuizzesHelper: BaseHelper {
         public struct TakeQuiz {
             public static var navBar: XCUIElement { app.find(id: "Take Quiz") }
             public static var exitButton: XCUIElement { app.find(label: "Exit", type: .button) }
-            public static var takeTheQuizButton: XCUIElement { app.find(label: "Take the Quiz", type: .link) }
+            public static var takeTheQuizButton: XCUIElement { app.find(label: "Take the Quiz", type: .button) }
             public static var submitQuizButton: XCUIElement { app.find(label: "Submit Quiz", type: .button) }
 
             public static func answerFirstQuestion() {
