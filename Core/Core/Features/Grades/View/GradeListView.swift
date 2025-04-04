@@ -210,8 +210,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
             }
             .padding([.horizontal, .top], 16)
-            .padding(.bottom, 5)
-            .padding(.bottom, hasBottomPadding ? 10 : 0)
+            .padding(.bottom, hasBottomPadding ? 15 : 5)
 
             if totalGrade != nil {
                 if toggleViewIsVisible {
@@ -292,7 +291,8 @@ public struct GradeListView: View, ScreenViewTrackable {
             .padding(.horizontal, 16)
             .accessibilityIdentifier("BasedOnGradedToggle")
 
-            if viewModel.isWhatIfScoreFlagEnabled {
+            // MARK: DO NOT LEAVE LIKE THIS
+//            if viewModel.isWhatIfScoreFlagEnabled {
                 Divider()
 
                 InstUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
@@ -303,7 +303,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
                 .frame(minHeight: 51)
                 .padding(.horizontal, 16)
-            }
+//            }
         }
     }
 
