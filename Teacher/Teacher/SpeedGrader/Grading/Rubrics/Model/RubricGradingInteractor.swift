@@ -19,7 +19,20 @@
 import Combine
 import Core
 
-class RubricGradingInteractor {
+protocol RubricGradingInteractor {
+    var assessments: AnyPublisher<APIRubricAssessmentMap, Never> { get }
+    var isSaving: CurrentValueSubject<Bool, Never> { get }
+    var showSaveError: PassthroughSubject<Error, Never> { get }
+    var totalRubricScore: CurrentValueSubject<Double, Never> { get }
+    var isRubricScoreAvailable: CurrentValueSubject<Bool, Never> { get }
+
+    func clearRating(criterionId: String)
+    func selectRating(criterionId: String, points: Double, ratingId: RubricRatingId)
+    func hasAssessmentUserComment(criterionId: String) -> Bool
+    func updateComment(criterionId: String, comment: String?)
+}
+
+class RubricGradingInteractorLive: RubricGradingInteractor {
 
     // MARK: - Public Properties
 

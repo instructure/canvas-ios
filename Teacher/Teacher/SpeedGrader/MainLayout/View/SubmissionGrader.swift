@@ -88,7 +88,13 @@ struct SubmissionGrader: View {
         attempt = submission.attempt
         self.handleRefresh = handleRefresh
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
-        _rubricsViewModel = StateObject(wrappedValue: RubricsViewModel(assignment: assignment, submission: submission, interactor: .init(assignment: assignment, submission: submission)))
+        _rubricsViewModel = StateObject(wrappedValue:
+            RubricsViewModel(
+                assignment: assignment,
+                submission: submission,
+                interactor: RubricGradingInteractorLive(assignment: assignment, submission: submission)
+            )
+        )
     }
 
     var body: some View {
