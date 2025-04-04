@@ -20,7 +20,7 @@ import Combine
 import Core
 
 protocol ScoresInteractor {
-    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error>
+    func getScores(sortedBy: ScoreDetails.SortOption, refresh: Bool) -> AnyPublisher<ScoreDetails, Error>
 }
 
 final class ScoresInteractorLive: ScoresInteractor {
@@ -35,11 +35,11 @@ final class ScoresInteractorLive: ScoresInteractor {
         self.submissionCommentInteractor = submissionCommentInteractor
     }
 
-    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error> {
+    func getScores(sortedBy: ScoreDetails.SortOption, refresh: Bool) -> AnyPublisher<ScoreDetails, Error> {
         Publishers.Zip3(
             getAssignmentGroups(courseID: courseID),
             getCourse(courseID: courseID),
-            getCourseEnrollment()
+            getCourseEnrollment(ignoreCache: refresh)
         )
         .flatMap { assignmentGroups, course, enrollment in
             self.getScoreDetails(
@@ -62,14 +62,14 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getCourseEnrollment() -> AnyPublisher<Enrollment?, Error> {
+    private func getCourseEnrollment(ignoreCache: Bool = false) -> AnyPublisher<Enrollment?, Error> {
         ReactiveStore(
             useCase: GetEnrollments(
                 context: .course(courseID),
                 userID: AppEnvironment.shared.currentSession?.userID
             )
         )
-        .getEntities()
+        .getEntities(ignoreCache: ignoreCache)
         .map { $0.first }
         .eraseToAnyPublisher()
     }
@@ -149,17 +149,25 @@ final class ScoresInteractorLive: ScoresInteractor {
             return naText
         }
 
+        let scoreString = scoreGradeString(enrollment: enrollment)
         if course.settings.restrictQuantitativeData,
            let computedFinalGrade = enrollment.computedFinalGrade {
             return computedFinalGrade // Returns e.g "C-"
-        } else if let computedFinalScore = enrollment.computedFinalScore,
-                  let computedFinalGrade = enrollment.computedFinalGrade,
-                  let formattedScore = GradeFormatter.numberFormatter.string(
-                      from: GradeFormatter.truncate(computedFinalScore)
-                  ) {
-            return "\(formattedScore)% (\(computedFinalGrade))"
+        } else if scoreString.isNotEmpty {
+            return scoreString
         }
 
         return naText
+    }
+
+    private func scoreGradeString(enrollment: Enrollment) -> String {
+        var scoreString: String?
+        if let score = enrollment.currentScore,
+           let formattedScore = GradeFormatter.numberFormatter.string(
+                from: GradeFormatter.truncate(score)
+           ) {
+            scoreString = "\(formattedScore)%"
+        }
+        return [scoreString, enrollment.computedFinalGrade].compactMap { $0 }.joined(separator: " ")
     }
 }

@@ -68,13 +68,18 @@ final class CourseDetailsViewModel {
     // MARK: - Inputs
 
     @MainActor
-    func refresh() async {
+    func refresh(tab: CourseDetailsView.Tabs) async {
+        if tab == .scores {
+            await scoresViewModel.refresh()
+        }
+
         await withCheckedContinuation { continuation in
             getCoursesInteractor.getCourse(id: courseID, ignoreCache: true)
                 .sink { [weak self] course in
-                    continuation.resume()
                     guard let course = course, let self = self else { return }
                     self.course = course
+
+                    continuation.resume()
                 }
                 .store(in: &subscriptions)
         }

@@ -47,7 +47,7 @@ struct CourseDetailsView: View {
             }
         }
         .refreshable {
-            await viewModel.refresh()
+            await viewModel.refresh(tab: Tabs.allCases[selectedTabIndex])
         }
     }
 
