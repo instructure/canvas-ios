@@ -16,42 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 import UIKit
 import Core
 
 class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewControllerDataSource {
-    internal static let AllUsersUserID = "speedgrader"
     typealias Page = CoreHostingController<SubmissionGrader>
 
-    let assignmentID: String
-    let context: Context
     var env: AppEnvironment = .defaultValue
-    let filter: [GetSubmissions.Filter]
-    var initialIndex: Int?
-    let userID: String?
 
-    var keepIDs: [String] = []
     lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
-        eventName: "/\(context.pathComponent)/gradebook/speed_grader?assignment_id=\(assignmentID)&student_id=\(userID ?? "")"
+        eventName: "/\(interactor.context.pathComponent)/gradebook/speed_grader?assignment_id=\(interactor.assignmentID)&student_id=\(interactor.userID)"
     )
-    lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID, include: [ .overrides ])) { [weak self] in
-        self?.update()
-    }
-    lazy var submissions = env.subscribe(GetSubmissions(context: context, assignmentID: assignmentID, filter: filter)) { [weak self] in
-        self?.update()
-    }
-    lazy var enrollments = env.subscribe(GetEnrollments(context: context)) { [weak self] in
-        self?.update()
-    }
 
-    init(env: AppEnvironment, context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
+    private let interactor: SpeedGraderInteractor
+    private var subscriptions = Set<AnyCancellable>()
+    lazy var pages = PagesViewController()
+
+    init(env: AppEnvironment, interactor: SpeedGraderInteractor) {
         self.env = env
-        self.assignmentID = assignmentID
-        self.context = context
-        self.filter = filter
-        self.userID = userID == Self.AllUsersUserID ? nil : userID
+        self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
+        subscribeToInteractorStateChanges()
     }
 
     required init?(coder: NSCoder) {
@@ -62,9 +49,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         embed(loadingView, in: view)
-        assignment.refresh()
-        submissions.exhaust()
-        enrollments.exhaust()
+        interactor.loadInitialData()
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -74,52 +59,61 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         return super.supportedInterfaceOrientations
     }
 
-    func update() {
-        guard assignment.requested && !assignment.pending
-                && submissions.requested && !submissions.pending
-                && !submissions.hasNextPage
-                && enrollments.requested && !enrollments.pending
-                && !enrollments.hasNextPage
-        else {
-            return
-        }
+    // MARK: - Private Methods
 
-        if !submissions.useCase.shuffled, assignment.first?.anonymizeStudents == true {
-            submissions.useCase.shuffled = true
-            submissions.setScope(submissions.useCase.scope)
-        }
+    private func subscribeToInteractorStateChanges() {
+        interactor.state
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .loading: break
+                case .loaded(let assignment, let submissions, let focusedSubmissionIndex):
+                    if submissions.isEmpty {
+                        self?.showEmptyView()
+                        return
+                    }
 
-        // Make sure a submission can't disappear as it gets graded.
-        let ids = submissions.map { $0.userID }
-        if keepIDs != ids {
-            keepIDs = ids
-            submissions.setScope(submissions.useCase.scopeKeepingIDs(ids))
-        }
-
-        if initialIndex == nil, let current = findCurrentIndex() {
-            initialIndex = current
-            loadingView.unembed()
-            emptyView.unembed()
-            pages.dataSource = self
-            pages.scrollView.contentInsetAdjustmentBehavior = .never
-            pages.scrollView.backgroundColor = .backgroundMedium
-            if let page = controller(for: current) {
-                pages.setCurrentPage(page)
+                    self?.showGradingView(
+                        assignment: assignment,
+                        submissions: submissions,
+                        focusedSubmissionIndex: focusedSubmissionIndex
+                    )
+                case .error:
+                    self?.showEmptyView()
+                }
             }
-            embed(pages, in: view) { pages, view in
-                pages.view.pin(inside: view, top: nil, bottom: nil)
-                pages.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-                pages.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        }
+            .store(in: &subscriptions)
+    }
 
-        if initialIndex == nil, !isLoading, emptyView.parent == nil {
-            loadingView.unembed()
-            embed(emptyView, in: view)
-        }
+    private func showEmptyView() {
+        loadingView.unembed()
+        embed(emptyView, in: view)
+        hideNavigationBar()
+    }
 
+    private func showGradingView(
+        assignment: Assignment,
+        submissions: [Submission],
+        focusedSubmissionIndex: Int
+    ) {
+        loadingView.unembed()
+        emptyView.unembed()
+        pages.dataSource = self
+        pages.scrollView.contentInsetAdjustmentBehavior = .never
+        pages.scrollView.backgroundColor = .backgroundMedium
+        if let page = controller(for: focusedSubmissionIndex) {
+            pages.setCurrentPage(page)
+        }
+        embed(pages, in: view) { pages, view in
+            pages.view.pin(inside: view, top: nil, bottom: nil)
+            pages.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            pages.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        }
         updatePages()
+        hideNavigationBar()
+    }
 
+    private func hideNavigationBar() {
         // SpeedGrader is by design not embedded into a navigation controller.
         // However, when navigating to this screen from CoreWebView's link handler
         // it automatically wraps it into a navigation controller and adds a Done button.
@@ -127,17 +121,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
-    var isLoading: Bool {
-        !assignment.requested || assignment.pending ||
-        !submissions.requested || submissions.pending || submissions.hasNextPage
-    }
-
-    func findCurrentIndex() -> Int? {
-        guard !isLoading, assignment.first?.anonymizeStudents == submissions.useCase.shuffled else { return nil }
-        return submissions.all.firstIndex { userID == nil || $0.userID == userID }
-    }
-
-    lazy var loadingView: UIViewController = CoreHostingController(
+    private lazy var loadingView: UIViewController = CoreHostingController(
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
             .accessibility(label: Text("Loading", bundle: .teacher))
@@ -145,7 +129,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         env: env
     )
 
-    lazy var emptyView: UIViewController = CoreHostingController(
+    internal lazy var emptyView: UIViewController = CoreHostingController(
         VStack {
             HStack {
                 Spacer()
@@ -164,7 +148,15 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         }
     )
 
-    lazy var pages = PagesViewController()
+    private func updatePages() {
+        for page in pages.children.compactMap({ $0 as? Page }) {
+            if let grader = grader(for: page.rootView.content.index) {
+                page.rootView.content = grader
+            }
+        }
+    }
+
+    // MARK: - PagesViewControllerDataSource
 
     func pagesViewController(_ pages: PagesViewController, pageBefore page: UIViewController) -> UIViewController? {
         (page as? Page).flatMap { controller(for: $0.rootView.content.index - 1) }
@@ -181,24 +173,21 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     }
 
     func grader(for index: Int) -> SubmissionGrader? {
-        guard index >= 0, index < submissions.all.count, let assignment = assignment.first else { return nil }
+        guard
+            case .loaded(let assignment, let submissions, _) = interactor.state.value,
+            index >= 0,
+            index < submissions.count
+        else { return nil }
+
         return SubmissionGrader(
             env: env,
             index: index,
             assignment: assignment,
-            submission: submissions.all[index],
+            submission: submissions[index],
             handleRefresh: { [weak self] in
-                self?.submissions.refresh(force: true)
+                self?.interactor.refreshSubmission(forUserId: submissions[index].userID)
             }
         )
-    }
-
-    func updatePages() {
-        for page in pages.children.compactMap({ $0 as? Page }) {
-            if let grader = grader(for: page.rootView.content.index) {
-                page.rootView.content = grader
-            }
-        }
     }
 
     /// Helper function to help normalize user ids coming from webview urls
@@ -207,6 +196,6 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
             return userID
         }
 
-        return SpeedGraderViewController.AllUsersUserID
+        return SpeedGraderAllUsersUserID
     }
 }

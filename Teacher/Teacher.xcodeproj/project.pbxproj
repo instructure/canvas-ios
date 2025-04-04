@@ -112,6 +112,7 @@
 		CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E556299D1A1100F57F69 /* QuizSubmissionListItem.swift */; };
 		CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E558299D1AEC00F57F69 /* QuizSubmissionListView.swift */; };
 		CF20B5C02B1F9C7F00C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5BF2B1F9C7F00C00B39 /* LaunchScreen.storyboard */; };
+		CF4C5F7C2DA02401005AE000 /* SpeedGraderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4C5F7B2DA023FB005AE000 /* SpeedGraderInteractor.swift */; };
 		CF56B71525F68CD3000DD32F /* SubmissionHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */; };
 		CF67D00A2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00C2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */; };
@@ -321,6 +322,7 @@
 		CF13E556299D1A1100F57F69 /* QuizSubmissionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItem.swift; sourceTree = "<group>"; };
 		CF13E558299D1AEC00F57F69 /* QuizSubmissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListView.swift; sourceTree = "<group>"; };
 		CF20B5BF2B1F9C7F00C00B39 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CF4C5F7B2DA023FB005AE000 /* SpeedGraderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractor.swift; sourceTree = "<group>"; };
 		CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderTests.swift; sourceTree = "<group>"; };
 		CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -905,6 +907,7 @@
 		CF0605DA2D95AAE90014C2EC /* StudentPager */ = {
 			isa = PBXGroup;
 			children = (
+				CF4C5F7A2DA023EB005AE000 /* Model */,
 				CF0605DB2D95AB060014C2EC /* View */,
 			);
 			path = StudentPager;
@@ -1080,6 +1083,14 @@
 				D9624A5129B0E90800F5303F /* QuizSubmissionListFilter.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		CF4C5F7A2DA023EB005AE000 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF4C5F7B2DA023FB005AE000 /* SpeedGraderInteractor.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CFCADAF72D9D9086003796E7 /* Ratings */ = {
@@ -1453,6 +1464,7 @@
 			files = (
 				7D0D7AE2251E6E6C00550AEC /* SubmissionListViewController.swift in Sources */,
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
+				CF4C5F7C2DA02401005AE000 /* SpeedGraderInteractor.swift in Sources */,
 				CF93FCB82D5A5AF600C4538F /* SpeedGraderAssembly.swift in Sources */,
 				7D3DC0C0252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift in Sources */,
 				7D7126C425374457000DEDE4 /* SubmissionCommentList.swift in Sources */,
