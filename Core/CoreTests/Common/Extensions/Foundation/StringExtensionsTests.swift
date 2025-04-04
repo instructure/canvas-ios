@@ -113,4 +113,10 @@ class StringExtensionsTests: XCTestCase {
         texts = []
         XCTAssertEqual(texts.joined(separator: "."), "")
     }
+
+    func testIsNilOrEmpty() {
+        XCTAssertEqual((nil as String?).isNilOrEmpty, true)
+        XCTAssertEqual(("" as String?).isNilOrEmpty, true)
+        XCTAssertEqual(("a" as String?).isNilOrEmpty, false)
+    }
 }

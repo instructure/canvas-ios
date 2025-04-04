@@ -19,8 +19,8 @@
 import Foundation
 import CoreData
 
-public final class Rubric: NSManagedObject {
-    public typealias JSON = APIRubric
+public final class CDRubricCriterion: NSManagedObject {
+    public typealias JSON = APIRubricCriterion
 
     @NSManaged public var assignmentID: String
     @NSManaged public var criterionUseRange: Bool
@@ -31,18 +31,18 @@ public final class Rubric: NSManagedObject {
     @NSManaged public var points: Double
     @NSManaged public var ratingsRaw: NSOrderedSet?
 
-    public var ratings: [RubricRating]? {
-        get { ratingsRaw?.array as? [RubricRating] }
+    public var ratings: [CDRubricRating]? {
+        get { ratingsRaw?.array as? [CDRubricRating] }
         set { ratingsRaw = newValue.map { NSOrderedSet(array: $0) } }
     }
 
     @discardableResult
-    public static func save(_ item: APIRubric, assignmentID: String, in context: NSManagedObjectContext) -> Rubric {
+    public static func save(_ item: APIRubricCriterion, assignmentID: String, in context: NSManagedObjectContext) -> CDRubricCriterion {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-            #keyPath(Rubric.id), item.id.value,
-            #keyPath(Rubric.assignmentID), assignmentID
+            #keyPath(CDRubricCriterion.id), item.id.value,
+            #keyPath(CDRubricCriterion.assignmentID), assignmentID
         )
-        let model: Rubric = context.fetch(predicate).first ?? context.insert()
+        let model: CDRubricCriterion = context.fetch(predicate).first ?? context.insert()
         model.assignmentID = assignmentID
         model.criterionUseRange = item.criterion_use_range
         model.desc = item.description
@@ -56,14 +56,14 @@ public final class Rubric: NSManagedObject {
             model.ratings = nil
         }
         if let ratings = item.ratings {
-            model.ratings = ratings.map { RubricRating.save($0, assignmentID: assignmentID, in: context) }
+            model.ratings = ratings.map { CDRubricRating.save($0, assignmentID: assignmentID, in: context) }
         }
 
         return model
     }
 }
 
-public final class RubricRating: NSManagedObject {
+public final class CDRubricRating: NSManagedObject {
     public typealias JSON = APIRubricRating
 
     @NSManaged public var assignmentID: String
@@ -74,12 +74,12 @@ public final class RubricRating: NSManagedObject {
     @NSManaged public var position: Int
 
     @discardableResult
-    public static func save(_ item: APIRubricRating, assignmentID: String, in context: NSManagedObjectContext) -> RubricRating {
+    public static func save(_ item: APIRubricRating, assignmentID: String, in context: NSManagedObjectContext) -> CDRubricRating {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-            #keyPath(RubricRating.id), item.id.value,
-            #keyPath(RubricRating.assignmentID), assignmentID
+            #keyPath(CDRubricRating.id), item.id.value,
+            #keyPath(CDRubricRating.assignmentID), assignmentID
         )
-        let model: RubricRating = context.fetch(predicate).first ?? context.insert()
+        let model: CDRubricRating = context.fetch(predicate).first ?? context.insert()
         model.assignmentID = assignmentID
         model.desc = item.description
         model.id = item.id.value
@@ -116,5 +116,13 @@ public final class RubricAssessment: NSManagedObject {
         model.ratingID = item.rating_id ?? ""
         model.submissionID = submissionID
         return model
+    }
+
+    public var apiEntity: APIRubricAssessment {
+        APIRubricAssessment(
+            comments: comments,
+            points: points,
+            rating_id: ratingID
+        )
     }
 }

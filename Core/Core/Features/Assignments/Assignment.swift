@@ -131,8 +131,8 @@ public class Assignment: NSManagedObject {
         set { pointsPossibleRaw = NSNumber(value: newValue) }
     }
 
-    public var rubric: [Rubric]? {
-        get { rubricRaw?.array as? [Rubric] }
+    public var rubric: [CDRubricCriterion]? {
+        get { rubricRaw?.array as? [CDRubricCriterion] }
         set { rubricRaw = newValue.map { NSOrderedSet(array: $0) } }
     }
 
@@ -232,7 +232,7 @@ extension Assignment {
         }
 
         if let apiRubrics = item.rubric, !apiRubrics.isEmpty {
-            rubric = apiRubrics.map { Rubric.save($0, assignmentID: item.id.value, in: client) }
+            rubric = apiRubrics.map { CDRubricCriterion.save($0, assignmentID: item.id.value, in: client) }
         }
 
         freeFormCriterionCommentsOnRubric = item.rubric_settings?.free_form_criterion_comments == true
