@@ -58,9 +58,10 @@ public extension XCUIElement {
         case longTap
     }
 
-    // MARK: Static vars
+    // MARK: Constants
+
     static let defaultTimeout: TimeInterval = 20
-    static var defaultGracePeriod: TimeInterval = 1
+    static let defaultGracePeriod: TimeInterval = 1
 
     // MARK: Properties
 
@@ -75,8 +76,6 @@ public extension XCUIElement {
 
     // MARK: Functions
     func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
-
-    func idContains(expected: String) -> Bool { identifier.contains(expected) }
 
     private func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
         let elementValue = value as? String ?? ""
@@ -96,6 +95,24 @@ public extension XCUIElement {
         return self
     }
 
+    private func checkCondition(_ condition: ElementCondition) -> Bool {
+        switch condition {
+        case .vanish: isVanished
+        case .visible: isVisible
+        case .value(let expected, let strict): hasValue(value: expected, strict: strict)
+        case .label(let expected, let strict): hasLabel(label: expected, strict: strict)
+        case .enabled: exists && isEnabled
+        case .disabled: isDisabled
+        case .selected: exists && isSelected
+        case .unselected: !isSelected
+        case .hittable: isVisible && isHittable
+        case .labelContaining(let expected): label.contains(expected)
+        case .labelHasPrefix(let expected): label.hasPrefix(expected)
+        case .labelHasSuffix(let expected): label.hasSuffix(expected)
+        case .idContains(let expected): identifier.contains(expected)
+        }
+    }
+
     /**
      * Waits until the given condition is true.
      *
@@ -106,43 +123,19 @@ public extension XCUIElement {
      * - returns: self, so calls can be chained.
      */
     @discardableResult
-    func waitUntil(_ condition: ElementCondition,
-                   timeout: TimeInterval = defaultTimeout,
-                   gracePeriod: TimeInterval = defaultGracePeriod) -> XCUIElement {
+    func waitUntil(
+        _ condition: ElementCondition,
+        timeout: TimeInterval = defaultTimeout,
+        gracePeriod: TimeInterval = defaultGracePeriod
+    ) -> XCUIElement {
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
-            var result = false
-
-            switch condition {
-            case .vanish:
-                result = isVanished
-            case .visible:
-                result = isVisible
-            case .value(let expected, let strict):
-                result = hasValue(value: expected, strict: strict)
-            case .label(let expected, let strict):
-                result = hasLabel(label: expected, strict: strict)
-            case .enabled:
-                result = exists && isEnabled
-            case .disabled:
-                result = isDisabled
-            case .selected:
-                result = exists && isSelected
-            case .unselected:
-                result = !isSelected
-            case .hittable:
-                result = isVisible && isHittable
-            case .labelContaining(let expected):
-                result = label.contains(expected)
-            case .labelHasPrefix(let expected):
-                result = label.hasPrefix(expected)
-            case .labelHasSuffix(let expected):
-                result = label.hasSuffix(expected)
-            case .idContains(let expected):
-                result = idContains(expected: expected)
+            if checkCondition(condition) {
+                return self
             }
-            if result { break } else { tacticalSleep(gracePeriod) }
+
+            tacticalSleep(gracePeriod)
         }
         return self
     }
@@ -159,48 +152,21 @@ public extension XCUIElement {
      * - returns: true or false, depending on if the condition has been fulfilled.
      */
     @discardableResult
-    func actionUntilElementCondition(action: ElementAction,
-                                     element: XCUIElement? = nil,
-                                     condition: ElementCondition,
-                                     timeout: TimeInterval = defaultTimeout,
-                                     gracePeriod: TimeInterval = defaultGracePeriod) -> Bool {
+    func actionUntilElementCondition(
+        action: ElementAction,
+        element: XCUIElement? = nil,
+        condition: ElementCondition,
+        timeout: TimeInterval = defaultTimeout,
+        gracePeriod: TimeInterval = defaultGracePeriod
+    ) -> Bool {
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         let actualElement = element ?? self
 
         while Date() < deadline {
-            var result = false
-
-            switch condition {
-            case .vanish:
-                result = actualElement.isVanished
-            case .visible:
-                result = actualElement.isVisible
-            case .value(let expected, let strict):
-                result = actualElement.hasValue(value: expected, strict: strict)
-            case .label(let expected, let strict):
-                result = actualElement.hasLabel(label: expected, strict: strict)
-            case .enabled:
-                result = actualElement.exists && actualElement.isEnabled
-            case .disabled:
-                result = actualElement.isDisabled
-            case .selected:
-                result = actualElement.exists && actualElement.isSelected
-            case .unselected:
-                result = !actualElement.isSelected
-            case .hittable:
-                result = actualElement.isVisible && actualElement.isHittable
-            case .labelContaining(let expected):
-                result = label.contains(expected)
-            case .labelHasPrefix(let expected):
-                result = label.hasPrefix(expected)
-            case .labelHasSuffix(let expected):
-                result = label.hasSuffix(expected)
-            case .idContains(let expected):
-                result = idContains(expected: expected)
+            if actualElement.checkCondition(condition) {
+                return true
             }
-
-            if result { return true }
 
             switch action {
             case .tap: hit()
