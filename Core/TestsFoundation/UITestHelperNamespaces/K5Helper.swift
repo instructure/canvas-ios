@@ -68,3 +68,9 @@ public class K5Helper: BaseHelper {
         public static func courseProgressCard(course: DSCourse) -> XCUIElement { return app.find(labelContaining: course.name.uppercased()) }
     }
 }
+
+private extension Date {
+    var isFutureDate: Bool {
+        startOfDay() > Date.now.startOfDay()
+    }
+}
