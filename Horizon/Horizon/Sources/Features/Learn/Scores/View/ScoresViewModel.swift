@@ -43,6 +43,7 @@ final class ScoresViewModel {
 
     // MARK: - Dependencies
 
+    private let interactor: ScoresInteractor
     private let router: Router
 
     // MARK: - Private properties
@@ -56,27 +57,12 @@ final class ScoresViewModel {
         interactor: ScoresInteractor,
         router: Router
     ) {
+        self.interactor = interactor
         self.router = router
 
-        weak var weakSelf = self
-
-        selectedFilterOptionRelay
-            .flatMap { sortedBy in
-                interactor.getScores(sortedBy: sortedBy)
-            }
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure:
-                    weakSelf?.viewState = .error
-                }
-
-            }, receiveValue: { value in
-                weakSelf?.viewState = .data
-                weakSelf?.scoreDetails = value
-            })
-            .store(in: &subscriptions)
+        Task {
+            await load()
+        }
     }
 
     // MARK: - Inputs
@@ -84,5 +70,40 @@ final class ScoresViewModel {
     func navigateToCourseDetails(url: URL?, viewController: WeakViewController) {
         guard let url else { return }
         router.route(to: url, from: viewController)
+    }
+
+    // MARK: - Public
+
+    func refresh() async {
+        await load(isRefresh: true)
+    }
+
+    // MARK: - Private
+
+    private func load(isRefresh: Bool = false) async {
+        weak var weakSelf = self
+        await withCheckedContinuation { continuation in
+            guard let self = weakSelf else { return }
+
+            selectedFilterOptionRelay
+                .flatMap { sortedBy in
+                    self.interactor.getScores(sortedBy: sortedBy, refresh: isRefresh)
+                }
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure:
+                        self.viewState = .error
+                    }
+
+                }, receiveValue: { value in
+                    self.viewState = .data
+                    self.scoreDetails = value
+
+                    continuation.resume()
+                })
+                .store(in: &subscriptions)
+        }
     }
 }
