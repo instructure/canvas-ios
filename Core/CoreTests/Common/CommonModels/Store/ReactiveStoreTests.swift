@@ -20,6 +20,7 @@ import Combine
 @testable import Core
 import CoreData
 import Foundation
+import TestsFoundation
 import XCTest
 
 class ReactiveStoreTests: CoreTestCase {
@@ -386,6 +387,21 @@ class ReactiveStoreTests: CoreTestCase {
         subscription.cancel()
     }
 
+    // MARK: - Custom App Environment
+
+    func testCustomEnvironmentIsUsed() {
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testEnvironment = TestEnvironment()
+        store = ReactiveStore(useCase: useCase, environment: testEnvironment)
+
+        XCTAssertFinish(store.getEntities(ignoreCache: true))
+
+        XCTAssertTrue(useCase.receivedEnvironmentInMakeRequest === testEnvironment)
+        XCTAssertTrue(useCase.receivedEnvironmentInMakeRequest !== AppEnvironment.shared)
+    }
+
+    // MARK: - Private methods
+
     private func createStore<U: UseCase>(useCase: U) -> ReactiveStore<U> {
         ReactiveStore(
             offlineModeInteractor: createOfflineModeInteractor(),
@@ -443,12 +459,14 @@ extension ReactiveStoreTests {
         }
     }
 
-    struct TestUseCase: UseCase {
+    class TestUseCase: UseCase {
         typealias Model = Course
 
         let courses: [APICourse]?
         let requestError: Error?
         let urlResponse: URLResponse?
+
+        private(set) var receivedEnvironmentInMakeRequest: AppEnvironment?
 
         init(courses: [APICourse]? = nil, requestError: Error? = nil, urlResponse: URLResponse? = nil) {
             self.courses = courses
@@ -464,7 +482,8 @@ extension ReactiveStoreTests {
             return "test-use-case"
         }
 
-        func makeRequest(environment _: AppEnvironment, completionHandler: @escaping ([APICourse]?, URLResponse?, Error?) -> Void) {
+        func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APICourse]?, URLResponse?, Error?) -> Void) {
+            receivedEnvironmentInMakeRequest = environment
             completionHandler(courses, urlResponse, requestError)
         }
 
