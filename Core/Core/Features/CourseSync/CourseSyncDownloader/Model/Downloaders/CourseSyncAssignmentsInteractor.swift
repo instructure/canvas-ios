@@ -33,7 +33,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
 
     public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetAssignmentsByGroup(courseID: courseId.value),
+            useCase: GetAssignmentsByGroup(courseID: courseId.id),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -47,8 +47,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: htmlParser.sectionName
         )
         return FileManager.default.removeItemPublisher(at: rootURL)
@@ -62,7 +61,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
     ) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetSubmissionComments(
-                context: .course(courseID.value),
+                context: courseID.asContext,
                 assignmentID: assignmentID,
                 userID: userID
             ),

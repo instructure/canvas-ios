@@ -182,7 +182,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     ) -> AnyPublisher<String, Error> {
         var rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: courseId.env.currentSession?.uniqueID ?? "",
-            courseId: courseId.value,
+            courseId: courseId.id,
             sectionName: sectionName,
             resourceId: resourceId
         )

@@ -35,7 +35,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
         Publishers.Zip(
             ReactiveStore(
                 useCase: GetFrontPage(
-                    context: .course(courseId.value)
+                    context: courseId.asContext
                 ),
                 environment: courseId.env
             )
@@ -44,7 +44,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
 
             ReactiveStore(
                 useCase: GetPages(
-                    context: .course(courseId.value)
+                    context: courseId.asContext
                 ),
                 environment: courseId.env
             )
@@ -57,8 +57,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: htmlParser.sectionName
         )
 

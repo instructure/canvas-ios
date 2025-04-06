@@ -46,11 +46,11 @@ public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInt
     }
 
     private func fetchConferences(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetConferences(context: .course(courseId.value)), courseId.env)
+        fetchUseCase(GetConferences(context: courseId.asContext), courseId.env)
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId.value), courseId.env)
+        fetchUseCase(GetCourse(courseID: courseId.id), courseId.env)
     }
 
     private func fetchUseCase<U: UseCase>(_ useCase: U, _ env: AppEnvironment) -> AnyPublisher<Void, Error> {

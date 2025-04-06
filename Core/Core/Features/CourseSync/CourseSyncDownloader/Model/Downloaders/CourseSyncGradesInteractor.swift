@@ -64,7 +64,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
 
     private static func fetchGradingPeriods(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetGradingPeriods(courseID: courseId.value),
+            useCase: GetGradingPeriods(courseID: courseId.id),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -74,7 +74,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
 
     private static func fetchCourseAndGetGradingPeriodID(courseId: CourseSyncID, userId: String) -> AnyPublisher<CurrentGradingPeriodID?, Error> {
         ReactiveStore(
-            useCase: GetCourse(courseID: courseId.value),
+            useCase: GetCourse(courseID: courseId.id),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -83,7 +83,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     }
 
     private static func fetchEnrollments(courseId: CourseSyncID, userId: String, gradingPeriodID: String?) -> AnyPublisher<Void, Error> {
-        let useCase = GetEnrollments(context: .course(courseId.value),
+        let useCase = GetEnrollments(context: courseId.asContext,
                                      userID: userId,
                                      gradingPeriodID: gradingPeriodID,
                                      types: ["StudentEnrollment"],
@@ -95,7 +95,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     }
 
     private static func fetchAssignments(courseId: CourseSyncID, gradingPeriodID: String?) -> AnyPublisher<Void, Error> {
-        let useCase = GetAssignmentsByGroup(courseID: courseId.value,
+        let useCase = GetAssignmentsByGroup(courseID: courseId.id,
                                             gradingPeriodID: gradingPeriodID,
                                             gradedOnly: true)
         return ReactiveStore(useCase: useCase, environment: courseId.env)

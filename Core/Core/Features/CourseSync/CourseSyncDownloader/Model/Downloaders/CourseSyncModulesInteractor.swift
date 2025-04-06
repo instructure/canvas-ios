@@ -41,7 +41,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
 
     public func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
-            useCase: GetModules(courseID: courseId.value),
+            useCase: GetModules(courseID: courseId.id),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -60,7 +60,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             .flatMap {
                 ReactiveStore(
                     useCase: GetModuleItemSequence(
-                        courseID: courseID.value,
+                        courseID: courseID.id,
                         assetType: .moduleItem,
                         assetID: $0.id
                     ),
@@ -108,7 +108,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         return urls.publisher
             .flatMap { [pageHtmlParser] in
                 ReactiveStore(
-                    useCase: GetPage(context: .course(courseId.value), url: $0),
+                    useCase: GetPage(context: courseId.asContext, url: $0),
                     environment: courseId.env
                 )
                 .getEntities(ignoreCache: true)
@@ -128,7 +128,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         return ids.publisher
             .flatMap { [quizHtmlParser] in
                 ReactiveStore(
-                    useCase: GetQuiz(courseID: courseId.value, quizID: $0),
+                    useCase: GetQuiz(courseID: courseId.id, quizID: $0),
                     environment: courseId.env
                 )
                 .getEntities(ignoreCache: true)
@@ -149,7 +149,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         return ids.publisher
             .flatMap {
                 ReactiveStore(
-                    useCase: GetFile(context: .course(courseId.value), fileID: $0),
+                    useCase: GetFile(context: courseId.asContext, fileID: $0),
                     environment: courseId.env
                 )
                 .getEntities(ignoreCache: true)
@@ -160,7 +160,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                             .eraseToAnyPublisher()
                     }
                     return filesInteractor.downloadFile(
-                        courseId: courseId.value,
+                        courseId: courseId.id,
                         url: url,
                         fileID: fileID,
                         fileName: file.filename,

@@ -44,13 +44,11 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURLAssignmentEvent = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: assignmentEventHtmlParser.sectionName
         )
         let rootURLCalendarEvent = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: calendarEventHtmlParser.sectionName
         )
 
@@ -80,7 +78,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     typealias SyllabusSummaryEnabled = Bool
     private func fetchCourseSettingsAndGetSyllabusSummaryState(courseId: CourseSyncID) -> AnyPublisher<SyllabusSummaryEnabled, Error> {
         ReactiveStore(
-            useCase: GetCourseSettings(courseID: courseId.value),
+            useCase: GetCourseSettings(courseID: courseId.id),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -90,7 +88,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
 
     private static func fetchAssignments(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetCalendarEvents(context: .course(courseId.value), type: .assignment),
+            useCase: GetCalendarEvents(context: courseId.asContext, type: .assignment),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -111,7 +109,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
 
     private static func fetchEvents(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetCalendarEvents(context: .course(courseId.value), type: .event),
+            useCase: GetCalendarEvents(context: courseId.asContext, type: .event),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -131,7 +129,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourse(courseID: courseId.value), environment: courseId.env)
+        ReactiveStore(useCase: GetCourse(courseID: courseId.id), environment: courseId.env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

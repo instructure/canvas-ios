@@ -47,12 +47,12 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId.value), env: courseId.env)
+        fetchUseCase(GetCourse(courseID: courseId.id), env: courseId.env)
     }
 
     private func fetchAnnouncements(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         return ReactiveStore(
-            useCase: GetAnnouncements(context: .course(courseId.value)),
+            useCase: GetAnnouncements(context: courseId.asContext),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -72,7 +72,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
         htmlParser: HTMLParser
     ) -> AnyPublisher<Void, Error> {
         return ReactiveStore(
-            useCase: GetDiscussionView(context: .course(courseId.value), topicID: topicId),
+            useCase: GetDiscussionView(context: courseId.asContext, topicID: topicId),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -85,7 +85,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
 
     private func fetchFeatureFlags(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         fetchUseCase(
-            GetEnabledFeatureFlags(context: .course(courseId.value)),
+            GetEnabledFeatureFlags(context: courseId.asContext),
             env: courseId.env
         )
     }
@@ -99,8 +99,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: htmlParser.sectionName
         )
 

@@ -117,6 +117,14 @@ public extension URL {
                 "\(sessionId)/Offline/course-\(courseId)/\(sectionName)"
             }
 
+            public static func courseSectionFolderURL(courseId: CourseSyncID, sectionName: String) -> URL {
+                courseSectionFolderURL(
+                    sessionId: courseId.sessionId,
+                    courseId: courseId.id,
+                    sectionName: sectionName
+                )
+            }
+
             public static func courseSectionFolderURL(
                 sessionId: String,
                 courseId: String,

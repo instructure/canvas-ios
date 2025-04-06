@@ -27,7 +27,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
 
     func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
 
-        let context: Context = .course(courseId.value)
+        let context: Context = courseId.asContext
 
         return [
             Self.fetchCourseColors(),
@@ -67,7 +67,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
 
     private static func fetchSections(courseID: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetCourseSections(courseID: courseID.value),
+            useCase: GetCourseSections(courseID: courseID.id),
             environment: courseID.env
         )
         .getEntities(ignoreCache: true)

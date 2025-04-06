@@ -19,8 +19,12 @@
 import Foundation
 
 public struct CourseSyncID {
-    let value: String
+    private let value: String
     let apiBaseURL: URL?
+
+    var id: String {
+        value.localID
+    }
 
     var env: AppEnvironment {
         .resolved(for: apiBaseURL)
@@ -29,6 +33,8 @@ public struct CourseSyncID {
     var sessionId: String {
         env.currentSession?.uniqueID ?? ""
     }
+
+    var asContext: Context { .course(id) }
 
     fileprivate init(value: String, apiBaseURL: URL?) {
         self.value = value

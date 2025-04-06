@@ -43,13 +43,11 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURLTopic = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: discussionHtmlParser.sectionName
         )
         let rootURLView = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: discussionHtmlParser.sectionName
         )
 
@@ -67,7 +65,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     ) -> AnyPublisher<[DiscussionTopic], Error> {
 
         return ReactiveStore(
-            useCase: GetDiscussionTopics(context: .course(courseId.value)),
+            useCase: GetDiscussionTopics(context: courseId.asContext),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -83,7 +81,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     ) -> AnyPublisher<Void, Error> {
 
         return ReactiveStore(
-            useCase: GetDiscussionView(context: .course(courseId.value), topicID: topicId),
+            useCase: GetDiscussionView(context: courseId.asContext, topicID: topicId),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)

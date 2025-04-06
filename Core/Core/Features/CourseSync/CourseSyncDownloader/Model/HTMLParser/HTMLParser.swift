@@ -184,8 +184,8 @@ public class HTMLParserLive: HTMLParser {
     private func getRootURL(courseId: CourseSyncID, resourceId: String) -> URL {
         return URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseSectionFolder(
-                sessionId: courseId.env.currentSession?.uniqueID ?? "",
-                courseId: courseId.value,
+                sessionId: courseId.sessionId,
+                courseId: courseId.id,
                 sectionName: sectionName
             )
         )

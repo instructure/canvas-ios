@@ -43,8 +43,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: courseId.sessionId,
-            courseId: courseId.value,
+            courseId: courseId,
             sectionName: htmlParser.sectionName
         )
 
@@ -63,7 +62,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
 
     private func getQuizzes(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetQuizzes(courseID: courseId.value),
+            useCase: GetQuizzes(courseID: courseId.id),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -80,7 +79,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
 
     private static func getQuiz(courseId: CourseSyncID, quizId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetQuiz(courseID: courseId.value, quizID: quizId),
+            useCase: GetQuiz(courseID: courseId.id, quizID: quizId),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
