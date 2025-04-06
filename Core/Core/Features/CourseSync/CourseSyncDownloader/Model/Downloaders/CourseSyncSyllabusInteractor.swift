@@ -83,9 +83,9 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             useCase: GetCourseSettings(courseID: courseId.value),
             environment: courseId.env
         )
-            .getEntities(ignoreCache: true)
-            .map { $0.first?.syllabusCourseSummary == true }
-            .eraseToAnyPublisher()
+        .getEntities(ignoreCache: true)
+        .map { $0.first?.syllabusCourseSummary == true }
+        .eraseToAnyPublisher()
     }
 
     private static func fetchAssignments(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
@@ -93,20 +93,20 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             useCase: GetCalendarEvents(context: .course(courseId.value), type: .assignment),
             environment: courseId.env
         )
-            .getEntities(ignoreCache: true)
-            .map { (assignments: [CalendarEvent]) -> [CalendarEvent] in
-                // AssignmentEvent objects' ids are synthetic ids, which means they contain the type as prefix: assignment_987.
-                // We store the prefix separately so it doesn't neccessary
-                assignments.forEach { a in
-                    if let index = a.id.firstIndex(of: "_") {
-                        a.id = String(a.id.suffix(from: a.id.index(index, offsetBy: 1)))
-                    }
+        .getEntities(ignoreCache: true)
+        .map { (assignments: [CalendarEvent]) -> [CalendarEvent] in
+            // AssignmentEvent objects' ids are synthetic ids, which means they contain the type as prefix: assignment_987.
+            // We store the prefix separately so it doesn't neccessary
+            assignments.forEach { a in
+                if let index = a.id.firstIndex(of: "_") {
+                    a.id = String(a.id.suffix(from: a.id.index(index, offsetBy: 1)))
                 }
-                return assignments
             }
-            .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
-            .mapToVoid()
-            .eraseToAnyPublisher()
+            return assignments
+        }
+        .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
     private static func fetchEvents(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
@@ -114,10 +114,10 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             useCase: GetCalendarEvents(context: .course(courseId.value), type: .event),
             environment: courseId.env
         )
-            .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
-            .mapToVoid()
-            .eraseToAnyPublisher()
+        .getEntities(ignoreCache: true)
+        .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
     // MARK: - Syllabus Content

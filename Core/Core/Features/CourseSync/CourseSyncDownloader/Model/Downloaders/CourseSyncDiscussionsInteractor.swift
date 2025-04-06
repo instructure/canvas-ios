@@ -70,10 +70,10 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
             useCase: GetDiscussionTopics(context: .course(courseId.value)),
             environment: courseId.env
         )
-            .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
-            .parseAttachment(attribute: \.attachments, id: \.id, courseId: courseId, htmlParser: htmlParser)
-            .eraseToAnyPublisher()
+        .getEntities(ignoreCache: true)
+        .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
+        .parseAttachment(attribute: \.attachments, id: \.id, courseId: courseId, htmlParser: htmlParser)
+        .eraseToAnyPublisher()
     }
 
     private static func getDiscussionView(
@@ -86,11 +86,11 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
             useCase: GetDiscussionView(context: .course(courseId.value), topicID: topicId),
             environment: courseId.env
         )
-            .getEntities(ignoreCache: true)
-            .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
-            .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
-            .parseRepliesHtmlContent(courseId: courseId, topicId: topicId, htmlParser: htmlParser)
-            .mapToVoid()
-            .eraseToAnyPublisher()
+        .getEntities(ignoreCache: true)
+        .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
+        .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
+        .parseRepliesHtmlContent(courseId: courseId, topicId: topicId, htmlParser: htmlParser)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 }

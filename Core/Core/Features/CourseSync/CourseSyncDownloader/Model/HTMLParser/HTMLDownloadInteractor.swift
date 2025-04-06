@@ -76,12 +76,15 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             .flatMap { url in
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let context = Context(url: url)
-                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileID), environment: courseId.env)
-                        .getEntities(ignoreCache: false)
-                        .map { files in
-                            return files.first?.url ?? url
-                        }
-                        .eraseToAnyPublisher()
+                    return ReactiveStore(
+                        useCase: GetFile(context: context, fileID: fileID),
+                        environment: courseId.env
+                    )
+                    .getEntities(ignoreCache: false)
+                    .map { files in
+                        return files.first?.url ?? url
+                    }
+                    .eraseToAnyPublisher()
                 } else {
                     return Just(url).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }

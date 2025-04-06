@@ -63,17 +63,23 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     }
 
     private static func fetchGradingPeriods(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetGradingPeriods(courseID: courseId.value), environment: courseId.env)
-            .getEntities(ignoreCache: true)
-            .mapToVoid()
-            .eraseToAnyPublisher()
+        ReactiveStore(
+            useCase: GetGradingPeriods(courseID: courseId.value),
+            environment: courseId.env
+        )
+        .getEntities(ignoreCache: true)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
     private static func fetchCourseAndGetGradingPeriodID(courseId: CourseSyncID, userId: String) -> AnyPublisher<CurrentGradingPeriodID?, Error> {
-        ReactiveStore(useCase: GetCourse(courseID: courseId.value), environment: courseId.env)
-            .getEntities(ignoreCache: true)
-            .map { $0.first?.enrollmentForGrades(userId: userId)?.currentGradingPeriodID }
-            .eraseToAnyPublisher()
+        ReactiveStore(
+            useCase: GetCourse(courseID: courseId.value),
+            environment: courseId.env
+        )
+        .getEntities(ignoreCache: true)
+        .map { $0.first?.enrollmentForGrades(userId: userId)?.currentGradingPeriodID }
+        .eraseToAnyPublisher()
     }
 
     private static func fetchEnrollments(courseId: CourseSyncID, userId: String, gradingPeriodID: String?) -> AnyPublisher<Void, Error> {

@@ -69,12 +69,15 @@ public class HTMLParserLive: HTMLParser {
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let context = Context(url: url)
-                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId), environment: courseId.env)
-                        .getEntities(ignoreCache: false)
-                        .map { files in
-                            (files.first?.url ?? url, url)
-                        }
-                        .eraseToAnyPublisher()
+                    return ReactiveStore(
+                        useCase: GetFile(context: context, fileID: fileId),
+                        environment: courseId.env
+                    )
+                    .getEntities(ignoreCache: false)
+                    .map { files in
+                        (files.first?.url ?? url, url)
+                    }
+                    .eraseToAnyPublisher()
                 } else if url.pathComponents.contains("files") {
                     if !url.pathComponents.contains("download") {
                         return Just((url.appendingPathComponent("download"), url)).setFailureType(to: Error.self).eraseToAnyPublisher()
@@ -99,12 +102,15 @@ public class HTMLParserLive: HTMLParser {
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let context = Context(url: url)
-                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId), environment: courseId.env)
-                        .getEntities(ignoreCache: false)
-                        .map { files in
-                            (files.first?.url ?? url, url)
-                        }
-                        .eraseToAnyPublisher()
+                    return ReactiveStore(
+                        useCase: GetFile(context: context, fileID: fileId),
+                        environment: courseId.env
+                    )
+                    .getEntities(ignoreCache: false)
+                    .map { files in
+                        (files.first?.url ?? url, url)
+                    }
+                    .eraseToAnyPublisher()
                 } else {
                     return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
