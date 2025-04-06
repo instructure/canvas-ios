@@ -25,9 +25,9 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
 
     var associatedTabType: TabName { .people }
 
-    func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
 
-        let context: Context = .course(courseId)
+        let context: Context = .course(courseId.value)
 
         return [
             Self.fetchCourseColors(),
@@ -40,7 +40,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         Just(()).eraseToAnyPublisher()
     }
 
@@ -65,8 +65,8 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchSections(courseID: String) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourseSections(courseID: courseID))
+    private static func fetchSections(courseID: CourseSyncID) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetCourseSections(courseID: courseID.value), environment: courseID.env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

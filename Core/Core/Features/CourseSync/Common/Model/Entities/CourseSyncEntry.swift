@@ -18,6 +18,24 @@
 
 import Foundation
 
+public struct CourseSyncID {
+    let value: String
+    let apiBaseURL: URL?
+
+    var env: AppEnvironment {
+        .resolved(for: apiBaseURL)
+    }
+
+    var sessionId: String {
+        env.currentSession?.uniqueID ?? ""
+    }
+
+    fileprivate init(value: String, apiBaseURL: URL?) {
+        self.value = value
+        self.apiBaseURL = apiBaseURL
+    }
+}
+
 public struct CourseSyncEntry: Equatable {
     public enum State: Codable, Equatable, Hashable {
         // CourseSyncEntryProgress relies on this order when it saves its' data.
@@ -36,6 +54,7 @@ public struct CourseSyncEntry: Equatable {
     let id: String
     let hasFrontPage: Bool
     var courseId: String { String(id.split(separator: "/").last ?? "") }
+    var syncID: CourseSyncID { CourseSyncID(value: courseId, apiBaseURL: apiBaseURL) }
 
     /// List of available tabs coming from the API + a manually added tab named "Additional Content" that is responsible for tracking the download of hidden tabs and such.
     var tabs: [CourseSyncEntry.Tab]
@@ -68,6 +87,9 @@ public struct CourseSyncEntry: Equatable {
             .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .filter { $0.selectionState == .selected }
     }
+
+    var apiBaseURL: URL?
+    var environment: AppEnvironment { .resolved(for: apiBaseURL) }
 
     var files: [CourseSyncEntry.File]
     var selectedFilesCount: Int {

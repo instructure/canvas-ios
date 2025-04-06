@@ -24,7 +24,8 @@ import Foundation
 public protocol CourseSyncFilesInteractor {
     func getFiles(
         courseId: String,
-        useCache: Bool
+        useCache: Bool,
+        environment: AppEnvironment
     ) -> AnyPublisher<[File], Error>
     func downloadFile(
         courseId: String,
@@ -32,25 +33,24 @@ public protocol CourseSyncFilesInteractor {
         fileID: String,
         fileName: String,
         mimeClass: String,
-        updatedAt: Date?
+        updatedAt: Date?,
+        environment: AppEnvironment
     ) -> AnyPublisher<Float, Error>
     func removeUnavailableFiles(
         courseId: String,
-        newFileIDs: [String]
+        newFileIDs: [String],
+        environment: AppEnvironment
     ) -> AnyPublisher<Void, Error>
 }
 
 public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
-    private let env: AppEnvironment
     private let fileManager: FileManager
     private let offlineFileInteractor: OfflineFileInteractor
 
     public init(
-        env: AppEnvironment = .shared,
         fileManager: FileManager = .default,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) {
-        self.env = env
         self.fileManager = fileManager
         self.offlineFileInteractor = offlineFileInteractor
     }
@@ -58,14 +58,16 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
     /// Recursively looks up every file and folder under the specified `courseId` and returns a list of `File`.
     public func getFiles(
         courseId: String,
-        useCache: Bool
+        useCache: Bool,
+        environment: AppEnvironment
     ) -> AnyPublisher<[File], Error> {
         unowned let unownedSelf = self
 
         let store = ReactiveStore(
             useCase: GetFolderByPath(
                 context: .course(courseId)
-            )
+            ),
+            environment: environment
         )
         let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities(ignoreCache: true)
 
@@ -74,7 +76,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
                 Publishers.Sequence(sequence: $0)
                     .filter { !$0.lockedForUser && !$0.hiddenForUser }
                     .setFailureType(to: Error.self)
-                    .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: [], useCache: useCache) }
+                    .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: [], useCache: useCache, environment: environment) }
             }
             .map {
                 $0
@@ -88,13 +90,14 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
     private func getFiles(
         folderID: String,
         initialArray: [FolderItem],
-        useCache: Bool
+        useCache: Bool,
+        environment: AppEnvironment
     ) -> AnyPublisher<[FolderItem], Error> {
         unowned let unownedSelf = self
 
         var result = initialArray
 
-        return getFolderItems(folderID: folderID, useCache: useCache)
+        return getFolderItems(folderID: folderID, useCache: useCache, environment: environment)
             .flatMap { files, folderIDs in
                 result.append(contentsOf: files)
 
@@ -109,7 +112,8 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
                         unownedSelf.getFiles(
                             folderID: $0,
                             initialArray: result,
-                            useCache: useCache
+                            useCache: useCache,
+                            environment: environment
                         )
                         .handleEvents(receiveOutput: { result = $0 })
                     }
@@ -121,11 +125,12 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             .eraseToAnyPublisher()
     }
 
-    private func getFolderItems(folderID: String, useCache: Bool) -> AnyPublisher<([FolderItem], [String]), Error> {
+    private func getFolderItems(folderID: String, useCache: Bool, environment: AppEnvironment) -> AnyPublisher<([FolderItem], [String]), Error> {
         let store = ReactiveStore(
             useCase: GetFolderItems(
                 folderID: folderID
-            )
+            ),
+            environment: environment
         )
         let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities(ignoreCache: true)
 
@@ -165,9 +170,10 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
         fileID: String,
         fileName: String,
         mimeClass: String,
-        updatedAt: Date?
+        updatedAt: Date?,
+        environment: AppEnvironment
     ) -> AnyPublisher<Float, Error> {
-        guard let sessionID = env.currentSession?.uniqueID else {
+        guard let sessionID = environment.currentSession?.uniqueID else {
             return Fail(error:
                 NSError.instructureError(
                     String(localized: "There was an unexpected error. Please try again.", bundle: .core)
@@ -211,9 +217,10 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
 
     public func removeUnavailableFiles(
         courseId: String,
-        newFileIDs: [String]
+        newFileIDs: [String],
+        environment: AppEnvironment
     ) -> AnyPublisher<Void, Error> {
-        guard let sessionID = env.currentSession?.uniqueID else {
+        guard let sessionID = environment.currentSession?.uniqueID else {
             return Fail(error:
                 NSError.instructureError(
                     String(localized: "There was an unexpected error. Please try again.", bundle: .core)

@@ -29,8 +29,8 @@ public protocol CourseSyncInteractor {
 
 public protocol CourseSyncContentInteractor {
     var associatedTabType: TabName { get }
-    func getContent(courseId: String) -> AnyPublisher<Void, Error>
-    func cleanContent(courseId: String) -> AnyPublisher<Void, Never>
+    func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error>
+    func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never>
 }
 
 public final class CourseSyncInteractorLive: CourseSyncInteractor {
@@ -275,12 +275,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         switch entry.tabs[tabIndex].selectionState {
         case .deselected:
-            return interactor.cleanContent(courseId: entry.courseId).eraseToAnyPublisher()
+            return interactor.cleanContent(courseId: entry.syncID).eraseToAnyPublisher()
         default:
             return Just(()).eraseToAnyPublisher()
-                .flatMap { interactor.cleanContent(courseId: entry.courseId).eraseToAnyPublisher() }
+                .flatMap { interactor.cleanContent(courseId: entry.syncID).eraseToAnyPublisher() }
                 .flatMap { [scheduler] in
-                    interactor.getContent(courseId: entry.courseId)
+                    interactor
+                        .getContent(courseId: entry.syncID)
                         .receive(on: scheduler)
                         .updateLoadingState {
                             unownedSelf.setState(
@@ -339,7 +340,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entry.tabs[tabIndex].selectionState == .selected ||
             entry.tabs[tabIndex].selectionState == .partiallySelected
         else {
-            return removeUnavailableFiles(courseId: entry.courseId)
+            return removeUnavailableFiles(courseId: entry.courseId, environment: entry.environment)
         }
 
         let files = entry.files.filter {
@@ -353,7 +354,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         guard !files.isEmpty else {
             return removeUnavailableFiles(
                 courseId: entry.courseId,
-                newFileIDs: files.map { $0.fileId }
+                newFileIDs: files.map { $0.fileId },
+                environment: entry.environment
             )
         }
 
@@ -390,7 +392,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .flatMap { _ in
                 unownedSelf.removeUnavailableFiles(
                     courseId: entry.courseId,
-                    newFileIDs: files.map { $0.fileId }
+                    newFileIDs: files.map { $0.fileId },
+                    environment: entry.environment
                 )
             }
             .eraseToAnyPublisher()
@@ -415,7 +418,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             fileID: file.fileId,
             fileName: file.fileName,
             mimeClass: file.mimeClass,
-            updatedAt: file.updatedAt
+            updatedAt: file.updatedAt,
+            environment: entry.environment
         )
         .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
         .handleEvents(
@@ -474,7 +478,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return Just(()).eraseToAnyPublisher()
         }
 
-        return modulesInteractor.getModuleItems(courseId: entry.courseId)
+        return modulesInteractor.getModuleItems(courseId: entry.syncID)
             .flatMap {
                 unownedSelf.getModuleSubItems(entry: entry, moduleItems: $0)
                     .zip()
@@ -527,11 +531,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             }
         }
 
-        var downloaders = interactors.map { $0.getContent(courseId: entry.courseId) }
+        var downloaders = interactors.map { $0.getContent(courseId: entry.syncID) }
 
         if tabsForModuleItemDownload.count > 0 {
             let modulesDownloaders = modulesInteractor.getAssociatedModuleItems(
-                courseId: entry.courseId,
+                courseId: entry.syncID,
                 moduleItemTypes: tabsForModuleItemDownload,
                 moduleItems: moduleItems
             )
@@ -547,15 +551,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         else {
             return Just(()).eraseToAnyPublisher()
         }
-        return interactor.getContent(courseId: entry.courseId)
+
+        return interactor.getContent(courseId: entry.syncID)
             .catch { _ in Just(()).eraseToAnyPublisher() }
             .eraseToAnyPublisher()
     }
 
-    private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = []) -> AnyPublisher<Void, Never> {
+    private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = [], environment: AppEnvironment) -> AnyPublisher<Void, Never> {
         filesInteractor.removeUnavailableFiles(
             courseId: courseId,
-            newFileIDs: newFileIDs
+            newFileIDs: newFileIDs,
+            environment: environment
         )
         .replaceError(with: ())
         .eraseToAnyPublisher()

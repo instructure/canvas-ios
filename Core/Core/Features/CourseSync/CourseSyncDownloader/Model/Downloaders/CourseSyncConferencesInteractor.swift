@@ -28,7 +28,7 @@ extension CourseSyncConferencesInteractor {
 public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInteractor {
     public init() {}
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Publishers
             .Zip3(fetchColors(),
                   fetchConferences(courseId: courseId),
@@ -37,24 +37,24 @@ public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInt
             .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(()).eraseToAnyPublisher()
     }
 
     private func fetchColors() -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCustomColors())
+        fetchUseCase(GetCustomColors(), .shared)
     }
 
-    private func fetchConferences(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetConferences(context: .course(courseId)))
+    private func fetchConferences(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        fetchUseCase(GetConferences(context: .course(courseId.value)), courseId.env)
     }
 
-    private func fetchCourse(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId))
+    private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        fetchUseCase(GetCourse(courseID: courseId.value), courseId.env)
     }
 
-    private func fetchUseCase<U: UseCase>(_ useCase: U) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: useCase)
+    private func fetchUseCase<U: UseCase>(_ useCase: U, _ env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: useCase, environment: env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

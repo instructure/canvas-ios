@@ -31,20 +31,22 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
         self.htmlParser = htmlParser
     }
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
             ReactiveStore(
                 useCase: GetFrontPage(
-                    context: .course(courseId)
-                )
+                    context: .course(courseId.value)
+                ),
+                environment: courseId.env
             )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser),
 
             ReactiveStore(
                 useCase: GetPages(
-                    context: .course(courseId)
-                )
+                    context: .course(courseId.value)
+                ),
+                environment: courseId.env
             )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -53,10 +55,10 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
         .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: htmlParser.sessionId,
-            courseId: courseId,
+            sessionId: courseId.sessionId,
+            courseId: courseId.value,
             sectionName: htmlParser.sectionName
         )
 

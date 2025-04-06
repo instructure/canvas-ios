@@ -31,7 +31,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
         self.discussionHtmlParser = discussionHtmlParser
     }
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Self.fetchTopics(courseId: courseId, htmlParser: discussionHtmlParser)
             .flatMap { $0.publisher }
             .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
@@ -41,15 +41,15 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
             .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURLTopic = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: discussionHtmlParser.sessionId,
-            courseId: courseId,
+            sessionId: courseId.sessionId,
+            courseId: courseId.value,
             sectionName: discussionHtmlParser.sectionName
         )
         let rootURLView = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: discussionHtmlParser.sessionId,
-            courseId: courseId,
+            sessionId: courseId.sessionId,
+            courseId: courseId.value,
             sectionName: discussionHtmlParser.sectionName
         )
 
@@ -62,11 +62,14 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     // MARK: - Private Methods
 
     private static func fetchTopics(
-        courseId: String,
+        courseId: CourseSyncID,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[DiscussionTopic], Error> {
 
-        return ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
+        return ReactiveStore(
+            useCase: GetDiscussionTopics(context: .course(courseId.value)),
+            environment: courseId.env
+        )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .parseAttachment(attribute: \.attachments, id: \.id, courseId: courseId, htmlParser: htmlParser)
@@ -74,12 +77,15 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     }
 
     private static func getDiscussionView(
-        courseId: String,
+        courseId: CourseSyncID,
         topicId: String,
         htmlParser: HTMLParser
     ) -> AnyPublisher<Void, Error> {
 
-        return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
+        return ReactiveStore(
+            useCase: GetDiscussionView(context: .course(courseId.value), topicID: topicId),
+            environment: courseId.env
+        )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)

@@ -20,8 +20,8 @@ import Combine
 import Foundation
 
 public protocol CourseSyncModulesInteractor {
-    func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error>
-    func getAssociatedModuleItems(courseId: String, moduleItemTypes: Set<TabName>, moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
+    func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error>
+    func getAssociatedModuleItems(courseId: CourseSyncID, moduleItemTypes: Set<TabName>, moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
 }
 
 public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor {
@@ -39,30 +39,32 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         self.quizHtmlParser = quizHtmlParser
     }
 
-    public func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error> {
+    public func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
-            useCase: GetModules(courseID: courseId)
+            useCase: GetModules(courseID: courseId.value),
+            environment: courseId.env
         )
         .getEntities(ignoreCache: true)
         .flatMap { $0.publisher }
-        .flatMap { Self.getModuleItemSequence(courseID: $0.courseID, moduleItems: $0.items) }
+        .flatMap { Self.getModuleItemSequence(courseID: courseId, moduleItems: $0.items) }
         .collect()
         .map { $0.flatMap { $0 } }
         .eraseToAnyPublisher()
     }
 
     private static func getModuleItemSequence(
-        courseID: String,
+        courseID: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<[ModuleItem], Error> {
         moduleItems.publisher
             .flatMap {
                 ReactiveStore(
                     useCase: GetModuleItemSequence(
-                        courseID: courseID,
+                        courseID: courseID.value,
                         assetType: .moduleItem,
                         assetID: $0.id
-                    )
+                    ),
+                    environment: courseID.env
                 )
                 .getEntities(ignoreCache: true)
             }
@@ -72,7 +74,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     }
 
     public func getAssociatedModuleItems(
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItemTypes: Set<TabName>,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
@@ -98,7 +100,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     }
 
     private func getModulePages(
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
         let urls = moduleItems.compactMap { $0.type?.pageUrl }
@@ -106,7 +108,8 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         return urls.publisher
             .flatMap { [pageHtmlParser] in
                 ReactiveStore(
-                    useCase: GetPage(context: .course(courseId), url: $0)
+                    useCase: GetPage(context: .course(courseId.value), url: $0),
+                    environment: courseId.env
                 )
                 .getEntities(ignoreCache: true)
                 .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: pageHtmlParser)
@@ -117,7 +120,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     }
 
     private func getModuleQuizzes(
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
         let ids = moduleItems.compactMap { $0.type?.quizzId }
@@ -125,7 +128,8 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         return ids.publisher
             .flatMap { [quizHtmlParser] in
                 ReactiveStore(
-                    useCase: GetQuiz(courseID: courseId, quizID: $0)
+                    useCase: GetQuiz(courseID: courseId.value, quizID: $0),
+                    environment: courseId.env
                 )
                 .getEntities(ignoreCache: true)
                 .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: quizHtmlParser)
@@ -137,7 +141,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
 
     private func getModuleFiles(
         filesInteractor: CourseSyncFilesInteractor,
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
         let ids = moduleItems.compactMap { $0.type?.fileId }
@@ -145,7 +149,8 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         return ids.publisher
             .flatMap {
                 ReactiveStore(
-                    useCase: GetFile(context: .course(courseId), fileID: $0)
+                    useCase: GetFile(context: .course(courseId.value), fileID: $0),
+                    environment: courseId.env
                 )
                 .getEntities(ignoreCache: true)
                 .flatMap { [filesInteractor] files -> AnyPublisher<Void, Error> in
@@ -155,12 +160,13 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                             .eraseToAnyPublisher()
                     }
                     return filesInteractor.downloadFile(
-                        courseId: courseId,
+                        courseId: courseId.value,
                         url: url,
                         fileID: fileID,
                         fileName: file.filename,
                         mimeClass: mimeClass,
-                        updatedAt: file.updatedAt
+                        updatedAt: file.updatedAt,
+                        environment: courseId.env
                     )
                     .collect()
                     .mapToVoid()

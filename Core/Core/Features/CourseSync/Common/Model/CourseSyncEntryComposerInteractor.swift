@@ -39,6 +39,11 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
         useCache: Bool
     ) -> AnyPublisher<CourseSyncEntry, Error> {
         let tabs = Array(course.tabs).offlineSupportedTabs()
+        let apiBaseURL = course
+            .tabs
+            .compactMap({ $0.apiBaseURL })
+            .first(where: { $0 != AppEnvironment.shared.api.baseURL })
+
         var mappedTabs = tabs.map {
             CourseSyncEntry.Tab(
                 id: "courses/\(course.courseId)/tabs/\($0.id)",
@@ -55,7 +60,12 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
             )
         )
 
-        return filesInteractor.getFiles(courseId: course.courseId, useCache: useCache)
+        return filesInteractor
+            .getFiles(
+                courseId: course.courseId,
+                useCache: useCache,
+                environment: .resolved(for: apiBaseURL)
+            )
             .map { files in
                 files.map {
                     CourseSyncEntry.File(
@@ -75,6 +85,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                     id: "courses/\(course.courseId)",
                     hasFrontPage: course.hasFrontPage,
                     tabs: mappedTabs,
+                    apiBaseURL: apiBaseURL,
                     files: files
                 )
             }

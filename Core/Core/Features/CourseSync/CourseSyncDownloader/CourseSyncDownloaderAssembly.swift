@@ -28,12 +28,12 @@ public enum CourseSyncDownloaderAssembly {
 
         let loginSession = env.currentSession
 
-        let pageHtmlParser = makeHTMLParser(for: .pages, loginSession: loginSession, scheduler: scheduler)
-        let assignmentHtmlParser = makeHTMLParser(for: .assignments, loginSession: loginSession, scheduler: scheduler)
-        let quizHtmlParser = makeHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
-        let announcementHtmlParser = makeHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
-        let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
-        let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
+        let pageHtmlParser = makeHTMLParser(for: .pages, scheduler: scheduler)
+        let assignmentHtmlParser = makeHTMLParser(for: .assignments, scheduler: scheduler)
+        let quizHtmlParser = makeHTMLParser(for: .quizzes, scheduler: scheduler)
+        let announcementHtmlParser = makeHTMLParser(for: .announcements, scheduler: scheduler)
+        let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, scheduler: scheduler)
+        let discussionHtmlParser = makeHTMLParser(for: .discussions, scheduler: scheduler)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
@@ -74,19 +74,15 @@ public enum CourseSyncDownloaderAssembly {
 
     private static func makeHTMLParser(
         for section: OfflineFolderPrefix,
-        loginSession: LoginSession?,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) -> HTMLParser {
-        let sessionId = loginSession?.uniqueID ?? ""
 
         let interactor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
             sectionName: section.rawValue,
             scheduler: scheduler
         )
 
         return HTMLParserLive(
-            sessionId: sessionId,
             downloadInteractor: interactor
         )
     }

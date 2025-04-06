@@ -34,7 +34,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
         self.calendarEventHtmlParser = calendarEventHtmlParser
     }
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Publishers
             .Zip(fetchSyllabusContent(courseId: courseId),
                  fetchSyllabusSummary(courseId: courseId))
@@ -42,15 +42,15 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURLAssignmentEvent = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: assignmentEventHtmlParser.sessionId,
-            courseId: courseId,
+            sessionId: courseId.sessionId,
+            courseId: courseId.value,
             sectionName: assignmentEventHtmlParser.sectionName
         )
         let rootURLCalendarEvent = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: calendarEventHtmlParser.sessionId,
-            courseId: courseId,
+            sessionId: courseId.sessionId,
+            courseId: courseId.value,
             sectionName: calendarEventHtmlParser.sectionName
         )
 
@@ -64,7 +64,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
 
     // MARK: - Syllabus Summary
 
-    private func fetchSyllabusSummary(courseId: String) -> AnyPublisher<Void, Error> {
+    private func fetchSyllabusSummary(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         fetchCourseSettingsAndGetSyllabusSummaryState(courseId: courseId)
             .filter { $0 }
             .mapToVoid()
@@ -78,15 +78,21 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     }
 
     typealias SyllabusSummaryEnabled = Bool
-    private func fetchCourseSettingsAndGetSyllabusSummaryState(courseId: String) -> AnyPublisher<SyllabusSummaryEnabled, Error> {
-        ReactiveStore(useCase: GetCourseSettings(courseID: courseId))
+    private func fetchCourseSettingsAndGetSyllabusSummaryState(courseId: CourseSyncID) -> AnyPublisher<SyllabusSummaryEnabled, Error> {
+        ReactiveStore(
+            useCase: GetCourseSettings(courseID: courseId.value),
+            environment: courseId.env
+        )
             .getEntities(ignoreCache: true)
             .map { $0.first?.syllabusCourseSummary == true }
             .eraseToAnyPublisher()
     }
 
-    private static func fetchAssignments(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .assignment))
+    private static func fetchAssignments(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetCalendarEvents(context: .course(courseId.value), type: .assignment),
+            environment: courseId.env
+        )
             .getEntities(ignoreCache: true)
             .map { (assignments: [CalendarEvent]) -> [CalendarEvent] in
                 // AssignmentEvent objects' ids are synthetic ids, which means they contain the type as prefix: assignment_987.
@@ -103,8 +109,11 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             .eraseToAnyPublisher()
     }
 
-    private static func fetchEvents(courseId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .event))
+    private static func fetchEvents(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetCalendarEvents(context: .course(courseId.value), type: .event),
+            environment: courseId.env
+        )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .mapToVoid()
@@ -113,7 +122,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
 
     // MARK: - Syllabus Content
 
-    private func fetchSyllabusContent(courseId: String) -> AnyPublisher<Void, Error> {
+    private func fetchSyllabusContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Publishers
             .Zip(fetchCourse(courseId: courseId),
                  fetchColors())
@@ -121,8 +130,8 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
             .eraseToAnyPublisher()
     }
 
-    private func fetchCourse(courseId: String) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourse(courseID: courseId))
+    private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetCourse(courseID: courseId.value), environment: courseId.env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

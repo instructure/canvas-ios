@@ -32,7 +32,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
         self.htmlParser = htmlParser
     }
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Publishers
             .Zip4(fetchColors(),
                   fetchCourse(courseId: courseId),
@@ -43,15 +43,18 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private func fetchColors() -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCustomColors())
+        fetchUseCase(GetCustomColors(), env: .shared)
     }
 
-    private func fetchCourse(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId))
+    private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        fetchUseCase(GetCourse(courseID: courseId.value), env: courseId.env)
     }
 
-    private func fetchAnnouncements(courseId: String) -> AnyPublisher<Void, Error> {
-        return ReactiveStore(useCase: GetAnnouncements(context: .course(courseId)))
+    private func fetchAnnouncements(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        return ReactiveStore(
+            useCase: GetAnnouncements(context: .course(courseId.value)),
+            environment: courseId.env
+        )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
             .parseAttachment(attribute: \.attachments, id: \.id, courseId: courseId, htmlParser: htmlParser)
@@ -64,11 +67,14 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private static func getDiscussionView(
-        courseId: String,
+        courseId: CourseSyncID,
         topicId: String,
         htmlParser: HTMLParser
     ) -> AnyPublisher<Void, Error> {
-        return ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
+        return ReactiveStore(
+            useCase: GetDiscussionView(context: .course(courseId.value), topicID: topicId),
+            environment: courseId.env
+        )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
             .parseAttachment(attribute: \.attachment, topicId: topicId, courseId: courseId, htmlParser: htmlParser)
@@ -77,21 +83,24 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
             .eraseToAnyPublisher()
     }
 
-    private func fetchFeatureFlags(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetEnabledFeatureFlags(context: .course(courseId)))
+    private func fetchFeatureFlags(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        fetchUseCase(
+            GetEnabledFeatureFlags(context: .course(courseId.value)),
+            env: courseId.env
+        )
     }
 
-    private func fetchUseCase<U: UseCase>(_ useCase: U) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: useCase)
+    private func fetchUseCase<U: UseCase>(_ useCase: U, env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: useCase, environment: env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: htmlParser.sessionId,
-            courseId: courseId,
+            sessionId: courseId.sessionId,
+            courseId: courseId.value,
             sectionName: htmlParser.sectionName
         )
 
