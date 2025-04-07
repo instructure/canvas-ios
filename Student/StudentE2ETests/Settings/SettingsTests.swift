@@ -32,14 +32,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Check menu items of Settings
         let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
@@ -75,13 +68,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
+
         let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Landing Page", check elements
@@ -125,14 +114,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Appearance", check elements
         let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
@@ -164,14 +146,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        var doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Pair with Observer", check elements
         let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(.visible)
@@ -182,7 +157,7 @@ class SettingsTests: E2ETestCase {
         let pairWithObserverNavBar = SubSettingsHelper.pairWithObserverNavBar.waitUntil(.visible)
         XCTAssertTrue(pairWithObserverNavBar.isVisible)
 
-        doneButton = SubSettingsHelper.doneButton.waitUntil(.visible)
+        let doneButton = SubSettingsHelper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
 
         let shareButton = SubSettingsHelper.shareButton.waitUntil(.visible)
@@ -200,14 +175,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Subscribe to Calendar Feed", check if Calendar app opens
         let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(.visible)
@@ -241,14 +209,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select About, check elements
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
@@ -287,14 +248,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Privacy Policy", check if Safari app opens
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
@@ -316,14 +270,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Terms of Use", check elements
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)

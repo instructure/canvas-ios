@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -26,80 +26,37 @@ class SettingsTests: E2ETestCase {
 
     func testSettingsMenuItems() {
         // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
+        let parent = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
+        seeder.enrollTeacher(parent, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(teacher)
+        logInDSUser(parent)
         Helper.navigateToSettings()
 
         // MARK: Check menu items of Settings
-        let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
-        let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
-        let about = Helper.menuItem(item: .about).waitUntil(.visible)
-        let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
-        let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
-        XCTAssertTrue(landingPage.isVisible)
+        let appearance = Helper.menuItemParent(.appearance).waitUntil(.visible)
+        let about = Helper.menuItemParent(.about).waitUntil(.visible)
+        let privacyPolicy = Helper.menuItemParent(.privacyPolicy).waitUntil(.visible)
+        let termsOfUse = Helper.menuItemParent(.termsOfUse).waitUntil(.visible)
         XCTAssertTrue(appearance.isVisible)
         XCTAssertTrue(about.isVisible)
         XCTAssertTrue(privacyPolicy.isVisible)
         XCTAssertTrue(termsOfUse.isVisible)
     }
 
-    func testLandingPageSetting() {
-        // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
-
-        // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(teacher)
-        Helper.navigateToSettings()
-
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(doneButton.isVisible)
-
-        // MARK: Select "Landing Page", check elements
-        let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
-        XCTAssertTrue(landingPage.isVisible)
-
-        landingPage.hit()
-        let landingPageNavBar = SubSettingsHelper.landingPageNavBar.waitUntil(.visible)
-        let courses = SubSettingsHelper.landingPageMenuItem(item: .courses).waitUntil(.visible)
-        let toDo = SubSettingsHelper.landingPageMenuItem(item: .toDo).waitUntil(.visible)
-        let inbox = SubSettingsHelper.landingPageMenuItem(item: .inbox).waitUntil(.visible)
-        let backButton = SubSettingsHelper.backButton.waitUntil(.visible)
-        XCTAssertTrue(landingPageNavBar.isVisible)
-        XCTAssertTrue(courses.isVisible)
-        XCTAssertTrue(toDo.isVisible)
-        XCTAssertTrue(inbox.isVisible)
-        XCTAssertTrue(backButton.isVisible)
-
-        // MARK: Select "Inbox", logout, log back in, check landing page
-        inbox.hit()
-        XCTAssertTrue(inbox.waitUntil(.visible).isVisible)
-
-        backButton.hit()
-        doneButton.hit()
-        logOut()
-        logInDSUser(teacher)
-        let newMessageButton = InboxHelper.newMessageButton.waitUntil(.visible)
-        XCTAssertTrue(newMessageButton.isVisible)
-    }
-
     func testAppearanceSetting() {
         // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
+        let parent = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
+        seeder.enrollTeacher(parent, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(teacher)
+        logInDSUser(parent)
         Helper.navigateToSettings()
 
         // MARK: Select "Appearance", check elements
-        let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
+        let appearance = Helper.menuItemParent(.appearance).waitUntil(.visible)
         XCTAssertTrue(appearance.isVisible)
 
         appearance.hit()
@@ -122,16 +79,16 @@ class SettingsTests: E2ETestCase {
 
     func testAbout() {
         // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
+        let parent = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
+        seeder.enrollTeacher(parent, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(teacher)
+        logInDSUser(parent)
         Helper.navigateToSettings()
 
         // MARK: Select About, check elements
-        let about = Helper.menuItem(item: .about).waitUntil(.visible)
+        let about = Helper.menuItemParent(.about).waitUntil(.visible)
         XCTAssertTrue(about.isVisible)
 
         about.hit()
@@ -143,11 +100,11 @@ class SettingsTests: E2ETestCase {
         let versionLabel = AboutHelper.versionLabel.waitUntil(.visible)
         XCTAssertTrue(aboutView.isVisible)
         XCTAssertTrue(appLabel.isVisible)
-        XCTAssertEqual(appLabel.label, "Canvas Teacher")
+        XCTAssertEqual(appLabel.label, "Canvas Parent")
         XCTAssertTrue(domainLabel.isVisible)
         XCTAssertEqual(domainLabel.label, "https://\(user.host)")
         XCTAssertTrue(loginIdLabel.isVisible)
-        XCTAssertEqual(loginIdLabel.label, teacher.id)
+        XCTAssertEqual(loginIdLabel.label, parent.id)
         XCTAssertTrue(emailLabel.isVisible)
         XCTAssertEqual(emailLabel.label, "-")
         XCTAssertTrue(versionLabel.isVisible)
@@ -155,16 +112,16 @@ class SettingsTests: E2ETestCase {
 
     func testPrivacyPolicy() {
         // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
+        let parent = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
+        seeder.enrollTeacher(parent, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(teacher)
+        logInDSUser(parent)
         Helper.navigateToSettings()
 
         // MARK: Select "Privacy Policy", check if Safari app opens
-        let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
+        let privacyPolicy = Helper.menuItemParent(.privacyPolicy).waitUntil(.visible)
         XCTAssertTrue(privacyPolicy.isVisible)
 
         privacyPolicy.hit()
@@ -181,16 +138,16 @@ class SettingsTests: E2ETestCase {
 
     func testTermsOfUse() {
         // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
+        let parent = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
+        seeder.enrollTeacher(parent, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(teacher)
+        logInDSUser(parent)
         Helper.navigateToSettings()
 
         // MARK: Select "Terms of Use", check elements
-        let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
+        let termsOfUse = Helper.menuItemParent(.termsOfUse).waitUntil(.visible)
         XCTAssertTrue(termsOfUse.isVisible)
 
         termsOfUse.hit()
