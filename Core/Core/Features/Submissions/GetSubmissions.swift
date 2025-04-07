@@ -39,11 +39,16 @@ public struct GetRecentlyGradedSubmissions: CollectionUseCase {
     }
 }
 
-
 public struct ModuleItemAttributes {
     public let courseID: String
     public let moduleID: String
     public let itemID: String
+
+    public init(courseID: String, moduleID: String, itemID: String) {
+        self.courseID = courseID
+        self.moduleID = moduleID
+        self.itemID = itemID
+    }
 }
 
 public class CreateSubmission: APIUseCase {

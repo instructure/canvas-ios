@@ -20,11 +20,12 @@ import Combine
 import Core
 
 protocol ScoresInteractor {
-    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error>
+    var courseID: String { get }
+    func getScores(sortedBy: ScoreDetails.SortOption, ignoreCache: Bool) -> AnyPublisher<ScoreDetails, Error>
 }
 
 final class ScoresInteractorLive: ScoresInteractor {
-    private let courseID: String
+    let courseID: String
     private let submissionCommentInteractor: SubmissionCommentInteractor
 
     init(
@@ -35,10 +36,10 @@ final class ScoresInteractorLive: ScoresInteractor {
         self.submissionCommentInteractor = submissionCommentInteractor
     }
 
-    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error> {
+    func getScores(sortedBy: ScoreDetails.SortOption, ignoreCache: Bool) -> AnyPublisher<ScoreDetails, Error> {
         Publishers.Zip(
-            getAssignmentGroups(courseID: courseID),
-            getCourse(courseID: courseID)
+            getAssignmentGroups(courseID: courseID, ignoreCache: ignoreCache),
+            getCourse(courseID: courseID, ignoreCache: ignoreCache)
         )
         .flatMap { assignmentGroups, course in
             self.getScoreDetails(
@@ -50,21 +51,21 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getCourse(courseID: String) -> AnyPublisher<ScoresCourse, Error> {
+    private func getCourse(courseID: String, ignoreCache: Bool) -> AnyPublisher<ScoresCourse, Error> {
         ReactiveStore(
             useCase: GetScoresCourseUseCase(courseID: courseID)
         )
-        .getEntities()
+        .getEntities(ignoreCache: ignoreCache)
         .compactMap { $0.first }
         .map { ScoresCourse(from: $0) }
         .eraseToAnyPublisher()
     }
 
-    private func getAssignmentGroups(courseID: String) -> AnyPublisher<[HAssignmentGroup], Error> {
+    private func getAssignmentGroups(courseID: String, ignoreCache: Bool) -> AnyPublisher<[HAssignmentGroup], Error> {
         ReactiveStore(
             useCase: GetAssignmentGroups(courseID: courseID)
         )
-        .getEntities()
+        .getEntities(ignoreCache: ignoreCache)
         .flatMap { $0.publisher }
         .map { HAssignmentGroup(from: $0) }
         .collect()

@@ -20,7 +20,8 @@ import Combine
 import Foundation
 
 class ScoresInteractorPreview: ScoresInteractor {
-    func getScores(sortedBy _: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, any Error> {
+    var courseID: String { "" }
+    func getScores(sortedBy _: ScoreDetails.SortOption, ignoreCache: Bool) -> AnyPublisher<ScoreDetails, any Error> {
         Just(
             ScoreDetails(
                 score: "25%",

@@ -69,6 +69,9 @@ final class CourseDetailsViewModel {
 
     @MainActor
     func refresh() async {
+        // Let other screens know about pull to refresh action
+        NotificationCenter.default.post(name: .courseDetailsForceRefreshed, object: nil)
+
         await withCheckedContinuation { continuation in
             getCoursesInteractor.getCourse(id: courseID, ignoreCache: true)
                 .first()
@@ -88,4 +91,8 @@ final class CourseDetailsViewModel {
     func showTabBar() {
         onShowTabBar(true)
     }
+}
+
+extension Notification.Name {
+    static let courseDetailsForceRefreshed = Notification.Name(rawValue: "com.instructure.horizon.course-details-refreshed")
 }
