@@ -5036,6 +5036,12 @@
             "value" : "%1$@, afleveret d. %2$@"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, afleveret d. %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5102,6 +5108,18 @@
             "value" : "%1$@, soumis le %2$@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, soumis le %2$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, cuireadh isteach é ar an %2$@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5156,6 +5174,12 @@
             "value" : "%1$@, levert %2$@"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, levert %2$@"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5193,6 +5217,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, inlämnat %2$@"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, inlämnat %2$@"
@@ -33320,6 +33350,12 @@
             "value" : "Skjult"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skjult"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33386,6 +33422,18 @@
             "value" : "Réduit(e)"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réduit(e)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leacaigh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33440,6 +33488,12 @@
             "value" : "Skjult"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skjult"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33480,6 +33534,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stängd"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förminskad"
           }
         },
         "th" : {
@@ -45606,6 +45666,12 @@
             "value" : "Dobbelttryk for at vælge forsøg"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at vælge forsøg"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45672,6 +45738,18 @@
             "value" : "Appuyez deux fois pour sélectionner la tentative."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double taper pour sélectionner la tentative"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil faoi dhó chun iarracht a roghnú"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45726,6 +45804,12 @@
             "value" : "Dobbeltklikk for å velge forsøk"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å velge forsøk"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45763,6 +45847,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att välja försök"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att välja försök"
