@@ -143,7 +143,9 @@ public final class TextSubmissionViewController: UIViewController, ErrorViewCont
                 assignmentID: assignmentID,
                 userID: userID,
                 submissionType: .online_text_entry,
-                body: html
+                body: html,
+                moduleID: nil,
+                moduleItemID: nil
             )
             .fetch(environment: self.env, { (_, _, error) in
                 performUIUpdate {

@@ -43,7 +43,7 @@ class AssignmentInteractorPreview: AssignmentInteractor {
             .eraseToAnyPublisher()
     }
 
-    func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error> {
+    func submitTextEntry(with text: String, moduleID: String, moduleItemID: String) -> AnyPublisher<[CreateSubmission.Model], Error> {
         Just([])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

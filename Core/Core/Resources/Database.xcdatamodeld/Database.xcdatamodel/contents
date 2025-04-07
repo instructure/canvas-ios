@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D70" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24D70" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -209,6 +209,13 @@
         <attribute name="observedUserId" optional="YES" attributeType="String"/>
         <attribute name="userId" attributeType="String"/>
     </entity>
+    <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="observedUserDisplayName" optional="YES" attributeType="String"/>
+        <attribute name="observedUserId" optional="YES" attributeType="String"/>
+        <attribute name="userId" attributeType="String"/>
+    </entity>
     <entity name="CDScoresCourse" representedClassName="Core.CDScoresCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresCourseEnrollment" inverseName="relationship" inverseEntity="CDScoresCourseEnrollment"/>
@@ -224,13 +231,6 @@
         <attribute name="hideFinalGrade" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="settings" inverseEntity="CDScoresCourse"/>
-    </entity>
-    <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
-        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="observedUserDisplayName" optional="YES" attributeType="String"/>
-        <attribute name="observedUserId" optional="YES" attributeType="String"/>
-        <attribute name="userId" attributeType="String"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
@@ -742,6 +742,7 @@
         <attribute name="courseID" attributeType="String"/>
         <attribute name="estimatedDuration" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="prerequisiteModuleIDsRaw" optional="YES" attributeType="String"/>

@@ -39,10 +39,19 @@ public struct GetRecentlyGradedSubmissions: CollectionUseCase {
     }
 }
 
+
+public struct ModuleItemAttributes {
+    public let courseID: String
+    public let moduleID: String
+    public let itemID: String
+}
+
 public class CreateSubmission: APIUseCase {
     let context: Context
     let assignmentID: String
     let userID: String
+    let moduleID: String?
+    let moduleItemID: String?
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
@@ -60,12 +69,16 @@ public class CreateSubmission: APIUseCase {
         fileIDs: [String]? = nil,
         mediaCommentID: String? = nil,
         mediaCommentType: MediaCommentType? = nil,
-        annotatableAttachmentID: String? = nil
+        annotatableAttachmentID: String? = nil,
+        moduleID: String? = nil,
+        moduleItemID: String? = nil
     ) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
-
+        self.moduleID = moduleID
+        self.moduleItemID = moduleItemID
+        
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
             text_comment: textComment,
@@ -104,7 +117,18 @@ public class CreateSubmission: APIUseCase {
 
             if error == nil {
                 NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
-                NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+                if let moduleID = self.moduleID, let moduleItemID = self.moduleItemID {
+                    NotificationCenter.default.post(
+                        name: .moduleItemRequirementCompleted,
+                        object: ModuleItemAttributes(
+                            courseID: self.context.id,
+                            moduleID: moduleID,
+                            itemID: moduleItemID
+                        )
+                    )
+                } else {
+                    NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+                }
             }
 
             UIAccessibility

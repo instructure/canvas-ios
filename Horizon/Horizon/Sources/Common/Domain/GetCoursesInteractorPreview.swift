@@ -48,6 +48,11 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
         Just(course)
             .eraseToAnyPublisher()
     }
+    
+    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
+        Just(())
+            .eraseToAnyPublisher()
+    }
 
     private var course: HCourse {
         .init(
