@@ -71,6 +71,7 @@ final class CourseDetailsViewModel {
     func refresh() async {
         await withCheckedContinuation { continuation in
             getCoursesInteractor.getCourse(id: courseID, ignoreCache: true)
+                .first()
                 .sink { [weak self] course in
                     continuation.resume()
                     guard let course = course, let self = self else { return }
