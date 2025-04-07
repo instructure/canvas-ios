@@ -87,7 +87,7 @@ final class HUploadFileManagerLive: HUploadFileManager {
 
     func uploadFiles() {
         let context = FileUploadContext.submission(courseID: courseID, assignmentID: assignmentID, comment: nil)
-        UploadManager.shared.upload(batch: batchId, to: context)
+        uploadManager.upload(batch: batchId, to: context)
     }
 
     func cancelAllFiles() {

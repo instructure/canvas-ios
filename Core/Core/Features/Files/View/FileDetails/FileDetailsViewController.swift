@@ -119,6 +119,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         view.backgroundColor = .backgroundLightest
         contentView.backgroundColor = .backgroundLightest
 
+        spinnerView.isHidden = true
+        
         arButton.setTitle(String(localized: "Augment Reality", bundle: .core), for: .normal)
         arButton.isHidden = true
         arImageView.isHidden = true
