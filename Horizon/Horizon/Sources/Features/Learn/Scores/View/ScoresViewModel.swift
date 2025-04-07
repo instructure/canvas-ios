@@ -43,7 +43,6 @@ final class ScoresViewModel {
 
     // MARK: - Dependencies
 
-    private let interactor: ScoresInteractor
     private let router: Router
 
     // MARK: - Private properties
@@ -57,14 +56,13 @@ final class ScoresViewModel {
         interactor: ScoresInteractor,
         router: Router
     ) {
-        self.interactor = interactor
         self.router = router
 
         weak var weakSelf = self
 
         selectedFilterOptionRelay
             .flatMap { sortedBy in
-                self.interactor.getScores(sortedBy: sortedBy)
+                interactor.getScores(sortedBy: sortedBy)
             }
             .sink(receiveCompletion: { completion in
                 switch completion {
