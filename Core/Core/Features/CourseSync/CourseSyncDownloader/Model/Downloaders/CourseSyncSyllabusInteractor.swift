@@ -78,7 +78,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     typealias SyllabusSummaryEnabled = Bool
     private func fetchCourseSettingsAndGetSyllabusSummaryState(courseId: CourseSyncID) -> AnyPublisher<SyllabusSummaryEnabled, Error> {
         ReactiveStore(
-            useCase: GetCourseSettings(courseID: courseId.id),
+            useCase: GetCourseSettings(courseID: courseId.localID),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -129,7 +129,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourse(courseID: courseId.id), environment: courseId.env)
+        ReactiveStore(useCase: GetCourse(courseID: courseId.localID), environment: courseId.env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

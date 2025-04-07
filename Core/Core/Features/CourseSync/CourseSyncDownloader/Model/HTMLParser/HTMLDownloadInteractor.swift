@@ -46,19 +46,16 @@ protocol HTMLDownloadInteractor {
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     public let sectionName: String
-    //private let loginSession: LoginSession?
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let fileManager: FileManager
     private let downloadTaskProvider: URLSessionDataTaskPublisherProvider
 
     init(
-        //loginSession: LoginSession?,
         sectionName: String,
         scheduler: AnySchedulerOf<DispatchQueue>,
         fileManager: FileManager = .default,
         downloadTaskProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
     ) {
-        //self.loginSession = loginSession
         self.sectionName = sectionName
         self.scheduler = scheduler
         self.fileManager = fileManager
@@ -182,7 +179,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     ) -> AnyPublisher<String, Error> {
         var rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
             sessionId: courseId.env.currentSession?.uniqueID ?? "",
-            courseId: courseId.id,
+            courseId: courseId.value,
             sectionName: sectionName,
             resourceId: resourceId
         )

@@ -47,7 +47,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId.id), env: courseId.env)
+        fetchUseCase(GetCourse(courseID: courseId.localID), env: courseId.env)
     }
 
     private func fetchAnnouncements(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {

@@ -120,7 +120,7 @@ public extension URL {
             public static func courseSectionFolderURL(courseId: CourseSyncID, sectionName: String) -> URL {
                 courseSectionFolderURL(
                     sessionId: courseId.sessionId,
-                    courseId: courseId.id,
+                    courseId: courseId.localID,
                     sectionName: sectionName
                 )
             }

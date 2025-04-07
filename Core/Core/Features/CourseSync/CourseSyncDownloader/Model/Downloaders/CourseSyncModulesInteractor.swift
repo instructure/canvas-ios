@@ -41,7 +41,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
 
     public func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
-            useCase: GetModules(courseID: courseId.id),
+            useCase: GetModules(courseID: courseId.localID),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -60,7 +60,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             .flatMap {
                 ReactiveStore(
                     useCase: GetModuleItemSequence(
-                        courseID: courseID.id,
+                        courseID: courseID.localID,
                         assetType: .moduleItem,
                         assetID: $0.id
                     ),
@@ -128,7 +128,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         return ids.publisher
             .flatMap { [quizHtmlParser] in
                 ReactiveStore(
-                    useCase: GetQuiz(courseID: courseId.id, quizID: $0),
+                    useCase: GetQuiz(courseID: courseId.localID, quizID: $0),
                     environment: courseId.env
                 )
                 .getEntities(ignoreCache: true)
@@ -160,7 +160,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                             .eraseToAnyPublisher()
                     }
                     return filesInteractor.downloadFile(
-                        courseId: courseId.id,
+                        courseId: courseId.value,
                         url: url,
                         fileID: fileID,
                         fileName: file.filename,

@@ -64,7 +64,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
 
     private static func fetchGradingPeriods(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetGradingPeriods(courseID: courseId.id),
+            useCase: GetGradingPeriods(courseID: courseId.localID),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -74,7 +74,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
 
     private static func fetchCourseAndGetGradingPeriodID(courseId: CourseSyncID, userId: String) -> AnyPublisher<CurrentGradingPeriodID?, Error> {
         ReactiveStore(
-            useCase: GetCourse(courseID: courseId.id),
+            useCase: GetCourse(courseID: courseId.localID),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -95,7 +95,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     }
 
     private static func fetchAssignments(courseId: CourseSyncID, gradingPeriodID: String?) -> AnyPublisher<Void, Error> {
-        let useCase = GetAssignmentsByGroup(courseID: courseId.id,
+        let useCase = GetAssignmentsByGroup(courseID: courseId.localID,
                                             gradingPeriodID: gradingPeriodID,
                                             gradedOnly: true)
         return ReactiveStore(useCase: useCase, environment: courseId.env)

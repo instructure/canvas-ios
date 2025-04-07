@@ -18,30 +18,6 @@
 
 import Foundation
 
-public struct CourseSyncID {
-    private let value: String
-    let apiBaseURL: URL?
-
-    var id: String {
-        value.localID
-    }
-
-    var env: AppEnvironment {
-        .resolved(for: apiBaseURL)
-    }
-
-    var sessionId: String {
-        env.currentSession?.uniqueID ?? ""
-    }
-
-    var asContext: Context { .course(id) }
-
-    fileprivate init(value: String, apiBaseURL: URL?) {
-        self.value = value
-        self.apiBaseURL = apiBaseURL
-    }
-}
-
 public struct CourseSyncEntry: Equatable {
     public enum State: Codable, Equatable, Hashable {
         // CourseSyncEntryProgress relies on this order when it saves its' data.

@@ -33,7 +33,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
 
     public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetAssignmentsByGroup(courseID: courseId.id),
+            useCase: GetAssignmentsByGroup(courseID: courseId.localID),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)

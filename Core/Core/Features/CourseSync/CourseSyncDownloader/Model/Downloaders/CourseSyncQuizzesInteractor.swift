@@ -62,7 +62,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
 
     private func getQuizzes(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetQuizzes(courseID: courseId.id),
+            useCase: GetQuizzes(courseID: courseId.localID),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)
@@ -79,7 +79,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
 
     private static func getQuiz(courseId: CourseSyncID, quizId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetQuiz(courseID: courseId.id, quizID: quizId),
+            useCase: GetQuiz(courseID: courseId.localID, quizID: quizId),
             environment: courseId.env
         )
         .getEntities(ignoreCache: true)

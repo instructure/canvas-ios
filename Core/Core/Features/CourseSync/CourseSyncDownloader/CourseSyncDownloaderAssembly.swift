@@ -94,13 +94,11 @@ public enum CourseSyncDownloaderAssembly {
         let offlineFolder = URL.Paths.Offline.rootURL(sessionID: loginSession?.uniqueID ?? "")
         let studioDirectory = offlineFolder.appendingPathComponent("studio", isDirectory: true)
         let studioDownloadInteractor = StudioVideoDownloadInteractorLive(
-            rootDirectory: studioDirectory,
             captionsInteractor: StudioCaptionsInteractorLive(),
             videoCacheInteractor: StudioVideoCacheInteractorLive(),
             posterInteractor: StudioVideoPosterInteractorLive()
         )
         return CourseSyncStudioMediaInteractorLive(
-            offlineDirectory: offlineFolder,
             authInteractor: StudioAPIAuthInteractorLive(),
             iFrameReplaceInteractor: StudioIFrameReplaceInteractorLive(),
             iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractorLive(

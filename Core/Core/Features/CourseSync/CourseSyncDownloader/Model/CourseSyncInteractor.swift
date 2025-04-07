@@ -122,7 +122,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return notificationInteractor.send()
         }
         let syncStudioMedia: () -> AnyPublisher<Void, Never> = { [studioMediaInteractor] in
-            let courseIDs = entries.map { $0.courseId }
+            let courseIDs = entries.map { $0.syncID }
             return studioMediaInteractor.getContent(courseIDs: courseIDs)
         }
         downloadSubscription = backgroundActivity

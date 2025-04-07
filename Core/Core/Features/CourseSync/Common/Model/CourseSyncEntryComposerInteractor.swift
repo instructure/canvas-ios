@@ -62,7 +62,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
 
         return filesInteractor
             .getFiles(
-                courseId: course.courseId,
+                courseId: course.courseId.localID,
                 useCache: useCache,
                 environment: .resolved(for: apiBaseURL)
             )

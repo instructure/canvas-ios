@@ -45,7 +45,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     var assignmentID: String?
     var context: Context?
     var downloadTask: APITask?
-    let env = AppEnvironment.shared
+    var env: AppEnvironment = .shared
     public var fileID: String = ""
     var loadObservation: NSKeyValueObservation?
     var remoteURL: URL?
@@ -73,13 +73,15 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         originURL: URLComponents? = nil,
         assignmentID: String? = nil,
         canEdit: Bool = true,
-        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
+        environment: AppEnvironment = .shared
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
         controller.fileID = fileID
         controller.originURL = originURL
+        controller.env = environment
         controller.offlineFileInteractor = offlineFileInteractor
         controller.canEdit = canEdit && controller.env.app == .teacher
 
@@ -96,11 +98,13 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         context: Context?,
         fileID: String,
         offlineFileSource: OfflineFileSource,
-        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
+        environment: AppEnvironment = .shared
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.fileID = fileID
+        controller.env = environment
         controller.offlineFileSource = offlineFileSource
         controller.offlineFileInteractor = offlineFileInteractor
 

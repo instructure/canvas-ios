@@ -21,11 +21,10 @@ import CombineSchedulers
 import Foundation
 
 public protocol CourseSyncStudioMediaInteractor {
-    func getContent(courseIDs: [String]) -> AnyPublisher<Void, Never>
+    func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never>
 }
 
 public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteractor {
-    private let offlineDirectory: URL
     private let studioAuthInteractor: StudioAPIAuthInteractor
     private let studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor
     private let studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor
@@ -35,7 +34,6 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     public init(
-        offlineDirectory: URL,
         authInteractor: StudioAPIAuthInteractor,
         iFrameReplaceInteractor: StudioIFrameReplaceInteractor,
         iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor,
@@ -44,7 +42,6 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         downloadInteractor: StudioVideoDownloadInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
-        self.offlineDirectory = offlineDirectory
         self.studioAuthInteractor = authInteractor
         self.studioIFrameReplaceInteractor = iFrameReplaceInteractor
         self.studioIFrameDiscoveryInteractor = iFrameDiscoveryInteractor
@@ -54,16 +51,23 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         self.scheduler = scheduler
     }
 
-    public func getContent(courseIDs: [String]) -> AnyPublisher<Void, Never> {
-        Just(offlineDirectory)
+    public func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never> {
+        guard let firstCourse = courseIDs.first else {
+            return Just(()).eraseToAnyPublisher()
+        }
+
+        let studioDirectory = firstCourse.studioOfflineURL
+        let resolvedEnvironment = firstCourse.env
+
+        return Just(())
             .setFailureType(to: Error.self)
             .receive(on: scheduler)
-            .flatMap { [studioIFrameDiscoveryInteractor] offlineDirectory in
-                studioIFrameDiscoveryInteractor.discoverStudioIFrames(in: offlineDirectory, courseIDs: courseIDs)
+            .flatMap { [studioIFrameDiscoveryInteractor] in
+                studioIFrameDiscoveryInteractor.discoverStudioIFrames(courseIDs: courseIDs)
             }
             .flatMap { [studioAuthInteractor] (iframes: StudioIFramesByLocation) in
                 studioAuthInteractor
-                    .makeStudioAPI()
+                    .makeStudioAPI(env: resolvedEnvironment)
                     .mapError { $0 as Error }
                     .map { api in
                         (api, iframes)
@@ -71,7 +75,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             }
             .flatMap { [metadataDownloadInteractor] api, iframes in
                 metadataDownloadInteractor
-                    .fetchStudioMediaItems(api: api, courseIDs: courseIDs)
+                    .fetchStudioMediaItems(api: api, courseIDs: courseIDs.map { $0.value })
                     .map { mediaItems in
                         var mediaLTIIDsToDownload = iframes.values.flatMap { $0 }.map { $0.mediaLTILaunchID }
                         mediaLTIIDsToDownload = Array(Set(mediaLTIIDsToDownload))
@@ -87,11 +91,11 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     (mediaItems, mediaLTIIDsToDownload, iframes)
                 }
             }
-            .flatMap { [self, offlineDirectory] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
+            .flatMap { [self] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
                 downloadStudioVideos(
-                    offlineDirectory: offlineDirectory,
                     mediaItems: mediaItems,
-                    mediaLTIIDsToDownload: mediaLTIIDsToDownload
+                    mediaLTIIDsToDownload: mediaLTIIDsToDownload,
+                    rootDirectory: studioDirectory
                 )
                 .map { offlineVideos in
                     (offlineVideos, iframes)
@@ -119,15 +123,15 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     }
 
     private func downloadStudioVideos(
-        offlineDirectory: URL,
         mediaItems: [APIStudioMediaItem],
-        mediaLTIIDsToDownload: [String]
+        mediaLTIIDsToDownload: [String],
+        rootDirectory: URL
     ) -> AnyPublisher<[StudioOfflineVideo], Error> {
         let mediaItemsForOffline = mediaItems.filter { mediaLTIIDsToDownload.contains($0.lti_launch_id) }
 
         return Publishers.Sequence(sequence: mediaItemsForOffline)
             .flatMap(maxPublishers: .max(1)) { [downloadInteractor] mediaItem in
-                downloadInteractor.download(mediaItem)
+                downloadInteractor.download(mediaItem, rootDirectory: rootDirectory)
             }
             .collect()
             .eraseToAnyPublisher()

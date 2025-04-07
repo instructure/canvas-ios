@@ -185,7 +185,7 @@ public class HTMLParserLive: HTMLParser {
         return URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseSectionFolder(
                 sessionId: courseId.sessionId,
-                courseId: courseId.id,
+                courseId: courseId.value,
                 sectionName: sectionName
             )
         )

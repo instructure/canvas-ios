@@ -21,11 +21,10 @@ import Foundation
 
 public protocol StudioVideoDownloadInteractor {
 
-    func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error>
+    func download(_ item: APIStudioMediaItem, rootDirectory: URL) -> AnyPublisher<StudioOfflineVideo, Error>
 }
 
 public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
-    private let rootDirectory: URL
     private let documentsDirectory: URL
     private let captionsInteractor: StudioCaptionsInteractor
     private let videoCacheInteractor: StudioVideoCacheInteractor
@@ -34,20 +33,18 @@ public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
     /// - parameters:
     ///   - rootDirectory: The directory to where studio video folders should be created.
     public init(
-        rootDirectory: URL,
         documentsDirectory: URL = .Directories.documents,
         captionsInteractor: StudioCaptionsInteractor,
         videoCacheInteractor: StudioVideoCacheInteractor,
         posterInteractor: StudioVideoPosterInteractor
     ) {
-        self.rootDirectory = rootDirectory
         self.documentsDirectory = documentsDirectory
         self.captionsInteractor = captionsInteractor
         self.videoCacheInteractor = videoCacheInteractor
         self.posterInteractor = posterInteractor
     }
 
-    public func download(_ item: APIStudioMediaItem) -> AnyPublisher<StudioOfflineVideo, Error> {
+    public func download(_ item: APIStudioMediaItem, rootDirectory: URL) -> AnyPublisher<StudioOfflineVideo, Error> {
         let mediaFolder = rootDirectory.appendingPathComponent(item.id.value, isDirectory: true)
         let videoFileLocation = mediaFolder
             .appendingPathComponent(item.id.value, isDirectory: false)
