@@ -66,7 +66,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(
             useCase: GetDiscussionTopics(context: courseId.asContext),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -82,7 +82,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(
             useCase: GetDiscussionView(context: courseId.asContext, topicID: topicId),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)

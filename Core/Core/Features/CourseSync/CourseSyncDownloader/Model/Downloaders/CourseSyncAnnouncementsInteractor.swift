@@ -47,13 +47,13 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId.localID), env: courseId.env)
+        fetchUseCase(GetCourse(courseID: courseId.localID), env: courseId.targetEnvironment)
     }
 
     private func fetchAnnouncements(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         return ReactiveStore(
             useCase: GetAnnouncements(context: courseId.asContext),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -73,7 +73,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     ) -> AnyPublisher<Void, Error> {
         return ReactiveStore(
             useCase: GetDiscussionView(context: courseId.asContext, topicID: topicId),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
@@ -86,7 +86,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     private func fetchFeatureFlags(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         fetchUseCase(
             GetEnabledFeatureFlags(context: courseId.asContext),
-            env: courseId.env
+            env: courseId.targetEnvironment
         )
     }
 

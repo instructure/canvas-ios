@@ -79,7 +79,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     private func fetchCourseSettingsAndGetSyllabusSummaryState(courseId: CourseSyncID) -> AnyPublisher<SyllabusSummaryEnabled, Error> {
         ReactiveStore(
             useCase: GetCourseSettings(courseID: courseId.localID),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .map { $0.first?.syllabusCourseSummary == true }
@@ -89,7 +89,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     private static func fetchAssignments(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCalendarEvents(context: courseId.asContext, type: .assignment),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .map { (assignments: [CalendarEvent]) -> [CalendarEvent] in
@@ -110,7 +110,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     private static func fetchEvents(courseId: CourseSyncID, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCalendarEvents(context: courseId.asContext, type: .event),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -129,7 +129,7 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourse(courseID: courseId.localID), environment: courseId.env)
+        ReactiveStore(useCase: GetCourse(courseID: courseId.localID), environment: courseId.targetEnvironment)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

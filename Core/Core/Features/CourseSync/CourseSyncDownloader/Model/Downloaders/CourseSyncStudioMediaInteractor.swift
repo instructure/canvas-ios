@@ -57,7 +57,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         }
 
         let studioDirectory = firstCourse.studioOfflineURL
-        let resolvedEnvironment = firstCourse.env
+        let resolvedEnvironment = firstCourse.targetEnvironment
 
         return Just(())
             .setFailureType(to: Error.self)

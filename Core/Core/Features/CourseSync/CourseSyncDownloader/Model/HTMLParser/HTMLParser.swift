@@ -58,12 +58,6 @@ public class HTMLParserLive: HTMLParser {
         let fileURLs = Array(Set(findRegexMatches(content, pattern: fileRegex)))
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
-
-        print()
-        print("ROOT URL:")
-        print(baseURL)
-        print(rootURL)
-
         let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
             .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
@@ -71,7 +65,7 @@ public class HTMLParserLive: HTMLParser {
                     let context = Context(url: url)
                     return ReactiveStore(
                         useCase: GetFile(context: context, fileID: fileId),
-                        environment: courseId.env
+                        environment: courseId.targetEnvironment
                     )
                     .getEntities(ignoreCache: false)
                     .map { files in
@@ -104,7 +98,7 @@ public class HTMLParserLive: HTMLParser {
                     let context = Context(url: url)
                     return ReactiveStore(
                         useCase: GetFile(context: context, fileID: fileId),
-                        environment: courseId.env
+                        environment: courseId.targetEnvironment
                     )
                     .getEntities(ignoreCache: false)
                     .map { files in

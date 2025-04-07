@@ -68,7 +68,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     private static func fetchSections(courseID: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCourseSections(courseID: courseID.localID),
-            environment: courseID.env
+            environment: courseID.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .mapToVoid()

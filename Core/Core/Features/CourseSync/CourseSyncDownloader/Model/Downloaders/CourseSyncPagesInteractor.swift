@@ -37,7 +37,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 useCase: GetFrontPage(
                     context: courseId.asContext
                 ),
-                environment: courseId.env
+                environment: courseId.targetEnvironment
             )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser),
@@ -46,7 +46,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 useCase: GetPages(
                     context: courseId.asContext
                 ),
-                environment: courseId.env
+                environment: courseId.targetEnvironment
             )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)

@@ -24,12 +24,12 @@ public struct CourseSyncID {
 
     var localID: String { value.localID }
 
-    var env: AppEnvironment {
+    var targetEnvironment: AppEnvironment {
         .resolved(for: apiBaseURL)
     }
 
     var sessionId: String {
-        env.currentSession?.uniqueID ?? ""
+        targetEnvironment.currentSession?.uniqueID ?? ""
     }
 
     var offlineURL: URL {

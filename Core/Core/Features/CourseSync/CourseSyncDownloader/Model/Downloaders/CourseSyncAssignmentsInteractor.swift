@@ -34,7 +34,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
     public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetAssignmentsByGroup(courseID: courseId.localID),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
@@ -65,7 +65,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
                 assignmentID: assignmentID,
                 userID: userID
             ),
-            environment: courseID.env
+            environment: courseID.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.comment, id: \.id, courseId: courseID, htmlParser: htmlParser)

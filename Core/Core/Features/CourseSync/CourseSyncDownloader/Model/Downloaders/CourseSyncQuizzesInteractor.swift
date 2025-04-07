@@ -53,7 +53,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
     private func getCustomColors(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCustomColors(),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .map { _ in () }
@@ -63,7 +63,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
     private func getQuizzes(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetQuizzes(courseID: courseId.localID),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -80,7 +80,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
     private static func getQuiz(courseId: CourseSyncID, quizId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetQuiz(courseID: courseId.localID, quizID: quizId),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)

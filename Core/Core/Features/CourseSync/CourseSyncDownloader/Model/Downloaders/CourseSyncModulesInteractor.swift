@@ -42,7 +42,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     public func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
             useCase: GetModules(courseID: courseId.localID),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .flatMap { $0.publisher }
@@ -64,7 +64,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                         assetType: .moduleItem,
                         assetID: $0.id
                     ),
-                    environment: courseID.env
+                    environment: courseID.targetEnvironment
                 )
                 .getEntities(ignoreCache: true)
             }
@@ -109,7 +109,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             .flatMap { [pageHtmlParser] in
                 ReactiveStore(
                     useCase: GetPage(context: courseId.asContext, url: $0),
-                    environment: courseId.env
+                    environment: courseId.targetEnvironment
                 )
                 .getEntities(ignoreCache: true)
                 .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: pageHtmlParser)
@@ -129,7 +129,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             .flatMap { [quizHtmlParser] in
                 ReactiveStore(
                     useCase: GetQuiz(courseID: courseId.localID, quizID: $0),
-                    environment: courseId.env
+                    environment: courseId.targetEnvironment
                 )
                 .getEntities(ignoreCache: true)
                 .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: quizHtmlParser)
@@ -150,7 +150,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             .flatMap {
                 ReactiveStore(
                     useCase: GetFile(context: courseId.asContext, fileID: $0),
-                    environment: courseId.env
+                    environment: courseId.targetEnvironment
                 )
                 .getEntities(ignoreCache: true)
                 .flatMap { [filesInteractor] files -> AnyPublisher<Void, Error> in
@@ -166,7 +166,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                         fileName: file.filename,
                         mimeClass: mimeClass,
                         updatedAt: file.updatedAt,
-                        environment: courseId.env
+                        environment: courseId.targetEnvironment
                     )
                     .collect()
                     .mapToVoid()

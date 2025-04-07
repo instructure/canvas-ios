@@ -65,7 +65,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     private static func fetchGradingPeriods(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetGradingPeriods(courseID: courseId.localID),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .mapToVoid()
@@ -75,7 +75,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     private static func fetchCourseAndGetGradingPeriodID(courseId: CourseSyncID, userId: String) -> AnyPublisher<CurrentGradingPeriodID?, Error> {
         ReactiveStore(
             useCase: GetCourse(courseID: courseId.localID),
-            environment: courseId.env
+            environment: courseId.targetEnvironment
         )
         .getEntities(ignoreCache: true)
         .map { $0.first?.enrollmentForGrades(userId: userId)?.currentGradingPeriodID }
@@ -88,7 +88,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
                                      gradingPeriodID: gradingPeriodID,
                                      types: ["StudentEnrollment"],
                                      states: [.active])
-        return ReactiveStore(useCase: useCase, environment: courseId.env)
+        return ReactiveStore(useCase: useCase, environment: courseId.targetEnvironment)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -98,7 +98,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
         let useCase = GetAssignmentsByGroup(courseID: courseId.localID,
                                             gradingPeriodID: gradingPeriodID,
                                             gradedOnly: true)
-        return ReactiveStore(useCase: useCase, environment: courseId.env)
+        return ReactiveStore(useCase: useCase, environment: courseId.targetEnvironment)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

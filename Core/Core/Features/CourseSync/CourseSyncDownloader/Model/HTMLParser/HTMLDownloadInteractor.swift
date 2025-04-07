@@ -75,7 +75,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     let context = Context(url: url)
                     return ReactiveStore(
                         useCase: GetFile(context: context, fileID: fileID),
-                        environment: courseId.env
+                        environment: courseId.targetEnvironment
                     )
                     .getEntities(ignoreCache: false)
                     .map { files in
@@ -88,7 +88,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
             }
             .flatMap { [downloadTaskProvider, scheduler, fileManager, sectionName] url in
                 guard
-                    let loginSession = courseId.env.currentSession,
+                    let loginSession = courseId.targetEnvironment.currentSession,
                     let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
                 else {
                     let error = NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))
@@ -125,7 +125,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         documentsDirectory: URL
     ) -> AnyPublisher<String, Error> {
         guard
-            let loginSession = courseId.env.currentSession,
+            let loginSession = courseId.targetEnvironment.currentSession,
             let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
         else {
             return Fail(error: NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))).eraseToAnyPublisher()
@@ -152,11 +152,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
 
     func saveBaseContent(content: String, folderURL: URL) -> AnyPublisher<String, Error> {
         let saveURL = folderURL.appendingPathComponent("body.html")
-
-        print()
-        print("Saved Content:")
-        print(saveURL)
-
         do {
             try fileManager.createDirectory(atPath: folderURL.path, withIntermediateDirectories: true, attributes: nil)
             fileManager.createFile(atPath: saveURL.path, contents: nil)
@@ -178,7 +173,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         sectionName: String
     ) -> AnyPublisher<String, Error> {
         var rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: courseId.env.currentSession?.uniqueID ?? "",
+            sessionId: courseId.targetEnvironment.currentSession?.uniqueID ?? "",
             courseId: courseId.value,
             sectionName: sectionName,
             resourceId: resourceId
