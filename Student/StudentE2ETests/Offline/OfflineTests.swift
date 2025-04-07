@@ -38,9 +38,7 @@ class OfflineTests: OfflineE2ETestCase {
         XCTAssertTrue(profileButton.isVisible)
 
         profileButton.hit()
-        offlineLine = ProfileHelper.offlineLine.waitUntil(.visible)
         let offlineLabel = ProfileHelper.offlineLabel.waitUntil(.visible)
-        XCTAssertTrue(offlineLine.isVisible)
         XCTAssertTrue(offlineLabel.isVisible)
 
         // MARK: Go back online and check app behaviour
@@ -52,8 +50,6 @@ class OfflineTests: OfflineE2ETestCase {
         XCTAssertTrue(profileButton.waitUntil(.visible).isVisible)
 
         profileButton.hit()
-        offlineLine = ProfileHelper.offlineLine.waitUntil(.vanish)
-        XCTAssertTrue(offlineLine.isVanished)
         XCTAssertTrue(offlineLabel.waitUntil(.vanish).isVanished)
     }
 

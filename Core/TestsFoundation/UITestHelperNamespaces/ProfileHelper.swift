@@ -19,29 +19,25 @@
 import XCTest
 
 public class ProfileHelper: BaseHelper {
-    public static var actAsUserButton: XCUIElement { app.find(id: "Profile.actAsUserButton") }
-    public static var changeUserButton: XCUIElement { app.find(id: "Profile.changeUserButton") }
-    public static var colorOverlayToggle: XCUIElement { app.find(id: "Profile.colorOverlayToggle") }
-    public static var developerMenuButton: XCUIElement { app.find(id: "Profile.developerMenuButton") }
-    public static var filesButton: XCUIElement { app.find(id: "Profile.filesButton") }
-    public static var helpButton: XCUIElement { app.find(id: "Profile.helpButton") }
-    public static var logOutButton: XCUIElement { app.find(id: "Profile.logOutButton") }
-    public static var settingsButton: XCUIElement { app.find(id: "Profile.settingsButton") }
-    public static var showGradesToggle: XCUIElement { app.find(id: "Profile.showGradesToggle") }
+    public static var avatar: XCUIElement { app.find(labelContaining: "Profile avatar", type: .button) }
     public static var userEmailLabel: XCUIElement { app.find(id: "Profile.userEmailLabel") }
     public static var userNameLabel: XCUIElement { app.find(id: "Profile.userNameLabel") }
-    public static var versionLabel: XCUIElement { app.find(id: "Profile.versionLabel") }
-    public static var inboxButton: XCUIElement { app.find(id: "Profile.inboxButton") }
-    public static var avatar: XCUIElement { app.find(labelContaining: "Profile avatar", type: .button) }
-    public static var studioButton: XCUIElement { app.find(id: "Profile.lti.arc.instructure.com.955147Button") }
-    public static var networkButton: XCUIElement { app.find(id: "Profile.networkAvailabilityStatusButton") }
-    public static var offlineLine: XCUIElement { app.find(label: "offlineLine", type: .image) }
-    public static var offlineLabel: XCUIElement { app.find(label: "Offline", type: .staticText) }
-    public static var darkModeToggle: XCUIElement { app.find(id: "Profile.darkModeToggle") }
 
-    // Parent
-    public static var aboutButton: XCUIElement { app.find(id: "Profile.aboutButton") }
+    public static var offlineLabel: XCUIElement { app.find(label: "Offline", type: .staticText) }
+
+    public static var inboxButton: XCUIElement { app.find(id: "Profile.inboxButton") }
+    public static var filesButton: XCUIElement { app.find(id: "Profile.filesButton") }
+    public static var studioButton: XCUIElement { app.find(id: "Profile.lti.arc.instructure.com.955147Button") }
     public static var manageStudentsButton: XCUIElement { app.find(id: "Profile.manageChildrenButton") }
+    public static var settingsButton: XCUIElement { app.find(id: "Profile.settingsButton") }
+    public static var networkButton: XCUIElement { app.find(id: "Profile.networkAvailabilityStatusButton") }
+    public static var developerMenuButton: XCUIElement { app.find(id: "Profile.developerMenuButton") }
+    public static var helpButton: XCUIElement { app.find(id: "Profile.helpButton") }
+    public static var actAsUserButton: XCUIElement { app.find(id: "Profile.actAsUserButton") }
+    public static var changeUserButton: XCUIElement { app.find(id: "Profile.changeUserButton") }
+    public static var logOutButton: XCUIElement { app.find(id: "Profile.logOutButton") }
+
+    public static var versionLabel: XCUIElement { app.find(id: "Profile.versionLabel") }
 
     public struct ChangePicture {
         public static var choosePhotoButton: XCUIElement { app.find(label: "Choose Photo", type: .button) }
