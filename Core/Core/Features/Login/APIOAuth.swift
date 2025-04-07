@@ -150,9 +150,9 @@ struct PostLoginOAuthRequest: APIRequestable {
 
         init(oauthType: OAuthType, grantType: GrantType) {
             switch oauthType {
-            case .manual(let attributes):
+            case let .manual(attributes):
                 self.client_id = attributes.clientID ?? ""
-            
+
                 // When this post request is sent for token refresh, we don't need to send clientID/codeVerifier
                 if case .refreshToken = grantType {
                     self.client_secret = nil
@@ -161,9 +161,9 @@ struct PostLoginOAuthRequest: APIRequestable {
                     self.client_secret = attributes.clientSecret
                     self.code_verifier = nil
                 }
-            case .pkce(let attributes):
+            case let .pkce(attributes):
                 self.client_id = attributes.clientID
-                
+
                 // When this post request is sent for token refresh, we don't need to send clientID/codeVerifier
                 if case .refreshToken = grantType {
                     self.client_secret = nil

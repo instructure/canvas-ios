@@ -78,7 +78,7 @@ public class CreateSubmission: APIUseCase {
         self.userID = userID
         self.moduleID = moduleID
         self.moduleItemID = moduleItemID
-        
+
         let submission = CreateSubmissionRequest.Body.Submission(
             annotatable_attachment_id: annotatableAttachmentID,
             text_comment: textComment,

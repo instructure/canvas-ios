@@ -35,10 +35,10 @@ public class Module: NSManagedObject {
     @NSManaged public var requireSequentialProgressRaw: NSNumber?
     @NSManaged public var unlockAt: Date?
     @NSManaged public var estimatedDuration: String?
-    
+
     // Only used for notifying the parent module about moduleItems changing
     @NSManaged public var lastUpdated: Date?
-    
+
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
         set { publishedRaw = NSNumber(value: newValue) }

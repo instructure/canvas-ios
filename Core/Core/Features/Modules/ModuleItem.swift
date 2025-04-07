@@ -162,7 +162,7 @@ public class ModuleItem: NSManagedObject {
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.moduleID = item.module_id.value
-        
+
         let modulePredicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), model.moduleID)
         if let module: Module = context.fetch(modulePredicate).first {
             module.lastUpdated = Date()
