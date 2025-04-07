@@ -75,7 +75,7 @@ class APIOAuthTests: CoreTestCase {
         XCTAssertEqual(PostLoginOAuthRequest(oauthType: pkce, refreshToken: "1234").path, "https://canvas.instructure.com/login/oauth2/token")
         XCTAssertEqual(PostLoginOAuthRequest(oauthType: pkce, refreshToken: "1234").body?.client_id, "client-id")
         XCTAssertEqual(PostLoginOAuthRequest(oauthType: pkce, refreshToken: "1234").body?.client_secret, nil)
-        XCTAssertEqual(PostLoginOAuthRequest(oauthType: pkce, refreshToken: "1234").body?.code_verifier, "code-verifier")
+        XCTAssertEqual(PostLoginOAuthRequest(oauthType: pkce, refreshToken: "1234").body?.code_verifier, nil)
         XCTAssertEqual(PostLoginOAuthRequest(oauthType: pkce, refreshToken: "1234").body?.grant_type, "refresh_token")
         XCTAssertEqual(PostLoginOAuthRequest(oauthType: pkce, refreshToken: "1234").body?.refresh_token, "1234")
     }

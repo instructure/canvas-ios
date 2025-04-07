@@ -93,7 +93,7 @@ final class ScoresViewModel {
 
         Publishers.CombineLatest(
             NotificationCenter.default
-                .publisher(for: .moduleItemRequirementCompleted)                
+                .publisher(for: .moduleItemRequirementCompleted)
                 .prepend(
                     .init(
                         name: .moduleItemRequirementCompleted,
