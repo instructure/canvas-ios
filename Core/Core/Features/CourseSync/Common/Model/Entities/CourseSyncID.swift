@@ -22,7 +22,7 @@ public struct CourseSyncID {
     let value: String
     let apiBaseURL: URL?
 
-    var localID: String { value }
+    var localID: String { value.localID }
 
     var env: AppEnvironment {
         .resolved(for: apiBaseURL)
