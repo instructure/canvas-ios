@@ -165,6 +165,17 @@ final class AssignmentDetailsViewModel {
         router.show(view, from: controller, options: .modal(isDismissable: false))
     }
 
+    func showLTI(controller: WeakViewController) {
+        let viewController = LTIQuizAssembly.makeView(
+            courseID: courseID,
+            name: assignment?.name ?? "",
+            assignmentID: assignmentID,
+            isQuizLTI: assignment?.isQuizLTI,
+            externalToolContentID: assignment?.externalToolContentID
+        )
+        router.show(viewController, from: controller, options: .modal(isDismissable: false))
+    }
+
     func addFile(url: URL) {
         interactor.addFile(url: url)
     }
@@ -238,20 +249,21 @@ final class AssignmentDetailsViewModel {
         isLoaderVisible = false
         assignment = response
         self.submissions = submissions
-        // Didn’t submit before
-        isSegmentControlVisible = Set(response.assignmentSubmissionTypes) == Set([.text, .fileUpload])
-        let firstSubmission = response.assignmentSubmissionTypes.first ?? .text
-        selectedSubmission = isSegmentControlVisible ? .text : firstSubmission
-
-        // In case of resubmission
-        hasSubmittedBefore = !response.isUnsubmitted
-        let latestSubmission = submissions.first?.type ?? .text
-        selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission
-        submission = submissions.first
-        didLoadAssignment(response.attemptCount, getModuleItem(assignment: response))
-        if selectedSubmission == .externalTool {
+        if response.assignmentSubmissionTypes.first == .externalTool {
+            selectedSubmission = .externalTool
             fetchExternalURL()
+        } else {
+            // Didn’t submit before
+            isSegmentControlVisible = Set(response.assignmentSubmissionTypes) == Set([.text, .fileUpload])
+            let firstSubmission = response.assignmentSubmissionTypes.first ?? .text
+            selectedSubmission = isSegmentControlVisible ? .text : firstSubmission
+            // In case of resubmission
+            hasSubmittedBefore = !response.isUnsubmitted
+            let latestSubmission = submissions.first?.type ?? .text
+            selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission
+            submission = submissions.first
         }
+        didLoadAssignment(response.attemptCount, getModuleItem(assignment: response))
     }
 
     private func fetchExternalURL() {

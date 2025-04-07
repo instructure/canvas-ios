@@ -165,18 +165,16 @@ struct AssignmentSubmissionView: View {
 
     @ViewBuilder
     private var externalToolView: some View {
-        let padding: CGFloat = .huiSpaces.space24
-        let isLTI = viewModel.assignment?.isQuizLTI == true
-        WebView(
-            url: viewModel.externalURL,
-            features: [
-                .invertColorsInDarkMode,
-                .hideReturnButtonInQuizLTI
-            ]
-        )
-        .padding(.horizontal, isLTI ? -padding : 0)
-        /// I set 1000 as a temporary value until the front-end team removes the ScrollView embedded in the WebView in quiz.
-        .frame(height: isLTI ? 1000 : 400, alignment: .top)
+        if viewModel.assignment?.isQuizLTI == false {
+            WebView(
+                url: viewModel.externalURL,
+                features: [
+                    .invertColorsInDarkMode,
+                    .hideReturnButtonInQuizLTI
+                ]
+            )
+            .frame(height: 400, alignment: .top)
+        }
     }
 
     private func makeFileUploadButtons() -> [HorizonUI.Overlay.ButtonAttribute] {

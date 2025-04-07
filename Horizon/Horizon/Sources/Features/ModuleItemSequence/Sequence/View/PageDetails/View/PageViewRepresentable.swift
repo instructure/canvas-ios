@@ -66,6 +66,11 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
         if let scrollView = findScrollView(in: uiViewController.view) {
             scrollView.delegate = context.coordinator
         }
+        /// Adds extra bottom margin via JavaScript to improve scrolling when toggling the header visibility.
+        let js = "document.body.style.marginBottom = '100px';"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            (uiViewController as? PageDetailsViewController)?.webView.evaluateJavaScript(js)
+        }
     }
 
     func makeCoordinator() -> Coordinator {

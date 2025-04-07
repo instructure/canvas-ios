@@ -138,7 +138,7 @@ public struct ModuleItemSequenceView: View {
                 moduleName: viewModel.moduleItem?.moduleName ?? "",
                 moduleItemName: viewModel.moduleItem?.title ?? "",
                 duration: viewModel.estimatedTime,
-                countOfPoints: viewModel.moduleItem?.points,
+                countOfPoints: viewModel.moduleItem?.points?.trimmedString,
                 dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "dd/MM"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,
                 attemptCount: viewModel.assignmentAttemptCount,
