@@ -17,6 +17,8 @@
 //
 
 import SwiftSoup
+import UIKit
+
 public struct HTMLWistiaHandler {
     public static func updateWistia(in html: String?) -> String? {
         guard let html = html else { return nil }

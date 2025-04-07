@@ -18,6 +18,7 @@
 
 import Foundation
 import mobile_offline_downloader_ios
+import UIKit
 
 @available(iOSApplicationExtension, unavailable)
 public final class BackgroundTaskProvider {

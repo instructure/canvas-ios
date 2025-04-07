@@ -17,6 +17,7 @@
 //
 
 import mobile_offline_downloader_ios
+import UIKit
 
 public struct DownloadableItem {
 
