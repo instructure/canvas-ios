@@ -19,11 +19,11 @@
 import Foundation
 import CoreData
 
-public class GetCoursesProgressionUseCase: APIUseCase {
+public class GetDashboardCoursesWithProgressionsUseCase: APIUseCase {
 
     // MARK: - Typealias
 
-    public typealias Model = CDCourseProgression
+    public typealias Model = CDDashboardCourse
     public typealias Request = GetCoursesProgressionRequest
 
     // MARK: - Properties
@@ -54,13 +54,13 @@ public class GetCoursesProgressionUseCase: APIUseCase {
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
         enrollments.forEach { enrollment in
-            CDCourseProgression.save(enrollment, in: client)
+            CDDashboardCourse.save(enrollment, in: client)
         }
     }
 
     public var scope: Scope {
         if let courseId = courseId {
-            return .where(#keyPath(CDCourseProgression.courseID), equals: courseId)
+            return .where(#keyPath(CDDashboardCourse.courseID), equals: courseId)
         }
         return .all
     }
