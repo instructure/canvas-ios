@@ -119,7 +119,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
             useCase: GetAssignmentsByGroup(
                 courseID: courseID,
                 gradingPeriodID: gradingPeriodID,
-                gradedOnly: true
+                gradedOnly: true,
+                userID: userID
             )
         )
 
