@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class DownloadCourseViewModel: Identifiable, Hashable {
     var id: String {

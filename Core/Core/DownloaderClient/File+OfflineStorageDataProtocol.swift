@@ -17,6 +17,7 @@
 //
 
 import mobile_offline_downloader_ios
+import Foundation
 
 extension File: OfflineStorageDataProtocol {
     public static func fromOfflineModel(_ model: OfflineStorageDataModel) throws -> File {

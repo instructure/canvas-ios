@@ -33,7 +33,7 @@ public struct DownloadsModuleCellView: View {
                 .font(.semibold16)
                 .foregroundColor(.textDarkest.variantForLightMode)
             Spacer()
-            InstDisclosureIndicator()
+            InstUI.DisclosureIndicator()
         }
         .fixedSize(horizontal: false, vertical: true)
         .frame(height: 60)

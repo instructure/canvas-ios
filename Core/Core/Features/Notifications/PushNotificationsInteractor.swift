@@ -105,7 +105,10 @@ public class PushNotificationsInteractor {
     }
 
     private func subscribeToCanvasPushNotificationsIfNecessary() {
-        guard let deviceToken, let api else {
+        guard let deviceToken,
+                let api,
+                let loginSession = api.loginSession
+        else {
             return
         }
 

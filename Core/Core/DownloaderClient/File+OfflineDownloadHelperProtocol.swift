@@ -17,6 +17,7 @@
 //
 
 @preconcurrency import mobile_offline_downloader_ios
+import UIKit
 
 extension File: OfflineDownloadTypeProtocol {
     public static func canDownload(entry: OfflineDownloaderEntry) -> Bool {

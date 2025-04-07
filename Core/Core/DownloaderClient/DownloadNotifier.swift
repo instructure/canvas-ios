@@ -19,6 +19,7 @@
 import Foundation
 import mobile_offline_downloader_ios
 import Combine
+import UserNotifications
 
 final class DownloadNotifier: Reachabilitable {
 

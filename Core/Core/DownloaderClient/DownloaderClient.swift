@@ -18,6 +18,7 @@
 
 import Foundation
 import mobile_offline_downloader_ios
+import UIKit
 
 public struct DownloaderClient {
     public static func setup(with session: LoginSession) {
