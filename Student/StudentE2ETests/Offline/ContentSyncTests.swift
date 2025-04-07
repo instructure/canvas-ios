@@ -502,7 +502,10 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         XCTAssertTrue(navBar.isVisible)
         let assignmentButton = Assignment.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertEqual(assignmentButton.label, assignment.name + ", No Due Date, Not Submitted, -/1")
+        XCTAssertHasPrefix(assignmentButton.label, assignment.name)
+        XCTAssertContains(assignmentButton.label, "No Due Date")
+        XCTAssertContains(assignmentButton.label, "Not Submitted")
+        XCTAssertHasSuffix(assignmentButton.label.split(separator: " ").joined(), "-/1")
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()

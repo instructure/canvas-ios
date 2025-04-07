@@ -37,22 +37,13 @@ public class AssignmentCellViewModel: ObservableObject {
     public var submissionIcon: UIImage { stateDisplayProperties.icon }
     public var submissionColor: Color { .init(stateDisplayProperties.color) }
     public let defaultTextColor: Color = .textDark
-    public var hasPointsPossible: Bool { scoreLabel != nil }
+    public var hasPointsPossible: Bool { assignment.pointsPossible != nil }
     public var pointsPossibleText: String { assignment.pointsPossibleCompleteText }
 
     // Teacher
     public var isTeacher: Bool { env.app == .teacher }
     public var needsGrading: Bool { assignment.needsGradingCount > 0 }
     public var needsGradingCount: Int { assignment.needsGradingCount }
-
-    public var scoreLabel: String? {
-        guard let pointsPossible = assignment.pointsPossible else { return nil }
-        var scoreString = "-"
-        if let viewableScore = assignment.viewableScore {
-            scoreString = String(Int(viewableScore))
-        }
-        return "\(scoreString)/\(String(Int(pointsPossible)))"
-    }
 
     public var published: Bool? {
         guard isTeacher else { return nil }
