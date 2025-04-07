@@ -119,13 +119,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         guard let attemptPicker,
               let currentSubmission,
               let currentAttemptDate = currentSubmission.submittedAt
-        else {
-
-            contentViewSafeAreaConstraint?.isActive = false
-            dividerView?.isHidden = true
-            contentView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-            return
-        }
+        else { return setConstraintsForNoSubmission() }
 
         let isActive = submissions.count > 1 && !assignment.isExternalToolAssignment
 
@@ -150,6 +144,12 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         attemptPicker.updateLabel(text: currentAttemptNumber)
         attemptPicker.updatePickerButton(isActive: isActive, attemptDate: currentAttemptDate.dateTimeString, items: items)
 
+    }
+
+    private func setConstraintsForNoSubmission() {
+        contentViewSafeAreaConstraint?.isActive = false
+        dividerView?.isHidden = true
+        contentView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
     }
 
     func reloadNavBar() {
