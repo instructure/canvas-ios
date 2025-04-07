@@ -20,7 +20,7 @@ import Combine
 import Core
 
 protocol ScoresInteractor {
-    func getScores(sortedBy: ScoreDetails.SortOption, refresh: Bool) -> AnyPublisher<ScoreDetails, Error>
+    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error>
 }
 
 final class ScoresInteractorLive: ScoresInteractor {
@@ -35,16 +35,14 @@ final class ScoresInteractorLive: ScoresInteractor {
         self.submissionCommentInteractor = submissionCommentInteractor
     }
 
-    func getScores(sortedBy: ScoreDetails.SortOption, refresh: Bool) -> AnyPublisher<ScoreDetails, Error> {
-        Publishers.Zip3(
+    func getScores(sortedBy: ScoreDetails.SortOption) -> AnyPublisher<ScoreDetails, Error> {
+        Publishers.Zip(
             getAssignmentGroups(courseID: courseID),
-            getCourse(courseID: courseID),
-            getCourseEnrollment(ignoreCache: refresh)
+            getCourse(courseID: courseID)
         )
-        .flatMap { assignmentGroups, course, enrollment in
+        .flatMap { assignmentGroups, course in
             self.getScoreDetails(
                 course: course,
-                enrollment: enrollment,
                 assignmentGroups: assignmentGroups,
                 sortBy: sortedBy
             )
@@ -62,18 +60,6 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getCourseEnrollment(ignoreCache: Bool = false) -> AnyPublisher<Enrollment?, Error> {
-        ReactiveStore(
-            useCase: GetEnrollments(
-                context: .course(courseID),
-                userID: AppEnvironment.shared.currentSession?.userID
-            )
-        )
-        .getEntities(ignoreCache: ignoreCache)
-        .map { $0.first }
-        .eraseToAnyPublisher()
-    }
-
     private func getAssignmentGroups(courseID: String) -> AnyPublisher<[HAssignmentGroup], Error> {
         ReactiveStore(
             useCase: GetAssignmentGroups(courseID: courseID)
@@ -87,7 +73,6 @@ final class ScoresInteractorLive: ScoresInteractor {
 
     private func getScoreDetails(
         course: ScoresCourse,
-        enrollment: Enrollment?,
         assignmentGroups: [HAssignmentGroup],
         sortBy: ScoreDetails.SortOption
     ) -> AnyPublisher<ScoreDetails, Error> {
@@ -111,7 +96,7 @@ final class ScoresInteractorLive: ScoresInteractor {
             .collect()
             .map {
                 ScoreDetails(
-                    score: unownedSelf.calculateFinalScoreAndGradeText(course: course, enrollment: enrollment),
+                    score: unownedSelf.calculateFinalScoreAndGradeText(course: course),
                     assignmentGroups: $0,
                     sortOption: sortBy
                 )
@@ -138,10 +123,10 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func calculateFinalScoreAndGradeText(course: ScoresCourse, enrollment: Enrollment?) -> String {
+    private func calculateFinalScoreAndGradeText(course: ScoresCourse) -> String {
         let naText = String(localized: "N/A", bundle: .horizon)
 
-        guard let enrollment = enrollment else {
+        guard let enrollment = course.enrollments.first else {
             return naText
         }
 
@@ -160,9 +145,9 @@ final class ScoresInteractorLive: ScoresInteractor {
         return naText
     }
 
-    private func scoreGradeString(enrollment: Enrollment) -> String {
+    private func scoreGradeString(enrollment: ScoresCourseEnrollment) -> String {
         var scoreString: String?
-        if let score = enrollment.currentScore,
+        if let score = enrollment.computedFinalScore,
            let formattedScore = GradeFormatter.numberFormatter.string(
                 from: GradeFormatter.truncate(score)
            ) {
