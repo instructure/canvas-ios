@@ -176,6 +176,35 @@ public extension XCTestCase {
         subscription.cancel()
     }
 
+    func XCTAssertFailureEquals<Output, Failure>(
+        _ publisher: any Publisher<Output, Failure>,
+        _ failure: Failure,
+        assertOnOutput: Bool = true,
+        timeout: TimeInterval = 1
+    ) where Failure: Error, Failure: Equatable {
+        let finishExpectation = expectation(description: "Publisher failed")
+        finishExpectation.expectedFulfillmentCount = 1
+
+        let subscription = publisher
+            .sink { completion in
+                finishExpectation.fulfill()
+
+                switch completion {
+                case .finished:
+                    XCTFail("Unexpected finish event while waiting on failure.")
+                case .failure(let error):
+                    XCTAssertEqual(failure, error)
+                }
+            } receiveValue: { _ in
+                if assertOnOutput {
+                    XCTFail("Received unexpected output from publisher.")
+                }
+            }
+
+        wait(for: [finishExpectation], timeout: timeout)
+        subscription.cancel()
+    }
+
     func XCTAssertNoOutput<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         timeout: TimeInterval = 1

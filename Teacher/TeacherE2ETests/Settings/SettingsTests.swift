@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class SettingsTests: E2ETestCase {
     typealias Helper = SettingsHelper
@@ -46,13 +47,11 @@ class SettingsTests: E2ETestCase {
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
-        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(.visible)
         XCTAssertTrue(landingPage.isVisible)
         XCTAssertTrue(appearance.isVisible)
         XCTAssertTrue(about.isVisible)
         XCTAssertTrue(privacyPolicy.isVisible)
         XCTAssertTrue(termsOfUse.isVisible)
-        XCTAssertTrue(canvasOnGitHub.isVisible)
     }
 
     func testLandingPageSetting() {
@@ -236,38 +235,5 @@ class SettingsTests: E2ETestCase {
         termsOfUse.hit()
         let termsOfUseNavBar = SubSettingsHelper.termsOfUseNavBar.waitUntil(.visible)
         XCTAssertTrue(termsOfUseNavBar.isVisible)
-    }
-
-    func testCanvasOnGitHub() {
-        // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
-
-        // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
-
-        Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
-
-        // MARK: Select "Canvas on GitHub", check if Safari opens
-        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(.visible)
-        XCTAssertTrue(canvasOnGitHub.isVisible)
-
-        canvasOnGitHub.hit()
-        let openInSafariButton = Helper.openInSafariButton.waitUntil(.visible)
-        XCTAssertTrue(openInSafariButton.isVisible)
-
-        openInSafariButton.hit()
-        XCTAssertTrue(SafariAppHelper.safariApp.wait(for: .runningForeground, timeout: 15))
-
-        // MARK: Check URL
-        let url = SafariAppHelper.browserURL
-        XCTAssertEqual(url, "https://github.com/instructure/canvas-ios")
     }
 }

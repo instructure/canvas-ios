@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 private class DarkModeForWebDiscussions: CoreWebViewFeature {
     private let script: String = {
         let textLight = UIColor.textDark.hexString(userInterfaceStyle: .dark)
@@ -27,8 +29,17 @@ private class DarkModeForWebDiscussions: CoreWebViewFeature {
                 background: \(backgroundDarkest);
             }
             div[data-testid="discussion-topic-container"],
-            div[data-testid="discussion-root-entry-container"]{
+            div[data-testid="discussion-root-entry-container"] {
                 color: \(textLightest);
+            }
+
+            /* Thread Dialog */
+            div[data-testid="drawer-layout-tray"] {
+                background: \(backgroundDarkest);
+                color: \(textLightest);
+            }
+            .css-1eaecfq-baseButton__content {
+                color: \(textLightest) !important;
             }
 
             span[data-testid="mobile-Designer"],
@@ -119,6 +130,8 @@ private class DarkModeForWebDiscussions: CoreWebViewFeature {
             .css-z3sx20-textInput__facade,
             .css-7naoe-textInput__facade,
             .css-1dn3ise-textInput__facade,
+            .css-1n8dxlp-view,
+            .css-1n1ez2a-textInput__facade,
             button[data-testid="manage-assign-to"] span {
                 color: \(textLightest) !important;
                 background: \(backgroundDarkest) !important;

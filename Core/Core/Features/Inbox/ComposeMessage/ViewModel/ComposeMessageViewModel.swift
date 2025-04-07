@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import CombineSchedulers
+import UIKit
 
 final class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
@@ -90,12 +91,12 @@ final class ComposeMessageViewModel: ObservableObject {
     // MARK: - Private
     private var initialMessageProperties = ComposeMessageProperties()
     private var changedMessageProperties = ComposeMessageProperties()
-    private var didSentMailSuccessfully: PassthroughSubject<Void, Never>?
     public let didTapRetry = PassthroughRelay<WeakViewController>()
     private var viewController  = WeakViewController()
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let recipientInteractor: RecipientInteractor
+    private let settingsInteractor: InboxSettingsInteractor
     private let audioSession: AudioSessionProtocol
     private let cameraPermissionService: CameraPermissionService.Type
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -114,7 +115,7 @@ final class ComposeMessageViewModel: ObservableObject {
         interactor: ComposeMessageInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         recipientInteractor: RecipientInteractor,
-        sentMailEvent: PassthroughSubject<Void, Never>? = nil,
+        inboxSettingsInteractor: InboxSettingsInteractor,
         audioSession: AudioSessionProtocol,
         cameraPermissionService: CameraPermissionService.Type
     ) {
@@ -123,7 +124,7 @@ final class ComposeMessageViewModel: ObservableObject {
         self.scheduler = scheduler
         self.messageType = options.messageType
         self.recipientInteractor = recipientInteractor
-        self.didSentMailSuccessfully = sentMailEvent
+        self.settingsInteractor = inboxSettingsInteractor
         self.audioSession = audioSession
         self.cameraPermissionService = cameraPermissionService
         setIncludedMessages(messageType: options.messageType)
@@ -357,6 +358,17 @@ final class ComposeMessageViewModel: ObservableObject {
                 }
             }
             .store(in: &subscriptions)
+
+        settingsInteractor.signature
+            // If the signature is not returned within 3 seconds, we won't insert it, as per product decision.
+            // It might be confusing for users with bad network connection if the body changed while they are already editing.
+            .timeout(.seconds(3), scheduler: DispatchQueue.main)
+            .sink { [weak self] (useSignature, signature) in
+                if useSignature, let signature, signature.isNotEmpty {
+                    self?.bodyText.append("\n\n---\n\(signature)")
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     private func setOptionItems(options: ComposeMessageOptions) {
@@ -542,7 +554,7 @@ final class ComposeMessageViewModel: ObservableObject {
     }
 
     private func didSendMessage(viewController: WeakViewController) {
-        didSentMailSuccessfully?.send()
+        viewController.findSnackBarViewModel()?.showSnack(InboxMessageScope.sent.localizedName)
         router.dismiss(viewController)
     }
 

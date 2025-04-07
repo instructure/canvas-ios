@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 public final class Activity: NSManagedObject, WriteableModel {
     public typealias JSON = APIActivity
@@ -51,7 +51,7 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.title = item.title
         model.htmlURL = item.html_url
         model.typeRaw = item.type.rawValue
-        model.updatedAt = item.updated_at
+        model.updatedAt = item.latestRelevantUpdate
 
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: Context?

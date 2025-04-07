@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class FilesHelper: BaseHelper {
     public struct Details {
         public static var editButton: XCUIElement { app.find(id: "FileDetails.editButton") }

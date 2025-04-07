@@ -23,7 +23,7 @@ extension UNCalendarNotificationTrigger {
 
     convenience init(assignmentDueDate: Date,
                      beforeTime: DateComponents,
-                     currentDate: Date = .now) throws {
+                     currentDate: Date = Clock.now) throws {
         let negativeBeforeTime: DateComponents = {
             var result = beforeTime
             result.minute = result.minute.flatMap { -$0 }

@@ -20,6 +20,7 @@ import Combine
 @testable import Core
 import Foundation
 import TestsFoundation
+import XCTest
 
 class GradeListViewModelTests: CoreTestCase {
     func testErrorState() {

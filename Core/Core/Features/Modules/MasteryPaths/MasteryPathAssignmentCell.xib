@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,7 +35,7 @@
                             <rect key="frame" x="40" y="0.0" width="321" height="52"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJm-Y4-6rx" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="321" height="35"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="321" height="31.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDm-eb-rI0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="35" width="321" height="17"/>
+                                    <rect key="frame" x="0.0" y="31.5" width="321" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -62,14 +62,15 @@
                                 <constraint firstAttribute="width" constant="16" id="CUK-3X-jAs"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="borderMedium"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightLine"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
                             </userDefinedRuntimeAttributes>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Fug-F3-Sai"/>
             <constraints>
                 <constraint firstItem="Fug-F3-Sai" firstAttribute="trailing" secondItem="tW6-CX-oKy" secondAttribute="trailing" constant="16" id="8eJ-ho-Moo"/>
                 <constraint firstItem="tW6-CX-oKy" firstAttribute="top" secondItem="Fpb-xb-lBG" secondAttribute="top" constant="16" id="Zis-9x-Hcg"/>
@@ -77,7 +78,6 @@
                 <constraint firstAttribute="bottom" secondItem="tW6-CX-oKy" secondAttribute="bottom" constant="16" id="s6n-a6-Pbp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="Fug-F3-Sai"/>
             <point key="canvasLocation" x="-433" y="-111"/>
         </view>
     </objects>

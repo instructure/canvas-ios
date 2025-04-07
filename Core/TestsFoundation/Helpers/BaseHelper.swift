@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import XCTest
 
 open class BaseHelper {
     public static let seeder = DataSeeder()

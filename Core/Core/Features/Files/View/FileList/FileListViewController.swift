@@ -570,6 +570,11 @@ class FileListCell: UITableViewCell {
         removeDownloadButton()
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupInstDisclosureIndicator()
+    }
+
     func update(item: FolderItem?, course: Course?, color: UIColor?, isOffline: Bool, isAvailable: Bool) {
         fileID = item?.id
         if isOffline {
@@ -618,6 +623,6 @@ class FileListCell: UITableViewCell {
 
     func updateAccessibilityLabel() {
         accessibilityLabel = [ iconView.accessibilityLabel, nameLabel.text, sizeLabel.text ]
-            .compactMap { $0 }.joined(separator: ", ")
+            .joined(separator: ", ")
     }
 }

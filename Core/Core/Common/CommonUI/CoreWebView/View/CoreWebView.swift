@@ -45,6 +45,8 @@ open class CoreWebView: WKWebView {
         }
     }
 
+    var downloadingAttachment: CoreWebAttachment?
+
     private(set) var features: [CoreWebViewFeature] = []
     private var htmlString: String?
     private var baseURL: URL?
@@ -73,6 +75,7 @@ open class CoreWebView: WKWebView {
 
     public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration) {
         configuration.applyDefaultSettings()
+        let features = features + [.dynamicFontSize]
         features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
@@ -136,10 +139,7 @@ open class CoreWebView: WKWebView {
         isOpaque = false
         backgroundColor = UIColor.clear
         translatesAutoresizingMaskIntoConstraints = false
-
-        if #available(iOS 16.4, *) {
-            isInspectable = true
-        }
+        isInspectable = true
 
         addScript(js)
         handle("resize") { [weak self] message in
@@ -254,7 +254,10 @@ open class CoreWebView: WKWebView {
         let font: String
         let fontCSS: String
         let style = Typography.Style.body
-        let uiFont = style.uiFont
+        // This is to avoid double scaling both from the font and from the script.
+        let isDynamicFontScalingEnabled = features.contains { $0 is DynamicFontSize }
+        let uiFont = isDynamicFontScalingEnabled ? Typography.Style.unscaledBodyUIFont
+                                                 : style.uiFont
         let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
         if AppEnvironment.shared.k5.isK5Enabled {

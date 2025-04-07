@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UIKit
 
 class OfflineBannerView: UIView {
     @IBOutlet private unowned var onlineContainer: UIView!

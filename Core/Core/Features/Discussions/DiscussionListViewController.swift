@@ -300,6 +300,7 @@ class DiscussionListCell: UITableViewCell {
         pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
         repliesDot.setText(repliesDot.text, style: .textCellBottomLabel)
         statusDot.setText(statusDot.text, style: .textCellBottomLabel)
+        setupInstDisclosureIndicator()
     }
 
     func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
@@ -343,7 +344,7 @@ class DiscussionListCell: UITableViewCell {
         unreadDot.backgroundColor = .backgroundInfo
 
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
-        accessibilityLabel = [titleLabel.text, statusLabel.text, dateLabel.text, pointsLabel.text, repliesLabel.text, unreadLabel.text].compactMap { $0 }.joined(separator: " ")
+        accessibilityLabel = [titleLabel.text, statusLabel.text, dateLabel.text, pointsLabel.text, repliesLabel.text, unreadLabel.text].joined(separator: " ")
     }
 
     override func prepareForReuse() {
@@ -354,6 +355,5 @@ class DiscussionListCell: UITableViewCell {
         unreadDot.isHidden = false
         dateLabel.isHidden = false
         isUserInteractionEnabled = true
-        accessoryType = .disclosureIndicator
     }
 }

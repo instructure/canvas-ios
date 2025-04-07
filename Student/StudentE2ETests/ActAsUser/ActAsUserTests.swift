@@ -18,6 +18,7 @@
 
 import XCTest
 import TestsFoundation
+import XCTest
 
 class ActAsUserTests: CoreUITestCase {
     // TODO: Make it use DataSeeder

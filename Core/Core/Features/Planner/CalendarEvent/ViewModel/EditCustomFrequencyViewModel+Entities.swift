@@ -33,7 +33,6 @@ extension EditCustomFrequencyViewModel {
                     "weekday: \(dayOfWeek.weekday.dateComponent)",
                     dayOfWeek.weekNumber.flatMap({ "weekNumber: \($0)" })
                 ]
-                    .compactMap({ $0 })
                     .joined(separator: ", ")
             case .day(let dayNo):
                 info = "day: \(dayNo)"

@@ -25,8 +25,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
-
+    private var showInboxSignatureSettings = false
+    private var isInboxSignatureEnabled = false
     private var offlineModeInteractor = OfflineModeAssembly.make()
+    private var inboxSettingsInteractor = InboxSettingsInteractorLive()
     private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {
@@ -87,6 +89,23 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 self?.networkStateDidChange()
             }
             .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .isFeatureEnabled
+            .sink { [weak self] isFeatureEnabled in
+                self?.showInboxSignatureSettings = isFeatureEnabled
+                self?.reloadData()
+            }
+            .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .settings
+            .sink { [weak self] inboxSettings in
+                guard let inboxSettings else { return }
+                self?.isInboxSignatureEnabled = inboxSettings.useSignature
+                self?.reloadData()
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +149,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
         var sections: [Section] = [preferencesSection]
 
+        if showInboxSignatureSettings {
+            sections.append(inboxSignatureSettingsSection)
+        }
+
         if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
             sections.append(offlineSettingSection)
         }
@@ -172,6 +195,21 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     isSupportedOffline: true) { [weak self] in
                         guard let self = self else { return }
                         self.env.router.route(to: "/offline/settings", from: self)
+                    }
+               ])
+    }
+
+    private var inboxSignatureSettingsSection: Section {
+        let detailLabel = isInboxSignatureEnabled
+            ? String(localized: "Enabled", bundle: .core)
+            : String(localized: "Not set", bundle: .core)
+
+        return Section(String(localized: "Inbox", bundle: .core), rows: [
+                Row(String(localized: "Inbox Signature", bundle: .core),
+                    detail: detailLabel,
+                    isSupportedOffline: true) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "/conversations/settings", from: self)
                     }
                ])
     }
@@ -332,7 +370,11 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = row.title
             cell.detailTextLabel?.text = row.detail
-            cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
+            if row.hasDisclosure {
+                cell.setupInstDisclosureIndicator()
+            } else {
+                cell.accessoryView = nil
+            }
             let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline
             cell.contentView.alpha = isAvailable ? 1 : 0.5
             if let accessibilityTraits = row.accessibilityTraits {

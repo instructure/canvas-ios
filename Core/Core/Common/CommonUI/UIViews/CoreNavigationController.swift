@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
 
-public class CoreNavigationController: UINavigationController {
+open class CoreNavigationController: UINavigationController {
     public var remoteLogger = RemoteLogger.shared
     public override var prefersStatusBarHidden: Bool {
         topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
@@ -51,7 +51,7 @@ public class CoreNavigationController: UINavigationController {
 
     // MARK: - Lifecycle Methods
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.interactivePopGestureRecognizer?.delegate = self
     }

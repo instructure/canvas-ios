@@ -23,7 +23,6 @@ import BugfenderSDK
 import Combine
 import Core
 import Firebase
-import Heap
 import PSPDFKit
 import UIKit
 import UserNotifications
@@ -45,6 +44,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
+    private lazy var analyticsTracker: PendoAnalyticsTracker = {
+        .init(environment: environment)
+    }()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
@@ -65,7 +68,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
-        FontAppearance.update()
+        Appearance.update()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,
@@ -130,12 +133,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             self.environmentFeatureFlags?.refresh(force: true) { _ in
                 defer { self.environmentFeatureFlags = nil }
                 guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-                self.initializeTracking()
+                self.initializeTracking(environmentFeatureFlags: envFlags.all)
             }
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
 
             // NotificationManager.registerForRemoteNotifications is not called in UITests,
             // so we need to requestAuthorization in order to be able to test notification related logic like
@@ -185,7 +188,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         })
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme?.range(of: "pendo") != nil {
+            analyticsTracker.initManager(with: url)
+            return true
+        }
+
         if options[.sourceApplication] as? String == Bundle.teacherBundleID,
            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
            components.path.contains("student_view"),
@@ -194,6 +202,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             userDidLogin(session: fakeStudent)
             return true
         }
+
         return openURL(url)
     }
 
@@ -310,11 +319,8 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 // MARK: - Usage Analytics
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
-
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        if Heap.isTrackingEnabled() {
-            Heap.track(name, withProperties: parameters)
-        }
+        analyticsTracker.track(name, properties: parameters)
 
         PageViewEventController.instance.logPageView(
             name,
@@ -322,25 +328,20 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         )
     }
 
-    private func initializeTracking() {
-        guard
-            let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let heapID = Secret.heapID.string
-        else {
-            return
-        }
+    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
+        guard !ProcessInfo.isUITest else { return }
 
-        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-        let options = HeapOptions()
-        options.disableTracking = !isSendUsageMetricsEnabled
-        Heap.initialize(heapID, with: options)
-        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-        environment.heapID = Heap.userId()
+        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+
+        if isTrackingEnabled {
+            analyticsTracker.startSession()
+        } else {
+            analyticsTracker.endSession()
+        }
     }
 
     private func disableTracking() {
-        Heap.setTrackingEnabled(false)
+        analyticsTracker.endSession()
     }
 }
 
@@ -486,7 +487,7 @@ extension StudentAppDelegate: LoginDelegate {
     func changeUser() {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .student)
     }

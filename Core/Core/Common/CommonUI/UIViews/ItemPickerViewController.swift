@@ -29,10 +29,10 @@ public struct ItemPickerSection {
 }
 
 public struct ItemPickerItem: Equatable {
-    let image: UIImage?
-    let title: String
-    let subtitle: String?
-    let accessibilityIdentifier: String?
+    public let image: UIImage?
+    public let title: String
+    public let subtitle: String?
+    public let accessibilityIdentifier: String?
 
     public init(image: UIImage? = nil, title: String, subtitle: String? = nil, accessibilityIdentifier: String? = nil) {
         self.image = image

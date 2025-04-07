@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 public class TodoListViewController: ScreenViewTrackableViewController, ErrorViewController {
@@ -194,6 +193,7 @@ class TodoListCell: UITableViewCell {
         needsGradingView.layer.borderColor = Brand.shared.primary.cgColor
         needsGradingView.layer.borderWidth = 1
         needsGradingView.layer.cornerRadius = needsGradingView.frame.height / 2
+        setupInstDisclosureIndicator()
     }
 
     func update(_ todo: Todo?) {
@@ -213,6 +213,6 @@ class TodoListCell: UITableViewCell {
         needsGradingSpacer.isHidden = needsGradingView.isHidden
         needsGradingLabel.text = todo?.needsGradingText
         accessibilityIdentifier = "to-do.list.\(todo?.assignmentOrQuizID ?? "unknown").row"
-        accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.name, todo?.dueText, todo?.needsGradingText].compactMap { $0 }.joined(separator: ", ")
+        accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.name, todo?.dueText, todo?.needsGradingText].joined(separator: ", ")
     }
 }

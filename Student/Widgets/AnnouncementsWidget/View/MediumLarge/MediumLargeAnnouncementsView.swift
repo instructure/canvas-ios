@@ -50,7 +50,6 @@ struct MediumLargeAnnouncementsView: View {
                 }
             }.padding(.top, 40) // This is to move the first entry below the header
         }
-        .compatibleContentMargins()
     }
 }
 

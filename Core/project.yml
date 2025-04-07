@@ -7,7 +7,7 @@ options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
   deploymentTarget:
-    iOS: 16.0
+    iOS: 17.0
   createIntermediateGroups: true
 settings:
   CODE_SIGN_STYLE: Automatic
@@ -15,7 +15,7 @@ settings:
   APPLICATION_EXTENSION_API_ONLY: true
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
-  ENABLE_USER_SCRIPT_SANDBOXING: true
+  ENABLE_USER_SCRIPT_SANDBOXING: false
   platform: iOS
 packages:
   CombineSchedulers:
@@ -27,6 +27,9 @@ packages:
   Lottie:
     url: https://github.com/airbnb/lottie-ios.git
     exactVersion: 3.5.0
+  Pendo:
+    url: https://github.com/pendo-io/pendo-mobile-sdk
+    exactVersion: 3.6.1
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.9.1
@@ -52,6 +55,7 @@ targets:
       - package: CombineSchedulers
       - package: CombineExt
       - package: Lottie
+      - package: Pendo
       - package: PSPDFKit
       - package: CombineReachability
       - package: mobile-offline-downloader-ios

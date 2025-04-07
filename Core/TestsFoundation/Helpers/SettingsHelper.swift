@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public enum SettingsMenuItem: String {
     case landingPage = "Landing Page"
     case appearance = "Appearance"
@@ -25,7 +27,6 @@ public enum SettingsMenuItem: String {
     case synchronization = "Synchronization"
     case privacyPolicy = "Privacy Policy"
     case termsOfUse = "Terms of Use"
-    case canvasOnGitHub = "Canvas on GitHub"
 }
 
 public enum LandingPageMenuItem: String {
@@ -98,9 +99,9 @@ public class SettingsHelper: BaseHelper {
     }
 
     public struct OfflineSync {
-        public static var autoContentSyncSwitch: XCUIElement { app.find(label: "Auto Content Sync", type: .switch).find(type: .switch) }
+        public static var autoContentSyncSwitch: XCUIElement { app.find(label: "Auto Content Sync", type: .toggle) }
         public static var syncFrequencyButton: XCUIElement { app.find(labelContaining: "Sync Frequency", type: .button) }
-        public static var wifiOnlySwitch: XCUIElement { app.find(label: "Sync Content Over Wi-Fi Only", type: .switch).find(type: .switch) }
+        public static var wifiOnlySwitch: XCUIElement { app.find(label: "Sync Content Over Wi-Fi Only", type: .toggle) }
         public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
 
         public static var turnOffWifiOnlySyncStaticText: XCUIElement { app.find(label: "Turn Off Wi-Fi Only Sync?", type: .staticText) }

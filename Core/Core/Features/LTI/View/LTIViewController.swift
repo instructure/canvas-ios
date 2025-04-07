@@ -18,12 +18,15 @@
 
 import Foundation
 import mobile_offline_downloader_ios
+import UIKit
 
 public class LTIViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var openButton: UIButton!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
 
     private var env: AppEnvironment = .defaultValue
     public var tools: LTITools!
@@ -65,6 +68,8 @@ public class LTIViewController: UIViewController, ColoredNavViewProtocol, ErrorV
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
+        contentView.backgroundColor = .backgroundLightest
+        scrollView.backgroundColor = .backgroundLightest
         spinnerView.isHidden = true
         nameLabel.text = name ?? String(localized: "LTI Tool", bundle: .core)
         setupTitleViewInNavbar(title: String(localized: "External Tool", bundle: .core))

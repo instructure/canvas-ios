@@ -106,12 +106,10 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 HStack {
                     if assignment.published {
                         Image.publishSolid.foregroundColor(.textSuccess)
-                            .padding(.trailing, 4)
                         Text("Published", bundle: .core)
                             .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
                     } else {
                         Image.noSolid.foregroundColor(.textDark)
-                            .padding(.trailing, 4)
                         Text("Unpublished", bundle: .core)
                             .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
                     }
@@ -141,7 +139,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             Button(action: launchLTITool, label: { HStack {
                 types
                 Spacer()
-                DisclosureIndicator().padding(.trailing, 16)
+                InstUI.DisclosureIndicator().padding(.trailing, 16)
             } }).disableWithOpacity(isLocked)
         } else {
             types

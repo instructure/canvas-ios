@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
@@ -32,6 +32,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var courseColor: String?
     @NSManaged var defaultViewRaw: String?
     @NSManaged public var enrollments: Set<Enrollment>?
+    @NSManaged public var gradingStandardId: String?
     @NSManaged public var grades: Set<Grade>?
     @NSManaged public var gradingPeriods: Set<GradingPeriod>?
     @NSManaged public var hideFinalGrades: Bool
@@ -51,9 +52,23 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var gradingSchemeRaw: NSOrderedSet?
     @NSManaged public var roles: String?
 
-    public var gradingScheme: [GradingSchemeEntry] {
+    @NSManaged public var scalingFactor: Double
+    @NSManaged public var pointsBasedGradingScheme: Bool
+
+    public var gradingSchemeEntries: [GradingSchemeEntry] {
         get { gradingSchemeRaw?.array as? [GradingSchemeEntry] ?? [] }
         set { gradingSchemeRaw = NSOrderedSet(array: newValue) }
+    }
+
+    public var gradingScheme: GradingScheme {
+        if pointsBasedGradingScheme {
+            PointsBasedGradingScheme(
+                scaleFactor: scalingFactor,
+                entries: gradingSchemeEntries
+            )
+        } else {
+            PercentageBasedGradingScheme(entries: gradingSchemeEntries)
+        }
     }
 
     public var defaultView: CourseDefaultView? {
@@ -100,6 +115,11 @@ final public class Course: NSManagedObject, WriteableModel {
             }
             model.gradingPeriods = Set(gradingPeriods)
         }
+
+        model.gradingStandardId = item.grading_standard_id?.value
+        model.scalingFactor = item.scaling_factor ?? 0
+        model.pointsBasedGradingScheme = item.points_based_grading_scheme ?? false
+
         model.hideFinalGrades = item.hide_final_grades ?? false
         model.isCourseDeleted = item.workflow_state == .deleted
         model.isPastEnrollment = (
@@ -151,7 +171,7 @@ final public class Course: NSManagedObject, WriteableModel {
         }
 
         if let gradingScheme = item.grading_scheme {
-            model.gradingScheme = gradingScheme.compactMap {
+            model.gradingSchemeEntries = gradingScheme.compactMap {
                 guard let apiEntry = APIGradingSchemeEntry(courseGradingScheme: $0) else {
                     return nil
                 }
@@ -183,15 +203,6 @@ final public class Course: NSManagedObject, WriteableModel {
 }
 
 extension Course {
-    public static let scoreFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.decimalSeparator = "."
-        formatter.multiplier = 1
-        formatter.maximumFractionDigits = 3
-        formatter.roundingMode = .down
-        return formatter
-    }()
 
     public var displayGrade: String {
         /// We want to use the special enrollment that was downloaded along the course because that contains the
@@ -217,7 +228,8 @@ extension Course {
             return grade ?? enrollment.computedCurrentLetterGrade ?? String(localized: "N/A", bundle: .core)
         }
 
-        guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
+        guard let scoreNotNil = score,
+              let scoreString = gradingScheme.formattedScore(from: scoreNotNil) else {
             return grade ?? String(localized: "N/A", bundle: .core)
         }
 

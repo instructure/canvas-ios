@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
 protocol CalendarViewControllerDelegate: AnyObject {
@@ -234,12 +233,10 @@ class CalendarViewController: ScreenViewTrackableViewController {
 
         // Manually trigger a calendar height update upon rotation
         if traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass {
-            if #available(iOS 17.0, *) {
-                // On iOS 17 embedded VC traits need to be updated first, otherwise the size values from
-                // the embedded VC will be outdated in `updateExpanded()`.
-                // This would be also needed if we used `registerForTraitChanges()`, unfortunately.
-                updateTraitsIfNeeded()
-            }
+            // On iOS 17 embedded VC traits need to be updated first, otherwise the size values from
+            // the embedded VC will be outdated in `updateExpanded()`.
+            // This would be also needed if we used `registerForTraitChanges()`, unfortunately.
+            updateTraitsIfNeeded()
             updateExpanded()
         }
     }

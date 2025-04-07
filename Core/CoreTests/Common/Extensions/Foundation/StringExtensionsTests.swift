@@ -84,19 +84,33 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(results.last, "<iframe></iframe>")
     }
 
-    func testLocalizedNumberOfItems() {
-        XCTAssertEqual(String.localizedNumberOfItems(1), "1 item")
-        XCTAssertEqual(String.localizedNumberOfItems(5), "5 items")
-        XCTAssertEqual(String.localizedNumberOfItems(0), "0 items")
+    func testDeletesPrefix() {
+        XCTAssertEqual("Canvas1".deletingPrefix("Canvas"), "1")
+        XCTAssertEqual("1Canvas1".deletingPrefix("Canvas"), "1Canvas1")
     }
 
-    func testLocalizedAccessibilityListCount() {
-        XCTAssertEqual(String.localizedAccessibilityListCount(1), "List, 1 item")
-        XCTAssertEqual(String.localizedAccessibilityListCount(5), "List, 5 items")
+    func testSHA256() {
+        let text1 = "Some text 1"
+        let text2 = "Some text 2"
+
+        let hash1 = text1.sha256()
+        let hash2 = text2.sha256()
+        XCTAssertEqual(hash1 != hash2, true)
+        XCTAssertEqual(hash1, text1.sha256())
     }
 
-    func testLocalizedAccessibilityErrorMessage() {
-        XCTAssertEqual(String.localizedAccessibilityErrorMessage("Some error description"), "Error: Some error description")
-        XCTAssertEqual(String.localizedAccessibilityErrorMessage(""), "Error: ")
+    func testJoinedForOptionalStrings() {
+        var texts: [String?] = ["one", nil, "three"]
+        XCTAssertEqual(texts.joined(separator: ","), "one,three")
+        XCTAssertEqual(texts.joined(separator: ""), "onethree")
+
+        texts = ["1", "", "3"]
+        XCTAssertEqual(texts.joined(separator: ","), "1,,3")
+
+        texts = ["3"]
+        XCTAssertEqual(texts.joined(separator: ","), "3")
+
+        texts = []
+        XCTAssertEqual(texts.joined(separator: "."), "")
     }
 }

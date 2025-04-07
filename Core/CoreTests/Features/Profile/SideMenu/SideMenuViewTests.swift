@@ -20,6 +20,7 @@ import SwiftUI
 import Combine
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class SideMenuViewTests: CoreTestCase {
 
@@ -44,7 +45,7 @@ class SideMenuViewTests: CoreTestCase {
         let tree = controller(.observer).testTree
         XCTAssertNotNil(tree?.find(id: "Profile.inboxButton"))
         XCTAssertNil(tree?.find(id: "Profile.filesButton"))
-        XCTAssertNil(tree?.find(id: "Profile.settingsButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.settingsButton"))
         XCTAssertNil(tree?.find(id: "Profile.showGradesToggle"))
         XCTAssertNil(tree?.find(id: "Profile.colorOverlayToggle"))
         XCTAssertNotNil(tree?.find(id: "Profile.manageChildrenButton"))

@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+import XCTest
+
 public class QuizzesHelper: BaseHelper {
     // MARK: Test Data
     public struct TestData {
@@ -106,17 +109,17 @@ public class QuizzesHelper: BaseHelper {
             public static var title: XCUIElement { app.find(id: "QuizEditor.titleField") }
             public static var description: XCUIElement { app.find(id: "QuizEditor.description").find(type: .textView) }
             public static var quizType: XCUIElement { app.find(id: "QuizEditor.quizType") }
-            public static var publish: XCUIElement { app.find(id: "QuizEditor.publish").find(type: .switch) }
+            public static var publish: XCUIElement { app.find(id: "QuizEditor.publish", type: .toggle) }
             public static var assignmentGroup: XCUIElement { app.find(id: "QuizEditor.assignmentGroup") }
-            public static var shuffle: XCUIElement { app.find(id: "QuizEditor.shuffle").find(type: .switch) }
-            public static var timeLimit: XCUIElement { app.find(id: "QuizEditor.timeLimit").find(type: .switch) }
+            public static var shuffle: XCUIElement { app.find(id: "QuizEditor.shuffle", type: .toggle) }
+            public static var timeLimit: XCUIElement { app.find(id: "QuizEditor.timeLimit", type: .toggle) }
             public static var length: XCUIElement { app.find(id: "QuizEditor.length") }
-            public static var attempts: XCUIElement { app.find(id: "QuizEditor.attemptsSection").find(type: .switch) }
+            public static var attempts: XCUIElement { app.find(id: "QuizEditor.attemptsSection", type: .toggle) }
             public static var scoreToKeep: XCUIElement { app.find(id: "QuizEditor.scoreToKeep") }
             public static var allowedAttempts: XCUIElement { app.find(id: "QuizEditor.allowedAttempts") }
-            public static var oneQuestion: XCUIElement { app.find(id: "QuizEditor.oneQuestion").find(type: .switch) }
-            public static var lockQuestions: XCUIElement { app.find(id: "QuizEditor.lockQuestions").find(type: .switch) }
-            public static var requireAccessCode: XCUIElement { app.find(id: "QuizEditor.requireAccessCode").find(type: .switch) }
+            public static var oneQuestion: XCUIElement { app.find(id: "QuizEditor.oneQuestion", type: .toggle) }
+            public static var lockQuestions: XCUIElement { app.find(id: "QuizEditor.lockQuestions", type: .toggle) }
+            public static var requireAccessCode: XCUIElement { app.find(id: "QuizEditor.requireAccessCode", type: .toggle) }
             public static var accessCode: XCUIElement { app.find(id: "QuizEditor.accessCode") }
             public static var assignTo: XCUIElement { app.find(labelContaining: "Assign to", type: .button) }
             public static var due: XCUIElement { app.find(label: "Due", type: .button) }

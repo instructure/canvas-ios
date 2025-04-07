@@ -38,6 +38,9 @@ public enum Secret {
     /// The value passed to `Heap.initialize`
     case heapID
 
+    /// The value passed to `PendoManager.shared().setup(:)`
+    case pendoApiKey
+
     /// Users for UI tests
     case testReadAdmin1, testReadStudent1, testReadStudent2, testReadStudentK5, testReadTeacher1, testReadParent1
     case testLDAPUser, testNotEnrolled, testSAMLUser, testVanityDomainUser

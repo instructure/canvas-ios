@@ -128,7 +128,7 @@ public struct SubmitAssignmentExtensionView: View {
                     .font(.regular16)
                     .multilineTextAlignment(.leading)
                 Spacer()
-                InstDisclosureIndicator().padding(.leading, 10)
+                InstUI.DisclosureIndicator().padding(.leading, 10)
             }
         }
         .accessibilityElement(children: .combine)
@@ -157,7 +157,7 @@ public struct SubmitAssignmentExtensionView: View {
                             .font(.regular16)
                             .multilineTextAlignment(.leading)
                         Spacer()
-                        InstDisclosureIndicator().padding(.leading, 10)
+                        InstUI.DisclosureIndicator().padding(.leading, 10)
                     }
                         .frame(height: 54)
                 }

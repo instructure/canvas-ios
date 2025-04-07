@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+
 public class AnnouncementsHelper: BaseHelper {
     public static var addNewAnnouncement: XCUIElement { app.find(label: "Create Announcement") }
     public static var emptyAnnouncements: XCUIElement { app.find(label: "No Announcements") }

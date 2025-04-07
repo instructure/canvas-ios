@@ -17,7 +17,6 @@
 //
 
 import Combine
-import Foundation
 import UIKit
 
 class ModuleItemCell: UITableViewCell {
@@ -138,7 +137,7 @@ class ModuleItemCell: UITableViewCell {
             dueLabel.textColor = tintColor
             accessoryView = UIImageView(image: .masteryPathsLine)
         } else {
-            dueLabel.setText([dueAt, points, requirement].compactMap { $0 }.joined(separator: " | "), style: .textCellSupportingText)
+            dueLabel.setText([dueAt, points, requirement].joined(separator: " | "), style: .textCellSupportingText)
             dueLabel.textColor = .textDark
             accessoryView = nil
         }
@@ -174,7 +173,7 @@ class ModuleItemCell: UITableViewCell {
             ])
         }
 
-        accessibilityLabel = a11yLabels.compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: ", ")
+        accessibilityLabel = a11yLabels.map { $0?.nilIfEmpty }.joined(separator: ", ")
     }
 
     // MARK: - Publish

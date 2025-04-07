@@ -16,24 +16,43 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
+
 public protocol SnackBarProvider {
     var snackBarViewModel: SnackBarViewModel { get }
+}
+
+public extension WeakViewController {
+
+    func findSnackBarViewModel() -> SnackBarViewModel? {
+        value.findSnackBarViewModel()
+    }
 }
 
 public extension UIViewController {
 
     func findSnackBarViewModel() -> SnackBarViewModel? {
-        let possibleProviders = [
-            self,
-            tabBarController,
-            presentingViewController,
-            presentingViewController?.tabBarController
-        ]
+        if let provider = self as? SnackBarProvider {
+            return provider.snackBarViewModel
+        }
 
-        let provider = possibleProviders
-            .compactMap { $0 as? SnackBarProvider }
-            .first
-        return provider?.snackBarViewModel
+        if let parent {
+            return parent.findSnackBarViewModel()
+        } else if let presentingViewController {
+            return presentingViewController.findSnackBarViewModel()
+        }
+
+        return nil
+    }
+}
+
+public extension SnackBarProvider where Self: UIViewController {
+
+    func addSnackBar() {
+        let snackBarController = SnackBarViewController(viewModel: snackBarViewModel)
+        let snackView = snackBarController.view!
+        view.addSubview(snackView)
+        snackView.pin(inside: view)
     }
 }
 

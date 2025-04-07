@@ -20,7 +20,6 @@ import AVKit
 import Combine
 import Core
 import Firebase
-import Heap
 import SafariServices
 import UIKit
 import UserNotifications
@@ -43,6 +42,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
 
+    private lazy var analyticsTracker: PendoAnalyticsTracker = {
+        .init(environment: environment)
+    }()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         setupFirebase()
@@ -54,7 +57,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
-        FontAppearance.update()
+        Appearance.update()
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
@@ -74,6 +77,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme?.range(of: "pendo") != nil {
+            analyticsTracker.initManager(with: url)
+            return true
+        }
         if url.scheme == "canvas-parent" {
             environment.router.route(to: url, from: topMostViewController()!, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
         }
@@ -94,7 +101,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         environmentFeatureFlags?.refresh(force: true) { _ in
             defer { self.environmentFeatureFlags = nil }
             guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-            self.initializeTracking()
+            self.initializeTracking(environmentFeatureFlags: envFlags.all)
         }
 
         updateInterfaceStyle(for: window)
@@ -123,7 +130,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func showRootView() {
         guard let window = self.window else { return }
-        let controller = CoreNavigationController(rootViewController: DashboardViewController.create())
+        let controller = ParentContainerNavigationController(rootViewController: DashboardViewController.create())
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
             window.rootViewController = controller
@@ -167,7 +174,7 @@ extension ParentAppDelegate: LoginDelegate {
     var findSchoolButtonTitle: String { String(localized: "Find School", bundle: .parent) }
 
     func changeUser() {
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window = window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
@@ -297,29 +304,22 @@ extension ParentAppDelegate: RemoteLogHandler {
 }
 
 extension ParentAppDelegate: AnalyticsHandler {
+    func handleEvent(_: String, parameters _: [String: Any]?) {}
 
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-    }
+    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
+        guard !ProcessInfo.isUITest else { return }
 
-    private func initializeTracking() {
-        guard
-            let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let heapID = Secret.heapID.string
-        else {
-            return
+        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+
+        if isTrackingEnabled {
+            analyticsTracker.startSession()
+        } else {
+            analyticsTracker.endSession()
         }
-
-        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-        let options = HeapOptions()
-        options.disableTracking = !isSendUsageMetricsEnabled
-        Heap.initialize(heapID, with: options)
-        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-        environment.heapID = Heap.userId()
     }
 
     private func disableTracking() {
-        Heap.setTrackingEnabled(false)
+        analyticsTracker.endSession()
     }
 }
 

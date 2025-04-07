@@ -53,7 +53,15 @@ extension SubmissionViewable {
     }
 
     public var submissionStatusIcon: UIImage {
-        return isSubmitted ? .completeSolid : .noSolid
+        if !isSubmitted {
+            return .noSolid
+        }
+
+        if submission?.workflowState == .graded {
+            return .completeSolid
+        }
+
+        return .completeLine
     }
 
     public var submissionStatusText: String {
@@ -67,14 +75,15 @@ extension SubmissionViewable {
 
         return String(localized: "Submitted", bundle: .core)
     }
+
     public var submissionDateText: String? {
         submission?.submittedAt?.dateTimeString
     }
+
     public var submissionAttemptNumberText: String? {
         guard let attempt = submission?.attempt else { return nil }
 
-        let format = String(localized: "Attempt %d", bundle: .core)
-        return String.localizedStringWithFormat(format, attempt)
+        return String.localizedAttemptNumber(attempt)
     }
 
     public var hasLatePenalty: Bool {

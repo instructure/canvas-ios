@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Foundation
 
 /**
  This class stores the completion block received from the system when it wakes up the app via the application delegate because a background url session is completed.

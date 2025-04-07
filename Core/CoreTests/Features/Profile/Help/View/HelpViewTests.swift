@@ -19,6 +19,7 @@
 import TestsFoundation
 import SwiftUI
 @testable import Core
+import XCTest
 
 class HelpViewTests: CoreTestCase {
     private lazy var links: [HelpLink] = {

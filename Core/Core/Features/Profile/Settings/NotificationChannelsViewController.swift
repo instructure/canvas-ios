@@ -94,7 +94,7 @@ extension NotificationChannelsViewController: UITableViewDataSource, UITableView
         let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
         cell.backgroundColor = .backgroundLightest
         cell.textLabel?.text = channel.address
-        cell.accessoryType = .disclosureIndicator
+        cell.setupInstDisclosureIndicator()
         return cell
     }
 
