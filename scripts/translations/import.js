@@ -144,6 +144,8 @@ async function importXcodeTranslations() {
         `${folder}/${file}`,
         '-workspace',
         'Canvas.xcworkspace',
+        '-sdk',
+        'iphonesimulator',
       ])
   }
 }
