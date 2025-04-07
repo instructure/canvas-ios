@@ -26,10 +26,13 @@ import XCTest
 class SpeedGraderViewControllerTests: TeacherTestCase {
     lazy var controller = SpeedGraderViewController(
         env: environment,
-        context: .course("1"),
-        assignmentID: "1",
-        userID: "1",
-        filter: []
+        interactor: SpeedGraderInteractorLive(
+            env: environment,
+            context: .course("1"),
+            assignmentID: "1",
+            userID: "1",
+            filter: []
+        )
     )
 
     override func setUp() {
@@ -42,6 +45,7 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
 
     func testLayout() throws {
         controller.view.layoutIfNeeded()
+        waitForInteractorToFinishLoading(controller.interactor)
         XCTAssertNotNil(controller.pages.parent)
         XCTAssertNil(controller.emptyView.parent)
     }
@@ -49,12 +53,16 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
     func testEmpty() throws {
         controller = SpeedGraderViewController(
             env: environment,
-            context: .course("1"),
-            assignmentID: "1",
-            userID: "bogus",
-            filter: []
+            interactor: SpeedGraderInteractorLive(
+                env: environment,
+                context: .course("1"),
+                assignmentID: "1",
+                userID: "bogus",
+                filter: []
+            )
         )
         controller.view.layoutIfNeeded()
+        waitForInteractorToFinishLoading(controller.interactor)
         XCTAssertNil(controller.pages.parent)
         XCTAssertNotNil(controller.emptyView.parent)
     }
@@ -70,37 +78,55 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
             .make(id: "1", course_id: "1", enrollment_state: .active, user_id: "1"),
             .make(id: "2", course_id: "1", enrollment_state: .inactive, user_id: "2")
         ])
-        controller = SpeedGraderViewController(
+        let interactor = SpeedGraderInteractorLive(
             env: environment,
             context: .course("1"),
             assignmentID: "1",
             userID: "1",
             filter: [.needsGrading]
         )
+        controller = SpeedGraderViewController(
+            env: environment,
+            interactor: interactor
+        )
 
         // WHEN
         controller.view.layoutIfNeeded()
 
         // THEN
-        XCTAssertEqual(controller.submissions.all.count, 1)
+        waitForInteractorToFinishLoading(interactor)
+        guard case .data(_, let submissions, _) = interactor.state.value else {
+            return XCTFail("Expected loaded state")
+        }
+        XCTAssertEqual(submissions.count, 1)
     }
 
     func test_normalizeUserID() {
         XCTAssertEqual(
             SpeedGraderViewController.normalizeUserID(nil),
-            SpeedGraderViewController.AllUsersUserID
+            SpeedGraderAllUsersUserID
         )
         XCTAssertEqual(
             SpeedGraderViewController.normalizeUserID(":student"),
-            SpeedGraderViewController.AllUsersUserID
+            SpeedGraderAllUsersUserID
         )
         XCTAssertEqual(
             SpeedGraderViewController.normalizeUserID("ABC"),
-            SpeedGraderViewController.AllUsersUserID
+            SpeedGraderAllUsersUserID
         )
         XCTAssertEqual(
             SpeedGraderViewController.normalizeUserID("123"),
             "123"
         )
+    }
+
+    private func waitForInteractorToFinishLoading(_ interactor: SpeedGraderInteractor) {
+        waitUntil(10, shouldFail: true) {
+            if case .loading = interactor.state.value {
+                return false
+            } else {
+                return true
+            }
+        }
     }
 }

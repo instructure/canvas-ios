@@ -30,7 +30,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         eventName: "/\(interactor.context.pathComponent)/gradebook/speed_grader?assignment_id=\(interactor.assignmentID)&student_id=\(interactor.userID)"
     )
 
-    private let interactor: SpeedGraderInteractor
+    internal let interactor: SpeedGraderInteractor
     private var subscriptions = Set<AnyCancellable>()
     lazy var pages = PagesViewController()
 
@@ -67,12 +67,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
             .sink { [weak self] state in
                 switch state {
                 case .loading: break
-                case .loaded(let assignment, let submissions, let focusedSubmissionIndex):
-                    if submissions.isEmpty {
-                        self?.showEmptyView()
-                        return
-                    }
-
+                case .data(let assignment, let submissions, let focusedSubmissionIndex):
                     self?.showGradingView(
                         assignment: assignment,
                         submissions: submissions,
@@ -174,7 +169,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
 
     func grader(for index: Int) -> SubmissionGrader? {
         guard
-            case .loaded(let assignment, let submissions, _) = interactor.state.value,
+            case .data(let assignment, let submissions, _) = interactor.state.value,
             index >= 0,
             index < submissions.count
         else { return nil }
