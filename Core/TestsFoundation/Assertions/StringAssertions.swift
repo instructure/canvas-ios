@@ -78,17 +78,3 @@ public func XCTAssertHasSuffix(
     let message = "\(actual.testDescription) has no suffix \(expectedSuffix.testDescription)"
     XCTAssert(logic, message + messageSuffix, file: file, line: line)
 }
-
-// MARK: - Helpers
-
-private extension String {
-    var testDescription: String {
-        "(\"" + self + "\")"
-    }
-}
-
-private extension String? {
-    var testDescription: String {
-        (self ?? "nil").testDescription
-    }
-}
