@@ -91,8 +91,6 @@ public enum CourseSyncDownloaderAssembly {
         loginSession: LoginSession?,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) -> CourseSyncStudioMediaInteractor {
-        let offlineFolder = URL.Paths.Offline.rootURL(sessionID: loginSession?.uniqueID ?? "")
-        let studioDirectory = offlineFolder.appendingPathComponent("studio", isDirectory: true)
         let studioDownloadInteractor = StudioVideoDownloadInteractorLive(
             captionsInteractor: StudioCaptionsInteractorLive(),
             videoCacheInteractor: StudioVideoCacheInteractorLive(),
@@ -104,7 +102,7 @@ public enum CourseSyncDownloaderAssembly {
             iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractorLive(
                 studioHtmlParser: StudioHTMLParserInteractorLive()
             ),
-            cleanupInteractor: StudioVideoCleanupInteractorLive(offlineStudioDirectory: studioDirectory),
+            cleanupInteractor: StudioVideoCleanupInteractorLive(),
             metadataDownloadInteractor: StudioMetadataDownloadInteractorLive(),
             downloadInteractor: studioDownloadInteractor,
             scheduler: scheduler

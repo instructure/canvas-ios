@@ -23,23 +23,23 @@ public protocol StudioVideoCleanupInteractor {
 
     func removeNoLongerNeededVideos(
         allMediaItemsOnAPI: [APIStudioMediaItem],
-        mediaLTIIDsUsedInOfflineMode: [String]
+        mediaLTIIDsUsedInOfflineMode: [String],
+        forCourse courseSyncID: CourseSyncID
     ) -> AnyPublisher<Void, Error>
 }
 
 public class StudioVideoCleanupInteractorLive: StudioVideoCleanupInteractor {
-    private let offlineStudioDirectory: URL
-
-    public init(offlineStudioDirectory: URL) {
-        self.offlineStudioDirectory = offlineStudioDirectory
-    }
 
     public func removeNoLongerNeededVideos(
         allMediaItemsOnAPI: [APIStudioMediaItem],
-        mediaLTIIDsUsedInOfflineMode: [String]
+        mediaLTIIDsUsedInOfflineMode: [String],
+        forCourse courseSyncID: CourseSyncID
     ) -> AnyPublisher<Void, Error> {
-        Just(())
-            .tryMap { [offlineStudioDirectory] _ in
+        let offlineStudioDirectory = courseSyncID.offlineStudioDirectory
+
+        return Just(())
+            .tryMap {
+                let offlineStudioDirectory = courseSyncID.offlineStudioDirectory
                 if !FileManager.default.fileExists(atPath: offlineStudioDirectory.path()) {
                     return []
                 }
@@ -59,7 +59,7 @@ public class StudioVideoCleanupInteractorLive: StudioVideoCleanupInteractor {
                 }
                 return (subdirectoriesInStudioDirectory, mediaIDsToKeep)
             }
-            .tryMap { [offlineStudioDirectory] (subdirectoriesInStudioDirectory: [URL], mediaIDsToKeep: [String]) in
+            .tryMap { (subdirectoriesInStudioDirectory: [URL], mediaIDsToKeep: [String]) in
                 let foldersToRemove = subdirectoriesInStudioDirectory.filter { folder in
                     let relativeFolder = folder.absoluteString.replacingOccurrences(
                         of: offlineStudioDirectory.absoluteString,

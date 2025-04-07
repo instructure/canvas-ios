@@ -52,56 +52,58 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     }
 
     public func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never> {
-        guard let firstCourse = courseIDs.first else {
-            return Just(()).eraseToAnyPublisher()
-        }
-
-        let studioDirectory = firstCourse.studioOfflineURL
-        let resolvedEnvironment = firstCourse.targetEnvironment
-
-        return Just(())
-            .setFailureType(to: Error.self)
+        return Publishers
+            .Sequence(sequence: courseIDs)
             .receive(on: scheduler)
-            .flatMap { [studioIFrameDiscoveryInteractor] in
-                studioIFrameDiscoveryInteractor.discoverStudioIFrames(courseIDs: courseIDs)
-            }
-            .flatMap { [studioAuthInteractor] (iframes: StudioIFramesByLocation) in
-                studioAuthInteractor
-                    .makeStudioAPI(env: resolvedEnvironment)
-                    .mapError { $0 as Error }
-                    .map { api in
-                        (api, iframes)
+            .flatMap({ [weak self] courseSyncID in
+                guard let self else { return Just(()).eraseToAnyPublisher() }
+                return getCourseContent(courseSyncID: courseSyncID)
+            })
+            .eraseToAnyPublisher()
+    }
+
+    private func getCourseContent(courseSyncID: CourseSyncID) -> AnyPublisher<Void, Never> {
+        studioAuthInteractor
+            .makeStudioAPI(env: courseSyncID.targetEnvironment)
+            .mapError({ $0 as Error })
+            .flatMap({ [studioIFrameDiscoveryInteractor, metadataDownloadInteractor] api in
+
+                return studioIFrameDiscoveryInteractor
+                    .discoverStudioIFrames(courseID: courseSyncID)
+                    .flatMap { [metadataDownloadInteractor] iframes in
+                        metadataDownloadInteractor
+                            .fetchStudioMediaItems(api: api, courseID: courseSyncID.value)
+                            .map { mediaItems in
+                                var mediaLTIIDsToDownload = iframes.values.flatMap { $0 }.map { $0.mediaLTILaunchID }
+                                mediaLTIIDsToDownload = Array(Set(mediaLTIIDsToDownload))
+                                return (mediaItems, mediaLTIIDsToDownload, iframes)
+                            }
                     }
-            }
-            .flatMap { [metadataDownloadInteractor] api, iframes in
-                metadataDownloadInteractor
-                    .fetchStudioMediaItems(api: api, courseIDs: courseIDs.map { $0.value })
-                    .map { mediaItems in
-                        var mediaLTIIDsToDownload = iframes.values.flatMap { $0 }.map { $0.mediaLTILaunchID }
-                        mediaLTIIDsToDownload = Array(Set(mediaLTIIDsToDownload))
-                        return (mediaItems, mediaLTIIDsToDownload, iframes)
-                    }
-            }
+            })
             .flatMap { [cleanupInteractor] (mediaItems, mediaLTIIDsToDownload, iframes) in
+
                 return cleanupInteractor.removeNoLongerNeededVideos(
                     allMediaItemsOnAPI: mediaItems,
-                    mediaLTIIDsUsedInOfflineMode: mediaLTIIDsToDownload
+                    mediaLTIIDsUsedInOfflineMode: mediaLTIIDsToDownload,
+                    forCourse: courseSyncID
                 )
                 .map {
                     (mediaItems, mediaLTIIDsToDownload, iframes)
                 }
             }
             .flatMap { [self] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
+
                 downloadStudioVideos(
                     mediaItems: mediaItems,
                     mediaLTIIDsToDownload: mediaLTIIDsToDownload,
-                    rootDirectory: studioDirectory
+                    rootDirectory: courseSyncID.offlineStudioDirectory
                 )
                 .map { offlineVideos in
                     (offlineVideos, iframes)
                 }
             }
             .tryMap { [studioIFrameReplaceInteractor] (offlineVideos: [StudioOfflineVideo], iframes: StudioIFramesByLocation) in
+
                 for (htmlURL, iframes) in iframes {
                     try studioIFrameReplaceInteractor.replaceStudioIFrames(
                         inHtmlAtURL: htmlURL,
@@ -112,9 +114,9 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 return ()
             }
             .catch { (error: Error) -> Just<Void> in
-                Logger.shared.error("Studio Offline Sync Failed: " + error.localizedDescription)
+                Logger.shared.error("Studio Offline Sync Failed for Course \(courseSyncID.value): " + error.localizedDescription)
                 RemoteLogger.shared.logError(
-                    name: "Studio Offline Sync Failed",
+                    name: "Studio Offline Sync Failed for Course \(courseSyncID.value)",
                     reason: error.localizedDescription
                 )
                 return Just(())

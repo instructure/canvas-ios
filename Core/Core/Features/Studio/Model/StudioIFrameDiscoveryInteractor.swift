@@ -24,7 +24,7 @@ public typealias StudioIFramesByLocation = [URL: [StudioIFrame]]
 public protocol StudioIFrameDiscoveryInteractor {
 
     func discoverStudioIFrames(
-        courseIDs: [CourseSyncID]
+        courseID: CourseSyncID
     ) -> AnyPublisher<StudioIFramesByLocation, Never>
 }
 
@@ -36,17 +36,14 @@ public class StudioIFrameDiscoveryInteractorLive: StudioIFrameDiscoveryInteracto
     }
 
     public func discoverStudioIFrames(
-        courseIDs: [CourseSyncID]
+        courseID: CourseSyncID
     ) -> AnyPublisher<StudioIFramesByLocation, Never> {
 
-        let htmls = courseIDs.flatMap { syncID in
-            let coursePath = "course-\(syncID.value)"
-            return FileManager
-                .default
-                .allFiles(withExtension: "html", inDirectory: syncID.offlineURL)
-                .filter { $0.absoluteString.contains(coursePath) }
-        }
-
+        let coursePath = "course-\(courseID.value)"
+        let htmls = FileManager
+            .default
+            .allFiles(withExtension: "html", inDirectory: courseID.offlineDirectory)
+            .filter { $0.absoluteString.contains(coursePath) }
         return Publishers
             .Sequence(sequence: htmls)
             .compactMap { [studioHtmlParser] htmlURL -> (URL, [StudioIFrame]) in

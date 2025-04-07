@@ -32,15 +32,15 @@ public struct CourseSyncID {
         targetEnvironment.currentSession?.uniqueID ?? ""
     }
 
-    var offlineURL: URL {
+    var offlineDirectory: URL {
         URL
             .Paths
             .Offline
             .rootURL(sessionID: sessionId)
     }
 
-    var studioOfflineURL: URL {
-        offlineURL.appendingPathComponent("studio", isDirectory: true)
+    var offlineStudioDirectory: URL {
+        offlineDirectory.appendingPathComponent("studio", isDirectory: true)
     }
 
     var asContext: Context {
