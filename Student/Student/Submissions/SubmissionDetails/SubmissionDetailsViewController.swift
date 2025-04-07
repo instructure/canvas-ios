@@ -46,6 +46,8 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var lockedEmptyView: SubmissionDetailsLockedEmptyView?
     @IBOutlet weak var attemptPicker: SubmissionAttemptPickerView?
+    @IBOutlet weak var dividerView: DividerView?
+    @IBOutlet weak var contentViewSafeAreaConstraint: NSLayoutConstraint?
 
     static func create(env: AppEnvironment, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) -> SubmissionDetailsViewController {
         let controller = loadFromStoryboard()
@@ -117,7 +119,13 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         guard let attemptPicker,
               let currentSubmission,
               let currentAttemptDate = currentSubmission.submittedAt
-        else { return }
+        else {
+
+            contentViewSafeAreaConstraint?.isActive = false
+            dividerView?.isHidden = true
+            contentView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+            return
+        }
 
         let isActive = submissions.count > 1 && !assignment.isExternalToolAssignment
 
