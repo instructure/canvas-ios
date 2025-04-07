@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct CourseSyncID {
+public struct CourseSyncID: ExpressibleByStringLiteral {
     let value: String
     let apiBaseURL: URL?
 
@@ -45,5 +45,10 @@ public struct CourseSyncID {
 
     var asContext: Context {
         .course(localID)
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self.value = value
+        self.apiBaseURL = nil
     }
 }

@@ -83,7 +83,7 @@ class PublisherExtensionsTests: XCTestCase {
         let pages = [
             Page.make()
         ]
-        let testCourseId = "1"
+        let testCourseId: CourseSyncID = "1"
         let parser = HTMLParserMock()
 
         var testee: AnyPublisher<[Page], Error> {
@@ -104,7 +104,7 @@ class PublisherExtensionsTests: XCTestCase {
         let discussionTopics = [
             DiscussionTopic.make()
         ]
-        let testCourseId = "1"
+        let testCourseId: CourseSyncID = "1"
         let parser = HTMLParserMock()
 
         var testee: AnyPublisher<[DiscussionTopic], Error> {
@@ -128,12 +128,12 @@ class PublisherExtensionsTests: XCTestCase {
         var parseCalled = false
         var attachmentParseCalled = false
 
-        func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error> {
+        func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error> {
             parseCalled = true
             return Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
         }
 
-        func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, any Error> {
+        func downloadAttachment(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, any Error> {
             attachmentParseCalled = true
             return Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
         }
