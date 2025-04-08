@@ -22,6 +22,7 @@ import CombineSchedulers
 
 protocol HTMLDownloadInteractor {
     var sectionName: String { get }
+    var envResolver: CourseSyncEnvironmentResolver { get }
 
     /// - returns: The path to the downloaded file, relative to the app's `Documents` directory.
     func download(
@@ -46,17 +47,22 @@ protocol HTMLDownloadInteractor {
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
     public let sectionName: String
+    public let envResolver: CourseSyncEnvironmentResolver
+
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let fileManager: FileManager
     private let downloadTaskProvider: URLSessionDataTaskPublisherProvider
 
     init(
         sectionName: String,
+        envResolver: CourseSyncEnvironmentResolver,
         scheduler: AnySchedulerOf<DispatchQueue>,
         fileManager: FileManager = .default,
         downloadTaskProvider: URLSessionDataTaskPublisherProvider = URLSessionDataTaskPublisherProviderLive()
     ) {
         self.sectionName = sectionName
+        self.envResolver = envResolver
+
         self.scheduler = scheduler
         self.fileManager = fileManager
         self.downloadTaskProvider = downloadTaskProvider
@@ -70,12 +76,12 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         let fileID = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
         return Just(url)
             .setFailureType(to: Error.self)
-            .flatMap { url in
+            .flatMap { [envResolver] url in
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let context = Context(url: url)
                     return ReactiveStore(
                         useCase: GetFile(context: context, fileID: fileID),
-                        environment: courseId.targetEnvironment
+                        environment: envResolver.targetEnvironment(for: courseId)
                     )
                     .getEntities(ignoreCache: false)
                     .map { files in
@@ -86,9 +92,9 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     return Just(url).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
-            .flatMap { [downloadTaskProvider, scheduler, fileManager, sectionName] url in
+            .flatMap { [downloadTaskProvider, envResolver, scheduler, fileManager, sectionName] url in
                 guard
-                    let loginSession = courseId.targetEnvironment.currentSession,
+                    let loginSession = envResolver.loginSession(for: courseId),
                     let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
                 else {
                     let error = NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))
@@ -106,7 +112,8 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                             courseId: courseId,
                             resourceId: resourceId,
                             fileManager: fileManager,
-                            sectionName: sectionName
+                            sectionName: sectionName,
+                            envResolver: envResolver
                         )
                         .map { [sectionName] _ in
                             "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
@@ -125,7 +132,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         documentsDirectory: URL
     ) -> AnyPublisher<String, Error> {
         guard
-            let loginSession = courseId.targetEnvironment.currentSession,
+            let loginSession = envResolver.loginSession(for: courseId),
             let request = try? url.urlRequest(relativeTo: loginSession.baseURL, accessToken: loginSession.accessToken, actAsUserID: loginSession.actAsUserID)
         else {
             return Fail(error: NSError.instructureError(String(localized: "Failed to construct request", bundle: .core))).eraseToAnyPublisher()
@@ -133,7 +140,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         return downloadTaskProvider
             .getPublisher(for: request)
             .receive(on: scheduler)
-            .flatMap { [fileManager, sectionName] (tempURL: URL, fileName: String) in
+            .flatMap { [envResolver, fileManager, sectionName] (tempURL: URL, fileName: String) in
                 return Self.copy(
                     tempURL,
                     fileId: nil,
@@ -141,7 +148,8 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     courseId: courseId,
                     resourceId: resourceId,
                     fileManager: fileManager,
-                    sectionName: sectionName
+                    sectionName: sectionName,
+                    envResolver: envResolver
                 )
                 .map { fileUrl in
                     fileUrl.replacing(documentsDirectory.path(), with: "")
@@ -170,10 +178,11 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         courseId: CourseSyncID,
         resourceId: String,
         fileManager: FileManager,
-        sectionName: String
+        sectionName: String,
+        envResolver: CourseSyncEnvironmentResolver
     ) -> AnyPublisher<String, Error> {
         var rootURL = URL.Paths.Offline.courseSectionResourceFolderURL(
-            sessionId: courseId.targetEnvironment.currentSession?.uniqueID ?? "",
+            sessionId: envResolver.sessionId(for: courseId),
             courseId: courseId.value,
             sectionName: sectionName,
             resourceId: resourceId

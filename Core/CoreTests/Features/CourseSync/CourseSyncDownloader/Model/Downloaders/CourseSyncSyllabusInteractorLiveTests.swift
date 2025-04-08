@@ -25,7 +25,11 @@ class CourseSyncSyllabusInteractorLiveTests: CoreTestCase {
         mockSyllabusContent()
         mockSyllabusSummary()
 
-        let testee = CourseSyncSyllabusInteractorLive(assignmentEventHtmlParser: getHTMLParser(), calendarEventHtmlParser: getHTMLParser())
+        let testee = CourseSyncSyllabusInteractorLive(
+            assignmentEventHtmlParser: getHTMLParser(),
+            calendarEventHtmlParser: getHTMLParser(),
+            envResolver: envResolver
+        )
 
         XCTAssertFinish(testee.getContent(courseId: "testCourse"))
         let courses: [Course] = databaseClient.fetch(scope: .all)
@@ -62,6 +66,6 @@ class CourseSyncSyllabusInteractorLiveTests: CoreTestCase {
 
     private func getHTMLParser() -> HTMLParser {
         let interactor = HTMLDownloadInteractorMock()
-        return HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
+        return HTMLParserLive(downloadInteractor: interactor)
     }
 }

@@ -25,10 +25,10 @@ extension CourseSyncAnnouncementsInteractor {
     public var associatedTabType: TabName { .announcements }
 }
 
-public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncementsInteractor {
-    let htmlParser: HTMLParser
+public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncementsInteractor, CourseSyncHtmlContentInteractor {
+    public let htmlParser: HTMLParser
 
-    public init(htmlParser: HTMLParser) {
+    init(htmlParser: HTMLParser) {
         self.htmlParser = htmlParser
     }
 
@@ -47,13 +47,15 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     }
 
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId.localID), env: courseId.targetEnvironment)
+        fetchUseCase(
+            GetCourse(courseID: courseId.localID),
+            env: targetEnvironment(for: courseId))
     }
 
     private func fetchAnnouncements(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         return ReactiveStore(
             useCase: GetAnnouncements(context: courseId.asContext),
-            environment: courseId.targetEnvironment
+            environment: targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -73,7 +75,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     ) -> AnyPublisher<Void, Error> {
         return ReactiveStore(
             useCase: GetDiscussionView(context: courseId.asContext, topicID: topicId),
-            environment: courseId.targetEnvironment
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)
@@ -86,7 +88,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     private func fetchFeatureFlags(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         fetchUseCase(
             GetEnabledFeatureFlags(context: courseId.asContext),
-            env: courseId.targetEnvironment
+            env: targetEnvironment(for: courseId)
         )
     }
 
@@ -95,14 +97,5 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
-    }
-
-    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            courseId: courseId,
-            sectionName: htmlParser.sectionName
-        )
-
-        return FileManager.default.removeItemPublisher(at: rootURL)
     }
 }

@@ -24,33 +24,26 @@ public extension CourseSyncDiscussionsInteractor {
     var associatedTabType: TabName { .discussions }
 }
 
-public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor {
-    let discussionHtmlParser: HTMLParser
+public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteractor, CourseSyncHtmlContentInteractor {
+    public let htmlParser: HTMLParser
 
-    public init(discussionHtmlParser: HTMLParser) {
-        self.discussionHtmlParser = discussionHtmlParser
+    public init(htmlParser: HTMLParser) {
+        self.htmlParser = htmlParser
     }
 
     public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
-        Self.fetchTopics(courseId: courseId, htmlParser: discussionHtmlParser)
+        Self.fetchTopics(courseId: courseId, htmlParser: htmlParser)
             .flatMap { $0.publisher }
             .filter { $0.discussionSubEntryCount > 0 && $0.anonymousState == nil }
-            .flatMap { [discussionHtmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: discussionHtmlParser) }
+            .flatMap { [htmlParser] in Self.getDiscussionView(courseId: courseId, topicId: $0.id, htmlParser: htmlParser) }
             .collect()
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
-        let rootURLTopic = URL.Paths.Offline.courseSectionFolderURL(
-            courseId: courseId,
-            sectionName: discussionHtmlParser.sectionName
-        )
-        let rootURLView = URL.Paths.Offline.courseSectionFolderURL(
-            courseId: courseId,
-            sectionName: discussionHtmlParser.sectionName
-        )
-
+        let rootURLTopic = htmlParser.sectionFolder(for: courseId)
+        let rootURLView = htmlParser.sectionFolder(for: courseId)
         return Publishers.Zip(
             FileManager.default.removeItemPublisher(at: rootURLTopic),
             FileManager.default.removeItemPublisher(at: rootURLView)
@@ -66,7 +59,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(
             useCase: GetDiscussionTopics(context: courseId.asContext),
-            environment: courseId.targetEnvironment
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -82,7 +75,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
         return ReactiveStore(
             useCase: GetDiscussionView(context: courseId.asContext, topicID: topicId),
-            environment: courseId.targetEnvironment
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.message, id: \.id, courseId: courseId, htmlParser: htmlParser)

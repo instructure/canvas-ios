@@ -23,8 +23,6 @@ import XCTest
 class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
 
     func testDownload() throws {
-        let mockOfflineDirectory = URL.make()
-
         // Step 1 - Discover iframes
         let mockIFrameDiscoveryInteracor = MockStudioIFrameDiscoveryInteractor()
         let mockLocalHtmlContentURL = URL(
@@ -80,7 +78,8 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             cleanupInteractor: mockCleanupInteractor,
             metadataDownloadInteractor: mockMedatadaDownloader,
             downloadInteractor: mockDownloadInteractor,
-            scheduler: .immediate
+            scheduler: .immediate,
+            envResolver: envResolver
         )
 
         XCTAssertFinish(testee.getContent(courseIDs: ["1"]))
@@ -88,12 +87,8 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
         // Step 1
         XCTAssertTrue(mockIFrameDiscoveryInteracor.discoverCalled)
         XCTAssertEqual(
-            mockIFrameDiscoveryInteracor.receivedOfflineDirectory,
-            mockOfflineDirectory
-        )
-        XCTAssertEqual(
-            mockIFrameDiscoveryInteracor.receivedCourseIDs,
-            ["1"]
+            mockIFrameDiscoveryInteracor.receivedCourseID,
+            "1"
         )
 
         // Step 2
@@ -162,17 +157,15 @@ private class MockStudioIFrameReplaceInteractor: StudioIFrameReplaceInteractor {
 }
 
 private class MockStudioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor {
-
-    
     public var mockedDiscoverResult: StudioIFramesByLocation!
     private(set) var discoverCalled = false
-    private(set) var receivedCourseID: CourseSyncID?
+    private(set) var receivedCourseID: String?
 
     init() {}
 
     func discoverStudioIFrames(courseID: CourseSyncID) -> AnyPublisher<StudioIFramesByLocation, Never> {
         discoverCalled = true
-        receivedCourseID = courseID
+        receivedCourseID = courseID.value
         return Just(mockedDiscoverResult).eraseToAnyPublisher()
     }
 }
@@ -203,7 +196,7 @@ private class MockStudioVideoCleanupInteractor: StudioVideoCleanupInteractor {
     private(set) var receivedLTIIDsForOfflineMode: [String]?
 
     init() {}
-    func removeNoLongerNeededVideos(allMediaItemsOnAPI: [APIStudioMediaItem], mediaLTIIDsUsedInOfflineMode: [String], forCourse courseSyncID: CourseSyncID) -> AnyPublisher<Void, any Error> {
+    func removeNoLongerNeededVideos(allMediaItemsOnAPI: [APIStudioMediaItem], mediaLTIIDsUsedInOfflineMode: [String], offlineStudioDirectory: URL) -> AnyPublisher<Void, any Error> {
         receivedAPIMediaItems = allMediaItemsOnAPI
         receivedLTIIDsForOfflineMode = mediaLTIIDsUsedInOfflineMode
         return Just(())

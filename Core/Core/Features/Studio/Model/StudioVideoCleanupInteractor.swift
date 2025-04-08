@@ -24,7 +24,7 @@ public protocol StudioVideoCleanupInteractor {
     func removeNoLongerNeededVideos(
         allMediaItemsOnAPI: [APIStudioMediaItem],
         mediaLTIIDsUsedInOfflineMode: [String],
-        forCourse courseSyncID: CourseSyncID
+        offlineStudioDirectory: URL
     ) -> AnyPublisher<Void, Error>
 }
 
@@ -33,13 +33,11 @@ public class StudioVideoCleanupInteractorLive: StudioVideoCleanupInteractor {
     public func removeNoLongerNeededVideos(
         allMediaItemsOnAPI: [APIStudioMediaItem],
         mediaLTIIDsUsedInOfflineMode: [String],
-        forCourse courseSyncID: CourseSyncID
+        offlineStudioDirectory: URL
     ) -> AnyPublisher<Void, Error> {
-        let offlineStudioDirectory = courseSyncID.offlineStudioDirectory
 
         return Just(())
             .tryMap {
-                let offlineStudioDirectory = courseSyncID.offlineStudioDirectory
                 if !FileManager.default.fileExists(atPath: offlineStudioDirectory.path()) {
                     return []
                 }

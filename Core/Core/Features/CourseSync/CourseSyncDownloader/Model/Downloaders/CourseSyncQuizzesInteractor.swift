@@ -42,18 +42,14 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
     }
 
     public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            courseId: courseId,
-            sectionName: htmlParser.sectionName
-        )
-
+        let rootURL = htmlParser.envResolver.folderURL(forSection: htmlParser.sectionName, ofCourse: courseId)
         return FileManager.default.removeItemPublisher(at: rootURL)
     }
 
     private func getCustomColors(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCustomColors(),
-            environment: courseId.targetEnvironment
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .map { _ in () }
@@ -63,7 +59,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
     private func getQuizzes(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetQuizzes(courseID: courseId.localID),
-            environment: courseId.targetEnvironment
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -80,7 +76,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
     private static func getQuiz(courseId: CourseSyncID, quizId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetQuiz(courseID: courseId.localID, quizID: quizId),
-            environment: courseId.targetEnvironment
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)

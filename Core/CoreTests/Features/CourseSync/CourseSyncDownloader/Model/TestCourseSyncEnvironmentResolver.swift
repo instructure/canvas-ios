@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import Foundation
+@testable import Core
 
-#if DEBUG
+class TestCourseSyncEnvironmentResolver: CourseSyncEnvironmentResolver {
+    private var defaultResolver = DefaultCourseSyncEnvironmentResolver()
 
-final class CourseSyncInteractorPreview: CourseSyncInteractor {
-    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
-        Just([]).eraseToAnyPublisher()
+    let env: AppEnvironment
+    init(env: AppEnvironment) {
+        self.env = env
     }
 
-    func cleanContent(for entries: [CourseSyncID]) -> AnyPublisher<Void, Never> {
-        Just(()).eraseToAnyPublisher()
+    var userIdOverride: String?
+    var userId: String {
+        userIdOverride ?? env.currentSession?.userID ?? ""
     }
 
-    func cancel() {}
+    func targetEnvironment(for courseID: CourseSyncID) -> AppEnvironment {
+        env
+    }
+
+    var offlineDirectoryOverride: URL?
+    func offlineDirectory(for courseID: CourseSyncID) -> URL {
+        offlineDirectoryOverride ?? defaultResolver.offlineDirectory(for: courseID)
+    }
 }
-
-#endif

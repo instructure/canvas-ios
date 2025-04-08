@@ -23,7 +23,7 @@ import Foundation
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never>
-    func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never>
+    func cleanContent(for courseIds: [CourseSyncID]) -> AnyPublisher<Void, Never>
     func cancel()
 }
 
@@ -31,6 +31,26 @@ public protocol CourseSyncContentInteractor {
     var associatedTabType: TabName { get }
     func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error>
     func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never>
+}
+
+public protocol CourseSyncHtmlContentInteractor: CourseSyncContentInteractor {
+    var htmlParser: HTMLParser { get }
+}
+
+public extension CourseSyncHtmlContentInteractor {
+
+    var envResolver: CourseSyncEnvironmentResolver {
+        htmlParser.envResolver
+    }
+
+    func targetEnvironment(for courseId: CourseSyncID) -> AppEnvironment {
+        envResolver.targetEnvironment(for: courseId)
+    }
+
+    func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
+        let rootURL = htmlParser.sectionFolder(for: courseId)
+        return FileManager.default.removeItemPublisher(at: rootURL)
+    }
 }
 
 public final class CourseSyncInteractorLive: CourseSyncInteractor {
@@ -58,7 +78,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private let courseListInteractor: CourseListInteractor
     private let backgroundActivity: BackgroundActivity
-    private let env: AppEnvironment
+    private let envResolver: CourseSyncEnvironmentResolver
 
     /**
      - parameters:
@@ -77,7 +97,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         studioMediaInteractor: CourseSyncStudioMediaInteractor,
         backgroundActivity: BackgroundActivity,
         scheduler: AnySchedulerOf<DispatchQueue>,
-        env: AppEnvironment
+        envResolver: CourseSyncEnvironmentResolver
     ) {
         self.brandThemeInteractor = brandThemeInteractor
         self.contentInteractors = contentInteractors
@@ -89,7 +109,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.notificationInteractor = notificationInteractor
         self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
-        self.env = env
+        self.envResolver = envResolver
 
         listenToCancellationEvent()
     }
@@ -167,11 +187,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
-    public func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never> {
+    public func cleanContent(for courseIds: [CourseSyncID]) -> AnyPublisher<Void, Never> {
         return courseIds.publisher
             .compactMap { [weak self] courseId in
+                guard let self else { return }
                 let rootURL = URL.Directories.documents
-                    .appendingPathComponent(self?.env.currentSession?.uniqueID ?? "")
+                    .appendingPathComponent(self.envResolver.sessionId(for: courseId))
                     .appendingPathComponent("Offline")
                     .appendingPathComponent("course-\(courseId)")
                 try? FileManager.default.removeItem(at: rootURL)

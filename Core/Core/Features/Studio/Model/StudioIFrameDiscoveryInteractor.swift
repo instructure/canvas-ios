@@ -30,9 +30,11 @@ public protocol StudioIFrameDiscoveryInteractor {
 
 public class StudioIFrameDiscoveryInteractorLive: StudioIFrameDiscoveryInteractor {
     private let studioHtmlParser: StudioHTMLParserInteractor
+    private let envResolver: CourseSyncEnvironmentResolver
 
-    public init(studioHtmlParser: StudioHTMLParserInteractor) {
+    public init(studioHtmlParser: StudioHTMLParserInteractor, envResolver: CourseSyncEnvironmentResolver) {
         self.studioHtmlParser = studioHtmlParser
+        self.envResolver = envResolver
     }
 
     public func discoverStudioIFrames(
@@ -42,7 +44,7 @@ public class StudioIFrameDiscoveryInteractorLive: StudioIFrameDiscoveryInteracto
         let coursePath = "course-\(courseID.value)"
         let htmls = FileManager
             .default
-            .allFiles(withExtension: "html", inDirectory: courseID.offlineDirectory)
+            .allFiles(withExtension: "html", inDirectory: envResolver.offlineDirectory(for: courseID))
             .filter { $0.absoluteString.contains(coursePath) }
         return Publishers
             .Sequence(sequence: htmls)

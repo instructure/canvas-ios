@@ -21,6 +21,9 @@ import Combine
 
 public protocol HTMLParser {
     var sectionName: String { get }
+    var envResolver: CourseSyncEnvironmentResolver { get }
+
+    func sectionFolder(for courseId: CourseSyncID) -> URL
     func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error>
     func downloadAttachment(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, Error>
 }
@@ -28,6 +31,10 @@ public protocol HTMLParser {
 public class HTMLParserLive: HTMLParser {
     public var sectionName: String {
         interactor.sectionName
+    }
+
+    public var envResolver: CourseSyncEnvironmentResolver {
+        interactor.envResolver
     }
 
     private let imageRegex: NSRegularExpression
@@ -59,13 +66,13 @@ public class HTMLParserLive: HTMLParser {
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
         let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
-            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+            .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let context = Context(url: url)
                     return ReactiveStore(
                         useCase: GetFile(context: context, fileID: fileId),
-                        environment: courseId.targetEnvironment
+                        environment: envResolver.targetEnvironment(for: courseId)
                     )
                     .getEntities(ignoreCache: false)
                     .map { files in
@@ -92,13 +99,13 @@ public class HTMLParserLive: HTMLParser {
             .eraseToAnyPublisher()
 
         let imageParser: AnyPublisher<[(URL, String)], Error> =  imageURLs.publisher
-            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+            .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let context = Context(url: url)
                     return ReactiveStore(
                         useCase: GetFile(context: context, fileID: fileId),
-                        environment: courseId.targetEnvironment
+                        environment: envResolver.targetEnvironment(for: courseId)
                     )
                     .getEntities(ignoreCache: false)
                     .map { files in
@@ -175,13 +182,13 @@ public class HTMLParserLive: HTMLParser {
             }
     }
 
+    public func sectionFolder(for courseId: CourseSyncID) -> URL {
+        envResolver.folderURL(forSection: sectionName, ofCourse: courseId)
+    }
+
     private func getRootURL(courseId: CourseSyncID, resourceId: String) -> URL {
         return URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: courseId.sessionId,
-                courseId: courseId.value,
-                sectionName: sectionName
-            )
+            envResolver.folderDocumentsPath(forSection: sectionName, ofCourse: courseId)
         )
         .appendingPathComponent("\(sectionName)-\(resourceId)")
     }

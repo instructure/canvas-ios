@@ -20,15 +20,24 @@
 import XCTest
 
 class CourseSyncGradesInteractorLiveTests: CoreTestCase {
-    private let testee = CourseSyncGradesInteractorLive(userId: "testUser")
+    private var testee: CourseSyncGradesInteractorLive!
 
     override func setUp() {
         super.setUp()
+        envResolver.userIdOverride = "testUser"
+        testee = CourseSyncGradesInteractorLive(envResolver: envResolver)
+
         mockCourseColors()
         mockGradingPeriods()
         mockCourse()
         mockEnrollments()
         mockAssignments()
+    }
+
+    override func tearDown() {
+        testee = nil
+        envResolver.userIdOverride = nil
+        super.tearDown()
     }
 
     func testSuccessfulSync() {

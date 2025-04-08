@@ -24,8 +24,8 @@ public extension CourseSyncPagesInteractor {
     var associatedTabType: TabName { .pages }
 }
 
-public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncContentInteractor {
-    let htmlParser: HTMLParser
+public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncHtmlContentInteractor {
+    public let htmlParser: HTMLParser
 
     public init(htmlParser: HTMLParser) {
         self.htmlParser = htmlParser
@@ -37,7 +37,7 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 useCase: GetFrontPage(
                     context: courseId.asContext
                 ),
-                environment: courseId.targetEnvironment
+                environment: targetEnvironment(for: courseId)
             )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser),
@@ -46,21 +46,12 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 useCase: GetPages(
                     context: courseId.asContext
                 ),
-                environment: courseId.targetEnvironment
+                environment: targetEnvironment(for: courseId)
             )
             .getEntities(ignoreCache: true)
             .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
         )
         .map { _ in () }
         .eraseToAnyPublisher()
-    }
-
-    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            courseId: courseId,
-            sectionName: htmlParser.sectionName
-        )
-
-        return FileManager.default.removeItemPublisher(at: rootURL)
     }
 }

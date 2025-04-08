@@ -23,13 +23,13 @@ import Combine
 
 class HTMLParserTests: CoreTestCase {
     var testee: HTMLParser!
-    let testCourseId: String = "1"
+    let testCourseId: CourseSyncID = "1"
     let testResourceId: String = "2"
     var subscriptions: [AnyCancellable] = []
 
     func testReplacingLinks() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
+        testee = HTMLParserLive(downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://instructure.com")
         let urlToDownload = URL(string: "https://instructure.com/logo.png")!
@@ -52,7 +52,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testReplacingRelativeLinks() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
+        testee = HTMLParserLive(downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://www.instructure.com")!
         let urlToDownload = "https://www.instructure.com/logo.png"
@@ -75,7 +75,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testSavingBaseContent() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
+        testee = HTMLParserLive(downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://www.instructure.com")
         let urlToDownload = "https://www.instructure.com/logo.png"
@@ -89,7 +89,7 @@ class HTMLParserTests: CoreTestCase {
         let rootURL = URL.Directories.documents.appendingPathComponent(
                 URL.Paths.Offline.courseSectionFolder(
                     sessionId: environment.currentSession!.uniqueID,
-                    courseId: testCourseId,
+                    courseId: testCourseId.value,
                     sectionName: interactor.sectionName
                 )
             )
@@ -105,7 +105,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testFileDownload() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
+        testee = HTMLParserLive(downloadInteractor: interactor)
 
         let baseURL = URL(string: "https://adamdomonkos.instructure.com")
         let urlToDownload1 = "https://adamdomonkos.instructure.com/files/1"
@@ -123,7 +123,7 @@ class HTMLParserTests: CoreTestCase {
         let rootURL = URL.Directories.documents.appendingPathComponent(
                 URL.Paths.Offline.courseSectionFolder(
                     sessionId: environment.currentSession!.uniqueID,
-                    courseId: testCourseId,
+                    courseId: testCourseId.value,
                     sectionName: interactor.sectionName
                 )
             )
@@ -139,7 +139,7 @@ class HTMLParserTests: CoreTestCase {
 
     func testDownloadAttachment() {
         let interactor = HTMLDownloadInteractorMock()
-        testee = HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
+        testee = HTMLParserLive(downloadInteractor: interactor)
         let downloadURL = URL(string: "https://adamdomonkos.instructure.com/files/1")!
 
         testee.downloadAttachment(downloadURL, courseId: "1", resourceId: "1")
@@ -298,23 +298,27 @@ class HTMLParserTests: CoreTestCase {
     }
 
     class HTMLParserMock: HTMLParser {
+        var envResolver: CourseSyncEnvironmentResolver = .default()
         var sessionId: String = "mockSessionId"
-
         var sectionName: String = "mockSectionName"
 
         var parsedContents: [String] = []
         var parsedAttachments: [URL] = []
 
-        func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, any Error> {
+        func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, any Error> {
             parsedContents.append(content)
 
             return Just(content).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
 
-        func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, any Error> {
+        func downloadAttachment(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, any Error> {
             parsedAttachments.append(url)
 
             return Just(url.path).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+
+        func sectionFolder(for courseId: CourseSyncID) -> URL {
+            envResolver.folderURL(forSection: sectionName, ofCourse: courseId)
         }
     }
 }

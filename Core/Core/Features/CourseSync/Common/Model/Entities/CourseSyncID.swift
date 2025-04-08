@@ -18,37 +18,33 @@
 
 import Foundation
 
-public struct CourseSyncID: ExpressibleByStringLiteral {
+public struct CourseSyncID: Hashable {
     let value: String
     let apiBaseURL: URL?
 
     var localID: String { value.localID }
 
-    var targetEnvironment: AppEnvironment {
-        .resolved(for: apiBaseURL)
-    }
-
-    var sessionId: String {
-        targetEnvironment.currentSession?.uniqueID ?? ""
-    }
-
-    var offlineDirectory: URL {
-        URL
-            .Paths
-            .Offline
-            .rootURL(sessionID: sessionId)
-    }
-
-    var offlineStudioDirectory: URL {
-        offlineDirectory.appendingPathComponent("studio", isDirectory: true)
-    }
-
     var asContext: Context {
         .course(localID)
     }
 
+    init(value: String, apiBaseURL: URL? = nil) {
+        self.value = value
+        self.apiBaseURL = apiBaseURL
+    }
+}
+
+#if DEBUG
+
+extension CourseSyncID: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
         self.value = value
         self.apiBaseURL = nil
     }
 }
+
+extension CourseSyncID: CustomStringConvertible {
+    public var description: String { value }
+}
+
+#endif

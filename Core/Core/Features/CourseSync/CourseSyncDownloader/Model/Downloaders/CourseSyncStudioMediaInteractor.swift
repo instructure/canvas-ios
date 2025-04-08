@@ -32,6 +32,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
     private let metadataDownloadInteractor: StudioMetadataDownloadInteractor
     private let downloadInteractor: StudioVideoDownloadInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private let envResolver: CourseSyncEnvironmentResolver
 
     public init(
         authInteractor: StudioAPIAuthInteractor,
@@ -40,7 +41,8 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         cleanupInteractor: StudioVideoCleanupInteractor,
         metadataDownloadInteractor: StudioMetadataDownloadInteractor,
         downloadInteractor: StudioVideoDownloadInteractor,
-        scheduler: AnySchedulerOf<DispatchQueue>
+        scheduler: AnySchedulerOf<DispatchQueue>,
+        envResolver: CourseSyncEnvironmentResolver
     ) {
         self.studioAuthInteractor = authInteractor
         self.studioIFrameReplaceInteractor = iFrameReplaceInteractor
@@ -49,6 +51,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         self.metadataDownloadInteractor = metadataDownloadInteractor
         self.downloadInteractor = downloadInteractor
         self.scheduler = scheduler
+        self.envResolver = envResolver
     }
 
     public func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never> {
@@ -64,7 +67,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
 
     private func getCourseContent(courseSyncID: CourseSyncID) -> AnyPublisher<Void, Never> {
         studioAuthInteractor
-            .makeStudioAPI(env: courseSyncID.targetEnvironment)
+            .makeStudioAPI(env: envResolver.targetEnvironment(for: courseSyncID))
             .mapError({ $0 as Error })
             .flatMap({ [studioIFrameDiscoveryInteractor, metadataDownloadInteractor] api in
 
@@ -80,12 +83,12 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                             }
                     }
             })
-            .flatMap { [cleanupInteractor] (mediaItems, mediaLTIIDsToDownload, iframes) in
-
+            .flatMap { [envResolver, cleanupInteractor] (mediaItems, mediaLTIIDsToDownload, iframes) in
+                let studioDirectory = envResolver.offlineStudioDirectory(for: courseSyncID)
                 return cleanupInteractor.removeNoLongerNeededVideos(
                     allMediaItemsOnAPI: mediaItems,
                     mediaLTIIDsUsedInOfflineMode: mediaLTIIDsToDownload,
-                    forCourse: courseSyncID
+                    offlineStudioDirectory: studioDirectory
                 )
                 .map {
                     (mediaItems, mediaLTIIDsToDownload, iframes)
@@ -96,7 +99,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 downloadStudioVideos(
                     mediaItems: mediaItems,
                     mediaLTIIDsToDownload: mediaLTIIDsToDownload,
-                    rootDirectory: courseSyncID.offlineStudioDirectory
+                    rootDirectory: envResolver.offlineStudioDirectory(for: courseSyncID)
                 )
                 .map { offlineVideos in
                     (offlineVideos, iframes)

@@ -114,10 +114,10 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getDeselectedCourseIds() -> AnyPublisher<[String], Never> {
+    func getDeselectedCourseIds() -> AnyPublisher<[CourseSyncID], Never> {
         mockData
             .map { entries in
-                entries.map { $0.courseId }
+                entries.map { $0.syncID }
             }
             .replaceEmpty(with: [])
             .eraseToAnyPublisher()

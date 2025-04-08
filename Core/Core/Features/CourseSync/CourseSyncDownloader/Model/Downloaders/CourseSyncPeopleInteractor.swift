@@ -25,6 +25,11 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
 
     var associatedTabType: TabName { .people }
 
+    private let envResolver: CourseSyncEnvironmentResolver
+    init(envResolver: CourseSyncEnvironmentResolver) {
+        self.envResolver = envResolver
+    }
+
     func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
 
         let context: Context = courseId.asContext
@@ -32,7 +37,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
         return [
             Self.fetchCourseColors(),
             Self.fetchCourse(context: context),
-            Self.fetchSections(courseID: courseId),
+            Self.fetchSections(courseID: courseId, envResolver: envResolver),
             Self.fetchUsers(context: context)
         ]
             .zip()
@@ -65,10 +70,10 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchSections(courseID: CourseSyncID) -> AnyPublisher<Void, Error> {
+    private static func fetchSections(courseID: CourseSyncID, envResolver: CourseSyncEnvironmentResolver) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCourseSections(courseID: courseID.localID),
-            environment: courseID.targetEnvironment
+            environment: envResolver.targetEnvironment(for: courseID)
         )
         .getEntities(ignoreCache: true)
         .mapToVoid()
