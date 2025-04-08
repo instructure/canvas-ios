@@ -25,6 +25,13 @@ public protocol CourseSyncStudioMediaInteractor {
 }
 
 public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteractor {
+    private struct CourseMediaData {
+        let studioDirectory: URL
+        var mediaItems: [APIStudioMediaItem] = []
+        var idsToDownload: Set<String> = []
+        var iframes: StudioIFramesByLocation = [:]
+    }
+
     private let studioAuthInteractor: StudioAPIAuthInteractor
     private let studioIFrameReplaceInteractor: StudioIFrameReplaceInteractor
     private let studioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor
@@ -59,51 +66,55 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             .Sequence(sequence: courseIDs)
             .receive(on: scheduler)
             .flatMap({ [weak self] courseSyncID in
-                guard let self else { return Just(()).eraseToAnyPublisher() }
-                return getCourseContent(courseSyncID: courseSyncID)
-            })
-            .eraseToAnyPublisher()
-    }
-
-    private func getCourseContent(courseSyncID: CourseSyncID) -> AnyPublisher<Void, Never> {
-        studioAuthInteractor
-            .makeStudioAPI(env: envResolver.targetEnvironment(for: courseSyncID))
-            .mapError({ $0 as Error })
-            .flatMap({ [studioIFrameDiscoveryInteractor, metadataDownloadInteractor] api in
-
-                return studioIFrameDiscoveryInteractor
-                    .discoverStudioIFrames(courseID: courseSyncID)
-                    .flatMap { [metadataDownloadInteractor] iframes in
-                        metadataDownloadInteractor
-                            .fetchStudioMediaItems(api: api, courseID: courseSyncID.value)
-                            .map { mediaItems in
-                                var mediaLTIIDsToDownload = iframes.values.flatMap { $0 }.map { $0.mediaLTILaunchID }
-                                mediaLTIIDsToDownload = Array(Set(mediaLTIIDsToDownload))
-                                return (mediaItems, mediaLTIIDsToDownload, iframes)
-                            }
-                    }
-            })
-            .flatMap { [envResolver, cleanupInteractor] (mediaItems, mediaLTIIDsToDownload, iframes) in
-                let studioDirectory = envResolver.offlineStudioDirectory(for: courseSyncID)
-                return cleanupInteractor.removeNoLongerNeededVideos(
-                    allMediaItemsOnAPI: mediaItems,
-                    mediaLTIIDsUsedInOfflineMode: mediaLTIIDsToDownload,
-                    offlineStudioDirectory: studioDirectory
-                )
-                .map {
-                    (mediaItems, mediaLTIIDsToDownload, iframes)
+                guard let self else {
+                    return Publishers.noInstanceFailure(for: CourseMediaData.self)
                 }
-            }
-            .flatMap { [self] (mediaItems, mediaLTIIDsToDownload, iframes: StudioIFramesByLocation) in
+                return getCourseMedia(courseSyncID: courseSyncID)
+            })
+            .collect()
+            .flatMap({ allCoursesMedia in
 
-                downloadStudioVideos(
-                    mediaItems: mediaItems,
-                    mediaLTIIDsToDownload: mediaLTIIDsToDownload,
-                    rootDirectory: envResolver.offlineStudioDirectory(for: courseSyncID)
+                Publishers.Sequence<[CourseMediaData], Never>(
+                    sequence: Dictionary(
+                        grouping: allCoursesMedia,
+                        by: { $0.studioDirectory }
+                    ).map { (studioDirectory, mediaList) in
+                        var group = CourseMediaData(studioDirectory: studioDirectory)
+                        mediaList.forEach { courseMedia in
+                            group.idsToDownload.formUnion(courseMedia.idsToDownload)
+                            group.iframes.merge(courseMedia.iframes) { $0 + $1 }
+                            group.mediaItems.append(contentsOf: courseMedia.mediaItems)
+                        }
+                        return group
+                    }
+                )
+            })
+            .flatMap { [cleanupInteractor] mediaData in
+
+                return cleanupInteractor
+                    .removeNoLongerNeededVideos(
+                        allMediaItemsOnAPI: mediaData.mediaItems,
+                        mediaLTIIDsUsedInOfflineMode: Array(mediaData.idsToDownload),
+                        offlineStudioDirectory: mediaData.studioDirectory
+                    )
+                    .map { mediaData }
+            }
+            .flatMap { [weak self] mediaData in
+                guard let self else {
+                    return Publishers.noInstanceFailure(
+                        for: ([StudioOfflineVideo], StudioIFramesByLocation).self
+                    )
+                }
+
+                return downloadStudioVideos(
+                    mediaItems: mediaData.mediaItems,
+                    mediaLTIIDsToDownload: Array(mediaData.idsToDownload),
+                    rootDirectory: mediaData.studioDirectory
                 )
                 .map { offlineVideos in
-                    (offlineVideos, iframes)
+                    (offlineVideos, mediaData.iframes)
                 }
+                .eraseToAnyPublisher()
             }
             .tryMap { [studioIFrameReplaceInteractor] (offlineVideos: [StudioOfflineVideo], iframes: StudioIFramesByLocation) in
 
@@ -117,13 +128,46 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 return ()
             }
             .catch { (error: Error) -> Just<Void> in
-                Logger.shared.error("Studio Offline Sync Failed for Course \(courseSyncID.value): " + error.localizedDescription)
+                Logger.shared.error("Studio Offline Sync Failed" + error.localizedDescription)
                 RemoteLogger.shared.logError(
-                    name: "Studio Offline Sync Failed for Course \(courseSyncID.value)",
+                    name: "Studio Offline Sync Failed",
                     reason: error.localizedDescription
                 )
                 return Just(())
             }
+            .eraseToAnyPublisher()
+    }
+
+    private func getCourseMedia(courseSyncID: CourseSyncID) -> AnyPublisher<CourseMediaData, Error> {
+        let studioDirectory = envResolver.offlineStudioDirectory(for: courseSyncID)
+
+        return studioAuthInteractor
+            .makeStudioAPI(env: envResolver.targetEnvironment(for: courseSyncID))
+            .mapError { $0 as Error }
+            .flatMap({ [studioIFrameDiscoveryInteractor, metadataDownloadInteractor] api in
+
+                return studioIFrameDiscoveryInteractor
+                    .discoverStudioIFrames(courseID: courseSyncID)
+                    .flatMap { [metadataDownloadInteractor] iframes in
+                        let mediaLTIIDsToDownload = Set(
+                            iframes
+                                .values
+                                .flatMap { $0 }
+                                .map { $0.mediaLTILaunchID }
+                        )
+
+                        return metadataDownloadInteractor
+                            .fetchStudioMediaItems(api: api, courseID: courseSyncID.value)
+                            .map { mediaItems in
+                                return CourseMediaData(
+                                    studioDirectory: studioDirectory,
+                                    mediaItems: mediaItems,
+                                    idsToDownload: mediaLTIIDsToDownload,
+                                    iframes: iframes
+                                )
+                            }
+                    }
+            })
             .eraseToAnyPublisher()
     }
 
@@ -139,6 +183,14 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 downloadInteractor.download(mediaItem, rootDirectory: rootDirectory)
             }
             .collect()
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Publishers {
+    static func noInstanceFailure<Output>(for outputType: Output.Type = Output.self) -> AnyPublisher<Output, Error> {
+        Fail(error: NSError.instructureError("No instance!") as Error)
+            .setOutputType(to: outputType)
             .eraseToAnyPublisher()
     }
 }
