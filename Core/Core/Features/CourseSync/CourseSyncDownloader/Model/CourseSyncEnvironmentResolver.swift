@@ -51,7 +51,7 @@ public extension CourseSyncEnvironmentResolver {
     func folderURL(forSection sectionName: String, ofCourse courseId: CourseSyncID) -> URL {
         URL.Paths.Offline.courseSectionFolderURL(
             sessionId: sessionId(for: courseId),
-            courseId: courseId.localID,
+            courseId: courseId.value,
             sectionName: sectionName
         )
     }
@@ -59,7 +59,7 @@ public extension CourseSyncEnvironmentResolver {
     func folderDocumentsPath(forSection sectionName: String, ofCourse courseId: CourseSyncID) -> String {
         URL.Paths.Offline.courseSectionFolder(
             sessionId: sessionId(for: courseId),
-            courseId: courseId.localID,
+            courseId: courseId.value,
             sectionName: sectionName
         )
     }
