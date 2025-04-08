@@ -55,9 +55,9 @@ class LoginTests: E2ETestCase {
         let findSchoolInput = LoginHelper.FindSchool.searchField.waitUntil(.visible)
         let nextButton = LoginHelper.nextButton.waitUntil(.vanish)
         XCTAssertTrue(findSchoolLabel.isVisible)
-        XCTAssertEqual(findSchoolButton.label, "Find School")
+        XCTAssertEqual(findSchoolLabel.label, "Find School")
         XCTAssertTrue(findSchoolInput.isVisible)
-        XCTAssertEqual(findSchoolButton.label, "School’s name")
+        XCTAssertEqual(findSchoolInput.label, "School’s name")
         XCTAssertEqual(findSchoolInput.placeholderValue, "Find your school or district")
         XCTAssertTrue(nextButton.isVanished)
 
