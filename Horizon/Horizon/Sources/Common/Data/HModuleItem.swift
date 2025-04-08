@@ -114,9 +114,6 @@ struct HModuleItem: Equatable {
     }
 
     var isOverDue: Bool {
-        guard !isCompleted else {
-            return false
-        }
         let rightNow = Clock.now
         return (dueAt ?? Date.distantFuture) < rightNow
     }

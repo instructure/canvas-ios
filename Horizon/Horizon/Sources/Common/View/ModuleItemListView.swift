@@ -67,11 +67,11 @@ struct ModuleItemListView: View {
                     isSelected: selectedModuleItem == item,
                     requirement: item.isOptional ? .optional : .required,
                     status: item.status,
-                    type: itemType,
+                    type: item.isQuizLTI ? .assessment : itemType,
                     duration: item.estimatedDurationFormatted,
                     dueDate: item.dueAt?.dateOnlyString,
                     lockedMessage: item.lockedMessage,
-                    points: item.points,
+                    points: item.points?.trimmedString,
                     isOverdue: item.isOverDue
                 )
             }

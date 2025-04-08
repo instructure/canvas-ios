@@ -40,6 +40,7 @@ struct AssignmentDetails: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: .huiSpaces.space24) {
                     topView
+                    startQuizButton
                     introView
                         .id(viewModel.courseID)
                     mainContentView(proxy: proxy)
@@ -98,6 +99,20 @@ struct AssignmentDetails: View {
     }
 
     @ViewBuilder
+    private var startQuizButton: some View {
+        if viewModel.assignment?.isQuizLTI == true {
+            HorizonUI.PrimaryButton(
+                String(localized: "Start Quiz", bundle: .horizon),
+                type: .blue,
+                isSmall: false
+            ) {
+                viewModel.showQuizLTI(controller: viewController)
+            }
+            .padding(.top, -(.huiSpaces.space24))
+        }
+    }
+
+    @ViewBuilder
     private var loaderView: some View {
         if viewModel.isLoaderVisible {
             ZStack {
@@ -124,15 +139,16 @@ struct AssignmentDetails: View {
 
     @ViewBuilder
     private var introView: some View {
-        VStack(spacing: .huiSpaces.space4) {
-            Text("Instructions", bundle: .horizon)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.text.title)
-            if let details = viewModel.assignment?.details {
-                WebView(html: details)
+        if let details = viewModel.assignment?.details {
+            VStack(spacing: .huiSpaces.space4) {
+                Text("Instructions", bundle: .horizon)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .huiTypography(.h3)
+                    .foregroundStyle( Color.huiColors.text.title)
+                WebView(html: details, isScrollEnabled: false)
                     .frameToFit()
                     .padding(.horizontal, -16)
+                    .id(details)
             }
         }
     }

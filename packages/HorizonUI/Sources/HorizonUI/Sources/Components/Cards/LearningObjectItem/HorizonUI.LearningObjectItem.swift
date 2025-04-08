@@ -35,7 +35,7 @@ public extension HorizonUI {
         private let duration: String?
         private let dueDate: String?
         private let lockedMessage: String?
-        private let points: Double?
+        private let points: String?
         private let isOverdue: Bool
 
         // MARK: - Init
@@ -49,7 +49,7 @@ public extension HorizonUI {
             duration: String?,
             dueDate: String? = nil,
             lockedMessage: String? = nil,
-            points: Double? = nil,
+            points: String? = nil,
             isOverdue: Bool = false
         ) {
             self.name = name
@@ -130,7 +130,7 @@ public extension HorizonUI {
                     }
 
                     if let points {
-                        Text("\(points.description) pts")
+                        Text("\(points) pts")
                             .foregroundStyle(Color.huiColors.text.timestamp)
                             .padding(.top, .huiSpaces.space24)
                     }
@@ -165,7 +165,7 @@ public extension HorizonUI {
         type: .externalLink,
         duration: "XX Mins",
         dueDate: "22/12",
-        points: 22,
+        points: "22",
         isOverdue: true
     )
 }

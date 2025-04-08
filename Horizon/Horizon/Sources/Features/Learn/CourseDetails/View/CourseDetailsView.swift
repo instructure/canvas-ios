@@ -46,9 +46,6 @@ struct CourseDetailsView: View {
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
         }
-        .refreshable {
-            await viewModel.refresh()
-        }
     }
 
     private var headerView: some View {
@@ -104,6 +101,9 @@ struct CourseDetailsView: View {
                 }
                 .scaleEffect(index == selectedTabIndex ? 1 : 0.8)
                 .tag(index)
+                .refreshable {
+                    await viewModel.refresh()
+                }
             }
             .padding(.horizontal, .huiSpaces.space24)
         }

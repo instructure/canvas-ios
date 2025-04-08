@@ -16,36 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import Core
+import Foundation
 
-struct LTIViewRepresentable: UIViewControllerRepresentable {
-    // MARK: - Dependencies
-
-    private let environment: AppEnvironment
-    private let tools: LTITools
-    private let name: String?
-
-    init(
-        environment: AppEnvironment,
-        tools: LTITools,
-        name: String?
-    ) {
-        self.environment = environment
-        self.tools = tools
-        self.name = name
+extension Double {
+    var trimmedString: String {
+        if self.truncatingRemainder(dividingBy: 1) == 0 {
+            return String(Int(self))
+        } else {
+            return String(self)
+        }
     }
-
-    func makeUIViewController(context: Self.Context) -> LTIViewController {
-        LTIViewController.create(
-            env: environment,
-            tools: tools,
-            name: name
-        )
-    }
-
-    func updateUIViewController(
-        _ uiViewController: LTIViewController,
-        context: Self.Context
-    ) { }
 }

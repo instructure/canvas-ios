@@ -25,7 +25,7 @@ public extension HorizonUI {
         let moduleName: String
         let moduleItemName: String
         let duration: String?
-        let countOfPoints: Double?
+        let countOfPoints: String?
         let dueDate: String?
         let isOverdue: Bool
         let attemptCount: String?
@@ -41,7 +41,7 @@ public extension HorizonUI {
             moduleName: String,
             moduleItemName: String,
             duration: String?,
-            countOfPoints: Double? = nil,
+            countOfPoints: String? = nil,
             dueDate: String?,
             isOverdue: Bool = false,
             attemptCount: String? = nil,
@@ -152,7 +152,7 @@ public extension HorizonUI {
         moduleName: "Module Name Amet Adipiscing Elit",
         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object Name Lorem Ipsum Dolor",
         duration: "XX Mins",
-        countOfPoints: 10.0,
+        countOfPoints: "10",
         dueDate: "Due 10/12",
         isOverdue: true,
         attemptCount: "Three",
