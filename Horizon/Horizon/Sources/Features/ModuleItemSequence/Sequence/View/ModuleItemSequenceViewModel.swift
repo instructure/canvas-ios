@@ -48,6 +48,7 @@ final class ModuleItemSequenceViewModel {
         var buttons: [ModuleNavBarUtilityButtons] = [.chatBot(navigateToTutor)]
         if isAssignmentOptionsButtonVisible, moduleItem?.isQuizLTI == false {
           buttons.append(.assignmentMoreOptions(assignmentOptionsTapped))
+          assignmentAttemptCount = moduleItem?.isQuizLTI == true ? nil : assignmentAttemptCount
         } else if moduleItem?.type?.assetType == .page && isNotebookDisabled == false {
           buttons.append(.notebook(navigateToNotebook))
         }
@@ -113,7 +114,7 @@ final class ModuleItemSequenceViewModel {
             .store(in: &subscriptions)
 
         didLoadAssignment = { [weak self] count, moduleItem in
-            self?.assignmentAttemptCount = moduleItem.isQuizLTI == true ? nil : count
+            self?.assignmentAttemptCount = count
             if self?.isAssignmentAvailableInItemSequence == false {
                 self?.moduleItem = moduleItem
             }
