@@ -165,7 +165,7 @@ final class AssignmentDetailsViewModel {
         router.show(view, from: controller, options: .modal(isDismissable: false))
     }
 
-    func showLTI(controller: WeakViewController) {
+    func showQuizLTI(controller: WeakViewController) {
         let viewController = LTIQuizAssembly.makeView(
             courseID: courseID,
             name: assignment?.name ?? "",

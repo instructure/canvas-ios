@@ -106,7 +106,7 @@ struct AssignmentDetails: View {
                 type: .blue,
                 isSmall: false
             ) {
-                viewModel.showLTI(controller: viewController)
+                viewModel.showQuizLTI(controller: viewController)
             }
             .padding(.top, -(.huiSpaces.space24))
         }
