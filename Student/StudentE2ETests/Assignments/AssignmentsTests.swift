@@ -100,7 +100,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submissionButton.isVisible)
 
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
-        pullToRefresh()
+        app.pullToRefresh()
         XCTAssertEqual(statusLabel.waitUntil(.visible).label, "Submitted")
 
         XCTAssertTrue(submitAssignmentButton.waitUntil(.visible).isVisible)

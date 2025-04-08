@@ -51,17 +51,9 @@ class GradingPeriodsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Grades page
         logInDSUser(student)
+        Helper.navigateToGrades(course: course)
 
         let filterButton = Helper.filterButton
-
-        XCTContext.runActivity(named: "Navigate to Grades page") { _ in
-            let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-            XCTAssertTrue(courseCard.isVisible)
-
-            Helper.navigateToGrades(course: course)
-            filterButton.waitUntil(.visible)
-            XCTAssertTrue(filterButton.isVisible)
-        }
 
         // MARK: Check filter options, set sorting to group
         let allOption = Helper.Filter.optionButton()

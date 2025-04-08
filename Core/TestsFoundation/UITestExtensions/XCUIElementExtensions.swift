@@ -252,12 +252,13 @@ public extension XCUIElement {
         return self
     }
 
-    func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
-        return coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
-    }
-
-    func pullToRefresh(x: CGFloat = 0.5, y: CGFloat = 1.0) {
-        relativeCoordinate(x: x, y: 0.2).press(forDuration: 0.05, thenDragTo: relativeCoordinate(x: x, y: y))
+    func pullToRefresh(x: CGFloat = 0.5, y: CGFloat = 0.2) {
+        XCTContext.runActivity(named: "Pull To Refresh on \(label)") { _ in
+            let gestureStart = coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
+            let dy = app.frame.height - gestureStart.screenPoint.y
+            let gestureEnd = gestureStart.withOffset(CGVector(dx: 0, dy: dy))
+            gestureStart.press(forDuration: 0.05, thenDragTo: gestureEnd)
+        }
     }
 
     func tapAt(_ point: CGPoint) {

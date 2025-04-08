@@ -263,7 +263,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         // MARK: Check grade and total grade
         gradesButton.hit()
         let totalGrade = Grade.totalGrade.waitUntil(.visible)
-        let gradeAssignmentCell = Grade.gradesAssignmentButton(assignment: assignment).waitUntil(.visible)
+        let gradeAssignmentCell = Grade.cell(assignment: assignment).waitUntil(.visible)
         let gradedLabel = Grade.gradedLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
         let gradeLabel = Grade.gradeLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
         XCTAssertTrue(totalGrade.isVisible)

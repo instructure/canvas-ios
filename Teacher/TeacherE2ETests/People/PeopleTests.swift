@@ -130,7 +130,7 @@ class PeopleTests: E2ETestCase {
 
         // MARK: Delete enrollment of the other teacher and check if People List gets updated
         seeder.deleteEnrollment(enrollments[1], in: course)
-        pullToRefresh(x: 0.1)
+        app.pullToRefresh(x: 0.1)
         person2.waitUntil(.vanish)
         XCTAssertTrue(person2.isVanished)
     }

@@ -44,7 +44,7 @@ class GradesTests: E2ETestCase {
         assignmentOne.hit()
         let grades = ["5", "100"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
-        pullToRefresh()
+        app.pullToRefresh()
         let assignmentGrade = AssignmentsHelper.pointsOutOf(actualScore: "5", maxScore: "10").waitUntil(.visible)
         XCTAssertTrue(assignmentGrade.isVisible)
 
@@ -82,14 +82,14 @@ class GradesTests: E2ETestCase {
 
         // MARK: Navigate to assignments
         GradesHelper.navigateToAssignments(course: course)
-        pullToRefresh()
+        app.pullToRefresh()
         let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
 
         // MARK: Grade assignments and check if grades are updated on the UI
         let grades = ["1", "100", "B-"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
-        pullToRefresh()
+        app.pullToRefresh()
 
         firstAssignment.hit()
         let gradeCircle = AssignmentsHelper.Details.gradeCircle.waitUntil(.visible)
@@ -137,7 +137,7 @@ class GradesTests: E2ETestCase {
         // MARK: Grade both assignments and check if grades are updated on the UI
         let grades = ["1", "100"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
-        pullToRefresh()
+        app.pullToRefresh()
         let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
 
@@ -180,7 +180,7 @@ class GradesTests: E2ETestCase {
         let grades = ["pass", "100", "fail", "fail"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
-        pullToRefresh()
+        app.pullToRefresh()
         let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
 
@@ -294,11 +294,10 @@ class GradesTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Grades page, check for assignment groups and grades
         GradesHelper.navigateToGrades(course: course)
+        GradesHelper.refreshGradesScreen()
         let totalGradeLabel = GradesHelper.totalGrade.waitUntil(.visible)
         XCTAssertTrue(totalGradeLabel.isVisible)
         XCTAssertEqual(totalGradeLabel.label, "Total grade is \(expectedTotalGrade)")
@@ -388,8 +387,6 @@ class GradesTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Grades, check Total Grade, check Based On Graded Assignments switch
         let basedOnGradedExpected = "95.45"

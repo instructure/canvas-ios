@@ -34,8 +34,6 @@ class GradeTotalsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for all
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)

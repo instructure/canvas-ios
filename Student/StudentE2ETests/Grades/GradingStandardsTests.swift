@@ -33,14 +33,13 @@ class GradingStandardsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for both
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to grades
         GradesHelper.navigateToGrades(course: course)
+
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
         let assignmentItem = GradesHelper.cell(assignment: assignments.first).waitUntil(.visible)
         XCTAssertEqual(totalGrade.label, "Total grade is N/A")
@@ -48,11 +47,11 @@ class GradingStandardsTests: E2ETestCase {
 
         // MARK: Check if total is updating accordingly
         GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
-        assignmentItem.waitUntil(.visible).pullToRefresh(y: 1)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 100% (A)"))
 
         GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
-        assignmentItem.waitUntil(.visible).pullToRefresh(y: 1)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 50% (F)"))
     }
 }

@@ -140,7 +140,7 @@ class DiscussionsTests: E2ETestCase {
         Helper.backButton.hit()
         Helper.backButton.hit()
         GradesHelper.navigateToGrades(course: course)
-        var gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!)
+        var gradesAssignmentButton = GradesHelper.cell(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
@@ -166,7 +166,7 @@ class DiscussionsTests: E2ETestCase {
         var discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
         if discussionDataLabelReplies == nil {
             Helper.backButton.hit()
-            pullToRefresh()
+            app.pullToRefresh()
         }
         discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)!.waitUntil(.visible)
         XCTAssertEqual(discussionDataLabelReplies!.label, "1 Reply")
@@ -175,16 +175,14 @@ class DiscussionsTests: E2ETestCase {
         Helper.backButton.hit()
         Helper.backButton.hit()
         GradesHelper.navigateToGrades(course: course)
-        GradesHelper.pullToRefresh()
-        gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!)
+        GradesHelper.refreshGradesScreen()
+        gradesAssignmentButton = GradesHelper.cell(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
         gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
-
-        gradesAssignmentSubmittedLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: "Submitted"))
         XCTAssertEqual(gradesAssignmentSubmittedLabel.label, "Submitted")
     }
 
