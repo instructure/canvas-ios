@@ -29,11 +29,16 @@ class DashboardViewModel {
     var title: String = ""
     var nextUpViewModels: [DashboardCourse] = []
 
-    // MARK: - Private variables
+    // MARK: - Dependencies
 
-    private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
     private let router: Router
+
+    // MARK: - Private variables
+
+    private var getDashboardCoursesCancellable: AnyCancellable?
+    private var refreshCompletedModuleItemCancellable: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
@@ -43,20 +48,32 @@ class DashboardViewModel {
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
-        self.getCourses()
+        getCourses()
+    }
+
+    deinit {
+        getDashboardCoursesCancellable?.cancel()
+        getDashboardCoursesCancellable = nil
+        refreshCompletedModuleItemCancellable?.cancel()
+        refreshCompletedModuleItemCancellable = nil
     }
 
     private func getCourses(
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
-        getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
+        getDashboardCoursesCancellable?.cancel()
+        refreshCompletedModuleItemCancellable?.cancel()
+
+        getDashboardCoursesCancellable = getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
-                self?.nextUpViewModels  = items
+                self?.nextUpViewModels = items
                 self?.state = .data
                 completion?()
             }
-            .store(in: &subscriptions)
+
+        refreshCompletedModuleItemCancellable = getCoursesInteractor.refreshModuleItemsUponCompletions()
+            .sink()
     }
 
     // MARK: - Inputs
@@ -86,7 +103,7 @@ class DashboardViewModel {
 
     func getStatus(percent: Double) -> String {
         switch percent {
-        case 0..<1:
+        case 0 ..< 1:
             return String(localized: "In Progress", bundle: .horizon)
         case 1:
             return String(localized: "Completed", bundle: .horizon)

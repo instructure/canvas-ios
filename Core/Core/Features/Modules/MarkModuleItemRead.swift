@@ -52,7 +52,14 @@ public struct MarkModuleItemRead: APIUseCase {
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
         environment.api.makeRequest(request) { response, urlResponse, error in
             if error == nil {
-                NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+                NotificationCenter.default.post(
+                    name: .moduleItemRequirementCompleted,
+                    object: ModuleItemAttributes(
+                        courseID: courseID,
+                        moduleID: moduleID,
+                        itemID: moduleItemID
+                    )
+                )
             }
             completionHandler(response, urlResponse, error)
         }

@@ -339,19 +339,23 @@ final class AssignmentDetailsViewModel {
     }
 
     private func submitTextEntry() {
-        interactor.submitTextEntry(with: htmlContent)
-            .sink { [weak self] completion in
-                if case let .failure(error) = completion {
-                    self?.isLoaderVisible = false
-                    self?.errorMessage = error.localizedDescription
-                }
-            } receiveValue: { [weak self] _ in
-                self?.htmlContent = ""
-                self?.textEntryInteractor.delete()
-                self?.deleteDraft(isShowToast: false)
-                self?.fetchSubmissions()
+        interactor.submitTextEntry(
+            with: htmlContent,
+            moduleID: moduleID,
+            moduleItemID: itemID
+        )
+        .sink { [weak self] completion in
+            if case let .failure(error) = completion {
+                self?.isLoaderVisible = false
+                self?.errorMessage = error.localizedDescription
             }
-            .store(in: &subscriptions)
+        } receiveValue: { [weak self] _ in
+            self?.htmlContent = ""
+            self?.textEntryInteractor.delete()
+            self?.deleteDraft(isShowToast: false)
+            self?.fetchSubmissions()
+        }
+        .store(in: &subscriptions)
     }
 
     private func performSubmission() {

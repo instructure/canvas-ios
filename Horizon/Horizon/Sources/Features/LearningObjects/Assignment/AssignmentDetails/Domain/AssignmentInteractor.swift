@@ -22,7 +22,7 @@ import Combine
 
 protocol AssignmentInteractor: HUploadFileManager {
     func getAssignmentDetails() -> AnyPublisher<HAssignment, Never>
-    func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error>
+    func submitTextEntry(with text: String, moduleID: String, moduleItemID: String) -> AnyPublisher<[CreateSubmission.Model], Error>
     func getSubmissions() -> AnyPublisher<[HSubmission], Never>
 }
 
@@ -79,14 +79,16 @@ final class AssignmentInteractorLive: AssignmentInteractor {
             .eraseToAnyPublisher()
     }
 
-    func submitTextEntry(with text: String) -> AnyPublisher<[CreateSubmission.Model], Error> {
+    func submitTextEntry(with text: String, moduleID: String, moduleItemID: String) -> AnyPublisher<[CreateSubmission.Model], Error> {
         let userID = appEnvironment.currentSession?.userID ?? ""
         let createSubmission = CreateSubmission(
             context: .course(courseID),
             assignmentID: assignmentID,
             userID: userID,
             submissionType: .online_text_entry,
-            body: text
+            body: text,
+            moduleID: moduleID,
+            moduleItemID: moduleItemID
         )
         return ReactiveStore(useCase: createSubmission)
             .getEntities()

@@ -44,8 +44,13 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
+    func getCourse(id _: String, ignoreCache _: Bool) -> AnyPublisher<HCourse?, Never> {
         Just(course)
+            .eraseToAnyPublisher()
+    }
+
+    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
+        Just(())
             .eraseToAnyPublisher()
     }
 

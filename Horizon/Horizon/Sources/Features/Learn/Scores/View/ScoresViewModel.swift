@@ -43,6 +43,7 @@ final class ScoresViewModel {
 
     // MARK: - Dependencies
 
+    private let interactor: ScoresInteractor
     private let router: Router
 
     // MARK: - Private properties
@@ -56,27 +57,78 @@ final class ScoresViewModel {
         interactor: ScoresInteractor,
         router: Router
     ) {
+        self.interactor = interactor
         self.router = router
 
-        weak var weakSelf = self
+        listenForFilterChange()
+        listenForForceRefresh()
+    }
+
+    private func listenForFilterChange() {
+        unowned let unownedSelf = self
 
         selectedFilterOptionRelay
-            .flatMap { sortedBy in
-                interactor.getScores(sortedBy: sortedBy)
-            }
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure:
-                    weakSelf?.viewState = .error
+            .flatMap { filter in
+                unownedSelf.interactor.getScores(
+                    sortedBy: filter,
+                    ignoreCache: false
+                )
+                .catch { _ in
+                    unownedSelf.viewState = .error
+                    return Empty<ScoreDetails, Error>().eraseToAnyPublisher()
                 }
-
-            }, receiveValue: { value in
-                weakSelf?.viewState = .data
-                weakSelf?.scoreDetails = value
-            })
+            }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { value in
+                    unownedSelf.viewState = .data
+                    unownedSelf.scoreDetails = value
+                }
+            )
             .store(in: &subscriptions)
+    }
+
+    private func listenForForceRefresh() {
+        unowned let unownedSelf = self
+
+        Publishers.CombineLatest(
+            NotificationCenter.default
+                .publisher(for: .moduleItemRequirementCompleted)
+                .prepend(
+                    .init(
+                        name: .moduleItemRequirementCompleted,
+                        object: ModuleItemAttributes(
+                            courseID: unownedSelf.interactor.courseID,
+                            moduleID: "",
+                            itemID: ""
+                        )
+                    )
+                )
+                .compactMap { $0.object as? ModuleItemAttributes }
+                .map { $0.courseID }
+                .filter { $0 == unownedSelf.interactor.courseID },
+            NotificationCenter.default
+                .publisher(for: .courseDetailsForceRefreshed)
+                .prepend(.init(name: .courseDetailsForceRefreshed))
+        )
+        .flatMap { _ in
+            unownedSelf.interactor.getScores(
+                sortedBy: unownedSelf.selectedFilterOptionRelay.value,
+                ignoreCache: true
+            )
+            .catch { _ in
+                unownedSelf.viewState = .error
+                return Empty<ScoreDetails, Error>().eraseToAnyPublisher()
+            }
+        }
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { value in
+                unownedSelf.viewState = .data
+                unownedSelf.scoreDetails = value
+            }
+        )
+        .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
