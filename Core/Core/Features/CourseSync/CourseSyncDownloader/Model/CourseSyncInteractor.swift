@@ -361,7 +361,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entry.tabs[tabIndex].selectionState == .selected ||
             entry.tabs[tabIndex].selectionState == .partiallySelected
         else {
-            return removeUnavailableFiles(courseId: entry.courseId, environment: entry.environment)
+            return removeUnavailableFiles(
+                courseId: entry.courseId,
+                environment: envResolver.targetEnvironment(for: entry.syncID)
+            )
         }
 
         let files = entry.files.filter {
@@ -376,7 +379,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return removeUnavailableFiles(
                 courseId: entry.courseId,
                 newFileIDs: files.map { $0.fileId },
-                environment: entry.environment
+                environment: envResolver.targetEnvironment(for: entry.syncID)
             )
         }
 
@@ -410,11 +413,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     )
                 }
             )
-            .flatMap { _ in
+            .flatMap { [envResolver] _ in
                 unownedSelf.removeUnavailableFiles(
                     courseId: entry.courseId,
                     newFileIDs: files.map { $0.fileId },
-                    environment: entry.environment
+                    environment: envResolver.targetEnvironment(for: entry.syncID)
                 )
             }
             .eraseToAnyPublisher()
@@ -440,7 +443,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             fileName: file.fileName,
             mimeClass: file.mimeClass,
             updatedAt: file.updatedAt,
-            environment: entry.environment
+            environment: envResolver.targetEnvironment(for: entry.syncID)
         )
         .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
         .handleEvents(

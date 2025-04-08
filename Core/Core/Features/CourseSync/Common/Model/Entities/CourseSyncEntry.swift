@@ -71,7 +71,6 @@ public struct CourseSyncEntry: Equatable {
     }
 
     var apiBaseURL: URL?
-    var environment: AppEnvironment { .resolved(for: apiBaseURL) }
 
     var files: [CourseSyncEntry.File]
     var selectedFilesCount: Int {
