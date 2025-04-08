@@ -21,7 +21,7 @@ public struct AssignmentPickerListRequest: APIGraphQLPagedRequestable {
 
     public static let operationName = "AssignmentPickerList"
     /**`gradingPeriodId: null` is to return all assignments irrespective of their grading period in the course. */
-    public static let query = """
+    static let query = """
         query \(operationName)($courseID: ID!, $pageSize: Int!, $cursor: String) {
           course(id: $courseID) {
             assignmentsConnection(filter: { gradingPeriodId: null }, first: $pageSize, after: $cursor) {

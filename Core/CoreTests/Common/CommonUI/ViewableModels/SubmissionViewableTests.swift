@@ -81,7 +81,8 @@ class SubmissionViewableTests: XCTestCase {
 
     func testStatusIcon() {
         XCTAssertEqual(Model(submission: nil).submissionStatusIcon, UIImage.noSolid)
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date()))).submissionStatusIcon, UIImage.completeSolid)
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date()))).submissionStatusIcon, UIImage.completeLine)
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date(), workflow_state: .graded))).submissionStatusIcon, UIImage.completeSolid)
     }
 
     func testStatusText() {

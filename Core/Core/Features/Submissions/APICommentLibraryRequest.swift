@@ -19,8 +19,8 @@
 public struct APICommentLibraryRequest: APIGraphQLPagedRequestable {
     public typealias Response = APICommentLibraryResponse
 
-    public static let operationName = "CommentLibraryQuery"
-    public static let query = """
+    static let operationName = "CommentLibraryQuery"
+    static let query = """
         query \(operationName)($query: String, $userId: ID!, $pageSize: Int!, $cursor: String) {
             user: legacyNode(_id: $userId, type: User) {
                 ... on User {

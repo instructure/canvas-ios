@@ -92,7 +92,8 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 userID: cSession.userID,
                 userName: cSession.userName,
                 userEmail: cSession.userEmail,
-                oauthType: cSession.oauthType,
+                clientID: cSession.clientID,
+                clientSecret: cSession.clientSecret,
                 isFakeStudent: cSession.isFakeStudent
             )
         }

@@ -25,6 +25,7 @@
     "Core\/Features\/DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
     "Core\/Features\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
     "Core\/Features\/Grades\/Model\/Entities\/GradeListData.swift",
+    "Core\/Features\/Inbox\/InboxSettings\/Model\/API\/APIUpdateInboxSettings.swift",
     "Core\/Features\/Planner\/CalendarMain",
     "Core\/Features\/WebSitePreview\/",
     "Student\/BackgroundProcessing\/CoreTaskSchedulerLive.swift",

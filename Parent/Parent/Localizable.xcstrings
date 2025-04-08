@@ -513,6 +513,9 @@
         }
       }
     },
+    "About" : {
+
+    },
     "Add" : {
       "localizations" : {
         "ar" : {
@@ -2306,6 +2309,9 @@
         }
       }
     },
+    "Appearance" : {
+
+    },
     "Assignment Details" : {
       "localizations" : {
         "ar" : {
@@ -3613,6 +3619,12 @@
             "value" : "Vælg et fag at sende en meddelelse til"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vælg et fag at sende en meddelelse til"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3679,6 +3691,18 @@
             "value" : "Sélectionnez un cours à envoyer en message"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez un cours pour lequel envoyer un message"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghnaigh cúrsa chun teachtaireacht a dhéanamh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3733,6 +3757,12 @@
             "value" : "Velg et emne du vil sende melding til"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg et fag du vil sende melding til"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3770,6 +3800,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välj en kurs att skicka meddelande till"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Välj en kurs att skicka meddelande till"
@@ -6376,6 +6412,9 @@
         }
       }
     },
+    "Dark Theme" : {
+
+    },
     "Date" : {
       "localizations" : {
         "ar" : {
@@ -7170,6 +7209,12 @@
             "value" : "Luk menu"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luk menu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7236,6 +7281,18 @@
             "value" : "Ignorer le menu"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler le menu"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghchlár a dhíbhe"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7290,6 +7347,12 @@
             "value" : "Lukk meny"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lukk meny"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7327,6 +7390,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avvisa-meny"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avvisa-meny"
@@ -8138,6 +8207,9 @@
         }
       }
     },
+    "Enabled" : {
+
+    },
     "Event Details" : {
       "localizations" : {
         "ar" : {
@@ -8932,6 +9004,12 @@
             "value" : "Kunne ikke indlæse fag"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke indlæse fag"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8998,6 +9076,18 @@
             "value" : "Échec de chargement des cours"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec du chargement des cours"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar chúrsaí a lódáil"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9052,6 +9142,12 @@
             "value" : "Kunne ikke laste inn emner"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke laste inn fag"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9089,6 +9185,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att läsa in kurser"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det gick inte att läsa in kurser"
@@ -10157,6 +10259,9 @@
         }
       }
     },
+    "Inbox Signature" : {
+
+    },
     "Inbox Zero" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -11181,6 +11286,12 @@
           }
         }
       }
+    },
+    "Legal" : {
+
+    },
+    "Light Theme" : {
+
     },
     "Location" : {
       "localizations" : {
@@ -13256,6 +13367,12 @@
             "value" : "Der er ikke fundet fag"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der er ikke fundet fag"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13322,6 +13439,18 @@
             "value" : "Aucun cours trouvé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun cours trouvé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níor aimsíodh aon chúrsaí"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13376,6 +13505,12 @@
             "value" : "Ingen emner ble funnet"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen fag ble funnet"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13413,6 +13548,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga kurser hittades"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inga kurser hittades"
@@ -14224,6 +14365,9 @@
         }
       }
     },
+    "Not set" : {
+
+    },
     "OK" : {
       "localizations" : {
         "ar" : {
@@ -14735,6 +14879,12 @@
           }
         }
       }
+    },
+    "Preferences" : {
+
+    },
+    "Privacy Policy" : {
+
     },
     "Profile Menu" : {
       "localizations" : {
@@ -18324,6 +18474,9 @@
         }
       }
     },
+    "System Settings" : {
+
+    },
     "Tap to switch students" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -18580,6 +18733,9 @@
           }
         }
       }
+    },
+    "Terms of Use" : {
+
     },
     "The linked item is no longer available." : {
       "localizations" : {

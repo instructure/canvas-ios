@@ -295,12 +295,15 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
             guard webView.estimatedProgress >= 1 else { return }
             self?.loadObservation = nil
-            self?.doneLoading()
+            self?.doneLoading(in: webView)
         }
     }
 
-    func doneLoading() {
-        spinnerView.isHidden = true
+    func doneLoading(in webView: WKWebView? = nil) {
+        let isDownloadingAttachment = (webView as? CoreWebView)
+            .flatMap({ $0.isDownloadingAttachment }) ?? false
+
+        spinnerView.isHidden = isDownloadingAttachment == false
         progressView.isHidden = true
         let courseID = context?.contextType == .course ? context?.id : nil
         NotificationCenter.default.post(moduleItem: .file(fileID), completedRequirement: .view, courseID: courseID ?? "")
@@ -760,5 +763,36 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
     @objc
     func annotationChangedNotification(notification: Notification) {
         pdfAnnotationsMutatedMoveToDocsDirectory = true
+    }
+
+    // MARK: Attachment Download Delegate's Methods
+
+    public func coreWebView(_ webView: CoreWebView, didStartDownloadAttachment attachment: CoreWebAttachment) {
+        spinnerView.isHidden = false
+    }
+
+    public func coreWebView(_ webView: CoreWebView, didFailAttachmentDownload attachment: CoreWebAttachment, with error: any Error) {
+        spinnerView.isHidden = true
+    }
+
+    public func coreWebView(_ webView: CoreWebView, didFinishAttachmentDownload attachment: CoreWebAttachment) {
+        localURL = attachment.url
+        shareButton.isEnabled = true
+        spinnerView.isHidden = true
+
+        if let type = attachment.contentType?.lowercased(), type.hasPrefix("video/") {
+
+            let videoHTML = """
+                <video controls playsinline autoplay preload="auto" >
+                    <source src="\(attachment.url.absoluteString)" type="\(type)">
+                </video>
+            """
+
+            webView.loadHTMLString(videoHTML, baseURL: attachment.url)
+
+        } else {
+
+            webView.loadFileURL(attachment.url, allowingReadAccessTo: attachment.url)
+        }
     }
 }

@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 
+<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/HorizonUI.swift
 public struct HorizonUI {
     private init() {}
     
@@ -25,6 +26,12 @@ public struct HorizonUI {
         for font in Fonts.Variants.allCases {
             guard let url = Bundle.module.url(forResource: font.rawValue, withExtension: "ttf") else { continue }
             CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+========
+extension Array where Element: UIBarButtonItem {
+    func removeDuplicates() -> [Element] {
+        return reduce([]) { result, element in
+            result.contains { $0.action == element.action } ? result : result + [element]
+>>>>>>>> origin/master:Core/Core/Common/Extensions/UIKit/Array+UIBarButtonItem.swift
         }
     }
 }

@@ -27,7 +27,6 @@ public enum SettingsMenuItem: String {
     case synchronization = "Synchronization"
     case privacyPolicy = "Privacy Policy"
     case termsOfUse = "Terms of Use"
-    case canvasOnGitHub = "Canvas on GitHub"
 }
 
 public enum LandingPageMenuItem: String {

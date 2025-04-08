@@ -223,6 +223,7 @@ extension SubmissionListViewController: UITableViewDataSource, UITableViewDelega
 class SubmissionListCell: UITableViewCell {
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var statusIconView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var gradeLabel: UILabel!
     @IBOutlet weak var hiddenView: UIImageView!
@@ -260,6 +261,8 @@ class SubmissionListCell: UITableViewCell {
                 User.displayName($0.name, pronouns: $0.pronouns)
             }
         }
+        statusIconView.image = submission?.status.icon
+        statusIconView.tintColor = submission?.status.color
         statusLabel.text = submission?.status.text
         statusLabel.textColor = submission?.status.color
         needsGradingView.isHidden = submission?.needsGrading != true
