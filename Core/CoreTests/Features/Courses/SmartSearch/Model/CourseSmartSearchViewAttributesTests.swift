@@ -16,31 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Core/CoreTests/Common/Extensions/Foundation/CollectionExtensionsTests.swift
 import XCTest
-
-class CollectionExtensionsTests: XCTestCase {
-    func testEmpty() {
-        let emptyArray: [Int] = []
-        let emptySet: Set<Int> = []
-        let emptyDictionary: [Int: Int] = [:]
-
-        XCTAssertFalse(emptyArray.isNotEmpty)
-        XCTAssertFalse(emptySet.isNotEmpty)
-        XCTAssertFalse(emptyDictionary.isNotEmpty)
-    }
-
-    func testNotEmpty() {
-        let nonEmptyArray: [Int] = [1]
-        let nonEmptySet: Set<Int> = [1]
-        let nonEmptyDictionary: [Int: Int] = [1: 1]
-
-        XCTAssertTrue(nonEmptyArray.isNotEmpty)
-        XCTAssertTrue(nonEmptySet.isNotEmpty)
-        XCTAssertTrue(nonEmptyDictionary.isNotEmpty)
-========
 @testable import Core
-import XCTest
 
 class CourseSmartSearchViewAttributesTests: CoreTestCase {
 
@@ -60,6 +37,5 @@ class CourseSmartSearchViewAttributesTests: CoreTestCase {
         XCTAssertEqual(testee.context, .course("1"))
         XCTAssertEqual(testee.accentColor, .red)
         XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
->>>>>>>> origin/master:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
     }
 }

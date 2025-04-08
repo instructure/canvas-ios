@@ -16,9 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Foundation
-import XCTest
 
 class SettingsGroupViewModel: ObservableObject {
     @Published var title: String
