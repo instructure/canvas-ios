@@ -33,12 +33,13 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
 
         let context: Context = courseId.asContext
+        let env = envResolver.targetEnvironment(for: courseId)
 
         return [
             Self.fetchCourseColors(),
             Self.fetchCourse(context: context),
-            Self.fetchSections(courseID: courseId, envResolver: envResolver),
-            Self.fetchUsers(context: context)
+            Self.fetchSections(courseID: courseId, env: env),
+            Self.fetchUsers(context: context, env: env)
         ]
             .zip()
             .mapToVoid()
@@ -63,17 +64,17 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchUsers(context: Context) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetPeopleListUsers(context: context))
+    private static func fetchUsers(context: Context, env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetPeopleListUsers(context: context), environment: env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
-    private static func fetchSections(courseID: CourseSyncID, envResolver: CourseSyncEnvironmentResolver) -> AnyPublisher<Void, Error> {
+    private static func fetchSections(courseID: CourseSyncID, env: AppEnvironment) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetCourseSections(courseID: courseID.localID),
-            environment: envResolver.targetEnvironment(for: courseID)
+            environment: env
         )
         .getEntities(ignoreCache: true)
         .mapToVoid()
