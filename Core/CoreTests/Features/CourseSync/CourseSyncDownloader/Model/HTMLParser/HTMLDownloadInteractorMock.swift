@@ -25,7 +25,7 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
     var fileNames: [String] = []
     private var counter: Int = 0
     var savedBaseContents: [URL] = []
-    var envResolver: CourseSyncEnvironmentResolver = .default()
+    var envResolver: CourseSyncEnvironmentResolver = .mocked()
 
     func download(
         _ url: URL,

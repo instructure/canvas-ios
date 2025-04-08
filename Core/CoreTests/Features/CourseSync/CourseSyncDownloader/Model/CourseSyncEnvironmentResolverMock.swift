@@ -19,8 +19,8 @@
 import Foundation
 @testable import Core
 
-class TestCourseSyncEnvironmentResolver: CourseSyncEnvironmentResolver {
-    private var defaultResolver = DefaultCourseSyncEnvironmentResolver()
+class CourseSyncEnvironmentResolverMock: CourseSyncEnvironmentResolver {
+    private var defaultResolver = CourseSyncEnvironmentResolverLive()
 
     let env: AppEnvironment
     init(env: AppEnvironment) {
@@ -39,5 +39,11 @@ class TestCourseSyncEnvironmentResolver: CourseSyncEnvironmentResolver {
     var offlineDirectoryOverride: URL?
     func offlineDirectory(for courseID: CourseSyncID) -> URL {
         offlineDirectoryOverride ?? defaultResolver.offlineDirectory(for: courseID)
+    }
+}
+
+extension CourseSyncEnvironmentResolver where Self == CourseSyncEnvironmentResolverMock {
+    static func mocked(for env: AppEnvironment = .shared) -> Self {
+        CourseSyncEnvironmentResolverMock(env: env)
     }
 }

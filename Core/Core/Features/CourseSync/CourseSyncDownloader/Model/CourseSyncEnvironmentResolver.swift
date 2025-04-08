@@ -65,7 +65,7 @@ public extension CourseSyncEnvironmentResolver {
     }
 }
 
-class DefaultCourseSyncEnvironmentResolver: CourseSyncEnvironmentResolver {
+class CourseSyncEnvironmentResolverLive: CourseSyncEnvironmentResolver {
 
     var userId: String {
         AppEnvironment.shared.currentSession?.userID ?? "self"
@@ -74,8 +74,4 @@ class DefaultCourseSyncEnvironmentResolver: CourseSyncEnvironmentResolver {
     func targetEnvironment(for courseID: CourseSyncID) -> AppEnvironment {
         .resolved(for: courseID.apiBaseURL)
     }
-}
-
-extension CourseSyncEnvironmentResolver where Self == DefaultCourseSyncEnvironmentResolver {
-    static func `default`() -> CourseSyncEnvironmentResolver { DefaultCourseSyncEnvironmentResolver() }
 }

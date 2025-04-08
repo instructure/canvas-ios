@@ -127,7 +127,7 @@ class PublisherExtensionsTests: XCTestCase {
         var sectionName: String = "testSection"
         var parseCalled = false
         var attachmentParseCalled = false
-        var envResolver: CourseSyncEnvironmentResolver = .default()
+        var envResolver: CourseSyncEnvironmentResolver = .mocked()
 
         func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error> {
             parseCalled = true

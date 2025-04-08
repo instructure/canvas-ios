@@ -298,7 +298,7 @@ class HTMLParserTests: CoreTestCase {
     }
 
     class HTMLParserMock: HTMLParser {
-        var envResolver: CourseSyncEnvironmentResolver = .default()
+        var envResolver: CourseSyncEnvironmentResolver = .mocked()
         var sessionId: String = "mockSessionId"
         var sectionName: String = "mockSectionName"
 

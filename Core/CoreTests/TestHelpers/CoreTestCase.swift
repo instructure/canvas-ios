@@ -37,7 +37,7 @@ class CoreTestCase: XCTestCase {
     var remoteLogHandler = MockRemoteLogHandler()
 
     lazy var environment = TestEnvironment()
-    lazy var envResolver = TestCourseSyncEnvironmentResolver(env: environment)
+    lazy var envResolver = CourseSyncEnvironmentResolverMock(env: environment)
     var currentSession: LoginSession!
     var login = TestLoginDelegate()
 

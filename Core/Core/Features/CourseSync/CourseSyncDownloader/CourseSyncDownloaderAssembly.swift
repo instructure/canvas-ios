@@ -22,7 +22,7 @@ import CombineSchedulers
 public enum CourseSyncDownloaderAssembly {
 
     public static func makeInteractor(environmentResolver: CourseSyncEnvironmentResolver? = nil) -> CourseSyncInteractor {
-        let envResolver = environmentResolver ?? DefaultCourseSyncEnvironmentResolver()
+        let envResolver = environmentResolver ?? CourseSyncEnvironmentResolverLive()
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
