@@ -195,6 +195,7 @@
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <entity name="CDDashboardCourse" representedClassName="Core.CDDashboardCourse" syncable="YES">
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>

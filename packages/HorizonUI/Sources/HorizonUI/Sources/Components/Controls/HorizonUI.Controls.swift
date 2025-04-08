@@ -1,10 +1,6 @@
 //
 // This file is part of Canvas.
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Controls/HorizonUI.Controls.swift
 // Copyright (C) 2025-present  Instructure, Inc.
-========
-// Copyright (C) 2024-present  Instructure, Inc.
->>>>>>>> origin/master:Core/Core/Common/Extensions/Foundation/CGSizeExtensions.swift
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -22,11 +18,6 @@
 
 import Foundation
 
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Controls/HorizonUI.Controls.swift
 public extension HorizonUI {
     struct Controls {}
-========
-public extension CGSize {
-    var isZero: Bool { self == .zero }
->>>>>>>> origin/master:Core/Core/Common/Extensions/Foundation/CGSizeExtensions.swift
 }

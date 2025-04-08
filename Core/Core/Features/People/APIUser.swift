@@ -243,7 +243,7 @@ extension APIProfile {
         pronouns: String? = nil,
         k5_user: Bool? = nil,
         uuid: String? = nil,
-        account_uuid: String? = nil
+        account_uuid: String? = nil,
         time_zone: String? = nil
     ) -> APIProfile {
         return APIProfile(
@@ -258,7 +258,7 @@ extension APIProfile {
             pronouns: pronouns,
             k5_user: k5_user,
             uuid: uuid,
-            account_uuid: account_uuid
+            account_uuid: account_uuid,
             time_zone: time_zone
         )
     }

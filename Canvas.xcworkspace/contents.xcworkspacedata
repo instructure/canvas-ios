@@ -8,13 +8,13 @@
       location = "group:Horizon/Horizon.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Student/Student.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Parent/Parent.xcodeproj">
+      location = "container:Parent/Parent.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Teacher/Teacher.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Student/Student.xcodeproj">
    </FileRef>
    <Group
       location = "group:packages"
@@ -62,8 +62,5 @@
    </FileRef>
    <FileRef
       location = "group:package.json">
-   </FileRef>
-   <FileRef
-      location = "group:ModuleItemView.swift">
    </FileRef>
 </Workspace>

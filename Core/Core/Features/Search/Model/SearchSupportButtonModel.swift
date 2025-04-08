@@ -18,14 +18,6 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:Core/Core/Common/CommonModels/AppEnvironment/EnvironmentSettings/GetEnvironmentSettings.swift
-public class GetEnvironmentSettings: CollectionUseCase {
-    public typealias Model = CDEnvironmentSettings
-
-    public let scope: Scope = .all
-    public let cacheKey: String? = "environment-settings"
-    public let request = GetEnvironmentSettingsRequest()
-========
 public struct SearchSupportButtonModel<Action: SearchSupportAction> {
     let action: Action
     let icon: SearchSupportIcon
@@ -51,5 +43,4 @@ public struct SearchSupportIcon {
         self.image = image
         self.uiImage = uiImage
     }
->>>>>>>> origin/master:Core/Core/Features/Search/Model/SearchSupportButtonModel.swift
 }
