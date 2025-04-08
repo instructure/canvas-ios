@@ -17,8 +17,8 @@
 //
 
 import WebKit
+import SwiftUICore
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/LearningObjects/Assignment/AssignmentDetails/View/AssignmentPreferences.swift
 enum AssignmentPreferenceKeyType: Equatable {
     case confirmation(viewModel: SubmissionAlertViewModel)
     case toastViewModel(viewModel: ToastViewModel)
@@ -37,25 +37,5 @@ struct AssignmentPreferenceKey: PreferenceKey {
 
     static func reduce(value: inout AssignmentPreferenceKeyType?, nextValue: () -> AssignmentPreferenceKeyType?) {
         value = nextValue()
-========
-public protocol EmbeddedWebPageViewModel {
-    var urlPathComponent: String { get }
-    var queryItems: [URLQueryItem] { get }
-    var navigationBarTitle: String { get }
-
-    func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton?
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
-}
-
-public extension EmbeddedWebPageViewModel {
-
-    func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton? {
-        nil
->>>>>>>> origin/master:Core/Core/Common/CommonUI/EmbeddedWebPage/ViewModel/EmbeddedWebPageViewModel.swift
     }
-
-    func webView(
-        _ webView: WKWebView,
-        didStartProvisionalNavigation navigation: WKNavigation!
-    ) {}
 }

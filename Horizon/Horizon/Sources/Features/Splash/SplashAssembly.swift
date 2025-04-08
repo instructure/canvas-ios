@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Splash/SplashAssembly.swift
 import Core
 import Foundation
 import UIKit
@@ -30,17 +29,5 @@ final class SplashAssembly {
         )
         let view = SplashView(viewModel: viewModel)
         return CoreHostingController(view)
-========
-import XCTest
-@testable import Core
-
-final class RecurrenceRuleSelectionDescriptionTests: XCTestCase {
-
-    func test_selectionText() {
-        XCTAssertEqual(RecurrenceFrequency.daily.selectionText, String(localized: "Daily", bundle: .core))
-        XCTAssertEqual(RecurrenceFrequency.weekly.selectionText, String(localized: "Weekly", bundle: .core))
-        XCTAssertEqual(RecurrenceFrequency.monthly.selectionText, String(localized: "Monthly", bundle: .core))
-        XCTAssertEqual(RecurrenceFrequency.yearly.selectionText, String(localized: "Yearly", bundle: .core))
->>>>>>>> origin/master:Core/CoreTests/Features/Planner/CalendarEvent/Model/Helpers/RecurrenceRule+SelectionDescriptionTests.swift
     }
 }

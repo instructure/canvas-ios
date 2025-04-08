@@ -16,30 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Core/CoreTests/Features/Courses/SmartSearch/Model/CourseSmartSearchViewAttributesTests.swift
 @testable import Core
-import XCTest
-
-class CourseSmartSearchViewAttributesTests: CoreTestCase {
-
-    func test_default_properties() {
-        let testee = CourseSmartSearchViewAttributes.default
-
-        XCTAssertEqual(testee.context, .currentUser)
-        XCTAssertNil(testee.accentColor)
-    }
-
-    func test_custom_properties() {
-        let testee = CourseSmartSearchViewAttributes(
-            context: .course("1"),
-            color: .red
-        )
-
-        XCTAssertEqual(testee.context, .course("1"))
-        XCTAssertEqual(testee.accentColor, .red)
-        XCTAssertEqual(testee.searchPrompt, String(localized: "Search in this course", bundle: .core))
-========
 import Foundation
+import XCTest
 
 class SettingsGroupViewModel: ObservableObject {
     @Published var title: String
@@ -48,7 +27,6 @@ class SettingsGroupViewModel: ObservableObject {
     init(title: String, itemViews: [SettingsGroupItemView]) {
         self.title = title
         self.itemViews = itemViews
->>>>>>>> origin/master:Parent/Parent/Profile/Settings/ViewModel/SettingsGroupViewModel.swift
     }
 }
 
