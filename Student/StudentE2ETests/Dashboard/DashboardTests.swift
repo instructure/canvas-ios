@@ -222,7 +222,8 @@ class DashboardTests: E2ETestCase {
 
         let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardGradeLabel.isVisible)
-        XCTAssertTrue(courseCardGradeLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade)))
+        courseCardGradeLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade))
+        XCTAssertEqual(courseCardGradeLabel.label, totalGrade)
 
         // MARK: Unselect Show Grades toggle then check Course Card label again
         dashboardOptionsButton.waitUntil(.visible)
