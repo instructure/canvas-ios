@@ -103,6 +103,7 @@ class CalendarDaysViewController: UIViewController {
             end = currentDate
         }
         refresh()
+        subscribeForTraitChanges()
     }
 
     override func viewWillLayoutSubviews() {
@@ -114,9 +115,9 @@ class CalendarDaysViewController: UIViewController {
         }
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    private func subscribeForTraitChanges() {
         let traits = [UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (self: Self, previousTraitCollection: UITraitCollection) in
+        registerForTraitChanges(traits) { (self: CalendarDaysViewController, previousTraitCollection: UITraitCollection) in
             // Manually refresh the spacing upon rotation
             if self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass {
                 self.weeksStackView.spacing = self.weekGap

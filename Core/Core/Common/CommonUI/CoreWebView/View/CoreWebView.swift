@@ -359,8 +359,12 @@ open class CoreWebView: WKWebView {
             let traitCollection = webView.viewController?.traitCollection ?? webView.traitCollection
             guard previousTraitCollection.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
 
-            webView.themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
+            webView.updateInterfaceStyle()
         }
+    }
+
+    func updateInterfaceStyle() {
+        themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
     }
 }
 
