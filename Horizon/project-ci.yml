@@ -31,9 +31,9 @@ packages:
     path: ../packages/HorizonUI
 
   # Remote
-  Heap:
-    url: https://github.com/heap/heap-ios-sdk.git
-    exactVersion: 9.1.0
+  Pendo:
+    url: https://github.com/pendo-io/pendo-mobile-sdk
+    exactVersion: 3.6.1
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.9.1

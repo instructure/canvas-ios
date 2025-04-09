@@ -19,48 +19,25 @@
 @testable import Core
 import XCTest
 
-class GradingSchemeEntryTests: CoreTestCase {
+class GradingSchemeTestCase: CoreTestCase {
 
-    func testScoreConversion() {
-        let testee: [GradingSchemeEntry] = {
-            let entryA: GradingSchemeEntry = databaseClient.insert()
-            entryA.name = "A"
-            entryA.value = 90
-            let entryB: GradingSchemeEntry = databaseClient.insert()
-            entryB.name = "B"
-            entryB.value = 30
-            let entryF: GradingSchemeEntry = databaseClient.insert()
-            entryF.name = "F"
-            entryF.value = 0
-            return [entryA, entryB, entryF]
-        }()
-
-        var result = testee.convertScoreToLetterGrade(score: 90)
-        XCTAssertEqual(result, "A")
-
-        result = testee.convertScoreToLetterGrade(score: 89)
-        XCTAssertEqual(result, "B")
-
-        result = testee.convertScoreToLetterGrade(score: 0)
-        XCTAssertEqual(result, "F")
+    func scoreConversionEntries() -> [GradingSchemeEntry] {
+        let entryA: GradingSchemeEntry = databaseClient.insert()
+        entryA.name = "A"
+        entryA.value = 0.9
+        let entryB: GradingSchemeEntry = databaseClient.insert()
+        entryB.name = "B"
+        entryB.value = 0.3
+        let entryF: GradingSchemeEntry = databaseClient.insert()
+        entryF.name = "F"
+        entryF.value = 0
+        return [entryA, entryB, entryF]
     }
 
-    func testScoreConversionWithEmptyScheme() {
-        let testee: [GradingSchemeEntry] = []
-        let result = testee.convertScoreToLetterGrade(score: 30)
-        XCTAssertNil(result)
-    }
-
-    func testScoreConversionWithInvalidScheme() {
-        let testee: [GradingSchemeEntry] = {
-            let entry: GradingSchemeEntry = databaseClient.insert()
-            entry.name = "A"
-            entry.value = 90
-            return [entry]
-        }()
-
-        let result = testee.convertScoreToLetterGrade(score: 30)
-
-        XCTAssertNil(result)
+    func invalidConversionEntries() -> [GradingSchemeEntry] {
+        let entry: GradingSchemeEntry = databaseClient.insert()
+        entry.name = "A"
+        entry.value = 90
+        return [entry]
     }
 }

@@ -26,9 +26,11 @@ public enum InboxAssembly {
                                                     tabBarCountUpdater: .init(),
                                                     messageListStateUpdater: .init())
         let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             router: env.router
         )
 
@@ -47,7 +49,13 @@ public enum InboxAssembly {
         let env = AppEnvironment.shared
         let messageInteractor = InboxMessageInteractorLive(env: env, tabBarCountUpdater: .init(), messageListStateUpdater: .init())
         let favouriteInteractor = InboxMessageFavouriteInteractorLive()
-        let viewModel = InboxViewModel(messageInteractor: messageInteractor, favouriteInteractor: favouriteInteractor, router: env.router)
+        let inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
+        let viewModel = InboxViewModel(
+            messageInteractor: messageInteractor,
+            favouriteInteractor: favouriteInteractor,
+            inboxSettingsInteractor: inboxSettingsInteractor,
+            router: env.router
+        )
 
         let controller = CoreHostingController(InboxView(model: viewModel))
 
@@ -64,9 +72,11 @@ public enum InboxAssembly {
     -> InboxView {
         let messageInteractor = InboxMessageInteractorPreview(environment: environment, messages: messages)
         let favouriteInteractor = InboxMessageFavouriteInteractorLive()
+        let inboxSettingsInteractor = InboxSettingsInteractorPreview()
         let viewModel = InboxViewModel(
             messageInteractor: messageInteractor,
             favouriteInteractor: favouriteInteractor,
+            inboxSettingsInteractor: inboxSettingsInteractor,
             router: environment.router
         )
         return InboxView(model: viewModel)

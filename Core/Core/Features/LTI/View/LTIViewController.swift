@@ -23,6 +23,8 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var openButton: UIButton!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
 
     private var env: AppEnvironment = .defaultValue
     public var tools: LTITools!
@@ -54,6 +56,8 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
+        contentView.backgroundColor = .backgroundLightest
+        scrollView.backgroundColor = .backgroundLightest
         spinnerView.isHidden = true
         nameLabel.text = name ?? String(localized: "LTI Tool", bundle: .core)
         setupTitleViewInNavbar(title: String(localized: "External Tool", bundle: .core))

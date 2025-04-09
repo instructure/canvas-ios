@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import CryptoKit
 import Foundation
 
 extension String {
@@ -130,6 +131,12 @@ extension String {
     public func deletingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else { return self }
         return String(dropFirst(prefix.count))
+    }
+
+    public func sha256() -> String {
+        let inputData = Data(utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        return hashedData.map { String(format: "%02x", $0) }.joined()
     }
 }
 

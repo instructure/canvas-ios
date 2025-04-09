@@ -1,6 +1,6 @@
 ---
 targets:
-  Horizon:    
+  Horizon:
     type: application
     platform: iOS
     transitivelyLinkDependencies: false
@@ -19,10 +19,10 @@ targets:
       # Local
       - target: Core/Core
       - package: HorizonUI
-    
+
       # Remote
       - package: PSPDFKit
-      - package: Heap
+      - package: Pendo
       - package: FirebaseCrashlytics
       - package: FirebaseRemoteConfig
       - package: FirebaseRemoteConfigSwift

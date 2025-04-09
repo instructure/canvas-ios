@@ -1,5 +1,5 @@
 {
-  "originHash" : "5dc4489962906251dd3b9a07c7adeccfe65a0937a7c2e4bdefab3ded66ee239b",
+  "originHash" : "257ce0b596a02f742731a202b60715b4aacdb586de9dd5e4871c9baa633e1e71",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -92,15 +92,6 @@
       }
     },
     {
-      "identity" : "heap-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/heap/heap-ios-sdk.git",
-      "state" : {
-        "revision" : "ebb29dcd3181f11715b07b54dff909e3bdedba3b",
-        "version" : "9.1.0"
-      }
-    },
-    {
       "identity" : "interop-ios-for-google-sdks",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/interop-ios-for-google-sdks.git",
@@ -137,6 +128,15 @@
       }
     },
     {
+      "identity" : "pendo-mobile-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pendo-io/pendo-mobile-sdk",
+      "state" : {
+        "revision" : "350cc267066c7f933b5939513b596cd922e22f08",
+        "version" : "3.6.1"
+      }
+    },
+    {
       "identity" : "promises",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",
@@ -159,8 +159,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "ebc7251dd5b37f627c93698e4374084d98409633",
-        "version" : "1.28.2"
+        "revision" : "d72aed98f8253ec1aa9ea1141e28150f408cf17f",
+        "version" : "1.29.0"
       }
     },
     {

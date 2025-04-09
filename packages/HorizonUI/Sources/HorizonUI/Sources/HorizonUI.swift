@@ -16,11 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 
 public struct HorizonUI {
     private init() {}
-    
+
     public static func registerCustomFonts() {
         for font in Fonts.Variants.allCases {
             guard let url = Bundle.module.url(forResource: font.rawValue, withExtension: "ttf") else { continue }

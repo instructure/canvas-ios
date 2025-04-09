@@ -122,11 +122,6 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.textLabel?.text, "Terms of Use")
         vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 1, section: 1))
         XCTAssert(router.lastRoutedTo("/accounts/self/terms_of_service"))
-
-        cell = vc.tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as? RightDetailTableViewCell
-        XCTAssertEqual(cell?.textLabel?.text, "Canvas on GitHub")
-        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 2, section: 1))
-        XCTAssert(router.lastRoutedTo(.parse("https://github.com/instructure/canvas-ios")))
     }
 
     private func isCellExists(title: String, section: Int) -> Bool {

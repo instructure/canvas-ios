@@ -143,6 +143,8 @@ public struct APIProfile: Codable, Equatable {
     public let calendar: APICalendar?
     public let pronouns: String?
     public let k5_user: Bool?
+    public let uuid: String?
+    public let account_uuid: String?
     public let time_zone: String?
 }
 
@@ -240,6 +242,8 @@ extension APIProfile {
         calendar: APIProfile.APICalendar? = .make(),
         pronouns: String? = nil,
         k5_user: Bool? = nil,
+        uuid: String? = nil,
+        account_uuid: String? = nil,
         time_zone: String? = nil
     ) -> APIProfile {
         return APIProfile(
@@ -253,6 +257,8 @@ extension APIProfile {
             calendar: calendar,
             pronouns: pronouns,
             k5_user: k5_user,
+            uuid: uuid,
+            account_uuid: account_uuid,
             time_zone: time_zone
         )
     }
@@ -453,6 +459,19 @@ public struct GetUserProfileRequest: APIRequestable {
     public init(userID: String) {
         self.userID = userID
     }
+}
+
+// https://canvas.instructure.com/doc/api/users.html#method.users.api_show
+public struct GetSelfUserIncludingUUIDRequest: APIRequestable {
+    public typealias Response = APIProfile
+
+    public var path: String { "users/self" }
+
+    public let query: [APIQueryItem] = [
+        .include(["uuid"])
+    ]
+
+    public init() {}
 }
 
 // https://canvas.instructure.com/doc/api/user_observees.html#method.user_observees.create

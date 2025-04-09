@@ -43,7 +43,7 @@ open class AppEnvironment {
     public var logger: LoggerProtocol
     public var router: Router
     public var currentSession: LoginSession?
-    public var heapID: String?
+    public var pendoID: String?
     public var userDefaults: SessionDefaults? {
         didSet {
             k5.sessionDefaults = userDefaults

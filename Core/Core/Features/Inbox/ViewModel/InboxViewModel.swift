@@ -55,18 +55,20 @@ public class InboxViewModel: ObservableObject {
     private static let DefaultScope: InboxMessageScope = .inbox
     private let messageInteractor: InboxMessageInteractor
     private let favouriteInteractor: InboxMessageFavouriteInteractor
+    private let inboxSettingsInteractor: InboxSettingsInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)
-    private var didSendMailSuccessfully = PassthroughSubject<Void, Never>()
 
     // MARK: - Init
     public init(
         messageInteractor: InboxMessageInteractor,
         favouriteInteractor: InboxMessageFavouriteInteractor,
+        inboxSettingsInteractor: InboxSettingsInteractor,
         router: Router
     ) {
         self.messageInteractor = messageInteractor
         self.favouriteInteractor = favouriteInteractor
+        self.inboxSettingsInteractor = inboxSettingsInteractor
         self.isShowMenuButton = !messageInteractor.isParentApp
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
@@ -108,6 +110,11 @@ public class InboxViewModel: ObservableObject {
             .assign(to: &$courses)
         messageInteractor.hasNextPage
             .assign(to: &$hasNextPage)
+
+        // Prefetch inbox settings value so cached value will be loaded on the compose screen
+        inboxSettingsInteractor.signature
+            .sink()
+            .store(in: &subscriptions)
     }
 
     private func bindInputsToDataSource() {
@@ -162,12 +169,6 @@ public class InboxViewModel: ObservableObject {
             }
             .sink()
             .store(in: &subscriptions)
-
-        didSendMailSuccessfully
-            .sink { [weak self] in
-                self?.snackBarViewModel.showSnack(InboxMessageScope.sent.localizedName)
-            }
-            .store(in: &subscriptions)
     }
 
     private func subscribeToTapEvents(router: Router) {
@@ -177,7 +178,7 @@ public class InboxViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         newMessageDidTap
-            .sink { [router, didSendMailSuccessfully, messageInteractor] source in
+            .sink { [router, messageInteractor] source in
                 // In the parent app we need a different logic for student context picker
                 if messageInteractor.isParentApp {
                     if let bottomSheet = router.match("/conversations/new_message") {
@@ -185,7 +186,7 @@ public class InboxViewModel: ObservableObject {
                     }
                 } else {
                     router.show(
-                        ComposeMessageAssembly.makeComposeMessageViewController(sentMailEvent: didSendMailSuccessfully),
+                        ComposeMessageAssembly.makeComposeMessageViewController(),
                         from: source,
                         options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
                     )

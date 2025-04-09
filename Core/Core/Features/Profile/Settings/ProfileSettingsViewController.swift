@@ -25,8 +25,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
-
+    private var showInboxSignatureSettings = false
+    private var isInboxSignatureEnabled = false
     private var offlineModeInteractor = OfflineModeAssembly.make()
+    private var inboxSettingsInteractor = InboxSettingsInteractorLive()
     private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {
@@ -87,6 +89,23 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 self?.networkStateDidChange()
             }
             .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .isFeatureEnabled
+            .sink { [weak self] isFeatureEnabled in
+                self?.showInboxSignatureSettings = isFeatureEnabled
+                self?.reloadData()
+            }
+            .store(in: &subscriptions)
+
+        inboxSettingsInteractor
+            .settings
+            .sink { [weak self] inboxSettings in
+                guard let inboxSettings else { return }
+                self?.isInboxSignatureEnabled = inboxSettings.useSignature
+                self?.reloadData()
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -128,6 +147,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
         var sections: [Section] = [preferencesSection]
 
+        if showInboxSignatureSettings {
+            sections.append(inboxSignatureSettingsSection)
+        }
+
         if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
             sections.append(offlineSettingSection)
         }
@@ -141,10 +164,6 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
-                },
-                Row(String(localized: "Canvas on GitHub", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
-                    guard let self = self else { return }
-                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 }
             ])
         )
@@ -170,6 +189,21 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     isSupportedOffline: true) { [weak self] in
                         guard let self = self else { return }
                         self.env.router.route(to: "/offline/settings", from: self)
+                    }
+               ])
+    }
+
+    private var inboxSignatureSettingsSection: Section {
+        let detailLabel = isInboxSignatureEnabled
+            ? String(localized: "Enabled", bundle: .core)
+            : String(localized: "Not set", bundle: .core)
+
+        return Section(String(localized: "Inbox", bundle: .core), rows: [
+                Row(String(localized: "Inbox Signature", bundle: .core),
+                    detail: detailLabel,
+                    isSupportedOffline: true) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "/conversations/settings", from: self)
                     }
                ])
     }

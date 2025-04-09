@@ -46,7 +46,7 @@ public class AssignmentCellViewModel: ObservableObject {
     public var needsGradingCount: Int { assignment.needsGradingCount }
 
     public var scoreLabel: String? {
-        guard !assignment.hideQuantitativeData, let pointsPossible = assignment.pointsPossible else { return nil }
+        guard let pointsPossible = assignment.pointsPossible else { return nil }
         var scoreString = "-"
         if let viewableScore = assignment.viewableScore {
             scoreString = String(Int(viewableScore))

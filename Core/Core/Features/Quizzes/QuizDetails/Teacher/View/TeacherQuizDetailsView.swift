@@ -86,13 +86,11 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
                 HStack {
                     if viewModel.published {
                         Image.publishSolid.foregroundColor(.textSuccess)
-                            .padding(.trailing, 4)
                         Text("Published", bundle: .core)
                             .font(.medium16).foregroundColor(.textSuccess)
                             .accessibility(identifier: "QuizDetails.published")
                     } else {
                         Image.noSolid.foregroundColor(.textDark)
-                            .padding(.trailing, 4)
                         Text("Unpublished", bundle: .core)
                             .font(.medium16).foregroundColor(.textDark)
                             .accessibility(identifier: "QuizDetails.unpublished")

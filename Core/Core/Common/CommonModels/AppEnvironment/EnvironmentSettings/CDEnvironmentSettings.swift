@@ -21,6 +21,8 @@ import CoreData
 
 public final class CDEnvironmentSettings: NSManagedObject, WriteableModel {
     @NSManaged public var calendarContextsLimitRaw: NSNumber?
+    @NSManaged public var enableInboxSignatureBlock: Bool
+    @NSManaged public var disableInboxSignatureBlockForStudents: Bool
 
     public var calendarContextsLimit: Int? {
         get { return calendarContextsLimitRaw?.intValue }
@@ -34,6 +36,8 @@ public final class CDEnvironmentSettings: NSManagedObject, WriteableModel {
     ) -> CDEnvironmentSettings {
         let flag: CDEnvironmentSettings = context.fetch(.all).first ?? context.insert()
         flag.calendarContextsLimit = apiEntity.calendar_contexts_limit
+        flag.enableInboxSignatureBlock = apiEntity.enable_inbox_signature_block ?? false
+        flag.disableInboxSignatureBlockForStudents = apiEntity.disable_inbox_signature_block_for_students ?? false
         return flag
     }
 }

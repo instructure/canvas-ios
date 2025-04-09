@@ -510,7 +510,7 @@ public enum SubmissionStatus {
     public var icon: UIImage {
         switch self {
         case .submitted:
-            return .completeSolid
+            return .completeLine
         case .late:
             return .clockSolid
         case .missing, .notSubmitted:

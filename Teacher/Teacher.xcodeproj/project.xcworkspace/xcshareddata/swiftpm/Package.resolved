@@ -2,15 +2,6 @@
   "originHash" : "673eea0f3b8b29b2c9927e0960cfc91381c3ff1a6a249eef785222bd7f891c6b",
   "pins" : [
     {
-      "identity" : "heap-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/heap/heap-ios-sdk.git",
-      "state" : {
-        "revision" : "ebb29dcd3181f11715b07b54dff909e3bdedba3b",
-        "version" : "9.1.0"
-      }
-    },
-    {
       "identity" : "pspdfkit-sp",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/PSPDFKit/PSPDFKit-SP",

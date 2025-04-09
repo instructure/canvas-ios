@@ -137,6 +137,16 @@ class CoreWebViewTests: CoreTestCase {
         }
     }
 
+    class MockNavigationResponse: WKNavigationResponse {
+        let mockResponse: URLResponse
+        override var response: URLResponse { mockResponse }
+
+        init(response: URLResponse) {
+            mockResponse = response
+            super.init()
+        }
+    }
+
     func testDecidePolicyForFragment() {
         let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
         let linkDelegate = LinkDelegate { _ in
