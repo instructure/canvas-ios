@@ -88,7 +88,7 @@ extension HorizonUI.ProgressBar {
                     if numberPosition == .inside {
                         progressText
                             .frame(minWidth: width, alignment: .trailing)
-
+                            .foregroundStyle(textColor)
                     }
                     if numberPosition == .outside {
                         progressText
