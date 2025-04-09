@@ -55,9 +55,9 @@ class RubricRatingViewModel: ObservableObject, Identifiable {
         self.criterionId = criterionId
         self.interactor = interactor
 
-        tooltip = rating.desc + (rating.longDesc.isEmpty ? "" : "\n" + rating.longDesc)
-        value = "\(rating.points.formatted())"
-        accessibilityLabel = rating.desc.isEmpty ? value : rating.desc
+        tooltip = rating.shortDescription + (rating.longDescription.isEmpty ? "" : "\n" + rating.longDescription)
+        value = rating.points.formatted()
+        accessibilityLabel = rating.shortDescription.nilIfEmpty ?? value
         interactor.assessments
             .map {
                 let assessmentForRubric = $0[criterionId]

@@ -83,7 +83,7 @@ class RubricCustomRatingViewModel: ObservableObject, Identifiable {
             let points = DoubleFieldRow.formatter.number(from: text)?.doubleValue
 
             if let points {
-                interactor.selectRating(criterionId: criterion.id, points: points, ratingId: .customRating)
+                interactor.selectRating(criterionId: criterion.id, points: points, ratingId: APIRubricAssessment.customRatingId)
             } else {
                 interactor.clearRating(criterionId: criterion.id)
             }

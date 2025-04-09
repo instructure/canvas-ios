@@ -152,7 +152,7 @@ extension ReferenceWritableKeyPath {
     }
 }
 
-extension Optional where Wrapped == String {
+extension String? {
     public var isNilOrEmpty: Bool {
         guard let self else {
             return true
