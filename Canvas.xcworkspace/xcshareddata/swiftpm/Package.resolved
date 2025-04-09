@@ -1,5 +1,5 @@
 {
-  "originHash" : "344a0c081e66e556bcf0d52b736396b5da0803a8c73ef29bd0f96c0b0e0caefc",
+  "originHash" : "257ce0b596a02f742731a202b60715b4aacdb586de9dd5e4871c9baa633e1e71",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -89,15 +89,6 @@
       "state" : {
         "revision" : "a2ab612cb980066ee56d90d60d8462992c07f24b",
         "version" : "3.5.0"
-      }
-    },
-    {
-      "identity" : "heap-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/heap/heap-ios-sdk.git",
-      "state" : {
-        "revision" : "ebb29dcd3181f11715b07b54dff909e3bdedba3b",
-        "version" : "9.1.0"
       }
     },
     {
