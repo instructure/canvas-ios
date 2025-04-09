@@ -18,85 +18,71 @@
 
 import SwiftUI
 
-struct GradeListTestView: View {
-    @State private var showingHeader = true
+public struct GradeListTestView: View {
+    @State var headerHeight: CGFloat?
+    @State var scrollOffset: CGFloat?
+
+    public init(headerHeight: CGFloat? = nil, scrollOffset: CGFloat? = nil) {
+        self.headerHeight = headerHeight
+        self.scrollOffset = scrollOffset
+    }
+
+    public var body: some View {
+        ZStack(alignment: .top) {
+            ScrollView {
+                VStack(spacing: .zero) {
+                    Color.clear.frame(height: 0)
+                        .bindTopPosition(
+                            id: "scrollPosition",
+                            coordinateSpaceName: "scroll",
+                            to: $scrollOffset
+                        )
+
+                    Color.clear.frame(height: 0).padding(.top, headerHeight)
+                    ForEach([Color.red, .green, .blue, .yellow, .purple], id: \.hexString) { color in
+                        color
+                            .frame(height: 200)
+                    }
+                }
+            }
+            .coordinateSpace(name: "scroll")
+
+            CollapsableHeader(scrollOffset: scrollOffset ?? 0)
+                .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
+                    self.headerHeight = max(self.headerHeight ?? 0, newFrame.height)
+                }
+        }
+    }
+}
+
+struct CollapsableHeader: View {
+    let scrollOffset: CGFloat
+    @State var originalHeight: CGFloat?
 
     var body: some View {
+        let height: CGFloat? = {
+            guard let originalHeight else {
+                return nil
+            }
+
+            if scrollOffset > 0 {
+                return originalHeight
+            }
+
+            return max(0, originalHeight + scrollOffset)
+        }()
+
         VStack {
-            if showingHeader {
-                togglesView
-                    .transition(
-                        .asymmetric(
-                            insertion: .push(from: .top),
-                            removal: .push(from: .bottom)
-                        )
-                    )
-            }
-
-            GeometryReader { outer in
-                let outerHeight = outer.size.height
-                ScrollView(.vertical) {
-                    content
-                        .background {
-                            GeometryReader { proxy in
-                                let contentHeight = proxy.size.height
-                                let minY = max(
-                                    min(0, proxy.frame(in: .named("ScrollView")).minY),
-                                    outerHeight - contentHeight
-                                )
-                                Color.clear
-                                    .onChange(of: minY) { oldVal, newVal in
-                                        if (showingHeader && newVal < oldVal) || !showingHeader && newVal > oldVal {
-                                            showingHeader = newVal > oldVal
-                                        }
-                                    }
-                            }
-                        }
+            Text(scrollOffset)
+            Text("Should collapse")
+                .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
+                    if originalHeight == nil {
+                        self.originalHeight = frame.height
+                    }
                 }
-                .coordinateSpace(name: "ScrollView")
-            }
-            // Prevent scrolling into the safe area
-            .padding(.top, 1)
-        }
-//        .background(.black)
-        .animation(.easeInOut, value: showingHeader)
-    }
-
-    @ViewBuilder
-    var content: some View {
-        VStack(spacing: .zero) {
-            ForEach([Color.red, .green, .blue, .yellow, .purple], id: \.hexString) { color in
-                color
-                    .frame(height: 200)
-            }
-        }
-    }
-
-    @ViewBuilder
-    var togglesView: some View {
-        VStack(spacing: 0) {
-            InstUI.Toggle(isOn: .constant(true)) {
-                Text("Based on graded assignments", bundle: .core)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.regular16)
-                    .multilineTextAlignment(.leading)
-            }
-            .frame(minHeight: 51)
-            .padding(.horizontal, 16)
-            .accessibilityIdentifier("BasedOnGradedToggle")
-
-            if true {
-                Divider()
-
-                InstUI.Toggle(isOn: .constant(true)) {
-                    Text("Show What-if Score", bundle: .core)
-                        .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
-                        .multilineTextAlignment(.leading)
-                }
-                .frame(minHeight: 51)
-                .padding(.horizontal, 16)
-            }
+                .frame(maxHeight: height, alignment: .bottom)
+                .background(.thinMaterial)
+                .clipped()
         }
     }
 }
