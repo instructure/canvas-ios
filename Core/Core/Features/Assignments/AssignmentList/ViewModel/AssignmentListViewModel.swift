@@ -36,6 +36,12 @@ public class AssignmentListViewModel: ObservableObject {
         public let id: String
         public let name: String
         public let assignments: [Assignment]
+
+        init(id: String, name: String.LocalizationValue, assignments: [Assignment]) {
+            self.id = id
+            self.name = String(localized: name, bundle: .core)
+            self.assignments = assignments
+        }
     }
 
     public enum ViewModelState<T: Equatable>: Equatable {
