@@ -52,15 +52,19 @@ class GradeTotalsTests: E2ETestCase {
         let pg_grades = ["30%", "90%"]
         let lg_grades = ["A", "E"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 62.5%"))
 
         GradesHelper.gradeAssignments(grades: pfg_grades, course: course, assignments: pfg_assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 56.25%"))
 
         GradesHelper.gradeAssignments(grades: pg_grades, course: course, assignments: pg_assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 57.5%"))
 
         GradesHelper.gradeAssignments(grades: lg_grades, course: course, assignments: lg_assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 63.57%"))
     }
 }
