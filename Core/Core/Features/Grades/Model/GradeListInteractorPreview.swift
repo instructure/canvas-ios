@@ -54,7 +54,9 @@ final class GradeListInteractorPreview: GradeListInteractor {
                     .init(
                         id: UUID.string,
                         title: "Overdue Assignments",
-                        assignments: [.save(.make(), in: context, updateSubmission: false, updateScoreStatistics: false)]
+                        assignments: (1...10).map {
+                            .save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                        }
                     ),
                     .init(
                         id: UUID.string,
