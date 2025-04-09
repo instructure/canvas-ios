@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import HorizonUI
 import UIKit
@@ -25,14 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     var window: UIWindow?
 
     private let sessionInteractor = SessionInteractor()
+    private lazy var analyticsTracker: PendoAnalyticsTracker = .init(environment: environment)
+
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.loginDelegate = sessionInteractor
         env.router = Router(routes: HorizonRoutes.routeHandlers())
         env.app = .horizon
         env.window = window
+        env.userDidLogin = userDidLogin
         return env
     }()
+
+    private var subscriptions = Set<AnyCancellable>()
 
     func application(
         _: UIApplication,
@@ -65,5 +71,54 @@ extension AppDelegate {
 
     func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         AppEnvironment.shared.reportError(error)
+    }
+
+    func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme?.range(of: "pendo") != nil {
+            analyticsTracker.initManager(with: url)
+            return true
+        }
+        return false
+    }
+}
+
+// MARK: - Usage Analytics
+
+extension AppDelegate: Core.AnalyticsHandler {
+    func userDidLogin() {
+        initializeTracking()
+    }
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        analyticsTracker.track(name, properties: parameters)
+
+        PageViewEventController.instance.logPageView(
+            name,
+            attributes: parameters
+        )
+    }
+
+    private func initializeTracking() {
+        guard !ProcessInfo.isUITest else { return }
+
+        ReactiveStore(
+            useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
+        )
+        .getEntities()
+        .replaceError(with: [])
+        .sink { [weak self] environmentFeatureFlags in
+            let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+
+            if isTrackingEnabled {
+                self?.analyticsTracker.startSession()
+            } else {
+                self?.analyticsTracker.endSession()
+            }
+        }
+        .store(in: &subscriptions)
+    }
+
+    private func disableTracking() {
+        analyticsTracker.endSession()
     }
 }

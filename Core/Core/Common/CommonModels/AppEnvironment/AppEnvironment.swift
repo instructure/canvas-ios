@@ -52,6 +52,8 @@ open class AppEnvironment {
     public var lastLoginAccount: APIAccountResult?
     public let k5 = K5State()
     public weak var loginDelegate: LoginDelegate?
+    public var userDidLogin: (() -> Void)?
+
     public weak var window: UIWindow?
     open var isTest: Bool { false }
     private var subscriptions = Set<AnyCancellable>()
