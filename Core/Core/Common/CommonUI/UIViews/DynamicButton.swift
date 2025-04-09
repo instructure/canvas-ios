@@ -72,6 +72,7 @@ open class DynamicButton: UIButton {
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        subscribeForTraitChanges()
     }
 
     override public init(frame: CGRect) {
