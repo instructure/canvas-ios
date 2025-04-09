@@ -20,17 +20,22 @@ import CoreData
 import Combine
 
 public protocol HTMLParser {
-    var sessionId: String { get }
     var sectionName: String { get }
-    func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL?) -> AnyPublisher<String, Error>
-    func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error>
+    var envResolver: CourseSyncEnvironmentResolver { get }
+
+    func sectionFolder(for courseId: CourseSyncID) -> URL
+    func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error>
+    func downloadAttachment(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, Error>
 }
 
 public class HTMLParserLive: HTMLParser {
     public var sectionName: String {
         interactor.sectionName
     }
-    public let sessionId: String
+
+    public var envResolver: CourseSyncEnvironmentResolver {
+        interactor.envResolver
+    }
 
     private let imageRegex: NSRegularExpression
     private let fileRegex: NSRegularExpression
@@ -38,8 +43,7 @@ public class HTMLParserLive: HTMLParser {
     private let interactor: HTMLDownloadInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    init(sessionId: String, downloadInteractor: HTMLDownloadInteractor) {
-        self.sessionId = sessionId
+    init(downloadInteractor: HTMLDownloadInteractor) {
         self.interactor = downloadInteractor
 
         self.imageRegex = (try? NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")) ?? NSRegularExpression()
@@ -47,7 +51,7 @@ public class HTMLParserLive: HTMLParser {
         self.relativeURLRegex = (try? NSRegularExpression(pattern: "<.+(src|href)=\"(.+((\\.|\\/)\\.+)*)\".*>")) ?? NSRegularExpression()
     }
 
-    public func downloadAttachment(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Error> {
+    public func downloadAttachment(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, Error> {
         return Just(url)
             .setFailureType(to: Error.self)
             .flatMap { [interactor] url in
@@ -56,23 +60,25 @@ public class HTMLParserLive: HTMLParser {
             .eraseToAnyPublisher()
     }
 
-    public func parse(_ content: String, resourceId: String, courseId: String, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
+    public func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let fileURLs = Array(Set(findRegexMatches(content, pattern: fileRegex)))
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
-
         let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
-            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+            .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let context = Context(url: url)
-                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId))
-                        .getEntities(ignoreCache: false)
-                        .map { files in
-                            (files.first?.url ?? url, url)
-                        }
-                        .eraseToAnyPublisher()
+                    return ReactiveStore(
+                        useCase: GetFile(context: context, fileID: fileId),
+                        environment: envResolver.targetEnvironment(for: courseId)
+                    )
+                    .getEntities(ignoreCache: false)
+                    .map { files in
+                        (files.first?.url ?? url, url)
+                    }
+                    .eraseToAnyPublisher()
                 } else if url.pathComponents.contains("files") {
                     if !url.pathComponents.contains("download") {
                         return Just((url.appendingPathComponent("download"), url)).setFailureType(to: Error.self).eraseToAnyPublisher()
@@ -93,16 +99,19 @@ public class HTMLParserLive: HTMLParser {
             .eraseToAnyPublisher()
 
         let imageParser: AnyPublisher<[(URL, String)], Error> =  imageURLs.publisher
-            .flatMap(maxPublishers: .max(5)) { url in // Replace File Links with valid access urls
+            .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let context = Context(url: url)
-                    return ReactiveStore(useCase: GetFile(context: context, fileID: fileId))
-                        .getEntities(ignoreCache: false)
-                        .map { files in
-                            (files.first?.url ?? url, url)
-                        }
-                        .eraseToAnyPublisher()
+                    return ReactiveStore(
+                        useCase: GetFile(context: context, fileID: fileId),
+                        environment: envResolver.targetEnvironment(for: courseId)
+                    )
+                    .getEntities(ignoreCache: false)
+                    .map { files in
+                        (files.first?.url ?? url, url)
+                    }
+                    .eraseToAnyPublisher()
                 } else {
                     return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
@@ -173,13 +182,13 @@ public class HTMLParserLive: HTMLParser {
             }
     }
 
-    private func getRootURL(courseId: String, resourceId: String) -> URL {
+    public func sectionFolder(for courseId: CourseSyncID) -> URL {
+        envResolver.folderURL(forSection: sectionName, ofCourse: courseId)
+    }
+
+    private func getRootURL(courseId: CourseSyncID, resourceId: String) -> URL {
         return URL.Directories.documents.appendingPathComponent(
-            URL.Paths.Offline.courseSectionFolder(
-                sessionId: sessionId,
-                courseId: courseId,
-                sectionName: sectionName
-            )
+            envResolver.folderDocumentsPath(forSection: sectionName, ofCourse: courseId)
         )
         .appendingPathComponent("\(sectionName)-\(resourceId)")
     }
@@ -189,7 +198,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
     func parseHtmlContent<T>(
         attribute keyPath: ReferenceWritableKeyPath<Output.Element, T>,
         id: ReferenceWritableKeyPath<Output.Element, String>,
-        courseId: String,
+        courseId: CourseSyncID,
         baseURLKey: ReferenceWritableKeyPath<Output.Element, URL?>? = nil,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
@@ -221,7 +230,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
     func parseAttachment(
         attribute url: ReferenceWritableKeyPath<Output.Element, File?>,
         topicId: String,
-        courseId: String,
+        courseId: CourseSyncID,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
         return self
@@ -247,7 +256,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
     func parseAttachment(
         attribute url: ReferenceWritableKeyPath<Output.Element, Set<File>?>,
         id: ReferenceWritableKeyPath<Output.Element, String>,
-        courseId: String,
+        courseId: CourseSyncID,
         htmlParser: HTMLParser
     ) -> AnyPublisher<[Output.Element], Error> {
         return self
@@ -282,7 +291,7 @@ public extension Publisher where Output: Collection, Output.Element: NSManagedOb
 }
 
 extension Publisher where Output: Collection, Output.Element: DiscussionEntry, Failure == Error {
-    func parseRepliesHtmlContent(courseId: String, topicId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
+    func parseRepliesHtmlContent(courseId: CourseSyncID, topicId: String, htmlParser: HTMLParser) -> AnyPublisher<[DiscussionEntry], Error> {
         return self.flatMap { entries in
             Publishers.Sequence(sequence: entries)
                 .setFailureType(to: Error.self)

@@ -379,8 +379,8 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getDeselectedCourseIds() -> AnyPublisher<[String], Never> {
-        Just<[String]>([])
+    func getDeselectedCourseIds() -> AnyPublisher<[CourseSyncID], Never> {
+        Just<[CourseSyncID]>([])
             .setFailureType(to: Never.self)
             .eraseToAnyPublisher()
     }

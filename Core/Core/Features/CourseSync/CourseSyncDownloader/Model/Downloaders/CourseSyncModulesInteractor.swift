@@ -20,49 +20,57 @@ import Combine
 import Foundation
 
 public protocol CourseSyncModulesInteractor {
-    func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error>
-    func getAssociatedModuleItems(courseId: String, moduleItemTypes: Set<TabName>, moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
+    func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error>
+    func getAssociatedModuleItems(courseId: CourseSyncID, moduleItemTypes: Set<TabName>, moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
 }
 
 public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor {
     private let filesInteractor: CourseSyncFilesInteractor
     private let pageHtmlParser: HTMLParser
     private let quizHtmlParser: HTMLParser
+    private let envResolver: CourseSyncEnvironmentResolver
 
     public init(
         filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
         pageHtmlParser: HTMLParser,
-        quizHtmlParser: HTMLParser
+        quizHtmlParser: HTMLParser,
+        envResolver: CourseSyncEnvironmentResolver
     ) {
         self.filesInteractor = filesInteractor
         self.pageHtmlParser = pageHtmlParser
         self.quizHtmlParser = quizHtmlParser
+        self.envResolver = envResolver
     }
 
-    public func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error> {
+    public func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
-            useCase: GetModules(courseID: courseId)
+            useCase: GetModules(courseID: courseId.localID),
+            environment: envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .flatMap { $0.publisher }
-        .flatMap { Self.getModuleItemSequence(courseID: $0.courseID, moduleItems: $0.items) }
+        .flatMap { [envResolver] in
+            Self.getModuleItemSequence(courseID: courseId, moduleItems: $0.items, envResolver: envResolver)
+        }
         .collect()
         .map { $0.flatMap { $0 } }
         .eraseToAnyPublisher()
     }
 
     private static func getModuleItemSequence(
-        courseID: String,
-        moduleItems: [ModuleItem]
+        courseID: CourseSyncID,
+        moduleItems: [ModuleItem],
+        envResolver: CourseSyncEnvironmentResolver
     ) -> AnyPublisher<[ModuleItem], Error> {
         moduleItems.publisher
             .flatMap {
                 ReactiveStore(
                     useCase: GetModuleItemSequence(
-                        courseID: courseID,
+                        courseID: courseID.localID,
                         assetType: .moduleItem,
                         assetID: $0.id
-                    )
+                    ),
+                    environment: envResolver.targetEnvironment(for: courseID)
                 )
                 .getEntities(ignoreCache: true)
             }
@@ -72,7 +80,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     }
 
     public func getAssociatedModuleItems(
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItemTypes: Set<TabName>,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
@@ -98,15 +106,16 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     }
 
     private func getModulePages(
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
         let urls = moduleItems.compactMap { $0.type?.pageUrl }
 
         return urls.publisher
-            .flatMap { [pageHtmlParser] in
+            .flatMap { [pageHtmlParser, envResolver] in
                 ReactiveStore(
-                    useCase: GetPage(context: .course(courseId), url: $0)
+                    useCase: GetPage(context: courseId.asContext, url: $0),
+                    environment: envResolver.targetEnvironment(for: courseId)
                 )
                 .getEntities(ignoreCache: true)
                 .parseHtmlContent(attribute: \.body, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: pageHtmlParser)
@@ -117,15 +126,16 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
     }
 
     private func getModuleQuizzes(
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
         let ids = moduleItems.compactMap { $0.type?.quizzId }
 
         return ids.publisher
-            .flatMap { [quizHtmlParser] in
+            .flatMap { [quizHtmlParser, envResolver] in
                 ReactiveStore(
-                    useCase: GetQuiz(courseID: courseId, quizID: $0)
+                    useCase: GetQuiz(courseID: courseId.localID, quizID: $0),
+                    environment: envResolver.targetEnvironment(for: courseId)
                 )
                 .getEntities(ignoreCache: true)
                 .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: quizHtmlParser)
@@ -137,30 +147,32 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
 
     private func getModuleFiles(
         filesInteractor: CourseSyncFilesInteractor,
-        courseId: String,
+        courseId: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
         let ids = moduleItems.compactMap { $0.type?.fileId }
 
         return ids.publisher
-            .flatMap {
+            .flatMap { [envResolver] in
                 ReactiveStore(
-                    useCase: GetFile(context: .course(courseId), fileID: $0)
+                    useCase: GetFile(context: courseId.asContext, fileID: $0),
+                    environment: envResolver.targetEnvironment(for: courseId)
                 )
                 .getEntities(ignoreCache: true)
-                .flatMap { [filesInteractor] files -> AnyPublisher<Void, Error> in
+                .flatMap { [filesInteractor, envResolver] files -> AnyPublisher<Void, Error> in
                     guard let file = files.first, let url = file.url, let fileID = file.id, let mimeClass = file.mimeClass else {
                         return Empty(completeImmediately: true)
                             .setFailureType(to: Error.self)
                             .eraseToAnyPublisher()
                     }
                     return filesInteractor.downloadFile(
-                        courseId: courseId,
+                        courseId: courseId.value,
                         url: url,
                         fileID: fileID,
                         fileName: file.filename,
                         mimeClass: mimeClass,
-                        updatedAt: file.updatedAt
+                        updatedAt: file.updatedAt,
+                        environment: envResolver.targetEnvironment(for: courseId)
                     )
                     .collect()
                     .mapToVoid()

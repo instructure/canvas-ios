@@ -76,12 +76,12 @@ class StudioVideoCleanupInteractorLiveTests: CoreTestCase {
         ]
 
         // WHEN
-        let testee = StudioVideoCleanupInteractorLive(
-            offlineStudioDirectory: workingDirectory
-        ).removeNoLongerNeededVideos(
-            allMediaItemsOnAPI: apiMediaItems,
-            mediaLTIIDsUsedInOfflineMode: ["lti_\(TestConstants.video1ID)"]
-        )
+        let testee = StudioVideoCleanupInteractorLive()
+            .removeNoLongerNeededVideos(
+                allMediaItemsOnAPI: apiMediaItems,
+                mediaLTIIDsUsedInOfflineMode: ["lti_\(TestConstants.video1ID)"],
+                offlineStudioDirectory: workingDirectory
+            )
 
         // THEN
         XCTAssertFinish(testee)
@@ -91,12 +91,13 @@ class StudioVideoCleanupInteractorLiveTests: CoreTestCase {
     }
 
     func testNotFailsIfStudioDirectoryNotExists() throws {
-        let testee = StudioVideoCleanupInteractorLive(offlineStudioDirectory: workingDirectory)
+        let testee = StudioVideoCleanupInteractorLive()
         try FileManager.default.removeItem(at: workingDirectory)
 
         XCTAssertFinish(testee.removeNoLongerNeededVideos(
             allMediaItemsOnAPI: [],
-            mediaLTIIDsUsedInOfflineMode: []
+            mediaLTIIDsUsedInOfflineMode: [],
+            offlineStudioDirectory: workingDirectory
         ))
     }
 }

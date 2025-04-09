@@ -114,11 +114,11 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
 private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
     let filePublisher = PassthroughSubject<[Core.File], Error>()
 
-    func downloadFile(courseId _: String, url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?) -> AnyPublisher<Float, Error> {
+    func downloadFile(courseId _: String, url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?, environment: AppEnvironment) -> AnyPublisher<Float, Error> {
         Empty(completeImmediately: false).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func getFiles(courseId _: String, useCache _: Bool) -> AnyPublisher<[Core.File], Error> {
+    func getFiles(courseId _: String, useCache _: Bool, environment: AppEnvironment) -> AnyPublisher<[Core.File], Error> {
         Just([
             .make(from: APIFile.make(
                 id: "file-1",
@@ -131,7 +131,7 @@ private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
         ]).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func removeUnavailableFiles(courseId _: String, newFileIDs _: [String]) -> AnyPublisher<Void, Error> {
+    func removeUnavailableFiles(courseId _: String, newFileIDs _: [String], environment: AppEnvironment) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

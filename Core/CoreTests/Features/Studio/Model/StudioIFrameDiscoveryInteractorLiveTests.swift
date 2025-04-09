@@ -32,12 +32,14 @@ class StudioIFrameDiscoveryInteractorLiveTests: CoreTestCase {
         invalidCourseHtmlURL.append(path: "test.html", directoryHint: .notDirectory)
         try StudioTestData.html.write(to: invalidCourseHtmlURL, atomically: false, encoding: .utf8)
 
-        let testee = StudioIFrameDiscoveryInteractorLive(studioHtmlParser: StudioHTMLParserInteractorLive())
+        let testee = StudioIFrameDiscoveryInteractorLive(
+            studioHtmlParser: StudioHTMLParserInteractorLive(),
+            envResolver: envResolver
+        )
 
         // WHEN
         let publisher = testee.discoverStudioIFrames(
-            in: workingDirectory,
-            courseIDs: ["1"]
+            courseID: CourseSyncID(value: "1")
         )
 
         // THEN

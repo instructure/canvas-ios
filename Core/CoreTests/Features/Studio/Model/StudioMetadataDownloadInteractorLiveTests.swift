@@ -46,15 +46,11 @@ class StudioMetadataDownloadInteractorLiveTests: CoreTestCase {
 
         api.mock(
             GetStudioCourseMediaRequest(courseId: "1"),
-            value: [TestData.mediaItem1]
-        )
-        api.mock(
-            GetStudioCourseMediaRequest(courseId: "2"),
-            value: [TestData.mediaItem2]
+            value: [TestData.mediaItem1, TestData.mediaItem2]
         )
 
         // WHEN
-        let publisher = testee.fetchStudioMediaItems(api: api, courseIDs: ["1", "2"])
+        let publisher = testee.fetchStudioMediaItems(api: api, courseID: "1")
 
         // THEN
         XCTAssertSingleOutputEquals(
@@ -66,38 +62,30 @@ class StudioMetadataDownloadInteractorLiveTests: CoreTestCase {
     func testDownloadSucceedsInCaseACourseHasNoStudioVideo() {
         let testee: StudioMetadataDownloadInteractor = StudioMetadataDownloadInteractorLive()
 
-        api.mock(
-            GetStudioCourseMediaRequest(courseId: "1"),
-            value: [TestData.mediaItem1]
-        )
         // If a course has no embedded studio videos the API will return 404
-        api.mock(GetStudioCourseMediaRequest(courseId: "2")) { _ in
+        api.mock(GetStudioCourseMediaRequest(courseId: "1")) { _ in
             (nil, nil, NSError.instructureError("", code: HttpError.notFound))
         }
 
         // WHEN
-        let publisher = testee.fetchStudioMediaItems(api: api, courseIDs: ["1", "2"])
+        let publisher = testee.fetchStudioMediaItems(api: api, courseID: "1")
 
         // THEN
         XCTAssertSingleOutputEquals(
             publisher,
-            [TestData.mediaItem1]
+            []
         )
     }
 
     func testFailsOnErrorsOtherThanNotFoundError() {
         let testee: StudioMetadataDownloadInteractor = StudioMetadataDownloadInteractorLive()
 
-        api.mock(
-            GetStudioCourseMediaRequest(courseId: "1"),
-            value: [TestData.mediaItem1]
-        )
-        api.mock(GetStudioCourseMediaRequest(courseId: "2")) { _ in
+        api.mock(GetStudioCourseMediaRequest(courseId: "1")) { _ in
             (nil, nil, NSError.instructureError("", code: HttpError.forbidden))
         }
 
         // WHEN
-        let publisher = testee.fetchStudioMediaItems(api: api, courseIDs: ["1", "2"])
+        let publisher = testee.fetchStudioMediaItems(api: api, courseID: "1")
 
         // THEN
         XCTAssertFailure(publisher)

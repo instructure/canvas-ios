@@ -287,8 +287,8 @@ private class MockCourseSyncInteractor: CourseSyncInteractor {
         return Just([]).eraseToAnyPublisher()
     }
 
-    func cleanContent(for courseIds: [String]) -> AnyPublisher<Void, Never> {
-        receivedCoursesToClean = courseIds
+    func cleanContent(for courseIds: [CourseSyncID]) -> AnyPublisher<Void, Never> {
+        receivedCoursesToClean = courseIds.map({ $0.value })
         cleanContentInvocationCount += 1
         return Just(()).eraseToAnyPublisher()
     }
