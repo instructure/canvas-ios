@@ -42,7 +42,7 @@ public class CoreSplitViewController: UISplitViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         preferredDisplayMode = .oneBesideSecondary
-        subscribeForTraitChangessubscribeForTraitChanges()
+        subscribeForTraitChanges()
     }
 
     private func setupBackgroundStateObservers() {
@@ -109,7 +109,7 @@ public class CoreSplitViewController: UISplitViewController {
         return prettyButton
     }
 
-    private func subscribeForTraitChangessubscribeForTraitChanges() {
+    private func subscribeForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
         registerForTraitChanges(traits) { (controller: CoreSplitViewController, _) in
             let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
