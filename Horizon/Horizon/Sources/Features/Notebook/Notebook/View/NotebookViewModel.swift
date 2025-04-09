@@ -25,11 +25,13 @@ import SwiftUI
 final class NotebookViewModel {
     // MARK: - Dependencies
 
+    private let courseId: String?
     private var getCourseNotesInteractor: GetCourseNotesInteractor
+    private var moduleId: String?
+    private let router: Router
 
     // MARK: - Outputs
 
-    private let courseId: String?
     var courseNoteLabels: [CourseNoteLabel] {
         CourseNoteLabel.allCases.filter { $0 != .other }
     }
@@ -39,14 +41,15 @@ final class NotebookViewModel {
             getCourseNotesInteractor.filter
         }
         set {
-            getCourseNotesInteractor.filter = (self.filter == newValue ? nil : newValue)
+            getCourseNotesInteractor.set(filter: (self.filter == newValue ? nil : newValue))
         }
     }
 
-    var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
     var isBackVisible: Bool { courseId == nil }
     var isCloseVisible: Bool { courseId != nil }
+    var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
     var isFiltersVisible: Bool { courseId == nil }
+    var isNavigationBarVisible: Bool { courseId == nil || moduleId != nil }
     private(set) var isNextDisabled: Bool = true
     private(set) var isPreviousDisabled: Bool = true
     var navigationBarTopPadding: CGFloat { courseId == nil ? .zero : .huiSpaces.space24 }
@@ -56,34 +59,30 @@ final class NotebookViewModel {
 
     // MARK: - Private variables
 
-    private let router: Router
     private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Init
 
     init(
         courseId: String? = nil,
+        moduleId: String? = nil,
         getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared,
         router: Router = AppEnvironment.defaultValue.router
     ) {
         self.courseId = courseId
+        self.moduleId = moduleId
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
         self.title = String(localized: "Notebook", bundle: .horizon)
 
-        self.getCourseNotesInteractor.set(courseId: courseId)
+        self.getCourseNotesInteractor.set(courseId: courseId, moduleId: moduleId)
+        self.getCourseNotesInteractor.set(filter: nil)
+        self.getCourseNotesInteractor.set(cursor: nil)
 
         loadNotes()
     }
 
     // MARK: - Inputs
-
-    func onAdd(viewController: WeakViewController) {
-        router.route(
-            to: "/notebook/531/46036/add",
-            from: viewController
-        )
-    }
 
     func onBack(_ viewController: WeakViewController) {
         router.pop(from: viewController)

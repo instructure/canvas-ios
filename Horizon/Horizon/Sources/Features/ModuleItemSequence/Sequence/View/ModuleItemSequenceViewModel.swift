@@ -174,7 +174,7 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func navigateToNotebook(viewController: WeakViewController) {
-        router.route(to: "/notebook?courseId=\(self.courseID)", from: viewController)
+        router.route(to: "/notebook?courseId=\(self.courseID)&moduleId=\(self.moduleItem?.id ?? "")", from: viewController)
     }
 
     private func navigateToTutor(viewController: WeakViewController) {

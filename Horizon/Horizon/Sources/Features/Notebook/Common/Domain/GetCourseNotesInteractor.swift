@@ -22,11 +22,12 @@ import Core
 import Foundation
 
 protocol GetCourseNotesInteractor {
-    var filter: CourseNoteLabel? { get set }
+    var filter: CourseNoteLabel? { get }
     func get() -> AnyPublisher<[CourseNotebookNote], NotebookError>
     func refresh()
-    func set(courseId: String?)
+    func set(courseId: String?, moduleId: String?)
     func set(cursor: Cursor?)
+    func set(filter: CourseNoteLabel?)
 }
 
 final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
@@ -42,8 +43,8 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Public
 
-    func set(courseId: String?) {
-        courseIdFilter.accept(courseId)
+    func set(courseId: String?, moduleId: String? = nil) {
+        objectFilters.accept((courseId, moduleId))
     }
 
     func set(cursor: Cursor?) {
@@ -52,12 +53,8 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         )
     }
 
-    var filter: CourseNoteLabel? {
-        didSet {
-            cursorFilter.accept(
-                filter == nil ? nil : (cursor: nil, filter: filter)
-            )
-        }
+    func set(filter: CourseNoteLabel?) {
+        self.filter = filter
     }
 
     // A method for requesting an update to the list of course notes
@@ -70,8 +67,13 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
     private var cursor: Cursor? {
         cursorFilter.value?.cursor
     }
-    private var courseIdFilter: CurrentValueRelay<String?> = CurrentValueRelay(nil)
     private var cursorFilter: CurrentValueRelay<CursorFilter?> = CurrentValueRelay(nil)
+    private(set) var filter: CourseNoteLabel? {
+        didSet {
+            set(cursor: nil)
+        }
+    }
+    private var objectFilters: CurrentValueRelay<(String?, String?)> = CurrentValueRelay((nil, nil))
     private let refreshSubject = CurrentValueRelay<Void>(())
     private var subscriptions = Set<AnyCancellable>()
 
@@ -95,59 +97,64 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
     private func request(
         api: API,
         labels: [CourseNoteLabel]? = nil,
-        courseId: String? = nil
+        courseId: String? = nil,
+        objectId: String? = nil
     ) -> GetNotesQuery {
         let accessToken = api.loginSession?.accessToken ?? ""
         let reactions = labels?.map(\.rawValue)
 
         guard let cursorValue = cursor?.cursor else {
-            return .init(jwt: accessToken, courseId: courseId, reactions: reactions)
+            return .init(
+                jwt: accessToken,
+                reactions: reactions,
+                courseId: courseId,
+                objectId: objectId
+            )
         }
         if cursor?.isBefore == true {
             return .init(
                 jwt: accessToken,
                 before: cursorValue,
                 reactions: reactions,
-                courseId: courseId
+                courseId: courseId,
+                objectId: objectId
             )
         }
         return .init(
             jwt: accessToken,
             after: cursorValue,
             reactions: reactions,
-            courseId: courseId
+            courseId: courseId,
+            objectId: courseId
         )
     }
 
     private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
         Publishers.CombineLatest3(
             cursorFilter,
-            courseIdFilter,
+            objectFilters,
             refreshSubject
         )
-        .flatMap { [weak self] cursorFilter, courseId, _ in
+        .flatMap { [weak self] _, _, _ in
             guard let self = self else {
                 return Just([CourseNotebookNote]())
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            return self.listenTo(api: api, cursorFilter: cursorFilter, courseId: courseId)
+            return self.listen(to: api)
         }
         .eraseToAnyPublisher()
     }
 
-    private func listenTo(
-        api: API,
-        cursorFilter: CursorFilter? = nil,
-        courseId: String? = nil
-    ) -> AnyPublisher<
+    private func listen(to api: API) -> AnyPublisher<
         [CourseNotebookNote], any Error
     > {
         api.makeRequest(
             request(
                 api: api,
-                labels: cursorFilter?.filter.map { [$0] },
-                courseId: courseId
+                labels: cursorFilter.value?.filter.map { [$0] },
+                courseId: objectFilters.value.0,
+                objectId: objectFilters.value.1
             )
         )
         .compactMap { $0?.courseNotebookNotes }
@@ -175,15 +182,16 @@ struct Cursor {
 
 #if DEBUG
 final class GetCourseNotesInteractorPreview: GetCourseNotesInteractor {
-    var filter: CourseNoteLabel?
     var cursor: Cursor?
+    var filter: CourseNoteLabel? { nil }
     func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
         Just([CourseNotebookNote.example])
             .setFailureType(to: NotebookError.self)
             .eraseToAnyPublisher()
     }
     func refresh() {}
-    func set(courseId: String?) {}
+    func set(courseId: String?, moduleId: String?) {}
     func set(cursor: Cursor?) {}
+    func set(filter: CourseNoteLabel?) {}
 }
 #endif
