@@ -89,12 +89,12 @@ fileprivate extension HorizonUI.Controls {
                         Circle()
                             .fill(Color.huiColors.surface.pageSecondary)
                             .padding(.huiSpaces.space2)
+                            .animation(.spring, value: configuration.isOn)
                             .overlay {
                                 configuration.isOn ? Image.huiIcons.checkSmall : Image.huiIcons.closeSmall
                             }
                             .offset(x: configuration.isOn ? 8 : -8)
                     }
-                    .animation(.easeInOut, value: configuration.isOn)
                     .frame(width: 40, height: 24)
                     .foregroundStyle(contentColor)
                     .onTapGesture {
