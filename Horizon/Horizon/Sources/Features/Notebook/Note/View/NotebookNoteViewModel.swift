@@ -53,9 +53,9 @@ final class NotebookNoteViewModel {
     // MARK: - Dependencies
 
     private var isEditing = false
-    private let courseId: String?
+    private let courseID: String?
     private let courseNoteInteractor: CourseNoteInteractor
-    private let itemId: String?
+    private let pageURL: String?
     private let router: Router
     private let notebookHighlight: NotebookHighlight?
 
@@ -83,8 +83,8 @@ final class NotebookNoteViewModel {
         self.isEditing = isEditing
         self.scheduler = scheduler
 
-        self.courseId = nil
-        self.itemId = nil
+        self.courseID = nil
+        self.pageURL = nil
         self.notebookHighlight = nil
 
         initUI()
@@ -93,16 +93,16 @@ final class NotebookNoteViewModel {
     init(
         courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.instance,
         router: Router = AppEnvironment.shared.router,
-        courseId: String,
-        itemId: String,
+        courseID: String,
+        pageURL: String,
         notebookHighlight: NotebookHighlight? = nil,
         isEditing: Bool = false,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.courseNoteInteractor = courseNoteInteractor
         self.router = router
-        self.courseId = courseId
-        self.itemId = itemId
+        self.courseID = courseID
+        self.pageURL = pageURL
         self.isEditing = isEditing
         self.scheduler = scheduler
 
@@ -221,13 +221,15 @@ final class NotebookNoteViewModel {
     }
 
     private func tryAdd() async -> Bool {
-        guard let courseId = courseId, let itemId = itemId else { return false }
+        guard let courseID = courseID,
+              let pageURL = pageURL else {
+            return false
+        }
         do {
             _ = try await courseNoteInteractor
                 .add(
-                    courseId: courseId,
-                    itemId: itemId,
-                    moduleType: .subHeader,
+                    courseID: courseID,
+                    pageURL: pageURL,
                     content: note,
                     labels: labels,
                     notebookHighlight: notebookHighlight

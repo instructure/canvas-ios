@@ -29,7 +29,7 @@ struct CourseDetailsView: View {
 
     init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
-        self.notebookView = NotebookAssembly.makeView(courseId: viewModel.courseID)
+        self.notebookView = NotebookAssembly.makeView(courseID: viewModel.courseID)
     }
 
     var body: some View {
