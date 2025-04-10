@@ -145,7 +145,7 @@ class RubricCircleView: UIView {
             addConstraintsWithVFL("V:[view(h)]", metrics: ["h": h])
         }
 
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     var isAnimating = false
@@ -262,8 +262,13 @@ class RubricCircleView: UIView {
         return (rows * w) + ((rows - 1) * space)
     }
 
-    private func subscribeForTraitChanges() {
-        let traits = [UITraitUserInterfaceStyle.self]
+    private func registerForTraitChanges() {
+        let traits: [UITrait] = [
+            UITraitUserInterfaceStyle.self,
+            UITraitVerticalSizeClass.self,
+            UITraitHorizontalSizeClass.self,
+            UITraitLayoutDirection.self
+        ]
         registerForTraitChanges(traits) { (view: RubricCircleView, _) in
             if view.buttonsDidLayout {
                 view.setupButtons()

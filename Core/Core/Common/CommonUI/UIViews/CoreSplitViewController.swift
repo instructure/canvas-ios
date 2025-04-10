@@ -42,7 +42,7 @@ public class CoreSplitViewController: UISplitViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         preferredDisplayMode = .oneBesideSecondary
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     private func setupBackgroundStateObservers() {
@@ -109,11 +109,9 @@ public class CoreSplitViewController: UISplitViewController {
         return prettyButton
     }
 
-    private func subscribeForTraitChanges() {
-        let traits = [UITraitUserInterfaceStyle.self]
+    private func registerForTraitChanges() {
+        let traits: [UITrait] = [UITraitVerticalSizeClass.self, UITraitHorizontalSizeClass.self, UITraitLayoutDirection.self]
         registerForTraitChanges(traits) { (controller: CoreSplitViewController, _) in
-            let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
-            NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
             controller.updateTitleViews()
         }
     }
@@ -195,7 +193,8 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
                 }
             }
 
-            // Updating titles again _after_ separation, because on iOS 16 traitCollectionDidChange(_:) is called before splitViewController(_:separateSecondaryFrom:)
+            // Updating titles again _after_ separation, because registering for trait changes
+            // doesn't trigger it.
             updateTitleViews()
 
             return newDeets

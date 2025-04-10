@@ -50,7 +50,7 @@ public class ActAsUserWindow: UIWindow {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -74,10 +74,6 @@ public class ActAsUserWindow: UIWindow {
         }
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-
-    }
-
     private var isPresentingSystemPicker: Bool {
         guard let topController = rootViewController?.topMostViewController()
         else { return false }
@@ -91,13 +87,9 @@ public class ActAsUserWindow: UIWindow {
         }
     }
 
-    private func subscribeForTraitChanges() {
+    private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (actAsUserWindow: Self, previousTraitCollection: UITraitCollection) in
-            guard previousTraitCollection.userInterfaceStyle != actAsUserWindow.traitCollection.userInterfaceStyle else {
-                return
-            }
-
+        registerForTraitChanges(traits) { (actAsUserWindow: ActAsUserWindow, _) in
             NotificationCenter.default.post(
                 name: .windowUserInterfaceStyleDidChange,
                 object: nil,

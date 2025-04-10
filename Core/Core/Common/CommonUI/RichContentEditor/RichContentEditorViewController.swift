@@ -92,7 +92,7 @@ public class RichContentEditorViewController: UIViewController {
             self?.loadHTML()
         }
 
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     private func showError(_ error: Error) {
@@ -246,10 +246,9 @@ public class RichContentEditorViewController: UIViewController {
         env.router.show(alert, from: self, options: .modal())
     }
 
-    private func subscribeForTraitChanges() {
+    private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (controller: RichContentEditorViewController, previousTraitCollection: UITraitCollection) in
-            guard previousTraitCollection.userInterfaceStyle != controller.traitCollection.userInterfaceStyle else { return }
+        registerForTraitChanges(traits) { (controller: RichContentEditorViewController, _) in
             controller.getHTML { [weak self] htmlString in
                 self?.html = htmlString
             }

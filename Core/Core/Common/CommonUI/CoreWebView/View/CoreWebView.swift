@@ -159,7 +159,7 @@ open class CoreWebView: WKWebView {
             self?.loadFrame(src: src)
         }
 
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     @discardableResult
@@ -353,12 +353,9 @@ open class CoreWebView: WKWebView {
         }
     }
 
-    private func subscribeForTraitChanges() {
+    private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (webView: CoreWebView, previousTraitCollection: UITraitCollection) in
-            let traitCollection = webView.viewController?.traitCollection ?? webView.traitCollection
-            guard previousTraitCollection.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
-
+        registerForTraitChanges(traits) { (webView: CoreWebView, _) in
             webView.updateInterfaceStyle()
         }
     }

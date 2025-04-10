@@ -72,12 +72,12 @@ open class DynamicButton: UIButton {
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     open override var isHighlighted: Bool {
@@ -95,7 +95,7 @@ open class DynamicButton: UIButton {
         layer.borderColor = color.cgColor
     }
 
-    private func subscribeForTraitChanges() {
+    private func registerForTraitChanges() {
         /// Border is set by using `cgColor` which doesn't change when
         /// the light/dark theme changes so we have to manually force an update.
         let traits = [UITraitUserInterfaceStyle.self]

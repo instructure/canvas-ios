@@ -110,7 +110,7 @@ public class SideMenuPresentationController: UIPresentationController {
             self.dimmer.alpha = 1
         }
 
-        subscribeForTraitChanges()
+        registerForTraitChanges()
     }
 
     public override func presentationTransitionDidEnd(_ completed: Bool) {
@@ -151,7 +151,7 @@ public class SideMenuPresentationController: UIPresentationController {
         presentedViewController.view.frame = frameOfPresentedViewInContainerView
     }
 
-    private func subscribeForTraitChanges() {
+    private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
         registerForTraitChanges(traits) { (controller: SideMenuPresentationController, _) in
             let backGroundColor: UIColor = controller.traitCollection.isDarkInterface ? .backgroundLightest : .backgroundDarkest
