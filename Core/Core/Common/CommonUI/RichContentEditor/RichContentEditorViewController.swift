@@ -109,20 +109,38 @@ public class RichContentEditorViewController: UIViewController {
         webView.loadHTMLString("""
             <style>
             :root {
-                --brand-linkColor: \(Brand.shared.linkColor.hexString);
-                --brand-primary: \(Brand.shared.primary.hexString);
-                --color-backgroundDanger: \(UIColor.backgroundDanger.hexString);
-                --color-backgroundDarkest: \(UIColor.backgroundDarkest.hexString);
-                --color-backgroundLightest: \(UIColor.backgroundLightest.hexString);
-                --color-textDark: \(UIColor.textDark.hexString);
-                --color-textDarkest: \(UIColor.textDarkest.hexString);
+                \(colorsCss(for: .light))
+                \(fontCss())
+            }
 
-                font-size: \(Typography.Style.body.uiFont.pointSize)px;
-                font-family: \(AppEnvironment.shared.k5.isK5Enabled ? "BalsamiqSans-Regular" : "Lato-Regular");
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    \(colorsCss(for: .dark))
+                    \(fontCss())
+                }
             }
             </style>
             <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\" aria-label=\"\(a11yLabel)\"></div>
         """)
+    }
+
+    private func colorsCss(for theme: UIUserInterfaceStyle) -> String {
+        """
+            --brand-linkColor: \(Brand.shared.linkColor.hexString(for: theme));
+            --brand-primary: \(Brand.shared.primary.hexString(for: theme));
+            --color-backgroundDanger: \(UIColor.backgroundDanger.hexString(for: theme));
+            --color-backgroundDarkest: \(UIColor.backgroundDarkest.hexString(for: theme));
+            --color-backgroundLightest: \(UIColor.backgroundLightest.hexString(for: theme));
+            --color-textDark: \(UIColor.textDark.hexString(for: theme));
+            --color-textDarkest: \(UIColor.textDarkest.hexString(for: theme));
+        """
+    }
+
+    private func fontCss() -> String {
+        """
+            font-size: \(Typography.Style.body.uiFont.pointSize)px;
+            font-family: \(AppEnvironment.shared.k5.isK5Enabled ? "BalsamiqSans-Regular" : "Lato-Regular");
+        """
     }
 
     func undo() {
