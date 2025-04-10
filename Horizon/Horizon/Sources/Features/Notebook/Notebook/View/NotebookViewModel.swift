@@ -95,7 +95,7 @@ final class NotebookViewModel {
     func goToModuleItem(_ note: NotebookNote, viewController: WeakViewController) {
         // This is just a business rule that says if the user got here from viewing a module,
         // We should not allow them to then navigate to it again.
-        let isDisabled = courseId != nil
+        let isDisabled = courseId != nil && pageUrl != nil
         if isDisabled {
             return
         }
