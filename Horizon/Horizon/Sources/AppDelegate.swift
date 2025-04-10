@@ -87,6 +87,47 @@ extension AppDelegate {
     }
 }
 
+// MARK: - Usage Analytics
+
+extension AppDelegate: Core.AnalyticsHandler {
+    func userDidLogin() {
+        initializeTracking()
+    }
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        analyticsTracker.track(name, properties: parameters)
+
+        PageViewEventController.instance.logPageView(
+            name,
+            attributes: parameters
+        )
+    }
+
+    private func initializeTracking() {
+        guard !ProcessInfo.isUITest else { return }
+
+        ReactiveStore(
+            useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
+        )
+        .getEntities()
+        .replaceError(with: [])
+        .sink { [weak self] environmentFeatureFlags in
+            let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+
+            if isTrackingEnabled {
+                self?.analyticsTracker.startSession()
+            } else {
+                self?.analyticsTracker.endSession()
+            }
+        }
+        .store(in: &subscriptions)
+    }
+
+    private func disableTracking() {
+        analyticsTracker.endSession()
+    }
+}
+
 // MARK: - Crashlytics
 
 extension AppDelegate {
@@ -138,46 +179,5 @@ extension AppDelegate: RemoteLogHandler {
     func handleError(_ name: String, reason: String) {
         let model = ExceptionModel(name: name, reason: reason)
         Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
-    }
-}
-
-// MARK: - Usage Analytics
-
-extension AppDelegate: Core.AnalyticsHandler {
-    func userDidLogin() {
-        initializeTracking()
-    }
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        analyticsTracker.track(name, properties: parameters)
-
-        PageViewEventController.instance.logPageView(
-            name,
-            attributes: parameters
-        )
-    }
-
-    private func initializeTracking() {
-        guard !ProcessInfo.isUITest else { return }
-
-        ReactiveStore(
-            useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
-        )
-        .getEntities()
-        .replaceError(with: [])
-        .sink { [weak self] environmentFeatureFlags in
-            let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-
-            if isTrackingEnabled {
-                self?.analyticsTracker.startSession()
-            } else {
-                self?.analyticsTracker.endSession()
-            }
-        }
-        .store(in: &subscriptions)
-    }
-
-    private func disableTracking() {
-        analyticsTracker.endSession()
     }
 }
