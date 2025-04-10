@@ -136,8 +136,8 @@ final class ScoresInteractorLive: ScoresInteractor {
         }
 
         if course.settings.restrictQuantitativeData,
-           let computedFinalGrade = enrollment.computedFinalGrade {
-            return computedFinalGrade // Returns e.g "C-"
+           let grade = enrollment.grade {
+            return grade // Returns e.g "C-"
         } else if let scoreString = scoreGradeString(enrollment: enrollment) {
             return scoreString
         }
@@ -147,13 +147,13 @@ final class ScoresInteractorLive: ScoresInteractor {
 
     private func scoreGradeString(enrollment: ScoresCourseEnrollment) -> String? {
         var scoreString: String?
-        if let score = enrollment.computedFinalScore,
+        if let score = enrollment.score,
            let formattedScore = GradeFormatter.numberFormatter.string(
                 from: GradeFormatter.truncate(score)
            ) {
             scoreString = "\(formattedScore)%"
         }
-        let scoreGradesString = [scoreString, enrollment.computedFinalGrade].compactMap { $0 }.joined(separator: " ")
+        let scoreGradesString = [scoreString, enrollment.grade].compactMap { $0 }.joined(separator: " ")
         return scoreGradesString.isEmpty ? nil : scoreGradesString
     }
 }

@@ -21,8 +21,8 @@ import Foundation
 
 public final class CDScoresCourseEnrollment: NSManagedObject {
     @NSManaged public var courseID: String
-    @NSManaged public var computedFinalScore: NSNumber?
-    @NSManaged public var computedFinalGrade: String?
+    @NSManaged public var score: NSNumber?
+    @NSManaged public var grade: String?
 
     @discardableResult
     public static func save(
@@ -35,9 +35,9 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
             equals: courseID
         ) ?? context.insert()
         dbEntity.courseID = courseID
-        dbEntity.computedFinalGrade = apiEntity.computed_final_grade
-        if let computedFinalScore = apiEntity.computed_final_score {
-            dbEntity.computedFinalScore = NSNumber(value: computedFinalScore)
+        dbEntity.grade = apiEntity.computed_current_grade
+        if let score = apiEntity.computed_current_score {
+            dbEntity.score = NSNumber(value: score)
         }
         return dbEntity
     }
@@ -52,9 +52,9 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
             equals: courseID
         ) ?? context.insert()
         dbEntity.courseID = courseID
-        dbEntity.computedFinalGrade = apiEntity.computed_final_grade
-        if let computedFinalScore = apiEntity.computed_final_score {
-            dbEntity.computedFinalScore = NSNumber(value: computedFinalScore)
+        dbEntity.grade = apiEntity.computed_current_grade
+        if let score = apiEntity.computed_current_score {
+            dbEntity.score = NSNumber(value: score)
         }
     }
 }
