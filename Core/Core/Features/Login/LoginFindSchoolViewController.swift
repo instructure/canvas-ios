@@ -161,11 +161,11 @@ class LoginFindSchoolViewController: UIViewController {
 
     func replaceRootDomain(urlString: String, newRootDomain: String) -> String? {
         let urlWithScheme = "https://\(urlString)"
-        
+
         guard let url = URL(string: urlWithScheme) else {
             return nil
         }
-        
+
         // Try to extract host, fallback to raw string if needed
         let host = url.host ?? urlString
         let parts = host.components(separatedBy: ".")
@@ -184,7 +184,6 @@ class LoginFindSchoolViewController: UIViewController {
         let newHost = "\(subdomain).\(newRootDomain)"
         return newHost
     }
-
 
     private func toggleNextButtonVisibility() {
         if let host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty {
