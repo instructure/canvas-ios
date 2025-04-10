@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import Firebase
 import HorizonUI
 import UIKit
 
@@ -44,6 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        // MARK: - Firebase
+
+        setupFirebase()
+
         // MARK: Root view
 
         window = UIWindow()
@@ -120,5 +125,59 @@ extension AppDelegate: Core.AnalyticsHandler {
 
     private func disableTracking() {
         analyticsTracker.endSession()
+    }
+}
+
+// MARK: - Crashlytics
+
+extension AppDelegate {
+    @objc func setupFirebase() {
+        guard !testing else {
+            setupDebugCrashLogging()
+            return
+        }
+
+        if FirebaseOptions.defaultOptions()?.apiKey != nil {
+            FirebaseApp.configure()
+            configureRemoteConfig()
+            Core.Analytics.shared.handler = self
+            RemoteLogger.shared.handler = self
+        }
+    }
+
+    func setupDebugCrashLogging() {
+        NSSetUncaughtExceptionHandler { exception in
+            print("CRASH: \(exception)")
+            print("Stack Trace:")
+            for symbol in exception.callStackSymbols {
+                print("  \(symbol)")
+            }
+        }
+    }
+
+    func configureRemoteConfig() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.fetch(withExpirationDuration: 0) { _, _ in
+            remoteConfig.activate { _, _ in
+                let keys = remoteConfig.allKeys(from: .remote)
+                for key in keys {
+                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                    let value = remoteConfig.configValue(forKey: key).boolValue
+                    feature.isEnabled = value
+                    Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
+                }
+            }
+        }
+    }
+}
+
+extension AppDelegate: RemoteLogHandler {
+    func handleBreadcrumb(_ name: String) {
+        Firebase.Crashlytics.crashlytics().log(name)
+    }
+
+    func handleError(_ name: String, reason: String) {
+        let model = ExceptionModel(name: name, reason: reason)
+        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
     }
 }
