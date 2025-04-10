@@ -37,10 +37,20 @@ class GetNotesQuery: APIGraphQLRequestable {
         ]
     }
 
-    public init(jwt: String, after: String, reactions: [String]? = nil, courseId: String? = nil) {
+    public init(
+        jwt: String,
+        after: String,
+        reactions: [String]? = nil,
+        courseId: String? = nil,
+        objectId: String? = nil
+    ) {
         self.jwt = jwt
 
-        let filter = GetNotesQuery.NoteFilterInput.build(courseId: courseId, reactions: reactions)
+        let filter = GetNotesQuery.NoteFilterInput.build(
+            courseId: courseId,
+            objectId: objectId,
+            reactions: reactions
+        )
 
         self.variables = GetNotesQueryInput(
             after: after,
@@ -48,20 +58,38 @@ class GetNotesQuery: APIGraphQLRequestable {
         )
     }
 
-    public init(jwt: String, before: String, reactions: [String]? = nil, courseId: String? = nil) {
+    public init(
+        jwt: String,
+        before: String,
+        reactions: [String]? = nil,
+        courseId: String? = nil,
+        objectId: String? = nil
+    ) {
         self.jwt = jwt
-        let filter = GetNotesQuery.NoteFilterInput.build(courseId: courseId, reactions: reactions)
 
         self.variables = GetNotesQueryInput(
             before: before,
-            filter: filter
+            filter: GetNotesQuery.NoteFilterInput.build(
+                courseId: courseId,
+                objectId: objectId,
+                reactions: reactions
+            )
         )
     }
 
-    public init(jwt: String, courseId: String? = nil, reactions: [String]? = nil) {
+    public init(
+        jwt: String,
+        reactions: [String]? = nil,
+        courseId: String? = nil,
+        objectId: String? = nil
+    ) {
         self.jwt = jwt
         self.variables = GetNotesQueryInput(
-            filter: GetNotesQuery.NoteFilterInput.build(courseId: courseId, reactions: reactions)
+            filter: GetNotesQuery.NoteFilterInput.build(
+                courseId: courseId,
+                objectId: objectId,
+                reactions: reactions
+            )
         )
     }
 
@@ -137,17 +165,49 @@ class GetNotesQuery: APIGraphQLRequestable {
     struct NoteFilterInput: Codable, Equatable {
         let reactions: [String]?
         let courseId: String?
+        let learningObject: LearningObjectFilter?
 
-        init(courseId: String? = nil, reactions: [String]? = nil) {
+        private init(
+            courseId: String? = nil,
+            reactions: [String]? = nil,
+            learningObject: LearningObjectFilter? = nil
+        ) {
             self.courseId = courseId
             self.reactions = reactions
+            self.learningObject = learningObject
         }
 
-        static func build(courseId: String? = nil, reactions: [String]? = nil) -> NoteFilterInput? {
+        static func build(
+            courseId: String? = nil,
+            objectId: String? = nil,
+            reactions: [String]? = nil
+        ) -> NoteFilterInput? {
             if courseId == nil && (reactions == nil || reactions?.isEmpty == true) {
                 return nil
             }
-            return .init(courseId: courseId, reactions: reactions)
+
+            return .init(
+                courseId: courseId,
+                reactions: reactions,
+                learningObject: GetNotesQuery.LearningObjectFilter.build(id: objectId)
+            )
+        }
+    }
+
+    struct LearningObjectFilter: Codable, Equatable {
+        let type: String
+        let id: String
+
+        private init(type: String, id: String) {
+            self.type = type
+            self.id = id
+        }
+
+        static func build(id: String?) -> LearningObjectFilter? {
+            guard let id = id else {
+                return nil
+            }
+            return .init(type: APIModuleItemType.page.rawValue, id: id)
         }
     }
 }

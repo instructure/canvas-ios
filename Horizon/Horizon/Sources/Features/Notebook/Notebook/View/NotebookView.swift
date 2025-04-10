@@ -26,20 +26,25 @@ struct NotebookView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(
-                refreshable: false,
-                loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
-            )
-        ) { _ in
+        if viewModel.isNavigationBarVisible {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                config: .init(
+                    refreshable: false,
+                    loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
+                )
+            ) { _ in
+                content
+                    .padding(.all, .huiSpaces.space16)
+            }
+            .background(HorizonUI.colors.surface.pagePrimary)
+            .frame(maxHeight: .infinity)
+            .toolbar(.hidden)
+            .safeAreaInset(edge: .top, spacing: .zero) {
+                navigationBar
+            }
+        } else {
             content
-                .padding(.all, .huiSpaces.space16)
-        }
-        .background(Color.huiColors.surface.pagePrimary)
-        .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) {
-            navigationBar
         }
     }
 
@@ -57,6 +62,7 @@ struct NotebookView: View {
                 }
             }
         }
+        .padding(.bottom, .huiSpaces.space16)
     }
 
     private var forwardBackButtons: some View {
@@ -88,6 +94,7 @@ struct NotebookView: View {
             onClose: viewModel.isCloseVisible ? viewModel.onClose : nil
         )
         .padding(.top, viewModel.navigationBarTopPadding)
+        .padding(.bottom, 16)
         .padding(.horizontal, .huiSpaces.space16)
         .background(Color.huiColors.surface.pagePrimary)
     }
@@ -139,6 +146,7 @@ struct NotebookView: View {
 #Preview {
     NotebookView(
         viewModel: .init(
+            courseId: "123",
             getCourseNotesInteractor: GetCourseNotesInteractorPreview()
         ))
 }
