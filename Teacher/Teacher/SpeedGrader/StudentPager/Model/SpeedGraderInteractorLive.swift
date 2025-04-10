@@ -65,12 +65,14 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 }
             } receiveValue: { [weak self] (assignment: Assignment, submissions: [Submission]) in
                 guard let self else { return }
-                guard let focusedSubmissionIndex = submissions.firstIndex(where: { self.userID == SpeedGraderAllUsersUserID || $0.userID == self.userID }) else {
-                    self.state.send(.error(.userIdNotFound))
-                    return
-                }
+
                 if submissions.isEmpty {
                     self.state.send(.error(.submissionNotFound))
+                    return
+                }
+
+                guard let focusedSubmissionIndex = submissions.firstIndex(where: { self.userID == SpeedGraderAllUsersUserID || $0.userID == self.userID }) else {
+                    self.state.send(.error(.userIdNotFound))
                     return
                 }
 
