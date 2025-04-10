@@ -68,6 +68,7 @@ public extension HorizonUI {
 
                 if numberPosition == .outside {
                     progressText
+                        .foregroundStyle(textColor)
                 }
             }
             .frame(height: size.height)
@@ -87,6 +88,12 @@ extension HorizonUI.ProgressBar {
                     if numberPosition == .inside {
                         progressText
                             .frame(minWidth: width, alignment: .trailing)
+                            .foregroundStyle(textColor)
+                    }
+                    if numberPosition == .outside {
+                        progressText
+                            .frame(minWidth: width, alignment: .trailing)
+                            .foregroundStyle(Color.clear)
                     }
                 }
                 .huiCornerRadius(level: cornerRadius)
@@ -101,7 +108,6 @@ extension HorizonUI.ProgressBar {
                 Text(percentageRound, format: .number) + Text("%")
             }
             .padding(.horizontal, .huiSpaces.space8)
-            .foregroundStyle(textColor)
             .huiTypography(.buttonTextMedium)
         }
     }

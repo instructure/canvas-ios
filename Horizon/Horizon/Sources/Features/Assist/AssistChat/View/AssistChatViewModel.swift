@@ -32,6 +32,7 @@ final class AssistChatViewModel {
     private(set) var messages: [AssistChatMessageViewModel] = []
     var scrollViewProxy: ScrollViewProxy?
     private(set) var state: InstUI.ScreenState = .data
+    let hasAssistChipOptions: Bool
 
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty
@@ -65,6 +66,7 @@ final class AssistChatViewModel {
         self.fileId = fileId
         self.router = router
         self.chatBotInteractor = chatBotInteractor
+        self.hasAssistChipOptions = chatBotInteractor.hasAssistChipOptions
     }
 
     // MARK: - Inputs
