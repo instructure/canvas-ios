@@ -42,6 +42,9 @@ struct AssistChatView: View {
         }
         .scrollIndicators(.hidden)
         .onAppear {
+            if !viewModel.hasAssistChipOptions {
+                isFocused = true
+            }
             viewModel.listenToChatBot(viewController: viewController)
         }
         .paddingStyle([.horizontal, .top], .standard)

@@ -24,6 +24,7 @@ import Foundation
 protocol AssistChatInteractor {
     func publish(action: AssistChatAction)
     var listen: AnyPublisher<AssistChatResponse, Error> { get }
+    var hasAssistChipOptions: Bool { get }
 }
 
 class AssistChatInteractorLive: AssistChatInteractor {
@@ -32,6 +33,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
     private let cedarDomainService: DomainService
     private let downloadFileInteractor: DownloadFileInteractor?
     private let pineDomainService: DomainService
+    var hasAssistChipOptions: Bool = false
 
     // MARK: - Private
 
@@ -57,6 +59,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
             cedarDomainService: cedarDomainService,
             pineDomainService: pineDomainService
         )
+        hasAssistChipOptions = true
     }
 
     /// Initializes the interactor when viewing a file for context
@@ -520,6 +523,8 @@ private extension String {
 }
 
 struct AssistChatInteractorPreview: AssistChatInteractor {
+    var hasAssistChipOptions: Bool = true
+
     func publish(action: AssistChatAction) {}
     var listen: AnyPublisher<AssistChatResponse, Error> = Empty().eraseToAnyPublisher()
 }
