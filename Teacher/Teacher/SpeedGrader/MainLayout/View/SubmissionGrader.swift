@@ -257,12 +257,12 @@ struct SubmissionGrader: View {
         Divider()
         GeometryReader { geometry in
             HStack(spacing: 0) {
-                let drawerFileID = Binding(
+                let drawerFileID = Binding<String?>(
                     get: {
                         viewModel.fileID
                     },
                     set: {
-                        viewModel.fileID = $0
+                        viewModel.didSelectFile(fileID: $0)
                         snapDrawerTo(.min)
                     }
                 )
