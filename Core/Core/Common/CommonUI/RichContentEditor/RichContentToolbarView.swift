@@ -88,10 +88,26 @@ public class RichContentToolbarView: UIView {
         textColorButton.addSubview(textColorView)
         self.textColorView = textColorView
 
+        setupColors()
         setupAccessibility()
 
         updateState(nil)
         updateBorderColors()
+    }
+
+    private func setupColors() {
+        let colors = colorPickerStack.arrangedSubviews
+        if colors.count == 9 {
+            colors[0].tintColor = .textLightest.variantForLightMode
+            colors[1].tintColor = .textDarkest.variantForLightMode
+            colors[2].tintColor = .init(hexString: "#8B969E") // gray
+            colors[3].tintColor = .init(hexString: "#EE0612") // red
+            colors[4].tintColor = .init(hexString: "#FC5E13") // orange
+            colors[5].tintColor = .init(hexString: "#FFC100") // yellow
+            colors[6].tintColor = .init(hexString: "#89C540") // green
+            colors[7].tintColor = .init(hexString: "#1485C8") // blue
+            colors[8].tintColor = .init(hexString: "#65469F") // purple
+        }
     }
 
     private func setupAccessibility() {
