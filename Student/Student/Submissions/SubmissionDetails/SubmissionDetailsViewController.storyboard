@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -79,6 +78,8 @@
                     <connections>
                         <outlet property="attemptPicker" destination="gAY-Hn-Rdg" id="Vce-Uf-bGQ"/>
                         <outlet property="contentView" destination="OAc-d9-7i7" id="xfM-xF-980"/>
+                        <outlet property="contentViewSafeAreaConstraint" destination="KYL-Ok-7ua" id="Hf5-hF-NCB"/>
+                        <outlet property="dividerView" destination="ZGl-0o-0RI" id="n3g-bP-TCa"/>
                         <outlet property="drawer" destination="ac8-45-rao" id="r8P-vQ-czH"/>
                         <outlet property="emptyView" destination="pNE-3D-zl2" id="WQS-H9-pBe"/>
                         <outlet property="lockedEmptyView" destination="EAM-Lb-Jft" id="wV7-dY-BB3"/>
