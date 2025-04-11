@@ -41,52 +41,94 @@ struct DashboardView: View {
             refreshAction: viewModel.reload
         ) { _ in
             LazyVStack(spacing: .zero) {
-                ForEach(viewModel.nextUpViewModels) { nextUpViewModel in
-                    VStack(alignment: .leading, spacing: .zero) {
-                        Text(nextUpViewModel.name)
-                            .huiTypography(.h1)
-                            .foregroundStyle(Color.huiColors.text.title)
-                            .padding(.top, .huiSpaces.space48)
-                            .padding(.bottom, .huiSpaces.space16)
+                if viewModel.courses.isEmpty, viewModel.state == .data {
+                    Text("You aren’t currently enrolled in a course.", bundle: .horizon)
+                        .padding(.huiSpaces.space24)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .huiTypography(.h3)
 
-                        HorizonUI.ProgressBar(
-                            progress: nextUpViewModel.progress,
-                            size: .medium,
-                            numberPosition: .outside
-                        )
-
-                        if let learningObjectCardViewModel = nextUpViewModel.learningObjectCardViewModel {
-                            Text("Resume Learning", bundle: .horizon)
-                                .huiTypography(.h3)
-                                .foregroundStyle(Color.huiColors.text.title)
-                                .padding(.top, .huiSpaces.space36)
-                                .padding(.bottom, .huiSpaces.space12)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Button {
-                                if let url = learningObjectCardViewModel.url {
-                                    viewModel.navigateToCourseDetails(url: url, viewController: viewController)
-                                }
-                            } label: {
-                                HorizonUI.LearningObjectCard(
-                                    status: viewModel.getStatus(percent: nextUpViewModel.progress),
-                                    moduleTitle: learningObjectCardViewModel.moduleTitle,
-                                    learningObjectName: learningObjectCardViewModel.learningObjectName,
-                                    duration: learningObjectCardViewModel.estimatedTime,
-                                    type: learningObjectCardViewModel.type,
-                                    dueDate: learningObjectCardViewModel.dueDate
-                                )
-                            }
-                        }
-                    }
-                    .padding(.horizontal, .huiSpaces.space24)
+                } else {
+                    contentView(courses: viewModel.courses)
+                        .padding(.bottom, .huiSpaces.space16)
                 }
             }
-            .padding(.bottom, .huiSpaces.space16)
         }
         .toolbar(.hidden)
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private func contentView(courses: [DashboardCourse]) -> some View {
+        ForEach(courses) { course in
+            VStack(alignment: .leading, spacing: .zero) {
+                courseProgressionView(course: course)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        viewModel.navigateToCourseDetails(
+                            id: course.courseId,
+                            viewController: viewController
+                        )
+                    }
+
+                if let learningObjectCardViewModel = course.learningObjectCardViewModel {
+                    learningObjectCard(model: learningObjectCardViewModel, progress: course.progress)
+                } else {
+                    Text("Congrats! You've completed your course.", bundle: .horizon)
+                        .huiTypography(.h3)
+                        .foregroundStyle(Color.huiColors.text.title)
+                        .padding(.top, .huiSpaces.space32)
+                    Text("View your progress and scores on the Learn page.", bundle: .horizon)
+                        .huiTypography(.p1)
+                        .foregroundStyle(Color.huiColors.text.title)
+                        .padding(.top, .huiSpaces.space12)
+                }
+            }
+            .padding(.horizontal, .huiSpaces.space24)
+        }
+    }
+
+    private func courseProgressionView(course: DashboardCourse) -> some View {
+        Group {
+            Text(course.name)
+                .huiTypography(.h1)
+                .foregroundStyle(Color.huiColors.text.title)
+                .padding(.top, .huiSpaces.space48)
+                .padding(.bottom, .huiSpaces.space16)
+
+            HorizonUI.ProgressBar(
+                progress: course.progress,
+                size: .medium,
+                numberPosition: .outside
+            )
+        }
+    }
+
+    private func learningObjectCard(model: LearningObjectCard, progress: Double) -> some View {
+        VStack(alignment: .leading, spacing: .zero) {
+            Text("Resume Learning", bundle: .horizon)
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.text.title)
+                .padding(.top, .huiSpaces.space36)
+                .padding(.bottom, .huiSpaces.space12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            Button {
+                if let url = model.url {
+                    viewModel.navigateToItemSequence(url: url, viewController: viewController)
+                }
+            } label: {
+                HorizonUI.LearningObjectCard(
+                    status: viewModel.getStatus(percent: progress),
+                    moduleTitle: model.moduleTitle,
+                    learningObjectName: model.learningObjectName,
+                    duration: model.estimatedTime,
+                    type: model.type,
+                    dueDate: model.dueDate
+                )
+            }
+        }
     }
 
     private var navigationBar: some View {
@@ -101,7 +143,7 @@ struct DashboardView: View {
                 viewModel.mailDidTap(viewController: viewController)
             }
         }
-        .padding(.horizontal, .huiSpaces.space10)
+        .padding(.horizontal, .huiSpaces.space24)
         .padding(.top, .huiSpaces.space10)
         .padding(.bottom, .huiSpaces.space4)
         .background(Color.huiColors.surface.pagePrimary)

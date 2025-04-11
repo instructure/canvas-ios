@@ -21,6 +21,7 @@ import Foundation
 struct DashboardCourse: Identifiable {
     let name: String
     let progress: Double
+    let courseId: String
     let learningObjectCardViewModel: LearningObjectCard?
     var id: String { name }
 }
