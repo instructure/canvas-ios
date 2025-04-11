@@ -101,7 +101,6 @@ public final class GradeFilterViewModel: ObservableObject {
         let optionId = gradingPeriodOptions.selected.value?.id
         let selectedGradingPeriodId = optionId == OptionItem.allId ? nil : optionId
         dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriodId)
-        gradeFilterInteractor.saveSelectedGradingPeriod(id: selectedGradingPeriodId)
 
         dependency.router.dismiss(viewController) {
             UIAccessibility.announce(String(localized: "Filter applied successfully", bundle: .core))
