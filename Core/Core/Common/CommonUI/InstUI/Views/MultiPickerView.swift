@@ -274,11 +274,11 @@ private class RowLabel: UIView {
                 widths: [3, 7],
                 alignments: [.trailing, .leading]
             )
-            .onChange(of: selection1) { newValue in
-                print("Interval: \(newValue)")
+            .onChange(of: selection1) {
+                print("Interval: \(selection1)")
             }
-            .onChange(of: selection2) { newValue in
-                print("Frequency: \(newValue)")
+            .onChange(of: selection2) {
+                print("Frequency: \(selection2)")
             }
         }
     }

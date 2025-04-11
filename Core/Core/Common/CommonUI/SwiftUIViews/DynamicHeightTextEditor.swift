@@ -67,9 +67,9 @@ public struct DynamicHeightTextEditor: View {
                    UITextView.appearance().backgroundColor = nil
                  }
         }
-        .onChange(of: text, perform: { newValue in
-            textToMeasureHeight = newValue.isEmpty ? "Placeholder" : newValue
-        })
+        .onChange(of: text) {
+            textToMeasureHeight = text.isEmpty ? "Placeholder" : text
+        }
         .onPreferenceChange(ViewSizeKey.self) {
             textEditorHeight = $0
         }
