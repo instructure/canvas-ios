@@ -24,65 +24,58 @@ class SubmissionGraderViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published private(set) var selectedAttemptIndex: Int {
-        didSet {
-            selectedAttempt = attempts.first { selectedAttemptIndex == $0.attempt } ?? submission
-        }
-    }
-    @Published private(set) var selectedAttempt: Submission {
-        didSet {
-            studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
-        }
-    }
+    @Published private(set) var selectedAttemptIndex: Int
+    @Published private(set) var selectedAttempt: Submission
     @Published private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
-    @Published private(set) var attempts: [Submission] = [] {
-        didSet {
-            print("attempts: \(attempts)")
-        }
-    }
-
-    var hasSubmissions: Bool {
-        attempts.count > 1
-    }
-    var isSingleSubmission: Bool {
-        attempts.count == 2
-    }
-
-    var fileTabTitle: String {
-        if selectedAttempt.type == .online_upload, let count = selectedAttempt.attachments?.count, count > 0 {
-            return String(localized: "Files (\(count))", bundle: .teacher)
-        } else {
-            return String(localized: "Files", bundle: .teacher)
-        }
-    }
+    @Published private(set) var attempts: [Submission] = []
+    @Published private(set) var hasSubmissions = false
+    @Published private(set) var isSingleSubmission = false
+    @Published private(set) var file: File?
+    @Published private(set) var fileID: String?
+    @Published private(set) var fileTabTitle: String = ""
     let assignment: Assignment
     let submission: Submission
-    var file: File? {
-        selectedAttempt.attachments?.first { fileID == $0.id } ??
-            selectedAttempt.attachments?.sorted(by: File.idCompare).first
-    }
 
     // MARK: - Inputs
 
     /** This is mainly used by `SubmissionCommentList` but since it's re-created on rotation and app backgrounding the entered text is lost. */
     @Published var enteredComment: String = ""
-    var fileID: String?
 
     private var subscriptions = Set<AnyCancellable>()
 
     init(assignment: Assignment, submission: Submission) {
         self.assignment = assignment
         self.submission = submission
-        selectedAttemptIndex = submission.attempt
         selectedAttempt = submission
+        selectedAttemptIndex = submission.attempt
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
         observeAttemptChangesInDatabase()
+        didSelectNewAttempt(attemptIndex: submission.attempt)
     }
 
     func didSelectNewAttempt(attemptIndex: Int) {
         NotificationCenter.default.post(name: .SpeedGraderAttemptPickerChanged, object: attemptIndex)
         selectedAttemptIndex = attemptIndex
-        fileID = nil
+        selectedAttempt = attempts.first { selectedAttemptIndex == $0.attempt } ?? submission
+        fileTabTitle = {
+            if selectedAttempt.type == .online_upload, let count = selectedAttempt.attachments?.count, count > 0 {
+                return String(localized: "Files (\(count))", bundle: .teacher)
+            } else {
+                return String(localized: "Files", bundle: .teacher)
+            }
+        }()
+        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
+        didSelectFile(fileID: nil)
+    }
+
+    func didSelectFile(fileID: String?) {
+        self.fileID = fileID
+        updateSelectedFile()
+    }
+
+    private func updateSelectedFile() {
+        file = selectedAttempt.attachments?.first { fileID == $0.id } ??
+                selectedAttempt.attachments?.sorted(by: File.idCompare).first
     }
 
     private func observeAttemptChangesInDatabase() {
@@ -99,7 +92,19 @@ class SubmissionGraderViewModel: ObservableObject {
             .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .print()
-            .assign(to: &$attempts)
+            .sink { [weak self] attempts in
+                guard let self else { return }
+                self.attempts = attempts
+                hasSubmissions = attempts.lastAttemptIndex > 0
+                isSingleSubmission = attempts.lastAttemptIndex == 1
+            }
+            .store(in: &subscriptions)
+    }
+}
+
+extension [Submission] {
+
+    fileprivate var lastAttemptIndex: Int {
+        last?.attempt ?? 0
     }
 }
