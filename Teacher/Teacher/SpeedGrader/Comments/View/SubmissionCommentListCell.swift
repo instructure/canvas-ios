@@ -24,7 +24,7 @@ struct SubmissionCommentListCell: View {
     let submission: Submission
     let comment: SubmissionComment
 
-    @Binding var attempt: Int?
+    @Binding var attempt: Int
     @Binding var fileID: String?
 
     @Environment(\.appEnvironment.currentSession?.userID) var currentUserID

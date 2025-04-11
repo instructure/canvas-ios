@@ -24,7 +24,7 @@ struct SubmissionCommentList: View {
     let assignment: Assignment
     let submission: Submission
     let filePicker = FilePicker(env: .shared)
-    @Binding var attempt: Int?
+    @Binding var attempt: Int
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
     @Binding var comment: String
@@ -32,7 +32,7 @@ struct SubmissionCommentList: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @ObservedObject var attempts: Store<LocalUseCase<Submission>>
+    var attempts: [Submission]
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @StateObject private var viewModel: SubmissionCommentListViewModel
@@ -45,8 +45,8 @@ struct SubmissionCommentList: View {
     init(
         assignment: Assignment,
         submission: Submission,
-        attempts: Store<LocalUseCase<Submission>>,
-        attempt: Binding<Int?>,
+        attempts: [Submission],
+        attempt: Binding<Int>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
         enteredComment: Binding<String>,
