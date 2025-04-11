@@ -53,7 +53,7 @@ extension GradeFilterInteractorLive: GradeFilterInteractor {
     }
 
     public var selectedGradingId: String? {
-        return appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs?[courseId]
+        appEnvironment.userDefaults?.selectedGradingPeriodIdsByCourseIDs?[courseId]
     }
 
     public var selectedSortById: String? {
