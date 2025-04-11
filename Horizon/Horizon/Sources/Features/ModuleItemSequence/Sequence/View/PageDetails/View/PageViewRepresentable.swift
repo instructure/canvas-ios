@@ -46,10 +46,9 @@ struct PageViewRepresentable: UIViewControllerRepresentable {
             app: .student,
             env: .shared
         )
-
         viewController.webView = HighlightWebView(
-            courseId: self.context.id,
-            itemId: itemID,
+            courseID: self.context.id,
+            pageURL: pageURL,
             moduleType: .page(pageURL),
             viewController: WeakViewController(viewController)
         )

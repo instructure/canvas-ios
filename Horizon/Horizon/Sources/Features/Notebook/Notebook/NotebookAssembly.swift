@@ -23,24 +23,24 @@ final class NotebookAssembly {
         GetCourseNotesInteractorLive.shared
     }
 
-    static func makeViewModel(courseId: String? = nil, moduleId: String? = nil) -> NotebookViewModel {
+    static func makeViewModel(courseID: String? = nil, pageURL: String? = nil) -> NotebookViewModel {
         NotebookViewModel(
-            courseId: courseId,
-            moduleId: moduleId,
+            courseId: courseID,
+            pageUrl: pageURL,
             getCourseNotesInteractor: makeGetCourseNotesInteractor(),
             router: AppEnvironment.shared.router
         )
     }
 
-    static func makeView(courseId: String? = nil, moduleId: String? = nil) -> NotebookView {
+    static func makeView(courseID: String? = nil, pageURL: String? = nil) -> NotebookView {
         NotebookView(
-            viewModel: makeViewModel(courseId: courseId, moduleId: moduleId)
+            viewModel: makeViewModel(courseID: courseID, pageURL: pageURL)
         )
     }
 
-    static func makeViewController(courseId: String? = nil, moduleId: String? = nil) -> CoreHostingController<NotebookView> {
+    static func makeViewController(courseID: String? = nil, pageURL: String? = nil) -> CoreHostingController<NotebookView> {
         CoreHostingController(
-            makeView(courseId: courseId, moduleId: moduleId)
+            makeView(courseID: courseID, pageURL: pageURL)
         )
     }
 }

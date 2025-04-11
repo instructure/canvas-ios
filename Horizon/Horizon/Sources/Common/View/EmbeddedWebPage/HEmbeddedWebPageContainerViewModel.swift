@@ -48,7 +48,7 @@ final class HEmbeddedWebPageContainerViewModel {
     // MARK: - Private Functions
 
     private func constructURL(from webPage: EmbeddedWebPageViewModel) -> URL? {
-        var baseURL = URL(string: "https://dev.cd.canvashorizon.com")
+        var baseURL = AppEnvironment.shared.currentSession?.baseURL
         baseURL?.appendPathComponent(webPage.urlPathComponent)
         baseURL?.append(queryItems: webPage.queryItems)
         baseURL?.append(queryItems: [
