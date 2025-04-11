@@ -19,7 +19,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/assignments.html#RubricCriteria
-public struct APIRubric: Codable, Equatable {
+public struct APIRubricCriterion: Codable, Equatable {
     let criterion_use_range: Bool
     let description: String
     let id: ID
@@ -43,16 +43,25 @@ public struct APIRubricSettings: Codable, Equatable {
     let points_possible: Double?
 }
 
-public typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
+public typealias RubricID = String
+public typealias APIRubricAssessmentMap = [RubricID: APIRubricAssessment]
 
 // https://canvas.instructure.com/doc/api/rubrics.html#RubricAssessment
 public struct APIRubricAssessment: Codable, Equatable {
+    public static let customRatingId = ""
+
+    /** This is the user entered comment for the rubric. Used when free-form rubric comments are enabled on the assignment. */
     public let comments: String?
+    /** This is the user entered custom score for the rubric. */
     public let points: Double?
-    /** Use empty string to reset a rubric's rating to empty. */
+    /** This is the selected pre-defined rating for the rubric. Use empty string to reset a rubric's rating to empty. */
     public let rating_id: String?
 
-    public init(comments: String? = nil, points: Double? = nil, rating_id: String = "") {
+    public init(
+        comments: String? = nil,
+        points: Double? = nil,
+        rating_id: String = customRatingId
+    ) {
         self.comments = comments
         self.points = points
         self.rating_id = rating_id
@@ -60,7 +69,7 @@ public struct APIRubricAssessment: Codable, Equatable {
 }
 
 #if DEBUG
-extension APIRubric {
+extension APIRubricCriterion {
     public static func make(
         criterion_use_range: Bool = false,
         description: String = "Effort",
@@ -69,8 +78,8 @@ extension APIRubric {
         long_description: String? = "Did you even try?",
         points: Double = 25.0,
         ratings: [APIRubricRating]? = [ .make() ]
-    ) -> APIRubric {
-        return APIRubric(
+    ) -> APIRubricCriterion {
+        return APIRubricCriterion(
             criterion_use_range: criterion_use_range,
             description: description,
             id: id,

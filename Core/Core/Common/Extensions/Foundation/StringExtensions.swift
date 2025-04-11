@@ -151,3 +151,12 @@ extension ReferenceWritableKeyPath {
         NSExpression(forKeyPath: self).keyPath
     }
 }
+
+extension String? {
+    public var isNilOrEmpty: Bool {
+        guard let self else {
+            return true
+        }
+        return self.isEmpty
+    }
+}
