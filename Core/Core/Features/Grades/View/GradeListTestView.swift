@@ -38,7 +38,9 @@ public struct GradeListTestView: View {
                             to: $scrollOffset
                         )
 
-                    Color.clear.frame(height: 0).padding(.top, headerHeight)
+                    Color.clear.frame(height: 0)
+                        .padding(.top, headerHeight)
+
                     ForEach([Color.red, .green, .blue, .yellow, .purple], id: \.hexString) { color in
                         color
                             .frame(height: 200)
@@ -49,7 +51,9 @@ public struct GradeListTestView: View {
 
             CollapsableHeader(scrollOffset: scrollOffset ?? 0)
                 .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
-                    self.headerHeight = max(self.headerHeight ?? 0, newFrame.height)
+                    if headerHeight == nil || newFrame.height > headerHeight ?? 0 {
+                        self.headerHeight = newFrame.height
+                    }
                 }
         }
     }
