@@ -45,12 +45,16 @@ public enum AppearanceMenuItem: Int {
 }
 
 public class SettingsHelper: BaseHelper {
-    public static var navBar: XCUIElement { app.find(id: "Settings") }
+    public static var navBar: XCUIElement { app.find(label: "Settings", type: .staticText) }
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss") }
     public static var preferencesLabel: XCUIElement { app.find(id: "Preferences") }
 
     public static func menuItem(item: SettingsMenuItem) -> XCUIElement {
         return app.find(id: "settings.tableView").find(label: item.rawValue, type: .staticText)
+    }
+
+    public static func menuItemParent(_ item: SettingsMenuItem) -> XCUIElement {
+        return app.find(label: item.rawValue, type: .staticText)
     }
 
     public static func valueOfMenuItem(item: SettingsMenuItem) -> XCUIElement? {
@@ -65,8 +69,18 @@ public class SettingsHelper: BaseHelper {
     }
 
     public static func navigateToSettings() {
-        DashboardHelper.profileButton.hit()
-        ProfileHelper.settingsButton.hit()
+        XCTContext.runActivity(named: "Navigate to Settings screen") { _ in
+            let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+            XCTAssertTrue(profileButton.isVisible)
+
+            DashboardHelper.profileButton.hit()
+            ProfileHelper.settingsButton.hit()
+
+            let navBar = Self.navBar.waitUntil(.visible)
+            let doneButton = Self.doneButton.waitUntil(.visible)
+            XCTAssertTrue(navBar.isVisible)
+            XCTAssertTrue(doneButton.isVisible)
+        }
     }
 
     public struct SubSettings {

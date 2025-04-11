@@ -24,6 +24,7 @@ public class GradesHelper: BaseHelper {
     public static var filterButton: XCUIElement { app.find(id: "GradeList.filterButton") }
     public static var lockIcon: XCUIElement { app.find(id: "lockIcon") }
     public static var basedOnGradedSwitch: XCUIElement { app.find(id: "BasedOnGradedToggle", type: .toggle) }
+    public static var emptyView: XCUIElement { app.find(id: "GradeList.emptyView") }
 
     public static func upcomingAssignmentsSectionTitle(numberOfItems: Int) -> XCUIElement {
         let itemCountLabel = String.localizedNumberOfItems(numberOfItems)
@@ -57,17 +58,13 @@ public class GradesHelper: BaseHelper {
         return assignment.find(label: "Grade, \(actualPoints) out of \(maxPoints)\(lgSuffix)")
     }
 
-    public static func gradesAssignmentButton(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
-        return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
-    }
-
     public static func gradesAssignmentSubmittedLabel(assignment: DSAssignment) -> XCUIElement {
-        return gradesAssignmentButton(assignment: assignment).findAll(type: .staticText, minimumCount: 3)[2]
+        return cell(assignment: assignment).findAll(type: .staticText, minimumCount: 3)[2]
     }
 
     public static func checkForTotalGrade(value: String) -> Bool {
-        pullToRefresh()
-        return totalGrade.waitUntil(.visible).waitUntil(.label(expected: value)).isVisible
+        totalGrade.waitUntil(.visible).waitUntil(.label(expected: value))
+        return totalGrade.isVisible && totalGrade.label == value
     }
 
     public static func navigateToAssignments(course: DSCourse) {
@@ -76,8 +73,33 @@ public class GradesHelper: BaseHelper {
     }
 
     public static func navigateToGrades(course: DSCourse) {
-        DashboardHelper.courseCard(course: course).hit()
-        CourseDetailsHelper.cell(type: .grades).hit()
+        XCTContext.runActivity(named: "Navigate to Grades screen") { _ in
+            let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+            XCTAssertTrue(courseCard.isVisible)
+
+            courseCard.hit()
+            CourseDetailsHelper.cell(type: .grades).hit()
+
+            let filterButton = filterButton.waitUntil(.visible)
+            XCTAssertTrue(filterButton.isVisible)
+        }
+    }
+
+    /// Assumes the screen is already loaded
+    public static func refreshGradesScreen() {
+        XCTContext.runActivity(named: "Refresh Grades screen") { _ in
+            let firstCell = app.find(idStartingWith: "GradeListCell").waitUntil(.visible, timeout: 1, gracePeriod: 0.5)
+            if firstCell.isVisible {
+                firstCell.pullToRefresh()
+                return
+            }
+
+            let emptyView = emptyView.waitUntil(.visible, timeout: 1, gracePeriod: 0.5)
+            if emptyView.isVisible {
+                // avoiding the interactive panda which almost fills the view
+                emptyView.pullToRefresh(x: 0.1, y: -0.1)
+            }
+        }
     }
 
     public struct Filter {

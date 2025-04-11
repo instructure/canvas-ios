@@ -321,7 +321,7 @@ public class AssignmentsHelper: BaseHelper {
     ) {
         DashboardHelper.courseCard(course: course).hit()
         if shouldPullToRefresh {
-            pullToRefresh()
+            app.pullToRefresh()
         }
         CourseDetailsHelper.cell(type: .assignments).hit()
     }

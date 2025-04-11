@@ -61,7 +61,7 @@ public class AnnouncementsHelper: BaseHelper {
     public static func navigateToAnnouncementsPage(course: DSCourse, shouldPullToRefresh: Bool = false) {
         DashboardHelper.courseCard(course: course).hit()
         if shouldPullToRefresh {
-            pullToRefresh()
+            app.pullToRefresh()
         }
         CourseDetailsHelper.cell(type: .announcements).hit()
     }

@@ -58,43 +58,32 @@ public extension XCUIElement {
         case longTap
     }
 
-    // MARK: Static vars
-    static let defaultTimeout: TimeInterval = 20
-    static var defaultGracePeriod: TimeInterval = 1
+    // MARK: Constants
 
-    // MARK: Private vars
+    static let defaultTimeout: TimeInterval = 20
+    static let defaultGracePeriod: TimeInterval = 1
+
+    // MARK: Properties
+
     var isVisible: Bool { exists }
     var isDisabled: Bool { !isEnabled }
     var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
 
+    var stringValue: String? {
+        value as? String
+    }
+
     // MARK: Functions
     func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
 
-    func idContains(expected: String) -> Bool { identifier.contains(expected) }
-
-    func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
+    private func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
         let elementValue = value as? String ?? ""
         return strict ? elementValue == expectedValue : elementValue.contains(expectedValue)
     }
 
-    func hasLabel(label expectedLabel: String, strict: Bool = true, caseSensitive: Bool = true) -> Bool {
-        let act = caseSensitive ? label : label.lowercased()
-        let exp = caseSensitive ? expectedLabel : expectedLabel.lowercased()
-        return strict ? act == exp : act.contains(exp)
-    }
-
-    func labelHasSuffix(_ suffix: String) -> Bool {
-        return label.hasSuffix(suffix)
-    }
-
-    func labelHasPrefix(_ prefix: String) -> Bool {
-        return label.hasPrefix(prefix)
-    }
-
-    func hasPlaceholderValue(placeholderValue expectedPlaceholderValue: String, strict: Bool = true) -> Bool {
-        let elementPlaceholderValue = placeholderValue ?? ""
-        return strict ? elementPlaceholderValue == expectedPlaceholderValue : elementPlaceholderValue.contains(expectedPlaceholderValue)
+    private func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
+        return strict ? label == expectedLabel : label.contains(expectedLabel)
     }
 
     @discardableResult
@@ -104,6 +93,24 @@ public extension XCUIElement {
         tap()
         tacticalSleep(1)
         return self
+    }
+
+    private func checkCondition(_ condition: ElementCondition) -> Bool {
+        switch condition {
+        case .vanish: isVanished
+        case .visible: isVisible
+        case .value(let expected, let strict): hasValue(value: expected, strict: strict)
+        case .label(let expected, let strict): hasLabel(label: expected, strict: strict)
+        case .enabled: exists && isEnabled
+        case .disabled: isDisabled
+        case .selected: exists && isSelected
+        case .unselected: !isSelected
+        case .hittable: isVisible && isHittable
+        case .labelContaining(let expected): label.contains(expected)
+        case .labelHasPrefix(let expected): label.hasPrefix(expected)
+        case .labelHasSuffix(let expected): label.hasSuffix(expected)
+        case .idContains(let expected): identifier.contains(expected)
+        }
     }
 
     /**
@@ -116,43 +123,19 @@ public extension XCUIElement {
      * - returns: self, so calls can be chained.
      */
     @discardableResult
-    func waitUntil(_ condition: ElementCondition,
-                   timeout: TimeInterval = defaultTimeout,
-                   gracePeriod: TimeInterval = defaultGracePeriod) -> XCUIElement {
+    func waitUntil(
+        _ condition: ElementCondition,
+        timeout: TimeInterval = defaultTimeout,
+        gracePeriod: TimeInterval = defaultGracePeriod
+    ) -> XCUIElement {
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
-            var result = false
-
-            switch condition {
-            case .vanish:
-                result = isVanished
-            case .visible:
-                result = isVisible
-            case .value(let expected, let strict):
-                result = hasValue(value: expected, strict: strict)
-            case .label(let expected, let strict):
-                result = hasLabel(label: expected, strict: strict)
-            case .enabled:
-                result = exists && isEnabled
-            case .disabled:
-                result = isDisabled
-            case .selected:
-                result = exists && isSelected
-            case .unselected:
-                result = !isSelected
-            case .hittable:
-                result = isVisible && isHittable
-            case .labelContaining(let expected):
-                result = label.contains(expected)
-            case .labelHasPrefix(let expected):
-                result = label.hasPrefix(expected)
-            case .labelHasSuffix(let expected):
-                result = label.hasSuffix(expected)
-            case .idContains(let expected):
-                result = idContains(expected: expected)
+            if checkCondition(condition) {
+                return self
             }
-            if result { break } else { tacticalSleep(gracePeriod) }
+
+            tacticalSleep(gracePeriod)
         }
         return self
     }
@@ -169,48 +152,21 @@ public extension XCUIElement {
      * - returns: true or false, depending on if the condition has been fulfilled.
      */
     @discardableResult
-    func actionUntilElementCondition(action: ElementAction,
-                                     element: XCUIElement? = nil,
-                                     condition: ElementCondition,
-                                     timeout: TimeInterval = defaultTimeout,
-                                     gracePeriod: TimeInterval = defaultGracePeriod) -> Bool {
+    func actionUntilElementCondition(
+        action: ElementAction,
+        element: XCUIElement? = nil,
+        condition: ElementCondition,
+        timeout: TimeInterval = defaultTimeout,
+        gracePeriod: TimeInterval = defaultGracePeriod
+    ) -> Bool {
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         let actualElement = element ?? self
 
         while Date() < deadline {
-            var result = false
-
-            switch condition {
-            case .vanish:
-                result = actualElement.isVanished
-            case .visible:
-                result = actualElement.isVisible
-            case .value(let expected, let strict):
-                result = actualElement.hasValue(value: expected, strict: strict)
-            case .label(let expected, let strict):
-                result = actualElement.hasLabel(label: expected, strict: strict)
-            case .enabled:
-                result = actualElement.exists && actualElement.isEnabled
-            case .disabled:
-                result = actualElement.isDisabled
-            case .selected:
-                result = actualElement.exists && actualElement.isSelected
-            case .unselected:
-                result = !actualElement.isSelected
-            case .hittable:
-                result = actualElement.isVisible && actualElement.isHittable
-            case .labelContaining(let expected):
-                result = label.contains(expected)
-            case .labelHasPrefix(let expected):
-                result = label.hasPrefix(expected)
-            case .labelHasSuffix(let expected):
-                result = label.hasSuffix(expected)
-            case .idContains(let expected):
-                result = idContains(expected: expected)
+            if actualElement.checkCondition(condition) {
+                return true
             }
-
-            if result { return true }
 
             switch action {
             case .tap: hit()
@@ -296,12 +252,13 @@ public extension XCUIElement {
         return self
     }
 
-    func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
-        return coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
-    }
-
-    func pullToRefresh(x: CGFloat = 0.5, y: CGFloat = 1.0) {
-        relativeCoordinate(x: x, y: 0.2).press(forDuration: 0.05, thenDragTo: relativeCoordinate(x: x, y: y))
+    func pullToRefresh(x: CGFloat = 0.5, y: CGFloat = 0.2) {
+        XCTContext.runActivity(named: "Pull To Refresh on \(label)") { _ in
+            let gestureStart = coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
+            let dy = app.frame.height - gestureStart.screenPoint.y
+            let gestureEnd = gestureStart.withOffset(CGVector(dx: 0, dy: dy))
+            gestureStart.press(forDuration: 0.05, thenDragTo: gestureEnd)
+        }
     }
 
     func tapAt(_ point: CGPoint) {
