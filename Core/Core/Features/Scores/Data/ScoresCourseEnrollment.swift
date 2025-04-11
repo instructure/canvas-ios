@@ -18,22 +18,22 @@
 
 public struct ScoresCourseEnrollment {
     public let courseID: String
-    public let computedFinalScore: Double?
-    public let computedFinalGrade: String?
+    public let score: Double?
+    public let grade: String?
 
     public init(
         courseID: String,
-        computedFinalScore: Double?,
-        computedFinalGrade: String?
+        score: Double?,
+        grade: String?
     ) {
         self.courseID = courseID
-        self.computedFinalScore = computedFinalScore
-        self.computedFinalGrade = computedFinalGrade
+        self.score = score
+        self.grade = grade
     }
 
     init(from entity: CDScoresCourseEnrollment) {
         self.courseID = entity.courseID
-        self.computedFinalGrade = entity.computedFinalGrade
-        self.computedFinalScore = entity.computedFinalScore?.doubleValue
+        self.grade = entity.grade
+        self.score = entity.score?.doubleValue
     }
 }
