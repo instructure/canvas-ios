@@ -75,9 +75,9 @@ public class RichContentToolbarView: UIView {
         colorPickerView.alpha = 0
         colorPickerView.transform = CGAffineTransform(translationX: 0, y: 45)
 
-        let whiteColorBorder = UIView(frame: CGRect(x: 7, y: 7, width: 30, height: 30))
+        let whiteColorBorder = UIView(frame: CGRect(x: 9, y: 9, width: 26, height: 26))
         whiteColorBorder.layer.borderWidth = 1
-        whiteColorBorder.layer.cornerRadius = 15
+        whiteColorBorder.layer.cornerRadius = 13
         whiteColorBorder.isUserInteractionEnabled = false
         whiteColorButton.addSubview(whiteColorBorder)
         self.whiteColorBorder = whiteColorBorder
@@ -141,10 +141,22 @@ public class RichContentToolbarView: UIView {
     }
 
     private func updateBorderColors() {
-        whiteColorBorder?.layer.borderColor = UIColor.borderMedium.cgColor
+        let clearColor = UIColor.clear.cgColor
 
-        let isWhiteSelected = foreColor.hexString == UIColor.textLightest.variantForLightMode.hexString
-        textColorView?.layer.borderColor = isWhiteSelected ? UIColor.borderMedium.cgColor : foreColor.cgColor
+        let currentTheme = overrideUserInterfaceStyle.nilIfUnspecified ?? traitCollection.userInterfaceStyle
+        if currentTheme.defaultToLight == .light {
+            // border white color
+            let borderColor = UIColor.borderMedium.variantForLightMode.cgColor
+            whiteColorBorder?.layer.borderColor = borderColor
+
+            // border selected color if it's white
+            let isWhiteSelected = foreColor.hexString == UIColor.textLightest.variantForLightMode.hexString
+            textColorView?.layer.borderColor = isWhiteSelected ? borderColor : clearColor
+        } else {
+            // remove borders
+            whiteColorBorder?.layer.borderColor = clearColor
+            textColorView?.layer.borderColor = clearColor
+        }
     }
 
     func updateState(_ state: [String: Any?]?) {
@@ -243,4 +255,9 @@ public class RichContentToolbarView: UIView {
     @IBAction func libraryAction(_ sender: UIButton) {
         controller?.insertFrom(.photoLibrary)
     }
+}
+
+private extension UIUserInterfaceStyle {
+    var nilIfUnspecified: Self? { self == .unspecified ? nil : self }
+    var defaultToLight: Self? { self == .unspecified ? .light : self }
 }
