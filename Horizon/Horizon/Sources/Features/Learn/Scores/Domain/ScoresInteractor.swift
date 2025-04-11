@@ -149,11 +149,19 @@ final class ScoresInteractorLive: ScoresInteractor {
         var scoreString: String?
         if let score = enrollment.score,
            let formattedScore = GradeFormatter.numberFormatter.string(
-                from: GradeFormatter.truncate(score)
+               from: GradeFormatter.truncate(score)
            ) {
             scoreString = "\(formattedScore)%"
         }
-        let scoreGradesString = [scoreString, enrollment.grade].compactMap { $0 }.joined(separator: " ")
+
+        let letterGrade: String?
+        if let computedFinalGrade = enrollment.grade {
+            letterGrade = "(\(computedFinalGrade))"
+        } else {
+            letterGrade = nil
+        }
+        let scoreGradesString = [scoreString, letterGrade].compactMap { $0 }.joined(separator: " ")
+
         return scoreGradesString.isEmpty ? nil : scoreGradesString
     }
 }
