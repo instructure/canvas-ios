@@ -62,6 +62,8 @@ public final class GradeFilterViewModel: ObservableObject {
             return
         }
 
+        gradingPeriods.forEach { print( "all: \($0.title ?? "") - \($0.id ?? "")") }
+        print("selected: \(gradeFilterInteractor.selectedGradingId ?? "no selectedGradeId")")
         let initialGradingPeriod = gradingPeriods.first { $0.id == gradeFilterInteractor.selectedGradingId }
         gradingPeriodOptions = .init(
             all: [GradingPeriod.optionItemAll] + gradingPeriods.map { $0.optionItem },
