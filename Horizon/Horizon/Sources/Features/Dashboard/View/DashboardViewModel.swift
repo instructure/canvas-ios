@@ -27,7 +27,7 @@ class DashboardViewModel {
 
     private(set) var state: InstUI.ScreenState = .loading
     var title: String = ""
-    var nextUpViewModels: [DashboardCourse] = []
+    var courses: [DashboardCourse] = []
 
     // MARK: - Dependencies
 
@@ -67,7 +67,7 @@ class DashboardViewModel {
 
         getDashboardCoursesCancellable = getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
-                self?.nextUpViewModels = items
+                self?.courses = items
                 self?.state = .data
                 completion?()
             }
@@ -90,8 +90,12 @@ class DashboardViewModel {
         router.route(to: "/conversations", from: viewController)
     }
 
-    func navigateToCourseDetails(url: URL, viewController: WeakViewController) {
+    func navigateToItemSequence(url: URL, viewController: WeakViewController) {
         router.route(to: url, from: viewController)
+    }
+
+    func navigateToCourseDetails(id: String, viewController: WeakViewController) {
+        router.route(to: "/courses/\(id)", from: viewController)
     }
 
     func reload(completion: @escaping () -> Void) {

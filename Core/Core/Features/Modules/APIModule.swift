@@ -414,7 +414,7 @@ public struct GetModuleItemRequest: APIRequestable {
     public typealias Response = APIModuleItem
 
     public enum Include: String {
-        case content_details
+        case content_details, estimated_durations
     }
 
     public let courseID: String
