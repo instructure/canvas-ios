@@ -2055,6 +2055,9 @@
         }
       }
     },
+    "Due %@" : {
+
+    },
     "Essay #1: The Rocky Planets" : {
       "comment" : "Example exam name",
       "localizations" : {
@@ -3340,6 +3343,15 @@
         }
       }
     },
+    "Lab 1.2: The Solar System" : {
+      "comment" : "Example to-do item name"
+    },
+    "Mitosis Essay" : {
+      "comment" : "Example to-do item name"
+    },
+    "Moby Dick Quiz" : {
+      "comment" : "Example to-do item name"
+    },
     "No Announcements" : {
       "localizations" : {
         "ar" : {
@@ -3596,6 +3608,9 @@
         }
       }
     },
+    "No Due Date" : {
+
+    },
     "No Grades To Display" : {
       "localizations" : {
         "ar" : {
@@ -3851,6 +3866,9 @@
           }
         }
       }
+    },
+    "No To-Do Items To Display" : {
+
     },
     "Please log in via the application" : {
       "localizations" : {
@@ -4879,6 +4897,12 @@
         }
       }
     },
+    "To-Do" : {
+
+    },
+    "To-Do Items" : {
+      "comment" : "Name of the to-do widget"
+    },
     "View the latest announcements from your courses." : {
       "comment" : "Description of the announcements widget",
       "localizations" : {
@@ -5392,6 +5416,9 @@
           }
         }
       }
+    },
+    "View your upcoming assignments and quizzes." : {
+      "comment" : "Description of the to-do widget"
     },
     "Zoo Field Trip!" : {
       "comment" : "Example announcement title",
