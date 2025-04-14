@@ -93,6 +93,7 @@ public class RichContentToolbarView: UIView {
 
         updateState(nil)
         updateBorderColors()
+        registerForTraitChanges()
     }
 
     private func setupColors() {
@@ -254,6 +255,13 @@ public class RichContentToolbarView: UIView {
 
     @IBAction func libraryAction(_ sender: UIButton) {
         controller?.insertFrom(.photoLibrary)
+    }
+
+    private func registerForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: RichContentToolbarView, _) in
+            self.updateBorderColors()
+        }
     }
 }
 

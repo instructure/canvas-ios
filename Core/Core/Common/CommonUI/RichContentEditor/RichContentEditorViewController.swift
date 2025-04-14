@@ -56,6 +56,7 @@ public class RichContentEditorViewController: UIViewController {
     public var context = Context.currentUser
     public var uploadContext = FileUploadContext.myFiles
     private var focusObserver: AnyCancellable?
+    private var styleManager: OverrideUserInterfaceStyleManager?
 
     private var env: AppEnvironment = .defaultValue
 
@@ -87,6 +88,8 @@ public class RichContentEditorViewController: UIViewController {
         webView.contentInputAccessoryView = toolbar
         webView.scrollView.keyboardDismissMode = .interactive
         webView.accessibilityIdentifier = "RichContentEditor.webView"
+        styleManager = OverrideUserInterfaceStyleManager(host: self)
+        styleManager?.setup(currentStyle: .current)
 
         featureFlags.refresh { [weak self] _ in
             self?.loadHTML()
