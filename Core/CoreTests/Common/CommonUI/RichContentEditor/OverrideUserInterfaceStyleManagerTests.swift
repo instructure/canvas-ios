@@ -60,11 +60,11 @@ final class OverrideUserInterfaceStyleManagerTests: CoreTestCase {
         let action: (UIUserInterfaceStyle) -> Void = { actionInput = $0 }
         testee.setup(currentStyle: .unspecified, additionalAction: action)
 
-        triggerStyleDidChangeNotificiation(to: .light)
+        triggerStyleDidChangeNotification(to: .light)
         XCTAssertEqual(host.overrideUserInterfaceStyle, .light)
         XCTAssertEqual(actionInput, .light)
 
-        triggerStyleDidChangeNotificiation(to: .dark)
+        triggerStyleDidChangeNotification(to: .dark)
         XCTAssertEqual(host.overrideUserInterfaceStyle, .dark)
         XCTAssertEqual(actionInput, .dark)
     }
@@ -77,13 +77,13 @@ final class OverrideUserInterfaceStyleManagerTests: CoreTestCase {
 
         // setup with action1 -> obbserver should call action1
         testee.setup(currentStyle: .unspecified, additionalAction: action1)
-        triggerStyleDidChangeNotificiation(to: .light)
+        triggerStyleDidChangeNotification(to: .light)
         XCTAssertEqual(action1CallsCount, 1)
         XCTAssertEqual(action2CallsCount, 0)
 
         // setup with action2 -> obbserver should no longer call action1
         testee.setup(currentStyle: .unspecified, additionalAction: action2)
-        triggerStyleDidChangeNotificiation(to: .dark)
+        triggerStyleDidChangeNotification(to: .dark)
         XCTAssertEqual(action1CallsCount, 1)
         XCTAssertEqual(action2CallsCount, 1)
     }
@@ -92,7 +92,7 @@ final class OverrideUserInterfaceStyleManagerTests: CoreTestCase {
 // MARK: - Helpers
 
 private extension OverrideUserInterfaceStyleManagerTests {
-    func triggerStyleDidChangeNotificiation(to style: UIUserInterfaceStyle) {
+    func triggerStyleDidChangeNotification(to style: UIUserInterfaceStyle) {
         NotificationCenter.default.post(
             name: .windowUserInterfaceStyleDidChange,
             object: nil,
