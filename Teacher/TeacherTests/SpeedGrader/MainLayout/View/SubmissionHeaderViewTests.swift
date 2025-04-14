@@ -25,7 +25,7 @@ class SubmissionHeaderTests: TeacherTestCase {
     func testGroupSubmissionCheck() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeader(assignment: assignment, submission: submission)
+        let testee = SubmissionHeaderView(assignment: assignment, submission: submission)
 
         assignment.gradedIndividually = false
         submission.groupID = "TestGroupID"
@@ -36,7 +36,7 @@ class SubmissionHeaderTests: TeacherTestCase {
     func testGroupName() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeader(assignment: assignment, submission: submission)
+        let testee = SubmissionHeaderView(assignment: assignment, submission: submission)
 
         assignment.gradedIndividually = false
         submission.groupName = "TestGroup Name"
@@ -49,7 +49,7 @@ class SubmissionHeaderTests: TeacherTestCase {
     func testRouteToGroupSubmitter() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeader(assignment: assignment, submission: submission)
+        let testee = SubmissionHeaderView(assignment: assignment, submission: submission)
 
         assignment.gradedIndividually = false
         assignment.courseID = "testCourseID"
@@ -61,7 +61,7 @@ class SubmissionHeaderTests: TeacherTestCase {
     func testRouteToIndividialInGroupSubmission() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeader(assignment: assignment, submission: submission)
+        let testee = SubmissionHeaderView(assignment: assignment, submission: submission)
 
         assignment.gradedIndividually = true
         assignment.courseID = "testCourseID"

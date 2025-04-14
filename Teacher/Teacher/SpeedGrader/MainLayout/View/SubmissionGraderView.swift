@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 import Combine
 
-struct SubmissionGrader: View {
+struct SubmissionGraderView: View {
     private enum Layout {
         case portrait
         case landscape // only on iPads no matter the iPhone screen size
@@ -106,7 +106,7 @@ struct SubmissionGrader: View {
         bottomInset: CGFloat
     ) -> some View {
         VStack(spacing: 0) {
-            SubmissionHeader(assignment: viewModel.assignment, submission: viewModel.submission)
+            SubmissionHeaderView(assignment: viewModel.assignment, submission: viewModel.submission)
                 .accessibility(sortPriority: 2)
             Divider()
             HStack(spacing: 0) {
@@ -115,7 +115,7 @@ struct SubmissionGrader: View {
                     Divider()
                     ZStack(alignment: .top) {
                         VStack(spacing: 0) {
-                            SimilarityScore(viewModel.selectedAttempt, file: viewModel.file)
+                            SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
                             SubmissionViewer(
                                 assignment: viewModel.assignment,
                                 submission: viewModel.selectedAttempt,
@@ -151,14 +151,14 @@ struct SubmissionGrader: View {
     ) -> some View {
         ZStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 0) {
-                SubmissionHeader(assignment: viewModel.assignment, submission: viewModel.submission)
+                SubmissionHeaderView(assignment: viewModel.assignment, submission: viewModel.submission)
                 attemptToggle
                     .accessibility(hidden: drawerState == .max)
                 Divider()
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
-                        SimilarityScore(viewModel.selectedAttempt, file: viewModel.file)
+                        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
                         SubmissionViewer(
                             assignment: viewModel.assignment,
                             submission: viewModel.selectedAttempt,
@@ -173,7 +173,7 @@ struct SubmissionGrader: View {
                 }
                 Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
             }
-            Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
+            DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
                 tools(bottomInset: bottomInset, isDrawer: true)
             }
         }
@@ -257,7 +257,7 @@ struct SubmissionGrader: View {
                     if drawerState == .min {
                         snapDrawerTo(.mid)
                     }
-                    let newTab = SubmissionGrader.GraderTab(rawValue: newValue ?? 0)!
+                    let newTab = SubmissionGraderView.GraderTab(rawValue: newValue ?? 0)!
                     withAnimation(.default) {
                         tab = newTab
                     }
@@ -339,7 +339,7 @@ struct SubmissionGrader: View {
         )
         let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
         VStack(spacing: 0) {
-            SubmissionCommentList(
+            SubmissionCommentListView(
                 assignment: viewModel.assignment,
                 submission: viewModel.submission,
                 attempts: viewModel.attempts,

@@ -22,7 +22,7 @@ import UIKit
 import Core
 
 class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewControllerDataSource {
-    typealias Page = CoreHostingController<SubmissionGrader>
+    typealias Page = CoreHostingController<SubmissionGraderView>
 
     var env: AppEnvironment = .defaultValue
 
@@ -167,14 +167,14 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         return controller
     }
 
-    func grader(for index: Int) -> SubmissionGrader? {
+    func grader(for index: Int) -> SubmissionGraderView? {
         guard
             case .data(let assignment, let submissions, _) = interactor.state.value,
             index >= 0,
             index < submissions.count
         else { return nil }
 
-        return SubmissionGrader(
+        return SubmissionGraderView(
             env: env,
             userIndexInSubmissionList: index,
             viewModel: SubmissionGraderViewModel(

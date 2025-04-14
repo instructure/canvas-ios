@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct SimilarityScore: View {
+struct SimilarityScoreView: View {
     let status: String
     let score: Double
     let url: URL?
