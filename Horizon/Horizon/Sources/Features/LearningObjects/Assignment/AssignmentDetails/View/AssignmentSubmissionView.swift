@@ -128,7 +128,7 @@ struct AssignmentSubmissionView: View {
         case .fileUpload:
             VStack(spacing: .huiSpaces.space8) {
                 HorizonUI.FileDrop(
-                    acceptedFilesType: viewModel.assignment?.allowedFileExtensions ?? ""
+                    acceptedFilesType: viewModel.assignment?.allowedFileExtensions
                 ) {
                     isOverlayUploadFilePresented.toggle()
                 }

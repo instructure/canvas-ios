@@ -101,7 +101,7 @@ struct DashboardView: View {
                 viewModel.mailDidTap(viewController: viewController)
             }
         }
-        .padding(.horizontal, .huiSpaces.space10)
+        .padding(.horizontal, .huiSpaces.space24)
         .padding(.top, .huiSpaces.space10)
         .padding(.bottom, .huiSpaces.space4)
         .background(Color.huiColors.surface.pagePrimary)
