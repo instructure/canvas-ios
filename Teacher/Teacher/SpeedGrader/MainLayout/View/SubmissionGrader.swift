@@ -73,90 +73,115 @@ struct SubmissionGrader: View {
             let scale = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 1, toMax: 0.9)
             let cornerRadius = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 0, toMax: 20)
 
-            switch layoutForWidth(geometry.size.width) {
-            case .landscape:
-                VStack(spacing: 0) {
-                    SubmissionHeader(assignment: viewModel.assignment, submission: viewModel.submission)
-                        .accessibility(sortPriority: 2)
-                    Divider()
-                    HStack(spacing: 0) {
-                        VStack(alignment: .leading, spacing: 0) {
-                            attemptToggle
-                            Divider()
-                            ZStack(alignment: .top) {
-                                VStack(spacing: 0) {
-                                    SimilarityScore(viewModel.selectedAttempt, file: viewModel.file)
-                                    SubmissionViewer(
-                                        assignment: viewModel.assignment,
-                                        submission: viewModel.selectedAttempt,
-                                        fileID: viewModel.fileID,
-                                        studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
-                                        handleRefresh: handleRefresh
-                                    )
-                                }
-                                // Disable submission content interaction in case attempt picker is above it
-                                .accessibilityElement(children: showAttempts ? .ignore : .contain)
-                                .accessibility(hidden: showAttempts)
-                                attemptPicker
-                            }
-                            Spacer().frame(height: bottomInset)
-                        }
-                        .zIndex(1)
-                        .accessibility(sortPriority: 1)
-                        Divider()
-                        VStack(spacing: 0) {
-                            tools(bottomInset: bottomInset, isDrawer: false)
-                        }
-                        .padding(.top, 16)
-                        .frame(width: 375)
-                    }
-                }
-                .background(Color.backgroundLightest)
-                .cornerRadius(cornerRadius)
-                .scaleEffect(scale)
-                .edgesIgnoringSafeArea(.bottom)
-                .onAppear { didChangeLayout(to: .landscape) }
-            case .portrait:
-                ZStack(alignment: .bottom) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        SubmissionHeader(assignment: viewModel.assignment, submission: viewModel.submission)
-                        attemptToggle
-                            .accessibility(hidden: drawerState == .max)
-                        Divider()
-                        let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
-                        ZStack(alignment: .top) {
-                            VStack(spacing: 0) {
-                                SimilarityScore(viewModel.selectedAttempt, file: viewModel.file)
-                                SubmissionViewer(
-                                    assignment: viewModel.assignment,
-                                    submission: viewModel.selectedAttempt,
-                                    fileID: viewModel.fileID,
-                                    studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
-                                    handleRefresh: handleRefresh
-                                )
-                            }
-                            .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
-                            .accessibility(hidden: isSubmissionContentHiddenFromA11y)
-                            attemptPicker
-                        }
-                        Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
-                    }
-                    Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
-                        tools(bottomInset: bottomInset, isDrawer: true)
-                    }
-                }
-                .background(Color.backgroundLightest)
-                .cornerRadius(cornerRadius)
-                .scaleEffect(scale)
-                .edgesIgnoringSafeArea(.bottom)
-                .onAppear { didChangeLayout(to: .portrait) }
-            }
+            mainLayout(
+                geometry: geometry,
+                bottomInset: bottomInset,
+                minHeight: minHeight,
+                maxHeight: maxHeight
+            )
+            .background(Color.backgroundLightest)
+            .cornerRadius(cornerRadius)
+            .scaleEffect(scale)
+            .edgesIgnoringSafeArea(.bottom)
         }
         .avoidKeyboardArea()
     }
 
     @ViewBuilder
-    var attemptToggle: some View {
+    private func mainLayout(
+        geometry: GeometryProxy,
+        bottomInset: CGFloat,
+        minHeight: CGFloat,
+        maxHeight: CGFloat
+    ) -> some View {
+        switch layoutForWidth(geometry.size.width) {
+        case .landscape:
+            landscapeLayout(bottomInset: bottomInset)
+        case .portrait:
+            portraitLayout(minHeight: minHeight, maxHeight: maxHeight, bottomInset: bottomInset)
+        }
+    }
+
+    private func landscapeLayout(
+        bottomInset: CGFloat
+    ) -> some View {
+        VStack(spacing: 0) {
+            SubmissionHeader(assignment: viewModel.assignment, submission: viewModel.submission)
+                .accessibility(sortPriority: 2)
+            Divider()
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
+                    attemptToggle
+                    Divider()
+                    ZStack(alignment: .top) {
+                        VStack(spacing: 0) {
+                            SimilarityScore(viewModel.selectedAttempt, file: viewModel.file)
+                            SubmissionViewer(
+                                assignment: viewModel.assignment,
+                                submission: viewModel.selectedAttempt,
+                                fileID: viewModel.fileID,
+                                studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
+                                handleRefresh: handleRefresh
+                            )
+                        }
+                        // Disable submission content interaction in case attempt picker is above it
+                        .accessibilityElement(children: showAttempts ? .ignore : .contain)
+                        .accessibility(hidden: showAttempts)
+                        attemptPicker
+                    }
+                    Spacer().frame(height: bottomInset)
+                }
+                .zIndex(1)
+                .accessibility(sortPriority: 1)
+                Divider()
+                VStack(spacing: 0) {
+                    tools(bottomInset: bottomInset, isDrawer: false)
+                }
+                .padding(.top, 16)
+                .frame(width: 375)
+            }
+        }
+        .onAppear { didChangeLayout(to: .landscape) }
+    }
+
+    private func portraitLayout(
+        minHeight: CGFloat,
+        maxHeight: CGFloat,
+        bottomInset: CGFloat
+    ) -> some View {
+        ZStack(alignment: .bottom) {
+            VStack(alignment: .leading, spacing: 0) {
+                SubmissionHeader(assignment: viewModel.assignment, submission: viewModel.submission)
+                attemptToggle
+                    .accessibility(hidden: drawerState == .max)
+                Divider()
+                let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
+                ZStack(alignment: .top) {
+                    VStack(spacing: 0) {
+                        SimilarityScore(viewModel.selectedAttempt, file: viewModel.file)
+                        SubmissionViewer(
+                            assignment: viewModel.assignment,
+                            submission: viewModel.selectedAttempt,
+                            fileID: viewModel.fileID,
+                            studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
+                            handleRefresh: handleRefresh
+                        )
+                    }
+                    .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                    .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+                    attemptPicker
+                }
+                Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
+            }
+            Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
+                tools(bottomInset: bottomInset, isDrawer: true)
+            }
+        }
+        .onAppear { didChangeLayout(to: .portrait) }
+    }
+
+    @ViewBuilder
+    private var attemptToggle: some View {
         if viewModel.hasSubmissions {
             Button {
                 showAttempts.toggle()
@@ -183,7 +208,7 @@ struct SubmissionGrader: View {
     }
 
     @ViewBuilder
-    var attemptPicker: some View {
+    private var attemptPicker: some View {
         if showAttempts {
             VStack(spacing: 0) {
                 let binding = Binding(
@@ -222,7 +247,7 @@ struct SubmissionGrader: View {
     }
 
     @ViewBuilder
-    func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
+    private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
         SegmentedPicker(
             segmentedTitles,
             selectedIndex: Binding(
