@@ -153,9 +153,9 @@ public class SideMenuPresentationController: UIPresentationController {
 
     private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (controller: SideMenuPresentationController, _) in
-            let backGroundColor: UIColor = controller.traitCollection.isDarkInterface ? .backgroundLightest : .backgroundDarkest
-            controller.dimmer.backgroundColor = backGroundColor.withAlphaComponent(0.9)
+        registerForTraitChanges(traits) { (self: SideMenuPresentationController, _) in
+            let backGroundColor: UIColor = self.traitCollection.isDarkInterface ? .backgroundLightest : .backgroundDarkest
+            self.dimmer.backgroundColor = backGroundColor.withAlphaComponent(0.9)
         }
     }
 

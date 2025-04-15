@@ -248,8 +248,8 @@ public class RichContentEditorViewController: UIViewController {
 
     private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (controller: RichContentEditorViewController, _) in
-            controller.getHTML { [weak self] htmlString in
+        registerForTraitChanges(traits) { (self: RichContentEditorViewController, _) in
+            self.getHTML { [weak self] htmlString in
                 self?.html = htmlString
             }
         }

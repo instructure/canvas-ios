@@ -355,12 +355,13 @@ open class CoreWebView: WKWebView {
 
     private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (webView: CoreWebView, _) in
-            webView.updateInterfaceStyle()
+        registerForTraitChanges(traits) { (self: CoreWebView, _) in
+            self.updateInterfaceStyle()
         }
     }
 
     func updateInterfaceStyle() {
+        let traitCollection = viewController?.traitCollection ?? traitCollection
         themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
     }
 }

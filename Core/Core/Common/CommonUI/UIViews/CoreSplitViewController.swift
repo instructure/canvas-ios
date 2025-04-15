@@ -111,8 +111,8 @@ public class CoreSplitViewController: UISplitViewController {
 
     private func registerForTraitChanges() {
         let traits: [UITrait] = [UITraitVerticalSizeClass.self, UITraitHorizontalSizeClass.self, UITraitLayoutDirection.self]
-        registerForTraitChanges(traits) { (controller: CoreSplitViewController, _) in
-            controller.updateTitleViews()
+        registerForTraitChanges(traits) { (self: CoreSplitViewController, _) in
+            self.updateTitleViews()
         }
     }
 }

@@ -117,9 +117,9 @@ class CalendarDaysViewController: UIViewController {
 
     private func registerForTraitChanges() {
         let traits = [UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (controller: CalendarDaysViewController, _) in
+        registerForTraitChanges(traits) { (self: CalendarDaysViewController, _) in
             // Manually refresh the spacing upon rotation
-            controller.weeksStackView.spacing = controller.weekGap
+            self.weeksStackView.spacing = self.weekGap
         }
     }
 
@@ -308,11 +308,11 @@ class CalendarDayButton: UIButton {
         dotContainer.isHidden = isSelected
     }
 
-    func registerForTraitChanges() {
+    private func registerForTraitChanges() {
         let traits = [UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (button: CalendarDayButton, _) in
+        registerForTraitChanges(traits) { (self: CalendarDayButton, _) in
             // Manually refresh the spacing upon rotation
-            button.dotSpacingConstraint?.constant = button.dotSpacing
+            self.dotSpacingConstraint?.constant = self.dotSpacing
         }
     }
 }

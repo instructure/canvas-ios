@@ -167,8 +167,12 @@ extension AudioRecorderViewController {
 }
 
 public protocol AudioSessionProtocol {
-    var recordPermission: AVAudioSession.RecordPermission { get }
+    var recordPermission: AVAudioApplication.recordPermission { get }
     func requestRecordPermission(_ response: @escaping (Bool) -> Void)
 }
 
-extension AVAudioSession: AudioSessionProtocol {}
+extension AVAudioSession: AudioSessionProtocol {
+    public var recordPermission: AVAudioApplication.recordPermission {
+        .undetermined
+    }
+}

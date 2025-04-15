@@ -52,11 +52,11 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     /// When the app was started in light mode and turned to dark the selected color was not updated so we do a force refresh.
     private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (controller: TeacherTabBarController, _) in
-            controller.tabBar.useGlobalNavStyle()
+        registerForTraitChanges(traits) { (self: TeacherTabBarController, _) in
+            self.tabBar.useGlobalNavStyle()
 
             // This changes the elevated tab bar's text color (but for some reason only in light mode)
-            controller.view.tintColor = Brand.shared.tabBarHighlightColor
+            self.view.tintColor = Brand.shared.tabBarHighlightColor
         }
     }
 

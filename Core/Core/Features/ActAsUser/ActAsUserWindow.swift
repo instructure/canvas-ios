@@ -89,11 +89,11 @@ public class ActAsUserWindow: UIWindow {
 
     private func registerForTraitChanges() {
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (actAsUserWindow: ActAsUserWindow, _) in
+        registerForTraitChanges(traits) { (self: ActAsUserWindow, _) in
             NotificationCenter.default.post(
                 name: .windowUserInterfaceStyleDidChange,
                 object: nil,
-                userInfo: ["style": actAsUserWindow.traitCollection.userInterfaceStyle]
+                userInfo: ["style": self.traitCollection.userInterfaceStyle]
             )
         }
     }

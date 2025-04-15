@@ -205,8 +205,8 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
 
     private func registerForTraitChanges() {
         let traits: [UITrait] = [UITraitHorizontalSizeClass.self, UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (controller: DiscussionReplyViewController, _) in
-            controller.heightChanged()
+        registerForTraitChanges(traits) { (self: DiscussionReplyViewController, _) in
+            self.heightChanged()
         }
     }
 

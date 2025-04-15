@@ -269,9 +269,9 @@ class RubricCircleView: UIView {
             UITraitHorizontalSizeClass.self,
             UITraitLayoutDirection.self
         ]
-        registerForTraitChanges(traits) { (view: RubricCircleView, _) in
-            if view.buttonsDidLayout {
-                view.setupButtons()
+        registerForTraitChanges(traits) { (self: RubricCircleView, _) in
+            if self.buttonsDidLayout {
+                self.setupButtons()
             }
         }
     }

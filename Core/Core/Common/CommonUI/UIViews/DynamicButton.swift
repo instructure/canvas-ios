@@ -99,10 +99,10 @@ open class DynamicButton: UIButton {
         /// Border is set by using `cgColor` which doesn't change when
         /// the light/dark theme changes so we have to manually force an update.
         let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (button: DynamicButton, _) in
+        registerForTraitChanges(traits) { (self: DynamicButton, _) in
             /// Setting an invalid color will spam "CUICatalog: Invalid asset name supplied: ''" error to the console
-            if button.borderColorName != "" {
-                button.didSetBorderColorName()
+            if self.borderColorName != "" {
+                self.didSetBorderColorName()
             }
         }
     }
