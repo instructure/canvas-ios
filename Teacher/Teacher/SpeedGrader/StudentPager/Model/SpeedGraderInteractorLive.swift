@@ -87,7 +87,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     }
 
     func refreshSubmission(forUserId: String) {
-        let submissionUseCase = GetSubmission(context: context, assignmentID: assignmentID, userID: userID)
+        let submissionUseCase = GetSubmission(context: context, assignmentID: assignmentID, userID: forUserId)
         ReactiveStore(useCase: submissionUseCase, environment: env)
             .getEntities(ignoreCache: true)
             .sink()
