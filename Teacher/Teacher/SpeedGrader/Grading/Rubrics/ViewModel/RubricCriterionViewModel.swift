@@ -36,13 +36,13 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
     // MARK: - Outputs
 
     var shouldShowLongDescriptionButton: Bool {
-        criterion.longDesc.isEmpty == false
+        criterion.longDescription.isEmpty == false
     }
     var shouldShowRubricNotUsedForScoringMessage: Bool {
         criterion.ignoreForScoring
     }
     var description: String {
-        criterion.desc
+        criterion.shortDescription
     }
     var shouldShowRubricRatings: Bool {
         !isFreeFormCommentsEnabled
@@ -107,8 +107,8 @@ class RubricCriterionViewModel: ObservableObject, Identifiable {
 
     func didTapShowLongDescriptionButton() {
         let web = CoreWebViewController()
-        web.title = criterion.desc
-        web.webView.loadHTMLString(criterion.longDesc)
+        web.title = criterion.shortDescription
+        web.webView.loadHTMLString(criterion.longDescription)
         web.addDoneButton(side: .right)
         router.show(web, from: controller, options: .modal(embedInNav: true))
     }

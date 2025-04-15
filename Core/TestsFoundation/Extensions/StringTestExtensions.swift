@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,10 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-open class OfflineE2ETest: E2ETestCase {
-    open override func tearDown() {
-        // In case the tests fail at a point where the internet connection is turned off
-        setNetworkStateOnline()
-        super.tearDown()
+import Foundation
+
+extension String {
+    public var testDescription: String {
+        "(\"" + self + "\")"
+    }
+}
+
+extension String? {
+    public var testDescription: String {
+        (self ?? "nil").testDescription
     }
 }

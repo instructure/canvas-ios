@@ -27,7 +27,7 @@ protocol RubricGradingInteractor {
     var isRubricScoreAvailable: CurrentValueSubject<Bool, Never> { get }
 
     func clearRating(criterionId: String)
-    func selectRating(criterionId: String, points: Double, ratingId: RubricRatingId)
+    func selectRating(criterionId: String, points: Double, ratingId: String)
     func hasAssessmentUserComment(criterionId: String) -> Bool
     func updateComment(criterionId: String, comment: String?)
 }
@@ -59,11 +59,11 @@ class RubricGradingInteractorLive: RubricGradingInteractor {
     ) {
         self.assignment = assignment
         self.submission = submission
-        self.assessments = assessmentsSubject.eraseToAnyPublisher()
+        self.assessments = assessmentsSubject.removeDuplicates().eraseToAnyPublisher()
 
-        uploadGradesOnAssessmentChange()
-        calculateRubricScoreOnAssessmentChange()
-        calculateRubricScoreAvailabilityOnAssessmentChange(useRubricForGrading: assignment.useRubricForGrading)
+        uploadGrades(onChangeOf: assessmentsSubject)
+        calculateRubricScore(onChangeOf: assessmentsSubject)
+        calculateRubricScoreAvailability(onChangeOf: assessmentsSubject, useRubricForGrading: assignment.useRubricForGrading)
 
         let loadedAssessments = (submission.rubricAssessments ?? [:]).mapValues { $0.apiEntity }
         assessmentsSubject.send(loadedAssessments)
@@ -81,7 +81,7 @@ class RubricGradingInteractorLive: RubricGradingInteractor {
     func selectRating(
         criterionId: String,
         points: Double,
-        ratingId: RubricRatingId
+        ratingId: String
     ) {
         var assessments = assessmentsSubject.value
         let oldCommentOnCriterion = assessments[criterionId]?.comments
@@ -104,14 +104,16 @@ class RubricGradingInteractorLive: RubricGradingInteractor {
         assessments[criterionId] = APIRubricAssessment(
             comments: comment,
             points: oldAssessment?.points,
-            rating_id: oldAssessment?.rating_id ?? .customRating
+            rating_id: oldAssessment?.rating_id ?? APIRubricAssessment.customRatingId
         )
         assessmentsSubject.send(assessments)
     }
 
     // MARK: - Private Methods
 
-    private func calculateRubricScoreOnAssessmentChange() {
+    private func calculateRubricScore(
+        onChangeOf assessmentsSubject: CurrentValueSubject<APIRubricAssessmentMap, Never>
+    ) {
         assessmentsSubject
             .map { [assignment] in
                 var points = 0.0
@@ -126,7 +128,10 @@ class RubricGradingInteractorLive: RubricGradingInteractor {
             .store(in: &subscriptions)
     }
 
-    private func calculateRubricScoreAvailabilityOnAssessmentChange(useRubricForGrading: Bool) {
+    private func calculateRubricScoreAvailability(
+        onChangeOf assessmentsSubject: CurrentValueSubject<APIRubricAssessmentMap, Never>,
+        useRubricForGrading: Bool
+    ) {
         assessmentsSubject
             .map {
                 guard useRubricForGrading else { return false }
@@ -140,7 +145,7 @@ class RubricGradingInteractorLive: RubricGradingInteractor {
             .store(in: &subscriptions)
     }
 
-    private func uploadGradesOnAssessmentChange() {
+    private func uploadGrades(onChangeOf assessmentsSubject: CurrentValueSubject<APIRubricAssessmentMap, Never>) {
         assessmentsSubject
             .dropFirst(2) // 1st is the initial value, 2nd is the load from the submission
             .sink { [weak self] _ in

@@ -37,18 +37,23 @@ public class GetAssignmentsByGroup: UseCase {
     private let gradingPeriodID: String?
     private let courseID: String
     private let gradedOnly: Bool
+    private let userID: String?
     private var subscriptions = Set<AnyCancellable>()
 
     /// - parameters:
     ///     - gradingPeriodID: The grading period used to filter assignments. This parameter only affects the CoreData filtering, in the background all grading periods' assignments are fetched.
+    ///     - gradedOnly: If true, only assignments that can be graded are fetched, so "No submission" type assignments will be ignored.
+    ///     - userID: The user ID used to filter assignments. This parameter only affects the CoreData filtering, in the background all users' assignments are fetched (for parent users).
     public init(
         courseID: String,
         gradingPeriodID: String? = nil,
-        gradedOnly: Bool = false
+        gradedOnly: Bool = false,
+        userID: String? = nil
     ) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.gradedOnly = gradedOnly
+        self.userID = userID
 
         let predicate: NSPredicate = {
             var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
@@ -60,6 +65,13 @@ public class GetAssignmentsByGroup: UseCase {
             if let gradingPeriodID {
                 predicate = predicate.and(NSPredicate(format: "gradingPeriod.id == %@", gradingPeriodID))
             }
+
+            if let userID {
+                // Because even unsubmitted assignments have at least one placeholder submission for a user
+                // we can use that to determine if the assignment is assigned to a user
+                predicate = predicate.and(NSPredicate(format: "ANY submissions.userID == %@", userID))
+            }
+
             predicate = predicate.and(NSPredicate(key: #keyPath(Assignment.hideInGradeBook), equals: false))
 
             return predicate
