@@ -83,7 +83,7 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
             assignmentID: "1",
             userID: "1",
             filter: [.needsGrading],
-            env: environment,
+            env: environment
         )
         controller = SpeedGraderViewController(
             env: environment,
@@ -95,10 +95,10 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
 
         // THEN
         waitForInteractorToFinishLoading(interactor)
-        guard case .data(_, let submissions, _) = interactor.state.value else {
+        guard case .data = interactor.state.value else {
             return XCTFail("Expected loaded state")
         }
-        XCTAssertEqual(submissions.count, 1)
+        XCTAssertEqual(interactor.data?.submissions.count, 1)
     }
 
     func test_normalizeUserID() {
