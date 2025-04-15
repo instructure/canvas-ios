@@ -27,11 +27,11 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
     lazy var controller = SpeedGraderViewController(
         env: environment,
         interactor: SpeedGraderInteractorLive(
-            env: environment,
             context: .course("1"),
             assignmentID: "1",
             userID: "1",
-            filter: []
+            filter: [],
+            env: environment
         )
     )
 
@@ -54,11 +54,11 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
         controller = SpeedGraderViewController(
             env: environment,
             interactor: SpeedGraderInteractorLive(
-                env: environment,
                 context: .course("1"),
                 assignmentID: "1",
                 userID: "bogus",
-                filter: []
+                filter: [],
+                env: environment
             )
         )
         controller.view.layoutIfNeeded()
@@ -79,11 +79,11 @@ class SpeedGraderViewControllerTests: TeacherTestCase {
             .make(id: "2", course_id: "1", enrollment_state: .inactive, user_id: "2")
         ])
         let interactor = SpeedGraderInteractorLive(
-            env: environment,
             context: .course("1"),
             assignmentID: "1",
             userID: "1",
-            filter: [.needsGrading]
+            filter: [.needsGrading],
+            env: environment,
         )
         controller = SpeedGraderViewController(
             env: environment,

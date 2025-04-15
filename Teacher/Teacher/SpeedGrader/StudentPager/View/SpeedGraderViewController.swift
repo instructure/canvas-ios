@@ -67,12 +67,8 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
             .sink { [weak self] state in
                 switch state {
                 case .loading: break
-                case .data(let assignment, let submissions, let focusedSubmissionIndex):
-                    self?.showGradingView(
-                        assignment: assignment,
-                        submissions: submissions,
-                        focusedSubmissionIndex: focusedSubmissionIndex
-                    )
+                case .data:
+                    self?.showGradingView()
                 case .error:
                     self?.showEmptyView()
                 }
@@ -86,17 +82,14 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         hideNavigationBar()
     }
 
-    private func showGradingView(
-        assignment: Assignment,
-        submissions: [Submission],
-        focusedSubmissionIndex: Int
-    ) {
+    private func showGradingView() {
+        guard let data = interactor.data else { return }
         loadingView.unembed()
         emptyView.unembed()
         pages.dataSource = self
         pages.scrollView.contentInsetAdjustmentBehavior = .never
         pages.scrollView.backgroundColor = .backgroundMedium
-        if let page = controller(for: focusedSubmissionIndex) {
+        if let page = controller(for: data.focusedSubmissionIndex) {
             pages.setCurrentPage(page)
         }
         embed(pages, in: view) { pages, view in
@@ -169,18 +162,18 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
 
     func grader(for index: Int) -> SubmissionGrader? {
         guard
-            case .data(let assignment, let submissions, _) = interactor.state.value,
+            let data = interactor.data,
             index >= 0,
-            index < submissions.count
+            index < data.submissions.count
         else { return nil }
 
         return SubmissionGrader(
             env: env,
             index: index,
-            assignment: assignment,
-            submission: submissions[index],
+            assignment: data.assignment,
+            submission: data.submissions[index],
             handleRefresh: { [weak self] in
-                self?.interactor.refreshSubmission(forUserId: submissions[index].userID)
+                self?.interactor.refreshSubmission(forUserId: data.submissions[index].userID)
             }
         )
     }

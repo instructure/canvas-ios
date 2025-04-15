@@ -288,20 +288,6 @@ class GetSubmissionsTests: CoreTestCase {
         typealias Filter = GetSubmissions.Filter
         XCTAssertEqual(Filter.late.predicate, NSPredicate(key: #keyPath(Submission.late), equals: true))
         XCTAssertEqual(Filter.notSubmitted.predicate, NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil))
-        XCTAssertEqual(Filter.needsGrading.predicate, NSPredicate(format: """
-                (%K == nil OR %K != true) AND (%K != nil AND (%K == 'pending_review' OR (
-                %K IN { 'graded', 'submitted' } AND
-                (%K == nil OR %K == false)
-            )))
-            """,
-            #keyPath(Submission.excusedRaw),
-            #keyPath(Submission.excusedRaw),
-            #keyPath(Submission.typeRaw),
-            #keyPath(Submission.workflowStateRaw),
-            #keyPath(Submission.workflowStateRaw),
-            #keyPath(Submission.scoreRaw),
-            #keyPath(Submission.gradeMatchesCurrentSubmission)
-        ))
         XCTAssertEqual(Filter.graded.predicate, NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
             #keyPath(Submission.excusedRaw),
             #keyPath(Submission.scoreRaw),

@@ -22,6 +22,7 @@ import Foundation
 
 class SpeedGraderInteractorLive: SpeedGraderInteractor {
     let state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
+    private(set) var data: SpeedGraderData?
 
     public let assignmentID: String
     public let userID: String
@@ -32,11 +33,11 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        env: AppEnvironment,
         context: Context,
         assignmentID: String,
         userID: String,
-        filter: [GetSubmissions.Filter]
+        filter: [GetSubmissions.Filter],
+        env: AppEnvironment
     ) {
         self.env = env
         self.context = context
@@ -67,25 +68,30 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 guard let self else { return }
 
                 if submissions.isEmpty {
-                    self.state.send(.error(.submissionNotFound))
+                    state.send(.error(.submissionNotFound))
                     return
                 }
 
-                guard let focusedSubmissionIndex = submissions.firstIndex(where: { self.userID == SpeedGraderAllUsersUserID || $0.userID == self.userID }) else {
-                    self.state.send(.error(.userIdNotFound))
+                let firstIndex = (userID == SpeedGraderAllUsersUserID)
+                    ? submissions.firstIndex { _ in true }
+                    : submissions.firstIndex { $0.userID == self.userID }
+
+                guard let focusedSubmissionIndex = firstIndex else {
+                    state.send(.error(.userIdNotFound))
                     return
                 }
 
-                let data = SpeedGraderInteractorState.data(
+                data = SpeedGraderData(
                     assignment: assignment,
                     submissions: submissions,
                     focusedSubmissionIndex: focusedSubmissionIndex
                 )
-                self.state.send(data)
+                state.send(.data)
             }
             .store(in: &subscriptions)
     }
 
+    /// This only refreshes the submission in CoreData but won't update the entity published in the interactor's state.
     func refreshSubmission(forUserId: String) {
         let submissionUseCase = GetSubmission(context: context, assignmentID: assignmentID, userID: forUserId)
         ReactiveStore(useCase: submissionUseCase, environment: env)
