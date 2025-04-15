@@ -46,13 +46,10 @@ public struct APIRubricSettings: Codable, Equatable {
 public typealias RubricID = String
 public typealias APIRubricAssessmentMap = [RubricID: APIRubricAssessment]
 
-public typealias RubricRatingId = String
-extension RubricRatingId {
-    public static var customRating: RubricRatingId { "" }
-}
-
 // https://canvas.instructure.com/doc/api/rubrics.html#RubricAssessment
 public struct APIRubricAssessment: Codable, Equatable {
+    public static let customRatingId = ""
+
     /** This is the user entered comment for the rubric. Used when free-form rubric comments are enabled on the assignment. */
     public let comments: String?
     /** This is the user entered custom score for the rubric. */
@@ -63,7 +60,7 @@ public struct APIRubricAssessment: Codable, Equatable {
     public init(
         comments: String? = nil,
         points: Double? = nil,
-        rating_id: RubricRatingId = .customRating
+        rating_id: String = customRatingId
     ) {
         self.comments = comments
         self.points = points

@@ -28,12 +28,6 @@ open class BaseHelper {
 
     static func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
 
-    public static func pullToRefresh() {
-        let window = app.find(type: .window)
-        window.relativeCoordinate(x: 0.5, y: 0.2)
-            .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
-    }
-
     public static func createUser(type: DSUserType, enrollIn course: DSCourse) -> DSUser {
         var user = seeder.createUser()
         let enrollment: DSEnrollment

@@ -27,7 +27,10 @@ public extension XCTestCase {
     func XCTAssertCompletableSingleOutputEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
-        timeout: TimeInterval = 1
+        timeout: TimeInterval = 1,
+        _ messageSuffix: String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) where Output: Equatable, Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
         outputExpectation.expectedFulfillmentCount = 1
@@ -40,7 +43,7 @@ public extension XCTestCase {
                     finishExpectation.fulfill()
                 }
             }, receiveValue: { output in
-                XCTAssertEqual(output, expectedOutput)
+                XCTAssertEqual(output, expectedOutput, messageSuffix, file: file, line: line)
                 outputExpectation.fulfill()
             })
 
@@ -82,7 +85,10 @@ public extension XCTestCase {
     func XCTAssertSingleOutputEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
-        timeout: TimeInterval = 1
+        timeout: TimeInterval = 1,
+        _ messageSuffix: String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) where Output: Equatable, Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
         outputExpectation.expectedFulfillmentCount = 1
@@ -91,7 +97,7 @@ public extension XCTestCase {
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { output in
-                    XCTAssertEqual(output, expectedOutput)
+                    XCTAssertEqual(output, expectedOutput, messageSuffix, file: file, line: line)
                     outputExpectation.fulfill()
                 }
             )
@@ -100,10 +106,6 @@ public extension XCTestCase {
         subscription.cancel()
     }
 
-    /**
-     - parameters:
-        - valueCheck: Return true if the assertation should pass.
-     */
     func XCTAssertFirstValue<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         timeout: TimeInterval = 1,
@@ -132,7 +134,9 @@ public extension XCTestCase {
      */
     func XCTAssertFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 1
+        timeout: TimeInterval = 1,
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) where Failure: Error {
         let finishExpectation = expectation(description: "Publisher finished")
         finishExpectation.expectedFulfillmentCount = 1
@@ -142,7 +146,7 @@ public extension XCTestCase {
                 finishExpectation.fulfill()
 
                 if case let .failure(error) = completion {
-                    XCTFail("Unexpected failure while waiting on finish event: \(error)")
+                    XCTFail("Unexpected failure while waiting on finish event: \(error)", file: file, line: line)
                 }
             } receiveValue: { _ in
             }
@@ -154,7 +158,9 @@ public extension XCTestCase {
     func XCTAssertFailure<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         assertOnOutput: Bool = true,
-        timeout: TimeInterval = 1
+        timeout: TimeInterval = 1,
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) where Failure: Error {
         let finishExpectation = expectation(description: "Publisher failed")
         finishExpectation.expectedFulfillmentCount = 1
@@ -164,11 +170,11 @@ public extension XCTestCase {
                 finishExpectation.fulfill()
 
                 if case .finished = completion {
-                    XCTFail("Unexpected finish event while waiting on failure.")
+                    XCTFail("Unexpected finish event while waiting on failure.", file: file, line: line)
                 }
             } receiveValue: { _ in
                 if assertOnOutput {
-                    XCTFail("Received unexpected output from publisher.")
+                    XCTFail("Received unexpected output from publisher.", file: file, line: line)
                 }
             }
 
@@ -180,7 +186,10 @@ public extension XCTestCase {
         _ publisher: any Publisher<Output, Failure>,
         _ failure: Failure,
         assertOnOutput: Bool = true,
-        timeout: TimeInterval = 1
+        timeout: TimeInterval = 1,
+        _ messageSuffix: String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) where Failure: Error, Failure: Equatable {
         let finishExpectation = expectation(description: "Publisher failed")
         finishExpectation.expectedFulfillmentCount = 1
@@ -191,13 +200,13 @@ public extension XCTestCase {
 
                 switch completion {
                 case .finished:
-                    XCTFail("Unexpected finish event while waiting on failure.")
+                    XCTFail("Unexpected finish event while waiting on failure.", file: file, line: line)
                 case .failure(let error):
-                    XCTAssertEqual(failure, error)
+                    XCTAssertEqual(failure, error, messageSuffix, file: file, line: line)
                 }
             } receiveValue: { _ in
                 if assertOnOutput {
-                    XCTFail("Received unexpected output from publisher.")
+                    XCTFail("Received unexpected output from publisher.", file: file, line: line)
                 }
             }
 

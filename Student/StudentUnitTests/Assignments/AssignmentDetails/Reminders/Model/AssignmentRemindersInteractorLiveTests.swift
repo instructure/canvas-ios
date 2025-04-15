@@ -22,20 +22,36 @@ import TestsFoundation
 import XCTest
 
 class AssignmentRemindersInteractorLiveTests: StudentTestCase {
+
+    private enum TestConstants {
+        static let courseId = "some courseId"
+        static let assignmentId = "some assignmentId"
+        static let userId = "some userId"
+        static let dateNow = Date.make(year: 2100, month: 1, day: 15)
+        static let dueDate = dateNow.addDays(2)
+    }
+
     private var mockNotificationCenter: MockUserNotificationCenter!
     private var context: AssignmentReminderContext!
 
     override func setUp() {
         super.setUp()
-        Clock.mockNow(Date.make(year: 2100, month: 1, day: 15))
+        Clock.mockNow(TestConstants.dateNow)
         mockNotificationCenter = MockUserNotificationCenter()
         context = AssignmentReminderContext(
-            courseId: "1",
-            assignmentId: "2",
-            userId: "3",
+            courseId: TestConstants.courseId,
+            assignmentId: TestConstants.assignmentId,
+            userId: TestConstants.userId,
             assignmentName: "test",
-            dueDate: Clock.now.addDays(2)
+            dueDate: TestConstants.dueDate
         )
+    }
+
+    override func tearDown() {
+        Clock.reset()
+        mockNotificationCenter = nil
+        context = nil
+        super.tearDown()
     }
 
     func testReminderSectionVisibleWhenDueDateInFuture() {
@@ -56,8 +72,8 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
     func testLoadsRemindersForCurrentAssignment() {
         mockNotificationCenter.requests = [
-            .make(),
-            UNNotificationRequest.make(id: "11", assignmentId: "22")
+            makeNotification(id: "1", timeText: "1 minute before"),
+            makeNotification(id: "42", assignmentId: "another id", timeText: "another time")
         ]
         let testee = AssignmentRemindersInteractorLive(notificationCenter: mockNotificationCenter)
 
@@ -70,12 +86,15 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         }
     }
 
-    // FIXME: flaky test (at least on CI)
     func testListsRemindersInChronologicalOrder() {
+        // mocking the already calculated notification trigger time, so we need to use absolute times, not just deltas
+        let tMinus3 = triggerDateComponents(from: TestConstants.dueDate.addMinutes(-3))
+        let tMinus2 = triggerDateComponents(from: TestConstants.dueDate.addMinutes(-2))
+        let tMinus1 = triggerDateComponents(from: TestConstants.dueDate.addMinutes(-1))
         mockNotificationCenter.requests = [
-            .make(id: "1", timeText: "3 minutes before", trigger: .init(minute: 57)),
-            .make(id: "2", timeText: "1 minute before", trigger: .init(minute: 59)),
-            .make(id: "3", timeText: "2 minutes before", trigger: .init(minute: 58))
+            makeNotification(id: "1", timeText: "3 minutes before", trigger: tMinus3),
+            makeNotification(id: "2", timeText: "1 minute before", trigger: tMinus1),
+            makeNotification(id: "3", timeText: "2 minutes before", trigger: tMinus2)
         ]
         let testee = AssignmentRemindersInteractorLive(notificationCenter: mockNotificationCenter)
 
@@ -121,11 +140,11 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         let dueText = "5 minutes"
         XCTAssertEqual(notification.content.body, String(localized: "This assignment is due in \(dueText)") + ": test")
         typealias Key = UNNotificationContent.AssignmentReminderKeys
-        XCTAssertEqual(notification.content.userInfo[Key.courseId.rawValue] as? String, "1")
-        XCTAssertEqual(notification.content.userInfo[Key.assignmentId.rawValue] as? String, "2")
-        XCTAssertEqual(notification.content.userInfo[Key.userId.rawValue] as? String, "3")
+        XCTAssertEqual(notification.content.userInfo[Key.courseId.rawValue] as? String, TestConstants.courseId)
+        XCTAssertEqual(notification.content.userInfo[Key.assignmentId.rawValue] as? String, TestConstants.assignmentId)
+        XCTAssertEqual(notification.content.userInfo[Key.userId.rawValue] as? String, TestConstants.userId)
         XCTAssertEqual(notification.content.userInfo[Key.triggerTimeText.rawValue] as? String, "5 minutes before")
-        XCTAssertEqual(notification.content.userInfo[UNNotificationContent.RouteURLKey] as? String, "courses/1/assignments/2")
+        XCTAssertEqual(notification.content.userInfo[UNNotificationContent.RouteURLKey] as? String, "courses/\(TestConstants.courseId)/assignments/\(TestConstants.assignmentId)")
 
         guard let timeTrigger = notification.trigger as? UNCalendarNotificationTrigger else {
             return XCTFail()
@@ -197,16 +216,15 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
         XCTAssertTrue(testee.reminders.value.isEmpty)
     }
-}
 
-extension UNNotificationRequest {
+    // MARK: - Helpers
 
-    static func make(
-        id: String = "1",
-        courseId: String = "1",
-        assignmentId: String = "2",
-        userId: String = "3",
-        timeText: String = "1 minute before",
+    private func makeNotification(
+        id: String = "",
+        courseId: String = TestConstants.courseId,
+        assignmentId: String = TestConstants.assignmentId,
+        userId: String = TestConstants.userId,
+        timeText: String = "",
         trigger: DateComponents = .init(minute: 60)
     ) -> UNNotificationRequest {
         let content = UNMutableNotificationContent()
@@ -220,5 +238,9 @@ extension UNNotificationRequest {
             identifier: id,
             content: content,
             trigger: UNCalendarNotificationTrigger(dateMatching: trigger, repeats: false))
+    }
+
+    private func triggerDateComponents(from date: Date) -> DateComponents {
+        Cal.currentCalendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
     }
 }
