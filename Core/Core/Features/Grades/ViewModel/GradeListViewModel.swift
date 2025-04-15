@@ -142,7 +142,26 @@ public final class GradeListViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         loadSortPreferences()
-        loadBaseDataAndGrades(ignoreCache: false)
+        initialLoadBaseDataAndGrades()
+    }
+
+    private func initialLoadBaseDataAndGrades() {
+        interactor
+            .loadBaseData(ignoreCache: false)
+            .map { [weak self] gradingPeriodData in
+                self?.gradeFilterInteractor.saveSelectedGradingPeriod(id: gradingPeriodData.currentlyActiveGradingPeriodID)
+                self?.selectedGradingPeriod = gradingPeriodData.currentlyActiveGradingPeriodID
+            }
+            .mapToVoid()
+            .receive(on: scheduler)
+            .sink(receiveCompletion: { [weak self] completion in
+                if case .failure = completion {
+                    self?.state = .error
+                }
+            }, receiveValue: { [triggerGradeRefresh] in
+                triggerGradeRefresh.accept((false, nil))
+            })
+            .store(in: &subscriptions)
     }
 
     private func loadBaseDataAndGrades(ignoreCache: Bool, completionBlock: (() -> Void)? = nil) {
