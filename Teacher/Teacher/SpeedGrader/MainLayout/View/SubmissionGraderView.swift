@@ -236,6 +236,8 @@ struct SubmissionGraderView: View {
         }
     }
 
+    // MARK: - Drawer
+
     enum GraderTab: Int, CaseIterable { case grades, comments, files }
 
     private var segmentedTitles: [String] {
@@ -303,23 +305,45 @@ struct SubmissionGraderView: View {
         .clipped()
     }
 
+    private func snapDrawerTo(_ state: DrawerState) {
+        withTransaction(DrawerState.transaction) {
+            drawerState = state
+        }
+    }
+
+    private func isGraderTabOnScreen(_ tab: GraderTab, isDrawer: Bool) -> Bool {
+        let isTabSelected = (self.tab == tab)
+
+        if isDrawer {
+            return (drawerState != .min && isTabSelected)
+        } else {
+            return isTabSelected
+        }
+    }
+
+    // MARK: - Tab Contents
+
     @ViewBuilder
-    private func filesTab(
+    private func gradesTab(
         bottomInset: CGFloat,
         isDrawer: Bool,
-        fileID: Binding<String?>,
         geometry: GeometryProxy
     ) -> some View {
-        let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
+        let isGradesOnScreen = isGraderTabOnScreen(.grades, isDrawer: isDrawer)
         VStack(spacing: 0) {
-            SubmissionFileList(submission: viewModel.selectedAttempt, fileID: fileID)
-                .clipped()
+            SubmissionGrades(
+                assignment: viewModel.assignment,
+                containerHeight: geometry.size.height,
+                submission: viewModel.submission,
+                rubricsViewModel: rubricsViewModel
+            )
+            .clipped()
             Spacer().frame(height: bottomInset)
         }
         .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isFilesOnScreen)
-        .accessibilityFocused($focusedTab, equals: .files)
+        .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
+        .accessibility(hidden: !isGradesOnScreen)
+        .accessibilityFocused($focusedTab, equals: .grades)
     }
 
     @ViewBuilder
@@ -362,43 +386,25 @@ struct SubmissionGraderView: View {
     }
 
     @ViewBuilder
-    private func gradesTab(
+    private func filesTab(
         bottomInset: CGFloat,
         isDrawer: Bool,
+        fileID: Binding<String?>,
         geometry: GeometryProxy
     ) -> some View {
-        let isGradesOnScreen = isGraderTabOnScreen(.grades, isDrawer: isDrawer)
+        let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
         VStack(spacing: 0) {
-            SubmissionGrades(
-                assignment: viewModel.assignment,
-                containerHeight: geometry.size.height,
-                submission: viewModel.submission,
-                rubricsViewModel: rubricsViewModel
-            )
-            .clipped()
+            SubmissionFileList(submission: viewModel.selectedAttempt, fileID: fileID)
+                .clipped()
             Spacer().frame(height: bottomInset)
         }
         .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isGradesOnScreen)
-        .accessibilityFocused($focusedTab, equals: .grades)
+        .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
+        .accessibility(hidden: !isFilesOnScreen)
+        .accessibilityFocused($focusedTab, equals: .files)
     }
 
-    private func snapDrawerTo(_ state: DrawerState) {
-        withTransaction(DrawerState.transaction) {
-            drawerState = state
-        }
-    }
-
-    private func isGraderTabOnScreen(_ tab: GraderTab, isDrawer: Bool) -> Bool {
-        let isTabSelected = (self.tab == tab)
-
-        if isDrawer {
-            return (drawerState != .min && isTabSelected)
-        } else {
-            return isTabSelected
-        }
-    }
+    // MARK: - Rotation
 
     private func layoutForWidth(_ width: CGFloat) -> Layout {
         // On iPads if the app is backgrounded then it changes the device orientation back and forth causing the UI to re-render and the submission to re-load.
@@ -422,8 +428,4 @@ struct SubmissionGraderView: View {
 private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
     let bounded = max(fromMin, min(value, fromMax))
     return (((toMax - toMin) / (fromMax - fromMin)) * (bounded - fromMin)) + toMin
-}
-
-extension NSNotification.Name {
-    public static var SpeedGraderAttemptPickerChanged = NSNotification.Name("com.instructure.core.speedgrader-attempt-changed")
 }

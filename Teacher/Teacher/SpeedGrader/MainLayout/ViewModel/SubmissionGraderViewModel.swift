@@ -108,3 +108,7 @@ extension [Submission] {
         last?.attempt ?? 0
     }
 }
+
+extension NSNotification.Name {
+    public static var SpeedGraderAttemptPickerChanged = NSNotification.Name("com.instructure.core.speedgrader-attempt-changed")
+}
