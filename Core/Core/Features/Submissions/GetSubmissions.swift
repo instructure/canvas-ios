@@ -330,24 +330,14 @@ public class GetSubmissions: CollectionUseCase {
                 let notExcused = NSPredicate(format: "%K == nil OR %K != true", #keyPath(Submission.excusedRaw), #keyPath(Submission.excusedRaw))
                 let hasValidSubmissionType = NSPredicate(format: "%K != nil", #keyPath(Submission.typeRaw))
                 let isPendingReview = NSPredicate(format: "%K == 'pending_review'", #keyPath(Submission.workflowStateRaw))
+                let isGradedOrSubmitted = NSPredicate(format: "%K IN { 'graded', 'submitted' }", #keyPath(Submission.workflowStateRaw))
                 let hasNoScore = NSPredicate(format: "%K == nil", #keyPath(Submission.scoreRaw))
                 let isLatestAttemptNotGraded = NSPredicate(format: "%K == false", #keyPath(Submission.gradeMatchesCurrentSubmission))
-                let isGradedOrSubmitted = NSPredicate(format: "%K IN { 'graded', 'submitted' }", #keyPath(Submission.workflowStateRaw))
+                let isGradeOutDated = isGradedOrSubmitted.and(hasNoScore.or(isLatestAttemptNotGraded))
 
-                return NSCompoundPredicate(andPredicateWithSubpredicates: [
-                    notExcused,
-                    hasValidSubmissionType,
-                    NSCompoundPredicate(orPredicateWithSubpredicates: [
-                        isPendingReview,
-                        NSCompoundPredicate(andPredicateWithSubpredicates: [
-                            isGradedOrSubmitted,
-                            NSCompoundPredicate(orPredicateWithSubpredicates: [
-                                hasNoScore,
-                                isLatestAttemptNotGraded
-                            ])
-                        ])
-                    ])
-                ])
+                return notExcused
+                    .and(hasValidSubmissionType)
+                    .and(isPendingReview.or(isGradeOutDated))
             case .graded:
                 return NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
                     #keyPath(Submission.excusedRaw),

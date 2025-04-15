@@ -21,6 +21,8 @@ import Core
 
 protocol SpeedGraderInteractor {
     var state: CurrentValueSubject<SpeedGraderInteractorState, Never> { get }
+    var data: SpeedGraderData? { get }
+
     var assignmentID: String { get }
     var userID: String { get }
     var context: Context { get }
@@ -29,13 +31,15 @@ protocol SpeedGraderInteractor {
     func refreshSubmission(forUserId: String)
 }
 
+struct SpeedGraderData {
+    let assignment: Assignment
+    let submissions: [Submission]
+    let focusedSubmissionIndex: Int
+}
+
 enum SpeedGraderInteractorState {
     case loading
-    case data(
-        assignment: Assignment,
-        submissions: [Submission],
-        focusedSubmissionIndex: Int
-    )
+    case data
     case error(SpeedGraderInteractorError)
 }
 
