@@ -152,7 +152,7 @@ extension AudioRecorderViewController: AVAudioRecorderDelegate {
 }
 
 extension AudioRecorderViewController {
-    public static func requestPermission(audioSession: AudioSessionProtocol = AVAudioSession.sharedInstance(), callback: @escaping (Bool) -> Void) {
+    public static func requestPermission(audioSession: AudioSessionProtocol = AVAudioApplication.shared, callback: @escaping (Bool) -> Void) {
         switch audioSession.recordPermission {
         case .granted:
             callback(true)
@@ -171,8 +171,8 @@ public protocol AudioSessionProtocol {
     func requestRecordPermission(_ response: @escaping (Bool) -> Void)
 }
 
-extension AVAudioSession: AudioSessionProtocol {
-    public var recordPermission: AVAudioApplication.recordPermission {
-        .undetermined
+extension AVAudioApplication: AudioSessionProtocol {
+    public func requestRecordPermission(_ response: @escaping (Bool) -> Void) {
+        Self.requestRecordPermission(completionHandler: response)
     }
 }
