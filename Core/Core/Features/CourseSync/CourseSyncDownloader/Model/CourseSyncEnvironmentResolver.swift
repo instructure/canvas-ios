@@ -74,9 +74,5 @@ class CourseSyncEnvironmentResolverLive: CourseSyncEnvironmentResolver {
         .resolved(for: courseID.apiBaseURL)
     }
 
-    #if DEBUG
     init() {}
-    #else
-    private init() {}
-    #endif
 }
