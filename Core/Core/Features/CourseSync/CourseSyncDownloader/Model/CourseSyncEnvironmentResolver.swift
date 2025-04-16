@@ -73,4 +73,10 @@ class CourseSyncEnvironmentResolverLive: CourseSyncEnvironmentResolver {
     func targetEnvironment(for courseID: CourseSyncID) -> AppEnvironment {
         .resolved(for: courseID.apiBaseURL)
     }
+
+    #if DEBUG
+    init() {}
+    #else
+    private init() {}
+    #endif
 }
