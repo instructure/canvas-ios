@@ -32,6 +32,7 @@ final class AccountViewModel {
     // MARK: - Dependencies
 
     private let router: Router
+    private let getUserInteractor: GetUserInteractor
 
     // MARK: - Private properties
 
@@ -53,13 +54,7 @@ final class AccountViewModel {
         router: Router = AppEnvironment.shared.router
     ) {
         self.router = router
-
-        getUserInteractor
-            .getUser()
-            .map { $0.name }
-            .replaceError(with: "")
-            .assign(to: \.name, on: self)
-            .store(in: &subscriptions)
+        self.getUserInteractor = getUserInteractor
 
         confirmLogoutViewModel.userConfirmation()
             .sink {
@@ -79,6 +74,15 @@ final class AccountViewModel {
         if let url = URL(string: "/account/profile") {
             router.route(to: url, from: viewController)
         }
+    }
+
+    func getUserName() {
+        getUserInteractor
+            .getUser()
+            .map { $0.name }
+            .replaceError(with: "")
+            .assign(to: \.name, on: self)
+            .store(in: &subscriptions)
     }
 
     func passwordDidTap() {}
