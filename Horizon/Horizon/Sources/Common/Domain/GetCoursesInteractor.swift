@@ -108,6 +108,11 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                             .collect()
                     }
             }
+            .map { courses in
+                courses.sorted {
+                    ($0.learningObjectCardViewModel != nil) && ($1.learningObjectCardViewModel == nil)
+                }
+            }
             .eraseToAnyPublisher()
     }
 
@@ -135,22 +140,30 @@ private extension CDDashboardCourse {
         let progress = completionPercentage / 100.0
 
         guard let nextModuleID, let nextModuleItemID else {
-            return Just(nil)
-                .eraseToAnyPublisher()
+            return Just(
+                DashboardCourse(
+                    name: name,
+                    progress: progress,
+                    courseId: courseID,
+                    learningObjectCardViewModel: nil
+                )
+            )
+            .eraseToAnyPublisher()
         }
 
         return ReactiveStore(
             useCase: GetModuleItem(
                 courseID: courseID,
                 moduleID: nextModuleID,
-                itemID: nextModuleItemID
+                itemID: nextModuleItemID,
+                include: [.content_details, .estimated_durations]
             )
         )
         .getEntities(ignoreCache: true)
         .replaceError(with: [])
         .compactMap { $0.first }
         .map { HModuleItem(from: $0) }
-        .map { item in
+        .map { [courseID] item in
             let moduleItem = LearningObjectCard(
                 moduleTitle: item.moduleName ?? "",
                 learningObjectName: item.title,
@@ -163,6 +176,7 @@ private extension CDDashboardCourse {
             return DashboardCourse(
                 name: name,
                 progress: progress,
+                courseId: courseID,
                 learningObjectCardViewModel: moduleItem
             )
         }

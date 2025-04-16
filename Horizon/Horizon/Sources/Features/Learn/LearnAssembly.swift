@@ -47,4 +47,29 @@ final class LearnAssembly {
             )
         )
     }
+
+    static func makeCourseDetailsView(
+        courseID: String,
+        course: HCourse? = nil
+    ) -> CourseDetailsView {
+        let appEnvironment = AppEnvironment.shared
+        return CourseDetailsView(
+            viewModel: .init(
+                router: appEnvironment.router,
+                getCoursesInteractor: makeGetCoursesInteractor(),
+                courseID: courseID,
+                course: course,
+                onShowTabBar: appEnvironment.tabBar(isVisible:)
+            ),
+            isBackButtonVisible: false
+        )
+    }
+
+    static func makeLearnView() -> UIViewController {
+        let viewModel = LearnViewModel(
+            getCoursesInteractor: GetCoursesInteractorLive()
+        )
+        let view = LearnView(viewModel: viewModel)
+        return  CoreHostingController(view)
+    }
 }
