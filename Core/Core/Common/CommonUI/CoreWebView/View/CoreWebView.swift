@@ -212,10 +212,10 @@ open class CoreWebView: WKWebView {
 
         let light: UIUserInterfaceStyle = isThemeInverted ? .dark : .light
         let dark: UIUserInterfaceStyle = isThemeInverted ? .light : .dark
-        let background = UIColor.backgroundLightest.hexString(userInterfaceStyle: light)
-        let backgroundDark = UIColor.backgroundLightest.hexString(userInterfaceStyle: dark)
-        let foreground = UIColor.textDarkest.hexString(userInterfaceStyle: light)
-        let foregroundDark = UIColor.textDarkest.hexString(userInterfaceStyle: dark)
+        let background = UIColor.backgroundLightest.hexString(for: light)
+        let backgroundDark = UIColor.backgroundLightest.hexString(for: dark)
+        let foreground = UIColor.textDarkest.hexString(for: light)
+        let foregroundDark = UIColor.textDarkest.hexString(for: dark)
 
            return """
                 body.dark-theme {

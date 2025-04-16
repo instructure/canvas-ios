@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="23H420" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E248" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -79,7 +79,7 @@
         <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
         <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="model" inverseEntity="MasteryPathAssignment"/>
         <relationship name="overrides" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentOverride" inverseName="assignment" inverseEntity="AssignmentOverride"/>
-        <relationship name="rubricRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
+        <relationship name="rubricRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDRubricCriterion" inverseName="assignment" inverseEntity="CDRubricCriterion"/>
         <relationship name="scoreStatistics" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ScoreStatistics" inverseName="assignment" inverseEntity="ScoreStatistics"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
         <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
@@ -206,6 +206,25 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDRubricCriterion" representedClassName="Core.CDRubricCriterion" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="ignoreForScoring" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="longDescription" attributeType="String"/>
+        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="shortDescription" attributeType="String"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubricRaw" inverseEntity="Assignment"/>
+        <relationship name="ratingsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDRubricRating" inverseName="rubric" inverseEntity="CDRubricRating"/>
+    </entity>
+    <entity name="CDRubricRating" representedClassName="Core.CDRubricRating" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="longDescription" attributeType="String"/>
+        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="shortDescription" attributeType="String"/>
+        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRubricCriterion" inverseName="ratingsRaw" inverseEntity="CDRubricCriterion"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
@@ -971,17 +990,6 @@
         <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
     </entity>
-    <entity name="Rubric" representedClassName="Core.Rubric" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="desc" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="ignoreForScoring" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="longDesc" attributeType="String"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubricRaw" inverseEntity="Assignment"/>
-        <relationship name="ratingsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RubricRating" inverseName="rubric" inverseEntity="RubricRating"/>
-    </entity>
     <entity name="RubricAssessment" representedClassName="Core.RubricAssessment" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String" defaultValueString="0"/>
@@ -989,14 +997,6 @@
         <attribute name="ratingID" attributeType="String"/>
         <attribute name="submissionID" attributeType="String" defaultValueString="0"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission"/>
-    </entity>
-    <entity name="RubricRating" representedClassName="Core.RubricRating" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="desc" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="longDesc" attributeType="String"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="ratingsRaw" inverseEntity="Rubric"/>
     </entity>
     <entity name="ScoreStatistics" representedClassName="Core.ScoreStatistics" syncable="YES">
         <attribute name="max" attributeType="Double" usesScalarValueType="YES"/>

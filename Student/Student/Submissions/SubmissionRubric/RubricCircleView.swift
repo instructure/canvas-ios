@@ -94,7 +94,7 @@ class RubricCircleView: UIView {
                 bgColor = UIColor.backgroundLightest
             }
 
-            let title = (rubric?.hideRubricPoints ?? false) ? (rubric?.rubricRatings[i].desc ?? "-") + RubricCircleView.stringPadding : RubricCircleView.formatter.string(for: r) ?? ""
+            let title = (rubric?.hideRubricPoints ?? false) ? (rubric?.rubricRatings[i].shortDescription ?? "-") + RubricCircleView.stringPadding : RubricCircleView.formatter.string(for: r) ?? ""
             let size = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)])
             let circleWidth = ceil( max( RubricCircleView.w, size.width ) )
 
@@ -249,7 +249,7 @@ class RubricCircleView: UIView {
         var rows: CGFloat = 1
         var total: CGFloat = 0.0
         rubric.rubricRatings.forEach { r in
-            let str = r.desc + stringPadding
+            let str = r.shortDescription + stringPadding
             let fontAttributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)]
             let size = str.size(withAttributes: fontAttributes)
             let width = ceil( max(w, size.width) )

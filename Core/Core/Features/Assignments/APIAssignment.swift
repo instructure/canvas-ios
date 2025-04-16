@@ -56,7 +56,7 @@ public struct APIAssignment: Codable, Equatable {
     let position: Int?
     let published: Bool?
     let quiz_id: ID?
-    var rubric: [APIRubric]?
+    var rubric: [APIRubricCriterion]?
     var rubric_settings: APIRubricSettings?
     let score_statistics: APIAssignmentScoreStatistics?
     var submission: APIList<APISubmission>?
@@ -144,7 +144,7 @@ extension APIAssignment {
         position: Int? = 0,
         published: Bool? = true,
         quiz_id: ID? = nil,
-        rubric: [APIRubric]? = nil,
+        rubric: [APIRubricCriterion]? = nil,
         rubric_settings: APIRubricSettings? = .make(),
         score_statistics: APIAssignmentScoreStatistics? = nil,
         submission: APISubmission? = .make(submitted_at: nil, workflow_state: .unsubmitted),
