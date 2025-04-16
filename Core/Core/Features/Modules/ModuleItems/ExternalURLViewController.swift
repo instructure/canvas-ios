@@ -21,6 +21,7 @@ import SafariServices
 
 public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol {
     @IBOutlet public weak var nameLabel: UILabel!
+    @IBOutlet public weak var detailsLabel: UILabel!
     @IBOutlet weak var spinnerView: CircleProgressView!
 
     public var color: UIColor?
@@ -54,6 +55,10 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         nameLabel.text = name
+        detailsLabel.text = String(
+            localized: "This page can only be viewed from a web browser.",
+            bundle: .core
+        )
         setupTitleViewInNavbar(title: String(localized: "External URL", bundle: .core))
         colors.refresh()
         courses?.refresh()
