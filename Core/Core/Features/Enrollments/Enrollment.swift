@@ -150,7 +150,8 @@ extension Enrollment {
             return notAvailable
         }
         if let score = currentScore(gradingPeriodID: gradingPeriodID) {
-            return gradingScheme.convertScoreToLetterGrade(score: score) ?? notAvailable
+            let normalizedScore = score / 100.0
+            return gradingScheme.convertNormalizedScoreToLetterGrade(normalizedScore) ?? notAvailable
         }
         return notAvailable
     }
@@ -162,14 +163,16 @@ extension Enrollment {
             return notAvailable
         }
         if let score = finalScore(gradingPeriodID: gradingPeriodID) {
-            return gradingScheme.convertScoreToLetterGrade(score: score) ?? notAvailable
+            let normalizedScore = score / 100.0
+            return gradingScheme.convertNormalizedScoreToLetterGrade(normalizedScore) ?? notAvailable
         }
         return notAvailable
     }
 
     public func convertedLetterGrade(scorePercentage: Double, gradingScheme: GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
-        return gradingScheme.convertScoreToLetterGrade(score: scorePercentage) ?? notAvailable
+        let normalizedScore = scorePercentage / 100.0
+        return gradingScheme.convertNormalizedScoreToLetterGrade(normalizedScore) ?? notAvailable
     }
 }
 

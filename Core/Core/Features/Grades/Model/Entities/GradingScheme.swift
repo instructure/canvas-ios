@@ -21,14 +21,13 @@ import Foundation
 public protocol GradingScheme {
     var entries: [GradingSchemeEntry] { get }
 
-    func convertScoreToLetterGrade(score: Double) -> String?
+    func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String?
     func formattedScore(from value: Double) -> String?
 }
 
 public extension GradingScheme {
 
-    func convertScoreToLetterGrade(score: Double) -> String? {
-        let normalizedScore = score / 100.0
-        return entries.first { normalizedScore >= $0.value }?.name
+    func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String? {
+        entries.first { normalizedScore >= $0.value }?.name
     }
 }
