@@ -70,14 +70,14 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         return Publishers
             .Sequence(sequence: courseIDs)
             .receive(on: scheduler)
-            .flatMap({ [weak self] courseSyncID in
+            .flatMap { [weak self] courseSyncID in
                 guard let self else {
                     return Publishers.noInstanceFailure(output: CourseMediaData.self)
                 }
                 return getCourseMedia(courseSyncID: courseSyncID)
-            })
+            }
             .collect()
-            .flatMap({ allCoursesMedia in
+            .flatMap { allCoursesMedia in
 
                 return Publishers.Sequence<[CourseMediaData], Never>(
                     sequence: Dictionary(
@@ -92,7 +92,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                         return group
                     }
                 )
-            })
+            }
             .flatMap { [cleanupInteractor] mediaData in
 
                 return cleanupInteractor
@@ -103,10 +103,10 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     )
                     .map { mediaData }
             }
-            .flatMap({ [weak self] mediaData in
+            .flatMap { [weak self] mediaData in
                 guard let self else { return Publishers.noInstanceFailure(output: Void.self) }
                 return self.downloadMediaTweakingIFrameReferences(mediaData)
-            })
+            }
             .catch { error -> AnyPublisher<Void, Never> in
                 Logger.shared.error("Studio Offline Sync Failed: " + error.localizedDescription)
                 RemoteLogger.shared.logError(

@@ -21,6 +21,8 @@ import Foundation
 public protocol CourseSyncEnvironmentResolver {
     var userId: String { get }
     func targetEnvironment(for courseID: CourseSyncID) -> AppEnvironment
+    func loginSession(for courseID: CourseSyncID) -> LoginSession?
+    func sessionId(for courseID: CourseSyncID) -> String
     func offlineDirectory(for courseID: CourseSyncID) -> URL
     func offlineStudioDirectory(for courseID: CourseSyncID) -> URL
     func folderURL(forSection sectionName: String, ofCourse courseId: CourseSyncID) -> URL
@@ -38,10 +40,7 @@ public extension CourseSyncEnvironmentResolver {
     }
 
     func offlineDirectory(for courseID: CourseSyncID) -> URL {
-        URL
-            .Paths
-            .Offline
-            .rootURL(sessionID: sessionId(for: courseID))
+        URL.Paths.Offline.rootURL(sessionID: sessionId(for: courseID))
     }
 
     func offlineStudioDirectory(for courseID: CourseSyncID) -> URL {

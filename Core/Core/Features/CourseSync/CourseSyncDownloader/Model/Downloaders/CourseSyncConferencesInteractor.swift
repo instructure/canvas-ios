@@ -36,9 +36,11 @@ public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInt
     public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         let environment = envResolver.targetEnvironment(for: courseId)
         return Publishers
-            .Zip3(fetchColors(env: environment),
-                  fetchConferences(courseId: courseId, env: environment),
-                  fetchCourse(courseId: courseId, env: environment))
+            .Zip3(
+                fetchColors(env: environment),
+                fetchConferences(courseId: courseId, env: environment),
+                fetchCourse(courseId: courseId, env: environment)
+            )
             .mapToVoid()
             .eraseToAnyPublisher()
     }

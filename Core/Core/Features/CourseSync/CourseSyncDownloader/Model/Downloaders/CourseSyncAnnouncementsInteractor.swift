@@ -34,10 +34,12 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
 
     public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Publishers
-            .Zip4(fetchColors(),
-                  fetchCourse(courseId: courseId),
-                  fetchAnnouncements(courseId: courseId),
-                  fetchFeatureFlags(courseId: courseId))
+            .Zip4(
+                fetchColors(),
+                fetchCourse(courseId: courseId),
+                fetchAnnouncements(courseId: courseId),
+                fetchFeatureFlags(courseId: courseId)
+            )
             .mapToVoid()
             .eraseToAnyPublisher()
     }
@@ -49,7 +51,8 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
     private func fetchCourse(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         fetchUseCase(
             GetCourse(courseID: courseId.localID),
-            env: targetEnvironment(for: courseId))
+            env: targetEnvironment(for: courseId)
+        )
     }
 
     private func fetchAnnouncements(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {

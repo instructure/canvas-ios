@@ -55,6 +55,7 @@ public class LTITools: NSObject {
         assignmentID: String?,
         from view: UIViewController,
         animated: Bool = true,
+        env: AppEnvironment = .shared,
         completionHandler: ((Bool) -> Void)? = nil
     ) {
         let tools = LTITools(
@@ -63,13 +64,13 @@ public class LTITools: NSObject {
             url: url,
             launchType: launchType.flatMap { GetSessionlessLaunchURLRequest.LaunchType(rawValue: $0) },
             isQuizLTI: isQuizLTI,
-            assignmentID: assignmentID
+            assignmentID: assignmentID,
+            env: env
         )
         tools.presentTool(from: view, animated: animated, completionHandler: completionHandler)
     }
 
     public init(
-        env: AppEnvironment = .shared,
         context: Context? = nil,
         id: String? = nil,
         url: URL? = nil,
@@ -78,9 +79,9 @@ public class LTITools: NSObject {
         assignmentID: String? = nil,
         moduleID: String? = nil,
         moduleItemID: String? = nil,
-        resourceLinkLookupUUID: String? = nil
+        resourceLinkLookupUUID: String? = nil,
+        env: AppEnvironment = .shared
     ) {
-        self.env = env
         self.context = context ?? url.flatMap { Context(url: $0) } ?? .account("self")
         self.id = id
         self.url = url
@@ -90,30 +91,31 @@ public class LTITools: NSObject {
         self.moduleID = moduleID
         self.moduleItemID = moduleItemID
         self.resourceLinkLookupUUID = resourceLinkLookupUUID
+        self.env = env
     }
 
     var openInSafari: Bool { UserDefaults.standard.bool(forKey: "open_lti_safari") }
 
-    public convenience init?(env: AppEnvironment = .shared, link: URL?, navigationType: WKNavigationType) {
+    public convenience init?(link: URL?, navigationType: WKNavigationType, env: AppEnvironment = .shared) {
         guard let link, link.host == env.api.baseURL.host else { return nil }
 
         if let (context, url, resourceLinkUUID) = Self.parseRegularExternalToolURL(url: link),
            navigationType == .linkActivated {
             self.init(
-                env: env,
                 context: context,
                 url: url,
                 isQuizLTI: nil,
-                resourceLinkLookupUUID: resourceLinkUUID
+                resourceLinkLookupUUID: resourceLinkUUID,
+                env: env
             )
             return
         } else if let (courseID, toolID) = Self.parseQuerylessExternalToolURL(url: link), navigationType == .other {
             self.init(
-                env: env,
                 context: .course(courseID),
                 id: toolID,
                 launchType: .course_navigation,
-                isQuizLTI: nil
+                isQuizLTI: nil,
+                env: env
             )
             return
         } else {

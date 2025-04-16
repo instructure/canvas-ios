@@ -303,8 +303,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     func doneLoading(in webView: WKWebView? = nil) {
-        let isDownloadingAttachment = (webView as? CoreWebView)
-            .flatMap({ $0.isDownloadingAttachment }) ?? false
+        let isDownloadingAttachment = (webView as? CoreWebView).flatMap { $0.isDownloadingAttachment } ?? false
 
         spinnerView.isHidden = isDownloadingAttachment == false
         progressView.isHidden = true
