@@ -16,25 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
-public struct WebSession<Content: View>: View {
-    public let content: (URL?) -> Content
+public struct HorizonWebSession<Content: View>: View {
+    public let content: (String?) -> Content
     public let url: URL?
 
     @Environment(\.appEnvironment) var env
 
-    @State var sessionURL: URL?
+    @State var html: String?
     @State var loaded: URL?
 
-    public init(url: URL?, @ViewBuilder content: @escaping (URL?) -> Content) {
+    public init(url: URL?, @ViewBuilder content: @escaping (String?) -> Content) {
         self.content = content
         self.url = url
     }
 
     public var body: some View {
-        if url == nil || (sessionURL != nil && url == loaded) {
-            content(sessionURL)
+        if url == nil || (html != nil && url == loaded) {
+            content(html)
         } else {
             VStack {
                 HStack { Spacer() }
@@ -44,13 +45,14 @@ public struct WebSession<Content: View>: View {
                 Spacer()
             }
                 .onAppear {
-                    let url = self.url // Ensure loaded is the url requested
-//                    env.api.makeRequest(GetWebSessionRequest(to: url)) { response, _, _ in
-                        performUIUpdate {
-                            loaded = url
-                            sessionURL = url
+                    if let url = self.url { // Ensure loaded is the url requested
+                        env.api.makeRequest(GetEmbeddedWebPage(from: url)) { response, _, _ in
+                            performUIUpdate {
+                                loaded = url
+                                html = response
+                            }
                         }
-//                    }
+                    }
                 }
         }
     }

@@ -50,21 +50,23 @@ struct HEmbeddedWebPageContainerView: View {
 
     private func contentView(url: URL) -> some View {
         WebSession(url: viewModel.url) { sessionURL in
-            WebView(
-                url: sessionURL,
-                features: features,
-                canToggleTheme: true,
-                configuration: .defaultConfiguration
-            )
-            .onLink { url in
-                viewModel.openURL(url, viewController: viewController)
-                return true
-            }
-            .onProvisionalNavigationStarted { webView, navigation in
-                viewModel.webView(
-                    webView,
-                    didStartProvisionalNavigation: navigation
+            if let configuration = viewModel.webViewConfiguration {
+                WebView(
+                    url: sessionURL,
+                    features: features,
+                    canToggleTheme: true,
+                    configuration: configuration
                 )
+                .onLink { url in
+                    viewModel.openURL(url, viewController: viewController)
+                    return true
+                }
+                .onProvisionalNavigationStarted { webView, navigation in
+                    viewModel.webView(
+                        webView,
+                        didStartProvisionalNavigation: navigation
+                    )
+                }
             }
         }
     }

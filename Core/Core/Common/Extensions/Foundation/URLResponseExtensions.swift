@@ -71,3 +71,31 @@ extension HTTPURLResponse {
         return contentDisposition.lowercased().hasPrefix("attachment")
     }
 }
+
+extension URLResponse {
+    func extractCanvasSessionToken() -> String? {
+        guard let httpResponse = self as? HTTPURLResponse,
+              let setCookieHeader = httpResponse.allHeaderFields["Set-Cookie"] as? String,
+              let canvasSession = self.extractCanvasSession(from: setCookieHeader) else {
+            return nil
+        }
+
+        print("Canvas session token: \(canvasSession)")
+        return canvasSession
+    }
+
+    private func extractCanvasSession(from cookieString: String) -> String? {
+        let pattern = #"canvas_session=([^;]+)"#
+
+        if let regex = try? NSRegularExpression(pattern: pattern, options: []) {
+            let range = NSRange(cookieString.startIndex..<cookieString.endIndex, in: cookieString)
+            if let match = regex.firstMatch(in: cookieString, options: [], range: range) {
+                if let range = Range(match.range(at: 1), in: cookieString) {
+                    return String(cookieString[range])
+                }
+            }
+        }
+
+        return nil
+    }
+}

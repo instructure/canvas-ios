@@ -19,6 +19,7 @@
 import Foundation
 
 public class API {
+    public static var canvasSessionToken: String?
     public var loginSession: LoginSession?
     public let baseURL: URL
     public let urlSession: URLSession
@@ -47,6 +48,11 @@ public class API {
 
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let handler = { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
+
+                if let canvasSessionToken = response?.extractCanvasSessionToken() {
+                    API.canvasSessionToken = canvasSessionToken
+                }
+
                 if response?.isUnauthorized == true, refreshToken {
                     if let self {
                         if refreshTokenInteractor.isTokenRefreshInProgress() == false {
