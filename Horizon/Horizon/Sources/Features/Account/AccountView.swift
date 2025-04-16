@@ -91,6 +91,10 @@ struct AccountView: View {
                 )
             }
         }
+        .onAppear {
+            viewModel.getUserName()
+        }
+
     }
 
     private var divider: some View {
