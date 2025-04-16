@@ -28,6 +28,7 @@ extension CourseSyncConferencesInteractor {
 public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInteractor {
 
     let envResolver: CourseSyncEnvironmentResolver
+
     init(envResolver: CourseSyncEnvironmentResolver) {
         self.envResolver = envResolver
     }

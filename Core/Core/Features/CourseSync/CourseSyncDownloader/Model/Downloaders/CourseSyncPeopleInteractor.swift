@@ -26,6 +26,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     var associatedTabType: TabName { .people }
 
     private let envResolver: CourseSyncEnvironmentResolver
+
     init(envResolver: CourseSyncEnvironmentResolver) {
         self.envResolver = envResolver
     }

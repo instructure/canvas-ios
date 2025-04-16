@@ -74,7 +74,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         assignmentID: String? = nil,
         canEdit: Bool = true,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
-        environment: AppEnvironment = .shared
+        environment: AppEnvironment
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
@@ -99,7 +99,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         fileID: String,
         offlineFileSource: OfflineFileSource,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
-        environment: AppEnvironment = .shared
+        environment: AppEnvironment
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context

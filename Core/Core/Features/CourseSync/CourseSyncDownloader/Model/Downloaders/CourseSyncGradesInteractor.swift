@@ -25,6 +25,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     public var associatedTabType: TabName { .grades }
 
     private let envResolver: CourseSyncEnvironmentResolver
+
     public init(envResolver: CourseSyncEnvironmentResolver) {
         self.envResolver = envResolver
     }
