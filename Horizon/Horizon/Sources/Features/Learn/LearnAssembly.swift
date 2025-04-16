@@ -61,7 +61,7 @@ final class LearnAssembly {
                 course: course,
                 onShowTabBar: appEnvironment.tabBar(isVisible:)
             ),
-            isBackButtonVisiable: false
+            isBackButtonVisible: false
         )
     }
 

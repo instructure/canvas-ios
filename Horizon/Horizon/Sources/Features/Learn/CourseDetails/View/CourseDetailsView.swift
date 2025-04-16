@@ -29,16 +29,16 @@ struct CourseDetailsView: View {
     // MARK: - Dependencies
 
     private let notebookView: NotebookView
-    private let isBackButtonVisiable: Bool
+    private let isBackButtonVisible: Bool
 
     // MARK: - Init
 
     init(
         viewModel: CourseDetailsViewModel,
-        isBackButtonVisiable: Bool = true
+        isBackButtonVisible: Bool = true
     ) {
         self.viewModel = viewModel
-        self.isBackButtonVisiable = isBackButtonVisiable
+        self.isBackButtonVisible = isBackButtonVisible
         self.notebookView = NotebookAssembly.makeView(courseId: viewModel.courseID)
     }
 
@@ -62,7 +62,7 @@ struct CourseDetailsView: View {
 
     @ViewBuilder
     private var navigationBar: some View {
-        if isBackButtonVisiable {
+        if isBackButtonVisible {
             HStack {
                 Button {
                     dismiss()
