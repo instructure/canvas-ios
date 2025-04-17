@@ -25,7 +25,7 @@ protocol GetCourseNotesInteractor {
     var filter: CourseNoteLabel? { get }
     func get() -> AnyPublisher<[CourseNotebookNote], NotebookError>
     func refresh()
-    func set(courseId: String?, moduleId: String?)
+    func set(courseId: String?, pageUrl: String?)
     func set(cursor: Cursor?)
     func set(filter: CourseNoteLabel?)
 }
@@ -43,8 +43,8 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
 
     // MARK: - Public
 
-    func set(courseId: String?, moduleId: String? = nil) {
-        objectFilters.accept((courseId, moduleId))
+    func set(courseId: String?, pageUrl: String? = nil) {
+        objectFilters.accept((courseId, pageUrl))
     }
 
     func set(cursor: Cursor?) {
@@ -146,18 +146,47 @@ final class GetCourseNotesInteractorLive: GetCourseNotesInteractor {
         .eraseToAnyPublisher()
     }
 
+    // If a page URL is specified, we must fetch the Page to get the ID, then only fetch notes associated with that page.
     private func listen(to api: API) -> AnyPublisher<
         [CourseNotebookNote], any Error
     > {
-        api.makeRequest(
-            request(
-                api: api,
-                labels: cursorFilter.value?.filter.map { [$0] },
-                courseId: objectFilters.value.0,
-                objectId: objectFilters.value.1
+        if let objectIdPublisher = objectIdPublisher {
+            return objectIdPublisher.flatMap { [weak self] objectId in
+                guard let self = self else {
+                    return Just([CourseNotebookNote]())
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return self.notesRequest(api: api, objectId: objectId)
+            }
+            .eraseToAnyPublisher()
+        }
+        return notesRequest(api: api)
+    }
+
+    private func notesRequest(api: API, objectId: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
+            api.makeRequest(
+                request(
+                    api: api,
+                    labels: cursorFilter.value?.filter.map { [$0] },
+                    courseId: objectFilters.value.0,
+                    objectId: objectId
+                )
             )
+            .compactMap { $0?.courseNotebookNotes }
+            .eraseToAnyPublisher()
+        }
+
+    private var objectIdPublisher: AnyPublisher<String?, Error>? {
+        guard let courseID = objectFilters.value.0,
+            let pageURL = objectFilters.value.1 else {
+            return nil
+        }
+        return ReactiveStore(
+            useCase: GetPage(context: .course(courseID), url: pageURL)
         )
-        .compactMap { $0?.courseNotebookNotes }
+        .getEntities()
+        .compactMap { $0.first?.id }
         .eraseToAnyPublisher()
     }
 }
@@ -190,7 +219,7 @@ final class GetCourseNotesInteractorPreview: GetCourseNotesInteractor {
             .eraseToAnyPublisher()
     }
     func refresh() {}
-    func set(courseId: String?, moduleId: String?) {}
+    func set(courseId: String?, pageUrl: String?) {}
     func set(cursor: Cursor?) {}
     func set(filter: CourseNoteLabel?) {}
 }

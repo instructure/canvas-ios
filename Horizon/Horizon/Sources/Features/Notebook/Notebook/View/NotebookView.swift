@@ -94,7 +94,7 @@ struct NotebookView: View {
             onClose: viewModel.isCloseVisible ? viewModel.onClose : nil
         )
         .padding(.top, viewModel.navigationBarTopPadding)
-        .padding(.bottom, 16)
+        .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space16)
         .background(Color.huiColors.surface.pagePrimary)
     }

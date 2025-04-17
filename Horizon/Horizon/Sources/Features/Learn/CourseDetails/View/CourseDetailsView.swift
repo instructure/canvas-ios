@@ -38,8 +38,8 @@ struct CourseDetailsView: View {
         isBackButtonVisible: Bool = true
     ) {
         self.viewModel = viewModel
+        self.notebookView = NotebookAssembly.makeView(courseID: viewModel.courseID)
         self.isBackButtonVisible = isBackButtonVisible
-        self.notebookView = NotebookAssembly.makeView(courseId: viewModel.courseID)
     }
 
     var body: some View {

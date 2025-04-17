@@ -8,7 +8,7 @@ options:
   createIntermediateGroups: true
 configFiles:
   Debug: Horizon/Config/Debug.xcconfig
-  Release: Horizon/Config/Debug.xcconfig
+  Release: Horizon/Config/Release.xcconfig
 settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
