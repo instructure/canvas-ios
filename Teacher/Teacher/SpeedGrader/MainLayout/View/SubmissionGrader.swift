@@ -61,8 +61,6 @@ struct SubmissionGrader: View {
 
     @AccessibilityFocusState private var focusedTab: GraderTab?
 
-    @AccessibilityFocusState private var focusedTab: GraderTab?
-
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
         selected.attachments?.first { fileID == $0.id } ??
