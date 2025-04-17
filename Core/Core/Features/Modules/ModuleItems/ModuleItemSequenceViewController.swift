@@ -73,6 +73,9 @@ public final class ModuleItemSequenceViewController: UIViewController {
         pages.scrollView.isScrollEnabled = false
         embed(pages, in: pagesContainer)
 
+        previousButton.setTitle(String(localized: "Previous", bundle: .core), for: .normal)
+        nextButton.setTitle(String(localized: "Next", bundle: .core), for: .normal)
+
         // places the next arrow on the opposite side
         let transform = CGAffineTransform(scaleX: -1, y: 1)
         nextButton.transform = transform
