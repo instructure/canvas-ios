@@ -25,7 +25,7 @@ enum DrawerState {
 }
 
 // Place after the main content in a ZStack(alignment: .bottom)
-struct Drawer<Content: View>: View {
+struct DrawerContainer<Content: View>: View {
     let content: Content
     let minHeight: CGFloat
     let maxHeight: CGFloat
