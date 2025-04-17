@@ -59,8 +59,8 @@ public struct CourseSmartSearchContentView: View {
         .onReceive(searchContext.didSubmit, perform: { newTerm in
             startLoading(with: newTerm)
         })
-        .onChange(of: filter) { newFilter in
-            resetFilter(newFilter)
+        .onChange(of: filter) {
+            resetFilter(filter)
         }
     }
 

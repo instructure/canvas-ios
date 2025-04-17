@@ -94,14 +94,8 @@ public class RichContentEditorViewController: UIViewController {
         featureFlags.refresh { [weak self] _ in
             self?.loadHTML()
         }
-    }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        guard previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
-        getHTML { [weak self] htmlString in
-            self?.html = htmlString
-        }
+        registerForTraitChanges()
     }
 
     private func showError(_ error: Error) {
@@ -271,6 +265,15 @@ public class RichContentEditorViewController: UIViewController {
             self?.updateLink(href: href, text: text)
         })
         env.router.show(alert, from: self, options: .modal())
+    }
+
+    private func registerForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: RichContentEditorViewController, _) in
+            self.getHTML { [weak self] htmlString in
+                self?.html = htmlString
+            }
+        }
     }
 }
 

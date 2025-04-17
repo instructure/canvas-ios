@@ -122,6 +122,7 @@ class CalendarViewController: ScreenViewTrackableViewController {
         updateExpanded()
 
         updateSelectedDate(selectedDate)
+        registerForTraitChanges()
     }
 
     @objc func didPan(_ recognizer: UIPanGestureRecognizer) {
@@ -228,16 +229,15 @@ class CalendarViewController: ScreenViewTrackableViewController {
         })
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
+    private func registerForTraitChanges() {
+        let traits = [UITraitVerticalSizeClass.self]
+        registerForTraitChanges(traits) { (self: CalendarViewController, _) in
+            // Manually trigger a calendar height update upon rotation
 
-        // Manually trigger a calendar height update upon rotation
-        if traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass {
             // On iOS 17 embedded VC traits need to be updated first, otherwise the size values from
             // the embedded VC will be outdated in `updateExpanded()`.
-            // This would be also needed if we used `registerForTraitChanges()`, unfortunately.
-            updateTraitsIfNeeded()
-            updateExpanded()
+            self.updateTraitsIfNeeded()
+            self.updateExpanded()
         }
     }
 }
