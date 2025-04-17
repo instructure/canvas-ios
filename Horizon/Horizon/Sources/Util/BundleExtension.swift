@@ -16,20 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Util/BundleExtension.swift
 import Foundation
 
 private class Placeholder {}
 
 public extension Bundle {
     static let horizon = Bundle(for: Placeholder.self)
-========
-import UIKit
-import SwiftUI
-
-extension UIColor {
-    public var asColor: Color {
-        Color(self)
-    }
->>>>>>>> origin/master:Core/Core/Common/Extensions/SwiftUI/UIColor+Color.swift
 }

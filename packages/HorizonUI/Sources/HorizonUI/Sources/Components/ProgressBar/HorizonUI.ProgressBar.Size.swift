@@ -22,7 +22,7 @@ public extension HorizonUI.ProgressBar {
     enum Size: Equatable {
         case small
         case medium
-        
+
         var height: CGFloat {
             switch self {
             case .small:
@@ -31,7 +31,7 @@ public extension HorizonUI.ProgressBar {
                 return 28
             }
         }
-        
+
         var backgroundColor: Color {
             switch self {
             case .small:
@@ -40,5 +40,11 @@ public extension HorizonUI.ProgressBar {
                 return .clear
             }
         }
+    }
+
+    enum NumberPosition {
+        case inside
+        case outside
+        case hidden
     }
 }
