@@ -96,6 +96,7 @@ public struct GradeFilterView: View {
             dependency: .init(
                 router: AppEnvironment.shared.router,
                 isShowGradingPeriod: false,
+                initialGradingPeriodID: nil,
                 sortByOptions: GradeArrangementOptions.allCases
             ),
             gradeFilterInteractor: GradeFilterInteractorLive(

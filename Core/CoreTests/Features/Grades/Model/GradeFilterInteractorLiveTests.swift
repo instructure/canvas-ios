@@ -43,38 +43,6 @@ final class GradeFilterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.gradingShowAllId, "-1")
     }
 
-    func test_saveGradingForFistTime() {
-        // Given
-        let id = "10"
-        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = nil
-        // When
-        testee.saveSelectedGradingPeriod(id: id)
-        // Then
-        XCTAssertEqual(testee.selectedGradingId, id)
-    }
-
-    func test_saveGradingChangeValue() {
-        // Given
-        let oldValue = "10"
-        let newValue = "20"
-        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: oldValue]
-        // When
-        testee.saveSelectedGradingPeriod(id: newValue)
-        // Then
-        XCTAssertEqual(testee.selectedGradingId, newValue)
-    }
-
-    func test_saveGrading_whenSaveShowAll() {
-        // Given
-        let oldValue = "10"
-        let newValue: String? = nil
-        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = [courseId: oldValue]
-        // When
-        testee.saveSelectedGradingPeriod(id: newValue)
-        // Then
-        XCTAssertEqual(testee.selectedGradingId, "-1")
-    }
-
     func test_saveSortByOptionForFirstTime() {
         // Given
         environment.userDefaults?.selectedSortByOptionIDs = nil

@@ -36,6 +36,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
+            initialGradingPeriodID: nil,
             sortByOptions: GradeArrangementOptions.allCases
         )
         testee = GradeFilterViewModel(
@@ -55,11 +56,11 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
+            initialGradingPeriodID: nil,
             gradingPeriods: listGradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases
         )
         // When
-        environment.userDefaults?.selectedGradingPeriodIdsByCourseIDs = nil
         let testee = GradeFilterViewModel(
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
@@ -72,13 +73,14 @@ final class GradeFilterViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.isShowGradingPeriodsView, true)
     }
 
-    func test_mapGradingPeriod_hasSelectedGradingPeriods() {
+    func test_mapGradingPeriod_selectsInitialGradingPeriod() {
         // Given
         let listGradingPeriods = getListGradingPeriods()
         gradeFilterInteractor.currentGradingId = "4"
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
+            initialGradingPeriodID: "1",
             gradingPeriods: listGradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases
         )
@@ -90,7 +92,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
         // Then
         XCTAssertEqual(testee.gradingPeriodOptions.all.count, 5)
         XCTAssertEqual(testee.isShowGradingPeriodsView, true)
-        XCTAssertEqual(testee.gradingPeriodOptions.selected.value?.id, "4")
+        XCTAssertEqual(testee.gradingPeriodOptions.selected.value?.id, "1")
     }
 
     func test_mapGradingPeriod_notHasGradingPeriods_hideGradingPeriodSection() {
@@ -98,6 +100,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: false,
+            initialGradingPeriodID: nil,
             gradingPeriods: nil,
             sortByOptions: GradeArrangementOptions.allCases
         )
@@ -119,6 +122,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: false,
+            initialGradingPeriodID: nil,
             gradingPeriods: nil,
             sortByOptions: sortByOptions
         )
@@ -137,6 +141,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
+            initialGradingPeriodID: nil,
             gradingPeriods: listGradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases
         )
@@ -156,6 +161,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
+            initialGradingPeriodID: nil,
             gradingPeriods: listGradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases
         )
@@ -181,6 +187,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
+            initialGradingPeriodID: nil,
             selectedGradingPeriodPublisher: selectedGradingPeriodPublisher,
             selectedSortByPublisher: selectedSortByPublisher,
             gradingPeriods: listGradingPeriods,
