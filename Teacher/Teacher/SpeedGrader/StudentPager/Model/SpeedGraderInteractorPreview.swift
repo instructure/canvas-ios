@@ -16,37 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Combine
 import Core
 
-protocol SpeedGraderInteractor: AnyObject {
-    var state: CurrentValueSubject<SpeedGraderInteractorState, Never> { get }
-    var data: SpeedGraderData? { get }
+class SpeedGraderInteractorPreview: SpeedGraderInteractor {
+    let state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
+    var data: SpeedGraderData?
 
-    var assignmentID: String { get }
-    var userID: String { get }
-    var context: Context { get }
+    let assignmentID = "assignment_1"
+    let userID = "user_1"
+    let context = Context(.course, id: "1")
 
-    func loadInitialData()
-    func refreshSubmission(forUserId: String)
+    init(state: SpeedGraderInteractorState) {
+        self.state.send(state)
+    }
+
+    func loadInitialData() {
+    }
+
+    func refreshSubmission(forUserId: String) {
+    }
 }
 
-struct SpeedGraderData {
-    let assignment: Assignment
-    let submissions: [Submission]
-    let focusedSubmissionIndex: Int
-}
-
-enum SpeedGraderInteractorState {
-    case loading
-    case data
-    case error(SpeedGraderInteractorError)
-}
-
-enum SpeedGraderInteractorError: Error {
-    case userIdNotFound
-    case submissionNotFound
-    case unexpectedError(Error)
-}
-
-let SpeedGraderAllUsersUserID = "speedgrader"
+#endif
