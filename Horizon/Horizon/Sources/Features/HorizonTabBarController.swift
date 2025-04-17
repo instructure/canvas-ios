@@ -82,7 +82,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
 
     private func learnTab() -> UIViewController {
         let vc = CoreNavigationController(
-            rootViewController: CoreHostingController(LearnAssembly.makeCoursesView())
+            rootViewController: LearnAssembly.makeLearnView()
         )
         vc.tabBarItem.title = String(localized: "Learn", bundle: .horizon)
         vc.tabBarItem.image = getHorizonImage(name: "book_2")

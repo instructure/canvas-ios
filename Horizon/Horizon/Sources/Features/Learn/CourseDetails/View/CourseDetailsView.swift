@@ -21,15 +21,25 @@ import HorizonUI
 import SwiftUI
 
 struct CourseDetailsView: View {
-    @Bindable private var viewModel: CourseDetailsViewModel
+    @State private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
-    @State var selectedTabIndex: Int = 0
+    @Environment(\.dismiss) private var dismiss
+    @State private var selectedTabIndex: Int = 0
+
+    // MARK: - Dependencies
 
     private let notebookView: NotebookView
+    private let isBackButtonVisible: Bool
 
-    init(viewModel: CourseDetailsViewModel) {
+    // MARK: - Init
+
+    init(
+        viewModel: CourseDetailsViewModel,
+        isBackButtonVisible: Bool = true
+    ) {
         self.viewModel = viewModel
         self.notebookView = NotebookAssembly.makeView(courseID: viewModel.courseID)
+        self.isBackButtonVisible = isBackButtonVisible
     }
 
     var body: some View {
@@ -41,10 +51,30 @@ struct CourseDetailsView: View {
         .hidden(viewModel.isLoaderVisible)
         .background(Color.huiColors.surface.pagePrimary)
         .onAppear { viewModel.showTabBar() }
+        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+        .toolbar(.hidden)
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
+        }
+    }
+
+    @ViewBuilder
+    private var navigationBar: some View {
+        if isBackButtonVisible {
+            HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image.huiIcons.arrowBack
+                        .foregroundStyle(Color.huiColors.icon.default)
+                        .frame(width: 44, height: 44, alignment: .leading)
+
+                }
+                Spacer()
+            }
+            .padding(.horizontal, .huiSpaces.space24)
         }
     }
 
