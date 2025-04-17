@@ -19,9 +19,9 @@
 import Core
 import UIKit
 
-public enum SpeedGraderAssembly {
+enum SpeedGraderAssembly {
 
-    public static func makeSpeedGraderViewController(
+    static func makeSpeedGraderViewController(
         context: Context,
         assignmentID: String,
         userID: String?,
@@ -36,10 +36,53 @@ public enum SpeedGraderAssembly {
             filter: filter,
             env: env
         )
-
-        return SpeedGraderViewController(
-            env: env,
-            interactor: interactor
+        let viewModel = SpeedGraderViewModel(
+            interactor: interactor,
+            environment: env
+        )
+        let view = SpeedGraderView(
+            viewModel: viewModel
+        )
+        return CoreNavigationController(
+            rootViewController: CoreHostingController(view)
         )
     }
+
+#if DEBUG
+
+    static func makeSpeedGraderViewControllerPreview(
+        state: SpeedGraderInteractorState
+    ) -> UIViewController {
+        let interactor = SpeedGraderInteractorPreview(
+            state: state
+        )
+        if case .data = state {
+            interactor.data = testData()
+        }
+
+        let viewModel = SpeedGraderViewModel(
+            interactor: interactor,
+            environment: .shared
+        )
+        let view = SpeedGraderView(
+            viewModel: viewModel
+        )
+        return CoreNavigationController(
+            rootViewController: CoreHostingController(view)
+        )
+    }
+
+    private static func testData() -> SpeedGraderData {
+        let context = PreviewEnvironment().database.viewContext
+        let assignment = Assignment.save(.make(), in: context, updateSubmission: false, updateScoreStatistics: false)
+        let submission1 = Submission.save(.make(id: "1", user: .make(name: "User 1")), in: context)
+        let submission2 = Submission.save(.make(id: "2", user: .make(name: "User 2")), in: context)
+        return SpeedGraderData(
+            assignment: assignment,
+            submissions: [submission1, submission2],
+            focusedSubmissionIndex: 1
+        )
+    }
+
+#endif
 }
