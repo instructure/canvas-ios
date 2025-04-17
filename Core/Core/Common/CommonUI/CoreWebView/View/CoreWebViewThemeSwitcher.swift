@@ -146,11 +146,11 @@ final class CoreWebViewThemeSwitcherLive: CoreWebViewThemeSwitcher {
         let currentStyle: UIUserInterfaceStyle = isThemeDark ? (isInverted ? .light : .dark) : .light
 
         /// Though we are registered to user interface changes In CoreWebView and updateUserInterfaceStyle should be triggered
-        /// on trait changes, but it's not happening so we still need this workaround. Latest check was with iOS 18.4.
+        /// on trait changes, but it's not happening when overrideUserInterfaceStyle is unspecified, so we still need this workaround.
+        /// Latest check was with iOS 18.4.
         if host?.overrideUserInterfaceStyle == .unspecified && currentStyle != .unspecified {
             addUserInterfaceStyleDidChangeObserver()
         }
-
         // override style, based on current settings
         host?.overrideUserInterfaceStyle = currentStyle
 
