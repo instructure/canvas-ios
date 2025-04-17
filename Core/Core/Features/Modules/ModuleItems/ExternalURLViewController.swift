@@ -60,7 +60,7 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
             localized: "This page can only be viewed from a web browser.",
             bundle: .core
         )
-        openInSafariButton.setTitle(String(localized: "Open in Safari"), for: .normal)
+        openInSafariButton.setTitle(String(localized: "Open in Safari", bundle: .core), for: .normal)
         setupTitleViewInNavbar(title: String(localized: "External URL", bundle: .core))
         colors.refresh()
         courses?.refresh()
