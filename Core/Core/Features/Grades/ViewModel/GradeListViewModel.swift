@@ -142,7 +142,7 @@ public final class GradeListViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         loadSortPreferences()
-        loadBaseDataAndGrades(ignoreCache: true, isInitialLoad: true)
+        loadBaseDataAndGrades(ignoreCache: false, isInitialLoad: true)
     }
 
     private func loadBaseDataAndGrades(ignoreCache: Bool, isInitialLoad: Bool = false, completionBlock: (() -> Void)? = nil) {
