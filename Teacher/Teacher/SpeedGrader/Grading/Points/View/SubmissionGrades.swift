@@ -35,31 +35,12 @@ struct SubmissionGrades: View {
     @State var sliderTimer: Timer?
     @State var sliderValue: Double?
 
-    @State var rubricComment: String = ""
-    @State var rubricCommentID: String?
-    @State var rubricAssessments: APIRubricAssessmentMap = [:]
-
-    var isRubricScoreAvailable: Bool {
-        guard assignment.useRubricForGrading else { return false }
-        return rubricAssessments.contains { _, assessment in
-            assessment.points != nil
-        }
-    }
+    @ObservedObject var rubricsViewModel: RubricsViewModel
 
     var hasLateDeduction: Bool {
         submission.late &&
             (submission.pointsDeducted ?? 0) > 0 &&
             submission.grade?.isEmpty == false
-    }
-
-    var currentRubricScore: Double {
-        let assessments = submission.rubricAssessments // create map only once
-        var points = 0.0
-        for criteria in assignment.rubric ?? [] where !criteria.ignoreForScoring {
-            points += rubricAssessments[criteria.id]?.points as? Double ??
-                assessments?[criteria.id]?.points as? Double ?? 0
-        }
-        return points
     }
 
     var body: some View {
@@ -90,7 +71,7 @@ struct SubmissionGrades: View {
                                     Text(GradeFormatter.longString(
                                         for: assignment,
                                         submission: submission,
-                                        rubricScore: isRubricScoreAvailable ? currentRubricScore : nil,
+                                        rubricScore: rubricsViewModel.isRubricScoreAvailable ? rubricsViewModel.totalRubricScore : nil,
                                         final: false
                                     ))
                                 } else {
@@ -130,45 +111,30 @@ struct SubmissionGrades: View {
 
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)
-                        RubricAssessor(
-                            assignment: assignment,
-                            submission: submission,
-                            currentScore: currentRubricScore,
+                        RubricsView(
+                            currentScore: rubricsViewModel.totalRubricScore,
                             containerFrameInGlobal: geometry.frame(in: .global),
-                            comment: $rubricComment,
-                            commentID: $rubricCommentID,
-                            assessments: $rubricAssessments
+                            viewModel: rubricsViewModel
                         )
                     }
                 }.padding(.bottom, 16)
             } }
-            if let id = rubricCommentID {
-                commentEditor(id: id)
+            if rubricsViewModel.commentingOnCriterionID != nil {
+                commentEditor()
             }
         }
     }
 
-    private func commentEditor(id: String) -> some View {
-        CommentEditor(text: $rubricComment,
-                      shouldShowCommentLibrary: false,
-                      showCommentLibrary: .constant(false),
-                      action: {
-            var points: Double?
-            var ratingID = ""
-            if let assessment = rubricAssessments[id] {
-                points = assessment.points
-                ratingID = assessment.rating_id ?? ""
-            } else if let assessment = submission.rubricAssessments?[id] {
-                points = assessment.points
-                ratingID = assessment.ratingID
-            }
-            withAnimation(.default) {
-                rubricCommentID = nil
-                rubricAssessments[id] = .init(comments: rubricComment, points: points, rating_id: ratingID)
-            }
-        }, containerHeight: containerHeight)
-            .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-            .background(Color.backgroundLight)
+    private func commentEditor() -> some View {
+        CommentEditor(
+            text: $rubricsViewModel.criterionComment,
+            shouldShowCommentLibrary: false,
+            showCommentLibrary: .constant(false),
+            action: rubricsViewModel.saveComment,
+            containerHeight: containerHeight
+        )
+        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+        .background(Color.backgroundLight)
     }
 
     // MARK: Slider

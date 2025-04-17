@@ -49,13 +49,13 @@ class CoursesTests: E2ETestCase {
         XCTAssertTrue(courseCard1.isVisible)
         XCTAssertTrue(courseTitleLabel1.isVisible)
         XCTAssertTrue(courseGradeLabel1.isVisible)
-        XCTAssertTrue(courseTitleLabel1.hasLabel(label: course1.name))
-        XCTAssertTrue(courseGradeLabel1.hasLabel(label: "100%"))
+        XCTAssertEqual(courseTitleLabel1.label, course1.name)
+        XCTAssertEqual(courseGradeLabel1.label, "100%")
         XCTAssertTrue(courseCard2.isVisible)
         XCTAssertTrue(courseTitleLabel2.isVisible)
         XCTAssertTrue(courseGradeLabel2.isVisible)
-        XCTAssertTrue(courseTitleLabel2.hasLabel(label: course2.name))
-        XCTAssertTrue(courseGradeLabel2.hasLabel(label: "No Grade"))
+        XCTAssertEqual(courseTitleLabel2.label, course2.name)
+        XCTAssertEqual(courseGradeLabel2.label, "No Grade")
 
         // MARK: Details of Course 1
         courseCard1.hit()
@@ -66,7 +66,7 @@ class CoursesTests: E2ETestCase {
             .waitUntil(.visible)
         let backButton = DetailsHelper.backButton.waitUntil(.visible)
         XCTAssertTrue(totalGradeLabel.isVisible)
-        XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is 100%"))
+        XCTAssertEqual(totalGradeLabel.label, "Total grade is 100%")
         XCTAssertTrue(assignmentCell1.isVisible)
         XCTAssertTrue(assignmentCell2.isVisible)
         XCTAssertTrue(letterGradeLabelOfAssignment1.isVisible)
@@ -76,6 +76,6 @@ class CoursesTests: E2ETestCase {
         backButton.hit()
         courseCard2.hit()
         XCTAssertTrue(totalGradeLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is N/A"))
+        XCTAssertEqual(totalGradeLabel.label, "Total grade is N/A")
     }
 }

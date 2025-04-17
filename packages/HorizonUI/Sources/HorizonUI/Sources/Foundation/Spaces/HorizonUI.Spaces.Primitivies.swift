@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+@testable import Core
 
+<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Foundation/Spaces/HorizonUI.Spaces.Primitivies.swift
 public extension HorizonUI.Spaces {
     struct Primitives: Sendable {
         public let space2: CGFloat = 2
@@ -31,5 +33,14 @@ public extension HorizonUI.Spaces {
         public let space36: CGFloat = 36
         public let space40: CGFloat = 40
         public let space48: CGFloat = 48
+========
+final class RecurrenceRuleSelectionDescriptionTests: XCTestCase {
+
+    func test_selectionText() {
+        XCTAssertEqual(RecurrenceFrequency.daily.selectionText, String(localized: "Daily", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.weekly.selectionText, String(localized: "Weekly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.monthly.selectionText, String(localized: "Monthly", bundle: .core))
+        XCTAssertEqual(RecurrenceFrequency.yearly.selectionText, String(localized: "Yearly", bundle: .core))
+>>>>>>>> origin/master:Core/CoreTests/Features/Planner/CalendarEvent/Model/Helpers/RecurrenceRule+SelectionDescriptionTests.swift
     }
 }

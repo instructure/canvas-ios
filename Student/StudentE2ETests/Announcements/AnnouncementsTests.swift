@@ -39,15 +39,15 @@ class AnnouncementsTests: E2ETestCase {
 
         let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.hasLabel(label: announcements[2].title, strict: false))
+        XCTAssertContains(firstAnnouncement.label, announcements[2].title)
 
         let secondAnnouncement = AnnouncementsHelper.cell(index: 1).waitUntil(.visible)
         XCTAssertTrue(secondAnnouncement.isVisible)
-        XCTAssertTrue(secondAnnouncement.hasLabel(label: announcements[1].title, strict: false))
+        XCTAssertContains(secondAnnouncement.label, announcements[1].title)
 
         let thirdAnnouncement = AnnouncementsHelper.cell(index: 2).waitUntil(.visible)
         XCTAssertTrue(thirdAnnouncement.isVisible)
-        XCTAssertTrue(thirdAnnouncement.hasLabel(label: announcements[0].title, strict: false))
+        XCTAssertContains(thirdAnnouncement.label, announcements[0].title)
     }
 
     func testAccountNotification() {
@@ -84,7 +84,7 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertTrue(announcementMessage.hasLabel(label: globalAnnouncement.message))
+        XCTAssertEqual(announcementMessage.label, globalAnnouncement.message)
 
         // MARK: Tap dismiss button and check the visibility
         dismissButton.hit()
@@ -110,7 +110,7 @@ class AnnouncementsTests: E2ETestCase {
         Helper.navigateToAnnouncementsPage(course: course)
         let announcementsButton = Helper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(announcementsButton.isVisible)
-        XCTAssertTrue(announcementsButton.hasLabel(label: announcement.title, strict: false))
+        XCTAssertContains(announcementsButton.label, announcement.title)
 
         announcementsButton.hit()
         let searchField = NewDiscussion.searchField.waitUntil(.visible)
@@ -125,7 +125,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(searchField.isVisible)
         XCTAssertTrue(filterByLabel.isVisible)
         XCTAssertTrue(sortButton.isVisible)
-        XCTAssertTrue(sortButton.hasValue(value: "Newest First", strict: false))
+        XCTAssertContains(sortButton.stringValue, "Newest First")
         XCTAssertTrue(viewSplitScreenButton.isVisible)
         XCTAssertTrue(subscribeButton.isVisible)
         XCTAssertTrue(manageDiscussionButton.isVisible)

@@ -76,10 +76,9 @@ struct SideMenuHeaderView: View {
 
             if offlineModeViewModel.isOffline {
                 HStack(spacing: 4) {
-                    Image
-                        .offlineLine
-                        .resizable()
-                        .frame(width: 24, height: 24)
+                    Image.offlineLine
+                        .size(24)
+                        .accessibilityHidden(true)
                     Text("Offline", bundle: .core)
                         .font(.regular14)
                         .padding(.bottom, 2)
