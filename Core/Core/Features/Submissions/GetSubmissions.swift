@@ -327,19 +327,17 @@ public class GetSubmissions: CollectionUseCase {
             case .notSubmitted:
                 return NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
             case .needsGrading:
-                return NSPredicate(format: """
-                        %K != true AND (%K != nil AND (%K == 'pending_review' OR (
-                        %K IN { 'graded', 'submitted' } AND
-                        (%K == nil OR %K == false)
-                    )))
-                    """,
-                    #keyPath(Submission.excusedRaw),
-                    #keyPath(Submission.typeRaw),
-                    #keyPath(Submission.workflowStateRaw),
-                    #keyPath(Submission.workflowStateRaw),
-                    #keyPath(Submission.scoreRaw),
-                    #keyPath(Submission.gradeMatchesCurrentSubmission)
-                )
+                let notExcused = NSPredicate(format: "%K == nil OR %K != true", #keyPath(Submission.excusedRaw), #keyPath(Submission.excusedRaw))
+                let hasValidSubmissionType = NSPredicate(format: "%K != nil", #keyPath(Submission.typeRaw))
+                let isPendingReview = NSPredicate(format: "%K == 'pending_review'", #keyPath(Submission.workflowStateRaw))
+                let isGradedOrSubmitted = NSPredicate(format: "%K IN { 'graded', 'submitted' }", #keyPath(Submission.workflowStateRaw))
+                let hasNoScore = NSPredicate(format: "%K == nil", #keyPath(Submission.scoreRaw))
+                let isLatestAttemptNotGraded = NSPredicate(format: "%K == false", #keyPath(Submission.gradeMatchesCurrentSubmission))
+                let isGradeOutDated = isGradedOrSubmitted.and(hasNoScore.or(isLatestAttemptNotGraded))
+
+                return notExcused
+                    .and(hasValidSubmissionType)
+                    .and(isPendingReview.or(isGradeOutDated))
             case .graded:
                 return NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
                     #keyPath(Submission.excusedRaw),

@@ -17,29 +17,15 @@
 //
 
 import Core
-import UIKit
+import XCTest
 
-public enum SpeedGraderAssembly {
+class OptionalExtensionsTests: XCTestCase {
 
-    public static func makeSpeedGraderViewController(
-        context: Context,
-        assignmentID: String,
-        userID: String?,
-        env: AppEnvironment,
-        filter: [GetSubmissions.Filter]
-    ) -> UIViewController {
-        let normalizedUserId = SpeedGraderViewController.normalizeUserID(userID)
-        let interactor = SpeedGraderInteractorLive(
-            context: context,
-            assignmentID: assignmentID,
-            userID: normalizedUserId,
-            filter: filter,
-            env: env
-        )
+    func testUnwrapOrThrow() throws {
+        var testee: Int? = 42
+        XCTAssertEqual(try XCTUnwrap(testee), 42)
 
-        return SpeedGraderViewController(
-            env: env,
-            interactor: interactor
-        )
+        testee = nil
+        XCTAssertThrowsError(try testee.unwrapOrThrow())
     }
 }

@@ -16,30 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Foundation
 
-public enum SpeedGraderAssembly {
+extension Optional {
 
-    public static func makeSpeedGraderViewController(
-        context: Context,
-        assignmentID: String,
-        userID: String?,
-        env: AppEnvironment,
-        filter: [GetSubmissions.Filter]
-    ) -> UIViewController {
-        let normalizedUserId = SpeedGraderViewController.normalizeUserID(userID)
-        let interactor = SpeedGraderInteractorLive(
-            context: context,
-            assignmentID: assignmentID,
-            userID: normalizedUserId,
-            filter: filter,
-            env: env
-        )
-
-        return SpeedGraderViewController(
-            env: env,
-            interactor: interactor
-        )
+    public func unwrapOrThrow() throws -> Wrapped {
+        guard let unwrapped = self else {
+            throw NSError.instructureError("Optional value was nil")
+        }
+        return unwrapped
     }
 }

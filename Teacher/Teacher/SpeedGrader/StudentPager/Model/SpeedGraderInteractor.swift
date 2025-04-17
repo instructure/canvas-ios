@@ -16,30 +16,37 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
-import UIKit
 
-public enum SpeedGraderAssembly {
+protocol SpeedGraderInteractor {
+    var state: CurrentValueSubject<SpeedGraderInteractorState, Never> { get }
+    var data: SpeedGraderData? { get }
 
-    public static func makeSpeedGraderViewController(
-        context: Context,
-        assignmentID: String,
-        userID: String?,
-        env: AppEnvironment,
-        filter: [GetSubmissions.Filter]
-    ) -> UIViewController {
-        let normalizedUserId = SpeedGraderViewController.normalizeUserID(userID)
-        let interactor = SpeedGraderInteractorLive(
-            context: context,
-            assignmentID: assignmentID,
-            userID: normalizedUserId,
-            filter: filter,
-            env: env
-        )
+    var assignmentID: String { get }
+    var userID: String { get }
+    var context: Context { get }
 
-        return SpeedGraderViewController(
-            env: env,
-            interactor: interactor
-        )
-    }
+    func loadInitialData()
+    func refreshSubmission(forUserId: String)
 }
+
+struct SpeedGraderData {
+    let assignment: Assignment
+    let submissions: [Submission]
+    let focusedSubmissionIndex: Int
+}
+
+enum SpeedGraderInteractorState {
+    case loading
+    case data
+    case error(SpeedGraderInteractorError)
+}
+
+enum SpeedGraderInteractorError: Error {
+    case userIdNotFound
+    case submissionNotFound
+    case unexpectedError(Error)
+}
+
+let SpeedGraderAllUsersUserID = "speedgrader"
