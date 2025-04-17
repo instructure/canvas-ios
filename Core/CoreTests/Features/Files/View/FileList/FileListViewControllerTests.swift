@@ -85,7 +85,7 @@ class FileListViewControllerTests: CoreTestCase {
 
         api.mock(GetFilesRequest(context: .currentUser, searchTerm: "File"), value: [
             .make(),
-            .make(created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/"))
+            .make(created_at: Clock.now.addDays(-1), thumbnail_url: URL(string: "/"))
         ])
         controller.searchBar.delegate?.searchBarTextDidBeginEditing?(controller.searchBar)
         controller.searchBar.text = "File"
@@ -111,7 +111,7 @@ class FileListViewControllerTests: CoreTestCase {
             .make(full_name: "my files/Folder A", id: "2", name: "Folder Refresh", parent_folder_id: "1")
         ])
         api.mock(GetFilesRequest(context: Context(.folder, id: "2")), value: [
-            .make(folder_id: "2", display_name: "Picture", created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/"))
+            .make(folder_id: "2", display_name: "Picture", created_at: Clock.now.addDays(-1), thumbnail_url: URL(string: "/"))
         ])
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false) // stops refreshing

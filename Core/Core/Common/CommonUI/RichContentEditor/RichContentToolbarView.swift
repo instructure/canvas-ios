@@ -38,6 +38,7 @@ public class RichContentToolbarView: UIView {
     @IBOutlet weak var whiteColorButton: UIButton!
 
     weak var textColorView: UIView?
+    weak var whiteColorBorder: UIView?
 
     weak var controller: RichContentEditorViewController?
 
@@ -64,8 +65,53 @@ public class RichContentToolbarView: UIView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .backgroundLightest
         translatesAutoresizingMaskIntoConstraints = false
+
+        backgroundColor = .backgroundLightest
+        toolsView.backgroundColor = .backgroundLightest
+        colorPickerView.backgroundColor = .backgroundLightest
+
+        colorPickerHeight.constant = 0
+        colorPickerView.alpha = 0
+        colorPickerView.transform = CGAffineTransform(translationX: 0, y: 45)
+
+        let whiteColorBorder = UIView(frame: CGRect(x: 9, y: 9, width: 26, height: 26))
+        whiteColorBorder.layer.borderWidth = 1
+        whiteColorBorder.layer.cornerRadius = 13
+        whiteColorBorder.isUserInteractionEnabled = false
+        whiteColorButton.addSubview(whiteColorBorder)
+        self.whiteColorBorder = whiteColorBorder
+
+        let textColorView = UIView(frame: CGRect(x: 15.5, y: 27, width: 19, height: 5))
+        textColorView.layer.borderWidth = 1
+        textColorView.isUserInteractionEnabled = false
+        textColorButton.addSubview(textColorView)
+        self.textColorView = textColorView
+
+        setupColors()
+        setupAccessibility()
+
+        updateState(nil)
+        updateBorderColors()
+        registerForTraitChanges()
+    }
+
+    private func setupColors() {
+        let colors = colorPickerStack.arrangedSubviews
+        if colors.count == 9 {
+            colors[0].tintColor = .textLightest.variantForLightMode
+            colors[1].tintColor = .textDarkest.variantForLightMode
+            colors[2].tintColor = .init(hexString: "#8B969E") // gray
+            colors[3].tintColor = .init(hexString: "#EE0612") // red
+            colors[4].tintColor = .init(hexString: "#FC5E13") // orange
+            colors[5].tintColor = .init(hexString: "#FFC100") // yellow
+            colors[6].tintColor = .init(hexString: "#89C540") // green
+            colors[7].tintColor = .init(hexString: "#1485C8") // blue
+            colors[8].tintColor = .init(hexString: "#65469F") // purple
+        }
+    }
+
+    private func setupAccessibility() {
         undoButton.accessibilityLabel = String(localized: "Undo", bundle: .core)
         redoButton.accessibilityLabel = String(localized: "Redo", bundle: .core)
         boldButton.accessibilityLabel = String(localized: "Bold", bundle: .core)
@@ -76,55 +122,54 @@ public class RichContentToolbarView: UIView {
         linkButton.accessibilityLabel = String(localized: "Link", bundle: .core)
         cameraButton.accessibilityLabel = String(localized: "Camera", bundle: .core)
         libraryButton.accessibilityLabel = String(localized: "Image", bundle: .core)
-        toolsView.backgroundColor = .backgroundLightest
 
         let colors = colorPickerStack.arrangedSubviews
-        colors[0].accessibilityValue = String(localized: "white", bundle: .core)
-        colors[1].accessibilityValue = String(localized: "black", bundle: .core)
-        colors[2].accessibilityValue = String(localized: "grey", bundle: .core)
-        colors[3].accessibilityValue = String(localized: "red", bundle: .core)
-        colors[4].accessibilityValue = String(localized: "orange", bundle: .core)
-        colors[5].accessibilityValue = String(localized: "yellow", bundle: .core)
-        colors[6].accessibilityValue = String(localized: "green", bundle: .core)
-        colors[7].accessibilityValue = String(localized: "blue", bundle: .core)
-        colors[8].accessibilityValue = String(localized: "purple", bundle: .core)
+        if colors.count == 9 {
+            colors[0].accessibilityValue = String(localized: "white", bundle: .core)
+            colors[1].accessibilityValue = String(localized: "black", bundle: .core)
+            colors[2].accessibilityValue = String(localized: "grey", bundle: .core)
+            colors[3].accessibilityValue = String(localized: "red", bundle: .core)
+            colors[4].accessibilityValue = String(localized: "orange", bundle: .core)
+            colors[5].accessibilityValue = String(localized: "yellow", bundle: .core)
+            colors[6].accessibilityValue = String(localized: "green", bundle: .core)
+            colors[7].accessibilityValue = String(localized: "blue", bundle: .core)
+            colors[8].accessibilityValue = String(localized: "purple", bundle: .core)
+        }
+
         for color in colors {
             color.accessibilityLabel = String(localized: "Set text color", bundle: .core)
         }
+    }
 
-        colorPickerHeight.constant = 0
-        colorPickerView.backgroundColor = .backgroundLightest
-        colorPickerView.alpha = 0
-        colorPickerView.transform = CGAffineTransform(translationX: 0, y: 45)
+    private func updateBorderColors() {
+        let clearColor = UIColor.clear.cgColor
 
-        let whiteColorBorder = UIView(frame: CGRect(x: 7, y: 7, width: 30, height: 30))
-        whiteColorBorder.layer.borderColor = UIColor.borderMedium.cgColor
-        whiteColorBorder.layer.borderWidth = 1
-        whiteColorBorder.layer.cornerRadius = 15
-        whiteColorBorder.isUserInteractionEnabled = false
-        whiteColorButton.addSubview(whiteColorBorder)
+        let currentTheme = overrideUserInterfaceStyle.nilIfUnspecified ?? traitCollection.userInterfaceStyle
+        if currentTheme.defaultToLight == .light {
+            // border white color
+            let borderColor = UIColor.borderMedium.variantForLightMode.cgColor
+            whiteColorBorder?.layer.borderColor = borderColor
 
-        let textColorView = UIView(frame: CGRect(x: 15.5, y: 27, width: 19, height: 5))
-        textColorView.layer.borderColor = UIColor.textDarkest.cgColor
-        textColorView.layer.borderWidth = 1
-        textColorView.isUserInteractionEnabled = false
-        textColorButton.addSubview(textColorView)
-        self.textColorView = textColorView
-
-        updateState(nil)
+            // border selected color if it's white
+            let isWhiteSelected = foreColor.hexString == UIColor.textLightest.variantForLightMode.hexString
+            textColorView?.layer.borderColor = isWhiteSelected ? borderColor : clearColor
+        } else {
+            // remove borders
+            whiteColorBorder?.layer.borderColor = clearColor
+            textColorView?.layer.borderColor = clearColor
+        }
     }
 
     func updateState(_ state: [String: Any?]?) {
         foreColor = UIColor(hexString: state?["foreColor"] as? String) ?? UIColor.textDarkest
-        let foreColorHex = foreColor.hexString
         linkHref = state?["linkHref"] as? String
         linkText = state?["linkText"] as? String
         imageSrc = state?["imageSrc"] as? String
         imageAlt = state?["imageAlt"] as? String
-        let active = Brand.shared.linkColor
-        let inactive = UIColor.textDarkest
+
         undoButton.isEnabled = (state?["undo"] as? Bool) == true
         redoButton.isEnabled = (state?["redo"] as? Bool) == true
+
         boldButton.isSelected = (state?["bold"] as? Bool) == true
         italicButton.isSelected = (state?["italic"] as? Bool) == true
         unorderedButton.isSelected = (state?["unorderedList"] as? Bool) == true
@@ -135,19 +180,17 @@ public class RichContentToolbarView: UIView {
         libraryButton.isHidden = !UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
         libraryButton.isSelected = imageSrc != nil
         libraryButton.accessibilityValue = imageSrc
+
         for button in buttonStack.arrangedSubviews {
-            button.tintColor = (button as? UIButton)?.isSelected == true ? active : inactive
+            let isSelected = (button as? UIButton)?.isSelected == true
+            button.tintColor = isSelected ? Brand.shared.linkColor : .textDarkest
         }
 
         textColorView?.backgroundColor = foreColor
-        if foreColorHex == UIColor.textLightest.variantForLightMode.hexString {
-            textColorView?.layer.borderColor = UIColor.borderMedium.cgColor
-        } else {
-            textColorView?.layer.borderColor = foreColor.cgColor
-        }
-        textColorButton.accessibilityValue = foreColorHex
+        updateBorderColors()
+
         for color in colorPickerStack.arrangedSubviews {
-            if color.tintColor.hexString == foreColorHex {
+            if color.tintColor.hexString == foreColor.hexString {
                 (color as? UIButton)?.isSelected = true
                 textColorButton?.accessibilityValue = color.accessibilityValue
             } else {
@@ -155,6 +198,8 @@ public class RichContentToolbarView: UIView {
             }
         }
     }
+
+    // MARK: - Actions
 
     @IBAction func undoAction(_ sender: UIButton) { controller?.undo() }
     @IBAction func redoAction(_ sender: UIButton) { controller?.redo() }
@@ -176,7 +221,7 @@ public class RichContentToolbarView: UIView {
         }
     }
 
-    func showColorPicker() {
+    private func showColorPicker() {
         colorPickerHeight?.constant = 45
         layoutIfNeeded()
         UIView.animate(withDuration: 0.2, animations: {
@@ -188,7 +233,7 @@ public class RichContentToolbarView: UIView {
         })
     }
 
-    func hideColorPicker() {
+    private func hideColorPicker() {
         UIAccessibility.post(notification: .layoutChanged, argument: self.textColorButton)
         UIView.animate(withDuration: 0.2, animations: {
             self.colorPickerView.alpha = 0
@@ -211,4 +256,16 @@ public class RichContentToolbarView: UIView {
     @IBAction func libraryAction(_ sender: UIButton) {
         controller?.insertFrom(.photoLibrary)
     }
+
+    private func registerForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: RichContentToolbarView, _) in
+            self.updateBorderColors()
+        }
+    }
+}
+
+private extension UIUserInterfaceStyle {
+    var nilIfUnspecified: Self? { self == .unspecified ? nil : self }
+    var defaultToLight: Self? { self == .unspecified ? .light : self }
 }

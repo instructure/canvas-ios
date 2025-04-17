@@ -43,4 +43,13 @@ extension NSPredicate {
     public func and(_ predicate: NSPredicate) -> NSPredicate {
         NSCompoundPredicate(andPredicateWithSubpredicates: [self, predicate])
     }
+
+    /**
+     - parameters:
+        - predicate: The predicate to be combined with `self` using the logical OR operation.
+     - returns: A new predicate by combining `self` and the `predicate` received as parameter with the logical OR operation.
+     */
+    public func or(_ predicate: NSPredicate) -> NSPredicate {
+        NSCompoundPredicate(orPredicateWithSubpredicates: [self, predicate])
+    }
 }

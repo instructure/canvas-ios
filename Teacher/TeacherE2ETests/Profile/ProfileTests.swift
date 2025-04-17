@@ -44,7 +44,7 @@ class ProfileTests: E2ETestCase {
         let logOutButton = ProfileHelper.logOutButton.waitUntil(.visible)
         XCTAssertTrue(userAvatar.isVisible)
         XCTAssertTrue(userNameLabel.isVisible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: teacher.name))
+        XCTAssertEqual(userNameLabel.label, teacher.name)
         XCTAssertTrue(filesButton.isVisible)
         XCTAssertTrue(studioButton.isVisible)
         XCTAssertTrue(settingsButton.isVisible)

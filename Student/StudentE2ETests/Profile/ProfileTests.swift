@@ -44,7 +44,7 @@ class ProfileTests: E2ETestCase {
         let logOutButton = ProfileHelper.logOutButton.waitUntil(.visible)
         XCTAssertTrue(userAvatar.isVisible)
         XCTAssertTrue(userNameLabel.isVisible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: student.name))
+        XCTAssertEqual(userNameLabel.label, student.name)
         XCTAssertTrue(filesButton.isVisible)
         XCTAssertTrue(studioButton.isVisible)
         XCTAssertTrue(settingsButton.isVisible)
@@ -103,6 +103,6 @@ class ProfileTests: E2ETestCase {
         profileButton.hit()
         let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
         XCTAssertTrue(userNameLabel.isVisible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: shortName))
+        XCTAssertEqual(userNameLabel.label, shortName)
     }
 }

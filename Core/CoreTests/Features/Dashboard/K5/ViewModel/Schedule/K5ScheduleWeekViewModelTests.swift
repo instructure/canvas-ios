@@ -27,12 +27,12 @@ class K5ScheduleWeekViewModelTests: CoreTestCase {
         let weekEnd = weekStart.addDays(7)
         let weekRange = weekStart..<weekEnd
         let testee = K5ScheduleWeekViewModel(weekRange: weekStart..<weekEnd, isTodayButtonAvailable: true, days: [
-            K5ScheduleDayViewModel(range: weekStart..<weekStart.add(.day, number: 1), calendar: .current),
-            K5ScheduleDayViewModel(range: weekStart.add(.day, number: 1)..<weekStart.add(.day, number: 2), calendar: .current)
+            K5ScheduleDayViewModel(range: weekStart..<weekStart.addDays(1), calendar: .current),
+            K5ScheduleDayViewModel(range: weekStart.addDays(1)..<weekStart.addDays(2), calendar: .current)
         ])
 
         let plannablesRequest = GetPlannablesRequest(userID: nil, startDate: weekRange.lowerBound, endDate: weekRange.upperBound, contextCodes: [], filter: "")
-        let plannablesResponse: [APIPlannable] = [.make(plannable_date: weekStart.add(.second, number: 1))]
+        let plannablesResponse: [APIPlannable] = [.make(plannable_date: weekStart.addSeconds(1))]
         api.mock(plannablesRequest, value: plannablesResponse)
         let courseRequest = GetCourses(enrollmentState: nil)
         let courseResponse: [APICourse] = [.make(image_download_url: "a.com")]

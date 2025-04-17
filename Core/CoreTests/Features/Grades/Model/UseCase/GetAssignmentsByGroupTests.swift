@@ -211,4 +211,28 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         results = environment.subscribe(useCaseGradedOnly)
         XCTAssertEqual(results.all.count, 1)
     }
+
+    func testFetchFiltersAssignmentsByUserID() {
+        let assignment1 = APIAssignment.make(
+            id: "assignment1",
+            name: "Assignment 1",
+            submission: APISubmission.make(user_id: "user1")
+        )
+        let assignment2 = APIAssignment.make(
+            id: "assignment2",
+            name: "Assignment 2",
+            submission: APISubmission.make(user_id: "user2")
+        )
+        let assignmentGroup = APIAssignmentGroup.make(assignments: [assignment1, assignment2])
+        let response = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(gradingPeriod: nil, assignmentGroups: [assignmentGroup])]
+        let testee = GetAssignmentsByGroup(courseID: "", userID: "user1")
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        // WHEN
+        let assignments: [Assignment] = databaseClient.fetch(scope: testee.scope)
+
+        // THEN
+        XCTAssertEqual(assignments.count, 1)
+        XCTAssertEqual(assignments.first?.id, "assignment1")
+    }
 }

@@ -47,7 +47,7 @@ class AssignmentsTests: E2ETestCase {
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -60,19 +60,19 @@ class AssignmentsTests: E2ETestCase {
         let oneNeedsGrading = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
-        XCTAssertTrue(nameLabel.hasLabel(label: assignment.name))
+        XCTAssertEqual(nameLabel.label, assignment.name)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertTrue(pointsLabel.hasLabel(label: "\(assignment.points_possible!) pt"))
+        XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pt")
         XCTAssertTrue(publishedLabel.isVisible)
-        XCTAssertTrue(publishedLabel.hasLabel(label: "Published"))
+        XCTAssertEqual(publishedLabel.label, "Published")
         XCTAssertTrue(dueLabel.isVisible)
-        XCTAssertTrue(dueLabel.hasLabel(label: "No due date", strict: false))
+        XCTAssertContains(dueLabel.label, "No due date")
         XCTAssertTrue(submissionTypesLabel.isVisible)
-        XCTAssertTrue(submissionTypesLabel.hasLabel(label: "Text Entry"))
+        XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
         XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(viewAllSubmissionsButton.hasLabel(label: "View all submissions"))
+        XCTAssertEqual(viewAllSubmissionsButton.label, "View all submissions")
         XCTAssertTrue(oneNeedsGrading.isVisible)
-        XCTAssertTrue(oneNeedsGrading.hasValue(value: "100%"))
+        XCTAssertEqual(oneNeedsGrading.stringValue, "100%")
         XCTAssertTrue(descriptionLabel.isVisible)
     }
 
@@ -105,8 +105,8 @@ class AssignmentsTests: E2ETestCase {
         let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitUntil(.visible)
         let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment).waitUntil(.visible)
         XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
-        XCTAssertTrue(yesterdaysAssignmentButton.hasLabel(label: "Due Yesterday", strict: false))
+        XCTAssertContains(yesterdaysAssignmentButton.label, "Due Yesterday")
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
-        XCTAssertTrue(tomorrowsAssignmentButton.hasLabel(label: "Due Tomorrow", strict: false))
+        XCTAssertContains(tomorrowsAssignmentButton.label, "Due Tomorrow")
     }
 }

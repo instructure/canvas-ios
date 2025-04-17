@@ -466,10 +466,10 @@ public enum DiscussionHTML {
         var description: String { "-i\(String(rawValue, radix: 36))" }
 
         static func color(_ path: KeyPath<Brand, UIColor>, style: UIUserInterfaceStyle = .light) -> String {
-            Brand.shared[keyPath: path].hexString(userInterfaceStyle: style)
+            Brand.shared[keyPath: path].hexString(for: style)
         }
         static func color(_ color: UIColor, style: UIUserInterfaceStyle = .light) -> String {
-            color.hexString(userInterfaceStyle: style)
+            color.hexString(for: style)
         }
 
         enum Weight: String {

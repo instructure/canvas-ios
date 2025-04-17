@@ -34,8 +34,8 @@ class TodoListViewControllerTests: CoreTestCase {
         api.mock(controller.groups, value: [.make()])
         api.mock(controller.todos, value: [
             .make(assignment: .make(due_at: Date(), id: "1"), course_id: "1", group_id: nil),
-            .make(assignment: .make(due_at: Date().add(.day, number: 1), id: "2"), course_id: nil, group_id: "1"),
-            .make(assignment: .make(due_at: Date().add(.day, number: 2), id: "3")),
+            .make(assignment: .make(due_at: Date().addDays(1), id: "2"), course_id: nil, group_id: "1"),
+            .make(assignment: .make(due_at: Date().addDays(2), id: "3")),
             .make(assignment: .make(due_at: nil, id: "4"), needs_grading_count: 2, type: .grading)
         ])
     }
@@ -109,7 +109,7 @@ class TodoListViewControllerTests: CoreTestCase {
     func testTodoItem() {
         api.mock(controller.todos, value: [
             .make(assignment: .make(due_at: Date(), id: "1"), course_id: "1", group_id: nil),
-            .make(assignment: nil, quiz: .make(due_at: Date().add(.day, number: 1), id: "2"), course_id: "1")
+            .make(assignment: nil, quiz: .make(due_at: Date().addDays(1), id: "2"), course_id: "1")
         ])
 
         controller.view.layoutIfNeeded()

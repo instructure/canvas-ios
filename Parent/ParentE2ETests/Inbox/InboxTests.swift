@@ -130,7 +130,7 @@ class InboxTests: E2ETestCase {
         // MARK: Check message item
         let messageButton = Helper.conversation(conversation: conversation).waitUntil(.visible)
         XCTAssertTrue(messageButton.isVisible)
-        XCTAssertTrue(messageButton.hasLabel(label: conversation.subject, strict: false))
+        XCTAssertContains(messageButton.label, conversation.subject)
 
         messageButton.hit()
 

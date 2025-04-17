@@ -18,7 +18,7 @@
 
 import UIKit
 
-public enum GradListAssembly {
+public enum GradeListAssembly {
     public static func makeInteractor(
         courseID: String,
         userID: String?

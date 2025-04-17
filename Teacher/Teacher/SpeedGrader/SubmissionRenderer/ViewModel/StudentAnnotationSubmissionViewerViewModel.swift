@@ -21,12 +21,14 @@ import SwiftUI
 
 class StudentAnnotationSubmissionViewerViewModel: ObservableObject {
     @Published public private(set) var session: Result<URL, Error>?
+    public let submissionId: String
 
     private var isInitialLoadStarted = false
     private let request: CanvaDocsSessionRequest
 
     public init(submission: Submission) {
-        self.request = CanvaDocsSessionRequest(submissionId: submission.id, attempt: "\(submission.attempt)")
+        submissionId = submission.id
+        request = CanvaDocsSessionRequest(submissionId: submission.id, attempt: "\(submission.attempt)")
     }
 
     public func viewDidAppear() {

@@ -40,19 +40,19 @@ class DiscussionsTests: E2ETestCase {
         Helper.navigateToDiscussions(course: course)
         let discussionButton = Helper.discussionButton(discussion: discussion).waitUntil(.visible)
         XCTAssertTrue(discussionButton.isVisible)
-        XCTAssertTrue(discussionButton.hasLabel(label: discussion.title, strict: false))
+        XCTAssertContains(discussionButton.label, discussion.title)
 
         let discussionLastPostLabel = Helper.discussionDataLabel(discussion: discussion, label: .lastPost)!.waitUntil(.visible)
         XCTAssertTrue(discussionLastPostLabel.isVisible)
 
         let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)!.waitUntil(.visible)
         XCTAssertTrue(discussionRepliesLabel.isVisible)
-        XCTAssertTrue(discussionRepliesLabel.hasLabel(label: "\(discussion.discussion_subentry_count) Replies"))
+        XCTAssertEqual(discussionRepliesLabel.label, "\(discussion.discussion_subentry_count) Replies")
 
         let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)!
             .waitUntil(.visible)
         XCTAssertTrue(discussionUnreadLabel.isVisible)
-        XCTAssertTrue(discussionUnreadLabel.hasLabel(label: "\(discussion.unread_count) Unread"))
+        XCTAssertEqual(discussionUnreadLabel.label, "\(discussion.unread_count) Unread")
     }
 
     func testReplyToDiscussion() {
@@ -140,14 +140,14 @@ class DiscussionsTests: E2ETestCase {
         Helper.backButton.hit()
         Helper.backButton.hit()
         GradesHelper.navigateToGrades(course: course)
-        var gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!)
+        var gradesAssignmentButton = GradesHelper.cell(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
         var gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
-        XCTAssertTrue(gradesAssignmentSubmittedLabel.hasLabel(label: "Not Submitted"))
+        XCTAssertEqual(gradesAssignmentSubmittedLabel.label, "Not Submitted")
 
         // MARK: Navigate to Discussions and send a reply
         Helper.backButton.hit()
@@ -166,26 +166,24 @@ class DiscussionsTests: E2ETestCase {
         var discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
         if discussionDataLabelReplies == nil {
             Helper.backButton.hit()
-            pullToRefresh()
+            app.pullToRefresh()
         }
         discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)!.waitUntil(.visible)
-        XCTAssertTrue(discussionDataLabelReplies!.hasLabel(label: "1 Reply"))
+        XCTAssertEqual(discussionDataLabelReplies!.label, "1 Reply")
 
         // MARK: Navigate to Grades and check for updates regarding submission
         Helper.backButton.hit()
         Helper.backButton.hit()
         GradesHelper.navigateToGrades(course: course)
-        GradesHelper.pullToRefresh()
-        gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!)
+        GradesHelper.refreshGradesScreen()
+        gradesAssignmentButton = GradesHelper.cell(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
         gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
-
-        gradesAssignmentSubmittedLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: "Submitted"))
-        XCTAssertTrue(gradesAssignmentSubmittedLabel.hasLabel(label: "Submitted"))
+        XCTAssertEqual(gradesAssignmentSubmittedLabel.label, "Submitted")
     }
 
     func testDiscussionDetail() {
@@ -204,7 +202,7 @@ class DiscussionsTests: E2ETestCase {
         Helper.navigateToDiscussions(course: course)
         let discussionButton = Helper.discussionButton(discussion: discussion).waitUntil(.visible)
         XCTAssertTrue(discussionButton.isVisible)
-        XCTAssertTrue(discussionButton.hasLabel(label: discussion.title, strict: false))
+        XCTAssertContains(discussionButton.label, discussion.title)
 
         discussionButton.hit()
         let searchField = DetailsHelper.searchField.waitUntil(.visible)
@@ -217,10 +215,10 @@ class DiscussionsTests: E2ETestCase {
         let discussionBody = DetailsHelper.discussionBody(discussion: discussion).waitUntil(.visible)
         var replyButton = DetailsHelper.replyButton.waitUntil(.visible)
         XCTAssertTrue(searchField.isVisible)
-        XCTAssertTrue(searchField.hasValue(value: "Search entries or author..."))
+        XCTAssertEqual(searchField.stringValue, "Search entries or author...")
         XCTAssertTrue(filterByLabel.isVisible)
         XCTAssertTrue(sortButton.isVisible)
-        XCTAssertTrue(sortButton.hasValue(value: "Newest First", strict: false))
+        XCTAssertContains(sortButton.stringValue, "Newest First")
         XCTAssertTrue(viewSplitScreenButton.isVisible)
         XCTAssertTrue(subscribeButton.isVisible)
         XCTAssertTrue(manageDiscussionButton.isVisible)

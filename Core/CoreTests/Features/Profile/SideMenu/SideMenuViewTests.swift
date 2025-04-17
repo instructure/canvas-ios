@@ -41,37 +41,40 @@ class SideMenuViewTests: CoreTestCase {
         api.mock(PutUserSettingsRequest(), value: .make(hide_dashcard_color_overlays: true))
     }
 
-    func testParentItems() {
-        let tree = controller(.observer).testTree
-        XCTAssertNotNil(tree?.find(id: "Profile.inboxButton"))
-        XCTAssertNil(tree?.find(id: "Profile.filesButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.settingsButton"))
-        XCTAssertNil(tree?.find(id: "Profile.showGradesToggle"))
-        XCTAssertNil(tree?.find(id: "Profile.colorOverlayToggle"))
-        XCTAssertNotNil(tree?.find(id: "Profile.manageChildrenButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.changeUserButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.logOutButton"))
+    func testParentItems() throws {
+        let tree = try XCTUnwrap(controller(.observer).testTree)
+
+        XCTAssertNotNil(tree.find(id: "Profile.inboxButton"))
+        XCTAssertNil(tree.find(id: "Profile.filesButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.manageChildrenButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.settingsButton"))
+
+        XCTAssertNotNil(tree.find(id: "Profile.changeUserButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.logOutButton"))
     }
 
-    func testStudentItems() {
-        let tree = controller(.student).testTree
-        XCTAssertNil(tree?.find(id: "Profile.inboxButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.filesButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.settingsButton"))
-        XCTAssertNil(tree?.find(id: "Profile.manageChildrenButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.changeUserButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.logOutButton"))
+    func testStudentItems() throws {
+        let tree = try XCTUnwrap(controller(.student).testTree)
+
+        XCTAssertNil(tree.find(id: "Profile.inboxButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.filesButton"))
+        XCTAssertNil(tree.find(id: "Profile.manageChildrenButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.settingsButton"))
+
+        XCTAssertNotNil(tree.find(id: "Profile.changeUserButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.logOutButton"))
     }
 
-    func testTeacherItems() {
-        let tree = controller(.teacher).testTree
-        XCTAssertNil(tree?.find(id: "Profile.inboxButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.filesButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.settingsButton"))
-        XCTAssertNil(tree?.find(id: "Profile.showGradesToggle"))
-        XCTAssertNil(tree?.find(id: "Profile.manageChildrenButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.changeUserButton"))
-        XCTAssertNotNil(tree?.find(id: "Profile.logOutButton"))
+    func testTeacherItems() throws {
+        let tree = try XCTUnwrap(controller(.teacher).testTree)
+
+        XCTAssertNil(tree.find(id: "Profile.inboxButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.filesButton"))
+        XCTAssertNil(tree.find(id: "Profile.manageChildrenButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.settingsButton"))
+
+        XCTAssertNotNil(tree.find(id: "Profile.changeUserButton"))
+        XCTAssertNotNil(tree.find(id: "Profile.logOutButton"))
     }
 
     func controller(_ enrollment: HelpLinkEnrollment) -> CoreHostingController<SideMenuView> {

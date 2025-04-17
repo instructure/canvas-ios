@@ -41,11 +41,11 @@ class CourseDetailsTests: E2ETestCase {
         // MARK: Check course details
         let titleLabel = CourseDetailsHelper.titleLabel.waitUntil(.visible)
         XCTAssertTrue(titleLabel.isVisible)
-        XCTAssertTrue(titleLabel.hasLabel(label: course.name))
+        XCTAssertEqual(titleLabel.label, course.name)
 
         let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitUntil(.visible)
         XCTAssertTrue(subtitleLabel.isVisible)
-        XCTAssertTrue(subtitleLabel.hasLabel(label: "Default Term"))
+        XCTAssertEqual(subtitleLabel.label, "Default Term")
 
         let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitUntil(.visible)
         XCTAssertTrue(announcementsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))

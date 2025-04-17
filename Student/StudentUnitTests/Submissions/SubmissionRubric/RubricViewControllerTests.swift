@@ -47,7 +47,7 @@ class RubricViewControllerTests: StudentTestCase {
             APIRubricRating.make(description: "B", id: "2", long_description: "this is B", points: 20),
             APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30)
         ]
-        let rubric = APIRubric.make(ratings: ratings)
+        let rubric = APIRubricCriterion.make(ratings: ratings)
 
         let assessment = APIRubricAssessment.make(comments: "meh", points: 30, rating_id: "3")
         let map: [String: APIRubricAssessment] = [rubric.id.value: assessment]
@@ -74,7 +74,7 @@ class RubricViewControllerTests: StudentTestCase {
             APIRubricRating.make(description: "B", id: "2", long_description: "this is B", points: 20),
             APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30)
         ]
-        let rubric = APIRubric.make(ratings: ratings)
+        let rubric = APIRubricCriterion.make(ratings: ratings)
 
         let s = APISubmission.make()
         let rubricSettings: APIRubricSettings = .make(free_form_criterion_comments: true, hides_points: true)

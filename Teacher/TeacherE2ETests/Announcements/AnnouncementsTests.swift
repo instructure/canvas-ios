@@ -42,20 +42,20 @@ class AnnouncementsTests: E2ETestCase {
 
         let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.hasLabel(label: announcements[1].title, strict: false))
+        XCTAssertContains(firstAnnouncement.label, announcements[1].title)
 
         let secondAnnouncement = AnnouncementsHelper.cell(index: 1).waitUntil(.visible)
         XCTAssertTrue(secondAnnouncement.isVisible)
-        XCTAssertTrue(secondAnnouncement.hasLabel(label: announcements[0].title, strict: false))
+        XCTAssertContains(secondAnnouncement.label, announcements[0].title)
 
         // MARK: Check title and message
         firstAnnouncement.hit()
         let announcementTitle = DetailsHelper.discussionTitle(discussion: announcements[1]).waitUntil(.visible)
         let announcementMessage = DetailsHelper.discussionBody(discussion: announcements[1]).waitUntil(.visible)
         XCTAssertTrue(announcementTitle.isVisible)
-        XCTAssertTrue(announcementTitle.hasLabel(label: announcements[1].title, strict: false))
+        XCTAssertContains(announcementTitle.label, announcements[1].title)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertTrue(announcementMessage.hasLabel(label: announcements[1].message))
+        XCTAssertEqual(announcementMessage.label, announcements[1].message)
     }
 
     func testGlobalAnnouncement() {
@@ -93,7 +93,7 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertTrue(announcementMessage.hasLabel(label: globalAnnouncement.message))
+        XCTAssertEqual(announcementMessage.label, globalAnnouncement.message)
 
         // MARK: Tap dismiss button and check the visibility
         dismissButton.hit()

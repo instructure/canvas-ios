@@ -148,7 +148,7 @@ class FilesTests: E2ETestCase {
         // MARK: Check uploaded file in list
         let uploadedFileListItem = FileList.file(index: 0).waitUntil(.visible, timeout: 60)
         XCTAssertTrue(uploadedFileListItem.isVisible)
-        XCTAssertTrue(uploadedFileListItem.hasLabel(label: Helper.TestPDF.title, strict: false))
+        XCTAssertContains(uploadedFileListItem.label, Helper.TestPDF.title)
 
         // MARK: Tap test PDF file, check details
         uploadedFileListItem.hit()

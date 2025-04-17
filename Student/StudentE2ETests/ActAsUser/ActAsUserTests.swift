@@ -35,7 +35,7 @@ class ActAsUserTests: E2ETestCase {
 
         profileButton.hit()
         let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: admin.name))
+        XCTAssertEqual(userNameLabel.label, admin.name)
 
         var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(.visible)
         XCTAssertTrue(actAsUserButton.isVisible)
@@ -46,7 +46,7 @@ class ActAsUserTests: E2ETestCase {
 
         userIDField.writeText(text: student.id)
         let domainField = ActAsUserHelper.domainField.waitUntil(.visible)
-        if !domainField.hasValue(value: "https://\(user.host)") {
+        if domainField.stringValue != "https://\(user.host)" {
             domainField.cutText()
             domainField.writeText(text: "https://\(user.host)")
         }
@@ -59,7 +59,7 @@ class ActAsUserTests: E2ETestCase {
         profileButton.hit()
         userNameLabel.waitUntil(.visible)
         XCTAssertTrue(userNameLabel.isVisible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: student.name))
+        XCTAssertEqual(userNameLabel.label, student.name)
 
         let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(.visible)
         XCTAssertTrue(endActAsUserButton.isVisible)
@@ -72,6 +72,6 @@ class ActAsUserTests: E2ETestCase {
         profileButton.hit()
         userNameLabel.waitUntil(.visible)
         XCTAssertTrue(userNameLabel.isVisible)
-        XCTAssertTrue(userNameLabel.hasLabel(label: admin.name))
+        XCTAssertEqual(userNameLabel.label, admin.name)
     }
 }

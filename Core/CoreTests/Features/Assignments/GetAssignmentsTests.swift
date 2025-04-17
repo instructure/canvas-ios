@@ -284,7 +284,7 @@ class GetAssignmentsTests: CoreTestCase {
     func testItCreatesRubrics() {
         let apiAssignment = APIAssignment.make(
             id: "2",
-            rubric: [APIRubric.make()]
+            rubric: [APIRubricCriterion.make()]
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
@@ -304,7 +304,7 @@ class GetAssignmentsTests: CoreTestCase {
 
         let apiAssignment = APIAssignment.make(
             id: "2",
-            rubric: [APIRubric.make(id: "2")]
+            rubric: [APIRubricCriterion.make(id: "2")]
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
@@ -317,7 +317,7 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignment?.rubric?.first?.id, "2")
 
         //  make sure old existing rubrics were deleted
-        let rubrics: [Rubric] = databaseClient.fetch()
+        let rubrics: [CDRubricCriterion] = databaseClient.fetch()
         XCTAssertEqual(rubrics.count, 1)
     }
 
@@ -345,7 +345,7 @@ class GetAssignmentsTests: CoreTestCase {
 
         let apiAssignment = APIAssignment.make(
             id: "2",
-            rubric: [APIRubric.make(ratings: nil)]
+            rubric: [APIRubricCriterion.make(ratings: nil)]
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
@@ -364,7 +364,7 @@ class GetAssignmentsTests: CoreTestCase {
 
         let apiAssignment = APIAssignment.make(
             id: "2",
-            rubric: [APIRubric.make(ratings: [APIRubricRating.make(id: "2")])]
+            rubric: [APIRubricCriterion.make(ratings: [APIRubricRating.make(id: "2")])]
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])

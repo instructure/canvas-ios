@@ -31,4 +31,15 @@ class NSPredicateExtensionsTests: XCTestCase {
 
         XCTAssertEqual(testee.description, "(1 == 1 AND 1 != 0) AND 1 != 2")
     }
+
+    func testORPredicate() {
+        let variable = 1
+        let firstPredicate = NSPredicate(format: "%@ == %@", argumentArray: [variable, 1])
+        let secondPredicate = NSPredicate(format: "%@ != %@", argumentArray: [variable, 0])
+        let thirdPredicate = NSPredicate(format: "%@ != %@", argumentArray: [variable, 2])
+
+        let testee = firstPredicate.or(secondPredicate).or(thirdPredicate)
+
+        XCTAssertEqual(testee.description, "(1 == 1 OR 1 != 0) OR 1 != 2")
+    }
 }

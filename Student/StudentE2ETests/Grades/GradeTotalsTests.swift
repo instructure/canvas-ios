@@ -34,8 +34,6 @@ class GradeTotalsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for all
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
@@ -46,7 +44,7 @@ class GradeTotalsTests: E2ETestCase {
         // MARK: See if total grades is N/A
         GradesHelper.navigateToGrades(course: course)
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
-        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is N/A"))
+        XCTAssertEqual(totalGrade.label, "Total grade is N/A")
 
         // MARK: Check if total is updating accordingly
         let grades = ["100", "25"]
@@ -54,15 +52,19 @@ class GradeTotalsTests: E2ETestCase {
         let pg_grades = ["30%", "90%"]
         let lg_grades = ["A", "E"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 62.5%"))
 
         GradesHelper.gradeAssignments(grades: pfg_grades, course: course, assignments: pfg_assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 56.25%"))
 
         GradesHelper.gradeAssignments(grades: pg_grades, course: course, assignments: pg_assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 57.5%"))
 
         GradesHelper.gradeAssignments(grades: lg_grades, course: course, assignments: lg_assignments, user: student)
+        GradesHelper.refreshGradesScreen()
         XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 63.57%"))
     }
 }

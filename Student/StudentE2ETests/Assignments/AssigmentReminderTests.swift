@@ -42,10 +42,10 @@ class AssignmentReminderTests: E2ETestCase {
         let notificationToggle = SettingsAppHelper.CanvasStudent.Notifications.notificationsToggle.waitUntil(.visible)
         XCTAssertTrue(notificationToggle.isVisible)
 
-        if notificationToggle.hasValue(value: "off") {
+        if notificationToggle.stringValue == "off" {
             notificationToggle.hit()
         }
-        XCTAssertTrue(notificationToggle.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        XCTAssertEqual(notificationToggle.waitUntil(.value(expected: "1")).stringValue, "1")
 
         app.activate()
     }
@@ -68,7 +68,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -125,7 +125,7 @@ class AssignmentReminderTests: E2ETestCase {
         XCUIDevice.shared.press(.home)
         let notificationBanner = ReminderHelper.notificationBanner.waitUntil(.visible, timeout: 90)
         XCTAssertTrue(notificationBanner.isVisible)
-        XCTAssertTrue(notificationBanner.hasLabel(label: "This assignment is due in 5 minutes", strict: false))
+        XCTAssertContains(notificationBanner.label, "This assignment is due in 5 minutes")
     }
 
     func testAssignmentReminderWithCustomDate() {
@@ -146,7 +146,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -185,13 +185,13 @@ class AssignmentReminderTests: E2ETestCase {
         let timeUnitPicker = ReminderHelper.timeUnitPickerWheel.waitUntil(.visible)
         XCTAssertTrue(numberPicker.isVisible)
         XCTAssertTrue(timeUnitPicker.isVisible)
-        XCTAssertTrue(numberPicker.hasValue(value: "1"))
-        XCTAssertTrue(timeUnitPicker.hasValue(value: "Minutes Before"))
+        XCTAssertEqual(numberPicker.stringValue, "1")
+        XCTAssertEqual(timeUnitPicker.stringValue, "Minutes Before")
 
         numberPicker.adjust(toPickerWheelValue: "3")
         timeUnitPicker.adjust(toPickerWheelValue: "Hours Before")
-        XCTAssertTrue(numberPicker.hasValue(value: "3"))
-        XCTAssertTrue(timeUnitPicker.hasValue(value: "Hours Before"))
+        XCTAssertEqual(numberPicker.stringValue, "3")
+        XCTAssertEqual(timeUnitPicker.stringValue, "Hours Before")
 
         doneButton.hit()
         XCTAssertTrue(reminderLabel.waitUntil(.visible).isVisible)
@@ -201,7 +201,7 @@ class AssignmentReminderTests: E2ETestCase {
         XCUIDevice.shared.press(.home)
         let notificationBanner = ReminderHelper.notificationBanner.waitUntil(.visible, timeout: 90)
         XCTAssertTrue(notificationBanner.isVisible)
-        XCTAssertTrue(notificationBanner.hasLabel(label: "This assignment is due in 3 hours", strict: false))
+        XCTAssertContains(notificationBanner.label, "This assignment is due in 3 hours")
     }
 
     func testRemoveAssignmentReminder() {
@@ -222,7 +222,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -303,7 +303,7 @@ class AssignmentReminderTests: E2ETestCase {
         Helper.navigateToAssignments(course: course)
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
@@ -357,14 +357,14 @@ class AssignmentReminderTests: E2ETestCase {
         let timeUnitPicker = ReminderHelper.timeUnitPickerWheel.waitUntil(.visible)
         XCTAssertTrue(numberPicker.isVisible)
         XCTAssertTrue(timeUnitPicker.isVisible)
-        XCTAssertTrue(numberPicker.hasValue(value: "1"))
-        XCTAssertTrue(timeUnitPicker.hasValue(value: "Minutes Before"))
+        XCTAssertEqual(numberPicker.stringValue, "1")
+        XCTAssertEqual(timeUnitPicker.stringValue, "Minutes Before")
 
         // MARK: Set to the same (5 minutes)
         numberPicker.adjust(toPickerWheelValue: "5")
         timeUnitPicker.adjust(toPickerWheelValue: "Minutes Before")
-        XCTAssertTrue(numberPicker.hasValue(value: "5"))
-        XCTAssertTrue(timeUnitPicker.hasValue(value: "Minutes Before"))
+        XCTAssertEqual(numberPicker.stringValue, "5")
+        XCTAssertEqual(timeUnitPicker.stringValue, "Minutes Before")
 
         // MARK: Check warning message
         doneButton.hit()

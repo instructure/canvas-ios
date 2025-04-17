@@ -48,9 +48,9 @@ class ConferencesTests: E2ETestCase {
         XCTAssertTrue(conferenceTitle.isVisible)
         XCTAssertTrue(conferenceStatus.isVisible)
         XCTAssertTrue(conferenceDetails.isVisible)
-        XCTAssertTrue(conferenceTitle.hasLabel(label: conference.title))
-        XCTAssertTrue(conferenceStatus.hasLabel(label: "Not Started"))
-        XCTAssertTrue(conferenceDetails.hasLabel(label: conference.description))
+        XCTAssertEqual(conferenceTitle.label, conference.title)
+        XCTAssertEqual(conferenceStatus.label, "Not Started")
+        XCTAssertEqual(conferenceDetails.label, conference.description)
 
         // MARK: Check elements of Conference Details
         conferenceTitle.hit()
@@ -60,8 +60,8 @@ class ConferencesTests: E2ETestCase {
         XCTAssertTrue(detailsTitle.isVisible)
         XCTAssertTrue(detailsStatus.isVisible)
         XCTAssertTrue(detailsDetails.isVisible)
-        XCTAssertTrue(detailsTitle.hasLabel(label: conference.title))
-        XCTAssertTrue(detailsStatus.hasLabel(label: "Not Started"))
-        XCTAssertTrue(detailsDetails.hasLabel(label: conference.description))
+        XCTAssertEqual(detailsTitle.label, conference.title)
+        XCTAssertEqual(detailsStatus.label, "Not Started")
+        XCTAssertEqual(detailsDetails.label, conference.description)
     }
 }
