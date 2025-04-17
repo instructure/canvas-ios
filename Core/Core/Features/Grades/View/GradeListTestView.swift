@@ -49,13 +49,64 @@ public struct GradeListTestView: View {
             }
             .coordinateSpace(name: "scroll")
 
-            CollapsableHeader(scrollOffset: scrollOffset ?? 0)
+            TogglesView(scrollOffset: scrollOffset ?? 0)
                 .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
                     if headerHeight == nil || newFrame.height > headerHeight ?? 0 {
                         self.headerHeight = newFrame.height
                     }
                 }
         }
+    }
+}
+
+struct TogglesView: View {
+    @State var originalHeight: CGFloat?
+
+    let scrollOffset: CGFloat
+
+    var body: some View {
+        let height: CGFloat? = {
+            guard let originalHeight else {
+                return nil
+            }
+
+            if scrollOffset > 0 {
+                return originalHeight
+            }
+
+            return max(0, originalHeight + scrollOffset)
+        }()
+
+        VStack(spacing: 0) {
+            InstUI.Toggle(isOn: .constant(true)) {
+                Text("Based on graded assignments", bundle: .core)
+                    .foregroundStyle(Color.textDarkest)
+                    .font(.regular16)
+                    .multilineTextAlignment(.leading)
+            }
+            .frame(minHeight: 51)
+            .padding(.horizontal, 16)
+            .accessibilityIdentifier("BasedOnGradedToggle")
+
+            Divider()
+
+            InstUI.Toggle(isOn: .constant(false)) {
+                Text("Show What-if Score", bundle: .core)
+                    .foregroundStyle(Color.textDarkest)
+                    .font(.regular16)
+                    .multilineTextAlignment(.leading)
+            }
+            .frame(minHeight: 51)
+            .padding(.horizontal, 16)
+            .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
+                if originalHeight == nil {
+                    self.originalHeight = frame.height
+                }
+            }
+            .frame(maxHeight: height, alignment: .bottom)
+            .clipped()
+        }
+        .background(Color.backgroundLight)
     }
 }
 
