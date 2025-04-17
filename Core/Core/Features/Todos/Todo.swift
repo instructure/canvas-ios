@@ -158,25 +158,27 @@ public final class Todo: NSManagedObject, WriteableModel {
     }
 }
 
-class GetTodos: CollectionUseCase {
-    typealias Model = Todo
-    typealias Response = Request.Response
+public class GetTodos: CollectionUseCase {
+    public typealias Model = Todo
+    public typealias Response = Request.Response
 
     let type: TodoType?
-    var cacheKey: String? { nil }
-    var request: GetTodosRequest { GetTodosRequest() }
+    public var cacheKey: String? {
+        return "get-todos"
+    }
+    public var request: GetTodosRequest { GetTodosRequest() }
     var todoPredicate: NSPredicate {
         guard let type = type else {
             return .all
         }
         return NSPredicate(format: "%K == %@", #keyPath(Todo.typeRaw), type.rawValue)
     }
-    var scope: Scope { Scope(predicate: todoPredicate, order: [
+    public var scope: Scope { Scope(predicate: todoPredicate, order: [
         NSSortDescriptor(key: #keyPath(Todo.dueAtSortNilsAtBottom), ascending: true),
         NSSortDescriptor(key: #keyPath(Todo.name), ascending: true)
     ]) }
 
-    init(_ type: TodoType? = nil) {
+    public init(_ type: TodoType? = nil) {
         self.type = type
     }
 }

@@ -61,9 +61,9 @@ extension APITodo {
 }
 #endif
 
-struct GetTodosRequest: APIRequestable {
-    typealias Response = [APITodo]
-    var path: String { "users/self/todo" }
+public struct GetTodosRequest: APIRequestable {
+    public typealias Response = [APITodo]
+    public var path: String { "users/self/todo" }
     let include: [GetTodosInclude]
 
     public enum GetTodosInclude: String, CaseIterable {
