@@ -8,7 +8,7 @@
       location = "group:Horizon/Horizon.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:Parent/Parent.xcodeproj">
+      location = "group:Parent/Parent.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Teacher/Teacher.xcodeproj">
