@@ -70,20 +70,20 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         return Publishers
             .Sequence(sequence: courseIDs)
             .receive(on: scheduler)
-            .flatMap { [weak self] courseSyncID in
+            .flatMap { [weak self] courseSyncID -> AnyPublisher<CourseMediaData, Error> in
                 guard let self else {
                     return Publishers.noInstanceFailure(output: CourseMediaData.self)
                 }
                 return getCourseMedia(courseSyncID: courseSyncID)
             }
             .collect()
-            .flatMap { allCoursesMedia in
-
-                return Publishers.Sequence<[CourseMediaData], Never>(
-                    sequence: Dictionary(
-                        grouping: allCoursesMedia,
-                        by: { $0.studioDirectory }
-                    ).map { (studioDirectory, mediaList) in
+            .flatMap { (allCoursesMedia: [CourseMediaData]) -> AnyPublisher<CourseMediaData, Never> in
+                let mediaListByStudioDirectory: [URL: [CourseMediaData]] = Dictionary(
+                    grouping: allCoursesMedia,
+                    by: { $0.studioDirectory }
+                )
+                return Publishers.Sequence(sequence: mediaListByStudioDirectory)
+                    .map { (studioDirectory, mediaList) in
                         var group = CourseMediaData(studioDirectory: studioDirectory)
                         mediaList.forEach { courseMedia in
                             group.iframes.merge(courseMedia.iframes) { $0 + $1 }
@@ -91,10 +91,9 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                         }
                         return group
                     }
-                )
+                    .eraseToAnyPublisher()
             }
             .flatMap { [cleanupInteractor] mediaData in
-
                 return cleanupInteractor
                     .removeNoLongerNeededVideos(
                         allMediaItemsOnAPI: mediaData.mediaItems,
