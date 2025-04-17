@@ -1,10 +1,6 @@
 //
 // This file is part of Canvas.
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Spinner/HorizonUI.Spinner.Size.swift
-// Copyright (C) 2024-present  Instructure, Inc.
-========
 // Copyright (C) 2025-present  Instructure, Inc.
->>>>>>>> origin/master:Teacher/Teacher/SpeedGrader/Grading/Rubrics/View/Ratings/RubricRatingView.swift
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -22,7 +18,6 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Spinner/HorizonUI.Spinner.Size.swift
 public extension HorizonUI.Spinner {
     enum Size {
         case xSmall
@@ -46,26 +41,6 @@ public extension HorizonUI.Spinner {
             case .medium: return 6
             case .large: return 8
             }
-========
-struct RubricRatingView: View {
-    @ObservedObject var viewModel: RubricRatingViewModel
-    let leading: (ViewDimensions) -> CGFloat
-    let top: (ViewDimensions) -> CGFloat
-    let containerFrameInGlobal: CGRect
-
-    var body: some View {
-        let value = Text(viewModel.value)
-        RubricCircle(
-            isOn: $viewModel.isSelected,
-            tooltip: viewModel.tooltip,
-            containerFrame: containerFrameInGlobal
-        ) {
-            value
->>>>>>>> origin/master:Teacher/Teacher/SpeedGrader/Grading/Rubrics/View/Ratings/RubricRatingView.swift
         }
-        .accessibility(value: value)
-        .accessibility(label: Text(viewModel.accessibilityLabel))
-        .alignmentGuide(.leading, computeValue: leading)
-        .alignmentGuide(.top, computeValue: top)
     }
 }

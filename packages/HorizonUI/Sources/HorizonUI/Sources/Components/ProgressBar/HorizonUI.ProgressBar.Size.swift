@@ -18,12 +18,11 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/ProgressBar/HorizonUI.ProgressBar.Size.swift
 public extension HorizonUI.ProgressBar {
     enum Size: Equatable {
         case small
         case medium
-
+        
         var height: CGFloat {
             switch self {
             case .small:
@@ -32,7 +31,7 @@ public extension HorizonUI.ProgressBar {
                 return 28
             }
         }
-
+        
         var backgroundColor: Color {
             switch self {
             case .small:
@@ -41,37 +40,5 @@ public extension HorizonUI.ProgressBar {
                 return .clear
             }
         }
-========
-public struct SearchSupportButtonModel<Action: SearchSupportAction> {
-    let action: Action
-    let icon: SearchSupportIcon
-
-    public init(action: Action, icon: SearchSupportIcon = .help) {
-        self.action = action
-        self.icon = icon
-    }
-}
-
-// MARK: - Icon
-
-public struct SearchSupportIcon {
-    public static var help = SearchSupportIcon(image: .questionLine, uiImage: .questionLine)
-
-    let image: () -> Image
-    let uiImage: () -> UIImage?
-
-    public init(
-        image: @autoclosure @escaping () -> Image,
-        uiImage: @autoclosure @escaping () -> UIImage?
-    ) {
-        self.image = image
-        self.uiImage = uiImage
->>>>>>>> origin/master:Core/Core/Features/Search/Model/SearchSupportButtonModel.swift
-    }
-
-    enum NumberPosition {
-        case inside
-        case outside
-        case hidden
     }
 }
