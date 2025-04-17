@@ -30,7 +30,7 @@ struct SkillSpaceView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space24) {
             navigationBar
-            Text("Skillspace")
+            Text("Skillspace", bundle: .horizon)
                 .huiTypography(.h1)
             notAvailableYetFeatureView
         }
