@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct CommentEditor: View {
+struct CommentEditorView: View {
     @Environment(\.viewController) var controller
 
     @Binding var text: String
@@ -77,7 +77,7 @@ struct CommentEditor: View {
 struct CommentEditor_Previews: PreviewProvider {
     static var previews: some View {
         @State var showCommentLibrary = false
-        CommentEditor(text: .constant("Sample Text"),
+        CommentEditorView(text: .constant("Sample Text"),
                       shouldShowCommentLibrary: true,
                       showCommentLibrary: $showCommentLibrary,
                       action: {},

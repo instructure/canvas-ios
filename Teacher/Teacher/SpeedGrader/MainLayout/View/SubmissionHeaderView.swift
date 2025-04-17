@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct SubmissionHeader: View {
+struct SubmissionHeaderView: View {
     let assignment: Assignment
     let submission: Submission
 

@@ -126,7 +126,7 @@ struct SubmissionGrades: View {
     }
 
     private func commentEditor() -> some View {
-        CommentEditor(
+        CommentEditorView(
             text: $rubricsViewModel.criterionComment,
             shouldShowCommentLibrary: false,
             showCommentLibrary: .constant(false),

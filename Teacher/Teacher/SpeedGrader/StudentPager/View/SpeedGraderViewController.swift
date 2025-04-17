@@ -22,7 +22,7 @@ import UIKit
 import Core
 
 class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewControllerDataSource {
-    typealias Page = CoreHostingController<SubmissionGrader>
+    typealias Page = CoreHostingController<SubmissionGraderView>
 
     var env: AppEnvironment = .defaultValue
 
@@ -138,7 +138,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
 
     private func updatePages() {
         for page in pages.children.compactMap({ $0 as? Page }) {
-            if let grader = grader(for: page.rootView.content.index) {
+            if let grader = grader(for: page.rootView.content.userIndexInSubmissionList) {
                 page.rootView.content = grader
             }
         }
@@ -147,11 +147,11 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     // MARK: - PagesViewControllerDataSource
 
     func pagesViewController(_ pages: PagesViewController, pageBefore page: UIViewController) -> UIViewController? {
-        (page as? Page).flatMap { controller(for: $0.rootView.content.index - 1) }
+        (page as? Page).flatMap { controller(for: $0.rootView.content.userIndexInSubmissionList - 1) }
     }
 
     func pagesViewController(_ pages: PagesViewController, pageAfter page: UIViewController) -> UIViewController? {
-        (page as? Page).flatMap { controller(for: $0.rootView.content.index + 1) }
+        (page as? Page).flatMap { controller(for: $0.rootView.content.userIndexInSubmissionList + 1) }
     }
 
     func controller(for index: Int) -> UIViewController? {
@@ -160,18 +160,20 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         return controller
     }
 
-    func grader(for index: Int) -> SubmissionGrader? {
+    func grader(for index: Int) -> SubmissionGraderView? {
         guard
             let data = interactor.data,
             index >= 0,
             index < data.submissions.count
         else { return nil }
 
-        return SubmissionGrader(
+        return SubmissionGraderView(
             env: env,
-            index: index,
-            assignment: data.assignment,
-            submission: data.submissions[index],
+            userIndexInSubmissionList: index,
+            viewModel: SubmissionGraderViewModel(
+                assignment: data.assignment,
+                submission: data.submissions[index]
+            ),
             handleRefresh: { [weak self] in
                 self?.interactor.refreshSubmission(forUserId: data.submissions[index].userID)
             }

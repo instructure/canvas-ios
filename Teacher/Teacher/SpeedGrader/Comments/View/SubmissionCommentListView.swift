@@ -20,11 +20,11 @@ import SwiftUI
 import Core
 import Combine
 
-struct SubmissionCommentList: View {
+struct SubmissionCommentListView: View {
     let assignment: Assignment
     let submission: Submission
     let filePicker = FilePicker(env: .shared)
-    @Binding var attempt: Int?
+    @Binding var attempt: Int
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
     @Binding var comment: String
@@ -32,7 +32,7 @@ struct SubmissionCommentList: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @ObservedObject var attempts: Store<LocalUseCase<Submission>>
+    var attempts: [Submission]
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @StateObject private var viewModel: SubmissionCommentListViewModel
@@ -40,18 +40,18 @@ struct SubmissionCommentList: View {
     @State var showMediaOptions = false
     @State var showCommentLibrary = false
 
-    @AccessibilityFocusState private var focusedTab: SubmissionGrader.GraderTab?
+    @AccessibilityFocusState private var focusedTab: SubmissionGraderView.GraderTab?
 
     init(
         assignment: Assignment,
         submission: Submission,
-        attempts: Store<LocalUseCase<Submission>>,
-        attempt: Binding<Int?>,
+        attempts: [Submission],
+        attempt: Binding<Int>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
         enteredComment: Binding<String>,
         commentLibrary: SubmissionCommentLibraryViewModel,
-        focusedTab: AccessibilityFocusState<SubmissionGrader.GraderTab?>
+        focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
     ) {
         self.assignment = assignment
         self.submission = submission
@@ -159,7 +159,7 @@ struct SubmissionCommentList: View {
                         .cancel()
                     ])
                 }
-            CommentEditor(
+            CommentEditorView(
                 text: $comment,
                 shouldShowCommentLibrary: commentLibrary.shouldShow,
                 showCommentLibrary: $showCommentLibrary,
