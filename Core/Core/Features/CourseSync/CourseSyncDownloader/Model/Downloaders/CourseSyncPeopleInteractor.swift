@@ -25,22 +25,29 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
 
     var associatedTabType: TabName { .people }
 
-    func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    private let envResolver: CourseSyncEnvironmentResolver
 
-        let context: Context = .course(courseId)
+    init(envResolver: CourseSyncEnvironmentResolver) {
+        self.envResolver = envResolver
+    }
+
+    func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+
+        let context: Context = courseId.asContext
+        let env = envResolver.targetEnvironment(for: courseId)
 
         return [
             Self.fetchCourseColors(),
             Self.fetchCourse(context: context),
-            Self.fetchSections(courseID: courseId),
-            Self.fetchUsers(context: context)
+            Self.fetchSections(courseID: courseId, env: env),
+            Self.fetchUsers(context: context, env: env)
         ]
             .zip()
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         Just(()).eraseToAnyPublisher()
     }
 
@@ -58,17 +65,20 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchUsers(context: Context) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetPeopleListUsers(context: context))
+    private static func fetchUsers(context: Context, env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetPeopleListUsers(context: context), environment: env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
-    private static func fetchSections(courseID: String) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourseSections(courseID: courseID))
-            .getEntities(ignoreCache: true)
-            .mapToVoid()
-            .eraseToAnyPublisher()
+    private static func fetchSections(courseID: CourseSyncID, env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetCourseSections(courseID: courseID.localID),
+            environment: env
+        )
+        .getEntities(ignoreCache: true)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 }

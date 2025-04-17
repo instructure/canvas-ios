@@ -80,7 +80,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
     func start() {
         guard case .fetchingLaunchURL = state else { return }
 
-        let ltiTools = LTITools(env: env, context: context, id: toolID, launchType: .course_navigation, isQuizLTI: false)
+        let ltiTools = LTITools(context: context, id: toolID, launchType: .course_navigation, isQuizLTI: false, env: env)
         ltiTools.getSessionlessLaunchURL { url in
             if let url = url {
                 self.launch(url: url)

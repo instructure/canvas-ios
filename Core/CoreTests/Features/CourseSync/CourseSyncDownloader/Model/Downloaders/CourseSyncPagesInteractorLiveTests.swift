@@ -125,6 +125,6 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
 
     private func getHTMLParser() -> HTMLParser {
         let interactor = HTMLDownloadInteractorMock()
-        return HTMLParserLive(sessionId: environment.currentSession!.uniqueID, downloadInteractor: interactor)
+        return HTMLParserLive(downloadInteractor: interactor)
     }
 }

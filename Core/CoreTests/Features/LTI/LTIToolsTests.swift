@@ -85,14 +85,14 @@ class LTIToolsTests: CoreTestCase {
 
     func testGetSessionlessLaunchURL() {
         let tools = LTITools(
-            env: environment,
             context: .course("1"),
             id: nil,
             url: nil,
             launchType: nil,
             isQuizLTI: nil,
             assignmentID: nil,
-            moduleItemID: nil
+            moduleItemID: nil,
+            env: environment
         )
         let request = GetSessionlessLaunchURLRequest(context: .course("1"),
                                                      id: nil,
@@ -134,14 +134,14 @@ class LTIToolsTests: CoreTestCase {
 
     func testPresentTool() throws {
         let tools = LTITools(
-            env: environment,
             context: .course("1"),
             id: nil,
             url: nil,
             launchType: nil,
             isQuizLTI: nil,
             assignmentID: nil,
-            moduleItemID: nil
+            moduleItemID: nil,
+            env: environment
         )
         let request = GetSessionlessLaunchURLRequest(context: .course("1"),
                                                      id: nil,
@@ -281,14 +281,14 @@ class LTIToolsTests: CoreTestCase {
     func testPresentWhenURLIsAlreadySessionlessLaunch() {
         let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/sessionless_launch")!
         let tools = LTITools(
-            env: environment,
             context: nil,
             id: nil,
             url: url,
             launchType: nil,
             isQuizLTI: nil,
             assignmentID: nil,
-            moduleItemID: nil
+            moduleItemID: nil,
+            env: environment
         )
         let data = try! APIJSONEncoder().encode(APIGetSessionlessLaunchResponse.make())
         api.mock(url: url, data: data)
@@ -304,7 +304,7 @@ class LTIToolsTests: CoreTestCase {
 
     func testConvenienceInitSucceedingWithResourceLinkLookupUUID() {
         let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/retrieve?resource_link_lookup_uuid=123")!
-        let testee = LTITools(env: environment, link: url, navigationType: .linkActivated)
+        let testee = LTITools(link: url, navigationType: .linkActivated, env: environment)
 
         guard let testee = testee else {
             return XCTFail()

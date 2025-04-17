@@ -196,11 +196,11 @@ class SubmissionDetailsPresenter {
         // still be a submission inside the tool
         if assignment.requiresLTILaunch(toViewSubmission: submission) {
             let tools = LTITools(
-                env: env,
                 context: context,
                 launchType: .assessment,
                 isQuizLTI: assignment.isQuizLTI,
-                assignmentID: assignmentID
+                assignmentID: assignmentID,
+                env: env
             )
             return LTIViewController.create(env: env, tools: tools)
         }
@@ -269,10 +269,10 @@ class SubmissionDetailsPresenter {
             return controller
         case .some(.basic_lti_launch):
             let tools = LTITools(
-                env: env,
                 context: context,
                 url: submission.externalToolURL,
-                isQuizLTI: false
+                isQuizLTI: false,
+                env: env
             )
             return LTIViewController.create(env: env, tools: tools)
         case .student_annotation:

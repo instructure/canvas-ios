@@ -396,7 +396,7 @@ extension CoreWebView: WKNavigationDelegate {
         // involved (like Zoom and Microsoft).
         // When there's additional JavaScript code behind an LTI Button (like DBQ Online), we don't want to
         // handle those cases here, because `createWebViewWith` already opened a new popup window.
-        if let tools = LTITools(link: action.request.url, navigationType: action.navigationType),
+        if let tools = LTITools(link: action.request.url, navigationType: action.navigationType, env: env),
             let from = linkDelegate?.routeLinksFrom {
             tools.presentTool(from: from, animated: true)
             return decisionHandler(.cancel)

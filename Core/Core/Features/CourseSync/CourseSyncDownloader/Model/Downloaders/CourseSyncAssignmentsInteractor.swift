@@ -24,48 +24,40 @@ public extension CourseSyncAssignmentsInteractor {
     var associatedTabType: TabName { .assignments }
 }
 
-public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor, CourseSyncContentInteractor {
-    let htmlParser: HTMLParser
-
+public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor, CourseSyncHtmlContentInteractor {
+    public let htmlParser: HTMLParser
     public init(htmlParser: HTMLParser) {
         self.htmlParser = htmlParser
     }
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetAssignmentsByGroup(courseID: courseId)
+            useCase: GetAssignmentsByGroup(courseID: courseId.localID),
+            environment: targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
         .filter { $0.submission != nil }
-        .flatMap {[htmlParser] in Self.getSubmissionComments(courseID: courseId, assignmentID: $0.id, userID: $0.submission!.userID, htmlParser: htmlParser) }
+        .flatMap {[htmlParser] in
+            Self.getSubmissionComments(courseID: courseId, assignmentID: $0.id, userID: $0.submission!.userID, htmlParser: htmlParser) }
         .collect()
         .map { _ in () }
         .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: htmlParser.sessionId,
-            courseId: courseId,
-            sectionName: htmlParser.sectionName
-        )
-
-        return FileManager.default.removeItemPublisher(at: rootURL)
-    }
-
     private static func getSubmissionComments(
-        courseID: String,
+        courseID: CourseSyncID,
         assignmentID: String,
         userID: String,
         htmlParser: HTMLParser
     ) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetSubmissionComments(
-                context: .course(courseID),
+                context: courseID.asContext,
                 assignmentID: assignmentID,
                 userID: userID
-            )
+            ),
+            environment: htmlParser.envResolver.targetEnvironment(for: courseID)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.comment, id: \.id, courseId: courseID, htmlParser: htmlParser)

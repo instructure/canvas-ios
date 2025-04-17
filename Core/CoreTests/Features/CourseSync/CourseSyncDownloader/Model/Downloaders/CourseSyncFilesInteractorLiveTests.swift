@@ -46,7 +46,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             fileID: "fileID",
             fileName: "fileName",
             mimeClass: "mimeClass",
-            updatedAt: nil
+            updatedAt: nil,
+            environment: environment
         ).sink(
             receiveCompletion: { completion in
                 switch completion {
@@ -109,7 +110,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             fileID: "fileID",
             fileName: "fileName",
             mimeClass: "mimeClass",
-            updatedAt: Date(timeIntervalSince1970: 1000)
+            updatedAt: Date(timeIntervalSince1970: 1000),
+            environment: environment
         )
         .sink(
             receiveCompletion: { _ in },
@@ -157,7 +159,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             fileID: "fileID",
             fileName: "fileName",
             mimeClass: "mimeClass",
-            updatedAt: now
+            updatedAt: now,
+            environment: environment
         )
         .sink(
             receiveCompletion: { _ in },
@@ -186,7 +189,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             fileID: "1",
             fileName: "fileName",
             mimeClass: "mimeClass",
-            updatedAt: nil
+            updatedAt: nil,
+            environment: environment
         ).sink(
             receiveCompletion: { completion in
                 switch completion {
@@ -227,7 +231,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             fileID: "1",
             fileName: "1",
             mimeClass: "1",
-            updatedAt: nil
+            updatedAt: nil,
+            environment: environment
         )
         .sink(receiveCompletion: { completion in
             switch completion {
@@ -264,7 +269,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
         let subscription = testee.removeUnavailableFiles(
             courseId: "courseID",
-            newFileIDs: ["file-1"]
+            newFileIDs: ["file-1"],
+            environment: environment
         )
         .sink()
 
@@ -311,7 +317,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         )
 
         XCTAssertSingleOutputEquals(
-            testee.getFiles(courseId: "course-id-1", useCache: false),
+            testee.getFiles(courseId: "course-id-1", useCache: false, environment: environment),
             [File.make(from: rootFolderFile)]
         )
     }

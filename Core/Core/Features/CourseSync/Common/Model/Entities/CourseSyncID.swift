@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import Foundation
+
+public struct CourseSyncID: Hashable {
+    let value: String
+    let apiBaseURL: URL?
+
+    var localID: String { value.localID }
+    var asContext: Context { .course(localID) }
+
+    init(value: String, apiBaseURL: URL? = nil) {
+        self.value = value
+        self.apiBaseURL = apiBaseURL
+    }
+}
 
 #if DEBUG
 
-final class CourseSyncInteractorPreview: CourseSyncInteractor {
-    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
-        Just([]).eraseToAnyPublisher()
+extension CourseSyncID: ExpressibleByStringLiteral {
+    public init(stringLiteral value: StringLiteralType) {
+        self.value = value
+        self.apiBaseURL = nil
     }
+}
 
-    func cleanContent(for entries: [CourseSyncID]) -> AnyPublisher<Void, Never> {
-        Just(()).eraseToAnyPublisher()
-    }
-
-    func cancel() {}
+extension CourseSyncID: CustomStringConvertible {
+    public var description: String { value }
 }
 
 #endif

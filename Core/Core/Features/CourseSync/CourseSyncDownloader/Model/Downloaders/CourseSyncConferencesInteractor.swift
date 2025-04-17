@@ -26,35 +26,43 @@ extension CourseSyncConferencesInteractor {
 }
 
 public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInteractor {
-    public init() {}
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
-        Publishers
-            .Zip3(fetchColors(),
-                  fetchConferences(courseId: courseId),
-                  fetchCourse(courseId: courseId))
+    let envResolver: CourseSyncEnvironmentResolver
+
+    init(envResolver: CourseSyncEnvironmentResolver) {
+        self.envResolver = envResolver
+    }
+
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        let environment = envResolver.targetEnvironment(for: courseId)
+        return Publishers
+            .Zip3(
+                fetchColors(env: environment),
+                fetchConferences(courseId: courseId, env: environment),
+                fetchCourse(courseId: courseId, env: environment)
+            )
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
+    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(()).eraseToAnyPublisher()
     }
 
-    private func fetchColors() -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCustomColors())
+    private func fetchColors(env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        fetchUseCase(GetCustomColors(), env)
     }
 
-    private func fetchConferences(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetConferences(context: .course(courseId)))
+    private func fetchConferences(courseId: CourseSyncID, env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        fetchUseCase(GetConferences(context: courseId.asContext), env)
     }
 
-    private func fetchCourse(courseId: String) -> AnyPublisher<Void, Error> {
-        fetchUseCase(GetCourse(courseID: courseId))
+    private func fetchCourse(courseId: CourseSyncID, env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        fetchUseCase(GetCourse(courseID: courseId.localID), env)
     }
 
-    private func fetchUseCase<U: UseCase>(_ useCase: U) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: useCase)
+    private func fetchUseCase<U: UseCase>(_ useCase: U, _ env: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: useCase, environment: env)
             .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()

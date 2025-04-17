@@ -94,7 +94,14 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
 
     func testNotAModuleItem() {
         let url = URLComponents(string: "/courses/1/files/1?origin=module_item_details")!
-        router.mock(url) { FileDetailsViewController.create(context: .course("1"), fileID: "1") }
+        router.mock(url) { [environment] in
+            FileDetailsViewController
+                .create(
+                    context: .course("1"),
+                    fileID: "1",
+                    environment: environment
+                )
+        }
         api.mock(
             GetModuleItemSequenceRequest(courseID: "1", assetType: .file, assetID: "1"),
             value: .make(items: [.make(current: nil)])
