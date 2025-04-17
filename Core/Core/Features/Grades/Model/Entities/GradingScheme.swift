@@ -28,6 +28,9 @@ public protocol GradingScheme {
 public extension GradingScheme {
 
     func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String? {
-        entries.first { normalizedScore >= $0.value }?.name
+        // Teachers can add extra points so the "normalized" score can be higher than 1.0. But 10 would be very suspicious.
+        assert(abs(normalizedScore) < 10)
+
+        return entries.first { normalizedScore >= $0.value }?.name
     }
 }
