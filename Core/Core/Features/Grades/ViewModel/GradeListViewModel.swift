@@ -261,7 +261,7 @@ public final class GradeListViewModel: ObservableObject {
             sortByOptions: GradeArrangementOptions.allCases
         )
 
-        let filterView = GradListAssembly.makeGradeFilterViewController(
+        let filterView = GradeListAssembly.makeGradeFilterViewController(
             dependency: dependency,
             gradeFilterInteractor: gradeFilterInteractor
         )

@@ -21,14 +21,16 @@ import Foundation
 public protocol GradingScheme {
     var entries: [GradingSchemeEntry] { get }
 
-    func convertScoreToLetterGrade(score: Double) -> String?
+    func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String?
     func formattedScore(from value: Double) -> String?
 }
 
 public extension GradingScheme {
 
-    func convertScoreToLetterGrade(score: Double) -> String? {
-        let normalizedScore = score / 100.0
+    func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String? {
+        // Teachers can add extra points so the "normalized" score can be higher than 1.0. But 10 would be very suspicious.
+        assert(abs(normalizedScore) < 10)
+
         return entries.first { normalizedScore >= $0.value }?.name
     }
 }

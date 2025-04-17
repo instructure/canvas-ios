@@ -5036,6 +5036,12 @@
             "value" : "%1$@, afleveret d. %2$@"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, afleveret d. %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5102,6 +5108,18 @@
             "value" : "%1$@, soumis le %2$@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, soumis le %2$@"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, cuireadh isteach é ar an %2$@"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5156,6 +5174,12 @@
             "value" : "%1$@, levert %2$@"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, levert %2$@"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5193,6 +5217,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, inlämnat %2$@"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, inlämnat %2$@"
@@ -33320,6 +33350,12 @@
             "value" : "Skjult"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skjult"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33386,6 +33422,18 @@
             "value" : "Réduit(e)"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réduit(e)"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leacaigh"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33440,6 +33488,12 @@
             "value" : "Skjult"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skjult"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33480,6 +33534,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stängd"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förminskad"
           }
         },
         "th" : {
@@ -45606,6 +45666,12 @@
             "value" : "Dobbelttryk for at vælge forsøg"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at vælge forsøg"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45672,6 +45738,18 @@
             "value" : "Appuyez deux fois pour sélectionner la tentative."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double taper pour sélectionner la tentative"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil faoi dhó chun iarracht a roghnú"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45726,6 +45804,12 @@
             "value" : "Dobbeltklikk for å velge forsøk"
           }
         },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å velge forsøk"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45763,6 +45847,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att välja försök"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att välja försök"
@@ -45807,10 +45897,516 @@
       }
     },
     "Double tap to view attempt" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط ضغطًا مزدوجًا لعرض المحاولة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca dues vegades l’intent per visualitzar-lo"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapiwch ddwywaith i weld ymgais"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at se forsøget"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at se forsøget"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doppeltippen, um den Versuch anzuzeigen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view attempt"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view attempt"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view attempt"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view attempt"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view attempt"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view attempt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque dos veces para ver el intento"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca dos veces para ver el intento"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valitse yritys kaksoinapsauttamalla"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyer deux fois pour afficher la tentative"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapotez deux fois pour voir la tentative"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil faoi dhó chun iarracht a fheiceáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रयास देखने के लिए डबल टैप करें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tape de fwa pou gade tantativ la"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk dua kali untuk melihat upaya"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pikkaðu tvisvar til að skoða tilraun"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca due volte per visualizzare il tentativo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ダブルタップして解答を表示する"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pato rua hei tiro i te nganatanga"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk melihat percubaan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å vise forsøk"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å vise forsøk"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twee keer tikken om poging te bekijken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stuknij dwukrotnie, aby wyświetlić próbę"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque duas vezes para ver a tentativa"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque duas vezes para ver a tentativa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щелкните дважды для просмотра попытки"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dvakrat tapnite za ogled poskusa"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att visa försök"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att visa försök"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กดเลือกสองครั้งเพื่อดูจำนวนครั้ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhấn đúp để xem lần thử"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "双击以查看尝试"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "双击以查看尝试"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點選兩下以檢視嘗試"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點選兩下以檢視嘗試"
+          }
+        }
+      }
     },
     "Double tap to view file" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط ضغطًا مزدوجًا لعرض الملف"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca dues vegades el fitxer per visualitzar-lo"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapiwch ddwywaith i weld y ffeil"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at se filen"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at se filen"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doppeltippen, um die Datei anzuzeigen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view file"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view file"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view file"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view file"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view file"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to view file"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque dos veces para ver el archivo"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca dos veces para ver el archivo"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valitse tiedosto kaksoinapsauttamalla"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyer deux fois pour afficher le fichier"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapotez deux fois pour visualiser le fichier"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil faoi dhó chun an comhad a fheiceáil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल देखने के लिए डबल टैप करें"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tape de fwa pou gade fichye a"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk dua kali untuk melihat file"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pikkaðu tvisvar til að skoða skrá"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca due volte per visualizzare il file"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ダブルタップしファイルを表示する"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pato rua hei tiro i te konae"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketika dua kali untuk melihat fail"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å vise fil"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å vise fil"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twee keer tikken om bestand te bekijken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stuknij dwukrotnie, aby wyświetlić plik"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque duas vezes para ver o ficheiro"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque duas vezes para visualizar o arquivo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щелкните дважды для просмотра файла"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dvakrat tapnite za ogled datoteke"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att visa filen"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att visa filen"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กดเลือกสองครั้งเพื่อดูไฟล์ข้อมูล"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhấn đúp để xem tập tin"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "双击以查看文件"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "双击以查看文件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點選兩下以檢視檔案"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點選兩下以檢視檔案"
+          }
+        }
+      }
     },
     "Download Canceled" : {
       "comment" : "Shown when we cancel a file download",
@@ -116379,7 +116975,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正常に提出しました！"
+            "value" : "正常に提出されました！"
           }
         },
         "mi" : {

@@ -286,7 +286,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
-        return GradListAssembly.makeGradeListViewController(
+        return GradeListAssembly.makeGradeListViewController(
             env: AppEnvironment.shared,
             courseID: courseID,
             userID: AppEnvironment.shared.currentSession?.userID

@@ -20,9 +20,9 @@ import UIKit
 
 private class DarkModeForWebDiscussions: CoreWebViewFeature {
     private let script: String = {
-        let textLight = UIColor.textDark.hexString(userInterfaceStyle: .dark)
-        let textLightest = UIColor.textDarkest.hexString(userInterfaceStyle: .dark)
-        let backgroundDarkest = UIColor.backgroundLightest.hexString(userInterfaceStyle: .dark)
+        let textLight = UIColor.textDark.hexString(for: .dark)
+        let textLightest = UIColor.textDarkest.hexString(for: .dark)
+        let backgroundDarkest = UIColor.backgroundLightest.hexString(for: .dark)
         let darkCss = """
         @media (prefers-color-scheme: dark) {
             body {

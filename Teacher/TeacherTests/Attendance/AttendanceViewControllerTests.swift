@@ -158,8 +158,8 @@ class AttendanceViewControllerTests: TeacherTestCase {
         dateButton?.sendActions(for: .primaryActionTriggered)
 
         let picker = (router.presented as? UINavigationController)?.viewControllers[0] as? DatePickerViewController
-        picker?.delegate?.didSelectDate(Clock.now.add(.minute, number: 1))
-        XCTAssertEqual(controller.date, Clock.now.add(.minute, number: 1))
+        picker?.delegate?.didSelectDate(Clock.now.addMinutes(1))
+        XCTAssertEqual(controller.date, Clock.now.addMinutes(1))
     }
 
     func testChangeSection() {

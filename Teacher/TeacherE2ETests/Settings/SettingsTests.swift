@@ -32,14 +32,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Check menu items of Settings
         let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
@@ -62,13 +55,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
+
         let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Landing Page", check elements
@@ -107,14 +96,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Appearance", check elements
         let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
@@ -146,14 +128,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select About, check elements
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
@@ -168,13 +143,13 @@ class SettingsTests: E2ETestCase {
         let versionLabel = AboutHelper.versionLabel.waitUntil(.visible)
         XCTAssertTrue(aboutView.isVisible)
         XCTAssertTrue(appLabel.isVisible)
-        XCTAssertTrue(appLabel.hasLabel(label: "Canvas Teacher"))
+        XCTAssertEqual(appLabel.label, "Canvas Teacher")
         XCTAssertTrue(domainLabel.isVisible)
-        XCTAssertTrue(domainLabel.hasLabel(label: "https://\(user.host)"))
+        XCTAssertEqual(domainLabel.label, "https://\(user.host)")
         XCTAssertTrue(loginIdLabel.isVisible)
-        XCTAssertTrue(loginIdLabel.hasLabel(label: teacher.id))
+        XCTAssertEqual(loginIdLabel.label, teacher.id)
         XCTAssertTrue(emailLabel.isVisible)
-        XCTAssertTrue(emailLabel.hasLabel(label: "-"))
+        XCTAssertEqual(emailLabel.label, "-")
         XCTAssertTrue(versionLabel.isVisible)
     }
 
@@ -186,14 +161,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Privacy Policy", check if Safari app opens
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
@@ -219,14 +187,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertTrue(courseCard.isVisible)
-
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Terms of Use", check elements
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)

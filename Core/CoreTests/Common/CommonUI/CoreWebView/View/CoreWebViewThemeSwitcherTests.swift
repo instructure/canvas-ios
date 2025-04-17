@@ -150,20 +150,20 @@ final class CoreWebViewThemeSwitcherTests: CoreTestCase {
     // MARK: - Observation
 
     func testObservationShouldBeDisabledInitially() {
-        triggerStyleDidChangeNotificiation(to: .light)
+        triggerStyleDidChangeNotification(to: .light)
         XCTAssertEqual(host.overrideUserInterfaceStyle, .unspecified)
 
-        triggerStyleDidChangeNotificiation(to: .dark)
+        triggerStyleDidChangeNotification(to: .dark)
         XCTAssertEqual(host.overrideUserInterfaceStyle, .unspecified)
     }
 
     func testObservationShouldBeEnabledAfterUpdateStyle() {
         testee.updateUserInterfaceStyle(with: .dark)
 
-        triggerStyleDidChangeNotificiation(to: .light)
+        triggerStyleDidChangeNotification(to: .light)
         XCTAssertEqual(host.overrideUserInterfaceStyle, .light)
 
-        triggerStyleDidChangeNotificiation(to: .dark)
+        triggerStyleDidChangeNotification(to: .dark)
         XCTAssertEqual(host.overrideUserInterfaceStyle, .dark)
     }
 }
@@ -185,7 +185,7 @@ private extension CoreWebViewThemeSwitcherTests {
         button.updateConfiguration()
     }
 
-    func triggerStyleDidChangeNotificiation(to style: UIUserInterfaceStyle) {
+    func triggerStyleDidChangeNotification(to style: UIUserInterfaceStyle) {
         NotificationCenter.default.post(
             name: .windowUserInterfaceStyleDidChange,
             object: nil,
