@@ -89,6 +89,7 @@
                     <connections>
                         <outlet property="detailsLabel" destination="8CH-bg-HYz" id="FfT-HN-wn4"/>
                         <outlet property="nameLabel" destination="KjS-nD-JHa" id="SRO-9j-adB"/>
+                        <outlet property="openInSafariButton" destination="4IL-D3-iVh" id="tBk-Pe-wv6"/>
                         <outlet property="spinnerView" destination="NVX-b7-sC5" id="c9H-2D-brd"/>
                     </connections>
                 </viewController>
