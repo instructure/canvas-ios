@@ -91,13 +91,15 @@ open class AppEnvironment {
         refreshWidgets()
         saveAccount(for: session)
 
-        Just(())
-            .receive(on: RunLoop.main)
-            .flatMap { CoreWebView.deleteAllCookies() }
-            .sink {
-                CoreWebView.refreshKeepAliveCookies()
-            }
-            .store(in: &subscriptions)
+        if AppEnvironment.shared.app != .horizon {
+            Just(())
+                .receive(on: RunLoop.main)
+                .flatMap { CoreWebView.deleteAllCookies() }
+                .sink {
+                    CoreWebView.refreshKeepAliveCookies()
+                }
+                .store(in: &subscriptions)
+        }
     }
 
     public func userDidLogout(session: LoginSession) {
