@@ -66,7 +66,11 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var loginCompletion: ((LoginSession) -> Void)?
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
-        configuration.websiteDataStore = .nonPersistent()
+        if AppEnvironment.shared.app != .horizon {
+            // Horizon has web views that rely on the authentication server cookies
+            // to reauthenticate the user.
+            configuration.websiteDataStore = .nonPersistent()
+        }
         return WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
     }()
 
