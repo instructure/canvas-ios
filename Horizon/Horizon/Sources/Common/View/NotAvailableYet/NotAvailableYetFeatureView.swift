@@ -30,12 +30,15 @@ struct NotAvailableYetFeatureView: View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             Text(viewModel.description)
                 .huiTypography(.p1)
+                .foregroundStyle(Color.huiColors.text.body)
                 .padding(.bottom, .huiSpaces.space8)
             HStack {
                 Text("Log In", bundle: .horizon)
                     .underline()
+                    .foregroundStyle(Color.huiColors.text.body)
                     .huiTypography(.buttonTextLarge)
                 HorizonUI.icons.openInNew
+                    .foregroundStyle(Color.huiColors.text.body)
             }.onTapGesture {
                 viewModel.openCanvasForCareerSkillspaceOnWeb(viewController: viewController)
             }

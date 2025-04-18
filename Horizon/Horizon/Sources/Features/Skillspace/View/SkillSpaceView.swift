@@ -32,6 +32,7 @@ struct SkillSpaceView: View {
             navigationBar
             Text("Skillspace", bundle: .horizon)
                 .huiTypography(.h1)
+                .foregroundStyle(Color.huiColors.text.body)
             notAvailableYetFeatureView
         }
         .frame(maxHeight: .infinity, alignment: .top)
