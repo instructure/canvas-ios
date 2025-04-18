@@ -91,20 +91,30 @@ struct GetCourseInvitations: CollectionUseCase {
     }
 }
 
-struct HandleCourseInvitation: APIUseCase {
-    typealias Model = Course
+public struct HandleCourseInvitation: APIUseCase {
+    public typealias Model = Course
 
     let courseID: String
     let enrollmentID: String
     let isAccepted: Bool
 
-    var cacheKey: String? { nil }
+    public init(
+        courseID: String,
+        enrollmentID: String,
+        isAccepted: Bool
+    ) {
+        self.courseID = courseID
+        self.enrollmentID = enrollmentID
+        self.isAccepted = isAccepted
+    }
 
-    var request: HandleCourseInvitationRequest {
+    public var cacheKey: String? { nil }
+
+    public var request: HandleCourseInvitationRequest {
         HandleCourseInvitationRequest(courseID: courseID, enrollmentID: enrollmentID, isAccepted: isAccepted)
     }
 
-    func write(response: HandleCourseInvitationRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: HandleCourseInvitationRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard response?.success == true else { return }
         let enrollment: Enrollment? = client.first(where: #keyPath(Enrollment.id), equals: enrollmentID)
         enrollment?.state = isAccepted ? .active : .rejected

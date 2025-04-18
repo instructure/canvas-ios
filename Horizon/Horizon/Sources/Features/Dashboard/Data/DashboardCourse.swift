@@ -22,8 +22,15 @@ struct DashboardCourse: Identifiable {
     let name: String
     let progress: Double
     let courseId: String
+    let state: String
+    let enrollmentID: String
     let learningObjectCardViewModel: LearningObjectCard?
     var id: String { name }
+
+    enum EnrollmentState: String {
+        case active
+        case invited
+    }
 }
 
 struct LearningObjectCard {

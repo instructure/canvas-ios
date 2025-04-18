@@ -126,13 +126,13 @@ public extension HorizonUI.Toast {
         let isShowCancelButton: Bool
         let buttons: HorizonUI.Toast.Buttons?
         let direction: Direction
-        let dismissAfter: Double
+        let dismissAfter: Double?
         public init(
             text: String,
             style: HorizonUI.Toast.Style,
             isShowCancelButton: Bool = true,
             direction: Direction = .top,
-            dismissAfter: Double = 3.0,
+            dismissAfter: Double? = 3.0,
             confirmActionButton: HorizonUI.ButtonAttribute? = nil,
             cancelActionButton: HorizonUI.ButtonAttribute? = nil
         ) {

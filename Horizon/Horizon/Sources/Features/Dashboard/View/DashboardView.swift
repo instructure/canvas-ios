@@ -58,6 +58,20 @@ struct DashboardView: View {
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)
+        .alert(isPresented: $viewModel.isAlertPresented) {
+            Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
+        }
+        .huiToast(
+            viewModel: .init(
+                text: viewModel.toastTitle,
+                style: .info,
+                dismissAfter: nil,
+                confirmActionButton: .init(
+                    title: String(localized: "Accept", bundle: .horizon),
+                    action: {  viewModel.acceptInvitation() })
+            ),
+            isPresented: $viewModel.toastIsPresented
+        )
     }
 
     private func contentView(courses: [DashboardCourse]) -> some View {

@@ -28,6 +28,8 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
                 name: "AI Introductions",
                 progress: 0.2,
                 courseId: "11",
+                state: "active",
+                enrollmentID: "222",
                 learningObjectCardViewModel: nil
             )
             ]

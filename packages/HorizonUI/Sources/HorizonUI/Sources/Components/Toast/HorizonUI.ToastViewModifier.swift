@@ -47,8 +47,10 @@ extension HorizonUI.Toast {
         }
 
         private func dismissToast() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + viewModel.dismissAfter) {
-                isPresented = false
+            if let dismissAfter = viewModel.dismissAfter {
+                DispatchQueue.main.asyncAfter(deadline: .now() + dismissAfter) {
+                    isPresented = false
+                }
             }
         }
     }

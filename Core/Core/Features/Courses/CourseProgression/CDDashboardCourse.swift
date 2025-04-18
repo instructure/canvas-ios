@@ -25,6 +25,8 @@ public final class CDDashboardCourse: NSManagedObject, WriteableModel {
     // MARK: - Properties
     @NSManaged public var courseID: String
     @NSManaged public var completionPercentage: Double
+    @NSManaged public var state: String
+    @NSManaged public var enrollmentID: String
     @NSManaged public var course: Course
     @NSManaged public var institutionName: String?
     @NSManaged public var incompleteModulesRaw: NSOrderedSet?
@@ -96,6 +98,8 @@ public final class CDDashboardCourse: NSManagedObject, WriteableModel {
         let nextModuleItem = incompleteModules.first?.incompleteItemsConnection?.nodes.first
         model.nextModuleID = nextModule?.id
         model.nextModuleItemID = nextModuleItem?.id
+        model.state = enrollmentModel.state
+        model.enrollmentID = enrollmentModel.id
         return model
     }
 
