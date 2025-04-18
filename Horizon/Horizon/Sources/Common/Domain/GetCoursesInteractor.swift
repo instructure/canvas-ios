@@ -145,6 +145,8 @@ private extension CDDashboardCourse {
                     name: name,
                     progress: progress,
                     courseId: courseID,
+                    state: state,
+                    enrollmentID: enrollmentID,
                     learningObjectCardViewModel: nil
                 )
             )
@@ -163,7 +165,7 @@ private extension CDDashboardCourse {
         .replaceError(with: [])
         .compactMap { $0.first }
         .map { HModuleItem(from: $0) }
-        .map { [courseID] item in
+        .map { [courseID, state, enrollmentID] item in
             let moduleItem = LearningObjectCard(
                 moduleTitle: item.moduleName ?? "",
                 learningObjectName: item.title,
@@ -177,6 +179,8 @@ private extension CDDashboardCourse {
                 name: name,
                 progress: progress,
                 courseId: courseID,
+                state: state,
+                enrollmentID: enrollmentID,
                 learningObjectCardViewModel: moduleItem
             )
         }

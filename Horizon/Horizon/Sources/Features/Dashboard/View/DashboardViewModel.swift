@@ -26,8 +26,15 @@ class DashboardViewModel {
     // MARK: - Outputs
 
     private(set) var state: InstUI.ScreenState = .loading
+    private(set) var toastTitle = ""
+    private(set) var errorMessage = ""
     var title: String = ""
     var courses: [DashboardCourse] = []
+
+    // MARK: - Input / Outputs
+
+    var toastIsPresented = false
+    var isAlertPresented = false
 
     // MARK: - Dependencies
 
@@ -39,6 +46,7 @@ class DashboardViewModel {
     private var getDashboardCoursesCancellable: AnyCancellable?
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private var invitedCourse: DashboardCourse?
 
     // MARK: - Init
 
@@ -67,7 +75,13 @@ class DashboardViewModel {
 
         getDashboardCoursesCancellable = getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
-                self?.courses = items
+                self?.courses = items.filter({ $0.state == DashboardCourse.EnrollmentState.active.rawValue })
+                if let invitedCourse = items.first(where: { $0.state == DashboardCourse.EnrollmentState.invited.rawValue  }) {
+                    let message = String(localized: "You have been invited to join", bundle: .horizon)
+                    self?.toastTitle = "\(message) \(invitedCourse.name)"
+                    self?.toastIsPresented = true
+                    self?.invitedCourse = invitedCourse
+                }
                 self?.state = .data
                 completion?()
             }
@@ -96,6 +110,34 @@ class DashboardViewModel {
 
     func navigateToCourseDetails(id: String, viewController: WeakViewController) {
         router.route(to: "/courses/\(id)", from: viewController)
+    }
+
+    func acceptInvitation() {
+        guard let invitedCourse else {
+            return
+        }
+        state = .loading
+        let useCase = HandleCourseInvitation(
+            courseID: invitedCourse.courseId,
+            enrollmentID: invitedCourse.enrollmentID,
+            isAccepted: true
+        )
+        ReactiveStore(useCase: useCase)
+            .getEntities()
+            .sink(receiveCompletion: { [weak self] completion in
+                if case let .failure(error) = completion {
+                    self?.state = .data
+                    self?.errorMessage = error.localizedDescription
+                    self?.isAlertPresented = true
+                    self?.toastIsPresented = false
+                }
+
+            }, receiveValue: { [weak self] _ in
+                self?.reload(completion: {})
+                self?.toastIsPresented = false
+
+            })
+            .store(in: &subscriptions)
     }
 
     func reload(completion: @escaping () -> Void) {

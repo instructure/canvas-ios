@@ -33,6 +33,9 @@
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
+    "Accept" : {
+
+    },
     "Account" : {
 
     },
@@ -780,6 +783,9 @@
     "Solomon Is. (+11:00/+11:00)" : {
 
     },
+    "Something went wrong" : {
+
+    },
     "Sort By" : {
 
     },
@@ -952,6 +958,9 @@
 
     },
     "You aren’t currently enrolled in a course." : {
+
+    },
+    "You have been invited to join" : {
 
     },
     "Your Courses" : {
