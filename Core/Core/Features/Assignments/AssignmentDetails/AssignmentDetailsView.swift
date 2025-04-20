@@ -260,7 +260,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             isQuizLTI: assignment.first?.isQuizLTI,
             assignmentID: assignmentID,
             from: controller.value,
-            env: .shared
+            env: env
         )
     }
 }

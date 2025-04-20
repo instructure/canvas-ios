@@ -27,7 +27,7 @@ class AttendanceCellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = AttendanceCellViewModel(tab: tab, course: course, attendanceToolID: "123", selectedCallback: {})
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
 
         XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/attendance/123")!))
     }

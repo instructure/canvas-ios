@@ -55,7 +55,7 @@ public class LTITools: NSObject {
         assignmentID: String?,
         from view: UIViewController,
         animated: Bool = true,
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         completionHandler: ((Bool) -> Void)? = nil
     ) {
         let tools = LTITools(
@@ -80,7 +80,7 @@ public class LTITools: NSObject {
         moduleID: String? = nil,
         moduleItemID: String? = nil,
         resourceLinkLookupUUID: String? = nil,
-        env: AppEnvironment = .shared
+        env: AppEnvironment
     ) {
         self.context = context ?? url.flatMap { Context(url: $0) } ?? .account("self")
         self.id = id
@@ -96,7 +96,7 @@ public class LTITools: NSObject {
 
     var openInSafari: Bool { UserDefaults.standard.bool(forKey: "open_lti_safari") }
 
-    public convenience init?(link: URL?, navigationType: WKNavigationType, env: AppEnvironment = .shared) {
+    public convenience init?(link: URL?, navigationType: WKNavigationType, env: AppEnvironment) {
         guard let link, link.host == env.api.baseURL.host else { return nil }
 
         if let (context, url, resourceLinkUUID) = Self.parseRegularExternalToolURL(url: link),

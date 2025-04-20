@@ -257,10 +257,10 @@ let router = Router(routes: [
     RouteHandler("/:context/:contextID/discussions/:discussionID", factory: discussionViewController),
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID", factory: discussionViewController),
 
-    RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _ in
+    RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _, env in
         guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
         guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
-        let tools = LTITools(context: .course(courseID), id: toolID, isQuizLTI: nil)
+        let tools = LTITools(context: .course(courseID), id: toolID, isQuizLTI: nil, env: env)
         tools.presentTool(from: vc, animated: true)
         return nil
     },

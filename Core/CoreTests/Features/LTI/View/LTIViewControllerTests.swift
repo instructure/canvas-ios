@@ -24,7 +24,7 @@ import SafariServices
 
 class LTIViewControllerTests: CoreTestCase {
     func testLayout() {
-        let tools = LTITools(id: "1", isQuizLTI: nil)
+        let tools = LTITools(id: "1", isQuizLTI: nil, env: environment)
         let controller = LTIViewController.create(env: environment, tools: tools)
         var task = api.mock(tools.request, value: .make(name: "So Descriptive", url: .make()))
         task.suspend()
@@ -65,14 +65,14 @@ class LTIViewControllerTests: CoreTestCase {
     }
 
     func testTextsWhenIsQuizLTI() {
-        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: true))
+        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: true, env: environment))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.descriptionLabel.text?.lowercased().contains("quiz"), true)
         XCTAssertEqual(controller.openButton.titleLabel?.text?.lowercased().contains("quiz"), true)
     }
 
     func testTextsWhenIsNotQuizLTI() {
-        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: false))
+        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: false, env: environment))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.descriptionLabel.text?.lowercased().contains("quiz"), false)
         XCTAssertEqual(controller.openButton.titleLabel?.text?.lowercased().contains("quiz"), false)

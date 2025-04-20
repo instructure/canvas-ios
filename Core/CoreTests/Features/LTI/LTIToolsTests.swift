@@ -38,39 +38,43 @@ class LTIToolsTests: CoreTestCase {
     }
 
     func testInitLink() {
-        XCTAssertNil(LTITools(link: nil, navigationType: .linkActivated))
-        XCTAssertNil(LTITools(link: URL(string: "/"), navigationType: .linkActivated))
-        XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/"), navigationType: .linkActivated))
-        XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL), navigationType: .linkActivated)?.url, URL(string: "/"))
-        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL), navigationType: .other)?.id, "2")
-        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL), navigationType: .linkActivated)?.id, nil)
+        XCTAssertNil(LTITools(link: nil, navigationType: .linkActivated, env: environment))
+        XCTAssertNil(LTITools(link: URL(string: "/"), navigationType: .linkActivated, env: environment))
+        XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/"), navigationType: .linkActivated, env: environment))
+        XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL), navigationType: .linkActivated, env: environment)?.url, URL(string: "/"))
+        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL), navigationType: .other, env: environment)?.id, "2")
+        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL), navigationType: .linkActivated, env: environment)?.id, nil)
     }
 
     func testInitLinkContext() {
         let defaultContext = LTITools(
             link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL),
-            navigationType: .linkActivated
+            navigationType: .linkActivated,
+            env: environment
         )
         XCTAssertEqual(defaultContext?.context.contextType, .account)
         XCTAssertEqual(defaultContext?.context.id, "self")
 
         let course = LTITools(
             link: URL(string: "/courses/1/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL),
-            navigationType: .linkActivated
+            navigationType: .linkActivated,
+            env: environment
         )
         XCTAssertEqual(course?.context.contextType, .course)
         XCTAssertEqual(course?.context.id, "1")
 
         let account = LTITools(
             link: URL(string: "/accounts/2/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL),
-            navigationType: .linkActivated
+            navigationType: .linkActivated,
+            env: environment
         )
         XCTAssertEqual(account?.context.contextType, .account)
         XCTAssertEqual(account?.context.id, "2")
 
         let querylessExternalTool = LTITools(
             link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL),
-            navigationType: .other
+            navigationType: .other,
+            env: environment
         )
         XCTAssertEqual(querylessExternalTool?.context.contextType, .course)
         XCTAssertEqual(querylessExternalTool?.context.id, "1")
@@ -78,7 +82,8 @@ class LTIToolsTests: CoreTestCase {
 
         let queriedExternalTool = LTITools(
             link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL),
-            navigationType: .linkActivated
+            navigationType: .linkActivated,
+            env: environment
         )
         XCTAssertEqual(queriedExternalTool, nil)
     }
@@ -186,7 +191,7 @@ class LTIToolsTests: CoreTestCase {
     }
 
     func testPresentToolInSafariProper() {
-        let tools = LTITools(isQuizLTI: nil)
+        let tools = LTITools(isQuizLTI: nil, env: environment)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: nil,
@@ -203,7 +208,7 @@ class LTIToolsTests: CoreTestCase {
     }
 
     func testPresentQuizLTI() throws {
-        let tools = LTITools(isQuizLTI: true)
+        let tools = LTITools(isQuizLTI: true, env: environment)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: nil,
@@ -219,7 +224,7 @@ class LTIToolsTests: CoreTestCase {
     }
 
     func testPresentGoogleApp() throws {
-        let tools = LTITools(isQuizLTI: nil)
+        let tools = LTITools(isQuizLTI: nil, env: environment)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: nil,
@@ -236,7 +241,7 @@ class LTIToolsTests: CoreTestCase {
 
     func testPresentStudio() throws {
         let url = URL(string: "https://canvas.instructure.com?custom_arc_launch_type=global_nav")!
-        let tools = LTITools(url: url, isQuizLTI: nil)
+        let tools = LTITools(url: url, isQuizLTI: nil, env: environment)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: url,
@@ -260,7 +265,7 @@ class LTIToolsTests: CoreTestCase {
 
     func testMarksModuleItemAsRead() {
         api.mock(PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3"))
-        let tools = LTITools(context: .course("1"), launchType: .module_item, isQuizLTI: nil, moduleID: "2", moduleItemID: "3")
+        let tools = LTITools(context: .course("1"), launchType: .module_item, isQuizLTI: nil, moduleID: "2", moduleItemID: "3", env: environment)
         let request = GetSessionlessLaunchURLRequest(context: tools.context,
                                                      id: nil,
                                                      url: nil,
