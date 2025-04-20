@@ -132,7 +132,7 @@ final class ModuleItemSequenceViewModel {
         guard let course else {
             return
         }
-
+        assignmentAttemptCount = nil
         let viewController = CourseProgressAssembly.makeView(
             course: course,
             currentModuleItem: moduleItem
