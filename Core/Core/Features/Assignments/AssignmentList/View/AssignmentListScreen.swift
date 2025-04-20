@@ -138,7 +138,9 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
               defaultViewProvider.defaultViewRoute?.url != routeUrl
         else { return }
 
-        defaultViewProvider.defaultViewRoute = .init(url: routeUrl)
+        // Update only on first load
+        let updating = defaultViewProvider.defaultViewRoute == nil
+        defaultViewProvider.setDefaultViewRoute(.init(url: routeUrl), updating: updating)
     }
 }
 

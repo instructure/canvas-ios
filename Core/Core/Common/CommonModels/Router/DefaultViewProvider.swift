@@ -24,16 +24,28 @@ import UIKit
  View controllers implementing this protocol can provide a default view for such situations.
  */
 public protocol DefaultViewProvider: UIViewController {
-    var defaultViewRoute: DefaultViewRouteParameters? { get set }
+    var defaultViewRoute: DefaultViewRouteParameters? { get }
+    func setDefaultViewRoute(_ route: DefaultViewRouteParameters?, updating: Bool)
 }
 
-public struct DefaultViewRouteParameters {
+public struct DefaultViewRouteParameters: ExpressibleByStringLiteral {
     let url: String
     let userInfo: [String: Any]?
 
     public init(url: String, userInfo: [String: Any]? = nil) {
         self.url = url
         self.userInfo = userInfo
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self.url = value
+        self.userInfo = nil
+    }
+}
+
+public extension DefaultViewProvider {
+    func setDefaultViewRoute(_ route: DefaultViewRouteParameters?) {
+        setDefaultViewRoute(route, updating: true)
     }
 }
 

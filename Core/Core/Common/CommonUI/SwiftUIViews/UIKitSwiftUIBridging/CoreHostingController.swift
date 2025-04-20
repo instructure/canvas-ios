@@ -52,11 +52,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
 
     // MARK: - Public Properties
     public var navigationBarStyle = NavigationBarStyle.color(nil) // not applied until changed
-    public var defaultViewRoute: DefaultViewRouteParameters? {
-        didSet {
-            showDefaultDetailViewIfNeeded()
-        }
-    }
+    public private(set) var defaultViewRoute: DefaultViewRouteParameters?
 
     // MARK: - Private Variables
     var testTree: TestTree?
@@ -104,6 +100,11 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
 
     public var didAppearPublisher: AnyPublisher<Void, Never> {
         didAppearSubject.eraseToAnyPublisher()
+    }
+
+    public func setDefaultViewRoute(_ route: DefaultViewRouteParameters?, updating: Bool) {
+        defaultViewRoute = route
+        if updating { showDefaultDetailViewIfNeeded() }
     }
 }
 
