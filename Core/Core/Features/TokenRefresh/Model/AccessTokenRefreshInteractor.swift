@@ -58,3 +58,9 @@ class AccessTokenRefreshInteractor {
             .eraseToAnyPublisher()
     }
 }
+
+extension Error {
+    var isExpiredRefreshTokenError: Bool {
+        (self as? AccessTokenRefreshInteractor.TokenError) == .expiredRefreshToken
+    }
+}

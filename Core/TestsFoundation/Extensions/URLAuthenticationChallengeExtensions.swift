@@ -18,10 +18,10 @@
 
 import Foundation
 
-public class MockURLAuthenticationChallengeSender: NSObject, URLAuthenticationChallengeSender {
-    public func use(_ credential: URLCredential, for challenge: URLAuthenticationChallenge) {}
-    public func continueWithoutCredential(for challenge: URLAuthenticationChallenge) {}
-    public func cancel(_ challenge: URLAuthenticationChallenge) {}
+private class MockURLAuthenticationChallengeSender: NSObject, URLAuthenticationChallengeSender {
+    func use(_ credential: URLCredential, for challenge: URLAuthenticationChallenge) {}
+    func continueWithoutCredential(for challenge: URLAuthenticationChallenge) {}
+    func cancel(_ challenge: URLAuthenticationChallenge) {}
 }
 
 extension URLAuthenticationChallenge {

@@ -39,7 +39,7 @@ class LoginAgainInteractor {
         guard
             let host = api.loginSession?.baseURL.host(percentEncoded: false),
             let rootViewController = AppEnvironment.shared.topViewController,
-            tokenRefreshError as? AccessTokenRefreshInteractor.TokenError == .expiredRefreshToken
+            tokenRefreshError.isExpiredRefreshTokenError
         else {
             throw tokenRefreshError
         }
