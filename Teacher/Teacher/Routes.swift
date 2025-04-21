@@ -163,13 +163,23 @@ let router = Router(routes: [
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
 
-        return SubmissionListViewController
-            .create(
-                env: env,
-                context: context,
-                assignmentID: assignmentID,
-                filter: filter
-            )
+        if ExperimentalFeature.newSubmissionList.isEnabled {
+            return SubmissionListAssembly
+                .makeViewController(
+                    env: env,
+                    context: context,
+                    assignmentID: assignmentID,
+                    filter: filter
+                )
+        } else {
+            return SubmissionListViewController
+                .create(
+                    env: env,
+                    context: context,
+                    assignmentID: assignmentID,
+                    filter: filter
+                )
+        }
     },
 
     RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, _, env in

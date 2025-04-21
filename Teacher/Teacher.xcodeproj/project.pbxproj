@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0856FCCC2DB641EC009067CF /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCCB2DB641D5009067CF /* SubmissionListView.swift */; };
+		0856FCCE2DB64425009067CF /* SubmissionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCCD2DB64422009067CF /* SubmissionListViewModel.swift */; };
+		0856FCD02DB644F5009067CF /* SubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCCF2DB644EC009067CF /* SubmissionListInteractor.swift */; };
+		0856FCD22DB64665009067CF /* SubmissionListInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */; };
+		0856FCD42DB64FE8009067CF /* SubmissionListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCD32DB64FD4009067CF /* SubmissionListRowView.swift */; };
+		0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCD52DB65837009067CF /* SubmissionListAssembly.swift */; };
 		13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Assets.xcassets */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
@@ -215,6 +221,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0856FCCB2DB641D5009067CF /* SubmissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
+		0856FCCD2DB64422009067CF /* SubmissionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListViewModel.swift; sourceTree = "<group>"; };
+		0856FCCF2DB644EC009067CF /* SubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractor.swift; sourceTree = "<group>"; };
+		0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractorLive.swift; sourceTree = "<group>"; };
+		0856FCD32DB64FD4009067CF /* SubmissionListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListRowView.swift; sourceTree = "<group>"; };
+		0856FCD52DB65837009067CF /* SubmissionListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListAssembly.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -412,6 +424,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0856FCC72DB64195009067CF /* NewSubmissionsList */ = {
+			isa = PBXGroup;
+			children = (
+				0856FCCA2DB641BD009067CF /* ViewModel */,
+				0856FCC92DB641A9009067CF /* View */,
+				0856FCC82DB641A5009067CF /* Model */,
+				0856FCD52DB65837009067CF /* SubmissionListAssembly.swift */,
+			);
+			path = NewSubmissionsList;
+			sourceTree = "<group>";
+		};
+		0856FCC82DB641A5009067CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */,
+				0856FCCF2DB644EC009067CF /* SubmissionListInteractor.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0856FCC92DB641A9009067CF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0856FCD32DB64FD4009067CF /* SubmissionListRowView.swift */,
+				0856FCCB2DB641D5009067CF /* SubmissionListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0856FCCA2DB641BD009067CF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0856FCCD2DB64422009067CF /* SubmissionListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +521,7 @@
 		3B55FEC522FC861F00FCB7B2 /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
+				0856FCC72DB64195009067CF /* NewSubmissionsList */,
 				CF13E549299D08E000F57F69 /* QuizSubmissionList */,
 				3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */,
 				3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */,
@@ -1484,6 +1534,7 @@
 				7D7126C425374457000DEDE4 /* SubmissionCommentListView.swift in Sources */,
 				7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */,
 				CFCADAF02D9D6E1D003796E7 /* RubricRatingViewModel.swift in Sources */,
+				0856FCCC2DB641EC009067CF /* SubmissionListView.swift in Sources */,
 				7D742F382554D01400FD6CF1 /* RubricsView.swift in Sources */,
 				CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
@@ -1503,6 +1554,7 @@
 				CF13E554299D136F00F57F69 /* QuizSubmissionListAssembly.swift in Sources */,
 				CF06060C2D96EA100014C2EC /* RubricCriterionView.swift in Sources */,
 				7D4B2748253F2D1600A98DE3 /* SubmissionCommentListCell.swift in Sources */,
+				0856FCD02DB644F5009067CF /* SubmissionListInteractor.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
@@ -1512,6 +1564,7 @@
 				CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */,
+				0856FCCE2DB64425009067CF /* SubmissionListViewModel.swift in Sources */,
 				B4707B052B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift in Sources */,
 				7D264DC72537A6E1007CDD90 /* SimilarityScoreView.swift in Sources */,
 				CFCADAF22D9D6FE4003796E7 /* RubricCustomRatingViewModel.swift in Sources */,
@@ -1522,12 +1575,15 @@
 				CFCADAF62D9D89D0003796E7 /* RubricCustomRatingView.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,
+				0856FCD42DB64FE8009067CF /* SubmissionListRowView.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
+				0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */,
 				CF13E552299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				EB368AB227BBD4DE00A9F1C1 /* CommentLibraryList.swift in Sources */,
 				7D7126C725374469000DEDE4 /* SubmissionFileList.swift in Sources */,
+				0856FCD22DB64665009067CF /* SubmissionListInteractorLive.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
