@@ -353,5 +353,5 @@ extension ModuleListViewController: MasteryPathDelegate {
 
 extension ModuleListViewController: DefaultViewProvider {
     public var defaultViewRoute: DefaultViewRouteParameters? { "/empty" }
-    public func setDefaultViewRoute(_ route: DefaultViewRouteParameters?, updating: Bool) {}
+    public func setDefaultViewRoute(_ route: DefaultViewRouteParameters?) {}
 }

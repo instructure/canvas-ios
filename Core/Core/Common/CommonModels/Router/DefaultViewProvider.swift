@@ -25,7 +25,7 @@ import UIKit
  */
 public protocol DefaultViewProvider: UIViewController {
     var defaultViewRoute: DefaultViewRouteParameters? { get }
-    func setDefaultViewRoute(_ route: DefaultViewRouteParameters?, updating: Bool)
+    func setDefaultViewRoute(_ route: DefaultViewRouteParameters?)
 }
 
 public struct DefaultViewRouteParameters: ExpressibleByStringLiteral {
@@ -40,12 +40,6 @@ public struct DefaultViewRouteParameters: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
         self.url = value
         self.userInfo = nil
-    }
-}
-
-public extension DefaultViewProvider {
-    func setDefaultViewRoute(_ route: DefaultViewRouteParameters?) {
-        setDefaultViewRoute(route, updating: true)
     }
 }
 

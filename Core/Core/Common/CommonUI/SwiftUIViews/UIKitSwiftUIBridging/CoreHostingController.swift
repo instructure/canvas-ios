@@ -102,9 +102,10 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
         didAppearSubject.eraseToAnyPublisher()
     }
 
-    public func setDefaultViewRoute(_ route: DefaultViewRouteParameters?, updating: Bool) {
+    public func setDefaultViewRoute(_ route: DefaultViewRouteParameters?) {
+        let prevRoute = defaultViewRoute
         defaultViewRoute = route
-        if updating { showDefaultDetailViewIfNeeded() }
+        if prevRoute == nil { showDefaultDetailViewIfNeeded() }
     }
 }
 
