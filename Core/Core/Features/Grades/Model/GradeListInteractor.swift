@@ -130,7 +130,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 loadAllPages: true
             ),
             enrollmentListStore.getEntities(
-                ignoreCache: ignoreCache,
+                ignoreCache: true,
                 loadAllPages: true
             )
         )
