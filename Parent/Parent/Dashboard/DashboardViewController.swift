@@ -89,7 +89,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     }
 
     override func viewIsAppearing(_ animated: Bool) {
-      super.viewIsAppearing(animated)
+        super.viewIsAppearing(animated)
         configureStyle()
     }
 

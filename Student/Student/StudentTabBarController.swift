@@ -51,7 +51,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     override func viewIsAppearing(_ animated: Bool) {
-      super.viewIsAppearing(animated)
+        super.viewIsAppearing(animated)
         configureStyle()
     }
 
