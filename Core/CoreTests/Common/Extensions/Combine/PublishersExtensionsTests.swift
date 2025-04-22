@@ -21,6 +21,7 @@ import Combine
 @testable import Core
 
 class PublishersExtensionsTests: XCTestCase {
+
     private var subscriptions: Set<AnyCancellable> = []
 
     func testNoInstanceFailure() {
