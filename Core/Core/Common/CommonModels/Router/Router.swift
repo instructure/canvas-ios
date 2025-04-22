@@ -180,7 +180,11 @@ open class Router {
         #endif
 
         // block disabled course tab urls
-        if let courseTabUrlInteractor, let url = url.url, !courseTabUrlInteractor.isAllowedUrl(url, userInfo: userInfo) {
+        if env.app == .student,
+           let courseTabUrlInteractor,
+           let url = url.url,
+           !courseTabUrlInteractor.isAllowedUrl(url, userInfo: userInfo) {
+            
             let snackBarViewModel = from.findSnackBarViewModel()
             snackBarViewModel?.showSnack(
                 String(localized: "That page has been disabled for this course.", bundle: .core),
