@@ -38,7 +38,7 @@ public enum ComposeMessageAssembly {
         )
         let recipientInteractor = RecipientInteractorLive()
         let settingsInteractor = InboxSettingsInteractorLive(environment: env)
-        let audioSession = AVAudioSession.sharedInstance()
+        let audioSession = AVAudioApplication.shared
         let cameraPermissionService = AVCaptureDevice.self
         let viewModel = ComposeMessageViewModel(
             router: env.router,
@@ -74,7 +74,7 @@ public enum ComposeMessageAssembly {
             interactor: interactor,
             recipientInteractor: RecipientInteractorLive(),
             inboxSettingsInteractor: InboxSettingsInteractorPreview(),
-            audioSession: AVAudioSession.sharedInstance(),
+            audioSession: AVAudioApplication.shared,
             cameraPermissionService: AVCaptureDevice.self
         )
         return ComposeMessageView(model: viewModel)

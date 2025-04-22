@@ -158,6 +158,8 @@ open class CoreWebView: WKWebView {
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
         }
+
+        registerForTraitChanges()
     }
 
     @discardableResult
@@ -349,6 +351,18 @@ open class CoreWebView: WKWebView {
             fileLoadNavigation = nil
             fileLoadCompletion?(.init(error: error))
         }
+    }
+
+    private func registerForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: CoreWebView, _) in
+            self.updateInterfaceStyle()
+        }
+    }
+
+    func updateInterfaceStyle() {
+        let traitCollection = viewController?.traitCollection ?? traitCollection
+        themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
     }
 }
 
@@ -690,14 +704,6 @@ extension CoreWebView {
         themeSwitcher?.pinHostAndButton(inside: parent, leading: leading, trailing: trailing, top: top, bottom: bottom)
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
         activateFullScreenSupport()
-    }
-
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let traitCollection = viewController?.traitCollection ?? traitCollection
-        guard previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
-
-        themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
     }
 }
 
