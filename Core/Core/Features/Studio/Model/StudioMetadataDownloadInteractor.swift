@@ -25,7 +25,7 @@ public protocol StudioMetadataDownloadInteractor {
     ///   - api: The API instance pointing to the Studio API.
     func fetchStudioMediaItems(
         api: API,
-        courseIDs: [String]
+        courseID: String
     ) -> AnyPublisher<[APIStudioMediaItem], Error>
 }
 
@@ -33,19 +33,13 @@ class StudioMetadataDownloadInteractorLive: StudioMetadataDownloadInteractor {
 
     func fetchStudioMediaItems(
         api: API,
-        courseIDs: [String]
+        courseID: String
     ) -> AnyPublisher<[APIStudioMediaItem], Error> {
-        Publishers.Sequence(sequence: courseIDs)
-            .flatMap { courseID in
-                let request = GetStudioCourseMediaRequest(courseId: courseID)
-                return api.makeRequest(request)
-                    .catch(Self.replaceNotFoundErrorWithEmptyResponse)
-                    .map(\.body)
-            }
-            .collect()
-            .map { (mediaData: [[APIStudioMediaItem]]) in
-                mediaData.flatMap { $0 }
-            }
+        let request = GetStudioCourseMediaRequest(courseId: courseID)
+        return api
+            .makeRequest(request)
+            .catch(Self.replaceNotFoundErrorWithEmptyResponse)
+            .map(\.body)
             .eraseToAnyPublisher()
     }
 

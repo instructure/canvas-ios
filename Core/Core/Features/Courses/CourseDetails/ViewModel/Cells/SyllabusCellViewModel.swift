@@ -33,11 +33,11 @@ class SyllabusCellViewModel: CourseDetailsCellViewModel {
                    selectedCallback: selectedCallback)
     }
 
-    public override func selected(router: Router, viewController: WeakViewController) {
-        super.selected(router: router, viewController: viewController)
+    public override func selected(environment: AppEnvironment, viewController: WeakViewController) {
+        super.selected(environment: environment, viewController: viewController)
 
         if let url = route {
-            router.route(to: url, from: viewController, options: .detail)
+            environment.router.route(to: url, from: viewController, options: .detail)
         }
     }
 }

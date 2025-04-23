@@ -53,7 +53,6 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         let mockCaptionsInteractor = MockStudioCaptionsInteractor()
         let mockPosterInteractor = MockStudioVideoPosterInteractor()
         let testee = StudioVideoDownloadInteractorLive(
-            rootDirectory: workingDirectory,
             documentsDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
             videoCacheInteractor: mockCacheInteractor,
@@ -77,7 +76,11 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         )
 
         // WHEN
-        XCTAssertSingleOutputEquals(testee.download(TestData.downloadable), expectedResult, timeout: 1)
+        XCTAssertSingleOutputEquals(
+            testee.download(TestData.downloadable, rootDirectory: workingDirectory),
+            expectedResult,
+            timeout: 1
+        )
 
         // THEN
         XCTAssertEqual(mockCaptionsInteractor.receivedCaptionsToWrite, [TestData.caption])
@@ -91,7 +94,6 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         let mockCacheInteractor = MockStudioVideoCacheInteractor(isVideoDownloadedResult: true)
         let mockCaptionsInteractor = MockStudioCaptionsInteractor()
         let testee = StudioVideoDownloadInteractorLive(
-            rootDirectory: workingDirectory,
             documentsDirectory: workingDirectory,
             captionsInteractor: mockCaptionsInteractor,
             videoCacheInteractor: mockCacheInteractor,
@@ -100,7 +102,7 @@ class StudioVideoDownloadInteractorLiveTests: CoreTestCase {
         let expectedVideoURL = workingDirectory.appending(path: "\(TestData.mediaID.value)/\(TestData.mediaID.value).mp4")
 
         // WHEN
-        XCTAssertFinish(testee.download(TestData.downloadable), timeout: 1)
+        XCTAssertFinish(testee.download(TestData.downloadable, rootDirectory: workingDirectory), timeout: 1)
 
         // THEN
         XCTAssertEqual(mockCacheInteractor.receivedExpectedSize, TestData.downloadable.size)

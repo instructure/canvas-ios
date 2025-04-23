@@ -68,7 +68,7 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
             .assign(to: &$isAvailable)
     }
 
-    open func selected(router: Router, viewController: WeakViewController) {
+    open func selected(environment: AppEnvironment, viewController: WeakViewController) {
         selectedCallback?()
     }
 }

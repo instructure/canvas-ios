@@ -33,7 +33,7 @@ public enum StudioAPIAuthError: String, Error {
 }
 
 public protocol StudioAPIAuthInteractor {
-    func makeStudioAPI() -> AnyPublisher<API, StudioAPIAuthError>
+    func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError>
 }
 
 public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
@@ -47,8 +47,8 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
         self.webViewFactory = webViewFactory
     }
 
-    public func makeStudioAPI() -> AnyPublisher<API, StudioAPIAuthError> {
-        Self.getStudioLaunchURL()
+    public func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError> {
+        Self.getStudioLaunchURL(env: env)
             .flatMap { [self] (webLaunchURL, apiBaseURL) in
                 launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
                     .map { webView in
@@ -105,9 +105,9 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func getStudioLaunchURL() -> AnyPublisher<(webLaunchURL: URL, apiBaseURL: URL), StudioAPIAuthError> {
+    private static func getStudioLaunchURL(env: AppEnvironment) -> AnyPublisher<(webLaunchURL: URL, apiBaseURL: URL), StudioAPIAuthError> {
         let useCase = GetGlobalNavExternalToolsPlacements(enrollment: .student)
-        return ReactiveStore(useCase: useCase)
+        return ReactiveStore(useCase: useCase, environment: env)
             .getEntities()
             .tryMap { ltiTools -> (URL, URL) in
                 guard let webURL = ltiTools.studioLTITool?.url else {
@@ -120,7 +120,7 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
             }
             .mapErrorToAuthError(mapUnknownErrorsTo: StudioAPIAuthError.failedToGetLTIs)
             .flatMap { (webURL, baseURL) in
-                LTITools(url: webURL, isQuizLTI: false)
+                LTITools(url: webURL, isQuizLTI: false, env: env)
                     .getSessionlessLaunchURL()
                     .mapError { _ in StudioAPIAuthError.failedToGetLaunchURL }
                     .map { (webLaunchURL: $0, apiBaseURL: baseURL) }
