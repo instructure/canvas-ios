@@ -31,10 +31,6 @@ struct AccountView: View {
                     .huiTypography(.h1)
                     .foregroundStyle(Color.huiColors.text.title)
 
-                Text(viewModel.institution)
-                    .huiTypography(.h3)
-                    .foregroundStyle(Color.huiColors.surface.institution)
-
                 settingsSection
                     .padding(.top, 40)
                 supportSection
@@ -109,22 +105,13 @@ struct AccountView: View {
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
 
-            VStack(spacing: 0) {
-                AccountEntryRowView(
-                    title: "Beta Community",
-                    image: .huiIcons.openInNew,
-                    isFirstItem: true,
-                    didTapRow: {
-                        viewModel.betaCommunityDidTap()
-                    }
-                )
-                divider
-                AccountEntryRowView(
+            VStack(spacing: 0) {                AccountEntryRowView(
                     title: "Give Feedback",
                     image: .huiIcons.openInNew,
+                    isFirstItem: true,
                     isLastItem: true,
                     didTapRow: {
-                        viewModel.giveFeedbackDidTap()
+                        viewModel.giveFeedbackDidTap(viewController: viewController)
                     }
                 )
             }

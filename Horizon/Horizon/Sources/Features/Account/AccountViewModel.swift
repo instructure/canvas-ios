@@ -26,7 +26,6 @@ final class AccountViewModel {
     // MARK: - Outputs
 
     private(set) var name: String = ""
-    private(set) var institution: String = ""
     var isShowingLogoutConfirmationAlert = false
 
     // MARK: - Dependencies
@@ -60,11 +59,6 @@ final class AccountViewModel {
             .sink {
                 sessionInteractor.logout()
             }
-            .store(in: &subscriptions)
-
-        getCoursesInteractor
-            .getInstitutionName()
-            .assign(to: \.institution, on: self)
             .store(in: &subscriptions)
     }
 
