@@ -142,36 +142,29 @@ public final class GradeListViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         loadSortPreferences()
-        loadBaseDataAndGrades(ignoreCache: false)
+        loadBaseDataAndGrades(ignoreCache: false, isInitialLoad: true)
     }
 
-    private func loadBaseDataAndGrades(ignoreCache: Bool, completionBlock: (() -> Void)? = nil) {
+    private func loadBaseDataAndGrades(ignoreCache: Bool, isInitialLoad: Bool = false, completionBlock: (() -> Void)? = nil) {
         interactor
             .loadBaseData(ignoreCache: ignoreCache)
             .map { [weak self] gradingPeriodData in
-                self?.calculateGradingPeriodToShow(gradingPeriodData)
+                // Initial loading selects the currently active grading period
+                if isInitialLoad {
+                    self?.selectedGradingPeriod = gradingPeriodData.currentlyActiveGradingPeriodID
+                }
             }
             .mapToVoid()
             .receive(on: scheduler)
-            .sink(receiveCompletion: { [weak self] completion in
+            .sink { [weak self] completion in
                 if case .failure = completion {
                     self?.state = .error
                     completionBlock?()
                 }
-            }, receiveValue: { [triggerGradeRefresh] in
+            } receiveValue: { [triggerGradeRefresh] in
                 triggerGradeRefresh.accept((ignoreCache, completionBlock))
-            })
+            }
             .store(in: &subscriptions)
-    }
-
-    private func calculateGradingPeriodToShow(_ gradingPeriodData: GradeListGradingPeriodData) {
-        let id = Self.getSelectedGradingPeriodId(
-            gradeFilterInteractor: gradeFilterInteractor,
-            currentGradingPeriodID: gradingPeriodData.currentlyActiveGradingPeriodID,
-            gradingPeriods: gradingPeriodData.gradingPeriods
-        )
-
-        selectedGradingPeriod = id
     }
 
     private func refreshGrades(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
@@ -213,32 +206,6 @@ public final class GradeListViewModel: ObservableObject {
         selectedGroupByOption.accept(option)
     }
 
-    private static func getSelectedGradingPeriodId(
-        gradeFilterInteractor: GradeFilterInteractor,
-        currentGradingPeriodID: String?,
-        gradingPeriods: [GradingPeriod]
-    ) -> String? {
-        let currentId = gradeFilterInteractor.selectedGradingId
-        guard !gradingPeriods.isEmpty else {
-            gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
-            return currentGradingPeriodID
-        }
-
-        if let currentId {
-            if currentId == gradeFilterInteractor.gradingShowAllId {
-                return nil
-            } else if gradingPeriods.contains(where: { $0.id == currentId }) {
-                return currentId
-            } else {
-                gradeFilterInteractor.saveSelectedGradingPeriod(id: gradingPeriods.first?.id)
-                gradeFilterInteractor.saveSortByOption(type: .dueDate)
-                return gradingPeriods.first?.id
-            }
-        }
-        gradeFilterInteractor.saveSelectedGradingPeriod(id: currentGradingPeriodID)
-        return currentGradingPeriodID
-    }
-
     func navigateToFilter(viewController: WeakViewController) {
         let gradeData: GradeListData? = {
             switch state {
@@ -254,6 +221,7 @@ public final class GradeListViewModel: ObservableObject {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: isShowGradingPeriod,
+            initialGradingPeriodID: selectedGradingPeriod,
             courseName: courseName,
             selectedGradingPeriodPublisher: didSelectGradingPeriod,
             selectedSortByPublisher: selectedGroupByOption,
