@@ -309,7 +309,8 @@ public extension URL {
             return nil
         }
         var newComponents = components
-        newComponents.host?.replace("instructure.com", with: "canvasforcareer.com")
+        newComponents.host?.replace("pd.instructure.com", with: "pd.canvasforcareer.com")
+        newComponents.host?.replace("horizon.cd.instructure.com", with: "dev.cd.canvashorizon.com")
         return newComponents.url
     }
 }
