@@ -19,42 +19,35 @@
 import AVFoundation
 import Foundation
 
-public extension Error {
+extension Error {
 
-    var isFrameLoadInterrupted: Bool {
+    public var isFrameLoadInterrupted: Bool {
         nsError.domain == "WebKitErrorDomain" && nsError.code == 102
     }
 
-    var isForbidden: Bool {
+    public var isForbidden: Bool {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.forbidden
     }
 
-    var isNotFound: Bool {
+    public var isNotFound: Bool {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.notFound
     }
 
-    var isBadRequest: Bool {
+    public var isBadRequest: Bool {
         nsError.domain == NSError.Constants.domain && nsError.code == HttpError.badRequest
     }
 
     /// The media file doesn't contain the necessary audio/video track.
-    var isSourceTrackMissing: Bool {
+    public var isSourceTrackMissing: Bool {
         nsError.domain == AVFoundationErrorDomain && nsError.code == AVError.Code.noSourceTrack.rawValue
     }
 
-    var isRefreshTokenInvalid: Bool {
+    public var isRefreshTokenInvalid: Bool {
         if let apiError = self as? APIError, case APIError.invalidGrant = apiError {
             return true
         }
         return false
     }
-
-    private var nsError: NSError {
-        self as NSError
-    }
-}
-
-extension Error {
 
     /// Convenience method to get the `debugDescription` from the error.
     /// If the error is not a `DebugDescriptionProvider`, it will return its localized description.
@@ -63,5 +56,9 @@ extension Error {
             return localizedDescription
         }
         return debugDescription
+    }
+
+    private var nsError: NSError {
+        self as NSError
     }
 }

@@ -71,7 +71,6 @@ class ErrorExtensionsTests: XCTestCase {
         let error = MockNonDebugError()
         XCTAssertEqual(error.debugDescription, error.localizedDescription)
     }
-
 }
 
 private struct MockNonDebugError: Error {}
