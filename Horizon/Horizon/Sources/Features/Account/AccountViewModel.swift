@@ -99,7 +99,11 @@ final class AccountViewModel {
 
     func betaCommunityDidTap() {}
 
-    func giveFeedbackDidTap() {}
+    func giveFeedbackDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "https://forms.gle/jxDp3zKYe7LxNhZHA") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func logoutDidTap() {
         isShowingLogoutConfirmationAlert = true
