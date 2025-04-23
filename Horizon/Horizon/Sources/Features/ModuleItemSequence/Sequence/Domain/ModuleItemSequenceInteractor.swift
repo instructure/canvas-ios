@@ -25,7 +25,8 @@ protocol ModuleItemSequenceInteractor {
     func fetchModuleItems(
         assetId: String,
         moduleID: String?,
-        itemID: String?
+        itemID: String?,
+        ignoreCache: Bool
     ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never>
 
     func markAsViewed(moduleID: String,
@@ -68,11 +69,12 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
     func fetchModuleItems(
         assetId: String,
         moduleID: String?,
-        itemID: String?
+        itemID: String?,
+        ignoreCache: Bool
     ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never> {
         let sequenceUseCase = GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetId)
         let sequencePublisher = ReactiveStore(useCase: sequenceUseCase)
-            .getEntities()
+            .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
             .map { HModuleItemSequence(entity: $0) }
@@ -93,7 +95,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
                 if let moduleId, let itemId {
                     let getModuleItemUseCase = GetModuleItem(courseID: courseID, moduleID: moduleId, itemID: itemId)
                     let moduleItemPublisher = ReactiveStore(useCase: getModuleItemUseCase)
-                        .getEntities()
+                        .getEntities(ignoreCache: ignoreCache)
                         .replaceError(with: [])
                         .flatMap { Publishers.Sequence(sequence: $0) }
                         .map { HModuleItem(from: $0) }

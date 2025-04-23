@@ -168,6 +168,8 @@ final class AssignmentDetailsViewModel {
     func showQuizLTI(controller: WeakViewController) {
         let viewController = LTIQuizAssembly.makeView(
             courseID: courseID,
+            moduleID: moduleID,
+            itemID: itemID,
             name: assignment?.name ?? "",
             assignmentID: assignmentID,
             isQuizLTI: assignment?.isQuizLTI,

@@ -22,6 +22,8 @@ import Core
 struct LTIQuizAssembly {
     static func makeView(
         courseID: String,
+        moduleID: String,
+        itemID: String,
         name: String,
         assignmentID: String,
         isQuizLTI: Bool?,
@@ -29,6 +31,8 @@ struct LTIQuizAssembly {
     ) -> UIViewController {
         let viewModel = LTIQuizViewModel(
             courseID: courseID,
+            moduleID: moduleID,
+            itemID: itemID,
             name: name,
             assignmentID: assignmentID,
             isQuizLTI: isQuizLTI,

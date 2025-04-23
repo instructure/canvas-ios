@@ -30,15 +30,24 @@ struct LTIQuizView: View {
                 url: viewModel.externalURL,
                 features: [
                     .invertColorsInDarkMode,
-                    .hideReturnButtonInQuizLTI
+                    .hideReturnButtonInQuizLTI,
+                    .onSubmitQuiz {
+                        viewModel.refershCourse()
+                    }
                 ]
             )
         }
         .overlay(alignment: .topTrailing) {
-            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
-                dismiss()
+            HStack {
+                if viewModel.isButtonLoaderVisible {
+                    HorizonUI.Spinner(size: .xSmall, showBackground: false)
+                } else {
+                    HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
+                        dismiss()
+                    }
+                    .huiElevation(level: .level4)
+                }
             }
-            .huiElevation(level: .level4)
             .padding(.huiSpaces.space24)
         }
         .overlay { loaderView }

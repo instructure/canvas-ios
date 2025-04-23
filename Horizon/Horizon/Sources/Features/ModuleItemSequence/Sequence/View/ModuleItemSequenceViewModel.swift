@@ -120,6 +120,14 @@ final class ModuleItemSequenceViewModel {
                 self?.moduleItem = moduleItem
             }
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .moduleItemRequirementCompleted,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.retry(isShowLoader: false)
+        }
     }
 
     // MARK: - Input Functions
@@ -154,12 +162,17 @@ final class ModuleItemSequenceViewModel {
         onTapAssignmentOptions.send()
     }
 
-    private func fetchModuleItemSequence(assetId: String) {
-        isLoaderVisible = true
+    private func fetchModuleItemSequence(
+        assetId: String,
+        isShowLoader: Bool = true,
+        ignoreCache: Bool = false
+    ) {
+        isLoaderVisible = isShowLoader
         moduleItemInteractor.fetchModuleItems(
             assetId: assetId,
             moduleID: moduleID,
-            itemID: itemID
+            itemID: itemID,
+            ignoreCache: ignoreCache
         )
         .sink { [weak self] result in
             self?.isLoaderVisible = false
@@ -268,8 +281,12 @@ final class ModuleItemSequenceViewModel {
             .store(in: &subscriptions)
     }
 
-    func retry() {
-        fetchModuleItemSequence(assetId: moduleItem?.id ?? assetID)
+    func retry(isShowLoader: Bool = true) {
+        fetchModuleItemSequence(
+            assetId: moduleItem?.id ?? assetID,
+            isShowLoader: isShowLoader,
+            ignoreCache: true
+        )
     }
 
     func goNext() {
