@@ -54,7 +54,6 @@ public extension Error {
     }
 }
 
-
 extension Error {
 
     /// Convenience method to get the `debugDescription` from the error.
