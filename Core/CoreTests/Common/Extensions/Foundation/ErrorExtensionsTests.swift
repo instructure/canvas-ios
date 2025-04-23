@@ -61,4 +61,21 @@ class ErrorExtensionsTests: XCTestCase {
         )
         XCTAssertTrue(error.isSourceTrackMissing)
     }
+
+    func test_debugDescription_withDebugError() {
+        let error = MockDebugError()
+        XCTAssertEqual(error.debugDescription, "Mock debug description")
+    }
+
+    func test_debugDescription_withNonDebugError() {
+        let error = MockNonDebugError()
+        XCTAssertEqual(error.debugDescription, error.localizedDescription)
+    }
+
+}
+
+private struct MockNonDebugError: Error {}
+
+private struct MockDebugError: DebugDescriptionProvider {
+    var debugDescription: String { "Mock debug description" }
 }

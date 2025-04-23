@@ -53,3 +53,16 @@ public extension Error {
         self as NSError
     }
 }
+
+
+extension Error {
+
+    /// Convenience method to get the `debugDescription` from the error.
+    /// If the error is not a `DebugDescriptionProvider`, it will return its localized description.
+    public var debugDescription: String {
+        guard let debugDescription = (self as? DebugDescriptionProvider)?.debugDescription else {
+            return localizedDescription
+        }
+        return debugDescription
+    }
+}
