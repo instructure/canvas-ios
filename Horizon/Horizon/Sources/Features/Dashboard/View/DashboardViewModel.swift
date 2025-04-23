@@ -130,7 +130,7 @@ class DashboardViewModel {
     }
 
     func declineInvitation(course: InvistedCourse) {
-        invitedCourses.removeAll(where: { $0.id == course.id } )
+        invitedCourses.removeAll(where: { $0.id == course.id })
     }
 
     func reload(completion: @escaping () -> Void) {
