@@ -47,19 +47,19 @@ public extension HorizonUI {
 
         private static let manropeSB16: VariantAndSize = .init(variant: .manropeSemiBold, size: 16)
         
-        private static let figtreeR16: VariantAndSize = .init(variant: .figreeRegular, size: 16)
-        private static let figtreeR14: VariantAndSize = .init(variant: .figreeRegular, size: 14)
-        private static let figtreeR12: VariantAndSize = .init(variant: .figreeRegular, size: 12)
+        private static let figtreeR16: VariantAndSize = .init(variant: .figtreeRegular, size: 16)
+        private static let figtreeR14: VariantAndSize = .init(variant: .figtreeRegular, size: 14)
+        private static let figtreeR12: VariantAndSize = .init(variant: .figtreeRegular, size: 12)
 
-        private static let figtreeSB16: VariantAndSize = .init(variant: .figreeSemiBold, size: 16)
-        private static let figtreeSB14: VariantAndSize = .init(variant: .figreeSemiBold, size: 14)
-        private static let figtreeSB12: VariantAndSize = .init(variant: .figreeSemiBold, size: 12)
+        private static let figtreeSB16: VariantAndSize = .init(variant: .figtreeSemiBold, size: 16)
+        private static let figtreeSB14: VariantAndSize = .init(variant: .figtreeSemiBold, size: 14)
+        private static let figtreeSB12: VariantAndSize = .init(variant: .figtreeSemiBold, size: 12)
 
         // MARK: Public
 
         enum Variants: String, CaseIterable, Sendable {
-            case figreeRegular = "Figree-Regular"
-            case figreeSemiBold = "Figtree-SemiBold"
+            case figtreeRegular = "Figtree-Regular"
+            case figtreeSemiBold = "Figtree-SemiBold"
             case manropeRegular = "Manrope-Regular"
             case manropeBold = "Manrope-Bold"
             case manropeSemiBold = "Manrope-SemiBold"
