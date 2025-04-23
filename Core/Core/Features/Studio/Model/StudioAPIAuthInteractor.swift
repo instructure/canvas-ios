@@ -20,14 +20,14 @@ import Combine
 import CombineExt
 import WebKit
 
-public enum StudioAPIAuthError: String, Error {
+public enum StudioAPIAuthError: String, Error, DebugDescriptionProvider {
     case failedToGetLTIs
     case failedToGetTokenFromWebView
     case failedToGetAPIBaseURL
     case studioLTINotFound
     case failedToGetLaunchURL
 
-    var localizedDescription: String {
+    public var debugDescription: String {
         "\(Self.self).\(self)"
     }
 }
@@ -101,7 +101,7 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
                 }
                 return (userId: userId, token: token)
             }
-            .mapErrorToAuthError(mapUnknownErrorsTo: .failedToGetTokenFromWebView)
+            .mapUnknownErrors(to: .failedToGetTokenFromWebView)
             .eraseToAnyPublisher()
     }
 
@@ -118,7 +118,7 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
                 }
                 return (webURL, baseURL)
             }
-            .mapErrorToAuthError(mapUnknownErrorsTo: StudioAPIAuthError.failedToGetLTIs)
+            .mapUnknownErrors(to: .failedToGetLTIs)
             .flatMap { (webURL, baseURL) in
                 LTITools(url: webURL, isQuizLTI: false, env: env)
                     .getSessionlessLaunchURL()
@@ -131,10 +131,10 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
 
 private extension Publisher {
 
-    func mapErrorToAuthError(mapUnknownErrorsTo: StudioAPIAuthError) -> Publishers.MapError<Self, StudioAPIAuthError> {
+    func mapUnknownErrors(to newError: StudioAPIAuthError) -> Publishers.MapError<Self, StudioAPIAuthError> {
         mapError { error in
             guard let studioError = error as? StudioAPIAuthError else {
-                return mapUnknownErrorsTo
+                return newError
             }
             return studioError
         }

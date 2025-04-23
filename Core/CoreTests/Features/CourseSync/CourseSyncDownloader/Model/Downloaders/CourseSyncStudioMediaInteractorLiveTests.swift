@@ -25,9 +25,7 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
     func testDownload() throws {
         // Step 1 - Discover iframes
         let mockIFrameDiscoveryInteracor = MockStudioIFrameDiscoveryInteractor()
-        let mockLocalHtmlContentURL = URL(
-            string: "course_1/pages/body.html"
-        )!
+        let mockLocalHtmlContentURL = URL(string: "course_1/pages/body.html")!
         let mockDiscoveredIFrames = [StudioIFrame(
             mediaLTILaunchID: StudioTestData.ltiLaunchID,
             sourceHtml: StudioTestData.iframe
@@ -127,16 +125,59 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             [mockOfflineVideo]
         )
     }
+
+    func testErrorReporting() {
+        // Step 1 - Discover iframes
+        let mockIFrameDiscoveryInteracor = MockStudioIFrameDiscoveryInteractor()
+        let mockLocalHtmlContentURL = URL(string: "course_1/pages/body.html")!
+        let mockDiscoveredIFrames = [StudioIFrame(
+            mediaLTILaunchID: StudioTestData.ltiLaunchID,
+            sourceHtml: StudioTestData.iframe
+        )]
+        mockIFrameDiscoveryInteracor.mockedDiscoverResult = [
+            mockLocalHtmlContentURL: mockDiscoveredIFrames
+        ]
+
+        // Step 2 - Authenticate with the Studio API
+        let mockAuthInteractor = MockStudioAPIAuthInteractor()
+        let expectedError = StudioAPIAuthError.studioLTINotFound
+        mockAuthInteractor.mockedErrorResponse = expectedError
+
+        let testee = CourseSyncStudioMediaInteractorLive(
+            authInteractor: mockAuthInteractor,
+            iFrameReplaceInteractor: MockStudioIFrameReplaceInteractor(),
+            iFrameDiscoveryInteractor: mockIFrameDiscoveryInteracor,
+            cleanupInteractor: MockStudioVideoCleanupInteractor(),
+            metadataDownloadInteractor: MockStudioMetadataDownloadInteractor(),
+            downloadInteractor: MockStudioVideoDownloadInteractor(),
+            scheduler: .immediate,
+            envResolver: envResolver
+        )
+
+        // WHEN
+        XCTAssertFinish(testee.getContent(courseIDs: ["1"]))
+
+        // THEN
+        XCTAssertEqual(remoteLogHandler.lastErrorName, "Studio Offline Sync Failed")
+        XCTAssertEqual(remoteLogHandler.lastErrorReason, expectedError.debugDescription)
+        XCTAssertEqual(remoteLogHandler.totalErrorCount, 1)
+    }
 }
 
 private class MockStudioAPIAuthInteractor: StudioAPIAuthInteractor {
+    var mockedErrorResponse: StudioAPIAuthError?
     private(set) var makeAPICalled = false
 
     func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError> {
         makeAPICalled = true
-        return Just(API())
-            .setFailureType(to: StudioAPIAuthError.self)
-            .eraseToAnyPublisher()
+
+        if let mockedErrorResponse {
+            return Publishers.typedFailure(error: mockedErrorResponse)
+        } else {
+            return Just(API())
+                .setFailureType(to: StudioAPIAuthError.self)
+                .eraseToAnyPublisher()
+        }
     }
 }
 
