@@ -37,7 +37,7 @@ final class CourseDetailsViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
-    
+
     // MARK: - Init
 
     /// The course parameter can be provided for immediate display. But doesn't have to be for flexibility, such as deep linking
