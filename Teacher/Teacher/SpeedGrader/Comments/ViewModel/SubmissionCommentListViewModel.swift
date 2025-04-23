@@ -24,7 +24,10 @@ import SwiftUI
 
 class SubmissionCommentListViewModel: ObservableObject {
     enum ViewState: Equatable {
-        case loading, data([SubmissionComment]), error, empty
+        case loading
+        case data([SubmissionComment])
+        case error
+        case empty
 
         var isData: Bool {
             if case .data = self {
@@ -41,8 +44,7 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     // MARK: - Private variables
 
-    private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
-    private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
+    private let interactor: SubmissionCommentsInteractor
     private var comments: [SubmissionComment] = []
     private var attempt: Int?
     public private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
@@ -57,27 +59,21 @@ class SubmissionCommentListViewModel: ObservableObject {
     ) {
         self.attempt = attempt
 
-        submissionCommentsStore = ReactiveStore(
-            useCase: GetSubmissionComments(
-                context: .course(courseID),
-                assignmentID: assignmentID,
-                userID: userID
-            )
-        )
-        featureFlagsStore = ReactiveStore(
-            useCase: GetEnabledFeatureFlags(context: .course(courseID))
+        self.interactor = SubmissionCommentsInteractorLive(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            userID: userID
         )
 
         unowned let unownedSelf = self
 
         Publishers.CombineLatest(
-            submissionCommentsStore.getEntities(keepObservingDatabaseChanges: true),
-            featureFlagsStore.getEntities(keepObservingDatabaseChanges: true)
+            interactor.getComments(),
+            interactor.getIsAssignmentEnhancementsEnabled()
         )
-        .eraseToAnyPublisher()
-        .map { comments, featureFlags in
+        .map { comments, isAssignmentEnhancementsEnabled in
             unownedSelf.comments = comments
-            unownedSelf.isAssignmentEnhancementsFeatureFlagEnabled = featureFlags.isFeatureFlagEnabled(.assignmentEnhancements)
+            unownedSelf.isAssignmentEnhancementsFeatureFlagEnabled = isAssignmentEnhancementsEnabled
             return unownedSelf.filterComments(comments: comments, attempt: unownedSelf.attempt)
         }
         .receive(on: scheduler)
