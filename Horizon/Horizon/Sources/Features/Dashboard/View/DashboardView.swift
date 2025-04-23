@@ -32,25 +32,30 @@ struct DashboardView: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(
-                refreshable: true,
-                loaderBackgroundColor: .huiColors.surface.pagePrimary
-            ),
-            refreshAction: viewModel.reload
-        ) { _ in
-            LazyVStack(spacing: .zero) {
-                if viewModel.courses.isEmpty, viewModel.state == .data {
-                    Text("You aren’t currently enrolled in a course.", bundle: .horizon)
-                        .padding(.huiSpaces.space24)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color.huiColors.text.body)
-                        .huiTypography(.h3)
+        VStack(spacing: .zero) {
+            if viewModel.state == .data {
+                invitedCoursesView
+            }
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                config: .init(
+                    refreshable: true,
+                    loaderBackgroundColor: .huiColors.surface.pagePrimary
+                ),
+                refreshAction: viewModel.reload
+            ) { _ in
+                LazyVStack(spacing: .zero) {
+                    if viewModel.courses.isEmpty, viewModel.state == .data {
+                        Text("You aren’t currently enrolled in a course.", bundle: .horizon)
+                            .padding(.huiSpaces.space24)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundStyle(Color.huiColors.text.body)
+                            .huiTypography(.h3)
 
-                } else {
-                    contentView(courses: viewModel.courses)
-                        .padding(.bottom, .huiSpaces.space16)
+                    } else {
+                        contentView(courses: viewModel.courses)
+                            .padding(.bottom, .huiSpaces.space16)
+                    }
                 }
             }
         }
@@ -58,20 +63,10 @@ struct DashboardView: View {
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)
+        .animation(.smooth, value: viewModel.invitedCourses)
         .alert(isPresented: $viewModel.isAlertPresented) {
             Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
         }
-        .huiToast(
-            viewModel: .init(
-                text: viewModel.toastTitle,
-                style: .info,
-                dismissAfter: nil,
-                confirmActionButton: .init(
-                    title: String(localized: "Accept", bundle: .horizon),
-                    action: {  viewModel.acceptInvitation() })
-            ),
-            isPresented: $viewModel.toastIsPresented
-        )
     }
 
     private func contentView(courses: [DashboardCourse]) -> some View {
@@ -163,9 +158,20 @@ struct DashboardView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    private var nameLabel: some View {
-        Text(viewModel.title)
-            .huiTypography(.p1)
+    private var invitedCoursesView: some View {
+        ForEach(viewModel.invitedCourses) { course in
+            HorizonUI
+                .Toast(
+                    viewModel: .init(
+                        text: course.name,
+                        style: .info,
+                        dismissAfter: nil,
+                        confirmActionButton: .init(
+                            title: String(localized: "Accept", bundle: .horizon),
+                            action: {  viewModel.acceptInvitation(course: course) })
+                    )) { viewModel.declineInvitation(course: course) }
+                .padding(.huiSpaces.space12)
+        }
     }
 }
 

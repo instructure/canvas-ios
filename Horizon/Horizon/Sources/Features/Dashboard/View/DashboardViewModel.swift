@@ -26,14 +26,12 @@ class DashboardViewModel {
     // MARK: - Outputs
 
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var toastTitle = ""
     private(set) var errorMessage = ""
     var title: String = ""
-    var courses: [DashboardCourse] = []
-
+    private(set) var courses: [DashboardCourse] = []
+    private(set) var invitedCourses: [InvistedCourse] = []
     // MARK: - Input / Outputs
 
-    var toastIsPresented = false
     var isAlertPresented = false
 
     // MARK: - Dependencies
@@ -46,7 +44,6 @@ class DashboardViewModel {
     private var getDashboardCoursesCancellable: AnyCancellable?
     private var refreshCompletedModuleItemCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
-    private var invitedCourse: DashboardCourse?
 
     // MARK: - Init
 
@@ -76,12 +73,9 @@ class DashboardViewModel {
         getDashboardCoursesCancellable = getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
                 self?.courses = items.filter({ $0.state == DashboardCourse.EnrollmentState.active.rawValue })
-                if let invitedCourse = items.first(where: { $0.state == DashboardCourse.EnrollmentState.invited.rawValue  }) {
-                    let message = String(localized: "You have been invited to join", bundle: .horizon)
-                    self?.toastTitle = "\(message) \(invitedCourse.name)"
-                    self?.toastIsPresented = true
-                    self?.invitedCourse = invitedCourse
-                }
+                let invitedCourses = items.filter({ $0.state == DashboardCourse.EnrollmentState.invited.rawValue  })
+                let message = String(localized: "You have been invited to join", bundle: .horizon)
+                self?.invitedCourses = invitedCourses.map { .init(id: $0.courseId, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
                 self?.state = .data
                 completion?()
             }
@@ -112,14 +106,11 @@ class DashboardViewModel {
         router.route(to: "/courses/\(id)", from: viewController)
     }
 
-    func acceptInvitation() {
-        guard let invitedCourse else {
-            return
-        }
+    func acceptInvitation(course: InvistedCourse) {
         state = .loading
         let useCase = HandleCourseInvitation(
-            courseID: invitedCourse.courseId,
-            enrollmentID: invitedCourse.enrollmentID,
+            courseID: course.id,
+            enrollmentID: course.enrollmentID,
             isAccepted: true
         )
         ReactiveStore(useCase: useCase)
@@ -129,15 +120,17 @@ class DashboardViewModel {
                     self?.state = .data
                     self?.errorMessage = error.localizedDescription
                     self?.isAlertPresented = true
-                    self?.toastIsPresented = false
                 }
 
             }, receiveValue: { [weak self] _ in
                 self?.reload(completion: {})
-                self?.toastIsPresented = false
-
+                self?.declineInvitation(course: course)
             })
             .store(in: &subscriptions)
+    }
+
+    func declineInvitation(course: InvistedCourse) {
+        invitedCourses.removeAll(where: { $0.id == course.id } )
     }
 
     func reload(completion: @escaping () -> Void) {
