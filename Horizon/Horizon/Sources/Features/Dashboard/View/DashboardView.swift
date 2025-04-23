@@ -170,7 +170,7 @@ struct DashboardView: View {
                             title: String(localized: "Accept", bundle: .horizon),
                             action: {  viewModel.acceptInvitation(course: course) })
                     )) { viewModel.declineInvitation(course: course) }
-                .padding(.huiSpaces.space12)
+                .padding(.bottom, .huiSpaces.space12)
         }
     }
 }
