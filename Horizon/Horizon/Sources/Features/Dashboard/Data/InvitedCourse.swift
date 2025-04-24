@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct InvistedCourse: Identifiable, Equatable {
+struct InvitedCourse: Identifiable, Equatable {
     let id: String
     let name: String
     let enrollmentID: String

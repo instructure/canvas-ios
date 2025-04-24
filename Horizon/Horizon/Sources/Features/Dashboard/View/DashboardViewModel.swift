@@ -29,7 +29,7 @@ class DashboardViewModel {
     private(set) var errorMessage = ""
     var title: String = ""
     private(set) var courses: [DashboardCourse] = []
-    private(set) var invitedCourses: [InvistedCourse] = []
+    private(set) var invitedCourses: [InvitedCourse] = []
     // MARK: - Input / Outputs
 
     var isAlertPresented = false
@@ -106,7 +106,7 @@ class DashboardViewModel {
         router.route(to: "/courses/\(id)", from: viewController)
     }
 
-    func acceptInvitation(course: InvistedCourse) {
+    func acceptInvitation(course: InvitedCourse) {
         state = .loading
         let useCase = HandleCourseInvitation(
             courseID: course.id,
@@ -129,7 +129,7 @@ class DashboardViewModel {
             .store(in: &subscriptions)
     }
 
-    func declineInvitation(course: InvistedCourse) {
+    func declineInvitation(course: InvitedCourse) {
         invitedCourses.removeAll(where: { $0.id == course.id })
     }
 
