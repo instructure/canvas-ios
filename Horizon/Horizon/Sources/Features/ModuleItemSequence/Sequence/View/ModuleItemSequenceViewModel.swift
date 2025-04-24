@@ -126,7 +126,7 @@ final class ModuleItemSequenceViewModel {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.retry(isShowLoader: false)
+            self?.refershModuleItem()
         }
     }
 
@@ -164,15 +164,13 @@ final class ModuleItemSequenceViewModel {
 
     private func fetchModuleItemSequence(
         assetId: String,
-        isShowLoader: Bool = true,
         ignoreCache: Bool = false
     ) {
-        isLoaderVisible = isShowLoader
+        isLoaderVisible = true
         moduleItemInteractor.fetchModuleItems(
             assetId: assetId,
             moduleID: moduleID,
-            itemID: itemID,
-            ignoreCache: ignoreCache
+            itemID: itemID
         )
         .sink { [weak self] result in
             self?.isLoaderVisible = false
@@ -281,10 +279,9 @@ final class ModuleItemSequenceViewModel {
             .store(in: &subscriptions)
     }
 
-    func retry(isShowLoader: Bool = true) {
+    func retry() {
         fetchModuleItemSequence(
             assetId: moduleItem?.id ?? assetID,
-            isShowLoader: isShowLoader,
             ignoreCache: true
         )
     }
@@ -311,5 +308,16 @@ final class ModuleItemSequenceViewModel {
             return
         }
         fetchModuleItemSequence(assetId: itemID)
+    }
+
+    private func refershModuleItem() {
+        guard let next = sequence?.next else { return }
+        moduleItemInteractor.fetchModuleItems(
+            assetId: next.id,
+            moduleID: next.moduleID,
+            itemID: next.id
+        )
+        .sink()
+        .store(in: &subscriptions)
     }
 }
