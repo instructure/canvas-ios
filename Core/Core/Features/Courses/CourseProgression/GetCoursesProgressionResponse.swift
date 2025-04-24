@@ -34,6 +34,8 @@ public struct GetCoursesProgressionResponse: Codable {
     }
 
     public struct EnrollmentModel: Codable {
+        let state: String
+        let id: String
         let course: CourseModel
     }
 

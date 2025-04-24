@@ -18,26 +18,8 @@
 
 import Foundation
 
-struct DashboardCourse: Identifiable {
+struct InvitedCourse: Identifiable, Equatable {
+    let id: String
     let name: String
-    let progress: Double
-    let courseId: String
-    let state: String
     let enrollmentID: String
-    let learningObjectCardViewModel: LearningObjectCard?
-    var id: String { name }
-
-    enum EnrollmentState: String {
-        case active
-        case invited
-    }
-}
-
-struct LearningObjectCard {
-    let moduleTitle: String
-    let learningObjectName: String
-    let type: String?
-    let dueDate: String?
-    let url: URL?
-    let estimatedTime: String?
 }

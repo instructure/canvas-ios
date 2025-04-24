@@ -39,6 +39,8 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                 legacyNode(_id: $id, type: User) {
                     ... on User {
                         enrollments(currentOnly: false, horizonCourses: $horizonCourses) {
+                            id: _id
+                            state
                             course {
                                 id: _id
                                 name
