@@ -60,59 +60,53 @@ public struct GradeListView: View, ScreenViewTrackable {
     // MARK: - Components
 
     public var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                ZStack(alignment: .top) {
-                    switch viewModel.state {
-                    case .data, .empty:
-                        courseSummaryView(viewModel.totalGradeText)
-                            .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
-                                if headerHeight == nil || newFrame.height > headerHeight ?? 0 {
-                                    self.headerHeight = newFrame.height
-                                }
-                            }
-                    default:
-                        SwiftUI.EmptyView()
-                    }
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: .zero) {
-                            Color.clear.frame(height: /*headerHeight ??*/ 0)
-                                .bindTopPosition(
-                                    id: "scrollPosition",
-                                    coordinateSpaceName: "scroll",
-                                    to: $scrollOffset
-                                )
-
-                            //                            Color.clear.frame(height: 0)
-                            //                                .padding(.top, headerHeight ?? 0)
-
-                            contentView(geometry: geometry)
-                        }
-                    }
-                    .coordinateSpace(name: "scroll")
-                    .background(Color.backgroundLightest)
-                    .accessibilityHidden(isScoreEditorPresented)
-                    .refreshable {
-                        await withCheckedContinuation { continuation in
-                            viewModel.pullToRefreshDidTrigger.accept {
-                                continuation.resume()
-                            }
-                        }
+//        GeometryReader { geometry in
+            ScrollView(showsIndicators: false) {
+                loadingView(/*geometry: geometry*/)
+//                VStack(spacing: .zero) {
+//                    Color.clear.frame(height: /*headerHeight ??*/ 0)
+//                        .bindTopPosition(
+//                            id: "scrollPosition",
+//                            coordinateSpaceName: "scroll",
+//                            to: $scrollOffset
+//                        )
+//
+//                    //                            Color.clear.frame(height: 0)
+//                    //                                .padding(.top, headerHeight ?? 0)
+//
+//                    contentView(geometry: geometry)
+//                }
+            }
+            .coordinateSpace(name: "scroll")
+            .background(Color.backgroundLightest)
+            .accessibilityHidden(isScoreEditorPresented)
+            .refreshable {
+                await withCheckedContinuation { continuation in
+                    viewModel.pullToRefreshDidTrigger.accept {
+                        continuation.resume()
                     }
                 }
 
                 whatIfScoreEditorView()
-            }
+//            }
             //            .animation(.smooth, value: isScoreEditorPresented)
         }
-        //        .safeAreaInset(edge: .top, spacing: 0) {
-        //            switch viewModel.state {
-        //            case .data, .empty:
-        //                courseSummaryView(viewModel.totalGradeText)
-        //            default:
-        //                SwiftUI.EmptyView()
-        //            }
-        //        }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            switch viewModel.state {
+            case .data, .empty:
+                HStack(alignment: .center) {
+                    gradeDetailsView
+                    if viewModel.isParentApp {
+                        filterButton
+                            .paddingStyle(.leading, .standard)
+                    }
+                }
+                .padding([.horizontal, .top], 16)
+                .padding(.bottom, 10)
+            default:
+                SwiftUI.EmptyView()
+            }
+        }
         .background(Color.backgroundLightest)
         .navigationBarTitleView(
             title: String(localized: "Grades", bundle: .core),
@@ -155,7 +149,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         VStack(spacing: 0) {
             switch viewModel.state {
             case .initialLoading:
-                loadingView(geometry: geometry)
+                loadingView(/*geometry: geometry*/)
             case let .data(data):
                 dataView(
                     data,
@@ -181,12 +175,14 @@ public struct GradeListView: View, ScreenViewTrackable {
         .background(Color.backgroundLightest)
     }
 
-    private func loadingView(geometry: GeometryProxy) -> some View {
+    private func loadingView(/*geometry: GeometryProxy*/) -> some View {
         ZStack(alignment: .center) {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
         }
-        .frame(width: geometry.size.width, height: geometry.size.height)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        // containerRelativeFrame
+//        .frame(width: geometry.size.width, height: geometry.size.height)
     }
 
     @ViewBuilder
@@ -209,11 +205,11 @@ public struct GradeListView: View, ScreenViewTrackable {
         }
     }
 
-    private func gradeDetailsView(_ totalGrade: String?) -> some View {
+    private var gradeDetailsView: some View {
         HStack {
             totalLabelText()
                 .frame(maxWidth: .infinity, alignment: .leading)
-            if let totalGrade {
+            if let totalGrade = viewModel.totalGradeText {
                 totalGradeText(totalGrade)
             } else {
                 Image(uiImage: .lockLine)
@@ -247,30 +243,30 @@ public struct GradeListView: View, ScreenViewTrackable {
         }()
 
         VStack(spacing: 0) {
-            HStack(alignment: .center) {
-                gradeDetailsView(totalGrade)
-                if viewModel.isParentApp {
-                    filterButton
-                        .paddingStyle(.leading, .standard)
-                }
-            }
-            .padding([.horizontal, .top], 16)
-            .padding(.bottom, 10)
+            //            HStack(alignment: .center) {
+            //                gradeDetailsView(totalGrade)
+            //                if viewModel.isParentApp {
+            //                    filterButton
+            //                        .paddingStyle(.leading, .standard)
+            //                }
+            //            }
+            //            .padding([.horizontal, .top], 16)
+            //            .padding(.bottom, 10)
             //            .padding(.bottom, height != headerHeight ? 10 : 0)
 
             if totalGrade != nil {
                 //                if toggleViewIsVisible {
-                togglesView()
+                togglesView
                 //                        .frame(minHeight: 51)
                 //                    .padding(.top, 5)
-                    .padding(.horizontal, 16)
-                    .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
-                        if collapsableHeaderHeight == nil {
-                            collapsableHeaderHeight = frame.height
-                        }
-                    }
-                    .frame(maxHeight: height, alignment: .bottom)
-                    .clipped()
+                //                    .padding(.horizontal, 16)
+                //                    .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
+                //                        if collapsableHeaderHeight == nil {
+                //                            collapsableHeaderHeight = frame.height
+                //                        }
+                //                    }
+                //                    .frame(maxHeight: height, alignment: .bottom)
+                //                    .clipped()
                 //                        .transition(.move(edge: .top).combined(with: .opacity))
                 //                        .zIndex(-1)
                 //                }
@@ -334,8 +330,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             .accessibilityIdentifier("CourseTotalGrade")
     }
 
-    @ViewBuilder
-    private func togglesView() -> some View {
+    private var togglesView: some View {
         VStack(spacing: 0) {
             InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
                 Text("Based on graded assignments", bundle: .core)

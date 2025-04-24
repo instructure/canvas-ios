@@ -28,29 +28,43 @@ public struct GradeListTestView: View {
     }
 
     public var body: some View {
-        VStack(/*alignment: .top*/spacing: 0) {
-            TogglesView(scrollOffset: scrollOffset ?? 0)
-                .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
-                    if headerHeight == nil || newFrame.height > headerHeight ?? 0 {
-                        self.headerHeight = newFrame.height
-                    }
-                }
+        VStack(/*alignment: .top*/ spacing: 0) {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: .zero) {
-                    Color.clear.frame(height: 0)
-                        .bindTopPosition(
-                            id: "scrollPosition",
-                            coordinateSpaceName: "scroll",
-                            to: $scrollOffset
-                        )
+                LazyVStack(spacing: .zero, pinnedViews: .sectionHeaders) {
+                    TogglesView(scrollOffset: scrollOffset ?? 0)
+//                        .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
+//                            if headerHeight == nil || newFrame.height > headerHeight ?? 0 {
+//                                self.headerHeight = newFrame.height
+//                            }
+//                        }
+
+//                    Color.clear.frame(height: 0)
+//                        .bindTopPosition(
+//                            id: "scrollPosition",
+//                            coordinateSpaceName: "scroll",
+//                            to: $scrollOffset
+//                        )
 
                     ForEach([Color.red, .green, .blue, .yellow, .purple], id: \.hexString) { color in
-                        color
-                            .frame(height: 200)
+                        Section(color.description) {
+                            color
+                                .frame(height: 200)
+                        }
                     }
                 }
             }
-            .coordinateSpace(name: "scroll")
+            .safeAreaInset(edge: .top) {
+                InstUI.Toggle(isOn: .constant(true)) {
+                    Text("Based on graded assignments", bundle: .core)
+                        .foregroundStyle(Color.textDarkest)
+                        .font(.regular16)
+                        .multilineTextAlignment(.leading)
+                }
+                .frame(minHeight: 51)
+                .padding(.horizontal, 16)
+                .accessibilityIdentifier("BasedOnGradedToggle")
+            }
+//            .coordinateSpace(name: "scroll")
         }
     }
 }
@@ -74,16 +88,6 @@ struct TogglesView: View {
         }()
 
         VStack(spacing: 0) {
-            InstUI.Toggle(isOn: .constant(true)) {
-                Text("Based on graded assignments", bundle: .core)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.regular16)
-                    .multilineTextAlignment(.leading)
-            }
-            .frame(minHeight: 51)
-            .padding(.horizontal, 16)
-            .accessibilityIdentifier("BasedOnGradedToggle")
-
             Divider()
 
             VStack(spacing: 0) {
@@ -107,13 +111,13 @@ struct TogglesView: View {
                 .frame(minHeight: 51)
                 .padding(.horizontal, 16)
             }
-            .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
-                if originalHeight == nil {
-                    self.originalHeight = frame.height
-                }
-            }
-            .frame(maxHeight: height, alignment: .bottom)
-            .clipped()
+//            .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
+//                if originalHeight == nil {
+//                    self.originalHeight = frame.height
+//                }
+//            }
+//            .frame(maxHeight: height, alignment: .bottom)
+//            .clipped()
         }
         .background(Color.backgroundLight)
     }
