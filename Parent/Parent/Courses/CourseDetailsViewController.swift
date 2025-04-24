@@ -98,7 +98,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradListAssembly.makeGradeListViewController(
+        gradesViewController = GradeListAssembly.makeGradeListViewController(
             env: AppEnvironment.shared,
             courseID: courseID,
             userID: studentID

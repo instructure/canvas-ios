@@ -45,7 +45,7 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 
-    public var hexString: String { hexString(userInterfaceStyle: .current) }
+    public var hexString: String { hexString(for: .current) }
     public var variantForLightMode: UIColor { resolvedColor(with: .light) }
     public var variantForDarkMode: UIColor { resolvedColor(with: .dark) }
 
@@ -63,7 +63,7 @@ extension UIColor {
 
     /** Returns the given color for the current interface style. */
     public static func getColor(dark: UIColor, light: UIColor) -> UIColor {
-        return UIColor { traitCollection  in
+        return UIColor { traitCollection in
             return traitCollection.isDarkInterface ? dark : light
         }
     }
@@ -76,12 +76,12 @@ extension UIColor {
         return abs(ared - bred) + abs(agreen - bgreen) + abs(ablue - bblue) + abs(aalpha - balpha)
     }
 
-    public func hexString(userInterfaceStyle: UIUserInterfaceStyle) -> String {
-        let intValue = intValue(userInterfaceStyle: userInterfaceStyle)
+    public func hexString(for userInterfaceStyle: UIUserInterfaceStyle) -> String {
+        let intValue = intValue(for: userInterfaceStyle)
         return "#\(String(intValue, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
     }
 
-    public func intValue(userInterfaceStyle: UIUserInterfaceStyle) -> UInt32 {
+    private func intValue(for userInterfaceStyle: UIUserInterfaceStyle) -> UInt32 {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
         resolvedColor(with: UITraitCollection(userInterfaceStyle: userInterfaceStyle)).getRed(&red, green: &green, blue: &blue, alpha: &alpha) // assume success
         let toInt = { (n: CGFloat) in return UInt32(max(0.0, min(1.0, n)) * 255) }

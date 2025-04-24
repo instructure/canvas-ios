@@ -26,8 +26,13 @@ class DashboardViewModel {
     // MARK: - Outputs
 
     private(set) var state: InstUI.ScreenState = .loading
+    private(set) var errorMessage = ""
     var title: String = ""
-    var courses: [DashboardCourse] = []
+    private(set) var courses: [DashboardCourse] = []
+    private(set) var invitedCourses: [InvitedCourse] = []
+    // MARK: - Input / Outputs
+
+    var isAlertPresented = false
 
     // MARK: - Dependencies
 
@@ -67,7 +72,10 @@ class DashboardViewModel {
 
         getDashboardCoursesCancellable = getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
-                self?.courses = items
+                self?.courses = items.filter({ $0.state == DashboardCourse.EnrollmentState.active.rawValue })
+                let invitedCourses = items.filter({ $0.state == DashboardCourse.EnrollmentState.invited.rawValue  })
+                let message = String(localized: "You have been invited to join", bundle: .horizon)
+                self?.invitedCourses = invitedCourses.map { .init(id: $0.courseId, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
                 self?.state = .data
                 completion?()
             }
@@ -96,6 +104,33 @@ class DashboardViewModel {
 
     func navigateToCourseDetails(id: String, viewController: WeakViewController) {
         router.route(to: "/courses/\(id)", from: viewController)
+    }
+
+    func acceptInvitation(course: InvitedCourse) {
+        state = .loading
+        let useCase = HandleCourseInvitation(
+            courseID: course.id,
+            enrollmentID: course.enrollmentID,
+            isAccepted: true
+        )
+        ReactiveStore(useCase: useCase)
+            .getEntities()
+            .sink(receiveCompletion: { [weak self] completion in
+                if case let .failure(error) = completion {
+                    self?.state = .data
+                    self?.errorMessage = error.localizedDescription
+                    self?.isAlertPresented = true
+                }
+
+            }, receiveValue: { [weak self] _ in
+                self?.reload(completion: {})
+                self?.declineInvitation(course: course)
+            })
+            .store(in: &subscriptions)
+    }
+
+    func declineInvitation(course: InvitedCourse) {
+        invitedCourses.removeAll(where: { $0.id == course.id })
     }
 
     func reload(completion: @escaping () -> Void) {

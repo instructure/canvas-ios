@@ -24,7 +24,7 @@ struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedTabIndex: Int = 0
+    @State private var selectedTabIndex: Int = 1
 
     // MARK: - Dependencies
 
@@ -38,8 +38,8 @@ struct CourseDetailsView: View {
         isBackButtonVisible: Bool = true
     ) {
         self.viewModel = viewModel
+        self.notebookView = NotebookAssembly.makeView(courseID: viewModel.courseID)
         self.isBackButtonVisible = isBackButtonVisible
-        self.notebookView = NotebookAssembly.makeView(courseId: viewModel.courseID)
     }
 
     var body: some View {
@@ -173,8 +173,8 @@ struct CourseDetailsView: View {
 
 extension CourseDetailsView {
     enum Tabs: CaseIterable, Identifiable {
-        case myProgress
         case overview
+        case myProgress
         case scores
         case notebook
 //        case quickLinks

@@ -63,7 +63,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     }
 
     func getInstitutionName() -> AnyPublisher<String, Never> {
-        ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId))
+        ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId, horizonCourses: true))
             .getEntities()
             .replaceError(with: [])
             .compactMap { $0.first?.institutionName }
@@ -98,7 +98,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .delay(for: .milliseconds(500), scheduler: scheduler)
             .map { _ in () }
             .flatMapLatest {
-                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId))
+                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, horizonCourses: true))
                     .getEntities(ignoreCache: true)
                     .replaceError(with: [])
                     .flatMap {
@@ -121,7 +121,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     private func fetchCourses(courseId: String? = nil, ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         unowned let unownedSelf = self
 
-        return ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, courseId: courseId))
+        return ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, courseId: courseId, horizonCourses: true))
             .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
@@ -145,6 +145,8 @@ private extension CDDashboardCourse {
                     name: name,
                     progress: progress,
                     courseId: courseID,
+                    state: state,
+                    enrollmentID: enrollmentID,
                     learningObjectCardViewModel: nil
                 )
             )
@@ -163,7 +165,7 @@ private extension CDDashboardCourse {
         .replaceError(with: [])
         .compactMap { $0.first }
         .map { HModuleItem(from: $0) }
-        .map { [courseID] item in
+        .map { [courseID, state, enrollmentID] item in
             let moduleItem = LearningObjectCard(
                 moduleTitle: item.moduleName ?? "",
                 learningObjectName: item.title,
@@ -177,6 +179,8 @@ private extension CDDashboardCourse {
                 name: name,
                 progress: progress,
                 courseId: courseID,
+                state: state,
+                enrollmentID: enrollmentID,
                 learningObjectCardViewModel: moduleItem
             )
         }

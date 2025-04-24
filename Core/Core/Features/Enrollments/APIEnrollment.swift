@@ -268,13 +268,13 @@ public struct GetEnrollmentsRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.accept
 // https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.reject
-struct HandleCourseInvitationRequest: APIRequestable {
-    struct Response: Codable { let success: Bool }
+public struct HandleCourseInvitationRequest: APIRequestable {
+    public struct Response: Codable { let success: Bool }
 
     let courseID: String
     let enrollmentID: String
     let isAccepted: Bool
 
-    var method: APIMethod { .post }
-    var path: String { "courses/\(courseID)/enrollments/\(enrollmentID)/\(isAccepted ? "accept" : "reject")" }
+    public var method: APIMethod { .post }
+    public var path: String { "courses/\(courseID)/enrollments/\(enrollmentID)/\(isAccepted ? "accept" : "reject")" }
 }

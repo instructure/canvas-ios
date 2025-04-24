@@ -216,31 +216,37 @@ enum HorizonRoutes {
     private static var notebookRoutes: [RouteHandler] {
         [
             RouteHandler("/notebook") { url, _, _ in
-                let courseId = url.queryItems?.first(where: { $0.name == "courseId" })?.value
-                let moduleId = url.queryItems?.first(where: { $0.name == "moduleId" })?.value
+                let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value
+                let pageURL = url.queryItems?.first(where: { $0.name == "pageURL" })?.value
 
-                if let courseId = courseId,
-                   let moduleId = moduleId,
+                if let courseID = courseID,
+                   let pageURL = pageURL,
                     let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
                     let router: Router = AppEnvironment.shared.router
                     router.show(
-                        NotebookAssembly.makeViewController(courseId: courseId, moduleId: moduleId),
+                        NotebookAssembly.makeViewController(courseID: courseID, pageURL: pageURL),
                         from: vc,
                         options: .modal(.pageSheet, isDismissable: false)
                     )
                     return nil
                 }
-                return NotebookAssembly.makeViewController(courseId: courseId, moduleId: moduleId)
+                return NotebookAssembly.makeViewController(courseID: courseID, pageURL: pageURL)
             },
-            RouteHandler("/notebook/:courseID/:itemID/add") { _, params, userInfo in
-                guard let itemId = params["itemID"], let courseId = params["courseID"] else { return nil }
+            RouteHandler("/notebook/:courseID/add") { url, params, userInfo in
+                guard let courseID = params["courseID"],
+                      let pageURL = url.queryItems?.first(where: { $0.name == "pageURL" })?.value,
+                      let pageURLDecoded = pageURL.removingPercentEncoding
+                else {
+                    return nil
+                }
+
                 guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
                 let router: Router = AppEnvironment.shared.router
                 let notebookHighlight = userInfo?["notebookHighlight"] as? NotebookHighlight
                 router.show(
                     NotebookNoteAssembly.makeViewNoteViewController(
-                        courseID: courseId,
-                        itemID: itemId,
+                        courseID: courseID,
+                        pageURL: pageURLDecoded,
                         notebookHighlight: notebookHighlight
                     ),
                     from: vc,
@@ -372,12 +378,12 @@ extension HorizonRoutes {
     ) -> UIViewController? {
         guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
 
-        let courseId = context.id
+        let courseID = context.id
 
         if !url.originIsModuleItemDetails, context.contextType == .course {
             return ModuleItemSequenceAssembly.makeItemSequenceView(
                 environment: environment,
-                courseID: courseId,
+                courseID: courseID,
                 assetType: .page,
                 assetID: pageURL,
                 url: url
@@ -392,8 +398,8 @@ extension HorizonRoutes {
         if let item = userInfo?["item"] as? HModuleItem,
            let type = item.type {
             viewController.webView = HighlightWebView(
-                courseId: courseId,
-                itemId: item.id,
+                courseID: courseID,
+                pageURL: pageURL,
                 moduleType: type,
                 viewController: WeakViewController(viewController)
             )

@@ -33,15 +33,15 @@ struct RubricViewModel: Hashable, Equatable {
     let ratings: [Double]
     let descriptions: [String]
     let comment: String?
-    let rubricRatings: [RubricRating]
+    let rubricRatings: [CDRubricRating]
     var isCustomAssessment: Bool = false
     var hideRubricPoints: Bool
     var freeFormCriterionComments: Bool
 
     func ratingBlurb(_ atIndex: Int) -> (header: String, subHeader: String) {
         let isCustom = isCustomAssessment && atIndex >= rubricRatings.count
-        let header = isCustom ? String(localized: "Custom Grade", bundle: .student) : rubricRatings[atIndex].desc
-        let subHeader = isCustom ? "" : rubricRatings[atIndex].longDesc
+        let header = isCustom ? String(localized: "Custom Grade", bundle: .student) : rubricRatings[atIndex].shortDescription
+        let subHeader = isCustom ? "" : rubricRatings[atIndex].longDescription
         return (header, subHeader)
     }
 
@@ -101,13 +101,13 @@ class RubricPresenter {
         }
     }
 
-    func transformRubricsToViewModels(_ rubrics: [Rubric], assessments: RubricAssessments?, hideRubricPoints: Bool, freeFormCriterionComments: Bool) -> [RubricViewModel] {
+    func transformRubricsToViewModels(_ rubrics: [CDRubricCriterion], assessments: RubricAssessments?, hideRubricPoints: Bool, freeFormCriterionComments: Bool) -> [RubricViewModel] {
         var models = [RubricViewModel]()
         for rubric in rubrics {
             guard var ratings = rubric.ratings.flatMap(Array.init) else { continue }
             let assessment = assessments?[rubric.id]
             ratings = ratings.sorted { $0.points < $1.points }
-            var selected: RubricRating?
+            var selected: CDRubricRating?
             var selectedIndex: Int?
             let comments = assessment?.comments
             var description = ""
@@ -116,10 +116,10 @@ class RubricPresenter {
             if let index = ratings.firstIndex(where: { rating in assessment?.ratingID == rating.id && rating.points == assessment?.points }) {
                 selected = ratings[index]
                 selectedIndex = index
-                description = selected?.desc ?? ""
+                description = selected?.shortDescription ?? ""
             }
             var allRatings: [Double] = ratings.map { $0.points }
-            var allDescriptions: [String] = ratings.map { $0.desc }
+            var allDescriptions: [String] = ratings.map { $0.shortDescription }
             if selected == nil, let assessment = assessment, let points = assessment.points {
                 //  this is a custom assesment
                 allRatings.append(points)
@@ -131,8 +131,8 @@ class RubricPresenter {
 
             let m = RubricViewModel(
                 id: rubric.id,
-                title: rubric.desc,
-                longDescription: rubric.longDesc,
+                title: rubric.shortDescription,
+                longDescription: rubric.longDescription,
                 selectedDesc: description,
                 selectedIndex: selectedIndex,
                 ratings: allRatings,

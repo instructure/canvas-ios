@@ -25,19 +25,22 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
 
     public struct Input: Codable, Equatable {
         var id: String
+        var horizonCourses: Bool
     }
 
-    public init(userId: String) {
-        variables = Input(id: userId)
+    public init(userId: String, horizonCourses: Bool = true) {
+        variables = Input(id: userId, horizonCourses: horizonCourses)
     }
 
     public static let operationName = "GetUserCourses"
 
     public static let query = """
-            query \(operationName)($id: ID!) {
+            query \(operationName)($id: ID!, $horizonCourses: Boolean!) {
                 legacyNode(_id: $id, type: User) {
                     ... on User {
-                        enrollments(currentOnly: true) {
+                        enrollments(currentOnly: false, horizonCourses: $horizonCourses) {
+                            id: _id
+                            state
                             course {
                                 id: _id
                                 name

@@ -24,13 +24,13 @@ public extension HorizonUI {
 
         // MARK: - Dependencies
 
-        private let acceptedFilesType: String
+        private let acceptedFilesType: String?
         private let onTap: () -> Void
 
         // MARK: - Init
 
         public init(
-            acceptedFilesType: String,
+            acceptedFilesType: String?,
             onTap: @escaping () -> Void
         ) {
             self.acceptedFilesType = acceptedFilesType
@@ -56,14 +56,17 @@ public extension HorizonUI {
                         style: StrokeStyle(lineWidth: 1, dash: [6, 5]))
         }
 
+        @ViewBuilder
         private var acceptedFilesView: some View {
-            HStack(spacing: .huiSpaces.space2) {
-                Text(String(localized: "Accepted file types:"))
-                Text(acceptedFilesType)
+            if let acceptedFilesType, !acceptedFilesType.isEmpty {
+                HStack(spacing: .huiSpaces.space2) {
+                    Text(String(localized: "Accepted file types:"))
+                    Text(acceptedFilesType)
+                }
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.p2)
+                .padding(.horizontal, .huiSpaces.space16)
             }
-            .foregroundStyle(Color.huiColors.text.body)
-            .huiTypography(.p2)
-            .padding(.horizontal, .huiSpaces.space16)
         }
     }
 }
