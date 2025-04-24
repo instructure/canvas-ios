@@ -33,8 +33,8 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         }
     }
 
-    public init(features: [CoreWebViewFeature] = []) {
-        webView = CoreWebView(features: features)
+    public init(features: [CoreWebViewFeature] = [], dontDownloadMediaAutomatically: Bool = false) {
+        webView = CoreWebView(features: features, dontDownloadMediaAutomatically: dontDownloadMediaAutomatically)
         super.init(nibName: nil, bundle: nil)
         webView.linkDelegate = self
     }

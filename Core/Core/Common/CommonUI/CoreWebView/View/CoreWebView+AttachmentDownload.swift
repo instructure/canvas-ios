@@ -25,7 +25,8 @@ extension CoreWebView {
 
     public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy {
         if let httpResponse = navigationResponse.response as? HTTPURLResponse,
-           httpResponse.hasAttachmentContentDispositionHeader {
+           httpResponse.hasAttachmentContentDispositionHeader,
+           !dontDownloadMediaAutomatically {
             return .download
         }
         return .allow

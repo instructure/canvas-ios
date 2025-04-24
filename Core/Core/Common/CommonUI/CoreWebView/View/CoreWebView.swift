@@ -72,8 +72,10 @@ open class CoreWebView: WKWebView {
         super.init(frame: frame, configuration: configuration)
         setup()
     }
+    
+    internal var dontDownloadMediaAutomatically: Bool = false
 
-    public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration) {
+    public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration, dontDownloadMediaAutomatically: Bool = false) {
         configuration.applyDefaultSettings()
         let features = features + [.dynamicFontSize]
         features.forEach { $0.apply(on: configuration) }
@@ -82,6 +84,7 @@ open class CoreWebView: WKWebView {
 
         features.forEach { $0.apply(on: self) }
         self.features = features
+        self.dontDownloadMediaAutomatically = dontDownloadMediaAutomatically
         setup()
     }
 

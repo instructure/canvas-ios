@@ -245,7 +245,7 @@ class SubmissionDetailsPresenter {
                         navigationItem: view?.navigationItem
                     )
                 }
-                let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
+                let controller = CoreWebViewController(features: [.invertColorsInDarkMode], dontDownloadMediaAutomatically: true)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
