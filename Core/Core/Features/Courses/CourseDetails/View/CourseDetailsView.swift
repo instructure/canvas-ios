@@ -180,10 +180,9 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func imageHeader(geometry: GeometryProxy) -> some View {
-        CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
-//        if headerViewModel.shouldShowHeader(in: geometry.size) {
-//            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
-//        }
+        if headerViewModel.shouldShowHeader(in: geometry.size) {
+            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+        }
     }
 
     private func setupDefaultSplitDetailView(_ url: URL?) {
