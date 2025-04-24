@@ -16,23 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import HorizonUI
+import SwiftUI
 
-struct SkillSpaceAssembly {
-    private static func makeNotAvailableYetFeatureView() -> NotAvailableYetFeatureView {
-        NotAvailableYetFeatureView(
-            viewModel: NotAvailableYetFeatureViewModel(
-                feature: .skillspace,
-                router: AppEnvironment.shared.router,
-                baseURL: AppEnvironment.shared.currentSession?.baseURL
-            )
-        )
-    }
+struct NotebookTitle: View {
+    var body: some View {
+        HStack {
+            HorizonUI.icons.menuBookNotebook
+                .frame(width: 24, height: 24)
 
-    static func makeView() -> UIViewController {
-        CoreHostingController(
-            SkillSpaceView(notAvailableYetFeatureView: makeNotAvailableYetFeatureView())
-        )
+            Text("Notebook", bundle: .horizon)
+                .huiTypography(.h3)
+        }
+        .frame(maxWidth: .infinity)
     }
 }

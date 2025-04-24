@@ -501,6 +501,9 @@
     "Locked Content" : {
 
     },
+    "Log In" : {
+
+    },
     "Logout" : {
 
     },
@@ -858,6 +861,9 @@
     "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
 
     },
+    "This feature isn't available on iOS yet. To access %@, please log in using a web browser." : {
+
+    },
     "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
 
     },
@@ -967,6 +973,9 @@
 
     },
     "Your draft was deleted." : {
+
+    },
+    "your inbox" : {
 
     },
     "Your note has been saved" : {

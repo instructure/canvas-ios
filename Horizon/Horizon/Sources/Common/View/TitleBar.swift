@@ -20,12 +20,14 @@ import Core
 import HorizonUI
 import SwiftUI
 
-struct NotebookTitleBar: View {
+struct TitleBar<Content>: View where Content: View {
 
     // MARK: - Dependencies
 
+    private let color: Color
     private let onBack: ((WeakViewController) -> Void)?
     private let onClose: ((WeakViewController) -> Void)?
+    private let title: Content
 
     // MARK: - Properties
 
@@ -35,10 +37,14 @@ struct NotebookTitleBar: View {
 
     init(
         onBack: ((WeakViewController) -> Void)? = nil,
-        onClose: ((WeakViewController) -> Void)? = nil
+        onClose: ((WeakViewController) -> Void)? = nil,
+        color: Color = HorizonUI.colors.surface.pagePrimary,
+        @ViewBuilder title: () -> Content
     ) {
         self.onBack = onBack
         self.onClose = onClose
+        self.color = color
+        self.title = title()
     }
 
     // MARK: - Body
@@ -46,10 +52,10 @@ struct NotebookTitleBar: View {
     var body: some View {
         HStack {
             backButton
-            title
+            titleView
             closeButton
         }
-        .background(HorizonUI.colors.surface.pagePrimary)
+        .background(color)
     }
 
     // MARK: - Private
@@ -80,14 +86,8 @@ struct NotebookTitleBar: View {
         .huiElevation(level: .level4)
     }
 
-    private var title: some View {
-        HStack {
-            HorizonUI.icons.menuBookNotebook
-                .frame(width: 24, height: 24)
-
-            Text("Notebook", bundle: .horizon)
-                .huiTypography(.h3)
-        }
-        .frame(maxWidth: .infinity)
+    private var titleView: some View {
+        title
+            .frame(maxWidth: .infinity)
     }
 }
