@@ -38,7 +38,7 @@ class ToDoTests: E2ETestCase {
 
         let toDoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
         XCTAssertTrue(toDoTab.isVisible)
-        XCTAssertTrue(toDoTab.hasValue(value: "1 item"))
+        XCTAssertEqual(toDoTab.stringValue, "1 item")
 
         // MARK: Tap ToDo button and check the 3 items
         toDoTab.hit()
@@ -46,13 +46,13 @@ class ToDoTests: E2ETestCase {
         let assignmentItemTitle = ToDoHelper.cellItemTitle(cell: assignmentItem).waitUntil(.visible)
         XCTAssertTrue(assignmentItem.isVisible)
         XCTAssertTrue(assignmentItemTitle.isVisible)
-        XCTAssertTrue(assignmentItemTitle.hasLabel(label: assignment.name))
+        XCTAssertEqual(assignmentItemTitle.label, assignment.name)
 
         // MARK: Check submission
         assignmentItem.hit()
         let userLabel = AssignmentsHelper.SpeedGrader.userButton.waitUntil(.visible)
         let submissionBody = app.find(label: submission.body).waitUntil(.visible)
-        XCTAssertTrue(userLabel.hasLabel(label: "\(student.name), Submitted"))
+        XCTAssertEqual(userLabel.label, "\(student.name), Submitted")
         XCTAssertTrue(submissionBody.isVisible)
     }
 }

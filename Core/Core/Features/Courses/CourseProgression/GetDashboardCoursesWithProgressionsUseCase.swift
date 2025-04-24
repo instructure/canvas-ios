@@ -33,16 +33,18 @@ public class GetDashboardCoursesWithProgressionsUseCase: APIUseCase {
     }
     private let courseId: String?
     private let userId: String
+    private let horizonCourses: Bool
 
     public var request: GetCoursesProgressionRequest {
-        .init(userId: userId)
+        .init(userId: userId, horizonCourses: horizonCourses)
     }
 
     // MARK: - Init
 
-    public init(userId: String, courseId: String? = nil) {
+    public init(userId: String, courseId: String? = nil, horizonCourses: Bool = false) {
         self.userId = userId
         self.courseId = courseId
+        self.horizonCourses = horizonCourses
     }
 
     // MARK: - Functions
