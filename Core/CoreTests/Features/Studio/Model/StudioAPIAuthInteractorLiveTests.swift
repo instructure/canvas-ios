@@ -55,7 +55,7 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
     }
 
     func testErrorDescription() {
-        XCTAssertEqual(StudioAPIAuthError.failedToGetLTIs.localizedDescription, "StudioAPIAuthError.failedToGetLTIs")
+        XCTAssertEqual(StudioAPIAuthError.failedToGetLTIs.debugDescription, "StudioAPIAuthError.failedToGetLTIs")
     }
 
     private func mockStudioLTIData() {

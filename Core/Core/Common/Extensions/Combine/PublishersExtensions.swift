@@ -27,13 +27,20 @@ extension Publishers {
         typedFailure(output: outputType, message: "No Instance!")
     }
 
+    public static func typedFailure<Output, Failure: Error>(
+        output outputType: Output.Type = Output.self,
+        error: Failure
+    ) -> AnyPublisher<Output, Failure> {
+        Fail(error: error)
+            .setOutputType(to: outputType)
+            .eraseToAnyPublisher()
+    }
+
     public static func typedFailure<Output>(
         output outputType: Output.Type = Output.self,
         message: String = ""
     ) -> AnyPublisher<Output, Error> {
-        Fail(error: NSError.instructureError(message) as Error)
-            .setOutputType(to: outputType)
-            .eraseToAnyPublisher()
+        Publishers.typedFailure(error: NSError.instructureError(message))
     }
 
     public static func typedEmpty<Output, Failure: Error>(

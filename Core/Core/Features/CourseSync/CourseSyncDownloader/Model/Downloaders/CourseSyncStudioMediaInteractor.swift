@@ -107,10 +107,10 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 return self.downloadMediaTweakingIFrameReferences(mediaData)
             }
             .catch { error -> AnyPublisher<Void, Never> in
-                Logger.shared.error("Studio Offline Sync Failed: " + error.localizedDescription)
+                Logger.shared.error("Studio Offline Sync Failed: " + error.debugDescription)
                 RemoteLogger.shared.logError(
                     name: "Studio Offline Sync Failed",
-                    reason: error.localizedDescription
+                    reason: error.debugDescription
                 )
                 return Just(()).eraseToAnyPublisher()
             }
