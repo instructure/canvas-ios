@@ -172,4 +172,24 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.previousButton.isHidden)
         XCTAssertFalse(controller.nextButton.isHidden)
     }
+
+    func test_setCurrentPage_stopWebViewPlayback() {
+        let viewController = ModuleItemSequenceViewController()
+        let playerViewController = MockViewController()
+        viewController.pages.setCurrentPage(playerViewController)
+
+        // WHEN
+        viewController.setCurrentPage(UIViewController(), direction: .forward)
+
+        // THEN
+        XCTAssertTrue(playerViewController.stopWebViewPlaybackCalled)
+    }
+}
+
+private class MockViewController: UIViewController {
+    var stopWebViewPlaybackCalled = false
+
+    override func pauseWebViewPlayback() {
+        stopWebViewPlaybackCalled = true
+    }
 }

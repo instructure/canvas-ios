@@ -136,4 +136,19 @@ extension UIView {
     public var isHorizontallyCompact: Bool {
         traitCollection.horizontalSizeClass == .compact
     }
+
+    /// Searches the view tree for all subviews of a given type.
+    public func findAllSubviews<T: UIView>(ofType type: T.Type) -> Set<T> {
+        var result = Set<T>()
+
+        for subview in subviews {
+            if let match = subview as? T {
+                result.insert(match)
+            } else {
+                result.formUnion(subview.findAllSubviews(ofType: type))
+            }
+        }
+
+        return result
+    }
 }

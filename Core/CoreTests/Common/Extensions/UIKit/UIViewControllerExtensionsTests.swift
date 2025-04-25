@@ -19,6 +19,7 @@
 import XCTest
 import UIKit
 @testable import Core
+import WebKit
 
 class UIViewControllerExtensionsTests: XCTestCase {
     class MockController: UIViewController {
@@ -93,5 +94,34 @@ class UIViewControllerExtensionsTests: XCTestCase {
         let split = UISplitViewController()
         split.viewControllers = [controller]
         XCTAssertNotNil(controller.splitDisplayModeButtonItem)
+    }
+
+    func test_stopWebViewPlayback() {
+        let parentViewController = UIViewController()
+
+        let mockWebView = MockWKWebView()
+        let containerView = UIView()
+        let mockNestedWebView = MockWKWebView()
+
+        parentViewController.view.addSubview(mockWebView)
+        parentViewController.view.addSubview(containerView)
+        containerView.addSubview(mockNestedWebView)
+
+        // WHEN
+        parentViewController.pauseWebViewPlayback()
+
+        // THEN
+        XCTAssertTrue(mockWebView.pauseAllMediaPlaybackCalled)
+        XCTAssertTrue(mockNestedWebView.pauseAllMediaPlaybackCalled)
+    }
+}
+
+private class MockWKWebView: WKWebView {
+    var pauseAllMediaPlaybackCalled = false
+
+    override func pauseAllMediaPlayback(
+        completionHandler: (@MainActor @Sendable () -> Void)? = nil
+    ) {
+        pauseAllMediaPlaybackCalled = true
     }
 }
