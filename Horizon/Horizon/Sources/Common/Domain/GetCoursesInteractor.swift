@@ -28,6 +28,7 @@ protocol GetCoursesInteractor {
     func getInstitutionName() -> AnyPublisher<String, Never>
     func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
+    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -59,6 +60,18 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
         fetchCourses(courseId: id, ignoreCache: ignoreCache)
             .map { $0.first }
             .receive(on: scheduler)
+            .eraseToAnyPublisher()
+    }
+
+    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never> {
+        NotificationCenter.default
+            .publisher(for: .moduleItemRequirementCompleted)
+            .flatMap { [self] _ in
+                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId, courseId: courseId))
+                    .getEntities(ignoreCache: true)
+                    .replaceError(with: [])
+                    .compactMap { $0.first?.completionPercentage }
+            }
             .eraseToAnyPublisher()
     }
 

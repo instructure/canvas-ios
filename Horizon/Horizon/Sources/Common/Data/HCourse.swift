@@ -23,7 +23,7 @@ struct HCourse: Identifiable {
     let institutionName: String
     let name: String
     let overviewDescription: String
-    let progress: Double
+    var progress: Double
     let enrollments: [HEnrollment]
     let modules: [HModule]
     let incompleteModule: IncompleteModule?

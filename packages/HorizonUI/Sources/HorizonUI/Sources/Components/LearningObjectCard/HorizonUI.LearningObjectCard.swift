@@ -62,6 +62,7 @@ public extension HorizonUI {
 
                 Text(moduleTitle)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
                     .foregroundStyle(Color.huiColors.text.body)
                     .huiTypography(.p2)
                     .padding(.top, .huiSpaces.space16)
@@ -69,6 +70,7 @@ public extension HorizonUI {
                 Text(learningObjectName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.huiColors.surface.institution)
+                    .multilineTextAlignment(.leading)
                     .huiTypography(.h3)
                     .padding(.top, .huiSpaces.space4)
 

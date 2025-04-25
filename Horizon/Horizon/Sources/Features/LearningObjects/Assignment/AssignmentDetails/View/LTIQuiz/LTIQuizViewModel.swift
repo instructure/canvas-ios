@@ -26,6 +26,7 @@ final class LTIQuizViewModel {
 
     private(set) var externalURL: URL?
     private(set) var isLoaderVisible = true
+    private(set) var isButtonLoaderVisible: Bool = false
 
     // MARK: - Dependancies
 
@@ -34,17 +35,23 @@ final class LTIQuizViewModel {
     private let assignmentID: String
     private let isQuizLTI: Bool?
     private let externalToolContentID: String?
+    private let moduleID: String
+    private let itemID: String
 
     // MARK: - Init
 
     init(
         courseID: String,
+        moduleID: String,
+        itemID: String,
         name: String,
         assignmentID: String,
         isQuizLTI: Bool?,
         externalToolContentID: String?
     ) {
         self.courseID = courseID
+        self.moduleID = moduleID
+        self.itemID = itemID
         self.name = name
         self.assignmentID = assignmentID
         self.isQuizLTI = isQuizLTI
@@ -59,6 +66,21 @@ final class LTIQuizViewModel {
         tools.getSessionlessLaunch { [weak self] value in
             self?.isLoaderVisible = false
             self?.externalURL = value?.url
+        }
+    }
+
+    func refershCourse() {
+        isButtonLoaderVisible = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+            self.isButtonLoaderVisible = false
+            NotificationCenter.default.post(
+                name: .moduleItemRequirementCompleted,
+                object: ModuleItemAttributes(
+                    courseID: self.courseID,
+                    moduleID: self.moduleID,
+                    itemID: self.itemID
+                )
+            )
         }
     }
 }

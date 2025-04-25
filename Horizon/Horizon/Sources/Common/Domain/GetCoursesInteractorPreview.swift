@@ -57,6 +57,11 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
+    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never> {
+        Just(90.6)
+            .eraseToAnyPublisher()
+    }
+
     private var course: HCourse {
         .init(
             id: "123",

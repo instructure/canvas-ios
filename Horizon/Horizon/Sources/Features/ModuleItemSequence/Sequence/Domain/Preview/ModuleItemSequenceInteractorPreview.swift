@@ -21,7 +21,11 @@ import Core
 import Combine
 
 final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
-    func fetchModuleItems(assetId: String, moduleID: String?, itemID: String?) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never> {
+    func fetchModuleItems(
+        assetId: String,
+        moduleID: String?,
+        itemID: String?
+    ) -> AnyPublisher<(HModuleItemSequence?, HModuleItem?), Never> {
         let moduleItem = HModuleItem(id: "14", title: "Sub title 2", htmlURL: nil)
         let currentModuleItem = HModuleItemSequenceNode(id: "212", moduleID: "1000")
         let nextModuleItem = HModuleItemSequenceNode(id: "212", moduleID: "1000")
