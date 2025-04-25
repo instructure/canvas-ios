@@ -54,7 +54,7 @@ extension File: OfflineDownloadTypeProtocol {
             return false
         }
     }
-    
+
     public static func replaceHTML(tag: String?) -> String? {
         nil
     }

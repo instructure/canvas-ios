@@ -32,49 +32,12 @@ extension File: OfflineStorageDataProtocol {
     }
 
     public func toOfflineModel() throws -> OfflineStorageDataModel {
-        let dictionary: [String: Any?] = [
-            "assignmentID": assignmentID,
-            "batchID": batchID,
-            "bytesSent": bytesSent,
-            "contentType": contentType,
-            "contextRaw": contextRaw,
-            "id": id,
-            "uuid": uuid,
-            "folderID": folderID,
-            "displayName": displayName,
-            "filename": filename,
-            "url": url?.absoluteString,
-            "size": size,
-            "createdAt": createdAt?.timeIntervalSince1970,
-            "updatedAt": updatedAt?.timeIntervalSince1970,
-            "unlockAt": unlockAt?.timeIntervalSince1970,
-            "locked": locked,
-            "hidden": hidden,
-            "lockAt": lockAt?.timeIntervalSince1970,
-            "hiddenForUser": hiddenForUser,
-            "thumbnailURL": thumbnailURL?.absoluteString,
-            "modifiedAt": modifiedAt?.timeIntervalSince1970,
-            "mimeClass": mimeClass,
-            "mediaEntryID": mediaEntryID,
-            "lockedForUser": lockedForUser,
-            "lockExplanation": lockExplanation,
-            "previewURL": previewURL?.absoluteString,
-            "localFileURL": localFileURL?.absoluteString,
-            "uploadError": uploadError,
-            "taskID": taskID,
-            "userID": userID,
-            "similarityScore": similarityScore,
-            "similarityStatus": similarityStatus,
-            "similarityURL": similarityURL?.absoluteString,
-            "courseID": courseID
-        ]
         let containerId = OfflineStorageManager.shared.config.containerID
-        if let id = id, let jsonData = try? JSONSerialization.data(withJSONObject: dictionary),
-           let jsonString = String(data: jsonData, encoding: .utf8) {
+        if let id = id {
             return OfflineStorageDataModel(
                 id: id,
                 type: OfflineContentType.file.rawValue,
-                json: jsonString,
+                json: "",
                 containerID: containerId
             )
         }
