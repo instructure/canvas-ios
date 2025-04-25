@@ -67,13 +67,14 @@ struct AccountView: View {
                         viewModel.profileDidTap(viewController: viewController)
                     }
                 )
-                divider
-                AccountEntryRowView(
-                    title: String(localized: "Password", bundle: .horizon),
-                    didTapRow: {
-                        viewModel.passwordDidTap()
-                    }
-                )
+                // TODO: Uncomment after implementing the functionality
+//                divider
+//                AccountEntryRowView(
+//                    title: String(localized: "Password", bundle: .horizon),
+//                    didTapRow: {
+//                        viewModel.passwordDidTap()
+//                    }
+//                )
                 divider
                 AccountEntryRowView(
                     title: String(localized: "Notifications", bundle: .horizon),

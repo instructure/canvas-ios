@@ -657,9 +657,6 @@
     "Paris (+01:00/+02:00)" : {
 
     },
-    "Password" : {
-
-    },
     "Perth (+08:00)" : {
 
     },
@@ -853,6 +850,9 @@
 
     },
     "Text" : {
+
+    },
+    "There are no scored activities in this course." : {
 
     },
     "There was an error. please try again." : {
