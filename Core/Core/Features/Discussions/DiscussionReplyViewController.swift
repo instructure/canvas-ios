@@ -378,9 +378,9 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
 extension DiscussionReplyViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         if url.pathComponents.count > 1, url.pathComponents[1] == "files" {
-            env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            route(in: env, to: url, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
         } else {
-            env.router.route(to: url, from: self)
+            route(in: env, to: url)
         }
         return true
     }

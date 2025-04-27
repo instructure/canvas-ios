@@ -216,7 +216,7 @@ extension WebView {
             if let handleLink = view.handleLink {
                 return handleLink(url)
             }
-            view.env.router.route(to: url, from: routeLinksFrom)
+            route(in: view.env, to: url)
             return true
         }
 

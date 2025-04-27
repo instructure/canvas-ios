@@ -21,6 +21,9 @@ import WebKit
 public protocol CoreWebViewLinkDelegate: AnyObject {
     var routeLinksFrom: UIViewController { get }
 
+    /// Gives the option to opt-out of this behavior on specific screen if needed
+    var allowsExternalToolsLinks: Bool { get }
+
     func handleLink(_ url: URL) -> Bool
     func finishedNavigation()
     func coreWebView(_ webView: CoreWebView, didStartProvisionalNavigation navigation: WKNavigation!)
@@ -39,9 +42,43 @@ extension CoreWebViewLinkDelegate {
     public func coreWebView(_ webView: CoreWebView, didFinishAttachmentDownload attachment: CoreWebAttachment) {}
 }
 
+// MARK: - Routing
+
+extension CoreWebViewLinkDelegate {
+
+    public var allowsExternalToolsLinks: Bool { true }
+
+    public func route(in env: AppEnvironment, to url: String, options: RouteOptions = Router.DefaultRouteOptions) {
+        route(in: env, to: .parse(url), options: options)
+    }
+
+    public func route(in env: AppEnvironment, to url: URL, options: RouteOptions = Router.DefaultRouteOptions) {
+        route(in: env, to: .parse(url), options: options)
+    }
+
+    public func route(
+        in env: AppEnvironment,
+        to url: URLComponents,
+        options: RouteOptions = Router.DefaultRouteOptions
+    ) {
+        env
+            .router
+            .route(
+                to: url,
+                userInfo: allowsExternalToolsLinks
+                    ? [CourseTabUrlInteractor.allowExternalToolsInnerLinksKey: true]
+                    : nil,
+                from: routeLinksFrom,
+                options: options
+            )
+    }
+}
+
+// MARK: - Links Handling
+
 extension CoreWebViewLinkDelegate where Self: UIViewController {
     public func handleLink(_ url: URL) -> Bool {
-        AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
+        route(in: .shared, to: url)
         return true
     }
     public var routeLinksFrom: UIViewController { self }

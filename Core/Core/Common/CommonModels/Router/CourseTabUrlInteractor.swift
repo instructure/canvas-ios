@@ -25,6 +25,7 @@ import Combine
 public final class CourseTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
+    public static let allowExternalToolsInnerLinksKey = "allowExternalToolsInnerLinksKey"
 
     private struct TabModel {
         let id: String
@@ -90,8 +91,26 @@ public final class CourseTabUrlInteractor {
             return true
         }
 
+        if isAllowedAsExternalToolLink(relativePath, context: context, userInfo: userInfo) {
+            return true
+        }
+
         // it's a tab that may be disabled, if it matches any of the enabled tabs allow it, otherwise block it
         return enabledTabs.contains(relativePath)
+    }
+
+    /// Allows links to external tools when `allowExternalToolsInnerLinksKey` of `userInfo` is `true`.
+    /// Ideally, this is needed only for links found in inner course pages.
+    /// Expects relative path, with "/api/v1" already stripped,
+    private func isAllowedAsExternalToolLink(
+        _ relativePath: String,
+        context: Context,
+        userInfo: [String: Any]?
+    ) -> Bool {
+        guard
+            let isExternalToolsAllowed = userInfo?[Self.allowExternalToolsInnerLinksKey] as? Bool,
+            isExternalToolsAllowed else { return false }
+        return relativePath.hasPrefix("/\(context.pathComponent)/external_tools/")
     }
 
     /// Expects relative paths, with "/api/v1" already stripped
