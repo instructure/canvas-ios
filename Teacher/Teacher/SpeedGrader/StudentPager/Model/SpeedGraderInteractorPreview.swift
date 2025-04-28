@@ -22,6 +22,13 @@ import Combine
 import Core
 
 class SpeedGraderInteractorPreview: SpeedGraderInteractor {
+    let contextInfo = CurrentValueSubject<SpeedGraderContextInfo?, Never>(
+        .init(
+            courseName: "Course name with a lot of info in it",
+            courseColor: .red,
+            assignmentName: "A long test assignment name here"
+        )
+    )
     let state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
     var data: SpeedGraderData?
 
@@ -33,7 +40,7 @@ class SpeedGraderInteractorPreview: SpeedGraderInteractor {
         self.state.send(state)
     }
 
-    func loadInitialData() {
+    func load() {
     }
 
     func refreshSubmission(forUserId: String) {

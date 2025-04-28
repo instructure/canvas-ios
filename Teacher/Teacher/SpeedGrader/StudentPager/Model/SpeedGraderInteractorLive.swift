@@ -19,9 +19,11 @@
 import Combine
 import Core
 import Foundation
+import SwiftUI
 
 class SpeedGraderInteractorLive: SpeedGraderInteractor {
     let state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
+    let contextInfo = CurrentValueSubject<SpeedGraderContextInfo?, Never>(nil)
     private(set) var data: SpeedGraderData?
 
     public let assignmentID: String
@@ -46,12 +48,30 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.filter = filter
     }
 
-    func loadInitialData() {
-        loadAssignment()
+    func load() {
+        let assignmentLoad = loadAssignment().share()
+
+        Publishers.CombineLatest(
+            assignmentLoad,
+            loadCourse()
+        )
+        .map { assignment, course in
+            SpeedGraderContextInfo(
+                courseName: course.name ?? "",
+                courseColor: course.color,
+                assignmentName: assignment.name
+            )
+        }
+        .ignoreFailure()
+        .sink { [weak self] contextInfo in
+            self?.contextInfo.send(contextInfo)
+        }
+        .store(in: &subscriptions)
+
+        assignmentLoad
             .flatMap { [weak self] assignment in
                 guard let self else {
-                    return Fail<(Assignment, [Submission]), Error>(error: NSError.internalError())
-                        .eraseToAnyPublisher()
+                    return Publishers.noInstanceFailure(output: (Assignment, [Submission]).self)
                 }
                 return Publishers.CombineLatest(
                     loadEnrollments(),
@@ -100,6 +120,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
             .store(in: &subscriptions)
     }
 
+    // MARK: - Entity Loaders
+
     private func loadAssignment() -> AnyPublisher<Assignment, Error> {
         let assignmentUseCase = GetAssignment(
             courseID: context.id,
@@ -110,6 +132,18 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
             .getEntities()
             .tryMap { try $0.first.unwrapOrThrow() }
             .eraseToAnyPublisher()
+    }
+
+    private func loadCourse() -> AnyPublisher<Course, Error> {
+        Publishers.CombineLatest(
+            ReactiveStore(useCase: GetCourse(courseID: context.id), environment: env)
+                .getEntities()
+                .tryMap { try $0.first.unwrapOrThrow() },
+            ReactiveStore(useCase: GetCustomColors(), environment: env)
+                .getEntities()
+        )
+        .map { course, _ in course }
+        .eraseToAnyPublisher()
     }
 
     private func loadSubmissions(anonymizeStudents: Bool) -> AnyPublisher<([Submission]), Error> {

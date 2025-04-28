@@ -18,17 +18,27 @@
 
 import Combine
 import Core
+import UIKit
 
 protocol SpeedGraderInteractor: AnyObject {
     var state: CurrentValueSubject<SpeedGraderInteractorState, Never> { get }
     var data: SpeedGraderData? { get }
+    /// Submissions can take some time to load so we separate the loading of metadata to have the nav bar themed quickly
+    var contextInfo: CurrentValueSubject<SpeedGraderContextInfo?, Never> { get }
 
     var assignmentID: String { get }
     var userID: String { get }
     var context: Context { get }
 
-    func loadInitialData()
+    /// Loads all data and updates `state`, `data` and `contextInfo` properties.
+    func load()
     func refreshSubmission(forUserId: String)
+}
+
+struct SpeedGraderContextInfo {
+    let courseName: String
+    let courseColor: UIColor
+    let assignmentName: String
 }
 
 struct SpeedGraderData {
@@ -37,16 +47,27 @@ struct SpeedGraderData {
     let focusedSubmissionIndex: Int
 }
 
-enum SpeedGraderInteractorState {
+enum SpeedGraderInteractorState: Equatable {
     case loading
     case data
     case error(SpeedGraderInteractorError)
 }
 
-enum SpeedGraderInteractorError: Error {
+enum SpeedGraderInteractorError: Error, Equatable {
     case userIdNotFound
     case submissionNotFound
     case unexpectedError(Error)
+
+    static func == (lhs: SpeedGraderInteractorError, rhs: SpeedGraderInteractorError) -> Bool {
+        switch (lhs, rhs) {
+        case (.userIdNotFound, .userIdNotFound),
+             (.submissionNotFound, .submissionNotFound),
+             (.unexpectedError, .unexpectedError):
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 let SpeedGraderAllUsersUserID = "speedgrader"

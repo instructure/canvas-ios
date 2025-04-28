@@ -40,7 +40,7 @@ enum SpeedGraderAssembly {
             interactor: interactor,
             environment: env
         )
-        let view = SpeedGraderView(
+        let view = SpeedGraderScreen(
             viewModel: viewModel
         )
         return CoreNavigationController(
@@ -64,7 +64,7 @@ enum SpeedGraderAssembly {
             interactor: interactor,
             environment: .shared
         )
-        let view = SpeedGraderView(
+        let view = SpeedGraderScreen(
             viewModel: viewModel
         )
         return CoreNavigationController(

@@ -49,7 +49,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         embed(loadingView, in: view)
-        interactor.loadInitialData()
+        interactor.load()
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

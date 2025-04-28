@@ -23,12 +23,16 @@ import SwiftUI
 class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, PagesViewControllerDelegate {
     typealias Page = CoreHostingController<SubmissionGraderView>
 
-    @Published var state: InstUI.ScreenState = .loading
-    @Published var currentPage: UIViewController?
+    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var currentPage: UIViewController?
+    @Published private(set) var isPostPolicyButtonVisible = false
+    @Published private(set) var navigationTitle = ""
+    @Published private(set) var navigationSubtitle = ""
+    @Published private(set) var navigationBarColor = Brand.shared.navBackground
 
     // MARK: - Inputs
     let didTapDoneButton = PassthroughSubject<WeakViewController, Never>()
-    let viewDidAppear = PassthroughSubject<Void, Never>()
+    let didTapPostPolicyButton = PassthroughSubject<WeakViewController, Never>()
     let didShowPagesViewController = PassthroughSubject<PagesViewController, Never>()
 
     // MARK: - Private
@@ -51,17 +55,37 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
             }
             .store(in: &subscriptions)
 
-        viewDidAppear
-            .sink { [weak interactor] in
-                interactor?.loadInitialData()
-            }
-            .store(in: &subscriptions)
-
         didShowPagesViewController
             .sink { [weak self] pages in
                 self?.updatePages(pages)
             }
             .store(in: &subscriptions)
+
+        didTapPostPolicyButton
+            .sink { viewController in
+                environment.router.route(
+                    to: "/\(interactor.context.pathComponent)/assignments/\(interactor.assignmentID)/post_policy",
+                    from: viewController,
+                    options: .modal(embedInNav: true, addDoneButton: true)
+                )
+            }
+            .store(in: &subscriptions)
+
+        interactor.state
+            .map { $0 == .data }
+            .assign(to: &$isPostPolicyButtonVisible)
+
+        interactor
+            .contextInfo
+            .compactMap { $0 }
+            .sink { [weak self] contextInfo in
+                self?.navigationTitle = contextInfo.assignmentName
+                self?.navigationSubtitle = contextInfo.courseName
+                self?.navigationBarColor = contextInfo.courseColor
+            }
+            .store(in: &subscriptions)
+
+        interactor.load()
     }
 
     // MARK: - PagesViewControllerDataSource

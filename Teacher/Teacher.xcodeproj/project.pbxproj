@@ -107,7 +107,7 @@
 		CF0606122D9A9A990014C2EC /* RubricsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0606112D9A9A950014C2EC /* RubricsViewModel.swift */; };
 		CF0E06942DA8FFC6007AC131 /* SubmissionGraderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0E06932DA8FFC4007AC131 /* SubmissionGraderViewModel.swift */; };
 		CF12471F2DB00B6D00EB10F6 /* SpeedGraderInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12471E2DB00B6700EB10F6 /* SpeedGraderInteractorPreview.swift */; };
-		CF1247212DB0114300EB10F6 /* SpeedGraderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1247202DB0113F00EB10F6 /* SpeedGraderView.swift */; };
+		CF1247212DB0114300EB10F6 /* SpeedGraderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1247202DB0113F00EB10F6 /* SpeedGraderScreen.swift */; };
 		CF1247232DB0127900EB10F6 /* PagesViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1247222DB0126900EB10F6 /* PagesViewControllerWrapper.swift */; };
 		CF1247262DB012B700EB10F6 /* SpeedGraderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1247252DB012B700EB10F6 /* SpeedGraderViewModel.swift */; };
 		CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */; };
@@ -323,7 +323,7 @@
 		CF0606112D9A9A950014C2EC /* RubricsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricsViewModel.swift; sourceTree = "<group>"; };
 		CF0E06932DA8FFC4007AC131 /* SubmissionGraderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionGraderViewModel.swift; sourceTree = "<group>"; };
 		CF12471E2DB00B6700EB10F6 /* SpeedGraderInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractorPreview.swift; sourceTree = "<group>"; };
-		CF1247202DB0113F00EB10F6 /* SpeedGraderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderView.swift; sourceTree = "<group>"; };
+		CF1247202DB0113F00EB10F6 /* SpeedGraderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderScreen.swift; sourceTree = "<group>"; };
 		CF1247222DB0126900EB10F6 /* PagesViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewControllerWrapper.swift; sourceTree = "<group>"; };
 		CF1247252DB012B700EB10F6 /* SpeedGraderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewModel.swift; sourceTree = "<group>"; };
 		CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListViewModel.swift; sourceTree = "<group>"; };
@@ -920,8 +920,8 @@
 		CF0605DA2D95AAE90014C2EC /* StudentPager */ = {
 			isa = PBXGroup;
 			children = (
-				CF1247242DB012AE00EB10F6 /* ViewModel */,
 				CF4C5F7A2DA023EB005AE000 /* Model */,
+				CF1247242DB012AE00EB10F6 /* ViewModel */,
 				CF0605DB2D95AB060014C2EC /* View */,
 			);
 			path = StudentPager;
@@ -931,7 +931,7 @@
 			isa = PBXGroup;
 			children = (
 				CF1247222DB0126900EB10F6 /* PagesViewControllerWrapper.swift */,
-				CF1247202DB0113F00EB10F6 /* SpeedGraderView.swift */,
+				CF1247202DB0113F00EB10F6 /* SpeedGraderScreen.swift */,
 				7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */,
 			);
 			path = View;
@@ -1545,7 +1545,7 @@
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,
 				CF1247262DB012B700EB10F6 /* SpeedGraderViewModel.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
-				CF1247212DB0114300EB10F6 /* SpeedGraderView.swift in Sources */,
+				CF1247212DB0114300EB10F6 /* SpeedGraderScreen.swift in Sources */,
 				CF13E552299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,

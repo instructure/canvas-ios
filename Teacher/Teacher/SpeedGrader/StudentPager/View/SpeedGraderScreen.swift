@@ -20,7 +20,7 @@ import Combine
 import Core
 import SwiftUI
 
-struct SpeedGraderView: View {
+struct SpeedGraderScreen: View {
     @StateObject private var viewModel: SpeedGraderViewModel
     @Environment(\.viewController) private var controller
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -52,13 +52,41 @@ struct SpeedGraderView: View {
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
         }
-        .navigationBarStyle(.global)
-        .navBarItems(trailing: .done(isBackgroundContextColor: true) {
-            viewModel.didTapDoneButton.send(controller)
-        })
-        .onFirstAppear {
-            viewModel.viewDidAppear.send()
+        .navigationBarTitleView(
+            title: viewModel.navigationTitle,
+            subtitle: viewModel.navigationSubtitle
+        )
+        .navigationBarStyle(.color(viewModel.navigationBarColor))
+        .navBarItems(trailing: navBarTrailingItems)
+    }
+
+    private var navBarTrailingItems: some View {
+        HStack(spacing: 10) {
+            if viewModel.isPostPolicyButtonVisible {
+                postPolicySettingsButton
+            }
+            doneButton
         }
+    }
+
+    private var doneButton: InstUI.NavigationBarButton {
+        .done(
+            isBackgroundContextColor: true,
+            accessibilityId: "SpeedGrader.doneButton"
+        ) {
+            viewModel.didTapDoneButton.send(controller)
+        }
+    }
+
+    private var postPolicySettingsButton: some View {
+        Button {
+            viewModel.didTapPostPolicyButton.send(controller)
+        } label: {
+            Image.eyeLine
+                .foregroundColor(.textLightest)
+        }
+        .identifier("SpeedGrader.postPolicyButton")
+        .accessibility(label: Text("Post settings", bundle: .teacher))
     }
 }
 
