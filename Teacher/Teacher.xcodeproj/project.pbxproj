@@ -26,6 +26,7 @@
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
 		494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* TeacherTabBarController.swift */; };
 		494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* Routes.swift */; };
+		5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */; };
 		5BB37BC22DB90F300096821B /* SubmissionCommentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */; };
 		61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */; };
 		78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913021C8180C0075FBCF /* GoogleService-Info.plist */; };
@@ -239,6 +240,7 @@
 		494AE0B51F843CB4001A8F31 /* TeacherTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBarController.swift; sourceTree = "<group>"; };
 		494AE0B61F843CB4001A8F31 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsAssembly.swift; sourceTree = "<group>"; };
 		5BB37BC12DB90F270096821B /* SubmissionCommentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsInteractor.swift; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAppDelegate.swift; sourceTree = "<group>"; };
 		78AD913021C8180C0075FBCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -802,6 +804,7 @@
 		CF0605CD2D95A56C0014C2EC /* Comments */ = {
 			isa = PBXGroup;
 			children = (
+				5B9C5C062DB9B03A00103E21 /* SubmissionCommentsAssembly.swift */,
 				5BB37BC42DB90F410096821B /* Model */,
 				CF0605D12D95A60C0014C2EC /* ViewModel */,
 				CF0605CE2D95A5790014C2EC /* View */,
@@ -1503,6 +1506,7 @@
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				7D0A28E2251A8284004FB3B6 /* SubmissionHeaderView.swift in Sources */,
 				7DCA321A25423CDF00458651 /* SpeedGraderViewController.swift in Sources */,
+				5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */,
 				CF0605E32D95C5A50014C2EC /* RubricCircle.swift in Sources */,
 				CFCADAF42D9D871D003796E7 /* RubricRatingView.swift in Sources */,
 				7D742F452556566F00FD6CF1 /* CommentEditorView.swift in Sources */,

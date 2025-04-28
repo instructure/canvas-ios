@@ -30,9 +30,9 @@ struct SubmissionCommentListView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    @ObservedObject private var viewModel: SubmissionCommentListViewModel
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
-    @StateObject private var viewModel: SubmissionCommentListViewModel
     @State var error: Text?
     @State var showMediaOptions = false
     @State var showCommentLibrary = false
@@ -40,9 +40,7 @@ struct SubmissionCommentListView: View {
     @AccessibilityFocusState private var focusedTab: SubmissionGraderView.GraderTab?
 
     init(
-        assignment: Assignment,
-        submission: Submission,
-        attempts: [Submission],
+        viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
@@ -50,6 +48,8 @@ struct SubmissionCommentListView: View {
         commentLibrary: SubmissionCommentLibraryViewModel,
         focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
     ) {
+        _viewModel = ObservedObject(wrappedValue: viewModel)
+
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
@@ -57,21 +57,6 @@ struct SubmissionCommentListView: View {
         self.commentLibrary = commentLibrary
         self._focusedTab = focusedTab
 
-        let interactor = SubmissionCommentsInteractorLive(
-            courseId: assignment.courseID,
-            assignmentId: assignment.id,
-            userId: submission.userID,
-            isGroupAssignment: !assignment.gradedIndividually,
-            env: AppEnvironment.shared // TODO: env
-        )
-
-        _viewModel = StateObject(wrappedValue: SubmissionCommentListViewModel(
-            assignment: assignment,
-            submission: submission,
-            attempts: attempts,
-            attempt: attempt.wrappedValue,
-            interactor: interactor
-        ))
     }
 
     var body: some View {

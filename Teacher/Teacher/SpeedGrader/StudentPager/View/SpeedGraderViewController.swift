@@ -172,7 +172,9 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
             userIndexInSubmissionList: index,
             viewModel: SubmissionGraderViewModel(
                 assignment: data.assignment,
-                submission: data.submissions[index]
+                submissions: data.submissions,
+                initialSubmission: data.submissions[index],
+                env: env
             ),
             handleRefresh: { [weak self] in
                 self?.interactor.refreshSubmission(forUserId: data.submissions[index].userID)

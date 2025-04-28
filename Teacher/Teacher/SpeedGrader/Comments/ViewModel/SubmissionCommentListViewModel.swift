@@ -45,8 +45,8 @@ class SubmissionCommentListViewModel: ObservableObject {
     // MARK: - Private variables
 
     let assignment: Assignment
-    private let submission: Submission
-    private let attempts: [Submission]
+    private let submissions: [Submission]
+    private let initialSubmission: Submission
 
     private let interactor: SubmissionCommentsInteractor
     private var comments: [SubmissionComment] = []
@@ -60,17 +60,17 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     init(
         assignment: Assignment,
-        submission: Submission,
-        attempts: [Submission],
-        attempt: Int?,
+        submissions: [Submission],
+        initialSubmission: Submission,
+        initialAttemptNumber: Int?,
         interactor: SubmissionCommentsInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.assignment = assignment
-        self.submission = submission
-        self.attempts = attempts
+        self.initialSubmission = initialSubmission
+        self.submissions = submissions
 
-        self.attempt = attempt
+        self.attempt = initialAttemptNumber
 
         self.interactor = interactor
 
@@ -113,7 +113,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     }
 
     func submissionForComment(_ comment: SubmissionComment) -> Submission {
-        let result = attempts.first(where: { $0.attempt == comment.attempt }) ?? submission
+        let result = submissions.first(where: { $0.attempt == comment.attempt }) ?? initialSubmission
         if result.assignment == nil {
             result.assignment = assignment
         }

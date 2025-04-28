@@ -26,7 +26,6 @@ class SubmissionGraderViewModel: ObservableObject {
 
     @Published private(set) var selectedAttemptIndex: Int
     @Published private(set) var selectedAttempt: Submission
-    @Published private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     @Published private(set) var attempts: [Submission] = []
     @Published private(set) var hasSubmissions = false
     @Published private(set) var isSingleSubmission = false
@@ -36,19 +35,37 @@ class SubmissionGraderViewModel: ObservableObject {
     let assignment: Assignment
     let submission: Submission
 
+    // sub-viewmodels
+    @Published private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
+    @Published private(set) var commentListViewModel: SubmissionCommentListViewModel
+
     // MARK: - Inputs
 
     /** This is mainly used by `SubmissionCommentList` but since it's re-created on rotation and app backgrounding the entered text is lost. */
     @Published var enteredComment: String = ""
 
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
-    init(assignment: Assignment, submission: Submission) {
+    init(
+        assignment: Assignment,
+        submissions: [Submission],
+        initialSubmission: Submission,
+        env: AppEnvironment
+    ) {
         self.assignment = assignment
-        self.submission = submission
-        selectedAttempt = submission
-        selectedAttemptIndex = submission.attempt
+        self.submission = initialSubmission
+        selectedAttempt = initialSubmission
+        selectedAttemptIndex = initialSubmission.attempt
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
+        commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
+            assignment: assignment,
+            submissions: submissions,
+            initialSubmission: initialSubmission,
+            initialAttemptNumber: initialSubmission.attempt,
+            env: env
+        )
+        self.env = env
         observeAttemptChangesInDatabase()
         didSelectNewAttempt(attemptIndex: submission.attempt)
     }

@@ -364,9 +364,7 @@ struct SubmissionGraderView: View {
         let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
         VStack(spacing: 0) {
             SubmissionCommentListView(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                attempts: viewModel.attempts,
+                viewModel: viewModel.commentListViewModel,
                 attempt: drawerAttempt,
                 fileID: fileID,
                 showRecorder: $showRecorder,
