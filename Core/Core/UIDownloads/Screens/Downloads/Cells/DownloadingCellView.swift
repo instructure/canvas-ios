@@ -79,10 +79,9 @@ struct DownloadingCellView: View {
         .onAppear {
             setCurrentState(viewModel.downloaderStatus)
         }
-        .onChange(
-            of: viewModel.downloaderStatus,
-            perform: setCurrentState
-        )
+        .onChange(of: viewModel.downloaderStatus) { _, newValue in
+            setCurrentState(newValue)
+        }
     }
 
     private func setCurrentState(_ newValue: OfflineDownloaderStatus) {

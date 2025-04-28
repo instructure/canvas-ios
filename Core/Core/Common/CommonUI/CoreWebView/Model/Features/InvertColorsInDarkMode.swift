@@ -46,7 +46,7 @@ private class InvertColorsInDarkMode: CoreWebViewFeature {
     public override init() {}
 
     override func apply(on webView: CoreWebView) {
-        webView.addScript(script,injectionTime: .atDocumentStart)
+        webView.addScript(script, injectionTime: .atDocumentStart)
     }
 }
 

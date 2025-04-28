@@ -86,7 +86,7 @@ extension ModuleItem: OfflineStorageDataProtocol {
             "title": title,
             "htmlURL": htmlURL?.absoluteString ?? "",
             "url": url?.absoluteString ?? "",
-            "typeRaw": String(decoding: typeRaw, as: UTF8.self)
+            "typeRaw": String(bytes: typeRaw, encoding: .utf8) ?? ""
         ]
         if let jsonData = try? JSONSerialization.data(withJSONObject: dictionary),
            let jsonString = String(data: jsonData, encoding: .utf8) {

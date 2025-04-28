@@ -113,7 +113,7 @@ class LoginStartViewController: UIViewController {
             findSchoolButton.isHidden = true
             lastLoginButton.setTitle(loginText, for: .normal)
             lastLoginButton.isHidden = true
-        } 
+        }
 //        else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
 //                    let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
 //            lastLoginAccount = savedAccount
@@ -146,7 +146,7 @@ class LoginStartViewController: UIViewController {
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        //updateButtonStackViewLayout()
+        // updateButtonStackViewLayout()
     }
 
     // Center Buttons Vertically when orientation is landscape
@@ -203,7 +203,7 @@ class LoginStartViewController: UIViewController {
 
     func update() {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
-        previousLoginsView.isHidden = true  //sessions.isEmpty && MDMManager.shared.logins.isEmpty
+        previousLoginsView.isHidden = true  // sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.isHidden = true
         previousLoginsTableView.reloadData()
         configureButtons()
@@ -212,12 +212,12 @@ class LoginStartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        //prepareForAnimation()
+        // prepareForAnimation()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //animateLogoFromCenterToFinalPosition()
+        // animateLogoFromCenterToFinalPosition()
     }
 
     // MARK: - Animation
@@ -296,7 +296,7 @@ class LoginStartViewController: UIViewController {
                 )
                 analyticsRoute = "/login/weblogin"
             }
-        } 
+        }
 //        else if let host = lastLoginAccount?.domain {
 //            controller = LoginWebViewController.create(
 //                authenticationProvider: lastLoginAccount?.authentication_provider,
@@ -350,7 +350,7 @@ class LoginStartViewController: UIViewController {
             method = .normalLogin
             authenticationMethodLabel.text = nil
         }
-        authenticationMethodLabel.isHidden = true //authenticationMethodLabel.text == nil
+        authenticationMethodLabel.isHidden = true // authenticationMethodLabel.text == nil
     }
 
     // MARK: - Private Methods

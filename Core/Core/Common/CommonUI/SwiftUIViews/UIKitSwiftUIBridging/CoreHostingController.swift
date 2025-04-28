@@ -105,7 +105,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     deinit {
         isClosedDownloadsView()
     }
-    
+
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         didAppearSubject.send()
@@ -151,7 +151,7 @@ extension CoreHostingController: DownloadsProgressBarHidden {
         }
     }
 }
-    
+
 // MARK: - Appearance View Modifiers
 
 private struct DidAppearViewModifier: ViewModifier {

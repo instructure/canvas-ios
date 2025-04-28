@@ -30,7 +30,7 @@ public struct DownloaderClient {
         var pathComponents = path.components(separatedBy: "/")
         pathComponents.append(session.baseURL.host ?? "unknownSchool")
         pathComponents.append(session.userID)
-        
+
         let downloaderConfig = OfflineDownloaderConfig()
         downloaderConfig.rootPath = pathComponents.joined(separator: "/")
         downloaderConfig.errorsDescriptionHandler = { errorInfo, isCritical in

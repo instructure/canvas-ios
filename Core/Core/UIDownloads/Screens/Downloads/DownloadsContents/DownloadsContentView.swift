@@ -82,7 +82,7 @@ struct DownloadsContentView: View, Navigatable {
                 deleteAllButton
             }
         }
-        .onChange(of: viewModel.error) { newValue in
+        .onChange(of: viewModel.error) { _, newValue in
             if newValue.isEmpty { return }
             navigationController?.showAlert(
                 title: NSLocalizedString(newValue, comment: ""),

@@ -26,7 +26,7 @@ final class ImageDownloader {
     }
 
     func downloadImage(from url: URL) {
-        getData(from: url) { [weak self] data, response, error in
+        getData(from: url) { [weak self] data, _, error in
             guard let data = data, error == nil else { return }
             self?.saveImage(data: data, name: url.lastPathComponent)
         }
@@ -52,7 +52,7 @@ final class ImageDownloader {
         do {
             try data.write(to: fileURL)
             return true
-        } catch  {
+        } catch {
             return false
         }
     }
@@ -69,7 +69,7 @@ final class ImageDownloader {
         return nil
     }
 
-    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
 }

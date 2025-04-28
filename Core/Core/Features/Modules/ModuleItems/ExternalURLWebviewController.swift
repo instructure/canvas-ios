@@ -77,7 +77,7 @@ public class ExternalURLWebviewController: UIViewController, ColoredNavViewProto
 
     @objc func refresh() {
         spinnerView.isHidden = false
-        env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, error in
+        env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
             guard let self = self else { return }
             performUIUpdate {
                 self.load(url: response?.session_url ?? self.url)

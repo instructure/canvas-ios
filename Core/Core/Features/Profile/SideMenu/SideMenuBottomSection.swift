@@ -69,7 +69,6 @@ struct SideMenuBottomSection: View {
                 Divider()
             }
 
-
             Button {
                 showLiveChat()
             } label: {

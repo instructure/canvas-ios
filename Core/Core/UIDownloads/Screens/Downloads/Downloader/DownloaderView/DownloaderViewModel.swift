@@ -49,7 +49,7 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
     }
 
     private var pausedEntries: [OfflineDownloaderEntry] {
-        downloadsManager.pausedEntries + 
+        downloadsManager.pausedEntries +
         downloadsManager.failedEntries +
         downloadsManager.serverErrors
     }

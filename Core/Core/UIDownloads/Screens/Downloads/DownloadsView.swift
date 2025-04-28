@@ -82,7 +82,7 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
         .background(Color.backgroundLightest)
         .accentColor(Color(Brand.shared.linkColor))
         .onAppear(perform: onAppear)
-        .onChange(of: viewModel.error) { newValue in
+        .onChange(of: viewModel.error) { _, newValue in
             if newValue.isEmpty { return }
             navigationController?.showAlert(
                 title: NSLocalizedString(newValue, comment: ""),

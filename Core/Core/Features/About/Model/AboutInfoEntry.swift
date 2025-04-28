@@ -38,7 +38,7 @@ public extension AboutInfoEntry {
     static func app(_ app: AppEnvironment.App? = AppEnvironment.shared.app) -> Self {
         var appName = UnknownLabel
 
-        if let _ = app {
+        if app != nil {
             appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Degrees edX"
         }
 

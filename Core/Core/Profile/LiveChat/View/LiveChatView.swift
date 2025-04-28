@@ -41,7 +41,7 @@ struct LiveChatView: View, ScreenViewTrackable {
                 LoadingView()
             }
         }
-        .onChange(of: model.isDisplaying) { value in
+        .onChange(of: model.isDisplaying) { _, value in
             if !value {
                 env.router.dismiss(controller)
             }

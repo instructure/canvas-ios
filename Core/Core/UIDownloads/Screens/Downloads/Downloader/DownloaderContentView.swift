@@ -51,7 +51,7 @@ struct DownloaderContentView: View {
                 .foregroundColor(.accentColor)
                 .padding(.trailing, 16)
             }
-            .listRowSeparator(.hidden) 
+            .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets())
             content
         }

@@ -18,7 +18,6 @@
 
 import Combine
 import SafariServices
-import Combine
 
 public final class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController, Reachabilitable {
 

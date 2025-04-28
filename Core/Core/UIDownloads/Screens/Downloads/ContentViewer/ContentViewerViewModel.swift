@@ -29,7 +29,8 @@ public class ContentViewerViewModel: ObservableObject {
     }
 
     var canShare: Bool {
-        if let _ = try? File.fromOfflineModel(entry.dataModel) {
+        let file = try? File.fromOfflineModel(entry.dataModel)
+        if file != nil {
             return true
         }
         return false
@@ -77,8 +78,9 @@ public class ContentViewerViewModel: ObservableObject {
                     return
                 }
                 if case .statusChanged(object: let event) = event {
+                    let eventId = try? event.object.toOfflineModel().id
                     if case .removed = event.status,
-                        let _ = try? event.object.toOfflineModel().id {
+                        eventId != nil {
                         self.shouldDismissView = true
                         onDeleted?(entry)
                     }

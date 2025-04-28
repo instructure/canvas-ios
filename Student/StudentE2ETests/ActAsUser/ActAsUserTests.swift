@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 import XCTest
 

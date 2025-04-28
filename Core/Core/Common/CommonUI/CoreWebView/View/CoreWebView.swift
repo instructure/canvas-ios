@@ -72,7 +72,7 @@ open class CoreWebView: WKWebView {
         super.init(frame: frame, configuration: configuration)
         setup()
     }
-    
+
     internal var dontDownloadMediaAutomatically: Bool = false
 
     public init(features: [CoreWebViewFeature], configuration: WKWebViewConfiguration = .defaultConfiguration, dontDownloadMediaAutomatically: Bool = false) {
