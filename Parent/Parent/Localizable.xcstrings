@@ -617,6 +617,12 @@
             "value" : "À propos"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maidir"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2658,6 +2664,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apparence"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dealramh"
           }
         },
         "hi" : {
@@ -7010,6 +7022,12 @@
             "value" : "Thème sombre"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téama Dorcha"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9050,6 +9068,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cumasaithe"
           }
         },
         "hi" : {
@@ -11350,6 +11374,12 @@
             "value" : "Signature de la boîte de réception"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Síniú an Bhosca Isteach"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12625,6 +12655,12 @@
             "value" : "Légal"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legal"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12873,6 +12909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thème clair"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téama Geall"
           }
         },
         "hi" : {
@@ -16197,6 +16239,12 @@
             "value" : "Non défini"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl sé socraithe"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16959,6 +17007,12 @@
             "value" : "Préférences"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghanna"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17207,6 +17261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Politique de confidentialité"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polasaí Príobháideachais"
           }
         },
         "hi" : {
@@ -21046,6 +21106,12 @@
             "value" : "Réglages du système"
           }
         },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socruithe Córais"
+          }
+        },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21551,6 +21617,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conditions d’utilisation"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téarmaí Úsáide"
           }
         },
         "hi" : {
