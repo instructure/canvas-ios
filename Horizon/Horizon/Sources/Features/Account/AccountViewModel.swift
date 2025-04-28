@@ -26,7 +26,6 @@ final class AccountViewModel {
     // MARK: - Outputs
 
     private(set) var name: String = ""
-    private(set) var institution: String = ""
     var isShowingLogoutConfirmationAlert = false
 
     // MARK: - Dependencies
@@ -61,11 +60,6 @@ final class AccountViewModel {
                 sessionInteractor.logout()
             }
             .store(in: &subscriptions)
-
-        getCoursesInteractor
-            .getInstitutionName()
-            .assign(to: \.institution, on: self)
-            .store(in: &subscriptions)
     }
 
     // MARK: - Input functions
@@ -99,7 +93,11 @@ final class AccountViewModel {
 
     func betaCommunityDidTap() {}
 
-    func giveFeedbackDidTap() {}
+    func giveFeedbackDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "https://forms.gle/jxDp3zKYe7LxNhZHA") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func logoutDidTap() {
         isShowingLogoutConfirmationAlert = true
