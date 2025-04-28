@@ -27,6 +27,7 @@ struct SpeedGraderView: View {
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     private let screenConfig = InstUI.BaseScreenConfig(
         refreshable: false,
+        scrollBounce: .basedOnSize,
         emptyPandaConfig: .init(
             scene: SpacePanda(),
             title: String(localized: "No Submissions", bundle: .teacher),
