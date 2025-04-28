@@ -75,4 +75,17 @@ public class NotConnectionBarView: UIView, Reachabilitable {
 
         attachLabel()
     }
+
+    public func attach(in superview: UIView) {
+        backgroundColor = .red
+
+        superview.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
+        rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: superview.topAnchor).isActive = true
+        heightAnchor.constraint(equalToConstant: 20).isActive = true
+
+        attachLabel()
+    }
 }

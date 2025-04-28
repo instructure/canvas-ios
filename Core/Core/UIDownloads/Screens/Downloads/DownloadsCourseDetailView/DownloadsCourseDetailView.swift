@@ -53,12 +53,11 @@ struct DownloadsCourseDetailView: View, Navigatable {
     // MARK: - Views -
 
     var body: some View {
-        // TODO: return splitController when will fixed on Instructure side for iOS18
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//            padBody
-//        } else {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            padBody
+        } else {
             phoneBody
-//        }
+        }
     }
 
     private var padBody: some View {

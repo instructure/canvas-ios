@@ -37,12 +37,6 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
-            // Setting the horizontal size class will force the tab bar
-            // to be displayed at the bottom.
-            traitOverrides.horizontalSizeClass = .compact
-        }
-
         delegate = self
         viewControllers = [
             dashboardTab(),
@@ -213,14 +207,22 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     private func attachDownloadingBarView() {
-        downloadingBarView.attach(tabBar: tabBar, in: view)
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            downloadingBarView.attach(in: view)
+        } else {
+            downloadingBarView.attach(tabBar: tabBar, in: view)
+        }
         downloadingBarView.onTap = { [weak self] in
             self?.showDownloadingView()
         }
     }
 
     private func attachConnectionBarView() {
-        connectionBarView.attach(tabBar: tabBar, in: view)
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            connectionBarView.attach(in: view)
+        } else {
+            connectionBarView.attach(tabBar: tabBar, in: view)
+        }
     }
 
     private func showDownloadingView() {
