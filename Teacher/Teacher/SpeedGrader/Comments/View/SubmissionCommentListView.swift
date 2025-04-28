@@ -21,8 +21,6 @@ import Core
 import Combine
 
 struct SubmissionCommentListView: View {
-    let assignment: Assignment
-    let submission: Submission
     let filePicker = FilePicker(env: .shared)
     @Binding var attempt: Int
     @Binding var fileID: String?
@@ -32,7 +30,6 @@ struct SubmissionCommentListView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    var attempts: [Submission]
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @StateObject private var viewModel: SubmissionCommentListViewModel
@@ -53,21 +50,27 @@ struct SubmissionCommentListView: View {
         commentLibrary: SubmissionCommentLibraryViewModel,
         focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
     ) {
-        self.assignment = assignment
-        self.submission = submission
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
         self._comment = enteredComment
-        self.attempts = attempts
         self.commentLibrary = commentLibrary
         self._focusedTab = focusedTab
 
+        let interactor = SubmissionCommentsInteractorLive(
+            courseId: assignment.courseID,
+            assignmentId: assignment.id,
+            userId: submission.userID,
+            isGroupAssignment: !assignment.gradedIndividually,
+            env: AppEnvironment.shared // TODO: env
+        )
+
         _viewModel = StateObject(wrappedValue: SubmissionCommentListViewModel(
+            assignment: assignment,
+            submission: submission,
+            attempts: attempts,
             attempt: attempt.wrappedValue,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID
+            interactor: interactor
         ))
     }
 
@@ -124,22 +127,14 @@ struct SubmissionCommentListView: View {
             .scaleEffect(y: -1)
         ForEach(comments, id: \.id) { comment in
             SubmissionCommentListCell(
-                assignment: assignment,
-                submission: submissionForComment(comment),
+                assignment: viewModel.assignment,
+                submission: viewModel.submissionForComment(comment),
                 comment: comment,
                 attempt: $attempt,
                 fileID: $fileID
             )
                 .scaleEffect(y: -1)
         }
-    }
-
-    private func submissionForComment(_ comment: SubmissionComment) -> Submission {
-        let result = attempts.first(where: { $0.attempt == comment.attempt }) ?? submission
-        if result.assignment == nil {
-            result.assignment = assignment
-        }
-        return result
     }
 
     func toolbar(containerHeight: CGFloat) -> some View {
@@ -175,31 +170,14 @@ struct SubmissionCommentListView: View {
     func sendComment() {
         let text = comment.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
+
         error = nil
         comment = ""
-        let commentAttempt: Int?
-        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
-            commentAttempt = attempt
-        } else {
-            commentAttempt = nil
-        }
-        CreateTextComment(
-            env: env,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            isGroup: assignment.gradedIndividually == false,
-            text: text,
-            attempt: commentAttempt
-        ).fetch { comment, error in
-            if error != nil || comment == nil {
-                let genericErrorMessage = String(localized: "Could not save the comment.", bundle: .teacher)
+        viewModel.sendTextComment(text) { result in
+            if result.isFailure {
                 self.comment = text
-                self.error = error.map { Text($0.localizedDescription) } ?? Text(genericErrorMessage)
-                UIAccessibility.announce(genericErrorMessage)
-            } else {
-                UIAccessibility.announce(String(localized: "Comment sent successfully", bundle: .teacher))
             }
+            handleSendCommentResult(result)
         }
     }
 
@@ -230,26 +208,11 @@ struct SubmissionCommentListView: View {
     }
 
     func sendMediaComment(type: MediaCommentType, url: URL?) {
-        guard let url = url else { return }
-        let commentAttempt: Int?
-        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
-            commentAttempt = attempt
-        } else {
-            commentAttempt = nil
-        }
-        UploadMediaComment(
-            env: env,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            isGroup: assignment.gradedIndividually == false,
-            type: type,
-            url: url,
-            attempt: commentAttempt
-        ).fetch { comment, error in
-            if error != nil || comment == nil {
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
-            }
+        guard let url else { return }
+
+        error = nil
+        viewModel.sendMediaComment(type: type, url: url) { result in
+            handleSendCommentResult(result)
         }
     }
 
@@ -261,24 +224,19 @@ struct SubmissionCommentListView: View {
     }
 
     func sendFileComment(batchID: String) {
-        let commentAttempt: Int?
-        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
-            commentAttempt = attempt
-        } else {
-            commentAttempt = nil
+        error = nil
+        viewModel.sendFileComment(batchId: batchID) { result in
+            handleSendCommentResult(result)
         }
-        UploadFileComment(
-            env: env,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            isGroup: assignment.gradedIndividually == false,
-            batchID: batchID,
-            attempt: commentAttempt
-        ).fetch { comment, error in
-            if error != nil || comment == nil {
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
-            }
+    }
+
+    private func handleSendCommentResult(_ result: Result<String, Error>) {
+        switch result {
+        case .success(let message):
+            UIAccessibility.announce(message)
+        case .failure(let error):
+            self.error = Text(error.localizedDescription)
+            UIAccessibility.announce(error.localizedDescription)
         }
     }
 

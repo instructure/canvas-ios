@@ -44,26 +44,35 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     // MARK: - Private variables
 
+    let assignment: Assignment
+    private let submission: Submission
+    private let attempts: [Submission]
+
     private let interactor: SubmissionCommentsInteractor
     private var comments: [SubmissionComment] = []
     private var attempt: Int?
-    public private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
+    private var isAssignmentEnhancementsEnabled = false
     private var subscriptions = Set<AnyCancellable>()
 
+    var attemptNumberForNewComment: Int? {
+        isAssignmentEnhancementsEnabled ? attempt : nil
+    }
+
     init(
+        assignment: Assignment,
+        submission: Submission,
+        attempts: [Submission],
         attempt: Int?,
-        courseID: String,
-        assignmentID: String,
-        userID: String,
+        interactor: SubmissionCommentsInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
+        self.assignment = assignment
+        self.submission = submission
+        self.attempts = attempts
+
         self.attempt = attempt
 
-        self.interactor = SubmissionCommentsInteractorLive(
-            courseID: courseID,
-            assignmentID: assignmentID,
-            userID: userID
-        )
+        self.interactor = interactor
 
         unowned let unownedSelf = self
 
@@ -73,7 +82,7 @@ class SubmissionCommentListViewModel: ObservableObject {
         )
         .map { comments, isAssignmentEnhancementsEnabled in
             unownedSelf.comments = comments
-            unownedSelf.isAssignmentEnhancementsFeatureFlagEnabled = isAssignmentEnhancementsEnabled
+            unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
             return unownedSelf.filterComments(comments: comments, attempt: unownedSelf.attempt)
         }
         .receive(on: scheduler)
@@ -88,7 +97,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     }
 
     private func filterComments(comments: [SubmissionComment], attempt: Int?) -> [SubmissionComment] {
-        if isAssignmentEnhancementsFeatureFlagEnabled {
+        if isAssignmentEnhancementsEnabled {
             return comments.filter {
                 $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
             }
@@ -101,5 +110,48 @@ class SubmissionCommentListViewModel: ObservableObject {
         self.attempt = attempt
         guard state.isData else { return }
         state = .data(filterComments(comments: comments, attempt: attempt))
+    }
+
+    func submissionForComment(_ comment: SubmissionComment) -> Submission {
+        let result = attempts.first(where: { $0.attempt == comment.attempt }) ?? submission
+        if result.assignment == nil {
+            result.assignment = assignment
+        }
+        return result
+    }
+
+    func sendTextComment(_ text: String, completion: @escaping (Result<String, Error>) -> Void) {
+        interactor.createTextComment(text, attemptNumber: attemptNumberForNewComment) { result in
+            completion(result.mapSendCommentResult())
+        }
+    }
+
+    func sendMediaComment(type: MediaCommentType, url: URL, completion: @escaping (Result<String, Error>) -> Void) {
+        interactor.createMediaComment(type: type, url: url, attemptNumber: attemptNumberForNewComment) { result in
+            completion(result.mapSendCommentResult())
+        }
+    }
+
+    func sendFileComment(batchId: String, completion: @escaping (Result<String, Error>) -> Void) {
+        interactor.createFileComment(batchId: batchId, attemptNumber: attemptNumberForNewComment) { result in
+            completion(result.mapSendCommentResult())
+        }
+    }
+}
+
+private extension Result<Void, Error> {
+    func mapSendCommentResult() -> Result<String, Error> {
+        switch self {
+        case .success:
+            let successMessage = String(localized: "Comment sent successfully", bundle: .teacher)
+            return .success(successMessage)
+        case .failure(let error):
+            if error.localizedDescription.isEmpty {
+                let genericErrorMessage = String(localized: "Could not save the comment.", bundle: .teacher)
+                return .failure(NSError.instructureError(genericErrorMessage))
+            } else {
+                return .failure(error)
+            }
+        }
     }
 }

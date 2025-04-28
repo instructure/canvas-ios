@@ -23,11 +23,22 @@ import Foundation
 protocol SubmissionCommentsInteractor: AnyObject {
     func getComments() -> AnyPublisher<[SubmissionComment], Error>
     func getIsAssignmentEnhancementsEnabled() -> AnyPublisher<Bool, Error>
+
+    func createTextComment(_ text: String, attemptNumber: Int?, completion: @escaping (Result<Void, Error>) -> Void)
+    func createMediaComment(type: MediaCommentType, url: URL, attemptNumber: Int?, completion: @escaping (Result<Void, Error>) -> Void)
+    func createFileComment(batchId: String, attemptNumber: Int?, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
 
     // MARK: - Private properties
+
+    private let courseId: String
+    private let assignmentId: String
+    private let userId: String
+    private let isGroupAssignment: Bool
+
+    private let env: AppEnvironment
 
     private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
     private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
@@ -35,22 +46,32 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
     // MARK: - Init
 
     init(
-        courseID: String,
-        assignmentID: String,
-        userID: String
+        courseId: String,
+        assignmentId: String,
+        userId: String,
+        isGroupAssignment: Bool,
+        env: AppEnvironment
     ) {
+        self.courseId = courseId
+        self.assignmentId = assignmentId
+        self.userId = userId
+        self.isGroupAssignment = isGroupAssignment
+        self.env = env
+
         submissionCommentsStore = ReactiveStore(
             useCase: GetSubmissionComments(
-                context: .course(courseID),
-                assignmentID: assignmentID,
-                userID: userID
+                context: .course(courseId),
+                assignmentID: assignmentId,
+                userID: userId
             )
         )
 
         featureFlagsStore = ReactiveStore(
-            useCase: GetEnabledFeatureFlags(context: .course(courseID))
+            useCase: GetEnabledFeatureFlags(context: .course(courseId))
         )
     }
+
+    // MARK: - Get methods
 
     func getComments() -> AnyPublisher<[SubmissionComment], Error> {
         submissionCommentsStore
@@ -63,5 +84,78 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
             .getEntities(keepObservingDatabaseChanges: true)
             .map { $0.isFeatureFlagEnabled(.assignmentEnhancements) }
             .eraseToAnyPublisher()
+    }
+
+    // MARK: - Create comment
+
+    func createTextComment(
+        _ text: String,
+        attemptNumber: Int?,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        // FIXME: Comment is displayed as Sent instantly, regardless of the response.
+        //        It was like this before.
+        //        Consider displaying it after success only, showing some spinner in the meantime or display the message dimmed until success and roll back if not.
+        CreateTextComment(
+            env: env,
+            courseID: courseId,
+            assignmentID: assignmentId,
+            userID: userId,
+            isGroup: isGroupAssignment,
+            text: text,
+            attempt: attemptNumber
+        ).fetch { comment, error in
+            completion(.init(comment: comment, error: error))
+        }
+    }
+
+    func createMediaComment(
+        type: MediaCommentType,
+        url: URL,
+        attemptNumber: Int?,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        UploadMediaComment(
+            env: env,
+            courseID: courseId,
+            assignmentID: assignmentId,
+            userID: userId,
+            isGroup: isGroupAssignment,
+            type: type,
+            url: url,
+            attempt: attemptNumber
+        ).fetch { comment, error in
+            completion(.init(comment: comment, error: error))
+        }
+    }
+
+    func createFileComment(
+        batchId: String,
+        attemptNumber: Int?,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        UploadFileComment(
+            env: env,
+            courseID: courseId,
+            assignmentID: assignmentId,
+            userID: userId,
+            isGroup: isGroupAssignment,
+            batchID: batchId,
+            attempt: attemptNumber
+        ).fetch { comment, error in
+            completion(.init(comment: comment, error: error))
+        }
+    }
+}
+
+private extension Result<Void, Error> {
+    init(comment: SubmissionComment?, error: Error?) {
+        if let error {
+            self = .failure(error)
+        } else if comment == nil {
+            self = .failure(NSError.instructureError(""))
+        } else {
+            self = .success
+        }
     }
 }
