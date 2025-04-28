@@ -1,4 +1,4 @@
-AWS_KEYS_PATH="${PROJECT_DIR}/../Core/Core/Assets.xcassets/Secrets/"
+AWS_KEYS_PATH="${PROJECT_DIR}/../Core/Core/Resources/Assets.xcassets/Secrets/"
 if [ ! -f "$AWS_KEYS_PATH/awsAccessKey.dataset/awsAccessKey" ]; then
 echo "error: AWS keys are not present. Run in Terminal: yarn build-secrets \"awsAccessKey=access_key\" \"awsSecretKey=secret_key\""
 exit 1
