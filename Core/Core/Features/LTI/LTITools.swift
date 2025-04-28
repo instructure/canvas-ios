@@ -172,7 +172,7 @@ public class LTITools: NSObject {
                 view
                     .findSnackBarViewModel()?
                     .showSnack(
-                        String(localized: "This tool can is not accessible!", bundle: .core),
+                        String(localized: "This tool is not accessible!", bundle: .core),
                         swallowDuplicatedSnacks: true
                     )
 
