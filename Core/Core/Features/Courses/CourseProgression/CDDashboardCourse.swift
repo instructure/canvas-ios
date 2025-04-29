@@ -33,6 +33,13 @@ public final class CDDashboardCourse: NSManagedObject, WriteableModel {
     @NSManaged public var nextModuleItemID: String?
     @NSManaged public var nextModuleID: String?
 
+    @NSManaged public var nextModuleName: String?
+    @NSManaged public var nextModuleItemName: String?
+    @NSManaged public var nextModuleItemType: String?
+    @NSManaged public var nextModuleItemDueDate: Date?
+    @NSManaged public var nextModuleItemEstimatedTime: String?
+    @NSManaged public var nextModuleItemURL: String?
+
     @discardableResult
     public static func save(
         _ items: [GetCoursesProgressionResponse.EnrollmentModel],
@@ -93,13 +100,33 @@ public final class CDDashboardCourse: NSManagedObject, WriteableModel {
         model.course = course
         model.courseID = courseId
         model.institutionName = institutionName
-        model.completionPercentage = completionPercentage ?? 100.0
+        model.completionPercentage = completionPercentage ?? 0.0
         let nextModule = incompleteModules.first?.module
         let nextModuleItem = incompleteModules.first?.incompleteItemsConnection?.nodes.first
+        let hasNextModuleItem = nextModule != nil && nextModuleItem != nil
         model.nextModuleID = nextModule?.id
         model.nextModuleItemID = nextModuleItem?.id
         model.state = enrollmentModel.state
         model.enrollmentID = enrollmentModel.id
+        if !hasNextModuleItem, completionPercentage == nil {
+            let node = enrollmentModel.course.modulesConnection?.edges?.first?.node
+            let firstItem = node?.moduleItems?.first
+            model.nextModuleID = node?.id
+            model.nextModuleItemID = firstItem?.content?.id
+            model.nextModuleItemEstimatedTime = firstItem?.estimatedDuration
+            model.nextModuleItemType = firstItem?.content?.type
+            model.nextModuleItemDueDate = firstItem?.content?.dueAt
+            model.nextModuleName = node?.name
+            model.nextModuleItemURL = firstItem?.url
+            model.nextModuleItemName = firstItem?.content?.title
+        } else {
+            model.nextModuleItemEstimatedTime = nextModuleItem?.estimatedDuration
+            model.nextModuleItemType = nextModuleItem?.content?.type
+            model.nextModuleItemDueDate = nextModuleItem?.content?.dueAt
+            model.nextModuleName = nextModule?.name
+            model.nextModuleItemURL = nextModuleItem?.url
+            model.nextModuleItemName = nextModuleItem?.content?.title
+        }
         return model
     }
 
