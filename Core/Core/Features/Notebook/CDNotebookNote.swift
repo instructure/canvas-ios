@@ -29,7 +29,7 @@ final public class CDNotebookNote: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var labels: String?
     @NSManaged public var objectType: String
-    @NSManaged public var pageID: String?
+    @NSManaged public var pageID: String
     @NSManaged public var selectedText: String?
     @NSManaged public var start: Int16
     @NSManaged public var startContainer: String?
@@ -46,7 +46,7 @@ final public class CDNotebookNote: NSManagedObject, WriteableModel {
         model.endContainer = item.highlightData?.range.endContainer
         model.endOffset = Int16(item.highlightData?.range.endOffset ?? -1)
         model.id = item.id
-        model.labels = item.reaction?.joined(separator: ";") ?? ""
+        model.labels = serializeLabels(item.reaction)
         model.objectType = item.objectType
         model.pageID = item.objectId
         model.selectedText = item.highlightData?.selectedText
@@ -55,5 +55,15 @@ final public class CDNotebookNote: NSManagedObject, WriteableModel {
         model.startOffset = Int16(item.highlightData?.range.startOffset ?? -1)
 
         return model
+    }
+
+    public static func serializeLabels(_ labels: [String]?) -> String? {
+        guard let labels = labels else { return nil }
+        return labels.sorted().joined(separator: ";")
+    }
+
+    public static func deserializeLabels(_ labels: String?) -> [String]? {
+        guard let labels = labels else { return nil }
+        return labels.split(separator: ";").map { String($0) }
     }
 }

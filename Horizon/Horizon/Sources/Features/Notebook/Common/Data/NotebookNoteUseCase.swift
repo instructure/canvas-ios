@@ -24,10 +24,25 @@ class NotebookNoteUseCase: CollectionUseCase {
 
     let cacheKey: String? = "notebook-notes"
     let request: GetNotesQuery
-    let scope: Scope = .all
 
     init(getNotesQuery: GetNotesQuery) {
         request = getNotesQuery
+    }
+
+    public var scope: Scope {
+        var predicates: [NSPredicate] = []
+        if let labelsSerialized = CDNotebookNote.serializeLabels(request.variables.filter?.reactions) {
+            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.labels), labelsSerialized))
+        }
+        if let courseID = request.variables.filter?.courseId {
+            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.courseID), courseID))
+        }
+        if let itemID = request.variables.filter?.learningObject?.id {
+            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.pageID), itemID))
+        }
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        let order = [NSSortDescriptor(key: #keyPath(CDNotebookNote.date), ascending: false)]
+        return Scope(predicate: predicate, order: order)
     }
 
     func write(

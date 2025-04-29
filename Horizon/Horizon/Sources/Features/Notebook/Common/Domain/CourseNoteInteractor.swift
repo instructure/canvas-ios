@@ -268,17 +268,20 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     }
 
     private func notesRequest(api: API, objectId: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
-            api.makeRequest(
-                request(
+        ReactiveStore(
+            useCase: NotebookNoteUseCase(
+                getNotesQuery: request(
                     api: api,
                     labels: cursorFilter.value?.filter.map { [$0] },
                     courseID: objectFilters.value.0,
                     objectId: objectId
                 )
             )
-            .compactMap { $0?.courseNotebookNotes }
-            .eraseToAnyPublisher()
-        }
+        )
+        .getEntities()
+        .compactMap { $0.courseNotebookNotes }
+        .eraseToAnyPublisher()
+    }
 
     private var objectIdPublisher: AnyPublisher<String?, Error> {
         guard let courseID = objectFilters.value.0,
@@ -293,6 +296,59 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         .getEntities()
         .compactMap { $0.first?.id }
         .eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Extensions
+
+extension Array where Element == CDNotebookNote {
+    var courseNotebookNotes: [CourseNotebookNote] {
+        map { $0.courseNotebookNote }
+    }
+}
+
+extension CDNotebookNote {
+    var courseNotebookNote: CourseNotebookNote {
+        CourseNotebookNote(
+            id: id,
+            date: date,
+            courseId: courseID,
+            objectId: pageID,
+            content: content,
+            highlightData: notebookHighlight,
+            labels: courseNoteLabels,
+            nextCursor: nil,
+            previousCursor: nil
+        )
+    }
+
+    var courseNoteLabels: [CourseNoteLabel]? {
+        CDNotebookNote.deserializeLabels(labels)?.compactMap { CourseNoteLabel.init(rawValue: $0) }
+    }
+
+    var notebookHighlight: NotebookHighlight? {
+        guard let selectedText = selectedText,
+           let startContainer = startContainer,
+           let endContainer = endContainer,
+           startOffset >= 0,
+           endOffset >= 0,
+           start >= 0,
+           end >= 0 else {
+            return nil
+        }
+        return NotebookHighlight(
+            selectedText: selectedText,
+            textPosition: NotebookHighlight.TextPosition(
+                start: Int(start),
+                end: Int(end)
+            ),
+            range: NotebookHighlight.Range(
+                startContainer: startContainer,
+                startOffset: Int(startOffset),
+                endContainer: endContainer,
+                endOffset: Int(endOffset)
+            )
+        )
     }
 }
 
