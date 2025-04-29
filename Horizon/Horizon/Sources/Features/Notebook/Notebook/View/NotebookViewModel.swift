@@ -100,7 +100,7 @@ final class NotebookViewModel {
             return
         }
         router.route(
-            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)?notebook_disabled=true",
+            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)?asset_type=Page&notebook_disabled=true",
             from: viewController
         )
     }
