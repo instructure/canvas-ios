@@ -23,8 +23,8 @@ import SwiftUI
 struct SpeedGraderScreen: View {
     @StateObject private var viewModel: SpeedGraderViewModel
     @Environment(\.viewController) private var controller
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @ScaledMetric private var uiScale: CGFloat = 1
+    @Environment(\.colorScheme) private var colorScheme
     private let screenConfig = InstUI.BaseScreenConfig(
         refreshable: false,
         scrollBounce: .basedOnSize,
@@ -58,7 +58,21 @@ struct SpeedGraderScreen: View {
         )
         .navigationBarStyle(.color(viewModel.navigationBarColor))
         .navBarItems(trailing: navBarTrailingItems)
+        .onFirstAppear {
+            setupStatusBarStyleUpdates()
+        }
     }
+
+    private func setupStatusBarStyleUpdates() {
+        guard let controller = controller.value as? CoreHostingController<SpeedGraderScreen> else {
+            return
+        }
+        controller.preferredStatusBarStyleOverride = { _ in
+            UIUserInterfaceStyle.current == .dark ? .darkContent : .lightContent
+        }
+    }
+
+    // MARK: - Nav Bar
 
     private var navBarTrailingItems: some View {
         HStack(spacing: 10) {
@@ -83,6 +97,7 @@ struct SpeedGraderScreen: View {
             viewModel.didTapPostPolicyButton.send(controller)
         } label: {
             Image.eyeLine
+                .size(24 * uiScale.iconScale)
                 .foregroundColor(.textLightest)
         }
         .identifier("SpeedGrader.postPolicyButton")

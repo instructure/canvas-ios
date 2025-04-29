@@ -20,7 +20,7 @@ import UIKit
 
 extension UIUserInterfaceStyle {
 
-    static var current: UIUserInterfaceStyle {
+    public static var current: UIUserInterfaceStyle {
         var style = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
 
         if style == .unspecified {
