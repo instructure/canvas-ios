@@ -20,7 +20,11 @@ import Combine
 import Core
 import SwiftUI
 
-struct SpeedGraderScreen: View {
+struct SpeedGraderScreen: View, ScreenViewTrackable {
+    var screenViewTrackingParameters: ScreenViewTrackingParameters {
+        viewModel.screenViewTrackingParameters
+    }
+
     @StateObject private var viewModel: SpeedGraderViewModel
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1

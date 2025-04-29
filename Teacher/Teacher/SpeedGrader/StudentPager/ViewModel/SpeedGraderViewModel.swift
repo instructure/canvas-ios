@@ -29,6 +29,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
     @Published private(set) var navigationTitle = ""
     @Published private(set) var navigationSubtitle = ""
     @Published private(set) var navigationBarColor = Brand.shared.navBackground
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Inputs
     let didTapDoneButton = PassthroughSubject<WeakViewController, Never>()
@@ -47,6 +48,10 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
     ) {
         self.interactor = interactor
         self.environment = environment
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/\(interactor.context.pathComponent)/gradebook/speed_grader?assignment_id=\(interactor.assignmentID)&student_id=\(interactor.userID)"
+        )
+
         subscribeToInteractorStateChanges()
 
         didTapDoneButton
