@@ -24,9 +24,15 @@ class NotebookNoteUseCase: CollectionUseCase {
 
     let cacheKey: String? = "notebook-notes"
     let request: GetNotesQuery
+    let api: API
 
-    init(getNotesQuery: GetNotesQuery) {
+    init(getNotesQuery: GetNotesQuery, api: API) {
         request = getNotesQuery
+        self.api = api
+    }
+
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {
+        api.makeRequest(request, callback: completionHandler)
     }
 
     public var scope: Scope {

@@ -230,7 +230,7 @@
         <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <entity name="CDNotebookNote" representedClassName="CDNotebookNote" syncable="YES">
+    <entity name="CDNotebookNote" representedClassName=".CDNotebookNote" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

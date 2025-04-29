@@ -275,7 +275,8 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
                     labels: cursorFilter.value?.filter.map { [$0] },
                     courseID: objectFilters.value.0,
                     objectId: objectId
-                )
+                ),
+                api: api
             )
         )
         .getEntities()
