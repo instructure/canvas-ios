@@ -116,7 +116,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                     .replaceError(with: [])
                     .flatMap {
                         $0.publisher
-                            .flatMap { $0.fetchNextUpModuleItems() }
+                            .flatMap { $0.mapToDashboardCourse() }
                             .compactMap { $0 }
                             .collect()
                     }
@@ -148,7 +148,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 }
 
 private extension CDDashboardCourse {
-    func fetchNextUpModuleItems() -> AnyPublisher<DashboardCourse?, Never> {
+    func mapToDashboardCourse() -> AnyPublisher<DashboardCourse?, Never> {
         let name = course.name ?? ""
         let progress = completionPercentage / 100.0
         let hasNextModuleItem: Bool = nextModuleID != nil && nextModuleItemID != name
