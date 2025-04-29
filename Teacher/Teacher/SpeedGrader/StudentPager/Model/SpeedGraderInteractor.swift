@@ -35,7 +35,7 @@ protocol SpeedGraderInteractor: AnyObject {
     func refreshSubmission(forUserId: String)
 }
 
-struct SpeedGraderContextInfo {
+struct SpeedGraderContextInfo: Equatable {
     let courseName: String
     let courseColor: UIColor
     let assignmentName: String
