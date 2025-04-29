@@ -47,8 +47,10 @@ class SubmissionCommentListViewModel: ObservableObject {
     let assignment: Assignment
     private let submissions: [Submission]
     private let initialSubmission: Submission
+    private let currentUserId: String?
 
     private let interactor: SubmissionCommentsInteractor
+    private let env: AppEnvironment
     private var comments: [SubmissionComment] = []
     private var attempt: Int?
     private var isAssignmentEnhancementsEnabled = false
@@ -63,16 +65,20 @@ class SubmissionCommentListViewModel: ObservableObject {
         submissions: [Submission],
         initialSubmission: Submission,
         initialAttemptNumber: Int?,
+        currentUserId: String?,
         interactor: SubmissionCommentsInteractor,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        env: AppEnvironment
     ) {
         self.assignment = assignment
         self.initialSubmission = initialSubmission
         self.submissions = submissions
 
         self.attempt = initialAttemptNumber
+        self.currentUserId = currentUserId
 
         self.interactor = interactor
+        self.env = env
 
         unowned let unownedSelf = self
 
@@ -110,6 +116,16 @@ class SubmissionCommentListViewModel: ObservableObject {
         self.attempt = attempt
         guard state.isData else { return }
         state = .data(filterComments(comments: comments, attempt: attempt))
+    }
+
+    func cellConfig(with comment: SubmissionComment) -> SubmissionCommentListCellViewModel {
+        .init(
+            comment: comment,
+            assignment: assignment,
+            submission: submissionForComment(comment),
+            currentUserId: currentUserId,
+            router: env.router
+        )
     }
 
     func submissionForComment(_ comment: SubmissionComment) -> Submission {

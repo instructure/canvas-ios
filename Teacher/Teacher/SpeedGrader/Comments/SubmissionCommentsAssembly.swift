@@ -40,7 +40,9 @@ enum SubmissionCommentsAssembly {
             submissions: submissions,
             initialSubmission: initialSubmission,
             initialAttemptNumber: initialAttemptNumber,
-            interactor: interactor
+            currentUserId: env.currentSession?.userID,
+            interactor: interactor,
+            env: env
         )
     }
 }

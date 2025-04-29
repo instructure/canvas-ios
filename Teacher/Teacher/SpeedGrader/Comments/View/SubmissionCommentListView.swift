@@ -112,9 +112,7 @@ struct SubmissionCommentListView: View {
             .scaleEffect(y: -1)
         ForEach(comments, id: \.id) { comment in
             SubmissionCommentListCell(
-                assignment: viewModel.assignment,
-                submission: viewModel.submissionForComment(comment),
-                comment: comment,
+                viewModel: viewModel.cellConfig(with: comment),
                 attempt: $attempt,
                 fileID: $fileID
             )
