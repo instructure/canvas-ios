@@ -49,8 +49,6 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
     let date: String
     let commentType: CommentType
 
-    lazy var accessibilityLabelForHeader: String = comment.accessibilityLabelForHeader
-
     // MARK: - Input
 
     let didTapAvatarButton = PassthroughSubject<WeakViewController, Never>()
@@ -108,6 +106,8 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         showFile(on: didTapFileButton)
     }
 
+    // MARK: - Subscriptions
+
     private func showUserDetails(on subject: PassthroughSubject<WeakViewController, Never>) {
         subject
             .sink { [weak self] controller in
@@ -135,5 +135,13 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
                 )
             }
             .store(in: &subscriptions)
+    }
+
+    // MARK: - Accessibility
+
+    lazy var accessibilityLabelForHeader: String = comment.accessibilityLabelForHeader
+
+    func accessibilityLabelForCommentAttachment(_ file: File) -> String {
+        comment.accessibilityLabelForCommentAttachment(file)
     }
 }

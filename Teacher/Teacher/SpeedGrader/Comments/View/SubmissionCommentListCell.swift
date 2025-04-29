@@ -122,7 +122,7 @@ struct SubmissionCommentListCell: View {
                     viewModel.didTapFileButton.send((file.id, controller))
                 }
                 .accessibilityLabel(
-                    Text(file.accessibilityLabelForAttachment)
+                    Text(viewModel.accessibilityLabelForCommentAttachment(file))
                 )
                 .accessibilityHint(Text("Double tap to view file", bundle: .core))
             }
