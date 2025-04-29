@@ -23,6 +23,8 @@ import SwiftUI
 class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, PagesViewControllerDelegate {
     typealias Page = CoreHostingController<SubmissionGraderView>
 
+    // MARK: - Outputs
+
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var currentPage: UIViewController?
     @Published private(set) var isPostPolicyButtonVisible = false
@@ -32,6 +34,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Inputs
+
     let didTapDoneButton = PassthroughSubject<WeakViewController, Never>()
     let didTapPostPolicyButton = PassthroughSubject<WeakViewController, Never>()
     let didShowPagesViewController = PassthroughSubject<PagesViewController, Never>()
@@ -52,43 +55,13 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
             eventName: "/\(interactor.context.pathComponent)/gradebook/speed_grader?assignment_id=\(interactor.assignmentID)&student_id=\(interactor.userID)"
         )
 
-        subscribeToInteractorStateChanges()
+        showFocusedSubmission(on: didShowPagesViewController)
+        showPostPolicyScreen(on: didTapPostPolicyButton)
+        dismissScreen(on: didTapDoneButton)
 
-        didTapDoneButton
-            .sink { [router = environment.router] viewController in
-                router.dismiss(viewController)
-            }
-            .store(in: &subscriptions)
-
-        didShowPagesViewController
-            .sink { [weak self] pages in
-                self?.updatePages(pages)
-            }
-            .store(in: &subscriptions)
-
-        didTapPostPolicyButton
-            .sink { viewController in
-                environment.router.route(
-                    to: "/\(interactor.context.pathComponent)/assignments/\(interactor.assignmentID)/post_policy",
-                    from: viewController,
-                    options: .modal(embedInNav: true, addDoneButton: true)
-                )
-            }
-            .store(in: &subscriptions)
-
-        interactor.state
-            .map { $0 == .data }
-            .assign(to: &$isPostPolicyButtonVisible)
-
-        interactor
-            .contextInfo
-            .compactMap { $0 }
-            .sink { [weak self] contextInfo in
-                self?.navigationTitle = contextInfo.assignmentName
-                self?.navigationSubtitle = contextInfo.courseName
-                self?.navigationBarColor = contextInfo.courseColor
-            }
-            .store(in: &subscriptions)
+        updateState(onChangeOf: interactor.state)
+        updatePostPolicyButtonvisibility(onChangeOf: interactor.state)
+        updateNavigationBarTheme(onChangeOf: interactor.contextInfo)
 
         interactor.load()
     }
@@ -145,9 +118,10 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
 
     // MARK: - State Subscription
 
-    private func subscribeToInteractorStateChanges() {
-        interactor
-            .state
+    private func updateState(
+        onChangeOf subject: CurrentValueSubject<SpeedGraderInteractorState, Never>
+    ) {
+        subject
             .map { state in
                 switch state {
                 case .loading: return .loading
@@ -157,5 +131,64 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
             }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
+    }
+
+    // MARK: - Private Methods
+
+    private func updateNavigationBarTheme(
+        onChangeOf subject: CurrentValueSubject<SpeedGraderContextInfo?, Never>
+    ) {
+        subject.compactMap { $0 }
+            .sink { [weak self] contextInfo in
+                self?.navigationTitle = contextInfo.assignmentName
+                self?.navigationSubtitle = contextInfo.courseName
+                self?.navigationBarColor = contextInfo.courseColor
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func updatePostPolicyButtonvisibility(
+        onChangeOf subject: CurrentValueSubject<SpeedGraderInteractorState, Never>
+    ) {
+        subject
+            .map { $0 == .data }
+            .assign(to: &$isPostPolicyButtonVisible)
+    }
+
+    private func dismissScreen(
+        on subject: PassthroughSubject<WeakViewController, Never>
+    ) {
+        didTapDoneButton
+            .sink { [router = environment.router] viewController in
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func showPostPolicyScreen(
+        on subject: PassthroughSubject<WeakViewController, Never>
+    ) {
+        let context = interactor.context.pathComponent
+        let assignmentID = interactor.assignmentID
+
+        didTapPostPolicyButton
+            .sink { [environment] viewController in
+                environment.router.route(
+                    to: "/\(context)/assignments/\(assignmentID)/post_policy",
+                    from: viewController,
+                    options: .modal(embedInNav: true, addDoneButton: true)
+                )
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func showFocusedSubmission(
+        on subject: PassthroughSubject<PagesViewController, Never>
+    ) {
+        subject
+            .sink { [weak self] pages in
+                self?.updatePages(pages)
+            }
+            .store(in: &subscriptions)
     }
 }

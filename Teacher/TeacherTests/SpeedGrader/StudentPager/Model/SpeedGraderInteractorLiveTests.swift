@@ -22,8 +22,7 @@ import Combine
 import TestsFoundation
 
 class SpeedGraderInteractorLiveTests: TeacherTestCase {
-    private var interactor: SpeedGraderInteractorLive!
-    private var cancellables: Set<AnyCancellable>!
+    private var testee: SpeedGraderInteractorLive!
     private let testData = (
         context: Context(.course, id: "1"),
         assignmentId: "1",
@@ -37,9 +36,8 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
 
     override func setUp() {
         super.setUp()
-        cancellables = []
         setupMocks()
-        interactor = SpeedGraderInteractorLive(
+        testee = SpeedGraderInteractorLive(
             context: testData.context,
             assignmentID: testData.assignmentId,
             userID: testData.userId,
@@ -49,18 +47,17 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
     }
 
     override func tearDown() {
-        interactor = nil
-        cancellables = nil
+        testee = nil
         super.tearDown()
     }
 
     // MARK: - Context Info
 
     func test_contextInfo_populates() {
-        XCTAssertEqual(interactor.contextInfo.value, nil)
+        XCTAssertEqual(testee.contextInfo.value, nil)
 
         // WHEN
-        interactor.load()
+        testee.load()
 
         // THEN
         let expectedContextInfo = SpeedGraderContextInfo(
@@ -69,22 +66,22 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentName: testData.assignmentName
         )
         // compactMap is to ignore the initial nil value
-        let publisher = interactor.contextInfo.compactMap { $0 }
+        let publisher = testee.contextInfo.compactMap { $0 }
         XCTAssertSingleOutputEquals(publisher, expectedContextInfo)
     }
 
     // MARK: - Data State
 
     func test_dataState() throws {
-        XCTAssertEqual(interactor.state.value, .loading)
+        XCTAssertEqual(testee.state.value, .loading)
 
         // WHEN
-        interactor.load()
+        testee.load()
 
         // THEN
-        let publisher = interactor.state.filter { $0 != .loading }
+        let publisher = testee.state.filter { $0 != .loading }
         XCTAssertSingleOutputEquals(publisher, .data)
-        let receivedData = try XCTUnwrap(interactor.data)
+        let receivedData = try XCTUnwrap(testee.data)
         XCTAssertEqual(receivedData.submissions.count, 1)
         XCTAssertEqual(receivedData.assignment.name, testData.assignmentName)
         XCTAssertEqual(receivedData.focusedSubmissionIndex, 0)
@@ -99,13 +96,13 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             include: [.overrides]
         )
         api.mock(getAssignment, value: nil, error: NSError.internalError())
-        XCTAssertEqual(interactor.state.value, .loading)
+        XCTAssertEqual(testee.state.value, .loading)
 
         // WHEN
-        interactor.load()
+        testee.load()
 
         // THEN
-        let publisher = interactor.state.filter { $0 != .loading }
+        let publisher = testee.state.filter { $0 != .loading }
         XCTAssertSingleOutputEquals(publisher, .error(.unexpectedError(NSError.internalError())))
     }
 
@@ -115,31 +112,31 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId
         )
         api.mock(getSubmission, value: [])
-        XCTAssertEqual(interactor.state.value, .loading)
+        XCTAssertEqual(testee.state.value, .loading)
 
         // WHEN
-        interactor.load()
+        testee.load()
 
         // THEN
-        let publisher = interactor.state.filter { $0 != .loading }
+        let publisher = testee.state.filter { $0 != .loading }
         XCTAssertSingleOutputEquals(publisher, .error(.submissionNotFound))
     }
 
     func test_errorState_userIdNotFound() {
-        interactor = SpeedGraderInteractorLive(
+        testee = SpeedGraderInteractorLive(
             context: testData.context,
             assignmentID: testData.assignmentId,
             userID: testData.invalidUserId,
             filter: [],
             env: environment
         )
-        XCTAssertEqual(interactor.state.value, .loading)
+        XCTAssertEqual(testee.state.value, .loading)
 
         // WHEN
-        interactor.load()
+        testee.load()
 
         // THEN
-        let publisher = interactor.state.filter { $0 != .loading }
+        let publisher = testee.state.filter { $0 != .loading }
         XCTAssertSingleOutputEquals(publisher, .error(.userIdNotFound))
     }
 
