@@ -72,6 +72,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
+        addCommentTextView.tintColor = .systemBlue
         addCommentView.backgroundColor = .backgroundLightest
         emptyContainer.isHidden = true
         emptyLabel.text = String(localized: "Have questions about your assignment?\nMessage your instructor.", bundle: .student)
