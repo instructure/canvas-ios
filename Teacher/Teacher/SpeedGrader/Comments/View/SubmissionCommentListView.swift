@@ -105,14 +105,14 @@ struct SubmissionCommentListView: View {
     }
 
     @ViewBuilder
-    func list(_ comments: [SubmissionComment]) -> some View {
+    func list(_ comments: [SubmissionCommentListCellViewModel]) -> some View {
         error?
             .font(.semibold16).foregroundColor(.textDanger)
             .padding(16)
             .scaleEffect(y: -1)
         ForEach(comments, id: \.id) { comment in
             SubmissionCommentListCell(
-                viewModel: viewModel.cellConfig(with: comment),
+                viewModel: comment,
                 attempt: $attempt,
                 fileID: $fileID
             )

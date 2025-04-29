@@ -23,9 +23,9 @@ import Foundation
 import SwiftUI
 
 class SubmissionCommentListViewModel: ObservableObject {
-    enum ViewState: Equatable {
+    enum ViewState {
         case loading
-        case data([SubmissionComment])
+        case data([SubmissionCommentListCellViewModel])
         case error
         case empty
 
@@ -89,7 +89,9 @@ class SubmissionCommentListViewModel: ObservableObject {
         .map { comments, isAssignmentEnhancementsEnabled in
             unownedSelf.comments = comments
             unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
-            return unownedSelf.filterComments(comments: comments, attempt: unownedSelf.attempt)
+            return unownedSelf
+                .filterComments(comments, for: unownedSelf.attempt)
+                .map(unownedSelf.commentViewModel)
         }
         .receive(on: scheduler)
         .map { $0.isEmpty ? ViewState.empty : ViewState.data($0) }
@@ -102,7 +104,16 @@ class SubmissionCommentListViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func filterComments(comments: [SubmissionComment], attempt: Int?) -> [SubmissionComment] {
+    private func updateComments(attempt: Int?) {
+        self.attempt = attempt
+        guard state.isData else { return }
+
+        let comments = filterComments(comments, for: attempt)
+        let cellViewModels = comments.map(commentViewModel)
+        state = .data(cellViewModels)
+    }
+
+    private func filterComments(_ comments: [SubmissionComment], for attempt: Int?) -> [SubmissionComment] {
         if isAssignmentEnhancementsEnabled {
             return comments.filter {
                 $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
@@ -112,13 +123,7 @@ class SubmissionCommentListViewModel: ObservableObject {
         }
     }
 
-    private func updateComments(attempt: Int?) {
-        self.attempt = attempt
-        guard state.isData else { return }
-        state = .data(filterComments(comments: comments, attempt: attempt))
-    }
-
-    func cellConfig(with comment: SubmissionComment) -> SubmissionCommentListCellViewModel {
+    private func commentViewModel(comment: SubmissionComment) -> SubmissionCommentListCellViewModel {
         .init(
             comment: comment,
             assignment: assignment,
@@ -128,7 +133,7 @@ class SubmissionCommentListViewModel: ObservableObject {
         )
     }
 
-    func submissionForComment(_ comment: SubmissionComment) -> Submission {
+    private func submissionForComment(_ comment: SubmissionComment) -> Submission {
         let result = submissions.first(where: { $0.attempt == comment.attempt }) ?? initialSubmission
         if result.assignment == nil {
             result.assignment = assignment

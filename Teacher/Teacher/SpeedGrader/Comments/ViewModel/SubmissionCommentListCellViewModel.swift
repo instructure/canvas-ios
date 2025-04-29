@@ -54,6 +54,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
     // MARK: - Input
 
     let didTapAvatarButton = PassthroughSubject<WeakViewController, Never>()
+    let didTapFileButton = PassthroughSubject<(String?, WeakViewController), Never>()
 
     // MARK: - Private properties
 
@@ -104,6 +105,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         self.commentType = commentType
 
         showUserDetails(on: didTapAvatarButton)
+        showFile(on: didTapFileButton)
     }
 
     private func showUserDetails(on subject: PassthroughSubject<WeakViewController, Never>) {
@@ -114,6 +116,20 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
                 router.route(
                     to: "/courses/\(courseId)/users/\(authorId)",
                     userInfo: ["navigatorOptions": ["modal": true]], // fix nav style
+                    from: controller,
+                    options: .modal(embedInNav: true, addDoneButton: true)
+                )
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func showFile(on subject: PassthroughSubject<(String?, WeakViewController), Never>) {
+        subject
+            .sink { [weak self] fileId, controller in
+                guard let self, let fileId else { return }
+
+                router.route(
+                    to: "/files/\(fileId)",
                     from: controller,
                     options: .modal(embedInNav: true, addDoneButton: true)
                 )

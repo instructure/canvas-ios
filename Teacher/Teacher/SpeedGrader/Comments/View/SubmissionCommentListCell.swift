@@ -58,16 +58,12 @@ struct SubmissionCommentListCell: View {
             Avatar.Anonymous(isGroup: author.isGroup)
         } else if author.hasId {
             Button(
-                action: { avatarButtonAction() },
+                action: { viewModel.didTapAvatarButton.send(controller) },
                 label: { Avatar(name: author.name, url: author.avatarUrl) }
             )
         } else {
             Avatar(name: author.name, url: author.avatarUrl)
         }
-    }
-
-    private func avatarButtonAction() {
-        viewModel.didTapAvatarButton.send(controller)
     }
 
     @ViewBuilder
@@ -88,7 +84,7 @@ struct SubmissionCommentListCell: View {
                     Text(a11yLabel)
                 } else if viewModel.author.hasId {
                     Button(
-                        action: { avatarButtonAction() },
+                        action: { viewModel.didTapAvatarButton.send(controller) },
                         label: { Text(a11yLabel) }
                     )
                     .accessibilityHint(Text("Double tap to view profile", bundle: .core))
@@ -123,12 +119,7 @@ struct SubmissionCommentListCell: View {
             ForEach(files, id: \.id) { file in
                 Spacer().frame(height: 4)
                 AttachedFileView(file: file) {
-                    guard let id = file.id else { return }
-                    env.router.route(
-                        to: "/files/\(id)",
-                        from: controller,
-                        options: .modal(embedInNav: true, addDoneButton: true)
-                    )
+                    viewModel.didTapFileButton.send((file.id, controller))
                 }
                 .accessibilityLabel(
                     Text(file.accessibilityLabelForAttachment)
