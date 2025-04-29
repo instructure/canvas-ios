@@ -23,15 +23,15 @@ enum SpeedGraderAssembly {
 
     static func makeSpeedGraderViewController(
         context: Context,
-        assignmentID: String,
-        userID: String?,
+        assignmentId: String,
+        userId: String?,
         env: AppEnvironment,
         filter: [GetSubmissions.Filter]
     ) -> UIViewController {
-        let normalizedUserId = SpeedGraderViewController.normalizeUserID(userID)
+        let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
         let interactor = SpeedGraderInteractorLive(
             context: context,
-            assignmentID: assignmentID,
+            assignmentID: assignmentId,
             userID: normalizedUserId,
             filter: filter,
             env: env

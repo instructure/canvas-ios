@@ -92,7 +92,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                     return
                 }
 
-                let firstIndex = (userID == SpeedGraderAllUsersUserID)
+                let firstIndex = (userID == SpeedGraderAllUsersUserId)
                     ? submissions.firstIndex { _ in true }
                     : submissions.firstIndex { $0.userID == self.userID }
 

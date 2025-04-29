@@ -70,4 +70,4 @@ enum SpeedGraderInteractorError: Error, Equatable {
     }
 }
 
-let SpeedGraderAllUsersUserID = "speedgrader"
+let SpeedGraderAllUsersUserId = "speedgrader"
