@@ -49,6 +49,67 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                 account {
                                   name
                                 }
+                                modulesConnection {
+                                  edges {
+                                    node {
+                                      id
+                                      name
+                                      moduleItems {
+                                        id
+                                        estimatedDuration
+                                        url
+                                       content {
+                                         ... on Assignment {
+                                           id
+                                           title
+                                           dueAt
+                                           type: __typename
+                                         }
+                                         ... on Discussion {
+                                           id
+                                           title
+                                           type: __typename
+                                         }
+                                         ... on ExternalTool {
+                                           id: _id
+                                           title: name
+                                           type: __typename
+                                         }
+                                         ... on ExternalUrl {
+                                           id: _id
+                                           title
+                                           type: __typename
+                                         }
+                                         ... on File {
+                                           id
+                                           title
+                                           type: __typename
+                                         }
+                                         ... on ModuleExternalTool {
+                                           id: _id
+                                           title
+                                           type: __typename
+                                         }
+                                         ... on Page {
+                                           id
+                                           title
+                                           type: __typename
+                                         }
+                                         ... on Quiz {
+                                           id
+                                           title
+                                           type: __typename
+                                         }
+                                         ... on SubHeader {
+                                           id: title
+                                           title
+                                           type: __typename
+                                         }
+                                       }
+                                      }
+                                    }
+                                  }
+                                }
                                 usersConnection(filter: {userIds: [$id]}) {
                                     nodes {
                                         courseProgression {
@@ -66,44 +127,55 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                         nodes {
                                                             id: _id
                                                             url
+                                                            estimatedDuration
                                                             content {
                                                                 ... on Assignment {
                                                                     id
-                                                                    title: name
+                                                                    title
                                                                     dueAt
                                                                     position
+                                                                    type: __typename
                                                                 }
                                                                 ... on Discussion {
                                                                     id
                                                                     title
                                                                     position
+                                                                    type: __typename
                                                                 }
                                                                 ... on ExternalTool {
                                                                     id: _id
-                                                                    title: name
+                                                                    title
+                                                                    type: __typename
                                                                 }
                                                                 ... on ExternalUrl {
                                                                     id: _id
                                                                     title
+                                                                    type: __typename
                                                                 }
                                                                 ... on File {
                                                                     id
-                                                                    title: displayName
+                                                                    title
+                                                                    type: __typename
                                                                 }
                                                                 ... on ModuleExternalTool {
                                                                     id: _id
-                                                                    title: url
+                                                                    title
+                                                                    type: __typename
                                                                 }
                                                                 ... on Page {
                                                                     id
                                                                     title
+                                                                    type: __typename
                                                                 }
                                                                 ... on Quiz {
                                                                     id
+                                                                    title
+                                                                    type: __typename
                                                                 }
                                                                 ... on SubHeader {
                                                                     id: title
                                                                     title
+                                                                    type: __typename
                                                                 }
                                                             }
                                                         }

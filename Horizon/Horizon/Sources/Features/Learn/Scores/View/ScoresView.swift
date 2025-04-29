@@ -30,13 +30,17 @@ struct ScoresView: View {
                 loadingView
             case .data:
                 if let details = viewModel.scoreDetails {
-                    VStack(spacing: .huiSpaces.space24) {
-                        ScoresAssignmentGroupsView(details: details)
-                        ScoresAssignmentsView(
-                            details: details,
-                            selectedSortOption: $viewModel.selectedSortOption
-                        ) { url in
-                            viewModel.navigateToCourseDetails(url: url, viewController: viewController)
+                    if details.assignments.isEmpty {
+                        emptyScoreView
+                    } else {
+                        VStack(spacing: .huiSpaces.space24) {
+                            ScoresAssignmentGroupsView(details: details)
+                            ScoresAssignmentsView(
+                                details: details,
+                                selectedSortOption: $viewModel.selectedSortOption
+                            ) { url in
+                                viewModel.navigateToCourseDetails(url: url, viewController: viewController)
+                            }
                         }
                     }
                 }
@@ -44,6 +48,16 @@ struct ScoresView: View {
                 Text("Error loading scores.", bundle: .horizon)
             }
         }
+    }
+
+    private var emptyScoreView: some View {
+        Text("There are no scored activities in this course.", bundle: .horizon)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .huiTypography(.p1)
+            .foregroundStyle(Color.huiColors.text.body)
+            .padding(.huiSpaces.space24)
+            .background(Color.huiColors.primitives.white10)
+            .huiCornerRadius(level: .level5)
     }
 
     private var loadingView: some View {

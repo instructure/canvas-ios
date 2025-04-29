@@ -197,7 +197,13 @@
         <attribute name="enrollmentID" attributeType="String"/>
         <attribute name="institutionName" optional="YES" attributeType="String"/>
         <attribute name="nextModuleID" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemDueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextModuleItemEstimatedTime" optional="YES" attributeType="String"/>
         <attribute name="nextModuleItemID" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemName" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemType" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemURL" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleName" optional="YES" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="courseProgress" inverseEntity="Course"/>
     </entity>

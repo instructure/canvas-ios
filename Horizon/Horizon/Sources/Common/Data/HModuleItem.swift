@@ -123,9 +123,15 @@ struct HModuleItem: Equatable {
     }
 
     var estimatedDurationFormatted: String? {
-        let formatter = ISO8601DurationFormatter()
-        return formatter.duration(from: estimatedDuration ?? "")
+        return estimatedDuration?.toISO8601Duration
     }
 }
 
 extension HModuleItem: Identifiable {}
+
+extension String {
+    var toISO8601Duration: String? {
+        let formatter = ISO8601DurationFormatter()
+        return formatter.duration(from: self)
+    }
+}
