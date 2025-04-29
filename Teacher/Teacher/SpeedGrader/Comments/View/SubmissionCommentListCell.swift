@@ -118,7 +118,7 @@ struct SubmissionCommentListCell: View {
                 .identifier("SubmissionComments.textCell.\(viewModel.id)")
             ForEach(files, id: \.id) { file in
                 Spacer().frame(height: 4)
-                AttachedFileView(file: file) {
+                CommentFileButton(file: file) {
                     viewModel.didTapFileButton.send((file.id, controller))
                 }
                 .accessibilityLabel(
@@ -138,28 +138,75 @@ struct SubmissionCommentListCell: View {
     }
 }
 
-private struct AttachedFileView: View {
+private struct CommentFileButton: View {
     let file: File
     let action: () -> Void
 
     var body: some View {
-        Button(action: action, label: {
+        FileButton(
+            icon: FileThumbnail(file: file, size: fileButtonIconSize),
+            title: file.displayName ?? file.filename,
+            subtitle: file.size.humanReadableFileSize,
+            hasSubtitleLineLimit: false,
+            action: action
+        )
+        .identifier("SubmissionComments.fileView.\(file.id ?? "")")
+    }
+}
+
+private struct AttemptFileButton: View {
+    let submission: Submission
+    let action: () -> Void
+
+    var body: some View {
+        let icon = submission.attemptIcon.map { Image(uiImage: $0) }
+        FileButton(
+            icon: icon?
+                .size(fileButtonIconSize)
+                .foregroundStyle(Color.accentColor),
+            title: submission.attemptTitle ?? "",
+            subtitle: submission.attemptSubtitle ?? "",
+            hasSubtitleLineLimit: true,
+            action: action
+        )
+    }
+}
+
+private let fileButtonIconSize: CGFloat = 18
+
+private struct FileButton<I: View>: View {
+
+    let icon: I?
+    let title: String
+    let subtitle: String?
+    let hasSubtitleLineLimit: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
             HStack(alignment: .top, spacing: 6) {
-                FileThumbnail(file: file, size: 18)
+                icon
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(file.displayName ?? file.filename)
-                        .font(.semibold14).foregroundColor(.textDarkest)
-                        .multilineTextAlignment(.leading)
-                    Text(file.size.humanReadableFileSize)
-                        .font(.medium12).foregroundColor(.textDark)
+                    Text(title)
+                        .font(.semibold14)
+                        .foregroundColor(.textDarkest)
+                    if let subtitle {
+                        Text(subtitle)
+                            .font(.medium12)
+                            .foregroundColor(.textDark)
+                            .lineLimit(hasSubtitleLineLimit ? 1 : 0)
+                    }
                 }
                 Spacer()
             }
-                .padding(.horizontal, 8).padding(.vertical, 6)
-                .frame(width: 300)
-                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium))
-        })
-            .identifier("SubmissionComments.fileView.\(file.id ?? "")")
+            .padding(.horizontal, 8)
+            .padding(.vertical, 6)
+            .frame(width: 300)
+            .background(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(Color.borderMedium)
+            )
+        }
     }
 }
 
@@ -170,7 +217,7 @@ private extension View {
             self
                 .foregroundStyle(Color.textLightest.variantForLightMode)
                 .padding(8)
-                .background(Color.red)
+                .background(Color.accentColor)
                 .cornerRadius(16)
         } else {
             self
