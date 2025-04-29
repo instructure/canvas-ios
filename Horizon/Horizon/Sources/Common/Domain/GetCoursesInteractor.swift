@@ -151,8 +151,8 @@ private extension CDDashboardCourse {
     func fetchNextUpModuleItems() -> AnyPublisher<DashboardCourse?, Never> {
         let name = course.name ?? ""
         let progress = completionPercentage / 100.0
-
-        guard let nextModuleID, let nextModuleItemID else {
+        let hasNextModuleItem: Bool = nextModuleID != nil && nextModuleItemID != name
+        guard hasNextModuleItem else {
             return Just(
                 DashboardCourse(
                     name: name,
@@ -166,29 +166,16 @@ private extension CDDashboardCourse {
             .eraseToAnyPublisher()
         }
 
-        return ReactiveStore(
-            useCase: GetModuleItem(
-                courseID: courseID,
-                moduleID: nextModuleID,
-                itemID: nextModuleItemID,
-                include: [.content_details, .estimated_durations]
-            )
+        let moduleItem = LearningObjectCard(
+            moduleTitle: nextModuleName ?? "",
+            learningObjectName: nextModuleItemName ?? "",
+            type: nextModuleItemType,
+            dueDate: nextModuleItemDueDate?.relativeShortDateOnlyString,
+            url: URL(string: nextModuleItemURL ?? ""),
+            estimatedTime: nextModuleItemEstimatedTime?.toISO8601Duration
         )
-        .getEntities(ignoreCache: true)
-        .replaceError(with: [])
-        .compactMap { $0.first }
-        .map { HModuleItem(from: $0) }
-        .map { [courseID, state, enrollmentID] item in
-            let moduleItem = LearningObjectCard(
-                moduleTitle: item.moduleName ?? "",
-                learningObjectName: item.title,
-                type: item.type?.label,
-                dueDate: item.dueAt?.relativeShortDateOnlyString,
-                url: item.htmlURL,
-                estimatedTime: item.estimatedDurationFormatted
-            )
-
-            return DashboardCourse(
+        return Just(
+            DashboardCourse(
                 name: name,
                 progress: progress,
                 courseId: courseID,
@@ -196,7 +183,7 @@ private extension CDDashboardCourse {
                 enrollmentID: enrollmentID,
                 learningObjectCardViewModel: moduleItem
             )
-        }
+        )
         .eraseToAnyPublisher()
     }
 
