@@ -18,18 +18,28 @@
 
 import UIKit
 
-private class DisableLinkPreviews: CoreWebViewFeature {
+private class DisableLinksOverlayPreviews: CoreWebViewFeature {
 
     private let script: String = {
         return """
-        function disableLinksPreviews() {
-            const links = document.querySelectorAll('a.inline_disabled.preview_in_overlay')
-            links.forEach(elm => {
-                const d_rel = elm.getAttributeNode("class");
-                d_rel.value = "inline_disabled no_preview"
+        function disableLinksOverlayPreviews() {
+            const spans = document.querySelectorAll('span.instructure_file_link_holder');
+
+            spans.forEach(elm => {
+                const a1 = elm.querySelector("a.preview_in_overlay");
+                const a2 = elm.querySelector("a.file_download_btn");
+
+                if(a1 && a2) {
+                    const d_href1 = a1.getAttributeNode("href");
+                    const d_href2 = a2.getAttributeNode("href");
+                    d_href1.value = d_href2.value;
+
+                    const d_class1 = a1.getAttributeNode("class");
+                    d_class1.value = d_class1.value.replace("preview_in_overlay", "no_preview");
+                }
             })
         }
-        window.addEventListener("DOMSubtreeModified", disableLinksPreviews)
+        window.addEventListener("DOMSubtreeModified", disableLinksOverlayPreviews)
         """
     }()
 
@@ -45,7 +55,7 @@ public extension CoreWebViewFeature {
     /**
      This feature is to disable preview on all links of the loaded page.
      */
-    static var disableLinkPreviews: CoreWebViewFeature {
-        DisableLinkPreviews()
+    static var disableLinksOverlayPreviews: CoreWebViewFeature {
+        DisableLinksOverlayPreviews()
     }
 }
