@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,12 +17,9 @@
 //
 
 import Combine
+import CombineExt
 import Core
-
-enum NotebookError: Error {
-    case unknown
-    case unableToCreateNote
-}
+import Foundation
 
 protocol CourseNoteInteractor {
     func add(
@@ -33,35 +30,35 @@ protocol CourseNoteInteractor {
         notebookHighlight: NotebookHighlight?
     ) -> AnyPublisher<CourseNotebookNote, NotebookError>
     func delete(id: String) -> AnyPublisher<Void, NotebookError>
-    func get(courseID: String, pageURL: String) -> AnyPublisher<[CourseNotebookNote], NotebookError>
-    func set(id: String, content: String?, labels: [CourseNoteLabel]?, highlightData: NotebookHighlight?)
-        -> AnyPublisher<CourseNotebookNote, NotebookError>
+    var filter: CourseNoteLabel? { get }
+    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError>
+    func refresh()
+    func set(courseID: String?, pageURL: String?)
+    func set(cursor: Cursor?)
+    func set(filter: CourseNoteLabel?)
+    func set(
+        id: String,
+        content: String?,
+        labels: [CourseNoteLabel]?,
+        highlightData: NotebookHighlight?
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError>
 }
 
-class CourseNoteInteractorLive: CourseNoteInteractor {
+enum NotebookError: Error {
+    case unknown
+    case unableToCreateNote
+}
 
-    // MARK: - Public
-
-    static let instance = CourseNoteInteractorLive()
+final class CourseNoteInteractorLive: CourseNoteInteractor {
+    typealias CursorFilter = (cursor: Cursor?, filter: CourseNoteLabel?)
 
     // MARK: - Dependencies
 
     private let redwoodDomainService: DomainService
-    private let getCourseNotesInteractor: GetCourseNotesInteractor
 
-    // MARK: - Private
-
-    private let refreshSubject = CurrentValueSubject<Void, Error>(())
-
-    // MARK: - Init
-
-    private init(
-        redwoodDomainService: DomainService = DomainService(.redwood),
-        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared
-    ) {
-        self.redwoodDomainService = redwoodDomainService
-        self.getCourseNotesInteractor = getCourseNotesInteractor
-    }
+    static let shared: CourseNoteInteractor = CourseNoteInteractorLive(
+        redwoodDomainService: DomainService(.redwood)
+    )
 
     // MARK: - Public
 
@@ -72,7 +69,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         labels: [CourseNoteLabel] = [],
         notebookHighlight: NotebookHighlight? = nil
     ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
-        objectIdPublisher(courseID: courseID, pageURL: pageURL)
+        objectIdPublisher
             .mapError { _ in NotebookError.unknown }
             .flatMap { [weak self] pageID in
 
@@ -98,8 +95,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                         )
                     )
                     .compactMap { [weak self] (response: RedwoodCreateNoteMutationResponse?) in
-                        self?.getCourseNotesInteractor.refresh()
-                        self?.refreshSubject.send()
+                        self?.refresh()
                         return response.map { CourseNotebookNote(from: $0.data.createNote) }
                     }
                 }
@@ -120,8 +116,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                     )
                 )
                 .map { [weak self] _ in
-                    self?.getCourseNotesInteractor.refresh()
-                    self?.refreshSubject.send()
+                    self?.refresh()
                     return ()
                 }
             }
@@ -129,25 +124,25 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
             .eraseToAnyPublisher()
     }
 
-    func get(courseID: String, pageURL: String) -> AnyPublisher<[CourseNotebookNote], NotebookError> {
-        Publishers.CombineLatest3(
-            redwoodDomainService.api(),
-            refreshSubject,
-            objectIdPublisher(courseID: courseID, pageURL: pageURL)
-        )
-        .flatMap { api, _, pageId in
-            api.makeRequest(
-                GetNotesQuery(
-                    jwt: api.loginSession?.accessToken ?? "",
-                    courseId: courseID,
-                    objectId: pageId
-                )
-            )
-            .compactMap { $0?.courseNotebookNotes.filter { $0.objectId == pageId } }
+    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
+        self.redwoodDomainService.api()
+            .flatMap(listenToFilters)
+            .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
-        }
-        .mapError { _ in NotebookError.unknown }
-        .eraseToAnyPublisher()
+    }
+
+    func set(courseID: String?, pageURL: String? = nil) {
+        objectFilters.accept((courseID, pageURL))
+    }
+
+    func set(cursor: Cursor?) {
+        cursorFilter.accept(
+            cursor == nil && filter == nil ? nil : (cursor: cursor, filter: filter)
+        )
+    }
+
+    func set(filter: CourseNoteLabel?) {
+        self.filter = filter
     }
 
     func set(
@@ -168,8 +163,7 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
                     )
                 )
                 .compactMap { [weak self] (response: RedwoodUpdateNoteMutationResponse?) in
-                    self?.getCourseNotesInteractor.refresh()
-                    self?.refreshSubject.send()
+                    self?.refresh()
                     return response.map { CourseNotebookNote(from: $0.data.updateNote) }
                 }
             }
@@ -177,10 +171,123 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
             .eraseToAnyPublisher()
     }
 
-    // MARK: - Private functions
+    // A method for requesting an update to the list of course notes
+    func refresh() {
+        refreshSubject.accept(())
+    }
 
-    private func objectIdPublisher(courseID: String, pageURL: String) -> AnyPublisher<String?, Error> {
-        ReactiveStore(
+    // MARK: - Private
+
+    private var cursor: Cursor? {
+        cursorFilter.value?.cursor
+    }
+    private var cursorFilter: CurrentValueRelay<CursorFilter?> = CurrentValueRelay(nil)
+    private(set) var filter: CourseNoteLabel? {
+        didSet {
+            set(cursor: nil)
+        }
+    }
+    private var objectFilters: CurrentValueRelay<(String?, String?)> = CurrentValueRelay((nil, nil))
+    private let refreshSubject = CurrentValueRelay<Void>(())
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Init
+
+    private init(redwoodDomainService: DomainService) {
+        self.redwoodDomainService = redwoodDomainService
+    }
+
+    // MARK: - Private Methods
+
+    private func request(
+        api: API,
+        labels: [CourseNoteLabel]? = nil,
+        courseID: String? = nil,
+        objectId: String? = nil
+    ) -> GetNotesQuery {
+        let accessToken = api.loginSession?.accessToken ?? ""
+        let reactions = labels?.map(\.rawValue)
+
+        guard let cursorValue = cursor?.cursor else {
+            return .init(
+                jwt: accessToken,
+                reactions: reactions,
+                courseId: courseID,
+                objectId: objectId
+            )
+        }
+        if cursor?.isBefore == true {
+            return .init(
+                jwt: accessToken,
+                before: cursorValue,
+                reactions: reactions,
+                courseId: courseID,
+                objectId: objectId
+            )
+        }
+        return .init(
+            jwt: accessToken,
+            after: cursorValue,
+            reactions: reactions,
+            courseId: courseID,
+            objectId: courseID
+        )
+    }
+
+    private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
+        Publishers.CombineLatest3(
+            cursorFilter,
+            objectFilters,
+            refreshSubject
+        )
+        .flatMap { [weak self] _, _, _ in
+            guard let self = self else {
+                return Just([CourseNotebookNote]())
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            return self.listen(to: api)
+        }
+        .eraseToAnyPublisher()
+    }
+
+    // If a page URL is specified, we must fetch the Page to get the ID, then only fetch notes associated with that page.
+    private func listen(to api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
+        objectIdPublisher.flatMap { [weak self] objectId in
+            guard let self = self else {
+                return Just([CourseNotebookNote]())
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            guard let objectId = objectId else {
+                return self.notesRequest(api: api)
+            }
+            return self.notesRequest(api: api, objectId: objectId)
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func notesRequest(api: API, objectId: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
+            api.makeRequest(
+                request(
+                    api: api,
+                    labels: cursorFilter.value?.filter.map { [$0] },
+                    courseID: objectFilters.value.0,
+                    objectId: objectId
+                )
+            )
+            .compactMap { $0?.courseNotebookNotes }
+            .eraseToAnyPublisher()
+        }
+
+    private var objectIdPublisher: AnyPublisher<String?, Error> {
+        guard let courseID = objectFilters.value.0,
+            let pageURL = objectFilters.value.1 else {
+            return Just(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return ReactiveStore(
             useCase: GetPage(context: .course(courseID), url: pageURL)
         )
         .getEntities()
@@ -188,3 +295,62 @@ class CourseNoteInteractorLive: CourseNoteInteractor {
         .eraseToAnyPublisher()
     }
 }
+
+/// Cursor to paginate the notes
+/// If previous is set, it'll get the prior results
+/// If next is set, it'll get the next results
+struct Cursor {
+    let cursor: String
+    let isBefore: Bool // if it's not before, it's "after"
+
+    init(previous cursor: String) {
+        self.cursor = cursor
+        isBefore = true
+    }
+
+    init(next cursor: String) {
+        self.cursor = cursor
+        isBefore = false
+    }
+}
+
+#if DEBUG
+final class CourseNoteInteractorPreview: CourseNoteInteractor {
+    func add(
+        courseID: String,
+        pageURL: String,
+        content: String,
+        labels: [CourseNoteLabel],
+        notebookHighlight: NotebookHighlight?
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
+        Just(CourseNotebookNote.example)
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+    func delete(id: String) -> AnyPublisher<Void, NotebookError> {
+        Just(())
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+    var filter: CourseNoteLabel? { nil }
+    func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
+        Just([CourseNotebookNote.example])
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+    func refresh() {}
+    func set(courseID: String?, pageURL: String?) {}
+    func set(cursor: Cursor?) {}
+    func set(filter: CourseNoteLabel?) {}
+    func set(
+        id: String,
+        content: String?,
+        labels: [CourseNoteLabel]?,
+        highlightData: NotebookHighlight?
+    ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
+        Just(CourseNotebookNote.example)
+            .setFailureType(to: NotebookError.self)
+            .eraseToAnyPublisher()
+    }
+}
+#endif

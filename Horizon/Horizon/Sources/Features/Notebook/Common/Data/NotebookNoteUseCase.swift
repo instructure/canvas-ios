@@ -16,32 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotebookHighlight: Codable, Equatable {
-    let selectedText: String
-    let textPosition: TextPosition
-    let range: Range
+import Core
+import CoreData
 
-    enum CodingKeys: String, CodingKey {
-        case selectedText, textPosition, range
+class NotebookNoteUseCase: CollectionUseCase {
+    typealias Model = CDNotebookNote
+
+    let cacheKey: String? = "notebook-notes"
+    let request: GetNotesQuery
+    let scope: Scope = .all
+
+    init(getNotesQuery: GetNotesQuery) {
+        request = getNotesQuery
     }
 
-    struct TextPosition: Codable, Equatable {
-        let start: Int
-        let end: Int
-
-        enum CodingKeys: String, CodingKey {
-            case start, end
-        }
-    }
-
-    struct Range: Codable, Equatable {
-        let startContainer: String
-        let startOffset: Int
-        let endContainer: String
-        let endOffset: Int
-
-        enum CodingKeys: String, CodingKey {
-            case startContainer, startOffset, endContainer, endOffset
+    func write(
+       response: RedwoodFetchNotesQueryResponse?,
+       urlResponse _: URLResponse?,
+       to client: NSManagedObjectContext
+    ) {
+        response?.data.notes.edges.forEach { edge in
+            CDNotebookNote.save(edge.node, in: client)
         }
     }
 }

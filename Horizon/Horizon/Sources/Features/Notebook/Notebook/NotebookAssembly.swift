@@ -19,15 +19,15 @@
 import Core
 
 final class NotebookAssembly {
-    static func makeGetCourseNotesInteractor() -> GetCourseNotesInteractor {
-        GetCourseNotesInteractorLive.shared
+    static func makeCourseNoteInteractor() -> CourseNoteInteractor {
+        CourseNoteInteractorLive.shared
     }
 
     static func makeViewModel(courseID: String? = nil, pageURL: String? = nil) -> NotebookViewModel {
         NotebookViewModel(
             courseId: courseID,
             pageUrl: pageURL,
-            getCourseNotesInteractor: makeGetCourseNotesInteractor(),
+            courseNoteInteractor: makeCourseNoteInteractor(),
             router: AppEnvironment.shared.router
         )
     }
