@@ -51,8 +51,8 @@ public extension InstUI {
             refreshable: Bool = true,
             showsScrollIndicators: Bool = true,
             scrollAxes: Axis.Set = .vertical,
-            errorPandaConfig: InteractivePanda.Config = .error(),
-            emptyPandaConfig: InteractivePanda.Config = .empty(),
+            errorPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonError() : .error(),
+            emptyPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonEmpty() : .empty(),
             loaderBackgroundColor: Color = .backgroundLightest
 
         ) {
