@@ -18,12 +18,12 @@
 
 import SwiftUI
 
-struct PagesViewControllerWrapper: UIViewControllerRepresentable {
+public struct PagesViewControllerWrapper: UIViewControllerRepresentable {
     var dataSource: PagesViewControllerDataSource?
     var delegate: PagesViewControllerDelegate?
     private var introspect: ((PagesViewController) -> Void)?
 
-    init(
+    public init(
         dataSource: PagesViewControllerDataSource? = nil,
         delegate: PagesViewControllerDelegate? = nil
     ) {
@@ -32,7 +32,7 @@ struct PagesViewControllerWrapper: UIViewControllerRepresentable {
     }
 
     /// Use this method to receive a reference to the underlying `PagesViewController` instance.
-    func introspect(
+    public func introspect(
         _ introspect: @escaping (PagesViewController) -> Void
     ) -> Self {
         var modified = self
@@ -42,7 +42,7 @@ struct PagesViewControllerWrapper: UIViewControllerRepresentable {
 
     // MARK: - UIViewControllerRepresentable
 
-    func makeUIViewController(
+    public func makeUIViewController(
         context: Self.Context
     ) -> PagesViewController {
         let pagesViewController = PagesViewController()
@@ -51,21 +51,21 @@ struct PagesViewControllerWrapper: UIViewControllerRepresentable {
         return pagesViewController
     }
 
-    func updateUIViewController(
+    public func updateUIViewController(
         _ uiViewController: PagesViewController,
         context: Self.Context
     ) {
         context.coordinator.notifyIntrospectListener(viewController: uiViewController)
     }
 
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         Coordinator(view: self)
     }
 }
 
 extension PagesViewControllerWrapper {
 
-    class Coordinator {
+    public class Coordinator {
         let view: PagesViewControllerWrapper
         /// This flag is used to prevent multiple calls to the introspect closure
         private var shouldNotifyIntrospectListener = true
