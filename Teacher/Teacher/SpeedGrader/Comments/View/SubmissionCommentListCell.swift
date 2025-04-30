@@ -19,6 +19,16 @@
 import SwiftUI
 import Core
 
+private enum Size {
+    static let verticalSpacing: CGFloat = 2
+    static let horizontalSpacing: CGFloat = 12
+    static let commentBubblePadding: CGFloat = 8
+    static let commentBubbleCorner: CGFloat = 16
+    static let attachmentSpacing: CGFloat = 4
+    static let attachmentCorner: CGFloat = 4
+    static let attachmentIcon: CGFloat = 18
+}
+
 struct SubmissionCommentListCell: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -30,7 +40,7 @@ struct SubmissionCommentListCell: View {
 
     var body: some View {
         if viewModel.author.isCurrentUser {
-            VStack(alignment: .trailing, spacing: 2) {
+            VStack(alignment: .trailing, spacing: Size.verticalSpacing) {
                 header
                 commentView
             }
@@ -39,10 +49,10 @@ struct SubmissionCommentListCell: View {
             .padding(.top, 2)
             .padding(.bottom, 8)
         } else {
-            HStack(alignment: .top, spacing: 12) {
+            HStack(alignment: .top, spacing: Size.horizontalSpacing) {
                 avatar
                     .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: Size.verticalSpacing) {
                     header
                     commentView
                 }
@@ -73,24 +83,36 @@ struct SubmissionCommentListCell: View {
             date
                 .accessibilityLabel(a11yLabel)
         } else {
-            HStack(alignment: .center, spacing: InstUI.Styles.Padding.standard.rawValue) {
+            authorNameAndDate
+                .accessibilityElement(children: .ignore)
+                .accessibilityRepresentation {
+                    if viewModel.author.isAnonymized {
+                        Text(a11yLabel)
+                    } else if viewModel.author.hasId {
+                        Button(
+                            action: { viewModel.didTapAvatarButton.send(controller) },
+                            label: { Text(a11yLabel) }
+                        )
+                        .accessibilityHint(Text("Double tap to view profile", bundle: .core))
+                    } else {
+                        Text(a11yLabel)
+                    }
+                }
+        }
+    }
+
+    private var authorNameAndDate: some View {
+        ViewThatFits {
+            HStack(spacing: Size.horizontalSpacing) {
                 authorName
                     .frame(maxWidth: .infinity, alignment: .leading)
                 date
+                    .layoutPriority(1)
             }
-            .accessibilityElement(children: .ignore)
-            .accessibilityRepresentation {
-                if viewModel.author.isAnonymized {
-                    Text(a11yLabel)
-                } else if viewModel.author.hasId {
-                    Button(
-                        action: { viewModel.didTapAvatarButton.send(controller) },
-                        label: { Text(a11yLabel) }
-                    )
-                    .accessibilityHint(Text("Double tap to view profile", bundle: .core))
-                } else {
-                    Text(a11yLabel)
-                }
+            VStack(alignment: .leading, spacing: Size.verticalSpacing) {
+                authorName
+                date
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
     }
@@ -105,6 +127,7 @@ struct SubmissionCommentListCell: View {
         Text(viewModel.date)
             .font(.regular12, lineHeight: .fit)
             .foregroundStyle(Color.textDark)
+            .multilineTextAlignment(.trailing)
     }
 
     @ViewBuilder
@@ -114,13 +137,14 @@ struct SubmissionCommentListCell: View {
             Text(comment)
                 .font(.regular14, lineHeight: .fit)
                 .styleForCurrentUser(viewModel.author.isCurrentUser)
+                .multilineTextAlignment(.leading)
                 .accessibilityHidden(true) // already included in header
                 .identifier("SubmissionComments.textCell.\(viewModel.id)")
             ForEach(files, id: \.id) { file in
                 CommentFileButton(file: file) {
                     viewModel.didTapFileButton.send((file.id, controller))
                 }
-                .padding(.top, 4)
+                .padding(.top, Size.attachmentSpacing)
                 .accessibilityLabel(viewModel.accessibilityLabelForCommentAttachment(file))
                 .accessibilityHint(Text("Double tap to view file", bundle: .core))
             }
@@ -129,14 +153,14 @@ struct SubmissionCommentListCell: View {
                 .identifier("SubmissionComments.audioCell.\(viewModel.id)")
         case .video(let url):
             VideoPlayer(url: url)
-                .cornerRadius(4)
+                .cornerRadius(Size.attachmentCorner)
                 .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)
                 .identifier("SubmissionComments.videoCell.\(viewModel.id)")
         case .attempt(let attempt, let submission):
             AttemptFileButton(submission: submission) {
                 self.attempt = attempt
             }
-            .padding(.top, 12)
+            .padding(.top, Size.attachmentSpacing)
             .accessibilityLabel(viewModel.accessibilityLabelForAttempt)
             .accessibilityHint(Text("Double tap to view attempt", bundle: .core))
         case .attemptWithAttachments(let attempt, let files):
@@ -145,7 +169,7 @@ struct SubmissionCommentListCell: View {
                     self.attempt = attempt
                     self.fileID = file.id
                 }
-                .padding(.top, 4)
+                .padding(.top, Size.attachmentSpacing)
                 .accessibilityLabel(viewModel.accessibilityLabelForAttemptAttachment(file))
                 .accessibilityHint(Text("Double tap to view file", bundle: .core))
             }
@@ -159,7 +183,7 @@ private struct CommentFileButton: View {
 
     var body: some View {
         FileButton(
-            icon: FileThumbnail(file: file, size: fileButtonIconSize),
+            icon: FileThumbnail(file: file, size: Size.attachmentIcon),
             title: file.displayName ?? file.filename,
             subtitle: file.size.humanReadableFileSize,
             hasSubtitleLineLimit: false,
@@ -177,7 +201,7 @@ private struct AttemptFileButton: View {
         let icon = submission.attemptIcon.map { Image(uiImage: $0) }
         FileButton(
             icon: icon?
-                .size(fileButtonIconSize)
+                .size(Size.attachmentIcon)
                 .foregroundStyle(Color.accentColor),
             title: submission.attemptTitle ?? "",
             subtitle: submission.attemptSubtitle ?? "",
@@ -187,10 +211,7 @@ private struct AttemptFileButton: View {
     }
 }
 
-private let fileButtonIconSize: CGFloat = 18
-
 private struct FileButton<I: View>: View {
-
     let icon: I?
     let title: String
     let subtitle: String?
@@ -218,7 +239,7 @@ private struct FileButton<I: View>: View {
             .padding(.vertical, 6)
             .frame(width: 300)
             .background(
-                RoundedRectangle(cornerRadius: 4)
+                RoundedRectangle(cornerRadius: Size.attachmentCorner)
                     .stroke(Color.borderMedium)
             )
         }
@@ -231,9 +252,9 @@ private extension View {
         if isCurrentUser {
             self
                 .foregroundStyle(Color.textLightest.variantForLightMode)
-                .padding(8)
+                .padding(Size.commentBubblePadding)
                 .background(Color.accentColor)
-                .cornerRadius(16)
+                .cornerRadius(Size.commentBubbleCorner)
         } else {
             self
                 .foregroundStyle(Color.textDarkest)
