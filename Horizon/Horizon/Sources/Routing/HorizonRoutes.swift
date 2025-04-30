@@ -74,11 +74,18 @@ enum HorizonRoutes {
                 )
             },
             RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
-                guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+                guard let courseID = params["courseID"],
+                      let itemID = params["itemID"] else { return nil }
+
+                var assetType: GetModuleItemSequenceRequest.AssetType?
+                if let assetTypeRaw = url.queryItems?.first(where: { $0.name == "asset_type" })?.value {
+                    assetType = GetModuleItemSequenceRequest.AssetType(rawValue: assetTypeRaw)
+                }
+
                 return ModuleItemSequenceAssembly.makeItemSequenceView(
                     environment: env,
                     courseID: courseID,
-                    assetType: .moduleItem,
+                    assetType: assetType ?? .moduleItem,
                     assetID: itemID,
                     url: url
                 )
