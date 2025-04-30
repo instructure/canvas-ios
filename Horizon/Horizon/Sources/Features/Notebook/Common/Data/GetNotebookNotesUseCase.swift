@@ -20,26 +20,21 @@ import Core
 import CoreData
 import Combine
 
-class NotebookNoteUseCase: CollectionUseCase {
+class GetNotebookNotesUseCase: CollectionUseCase {
     typealias Model = CDNotebookNote
 
     // MARK: - Dependencies
-    let request: GetNotesQuery
     let redwood: DomainService
 
     // MARK: - Overridden Properties
     var cacheKey: String? {
-        "notebook-notes-\(after ?? "")-\(before ?? "")-\(labels ?? "")-\(courseID ?? "")-\(pageID ?? "")"
+        "notebook-notes"
     }
+
+    let request: GetNotesQuery
 
     public var scope: Scope {
         var predicates: [NSPredicate] = []
-        if let after = after {
-            predicates.append(NSPredicate(format: "%K > %@", #keyPath(CDNotebookNote.date), after))
-        }
-        if let before = before {
-            predicates.append(NSPredicate(format: "%K < %@", #keyPath(CDNotebookNote.date), before))
-        }
         if let courseID = courseID {
             predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.courseID), courseID))
         }

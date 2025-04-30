@@ -48,6 +48,17 @@ final public class CDNotebookNote: NSManagedObject {
 
         model.after = after
         model.before = before
+
+        return save(item, notebookNote: model, in: context)
+    }
+
+    public static func save(
+        _ item: RedwoodNote,
+        notebookNote: CDNotebookNote? = nil,
+        in context: NSManagedObjectContext
+    ) -> CDNotebookNote {
+        let model: CDNotebookNote = notebookNote ?? context.first(where: #keyPath(CDNotebookNote.id), equals: item.id) ?? context.insert()
+
         model.content = item.userText
         model.courseID = item.courseId
         model.date = item.createdAt

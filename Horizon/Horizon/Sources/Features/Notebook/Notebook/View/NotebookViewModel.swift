@@ -66,7 +66,7 @@ final class NotebookViewModel {
     init(
         courseId: String? = nil,
         pageUrl: String? = nil,
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.shared,
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
         router: Router = AppEnvironment.defaultValue.router
     ) {
         self.courseId = courseId

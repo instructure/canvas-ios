@@ -21,7 +21,7 @@ import UIKit
 
 final class NotebookNoteAssembly {
     static func makeCourseNoteInteractor() -> CourseNoteInteractor {
-        CourseNoteInteractorLive.shared
+        CourseNoteInteractorLive()
     }
 
     static func makeViewNoteViewController(courseNotebookNote: CourseNotebookNote) -> CoreHostingController<NotebookNoteView> {

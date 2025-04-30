@@ -20,7 +20,6 @@ import Core
 
 class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
     let variables: Input
-    private let jwt: String
 
     var path: String {
         "/graphql"
@@ -34,7 +33,6 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
     }
 
     public init(
-        jwt: String,
         id: String,
         userText: String,
         reaction: [String],
@@ -48,7 +46,6 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
                 highlightData: highlightData
             )
         )
-        self.jwt = jwt
     }
 
     public static let operationName: String = "UpdateNote"

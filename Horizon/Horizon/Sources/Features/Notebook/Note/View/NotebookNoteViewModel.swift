@@ -71,7 +71,7 @@ final class NotebookNoteViewModel {
     // MARK: - Init
 
     init(
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.shared,
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
         router: Router = AppEnvironment.shared.router,
         courseNotebookNote: CourseNotebookNote,
         isEditing: Bool = false,
@@ -91,7 +91,7 @@ final class NotebookNoteViewModel {
     }
 
     init(
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.shared,
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
         router: Router = AppEnvironment.shared.router,
         courseID: String,
         pageURL: String,

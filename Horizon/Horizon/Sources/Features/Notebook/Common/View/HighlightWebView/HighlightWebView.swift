@@ -63,7 +63,7 @@ final class HighlightWebView: CoreWebView {
         moduleType: ModuleItemType,
         viewController: WeakViewController,
         router: Router = AppEnvironment.shared.router,
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.shared
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive()
     ) {
         self.courseID = courseID
         self.pageURL = pageURL
@@ -84,7 +84,7 @@ final class HighlightWebView: CoreWebView {
 
     required init?(coder: NSCoder) {
         self.router = AppEnvironment.shared.router
-        self.courseNoteInteractor = CourseNoteInteractorLive.shared
+        self.courseNoteInteractor = CourseNoteInteractorLive()
 
         self.courseID = nil
         self.pageURL = nil
