@@ -21,6 +21,7 @@ import Core
 import Foundation
 
 protocol SubmissionCommentsInteractor: AnyObject {
+    func getSubmissionAttempts() -> AnyPublisher<[Submission], Error>
     func getComments() -> AnyPublisher<[SubmissionComment], Error>
     func getIsAssignmentEnhancementsEnabled() -> AnyPublisher<Bool, Error>
 
@@ -35,11 +36,12 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
 
     private let courseId: String
     private let assignmentId: String
-    private let userId: String
+    private let submissionUserId: String
     private let isGroupAssignment: Bool
 
     private let env: AppEnvironment
 
+    private let localSubmissionsStore: ReactiveStore<GetSubmissionAttemptsLocal>
     private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
     private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
 
@@ -48,21 +50,28 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
     init(
         courseId: String,
         assignmentId: String,
-        userId: String,
+        submissionUserId: String,
         isGroupAssignment: Bool,
         env: AppEnvironment
     ) {
         self.courseId = courseId
         self.assignmentId = assignmentId
-        self.userId = userId
+        self.submissionUserId = submissionUserId
         self.isGroupAssignment = isGroupAssignment
         self.env = env
+
+        localSubmissionsStore = ReactiveStore(
+            useCase: GetSubmissionAttemptsLocal(
+                assignmentId: assignmentId,
+                userId: submissionUserId
+            )
+        )
 
         submissionCommentsStore = ReactiveStore(
             useCase: GetSubmissionComments(
                 context: .course(courseId),
                 assignmentID: assignmentId,
-                userID: userId
+                userID: submissionUserId
             )
         )
 
@@ -72,6 +81,12 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
     }
 
     // MARK: - Get methods
+
+    func getSubmissionAttempts() -> AnyPublisher<[Submission], Error> {
+        localSubmissionsStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .eraseToAnyPublisher()
+    }
 
     func getComments() -> AnyPublisher<[SubmissionComment], Error> {
         submissionCommentsStore
@@ -100,7 +115,7 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
             env: env,
             courseID: courseId,
             assignmentID: assignmentId,
-            userID: userId,
+            userID: submissionUserId,
             isGroup: isGroupAssignment,
             text: text,
             attempt: attemptNumber
@@ -119,7 +134,7 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
             env: env,
             courseID: courseId,
             assignmentID: assignmentId,
-            userID: userId,
+            userID: submissionUserId,
             isGroup: isGroupAssignment,
             type: type,
             url: url,
@@ -138,7 +153,7 @@ final class SubmissionCommentsInteractorLive: SubmissionCommentsInteractor {
             env: env,
             courseID: courseId,
             assignmentID: assignmentId,
-            userID: userId,
+            userID: submissionUserId,
             isGroup: isGroupAssignment,
             batchID: batchId,
             attempt: attemptNumber

@@ -22,24 +22,22 @@ import Foundation
 enum SubmissionCommentsAssembly {
     static func makeCommentListViewModel(
         assignment: Assignment,
-        submissions: [Submission],
-        initialSubmission: Submission,
-        initialAttemptNumber: Int?,
+        latestSubmission: Submission,
+        latestAttemptNumber: Int?,
         env: AppEnvironment
     ) -> SubmissionCommentListViewModel {
         let interactor = SubmissionCommentsInteractorLive(
             courseId: assignment.courseID,
             assignmentId: assignment.id,
-            userId: initialSubmission.userID,
+            submissionUserId: latestSubmission.userID,
             isGroupAssignment: !assignment.gradedIndividually,
             env: env
         )
 
         return SubmissionCommentListViewModel(
             assignment: assignment,
-            submissions: submissions,
-            initialSubmission: initialSubmission,
-            initialAttemptNumber: initialAttemptNumber,
+            latestSubmission: latestSubmission,
+            latestAttemptNumber: latestAttemptNumber,
             currentUserId: env.currentSession?.userID,
             interactor: interactor,
             env: env

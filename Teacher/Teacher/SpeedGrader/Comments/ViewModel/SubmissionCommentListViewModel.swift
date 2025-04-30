@@ -44,37 +44,37 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     // MARK: - Private variables
 
-    let assignment: Assignment
-    private let submissions: [Submission]
-    private let initialSubmission: Submission
+    private let assignment: Assignment
+    private let latestSubmission: Submission
     private let currentUserId: String?
+
+    private var submissions: [Submission] = []
+    private var allComments: [SubmissionComment] = []
+    private var selectedAttemptNumber: Int?
+    private var isAssignmentEnhancementsEnabled = false
 
     private let interactor: SubmissionCommentsInteractor
     private let env: AppEnvironment
-    private var comments: [SubmissionComment] = []
-    private var attempt: Int?
-    private var isAssignmentEnhancementsEnabled = false
     private var subscriptions = Set<AnyCancellable>()
 
-    var attemptNumberForNewComment: Int? {
-        isAssignmentEnhancementsEnabled ? attempt : nil
+    private var attemptNumberForNewComment: Int? {
+        isAssignmentEnhancementsEnabled ? selectedAttemptNumber : nil
     }
 
     init(
         assignment: Assignment,
-        submissions: [Submission],
-        initialSubmission: Submission,
-        initialAttemptNumber: Int?,
+        latestSubmission: Submission,
+        latestAttemptNumber: Int?,
         currentUserId: String?,
         interactor: SubmissionCommentsInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         env: AppEnvironment
     ) {
         self.assignment = assignment
-        self.initialSubmission = initialSubmission
-        self.submissions = submissions
+        self.latestSubmission = latestSubmission
+        self.submissions = []
 
-        self.attempt = initialAttemptNumber
+        self.selectedAttemptNumber = latestAttemptNumber
         self.currentUserId = currentUserId
 
         self.interactor = interactor
@@ -82,15 +82,17 @@ class SubmissionCommentListViewModel: ObservableObject {
 
         unowned let unownedSelf = self
 
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
+            interactor.getSubmissionAttempts(),
             interactor.getComments(),
             interactor.getIsAssignmentEnhancementsEnabled()
         )
-        .map { comments, isAssignmentEnhancementsEnabled in
-            unownedSelf.comments = comments
+        .map { submissions, comments, isAssignmentEnhancementsEnabled in
+            unownedSelf.submissions = submissions
+            unownedSelf.allComments = comments
             unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
             return unownedSelf
-                .filterComments(comments, for: unownedSelf.attempt)
+                .filterComments(comments, for: unownedSelf.selectedAttemptNumber)
                 .map(unownedSelf.commentViewModel)
         }
         .receive(on: scheduler)
@@ -100,15 +102,15 @@ class SubmissionCommentListViewModel: ObservableObject {
 
         NotificationCenter.default.publisher(for: .SpeedGraderAttemptPickerChanged)
             .compactMap { $0.object as? Int }
-            .sink(receiveValue: { unownedSelf.updateComments(attempt: $0) })
+            .sink { unownedSelf.updateComments(attempt: $0) }
             .store(in: &subscriptions)
     }
 
     private func updateComments(attempt: Int?) {
-        self.attempt = attempt
+        selectedAttemptNumber = attempt
         guard state.isData else { return }
 
-        let comments = filterComments(comments, for: attempt)
+        let comments = filterComments(allComments, for: attempt)
         let cellViewModels = comments.map(commentViewModel)
         state = .data(cellViewModels)
     }
@@ -134,7 +136,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     }
 
     private func submissionForComment(_ comment: SubmissionComment) -> Submission {
-        let result = submissions.first(where: { $0.attempt == comment.attempt }) ?? initialSubmission
+        let result = submissions.first(where: { $0.attempt == comment.attempt }) ?? latestSubmission
         if result.assignment == nil {
             result.assignment = assignment
         }

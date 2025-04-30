@@ -30,7 +30,6 @@ private enum Size {
 }
 
 struct SubmissionCommentListCell: View {
-    @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     @ObservedObject var viewModel: SubmissionCommentListCellViewModel

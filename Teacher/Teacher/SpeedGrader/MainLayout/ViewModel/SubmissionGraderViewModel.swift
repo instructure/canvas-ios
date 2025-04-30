@@ -49,20 +49,18 @@ class SubmissionGraderViewModel: ObservableObject {
 
     init(
         assignment: Assignment,
-        submissions: [Submission],
-        initialSubmission: Submission,
+        latestSubmission: Submission,
         env: AppEnvironment
     ) {
         self.assignment = assignment
-        self.submission = initialSubmission
-        selectedAttempt = initialSubmission
-        selectedAttemptIndex = initialSubmission.attempt
+        self.submission = latestSubmission
+        selectedAttempt = latestSubmission
+        selectedAttemptIndex = latestSubmission.attempt
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
         commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
             assignment: assignment,
-            submissions: submissions,
-            initialSubmission: initialSubmission,
-            initialAttemptNumber: initialSubmission.attempt,
+            latestSubmission: latestSubmission,
+            latestAttemptNumber: latestSubmission.attempt,
             env: env
         )
         self.env = env
@@ -96,15 +94,10 @@ class SubmissionGraderViewModel: ObservableObject {
     }
 
     private func observeAttemptChangesInDatabase() {
-        let scope = Scope(
-            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignment.id),
-                NSPredicate(key: #keyPath(Submission.userID), equals: submission.userID),
-                NSPredicate(format: "%K != nil", #keyPath(Submission.submittedAt))
-            ]),
-            orderBy: #keyPath(Submission.attempt)
+        let useCase = GetSubmissionAttemptsLocal(
+            assignmentId: assignment.id,
+            userId: submission.userID
         )
-        let useCase = LocalUseCase<Submission>(scope: scope)
         ReactiveStore(useCase: useCase)
             .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])

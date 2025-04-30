@@ -33,7 +33,11 @@ protocol SpeedGraderInteractor {
 
 struct SpeedGraderData {
     let assignment: Assignment
+
+    /// Latest submission for each student
     let submissions: [Submission]
+
+    /// Index for the selected student
     let focusedSubmissionIndex: Int
 }
 
