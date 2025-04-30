@@ -20,14 +20,6 @@ import Core
 import Foundation
 import Combine
 
-struct SubmissionSection: Identifiable {
-    let title: String
-    var submissions: [Submission]
-    var isCollapsed: Bool = false
-
-    var id: String { title }
-}
-
 class SubmissionListViewModel: ObservableObject {
 
     enum ViewState: Equatable {
@@ -39,6 +31,7 @@ class SubmissionListViewModel: ObservableObject {
 
     @Published private(set) var state: ViewState = .initialLoading
 
+    @Published var course: Course?
     @Published var assignment: Assignment?
     @Published var submissions: [Submission] = []
     @Published var sections: [SubmissionSection] = []
@@ -49,6 +42,7 @@ class SubmissionListViewModel: ObservableObject {
     init(interactor: SubmissionListInteractor) {
         self.interactor = interactor
 
+        interactor.course.assign(to: &$course)
         interactor.assignment.assign(to: &$assignment)
         interactor.submissions.assign(to: &$submissions)
 
@@ -64,7 +58,7 @@ class SubmissionListViewModel: ObservableObject {
                     SubmissionSection(title: "Not Submitted", submissions: unsubmitted),
                     SubmissionSection(title: "Graded", submissions: graded)
                 ]
-                .filter({ $0.submissions.isNotEmpty })
+                .filter({ $0.rows.isNotEmpty })
             })
             .assign(to: &$sections)
 
@@ -72,5 +66,42 @@ class SubmissionListViewModel: ObservableObject {
             .submissions
             .map({ $0.isEmpty ? ViewState.empty : ViewState.data })
             .assign(to: &$state)
+    }
+
+    func refresh() async {
+
+        await withCheckedContinuation { continuation in
+            interactor
+                .refresh()
+                .sink {
+                    continuation.resume()
+                }
+                .store(in: &self.subscriptions)
+        }
+    }
+}
+
+// MARK: - Section Model
+
+struct SubmissionSection: Identifiable {
+    struct Row: Identifiable {
+        let index: Int
+        let submission: Submission
+
+        var id: Int { index }
+    }
+
+    let title: String
+    var rows: [Row]
+    var isCollapsed: Bool
+
+    var id: String { title }
+
+    init(title: String, submissions: [Submission], isCollapsed: Bool = false) {
+        self.title = title
+        self.rows = submissions
+            .enumerated()
+            .map({ Row(index: $0.offset, submission: $0.element) })
+        self.isCollapsed = isCollapsed
     }
 }

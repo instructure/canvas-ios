@@ -20,79 +20,124 @@ import SwiftUI
 import Core
 
 struct SubmissionListRowView: View {
+    let row: Int
     let submission: Submission
     let assignment: Assignment?
 
     var body: some View {
         HStack(spacing: 16) {
-            Avatar(
-                name: submission.userName,
-                url: submission.imageUrl
-            )
-
+            avatarView
             VStack(alignment: .leading, spacing: 4) {
-                Text(submission.userName)
-                    .font(.medium16)
-                    .foregroundStyle(Color.textDarkest)
-                Text(submission.statusText)
-                    .font(.regular14)
-                    .foregroundStyle(.gray)
+                nameLabel
+                if submission.needsGrading {
+                    HStack(spacing: 4) {
+                        statusLabel
+                        statusDivider
+                        needsGradingLabel
+                    }
+                } else {
+                    statusLabel
+                }
             }
-
             Spacer()
-
-            Text(submission.gradeText)
-                .font(.semibold16)
-                .foregroundStyle(Color.course2)
+            gradeText
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 15)
     }
+
+    @ViewBuilder
+    private var avatarView: some View {
+        if assignment?.anonymizeStudents != false {
+            Avatar.Anonymous(isGroup: submission.groupID != nil)
+        } else if let groupName = submission.groupName {
+            Avatar(name: groupName, url: nil)
+        } else {
+            Avatar(
+                name: submission.user?.name ?? "",
+                url: submission.user?.avatarURL
+            )
+        }
+    }
+
+    private var nameLabel: some View {
+        let nameText: Text = if assignment?.anonymizeStudents != false {
+            if submission.groupID != nil {
+                Text("Group \(row)", bundle: .teacher)
+            } else {
+                Text("Student \(row)", bundle: .teacher)
+            }
+        } else {
+            Text(
+                submission.groupName ?? submission.user.flatMap {
+                    User.displayName($0.name, pronouns: $0.pronouns)
+                } ?? ""
+            )
+        }
+
+        return nameText
+            .font(.semibold16)
+            .foregroundStyle(Color.textDarkest)
+    }
+
+    private var statusLabel: some View {
+        HStack(spacing: 2) {
+            submission.status.appearance.icon.size(16)
+            Text(submission.status.text)
+        }
+        .font(.regular14)
+        .foregroundStyle(submission.status.appearance.color)
+    }
+
+    private var statusDivider: some View {
+        Text(verbatim: "|").font(.regular14).foregroundStyle(Color.borderMedium)
+    }
+
+    private var needsGradingLabel: some View {
+        Text("Needs Grading", bundle: .teacher)
+            .font(.regular14)
+            .foregroundStyle(Color.textWarning)
+    }
+
+    private var gradeText: some View {
+        let grade = GradeFormatter.shortString(for: assignment, submission: submission)
+        return Text(grade)
+            .font(.semibold16)
+            .foregroundStyle(Color.course2)
+    }
 }
 
-extension Submission {
-    var userName: String {
-        return user.flatMap({ User.displayName($0.name, pronouns: $0.pronouns) }) ?? groupName ?? ""
+extension SubmissionStatus {
+    fileprivate struct Appearance {
+        let submissionStatus: SubmissionStatus
     }
 
-    var imageUrl: URL? {
-        return user?.avatarURL
-    }
-
-    var statusText: String {
-        return status.text ?? ""
-    }
-
-    var gradeText: String {
-        GradeFormatter.shortString(for: assignment, submission: self)
-    }
+    fileprivate var appearance: Appearance { Appearance(submissionStatus: self) }
 }
 
-//backgroundColor = .backgroundLightest
-//if assignment?.anonymizeStudents != false {
-//    if submission?.groupID != nil {
-//        avatarView.icon = .groupLine
-//        nameLabel.text = String(localized: "Group \(row)", bundle: .teacher)
-//    } else {
-//        avatarView.icon = .userLine
-//        nameLabel.text = String(localized: "Student \(row)", bundle: .teacher)
-//    }
-//} else if let name = submission?.groupName {
-//    avatarView.name = name
-//    avatarView.url = nil
-//    nameLabel.text = name
-//} else {
-//    avatarView.name = submission?.user?.name ?? ""
-//    avatarView.url = submission?.user?.avatarURL
-//    nameLabel.text = submission?.user.flatMap {
-//        User.displayName($0.name, pronouns: $0.pronouns)
-//    }
-//}
-//statusIconView.image = submission?.status.icon
-//statusIconView.tintColor = submission?.status.color
-//statusLabel.text = submission?.status.text
-//statusLabel.textColor = submission?.status.color
-//needsGradingView.isHidden = submission?.needsGrading != true
-//gradeLabel.text = GradeFormatter.shortString(for: assignment, submission: submission)
-//hiddenView.isHidden = submission?.postedAt != nil || (submission?.score == nil && submission?.grade == nil)
+extension SubmissionStatus.Appearance {
 
+    var color: Color {
+        switch submissionStatus {
+        case .late:
+            return .textWarning
+        case .missing:
+            return .textDanger
+        case .submitted:
+            return .textSuccess
+        case .notSubmitted:
+            return .textDark
+        }
+    }
+
+    var icon: Image {
+        switch submissionStatus {
+        case .submitted:
+            return .completeLine
+        case .late:
+            return .clockSolid
+        case .missing, .notSubmitted:
+            return .noSolid
+        }
+    }
+}

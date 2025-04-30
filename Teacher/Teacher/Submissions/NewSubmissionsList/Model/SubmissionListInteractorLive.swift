@@ -23,6 +23,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     var submissions = CurrentValueSubject<[Core.Submission], Never>([])
     var assignment = CurrentValueSubject<Assignment?, Never>(nil)
+    var course = CurrentValueSubject<Course?, Never>(nil)
 
     let context: Context
     let assignmentID: String
@@ -33,11 +34,17 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private let assignmentStore: ReactiveStore<GetAssignment>
     private let submissionsUseCase: GetSubmissions
     private let submissionsStore: ReactiveStore<GetSubmissions>
+    private let courseStore: ReactiveStore<GetCourse>
 
     init(context: Context, assignmentID: String, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
         self.env = env
+
+        self.courseStore = ReactiveStore(
+            useCase: GetCourse(courseID: context.id),
+            environment: env
+        )
 
         self.assignmentStore = ReactiveStore(
             useCase: GetAssignment(courseID: context.id, assignmentID: assignmentID),
@@ -55,6 +62,13 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private func setupBindings() {
 
+        courseStore
+            .getEntities()
+            .map { $0.first }
+            .replaceError(with: nil)
+            .subscribe(course)
+            .store(in: &subscriptions)
+
         assignmentStore
             .getEntities()
             .map { $0.first }
@@ -71,8 +85,9 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     func refresh() -> AnyPublisher<Void, Never> {
         Publishers.Last(upstream:
-            assignmentStore
+            courseStore
                 .forceRefresh()
+                .merge(with: assignmentStore.forceRefresh())
                 .merge(with: submissionsStore.forceRefresh())
         )
         .eraseToAnyPublisher()

@@ -136,6 +136,7 @@ const whitelist = [
   'warning-borderless',
   'x',
   'filter',
+  'search'
 ]
 
 const getImages = (path) => fs.readdirSync(path, { withFileTypes: true }).flatMap(dir => {

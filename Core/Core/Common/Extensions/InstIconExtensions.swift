@@ -182,6 +182,8 @@ public extension UIImage {
     static var replyAllSolid: UIImage { UIImage(named: "replyAllSolid", in: .core, compatibleWith: nil)! }
     static var rubricLine: UIImage { UIImage(named: "rubricLine", in: .core, compatibleWith: nil)! }
     static var rubricSolid: UIImage { UIImage(named: "rubricSolid", in: .core, compatibleWith: nil)! }
+    static var searchLine: UIImage { UIImage(named: "searchLine", in: .core, compatibleWith: nil)! }
+    static var searchSolid: UIImage { UIImage(named: "searchSolid", in: .core, compatibleWith: nil)! }
     static var settingsLine: UIImage { UIImage(named: "settingsLine", in: .core, compatibleWith: nil)! }
     static var settingsSolid: UIImage { UIImage(named: "settingsSolid", in: .core, compatibleWith: nil)! }
     static var sortLine: UIImage { UIImage(named: "sortLine", in: .core, compatibleWith: nil)! }
@@ -436,6 +438,8 @@ public extension Image {
     static var replyAllSolid: Image { Image("replyAllSolid", bundle: .core) }
     static var rubricLine: Image { Image("rubricLine", bundle: .core) }
     static var rubricSolid: Image { Image("rubricSolid", bundle: .core) }
+    static var searchLine: Image { Image("searchLine", bundle: .core) }
+    static var searchSolid: Image { Image("searchSolid", bundle: .core) }
     static var settingsLine: Image { Image("settingsLine", bundle: .core) }
     static var settingsSolid: Image { Image("settingsSolid", bundle: .core) }
     static var sortLine: Image { Image("sortLine", bundle: .core) }

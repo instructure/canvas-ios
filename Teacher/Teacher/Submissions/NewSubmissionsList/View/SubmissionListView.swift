@@ -40,59 +40,161 @@ struct SubmissionListView: View {
 
     private var listView: some View {
         List {
+
+            Section {
+                HeaderView(courseName: viewModel.course?.name ?? "")
+            }
+
+            Section {
+                SearchView(viewModel: viewModel)
+            }
+
             ForEach($viewModel.sections) { $section in
                 Section {
                     if !section.isCollapsed {
-                        ForEach(section.submissions) { submission in
-                            VStack(spacing: 0) {
+                        ForEach(section.rows) { row in
+                            SeparatedRow {
                                 SubmissionListRowView(
-                                    submission: submission,
+                                    row: row.index,
+                                    submission: row.submission,
                                     assignment: viewModel.assignment
                                 )
-                                Divider()
                             }
-                            .listRowInsets(.zero)
-                            .listRowSeparator(.hidden)
                         }
                     }
                 } header: {
-                    VStack(spacing: 0) {
-                        SectionHeaderView(title: section.title, isCollapsed: $section.isCollapsed)
-                        Divider()
-                    }
-                        .listRowInsets(.zero)
-                        .listRowSeparator(.hidden)
+                    SectionHeaderView(title: section.title, isCollapsed: $section.isCollapsed)
                 }
             }
         }
         .listSectionSpacing(0)
+        .listSectionSeparator(.hidden)
         .listStyle(.plain)
+        .navigationTitle(Text("Submissions", bundle: .teacher))
+        .toolbar {
+
+            ToolbarItemGroup(placement: .topBarTrailing) {
+
+                Button {
+
+                } label: {
+                    Image.eyeLine
+                }
+                .tint(Color.textLightest)
+
+                Button {
+
+                } label: {
+                    Image.emailLine
+                }
+                .tint(Color.textLightest)
+            }
+        }
+        .refreshable(action: {
+            await viewModel.refresh()
+        })
     }
 }
 
-struct SectionHeaderView: View {
-    let title: String
-    @Binding var isCollapsed: Bool
+private extension SubmissionListView {
 
-    var body: some View {
-        Button(action: {
-            withAnimation {
-                isCollapsed.toggle()
+    struct SeparatedRow<Content: View>: View {
+        @ViewBuilder let content: () -> Content
+        var body: some View {
+            VStack(spacing: 0) {
+                content()
+                Divider()
+                Spacer().frame(height: 0.5)
             }
-        }) {
-            HStack {
-                Text(title)
-                    .font(.semibold14)
-                    .foregroundStyle(Color.textDark)
-                Spacer()
-                Image(systemName: "chevron.forward")
-                    .foregroundColor(.textDarkest)
-                    .rotationEffect(isCollapsed ? .degrees(0) : .degrees(90))
-            }
-            .padding(.vertical, 8)
-            .padding(.horizontal, 15)
+            .listRowInsets(.zero)
+            .listRowSeparator(.hidden)
         }
-        .buttonStyle(.borderless)
+    }
+
+    struct SearchView: View {
+
+        @ObservedObject private var viewModel: SubmissionListViewModel
+        @ScaledMetric private var uiScale: CGFloat = 1
+
+        init(viewModel: SubmissionListViewModel) {
+            self.viewModel = viewModel
+        }
+
+        var body: some View {
+            SeparatedRow {
+                HStack(spacing: 9) {
+                    Image.searchLine.size(uiScale.iconScale * 16).foregroundStyle(Color.textDark)
+                    TextField("Search Submissions", text: .constant(""), prompt: Text("Search"))
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                        .font(.regular14)
+                        .foregroundStyle(Color.textDarkest)
+                    Spacer()
+                }
+                .padding(8)
+                .background(Color.backgroundLight, in: RoundedRectangle(cornerRadius: 10))
+                .padding(16)
+                .background(Color.backgroundLightest)
+            }
+        }
+    }
+
+    struct HeaderView: View {
+
+        let courseName: String
+
+        var body: some View {
+            SeparatedRow {
+                HStack {
+                    Text(courseName)
+                        .foregroundStyle(Color.textDarkest)
+                        .font(.semibold16)
+
+                    Spacer()
+                }
+                .padding(16)
+                .background(
+                    Color.backgroundLightest,
+                    in: RoundedRectangle(cornerRadius: 6)
+                )
+                .shadow(color: Color.black.opacity(0.08), radius: 2, x: 0, y: 2)
+                .padding(16)
+                .background(Color.backgroundLight)
+            }
+        }
+    }
+
+    struct SectionHeaderView: View {
+        let title: String
+        @Binding var isCollapsed: Bool
+
+        @ScaledMetric private var uiScale: CGFloat = 1
+
+        var body: some View {
+            SeparatedRow {
+                Button(action: {
+                    withAnimation {
+                        isCollapsed.toggle()
+                    }
+                }) {
+                    HStack {
+                        Text(title)
+                            .font(.semibold14)
+                            .foregroundStyle(Color.textDark)
+                        Spacer()
+                        Image
+                            .arrowOpenDownLine
+                            .size(uiScale.iconScale * 16)
+                            .foregroundColor(.textDarkest)
+                            .rotationEffect(isCollapsed ? .degrees(0) : .degrees(180))
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 15)
+                    .background(Color.backgroundLightest)
+                }
+                .buttonStyle(.plain)
+            }
+        }
     }
 }
 
