@@ -40,6 +40,8 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         case text(String, [File])
         case audio(URL)
         case video(URL)
+        case attempt(Int, Submission)
+        case attemptWithAttachments(Int, [File])
     }
 
     // MARK: - Output
@@ -92,7 +94,14 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         self.date = comment.createdAtLocalizedString
 
         let commentType: CommentType
-        if comment.mediaType == .some(.audio), let url = comment.mediaLocalOrRemoteURL {
+        if let attempt = comment.attempt {
+            if submission.type == .online_upload {
+                let files = submission.attachments?.sorted(by: File.idCompare) ?? []
+                commentType = .attemptWithAttachments(attempt, files)
+            } else {
+                commentType = .attempt(attempt, submission)
+            }
+        } else if comment.mediaType == .some(.audio), let url = comment.mediaLocalOrRemoteURL {
             commentType = .audio(url)
         } else if comment.mediaType == .some(.video), let url = comment.mediaLocalOrRemoteURL {
             commentType = .video(url)
@@ -140,8 +149,13 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
     // MARK: - Accessibility
 
     lazy var accessibilityLabelForHeader: String = comment.accessibilityLabelForHeader
+    lazy var accessibilityLabelForAttempt: String = comment.accessibilityLabelForAttempt(submission: submission)
 
     func accessibilityLabelForCommentAttachment(_ file: File) -> String {
         comment.accessibilityLabelForCommentAttachment(file)
+    }
+
+    func accessibilityLabelForAttemptAttachment(_ file: File) -> String {
+        comment.accessibilityLabelForAttemptAttachment(file, submission: submission)
     }
 }

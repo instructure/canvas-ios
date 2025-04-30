@@ -117,13 +117,11 @@ struct SubmissionCommentListCell: View {
                 .accessibilityHidden(true) // already included in header
                 .identifier("SubmissionComments.textCell.\(viewModel.id)")
             ForEach(files, id: \.id) { file in
-                Spacer().frame(height: 4)
                 CommentFileButton(file: file) {
                     viewModel.didTapFileButton.send((file.id, controller))
                 }
-                .accessibilityLabel(
-                    Text(viewModel.accessibilityLabelForCommentAttachment(file))
-                )
+                .padding(.top, 4)
+                .accessibilityLabel(viewModel.accessibilityLabelForCommentAttachment(file))
                 .accessibilityHint(Text("Double tap to view file", bundle: .core))
             }
         case .audio(let url):
@@ -134,6 +132,23 @@ struct SubmissionCommentListCell: View {
                 .cornerRadius(4)
                 .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)
                 .identifier("SubmissionComments.videoCell.\(viewModel.id)")
+        case .attempt(let attempt, let submission):
+            AttemptFileButton(submission: submission) {
+                self.attempt = attempt
+            }
+            .padding(.top, 12)
+            .accessibilityLabel(viewModel.accessibilityLabelForAttempt)
+            .accessibilityHint(Text("Double tap to view attempt", bundle: .core))
+        case .attemptWithAttachments(let attempt, let files):
+            ForEach(files, id: \.id) { file in
+                CommentFileButton(file: file) {
+                    self.attempt = attempt
+                    self.fileID = file.id
+                }
+                .padding(.top, 4)
+                .accessibilityLabel(viewModel.accessibilityLabelForAttemptAttachment(file))
+                .accessibilityHint(Text("Double tap to view file", bundle: .core))
+            }
         }
     }
 }
