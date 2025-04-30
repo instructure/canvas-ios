@@ -43,9 +43,7 @@ enum SpeedGraderAssembly {
         let view = SpeedGraderScreen(
             viewModel: viewModel
         )
-        return CoreNavigationController(
-            rootViewController: CoreHostingController(view)
-        )
+        return CoreHostingController(view)
     }
 
 #if DEBUG

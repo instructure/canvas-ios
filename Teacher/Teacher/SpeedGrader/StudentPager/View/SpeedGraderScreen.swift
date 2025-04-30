@@ -64,6 +64,9 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
         .navBarItems(trailing: navBarTrailingItems)
         .onFirstAppear {
             setupStatusBarStyleUpdates()
+            // When speedgrader is opened from a discussion
+            // the router automatically adds a done button
+            controller.value.navigationItem.leadingItemGroups = []
         }
     }
 
