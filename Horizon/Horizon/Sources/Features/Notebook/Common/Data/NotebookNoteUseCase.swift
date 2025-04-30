@@ -18,37 +18,86 @@
 
 import Core
 import CoreData
+import Combine
 
 class NotebookNoteUseCase: CollectionUseCase {
     typealias Model = CDNotebookNote
 
-    let cacheKey: String? = "notebook-notes"
+    // MARK: - Dependencies
     let request: GetNotesQuery
-    let api: API
+    let redwood: DomainService
 
-    init(getNotesQuery: GetNotesQuery, api: API) {
-        request = getNotesQuery
-        self.api = api
-    }
-
-    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {
-        api.makeRequest(request, callback: completionHandler)
+    // MARK: - Overridden Properties
+    var cacheKey: String? {
+        "notebook-notes-\(after ?? "")-\(before ?? "")-\(labels ?? "")-\(courseID ?? "")-\(pageID ?? "")"
     }
 
     public var scope: Scope {
         var predicates: [NSPredicate] = []
-        if let labelsSerialized = CDNotebookNote.serializeLabels(request.variables.filter?.reactions) {
-            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.labels), labelsSerialized))
+        if let after = after {
+            predicates.append(NSPredicate(format: "%K > %@", #keyPath(CDNotebookNote.date), after))
         }
-        if let courseID = request.variables.filter?.courseId {
+        if let before = before {
+            predicates.append(NSPredicate(format: "%K < %@", #keyPath(CDNotebookNote.date), before))
+        }
+        if let courseID = courseID {
             predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.courseID), courseID))
         }
-        if let itemID = request.variables.filter?.learningObject?.id {
-            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.pageID), itemID))
+        if let labelsSerialized = labels {
+            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.labels), labelsSerialized))
+        }
+        if let pageID = pageID {
+            predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.pageID), pageID))
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         let order = [NSSortDescriptor(key: #keyPath(CDNotebookNote.date), ascending: false)]
         return Scope(predicate: predicate, order: order)
+    }
+
+    // MARK: - Private Properties
+
+    private var after: String? {
+        request.variables.after
+    }
+
+    private var before: String? {
+        request.variables.before
+    }
+
+    private var courseID: String? {
+        request.variables.filter?.courseId
+    }
+
+    private var labels: String? {
+        CDNotebookNote.serializeLabels(request.variables.filter?.reactions)
+    }
+
+    private var pageID: String? {
+        request.variables.filter?.learningObject?.id
+    }
+
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Init
+
+    init(getNotesQuery: GetNotesQuery, redwood: DomainService = DomainService(.redwood)) {
+        request = getNotesQuery
+        self.redwood = redwood
+    }
+
+    // MARK: - Overridden Methods
+
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {
+        redwood
+            .api()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] api in
+                    guard let self = self else { return }
+                    api.makeRequest(self.request, callback: completionHandler)
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     func write(
@@ -57,7 +106,7 @@ class NotebookNoteUseCase: CollectionUseCase {
        to client: NSManagedObjectContext
     ) {
         response?.data.notes.edges.forEach { edge in
-            CDNotebookNote.save(edge.node, in: client)
+            CDNotebookNote.save(edge.node, before: before, after: after, in: client)
         }
     }
 }

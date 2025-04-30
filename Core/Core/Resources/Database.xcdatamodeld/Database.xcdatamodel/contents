@@ -231,6 +231,8 @@
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDNotebookNote" representedClassName=".CDNotebookNote" syncable="YES">
+        <attribute name="after" optional="YES" attributeType="String"/>
+        <attribute name="before" optional="YES" attributeType="String"/>
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

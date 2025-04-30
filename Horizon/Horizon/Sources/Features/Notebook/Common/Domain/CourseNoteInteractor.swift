@@ -125,8 +125,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     }
 
     func get() -> AnyPublisher<[CourseNotebookNote], NotebookError> {
-        self.redwoodDomainService.api()
-            .flatMap(listenToFilters)
+        listenToFilters()
             .mapError { _ in NotebookError.unknown }
             .eraseToAnyPublisher()
     }
@@ -200,17 +199,14 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     // MARK: - Private Methods
 
     private func request(
-        api: API,
         labels: [CourseNoteLabel]? = nil,
         courseID: String? = nil,
         objectId: String? = nil
     ) -> GetNotesQuery {
-        let accessToken = api.loginSession?.accessToken ?? ""
         let reactions = labels?.map(\.rawValue)
 
         guard let cursorValue = cursor?.cursor else {
             return .init(
-                jwt: accessToken,
                 reactions: reactions,
                 courseId: courseID,
                 objectId: objectId
@@ -218,7 +214,6 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         }
         if cursor?.isBefore == true {
             return .init(
-                jwt: accessToken,
                 before: cursorValue,
                 reactions: reactions,
                 courseId: courseID,
@@ -226,7 +221,6 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
             )
         }
         return .init(
-            jwt: accessToken,
             after: cursorValue,
             reactions: reactions,
             courseId: courseID,
@@ -234,49 +228,35 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         )
     }
 
-    private func listenToFilters(_ api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
-        Publishers.CombineLatest3(
-            cursorFilter,
-            objectFilters,
-            refreshSubject
+    private func listenToFilters() -> AnyPublisher<[CourseNotebookNote], any Error> {
+        Publishers.CombineLatest4(
+            cursorFilter.setFailureType(to: Error.self).eraseToAnyPublisher(),
+            objectFilters.setFailureType(to: Error.self).eraseToAnyPublisher(),
+            refreshSubject.setFailureType(to: Error.self).eraseToAnyPublisher(),
+            objectIdPublisher
         )
-        .flatMap { [weak self] _, _, _ in
-            guard let self = self else {
-                return Just([CourseNotebookNote]())
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            return self.listen(to: api)
-        }
-        .eraseToAnyPublisher()
-    }
-
-    // If a page URL is specified, we must fetch the Page to get the ID, then only fetch notes associated with that page.
-    private func listen(to api: API) -> AnyPublisher<[CourseNotebookNote], any Error> {
-        objectIdPublisher.flatMap { [weak self] objectId in
+        .flatMap { [weak self] _, _, _, objectId in
             guard let self = self else {
                 return Just([CourseNotebookNote]())
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
             guard let objectId = objectId else {
-                return self.notesRequest(api: api)
+                return self.notesRequest()
             }
-            return self.notesRequest(api: api, objectId: objectId)
+            return self.notesRequest(objectId: objectId)
         }
         .eraseToAnyPublisher()
     }
 
-    private func notesRequest(api: API, objectId: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
+    private func notesRequest(objectId: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
         ReactiveStore(
             useCase: NotebookNoteUseCase(
                 getNotesQuery: request(
-                    api: api,
                     labels: cursorFilter.value?.filter.map { [$0] },
                     courseID: objectFilters.value.0,
                     objectId: objectId
                 ),
-                api: api
             )
         )
         .getEntities()

@@ -19,10 +19,12 @@
 import CoreData
 import Foundation
 
-final public class CDNotebookNote: NSManagedObject, WriteableModel {
-    @NSManaged public var content: String?
+final public class CDNotebookNote: NSManagedObject {
+    @NSManaged public var after: String? // used for paging in the query used to fetch this object
+    @NSManaged public var before: String? // used for paging in the query used to fetch this object
+    @NSManaged public var content: String? // the text of the note
     @NSManaged public var courseID: String
-    @NSManaged public var date: Date
+    @NSManaged public var date: Date // the date the note was created
     @NSManaged public var end: Int16
     @NSManaged public var endContainer: String?
     @NSManaged public var endOffset: Int16
@@ -36,9 +38,16 @@ final public class CDNotebookNote: NSManagedObject, WriteableModel {
     @NSManaged public var startOffset: Int16
 
     @discardableResult
-    public static func save(_ item: RedwoodNote, in context: NSManagedObjectContext) -> CDNotebookNote {
+    public static func save(
+        _ item: RedwoodNote,
+        before: String?,
+        after: String?,
+        in context: NSManagedObjectContext
+    ) -> CDNotebookNote {
         let model: CDNotebookNote = context.first(where: #keyPath(CDNotebookNote.id), equals: item.id) ?? context.insert()
 
+        model.after = after
+        model.before = before
         model.content = item.userText
         model.courseID = item.courseId
         model.date = item.createdAt
