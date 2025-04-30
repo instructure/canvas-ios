@@ -72,7 +72,7 @@
 		8B31FF542AD6A0DA002390C8 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31FF532AD6A0DA002390C8 /* SettingsTests.swift */; };
 		8B31FF562AD6A90C002390C8 /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31FF552AD6A90C002390C8 /* HelpTests.swift */; };
 		8B31FF582AD6C936002390C8 /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31FF572AD6C936002390C8 /* LogoutTests.swift */; };
-		8B41E0332AB99489001F7458 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0322AB99488001F7458 /* GradesTests.swift */; };
+		8B41E0332AB99489001F7458 /* SpeedGraderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0322AB99488001F7458 /* SpeedGraderTests.swift */; };
 		8B41E0362AB994C4001F7458 /* PagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0352AB994C4001F7458 /* PagesTests.swift */; };
 		8B41E0392ABA00BF001F7458 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0382ABA00BF001F7458 /* ModulesTests.swift */; };
 		8B41E0412ABAEF73001F7458 /* AnnouncementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0402ABAEF73001F7458 /* AnnouncementsTests.swift */; };
@@ -292,7 +292,7 @@
 		8B31FF532AD6A0DA002390C8 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		8B31FF552AD6A90C002390C8 /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		8B31FF572AD6C936002390C8 /* LogoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
-		8B41E0322AB99488001F7458 /* GradesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
+		8B41E0322AB99488001F7458 /* SpeedGraderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedGraderTests.swift; sourceTree = "<group>"; };
 		8B41E0352AB994C4001F7458 /* PagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesTests.swift; sourceTree = "<group>"; };
 		8B41E0382ABA00BF001F7458 /* ModulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTests.swift; sourceTree = "<group>"; };
 		8B41E0402ABAEF73001F7458 /* AnnouncementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsTests.swift; sourceTree = "<group>"; };
@@ -639,12 +639,12 @@
 			path = Logout;
 			sourceTree = "<group>";
 		};
-		8B41E0312AB99488001F7458 /* Grades */ = {
+		8B41E0312AB99488001F7458 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
-				8B41E0322AB99488001F7458 /* GradesTests.swift */,
+				8B41E0322AB99488001F7458 /* SpeedGraderTests.swift */,
 			);
-			path = Grades;
+			path = SpeedGrader;
 			sourceTree = "<group>";
 		};
 		8B41E0342AB994B7001F7458 /* Pages */ = {
@@ -1188,7 +1188,6 @@
 				8B086F112AB307150013C15F /* Dashboard */,
 				8B4891922AC466F70015BAB2 /* Discussions */,
 				8B4891952AC48D5F0015BAB2 /* Files */,
-				8B41E0312AB99488001F7458 /* Grades */,
 				8B31FF4F2AD6A09B002390C8 /* Help */,
 				8B4891A32ACAC40A0015BAB2 /* Inbox */,
 				8B086F0E2AB1EFFC0013C15F /* Login */,
@@ -1199,6 +1198,7 @@
 				8B48918F2AC465AF0015BAB2 /* Profile */,
 				8B41E03F2ABAEF65001F7458 /* Quizzes */,
 				8B31FF4E2AD6A08F002390C8 /* Settings */,
+				8B41E0312AB99488001F7458 /* SpeedGrader */,
 				8B41E03E2ABAEF5E001F7458 /* Syllabus */,
 				8B4891992AC6F19C0015BAB2 /* ToDo */,
 			);
@@ -1631,7 +1631,7 @@
 				8B48919E2AC6F64C0015BAB2 /* ToDoTests.swift in Sources */,
 				8B4891942AC467070015BAB2 /* DiscussionsTests.swift in Sources */,
 				8B4891972AC48D6A0015BAB2 /* FilesTests.swift in Sources */,
-				8B41E0332AB99489001F7458 /* GradesTests.swift in Sources */,
+				8B41E0332AB99489001F7458 /* SpeedGraderTests.swift in Sources */,
 				8B086F102AB1F00A0013C15F /* LoginTests.swift in Sources */,
 				8B31FF542AD6A0DA002390C8 /* SettingsTests.swift in Sources */,
 				8B41E0392ABA00BF001F7458 /* ModulesTests.swift in Sources */,
