@@ -54,6 +54,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     // MARK: - Type Definitions
 
     typealias CursorFilter = (cursor: Cursor?, filter: CourseNoteLabel?)
+    typealias ObjectFilter = (courseID: String?, pageURL: String?)
 
     // MARK: - Dependencies
 
@@ -70,7 +71,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
             set(cursor: nil)
         }
     }
-    private var objectFilters: CurrentValueRelay<(String?, String?)> = CurrentValueRelay((nil, nil))
+    private var objectFilters: CurrentValueRelay<ObjectFilter> = CurrentValueRelay((nil, nil))
     private let refreshSubject = CurrentValueRelay<Void>(())
     private var subscriptions = Set<AnyCancellable>()
 
@@ -89,7 +90,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         labels: [CourseNoteLabel] = [],
         notebookHighlight: NotebookHighlight? = nil
     ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
-        objectIdPublisher
+        pageIDPublisher
             .mapError { _ in NotebookError.unknown }
             .flatMap { pageID in
 
@@ -138,18 +139,15 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
             cursorFilter.setFailureType(to: Error.self).eraseToAnyPublisher(),
             objectFilters.setFailureType(to: Error.self).eraseToAnyPublisher(),
             refreshSubject.setFailureType(to: Error.self).eraseToAnyPublisher(),
-            objectIdPublisher
+            pageIDPublisher
         )
-        .flatMap { [weak self] _, _, _, objectId in
+        .flatMap { [weak self] _, _, _, pageID in
             guard let self = self else {
                 return Just([CourseNotebookNote]())
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            guard let objectId = objectId else {
-                return self.notesRequest()
-            }
-            return self.notesRequest(objectId: objectId)
+            return self.notesRequest(pageID: pageID)
         }
         .mapError { _ in NotebookError.unknown }
         .eraseToAnyPublisher()
@@ -193,49 +191,22 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
 
     // A method for requesting an update to the list of course notes
     func refresh() {
-        //refreshSubject.accept(())
+        refreshSubject.accept(())
     }
 
     // MARK: - Private Methods
 
-    private func request(
-        labels: [CourseNoteLabel]? = nil,
-        courseID: String? = nil,
-        objectId: String? = nil
-    ) -> GetNotesQuery {
-        let reactions = labels?.map(\.rawValue)
-
-        guard let cursorValue = cursor?.cursor else {
-            return .init(
-                reactions: reactions,
-                courseId: courseID,
-                objectId: objectId
-            )
+    private func notesRequest(pageID: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
+        var sort: GetNotebookNotesUseCase.Sort?
+        if let cursor = cursor {
+            sort = (date: cursor.cursor, isBefore: cursor.isBefore)
         }
-        if cursor?.isBefore == true {
-            return .init(
-                before: cursorValue,
-                reactions: reactions,
-                courseId: courseID,
-                objectId: objectId
-            )
-        }
-        return .init(
-            after: cursorValue,
-            reactions: reactions,
-            courseId: courseID,
-            objectId: courseID
-        )
-    }
-
-    private func notesRequest(objectId: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
-        ReactiveStore(
+        return ReactiveStore(
             useCase: GetNotebookNotesUseCase(
-                getNotesQuery: request(
-                    labels: cursorFilter.value?.filter.map { [$0] },
-                    courseID: objectFilters.value.0,
-                    objectId: objectId
-                ),
+                labels: [filter?.rawValue].compactMap { $0 },
+                courseID: objectFilters.value.0,
+                pageID: pageID,
+                sort: sort,
             )
         )
         .getEntities()
@@ -243,7 +214,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         .eraseToAnyPublisher()
     }
 
-    private var objectIdPublisher: AnyPublisher<String?, Error> {
+    private var pageIDPublisher: AnyPublisher<String?, Error> {
         guard let courseID = objectFilters.value.0,
             let pageURL = objectFilters.value.1 else {
             return Just(nil)
@@ -283,7 +254,7 @@ extension CDNotebookNote {
     }
 
     var courseNoteLabels: [CourseNoteLabel]? {
-        CDNotebookNote.deserializeLabels(labels)?.compactMap { CourseNoteLabel.init(rawValue: $0) }
+        labels.deserializeLabels?.compactMap { CourseNoteLabel.init(rawValue: $0) }
     }
 
     var notebookHighlight: NotebookHighlight? {
@@ -316,15 +287,15 @@ extension CDNotebookNote {
 /// If previous is set, it'll get the prior results
 /// If next is set, it'll get the next results
 struct Cursor {
-    let cursor: String
+    let cursor: Date
     let isBefore: Bool // if it's not before, it's "after"
 
-    init(previous cursor: String) {
+    init(previous cursor: Date) {
         self.cursor = cursor
         isBefore = true
     }
 
-    init(next cursor: String) {
+    init(next cursor: Date) {
         self.cursor = cursor
         isBefore = false
     }

@@ -40,20 +40,6 @@ final public class CDNotebookNote: NSManagedObject {
     @discardableResult
     public static func save(
         _ item: RedwoodNote,
-        before: String?,
-        after: String?,
-        in context: NSManagedObjectContext
-    ) -> CDNotebookNote {
-        let model: CDNotebookNote = context.first(where: #keyPath(CDNotebookNote.id), equals: item.id) ?? context.insert()
-
-        model.after = after
-        model.before = before
-
-        return save(item, notebookNote: model, in: context)
-    }
-
-    public static func save(
-        _ item: RedwoodNote,
         notebookNote: CDNotebookNote? = nil,
         in context: NSManagedObjectContext
     ) -> CDNotebookNote {
@@ -66,7 +52,7 @@ final public class CDNotebookNote: NSManagedObject {
         model.endContainer = item.highlightData?.range.endContainer
         model.endOffset = Int16(item.highlightData?.range.endOffset ?? -1)
         model.id = item.id
-        model.labels = serializeLabels(item.reaction)
+        model.labels = item.reaction?.serializeLabels
         model.objectType = item.objectType
         model.pageID = item.objectId
         model.selectedText = item.highlightData?.selectedText
@@ -76,14 +62,16 @@ final public class CDNotebookNote: NSManagedObject {
 
         return model
     }
+}
 
-    public static func serializeLabels(_ labels: [String]?) -> String? {
-        guard let labels = labels else { return nil }
-        return labels.sorted().joined(separator: ";")
+extension String? {
+    public var deserializeLabels: [String]? {
+        self?.split(separator: ";").map { String($0) }
     }
+}
 
-    public static func deserializeLabels(_ labels: String?) -> [String]? {
-        guard let labels = labels else { return nil }
-        return labels.split(separator: ";").map { String($0) }
+extension Array where Element == String {
+    public var serializeLabels: String? {
+        self.sorted().joined(separator: ";")
     }
 }

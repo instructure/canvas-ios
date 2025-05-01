@@ -110,13 +110,13 @@ final class NotebookViewModel {
     }
 
     func nextPage() {
-        guard let cursor = notes.last?.nextCursor else { return }
+        guard let cursor = notes.last?.cursor else { return }
         state = .loading
         courseNoteInteractor.set(cursor: Cursor(next: cursor))
     }
 
     func previousPage() {
-        guard let cursor = notes.first?.previousCursor else { return }
+        guard let cursor = notes.first?.cursor else { return }
         state = .loading
         courseNoteInteractor.set(cursor: Cursor(previous: cursor))
     }
@@ -148,9 +148,8 @@ struct NotebookNote: Identifiable {
     let courseNotebookNote: CourseNotebookNote
     var id: String { courseNotebookNote.id }
     var highlightedText: String { courseNotebookNote.highlightData?.selectedText ?? "" }
-    var nextCursor: String? { courseNotebookNote.nextCursor }
     var note: String { courseNotebookNote.content ?? "" }
-    var previousCursor: String? { courseNotebookNote.previousCursor }
+    var cursor: Date? { courseNotebookNote.date }
     var title: String { formatter.string(from: courseNotebookNote.date) }
     var types: [CourseNoteLabel] { courseNotebookNote.labels ?? [] }
 

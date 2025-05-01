@@ -112,7 +112,7 @@ class GetNotesQuery: APIGraphQLRequestable {
     typealias Response = RedwoodFetchNotesQueryResponse
 
     struct GetNotesQueryInput: Codable, Equatable {
-        private static let pageSize: Float = 10
+        private static let pageSize: Float = 1000
 
         let after: String?
         let before: String?
