@@ -18,7 +18,7 @@
 
 import Core
 import Foundation
-    
+
 /// This is an API agnostic entity model.
 /// It's used in the interactors and can be used in the views, but will normally be translated to a view model before being used in the views.
 struct CourseNotebookNote {
@@ -27,6 +27,8 @@ struct CourseNotebookNote {
     var id: String
     var date: Date
     var courseId: String
+    var hasNext: Bool
+    var hasPrevious: Bool
     var objectId: String
 
     // MARK: - Optional
@@ -34,8 +36,6 @@ struct CourseNotebookNote {
     var content: String?
     var highlightData: NotebookHighlight?
     var labels: [CourseNoteLabel]?
-    var nextCursor: String?
-    var previousCursor: String?
 }
 
 extension CourseNotebookNote {
@@ -45,19 +45,19 @@ extension CourseNotebookNote {
     ) {
         let note = edge.node
 
-        self.id = note.id ?? ""
-        self.date = note.createdAt ?? Date()
+        self.id = note.id
+        self.date = note.createdAt
         self.courseId = note.courseId
         self.objectId = note.objectId
+        self.hasNext = false
+        self.hasPrevious = false
 
         self.labels = note.reaction?.compactMap { .init(rawValue: $0) }
 
         self.content = note.userText
 
-        self.nextCursor = pageInfo.hasNextPage ? edge.cursor : nil
-        self.previousCursor = pageInfo.hasPreviousPage ? edge.cursor : nil
-
         self.highlightData = note.highlightData
+
     }
 
     func copy(
@@ -67,27 +67,27 @@ extension CourseNotebookNote {
         content: String? = nil,
         highlightData: NotebookHighlight? = nil,
         labels: [CourseNoteLabel]? = nil,
-        nextCursor: String? = nil,
-        previousCursor: String? = nil
+        hasPrevious: Bool = false,
+        hasNext: Bool = false
     ) -> CourseNotebookNote {
         CourseNotebookNote(
             id: self.id,
             date: date ?? self.date,
             courseId: courseId ?? self.courseId,
+            hasNext: hasNext,
+            hasPrevious: hasPrevious,
             objectId: objectId ?? self.objectId,
             content: content ?? self.content,
             highlightData: highlightData ?? self.highlightData,
-            labels: labels ?? self.labels,
-            nextCursor: nextCursor ?? self.nextCursor,
-            previousCursor: previousCursor ?? self.previousCursor
+            labels: labels ?? self.labels
         )
     }
 }
 
 extension CourseNotebookNote {
     init(from note: RedwoodNote) {
-        self.id = note.id ?? ""
-        self.date = note.createdAt ?? Date()
+        self.id = note.id
+        self.date = note.createdAt
         self.courseId = note.courseId
         self.objectId = note.objectId
 
@@ -95,6 +95,8 @@ extension CourseNotebookNote {
         self.labels = note.reaction?.compactMap { CourseNoteLabel(rawValue: $0) } ?? []
 
         self.highlightData = note.highlightData
+        self.hasNext = false
+        self.hasPrevious = false
     }
 }
 
@@ -105,6 +107,8 @@ extension CourseNotebookNote {
             id: "1",
             date: Date(),
             courseId: "courseID",
+            hasNext: false,
+            hasPrevious: false,
             objectId: "objectID",
             content: "Good morning",
             highlightData: NotebookHighlight(

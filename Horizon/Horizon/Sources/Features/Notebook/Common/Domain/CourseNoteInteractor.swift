@@ -55,6 +55,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
 
     typealias CursorFilter = (cursor: Cursor?, filter: CourseNoteLabel?)
     typealias ObjectFilter = (courseID: String?, pageURL: String?)
+    typealias FilteringNotes = (all: [CourseNotebookNote], filtered: [CourseNotebookNote])
 
     // MARK: - Dependencies
 
@@ -197,20 +198,17 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     // MARK: - Private Methods
 
     private func notesRequest(pageID: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
-        var sort: GetNotebookNotesUseCase.Sort?
-        if let cursor = cursor {
-            sort = (date: cursor.cursor, isBefore: cursor.isBefore)
-        }
-        return ReactiveStore(
+        ReactiveStore(
             useCase: GetNotebookNotesUseCase(
                 labels: [filter?.rawValue].compactMap { $0 },
                 courseID: objectFilters.value.0,
                 pageID: pageID,
-                sort: sort,
             )
         )
-        .getEntities()
-        .compactMap { $0.courseNotebookNotes }
+        .getEntities(keepObservingDatabaseChanges: true)
+        .map { $0.courseNotebookNotes }
+        .map(filteredToPage)
+        .map { tuple in tuple.filtered }
         .eraseToAnyPublisher()
     }
 
@@ -228,28 +226,46 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         .compactMap { $0.first?.id }
         .eraseToAnyPublisher()
     }
+
+    private func filteredToPage(_ notes: [CourseNotebookNote]) -> FilteringNotes {
+        let pageSize = 10
+
+        guard let cursor = cursor else {
+            return (notes, filtered: Array(notes.prefix(pageSize)))
+        }
+
+        let filtered = Array(
+            notes.filter { note in
+                cursor.isBefore ?
+                    note.date < cursor.cursor :
+                    note.date > cursor.cursor
+            }.prefix(pageSize)
+        )
+        return (notes, filtered)
+    }
 }
 
 // MARK: - Extensions
 
 extension Array where Element == CDNotebookNote {
     var courseNotebookNotes: [CourseNotebookNote] {
-        map { $0.courseNotebookNote }
+        let count = self.count
+        return enumerated().map { $1.courseNotebookNote(index: $0, count: count) }
     }
 }
 
 extension CDNotebookNote {
-    var courseNotebookNote: CourseNotebookNote {
+    func courseNotebookNote(index: Int, count: Int) -> CourseNotebookNote {
         CourseNotebookNote(
             id: id,
             date: date,
             courseId: courseID,
+            hasNext: index < count - 1,
+            hasPrevious: index > 0,
             objectId: pageID,
             content: content,
             highlightData: notebookHighlight,
-            labels: courseNoteLabels,
-            nextCursor: nil,
-            previousCursor: nil
+            labels: courseNoteLabels
         )
     }
 

@@ -22,7 +22,6 @@ import Combine
 
 class GetNotebookNotesUseCase: CollectionUseCase {
     typealias Model = CDNotebookNote
-    typealias Sort = (date: Date, isBefore: Bool)
 
     // MARK: - Dependencies
     let redwood: DomainService
@@ -45,9 +44,6 @@ class GetNotebookNotesUseCase: CollectionUseCase {
         if let pageID = pageID {
             predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.pageID), pageID))
         }
-        if let sort = sort {
-            predicates.append(NSPredicate(format: "%K %@ %@", #keyPath(CDNotebookNote.date), sort.isBefore ? "<" : ">", sort.date as NSDate))
-        }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
 
         let order = [NSSortDescriptor(key: #keyPath(CDNotebookNote.date), ascending: false)]
@@ -59,7 +55,6 @@ class GetNotebookNotesUseCase: CollectionUseCase {
     private let courseID: String?
     private let labels: [String]?
     private let pageID: String?
-    private let sort: Sort?
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -68,14 +63,12 @@ class GetNotebookNotesUseCase: CollectionUseCase {
         labels: [String] = [],
         courseID: String? = nil,
         pageID: String? = nil,
-        sort: Sort?,
         redwood: DomainService = DomainService(.redwood),
     ) {
         self.labels = labels
         self.courseID = courseID
         self.pageID = pageID
         self.redwood = redwood
-        self.sort = sort
     }
 
     // MARK: - Overridden Methods

@@ -112,13 +112,13 @@ final class NotebookViewModel {
     func nextPage() {
         guard let cursor = notes.last?.cursor else { return }
         state = .loading
-        courseNoteInteractor.set(cursor: Cursor(next: cursor))
+        courseNoteInteractor.set(cursor: Cursor(previous: cursor))
     }
 
     func previousPage() {
         guard let cursor = notes.first?.cursor else { return }
         state = .loading
-        courseNoteInteractor.set(cursor: Cursor(previous: cursor))
+        courseNoteInteractor.set(cursor: Cursor(next: cursor))
     }
 
     // MARK: - Private functions
@@ -135,8 +135,8 @@ final class NotebookViewModel {
                     self.notes = courseNotes.map { note in
                         NotebookNote(courseNotebookNote: note)
                     }
-                    self.isNextDisabled = courseNotes.last?.nextCursor == nil
-                    self.isPreviousDisabled = courseNotes.first?.previousCursor == nil
+                    self.isNextDisabled = courseNotes.last?.hasNext != true
+                    self.isPreviousDisabled = courseNotes.first?.hasPrevious != true
                     self.state = .data
                 }
             }
