@@ -21,6 +21,7 @@ import Combine
 import CoreData
 import SwiftUI
 import WidgetKit
+import WebKit
 
 public protocol AppEnvironmentDelegate {
     var environment: AppEnvironment { get }
@@ -113,6 +114,12 @@ open class AppEnvironment {
         router.courseTabUrlInteractor?.cancelTabSubscription()
         refreshWidgets()
         deleteUserData(session: session)
+        if AppEnvironment.shared.app == .horizon {
+            // doing cleanup of webviews so that logged in user data is not available
+            WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+                                                    modifiedSince: Date(timeIntervalSince1970: 0),
+                                                    completionHandler: {})
+        }
     }
 
     private func deleteUserData(session: LoginSession) {
