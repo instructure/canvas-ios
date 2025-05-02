@@ -149,7 +149,7 @@ struct NotebookView: View {
     NotebookView(
         viewModel: .init(
             courseId: "123",
-            getCourseNotesInteractor: GetCourseNotesInteractorPreview()
+            courseNoteInteractor: CourseNoteInteractorPreview()
         ))
 }
 #endif

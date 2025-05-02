@@ -26,7 +26,7 @@ final class NotebookViewModel {
     // MARK: - Dependencies
 
     private let courseId: String?
-    private var getCourseNotesInteractor: GetCourseNotesInteractor
+    private var courseNoteInteractor: CourseNoteInteractor
     private let pageUrl: String?
     private let router: Router
 
@@ -38,10 +38,10 @@ final class NotebookViewModel {
 
     var filter: CourseNoteLabel? {
         get {
-            getCourseNotesInteractor.filter
+            courseNoteInteractor.filter
         }
         set {
-            getCourseNotesInteractor.set(filter: (self.filter == newValue ? nil : newValue))
+            courseNoteInteractor.set(filter: (self.filter == newValue ? nil : newValue))
         }
     }
 
@@ -66,18 +66,18 @@ final class NotebookViewModel {
     init(
         courseId: String? = nil,
         pageUrl: String? = nil,
-        getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared,
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
         router: Router = AppEnvironment.defaultValue.router
     ) {
         self.courseId = courseId
         self.pageUrl = pageUrl
-        self.getCourseNotesInteractor = getCourseNotesInteractor
+        self.courseNoteInteractor = courseNoteInteractor
         self.router = router
         self.title = String(localized: "Notebook", bundle: .horizon)
 
-        self.getCourseNotesInteractor.set(filter: nil)
-        self.getCourseNotesInteractor.set(cursor: nil)
-        self.getCourseNotesInteractor.set(courseId: courseId, pageUrl: pageUrl)
+        self.courseNoteInteractor.set(filter: nil)
+        self.courseNoteInteractor.set(cursor: nil)
+        self.courseNoteInteractor.set(courseID: courseId, pageURL: pageUrl)
 
         loadNotes()
     }
@@ -110,22 +110,22 @@ final class NotebookViewModel {
     }
 
     func nextPage() {
-        guard let cursor = notes.last?.nextCursor else { return }
+        guard let cursor = notes.last?.cursor else { return }
         state = .loading
-        getCourseNotesInteractor.set(cursor: Cursor(next: cursor))
+        courseNoteInteractor.set(cursor: Cursor(previous: cursor))
     }
 
     func previousPage() {
-        guard let cursor = notes.first?.previousCursor else { return }
+        guard let cursor = notes.first?.cursor else { return }
         state = .loading
-        getCourseNotesInteractor.set(cursor: Cursor(previous: cursor))
+        courseNoteInteractor.set(cursor: Cursor(next: cursor))
     }
 
     // MARK: - Private functions
 
     private func loadNotes() {
         weak var weakSelf = self
-        getCourseNotesInteractor
+        courseNoteInteractor
             .get()
             .replaceError(with: [])
             .sink { (courseNotes: [CourseNotebookNote]) in
@@ -135,8 +135,8 @@ final class NotebookViewModel {
                     self.notes = courseNotes.map { note in
                         NotebookNote(courseNotebookNote: note)
                     }
-                    self.isNextDisabled = courseNotes.last?.nextCursor == nil
-                    self.isPreviousDisabled = courseNotes.first?.previousCursor == nil
+                    self.isNextDisabled = courseNotes.last?.hasNext != true
+                    self.isPreviousDisabled = courseNotes.first?.hasPrevious != true
                     self.state = .data
                 }
             }
@@ -148,9 +148,8 @@ struct NotebookNote: Identifiable {
     let courseNotebookNote: CourseNotebookNote
     var id: String { courseNotebookNote.id }
     var highlightedText: String { courseNotebookNote.highlightData?.selectedText ?? "" }
-    var nextCursor: String? { courseNotebookNote.nextCursor }
     var note: String { courseNotebookNote.content ?? "" }
-    var previousCursor: String? { courseNotebookNote.previousCursor }
+    var cursor: Date? { courseNotebookNote.date }
     var title: String { formatter.string(from: courseNotebookNote.date) }
     var types: [CourseNoteLabel] { courseNotebookNote.labels ?? [] }
 
