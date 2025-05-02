@@ -89,12 +89,10 @@ struct NotebookView: View {
     }
 
     private var navigationBar: some View {
-        TitleBar(
+        NotebookTitleBar(
             onBack: viewModel.isBackVisible ? viewModel.onBack : nil,
             onClose: viewModel.isCloseVisible ? viewModel.onClose : nil
-        ) {
-            NotebookTitle()
-        }
+        )
         .padding(.top, viewModel.navigationBarTopPadding)
         .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space16)
