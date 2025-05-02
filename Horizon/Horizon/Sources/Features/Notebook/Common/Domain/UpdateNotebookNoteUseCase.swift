@@ -16,27 +16,56 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import CoreData
-import Foundation
+import Core
 
-final public class CDNotebookNote: NSManagedObject {
-    @NSManaged public var after: String? // used for paging in the query used to fetch this object
-    @NSManaged public var before: String? // used for paging in the query used to fetch this object
-    @NSManaged public var content: String? // the text of the note
-    @NSManaged public var courseID: String
-    @NSManaged public var date: Date // the date the note was created
-    @NSManaged public var end: Int16
-    @NSManaged public var endContainer: String?
-    @NSManaged public var endOffset: Int16
-    @NSManaged public var id: String
-    @NSManaged public var labels: String?
-    @NSManaged public var objectType: String
-    @NSManaged public var pageID: String
-    @NSManaged public var selectedText: String?
-    @NSManaged public var start: Int16
-    @NSManaged public var startContainer: String?
-    @NSManaged public var startOffset: Int16
+class UpdateNotebookNoteUseCase: UseCase {
+    var cacheKey: String?
 
+    typealias Model = CDNotebookNote
+
+    // MARK: Dependencies
+    let redwood: DomainService
+
+    // MARK: Overridden Properties
+    let request: RedwoodUpdateNoteMutation
+
+    public var scope: Scope {
+        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.id), request.variables.id), order: [])
+    }
+
+    // MARK: Private Properties
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: Init
+    init(updateNoteMutation: RedwoodUpdateNoteMutation, redwood: DomainService = DomainService(.redwood)) {
+        self.request = updateNoteMutation
+        self.redwood = redwood
+    }
+
+    // MARK: Overridden Methods
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {
+        redwood
+            .api()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] api in
+                    guard let self = self else { return }
+                    api.makeRequest(self.request, callback: completionHandler)
+                }
+            )
+            .store(in: &subscriptions)
+    }
+
+    func write(response: RedwoodUpdateNoteMutationResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        if let redwoodNote = response?.data.updateNote {
+            CDNotebookNote.save(redwoodNote, in: client)
+        }
+    }
+}
+
+extension CDNotebookNote {
     @discardableResult
     public static func save(
         _ item: RedwoodNote,
@@ -61,17 +90,5 @@ final public class CDNotebookNote: NSManagedObject {
         model.startOffset = Int16(item.highlightData?.range.startOffset ?? -1)
 
         return model
-    }
-}
-
-extension String? {
-    public var deserializeLabels: [String]? {
-        self?.split(separator: ";").map { String($0) }
-    }
-}
-
-extension Array where Element == String {
-    public var serializeLabels: String? {
-        self.sorted().joined(separator: ";")
     }
 }
