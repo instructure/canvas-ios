@@ -33,6 +33,13 @@ open class CoreWebView: WKWebView {
         // swiftlint:disable:next force_try
         return try! String(contentsOf: url)
     }()
+
+    private static var FigtreeRegularCSSFontFace: String = {
+        let url = Bundle.core.url(forResource: "font_figtree_regular", withExtension: "css")!
+        // swiftlint:disable:next force_try
+        return try! String(contentsOf: url)
+    }()
+
     public static let processPool = WKProcessPool()
 
     @IBInspectable public var autoresizesHeight: Bool = false
@@ -261,12 +268,17 @@ open class CoreWebView: WKWebView {
                                                  : style.uiFont
         let marginsDisabled = features.contains { $0 is DisableDefaultBodyMargin }
 
-        if AppEnvironment.shared.k5.isK5Enabled {
-            font = "BalsamiqSans-Regular"
-            fontCSS = Self.BalsamiqRegularCSSFontFace
+        if AppEnvironment.shared.app == .horizon {
+            font = "Figtree-Regular"
+            fontCSS = Self.FigtreeRegularCSSFontFace
         } else {
-            font = "Lato-Regular"
-            fontCSS = Self.LatoRegularCSSFontFace
+            if AppEnvironment.shared.k5.isK5Enabled {
+                font = "BalsamiqSans-Regular"
+                fontCSS = Self.BalsamiqRegularCSSFontFace
+            } else {
+                font = "Lato-Regular"
+                fontCSS = Self.LatoRegularCSSFontFace
+            }
         }
 
         return """
