@@ -26,12 +26,12 @@ final class AccountViewModel {
     // MARK: - Outputs
 
     private(set) var name: String = ""
-    private(set) var institution: String = ""
     var isShowingLogoutConfirmationAlert = false
 
     // MARK: - Dependencies
 
     private let router: Router
+    private let getUserInteractor: GetUserInteractor
 
     // MARK: - Private properties
 
@@ -53,23 +53,12 @@ final class AccountViewModel {
         router: Router = AppEnvironment.shared.router
     ) {
         self.router = router
-
-        getUserInteractor
-            .getUser()
-            .map { $0.name }
-            .replaceError(with: "")
-            .assign(to: \.name, on: self)
-            .store(in: &subscriptions)
+        self.getUserInteractor = getUserInteractor
 
         confirmLogoutViewModel.userConfirmation()
             .sink {
                 sessionInteractor.logout()
             }
-            .store(in: &subscriptions)
-
-        getCoursesInteractor
-            .getInstitutionName()
-            .assign(to: \.institution, on: self)
             .store(in: &subscriptions)
     }
 
@@ -79,6 +68,15 @@ final class AccountViewModel {
         if let url = URL(string: "/account/profile") {
             router.route(to: url, from: viewController)
         }
+    }
+
+    func getUserName() {
+        getUserInteractor
+            .getUser()
+            .map { $0.name }
+            .replaceError(with: "")
+            .assign(to: \.name, on: self)
+            .store(in: &subscriptions)
     }
 
     func passwordDidTap() {}
@@ -95,7 +93,11 @@ final class AccountViewModel {
 
     func betaCommunityDidTap() {}
 
-    func giveFeedbackDidTap() {}
+    func giveFeedbackDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "https://forms.gle/jxDp3zKYe7LxNhZHA") {
+            router.route(to: url, from: viewController)
+        }
+    }
 
     func logoutDidTap() {
         isShowingLogoutConfirmationAlert = true

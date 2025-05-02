@@ -93,7 +93,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
                 if let moduleId, let itemId {
                     let getModuleItemUseCase = GetModuleItem(courseID: courseID, moduleID: moduleId, itemID: itemId)
                     let moduleItemPublisher = ReactiveStore(useCase: getModuleItemUseCase)
-                        .getEntities()
+                        .getEntities(ignoreCache: true)
                         .replaceError(with: [])
                         .flatMap { Publishers.Sequence(sequence: $0) }
                         .map { HModuleItem(from: $0) }

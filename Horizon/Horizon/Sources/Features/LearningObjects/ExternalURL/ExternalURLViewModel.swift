@@ -53,7 +53,7 @@ final class ExternalURLViewModel {
     // MARK: - Actions
 
     func openURL() {
-        guard let viewController = viewController?.value else { return }
+        guard let viewController = viewController?.value, UIApplication.shared.canOpenURL(url) else { return }
         router.show(
             SFSafariViewController(url: url),
             from: viewController,

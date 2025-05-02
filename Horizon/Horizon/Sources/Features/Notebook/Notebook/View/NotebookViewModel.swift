@@ -27,7 +27,7 @@ final class NotebookViewModel {
 
     private let courseId: String?
     private var getCourseNotesInteractor: GetCourseNotesInteractor
-    private var moduleId: String?
+    private let pageUrl: String?
     private let router: Router
 
     // MARK: - Outputs
@@ -49,7 +49,7 @@ final class NotebookViewModel {
     var isCloseVisible: Bool { courseId != nil }
     var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
     var isFiltersVisible: Bool { courseId == nil }
-    var isNavigationBarVisible: Bool { courseId == nil || moduleId != nil }
+    var isNavigationBarVisible: Bool { courseId == nil || pageUrl != nil }
     private(set) var isNextDisabled: Bool = true
     private(set) var isPreviousDisabled: Bool = true
     var navigationBarTopPadding: CGFloat { courseId == nil ? .zero : .huiSpaces.space24 }
@@ -65,19 +65,19 @@ final class NotebookViewModel {
 
     init(
         courseId: String? = nil,
-        moduleId: String? = nil,
+        pageUrl: String? = nil,
         getCourseNotesInteractor: GetCourseNotesInteractor = GetCourseNotesInteractorLive.shared,
         router: Router = AppEnvironment.defaultValue.router
     ) {
         self.courseId = courseId
-        self.moduleId = moduleId
+        self.pageUrl = pageUrl
         self.getCourseNotesInteractor = getCourseNotesInteractor
         self.router = router
         self.title = String(localized: "Notebook", bundle: .horizon)
 
-        self.getCourseNotesInteractor.set(courseId: courseId, moduleId: moduleId)
         self.getCourseNotesInteractor.set(filter: nil)
         self.getCourseNotesInteractor.set(cursor: nil)
+        self.getCourseNotesInteractor.set(courseId: courseId, pageUrl: pageUrl)
 
         loadNotes()
     }
@@ -95,12 +95,12 @@ final class NotebookViewModel {
     func goToModuleItem(_ note: NotebookNote, viewController: WeakViewController) {
         // This is just a business rule that says if the user got here from viewing a module,
         // We should not allow them to then navigate to it again.
-        let isDisabled = courseId != nil
+        let isDisabled = courseId != nil && pageUrl != nil
         if isDisabled {
             return
         }
         router.route(
-            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)?notebook_disabled=true",
+            to: "/courses/\(note.courseNotebookNote.courseId)/modules/items/\(note.courseNotebookNote.objectId)?asset_type=Page&notebook_disabled=true",
             from: viewController
         )
     }

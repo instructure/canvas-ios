@@ -143,7 +143,7 @@ class PagesTests: E2ETestCase {
         // MARK: Check if new page got added
         let newPageItem = Helper.page(index: 0).waitUntil(.visible)
         XCTAssertTrue(newPageItem.isVisible)
-        XCTAssertTrue(newPageItem.hasLabel(label: newPageTitle))
+        XCTAssertEqual(newPageItem.label, newPageTitle)
     }
 
     func testEditPage() {

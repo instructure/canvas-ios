@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 @testable import Core
+import XCTest
 
 class CourseSmartSearchViewAttributesTests: CoreTestCase {
 

@@ -28,6 +28,8 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
                 name: "AI Introductions",
                 progress: 0.2,
                 courseId: "11",
+                state: "active",
+                enrollmentID: "222",
                 learningObjectCardViewModel: nil
             )
             ]
@@ -52,6 +54,11 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
 
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
         Just(())
+            .eraseToAnyPublisher()
+    }
+
+    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never> {
+        Just(90.6)
             .eraseToAnyPublisher()
     }
 

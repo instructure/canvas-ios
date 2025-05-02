@@ -31,10 +31,6 @@ struct AccountView: View {
                     .huiTypography(.h1)
                     .foregroundStyle(Color.huiColors.text.title)
 
-                Text(viewModel.institution)
-                    .huiTypography(.h3)
-                    .foregroundStyle(Color.huiColors.surface.institution)
-
                 settingsSection
                     .padding(.top, 40)
                 supportSection
@@ -67,13 +63,14 @@ struct AccountView: View {
                         viewModel.profileDidTap(viewController: viewController)
                     }
                 )
-                divider
-                AccountEntryRowView(
-                    title: String(localized: "Password", bundle: .horizon),
-                    didTapRow: {
-                        viewModel.passwordDidTap()
-                    }
-                )
+                // TODO: Uncomment after implementing the functionality
+//                divider
+//                AccountEntryRowView(
+//                    title: String(localized: "Password", bundle: .horizon),
+//                    didTapRow: {
+//                        viewModel.passwordDidTap()
+//                    }
+//                )
                 divider
                 AccountEntryRowView(
                     title: String(localized: "Notifications", bundle: .horizon),
@@ -91,6 +88,10 @@ struct AccountView: View {
                 )
             }
         }
+        .onAppear {
+            viewModel.getUserName()
+        }
+
     }
 
     private var divider: some View {
@@ -105,22 +106,13 @@ struct AccountView: View {
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
 
-            VStack(spacing: 0) {
-                AccountEntryRowView(
-                    title: "Beta Community",
-                    image: .huiIcons.openInNew,
-                    isFirstItem: true,
-                    didTapRow: {
-                        viewModel.betaCommunityDidTap()
-                    }
-                )
-                divider
-                AccountEntryRowView(
+            VStack(spacing: 0) {                AccountEntryRowView(
                     title: "Give Feedback",
                     image: .huiIcons.openInNew,
+                    isFirstItem: true,
                     isLastItem: true,
                     didTapRow: {
-                        viewModel.giveFeedbackDidTap()
+                        viewModel.giveFeedbackDidTap(viewController: viewController)
                     }
                 )
             }

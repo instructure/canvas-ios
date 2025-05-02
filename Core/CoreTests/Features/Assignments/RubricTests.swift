@@ -22,11 +22,11 @@ import XCTest
 
 class RubricTests: CoreTestCase {
     func testSaveRating() {
-        RubricRating.make(from: .make(id: "1"), assignmentID: "2")
+        CDRubricRating.make(from: .make(id: "1"), assignmentID: "2")
         let item = APIRubricRating.make(id: "1", points: 100.0)
 
-        RubricRating.save(item, assignmentID: "2", in: databaseClient)
-        let ratings: [RubricRating] = databaseClient.fetch()
+        CDRubricRating.save(item, assignmentID: "2", in: databaseClient)
+        let ratings: [CDRubricRating] = databaseClient.fetch()
 
         XCTAssertEqual(ratings.count, 1)
         XCTAssertEqual(ratings.first?.points, 100)

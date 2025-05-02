@@ -178,9 +178,11 @@ struct NotebookNoteView: View {
     }
 
     private var titleBar: some View {
-        NotebookTitleBar(
+        TitleBar(
             onClose: viewModel.closeButtonDisabled ? nil : viewModel.close
-        )
+        ) {
+            NotebookTitle()
+        }
     }
 }
 

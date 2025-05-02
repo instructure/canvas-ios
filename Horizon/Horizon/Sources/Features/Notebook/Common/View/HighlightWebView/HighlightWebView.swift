@@ -47,10 +47,10 @@ final class HighlightWebView: CoreWebView {
 
     // MARK: - Dependencies
 
-    private let courseId: String?
+    private let courseID: String?
     private let courseNoteInteractor: CourseNoteInteractor
     private var currentNotebookTextSelection: NotebookTextSelection?
-    private let itemId: String?
+    private let pageURL: String?
     private let moduleType: ModuleItemType?
     private let router: Router
     private let viewController: WeakViewController?
@@ -58,15 +58,15 @@ final class HighlightWebView: CoreWebView {
     // MARK: - Init
 
     init(
-        courseId: String,
-        itemId: String,
+        courseID: String,
+        pageURL: String,
         moduleType: ModuleItemType,
         viewController: WeakViewController,
         router: Router = AppEnvironment.shared.router,
         courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive.instance
     ) {
-        self.courseId = courseId
-        self.itemId = itemId
+        self.courseID = courseID
+        self.pageURL = pageURL
         self.moduleType = moduleType
         self.router = router
         self.courseNoteInteractor = courseNoteInteractor
@@ -86,8 +86,8 @@ final class HighlightWebView: CoreWebView {
         self.router = AppEnvironment.shared.router
         self.courseNoteInteractor = CourseNoteInteractorLive.instance
 
-        self.courseId = nil
-        self.itemId = nil
+        self.courseID = nil
+        self.pageURL = nil
         self.moduleType = nil
         self.viewController = nil
         self.highlightWebFeature = nil
@@ -113,7 +113,7 @@ final class HighlightWebView: CoreWebView {
 
     override func html(for content: String) -> String {
         // Wrap the content in a div that will be referenced by the WebHighlighting javascript
-        super.html(for: "<div id=\"parent-container\">\(content)</div>")
+        super.html(for: "<div id=\"parent-container\"><div>\(content)</div></div>")
     }
 
     override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -147,13 +147,13 @@ final class HighlightWebView: CoreWebView {
     }
 
     private func listenForHighlights() {
-        guard let courseId = courseId,
-            let itemId = itemId
+        guard let courseID = courseID,
+            let pageURL = pageURL
         else {
             return
         }
 
-        self.courseNoteInteractor.get(courseId: courseId, itemId: itemId)
+        self.courseNoteInteractor.get(courseID: courseID, pageURL: pageURL)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { [weak self] courseNotebookNotes in
@@ -192,8 +192,8 @@ final class HighlightWebView: CoreWebView {
 
     private func onMenuAction(_ action: UIAction) {
         guard let label = actionDefinitions.first(where: { action.title == $0.title })?.label,
-            let courseId = courseId,
-            let itemId = itemId,
+            let courseID = courseID,
+            let pageURL = pageURL,
             let viewController = self.viewController
         else {
             return
@@ -205,30 +205,31 @@ final class HighlightWebView: CoreWebView {
 
         let notebookHighlight = notebookTextSelection.notebookHighlight
 
-        if label == .other {
+        if label == .other,
+            let urlEncodedpageURL = pageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             router.route(
-                to: "/notebook/\(courseId)/\(itemId)/add", userInfo: ["notebookHighlight": notebookHighlight],
+                to: "/notebook/\(courseID)/add?pageURL=\(urlEncodedpageURL)", userInfo: ["notebookHighlight": notebookHighlight],
                 from: viewController)
-        } else if let moduleType = self.moduleType {
-            courseNoteInteractor.add(
-                courseId: courseId,
-                itemId: itemId,
-                moduleType: moduleType,
-                content: "",
-                labels: [label],
-                notebookHighlight: notebookHighlight
-            ).sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] courseNote in
-                    guard let viewController = self?.viewController else {
-                        return
-                    }
-                    if label == .other {
-                        self?.router.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
-                    }
-                }
-            ).store(in: &subscriptions)
+            return
         }
+
+        courseNoteInteractor.add(
+            courseID: courseID,
+            pageURL: pageURL,
+            content: "",
+            labels: [label],
+            notebookHighlight: notebookHighlight
+        ).sink(
+            receiveCompletion: { _ in },
+            receiveValue: { [weak self] courseNote in
+                guard let viewController = self?.viewController else {
+                    return
+                }
+                if label == .other {
+                    self?.router.route(to: "/notebook/note/\(courseNote.id)", from: viewController)
+                }
+            }
+        ).store(in: &subscriptions)
     }
 }
 

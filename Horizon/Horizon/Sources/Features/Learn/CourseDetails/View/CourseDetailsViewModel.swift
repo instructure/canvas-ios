@@ -36,6 +36,7 @@ final class CourseDetailsViewModel {
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
+    private var refreshCompletedModuleItemCancellable: AnyCancellable?
 
     // MARK: - Init
 
@@ -58,11 +59,24 @@ final class CourseDetailsViewModel {
         getCoursesInteractor.getCourse(id: courseID, ignoreCache: false)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
+                let currentProgress = self.course.progress
+                let nextProgress = course.progress
                 self.course = course
+                self.course.progress = max(nextProgress, currentProgress)
                 self.state = .data
                 self.isLoaderVisible = false
             }
             .store(in: &subscriptions)
+
+        refreshCompletedModuleItemCancellable = getCoursesInteractor.fetchCourseProgression(courseId: courseID)
+            .sink { [weak self] progress in
+                self?.course.progress = progress
+            }
+    }
+
+    deinit {
+        refreshCompletedModuleItemCancellable?.cancel()
+        refreshCompletedModuleItemCancellable = nil
     }
 
     // MARK: - Inputs

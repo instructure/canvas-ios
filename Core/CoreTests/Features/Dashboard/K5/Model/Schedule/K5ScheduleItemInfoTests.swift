@@ -79,7 +79,7 @@ class K5ScheduleItemInfoTests: CoreTestCase {
         let allDayTestee = APIPlannable.make(plannable: .init(all_day: true, details: nil, end_at: nil, points_possible: nil, start_at: nil, title: nil))
         XCTAssertEqual(allDayTestee.k5ScheduleDueText, String(localized: "All Day", bundle: .core))
 
-        let intervalTestee = APIPlannable.make(plannable: .init(all_day: nil, details: nil, end_at: Date().add(.hour, number: 1), points_possible: nil, start_at: Date(), title: nil))
+        let intervalTestee = APIPlannable.make(plannable: .init(all_day: nil, details: nil, end_at: Date().addHours(1), points_possible: nil, start_at: Date(), title: nil))
         XCTAssertTrue(intervalTestee.k5ScheduleDueText.contains(" – "))
 
         let otherTestee = APIPlannable.make(plannable_type: "other", plannable_date: Date())

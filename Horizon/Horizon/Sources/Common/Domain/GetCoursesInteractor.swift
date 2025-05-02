@@ -28,6 +28,7 @@ protocol GetCoursesInteractor {
     func getInstitutionName() -> AnyPublisher<String, Never>
     func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
+    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -62,8 +63,20 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
+    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never> {
+        NotificationCenter.default
+            .publisher(for: .moduleItemRequirementCompleted)
+            .flatMap { [self] _ in
+                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId, courseId: courseId))
+                    .getEntities(ignoreCache: true)
+                    .replaceError(with: [])
+                    .compactMap { $0.first?.completionPercentage }
+            }
+            .eraseToAnyPublisher()
+    }
+
     func getInstitutionName() -> AnyPublisher<String, Never> {
-        ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId))
+        ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId, horizonCourses: true))
             .getEntities()
             .replaceError(with: [])
             .compactMap { $0.first?.institutionName }
@@ -98,12 +111,12 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .delay(for: .milliseconds(500), scheduler: scheduler)
             .map { _ in () }
             .flatMapLatest {
-                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId))
+                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, horizonCourses: true))
                     .getEntities(ignoreCache: true)
                     .replaceError(with: [])
                     .flatMap {
                         $0.publisher
-                            .flatMap { $0.fetchNextUpModuleItems() }
+                            .flatMap { $0.mapToDashboardCourse() }
                             .compactMap { $0 }
                             .collect()
                     }
@@ -121,7 +134,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     private func fetchCourses(courseId: String? = nil, ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         unowned let unownedSelf = self
 
-        return ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, courseId: courseId))
+        return ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, courseId: courseId, horizonCourses: true))
             .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
@@ -135,51 +148,42 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 }
 
 private extension CDDashboardCourse {
-    func fetchNextUpModuleItems() -> AnyPublisher<DashboardCourse?, Never> {
+    func mapToDashboardCourse() -> AnyPublisher<DashboardCourse?, Never> {
         let name = course.name ?? ""
         let progress = completionPercentage / 100.0
-
-        guard let nextModuleID, let nextModuleItemID else {
+        let hasNextModuleItem: Bool = nextModuleID != nil && nextModuleItemID != name
+        guard hasNextModuleItem else {
             return Just(
                 DashboardCourse(
                     name: name,
                     progress: progress,
                     courseId: courseID,
+                    state: state,
+                    enrollmentID: enrollmentID,
                     learningObjectCardViewModel: nil
                 )
             )
             .eraseToAnyPublisher()
         }
 
-        return ReactiveStore(
-            useCase: GetModuleItem(
-                courseID: courseID,
-                moduleID: nextModuleID,
-                itemID: nextModuleItemID,
-                include: [.content_details, .estimated_durations]
-            )
+        let moduleItem = LearningObjectCard(
+            moduleTitle: nextModuleName ?? "",
+            learningObjectName: nextModuleItemName ?? "",
+            type: nextModuleItemType,
+            dueDate: nextModuleItemDueDate?.relativeShortDateOnlyString,
+            url: URL(string: nextModuleItemURL ?? ""),
+            estimatedTime: nextModuleItemEstimatedTime?.toISO8601Duration
         )
-        .getEntities(ignoreCache: true)
-        .replaceError(with: [])
-        .compactMap { $0.first }
-        .map { HModuleItem(from: $0) }
-        .map { [courseID] item in
-            let moduleItem = LearningObjectCard(
-                moduleTitle: item.moduleName ?? "",
-                learningObjectName: item.title,
-                type: item.type?.label,
-                dueDate: item.dueAt?.relativeShortDateOnlyString,
-                url: item.htmlURL,
-                estimatedTime: item.estimatedDurationFormatted
-            )
-
-            return DashboardCourse(
+        return Just(
+            DashboardCourse(
                 name: name,
                 progress: progress,
                 courseId: courseID,
+                state: state,
+                enrollmentID: enrollmentID,
                 learningObjectCardViewModel: moduleItem
             )
-        }
+        )
         .eraseToAnyPublisher()
     }
 

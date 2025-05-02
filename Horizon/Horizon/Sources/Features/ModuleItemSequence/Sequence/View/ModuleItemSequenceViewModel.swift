@@ -120,6 +120,14 @@ final class ModuleItemSequenceViewModel {
                 self?.moduleItem = moduleItem
             }
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .moduleItemRequirementCompleted,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.refershModuleItem()
+        }
     }
 
     // MARK: - Input Functions
@@ -132,7 +140,7 @@ final class ModuleItemSequenceViewModel {
         guard let course else {
             return
         }
-
+        assignmentAttemptCount = nil
         let viewController = CourseProgressAssembly.makeView(
             course: course,
             currentModuleItem: moduleItem
@@ -154,7 +162,10 @@ final class ModuleItemSequenceViewModel {
         onTapAssignmentOptions.send()
     }
 
-    private func fetchModuleItemSequence(assetId: String) {
+    private func fetchModuleItemSequence(
+        assetId: String,
+        ignoreCache: Bool = false
+    ) {
         isLoaderVisible = true
         moduleItemInteractor.fetchModuleItems(
             assetId: assetId,
@@ -174,7 +185,10 @@ final class ModuleItemSequenceViewModel {
     }
 
     private func navigateToNotebook(viewController: WeakViewController) {
-        router.route(to: "/notebook?courseId=\(self.courseID)&moduleId=\(self.moduleItem?.id ?? "")", from: viewController)
+        guard case .page(let pageUrl) = moduleItem?.type else {
+            return
+        }
+        router.route(to: "/notebook?courseID=\(self.courseID)&pageURL=\(pageUrl)", from: viewController)
     }
 
     private func navigateToTutor(viewController: WeakViewController) {
@@ -269,7 +283,10 @@ final class ModuleItemSequenceViewModel {
     }
 
     func retry() {
-        fetchModuleItemSequence(assetId: moduleItem?.id ?? assetID)
+        fetchModuleItemSequence(
+            assetId: moduleItem?.id ?? assetID,
+            ignoreCache: true
+        )
     }
 
     func goNext() {
@@ -294,5 +311,16 @@ final class ModuleItemSequenceViewModel {
             return
         }
         fetchModuleItemSequence(assetId: itemID)
+    }
+
+    private func refershModuleItem() {
+        guard let next = sequence?.next else { return }
+        moduleItemInteractor.fetchModuleItems(
+            assetId: next.id,
+            moduleID: next.moduleID,
+            itemID: next.id
+        )
+        .sink()
+        .store(in: &subscriptions)
     }
 }

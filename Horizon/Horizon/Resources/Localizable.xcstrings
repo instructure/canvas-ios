@@ -33,6 +33,9 @@
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
+    "Accept" : {
+
+    },
     "Account" : {
 
     },
@@ -498,6 +501,9 @@
     "Locked Content" : {
 
     },
+    "Log In" : {
+
+    },
     "Logout" : {
 
     },
@@ -651,9 +657,6 @@
     "Paris (+01:00/+02:00)" : {
 
     },
-    "Password" : {
-
-    },
     "Perth (+08:00)" : {
 
     },
@@ -780,6 +783,9 @@
     "Solomon Is. (+11:00/+11:00)" : {
 
     },
+    "Something went wrong" : {
+
+    },
     "Sort By" : {
 
     },
@@ -846,10 +852,16 @@
     "Text" : {
 
     },
+    "There are no scored activities in this course." : {
+
+    },
     "There was an error. please try again." : {
 
     },
     "This assignment allows multiple attempts. Once you've made a submission, you can view it here." : {
+
+    },
+    "This feature isn't available on iOS yet. To access %@, please log in using a web browser." : {
 
     },
     "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
@@ -954,10 +966,16 @@
     "You aren’t currently enrolled in a course." : {
 
     },
+    "You have been invited to join" : {
+
+    },
     "Your Courses" : {
 
     },
     "Your draft was deleted." : {
+
+    },
+    "your inbox" : {
 
     },
     "Your note has been saved" : {
