@@ -309,8 +309,14 @@ public extension URL {
             return nil
         }
         var newComponents = components
-        newComponents.host?.replace("pd.instructure.com", with: "pd.canvasforcareer.com")
-        newComponents.host?.replace("horizon.cd.instructure.com", with: "dev.cd.canvashorizon.com")
+        newComponents.host = newComponents.host?.replaceHostWithCanvasForCareer()
         return newComponents.url
+    }
+}
+
+public extension String {
+    func replaceHostWithCanvasForCareer() -> String {
+        replacing("pd.instructure.com", with: "pd.canvasforcareer.com")
+            .replacing("horizon.cd.instructure.com", with: "dev.cd.canvashorizon.com")
     }
 }
