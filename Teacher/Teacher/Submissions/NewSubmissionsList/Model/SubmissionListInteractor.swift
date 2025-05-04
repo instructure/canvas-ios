@@ -24,7 +24,6 @@ public protocol SubmissionListInteractor {
 
     var submissions: CurrentValueSubject<[Submission], Never> { get }
     var assignment: CurrentValueSubject<Assignment?, Never> { get }
-    var course: CurrentValueSubject<Course?, Never> { get }
 
     var context: Context { get }
     var assignmentID: String { get }

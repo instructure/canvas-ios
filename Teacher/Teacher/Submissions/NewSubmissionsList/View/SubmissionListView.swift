@@ -42,7 +42,7 @@ struct SubmissionListView: View {
         List {
 
             Section {
-                HeaderView(courseName: viewModel.course?.name ?? "")
+                HeaderView(courseName: viewModel.assignment?.name ?? "")
             }
 
             Section {
@@ -70,6 +70,7 @@ struct SubmissionListView: View {
         .listSectionSpacing(0)
         .listSectionSeparator(.hidden)
         .listStyle(.plain)
+        .background(Color.backgroundLight)
         .navigationTitle(Text("Submissions", bundle: .teacher))
         .toolbar {
 
@@ -124,7 +125,7 @@ private extension SubmissionListView {
             SeparatedRow {
                 HStack(spacing: 9) {
                     Image.searchLine.size(uiScale.iconScale * 16).foregroundStyle(Color.textDark)
-                    TextField("Search Submissions", text: .constant(""), prompt: Text("Search"))
+                    TextField("Search Submissions", text: $viewModel.searchText, prompt: Text("Search"))
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .font(.regular14)

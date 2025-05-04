@@ -31,7 +31,8 @@ class SubmissionListViewModel: ObservableObject {
 
     @Published private(set) var state: ViewState = .initialLoading
 
-    @Published var course: Course?
+    @Published var searchText: String = ""
+
     @Published var assignment: Assignment?
     @Published var submissions: [Submission] = []
     @Published var sections: [SubmissionSection] = []
@@ -42,16 +43,20 @@ class SubmissionListViewModel: ObservableObject {
     init(interactor: SubmissionListInteractor) {
         self.interactor = interactor
 
-        interactor.course.assign(to: &$course)
         interactor.assignment.assign(to: &$assignment)
         interactor.submissions.assign(to: &$submissions)
 
         interactor
             .submissions
-            .map({ list in
-                let submitted = list.filter { $0.workflowState == .submitted }
-                let unsubmitted = list.filter { $0.workflowState == .unsubmitted }
-                let graded = list.filter { $0.isGraded }
+            .combineLatest($searchText.debounce(for: 0.5, scheduler: DispatchQueue.main))
+            .map({ (list, searchText) in
+
+                let searchTerm = searchText.lowercased()
+                let filtered = searchTerm.isNotEmpty ? list.filter { $0.user?.nameContains(searchTerm) ?? false } : list
+
+                let submitted = filtered.filter { $0.workflowState == .submitted }
+                let unsubmitted = filtered.filter { $0.workflowState == .unsubmitted }
+                let graded = filtered.filter { $0.isGraded }
 
                 return [
                     SubmissionSection(title: "Submitted", submissions: submitted),
@@ -59,6 +64,7 @@ class SubmissionListViewModel: ObservableObject {
                     SubmissionSection(title: "Graded", submissions: graded)
                 ]
                 .filter({ $0.rows.isNotEmpty })
+
             })
             .assign(to: &$sections)
 
@@ -103,5 +109,13 @@ struct SubmissionSection: Identifiable {
             .enumerated()
             .map({ Row(index: $0.offset, submission: $0.element) })
         self.isCollapsed = isCollapsed
+    }
+}
+
+extension User {
+
+    func nameContains(_ text: String) -> Bool {
+        let props = [name, shortName, sortableName].map { $0.lowercased() }
+        return props.contains(where: { $0.contains(text.lowercased()) })
     }
 }
