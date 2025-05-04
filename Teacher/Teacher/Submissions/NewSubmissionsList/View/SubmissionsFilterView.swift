@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-enum SubmissionFilter: CaseIterable {
+enum SubmissionFilterMode: CaseIterable {
     case all
     case needsGrading
     case notSubmitted
@@ -37,13 +37,36 @@ enum SubmissionFilter: CaseIterable {
             String(localized: "Graded", bundle: .teacher)
         }
     }
+
+    var filters: [GetSubmissions.Filter] {
+        switch self {
+        case .all:
+            return []
+        case .needsGrading:
+            return [.needsGrading]
+        case .notSubmitted:
+            return [.notSubmitted]
+        case .graded:
+            return [.graded]
+        }
+    }
 }
 
 struct SubmissionsFilterView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @State private var selectedFilter: SubmissionFilter? = .all
+    @ObservedObject private var viewModel: SubmissionListViewModel
+    @State private var selectedFilterMode: SubmissionFilterMode? = .all
+
+    init(viewModel: SubmissionListViewModel) {
+         self.viewModel = viewModel
+        self._selectedFilterMode = State(initialValue: viewModel.filterMode)
+    }
+
+    private var color: Color {
+        Color(uiColor: viewModel.color ?? UIColor.gray)
+    }
 
     var body: some View {
         NavigationStack {
@@ -58,12 +81,12 @@ struct SubmissionsFilterView: View {
                     Divider()
                 }
 
-                ForEach(SubmissionFilter.allCases, id: \.self) { filter in
+                ForEach(SubmissionFilterMode.allCases, id: \.self) { mode in
                     InstUI.RadioButtonCell(
-                        title: filter.title,
-                        value: filter,
-                        selectedValue: $selectedFilter,
-                        color: .green
+                        title: mode.title,
+                        value: mode,
+                        selectedValue: $selectedFilterMode,
+                        color: color
                     )
                 }
 
@@ -71,13 +94,16 @@ struct SubmissionsFilterView: View {
             }
             .background(Color.backgroundLightest)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitleView(title: "Submission list Preferences", subtitle: "Some course")
+            .navigationBarTitleView(title: "Submission list Preferences", subtitle: viewModel.assignment?.name)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button(action: { dismiss() }, label: {
+                    Button(action: {
+                        viewModel.filterMode = selectedFilterMode ?? .all
+                        dismiss()
+                    }, label: {
                         Text("Done", bundle: .teacher)
                             .font(.semibold16)
-                            .foregroundColor(Color.pink)
+                            .foregroundColor(color)
                     })
                 }
 
@@ -85,12 +111,10 @@ struct SubmissionsFilterView: View {
                     Button(action: { dismiss() }, label: {
                         Text("Cancel", bundle: .teacher)
                             .font(.regular16)
-                            .foregroundColor(Color.pink)
-                        //.padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 16))
+                            .foregroundColor(color)
                     })
                 }
             }
         }
     }
 }
-

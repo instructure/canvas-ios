@@ -26,7 +26,7 @@ public enum SubmissionListAssembly {
                                           assignmentID: String,
                                           filter: [GetSubmissions.Filter]) -> UIViewController {
         let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, env: env)
-        let viewModel = SubmissionListViewModel(interactor: interactor)
+        let viewModel = SubmissionListViewModel(interactor: interactor, env: env)
         let view = SubmissionListView(viewModel: viewModel)
         return CoreHostingController(view)
     }

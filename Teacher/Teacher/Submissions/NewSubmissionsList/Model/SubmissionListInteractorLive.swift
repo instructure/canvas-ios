@@ -23,37 +23,52 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     var submissions = CurrentValueSubject<[Core.Submission], Never>([])
     var assignment = CurrentValueSubject<Assignment?, Never>(nil)
+    var course = CurrentValueSubject<Course?, Never>(nil)
+
+    private var filtersSubject = CurrentValueSubject<[GetSubmissions.Filter], Never>([])
 
     let context: Context
     let assignmentID: String
     let env: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
+    private var submissionsSubscription: AnyCancellable?
 
-    private let assignmentStore: ReactiveStore<GetAssignment>
-    private let submissionsUseCase: GetSubmissions
-    private let submissionsStore: ReactiveStore<GetSubmissions>
+    private var courseStore: ReactiveStore<GetCourse>
+    private var assignmentStore: ReactiveStore<GetAssignment>
+    private var submissionsStore: ReactiveStore<GetSubmissions>?
 
     init(context: Context, assignmentID: String, env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
         self.env = env
 
-        self.assignmentStore = ReactiveStore(
+        courseStore = ReactiveStore(
+            useCase: GetCourse(courseID: context.id),
+            environment: env
+        )
+
+        assignmentStore = ReactiveStore(
             useCase: GetAssignment(courseID: context.id, assignmentID: assignmentID),
             environment: env
         )
 
-        self.submissionsUseCase = GetSubmissions(context: context, assignmentID: assignmentID)
-        self.submissionsStore = ReactiveStore(
-            useCase: submissionsUseCase,
-            environment: env
-        )
+        filtersSubject
+            .sink { [weak self] filters in
+                self?.setupSubmissionsStore(filters)
+            }
+            .store(in: &subscriptions)
 
         setupBindings()
     }
 
     private func setupBindings() {
+        courseStore
+            .getEntities(ignoreCache: true)
+            .map { $0.first }
+            .replaceError(with: nil)
+            .subscribe(course)
+            .store(in: &subscriptions)
 
         assignmentStore
             .getEntities(ignoreCache: true)
@@ -61,24 +76,35 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .replaceError(with: nil)
             .subscribe(assignment)
             .store(in: &subscriptions)
+    }
 
-        submissionsStore
+    private func setupSubmissionsStore(_ filters: [GetSubmissions.Filter] = []) {
+        submissionsStore = ReactiveStore(
+            useCase: GetSubmissions(context: context, assignmentID: assignmentID, filter: filters),
+            environment: env
+        )
+
+        submissionsSubscription?.cancel()
+        submissionsSubscription = submissionsStore?
             .getEntities(ignoreCache: true)
             .replaceError(with: [])
-            .subscribe(submissions)
-            .store(in: &subscriptions)
+            .sink { [weak self] list in
+                self?.submissions.send(list)
+            }
     }
 
     func refresh() -> AnyPublisher<Void, Never> {
-        Publishers.Last(upstream:
-            assignmentStore
-                .forceRefresh()
-                .merge(with: submissionsStore.forceRefresh())
+        return Publishers.Last(
+            upstream:
+                Publishers.Merge(
+                    assignmentStore.forceRefresh(),
+                    submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
+                )
         )
         .eraseToAnyPublisher()
     }
 
-    func applyFilter(_ filter: [Core.GetSubmissions.Filter]) {
-        //
+    func applyFilters(_ filters: [GetSubmissions.Filter]) {
+        filtersSubject.send(filters)
     }
 }

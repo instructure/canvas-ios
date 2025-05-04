@@ -21,16 +21,18 @@ import Core
 
 struct SubmissionListView: View {
 
-    @ObservedObject private var viewModel: SubmissionListViewModel
+    @Environment(\.viewController) private var controller
+
+    @StateObject private var viewModel: SubmissionListViewModel
     @State private var isFilterSelectorPresented: Bool = false
 
     init(viewModel: SubmissionListViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
         switch viewModel.state {
-        case .initialLoading, .empty:
+        case .loading, .empty:
             ProgressView()
         case .data:
             listView
@@ -55,10 +57,17 @@ struct SubmissionListView: View {
                     if !section.isCollapsed {
                         ForEach(section.rows) { row in
                             SeparatedRow {
-                                SubmissionListRowView(
-                                    row: row.index,
-                                    submission: row.submission,
-                                    assignment: viewModel.assignment
+                                Button(
+                                    action: {
+                                        viewModel.didTapSubmissionRow(row.submission, from: controller)
+                                    },
+                                    label: {
+                                        SubmissionListRowView(
+                                            row: row.index,
+                                            submission: row.submission,
+                                            assignment: viewModel.assignment
+                                        )
+                                    }
                                 )
                             }
                         }
@@ -73,6 +82,7 @@ struct SubmissionListView: View {
         .listStyle(.plain)
         .background(Color.backgroundLight)
         .navigationTitle(Text("Submissions", bundle: .teacher))
+        .navigationBarStyle(.color(viewModel.color))
         .toolbar {
 
             ToolbarItemGroup(placement: .topBarTrailing) {
@@ -85,14 +95,14 @@ struct SubmissionListView: View {
                 .tint(Color.textLightest)
 
                 Button {
-
+                    viewModel.openPostPolicy(from: controller)
                 } label: {
                     Image.eyeLine
                 }
                 .tint(Color.textLightest)
 
                 Button {
-
+                    viewModel.messageUsers(from: controller)
                 } label: {
                     Image.emailLine
                 }
@@ -103,7 +113,7 @@ struct SubmissionListView: View {
             await viewModel.refresh()
         })
         .sheet(isPresented: $isFilterSelectorPresented) {
-            SubmissionsFilterView()
+            SubmissionsFilterView(viewModel: viewModel)
         }
     }
 }
