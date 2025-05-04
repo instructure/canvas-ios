@@ -32,9 +32,9 @@ struct SubmissionListView: View {
 
     var body: some View {
         switch viewModel.state {
-        case .loading, .empty:
+        case .loading:
             ProgressView()
-        case .data:
+        case .data, .empty:
             listView
         case .error:
             Text("Error loading data")
@@ -48,33 +48,43 @@ struct SubmissionListView: View {
                 HeaderView(courseName: viewModel.assignment?.name ?? "")
             }
 
-            Section {
-                SearchView(viewModel: viewModel)
-            }
-
-            ForEach($viewModel.sections) { $section in
+            if viewModel.state == .data {
                 Section {
-                    if !section.isCollapsed {
-                        ForEach(section.rows) { row in
-                            SeparatedRow {
-                                Button(
-                                    action: {
-                                        viewModel.didTapSubmissionRow(row.submission, from: controller)
-                                    },
-                                    label: {
-                                        SubmissionListRowView(
-                                            row: row.index,
-                                            submission: row.submission,
-                                            assignment: viewModel.assignment
-                                        )
-                                    }
-                                )
+                    SearchView(viewModel: viewModel)
+                }
+
+                ForEach($viewModel.sections) { $section in
+                    Section {
+                        if !section.isCollapsed {
+                            ForEach(section.rows) { row in
+                                SeparatedRow {
+                                    Button(
+                                        action: {
+                                            viewModel.didTapSubmissionRow(row.submission, from: controller)
+                                        },
+                                        label: {
+                                            SubmissionListRowView(
+                                                row: row.index,
+                                                submission: row.submission,
+                                                assignment: viewModel.assignment
+                                            )
+                                        }
+                                    )
+                                }
                             }
                         }
+                    } header: {
+                        SectionHeaderView(title: section.title, isCollapsed: $section.isCollapsed)
                     }
-                } header: {
-                    SectionHeaderView(title: section.title, isCollapsed: $section.isCollapsed)
                 }
+            } else {
+                Text("No data!")
+                    .font(.regular14)
+                    .foregroundStyle(Color.textDark)
+                    .padding(.vertical, 30)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .listRowBackground(Color.backgroundLight)
+                    .listRowSeparator(.hidden)
             }
         }
         .listSectionSpacing(0)
