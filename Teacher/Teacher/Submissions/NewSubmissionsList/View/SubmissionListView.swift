@@ -22,6 +22,7 @@ import Core
 struct SubmissionListView: View {
 
     @ObservedObject private var viewModel: SubmissionListViewModel
+    @State private var isFilterSelectorPresented: Bool = false
 
     init(viewModel: SubmissionListViewModel) {
         self.viewModel = viewModel
@@ -77,6 +78,13 @@ struct SubmissionListView: View {
             ToolbarItemGroup(placement: .topBarTrailing) {
 
                 Button {
+                    isFilterSelectorPresented = true
+                } label: {
+                    Image.filterLine
+                }
+                .tint(Color.textLightest)
+
+                Button {
 
                 } label: {
                     Image.eyeLine
@@ -94,6 +102,9 @@ struct SubmissionListView: View {
         .refreshable(action: {
             await viewModel.refresh()
         })
+        .sheet(isPresented: $isFilterSelectorPresented) {
+            SubmissionsFilterView()
+        }
     }
 }
 
