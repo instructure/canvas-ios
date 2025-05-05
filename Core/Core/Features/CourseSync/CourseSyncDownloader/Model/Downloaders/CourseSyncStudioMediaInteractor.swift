@@ -124,7 +124,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             .offlineStudioDirectory(for: courseSyncID)
 
         let studioApiPublisher = studioAuthInteractor
-            .makeStudioAPI(env: envResolver.targetEnvironment(for: courseSyncID))
+            .makeStudioAPI(env: envResolver.targetEnvironment(for: courseSyncID), courseId: courseSyncID.value)
             .mapError { $0 as Error }
 
         let iframesDiscoveryPublisher = studioIFrameDiscoveryInteractor
@@ -136,7 +136,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             .flatMap { [metadataDownloadInteractor] (api, iframes) in
 
                 return metadataDownloadInteractor
-                    .fetchStudioMediaItems(api: api, courseID: courseSyncID.value)
+                    .fetchStudioMediaItems(api: api, courseID: courseSyncID.localID)
                     .map { mediaItems in
                         return CourseMediaData(
                             studioDirectory: studioDirectory,
