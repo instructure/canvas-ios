@@ -94,7 +94,10 @@ struct SubmissionsFilterView: View {
             }
             .background(Color.backgroundLightest)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitleView(title: "Submission list Preferences", subtitle: viewModel.assignment?.name)
+            .navigationBarTitleView(
+                title: "Submission list Preferences",
+                subtitle: viewModel.assignment?.name
+            )
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button(action: {

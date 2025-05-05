@@ -20,8 +20,7 @@ import SwiftUI
 import Core
 
 struct SubmissionListRowView: View {
-    let row: Int
-    let submission: Submission
+    let row: SubmissionSection.Row
     let assignment: Assignment?
 
     var body: some View {
@@ -46,8 +45,17 @@ struct SubmissionListRowView: View {
         .padding(.horizontal, 15)
     }
 
+    private var submission: Submission {
+        row.submission
+    }
+
     @ViewBuilder
     private var avatarView: some View {
+        let _ = print(assignment?.isFault)
+        let _ = print(submission.isFault)
+        let _ = print(submission)
+        let _ = print("---")
+
         if assignment?.anonymizeStudents != false {
             Avatar.Anonymous(isGroup: submission.groupID != nil)
         } else if let groupName = submission.groupName {
@@ -63,9 +71,9 @@ struct SubmissionListRowView: View {
     private var nameLabel: some View {
         let nameText: Text = if assignment?.anonymizeStudents != false {
             if submission.groupID != nil {
-                Text("Group \(row)", bundle: .teacher)
+                Text("Group \(row.index)", bundle: .teacher)
             } else {
-                Text("Student \(row)", bundle: .teacher)
+                Text("Student \(row.index)", bundle: .teacher)
             }
         } else {
             Text(
@@ -107,11 +115,7 @@ struct SubmissionListRowView: View {
     }
 }
 
-private extension Submission {
-    var redesignStatus: SubmissionStatus {
-        status(gradedChecked: true)
-    }
-}
+// MARK: - Submission Status for Redesign List
 
 private extension SubmissionStatus {
     struct RedesignAppearance {
@@ -123,7 +127,13 @@ private extension SubmissionStatus {
     }
 }
 
-extension SubmissionStatus.RedesignAppearance {
+private extension Submission {
+    var redesignStatus: SubmissionStatus {
+        status(gradedChecked: true)
+    }
+}
+
+private extension SubmissionStatus.RedesignAppearance {
 
     var color: Color {
         switch submissionStatus {

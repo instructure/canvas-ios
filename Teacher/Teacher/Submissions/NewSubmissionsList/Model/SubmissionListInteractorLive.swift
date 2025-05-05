@@ -67,14 +67,14 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private func setupBindings() {
         courseStore
-            .getEntities(ignoreCache: true)
+            .getEntities()
             .map { $0.first }
             .replaceError(with: nil)
             .subscribe(courseSubject)
             .store(in: &subscriptions)
 
         assignmentStore
-            .getEntities(ignoreCache: true)
+            .getEntities()
             .map { $0.first }
             .replaceError(with: nil)
             .subscribe(assignmentSubject)
@@ -89,7 +89,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
         submissionsSubscription?.cancel()
         submissionsSubscription = submissionsStore?
-            .getEntities(ignoreCache: true)
+            .getEntities()
             .replaceError(with: [])
             .sink { [weak self] list in
                 self?.submissionsSubject.send(list)

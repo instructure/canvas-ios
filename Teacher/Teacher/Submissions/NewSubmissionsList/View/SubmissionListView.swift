@@ -31,14 +31,18 @@ struct SubmissionListView: View {
     }
 
     var body: some View {
-        switch viewModel.state {
-        case .loading:
-            ProgressView()
-        case .data, .empty:
-            listView
-        case .error:
-            Text("Error loading data")
+        Group {
+            switch viewModel.state {
+            case .loading:
+                ProgressView()
+            case .data, .empty:
+                listView
+            case .error:
+                Text("Error loading data")
+            }
         }
+        .navigationTitle(Text("Submissions", bundle: .teacher))
+        .navigationBarStyle(.color(viewModel.course?.color))
     }
 
     private var listView: some View {
@@ -64,8 +68,7 @@ struct SubmissionListView: View {
                                         },
                                         label: {
                                             SubmissionListRowView(
-                                                row: row.index,
-                                                submission: row.submission,
+                                                row: row,
                                                 assignment: viewModel.assignment
                                             )
                                         }
@@ -91,8 +94,9 @@ struct SubmissionListView: View {
         .listSectionSeparator(.hidden)
         .listStyle(.plain)
         .background(Color.backgroundLight)
-        .navigationTitle(Text("Submissions", bundle: .teacher))
-        .navigationBarStyle(.color(viewModel.course?.color))
+        .refreshable {
+            await viewModel.refresh()
+        }
         .toolbar {
 
             ToolbarItemGroup(placement: .topBarTrailing) {
@@ -119,9 +123,6 @@ struct SubmissionListView: View {
                 .tint(Color.textLightest)
             }
         }
-        .refreshable(action: {
-            await viewModel.refresh()
-        })
         .sheet(isPresented: $isFilterSelectorPresented) {
             SubmissionsFilterView(viewModel: viewModel)
         }

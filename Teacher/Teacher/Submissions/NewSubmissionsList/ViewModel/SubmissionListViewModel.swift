@@ -55,10 +55,9 @@ class SubmissionListViewModel: ObservableObject {
         interactor.course.assign(to: &$course)
 
         Publishers.CombineLatest(
-            interactor.submissions,
+            interactor.submissions.receive(on: DispatchQueue.main),
             $searchText.debounce(for: 0.5, scheduler: DispatchQueue.main),
         )
-        .receive(on: DispatchQueue.main)
         .map({ (list, searchText) in
 
             let searchTerm = searchText.lowercased()
