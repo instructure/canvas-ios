@@ -29,16 +29,15 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.verticalSizeClass) private var verticalSizeClass
-    //    @State private var toggleViewIsVisible = true
+    @State private var toggleViewIsVisible = true
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Private properties
     @State private var offsets = CGSize.zero
     @State private var isScoreEditorPresented = false
-    @ScaledMetric private var UIScale: CGFloat = 1
 
     @State private var headerHeight: CGFloat?
-    @State private var collapsableHeaderHeight: CGFloat?
+    @State private var headerOriginalHeight: CGFloat?
     @State private var scrollOffset: CGFloat?
 
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
@@ -63,6 +62,31 @@ public struct GradeListView: View, ScreenViewTrackable {
         GeometryReader { geometry in
             ZStack {
                 ZStack(alignment: .top) {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: .zero) {
+                            Color.clear.frame(height: 0)
+                                .bindTopPosition(
+                                    id: "scrollPosition",
+                                    coordinateSpaceName: "scroll",
+                                    to: $scrollOffset
+                                )
+
+                            Color.clear.frame(height: 0)
+                                .padding(.top, headerHeight)
+
+                            contentView(geometry: geometry)
+                        }
+                    }
+                    .background(Color.backgroundLightest)
+                    .accessibilityHidden(isScoreEditorPresented)
+                    .refreshable {
+                        await withCheckedContinuation { continuation in
+                            viewModel.pullToRefreshDidTrigger.accept {
+                                continuation.resume()
+                            }
+                        }
+                    }
+
                     switch viewModel.state {
                     case .data, .empty:
                         courseSummaryView(viewModel.totalGradeText)
@@ -74,45 +98,20 @@ public struct GradeListView: View, ScreenViewTrackable {
                     default:
                         SwiftUI.EmptyView()
                     }
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: .zero) {
-                            Color.clear.frame(height: /*headerHeight ??*/ 0)
-                                .bindTopPosition(
-                                    id: "scrollPosition",
-                                    coordinateSpaceName: "scroll",
-                                    to: $scrollOffset
-                                )
-
-                            //                            Color.clear.frame(height: 0)
-                            //                                .padding(.top, headerHeight ?? 0)
-
-                            contentView(geometry: geometry)
-                        }
-                    }
-                    .coordinateSpace(name: "scroll")
-                    .background(Color.backgroundLightest)
-                    .accessibilityHidden(isScoreEditorPresented)
-                    .refreshable {
-                        await withCheckedContinuation { continuation in
-                            viewModel.pullToRefreshDidTrigger.accept {
-                                continuation.resume()
-                            }
-                        }
-                    }
                 }
 
                 whatIfScoreEditorView()
             }
-            //            .animation(.smooth, value: isScoreEditorPresented)
+//            .animation(.smooth, value: isScoreEditorPresented)
         }
-        //        .safeAreaInset(edge: .top, spacing: 0) {
-        //            switch viewModel.state {
-        //            case .data, .empty:
-        //                courseSummaryView(viewModel.totalGradeText)
-        //            default:
-        //                SwiftUI.EmptyView()
-        //            }
-        //        }
+//        .safeAreaInset(edge: .top, spacing: 0) {
+//            switch viewModel.state {
+//            case .data, .empty:
+//                courseSummaryView(viewModel.totalGradeText)
+//            default:
+//                SwiftUI.EmptyView()
+//            }
+//        }
         .background(Color.backgroundLightest)
         .navigationBarTitleView(
             title: String(localized: "Grades", bundle: .core),
@@ -233,17 +232,17 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func courseSummaryView(_ totalGrade: String?) -> some View {
-        //        let hasBottomPadding = (totalGrade == nil || !toggleViewIsVisible)
+        let hasBottomPadding = (totalGrade == nil || !toggleViewIsVisible)
         let height: CGFloat? = {
-            guard let collapsableHeaderHeight else {
+            guard let headerOriginalHeight else {
                 return nil
             }
 
             if scrollOffset ?? 0 > 0 {
-                return collapsableHeaderHeight
+                return headerOriginalHeight
             }
 
-            return max(0, collapsableHeaderHeight + (scrollOffset ?? 0))
+            return max(0, headerOriginalHeight + (scrollOffset ?? 0))
         }()
 
         VStack(spacing: 0) {
@@ -255,31 +254,30 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
             }
             .padding([.horizontal, .top], 16)
-            .padding(.bottom, 10)
-            //            .padding(.bottom, height != headerHeight ? 10 : 0)
+            .padding(.bottom, 5)
+            .padding(.bottom, hasBottomPadding ? 10 : 0)
 
             if totalGrade != nil {
-                //                if toggleViewIsVisible {
-                togglesView()
-                //                        .frame(minHeight: 51)
-                //                    .padding(.top, 5)
-                    .padding(.horizontal, 16)
-                    .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
-                        if collapsableHeaderHeight == nil {
-                            collapsableHeaderHeight = frame.height
+//                if toggleViewIsVisible {
+                    togglesView()
+                        .frame(minHeight: 51)
+                        .padding(.horizontal, 16)
+                        .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
+                            if headerOriginalHeight == nil {
+                                self.headerHeight = frame.height
+                            }
                         }
-                    }
-                    .frame(maxHeight: height, alignment: .bottom)
-                    .clipped()
-                //                        .transition(.move(edge: .top).combined(with: .opacity))
-                //                        .zIndex(-1)
-                //                }
+                        .frame(maxHeight: height, alignment: .bottom)
+                        .clipped()
+//                        .transition(.move(edge: .top).combined(with: .opacity))
+//                        .zIndex(-1)
+//                }
             }
             InstUI.Divider()
         }
         .background(Color.backgroundLight)
-        //        .fixedSize(horizontal: false, vertical: true)
-        //        .animation(.linear, value: toggleViewIsVisible)
+        .fixedSize(horizontal: false, vertical: true)
+        .animation(.linear, value: toggleViewIsVisible)
     }
 
     @ViewBuilder
@@ -309,7 +307,7 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func totalLabelText() -> some View {
-        let isShowGradeAssignment = ((collapsableHeaderHeight ?? 1) + (scrollOffset ?? 0) < 1) &&
+        let isShowGradeAssignment = !toggleViewIsVisible &&
         viewModel.baseOnGradedAssignment &&
         viewModel.totalGradeText != nil
 
@@ -369,7 +367,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         userID: String
     ) -> some View {
 
-        //        topView // For reading frame
+        topView // For reading frame
 
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
@@ -407,14 +405,14 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     }
 
-    //    /// For reading frames while scrolling top and down
-    //    private var topView: some View {
-    //        Color.clear
-    //            .frame(height: 0)
-    //            .readingFrame { frame in
-    //                toggleViewIsVisible = frame.minY > 0
-    //            }
-    //    }
+    /// For reading frames while scrolling top and down
+    private var topView: some View {
+        Color.clear
+            .frame(height: 0)
+            .readingFrame { frame in
+                toggleViewIsVisible = frame.minY > 0
+            }
+    }
 
     @ViewBuilder
     private func listSectionView(title: String?) -> some View {
@@ -474,11 +472,71 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     private func revertWhatIfScoreSwipeButton(id: String) -> [SwipeModel] {
         let slot = SwipeModel(id: id,
-                              image: { Image(uiImage: .replyLine)},
-                              action: { viewModel.isShowingRevertDialog = true },
-                              style: .init(background: Color.backgroundDark))
-        return viewModel.isWhatIfScoreModeOn ? [slot] : []
+                        image: { Image(uiImage: .replyLine)},
+                        action: { viewModel.isShowingRevertDialog = true },
+                        style: .init(background: Color.backgroundDark))
+       return viewModel.isWhatIfScoreModeOn ? [slot] : []
     }
+}
+
+struct CourseSummaryView: View {
+    @Binding var isBasedOnGradedOn: Bool
+    @Binding var isWhatIfScoreModeOn: Bool
+    @State var originalHeight: CGFloat?
+
+    let isWhatIfScoreFlagEnabled: Bool
+    let scrollOffset: CGFloat
+    let isParentApp: Bool
+    let totalGrade: String?
+
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack(alignment: .center) {
+//                gradeDetailsView(totalGrade)
+                if isParentApp {
+//                    filterButton
+//                        .paddingStyle(.leading, .standard)
+                }
+            }
+            .padding([.horizontal, .top], 16)
+            .padding(.bottom, 5)
+//            .padding(.bottom, hasBottomPadding ? 10 : 0)
+
+            if totalGrade != nil {
+                VStack(spacing: 0) {
+                    InstUI.Toggle(isOn: $isBasedOnGradedOn) {
+                        Text("Based on graded assignments", bundle: .core)
+                            .foregroundStyle(Color.textDarkest)
+                            .font(.regular16)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .frame(minHeight: 51)
+                    .padding(.horizontal, 16)
+                    .accessibilityIdentifier("BasedOnGradedToggle")
+
+                    if isWhatIfScoreFlagEnabled {
+                        Divider()
+
+                        InstUI.Toggle(isOn: $isWhatIfScoreModeOn) {
+                            Text("Show What-if Score", bundle: .core)
+                                .foregroundStyle(Color.textDarkest)
+                                .font(.regular16)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .frame(minHeight: 51)
+                        .padding(.horizontal, 16)
+                    }
+                }
+            }
+            InstUI.Divider()
+        }
+        .background(Color.backgroundLight)
+        .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+#Preview {
+
 }
 
 // This is workaround, because .toolbar doesn't allow optional `ToolBarContent`.

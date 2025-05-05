@@ -28,14 +28,8 @@ public struct GradeListTestView: View {
     }
 
     public var body: some View {
-        VStack(/*alignment: .top*/spacing: 0) {
-            TogglesView(scrollOffset: scrollOffset ?? 0)
-                .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
-                    if headerHeight == nil || newFrame.height > headerHeight ?? 0 {
-                        self.headerHeight = newFrame.height
-                    }
-                }
-            ScrollView(showsIndicators: false) {
+        ZStack(alignment: .top) {
+            ScrollView {
                 VStack(spacing: .zero) {
                     Color.clear.frame(height: 0)
                         .bindTopPosition(
@@ -44,6 +38,9 @@ public struct GradeListTestView: View {
                             to: $scrollOffset
                         )
 
+                    Color.clear.frame(height: 0)
+                        .padding(.top, headerHeight)
+
                     ForEach([Color.red, .green, .blue, .yellow, .purple], id: \.hexString) { color in
                         color
                             .frame(height: 200)
@@ -51,6 +48,13 @@ public struct GradeListTestView: View {
                 }
             }
             .coordinateSpace(name: "scroll")
+
+            TogglesView(scrollOffset: scrollOffset ?? 0)
+                .onFrameChange(id: "header", coordinateSpace: .local) { newFrame in
+                    if headerHeight == nil || newFrame.height > headerHeight ?? 0 {
+                        self.headerHeight = newFrame.height
+                    }
+                }
         }
     }
 }
@@ -86,27 +90,14 @@ struct TogglesView: View {
 
             Divider()
 
-            VStack(spacing: 0) {
-                InstUI.Toggle(isOn: .constant(false)) {
-                    Text("Show What-if Score", bundle: .core)
-                        .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
-                        .multilineTextAlignment(.leading)
-                }
-                .frame(minHeight: 51)
-                .padding(.horizontal, 16)
-
-                Divider()
-
-                InstUI.Toggle(isOn: .constant(false)) {
-                    Text("Another toggle", bundle: .core)
-                        .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
-                        .multilineTextAlignment(.leading)
-                }
-                .frame(minHeight: 51)
-                .padding(.horizontal, 16)
+            InstUI.Toggle(isOn: .constant(false)) {
+                Text("Show What-if Score", bundle: .core)
+                    .foregroundStyle(Color.textDarkest)
+                    .font(.regular16)
+                    .multilineTextAlignment(.leading)
             }
+            .frame(minHeight: 51)
+            .padding(.horizontal, 16)
             .onFrameChange(id: "collapsableHeader", coordinateSpace: .global) { frame in
                 if originalHeight == nil {
                     self.originalHeight = frame.height
