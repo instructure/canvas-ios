@@ -34,7 +34,7 @@ struct SubmissionListView: View {
         Group {
             switch viewModel.state {
             case .loading:
-                ProgressView()
+                ProgressView().progressViewStyle(.indeterminateCircle())
             case .data, .empty:
                 listView
             case .error:
