@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 import Core
 
@@ -33,7 +34,7 @@ struct AssistFlashCardView: View {
                 .scrollTargetLayout()
             }
             .scrollTargetBehavior(.viewAligned)
-            .contentMargins(.horizontal, 30, for: .scrollContent)
+            .contentMargins(.horizontal, HorizonUI.spaces.space32, for: .scrollContent)
             .scrollPosition(id: $viewModel.currentCardIndex)
         }
         .animation(.smooth, value: viewModel.currentCardIndex)
@@ -50,23 +51,10 @@ struct AssistFlashCardView: View {
 
 extension AssistFlashCardView {
     private var headerView: some View {
-        ZStack(alignment: .trailingLastTextBaseline) {
-            Text("AI Assist", bundle: .horizon)
-                .foregroundStyle(Color.textLightest)
-                .frame(maxWidth: .infinity)
-                .font(.bold20)
-
-            Button {
-                viewModel.dismiss(controller: viewController)
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(.circle)
-            }
+        AssistTitle {
+            viewModel.dismiss(controller: viewController)
         }
-        .paddingStyle(.trailing, .standard)
+        .padding(.horizontal, HorizonUI.spaces.space16)
     }
 
     @ViewBuilder
@@ -78,24 +66,41 @@ extension AssistFlashCardView {
                     height * 0.8
                 }
                 .rotation3DEffect(
-                    .degrees(item.isFlipped  ? 180 : 0),
+                    .degrees(item.isFlipped ? 180 : 0),
                     axis: (x: 0, y: 1, z: 0)
+                )
+                .scaleEffect(
+                    viewModel.currentCardIndex == index ? 1 : 0.8,
+                    anchor: .leading
                 )
                 .onTapGesture {
                     viewModel.makeCardFlipped(at: index)
                 }
                 .animation(.easeInOut, value: item.isFlipped)
-                .scrollTransition(.animated, axis: .horizontal) { content, phase in
-                    content
-                        .opacity(phase.isIdentity ? 1 : 0.75)
-                        .offset(y: phase.isIdentity ? 0 : 32)
-                }
         }
     }
 }
 
 #if DEBUG
 #Preview {
-    AssistFlashCardView(viewModel: .init(router: AppEnvironment.shared.router))
+    AssistFlashCardView(
+        viewModel: .init(
+            flashCards: [
+                .init(
+                    frontContent: "Front Content 1",
+                    backContent: "Back Content 1",
+                ),
+                .init(
+                    frontContent: "Front Content 2",
+                    backContent: "Back Content 2",
+                ),
+                .init(
+                    frontContent: "Front Content 3",
+                    backContent: "Back Content 3",
+                )
+            ],
+            router: AppEnvironment.shared.router
+        )
+    )
 }
 #endif

@@ -16,32 +16,44 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 import Core
 
 struct AssistFlashCardItemView: View {
     let item: AssistFlashCardModel
 
+    var isFlipped: Bool {
+        item.isFlipped
+    }
+
+    var textColor: Color {
+        isFlipped ? HorizonUI.colors.text.body : HorizonUI.colors.text.surfaceColored
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(item.title)
-                .font(.regular16)
+                .foregroundStyle(textColor)
+                .huiTypography(.p1)
             Spacer()
             Text(item.currentContent)
                 .multilineTextAlignment(.leading)
-                .font(.regular20)
+                .foregroundStyle(textColor)
+                .huiTypography(.sh3)
 
             Spacer()
             Text("Tap to flip", bundle: .horizon)
-                .font(.regular12)
+                .huiTypography(.labelSmall)
+                .foregroundStyle(textColor)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .foregroundStyle(item.isFlipped ? Color.textLightest : Color.textDark)
         .rotation3DEffect(.degrees(item.isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
-        .padding(14)
+        .padding(HorizonUI.spaces.space24)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(item.isFlipped ? Color.backgroundLightest.opacity(0.2) : Color.backgroundLightest)
+                .fill(Color.backgroundLightest.opacity(item.isFlipped ? 1.0 : 0.1))
         }
     }
 }

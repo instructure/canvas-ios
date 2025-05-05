@@ -28,6 +28,11 @@ final class AssistFlashCardViewModel {
     private(set) var isNextButtonDisabled = false
     private(set) var isPreviousButtonDisabled = true
     private(set) var flashCards: [AssistFlashCardModel] = []
+    var ofText: String {
+        let currentCardIndex = (currentCardIndex ?? 0) + 1
+        let ofText = String(localized: "of", bundle: .horizon)
+        return "\(currentCardIndex) \(ofText) \(flashCards.count)"
+    }
     var currentCardIndex: Int? = 0 {
         didSet {
             isPreviousButtonDisabled = currentCardIndex == 0
