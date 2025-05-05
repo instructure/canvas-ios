@@ -82,11 +82,11 @@ struct SubmissionListRowView: View {
 
     private var statusLabel: some View {
         HStack(spacing: 2) {
-            submission.status.appearance.icon.size(16)
-            Text(submission.status.text)
+            submission.redesignStatus.appearance.icon.size(16)
+            Text(submission.redesignStatus.text)
         }
         .font(.regular14)
-        .foregroundStyle(submission.status.appearance.color)
+        .foregroundStyle(submission.redesignStatus.appearance.color)
     }
 
     private var statusDivider: some View {
@@ -107,23 +107,31 @@ struct SubmissionListRowView: View {
     }
 }
 
-extension SubmissionStatus {
-    fileprivate struct Appearance {
+private extension Submission {
+    var redesignStatus: SubmissionStatus {
+        status(gradedChecked: true)
+    }
+}
+
+private extension SubmissionStatus {
+    struct RedesignAppearance {
         let submissionStatus: SubmissionStatus
     }
 
-    fileprivate var appearance: Appearance { Appearance(submissionStatus: self) }
+    var appearance: RedesignAppearance {
+        RedesignAppearance(submissionStatus: self)
+    }
 }
 
-extension SubmissionStatus.Appearance {
+extension SubmissionStatus.RedesignAppearance {
 
     var color: Color {
         switch submissionStatus {
-        case .late:
+        case .late, .excused:
             return .textWarning
         case .missing:
             return .textDanger
-        case .submitted:
+        case .submitted, .graded:
             return .textSuccess
         case .notSubmitted:
             return .textDark
@@ -134,8 +142,10 @@ extension SubmissionStatus.Appearance {
         switch submissionStatus {
         case .submitted:
             return .completeLine
+        case .graded, .excused:
+            return .completeSolid
         case .late:
-            return .clockSolid
+            return .clockLine
         case .missing, .notSubmitted:
             return .noSolid
         }

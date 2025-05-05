@@ -65,7 +65,7 @@ struct SubmissionsFilterView: View {
     }
 
     private var color: Color {
-        Color(uiColor: viewModel.color ?? UIColor.gray)
+        Color(uiColor: viewModel.course?.color ?? UIColor.gray)
     }
 
     var body: some View {

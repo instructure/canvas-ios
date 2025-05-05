@@ -21,16 +21,19 @@ import Combine
 
 class SubmissionListInteractorLive: SubmissionListInteractor {
 
-    var submissions = CurrentValueSubject<[Core.Submission], Never>([])
-    var assignment = CurrentValueSubject<Assignment?, Never>(nil)
-    var course = CurrentValueSubject<Course?, Never>(nil)
-
+    private var submissionsSubject = PassthroughSubject<[Submission], Never>()
+    private var assignmentSubject = CurrentValueSubject<Assignment?, Never>(nil)
+    private var courseSubject = CurrentValueSubject<Course?, Never>(nil)
     private var filtersSubject = CurrentValueSubject<[GetSubmissions.Filter], Never>([])
+
+    var submissions: AnyPublisher<[Submission], Never> { submissionsSubject.eraseToAnyPublisher() }
+    var assignment: AnyPublisher<Assignment?, Never> { assignmentSubject.eraseToAnyPublisher() }
+    var course: AnyPublisher<Course?, Never> { courseSubject.eraseToAnyPublisher() }
 
     let context: Context
     let assignmentID: String
-    let env: AppEnvironment
 
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
     private var submissionsSubscription: AnyCancellable?
 
@@ -67,14 +70,14 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .getEntities(ignoreCache: true)
             .map { $0.first }
             .replaceError(with: nil)
-            .subscribe(course)
+            .subscribe(courseSubject)
             .store(in: &subscriptions)
 
         assignmentStore
             .getEntities(ignoreCache: true)
             .map { $0.first }
             .replaceError(with: nil)
-            .subscribe(assignment)
+            .subscribe(assignmentSubject)
             .store(in: &subscriptions)
     }
 
@@ -89,7 +92,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
             .getEntities(ignoreCache: true)
             .replaceError(with: [])
             .sink { [weak self] list in
-                self?.submissions.send(list)
+                self?.submissionsSubject.send(list)
             }
     }
 

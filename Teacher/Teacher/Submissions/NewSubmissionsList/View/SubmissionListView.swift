@@ -92,7 +92,7 @@ struct SubmissionListView: View {
         .listStyle(.plain)
         .background(Color.backgroundLight)
         .navigationTitle(Text("Submissions", bundle: .teacher))
-        .navigationBarStyle(.color(viewModel.color))
+        .navigationBarStyle(.color(viewModel.course?.color))
         .toolbar {
 
             ToolbarItemGroup(placement: .topBarTrailing) {

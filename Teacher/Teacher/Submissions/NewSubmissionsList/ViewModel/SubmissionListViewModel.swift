@@ -35,8 +35,8 @@ class SubmissionListViewModel: ObservableObject {
     @Published var filterMode: SubmissionFilterMode = .all
 
     @Published var assignment: Assignment?
+    @Published var course: Course?
     @Published var sections: [SubmissionSection] = []
-    @Published var color: UIColor?
 
     private let interactor: SubmissionListInteractor
     private let env: AppEnvironment
@@ -45,12 +45,14 @@ class SubmissionListViewModel: ObservableObject {
     init(interactor: SubmissionListInteractor, env: AppEnvironment) {
         self.interactor = interactor
         self.env = env
+        setupBindings()
+    }
 
+    // MARK: Privates
+
+    private func setupBindings() {
         interactor.assignment.assign(to: &$assignment)
-        interactor
-            .course
-            .map { $0?.color }
-            .assign(to: &$color)
+        interactor.course.assign(to: &$course)
 
         Publishers.CombineLatest(
             interactor.submissions,
@@ -88,6 +90,12 @@ class SubmissionListViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private var assignmentRoute: String {
+        "/\(interactor.context.pathComponent)/assignments/\(interactor.assignmentID)"
+    }
+
+    // MARK: Exposed To View
+
     func refresh() async {
 
         await withCheckedContinuation { [weak self] continuation in
@@ -110,16 +118,21 @@ class SubmissionListViewModel: ObservableObject {
             subject = "\(filterMode.title) - \(subject)"
         }
 
-        let recipients = interactor
-            .submissions
-            .value
-            .compactMap { $0.user }
+        let recipients = sections
+            .flatMap { section in
+                section.rows.compactMap { $0.submission.user }
+            }
             .map { Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL) }
+
+        let recipientContext = RecipientContext(
+            name: course?.name ?? "",
+            context: interactor.context
+        )
 
         let composeMessageOptions = ComposeMessageOptions(
             disabledFields: .init(contextDisabled: true, recipientsDisabled: true, individualDisabled: true),
             fieldsContents: .init(
-                selectedContext: .init(name: interactor.course.value?.name ?? "", context: interactor.context),
+                selectedContext: recipientContext,
                 selectedRecipients: recipients,
                 subjectText: subject,
                 individualSend: true
@@ -131,10 +144,6 @@ class SubmissionListViewModel: ObservableObject {
             from: controller.value,
             options: .modal(embedInNav: true)
         )
-    }
-
-    private var assignmentRoute: String {
-        "/\(interactor.context.pathComponent)/assignments/\(interactor.assignmentID)"
     }
 
     func openPostPolicy(from controller: WeakViewController) {
