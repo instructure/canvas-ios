@@ -23,24 +23,18 @@ import Foundation
 import SwiftUI
 
 class SubmissionCommentListViewModel: ObservableObject {
-    enum ViewState {
+
+    enum ViewState: Equatable {
         case loading
-        case data([SubmissionCommentListCellViewModel])
+        case data
         case error
         case empty
-
-        var isData: Bool {
-            if case .data = self {
-                return true
-            } else {
-                return false
-            }
-        }
     }
 
     // MARK: - Outputs
 
     @Published private(set) var state: ViewState = .loading
+    @Published private(set) var cellViewModels: [SubmissionCommentListCellViewModel] = []
 
     // MARK: - Private variables
 
@@ -60,6 +54,8 @@ class SubmissionCommentListViewModel: ObservableObject {
     private var attemptNumberForNewComment: Int? {
         isAssignmentEnhancementsEnabled ? selectedAttemptNumber : nil
     }
+
+    // MARK: - Init
 
     init(
         assignment: Assignment,
@@ -96,9 +92,17 @@ class SubmissionCommentListViewModel: ObservableObject {
                 .map(unownedSelf.commentViewModel)
         }
         .receive(on: scheduler)
-        .map { $0.isEmpty ? ViewState.empty : ViewState.data($0) }
-        .replaceError(with: .error)
-        .assign(to: &$state)
+        .sinkFailureOrValue(
+            receiveFailure: { _ in
+                unownedSelf.state = .error
+                unownedSelf.cellViewModels = []
+            },
+            receiveValue: {
+                unownedSelf.state = $0.isEmpty ? .empty : .data
+                unownedSelf.cellViewModels = $0
+            }
+        )
+        .store(in: &subscriptions)
 
         NotificationCenter.default.publisher(for: .SpeedGraderAttemptPickerChanged)
             .compactMap { $0.object as? Int }
@@ -106,13 +110,15 @@ class SubmissionCommentListViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    // MARK: - Get comments
+
     private func updateComments(attempt: Int?) {
         selectedAttemptNumber = attempt
-        guard state.isData else { return }
+        guard state == .data || state == .empty else { return }
 
         let comments = filterComments(allComments, for: attempt)
-        let cellViewModels = comments.map(commentViewModel)
-        state = .data(cellViewModels)
+        state = comments.isEmpty ? .empty : .data
+        cellViewModels = comments.map(commentViewModel)
     }
 
     private func filterComments(_ comments: [SubmissionComment], for attempt: Int?) -> [SubmissionComment] {
@@ -142,6 +148,8 @@ class SubmissionCommentListViewModel: ObservableObject {
         }
         return result
     }
+
+    // MARK: - Send comment
 
     func sendTextComment(_ text: String, completion: @escaping (Result<String, Error>) -> Void) {
         interactor.createTextComment(text, attemptNumber: attemptNumberForNewComment) { result in

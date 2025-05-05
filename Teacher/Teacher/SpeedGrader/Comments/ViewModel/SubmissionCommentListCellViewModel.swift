@@ -101,9 +101,9 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
             } else {
                 commentType = .attempt(attempt, submission)
             }
-        } else if comment.mediaType == .some(.audio), let url = comment.mediaLocalOrRemoteURL {
+        } else if comment.mediaType == .audio, let url = comment.mediaLocalOrRemoteURL {
             commentType = .audio(url)
-        } else if comment.mediaType == .some(.video), let url = comment.mediaLocalOrRemoteURL {
+        } else if comment.mediaType == .video, let url = comment.mediaLocalOrRemoteURL {
             commentType = .video(url)
         } else {
             let files = comment.attachments?.sorted(by: File.idCompare) ?? []

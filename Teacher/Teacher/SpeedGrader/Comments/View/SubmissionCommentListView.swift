@@ -64,8 +64,8 @@ struct SubmissionCommentListView: View {
             VStack(spacing: 0) {
                 ScrollView {
                     switch viewModel.state {
-                    case .data(let comments):
-                        LazyVStack(alignment: .leading, spacing: 0) { list(comments) }
+                    case .data:
+                        comments
                     // Assume already loaded by parent, so skip loading & error
                     case .loading, .empty, .error:
                         EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
@@ -73,7 +73,7 @@ struct SubmissionCommentListView: View {
                     }
                 }
                     .background(Color.backgroundLightest)
-                    .scaleEffect(y: viewModel.state.isData ? -1 : 1)
+                    .scaleEffect(y: viewModel.state == .data ? -1 : 1)
                 Divider()
                 switch showRecorder {
                 case .audio:
@@ -105,18 +105,20 @@ struct SubmissionCommentListView: View {
     }
 
     @ViewBuilder
-    func list(_ comments: [SubmissionCommentListCellViewModel]) -> some View {
-        error?
-            .font(.semibold16).foregroundColor(.textDanger)
-            .padding(16)
-            .scaleEffect(y: -1)
-        ForEach(comments, id: \.id) { comment in
-            SubmissionCommentListCell(
-                viewModel: comment,
-                attempt: $attempt,
-                fileID: $fileID
-            )
+    private var comments: some View {
+        LazyVStack(alignment: .leading, spacing: 0) {
+            error?
+                .font(.semibold16).foregroundColor(.textDanger)
+                .padding(16)
                 .scaleEffect(y: -1)
+            ForEach(viewModel.cellViewModels, id: \.id) { cellViewModel in
+                SubmissionCommentListCell(
+                    viewModel: cellViewModel,
+                    attempt: $attempt,
+                    fileID: $fileID
+                )
+                .scaleEffect(y: -1)
+            }
         }
     }
 

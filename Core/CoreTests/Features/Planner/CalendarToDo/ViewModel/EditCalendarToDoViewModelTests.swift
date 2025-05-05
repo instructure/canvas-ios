@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 final class EditCalendarToDoViewModelTests: CoreTestCase {
 
@@ -452,5 +453,3 @@ final class EditCalendarToDoViewModelTests: CoreTestCase {
         return plannable
     }
 }
-
-private struct MockError: Error { }
