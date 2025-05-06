@@ -73,8 +73,9 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         }
     }
     private var objectFilters: CurrentValueRelay<ObjectFilter> = CurrentValueRelay((nil, nil))
-    private let refreshSubject = CurrentValueRelay<Void>(())
+    private let refreshSubject = CurrentValueRelay<Date?>(nil)
     private var subscriptions = Set<AnyCancellable>()
+    private var lastRefresh: Date?
 
     // MARK: - Init
 
@@ -142,16 +143,21 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
             refreshSubject.setFailureType(to: Error.self).eraseToAnyPublisher(),
             pageIDPublisher
         )
-        .flatMap { [weak self] _, _, _, pageID in
+        .flatMap { [weak self] _, _, refreshDate, pageID in
             guard let self = self else {
                 return Just([CourseNotebookNote]())
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
-            return self.notesRequest(pageID: pageID)
+            return self.notesRequest(pageID: pageID, isRefresh: isRefresh(refreshDate))
         }
         .mapError { _ in NotebookError.unknown }
         .eraseToAnyPublisher()
+    }
+
+    // A method for requesting an update to the list of course notes
+    func refresh() {
+        refreshSubject.accept(Date())
     }
 
     func set(courseID: String?, pageURL: String? = nil) {
@@ -190,14 +196,15 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
         .eraseToAnyPublisher()
     }
 
-    // A method for requesting an update to the list of course notes
-    func refresh() {
-        refreshSubject.accept(())
-    }
-
     // MARK: - Private Methods
 
-    private func notesRequest(pageID: String? = nil) -> AnyPublisher<[CourseNotebookNote], any Error> {
+    private func isRefresh(_ date: Date?) -> Bool {
+        let isRefresh = lastRefresh != date
+        lastRefresh = date
+        return isRefresh
+    }
+
+    private func notesRequest(pageID: String? = nil, isRefresh: Bool) -> AnyPublisher<[CourseNotebookNote], any Error> {
         ReactiveStore(
             useCase: GetNotebookNotesUseCase(
                 labels: [filter?.rawValue].compactMap { $0 },
@@ -205,7 +212,10 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
                 pageID: pageID,
             )
         )
-        .getEntities(keepObservingDatabaseChanges: true)
+        .getEntities(
+            ignoreCache: isRefresh,
+            keepObservingDatabaseChanges: true
+        )
         .map { $0.courseNotebookNotes }
         .map(filteredToPage)
         .map { tuple in tuple.filtered }
