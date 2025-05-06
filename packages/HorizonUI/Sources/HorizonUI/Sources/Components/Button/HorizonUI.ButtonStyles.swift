@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-extension HorizonUI {
-    public struct ButtonStyles: ButtonStyle {
+public extension HorizonUI {
+    struct ButtonStyles: ButtonStyle {
         // MARK: - Common Dependencies
 
         @Environment(\.isEnabled) private var isEnabled
@@ -140,12 +140,11 @@ extension HorizonUI {
             .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 0.5)
             .animation(.easeInOut, value: isEnabled)
         }
-
     }
 }
 
-extension HorizonUI.ButtonStyles {
-    public enum ButtonType: String, CaseIterable, Identifiable {
+public extension HorizonUI.ButtonStyles {
+    enum ButtonType: String, CaseIterable, Identifiable {
         case ai = "AI"
         case beige = "Beige"
         case blue = "Blue"
@@ -161,7 +160,7 @@ extension HorizonUI.ButtonStyles {
                 return LinearGradient(
                     gradient: Gradient(colors: [
                         .huiColors.surface.institution,
-                        .huiColors.primitives.green70,
+                        .huiColors.primitives.green70
                     ]),
                     startPoint: .top,
                     endPoint: .bottom
@@ -230,8 +229,8 @@ extension HorizonUI.ButtonStyles {
     }
 }
 
-extension HorizonUI.ButtonStyles {
-    public static func primary(
+public extension HorizonUI.ButtonStyles {
+    static func primary(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         fillsWidth: Bool = false,
@@ -248,7 +247,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    public static func textLink(
+    static func textLink(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         fillsWidth: Bool = false,
@@ -266,7 +265,7 @@ extension HorizonUI.ButtonStyles {
         )
     }
 
-    public static func icon(
+    static func icon(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         badgeNumber: String? = nil,
@@ -283,15 +282,15 @@ extension HorizonUI.ButtonStyles {
     }
 }
 
-extension ButtonStyle where Self == HorizonUI.ButtonStyles {
-    public static func primary(
+public extension ButtonStyle where Self == HorizonUI.ButtonStyles {
+    static func primary(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,
         trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
-        HorizonUI.ButtonStyles.init(
+        HorizonUI.ButtonStyles(
             backgroundColor: type.background,
             foregroundColor: type.foregroundColor,
             isSmall: isSmall,
@@ -301,14 +300,14 @@ extension ButtonStyle where Self == HorizonUI.ButtonStyles {
         )
     }
 
-    public static func textLink(
+    static func textLink(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         fillsWidth: Bool = false,
         leading: Image? = nil,
         trailing: Image? = nil
     ) -> HorizonUI.ButtonStyles {
-        HorizonUI.ButtonStyles.init(
+        HorizonUI.ButtonStyles(
             backgroundColor: .clear,
             foregroundColor: type.linkTextColor,
             isSmall: isSmall,
@@ -319,13 +318,13 @@ extension ButtonStyle where Self == HorizonUI.ButtonStyles {
         )
     }
 
-    public static func icon(
+    static func icon(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
         badgeNumber: String? = nil,
         icon: Image? = nil
     ) -> HorizonUI.ButtonStyles {
-        HorizonUI.ButtonStyles.init(
+        HorizonUI.ButtonStyles(
             backgroundColor: type.background,
             foregroundColor: type.foregroundColor,
             badgeStyle: type.badgeStyle,

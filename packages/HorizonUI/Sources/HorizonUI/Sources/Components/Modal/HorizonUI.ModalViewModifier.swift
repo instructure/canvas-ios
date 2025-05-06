@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-fileprivate extension HorizonUI {
+private extension HorizonUI {
     struct ModalViewModifier<Body: View>: ViewModifier {
         private let headerTitle: String
         private let headerIcon: Image?
@@ -33,7 +33,7 @@ fileprivate extension HorizonUI {
             headerIcon: Image? = nil,
             headerIconColor: Color? = nil,
             isShowCancelButton: Bool = true,
-            confirmButton:  HorizonUI.ButtonAttribute? = nil,
+            confirmButton: HorizonUI.ButtonAttribute? = nil,
             isPresented: Binding<Bool>,
             @ViewBuilder body: () -> Body
         ) {

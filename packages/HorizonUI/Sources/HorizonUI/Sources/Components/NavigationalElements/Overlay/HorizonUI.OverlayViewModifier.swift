@@ -33,7 +33,7 @@ extension HorizonUI.Overlay {
 
         func body(content: Content) -> some View {
             content
-                .sheet(isPresented: $isPresented){
+                .sheet(isPresented: $isPresented) {
                     HorizonUI.Overlay(
                         title: title,
                         buttons: buttons,
@@ -48,8 +48,8 @@ extension HorizonUI.Overlay {
     }
 }
 
-extension View {
-    public func huiOverlay(
+public extension View {
+    func huiOverlay(
         title: String, buttons: [HorizonUI.Overlay.ButtonAttribute], isPresented: Binding<Bool>
     ) -> some View {
         modifier(

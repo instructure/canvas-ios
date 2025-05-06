@@ -20,6 +20,7 @@ import SwiftUI
 
 public extension HorizonUI {
 
+    // swiftlint:disable:next type_body_length
     struct Icons: Sendable {
         fileprivate init() {}
 
