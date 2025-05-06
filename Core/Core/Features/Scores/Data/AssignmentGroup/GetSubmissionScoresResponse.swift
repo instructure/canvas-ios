@@ -19,21 +19,18 @@
 import Foundation
 
 public struct GetSubmissionScoresResponse: Codable {
-    let data: DataClass?
+    let data: DataModel?
 
-    // MARK: - DataClass
-    struct DataClass: Codable {
+    struct DataModel: Codable {
         let legacyNode: LegacyNode?
     }
 
-    // MARK: - LegacyNode
     struct LegacyNode: Codable {
         let id: String?
         let grades: Grades?
         let course: Course?
     }
 
-    // MARK: - Course
     struct Course: Codable {
         let applyGroupWeights: Bool?
         let assignmentGroups: [AssignmentGroup]?
@@ -84,12 +81,10 @@ public struct GetSubmissionScoresResponse: Codable {
         let commentsConnection: Comment?
     }
 
-    // MARK: - CommentsConnection
     struct Comment: Codable {
         let nodes: [CommentsConnectionNode]?
     }
 
-    // MARK: - CommentsConnectionNode
     struct CommentsConnectionNode: Codable {
         let id: String?
         let read: Bool?
