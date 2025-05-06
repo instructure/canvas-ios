@@ -49,7 +49,7 @@ struct ScoreDetails {
     let assignmentGroups: [HAssignmentGroup]
     let sortOption: SortOption
 
-    var assignments: [HAssignment] {
+    var assignments: [HScoresAssignment] {
         assignmentGroups.flatMap(\.assignments)
             .sorted { lhs, rhs in
                 switch sortOption {

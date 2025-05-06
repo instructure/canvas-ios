@@ -31,39 +31,35 @@ class ScoresInteractorPreview: ScoresInteractor {
                         name: "First group",
                         groupWeight: 20,
                         assignments: [
-                            .init(
-                                id: "1",
-                                htmlURL: nil,
-                                name: "First assignment",
-                                details: nil,
-                                pointsPossible: 10,
-                                dueAt: Date.now,
-                                allowedAttempts: 10,
-                                submissionTypes: [],
-                                courseID: "1",
-                                courseName: "Course 1",
-                                workflowState: nil,
-                                submittedAt: Date.now,
-                                submissions: [
-                                    .init(id: "1", assignmentID: "1", score: 5)
-                                ]
-                            ),
-                            .init(
+                            HScoresAssignment(
                                 id: "2",
-                                htmlURL: nil,
-                                name: "Second assignment",
-                                details: nil,
-                                pointsPossible: 5,
-                                dueAt: Date.now,
-                                allowedAttempts: 10,
-                                submissionTypes: [],
-                                courseID: "1",
-                                courseName: "Course 1",
-                                workflowState: nil,
-                                submittedAt: Date.now,
-                                submissions: [
-                                    .init(id: "2", assignmentID: "2", score: 3)
-                                ]
+                                name: "iOS Debugging Quiz",
+                                commentsCount: 0,
+                                dueAt: Date().addingTimeInterval(172800),
+                                htmlUrl: URL(string: "https://horizon.com/assignment2"),
+                                pointsPossible: 50,
+                                score: nil,
+                                state: "not_submitted",
+                                isRead: false,
+                                isExcused: false,
+                                isLate: false,
+                                isMissing: true,
+                                submittedAt: nil
+                            ),
+                            HScoresAssignment(
+                                id: "1",
+                                name: "Essay on SwiftUI",
+                                commentsCount: 3,
+                                dueAt: Date().addingTimeInterval(86400),
+                                htmlUrl: URL(string: "https://horizon.com/assignment1"),
+                                pointsPossible: 100,
+                                score: 95,
+                                state: "graded",
+                                isRead: true,
+                                isExcused: false,
+                                isLate: false,
+                                isMissing: false,
+                                submittedAt: Date().addingTimeInterval(-3600)
                             )
                         ]
                     ),
@@ -72,39 +68,35 @@ class ScoresInteractorPreview: ScoresInteractor {
                         name: "Second group",
                         groupWeight: 80,
                         assignments: [
-                            .init(
+                            HScoresAssignment(
                                 id: "3",
-                                htmlURL: nil,
-                                name: "Third assignment",
-                                details: nil,
-                                pointsPossible: 10,
-                                dueAt: Date.now,
-                                allowedAttempts: 10,
-                                submissionTypes: [],
-                                courseID: "1",
-                                courseName: "Course 1",
-                                workflowState: nil,
-                                submittedAt: Date.now,
-                                submissions: [
-                                    .init(id: "3", assignmentID: "1", score: 1)
-                                ]
+                                name: "Xcode Playground Challenge",
+                                commentsCount: 5,
+                                dueAt: Date().addingTimeInterval(-86400), // was due yesterday
+                                htmlUrl: URL(string: "https://horizon.com/assignment3"),
+                                pointsPossible: 75,
+                                score: 70,
+                                state: "graded",
+                                isRead: false,
+                                isExcused: false,
+                                isLate: true,
+                                isMissing: false,
+                                submittedAt: Date().addingTimeInterval(-3600 * 24 * 2) // submitted 2 days ago
                             ),
-                            .init(
+                            HScoresAssignment(
                                 id: "4",
-                                htmlURL: nil,
-                                name: "Fourth assignment",
-                                details: nil,
-                                pointsPossible: 5,
-                                dueAt: Date.now,
-                                allowedAttempts: 10,
-                                submissionTypes: [],
-                                courseID: "1",
-                                courseName: "Course 1",
-                                workflowState: nil,
-                                submittedAt: Date.now,
-                                submissions: [
-                                    .init(id: "4", assignmentID: "1", score: nil)
-                                ]
+                                name: "Optional Bonus Project",
+                                commentsCount: 2,
+                                dueAt: nil, // no due date
+                                htmlUrl: URL(string: "https://horizon.com/assignment4"),
+                                pointsPossible: 25,
+                                score: nil,
+                                state: nil,
+                                isRead: true,
+                                isExcused: true,
+                                isLate: false,
+                                isMissing: false,
+                                submittedAt: nil
                             )
                         ]
                     )

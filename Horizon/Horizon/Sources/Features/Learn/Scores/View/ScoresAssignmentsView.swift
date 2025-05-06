@@ -43,8 +43,7 @@ struct ScoresAssignmentsView: View {
                             Text("Due Date: \(dueAtString)", bundle: .horizon)
                         }
 
-                        let submissionStatus = assignment.mostRecentSubmission?.status ?? .notSubmitted
-
+                        let submissionStatus = assignment.status
                         HStack(spacing: .huiSpaces.space4) {
                             Text("Status: ", bundle: .horizon)
                             HorizonUI.Pill(
@@ -57,12 +56,15 @@ struct ScoresAssignmentsView: View {
                         Text("Result: \(assignment.pointsResult)", bundle: .horizon)
                         HStack(spacing: .huiSpaces.space4) {
                             Text("Feedback: ", bundle: .horizon)
-
-                            if let numberOfComments = assignment.mostRecentSubmission?.numberOfComments,
-                               numberOfComments > 0 {
-                                HorizonUI.icons.chat
-                                    .frame(width: 24, height: 24)
-                                Text(String(numberOfComments))
+                            if assignment.commentsCount > 0 {
+                                if assignment.isRead {
+                                    HorizonUI.icons.chat
+                                        .frame(width: 24, height: 24)
+                                } else {
+                                    HorizonUI.icons.markUnreadChat
+                                        .frame(width: 24, height: 24)
+                                }
+                                Text(String(assignment.commentsCount))
                             } else {
                                 Text("-")
                             }
@@ -73,7 +75,7 @@ struct ScoresAssignmentsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding([.top, .bottom], .huiSpaces.space16)
                     .onTapGesture {
-                        openAssignmentDetails(assignment.htmlURL)
+                        openAssignmentDetails(assignment.htmlUrl)
                     }
 
                     if index != details.assignments.count - 1 {
@@ -102,35 +104,35 @@ struct ScoresAssignmentsView: View {
         score: "",
         assignmentGroups: [
             .init(id: "1", name: "1", groupWeight: 1, assignments: [
-                .init(
-                    id: "1",
-                    htmlURL: nil,
-                    name: "First assignment",
-                    details: nil,
-                    pointsPossible: 10,
-                    dueAt: Date.now,
-                    allowedAttempts: 10,
-                    submissionTypes: [],
-                    courseID: "1",
-                    courseName: "Course 1",
-                    workflowState: nil,
-                    submittedAt: Date.now,
-                    submissions: []
-                ),
-                .init(
+                HScoresAssignment(
                     id: "2",
-                    htmlURL: nil,
-                    name: "Second assignment",
-                    details: nil,
-                    pointsPossible: 5,
-                    dueAt: Date.now,
-                    allowedAttempts: 10,
-                    submissionTypes: [],
-                    courseID: "1",
-                    courseName: "Course 1",
-                    workflowState: nil,
-                    submittedAt: Date.now,
-                    submissions: []
+                    name: "iOS Debugging Quiz",
+                    commentsCount: 0,
+                    dueAt: Date().addingTimeInterval(172800),
+                    htmlUrl: URL(string: "https://dev.ce.com/assignment2"),
+                    pointsPossible: 50,
+                    score: nil,
+                    state: "not_submitted",
+                    isRead: false,
+                    isExcused: false,
+                    isLate: false,
+                    isMissing: true,
+                    submittedAt: nil
+                ),
+                HScoresAssignment(
+                    id: "1",
+                    name: "Essay on SwiftUI",
+                    commentsCount: 3,
+                    dueAt: Date().addingTimeInterval(86400),
+                    htmlUrl: URL(string: "https://dev.cd.com/assignment1"),
+                    pointsPossible: 100,
+                    score: 95,
+                    state: "graded",
+                    isRead: true,
+                    isExcused: false,
+                    isLate: false,
+                    isMissing: false,
+                    submittedAt: Date().addingTimeInterval(-3600)
                 )
             ])
         ],

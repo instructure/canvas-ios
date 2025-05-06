@@ -25,31 +25,53 @@ protocol ScoresInteractor {
 }
 
 final class ScoresInteractorLive: ScoresInteractor {
+    // MARK: - Dependencies
+
     let courseID: String
+    private let enrollmentID: String
+    private let userId: String
     private let submissionCommentInteractor: SubmissionCommentInteractor
+
+    // MARK: - Init
 
     init(
         courseID: String,
+        enrollmentID: String,
+        userId: String =  AppEnvironment.shared.currentSession?.userID ?? "",
         submissionCommentInteractor: SubmissionCommentInteractor = SubmissionCommentAssembly.makeSubmissionCommentInteractor()
     ) {
         self.courseID = courseID
+        self.enrollmentID = enrollmentID
+        self.userId = userId
         self.submissionCommentInteractor = submissionCommentInteractor
     }
 
     func getScores(sortedBy: ScoreDetails.SortOption, ignoreCache: Bool) -> AnyPublisher<ScoreDetails, Error> {
-        Publishers.Zip(
-            getAssignmentGroups(courseID: courseID, ignoreCache: ignoreCache),
+        unowned let unownedSelf = self
+        return Publishers.Zip(
+            fetchAssignmentGroups(ignoreCache: ignoreCache),
             getCourse(courseID: courseID, ignoreCache: ignoreCache)
         )
-        .flatMap { assignmentGroups, course in
-            self.getScoreDetails(
-                course: course,
+        .map { assignmentGroups, course in
+            ScoreDetails(
+                score: unownedSelf.calculateFinalScoreAndGradeText(course: course),
                 assignmentGroups: assignmentGroups,
-                sortBy: sortedBy
+                sortOption: sortedBy
             )
         }
         .eraseToAnyPublisher()
     }
+
+    private func fetchAssignmentGroups(ignoreCache: Bool) -> AnyPublisher<[HAssignmentGroup], Error> {
+         ReactiveStore(useCase: GetSubmissionScoresUseCase(userId: userId, enrollmentId: enrollmentID))
+             .getEntities(ignoreCache: ignoreCache)
+             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+             .map { response in
+                 HAssignmentGroup(from: response)
+             }
+             .collect()
+             .eraseToAnyPublisher()
+     }
 
     private func getCourse(courseID: String, ignoreCache: Bool) -> AnyPublisher<ScoresCourse, Error> {
         ReactiveStore(
@@ -58,69 +80,6 @@ final class ScoresInteractorLive: ScoresInteractor {
         .getEntities(ignoreCache: ignoreCache)
         .compactMap { $0.first }
         .map { ScoresCourse(from: $0) }
-        .eraseToAnyPublisher()
-    }
-
-    private func getAssignmentGroups(courseID: String, ignoreCache: Bool) -> AnyPublisher<[HAssignmentGroup], Error> {
-        ReactiveStore(
-            useCase: GetAssignmentGroups(courseID: courseID)
-        )
-        .getEntities(ignoreCache: ignoreCache)
-        .flatMap { $0.publisher }
-        .map { HAssignmentGroup(from: $0) }
-        .collect()
-        .eraseToAnyPublisher()
-    }
-
-    private func getScoreDetails(
-        course: ScoresCourse,
-        assignmentGroups: [HAssignmentGroup],
-        sortBy: ScoreDetails.SortOption
-    ) -> AnyPublisher<ScoreDetails, Error> {
-        unowned let unownedSelf = self
-
-        return assignmentGroups
-            .publisher
-            .flatMap { assignmentGroup -> AnyPublisher<HAssignmentGroup, Error> in
-                assignmentGroup.assignments
-                    .publisher
-                    .flatMap {
-                        unownedSelf.getCommentsForAsssignment(
-                            courseID: course.courseID,
-                            assignment: $0
-                        )
-                    }
-                    .collect()
-                    .map { assignmentGroup.update(assignments: $0) }
-                    .eraseToAnyPublisher()
-            }
-            .collect()
-            .map {
-                ScoreDetails(
-                    score: unownedSelf.calculateFinalScoreAndGradeText(course: course),
-                    assignmentGroups: $0,
-                    sortOption: sortBy
-                )
-            }
-            .eraseToAnyPublisher()
-    }
-
-    private func getCommentsForAsssignment(
-        courseID: String,
-        assignment: HAssignment
-    ) -> AnyPublisher<HAssignment, Error> {
-        submissionCommentInteractor.getNumberOfComments(
-            courseID: courseID,
-            assignmentID: assignment.id,
-            attempt: assignment.mostRecentSubmission?.attempt
-        )
-        .map { numberOfComments -> HAssignment in
-            var updatedSubmissions = assignment.submissions
-            if let mostRecentSubmission = updatedSubmissions.first {
-                updatedSubmissions[0] = mostRecentSubmission.update(numberOfComments: numberOfComments)
-            }
-            return assignment.update(submissions: updatedSubmissions)
-        }
         .eraseToAnyPublisher()
     }
 

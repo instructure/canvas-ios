@@ -19,10 +19,31 @@
 import Core
 import Foundation
 
-struct HAssignmentGroup: Identifiable {
-    let id: String
-    let name: String
-    let groupWeight: Double?
+ struct HAssignmentGroup: Identifiable {
+     let id: String
+     let name: String
+     let groupWeight: Double?
+     let assignments: [HScoresAssignment]
+
+     init(
+        id: String,
+        name: String,
+        groupWeight: Double?,
+        assignments: [HScoresAssignment]
+    ) {
+        self.id = id
+        self.name = name
+        self.groupWeight = groupWeight
+        self.assignments = assignments
+    }
+
+     init(from entity: CDScoresAssignmentGroup) {
+        self.id = entity.id
+        self.name = entity.name ?? ""
+        self.groupWeight = if let groupWeight = entity.groupWeight { Double(truncating: groupWeight) } else { nil }
+        self.assignments = entity.assignments.map(HScoresAssignment.init)
+    }
+
     var groupWeightString: String? {
         if let groupWeight {
             return GradeFormatter.numberFormatter.string(
@@ -31,35 +52,6 @@ struct HAssignmentGroup: Identifiable {
         } else {
             return nil
         }
-    }
-
-    let assignments: [HAssignment]
-
-    init(id: String, name: String, groupWeight: Double?, assignments: [HAssignment]) {
-        self.id = id
-        self.name = name
-        self.groupWeight = groupWeight
-        self.assignments = assignments
-    }
-
-    init(from entity: Core.AssignmentGroup) {
-        self.id = entity.id
-        self.name = entity.name
-        self.groupWeight = entity.groupWeight?.doubleValue
-        if let assignments = entity.assignments {
-            self.assignments = Array(assignments).map { HAssignment(from: $0) }
-        } else {
-            self.assignments = []
-        }
-    }
-
-    func update(assignments: [HAssignment]) -> HAssignmentGroup {
-        HAssignmentGroup(
-            id: id,
-            name: name,
-            groupWeight: groupWeight,
-            assignments: assignments
-        )
     }
 }
 
