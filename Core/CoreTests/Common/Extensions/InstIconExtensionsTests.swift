@@ -241,6 +241,8 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.checkbox, UIImage(named: "checkbox", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.checkboxSelected, UIImage(named: "checkboxSelected", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.chevronDown, UIImage(named: "chevronDown", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.chevronUpLine, UIImage(named: "chevronUpLine", in: .core, compatibleWith: nil))
+        XCTAssertEqual(UIImage.chevronUpSolid, UIImage(named: "chevronUpSolid", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.collaborations, UIImage(named: "collaborations", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.conferences, UIImage(named: "conferences", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.coursesTab, UIImage(named: "coursesTab", in: .core, compatibleWith: nil))
