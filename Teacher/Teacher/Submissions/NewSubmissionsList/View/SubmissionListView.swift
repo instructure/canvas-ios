@@ -81,7 +81,7 @@ struct SubmissionListView: View {
                     }
                 }
             } else {
-                Text("No data!")
+                Text("No submissions!")
                     .font(.regular14)
                     .foregroundStyle(Color.textDark)
                     .padding(.vertical, 30)
