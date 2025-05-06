@@ -77,7 +77,7 @@ struct AssistFlashCardItemView: View {
             .foregroundStyle(item.isFlipped ? Color.textLightest : Color.textDark)
             .rotation3DEffect(.degrees(item.isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
             .background {
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: HorizonUI.spaces.space16)
                     .fill(Color.backgroundLightest.opacity(item.isFlipped ? 1.0 : 0.1))
             }
         }
