@@ -124,14 +124,17 @@ struct SubmissionCommentListView: View {
     }
 
     private var toolbar: some View {
-        HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+        HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
             if commentLibrary.shouldShow {
                 commentLibraryButton
+                    .commentToolbarButtonOffset()
             }
             attachmentButton
+                .commentToolbarButtonOffset()
             commentEditor
                 .accessibilityFocused($focusedTab, equals: .comments)
             sendButton
+                .commentToolbarButtonOffset()
         }
         .paddingStyle(.horizontal, .standard)
         .padding(.vertical, 4)
@@ -142,7 +145,7 @@ struct SubmissionCommentListView: View {
             action: { showCommentLibrary = true },
             label: {
                 Image.chevronUpLine
-                    .size(16, paddedTo: 24)
+                    .scaledSize(16, paddedTo: 24, useIconScale: true)
                     .foregroundColor(.textDark)
             }
         )
@@ -155,7 +158,7 @@ struct SubmissionCommentListView: View {
             action: { showMediaOptions = true },
             label: {
                 Image.paperclipLine
-                    .size(20, paddedTo: 24)
+                    .scaledSize(20, paddedTo: 24, useIconScale: true)
                     .foregroundColor(.textDark)
             }
         )
@@ -274,5 +277,13 @@ struct SubmissionCommentListView: View {
         withAnimation(.default) {
             showRecorder = recorder
         }
+    }
+}
+
+private extension View {
+    // Toolbar buttons should be center aligned with the last row of the comment textfield.
+    // This offset is an approximation for that.
+    func commentToolbarButtonOffset() -> some View {
+        scaledOffset(y: -5, useIconScale: true)
     }
 }

@@ -20,14 +20,22 @@ import SwiftUI
 
 extension Image {
     public func size(_ size: CGFloat?) -> some View {
-        resizable().scaledToFill().frame(width: size, height: size)
+        resizable()
+            .scaledToFill()
+            .frame(width: size, height: size)
     }
 
     public func size(_ size: CGFloat, paddedTo boundingSize: CGFloat) -> some View {
-        let padding = min((boundingSize - size) / 2, 0)
-        return resizable()
+        resizable()
             .scaledToFill()
             .frame(width: size, height: size)
-            .padding(padding)
+            .frame(width: boundingSize, height: boundingSize)
+    }
+
+    public func scaledSize(_ size: CGFloat, paddedTo boundingSize: CGFloat, useIconScale: Bool = false) -> some View {
+        resizable()
+            .scaledToFill()
+            .scaledFrame(size: size, useIconScale: useIconScale)
+            .scaledFrame(size: boundingSize, useIconScale: useIconScale)
     }
 }

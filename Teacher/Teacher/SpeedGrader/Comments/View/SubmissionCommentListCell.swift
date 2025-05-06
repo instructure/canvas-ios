@@ -79,7 +79,7 @@ struct SubmissionCommentListCell: View {
     var header: some View {
         let a11yLabel = viewModel.accessibilityLabelForHeader
         if viewModel.author.isCurrentUser {
-            date
+            date(alignment: .trailing)
                 .accessibilityLabel(a11yLabel)
         } else {
             authorNameAndDate
@@ -105,13 +105,12 @@ struct SubmissionCommentListCell: View {
             HStack(spacing: Size.horizontalSpacing) {
                 authorName
                     .frame(maxWidth: .infinity, alignment: .leading)
-                date
+                date(alignment: .trailing)
                     .layoutPriority(1)
             }
             VStack(alignment: .leading, spacing: Size.verticalSpacing) {
                 authorName
-                date
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                date(alignment: .leading)
             }
         }
     }
@@ -122,11 +121,11 @@ struct SubmissionCommentListCell: View {
             .foregroundStyle(Color.textDarkest)
     }
 
-    private var date: some View {
+    private func date(alignment: TextAlignment) -> some View {
         Text(viewModel.date)
             .font(.regular12, lineHeight: .fit)
             .foregroundStyle(Color.textDark)
-            .multilineTextAlignment(.trailing)
+            .multilineTextAlignment(alignment)
     }
 
     @ViewBuilder
@@ -211,6 +210,8 @@ private struct AttemptFileButton: View {
 }
 
 private struct FileButton<I: View>: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let icon: I?
     let title: String
     let subtitle: String?
@@ -232,6 +233,7 @@ private struct FileButton<I: View>: View {
                             .lineLimit(hasSubtitleLineLimit ? 1 : 0)
                     }
                 }
+                .multilineTextAlignment(.leading)
                 Spacer()
             }
             .padding(.horizontal, 8)
