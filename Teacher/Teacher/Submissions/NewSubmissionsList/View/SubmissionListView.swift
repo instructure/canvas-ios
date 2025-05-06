@@ -104,7 +104,7 @@ struct SubmissionListView: View {
                 Button {
                     isFilterSelectorPresented = true
                 } label: {
-                    Image.filterLine
+                    viewModel.filterMode == .all ? Image.filterLine : Image.filterSolid
                 }
                 .tint(Color.textLightest)
 

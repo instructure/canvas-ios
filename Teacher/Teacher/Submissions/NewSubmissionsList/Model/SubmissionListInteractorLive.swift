@@ -24,7 +24,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
     private var assignmentSubject = CurrentValueSubject<Assignment?, Never>(nil)
     private var courseSubject = CurrentValueSubject<Course?, Never>(nil)
-    private var filtersSubject = CurrentValueSubject<[GetSubmissions.Filter], Never>([])
+    private var filtersSubject: CurrentValueSubject<[GetSubmissions.Filter], Never>
 
     var submissions: AnyPublisher<[Submission], Never> { submissionsSubject.eraseToAnyPublisher() }
     var assignment: AnyPublisher<Assignment?, Never> { assignmentSubject.eraseToAnyPublisher() }
@@ -41,9 +41,10 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
 
-    init(context: Context, assignmentID: String, env: AppEnvironment) {
+    init(context: Context, assignmentID: String, filters: [GetSubmissions.Filter], env: AppEnvironment) {
         self.context = context
         self.assignmentID = assignmentID
+        self.filtersSubject = CurrentValueSubject<[GetSubmissions.Filter], Never>(filters)
         self.env = env
 
         courseStore = ReactiveStore(

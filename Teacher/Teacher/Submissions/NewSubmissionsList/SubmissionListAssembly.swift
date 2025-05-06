@@ -21,12 +21,15 @@ import UIKit
 
 public enum SubmissionListAssembly {
 
-    public static func makeViewController(env: AppEnvironment,
-                                          context: Context,
-                                          assignmentID: String,
-                                          filter: [GetSubmissions.Filter]) -> UIViewController {
-        let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, env: env)
-        let viewModel = SubmissionListViewModel(interactor: interactor, env: env)
+    public static func makeViewController(
+        env: AppEnvironment,
+        context: Context,
+        assignmentID: String,
+        filter: [GetSubmissions.Filter]
+    ) -> UIViewController {
+        let filterMode = SubmissionFilterMode.allCases.first(where: { $0.filters == filter }) ?? .all
+        let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filters: filter, env: env)
+        let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: filterMode, env: env)
         let view = SubmissionListView(viewModel: viewModel)
         return CoreHostingController(view)
     }

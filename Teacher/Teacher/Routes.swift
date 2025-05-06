@@ -163,7 +163,7 @@ let router = Router(routes: [
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
 
-        if ExperimentalFeature.newSubmissionList.isEnabled {
+        if ExperimentalFeature.redesignedSubmissionList.isEnabled {
             return SubmissionListAssembly
                 .makeViewController(
                     env: env,

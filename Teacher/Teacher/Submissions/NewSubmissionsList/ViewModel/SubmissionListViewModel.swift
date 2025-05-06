@@ -32,7 +32,7 @@ class SubmissionListViewModel: ObservableObject {
     @Published private(set) var state: ViewState = .loading
 
     @Published var searchText: String = ""
-    @Published var filterMode: SubmissionFilterMode = .all
+    @Published var filterMode: SubmissionFilterMode
 
     @Published var assignment: Assignment?
     @Published var course: Course?
@@ -42,8 +42,9 @@ class SubmissionListViewModel: ObservableObject {
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: SubmissionListInteractor, env: AppEnvironment) {
+    init(interactor: SubmissionListInteractor, filterMode: SubmissionFilterMode, env: AppEnvironment) {
         self.interactor = interactor
+        self.filterMode = filterMode
         self.env = env
         setupBindings()
     }

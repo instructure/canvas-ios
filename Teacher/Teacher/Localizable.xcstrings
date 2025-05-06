@@ -21863,9 +21863,6 @@
         }
       }
     },
-    "No data!" : {
-
-    },
     "No Grade" : {
       "localizations" : {
         "ar" : {
@@ -22377,6 +22374,9 @@
           }
         }
       }
+    },
+    "No submissions!" : {
+
     },
     "No suggestions available" : {
       "localizations" : {

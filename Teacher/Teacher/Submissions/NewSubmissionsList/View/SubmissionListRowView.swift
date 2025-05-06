@@ -51,11 +51,6 @@ struct SubmissionListRowView: View {
 
     @ViewBuilder
     private var avatarView: some View {
-        let _ = print(assignment?.isFault)
-        let _ = print(submission.isFault)
-        let _ = print(submission)
-        let _ = print("---")
-
         if assignment?.anonymizeStudents != false {
             Avatar.Anonymous(isGroup: submission.groupID != nil)
         } else if let groupName = submission.groupName {
