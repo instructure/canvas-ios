@@ -28,7 +28,7 @@ struct AssistFlashCardView: View {
         VStack {
             headerView
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
+                LazyHStack(spacing: HorizonUI.spaces.space16) {
                     flashCardsView
                 }
                 .scrollTargetLayout()
@@ -71,7 +71,7 @@ extension AssistFlashCardView {
                 )
                 .scaleEffect(
                     viewModel.currentCardIndex == index ? 1 : 0.8,
-                    anchor: .leading
+                    anchor: (viewModel.currentCardIndex ?? 0) < index ? .leading : .trailing
                 )
                 .onTapGesture {
                     viewModel.makeCardFlipped(at: index)
@@ -87,7 +87,7 @@ extension AssistFlashCardView {
         viewModel: .init(
             flashCards: [
                 .init(
-                    frontContent: "Front Content 1",
+                    frontContent: "Front Content 1. This is some really long content so that we can see what would happen if we have a lot of text here. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going.",
                     backContent: "Back Content 1",
                 ),
                 .init(

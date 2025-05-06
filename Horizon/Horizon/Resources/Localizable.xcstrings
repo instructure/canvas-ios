@@ -20,16 +20,6 @@
         }
       }
     },
-    "%lld %@ %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld %2$@ %3$lld"
-          }
-        }
-      }
-    },
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
@@ -55,9 +45,6 @@
 
     },
     "Advanced" : {
-
-    },
-    "AI Assist" : {
 
     },
     "Alaska (-09:00/-08:00)" : {

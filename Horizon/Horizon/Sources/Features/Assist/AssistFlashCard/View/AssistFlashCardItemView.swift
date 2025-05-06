@@ -23,6 +23,9 @@ import Core
 struct AssistFlashCardItemView: View {
     let item: AssistFlashCardModel
 
+    @State
+    var isScrollable: Bool = true
+
     var isFlipped: Bool {
         item.isFlipped
     }
@@ -32,28 +35,51 @@ struct AssistFlashCardItemView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(item.title)
-                .foregroundStyle(textColor)
-                .huiTypography(.p1)
-            Spacer()
-            Text(item.currentContent)
-                .multilineTextAlignment(.leading)
-                .foregroundStyle(textColor)
-                .huiTypography(.sh3)
+        GeometryReader { geometry in
+            VStack(alignment: .leading) {
+                Text(item.title)
+                    .foregroundStyle(textColor)
+                    .huiTypography(.p1)
+                    .padding(.horizontal, HorizonUI.spaces.space24)
+                    .padding(.top, HorizonUI.spaces.space24)
+                Spacer()
+                ScrollView(
+                    [.vertical],
+                    showsIndicators: isScrollable
+                ) {
+                    Text(item.currentContent)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .foregroundStyle(textColor)
+                        .huiTypography(.sh3)
+                        .padding(.horizontal, HorizonUI.spaces.space24)
+                        .background(
+                            GeometryReader { contentGeometry in
+                                Color.clear.onAppear {
+                                    let contentHeight = contentGeometry.size.height
+                                    isScrollable = contentHeight > geometry.size.height
+                                }
+                            }
+                        )
+                }
+                .disabled(!isScrollable)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-            Spacer()
-            Text("Tap to flip", bundle: .horizon)
-                .huiTypography(.labelSmall)
-                .foregroundStyle(textColor)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .foregroundStyle(item.isFlipped ? Color.textLightest : Color.textDark)
-        .rotation3DEffect(.degrees(item.isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
-        .padding(HorizonUI.spaces.space24)
-        .background {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.backgroundLightest.opacity(item.isFlipped ? 1.0 : 0.1))
+                Spacer()
+
+                Text("Tap to flip", bundle: .horizon)
+                    .huiTypography(.labelSmall)
+                    .foregroundStyle(textColor)
+                    .padding(.horizontal, HorizonUI.spaces.space24)
+                    .padding(.bottom, HorizonUI.spaces.space24)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(item.isFlipped ? Color.textLightest : Color.textDark)
+            .rotation3DEffect(.degrees(item.isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
+            .background {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.backgroundLightest.opacity(item.isFlipped ? 1.0 : 0.1))
+            }
         }
     }
 }
