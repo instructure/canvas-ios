@@ -101,7 +101,7 @@ struct SubmissionCommentListCell: View {
     }
 
     private var authorNameAndDate: some View {
-        ViewThatFits {
+        ViewThatFits(in: .horizontal) {
             HStack(spacing: Size.horizontalSpacing) {
                 authorName
                     .frame(maxWidth: .infinity, alignment: .leading)
