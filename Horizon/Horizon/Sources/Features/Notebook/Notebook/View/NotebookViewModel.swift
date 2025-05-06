@@ -51,6 +51,9 @@ final class NotebookViewModel {
     var isFiltersVisible: Bool { courseId == nil }
     var isNavigationBarVisible: Bool { courseId == nil || pageUrl != nil }
     private(set) var isNextDisabled: Bool = true
+    var isPaginationButtonsVisible: Bool {
+        !(isNextDisabled && isPreviousDisabled)
+    }
     private(set) var isPreviousDisabled: Bool = true
     var navigationBarTopPadding: CGFloat { courseId == nil ? .zero : .huiSpaces.space24 }
     private(set) var notes: [NotebookNote] = []
