@@ -22,4 +22,12 @@ extension Image {
     public func size(_ size: CGFloat?) -> some View {
         resizable().scaledToFill().frame(width: size, height: size)
     }
+
+    public func size(_ size: CGFloat, paddedTo boundingSize: CGFloat) -> some View {
+        let padding = min((boundingSize - size) / 2, 0)
+        return resizable()
+            .scaledToFill()
+            .frame(width: size, height: size)
+            .padding(padding)
+    }
 }

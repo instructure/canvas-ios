@@ -378,7 +378,6 @@ struct SubmissionGraderView: View {
             }
         }
         .frame(width: geometry.size.width, height: geometry.size.height)
-        .background(Color.backgroundLight)
         .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
         .accessibility(hidden: !isCommentsOnScreen)
     }

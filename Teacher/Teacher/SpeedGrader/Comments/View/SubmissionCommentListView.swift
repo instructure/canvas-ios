@@ -74,9 +74,9 @@ struct SubmissionCommentListView: View {
                 }
                     .background(Color.backgroundLightest)
                     .scaleEffect(y: viewModel.state == .data ? -1 : 1)
-                Divider()
                 switch showRecorder {
                 case .audio:
+                    Divider()
                     AudioRecorder {
                         show(recorder: nil)
                         sendMediaComment(type: .audio, url: $0)
@@ -85,6 +85,7 @@ struct SubmissionCommentListView: View {
                         .frame(height: 240)
                         .transition(.move(edge: .bottom))
                 case .video:
+                    Divider()
                     VideoRecorder(camera: .front) {
                         show(recorder: nil)
                         sendMediaComment(type: .video, url: $0)
@@ -93,7 +94,7 @@ struct SubmissionCommentListView: View {
                         .frame(height: geometry.size.height)
                         .transition(.move(edge: .bottom))
                 case nil:
-                    toolbar(containerHeight: geometry.size.height)
+                    toolbar
                         .transition(.opacity)
                 }
             }.sheet(isPresented: $showCommentLibrary) {
@@ -122,34 +123,78 @@ struct SubmissionCommentListView: View {
         }
     }
 
-    func toolbar(containerHeight: CGFloat) -> some View {
-        HStack(spacing: 0) {
-            Button(action: { showMediaOptions = true }, label: {
-                Image.paperclipLine.size(18)
-                    .foregroundColor(.textDark)
-                    .padding(EdgeInsets(top: 11, leading: 11, bottom: 11, trailing: 11))
-            })
-                .accessibility(label: Text("Add Attachment", bundle: .teacher))
-                .identifier("SubmissionComments.addMediaButton")
-                .actionSheet(isPresented: $showMediaOptions) {
-                    ActionSheet(title: Text("Add Attachment", bundle: .teacher), buttons: [
-                        .default(Text("Record Audio", bundle: .teacher), action: recordAudio),
-                        .default(Text("Record Video", bundle: .teacher), action: recordVideo),
-                        .default(Text("Choose Files", bundle: .teacher), action: chooseFile),
-                        .cancel()
-                    ])
-                }
-            CommentEditorView(
-                text: $comment,
-                shouldShowCommentLibrary: commentLibrary.shouldShow,
-                showCommentLibrary: $showCommentLibrary,
-                action: sendComment,
-                containerHeight: containerHeight
-            )
-                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
+    private var toolbar: some View {
+        HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+            if commentLibrary.shouldShow {
+                commentLibraryButton
+            }
+            attachmentButton
+            commentEditor
                 .accessibilityFocused($focusedTab, equals: .comments)
+            sendButton
         }
-            .background(Color.backgroundLight)
+        .paddingStyle(.horizontal, .standard)
+        .padding(.vertical, 4)
+    }
+
+    private var commentLibraryButton: some View {
+        Button(
+            action: { showCommentLibrary = true },
+            label: {
+                Image.chevronUpLine
+                    .size(16, paddedTo: 24)
+                    .foregroundColor(.textDark)
+            }
+        )
+        .accessibilityLabel(Text("Open comment library", bundle: .teacher))
+        .identifier("SubmissionComments.showCommentLibraryButton")
+    }
+
+    private var attachmentButton: some View {
+        Button(
+            action: { showMediaOptions = true },
+            label: {
+                Image.paperclipLine
+                    .size(20, paddedTo: 24)
+                    .foregroundColor(.textDark)
+            }
+        )
+        .accessibility(label: Text("Add Attachment", bundle: .teacher))
+        .identifier("SubmissionComments.addMediaButton")
+        .actionSheet(isPresented: $showMediaOptions) {
+            ActionSheet(title: Text("Add Attachment", bundle: .teacher), buttons: [
+                .default(Text("Record Audio", bundle: .teacher), action: recordAudio),
+                .default(Text("Record Video", bundle: .teacher), action: recordVideo),
+                .default(Text("Choose Files", bundle: .teacher), action: chooseFile),
+                .cancel()
+            ])
+        }
+    }
+
+    private var commentEditor: some View {
+        DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Write your Comment here", bundle: .teacher))
+            .font(.regular16)
+            .lineLimit(10)
+            .accessibility(label: Text("Comment", bundle: .teacher))
+            .identifier("SubmissionComments.commentTextView")
+    }
+
+    private var sendButton: some View {
+        Button(
+            action: {
+                sendComment()
+                controller.view.endEditing(true)
+            },
+            label: {
+                Image.circleArrowUpSolid
+                    .size(20, paddedTo: 24)
+                    .foregroundStyle(Color(Brand.shared.primary))
+            }
+        )
+        .buttonStyle(.plain)
+        .disabled(comment.isEmpty)
+        .accessibilityLabel(Text("Send", bundle: .teacher))
+        .identifier("SubmissionComments.addCommentButton")
     }
 
     func sendComment() {
