@@ -135,7 +135,7 @@ struct SubmissionCommentListCell: View {
         case .text(let comment, let files):
             Text(comment)
                 .font(.regular14, lineHeight: .fit)
-                .styleForCurrentUser(viewModel.author.isCurrentUser)
+                .textCommentStyle(viewModel.author.isCurrentUser)
                 .multilineTextAlignment(.leading)
                 .accessibilityHidden(true) // already included in header
                 .identifier("SubmissionComments.textCell.\(viewModel.id)")
@@ -247,12 +247,12 @@ private struct FileButton<I: View>: View {
 
 private extension View {
     @ViewBuilder
-    func styleForCurrentUser(_ isCurrentUser: Bool) -> some View {
+    func textCommentStyle(_ isCurrentUser: Bool) -> some View {
         if isCurrentUser {
             self
                 .foregroundStyle(Color.textLightest.variantForLightMode)
                 .padding(Size.commentBubblePadding)
-                .background(Color.accentColor)
+                .background(Color.backgroundInfo)
                 .cornerRadius(Size.commentBubbleCorner)
         } else {
             self
