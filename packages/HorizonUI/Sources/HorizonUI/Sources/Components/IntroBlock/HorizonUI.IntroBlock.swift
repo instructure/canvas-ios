@@ -76,8 +76,7 @@ public extension HorizonUI {
                 }
                 moduleInfoView
                 if let attemptCount {
-                    let text = String(localized: "Attempts Allowed")
-                    Text("\(attemptCount) \(text)")
+                    Text("\(attemptCount) \(attemptsAllows)")
                         .huiTypography(.p2)
                         .foregroundStyle(foregroundColor)
                 }
@@ -143,6 +142,10 @@ public extension HorizonUI {
             let pointsText = countOfPoints.map { "\($0) \(String(localized: "Points Possible"))" }
             let items = [duration, dueText, pointsText].compactMap { $0 }
             return items.joined(separator: items.count == 1 ? "" : " | ")
+        }
+
+        private var attemptsAllows: String {
+            attemptCount?.trimmingCharacters(in: .whitespacesAndNewlines) == "1" ? String(localized: "Attempt Allowed") : String(localized: "Attempts Allowed")
         }
     }
 }
