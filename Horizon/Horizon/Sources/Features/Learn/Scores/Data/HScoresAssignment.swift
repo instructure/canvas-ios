@@ -85,6 +85,12 @@ struct HScoresAssignment: Equatable, Identifiable {
     }
 
     var status: HScoresAssignment.Status {
+        if state == "submitted"
+            || state == "pending_review"
+            || (state == "graded" && score != nil) {
+            return .submitted
+        }
+
         if isLate { return .late }
         if isMissing { return .missing }
         if submittedAt != nil { return .submitted }
