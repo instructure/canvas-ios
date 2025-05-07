@@ -74,7 +74,7 @@ final class LearnAssembly {
 
     static func makeLearnView() -> UIViewController {
         let viewModel = LearnViewModel(
-            getCoursesInteractor: GetCoursesInteractorLive()
+            interactor: GetLearnCoursesInteractorLive()
         )
         let view = LearnView(viewModel: viewModel)
         return  CoreHostingController(view)

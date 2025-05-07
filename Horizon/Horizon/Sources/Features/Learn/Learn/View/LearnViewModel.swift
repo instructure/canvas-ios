@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Observation
 import Combine
+import Observation
 
 @Observable
 final class LearnViewModel {
@@ -33,22 +33,29 @@ final class LearnViewModel {
 
     // MARK: - Dependencies
 
-    private let getCoursesInteractor: GetCoursesInteractor
+    private let interactor: GetLearnCoursesInteractor
 
     // MARK: - Init
 
-    init(getCoursesInteractor: GetCoursesInteractor) {
-        self.getCoursesInteractor = getCoursesInteractor
+    init(interactor: GetLearnCoursesInteractor) {
+        self.interactor = interactor
     }
 
     func fetchCourses() {
         isLoaderVisible = true
-        getCoursesInteractor.getDashboardCourses(ignoreCache: false)
-            .sink { [weak self] courses in
-                self?.courseID = courses.first?.courseId
-                self?.enrollmentID = courses.first?.enrollmentID
-                self?.isLoaderVisible = false
-            }
+        interactor.getFirstCourse(ignoreCache: false)
+            .sink(
+                receiveCompletion: { _ in
+                    print("completed")
+                },
+                receiveValue: {
+                    [weak self] course in
+                    self?.courseID = course.id
+                    self?.enrollmentID = course.enrollmentId
+                    self?.isLoaderVisible = false
+                }
+            )
+
             .store(in: &subscriptions)
     }
 }
