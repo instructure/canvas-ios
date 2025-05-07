@@ -75,8 +75,8 @@ public extension HorizonUI {
                     menuButton
                 }
                 moduleInfoView
-                if let attemptCount {
-                    Text("\(attemptCount) \(attemptsAllows)")
+                if let attemptsAllowed = attemptsAllowed {
+                    Text(attemptsAllowed)
                         .huiTypography(.p2)
                         .foregroundStyle(foregroundColor)
                 }
@@ -144,8 +144,16 @@ public extension HorizonUI {
             return items.joined(separator: items.count == 1 ? "" : " | ")
         }
 
-        private var attemptsAllows: String {
-            attemptCount?.trimmingCharacters(in: .whitespacesAndNewlines) == "1" ? String(localized: "Attempt Allowed") : String(localized: "Attempts Allowed")
+        private var attemptsAllowed: String? {
+            guard let attemptCount = attemptCount,
+                  let attempts = Int(attemptCount) else {
+                return nil
+            }
+            return String.localizedStringWithFormat(
+                String(localized: "attempts_allowed", bundle: .horizonUI),
+                attempts,
+                attempts
+            )
         }
     }
 }
