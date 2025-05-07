@@ -24,7 +24,7 @@ import XCTest
 @testable import Teacher
 
 class SubmissionListInteractorLiveTests: TeacherTestCase {
-    
+
     enum TestConstants {
         static let assignmentID = "12345"
         static let courseID = "67890"
