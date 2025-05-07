@@ -43,7 +43,7 @@ struct AssistFlashCardStepIndicatorView: View {
 extension AssistFlashCardStepIndicatorView {
     private var previousButton: some View {
         stepButton(
-            imageName: "chevron.left",
+            image: Image.huiIcons.chevronLeft,
             disabled: viewModel.isPreviousButtonDisabled
         ) {
             viewModel.goToPreviousCard()
@@ -52,16 +52,16 @@ extension AssistFlashCardStepIndicatorView {
 
     private var nextButton: some View {
         stepButton(
-            imageName: "chevron.right",
+            image: Image.huiIcons.chevronRight,
             disabled: viewModel.isNextButtonDisabled
         ) {
             viewModel.goToNextCard()
         }
     }
 
-    private func stepButton(imageName: String, disabled: Bool, action: @escaping () -> Void) -> some View {
+    private func stepButton(image: Image, disabled: Bool, action: @escaping () -> Void) -> some View {
         HorizonUI.IconButton(
-            Image(systemName: imageName),
+            image,
             type: .white,
             action: action
         )

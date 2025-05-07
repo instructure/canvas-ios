@@ -24,13 +24,13 @@ struct AssistFlashCardItemView: View {
     let item: AssistFlashCardModel
 
     @State
-    var isScrollable: Bool = true
+    private var isScrollable: Bool = true
 
-    var isFlipped: Bool {
+    private var isFlipped: Bool {
         item.isFlipped
     }
 
-    var textColor: Color {
+    private var textColor: Color {
         isFlipped ? HorizonUI.colors.text.body : HorizonUI.colors.text.surfaceColored
     }
 
@@ -53,14 +53,9 @@ struct AssistFlashCardItemView: View {
                         .foregroundStyle(textColor)
                         .huiTypography(.sh3)
                         .padding(.horizontal, HorizonUI.spaces.space24)
-                        .background(
-                            GeometryReader { contentGeometry in
-                                Color.clear.onAppear {
-                                    let contentHeight = contentGeometry.size.height
-                                    isScrollable = contentHeight > geometry.size.height
-                                }
-                            }
-                        )
+                        .readingFrame { frame in
+                            isScrollable = frame.size.height > geometry.size.height
+                        }
                 }
                 .disabled(!isScrollable)
                 .frame(maxWidth: .infinity, alignment: .leading)

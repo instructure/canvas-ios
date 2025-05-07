@@ -53,7 +53,7 @@ struct AssistTitle: View {
     private func closeButton() -> some View {
         if let onClose = onClose {
             HorizonUI.IconButton(
-                Image(systemName: "xmark"),
+                Image.huiIcons.close,
                 type: .white,
                 isSmall: true,
                 action: onClose
