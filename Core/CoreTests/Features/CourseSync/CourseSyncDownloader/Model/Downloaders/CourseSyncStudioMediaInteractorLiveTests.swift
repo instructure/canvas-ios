@@ -168,7 +168,7 @@ private class MockStudioAPIAuthInteractor: StudioAPIAuthInteractor {
     var mockedErrorResponse: StudioAPIAuthError?
     private(set) var makeAPICalled = false
 
-    func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError> {
+    func makeStudioAPI(env: AppEnvironment, courseId: String) -> AnyPublisher<API, StudioAPIAuthError> {
         makeAPICalled = true
 
         if let mockedErrorResponse {

@@ -42,7 +42,7 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
                 userName: ""
             )
         )
-        let publisher = StudioAPIAuthInteractorLive(webViewFactory: { mockWebView }).makeStudioAPI(env: environment)
+        let publisher = StudioAPIAuthInteractorLive(webViewFactory: { mockWebView }).makeStudioAPI(env: environment, courseId: "1")
 
         XCTAssertFirstValueAndCompletion(publisher, timeout: 14) { api in
             XCTAssertEqual(api.loginSession, expectedAPIResult.loginSession)
@@ -60,16 +60,8 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
 
     private func mockStudioLTIData() {
         api.mock(
-            GetGlobalNavExternalToolsPlacements(
-                enrollment: .student
-            ),
-            value: [.make(
-                domain: LTIDomains.studio.rawValue,
-                placements: [ExternalToolLaunchPlacementLocation.global_navigation.rawValue: .init(
-                    title: "",
-                    url: TestData.studioLaunchURL
-                )]
-            )]
+            GetArc(courseID: "1"),
+            value: [.make(domain: LTIDomains.studio.rawValue, url: TestData.studioLaunchURL)]
         )
     }
 
