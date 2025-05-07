@@ -25,6 +25,8 @@ struct CourseDetailsView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
     @State private var isShowHeader: Bool = true
+    /// Threshold value used to determine header visibility adjustments.
+    /// A negative value (-100) indicates the scroll offset at which the header should hide.
     private let threshold: CGFloat = -100
     private var tabs: [Tabs] {
         let showingOverview = !viewModel.course.overviewDescription.isEmpty
