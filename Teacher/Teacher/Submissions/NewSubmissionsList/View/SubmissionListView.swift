@@ -60,16 +60,16 @@ struct SubmissionListView: View {
                 ForEach($viewModel.sections) { $section in
                     Section {
                         if !section.isCollapsed {
-                            ForEach(section.rows) { row in
+                            ForEach(section.items) { item in
                                 SeparatedRow {
                                     Button(
                                         action: {
-                                            viewModel.didTapSubmissionRow(row.item, from: controller)
+                                            viewModel.didTapSubmissionRow(item, from: controller)
                                         },
                                         label: {
                                             SubmissionListRowView(
                                                 anonymizeStudents: viewModel.assignment?.anonymizeStudents,
-                                                row: row
+                                                item: item
                                             )
                                         }
                                     )

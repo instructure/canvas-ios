@@ -26,12 +26,6 @@ import TestsFoundation
 
 final class SubmissionListViewModelTests: TeacherTestCase {
 
-    private var scheduler: AnySchedulerOf<DispatchQueue>!
-    private var viewModel: SubmissionListViewModel!
-    private var interactor: MockSubmissionListInteractor!
-
-    private var subscriptions: Set<AnyCancellable> = []
-
     enum TestConstants {
         static let assignmentID = "12345"
         static let courseID = "67890"
@@ -40,6 +34,11 @@ final class SubmissionListViewModelTests: TeacherTestCase {
             return .course(courseID)
         }
     }
+
+    private var scheduler: AnySchedulerOf<DispatchQueue>!
+    private var viewModel: SubmissionListViewModel!
+    private var interactor: MockSubmissionListInteractor!
+    private var subscriptions: Set<AnyCancellable> = []
 
     override func setUp() {
         super.setUp()
@@ -107,7 +106,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
                 default:
                     submission.userID = "u2"
                     submission.user = User.save(.make(id: "u2", name: "Smith"), in: client)
-                    submission.workflowState = .submitted
+                    submission.workflowState = .graded
                     submission.score = 0.5
                     submission.submittedAt = Date()
                 }
@@ -158,16 +157,11 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         XCTAssertEqual(interactor.appliedFilters, [.graded])
     }
 
-    func testRefresh() {
-        let expectation = XCTestExpectation(description: "Refresh completes")
-
-        Task {
-            await viewModel.refresh()
-            expectation.fulfill()
-        }
-
-        interactor.refreshSubject.send(())
-        wait(for: [expectation], timeout: 1.0)
+    func testRefresh() async {
+        await viewModel.refresh()
+        await viewModel.refresh()
+        await viewModel.refresh()
+        XCTAssertEqual(interactor.refreshCalls, 3)
     }
 
     func testMessageUsers() throws {
@@ -194,12 +188,14 @@ final class SubmissionListViewModelTests: TeacherTestCase {
             }
         )
 
+        // When
         interactor.courseSubject.send(course)
         interactor.assignmentSubject.send(assignment)
         interactor.submissionsSubject.send(mocks)
 
         viewModel.messageUsers(from: WeakViewController())
 
+        // Then
         let routedURL: URLComponents = try XCTUnwrap(router.calls.last?.0)
         let recipientNames = routedURL
             .queryValue(for: ComposeMessageOptions.QueryParameterKey.recipientNamesContent.rawValue)?
@@ -208,44 +204,78 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         XCTAssertEqual(routedURL.path, "/conversations/compose")
         XCTAssertEqual(recipientNames, ["John Doe", "Jane Smith"].compactMap { $0.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) })
     }
+
+    func testOpenPostPolicy() throws {
+        // When
+        viewModel.openPostPolicy(from: WeakViewController())
+
+        // Then
+        let routedURL: URLComponents = try XCTUnwrap(router.calls.last?.0)
+        let expectedPath = [
+            "",
+            TestConstants.context.pathComponent,
+            "assignments",
+            TestConstants.assignmentID,
+            "post_policy"
+        ].joined(separator: "/")
+
+        XCTAssertEqual(routedURL.path, expectedPath)
+    }
+
+    func testDidTapSubmissionRow() throws {
+        // Given
+        let assignment = TestConstants.assignment(in: databaseClient)
+        let mockSubmission = try XCTUnwrap(
+            TestConstants
+                .createSubmissions(in: databaseClient, count: 1, customizer: { submission, _, client in
+                    submission.userID = "u0"
+                    submission.user = User.save(.make(id: "u0", name: "John Doe"), in: client)
+                    submission.workflowState = .submitted
+                    submission.score = nil
+                    submission.submittedAt = Date()
+                })
+                .first
+        )
+
+        let mockItem = SubmissionListItem(submission: mockSubmission, assignment: assignment, order: 1)
+
+        // When
+        interactor.assignmentSubject.send(assignment)
+        viewModel.didTapSubmissionRow(mockItem, from: WeakViewController())
+
+        // Then
+        var routedURL: URLComponents = try XCTUnwrap(router.calls.last?.0)
+        let expectedPath = [
+            "",
+            TestConstants.context.pathComponent,
+            "assignments",
+            TestConstants.assignmentID,
+            "submissions",
+            mockItem.originalUserID
+        ].joined(separator: "/")
+
+        XCTAssertEqual(routedURL.path, expectedPath)
+        XCTAssertNil(routedURL.query)
+
+        // When
+        viewModel.filterMode = .needsGrading
+        viewModel.didTapSubmissionRow(mockItem, from: WeakViewController())
+
+        // Then
+        routedURL = try XCTUnwrap(router.calls.last?.0)
+
+        let expectedFilters = SubmissionFilterMode
+            .needsGrading
+            .filters
+            .map { $0.rawValue }
+            .joined(separator: ",")
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+        XCTAssertEqual(routedURL.query, "filter=\(expectedFilters)")
+    }
 }
 
-final class MockSubmissionListInteractor: SubmissionListInteractor {
-
-    var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    var assignmentSubject = PassthroughSubject<Assignment?, Never>()
-    var courseSubject = PassthroughSubject<Course?, Never>()
-
-    var submissions: AnyPublisher<[Submission], Never> {
-        submissionsSubject.eraseToAnyPublisher()
-    }
-
-    var assignment: AnyPublisher<Assignment?, Never> {
-        assignmentSubject.eraseToAnyPublisher()
-    }
-
-    var course: AnyPublisher<Course?, Never> {
-        courseSubject.eraseToAnyPublisher()
-    }
-
-    var context: Context
-    var assignmentID: String
-
-    init(context: Context, assignmentID: String) {
-        self.context = context
-        self.assignmentID = assignmentID
-    }
-
-    var refreshSubject = PassthroughSubject<Void, Never>()
-    func refresh() -> AnyPublisher<Void, Never> {
-        refreshSubject.eraseToAnyPublisher()
-    }
-
-    var appliedFilters: [GetSubmissions.Filter] = []
-    func applyFilters(_ filters: [GetSubmissions.Filter]) {
-        appliedFilters = filters
-    }
-}
+// MARK: - Mocking
 
 extension SubmissionListViewModelTests.TestConstants {
 
@@ -277,43 +307,3 @@ extension SubmissionListViewModelTests.TestConstants {
         return submissions
     }
 }
-
-extension NSManagedObjectContext {
-
-    func bring<T: NSManagedObject>(
-        _ idKey: KeyPath<T, String>,
-        equals value: String
-    ) -> T {
-        let keyPath = NSExpression(forKeyPath: idKey).keyPath
-        let obj: T = first(scope: .where(keyPath, equals: value)) ?? T(context: self)
-        obj.setValue(value, forKeyPath: keyPath)
-        return obj
-    }
-
-    func object<T: NSManagedObject>(
-        of idKey: KeyPath<T, String>,
-        equals value: String
-    ) -> T? {
-        let keyPath = NSExpression(forKeyPath: idKey).keyPath
-        return first(scope: .where(keyPath, equals: value))
-    }
-}
-
-
-
-
-
-//
-
-//
-
-//
-
-//
-//    func testOpenPostPolicy() {
-//
-//    }
-//
-//    func testDidTapSubmissionRow() {
-//
-//    }

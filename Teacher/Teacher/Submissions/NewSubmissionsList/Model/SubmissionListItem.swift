@@ -19,7 +19,7 @@
 import Foundation
 import Core
 
-public struct SubmissionListItem {
+public struct SubmissionListItem: Identifiable {
     struct User {
         let id: String
         let name: String
@@ -42,6 +42,7 @@ public struct SubmissionListItem {
         }
     }
 
+    public let id: String
     let originalUserID: String
     let status: SubmissionStatus
     let groupID: String?
@@ -49,26 +50,10 @@ public struct SubmissionListItem {
     let gradeFormatted: String
     let needsGrading: Bool
     let user: User?
+    let order: Int
 
-    fileprivate init(
-        originalUserID: String,
-        status: SubmissionStatus,
-        gradeFormatted: String,
-        needsGrading: Bool,
-        user: User?,
-        groupID: String?,
-        groupName: String?
-    ) {
-        self.originalUserID = originalUserID
-        self.status = status
-        self.gradeFormatted = gradeFormatted
-        self.needsGrading = needsGrading
-        self.user = user
-        self.groupID = groupID
-        self.groupName = groupName
-    }
-
-    init(submission: Submission, assignment: Assignment?) {
+    init(submission: Submission, assignment: Assignment?, order: Int) {
+        self.id = submission.id
         self.originalUserID = submission.userID
         self.groupID = submission.groupID
         self.groupName = submission.groupName
@@ -78,6 +63,7 @@ public struct SubmissionListItem {
         self.status = submission.status(gradedChecked: true)
         self.needsGrading = submission.needsGrading
         self.gradeFormatted = GradeFormatter.shortString(for: assignment, submission: submission)
+        self.order = order
     }
 }
 
@@ -92,23 +78,50 @@ extension SubmissionListItem.User {
 }
 
 extension SubmissionListItem {
+
+    fileprivate init(
+        id: String,
+        originalUserID: String,
+        status: SubmissionStatus,
+        gradeFormatted: String,
+        needsGrading: Bool,
+        user: User?,
+        groupID: String?,
+        groupName: String?,
+        order: Int
+    ) {
+        self.id = id
+        self.originalUserID = originalUserID
+        self.status = status
+        self.gradeFormatted = gradeFormatted
+        self.needsGrading = needsGrading
+        self.user = user
+        self.groupID = groupID
+        self.groupName = groupName
+        self.order = order
+    }
+
     static func make(
+        id: String,
         originalUserID: String,
         status: SubmissionStatus,
         gradeFormatted: String = "-",
         needsGrading: Bool = false,
         user: User? = nil,
         groupID: String? = nil,
-        groupName: String? = nil
+        groupName: String? = nil,
+        order: Int = -1
     ) -> SubmissionListItem {
         SubmissionListItem(
+            id: id,
             originalUserID: originalUserID,
             status: status,
             gradeFormatted: gradeFormatted,
             needsGrading: needsGrading,
             user: user,
             groupID: groupID,
-            groupName: groupName
+            groupName: groupName,
+            order: order
         )
     }
 }

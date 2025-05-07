@@ -21,14 +21,14 @@ import Core
 
 struct SubmissionListRowView: View {
     let anonymizeStudents: Bool?
-    let row: SubmissionListSection.Row
+    let item: SubmissionListItem
 
     var body: some View {
         HStack(spacing: 16) {
             avatarView
             VStack(alignment: .leading, spacing: 4) {
                 nameLabel
-                if submission.needsGrading {
+                if item.needsGrading {
                     HStack(spacing: 4) {
                         statusLabel
                         statusDivider
@@ -45,34 +45,30 @@ struct SubmissionListRowView: View {
         .padding(.horizontal, 15)
     }
 
-    private var submission: SubmissionListItem {
-        row.item
-    }
-
     @ViewBuilder
     private var avatarView: some View {
         if anonymizeStudents != false {
-            Avatar.Anonymous(isGroup: submission.groupID != nil)
-        } else if let groupName = submission.groupName {
+            Avatar.Anonymous(isGroup: item.groupID != nil)
+        } else if let groupName = item.groupName {
             Avatar(name: groupName, url: nil)
         } else {
             Avatar(
-                name: submission.user?.name ?? "",
-                url: submission.user?.avatarURL
+                name: item.user?.name ?? "",
+                url: item.user?.avatarURL
             )
         }
     }
 
     private var nameLabel: some View {
         let nameText: Text = if anonymizeStudents != false {
-            if submission.groupID != nil {
-                Text("Group \(row.order)", bundle: .teacher)
+            if item.groupID != nil {
+                Text("Group \(item.order)", bundle: .teacher)
             } else {
-                Text("Student \(row.order)", bundle: .teacher)
+                Text("Student \(item.order)", bundle: .teacher)
             }
         } else {
             Text(
-                submission.groupName ?? submission.user.flatMap {
+                item.groupName ?? item.user.flatMap {
                     User.displayName($0.name, pronouns: $0.pronouns)
                 } ?? ""
             )
@@ -85,11 +81,11 @@ struct SubmissionListRowView: View {
 
     private var statusLabel: some View {
         HStack(spacing: 2) {
-            submission.status.redesignAppearance.icon.size(16)
-            Text(submission.status.text)
+            item.status.redesignAppearance.icon.size(16)
+            Text(item.status.text)
         }
         .font(.regular14)
-        .foregroundStyle(submission.status.redesignAppearance.color)
+        .foregroundStyle(item.status.redesignAppearance.color)
     }
 
     private var statusDivider: some View {
@@ -103,7 +99,7 @@ struct SubmissionListRowView: View {
     }
 
     private var gradeText: some View {
-        return Text(submission.gradeFormatted)
+        return Text(item.gradeFormatted)
             .font(.semibold16)
             .foregroundStyle(Color.course2)
     }

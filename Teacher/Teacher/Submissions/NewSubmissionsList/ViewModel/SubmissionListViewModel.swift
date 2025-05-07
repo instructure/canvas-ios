@@ -65,18 +65,30 @@ class SubmissionListViewModel: ObservableObject {
         .map({ (list, searchText) in
 
             let searchTerm = searchText.lowercased()
-            let curatedList = searchTerm.isNotEmpty ? list.filter { $0.user?.nameContains(searchTerm) ?? false } : list
-            let toItemMapper: (Submission) -> SubmissionListItem = { [weak self] submission in
-                return SubmissionListItem(submission: submission, assignment: self?.assignment)
+            var curatedItems = list
+                .enumerated()
+                .map { [weak self] offset, sub in
+                    let item = SubmissionListItem(
+                        submission: sub,
+                        assignment: self?.assignment,
+                        order: offset + 1
+                    )
+                    return (item, sub)
+                }
+
+            if searchTerm.isNotEmpty {
+                curatedItems = curatedItems.filter { $0.1.user?.nameContains(searchTerm) ?? false }
             }
 
             return SubmissionListSection.Kind
                 .allCases
                 .map { kind in
-                    let items = curatedList.filter(kind.filter).map(toItemMapper)
+                    let items = curatedItems
+                        .filter { kind.filter($0.1) }
+                        .map { $0.0 }
                     return SubmissionListSection(kind: kind, items: items)
                 }
-                .filter({ $0.rows.isNotEmpty })
+                .filter({ $0.items.isNotEmpty })
         })
         .assign(to: &$sections)
 
@@ -123,7 +135,7 @@ class SubmissionListViewModel: ObservableObject {
 
         let recipients = sections
             .flatMap { section in
-                section.rows.compactMap { $0.item.user?.asRecipient }
+                section.items.compactMap { $0.user?.asRecipient }
             }
 
         let recipientContext = RecipientContext(

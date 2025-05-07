@@ -22,13 +22,7 @@ import Combine
 class SubmissionListInteractorLive: SubmissionListInteractor {
 
     private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var assignmentSubject = CurrentValueSubject<Assignment?, Never>(nil)
-    private var courseSubject = CurrentValueSubject<Course?, Never>(nil)
     private var filtersSubject: CurrentValueSubject<[GetSubmissions.Filter], Never>
-
-    var submissions: AnyPublisher<[Submission], Never> { submissionsSubject.eraseToAnyPublisher() }
-    var assignment: AnyPublisher<Assignment?, Never> { assignmentSubject.eraseToAnyPublisher() }
-    var course: AnyPublisher<Course?, Never> { courseSubject.eraseToAnyPublisher() }
 
     let context: Context
     let assignmentID: String
@@ -62,24 +56,6 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
                 self?.setupSubmissionsStore(filters)
             }
             .store(in: &subscriptions)
-
-        setupBindings()
-    }
-
-    private func setupBindings() {
-        courseStore
-            .getEntities()
-            .map { $0.first }
-            .replaceError(with: nil)
-            .subscribe(courseSubject)
-            .store(in: &subscriptions)
-
-        assignmentStore
-            .getEntities()
-            .map { $0.first }
-            .replaceError(with: nil)
-            .subscribe(assignmentSubject)
-            .store(in: &subscriptions)
     }
 
     private func setupSubmissionsStore(_ filters: [GetSubmissions.Filter] = []) {
@@ -90,17 +66,38 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
         submissionsSubscription?.cancel()
         submissionsSubscription = submissionsStore?
-            .getEntities()
+            .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .sink { [weak self] list in
                 self?.submissionsSubject.send(list)
             }
     }
 
+    var assignment: AnyPublisher<Assignment?, Never> {
+        assignmentStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .map { $0.first }
+            .replaceError(with: nil)
+            .eraseToAnyPublisher()
+    }
+
+    var course: AnyPublisher<Course?, Never> {
+        courseStore
+            .getEntities(keepObservingDatabaseChanges: true)
+            .map { $0.first }
+            .replaceError(with: nil)
+            .eraseToAnyPublisher()
+    }
+
+    var submissions: AnyPublisher<[Submission], Never> {
+        submissionsSubject.eraseToAnyPublisher()
+    }
+
     func refresh() -> AnyPublisher<Void, Never> {
         return Publishers.Last(
             upstream:
-                Publishers.Merge(
+                Publishers.Merge3(
+                    courseStore.forceRefresh(),
                     assignmentStore.forceRefresh(),
                     submissionsStore?.forceRefresh() ?? Empty<Void, Never>().eraseToAnyPublisher()
                 )

@@ -49,23 +49,15 @@ struct SubmissionListSection: Identifiable {
         }
     }
 
-    struct Row: Identifiable {
-        let order: Int
-        let item: SubmissionListItem
-        var id: Int { order }
-    }
-
     let kind: Kind
-    var rows: [Row]
+    var items: [SubmissionListItem]
     var isCollapsed: Bool
 
     var id: String { kind.rawValue }
 
     init(kind: Kind, items: [SubmissionListItem], isCollapsed: Bool = false) {
         self.kind = kind
-        self.rows = items
-            .enumerated()
-            .map({ Row(order: $0.offset + 1, item: $0.element) })
+        self.items = items
         self.isCollapsed = isCollapsed
     }
 }

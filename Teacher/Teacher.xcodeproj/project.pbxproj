@@ -18,6 +18,9 @@
 		0856FCFE2DCA41B6009067CF /* SubmissionListInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */; };
 		0856FD002DCB09D6009067CF /* SubmissionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */; };
 		0856FD022DCB09F5009067CF /* SubmissionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FD012DCB09F3009067CF /* SubmissionSection.swift */; };
+		089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */; };
+		089AAC942DCC02200022F341 /* MockSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */; };
+		089AAC962DCC024A0022F341 /* NSManagedObjectContext+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */; };
 		13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Assets.xcassets */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
@@ -237,6 +240,9 @@
 		0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractorLiveTests.swift; sourceTree = "<group>"; };
 		0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItem.swift; sourceTree = "<group>"; };
 		0856FD012DCB09F3009067CF /* SubmissionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSection.swift; sourceTree = "<group>"; };
+		089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItemTests.swift; sourceTree = "<group>"; };
+		089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSubmissionListInteractor.swift; sourceTree = "<group>"; };
+		089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+TestUtils.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -477,10 +483,21 @@
 		0856FCFA2DCA417F009067CF /* NewSubmissionList */ = {
 			isa = PBXGroup;
 			children = (
+				089AAC912DCC01FB0022F341 /* Utils */,
+				089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */,
 				0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */,
 				0856FCFB2DCA418B009067CF /* SubmissionListViewModelTests.swift */,
 			);
 			path = NewSubmissionList;
+			sourceTree = "<group>";
+		};
+		089AAC912DCC01FB0022F341 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */,
+				089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
@@ -1652,14 +1669,17 @@
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */,
+				089AAC962DCC024A0022F341 /* NSManagedObjectContext+TestUtils.swift in Sources */,
 				7DE062A625126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift in Sources */,
 				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
+				089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
 				0856FCFE2DCA41B6009067CF /* SubmissionListInteractorLiveTests.swift in Sources */,
 				D900B41A29CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift in Sources */,
 				7D3DC0CB252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift in Sources */,
 				B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */,
+				089AAC942DCC02200022F341 /* MockSubmissionListInteractor.swift in Sources */,
 				B417C2E62B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift in Sources */,
 				7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */,
 			);

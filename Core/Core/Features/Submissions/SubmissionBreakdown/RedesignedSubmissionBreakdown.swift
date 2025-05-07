@@ -33,22 +33,28 @@ struct RedesignedSubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProt
                             .font(.semibold16)
                             .foregroundColor(.textDarkest)
                         Spacer()
-                        Button(
-                            action: routeToAll, label: {
-                                HStack(spacing: 5) {
-                                    Text("All")
-                                    InstUI.DisclosureIndicator()
+                        if !viewModel.noSubmissionTypes {
+                            Button(
+                                action: routeToAll, label: {
+                                    HStack(spacing: 5) {
+                                        Text("All")
+                                        InstUI.DisclosureIndicator()
+                                    }
                                 }
-                            }
-                        )
-                        .font(.regular16)
-                        .tint(viewModel.color)
+                            )
+                            .font(.regular16)
+                            .tint(viewModel.color)
+                        }
                     }
                     Spacer().frame(height: 20)
                     if viewModel.noSubmissionTypes {
-                        Text("Tap to view submissions list.", bundle: .core)
-                            .font(.regular16)
-                            .foregroundColor(.textDarkest)
+                        HStack {
+                            Text("Tap to view submissions list.", bundle: .core)
+                                .font(.regular16)
+                                .foregroundColor(.textDarkest)
+                            Spacer()
+                            InstUI.DisclosureIndicator()
+                        }
                     } else if viewModel.paperSubmissionTypes {
                         HStack(alignment: .top, spacing: 0) {
                             Graph(
