@@ -82,6 +82,7 @@ extension AssistFlashCardView {
 }
 
 #if DEBUG
+// swiftlint:disable line_length
 #Preview {
     AssistFlashCardView(
         viewModel: .init(
@@ -104,3 +105,4 @@ extension AssistFlashCardView {
     )
 }
 #endif
+// swiftlint:enable line_length
