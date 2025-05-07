@@ -19,10 +19,31 @@
 import Core
 import Foundation
 
-struct HAssignmentGroup: Identifiable {
+struct ScoresAssignmentGroup: Identifiable {
     let id: String
     let name: String
     let groupWeight: Double?
+    let assignments: [ScoresAssignment]
+
+    init(
+        id: String,
+        name: String,
+        groupWeight: Double?,
+        assignments: [ScoresAssignment]
+    ) {
+        self.id = id
+        self.name = name
+        self.groupWeight = groupWeight
+        self.assignments = assignments
+    }
+
+    init(from entity: CDScoresAssignmentGroup) {
+        self.id = entity.id
+        self.name = entity.name ?? ""
+        self.groupWeight = if let groupWeight = entity.groupWeight { Double(truncating: groupWeight) } else { nil }
+        self.assignments = entity.assignments.map(ScoresAssignment.init)
+    }
+
     var groupWeightString: String? {
         if let groupWeight {
             return GradeFormatter.numberFormatter.string(
@@ -32,38 +53,9 @@ struct HAssignmentGroup: Identifiable {
             return nil
         }
     }
-
-    let assignments: [HAssignment]
-
-    init(id: String, name: String, groupWeight: Double?, assignments: [HAssignment]) {
-        self.id = id
-        self.name = name
-        self.groupWeight = groupWeight
-        self.assignments = assignments
-    }
-
-    init(from entity: Core.AssignmentGroup) {
-        self.id = entity.id
-        self.name = entity.name
-        self.groupWeight = entity.groupWeight?.doubleValue
-        if let assignments = entity.assignments {
-            self.assignments = Array(assignments).map { HAssignment(from: $0) }
-        } else {
-            self.assignments = []
-        }
-    }
-
-    func update(assignments: [HAssignment]) -> HAssignmentGroup {
-        HAssignmentGroup(
-            id: id,
-            name: name,
-            groupWeight: groupWeight,
-            assignments: assignments
-        )
-    }
 }
 
-extension Array where Element == HAssignmentGroup {
+extension Array where Element == ScoresAssignmentGroup {
     private var groupWeightSum: Double {
         reduce(0) { result, group in
             result + (group.groupWeight ?? 0)

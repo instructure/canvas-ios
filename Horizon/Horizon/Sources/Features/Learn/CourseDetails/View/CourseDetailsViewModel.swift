@@ -45,6 +45,7 @@ final class CourseDetailsViewModel {
         router: Router,
         getCoursesInteractor: GetCoursesInteractor,
         courseID: String,
+        enrollmentID: String,
         course: HCourse?,
         onShowTabBar: @escaping (Bool) -> Void
     ) {
@@ -53,7 +54,7 @@ final class CourseDetailsViewModel {
         self.courseID = courseID
         self.course = course ?? .init()
         self.onShowTabBar = onShowTabBar
-        self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID)
+        self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID, enrollmentID: enrollmentID)
         self.isLoaderVisible = true
 
         getCoursesInteractor.getCourse(id: courseID, ignoreCache: false)

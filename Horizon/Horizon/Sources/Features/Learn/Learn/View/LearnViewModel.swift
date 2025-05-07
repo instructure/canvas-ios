@@ -25,6 +25,7 @@ final class LearnViewModel {
 
     private(set) var isLoaderVisible: Bool = false
     private(set) var corseID: String?
+    private(set) var enrollmentID: String?
 
     // MARK: - Private variables
 
@@ -45,6 +46,7 @@ final class LearnViewModel {
         getCoursesInteractor.getDashboardCourses(ignoreCache: false)
             .sink { [weak self] courses in
                 self?.corseID = courses.first?.courseId
+                self?.enrollmentID = courses.first?.enrollmentID
                 self?.isLoaderVisible = false
             }
             .store(in: &subscriptions)

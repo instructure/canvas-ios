@@ -12,7 +12,7 @@
       const notebookTextSelections = [];
 
       function onApplyHighlight() {
-        const notebookTextSelection = window.getSelectionCoordinates();
+        const notebookTextSelection = window.getCurrentTextSelection();
         if (notebookTextSelection) {
           notebookTextSelection.backgroundColor = "yellow";
           notebookTextSelection.borderColor = "red";

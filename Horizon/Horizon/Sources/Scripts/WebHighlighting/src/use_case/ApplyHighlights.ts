@@ -118,7 +118,9 @@ const isNodeInRange = (range: Range, node: Node) => {
 const notifyiOSOfHighlightTap = (
   notebookTextSelection: NotebookTextSelection
 ) => {
-  window.webkit.messageHandlers.notebookHighlightTap.postMessage(
+    const messageHandlers = window.webkit?.messageHandlers;
+    if(!messageHandlers) return;
+    messageHandlers.notebookHighlightTap.postMessage(
     JSON.stringify(notebookTextSelection)
   );
 };
