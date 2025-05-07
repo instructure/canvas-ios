@@ -88,15 +88,15 @@ extension AssistFlashCardView {
             flashCards: [
                 .init(
                     frontContent: "Front Content 1. This is some really long content so that we can see what would happen if we have a lot of text here. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going. This is some really long content so that we can see what would happen if we have a lot of text here. Keep going.",
-                    backContent: "Back Content 1",
+                    backContent: "Back Content 1"
                 ),
                 .init(
                     frontContent: "Front Content 2",
-                    backContent: "Back Content 2",
+                    backContent: "Back Content 2"
                 ),
                 .init(
                     frontContent: "Front Content 3",
-                    backContent: "Back Content 3",
+                    backContent: "Back Content 3"
                 )
             ],
             router: AppEnvironment.shared.router
