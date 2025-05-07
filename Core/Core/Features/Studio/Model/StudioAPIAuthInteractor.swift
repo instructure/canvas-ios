@@ -33,7 +33,7 @@ public enum StudioAPIAuthError: String, Error, DebugDescriptionProvider {
 }
 
 public protocol StudioAPIAuthInteractor {
-    func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError>
+    func makeStudioAPI(env: AppEnvironment, courseId: String) -> AnyPublisher<API, StudioAPIAuthError>
 }
 
 public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
@@ -47,8 +47,8 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
         self.webViewFactory = webViewFactory
     }
 
-    public func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError> {
-        Self.getStudioLaunchURL(env: env)
+    public func makeStudioAPI(env: AppEnvironment, courseId: String) -> AnyPublisher<API, StudioAPIAuthError> {
+        Self.getStudioLaunchURL(env: env, courseId: courseId)
             .flatMap { [self] (webLaunchURL, apiBaseURL) in
                 launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
                     .map { webView in
@@ -105,12 +105,15 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func getStudioLaunchURL(env: AppEnvironment) -> AnyPublisher<(webLaunchURL: URL, apiBaseURL: URL), StudioAPIAuthError> {
-        let useCase = GetGlobalNavExternalToolsPlacements(enrollment: .student)
+    private static func getStudioLaunchURL(
+        env: AppEnvironment,
+        courseId: String
+    ) -> AnyPublisher<(webLaunchURL: URL, apiBaseURL: URL), StudioAPIAuthError> {
+        let useCase = GetArc(courseID: courseId)
         return ReactiveStore(useCase: useCase, environment: env)
             .getEntities()
-            .tryMap { ltiTools -> (URL, URL) in
-                guard let webURL = ltiTools.studioLTITool?.url else {
+            .tryMap { studioLTIs -> (URL, URL) in
+                guard let webURL = studioLTIs.first?.url else {
                     throw StudioAPIAuthError.studioLTINotFound
                 }
                 guard let baseURL = webURL.apiBaseURL else {
@@ -137,18 +140,6 @@ private extension Publisher {
                 return newError
             }
             return studioError
-        }
-    }
-}
-
-private extension Array where Element == ExternalToolLaunchPlacement {
-
-    var studioLTITool: ExternalToolLaunchPlacement? {
-        first { ltiTool in
-            guard let url = ltiTool.url else {
-                return false
-            }
-            return url.absoluteString.contains(".instructuremedia.com") && !url.absoluteString.contains("staging")
         }
     }
 }

@@ -33,10 +33,11 @@ public extension InstUI {
      This structure encapsulates properties that alter the behavior of the screen.
      Properties were collected in a mind that those won't change and are static to a specific screen.
      */
-    struct BaseScreenConfig: Equatable {
+    struct BaseScreenConfig {
         public let refreshable: Bool
         public let showsScrollIndicators: Bool
         public let scrollAxes: Axis.Set
+        public let scrollBounce: ScrollBounceBehavior
         public let errorPandaConfig: InteractivePanda.Config
         public let emptyPandaConfig: InteractivePanda.Config
 
@@ -50,12 +51,14 @@ public extension InstUI {
             refreshable: Bool = true,
             showsScrollIndicators: Bool = true,
             scrollAxes: Axis.Set = .vertical,
+            scrollBounce: ScrollBounceBehavior = .automatic,
             errorPandaConfig: InteractivePanda.Config = .error(),
             emptyPandaConfig: InteractivePanda.Config = .empty()
         ) {
             self.refreshable = refreshable
             self.showsScrollIndicators = showsScrollIndicators
             self.scrollAxes = scrollAxes
+            self.scrollBounce = scrollBounce
             self.errorPandaConfig = errorPandaConfig
             self.emptyPandaConfig = emptyPandaConfig
         }
@@ -162,6 +165,7 @@ public extension InstUI {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
+            .scrollBounceBehavior(config.scrollBounce)
             .background(Color.backgroundLightest)
         }
     }
