@@ -25,7 +25,7 @@ struct CourseDetailsView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
     @State private var isShowHeader: Bool = true
-
+    private let threshold: CGFloat = -100
     private var tabs: [Tabs] {
         let showingOverview = !viewModel.course.overviewDescription.isEmpty
         return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
@@ -134,7 +134,7 @@ struct CourseDetailsView: View {
         Color.clear
             .frame(height: 0)
             .readingFrame { frame in
-                isShowHeader = frame.minY > -100
+                isShowHeader = frame.minY > threshold
             }
     }
 

@@ -70,6 +70,7 @@ final class CourseDetailsViewModel {
                 self.course.progress = max(nextProgress, currentProgress)
                 self.state = .data
                 self.isLoaderVisible = false
+                // 0 -> Overview 1 -> my progress
                 self.selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1
             }
             .store(in: &subscriptions)
