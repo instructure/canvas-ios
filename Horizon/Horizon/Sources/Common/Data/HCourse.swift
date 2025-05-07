@@ -27,9 +27,11 @@ struct HCourse: Identifiable {
     let enrollments: [HEnrollment]
     let modules: [HModule]
     let incompleteModule: IncompleteModule?
+    let enrollmentID: String
 
     init(
         id: String = "",
+        enrollmentID: String = "",
         institutionName: String = "",
         name: String = " ",
         overviewDescription: String? = nil,
@@ -39,6 +41,7 @@ struct HCourse: Identifiable {
         incompleteModule: IncompleteModule? = nil
     ) {
         self.id = id
+        self.enrollmentID = enrollmentID
         self.institutionName = institutionName
         self.name = name
         self.overviewDescription = overviewDescription ?? ""
@@ -50,6 +53,7 @@ struct HCourse: Identifiable {
 
     init(from entity: Course, modulesEntity: [Module]) {
         self.id = entity.id
+        self.enrollmentID = ""
         self.institutionName = ""
         self.name = entity.name ?? ""
         self.overviewDescription = entity.syllabusBody ?? ""

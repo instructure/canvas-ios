@@ -205,9 +205,10 @@ private extension CDDashboardCourse {
         )
         .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
         .replaceError(with: [])
-        .map {
+        .map { [enrollmentID] in
             HCourse(
                 id: courseID,
+                enrollmentID: enrollmentID,
                 institutionName: institutionName ?? "",
                 name: name,
                 overviewDescription: overviewDescription,
