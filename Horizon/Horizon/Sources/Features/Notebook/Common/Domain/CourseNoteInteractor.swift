@@ -287,23 +287,23 @@ extension CDNotebookNote {
         guard let selectedText = selectedText,
            let startContainer = startContainer,
            let endContainer = endContainer,
-           startOffset >= 0,
-           endOffset >= 0,
-           start >= 0,
-           end >= 0 else {
+           let startOffset = startOffset,
+           let endOffset = endOffset,
+           let start = start,
+           let end = end else {
             return nil
         }
         return NotebookHighlight(
             selectedText: selectedText,
             textPosition: NotebookHighlight.TextPosition(
-                start: Int(start),
-                end: Int(end)
+                start: Int(truncating: start),
+                end: Int(truncating: end)
             ),
             range: NotebookHighlight.Range(
                 startContainer: startContainer,
-                startOffset: Int(startOffset),
+                startOffset: Int(truncating: startOffset),
                 endContainer: endContainer,
-                endOffset: Int(endOffset)
+                endOffset: Int(truncating: endOffset)
             )
         )
     }

@@ -115,9 +115,10 @@ enum HorizonRoutes {
 
     private static var courseRoutes: [RouteHandler] {
         [
-            RouteHandler("/courses/:courseID") { _, params, _ in
+            RouteHandler("/courses/:courseID/:enrollmentID") { _, params, _ in
                 let courseID = params["courseID"] ?? ""
-                return LearnAssembly.makeCourseDetailsViewController(courseID: courseID)
+                let enrollmentID = params["enrollmentID"] ?? ""
+                return LearnAssembly.makeCourseDetailsViewController(courseID: courseID, enrollmentID: enrollmentID)
             }
         ]
     }

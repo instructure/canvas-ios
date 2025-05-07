@@ -77,17 +77,25 @@ extension CDNotebookNote {
         model.content = item.userText
         model.courseID = item.courseId
         model.date = item.createdAt
-        model.end = Int16(item.highlightData?.textPosition.end ?? -1)
+        if let end = item.highlightData?.textPosition.end {
+            model.end = NSNumber(value: end)
+        }
         model.endContainer = item.highlightData?.range.endContainer
-        model.endOffset = Int16(item.highlightData?.range.endOffset ?? -1)
+        if let endOffset = item.highlightData?.range.endOffset {
+            model.endOffset = NSNumber(value: endOffset)
+        }
         model.id = item.id
         model.labels = item.reaction?.serializeLabels
         model.objectType = item.objectType
         model.pageID = item.objectId
         model.selectedText = item.highlightData?.selectedText
-        model.start = Int16(item.highlightData?.textPosition.start ?? -1)
+        if let start = item.highlightData?.textPosition.start {
+            model.start = NSNumber(value: start)
+        }
         model.startContainer = item.highlightData?.range.startContainer
-        model.startOffset = Int16(item.highlightData?.range.startOffset ?? -1)
+        if let startOffset = item.highlightData?.range.startOffset {
+            model.startOffset = NSNumber(value: startOffset)
+        }
 
         return model
     }
