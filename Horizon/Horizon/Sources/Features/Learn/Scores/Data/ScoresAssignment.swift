@@ -19,7 +19,7 @@
 import Foundation
 import Core
 
-struct HScoresAssignment: Equatable, Identifiable {
+struct ScoresAssignment: Equatable, Identifiable {
     let id: String
     let name: String
     let commentsCount: Int
@@ -84,7 +84,7 @@ struct HScoresAssignment: Equatable, Identifiable {
         dueAt?.formatted(format: "dd/MM/yyyy")
     }
 
-    var status: HScoresAssignment.Status {
+    var status: ScoresAssignment.Status {
         if state == "submitted"
             || state == "pending_review"
             || (state == "graded" && score != nil) {
@@ -109,7 +109,7 @@ struct HScoresAssignment: Equatable, Identifiable {
     }
 }
 
-extension HScoresAssignment {
+extension ScoresAssignment {
     enum Status {
         case late
         case missing

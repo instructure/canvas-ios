@@ -19,17 +19,17 @@
 import Core
 import Foundation
 
- struct HAssignmentGroup: Identifiable {
-     let id: String
-     let name: String
-     let groupWeight: Double?
-     let assignments: [HScoresAssignment]
+struct ScoresAssignmentGroup: Identifiable {
+    let id: String
+    let name: String
+    let groupWeight: Double?
+    let assignments: [ScoresAssignment]
 
-     init(
+    init(
         id: String,
         name: String,
         groupWeight: Double?,
-        assignments: [HScoresAssignment]
+        assignments: [ScoresAssignment]
     ) {
         self.id = id
         self.name = name
@@ -37,11 +37,11 @@ import Foundation
         self.assignments = assignments
     }
 
-     init(from entity: CDScoresAssignmentGroup) {
+    init(from entity: CDScoresAssignmentGroup) {
         self.id = entity.id
         self.name = entity.name ?? ""
         self.groupWeight = if let groupWeight = entity.groupWeight { Double(truncating: groupWeight) } else { nil }
-        self.assignments = entity.assignments.map(HScoresAssignment.init)
+        self.assignments = entity.assignments.map(ScoresAssignment.init)
     }
 
     var groupWeightString: String? {
@@ -55,7 +55,7 @@ import Foundation
     }
 }
 
-extension Array where Element == HAssignmentGroup {
+extension Array where Element == ScoresAssignmentGroup {
     private var groupWeightSum: Double {
         reduce(0) { result, group in
             result + (group.groupWeight ?? 0)

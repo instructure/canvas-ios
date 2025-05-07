@@ -104,7 +104,7 @@ struct ScoresAssignmentsView: View {
         score: "",
         assignmentGroups: [
             .init(id: "1", name: "1", groupWeight: 1, assignments: [
-                HScoresAssignment(
+                ScoresAssignment(
                     id: "2",
                     name: "iOS Debugging Quiz",
                     commentsCount: 0,
@@ -119,7 +119,7 @@ struct ScoresAssignmentsView: View {
                     isMissing: true,
                     submittedAt: nil
                 ),
-                HScoresAssignment(
+                ScoresAssignment(
                     id: "1",
                     name: "Essay on SwiftUI",
                     commentsCount: 3,

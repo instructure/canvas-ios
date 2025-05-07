@@ -62,12 +62,12 @@ final class ScoresInteractorLive: ScoresInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func fetchAssignmentGroups(ignoreCache: Bool) -> AnyPublisher<[HAssignmentGroup], Error> {
+    private func fetchAssignmentGroups(ignoreCache: Bool) -> AnyPublisher<[ScoresAssignmentGroup], Error> {
          ReactiveStore(useCase: GetSubmissionScoresUseCase(userId: userId, enrollmentId: enrollmentID))
              .getEntities(ignoreCache: ignoreCache)
              .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
              .map { response in
-                 HAssignmentGroup(from: response)
+                 ScoresAssignmentGroup(from: response)
              }
              .collect()
              .eraseToAnyPublisher()

@@ -31,7 +31,7 @@ class ScoresInteractorPreview: ScoresInteractor {
                         name: "First group",
                         groupWeight: 20,
                         assignments: [
-                            HScoresAssignment(
+                            ScoresAssignment(
                                 id: "2",
                                 name: "iOS Debugging Quiz",
                                 commentsCount: 0,
@@ -46,7 +46,7 @@ class ScoresInteractorPreview: ScoresInteractor {
                                 isMissing: true,
                                 submittedAt: nil
                             ),
-                            HScoresAssignment(
+                            ScoresAssignment(
                                 id: "1",
                                 name: "Essay on SwiftUI",
                                 commentsCount: 3,
@@ -68,7 +68,7 @@ class ScoresInteractorPreview: ScoresInteractor {
                         name: "Second group",
                         groupWeight: 80,
                         assignments: [
-                            HScoresAssignment(
+                            ScoresAssignment(
                                 id: "3",
                                 name: "Xcode Playground Challenge",
                                 commentsCount: 5,
@@ -83,7 +83,7 @@ class ScoresInteractorPreview: ScoresInteractor {
                                 isMissing: false,
                                 submittedAt: Date().addingTimeInterval(-3600 * 24 * 2) // submitted 2 days ago
                             ),
-                            HScoresAssignment(
+                            ScoresAssignment(
                                 id: "4",
                                 name: "Optional Bonus Project",
                                 commentsCount: 2,
