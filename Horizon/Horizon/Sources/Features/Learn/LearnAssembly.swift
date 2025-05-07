@@ -33,7 +33,11 @@ final class LearnAssembly {
         )
     }
 
-    static func makeCourseDetailsViewController(courseID: String, course: HCourse? = nil) -> UIViewController {
+    static func makeCourseDetailsViewController(
+        courseID: String,
+        enrollmentID: String,
+        course: HCourse? = nil
+    ) -> UIViewController {
         let appEnvironment = AppEnvironment.shared
         return CoreHostingController(
             CourseDetailsView(
@@ -41,6 +45,7 @@ final class LearnAssembly {
                     router: appEnvironment.router,
                     getCoursesInteractor: makeGetCoursesInteractor(),
                     courseID: courseID,
+                    enrollmentID: enrollmentID,
                     course: course,
                     onShowTabBar: appEnvironment.tabBar(isVisible:)
                 )
@@ -50,6 +55,7 @@ final class LearnAssembly {
 
     static func makeCourseDetailsView(
         courseID: String,
+        enrollmentID: String,
         course: HCourse? = nil
     ) -> CourseDetailsView {
         let appEnvironment = AppEnvironment.shared
@@ -58,6 +64,7 @@ final class LearnAssembly {
                 router: appEnvironment.router,
                 getCoursesInteractor: makeGetCoursesInteractor(),
                 courseID: courseID,
+                enrollmentID: enrollmentID,
                 course: course,
                 onShowTabBar: appEnvironment.tabBar(isVisible:)
             ),

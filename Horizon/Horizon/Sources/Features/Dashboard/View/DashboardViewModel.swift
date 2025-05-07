@@ -102,8 +102,12 @@ class DashboardViewModel {
         router.route(to: url, from: viewController)
     }
 
-    func navigateToCourseDetails(id: String, viewController: WeakViewController) {
-        router.route(to: "/courses/\(id)", from: viewController)
+    func navigateToCourseDetails(
+        id: String,
+        enrollmentID: String,
+        viewController: WeakViewController
+    ) {
+        router.route(to: "/courses/\(id)/\(enrollmentID)", from: viewController)
     }
 
     func acceptInvitation(course: InvitedCourse) {

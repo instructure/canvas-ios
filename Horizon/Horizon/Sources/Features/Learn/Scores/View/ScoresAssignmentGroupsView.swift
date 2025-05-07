@@ -68,7 +68,7 @@ struct ScoresAssignmentGroupsView: View {
     }
 
     @ViewBuilder
-    private func assignmentGroupList(groups: [HAssignmentGroup]) -> some View {
+    private func assignmentGroupList(groups: [ScoresAssignmentGroup]) -> some View {
         VStack(spacing: .zero) {
             ForEach(Array(groups.enumerated()), id: \.offset) { index, group in
                 assignmentGroupListRow(group: group)
@@ -101,7 +101,7 @@ struct ScoresAssignmentGroupsView: View {
     }
 
     @ViewBuilder
-    private func assignmentGroupListRow(group: HAssignmentGroup) -> some View {
+    private func assignmentGroupListRow(group: ScoresAssignmentGroup) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             Text(group.name)
                 .huiTypography(.p1)
