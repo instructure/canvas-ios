@@ -33,8 +33,8 @@ struct ScoresAssignmentsView: View {
                 label: String(localized: "Sort By", bundle: .horizon),
                 options: ScoreDetails.SortOption.allCases.map(\.localizedTitle)
             )
-            .padding(.horizontal, .huiSpaces.space16)
-            .padding(.top, .huiSpaces.space16)
+            .padding(.horizontal, .huiSpaces.space24)
+            .padding(.top, .huiSpaces.space24)
             VStack(spacing: .zero) {
                 ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
                     VStack(alignment: .leading, spacing: .huiSpaces.space8) {
@@ -73,7 +73,7 @@ struct ScoresAssignmentsView: View {
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding([.top, .bottom], .huiSpaces.space16)
+                    .padding(.vertical, .huiSpaces.space16)
                     .onTapGesture {
                         openAssignmentDetails(assignment.htmlUrl)
                     }
@@ -96,6 +96,7 @@ struct ScoresAssignmentsView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 1)
             .foregroundColor(Color.huiColors.surface.divider)
+            .padding(.horizontal, -(.huiSpaces.space24))
     }
 }
 

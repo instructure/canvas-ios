@@ -24,7 +24,12 @@ struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedTabIndex: Int = 1
+    @State private var isShowHeader: Bool = true
+
+    private var tabs: [Tabs] {
+        let showingOverview = !viewModel.course.overviewDescription.isEmpty
+        return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
+    }
 
     // MARK: - Dependencies
 
@@ -44,8 +49,17 @@ struct CourseDetailsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            headerView
-            learningContentView()
+            if isShowHeader {
+                headerView
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
+            tabSelectorView
+            ScrollView {
+                learningContentView()
+            }
+            .refreshable {
+                await viewModel.refresh()
+            }
         }
         .padding(.top, .huiSpaces.space12)
         .hidden(viewModel.isLoaderVisible)
@@ -53,6 +67,7 @@ struct CourseDetailsView: View {
         .onAppear { viewModel.showTabBar() }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .toolbar(.hidden)
+        .animation(.linear, value: isShowHeader)
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -87,7 +102,7 @@ struct CourseDetailsView: View {
             HorizonUI.ProgressBar(
                 progress: viewModel.course.progress / 100,
                 size: .medium,
-                textColor: .huiColors.primitives.white10
+                numberPosition: .outside
             )
         }
         .padding([.horizontal, .bottom], .huiSpaces.space24)
@@ -95,50 +110,44 @@ struct CourseDetailsView: View {
 
     private func learningContentView() -> some View {
         VStack(spacing: .huiSpaces.space24) {
-            tabSelectorView
-            tabDetailsView()
+            topView
+            let selectedTab = tabs[safe: viewModel.selectedTabIndex] ?? .myProgress
+            switch selectedTab {
+            case .myProgress:
+                modulesView(modules: viewModel.course.modules)
+                    .id(viewModel.selectedTabIndex)
+            case .overview:
+                overview(htmlString: viewModel.course.overviewDescription)
+                    .id(viewModel.selectedTabIndex)
+            case .scores:
+                ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
+            case .notebook:
+                notebookView
+                    .padding(.top, -(.huiSpaces.space32))
+            }
         }
+        .padding(.huiSpaces.space24)
+        .animation(.smooth, value: viewModel.selectedTabIndex)
         .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var topView: some View {
+        Color.clear
+            .frame(height: 0)
+            .readingFrame { frame in
+                isShowHeader = frame.minY > -100
+            }
     }
 
     private var tabSelectorView: some View {
         HorizonUI.Tabs(
-            tabs: Tabs.titles,
+            tabs: tabs.map(\.localizedString),
             selectTabIndex: Binding(
-                get: { selectedTabIndex },
-                set: { selectedTabIndex = $0 ?? 0 }
+                get: { viewModel.selectedTabIndex },
+                set: { viewModel.selectedTabIndex = $0 ?? 0 }
             )
         )
         .background(Color.huiColors.surface.pagePrimary)
-    }
-
-    private func tabDetailsView() -> some View {
-        TabView(selection: $selectedTabIndex) {
-            ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
-                ScrollView(.vertical, showsIndicators: false) {
-                    switch tab {
-                    case .myProgress:
-                        modulesView(modules: viewModel.course.modules)
-                            .id(index)
-                    case .overview:
-                        overview(htmlString: viewModel.course.overviewDescription)
-                            .id(index)
-                    case .scores:
-                        ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
-                    case .notebook:
-                        notebookView
-                    }
-                }
-                .scaleEffect(index == selectedTabIndex ? 1 : 0.8)
-                .tag(index)
-                .refreshable {
-                    await viewModel.refresh()
-                }
-            }
-            .padding(.horizontal, .huiSpaces.space24)
-        }
-        .tabViewStyle(.page(indexDisplayMode: .never))
-        .animation(.smooth, value: selectedTabIndex)
     }
 
     private func modulesView(modules: [HModule]) -> some View {
@@ -157,22 +166,15 @@ struct CourseDetailsView: View {
     @ViewBuilder
     private func overview(htmlString: String?) -> some View {
         if let htmlString {
-            WebView(html: htmlString)
-                .clipShape(
-                    .rect(
-                        topLeadingRadius: 32,
-                        bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0,
-                        topTrailingRadius: 32
-                    )
-                )
-                .containerRelativeFrame(.vertical)
+            WebView(html: htmlString, isScrollEnabled: false)
+                .frameToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         }
     }
 }
 
 extension CourseDetailsView {
-    enum Tabs: CaseIterable, Identifiable {
+    enum Tabs: Int, CaseIterable, Identifiable {
         case overview
         case myProgress
         case scores
@@ -196,10 +198,6 @@ extension CourseDetailsView {
 
         var id: Self {
             self
-        }
-
-        static var titles: [String] {
-            Tabs.allCases.map(\.localizedString)
         }
     }
 }

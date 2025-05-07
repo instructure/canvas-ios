@@ -30,6 +30,10 @@ final class CourseDetailsViewModel {
     private(set) var isLoaderVisible: Bool = false
     let scoresViewModel: ScoresViewModel
 
+    // MARK: - Inputs / Outputs
+
+    var selectedTabIndex: Int = 1
+
     // MARK: - Private
 
     private let onShowTabBar: (Bool) -> Void
@@ -66,6 +70,7 @@ final class CourseDetailsViewModel {
                 self.course.progress = max(nextProgress, currentProgress)
                 self.state = .data
                 self.isLoaderVisible = false
+                self.selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1
             }
             .store(in: &subscriptions)
 
