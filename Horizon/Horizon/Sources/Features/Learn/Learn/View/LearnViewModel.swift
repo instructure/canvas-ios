@@ -46,7 +46,7 @@ final class LearnViewModel {
         interactor.getFirstCourse(ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in
-                    print("completed")
+                    // TODO: Handle error case
                 },
                 receiveValue: {
                     [weak self] course in

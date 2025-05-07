@@ -22,13 +22,13 @@ struct LearnCourse {
     let id: String
     let name: String
     let enrollmentId: String
-    
+
     init(id: String, name: String, enrollmentId: String) {
         self.id = id
         self.name = name
         self.enrollmentId = enrollmentId
     }
-    
+
     init(from entity: CDLearnCourse) {
         self.id = entity.id
         self.name = entity.name
