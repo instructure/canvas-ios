@@ -129,6 +129,29 @@
     "Attempts" : {
 
     },
+    "attempts_allowed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d Attempt Allowed"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d Attempts Allowed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Auckland (+12:00/+13:00)" : {
 
     },
@@ -277,6 +300,9 @@
 
     },
     "Dublin (+01:00/+00:00)" : {
+
+    },
+    "Due" : {
 
     },
     "Due Date" : {
@@ -648,6 +674,9 @@
     "Osaka (+09:00)" : {
 
     },
+    "Overdue" : {
+
+    },
     "Overview" : {
 
     },
@@ -661,6 +690,9 @@
 
     },
     "Philippines (+08:00)" : {
+
+    },
+    "Points Possible" : {
 
     },
     "Port Moresby (+10:00/+10:00)" : {
