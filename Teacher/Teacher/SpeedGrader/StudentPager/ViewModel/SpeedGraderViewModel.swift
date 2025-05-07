@@ -60,7 +60,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
         dismissScreen(on: didTapDoneButton)
 
         updateState(onChangeOf: interactor.state)
-        updatePostPolicyButtonvisibility(onChangeOf: interactor.state)
+        updatePostPolicyButtonVisibility(onChangeOf: interactor.state)
         updateNavigationBarTheme(onChangeOf: interactor.contextInfo)
 
         interactor.load()
@@ -138,7 +138,8 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
     private func updateNavigationBarTheme(
         onChangeOf subject: CurrentValueSubject<SpeedGraderContextInfo?, Never>
     ) {
-        subject.compactMap { $0 }
+        subject
+            .compactMap { $0 }
             .sink { [weak self] contextInfo in
                 self?.navigationTitle = contextInfo.assignmentName
                 self?.navigationSubtitle = contextInfo.courseName
@@ -147,7 +148,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
             .store(in: &subscriptions)
     }
 
-    private func updatePostPolicyButtonvisibility(
+    private func updatePostPolicyButtonVisibility(
         onChangeOf subject: CurrentValueSubject<SpeedGraderInteractorState, Never>
     ) {
         subject

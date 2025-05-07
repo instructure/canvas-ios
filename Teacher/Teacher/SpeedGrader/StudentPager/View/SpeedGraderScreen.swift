@@ -25,10 +25,11 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
         viewModel.screenViewTrackingParameters
     }
 
-    @StateObject private var viewModel: SpeedGraderViewModel
-    @Environment(\.viewController) private var controller
-    @ScaledMetric private var uiScale: CGFloat = 1
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.viewController) private var controller
+    @StateObject private var viewModel: SpeedGraderViewModel
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     private let screenConfig = InstUI.BaseScreenConfig(
         refreshable: false,
         scrollBounce: .basedOnSize,
@@ -49,19 +50,19 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
         InstUI.BaseScreen(state: viewModel.state, config: screenConfig) { proxy in
             PagesViewControllerWrapper(
                 dataSource: viewModel,
-                delegate: viewModel
+                delegate: viewModel,
+                onViewControllerCreate: {
+                    viewModel.didShowPagesViewController.send($0)
+                }
             )
-            .introspect {
-                viewModel.didShowPagesViewController.send($0)
-            }
             .frame(width: proxy.size.width, height: proxy.size.height)
         }
         .navigationBarTitleView(
             title: viewModel.navigationTitle,
             subtitle: viewModel.navigationSubtitle
         )
-        .navigationBarStyle(.color(viewModel.navigationBarColor))
         .navBarItems(trailing: navBarTrailingItems)
+        .navigationBarStyle(.color(viewModel.navigationBarColor))
         .onFirstAppear {
             setupStatusBarStyleUpdates()
             // When speedgrader is opened from a discussion
@@ -108,7 +109,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
                 .foregroundColor(.textLightest)
         }
         .identifier("SpeedGrader.postPolicyButton")
-        .accessibility(label: Text("Post settings", bundle: .teacher))
+        .accessibilityLabel(Text("Post settings", bundle: .teacher))
     }
 }
 

@@ -21,23 +21,16 @@ import SwiftUI
 public struct PagesViewControllerWrapper: UIViewControllerRepresentable {
     var dataSource: PagesViewControllerDataSource?
     var delegate: PagesViewControllerDelegate?
-    private var introspect: ((PagesViewController) -> Void)?
+    private var viewControllerCreatedCallback: ((PagesViewController) -> Void)?
 
     public init(
         dataSource: PagesViewControllerDataSource? = nil,
-        delegate: PagesViewControllerDelegate? = nil
+        delegate: PagesViewControllerDelegate? = nil,
+        onViewControllerCreate: ((PagesViewController) -> Void)? = nil
     ) {
         self.dataSource = dataSource
         self.delegate = delegate
-    }
-
-    /// Use this method to receive a reference to the underlying `PagesViewController` instance.
-    public func introspect(
-        _ introspect: @escaping (PagesViewController) -> Void
-    ) -> Self {
-        var modified = self
-        modified.introspect = introspect
-        return modified
+        self.viewControllerCreatedCallback = onViewControllerCreate
     }
 
     // MARK: - UIViewControllerRepresentable
@@ -48,36 +41,12 @@ public struct PagesViewControllerWrapper: UIViewControllerRepresentable {
         let pagesViewController = PagesViewController()
         pagesViewController.dataSource = dataSource
         pagesViewController.delegate = delegate
+        viewControllerCreatedCallback?(pagesViewController)
         return pagesViewController
     }
 
     public func updateUIViewController(
         _ uiViewController: PagesViewController,
         context: Self.Context
-    ) {
-        context.coordinator.notifyIntrospectListener(viewController: uiViewController)
-    }
-
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(view: self)
-    }
-}
-
-extension PagesViewControllerWrapper {
-
-    public class Coordinator {
-        let view: PagesViewControllerWrapper
-        /// This flag is used to prevent multiple calls to the introspect closure
-        private var shouldNotifyIntrospectListener = true
-
-        init(view: PagesViewControllerWrapper) {
-            self.view = view
-        }
-
-        func notifyIntrospectListener(viewController: PagesViewController) {
-            guard shouldNotifyIntrospectListener else { return }
-            view.introspect?(viewController)
-            shouldNotifyIntrospectListener = false
-        }
-    }
+    ) {}
 }
