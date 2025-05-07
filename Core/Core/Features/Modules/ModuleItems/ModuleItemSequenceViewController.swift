@@ -143,7 +143,8 @@ public final class ModuleItemSequenceViewController: UIViewController {
         store.refresh(force: true)
     }
 
-    private func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
+    internal func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
+        pages.currentPage?.pauseWebViewPlayback()
         pages.setCurrentPage(page, direction: direction)
         navigationItem.rightBarButtonItems = rightBarButtonItems
         navigationItem.leftBarButtonItems = leftBarButtonItems

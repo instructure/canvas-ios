@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import WebKit
 
 public protocol ViewControllerLoader {}
 extension UIViewController: ViewControllerLoader {}
@@ -220,6 +221,12 @@ extension UIViewController {
                 return String(localized: "You must allow notifications in Settings to set reminders.", bundle: .core)
             }
         }
+    }
+
+    /// Pauses media playback on all WKWebView instances in the view hierarchy.
+    @objc
+    public func pauseWebViewPlayback() {
+        view.findAllSubviews(ofType: WKWebView.self).forEach { $0.pauseAllMediaPlayback() }
     }
 }
 
