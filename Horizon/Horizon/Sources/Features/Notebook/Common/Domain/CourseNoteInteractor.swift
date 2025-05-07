@@ -209,7 +209,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
             useCase: GetNotebookNotesUseCase(
                 labels: [filter?.rawValue].compactMap { $0 },
                 courseID: objectFilters.value.0,
-                pageID: pageID,
+                pageID: pageID
             )
         )
         .getEntities(
