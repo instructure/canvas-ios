@@ -175,13 +175,13 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, _, env in
         guard
             let context = Context(path: url.path),
-            let assignmentID = url.queryValue(for: "assignment_id")
+            let assignmentId = url.queryValue(for: "assignment_id")
         else { return nil }
 
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
-            assignmentID: assignmentID,
-            userID: url.queryValue(for: "student_id"),
+            assignmentId: assignmentId,
+            userId: url.queryValue(for: "student_id"),
             env: env,
             filter: [])
     },
@@ -189,8 +189,8 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _, env in
         guard
             let context = Context(path: url.path),
-            let assignmentID = params["assignmentID"],
-            let userID = params["userID"]
+            let assignmentId = params["assignmentID"],
+            let userId = params["userID"]
         else { return nil }
 
         let filter = url
@@ -201,8 +201,8 @@ let router = Router(routes: [
             } ?? []
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
-            assignmentID: assignmentID,
-            userID: userID,
+            assignmentId: assignmentId,
+            userId: userId,
             env: env,
             filter: filter)
     },
