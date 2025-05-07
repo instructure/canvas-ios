@@ -55,6 +55,7 @@ struct CourseDetailsView: View {
             }
             tabSelectorView
             ScrollView {
+                topView
                 learningContentView()
             }
             .refreshable {
@@ -110,7 +111,6 @@ struct CourseDetailsView: View {
 
     private func learningContentView() -> some View {
         VStack(spacing: .huiSpaces.space24) {
-            topView
             let selectedTab = tabs[safe: viewModel.selectedTabIndex] ?? .myProgress
             switch selectedTab {
             case .myProgress:
@@ -123,7 +123,6 @@ struct CourseDetailsView: View {
                 ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
             case .notebook:
                 notebookView
-                    .padding(.top, -(.huiSpaces.space32))
             }
         }
         .padding(.huiSpaces.space24)

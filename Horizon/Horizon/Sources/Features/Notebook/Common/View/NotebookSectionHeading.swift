@@ -24,7 +24,6 @@ struct NotebookSectionHeading: View {
     var body: some View {
         Text(title)
             .huiTypography(.labelLargeBold)
-            .padding(.top, .huiSpaces.space24)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

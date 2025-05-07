@@ -74,6 +74,7 @@ struct ScoresAssignmentsView: View {
                     .foregroundStyle(Color.huiColors.text.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, .huiSpaces.space16)
+                    .padding(.horizontal, .huiSpaces.space24)
                     .onTapGesture {
                         openAssignmentDetails(assignment.htmlUrl)
                     }
@@ -85,7 +86,6 @@ struct ScoresAssignmentsView: View {
                 Spacer()
             }
             .padding(.vertical, .huiSpaces.space8)
-            .padding(.horizontal, .huiSpaces.space24)
         }
         .background(Color.huiColors.primitives.white10)
         .huiCornerRadius(level: .level5)
@@ -96,7 +96,6 @@ struct ScoresAssignmentsView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 1)
             .foregroundColor(Color.huiColors.surface.divider)
-            .padding(.horizontal, -(.huiSpaces.space24))
     }
 }
 
