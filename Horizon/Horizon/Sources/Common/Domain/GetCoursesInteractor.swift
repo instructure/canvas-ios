@@ -102,17 +102,17 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getDashboardCourses(ignoreCache _: Bool) -> AnyPublisher<[DashboardCourse], Never> {
+    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
         unowned let unownedSelf = self
 
         return NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)
             .prepend(.init(name: .moduleItemRequirementCompleted))
             .delay(for: .milliseconds(500), scheduler: scheduler)
-            .map { _ in () }
             .flatMapLatest {
-                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, horizonCourses: true))
-                    .getEntities(ignoreCache: true)
+                let shouldIgnoreCache = $0.object != nil ? true : ignoreCache
+                return ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, horizonCourses: true))
+                    .getEntities(ignoreCache: shouldIgnoreCache)
                     .replaceError(with: [])
                     .flatMap {
                         $0.publisher
