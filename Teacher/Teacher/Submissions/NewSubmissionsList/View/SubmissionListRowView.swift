@@ -20,8 +20,8 @@ import SwiftUI
 import Core
 
 struct SubmissionListRowView: View {
-    let row: SubmissionSection.Row
-    let assignment: Assignment?
+    let anonymizeStudents: Bool?
+    let row: SubmissionListSection.Row
 
     var body: some View {
         HStack(spacing: 16) {
@@ -45,13 +45,13 @@ struct SubmissionListRowView: View {
         .padding(.horizontal, 15)
     }
 
-    private var submission: Submission {
-        row.submission
+    private var submission: SubmissionListItem {
+        row.item
     }
 
     @ViewBuilder
     private var avatarView: some View {
-        if assignment?.anonymizeStudents != false {
+        if anonymizeStudents != false {
             Avatar.Anonymous(isGroup: submission.groupID != nil)
         } else if let groupName = submission.groupName {
             Avatar(name: groupName, url: nil)
@@ -64,11 +64,11 @@ struct SubmissionListRowView: View {
     }
 
     private var nameLabel: some View {
-        let nameText: Text = if assignment?.anonymizeStudents != false {
+        let nameText: Text = if anonymizeStudents != false {
             if submission.groupID != nil {
-                Text("Group \(row.index)", bundle: .teacher)
+                Text("Group \(row.order)", bundle: .teacher)
             } else {
-                Text("Student \(row.index)", bundle: .teacher)
+                Text("Student \(row.order)", bundle: .teacher)
             }
         } else {
             Text(
@@ -85,11 +85,11 @@ struct SubmissionListRowView: View {
 
     private var statusLabel: some View {
         HStack(spacing: 2) {
-            submission.redesignStatus.appearance.icon.size(16)
-            Text(submission.redesignStatus.text)
+            submission.status.redesignAppearance.icon.size(16)
+            Text(submission.status.text)
         }
         .font(.regular14)
-        .foregroundStyle(submission.redesignStatus.appearance.color)
+        .foregroundStyle(submission.status.redesignAppearance.color)
     }
 
     private var statusDivider: some View {
@@ -103,8 +103,7 @@ struct SubmissionListRowView: View {
     }
 
     private var gradeText: some View {
-        let grade = GradeFormatter.shortString(for: assignment, submission: submission)
-        return Text(grade)
+        return Text(submission.gradeFormatted)
             .font(.semibold16)
             .foregroundStyle(Color.course2)
     }
@@ -117,14 +116,8 @@ private extension SubmissionStatus {
         let submissionStatus: SubmissionStatus
     }
 
-    var appearance: RedesignAppearance {
+    var redesignAppearance: RedesignAppearance {
         RedesignAppearance(submissionStatus: self)
-    }
-}
-
-private extension Submission {
-    var redesignStatus: SubmissionStatus {
-        status(gradedChecked: true)
     }
 }
 

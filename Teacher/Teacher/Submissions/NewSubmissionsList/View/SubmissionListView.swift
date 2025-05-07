@@ -64,12 +64,12 @@ struct SubmissionListView: View {
                                 SeparatedRow {
                                     Button(
                                         action: {
-                                            viewModel.didTapSubmissionRow(row.submission, from: controller)
+                                            viewModel.didTapSubmissionRow(row.item, from: controller)
                                         },
                                         label: {
                                             SubmissionListRowView(
-                                                row: row,
-                                                assignment: viewModel.assignment
+                                                anonymizeStudents: viewModel.assignment?.anonymizeStudents,
+                                                row: row
                                             )
                                         }
                                     )
@@ -77,7 +77,7 @@ struct SubmissionListView: View {
                             }
                         }
                     } header: {
-                        SectionHeaderView(title: section.title, isCollapsed: $section.isCollapsed)
+                        SectionHeaderView(title: section.kind.title, isCollapsed: $section.isCollapsed)
                     }
                 }
             } else {
@@ -219,7 +219,7 @@ private extension SubmissionListView {
                             .arrowOpenDownLine
                             .size(uiScale.iconScale * 16)
                             .foregroundColor(.textDarkest)
-                            .rotationEffect(isCollapsed ? .degrees(0) : .degrees(180))
+                            .rotationEffect(isCollapsed ? .degrees(0) : .degrees(-180))
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 15)

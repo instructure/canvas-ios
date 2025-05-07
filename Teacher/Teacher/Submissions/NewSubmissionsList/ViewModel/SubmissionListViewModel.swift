@@ -19,6 +19,7 @@
 import Core
 import UIKit
 import Combine
+import CombineSchedulers
 
 class SubmissionListViewModel: ObservableObject {
 
@@ -36,16 +37,18 @@ class SubmissionListViewModel: ObservableObject {
 
     @Published var assignment: Assignment?
     @Published var course: Course?
-    @Published var sections: [SubmissionSection] = []
+    @Published var sections: [SubmissionListSection] = []
 
     private let interactor: SubmissionListInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: SubmissionListInteractor, filterMode: SubmissionFilterMode, env: AppEnvironment) {
+    init(interactor: SubmissionListInteractor, filterMode: SubmissionFilterMode, env: AppEnvironment, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.filterMode = filterMode
         self.env = env
+        self.scheduler = scheduler
         setupBindings()
     }
 
@@ -56,30 +59,30 @@ class SubmissionListViewModel: ObservableObject {
         interactor.course.assign(to: &$course)
 
         Publishers.CombineLatest(
-            interactor.submissions.receive(on: DispatchQueue.main),
-            $searchText.debounce(for: 0.5, scheduler: DispatchQueue.main),
+            interactor.submissions.receive(on: scheduler),
+            $searchText.throttle(for: 0.5, scheduler: scheduler, latest: true)
         )
         .map({ (list, searchText) in
 
             let searchTerm = searchText.lowercased()
-            let filtered = searchTerm.isNotEmpty ? list.filter { $0.user?.nameContains(searchTerm) ?? false } : list
+            let curatedList = searchTerm.isNotEmpty ? list.filter { $0.user?.nameContains(searchTerm) ?? false } : list
+            let toItemMapper: (Submission) -> SubmissionListItem = { [weak self] submission in
+                return SubmissionListItem(submission: submission, assignment: self?.assignment)
+            }
 
-            let submitted = filtered.filter { $0.workflowState == .submitted }
-            let unsubmitted = filtered.filter { $0.workflowState == .unsubmitted }
-            let graded = filtered.filter { $0.isGraded }
-
-            return [
-                SubmissionSection(title: "Submitted", submissions: submitted),
-                SubmissionSection(title: "Not Submitted", submissions: unsubmitted),
-                SubmissionSection(title: "Graded", submissions: graded)
-            ]
-            .filter({ $0.rows.isNotEmpty })
+            return SubmissionListSection.Kind
+                .allCases
+                .map { kind in
+                    let items = curatedList.filter(kind.filter).map(toItemMapper)
+                    return SubmissionListSection(kind: kind, items: items)
+                }
+                .filter({ $0.rows.isNotEmpty })
         })
         .assign(to: &$sections)
 
         interactor
             .submissions
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .map({ $0.isEmpty ? ViewState.empty : ViewState.data })
             .assign(to: &$state)
 
@@ -103,7 +106,7 @@ class SubmissionListViewModel: ObservableObject {
 
             interactor
                 .refresh()
-                .receive(on: DispatchQueue.main)
+                .receive(on: scheduler)
                 .sink {
                     continuation.resume()
                 }
@@ -120,9 +123,8 @@ class SubmissionListViewModel: ObservableObject {
 
         let recipients = sections
             .flatMap { section in
-                section.rows.compactMap { $0.submission.user }
+                section.rows.compactMap { $0.item.user?.asRecipient }
             }
-            .map { Recipient(id: $0.id, name: $0.name, avatarURL: $0.avatarURL) }
 
         let recipientContext = RecipientContext(
             name: course?.name ?? "",
@@ -154,43 +156,19 @@ class SubmissionListViewModel: ObservableObject {
         )
     }
 
-    func didTapSubmissionRow(_ submission: Submission, from controller: WeakViewController) {
+    func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {
         let query = filterMode == .all ? "" : "?filter=\(filterMode.filters.map { $0.rawValue }.joined(separator: ","))"
         env.router.route(
-            to: assignmentRoute + "/submissions/\(submission.userID)\(query)",
+            to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
             from: controller.value,
             options: .modal(.fullScreen, isDismissable: false)
         )
     }
 }
 
-// MARK: - Section Model
+// MARK: - Utils
 
-struct SubmissionSection: Identifiable {
-    struct Row: Identifiable {
-        let index: Int
-        let submission: Submission
-
-        var id: Int { index }
-    }
-
-    let title: String
-    var rows: [Row]
-    var isCollapsed: Bool
-
-    var id: String { title }
-
-    init(title: String, submissions: [Submission], isCollapsed: Bool = false) {
-        self.title = title
-        self.rows = submissions
-            .enumerated()
-            .map({ Row(index: $0.offset, submission: $0.element) })
-        self.isCollapsed = isCollapsed
-    }
-}
-
-extension User {
-
+private extension User {
     func nameContains(_ text: String) -> Bool {
         let props = [name, shortName, sortableName].map { $0.lowercased() }
         return props.contains(where: { $0.contains(text.lowercased()) })
