@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
+import XCTest
 
-extension UIUserInterfaceStyle {
-
-    public static var current: UIUserInterfaceStyle {
-        var style = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
-
-        if style == .unspecified {
-            style = UIScreen.main.traitCollection.userInterfaceStyle
-        }
-
-        return style
-    }
+public func XCTAssertVisible(
+    _ element: XCUIElement,
+    file: StaticString = #filePath,
+    line: UInt = #line
+) {
+    XCTAssertTrue(element.isVisible, "Element is not visible: \(element.debugDescription)", file: file, line: line)
 }
