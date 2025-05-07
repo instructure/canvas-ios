@@ -617,9 +617,6 @@
     "Nuku'alofa (+13:00/+13:00)" : {
 
     },
-    "of" : {
-
-    },
     "Ok" : {
 
     },
@@ -640,6 +637,17 @@
     },
     "Pacific Time (US & Canada) (-08:00/-07:00)" : {
 
+    },
+    "page_of_pages" : {
+      "comment" : "Showing the user the page index they're on compared to the total number of pages",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d of %d"
+          }
+        }
+      }
     },
     "Paris (+01:00/+02:00)" : {
 
