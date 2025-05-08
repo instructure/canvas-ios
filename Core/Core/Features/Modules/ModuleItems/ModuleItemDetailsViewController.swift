@@ -148,7 +148,8 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
                 launchType: .module_item,
                 isQuizLTI: item.isQuizLTI,
                 moduleID: moduleID,
-                moduleItemID: itemID
+                moduleItemID: itemID,
+                env: env
             )
             return LTIViewController.create(env: env, tools: tools, name: item.title)
         default:

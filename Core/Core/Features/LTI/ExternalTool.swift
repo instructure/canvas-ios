@@ -22,6 +22,7 @@ public final class ExternalTool: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var arc: Bool
     @NSManaged public var courseID: String?
+    @NSManaged public var url: URL?
 
     @discardableResult
     public static func save(_ item: APIExternalTool, courseID: String?, in context: NSManagedObjectContext) -> ExternalTool {
@@ -30,6 +31,7 @@ public final class ExternalTool: NSManagedObject {
         tool.id = item.id.value
         tool.arc = item.arc
         tool.courseID = courseID
+        tool.url = item.url
         return tool
     }
 }

@@ -230,9 +230,9 @@ public struct SessionDefaults: Equatable {
     }
 
     // MARK: - Grades
-    public var selectedGradingPeriodIdsByCourseIDs: [String: String]? {
-        get { self["selectedGradingPeriodIdsByCourseIDs"] as? [String: String] }
-        set { self["selectedGradingPeriodIdsByCourseIDs"] = newValue }
+    public var selectedSortByOptionIDs: [String: String]? {
+        get { self["selectedSortByOptionIDs"] as? [String: String] }
+        set { self["selectedSortByOptionIDs"] = newValue }
     }
 
     public var selectedSortByOptionIDs: [String: String]? {

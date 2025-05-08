@@ -155,7 +155,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
         if env.app == .teacher, let todo = todos[indexPath], todo.type == .grading {
             let speedGrader = url.appendingPathComponent("submissions/speedgrader")
                 .appendingQueryItems(URLQueryItem(name: "filter", value: "needs_grading"))
-            return env.router.route(to: speedGrader, from: self, options: .modal(.fullScreen, isDismissable: false))
+            return env.router.route(to: speedGrader, from: self, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
         }
         env.router.route(to: url, from: self, options: .detail)
     }

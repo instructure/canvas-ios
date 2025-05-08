@@ -53,8 +53,8 @@ public struct UpdateInboxSettingsRequest: APIGraphQLRequestable {
         self.init(input: input)
     }
 
-    public static let operationName = "InboxSettings"
-    public static let query = """
+    static let operationName = "InboxSettings"
+    static let query = """
         mutation \(operationName)($input: UpdateMyInboxSettingsInput!) {
           updateMyInboxSettings(input: $input) {
             myInboxSettings {

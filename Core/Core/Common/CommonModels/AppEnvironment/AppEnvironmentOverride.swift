@@ -92,7 +92,8 @@ public final class AppEnvironmentOverride: AppEnvironment {
                 userID: cSession.userID,
                 userName: cSession.userName,
                 userEmail: cSession.userEmail,
-                oauthType: cSession.oauthType,
+                clientID: cSession.clientID,
+                clientSecret: cSession.clientSecret,
                 isFakeStudent: cSession.isFakeStudent
             )
         }
@@ -111,6 +112,16 @@ extension AppEnvironment {
         }
 
         return .shared
+    }
+
+    /// This method returns an `AppEnvironmentOverride` using the given `baseURL`s host if it
+    /// doesn't match the one on `AppEnvironment.shared`.
+    static func resolved(for baseURL: URL?) -> AppEnvironment {
+        guard
+            let baseURL,
+            let components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
+        else { return .shared }
+        return resolved(for: components)
     }
 }
 

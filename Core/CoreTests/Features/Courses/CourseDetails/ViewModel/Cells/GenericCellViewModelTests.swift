@@ -27,7 +27,7 @@ class GenericCellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = GenericCellViewModel(tab: tab, course: course, selectedCallback: {})
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
 
         XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/pages")!))
     }
@@ -38,7 +38,7 @@ class GenericCellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = GenericCellViewModel(tab: tab, course: course, selectedCallback: {})
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
 
         XCTAssertTrue(router.lastRoutedTo(URL(string: "/collab")!))
     }
@@ -49,7 +49,7 @@ class GenericCellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = GenericCellViewModel(tab: tab, course: course, selectedCallback: {})
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
 
         XCTAssertTrue(router.lastRoutedTo(URL(string: "/conf")!))
     }
@@ -60,7 +60,7 @@ class GenericCellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = GenericCellViewModel(tab: tab, course: course, selectedCallback: {})
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
 
         XCTAssertTrue(router.lastRoutedTo(URL(string: "/outcomes")!))
     }
@@ -71,7 +71,7 @@ class GenericCellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = GenericCellViewModel(tab: tab, course: course, selectedCallback: {})
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
 
         XCTAssertTrue(router.lastRoutedTo(URL(string: "/website")!))
     }

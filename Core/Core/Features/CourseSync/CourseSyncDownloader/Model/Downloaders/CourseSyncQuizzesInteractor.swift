@@ -32,7 +32,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         self.htmlParser = htmlParser
     }
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
             getCustomColors(courseId: courseId),
             getQuizzes(courseId: courseId)
@@ -41,28 +41,25 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         .eraseToAnyPublisher()
     }
 
-    public func cleanContent(courseId: String) -> AnyPublisher<Void, Never> {
-        let rootURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: htmlParser.sessionId,
-            courseId: courseId,
-            sectionName: htmlParser.sectionName
-        )
-
+    public func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
+        let rootURL = htmlParser.envResolver.folderURL(forSection: htmlParser.sectionName, ofCourse: courseId)
         return FileManager.default.removeItemPublisher(at: rootURL)
     }
 
-    private func getCustomColors(courseId _: String) -> AnyPublisher<Void, Error> {
+    private func getCustomColors(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetCustomColors()
+            useCase: GetCustomColors(),
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .map { _ in () }
         .eraseToAnyPublisher()
     }
 
-    private func getQuizzes(courseId: String) -> AnyPublisher<Void, Error> {
+    private func getQuizzes(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetQuizzes(courseID: courseId)
+            useCase: GetQuizzes(courseID: courseId.localID),
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)
@@ -76,9 +73,10 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         .eraseToAnyPublisher()
     }
 
-    private static func getQuiz(courseId: String, quizId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
+    private static func getQuiz(courseId: CourseSyncID, quizId: String, htmlParser: HTMLParser) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetQuiz(courseID: courseId, quizID: quizId)
+            useCase: GetQuiz(courseID: courseId.localID, quizID: quizId),
+            environment: htmlParser.envResolver.targetEnvironment(for: courseId)
         )
         .getEntities(ignoreCache: true)
         .parseHtmlContent(attribute: \.details, id: \.id, courseId: courseId, baseURLKey: \.htmlURL, htmlParser: htmlParser)

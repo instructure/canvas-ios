@@ -56,7 +56,7 @@ public class DashboardContainerViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         NotificationCenter.default.publisher(for: .OfflineSyncCleanTriggered)
-            .compactMap { $0.object as? [String] }
+            .compactMap { $0.object as? [CourseSyncID] }
             .flatMap { courseSyncInteractor.cleanContent(for: $0) }
             .sink()
             .store(in: &subscriptions)

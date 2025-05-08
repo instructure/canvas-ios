@@ -42,13 +42,28 @@ public class AssignmentsHelper: BaseHelper {
     }
 
     public struct SpeedGrader {
-        public static var userButton: XCUIElement { app.find(id: "SpeedGrader.userButton") }
         public static var drawerGripper: XCUIElement { app.find(id: "SpeedGrader.drawerGripper") }
-        public static var doneButton: XCUIElement { app.find(id: "SpeedGrader.doneButton") }
         public static var toolPicker: XCUIElement { app.find(id: "SpeedGrader.toolPicker") }
-        public static var postPolicyButton: XCUIElement { app.find(id: "SpeedGrader.postPolicyButton") }
         public static var gradeButton: XCUIElement { app.find(id: "SpeedGrader.gradeButton") }
         public static var gradeSlider: XCUIElement { app.find(label: "Grade Slider", type: .slider) }
+
+        // MARK: Navigation bar
+        // Speedgrader is fullscreen so there's only one navigation bar
+        public static var navigationBar: XCUIElement { app.find(type: .navigationBar) }
+        public static var doneButton: XCUIElement { navigationBar.find(id: "SpeedGrader.doneButton") }
+        public static var postPolicyButton: XCUIElement { navigationBar.find(id: "SpeedGrader.postPolicyButton") }
+        public static func assignmentNameLabel(assignment: DSAssignment) -> XCUIElement {
+            navigationBar.find(label: assignment.name, type: .staticText)
+        }
+        public static func courseNameLabel(course: DSCourse) -> XCUIElement {
+            navigationBar.find(label: course.name, type: .staticText)
+        }
+
+        // MARK: User
+        public static var userButton: XCUIElement { app.find(id: "SpeedGrader.userButton") }
+        public static func userNameLabel(user: DSUser) -> XCUIElement {
+            return userButton.find(label: user.name, type: .staticText)
+        }
 
         public struct Segment {
             public static var grades: XCUIElement { SpeedGrader.toolPicker.find(labelContaining: "Grades") }
@@ -81,6 +96,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var submittedText: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var viewAllSubmissionsButton: XCUIElement { app.find(id: "AssignmentDetails.viewAllSubmissionsButton") }
         public static var oneNeedsGradingButton: XCUIElement { viewAllSubmissionsButton.find(label: "1, Needs Grading", type: .button) }
+        public static var notSubmittedButton: XCUIElement { viewAllSubmissionsButton.find(labelContaining: "Not Submitted", type: .button) }
         public static var viewSubmissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var published: XCUIElement { app.find(id: "AssignmentDetails.published") }
         public static var unpublished: XCUIElement { app.find(id: "AssignmentDetails.unpublished") }

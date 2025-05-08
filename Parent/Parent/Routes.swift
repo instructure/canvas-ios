@@ -180,16 +180,16 @@ private func pageViewController(url: URLComponents, params: [String: String], us
         .create(context: context, pageURL: pageURL, app: .student, env: env)
 }
 
-private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {
-        return fileDetails(url: url, params: params, userInfo: userInfo)
+        return fileDetails(url: url, params: params, userInfo: userInfo, env: env)
     }
     Router.open(url: url)
     return nil
 }
 
-private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let fileID = params["fileID"] else { return nil }
     let context = Context(path: url.path) ?? .currentUser
-    return FileDetailsViewController.create(context: context, fileID: fileID)
+    return FileDetailsViewController.create(context: context, fileID: fileID, environment: env)
 }

@@ -191,12 +191,15 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
               defaultViewProvider.defaultViewRoute?.url != routeUrl
         else { return }
 
-        defaultViewProvider.defaultViewRoute = routeUrl.map {
-            .init(
-                url: $0,
-                userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
+        defaultViewProvider
+            .setDefaultViewRoute(
+                routeUrl.map {
+                    .init(
+                        url: $0,
+                        userInfo: [CourseTabUrlInteractor.blockDisabledTabUserInfoKey: false]
+                    )
+                }
             )
-        }
     }
 }
 

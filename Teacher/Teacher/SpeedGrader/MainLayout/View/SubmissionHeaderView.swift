@@ -60,23 +60,7 @@ struct SubmissionHeaderView: View {
             })
                 .buttonStyle(PlainButtonStyle())
                 .identifier("SpeedGrader.userButton")
-
             Spacer()
-
-            Button(action: navigateToPostPolicy, label: {
-                Image.eyeLine
-                    .foregroundColor(Color(Brand.shared.linkColor))
-                    .padding(16)
-            })
-                .identifier("SpeedGrader.postPolicyButton")
-                .accessibility(label: Text("Post settings", bundle: .teacher))
-
-            Button(action: dismiss, label: {
-                Text("Done", bundle: .teacher)
-                    .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 16))
-            })
-                .identifier("SpeedGrader.doneButton")
         }
     }
 
@@ -107,17 +91,5 @@ struct SubmissionHeaderView: View {
             from: controller,
             options: .modal(embedInNav: true, addDoneButton: true)
         )
-    }
-
-    func navigateToPostPolicy() {
-        env.router.route(
-            to: "/courses/\(assignment.courseID)/assignments/\(assignment.id)/post_policy",
-            from: controller,
-            options: .modal(embedInNav: true, addDoneButton: true)
-        )
-    }
-
-    func dismiss() {
-        env.router.dismiss(controller)
     }
 }

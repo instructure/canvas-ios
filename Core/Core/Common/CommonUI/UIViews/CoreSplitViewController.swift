@@ -42,6 +42,35 @@ public class CoreSplitViewController: UISplitViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         preferredDisplayMode = .oneBesideSecondary
+        registerForTraitChanges()
+    }
+
+    private func setupBackgroundStateObservers() {
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.didEnterBackgroundNotification)
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.saveCurrentSecondaryController()
+            }
+            .store(in: &subscriptions)
+
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.willEnterForegroundNotification)
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.removePreBackgroundedSecondaryController()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func saveCurrentSecondaryController() {
+        preBackgroundedSecondaryController = viewControllers.last
+    }
+
+    private func removePreBackgroundedSecondaryController() {
+        preBackgroundedSecondaryController = nil
     }
 
     private func setupBackgroundStateObservers() {
@@ -76,13 +105,6 @@ public class CoreSplitViewController: UISplitViewController {
         return masterNavigationController?.prefersStatusBarHidden ?? false
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
-        NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
-        updateTitleViews()
-    }
-
     public override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
         super.showDetailViewController(vc, sender: sender)
         self.masterNavigationController?.syncStyles()
@@ -113,6 +135,13 @@ public class CoreSplitViewController: UISplitViewController {
             String(localized: "Collapse detail view", bundle: .core) :
             String(localized: "Expand detail view", bundle: .core)
         return prettyButton
+    }
+
+    private func registerForTraitChanges() {
+        let traits: [UITrait] = [UITraitVerticalSizeClass.self, UITraitHorizontalSizeClass.self, UITraitLayoutDirection.self]
+        registerForTraitChanges(traits) { (self: CoreSplitViewController, _) in
+            self.updateTitleViews()
+        }
     }
 }
 
@@ -192,7 +221,8 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
                 }
             }
 
-            // Updating titles again _after_ separation, because on iOS 16 traitCollectionDidChange(_:) is called before splitViewController(_:separateSecondaryFrom:)
+            // Updating titles again _after_ separation, because registering for trait changes
+            // doesn't trigger it.
             updateTitleViews()
 
             return newDeets
