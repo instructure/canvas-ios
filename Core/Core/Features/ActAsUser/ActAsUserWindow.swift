@@ -97,19 +97,6 @@ public class ActAsUserWindow: UIWindow {
             )
         }
     }
-
-    private var isPresentingSystemPicker: Bool {
-        guard let topController = rootViewController?.topMostViewController()
-        else { return false }
-
-        if topController.isSystemAssetPicker {
-            return true
-        } else if let presentingController = topController.presentingViewController {
-            return presentingController.isSystemAssetPicker
-        } else {
-            return false
-        }
-    }
 }
 
 class ActAsUserOverlay: UIView {
