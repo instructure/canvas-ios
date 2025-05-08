@@ -30,6 +30,29 @@
         }
       }
     },
+    "%lld Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Attempt Allowed"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld Attempts Allowed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
@@ -128,29 +151,6 @@
     },
     "Attempts" : {
 
-    },
-    "attempts_allowed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%d Attempt Allowed"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%d Attempts Allowed"
-                }
-              }
-            }
-          }
-        }
-      }
     },
     "Auckland (+12:00/+13:00)" : {
 

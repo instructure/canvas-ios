@@ -57,7 +57,7 @@ struct IntroBlock: View {
         self.countOfPoints = countOfPoints
         self.dueDate = dueDate
         self.isOverdue = isOverdue
-        self.attemptCount = attemptCount
+        self.attemptCount = "1"
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.isMenuButtonVisible = isMenuButtonVisible
@@ -149,10 +149,9 @@ struct IntroBlock: View {
               let attempts = Int(attemptCount) else {
             return nil
         }
-        return String.localizedStringWithFormat(
-            String(localized: "attempts_allowed", bundle: .horizonUI),
-            attempts,
-            attempts
+        return String(
+            localized: "\(attempts) Attempts Allowed",
+            comment: "The number of attempts allowed for this assignment."
         )
     }
 }
