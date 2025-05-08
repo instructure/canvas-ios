@@ -16,14 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
+import SwiftUI
 
 enum SubmissionCommentsAssembly {
     static func makeCommentListViewModel(
         assignment: Assignment,
         latestSubmission: Submission,
         latestAttemptNumber: Int?,
+        contextColor: AnyPublisher<Color, Never>,
         env: AppEnvironment
     ) -> SubmissionCommentListViewModel {
         let interactor = SubmissionCommentsInteractorLive(
@@ -39,6 +42,7 @@ enum SubmissionCommentsAssembly {
             latestSubmission: latestSubmission,
             latestAttemptNumber: latestAttemptNumber,
             currentUserId: env.currentSession?.userID,
+            contextColor: contextColor,
             interactor: interactor,
             env: env
         )

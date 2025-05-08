@@ -34,6 +34,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: ViewState = .loading
+    @Published private(set) var contextColor: Color = Color(Brand.shared.primary)
     @Published private(set) var cellViewModels: [SubmissionCommentListCellViewModel] = []
 
     // MARK: - Private variables
@@ -47,6 +48,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     private var selectedAttemptNumber: Int?
     private var isAssignmentEnhancementsEnabled = false
 
+    private let contextColorPublisher: AnyPublisher<Color, Never>
     private let interactor: SubmissionCommentsInteractor
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
@@ -62,6 +64,7 @@ class SubmissionCommentListViewModel: ObservableObject {
         latestSubmission: Submission,
         latestAttemptNumber: Int?,
         currentUserId: String?,
+        contextColor: AnyPublisher<Color, Never>,
         interactor: SubmissionCommentsInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         env: AppEnvironment
@@ -73,10 +76,13 @@ class SubmissionCommentListViewModel: ObservableObject {
         self.selectedAttemptNumber = latestAttemptNumber
         self.currentUserId = currentUserId
 
+        self.contextColorPublisher = contextColor
         self.interactor = interactor
         self.env = env
 
         unowned let unownedSelf = self
+
+        contextColor.assign(to: &$contextColor)
 
         Publishers.CombineLatest3(
             interactor.getSubmissionAttempts(),
@@ -137,6 +143,7 @@ class SubmissionCommentListViewModel: ObservableObject {
             assignment: assignment,
             submission: submissionForComment(comment),
             currentUserId: currentUserId,
+            contextColor: contextColorPublisher,
             router: env.router
         )
     }

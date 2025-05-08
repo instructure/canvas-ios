@@ -17,6 +17,8 @@
 //
 
 @testable import Core
+import Combine
+import SwiftUI
 @testable import Teacher
 import TestsFoundation
 import XCTest
@@ -198,6 +200,18 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
         XCTAssertEqual(testee.commentType.attemptSubmission?.id, submission.id)
     }
 
+    // MARK: - contextColor
+
+    func test_contextColor() {
+        let publisher = PassthroughSubject<Color, Never>()
+
+        let testee = makeViewModel(contextColor: publisher.eraseToAnyPublisher())
+        XCTAssertEqual(testee.contextColor.hexString, Brand.shared.primary.hexString)
+
+        publisher.send(.green)
+        XCTAssertEqual(testee.contextColor.hexString, Color.green.hexString)
+    }
+
     // MARK: - Actions
 
     func test_didTapAvatarButton() {
@@ -270,13 +284,15 @@ class SubmissionCommentListCellViewModelTests: TeacherTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel(
-        currentUserId: String? = TestConstants.currentUserId
+        currentUserId: String? = TestConstants.currentUserId,
+        contextColor: AnyPublisher<Color, Never> = Publishers.typedEmpty()
     ) -> SubmissionCommentListCellViewModel {
         SubmissionCommentListCellViewModel(
             comment: comment,
             assignment: assignment,
             submission: submission,
             currentUserId: currentUserId,
+            contextColor: contextColor,
             router: router
         )
     }

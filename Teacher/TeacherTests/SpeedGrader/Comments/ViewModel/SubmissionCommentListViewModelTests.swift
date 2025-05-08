@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
 @testable import Core
+import Combine
+import SwiftUI
 @testable import Teacher
 import TestsFoundation
 import XCTest
@@ -110,6 +111,18 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
         let testee = makeViewModel()
 
         XCTAssertEqual(testee.state, .data)
+    }
+
+    // MARK: - contextColor
+
+    func test_contextColor() {
+        let publisher = PassthroughSubject<Color, Never>()
+
+        let testee = makeViewModel(contextColor: publisher.eraseToAnyPublisher())
+        XCTAssertEqual(testee.contextColor.hexString, Brand.shared.primary.hexString)
+
+        publisher.send(.green)
+        XCTAssertEqual(testee.contextColor.hexString, Color.green.hexString)
     }
 
     // MARK: - filtering
@@ -280,13 +293,15 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
 
     private func makeViewModel(
         latestAttemptNumber: Int? = nil,
-        currentUserId: String? = TestConstants.currentUserId
+        currentUserId: String? = TestConstants.currentUserId,
+        contextColor: AnyPublisher<Color, Never> = Publishers.typedEmpty()
     ) -> SubmissionCommentListViewModel {
         SubmissionCommentListViewModel(
             assignment: assignment,
             latestSubmission: submission,
             latestAttemptNumber: latestAttemptNumber,
             currentUserId: currentUserId,
+            contextColor: contextColor,
             interactor: interactor,
             scheduler: .immediate,
             env: environment

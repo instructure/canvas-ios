@@ -64,6 +64,7 @@ class SubmissionGraderViewModel: ObservableObject {
             assignment: assignment,
             latestSubmission: latestSubmission,
             latestAttemptNumber: latestSubmission.attempt,
+            contextColor: contextColor,
             env: env
         )
         self.env = env

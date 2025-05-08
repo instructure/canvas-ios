@@ -51,6 +51,8 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
     let date: String
     let commentType: CommentType
 
+    @Published private(set) var contextColor: Color = Color(Brand.shared.primary)
+
     // MARK: - Input
 
     let didTapAvatarButton = PassthroughSubject<WeakViewController, Never>()
@@ -72,6 +74,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         assignment: Assignment,
         submission: Submission,
         currentUserId: String?,
+        contextColor: AnyPublisher<Color, Never>,
         router: Router
     ) {
         self.comment = comment
@@ -111,6 +114,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         }
         self.commentType = commentType
 
+        contextColor.assign(to: &$contextColor)
         showUserDetails(on: didTapAvatarButton)
         showFile(on: didTapFileButton)
     }
