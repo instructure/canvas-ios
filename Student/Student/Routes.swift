@@ -265,10 +265,10 @@ let router = Router(routes: [
         return nil
     },
 
-    RouteHandler("/accounts/:accountID/external_tools/:toolID") { _, params, _ in
+    RouteHandler("/accounts/:accountID/external_tools/:toolID") { _, params, _, env in
         guard let accountID = params["accountID"], let toolID = params["toolID"] else { return nil }
         guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
-        let tools = LTITools(context: .account(accountID), id: toolID, isQuizLTI: nil)
+        let tools = LTITools(context: .account(accountID), id: toolID, isQuizLTI: nil, env: env)
         tools.presentTool(from: vc, animated: true)
         return nil
     },
