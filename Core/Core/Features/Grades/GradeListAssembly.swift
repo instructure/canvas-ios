@@ -18,7 +18,7 @@
 
 import UIKit
 
-public enum GradListAssembly {
+public enum GradeListAssembly {
     public static func makeInteractor(
         courseID: String,
         userID: String?
@@ -57,7 +57,7 @@ public enum GradListAssembly {
             router: env.router
         )
         let viewController = CoreHostingController(GradeListView(viewModel: viewModel))
-        viewController.defaultViewRoute = .init(url: "/empty")
+        viewController.setDefaultViewRoute("/empty")
         return viewController
     }
 

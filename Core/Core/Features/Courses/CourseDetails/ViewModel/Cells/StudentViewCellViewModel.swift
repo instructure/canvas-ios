@@ -34,7 +34,7 @@ class StudentViewCellViewModel: CourseDetailsCellViewModel {
                    selectedCallback: nil)
     }
 
-    public override func selected(router: Router, viewController: WeakViewController) {
+    public override func selected(environment: AppEnvironment, viewController: WeakViewController) {
         accessoryIconType = .loading
         launchStudentView()
     }

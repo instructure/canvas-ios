@@ -27,7 +27,7 @@ class SyllabusCellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = SyllabusCellViewModel(tab: tab, course: course, selectedCallback: {})
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
         XCTAssertTrue(router.lastRoutedTo("/courses/1/syllabus", withOptions: .detail))
     }
 }

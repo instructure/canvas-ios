@@ -161,14 +161,14 @@ public final class ModuleItemDetailsViewController: DownloadableViewController, 
             return ExternalURLWebviewController.create(name: item.title, url: url, courseID: item.courseID)
         case let .externalTool(toolID, url):
             let tools = LTITools(
-                env: env,
                 context: .course(courseID),
                 id: toolID,
                 url: url,
                 launchType: .module_item,
                 isQuizLTI: item.isQuizLTI,
                 moduleID: moduleID,
-                moduleItemID: itemID
+                moduleItemID: itemID,
+                env: env
             )
             return LTIWebViewController.create(tools: tools, moduleItem: item)
         default:

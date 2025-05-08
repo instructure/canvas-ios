@@ -257,10 +257,10 @@ let router = Router(routes: [
     RouteHandler("/:context/:contextID/discussions/:discussionID", factory: discussionViewController),
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID", factory: discussionViewController),
 
-    RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _ in
+    RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _, env in
         guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
         guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
-        let tools = LTITools(context: .course(courseID), id: toolID, isQuizLTI: nil)
+        let tools = LTITools(context: .course(courseID), id: toolID, isQuizLTI: nil, env: env)
         tools.presentTool(from: vc, animated: true)
         return nil
     },
@@ -294,7 +294,7 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
-        return GradListAssembly.makeGradeListViewController(
+        return GradeListAssembly.makeGradeListViewController(
             env: AppEnvironment.shared,
             courseID: courseID,
             userID: AppEnvironment.shared.currentSession?.userID
@@ -527,10 +527,10 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo 
             url: url
         )
     }
-    return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID)
+    return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID, environment: environment)
 }
 
-private func offlineFileDetails(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {
+private func offlineFileDetails(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?, environment: AppEnvironment) -> UIViewController? {
     guard let courseID = params["courseID"],
           let section = params["section"],
           let resourceID = params["resourceID"],
@@ -542,7 +542,7 @@ private func offlineFileDetails(url _: URLComponents, params: [String: String], 
     let context = Context(.course, id: courseID)
 
     let fileSource = OfflineFileSource.privateFile(sessionID: sessionID, courseID: courseID, sectionName: section, resourceID: resourceID, fileID: fileID)
-    return FileDetailsViewController.create(context: context, fileID: fileID, offlineFileSource: fileSource)
+    return FileDetailsViewController.create(context: context, fileID: fileID, offlineFileSource: fileSource, environment: environment)
 }
 
 private func fileEditor(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {

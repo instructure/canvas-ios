@@ -20,20 +20,20 @@ import Combine
 import CombineExt
 import WebKit
 
-public enum StudioAPIAuthError: String, Error {
+public enum StudioAPIAuthError: String, Error, DebugDescriptionProvider {
     case failedToGetLTIs
     case failedToGetTokenFromWebView
     case failedToGetAPIBaseURL
     case studioLTINotFound
     case failedToGetLaunchURL
 
-    var localizedDescription: String {
+    public var debugDescription: String {
         "\(Self.self).\(self)"
     }
 }
 
 public protocol StudioAPIAuthInteractor {
-    func makeStudioAPI() -> AnyPublisher<API, StudioAPIAuthError>
+    func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError>
 }
 
 public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
@@ -47,8 +47,8 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
         self.webViewFactory = webViewFactory
     }
 
-    public func makeStudioAPI() -> AnyPublisher<API, StudioAPIAuthError> {
-        Self.getStudioLaunchURL()
+    public func makeStudioAPI(env: AppEnvironment) -> AnyPublisher<API, StudioAPIAuthError> {
+        Self.getStudioLaunchURL(env: env)
             .flatMap { [self] (webLaunchURL, apiBaseURL) in
                 launchStudioInHeadlessWebView(webLaunchURL: webLaunchURL)
                     .map { webView in
@@ -101,13 +101,13 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
                 }
                 return (userId: userId, token: token)
             }
-            .mapErrorToAuthError(mapUnknownErrorsTo: .failedToGetTokenFromWebView)
+            .mapUnknownErrors(to: .failedToGetTokenFromWebView)
             .eraseToAnyPublisher()
     }
 
-    private static func getStudioLaunchURL() -> AnyPublisher<(webLaunchURL: URL, apiBaseURL: URL), StudioAPIAuthError> {
+    private static func getStudioLaunchURL(env: AppEnvironment) -> AnyPublisher<(webLaunchURL: URL, apiBaseURL: URL), StudioAPIAuthError> {
         let useCase = GetGlobalNavExternalToolsPlacements(enrollment: .student)
-        return ReactiveStore(useCase: useCase)
+        return ReactiveStore(useCase: useCase, environment: env)
             .getEntities()
             .tryMap { ltiTools -> (URL, URL) in
                 guard let webURL = ltiTools.studioLTITool?.url else {
@@ -118,9 +118,9 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
                 }
                 return (webURL, baseURL)
             }
-            .mapErrorToAuthError(mapUnknownErrorsTo: StudioAPIAuthError.failedToGetLTIs)
+            .mapUnknownErrors(to: .failedToGetLTIs)
             .flatMap { (webURL, baseURL) in
-                LTITools(url: webURL, isQuizLTI: false)
+                LTITools(url: webURL, isQuizLTI: false, env: env)
                     .getSessionlessLaunchURL()
                     .mapError { _ in StudioAPIAuthError.failedToGetLaunchURL }
                     .map { (webLaunchURL: $0, apiBaseURL: baseURL) }
@@ -131,10 +131,10 @@ public class StudioAPIAuthInteractorLive: StudioAPIAuthInteractor {
 
 private extension Publisher {
 
-    func mapErrorToAuthError(mapUnknownErrorsTo: StudioAPIAuthError) -> Publishers.MapError<Self, StudioAPIAuthError> {
+    func mapUnknownErrors(to newError: StudioAPIAuthError) -> Publishers.MapError<Self, StudioAPIAuthError> {
         mapError { error in
             guard let studioError = error as? StudioAPIAuthError else {
-                return mapUnknownErrorsTo
+                return newError
             }
             return studioError
         }

@@ -46,6 +46,8 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var lockedEmptyView: SubmissionDetailsLockedEmptyView?
     @IBOutlet weak var attemptPicker: SubmissionAttemptPickerView?
+    @IBOutlet weak var dividerView: DividerView?
+    @IBOutlet weak var contentViewSafeAreaConstraint: NSLayoutConstraint?
 
     static func create(env: AppEnvironment, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) -> SubmissionDetailsViewController {
         let controller = loadFromStoryboard()
@@ -65,6 +67,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         emptyView?.submitCallback = { [weak self] button in
             self?.presenter?.submit(button: button)
         }
+        emptyView?.shouldGroupAccessibilityChildren = true
         attemptPicker?.hideDivider()
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -75,8 +78,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         _ = setDrawerPositionOnce
-        drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 0
-        contentView?.accessibilityElementsHidden = drawer?.height != 0
+        drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 2
     }
 
     func reload() {
@@ -117,7 +119,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         guard let attemptPicker,
               let currentSubmission,
               let currentAttemptDate = currentSubmission.submittedAt
-        else { return }
+        else { return setConstraintsForNoSubmission() }
 
         let isActive = submissions.count > 1 && !assignment.isExternalToolAssignment
 
@@ -142,6 +144,12 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         attemptPicker.updateLabel(text: currentAttemptNumber)
         attemptPicker.updatePickerButton(isActive: isActive, attemptDate: currentAttemptDate.dateTimeString, items: items)
 
+    }
+
+    private func setConstraintsForNoSubmission() {
+        contentViewSafeAreaConstraint?.isActive = false
+        dividerView?.isHidden = true
+        contentView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
     }
 
     func reloadNavBar() {

@@ -130,8 +130,9 @@ struct SideMenuMainSection: View {
     func launchLTI(url: URL?) {
         guard let url = url else { return }
         let dashboard = self.dashboard
-        env.router.dismiss(controller) {
-            LTITools(url: url, isQuizLTI: false).presentTool(from: dashboard, animated: true)
+        env.router.dismiss(controller) { [env] in
+            LTITools(url: url, isQuizLTI: false, env: env)
+                .presentTool(from: dashboard, animated: true)
         }
     }
 

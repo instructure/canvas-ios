@@ -110,7 +110,7 @@ extension InstUI {
                 isFocused = true
             }
             .onChange(of: isFocused) {
-                guard $0 else { return }
+                guard isFocused else { return }
                 focusedPublisher.send()
             }
         }

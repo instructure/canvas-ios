@@ -48,7 +48,7 @@ class SyllabusTests: E2ETestCase {
 
         let syllabusBodyLabel = SyllabusHelper.syllabusBody.waitUntil(.visible)
         XCTAssertTrue(syllabusBodyLabel.isVisible)
-        XCTAssertTrue(syllabusBodyLabel.hasLabel(label: course.syllabus_body!))
+        XCTAssertEqual(syllabusBodyLabel.label, course.syllabus_body!)
 
         // MARK: Check "Summary" tab
         summaryTab.hit()
@@ -57,14 +57,14 @@ class SyllabusTests: E2ETestCase {
 
         let summaryAssignmentTitle = SyllabusHelper.summaryAssignmentTitle(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(summaryAssignmentTitle.isVisible)
-        XCTAssertTrue(summaryAssignmentTitle.hasLabel(label: assignment.name))
+        XCTAssertEqual(summaryAssignmentTitle.label, assignment.name)
 
         let summaryCalendarEventItem = SyllabusHelper.summaryCalendarEventCell(calendarEvent: calendarEvent).waitUntil(.visible)
         XCTAssertTrue(summaryCalendarEventItem.isVisible)
 
         let summaryCalendarEventTitle = SyllabusHelper.summaryCalendarEventTitle(calendarEvent: calendarEvent).waitUntil(.visible)
         XCTAssertTrue(summaryCalendarEventTitle.isVisible)
-        XCTAssertTrue(summaryCalendarEventTitle.hasLabel(label: calendarEvent.title))
+        XCTAssertEqual(summaryCalendarEventTitle.label, calendarEvent.title)
     }
 
     func testCourseSummaryDisabled() {

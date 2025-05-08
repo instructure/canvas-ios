@@ -48,7 +48,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
     var assignmentID: String?
     var context: Context?
     var downloadTask: APITask?
-    let env = AppEnvironment.shared
+    var env: AppEnvironment = .shared
     public var fileID: String = ""
     var loadObservation: NSKeyValueObservation?
     var remoteURL: URL?
@@ -76,13 +76,15 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
         originURL: URLComponents? = nil,
         assignmentID: String? = nil,
         canEdit: Bool = true,
-        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
+        environment: AppEnvironment
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
         controller.fileID = fileID
         controller.originURL = originURL
+        controller.env = environment
         controller.offlineFileInteractor = offlineFileInteractor
         controller.canEdit = canEdit && controller.env.app == .teacher
 
@@ -99,11 +101,13 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
         context: Context?,
         fileID: String,
         offlineFileSource: OfflineFileSource,
-        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive(),
+        environment: AppEnvironment
     ) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.fileID = fileID
+        controller.env = environment
         controller.offlineFileSource = offlineFileSource
         controller.offlineFileInteractor = offlineFileInteractor
 
@@ -311,8 +315,7 @@ public class FileDetailsViewController: DownloadableViewController, CoreWebViewL
     }
 
     func doneLoading(in webView: WKWebView? = nil) {
-        let isDownloadingAttachment = (webView as? CoreWebView)
-            .flatMap({ $0.isDownloadingAttachment }) ?? false
+        let isDownloadingAttachment = (webView as? CoreWebView).flatMap { $0.isDownloadingAttachment } ?? false
 
         spinnerView.isHidden = isDownloadingAttachment == false
         progressView.isHidden = true

@@ -19,7 +19,7 @@
 import TestsFoundation
 import XCTest
 
-class OfflineContentSyncTests: OfflineE2ETest {
+class OfflineContentSyncTests: OfflineE2ETestCase {
     typealias Dashboard = DashboardHelper
     typealias Offline = Dashboard.Options.OfflineContent
 
@@ -263,14 +263,14 @@ class OfflineContentSyncTests: OfflineE2ETest {
         // MARK: Check grade and total grade
         gradesButton.hit()
         let totalGrade = Grade.totalGrade.waitUntil(.visible)
-        let gradeAssignmentCell = Grade.gradesAssignmentButton(assignment: assignment).waitUntil(.visible)
+        let gradeAssignmentCell = Grade.cell(assignment: assignment).waitUntil(.visible)
         let gradedLabel = Grade.gradedLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
         let gradeLabel = Grade.gradeLabel(assignmentCell: gradeAssignmentCell).waitUntil(.visible)
         XCTAssertTrue(totalGrade.isVisible)
-        XCTAssertTrue(totalGrade.waitUntil(.label(expected: "Total grade is 100%")).hasLabel(label: "Total grade is 100%"))
+        XCTAssertEqual(totalGrade.waitUntil(.label(expected: "Total grade is 100%")).label, "Total grade is 100%")
         XCTAssertTrue(gradedLabel.isVisible)
         XCTAssertTrue(gradeLabel.isVisible)
-        XCTAssertTrue(gradeLabel.waitUntil(.label(expected: "Grade, 1 out of 1 (A)")).hasLabel(label: "Grade, 1 out of 1 (A)"))
+        XCTAssertEqual(gradeLabel.waitUntil(.label(expected: "Grade, 1 out of 1 (A)")).label, "Grade, 1 out of 1 (A)")
     }
 
     func testPeopleSync() {
@@ -352,7 +352,7 @@ class OfflineContentSyncTests: OfflineE2ETest {
 
             let personRoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: p).waitUntil(.visible)
             XCTAssertTrue(personRoleLabel.isVisible)
-            XCTAssertTrue(personRoleLabel.hasLabel(label: expectedRoleLabel))
+            XCTAssertEqual(personRoleLabel.label, expectedRoleLabel)
         }
     }
 
@@ -425,7 +425,7 @@ class OfflineContentSyncTests: OfflineE2ETest {
         let syllabusBodyLabel = SyllabusHelper.syllabusBody.waitUntil(.visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(syllabusBodyLabel.isVisible)
-        XCTAssertTrue(syllabusBodyLabel.hasLabel(label: course.syllabus_body!))
+        XCTAssertEqual(syllabusBodyLabel.label, course.syllabus_body!)
     }
 
     func testAssignmentSync() {
@@ -502,37 +502,40 @@ class OfflineContentSyncTests: OfflineE2ETest {
         XCTAssertTrue(navBar.isVisible)
         let assignmentButton = Assignment.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name + ", No Due Date, Not Submitted, -/1"))
+        XCTAssertHasPrefix(assignmentButton.label, assignment.name)
+        XCTAssertContains(assignmentButton.label, "No Due Date")
+        XCTAssertContains(assignmentButton.label, "Not Submitted")
+        XCTAssertHasSuffix(assignmentButton.label.split(separator: " ").joined(), "-/1")
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
         let nameLabel = DetailsHelper.name.waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
-        XCTAssertTrue(nameLabel.hasLabel(label: assignment.name))
+        XCTAssertEqual(nameLabel.label, assignment.name)
 
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertTrue(pointsLabel.hasLabel(label: "\(assignment.points_possible!) pt"))
+        XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pt")
 
         let statusLabel = DetailsHelper.status.waitUntil(.visible)
         XCTAssertTrue(statusLabel.isVisible)
-        XCTAssertTrue(statusLabel.hasLabel(label: "Not Submitted"))
+        XCTAssertEqual(statusLabel.label, "Not Submitted")
 
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
-        XCTAssertTrue(dueLabel.hasLabel(label: "No Due Date"))
+        XCTAssertEqual(dueLabel.label, "No Due Date")
 
         let submissionTypesLabel = DetailsHelper.submissionTypes.waitUntil(.visible)
         XCTAssertTrue(submissionTypesLabel.isVisible)
-        XCTAssertTrue(submissionTypesLabel.hasLabel(label: "Text Entry"))
+        XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
 
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(descriptionLabel.isVisible)
-        XCTAssertTrue(descriptionLabel.hasLabel(label: assignment.description!))
+        XCTAssertEqual(descriptionLabel.label, assignment.description!)
 
         let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
-        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Submit Assignment"))
+        XCTAssertEqual(submitAssignmentButton.label, "Submit Assignment")
         let submissionButton = DetailsHelper.submissionAndRubricButton.waitUntil(.visible)
         XCTAssertTrue(submissionButton.isVisible)
 
@@ -540,8 +543,10 @@ class OfflineContentSyncTests: OfflineE2ETest {
         submissionButton.hit()
 
         XCTAssertTrue(Offline.offlineModeAlert.isVisible)
-        XCTAssertTrue(Offline.offlineModeAlertTitleText.isVisible && Offline.offlineModeAlertTitleText.hasLabel(label: "Offline mode"))
-        XCTAssertTrue(Offline.offlineModeAlertMessageText.isVisible && Offline.offlineModeAlertMessageText.hasLabel(label: "This item is not available offline."))
+        XCTAssertTrue(Offline.offlineModeAlertTitleText.isVisible)
+        XCTAssertEqual(Offline.offlineModeAlertTitleText.label, "Offline mode")
+        XCTAssertTrue(Offline.offlineModeAlertMessageText.isVisible)
+        XCTAssertEqual(Offline.offlineModeAlertMessageText.label, "This item is not available offline.")
         XCTAssertTrue(Offline.offlineModeAlertOkButton.isVisible && Offline.offlineModeAlertOkButton.isHittable)
 
         Offline.offlineModeAlertOkButton.hit()
@@ -550,8 +555,10 @@ class OfflineContentSyncTests: OfflineE2ETest {
         submitAssignmentButton.hit()
 
         XCTAssertTrue(Offline.offlineModeAlert.isVisible)
-        XCTAssertTrue(Offline.offlineModeAlertTitleText.isVisible && Offline.offlineModeAlertTitleText.hasLabel(label: "Offline mode"))
-        XCTAssertTrue(Offline.offlineModeAlertMessageText.isVisible && Offline.offlineModeAlertMessageText.hasLabel(label: "This item is not available offline."))
+        XCTAssertTrue(Offline.offlineModeAlertTitleText.isVisible)
+        XCTAssertEqual(Offline.offlineModeAlertTitleText.label, "Offline mode")
+        XCTAssertTrue(Offline.offlineModeAlertMessageText.isVisible)
+        XCTAssertEqual(Offline.offlineModeAlertMessageText.label, "This item is not available offline.")
         XCTAssertTrue(Offline.offlineModeAlertOkButton.isVisible && Offline.offlineModeAlertOkButton.isHittable)
         Offline.offlineModeAlertOkButton.hit()
         XCTAssertTrue(Offline.offlineModeAlertOkButton.waitUntil(.vanish).isVanished)

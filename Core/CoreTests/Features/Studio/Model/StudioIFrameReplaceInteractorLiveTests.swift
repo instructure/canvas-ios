@@ -135,7 +135,7 @@ class StudioIFrameReplaceInteractorLiveTests: CoreTestCase {
 
     func testErrorDescription() {
         XCTAssertEqual(
-            StudioIFrameReplaceError.failedToConvertDataToString.localizedDescription,
+            StudioIFrameReplaceError.failedToConvertDataToString.debugDescription,
             "StudioIFrameReplaceError.failedToConvertDataToString"
         )
     }

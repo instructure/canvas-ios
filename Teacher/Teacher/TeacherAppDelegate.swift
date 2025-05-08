@@ -325,7 +325,7 @@ extension TeacherAppDelegate: LoginDelegate {
         PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.deleteDevicePlatformEndpoint(session: session)
 //        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        UNUserNotificationCenter.current().setBadgeCount(0)
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
     }

@@ -42,7 +42,7 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
                 userName: ""
             )
         )
-        let publisher = StudioAPIAuthInteractorLive(webViewFactory: { mockWebView }).makeStudioAPI()
+        let publisher = StudioAPIAuthInteractorLive(webViewFactory: { mockWebView }).makeStudioAPI(env: environment)
 
         XCTAssertFirstValueAndCompletion(publisher, timeout: 14) { api in
             XCTAssertEqual(api.loginSession, expectedAPIResult.loginSession)
@@ -55,7 +55,7 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
     }
 
     func testErrorDescription() {
-        XCTAssertEqual(StudioAPIAuthError.failedToGetLTIs.localizedDescription, "StudioAPIAuthError.failedToGetLTIs")
+        XCTAssertEqual(StudioAPIAuthError.failedToGetLTIs.debugDescription, "StudioAPIAuthError.failedToGetLTIs")
     }
 
     private func mockStudioLTIData() {
