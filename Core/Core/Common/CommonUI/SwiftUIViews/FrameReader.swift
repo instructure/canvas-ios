@@ -49,7 +49,9 @@ public struct FrameReader: View {
                 .onAppear {
                     onChange(geometry.frame(in: coordinateSpace))
                 }
-                .onChange(of: geometry.frame(in: coordinateSpace), perform: onChange)
+                .onChange(of: geometry.frame(in: coordinateSpace)) {
+                    onChange(geometry.frame(in: coordinateSpace))
+                }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

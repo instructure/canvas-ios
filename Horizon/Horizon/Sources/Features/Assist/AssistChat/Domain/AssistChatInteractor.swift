@@ -539,3 +539,18 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     .setFailureType(to: Error.self)
     .eraseToAnyPublisher()
 }
+
+extension API {
+    func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
+        AnyPublisher<Request.Response?, Error> { [weak self] subscriber in
+            self?.makeRequest(requestable) { response, _, error in
+                if let error = error {
+                    subscriber.send(completion: .failure(error))
+                    return
+                }
+                subscriber.send(response)
+            }
+            return AnyCancellable { }
+        }
+    }
+}

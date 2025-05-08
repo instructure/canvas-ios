@@ -23,13 +23,9 @@ import XCTest
 class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
 
     func testDownload() throws {
-        let mockOfflineDirectory = URL.make()
-
         // Step 1 - Discover iframes
         let mockIFrameDiscoveryInteracor = MockStudioIFrameDiscoveryInteractor()
-        let mockLocalHtmlContentURL = URL(
-            string: "course_1/pages/body.html"
-        )!
+        let mockLocalHtmlContentURL = URL(string: "course_1/pages/body.html")!
         let mockDiscoveredIFrames = [StudioIFrame(
             mediaLTILaunchID: StudioTestData.ltiLaunchID,
             sourceHtml: StudioTestData.iframe
@@ -74,14 +70,14 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
         let mockIFrameReplaceInteractor = MockStudioIFrameReplaceInteractor()
 
         let testee = CourseSyncStudioMediaInteractorLive(
-            offlineDirectory: mockOfflineDirectory,
             authInteractor: mockAuthInteractor,
             iFrameReplaceInteractor: mockIFrameReplaceInteractor,
             iFrameDiscoveryInteractor: mockIFrameDiscoveryInteracor,
             cleanupInteractor: mockCleanupInteractor,
             metadataDownloadInteractor: mockMedatadaDownloader,
             downloadInteractor: mockDownloadInteractor,
-            scheduler: .immediate
+            scheduler: .immediate,
+            envResolver: envResolver
         )
 
         XCTAssertFinish(testee.getContent(courseIDs: ["1"]))
@@ -89,12 +85,8 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
         // Step 1
         XCTAssertTrue(mockIFrameDiscoveryInteracor.discoverCalled)
         XCTAssertEqual(
-            mockIFrameDiscoveryInteracor.receivedOfflineDirectory,
-            mockOfflineDirectory
-        )
-        XCTAssertEqual(
-            mockIFrameDiscoveryInteracor.receivedCourseIDs,
-            ["1"]
+            mockIFrameDiscoveryInteracor.receivedCourseID,
+            "1"
         )
 
         // Step 2
@@ -133,16 +125,59 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
             [mockOfflineVideo]
         )
     }
+
+    func testErrorReporting() {
+        // Step 1 - Discover iframes
+        let mockIFrameDiscoveryInteracor = MockStudioIFrameDiscoveryInteractor()
+        let mockLocalHtmlContentURL = URL(string: "course_1/pages/body.html")!
+        let mockDiscoveredIFrames = [StudioIFrame(
+            mediaLTILaunchID: StudioTestData.ltiLaunchID,
+            sourceHtml: StudioTestData.iframe
+        )]
+        mockIFrameDiscoveryInteracor.mockedDiscoverResult = [
+            mockLocalHtmlContentURL: mockDiscoveredIFrames
+        ]
+
+        // Step 2 - Authenticate with the Studio API
+        let mockAuthInteractor = MockStudioAPIAuthInteractor()
+        let expectedError = StudioAPIAuthError.studioLTINotFound
+        mockAuthInteractor.mockedErrorResponse = expectedError
+
+        let testee = CourseSyncStudioMediaInteractorLive(
+            authInteractor: mockAuthInteractor,
+            iFrameReplaceInteractor: MockStudioIFrameReplaceInteractor(),
+            iFrameDiscoveryInteractor: mockIFrameDiscoveryInteracor,
+            cleanupInteractor: MockStudioVideoCleanupInteractor(),
+            metadataDownloadInteractor: MockStudioMetadataDownloadInteractor(),
+            downloadInteractor: MockStudioVideoDownloadInteractor(),
+            scheduler: .immediate,
+            envResolver: envResolver
+        )
+
+        // WHEN
+        XCTAssertFinish(testee.getContent(courseIDs: ["1"]))
+
+        // THEN
+        XCTAssertEqual(remoteLogHandler.lastErrorName, "Studio Offline Sync Failed")
+        XCTAssertEqual(remoteLogHandler.lastErrorReason, expectedError.debugDescription)
+        XCTAssertEqual(remoteLogHandler.totalErrorCount, 1)
+    }
 }
 
 private class MockStudioAPIAuthInteractor: StudioAPIAuthInteractor {
+    var mockedErrorResponse: StudioAPIAuthError?
     private(set) var makeAPICalled = false
 
-    public func makeStudioAPI() -> AnyPublisher<API, StudioAPIAuthError> {
+    func makeStudioAPI(env: AppEnvironment, courseId: String) -> AnyPublisher<API, StudioAPIAuthError> {
         makeAPICalled = true
-        return Just(API())
-            .setFailureType(to: StudioAPIAuthError.self)
-            .eraseToAnyPublisher()
+
+        if let mockedErrorResponse {
+            return Publishers.typedFailure(error: mockedErrorResponse)
+        } else {
+            return Just(API())
+                .setFailureType(to: StudioAPIAuthError.self)
+                .eraseToAnyPublisher()
+        }
     }
 }
 
@@ -165,18 +200,13 @@ private class MockStudioIFrameReplaceInteractor: StudioIFrameReplaceInteractor {
 private class MockStudioIFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractor {
     public var mockedDiscoverResult: StudioIFramesByLocation!
     private(set) var discoverCalled = false
-    private(set) var receivedOfflineDirectory: URL?
-    private(set) var receivedCourseIDs: [String] = []
+    private(set) var receivedCourseID: String?
 
     init() {}
 
-    public func discoverStudioIFrames(
-        in offlineDirectory: URL,
-        courseIDs: [String]
-    ) -> AnyPublisher<StudioIFramesByLocation, Never> {
+    func discoverStudioIFrames(courseID: CourseSyncID) -> AnyPublisher<StudioIFramesByLocation, Never> {
         discoverCalled = true
-        receivedOfflineDirectory = offlineDirectory
-        receivedCourseIDs = courseIDs
+        receivedCourseID = courseID.value
         return Just(mockedDiscoverResult).eraseToAnyPublisher()
     }
 }
@@ -187,9 +217,7 @@ private class MockStudioVideoDownloadInteractor: StudioVideoDownloadInteractor {
 
     init() {}
 
-    public func download(
-        _ item: APIStudioMediaItem
-    ) -> AnyPublisher<StudioOfflineVideo, Error> {
+    func download(_ item: APIStudioMediaItem, rootDirectory: URL) -> AnyPublisher<StudioOfflineVideo, any Error> {
         receivedMediaItem = item
         return Just(mockedOfflineVideoReponse)
             .setFailureType(to: Error.self)
@@ -209,11 +237,7 @@ private class MockStudioVideoCleanupInteractor: StudioVideoCleanupInteractor {
     private(set) var receivedLTIIDsForOfflineMode: [String]?
 
     init() {}
-
-    public func removeNoLongerNeededVideos(
-        allMediaItemsOnAPI: [APIStudioMediaItem],
-        mediaLTIIDsUsedInOfflineMode: [String]
-    ) -> AnyPublisher<Void, Error> {
+    func removeNoLongerNeededVideos(allMediaItemsOnAPI: [APIStudioMediaItem], mediaLTIIDsUsedInOfflineMode: [String], offlineStudioDirectory: URL) -> AnyPublisher<Void, any Error> {
         receivedAPIMediaItems = allMediaItemsOnAPI
         receivedLTIIDsForOfflineMode = mediaLTIIDsUsedInOfflineMode
         return Just(())
@@ -226,10 +250,7 @@ private class MockStudioMetadataDownloadInteractor: StudioMetadataDownloadIntera
     var response: [APIStudioMediaItem] = []
     private(set) var fetchCalled = false
 
-    func fetchStudioMediaItems(
-        api: API,
-        courseIDs: [String]
-    ) -> AnyPublisher<[APIStudioMediaItem], Error> {
+    func fetchStudioMediaItems(api: Core.API, courseID: String) -> AnyPublisher<[APIStudioMediaItem], any Error> {
         fetchCalled = true
         return Just(response)
             .setFailureType(to: Error.self)

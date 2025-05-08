@@ -73,7 +73,13 @@ class FilesTests: E2ETestCase {
         if replaceButton.isVisible { replaceButton.hit() }
     }
 
-    func testCreateTestFolderAndUploadPDF() {
+    func testCreateTestFolderAndUploadPDF() throws {
+        try XCTSkipIf(true,
+            """
+            The save dialog changed and it now automatically enters the \"On My iPhone\" folder on iPhone. Needs to be checked on iPad as well. \
+            Sometimes a tutorial is shown about the slide to type keyboard feature that also needs to be dismissed.
+            """
+        )
         // MARK: Download and save test PDF file
         downloadTestPDF()
         app.activate()

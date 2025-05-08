@@ -80,10 +80,10 @@ public extension HorizonUI {
             self.name = name
         }
 
-        public func body(content: Content) -> some View{
+        public func body(content: Content) -> some View {
             content
                 .font(name.font)
-            // TODO: Research line height implementation
+                // TODO: Research line height implementation
 //                .lineSpacing(name.lineSpacing)
                 .tracking(name.letterSpacing)
         }

@@ -21,7 +21,6 @@ import SwiftUI
 
 extension HorizonUI {
     public struct SingleSelect: View {
-
         // MARK: Dependencies
 
         private let disabled: Bool
@@ -282,7 +281,34 @@ extension HorizonUI {
 
     @Previewable @State var selectedOptionIndex = 0
 
-    let options = ["Alphabet", "Backyard", "Country", "Doctor", "Elephant", "Fuzz", "Gorilla", "Horse", "Igloo", "Jelly", "Kangaroo", "Lemon", "Mango", "Nose", "Orange", "Pineapple", "Quilt", "Rabbit", "Squirrel", "Tiger", "Umbrella", "Violet", "Wagon", "Xylophone", "Yak", "Zebra"]
+    let options = [
+        "Alphabet",
+        "Backyard",
+        "Country",
+        "Doctor",
+        "Elephant",
+        "Fuzz",
+        "Gorilla",
+        "Horse",
+        "Igloo",
+        "Jelly",
+        "Kangaroo",
+        "Lemon",
+        "Mango",
+        "Nose",
+        "Orange",
+        "Pineapple",
+        "Quilt",
+        "Rabbit",
+        "Squirrel",
+        "Tiger",
+        "Umbrella",
+        "Violet",
+        "Wagon",
+        "Xylophone",
+        "Yak",
+        "Zebra"
+    ]
 
     VStack {
         HorizonUI.SingleSelect(

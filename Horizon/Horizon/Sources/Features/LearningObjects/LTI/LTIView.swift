@@ -53,7 +53,8 @@ struct LTIView: View {
     LTIView(viewModel: LTIViewModel(
         tools: LTITools(
             url: URL(string: "https://www.instructure.com")!,
-            isQuizLTI: false
+            isQuizLTI: false,
+            env: AppEnvironment.shared
         )
     ))
 }

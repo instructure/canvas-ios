@@ -106,4 +106,25 @@ class UIViewExtensionsTests: XCTestCase {
         testee.restrictFrameInsideSuperview()
         XCTAssertEqual(testee.frame, CGRect(x: 80, y: 80, width: 20, height: 20))
     }
+
+    func test_findAllSubviews() {
+        let label1 = UILabel()
+        let nestedLabel = UILabel()
+        let containerView = UIView()
+        containerView.addSubview(label1)
+        containerView.addSubview(nestedLabel)
+
+        let label2 = UILabel()
+        let button = UIButton()
+        let parentView = UIView()
+        parentView.addSubview(label2)
+        parentView.addSubview(button)
+        parentView.addSubview(containerView)
+
+        // WHEN
+        let foundLabels = parentView.findAllSubviews(ofType: UILabel.self)
+
+        // THEN
+        XCTAssertEqual(foundLabels, Set([label1, label2, nestedLabel]))
+    }
 }

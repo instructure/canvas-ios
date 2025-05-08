@@ -94,7 +94,14 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
 
     func testNotAModuleItem() {
         let url = URLComponents(string: "/courses/1/files/1?origin=module_item_details")!
-        router.mock(url) { FileDetailsViewController.create(context: .course("1"), fileID: "1") }
+        router.mock(url) { [environment] in
+            FileDetailsViewController
+                .create(
+                    context: .course("1"),
+                    fileID: "1",
+                    environment: environment
+                )
+        }
         api.mock(
             GetModuleItemSequenceRequest(courseID: "1", assetType: .file, assetID: "1"),
             value: .make(items: [.make(current: nil)])
@@ -164,5 +171,25 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
         XCTAssertEqual(details.itemID, "item-id")
         XCTAssertTrue(controller.previousButton.isHidden)
         XCTAssertFalse(controller.nextButton.isHidden)
+    }
+
+    func test_setCurrentPage_stopWebViewPlayback() {
+        let viewController = ModuleItemSequenceViewController()
+        let playerViewController = MockViewController()
+        viewController.pages.setCurrentPage(playerViewController)
+
+        // WHEN
+        viewController.setCurrentPage(UIViewController(), direction: .forward)
+
+        // THEN
+        XCTAssertTrue(playerViewController.stopWebViewPlaybackCalled)
+    }
+}
+
+private class MockViewController: UIViewController {
+    var stopWebViewPlaybackCalled = false
+
+    override func pauseWebViewPlayback() {
+        stopWebViewPlaybackCalled = true
     }
 }

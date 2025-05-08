@@ -21,10 +21,10 @@ import SwiftUI
 public extension HorizonUI {
     struct Fonts: Sendable {
         // MARK: Private
-        
+
         fileprivate init() {}
 
-        private struct VariantAndSize : Sendable{
+        private struct VariantAndSize: Sendable {
             let variant: Variants
             let size: Double
 
@@ -40,14 +40,13 @@ public extension HorizonUI {
         }
 
         private static let manropeR12: VariantAndSize = .init(variant: .manropeRegular, size: 12)
+        private static let manropeR20: VariantAndSize = .init(variant: .manropeRegular, size: 20)
 
         private static let manropeB28: VariantAndSize = .init(variant: .manropeBold, size: 28)
         private static let manropeB24: VariantAndSize = .init(variant: .manropeBold, size: 24)
         private static let manropeB20: VariantAndSize = .init(variant: .manropeBold, size: 20)
 
         private static let manropeSB16: VariantAndSize = .init(variant: .manropeSemiBold, size: 16)
-
-        private static let manropeR20: VariantAndSize = .init(variant: .manropeRegular, size: 20)
 
         private static let figtreeR16: VariantAndSize = .init(variant: .figtreeRegular, size: 16)
         private static let figtreeR14: VariantAndSize = .init(variant: .figtreeRegular, size: 14)
@@ -68,14 +67,13 @@ public extension HorizonUI {
         }
 
         let manropeRegular12: Font = HorizonUI.Fonts.manropeR12.scaledFont()
+        let manropeRegular20: Font = HorizonUI.Fonts.manropeR20.scaledFont()
 
         let manropeBold28: Font = HorizonUI.Fonts.manropeB28.scaledFont()
         let manropeBold24: Font = HorizonUI.Fonts.manropeB24.scaledFont()
         let manropeBold20: Font = HorizonUI.Fonts.manropeB20.scaledFont()
 
         let manropeSemiBold16: Font = HorizonUI.Fonts.manropeSB16.scaledFont()
-
-        let manropeRegular20: Font = HorizonUI.Fonts.manropeR20.scaledFont()
 
         let figtreeRegular16: Font = HorizonUI.Fonts.figtreeR16.scaledFont()
         let figtreeRegular14: Font = HorizonUI.Fonts.figtreeR14.scaledFont()
@@ -104,6 +102,7 @@ public extension HorizonUI {
 
     static let fonts = HorizonUI.Fonts()
 }
+
 extension Font {
     static let huiFonts = HorizonUI.fonts
 }

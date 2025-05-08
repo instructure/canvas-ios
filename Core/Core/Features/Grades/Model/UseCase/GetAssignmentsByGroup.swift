@@ -75,6 +75,14 @@ public class GetAssignmentsByGroup: UseCase {
 
             predicate = predicate.and(NSPredicate(key: #keyPath(Assignment.hideInGradeBook), equals: false))
 
+            if let userID {
+                // Because even unsubmitted assignments have at least one placeholder submission for a user
+                // we can use that to determine if the assignment is assigned to a user
+                predicate = predicate.and(NSPredicate(format: "ANY submissions.userID == %@", userID))
+            }
+
+            predicate = predicate.and(NSPredicate(key: #keyPath(Assignment.hideInGradeBook), equals: false))
+
             return predicate
         }()
 
