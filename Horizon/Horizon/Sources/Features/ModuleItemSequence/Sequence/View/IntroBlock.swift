@@ -57,7 +57,7 @@ struct IntroBlock: View {
         self.countOfPoints = countOfPoints
         self.dueDate = dueDate
         self.isOverdue = isOverdue
-        self.attemptCount = "1"
+        self.attemptCount = attemptCount
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.isMenuButtonVisible = isMenuButtonVisible
