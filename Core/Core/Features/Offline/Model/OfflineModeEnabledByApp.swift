@@ -23,6 +23,7 @@ extension Optional where Wrapped == AppEnvironment.App {
         case .parent: return false
         case .student: return true
         case .teacher: return false
+        case .horizon: return false
         case .none: return false
         }
     }

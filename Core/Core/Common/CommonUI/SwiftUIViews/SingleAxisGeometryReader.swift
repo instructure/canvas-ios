@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct SingleAxisGeometryReader<Content: View>: View {
+public struct SingleAxisGeometryReader<Content: View>: View {
     private struct SizeKey: PreferenceKey {
         static var defaultValue: CGFloat { 10 }
         static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
@@ -40,7 +40,7 @@ struct SingleAxisGeometryReader<Content: View>: View {
     ///     - initialSize: SwiftUI doesn't read the corret size on the first pass so you should give an initial value that somewhat matches the desired width or height.
     ///     - content: The return value is the content that will be drawn. The parameter is the result of the GeometryReader reading. If it's a horiziontal reader, then the parameter is a width value.
     ///       If it's a vertical reader, then the parameter is a height value.
-    init(
+    public init(
         axis: Axis = .horizontal,
         alignment: Alignment = .center,
         initialSize: CGFloat,
@@ -52,7 +52,7 @@ struct SingleAxisGeometryReader<Content: View>: View {
         self.content = content
     }
 
-    var body: some View {
+    public var body: some View {
         content(size ?? initialSize)
             .frame(
                 maxWidth: axis == .horizontal ? .infinity : nil,

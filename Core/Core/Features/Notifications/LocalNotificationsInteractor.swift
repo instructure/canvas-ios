@@ -84,7 +84,7 @@ public class LocalNotificationsInteractor {
 
     // MARK: - Private Helpers
 
-    private func notify(
+    public func notify(
         identifier: String,
         title: String,
         body: String,

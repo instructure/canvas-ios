@@ -190,6 +190,8 @@ public class GetPlannables: UseCase {
             environment.api.exhaust(request) { response, urlResponse, error in
                 completionHandler(.init(plannables: response), urlResponse, error)
             }
+        case .horizon:
+            break
         case .none:
             break
         }

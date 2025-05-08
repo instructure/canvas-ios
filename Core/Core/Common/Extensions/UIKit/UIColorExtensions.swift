@@ -112,6 +112,10 @@ extension UIColor {
             return .teacherLogoColor
         case Bundle.parentBundleID:
             return .parentLogoColor
+        case Bundle.studentBundleID:
+            return .studentLogoColor
+        case Bundle.horizonBundleID:
+            return .orange
         default: // .studentBundleID
             return .studentLogoColor
         }

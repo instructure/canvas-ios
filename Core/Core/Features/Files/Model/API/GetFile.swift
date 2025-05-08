@@ -18,28 +18,28 @@
 
 import CoreData
 
-class GetFile: APIUseCase {
-    typealias Model = File
+public class GetFile: APIUseCase {
+    public typealias Model = File
 
     let context: Context?
     let fileID: String
     let include: [GetFileRequest.Include]
 
-    init(context: Context?, fileID: String, include: [GetFileRequest.Include] = []) {
+    public init(context: Context?, fileID: String, include: [GetFileRequest.Include] = []) {
         self.context = context
         self.fileID = fileID
         self.include = include
     }
 
-    var cacheKey: String? {
+    public var cacheKey: String? {
         return "get-file-\(fileID)"
     }
 
-    var scope: Scope {
+    public var scope: Scope {
         return .where(#keyPath(File.id), equals: fileID)
     }
 
-    var request: GetFileRequest {
+    public var request: GetFileRequest {
         return GetFileRequest(context: context, fileID: fileID, include: include)
     }
 }

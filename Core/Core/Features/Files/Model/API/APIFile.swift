@@ -348,7 +348,7 @@ public extension APIUsageRights {
 public struct GetFileRequest: APIRequestable {
     public typealias Response = APIFile
 
-    enum Include: String, Codable {
+    public enum Include: String, Codable {
         case avatar, usage_rights, user
     }
 

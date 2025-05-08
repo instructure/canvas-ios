@@ -23,7 +23,8 @@ import WebKit
  Methods here should be overridden and the necessary changes should be made there to make the custom feature work.
  */
 open class CoreWebViewFeature {
-    func apply(on configuration: WKWebViewConfiguration) {}
-    func apply(on webView: CoreWebView) {}
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
+    public init() {}
+    open func apply(on configuration: WKWebViewConfiguration) {}
+    open func apply(on webView: CoreWebView) {}
+    open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
 }

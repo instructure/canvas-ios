@@ -26,7 +26,7 @@ public class LTITools: NSObject {
     let env: AppEnvironment
     let context: Context
     let id: String?
-    let url: URL?
+    public let url: URL?
     let launchType: GetSessionlessLaunchURLRequest.LaunchType?
     let isQuizLTI: Bool? // This is optional because not all entry points provide this info
     let assignmentID: String?

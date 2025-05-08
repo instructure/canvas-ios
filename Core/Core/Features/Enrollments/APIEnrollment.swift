@@ -49,10 +49,10 @@ public struct APIEnrollment: Codable, Equatable {
     let grades: Grades?
     let user: APIUser?
     let computed_current_score: Double?
-    let computed_final_score: Double?
+    public let computed_final_score: Double?
     let computed_current_grade: String?
     let computed_current_letter_grade: String?
-    let computed_final_grade: String?
+    public let computed_final_grade: String?
     // let unposted_current_grade: String?
     // let unposted_final_grade: String?
     // let unposted_current_score: String?
@@ -268,13 +268,13 @@ public struct GetEnrollmentsRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.accept
 // https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.reject
-struct HandleCourseInvitationRequest: APIRequestable {
-    struct Response: Codable { let success: Bool }
+public struct HandleCourseInvitationRequest: APIRequestable {
+    public struct Response: Codable { let success: Bool }
 
     let courseID: String
     let enrollmentID: String
     let isAccepted: Bool
 
-    var method: APIMethod { .post }
-    var path: String { "courses/\(courseID)/enrollments/\(enrollmentID)/\(isAccepted ? "accept" : "reject")" }
+    public var method: APIMethod { .post }
+    public var path: String { "courses/\(courseID)/enrollments/\(enrollmentID)/\(isAccepted ? "accept" : "reject")" }
 }

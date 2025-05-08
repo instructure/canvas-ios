@@ -84,7 +84,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
 
         // Sometimes module links within Pages are referenced by their pageId ("/pages/my-module") instead of their id.
         // When downloading module item sequences for offline usage, we always download with the id field so we need to
-        // find the matching `ModuleItem` and replace the assetID for the `GetModuleItemSequence` request. 
+        // find the matching `ModuleItem` and replace the assetID for the `GetModuleItemSequence` request.
         if offlineModeInteractor.isOfflineModeEnabled() {
             if Int(assetID) == nil, let model: ModuleItem = env.database.viewContext.fetch(scope: .where(#keyPath(ModuleItem.pageId), equals: assetID)).first {
                 store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: model.id)) { [weak self] in

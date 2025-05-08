@@ -19,12 +19,17 @@
 import Combine
 import Foundation
 
-struct DownloadTaskParameters {
+public struct DownloadTaskParameters {
     let remoteURL: URL
     let localURL: URL
+
+    public init(remoteURL: URL, localURL: URL) {
+        self.remoteURL = remoteURL
+        self.localURL = localURL
+    }
 }
 
-struct DownloadTaskPublisher: Publisher {
+public struct DownloadTaskPublisher: Publisher {
     /// Output is a Float value between 0 and 1 indicating the download progress.
     public typealias Output = Float
     public typealias Failure = Error

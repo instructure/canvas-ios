@@ -64,15 +64,15 @@ public extension WKWebView {
     }
 }
 
-private class MessagePasser: NSObject, WKScriptMessageHandler {
+public class MessagePasser: NSObject, WKScriptMessageHandler {
     let handler: MessageHandler
 
-    init(handler: @escaping MessageHandler) {
+    public init(handler: @escaping MessageHandler) {
         self.handler = handler
         super.init()
     }
 
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         handler(message)
     }
 }

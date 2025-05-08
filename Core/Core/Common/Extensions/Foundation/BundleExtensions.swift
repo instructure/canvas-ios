@@ -26,6 +26,7 @@ public extension Bundle {
     static let studentBundleID = "com.instructure.icanvas"
     static let teacherBundleID = "com.instructure.ios.teacher"
     static let parentBundleID = "com.instructure.parentapp"
+    static let horizonBundleID = "com.instructure.horizon"
 
     static let coreBundleID = "com.instructure.core"
 
@@ -48,6 +49,7 @@ public extension Bundle {
     var isStudentApp: Bool { bundleIdentifier == Bundle.studentBundleID || isStudentTestsRunner }
     var isTeacherApp: Bool { bundleIdentifier == Bundle.teacherBundleID || isTeacherTestsRunner }
     var isParentApp: Bool { bundleIdentifier == Bundle.parentBundleID || isParentTestsRunner }
+    var isHorizonApp: Bool { bundleIdentifier == Bundle.horizonBundleID }
     var isStudentTestsRunner: Bool { [Bundle.studentUITestsBundleID, Bundle.studentE2ETestsBundleID].contains(bundleIdentifier) }
     var isTeacherTestsRunner: Bool { [Bundle.teacherUITestsBundleID, Bundle.teacherE2ETestsBundleID].contains(bundleIdentifier) }
     var isParentTestsRunner: Bool { [Bundle.parentUITestsBundleID, Bundle.parentE2ETestsBundleID].contains(bundleIdentifier) }

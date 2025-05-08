@@ -5,3 +5,7 @@
 
 # These owners will be the default owners for everything in the repo.
 * @vargaat @szabinst @rh12 @ndrsszsz @suhaibabsi-inst
+
+# Horizon
+/Horizon/ @szabinst @ktheory @JacksonHowe @Ahmed-Naguib93 @reabbotted
+/packages/HorizonUI @szabinst @ktheory @JacksonHowe @Ahmed-Naguib93 @reabbotted
