@@ -83,7 +83,7 @@ struct IntroBlock: View {
             if isOverdue {
                 HorizonUI.Pill(
                     title: String(localized: "Overdue", bundle: .horizon),
-                    style: .outline(.init(borderColor: foregroundColor,textColor: foregroundColor,iconColor: foregroundColor)),
+                    style: .outline(.init(borderColor: foregroundColor, textColor: foregroundColor, iconColor: foregroundColor)),
                     isUppercased: true,
                     icon: nil
                 )
@@ -132,9 +132,9 @@ struct IntroBlock: View {
 
     private var moduleInfoView: some View {
         Text(moduleItemInfo)
-        .foregroundStyle(foregroundColor)
-        .huiTypography(.p2)
-        .padding(.horizontal, .huiSpaces.space16)
+            .foregroundStyle(foregroundColor)
+            .huiTypography(.p2)
+            .padding(.horizontal, .huiSpaces.space16)
     }
 
     private var moduleItemInfo: String {
