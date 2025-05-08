@@ -141,7 +141,7 @@ public struct WebView: UIViewRepresentable {
         webView.sizeDelegate = context.coordinator
         // During `makeUIView` `UIView`s have no view controllers so they can't check if dark mode is enabled.
         // We force an update here since a `CoreHostingController` is assiged to the view hierarchy.
-        webView.traitCollectionDidChange(nil)
+        webView.updateInterfaceStyle()
         context.coordinator.reload(webView: webView, on: reloadTrigger)
 
         if context.coordinator.loaded != source {

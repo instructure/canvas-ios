@@ -33,11 +33,11 @@ class LTICellViewModel: CourseDetailsCellViewModel {
                    selectedCallback: nil)
     }
 
-    public override func selected(router: Router, viewController: WeakViewController) {
-        launchLTITool(url: url, viewController: viewController)
+    public override func selected(environment: AppEnvironment, viewController: WeakViewController) {
+        launchLTITool(env: environment, url: url, viewController: viewController)
     }
 
-    private func launchLTITool(url: URL, viewController: WeakViewController) {
+    private func launchLTITool(env: AppEnvironment, url: URL, viewController: WeakViewController) {
         LTITools.launch(
             context: nil,
             id: nil,
@@ -45,7 +45,8 @@ class LTICellViewModel: CourseDetailsCellViewModel {
             launchType: nil,
             isQuizLTI: false,
             assignmentID: nil,
-            from: viewController.value
+            from: viewController.value,
+            env: env
         )
     }
 }

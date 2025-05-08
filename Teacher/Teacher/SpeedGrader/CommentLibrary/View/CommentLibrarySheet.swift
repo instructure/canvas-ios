@@ -32,15 +32,16 @@ struct CommentLibrarySheet: View {
                 CommentLibraryList(viewModel: viewModel, comment: $comment) {
                     presentationMode.wrappedValue.dismiss()
                 }
-                CommentEditor(
+                CommentEditorView(
                     text: $comment,
                     shouldShowCommentLibrary: false,
                     showCommentLibrary: .constant(false),
                     action: editorAction, containerHeight: geometry.size.height
                 )
                     .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-                    .background(Color.backgroundLight).onChange(of: comment) { text in
-                        viewModel.comment = text
+                    .background(Color.backgroundLight)
+                    .onChange(of: comment) {
+                        viewModel.comment = comment
                     }
             }.onAppear {
                 viewModel.comment = comment

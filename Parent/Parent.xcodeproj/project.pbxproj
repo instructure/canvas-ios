@@ -34,6 +34,7 @@
 		5B57424D2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57424C2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift */; };
 		5B5742572CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742562CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift */; };
 		5B5742592CB6B3E3000FB627 /* DismissObserverAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5742582CB6B3E3000FB627 /* DismissObserverAlertTests.swift */; };
+		5BBB1F302DA3F89D00EE0D12 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB1F2F2DA3F89D00EE0D12 /* SettingsTests.swift */; };
 		5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */; };
 		5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E20501C927EB100E7D709 /* ColorScheme.swift */; };
 		5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441911C3EE2E0003D7397 /* Assets.xcassets */; };
@@ -74,7 +75,6 @@
 		7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */; };
 		7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */; };
 		8B4C56702AE7EDF800B5AC89 /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */; };
-		8B4C56732AE941A100B5AC89 /* AboutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56722AE941A100B5AC89 /* AboutTests.swift */; };
 		8B4C56762AE9444100B5AC89 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56752AE9444100B5AC89 /* InboxTests.swift */; };
 		8B4C567D2AE9743400B5AC89 /* ManageStudentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C567C2AE9743400B5AC89 /* ManageStudentsTests.swift */; };
 		8B4C56882AF9025A00B5AC89 /* ChangeUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56872AF9025A00B5AC89 /* ChangeUserTests.swift */; };
@@ -212,6 +212,7 @@
 		5B57424C2CB587B6000FB627 /* PutObserverAlertDismissedRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutObserverAlertDismissedRequestTests.swift; sourceTree = "<group>"; };
 		5B5742562CB6B33D000FB627 /* MarkObserverAlertAsReadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkObserverAlertAsReadTests.swift; sourceTree = "<group>"; };
 		5B5742582CB6B3E3000FB627 /* DismissObserverAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissObserverAlertTests.swift; sourceTree = "<group>"; };
+		5BBB1F2F2DA3F89D00EE0D12 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		5E4E20501C927EB100E7D709 /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		5E6441871C3EE2E0003D7397 /* Parent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parent.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,7 +257,6 @@
 		7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarEventDetailsViewController.storyboard; sourceTree = "<group>"; };
 		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
-		8B4C56722AE941A100B5AC89 /* AboutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTests.swift; sourceTree = "<group>"; };
 		8B4C56752AE9444100B5AC89 /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		8B4C567C2AE9743400B5AC89 /* ManageStudentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentsTests.swift; sourceTree = "<group>"; };
 		8B4C56872AF9025A00B5AC89 /* ChangeUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserTests.swift; sourceTree = "<group>"; };
@@ -447,6 +447,14 @@
 				5B5742582CB6B3E3000FB627 /* DismissObserverAlertTests.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		5BBB1F2C2DA3F85D00EE0D12 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5BBB1F2F2DA3F89D00EE0D12 /* SettingsTests.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		5E0F9A4E1C739E6A00BB7707 /* Dashboard */ = {
@@ -672,14 +680,6 @@
 				8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */,
 			);
 			path = Help;
-			sourceTree = "<group>";
-		};
-		8B4C56712AE9419400B5AC89 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				8B4C56722AE941A100B5AC89 /* AboutTests.swift */,
-			);
-			path = About;
 			sourceTree = "<group>";
 		};
 		8B4C56742AE9443200B5AC89 /* Inbox */ = {
@@ -1056,7 +1056,6 @@
 			isa = PBXGroup;
 			children = (
 				E80763D623E08DA10085DAFB /* Info.plist */,
-				8B4C56712AE9419400B5AC89 /* About */,
 				8B4C569E2AFE99BD00B5AC89 /* AddStudent */,
 				8B4C568F2AFBC8DA00B5AC89 /* Calendar */,
 				8B4C56862AF9023A00B5AC89 /* ChangeUser */,
@@ -1068,6 +1067,7 @@
 				8B4C56892AF904B700B5AC89 /* Logout */,
 				8B4C567B2AE9742400B5AC89 /* ManageStudents */,
 				8B4C569B2AFE97CF00B5AC89 /* Profile */,
+				5BBB1F2C2DA3F85D00EE0D12 /* Settings */,
 			);
 			path = ParentE2ETests;
 			sourceTree = "<group>";
@@ -1438,7 +1438,6 @@
 				8B4C56882AF9025A00B5AC89 /* ChangeUserTests.swift in Sources */,
 				8B4C56702AE7EDF800B5AC89 /* HelpTests.swift in Sources */,
 				8B4C567D2AE9743400B5AC89 /* ManageStudentsTests.swift in Sources */,
-				8B4C56732AE941A100B5AC89 /* AboutTests.swift in Sources */,
 				8B7CF40F2A9D156700229CD3 /* GradesTests.swift in Sources */,
 				8B4C569D2AFE97DE00B5AC89 /* ProfileTests.swift in Sources */,
 				8B4C56912AFBC8E600B5AC89 /* CalendarTests.swift in Sources */,
@@ -1446,6 +1445,7 @@
 				8B4C56762AE9444100B5AC89 /* InboxTests.swift in Sources */,
 				8B4C568E2AF9070A00B5AC89 /* CoursesTests.swift in Sources */,
 				8B4C56A02AFE99CF00B5AC89 /* AddStudentTests.swift in Sources */,
+				5BBB1F302DA3F89D00EE0D12 /* SettingsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,30 +21,33 @@ import CombineSchedulers
 
 public enum CourseSyncDownloaderAssembly {
 
-    public static func makeInteractor(env: AppEnvironment = .shared) -> CourseSyncInteractor {
+    public static func makeInteractor(environmentResolver: CourseSyncEnvironmentResolver? = nil) -> CourseSyncInteractor {
+        let envResolver = environmentResolver ?? CourseSyncEnvironmentResolverLive()
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
 
-        let loginSession = env.currentSession
-
-        let pageHtmlParser = makeHTMLParser(for: .pages, loginSession: loginSession, scheduler: scheduler)
-        let assignmentHtmlParser = makeHTMLParser(for: .assignments, loginSession: loginSession, scheduler: scheduler)
-        let quizHtmlParser = makeHTMLParser(for: .quizzes, loginSession: loginSession, scheduler: scheduler)
-        let announcementHtmlParser = makeHTMLParser(for: .announcements, loginSession: loginSession, scheduler: scheduler)
-        let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, loginSession: loginSession, scheduler: scheduler)
-        let discussionHtmlParser = makeHTMLParser(for: .discussions, loginSession: loginSession, scheduler: scheduler)
+        let pageHtmlParser = makeHTMLParser(for: .pages, envResolver: envResolver, scheduler: scheduler)
+        let assignmentHtmlParser = makeHTMLParser(for: .assignments, envResolver: envResolver, scheduler: scheduler)
+        let quizHtmlParser = makeHTMLParser(for: .quizzes, envResolver: envResolver, scheduler: scheduler)
+        let announcementHtmlParser = makeHTMLParser(for: .announcements, envResolver: envResolver, scheduler: scheduler)
+        let calendarEventHtmlParser = makeHTMLParser(for: .calendarEvents, envResolver: envResolver, scheduler: scheduler)
+        let discussionHtmlParser = makeHTMLParser(for: .discussions, envResolver: envResolver, scheduler: scheduler)
 
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(htmlParser: pageHtmlParser),
-            CourseSyncPeopleInteractorLive(),
+            CourseSyncPeopleInteractorLive(envResolver: envResolver),
             CourseSyncAssignmentsInteractorLive(htmlParser: assignmentHtmlParser),
-            CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
-            CourseSyncSyllabusInteractorLive(assignmentEventHtmlParser: assignmentHtmlParser, calendarEventHtmlParser: calendarEventHtmlParser),
-            CourseSyncConferencesInteractorLive(),
+            CourseSyncGradesInteractorLive(envResolver: envResolver),
+            CourseSyncSyllabusInteractorLive(
+                assignmentEventHtmlParser: assignmentHtmlParser,
+                calendarEventHtmlParser: calendarEventHtmlParser,
+                envResolver: envResolver
+            ),
+            CourseSyncConferencesInteractorLive(envResolver: envResolver),
             CourseSyncAnnouncementsInteractorLive(htmlParser: announcementHtmlParser),
             CourseSyncQuizzesInteractorLive(htmlParser: quizHtmlParser),
-            CourseSyncDiscussionsInteractorLive(discussionHtmlParser: discussionHtmlParser)
+            CourseSyncDiscussionsInteractorLive(htmlParser: discussionHtmlParser)
         ]
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
         let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
@@ -55,7 +58,8 @@ public enum CourseSyncDownloaderAssembly {
             filesInteractor: CourseSyncFilesInteractorLive(),
             modulesInteractor: CourseSyncModulesInteractorLive(
                 pageHtmlParser: pageHtmlParser,
-                quizHtmlParser: quizHtmlParser
+                quizHtmlParser: quizHtmlParser,
+                envResolver: envResolver
             ),
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             notificationInteractor: CourseSyncNotificationInteractor(
@@ -63,57 +67,53 @@ public enum CourseSyncDownloaderAssembly {
             ),
             courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
             studioMediaInteractor: makeStudioDownloader(
-                loginSession: loginSession,
-                scheduler: scheduler
+                scheduler: scheduler,
+                envResolver: envResolver
             ),
             backgroundActivity: backgroundActivity,
             scheduler: scheduler,
-            env: env
+            envResolver: envResolver
         )
     }
 
     private static func makeHTMLParser(
         for section: OfflineFolderPrefix,
-        loginSession: LoginSession?,
+        envResolver: CourseSyncEnvironmentResolver,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) -> HTMLParser {
-        let sessionId = loginSession?.uniqueID ?? ""
 
         let interactor = HTMLDownloadInteractorLive(
-            loginSession: loginSession,
             sectionName: section.rawValue,
+            envResolver: envResolver,
             scheduler: scheduler
         )
 
         return HTMLParserLive(
-            sessionId: sessionId,
             downloadInteractor: interactor
         )
     }
 
     private static func makeStudioDownloader(
-        loginSession: LoginSession?,
-        scheduler: AnySchedulerOf<DispatchQueue>
+        scheduler: AnySchedulerOf<DispatchQueue>,
+        envResolver: CourseSyncEnvironmentResolver
     ) -> CourseSyncStudioMediaInteractor {
-        let offlineFolder = URL.Paths.Offline.rootURL(sessionID: loginSession?.uniqueID ?? "")
-        let studioDirectory = offlineFolder.appendingPathComponent("studio", isDirectory: true)
         let studioDownloadInteractor = StudioVideoDownloadInteractorLive(
-            rootDirectory: studioDirectory,
             captionsInteractor: StudioCaptionsInteractorLive(),
             videoCacheInteractor: StudioVideoCacheInteractorLive(),
             posterInteractor: StudioVideoPosterInteractorLive()
         )
         return CourseSyncStudioMediaInteractorLive(
-            offlineDirectory: offlineFolder,
             authInteractor: StudioAPIAuthInteractorLive(),
             iFrameReplaceInteractor: StudioIFrameReplaceInteractorLive(),
             iFrameDiscoveryInteractor: StudioIFrameDiscoveryInteractorLive(
-                studioHtmlParser: StudioHTMLParserInteractorLive()
+                studioHtmlParser: StudioHTMLParserInteractorLive(),
+                envResolver: envResolver
             ),
-            cleanupInteractor: StudioVideoCleanupInteractorLive(offlineStudioDirectory: studioDirectory),
+            cleanupInteractor: StudioVideoCleanupInteractorLive(),
             metadataDownloadInteractor: StudioMetadataDownloadInteractorLive(),
             downloadInteractor: studioDownloadInteractor,
-            scheduler: scheduler
+            scheduler: scheduler,
+            envResolver: envResolver
         )
     }
 }

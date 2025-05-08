@@ -19,23 +19,68 @@
 import Core
 import UIKit
 
-public enum SpeedGraderAssembly {
+enum SpeedGraderAssembly {
 
-    public static func makeSpeedGraderViewController(
+    static func makeSpeedGraderViewController(
         context: Context,
-        assignmentID: String,
-        userID: String?,
+        assignmentId: String,
+        userId: String?,
         env: AppEnvironment,
         filter: [GetSubmissions.Filter]
     ) -> UIViewController {
-        let normalizedUserId = SpeedGraderViewController.normalizeUserID(userID)
-
-        return SpeedGraderViewController(
-            env: env,
+        let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
+        let interactor = SpeedGraderInteractorLive(
             context: context,
-            assignmentID: assignmentID,
+            assignmentID: assignmentId,
             userID: normalizedUserId,
-            filter: filter
+            filter: filter,
+            env: env
+        )
+        let viewModel = SpeedGraderViewModel(
+            interactor: interactor,
+            environment: env
+        )
+        let view = SpeedGraderScreen(
+            viewModel: viewModel
+        )
+        return CoreHostingController(view)
+    }
+
+#if DEBUG
+
+    static func makeSpeedGraderViewControllerPreview(
+        state: SpeedGraderInteractorState
+    ) -> UIViewController {
+        let interactor = SpeedGraderInteractorPreview(
+            state: state
+        )
+        if case .data = state {
+            interactor.data = testData()
+        }
+
+        let viewModel = SpeedGraderViewModel(
+            interactor: interactor,
+            environment: .shared
+        )
+        let view = SpeedGraderScreen(
+            viewModel: viewModel
+        )
+        return CoreNavigationController(
+            rootViewController: CoreHostingController(view)
         )
     }
+
+    private static func testData() -> SpeedGraderData {
+        let context = PreviewEnvironment().database.viewContext
+        let assignment = Assignment.save(.make(), in: context, updateSubmission: false, updateScoreStatistics: false)
+        let submission1 = Submission.save(.make(id: "1", user: .make(name: "User 1")), in: context)
+        let submission2 = Submission.save(.make(id: "2", user: .make(name: "User 2")), in: context)
+        return SpeedGraderData(
+            assignment: assignment,
+            submissions: [submission1, submission2],
+            focusedSubmissionIndex: 1
+        )
+    }
+
+#endif
 }

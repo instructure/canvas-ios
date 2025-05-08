@@ -24,25 +24,25 @@ class PercentageBasedGradingSchemeTests: GradingSchemeTestCase {
     func testScoreConversion() {
         let testee = PercentageBasedGradingScheme(entries: scoreConversionEntries())
 
-        var result = testee.convertScoreToLetterGrade(score: 90)
+        var result = testee.convertNormalizedScoreToLetterGrade(0.90)
         XCTAssertEqual(result, "A")
 
-        result = testee.convertScoreToLetterGrade(score: 89)
+        result = testee.convertNormalizedScoreToLetterGrade(0.89)
         XCTAssertEqual(result, "B")
 
-        result = testee.convertScoreToLetterGrade(score: 0)
+        result = testee.convertNormalizedScoreToLetterGrade(0)
         XCTAssertEqual(result, "F")
     }
 
     func testScoreConversionWithEmptyScheme() {
         let testee = PercentageBasedGradingScheme.default
-        let result = testee.convertScoreToLetterGrade(score: 30)
+        let result = testee.convertNormalizedScoreToLetterGrade(0.30)
         XCTAssertNil(result)
     }
 
     func testScoreConversionWithInvalidScheme() {
         let testee = PercentageBasedGradingScheme(entries: invalidConversionEntries())
-        let result = testee.convertScoreToLetterGrade(score: 30)
+        let result = testee.convertNormalizedScoreToLetterGrade(0.30)
 
         XCTAssertNil(result)
     }

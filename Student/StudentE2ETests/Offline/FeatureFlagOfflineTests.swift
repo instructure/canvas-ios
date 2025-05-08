@@ -19,7 +19,7 @@
 import TestsFoundation
 import XCTest
 
-class FeatureFlagOfflineTests: OfflineE2ETest {
+class FeatureFlagOfflineTests: OfflineE2ETestCase {
 
     func testDiscussionsFallbackToNativeAppearanceWhenOffline() {
         // MARK: Seed the usual stuff with discussion and announcement

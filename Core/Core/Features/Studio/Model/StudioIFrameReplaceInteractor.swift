@@ -18,15 +18,14 @@
 
 import Foundation
 
-public enum StudioIFrameReplaceError: LocalizedError {
+public enum StudioIFrameReplaceError: Error, DebugDescriptionProvider {
     case failedToOpenHtml(Error)
     case failedToConvertDataToString
     case offlineVideoIDNotFound
     case failedToConvertHtmlToData
     case failedToSaveUpdatedHtml
 
-    public var errorDescription: String? {
-        // StudioIFrameReplaceError.failedToConvertDataToString
+    public var debugDescription: String {
         "\(Self.self).\(self)"
     }
 }

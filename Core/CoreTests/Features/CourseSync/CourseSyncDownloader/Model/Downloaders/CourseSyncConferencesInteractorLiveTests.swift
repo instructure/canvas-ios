@@ -28,7 +28,7 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
     }
 
     func testAssociatedTab() {
-        XCTAssertEqual(CourseSyncConferencesInteractorLive().associatedTabType, .conferences)
+        XCTAssertEqual(CourseSyncConferencesInteractorLive(envResolver: envResolver).associatedTabType, .conferences)
     }
 
     func testSavedDataPopulatesViewController() {
@@ -47,7 +47,7 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
                   started_at: Date().addingTimeInterval(-1),
                   title: "ongoing conference")
         ]))
-        XCTAssertFinish(CourseSyncConferencesInteractorLive().getContent(courseId: "testCourse"))
+        XCTAssertFinish(CourseSyncConferencesInteractorLive(envResolver: envResolver).getContent(courseId: "testCourse"))
         API.resetMocks()
 
         // MARK: - WHEN

@@ -50,6 +50,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public let courseID: String
     private let userID: String?
+    private let filterAssignmentsToUserID: Bool
 
     // MARK: - Private properties
     private let colorListStore: ReactiveStore<GetCustomColors>
@@ -58,12 +59,16 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     // MARK: - Init
 
+    /// - parameters:
+    ///   - filterAssignmentsToUserID: If true, the assignments will be filtered to the userID. This is used for parent accounts where the assignments API call returns all students' assignments.
     public init(
         courseID: String,
-        userID: String?
+        userID: String?,
+        filterAssignmentsToUserID: Bool = (AppEnvironment.shared.app == .parent)
     ) {
         self.courseID = courseID
         self.userID = userID
+        self.filterAssignmentsToUserID = filterAssignmentsToUserID
 
         colorListStore = ReactiveStore(
             useCase: GetCustomColors()
@@ -119,7 +124,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
             useCase: GetAssignmentsByGroup(
                 courseID: courseID,
                 gradingPeriodID: gradingPeriodID,
-                gradedOnly: true
+                gradedOnly: true,
+                userID: filterAssignmentsToUserID ? userID : nil
             )
         )
 
@@ -130,7 +136,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 loadAllPages: true
             ),
             enrollmentListStore.getEntities(
-                ignoreCache: ignoreCache,
+                ignoreCache: true,
                 loadAllPages: true
             )
         )
