@@ -40,7 +40,7 @@ public extension HorizonUI.IntroBlock {
                         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object",
                         duration: "XX Mins",
                         dueDate: "Due 10/12",
-                        onBack: {dismiss()},
+                        onBack: { dismiss() },
                         onMenu: {}
                     )
                     .transition(.move(edge: .top).combined(with: .opacity))
@@ -54,7 +54,7 @@ public extension HorizonUI.IntroBlock {
                 ScrollView {
                     topView
                     VStack {
-                        ForEach(0..<10) { _ in
+                        ForEach(0 ..< 10) { _ in
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.green)
                                 .frame(height: 200)
@@ -67,6 +67,7 @@ public extension HorizonUI.IntroBlock {
                 .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
             }
         }
+
         private var topView: some View {
             Color.clear
                 .frame(height: 0)
@@ -80,46 +81,3 @@ public extension HorizonUI.IntroBlock {
 #Preview {
     HorizonUI.IntroBlock.Storybook()
 }
-
-// TODO: - This for make the Storybook & will remove later
-struct FrameReader: View {
-    // MARK: - Dependencies
-
-    let coordinateSpace: CoordinateSpace
-    let onChange: (_ frame: CGRect) -> Void
-
-    // MARK: - Init
-
-    init(
-        coordinateSpace: CoordinateSpace,
-        onChange: @escaping (_ frame: CGRect) -> Void
-    ) {
-        self.coordinateSpace = coordinateSpace
-        self.onChange = onChange
-    }
-
-    var body: some View {
-        GeometryReader { geometry in
-            Text("")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onAppear {
-                    onChange(geometry.frame(in: coordinateSpace))
-                }
-                .onChange(of: geometry.frame(in: coordinateSpace)) { _, newState in
-                    onChange(newState)
-                }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-//extension View {
-//    func readingFrame(
-//        coordinateSpace: CoordinateSpace = .global,
-//        onChange: @escaping (_ frame: CGRect) -> Void
-//    ) -> some View {
-//        background(
-//            FrameReader(coordinateSpace: coordinateSpace, onChange: onChange)
-//        )
-//    }
-//}
