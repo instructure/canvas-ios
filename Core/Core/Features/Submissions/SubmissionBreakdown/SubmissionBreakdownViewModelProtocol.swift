@@ -27,10 +27,15 @@ public protocol SubmissionBreakdownViewModelProtocol: ObservableObject {
     var noSubmissionTypes: Bool { get }
     var paperSubmissionTypes: Bool { get }
     var noGradingNeeded: Bool { get }
+    var color: Color { get }
 
     func viewDidAppear()
     func routeToAll(router: Router, viewController: WeakViewController)
     func routeToGraded(router: Router, viewController: WeakViewController)
     func routeToUngraded(router: Router, viewController: WeakViewController)
     func routeToUnsubmitted(router: Router, viewController: WeakViewController)
+}
+
+public extension SubmissionBreakdownViewModelProtocol {
+    var color: Color { .accentColor }
 }

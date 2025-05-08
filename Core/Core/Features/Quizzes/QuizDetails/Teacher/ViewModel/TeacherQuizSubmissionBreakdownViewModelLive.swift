@@ -26,12 +26,15 @@ public class TeacherQuizSubmissionBreakdownViewModelLive: SubmissionBreakdownVie
     @Published public var unsubmitted: Int = 0
     @Published public var submissionCount: Int = 0
 
+    public var color: Color { course.first.flatMap({ Color(uiColor: $0.color) }) ?? .accentColor }
+
     public var noSubmissionTypes = false
     public var paperSubmissionTypes = false
     public var noGradingNeeded = true
 
     private let quizID: String
     private let courseID: String
+    private var course: Store<GetCourse>
     private var submissions: Store<GetAllQuizSubmissions>
     private var enrollments: Store<GetEnrollments>
     private var submissionsPath: String { "courses/\(courseID)/quizzes/\(quizID)/submissions" }
@@ -39,6 +42,9 @@ public class TeacherQuizSubmissionBreakdownViewModelLive: SubmissionBreakdownVie
     init(courseID: String, quizID: String) {
         self.quizID = quizID
         self.courseID = courseID
+
+        course = AppEnvironment.shared.subscribe(GetCourse(courseID: courseID))
+
         submissions = AppEnvironment.shared.subscribe(GetAllQuizSubmissions(
             courseID: courseID,
             quizID: quizID))
