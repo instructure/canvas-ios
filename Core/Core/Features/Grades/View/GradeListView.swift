@@ -255,6 +255,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         .listSectionSeparator(.hidden)
         .listSectionSeparatorTint(Color.clear)
         .listRowBackground(Color.clear)
+        .containerRelativeFrame([.horizontal, .vertical])
     }
 
     @ViewBuilder
