@@ -20,11 +20,10 @@ import SwiftUI
 
 public extension HorizonUI.Tag {
     struct Storybook: View {
-        
         @State private var isEnabled1 = true
         @State private var isEnabled2 = true
         @State private var isEnabled3 = true
-        
+
         public var body: some View {
             LazyVGrid(
                 columns: [
@@ -58,9 +57,9 @@ public extension HorizonUI.Tag {
                     backgroundColor: .huiColors.surface.pageTertiary,
                     onCloseAction: {}
                 )
-                
+
                 // MARK: - Standalone with button - Disabled
-                
+
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
                     style: .standalone,
@@ -89,7 +88,7 @@ public extension HorizonUI.Tag {
                 )
 
                 // MARK: - Standalone without button - Enabled
-                
+
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
                     style: .standalone,
@@ -107,7 +106,7 @@ public extension HorizonUI.Tag {
                     style: .standalone,
                     size: .small
                 )
-                
+
                 // MARK: - Standalone without button - Disabled
 
                 HorizonUI.Tag(
@@ -130,7 +129,7 @@ public extension HorizonUI.Tag {
                     size: .small,
                     isEnabled: false
                 )
-                
+
                 // MARK: - Inline with button - Enabled
 
                 HorizonUI.Tag(
@@ -153,9 +152,9 @@ public extension HorizonUI.Tag {
                     size: .small,
                     onCloseAction: {}
                 )
-                
+
                 // MARK: Inline with button - Disabled
-                
+
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
                     style: .inline,
@@ -181,7 +180,7 @@ public extension HorizonUI.Tag {
                 )
 
                 // MARK: - Inline without button - Enabled
-                
+
                 HorizonUI.Tag(
                     title: "Lorem ipsum",
                     style: .inline,

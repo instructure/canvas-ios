@@ -14883,7 +14883,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maidir le"
+            "value" : "Maidir"
           }
         },
         "hi" : {
@@ -69060,7 +69060,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dlíthiúil"
+            "value" : "Legal"
           }
         },
         "hi" : {
@@ -69096,7 +69096,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "法務"
+            "value" : "法令"
           }
         },
         "mi" : {
@@ -69120,7 +69120,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lovlig"
+            "value" : "Juss"
           }
         },
         "nl" : {
@@ -95406,7 +95406,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Integritetspolicy"
+            "value" : "Sekretesspolicy"
           }
         },
         "sv-instk12" : {
@@ -121841,7 +121841,7 @@
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vilkår for brug"
+            "value" : "Betingelser for brug"
           }
         },
         "de" : {
@@ -121919,7 +121919,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conditions d'utilisation"
+            "value" : "Conditions d’utilisation"
           }
         },
         "ga" : {
@@ -121985,7 +121985,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bruksvilkår"
+            "value" : "brukervilkår"
           }
         },
         "nl" : {
@@ -122027,13 +122027,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Användningsvillkor"
+            "value" : "Användarvillkor"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Användarvillkor"
+            "value" : "Användningsvillkor"
           }
         },
         "th" : {

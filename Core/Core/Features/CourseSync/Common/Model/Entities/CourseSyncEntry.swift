@@ -36,6 +36,7 @@ public struct CourseSyncEntry: Equatable {
     let id: String
     let hasFrontPage: Bool
     var courseId: String { String(id.split(separator: "/").last ?? "") }
+    var syncID: CourseSyncID { CourseSyncID(value: courseId, apiBaseURL: apiBaseURL) }
 
     /// List of available tabs coming from the API + a manually added tab named "Additional Content" that is responsible for tracking the download of hidden tabs and such.
     var tabs: [CourseSyncEntry.Tab]
@@ -68,6 +69,8 @@ public struct CourseSyncEntry: Equatable {
             .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
             .filter { $0.selectionState == .selected }
     }
+
+    var apiBaseURL: URL?
 
     var files: [CourseSyncEntry.File]
     var selectedFilesCount: Int {

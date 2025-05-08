@@ -88,14 +88,14 @@ final class ModuleItemStateInteractorLive: ModuleItemStateInteractor {
             return .externalURL(url: url, name: item.title)
         case let .externalTool(toolID, url):
             let tools = LTITools(
-                env: environment,
                 context: .course(courseID),
                 id: toolID,
                 url: url,
                 launchType: .module_item,
                 isQuizLTI: item.isQuizLTI,
                 moduleID: moduleID,
-                moduleItemID: itemID
+                moduleItemID: itemID,
+                env: environment
             )
             return .externalTool(tools: tools, name: item.title)
 

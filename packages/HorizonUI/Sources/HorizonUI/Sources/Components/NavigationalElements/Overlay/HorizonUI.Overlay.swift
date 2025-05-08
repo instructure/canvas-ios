@@ -90,15 +90,14 @@ public extension HorizonUI {
                         .resizable()
                         .frame(width: 24, height: 24)
                 }
-
             }
             .padding(.horizontal, .huiSpaces.space16)
             .foregroundStyle(Color.huiColors.text.body)
             .padding(.vertical, .huiSpaces.space16)
-
         }
     }
 }
+
 public extension HorizonUI.Overlay {
     struct ButtonAttribute: Identifiable {
         public let id = UUID()
@@ -123,7 +122,7 @@ public extension HorizonUI.Overlay {
         .Overlay(
             title: "Title",
             buttons: [
-                .init(title: "Choose Photo or Video",icon: Image.huiIcons.image) {
+                .init(title: "Choose Photo or Video", icon: Image.huiIcons.image) {
                     print("Choose Photo or Video")
                 }
             ],

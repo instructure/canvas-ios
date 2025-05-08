@@ -47,7 +47,6 @@ public extension HorizonUI {
             self.dueDate = dueDate
         }
 
-
         public var body: some View {
             HorizonUI.Card {
                 if let status {

@@ -90,7 +90,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -145,7 +145,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[2].selectionState = .selected
         entries[0].files[0].selectionState = .selected
@@ -188,7 +188,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].selectionState = .partiallySelected
         entries[0].tabs[2].selectionState = .selected
@@ -232,7 +232,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[2].selectionState = .partiallySelected
         entries[0].files[0].selectionState = .selected
@@ -276,7 +276,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -311,7 +311,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[1].selectionState = .selected
 
@@ -346,7 +346,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[2].selectionState = .selected
         entries[0].files[0].selectionState = .selected
@@ -385,7 +385,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[3].selectionState = .selected
 
@@ -409,7 +409,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[4].selectionState = .selected
 
@@ -437,7 +437,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[5].selectionState = .selected
 
@@ -465,7 +465,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[6].selectionState = .selected
 
@@ -492,7 +492,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[7].selectionState = .selected
 
@@ -527,7 +527,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -557,7 +557,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[6].selectionState = .selected
@@ -587,7 +587,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
 
         entries[0].tabs.removeAll()
@@ -631,7 +631,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -685,7 +685,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -722,7 +722,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -761,7 +761,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -790,7 +790,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
 
         // WHEN
@@ -816,7 +816,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
 
         // WHEN
@@ -842,7 +842,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: studioInteractorMock,
             backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
 
         // WHEN
@@ -870,7 +870,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: backgroundActivityMock,
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -906,7 +906,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
             backgroundActivity: backgroundActivityMock,
             scheduler: .immediate,
-            env: environment
+            envResolver: envResolver
         )
         entries[0].tabs[0].selectionState = .selected
 
@@ -952,14 +952,14 @@ private class CourseSyncSyllabusInteractorMock: CourseSyncSyllabusInteractor {
         self.expectation = expectation
     }
 
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Error> {
         expectation.fulfill()
         return Just(())
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(())
             .eraseToAnyPublisher()
     }
@@ -972,14 +972,14 @@ private class CourseSyncConferencesInteractorMock: CourseSyncConferencesInteract
         self.expectation = expectation
     }
 
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Error> {
         expectation.fulfill()
         return Just(())
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(())
             .eraseToAnyPublisher()
     }
@@ -992,14 +992,14 @@ private class CourseSyncQuizzesInteractorMock: CourseSyncQuizzesInteractor {
         self.expectation = expectation
     }
 
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Error> {
         expectation.fulfill()
         return Just(())
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(())
             .eraseToAnyPublisher()
     }
@@ -1007,30 +1007,29 @@ private class CourseSyncQuizzesInteractorMock: CourseSyncQuizzesInteractor {
 
 private class CourseSyncDiscussionsInteractorMock: CourseSyncDiscussionsInteractor {
     let expectation: XCTestExpectation
-
     init(expectation: XCTestExpectation) {
         self.expectation = expectation
     }
 
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Error> {
         expectation.fulfill()
         return Just(())
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(())
             .eraseToAnyPublisher()
     }
 }
 
 private class CourseSyncDiscussionsInteractorPublisherMock: CourseSyncDiscussionsInteractor {
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(())
             .eraseToAnyPublisher()
     }
@@ -1044,12 +1043,12 @@ private class CourseSyncPagesInteractorMock: CourseSyncPagesInteractor {
         self.expectation = expectation
     }
 
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Error> {
         expectation?.fulfill()
         return publisher.eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(())
             .eraseToAnyPublisher()
     }
@@ -1063,12 +1062,12 @@ private class CourseSyncAssignmentsInteractorMock: CourseSyncAssignmentsInteract
         self.expectation = expectation
     }
 
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Error> {
         expectation?.fulfill()
         return publisher.eraseToAnyPublisher()
     }
 
-    func cleanContent(courseId _: String) -> AnyPublisher<Void, Never> {
+    func cleanContent(courseId _: CourseSyncID) -> AnyPublisher<Void, Never> {
         return Just(())
             .eraseToAnyPublisher()
     }
@@ -1078,15 +1077,15 @@ private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
     let publisher = PassthroughSubject<Float, Error>()
     let filePublisher = PassthroughSubject<[Core.File], Error>()
 
-    func downloadFile(courseId _: String, url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?) -> AnyPublisher<Float, Error> {
+    func downloadFile(courseId _: String, url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?, environment: AppEnvironment) -> AnyPublisher<Float, Error> {
         publisher.eraseToAnyPublisher()
     }
 
-    func getFiles(courseId _: String, useCache _: Bool) -> AnyPublisher<[Core.File], Error> {
+    func getFiles(courseId _: String, useCache _: Bool, environment: AppEnvironment) -> AnyPublisher<[Core.File], Error> {
         filePublisher.eraseToAnyPublisher()
     }
 
-    func removeUnavailableFiles(courseId _: String, newFileIDs _: [String]) -> AnyPublisher<Void, Error> {
+    func removeUnavailableFiles(courseId _: String, newFileIDs _: [String], environment: AppEnvironment) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
@@ -1098,12 +1097,12 @@ private class CourseSyncModulesInteractorMock: CourseSyncModulesInteractor {
         self.expectation = expectation
     }
 
-    func getModuleItems(courseId _: String) -> AnyPublisher<[Core.ModuleItem], Error> {
+    func getModuleItems(courseId _: CourseSyncID) -> AnyPublisher<[Core.ModuleItem], Error> {
         expectation?.fulfill()
         return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
+    func getAssociatedModuleItems(courseId _: CourseSyncID, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
@@ -1112,11 +1111,11 @@ private class CourseSyncModulesInteractorMock2: CourseSyncModulesInteractor {
     let moduleItemsPublisher = PassthroughSubject<[ModuleItem], Error>()
     let associatedModuleItemsPublisher = PassthroughSubject<Void, Error>()
 
-    func getModuleItems(courseId _: String) -> AnyPublisher<[Core.ModuleItem], Error> {
+    func getModuleItems(courseId _: CourseSyncID) -> AnyPublisher<[Core.ModuleItem], Error> {
         moduleItemsPublisher.eraseToAnyPublisher()
     }
 
-    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
+    func getAssociatedModuleItems(courseId _: CourseSyncID, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
         associatedModuleItemsPublisher.eraseToAnyPublisher()
     }
 }
@@ -1133,7 +1132,7 @@ private class BrandThemeDownloaderInteractorMock: BrandThemeDownloaderInteractor
 private class CourseSyncStudioMediaInteractorMock: CourseSyncStudioMediaInteractor {
     public var getContentCalled = false
 
-    func getContent(courseIDs: [String]) -> AnyPublisher<Void, Never> {
+    func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never> {
         getContentCalled = true
         return Just(()).eraseToAnyPublisher()
     }

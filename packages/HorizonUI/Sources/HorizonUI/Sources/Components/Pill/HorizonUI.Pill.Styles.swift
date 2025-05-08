@@ -36,13 +36,13 @@ public extension HorizonUI.Pill.Style {
             textColor: .huiColors.text.body,
             iconColor: .huiColors.text.body
         )
-        
+
         public static let institution = Outline(
             borderColor: .huiColors.surface.institution,
             textColor: .huiColors.surface.institution,
             iconColor: .huiColors.surface.institution
         )
-        
+
         public static let danger = Outline(
             borderColor: .huiColors.surface.error,
             textColor: .huiColors.text.error,
@@ -55,7 +55,7 @@ public extension HorizonUI.Pill.Style {
             iconColor: .huiColors.text.surfaceColored
         )
     }
-    
+
     struct Solid: Sendable {
         let backgroundColor: Color
         let borderColor: Color = .clear
@@ -67,14 +67,14 @@ public extension HorizonUI.Pill.Style {
             textColor: .huiColors.text.surfaceColored,
             iconColor: .huiColors.text.surfaceColored
         )
-        
+
         public static let danger = Solid(
             backgroundColor: .huiColors.surface.error,
             textColor: .huiColors.text.surfaceColored,
             iconColor: .huiColors.text.surfaceColored
         )
     }
-    
+
     struct Inline: Sendable {
         let backgroundColor: Color = .clear
         let borderColor: Color = .clear
@@ -93,7 +93,7 @@ public extension HorizonUI.Pill.Style {
             textColor: .huiColors.text.body,
             iconColor: .huiColors.text.body
         )
-        
+
         public static let danger = Inline(
             textColor: .huiColors.text.error,
             iconColor: .huiColors.text.error

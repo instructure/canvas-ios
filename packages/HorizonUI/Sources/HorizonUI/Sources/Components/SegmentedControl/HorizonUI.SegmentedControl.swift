@@ -34,6 +34,7 @@ public extension HorizonUI {
         @Binding private var selectedIndex: Int
 
         // MARK: - Init
+
         public init(
             items: [String],
             icon: SegmentedControl.Icon = .none,
@@ -81,8 +82,8 @@ public extension HorizonUI {
                     .huiTypography(.buttonTextLarge)
                     .foregroundStyle(
                         isSelected
-                        ? Color.huiColors.surface.institution
-                        : Color.huiColors.text.placeholder
+                            ? Color.huiColors.surface.institution
+                            : Color.huiColors.text.placeholder
                     )
 
                 if iconAlignment == .trailing { icon(forSelected: isSelected) }
@@ -95,9 +96,9 @@ public extension HorizonUI {
         }
 
         @ViewBuilder
-        private func icon(forSelected: Bool) ->  some View {
+        private func icon(forSelected: Bool) -> some View {
             if let icon = icon.icon {
-                icon.foregroundStyle(forSelected ? Color.huiColors.surface.institution: Color.huiColors.text.placeholder)
+                icon.foregroundStyle(forSelected ? Color.huiColors.surface.institution : Color.huiColors.text.placeholder)
                     .opacity(opacityForIcon(isSelected: forSelected))
             }
         }
@@ -132,7 +133,7 @@ public extension HorizonUI {
     @Previewable @State var selectedIndex: Int = 0
     HorizonUI.SegmentedControl(
         items: [
-            "Item 1" ,
+            "Item 1",
             "Item 2",
             "Item 3"
         ],

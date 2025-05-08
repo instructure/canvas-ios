@@ -30,6 +30,11 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         testee = ComposeMessageInteractorLive(batchId: "testId", uploadFolderPath: "", uploadManager: uploadManager)
     }
 
+    override func tearDown() {
+        testee = nil
+        super.tearDown()
+    }
+
     func testFailedCreate() {
         let subject = "Test subject"
         let body = "Test body"

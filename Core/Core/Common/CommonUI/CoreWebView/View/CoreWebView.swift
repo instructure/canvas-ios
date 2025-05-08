@@ -166,6 +166,8 @@ open class CoreWebView: WKWebView {
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
         }
+
+        registerForTraitChanges()
     }
 
     @discardableResult
@@ -363,6 +365,18 @@ open class CoreWebView: WKWebView {
             fileLoadCompletion?(.init(error: error))
         }
     }
+
+    private func registerForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: CoreWebView, _) in
+            self.updateInterfaceStyle()
+        }
+    }
+
+    func updateInterfaceStyle() {
+        let traitCollection = viewController?.traitCollection ?? traitCollection
+        themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
+    }
 }
 
 // MARK: - WKNavigationDelegate
@@ -409,7 +423,7 @@ extension CoreWebView: WKNavigationDelegate {
         // involved (like Zoom and Microsoft).
         // When there's additional JavaScript code behind an LTI Button (like DBQ Online), we don't want to
         // handle those cases here, because `createWebViewWith` already opened a new popup window.
-        if let tools = LTITools(link: action.request.url, navigationType: action.navigationType),
+        if let tools = LTITools(link: action.request.url, navigationType: action.navigationType, env: env),
             let from = linkDelegate?.routeLinksFrom {
             tools.presentTool(from: from, animated: true)
             return decisionHandler(.cancel)
@@ -703,14 +717,6 @@ extension CoreWebView {
         themeSwitcher?.pinHostAndButton(inside: parent, leading: leading, trailing: trailing, top: top, bottom: bottom)
         themeSwitcher?.updateUserInterfaceStyle(with: .current)
         activateFullScreenSupport()
-    }
-
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let traitCollection = viewController?.traitCollection ?? traitCollection
-        guard previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle else { return }
-
-        themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
     }
 }
 

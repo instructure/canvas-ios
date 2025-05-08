@@ -38,7 +38,7 @@ class StudentViewCellViewModelTests: CoreTestCase {
         let testee = StudentViewCellViewModel(course: course)
 
         XCTAssertFalse(testee.showGenericError)
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
         XCTAssertTrue(testee.showGenericError)
     }
 }

@@ -24,47 +24,47 @@ public extension HorizonUI {
             case outline(Style.Outline)
             case solid(Style.Solid)
             case inline(Style.Inline)
-            
+
             var backgroundColor: Color {
                 switch self {
-                case .outline(let outline):
+                case let .outline(outline):
                     return outline.backgroundColor
-                case .solid(let solid):
+                case let .solid(solid):
                     return solid.backgroundColor
-                case .inline(let inline):
+                case let .inline(inline):
                     return inline.backgroundColor
                 }
             }
-            
+
             var borderColor: Color {
                 switch self {
-                case .outline(let outline):
+                case let .outline(outline):
                     return outline.borderColor
-                case .solid(let solid):
+                case let .solid(solid):
                     return solid.borderColor
-                case .inline(let inline):
+                case let .inline(inline):
                     return inline.borderColor
                 }
             }
-            
+
             var textColor: Color {
                 switch self {
-                case .outline(let outline):
+                case let .outline(outline):
                     return outline.textColor
-                case .solid(let solid):
+                case let .solid(solid):
                     return solid.textColor
-                case .inline(let inline):
+                case let .inline(inline):
                     return inline.textColor
                 }
             }
 
             var iconColor: Color {
                 switch self {
-                case .outline(let outline):
+                case let .outline(outline):
                     return outline.iconColor
-                case .solid(let solid):
+                case let .solid(solid):
                     return solid.iconColor
-                case .inline(let inline):
+                case let .inline(inline):
                     return inline.iconColor
                 }
             }
@@ -105,9 +105,9 @@ public extension HorizonUI {
                 verticalPadding = 0
                 minHeight = 17
             } else {
-                horizontalPadding = isSmall ? .huiSpaces.space8 : .huiSpaces.space12
-                verticalPadding = isSmall ? .huiSpaces.space4 : .huiSpaces.space8
-                minHeight = isSmall ? 25 : 33
+                self.horizontalPadding = isSmall ? .huiSpaces.space8 : .huiSpaces.space12
+                self.verticalPadding = isSmall ? .huiSpaces.space4 : .huiSpaces.space8
+                self.minHeight = isSmall ? 25 : 33
             }
         }
 

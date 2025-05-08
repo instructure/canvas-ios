@@ -20,7 +20,6 @@ import SwiftUI
 
 public extension HorizonUI {
     struct LearningObjectItem: View {
-
         // MARK: - Properties
 
         private let cornerRadius: CornerRadius = .level3
@@ -99,7 +98,7 @@ public extension HorizonUI {
                 HStack(spacing: .huiSpaces.space16) {
                     HorizonUI.Pill(
                         title: type.name,
-                        style:.inline(
+                        style: .inline(
                             .init(
                                 textColor: Color.huiColors.text.body,
                                 iconColor: Color.huiColors.surface.institution

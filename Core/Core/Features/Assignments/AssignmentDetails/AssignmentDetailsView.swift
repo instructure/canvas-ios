@@ -259,7 +259,8 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             launchType: "assessment",
             isQuizLTI: assignment.first?.isQuizLTI,
             assignmentID: assignmentID,
-            from: controller.value
+            from: controller.value,
+            env: env
         )
     }
 }

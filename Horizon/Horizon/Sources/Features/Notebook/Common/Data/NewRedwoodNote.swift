@@ -18,7 +18,7 @@
 
 import Foundation
 
-class NewRedwoodNote: UpdateRedwoodNote {
+public class NewRedwoodNote: UpdateRedwoodNote {
     public static func == (lhs: NewRedwoodNote, rhs: NewRedwoodNote) -> Bool {
         lhs.courseId == rhs.courseId &&
         lhs.objectId == rhs.objectId &&
@@ -26,15 +26,15 @@ class NewRedwoodNote: UpdateRedwoodNote {
         (lhs as UpdateRedwoodNote) == (rhs as UpdateRedwoodNote)
     }
 
-    let courseId: String
-    let objectId: String
-    let objectType: String
+    public let courseId: String
+    public let objectId: String
+    public let objectType: String
 
     enum CodingKeys: String, CodingKey {
         case courseId, objectId, objectType, userText, reaction, highlightData
     }
 
-    init(
+    public init(
         courseId: String,
         objectId: String,
         objectType: String,
