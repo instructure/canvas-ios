@@ -19,7 +19,6 @@
 import Combine
 import Core
 import CoreData
-import UIKit
 import SwiftUI
 
 class SubmissionGraderViewModel: ObservableObject {

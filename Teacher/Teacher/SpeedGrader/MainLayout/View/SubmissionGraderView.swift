@@ -29,6 +29,7 @@ struct SubmissionGraderView: View {
     let userIndexInSubmissionList: Int
 
     @Environment(\.viewController) private var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @State private var selectedDrawerTabIndex = 0
     @State private var drawerState: DrawerState = .min
@@ -37,6 +38,8 @@ struct SubmissionGraderView: View {
     @State private var showRecorder: MediaCommentType?
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
+    /// Used to match landscape drawer's segmented control height with the header height.
+    @State private var profileHeaderSize: CGSize = .zero
     @AccessibilityFocusState private var focusedTab: GraderTab?
 
     @StateObject private var commentLibrary = SubmissionCommentLibraryViewModel()
@@ -83,8 +86,29 @@ struct SubmissionGraderView: View {
             .cornerRadius(cornerRadius)
             .scaleEffect(scale)
             .edgesIgnoringSafeArea(.bottom)
+            .onAppear {
+                updateSegmentedControlAppearance()
+            }
+            .onChange(of: viewModel.contextColor) {
+                updateSegmentedControlAppearance()
+            }
         }
         .avoidKeyboardArea()
+    }
+
+    private func updateSegmentedControlAppearance() {
+        let appearance = UISegmentedControl.appearance()
+        appearance.setTitleTextAttributes(
+            [
+                .font: UIFont.scaledNamedFont(.semibold13),
+                .foregroundColor: UIColor.textDarkest
+            ],
+            for: .normal
+        )
+        appearance.setTitleTextAttributes(
+            [.foregroundColor: UIColor(viewModel.contextColor)],
+            for: .selected
+        )
     }
 
     @ViewBuilder
@@ -105,11 +129,15 @@ struct SubmissionGraderView: View {
     private func landscapeLayout(
         bottomInset: CGFloat
     ) -> some View {
-        VStack(spacing: 0) {
-            SubmissionHeaderView(assignment: viewModel.assignment, submission: viewModel.submission)
+        HStack(spacing: 0) {
+            VStack(spacing: 0) {
+                SubmissionHeaderView(
+                    assignment: viewModel.assignment,
+                    submission: viewModel.submission
+                )
                 .accessibility(sortPriority: 2)
-            Divider()
-            HStack(spacing: 0) {
+                .measuringSize($profileHeaderSize)
+                Divider()
                 VStack(alignment: .leading, spacing: 0) {
                     attemptToggle
                     Divider()
@@ -133,13 +161,12 @@ struct SubmissionGraderView: View {
                 }
                 .zIndex(1)
                 .accessibility(sortPriority: 1)
-                Divider()
-                VStack(spacing: 0) {
-                    tools(bottomInset: bottomInset, isDrawer: false)
-                }
-                .padding(.top, 16)
-                .frame(width: 375)
             }
+            Divider()
+            VStack(spacing: 0) {
+                tools(bottomInset: bottomInset, isDrawer: false)
+            }
+            .frame(width: 375)
         }
         .onAppear { didChangeLayout(to: .landscape) }
     }
@@ -238,50 +265,68 @@ struct SubmissionGraderView: View {
 
     // MARK: - Drawer
 
-    enum GraderTab: Int, CaseIterable { case grades, comments, files }
+    enum GraderTab: Int, CaseIterable {
+        case grades, comments, files
 
-    private var segmentedTitles: [String] {
-        [
-            String(localized: "Grades", bundle: .teacher),
-            String(localized: "Comments", bundle: .teacher),
-            viewModel.fileTabTitle
-        ]
+        func title(viewModel: SubmissionGraderViewModel) -> String {
+            switch self {
+            case .grades: return String(localized: "Grades", bundle: .teacher)
+            case .comments: return String(localized: "Comments", bundle: .teacher)
+            case .files: return viewModel.fileTabTitle
+            }
+        }
     }
 
     @ViewBuilder
     private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
-        SegmentedPicker(
-            segmentedTitles,
-            selectedIndex: Binding(
-                get: { selectedDrawerTabIndex },
-                set: { newValue in
-                    selectedDrawerTabIndex = newValue ?? 0
-                    if drawerState == .min {
-                        snapDrawerTo(.mid)
-                    }
-                    let newTab = SubmissionGraderView.GraderTab(rawValue: newValue ?? 0)!
-                    withAnimation(.default) {
-                        tab = newTab
-                    }
-                    controller.view.endEditing(true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        focusedTab = tab
-                    }
-                }
-            ),
-            selectionAlignment: .bottom,
-            content: { item, _ in
-                Text(item)
-                    .font(.regular14)
-                    .foregroundColor(.textDark)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: .infinity)
-                    .contentShape(Rectangle())
+        if isDrawer {
+            let titles = GraderTab.allCases.map {
+                $0.title(viewModel: viewModel)
             }
-        )
-        .identifier("SpeedGrader.toolPicker")
-        Divider()
+            SegmentedPicker(
+                titles,
+                selectedIndex: Binding(
+                    get: { selectedDrawerTabIndex },
+                    set: { newValue in
+                        selectedDrawerTabIndex = newValue ?? 0
+                        if drawerState == .min {
+                            snapDrawerTo(.mid)
+                        }
+                        let newTab = SubmissionGraderView.GraderTab(rawValue: newValue ?? 0)!
+                        withAnimation(.default) {
+                            tab = newTab
+                        }
+                        controller.view.endEditing(true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            focusedTab = tab
+                        }
+                    }
+                ),
+                selectionAlignment: .bottom,
+                content: { item, _ in
+                    Text(item)
+                        .font(.regular14)
+                        .foregroundColor(.textDark)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
+                }
+            )
+            .identifier("SpeedGrader.toolPicker")
+            Divider()
+        } else {
+            Picker("", selection: $tab.animation()) {
+                ForEach(GraderTab.allCases, id: \.self) { tab in
+                    Text(tab.title(viewModel: viewModel))
+                        .tag(tab)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal, 16)
+            .frame(height: profileHeaderSize.height)
+            InstUI.Divider()
+        }
         GeometryReader { geometry in
             HStack(spacing: 0) {
                 let drawerFileID = Binding<String?>(
@@ -429,3 +474,12 @@ private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toM
     let bounded = max(fromMin, min(value, fromMax))
     return (((toMax - toMin) / (fromMax - fromMin)) * (bounded - fromMin)) + toMin
 }
+
+#if DEBUG
+
+#Preview {
+    SpeedGraderAssembly.makeSpeedGraderViewControllerPreview(state: .data)
+}
+
+#endif
+
