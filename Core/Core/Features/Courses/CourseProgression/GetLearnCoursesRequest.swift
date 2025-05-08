@@ -42,7 +42,7 @@ public struct GetLearnCoursesProgressionRequest: APIGraphQLRequestable {
                         state
                         course {
                             id: _id
-                            name                                                                    
+                            name
                         }
                     }
                 }
