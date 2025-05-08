@@ -40,7 +40,7 @@ class LTICellViewModelTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
 
         let testee = LTICellViewModel(tab: tab, course: course, url: URL(string: "/ltitool")!)
-        testee.selected(router: router, viewController: WeakViewController(UIViewController()))
+        testee.selected(environment: environment, viewController: WeakViewController(UIViewController()))
         // we can't mock LTITools so we just check if anything goes horribly wrong
     }
 }

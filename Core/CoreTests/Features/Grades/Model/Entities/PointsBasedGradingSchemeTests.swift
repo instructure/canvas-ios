@@ -25,25 +25,25 @@ class PointsBasedGradingSchemeTests: GradingSchemeTestCase {
     func testScoreConversion() {
         let testee = PointsBasedGradingScheme(scaleFactor: 5, entries: scoreConversionEntries())
 
-        var result = testee.convertScoreToLetterGrade(score: 90)
+        var result = testee.convertNormalizedScoreToLetterGrade(0.90)
         XCTAssertEqual(result, "A")
 
-        result = testee.convertScoreToLetterGrade(score: 89)
+        result = testee.convertNormalizedScoreToLetterGrade(0.89)
         XCTAssertEqual(result, "B")
 
-        result = testee.convertScoreToLetterGrade(score: 0)
+        result = testee.convertNormalizedScoreToLetterGrade(0)
         XCTAssertEqual(result, "F")
     }
 
     func testScoreConversionWithEmptyScheme() {
         let testee = PointsBasedGradingScheme.default
-        let result = testee.convertScoreToLetterGrade(score: 30)
+        let result = testee.convertNormalizedScoreToLetterGrade(0.30)
         XCTAssertNil(result)
     }
 
     func testScoreConversionWithInvalidScheme() {
         let testee = PointsBasedGradingScheme(scaleFactor: 4, entries: invalidConversionEntries())
-        let result = testee.convertScoreToLetterGrade(score: 30)
+        let result = testee.convertNormalizedScoreToLetterGrade(0.30)
         XCTAssertNil(result)
     }
 

@@ -24,38 +24,30 @@ public typealias StudioIFramesByLocation = [URL: [StudioIFrame]]
 public protocol StudioIFrameDiscoveryInteractor {
 
     func discoverStudioIFrames(
-        in offlineDirectory: URL,
-        courseIDs: [String]
+        courseID: CourseSyncID
     ) -> AnyPublisher<StudioIFramesByLocation, Never>
 }
 
 public class StudioIFrameDiscoveryInteractorLive: StudioIFrameDiscoveryInteractor {
     private let studioHtmlParser: StudioHTMLParserInteractor
+    private let envResolver: CourseSyncEnvironmentResolver
 
-    public init(studioHtmlParser: StudioHTMLParserInteractor) {
+    public init(studioHtmlParser: StudioHTMLParserInteractor, envResolver: CourseSyncEnvironmentResolver) {
         self.studioHtmlParser = studioHtmlParser
+        self.envResolver = envResolver
     }
 
     public func discoverStudioIFrames(
-        in offlineDirectory: URL,
-        courseIDs: [String]
+        courseID: CourseSyncID
     ) -> AnyPublisher<StudioIFramesByLocation, Never> {
-        Just(offlineDirectory)
-            .map { offlineDirectory in
-                let coursePaths = courseIDs.map { "course-\($0)"}
-                return FileManager
-                    .default
-                    .allFiles(withExtension: "html", inDirectory: offlineDirectory)
-                    .filter { url in
-                        for coursePath in coursePaths where url.absoluteString.contains(coursePath) {
-                            return true
-                        }
-                        return false
-                    }
-            }
-            .flatMap { htmls in
-                Publishers.Sequence(sequence: htmls)
-            }
+
+        let coursePath = "course-\(courseID.value)"
+        let htmls = FileManager
+            .default
+            .allFiles(withExtension: "html", inDirectory: envResolver.offlineDirectory(for: courseID))
+            .filter { $0.absoluteString.contains(coursePath) }
+        return Publishers
+            .Sequence(sequence: htmls)
             .compactMap { [studioHtmlParser] htmlURL -> (URL, [StudioIFrame]) in
                 let iframes = studioHtmlParser.extractStudioIFrames(htmlLocation: htmlURL)
                 return (htmlURL, iframes)

@@ -67,6 +67,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         emptyView?.submitCallback = { [weak self] button in
             self?.presenter?.submit(button: button)
         }
+        emptyView?.shouldGroupAccessibilityChildren = true
         attemptPicker?.hideDivider()
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -77,8 +78,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         _ = setDrawerPositionOnce
-        drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 0
-        contentView?.accessibilityElementsHidden = drawer?.height != 0
+        drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 2
     }
 
     func reload() {

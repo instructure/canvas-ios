@@ -1,0 +1,3 @@
+parent_config: ../../../../.swiftlint.yml
+disabled_rules:
+  - nesting

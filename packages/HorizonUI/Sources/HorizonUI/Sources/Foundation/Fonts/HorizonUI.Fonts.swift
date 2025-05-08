@@ -21,10 +21,10 @@ import SwiftUI
 public extension HorizonUI {
     struct Fonts: Sendable {
         // MARK: Private
-        
+
         fileprivate init() {}
 
-        private struct VariantAndSize : Sendable{
+        private struct VariantAndSize: Sendable {
             let variant: Variants
             let size: Double
 
@@ -46,7 +46,7 @@ public extension HorizonUI {
         private static let manropeB20: VariantAndSize = .init(variant: .manropeBold, size: 20)
 
         private static let manropeSB16: VariantAndSize = .init(variant: .manropeSemiBold, size: 16)
-        
+
         private static let figtreeR16: VariantAndSize = .init(variant: .figtreeRegular, size: 16)
         private static let figtreeR14: VariantAndSize = .init(variant: .figtreeRegular, size: 14)
         private static let figtreeR12: VariantAndSize = .init(variant: .figtreeRegular, size: 12)
@@ -72,7 +72,7 @@ public extension HorizonUI {
         let manropeBold20: Font = HorizonUI.Fonts.manropeB20.scaledFont()
 
         let manropeSemiBold16: Font = HorizonUI.Fonts.manropeSB16.scaledFont()
-        
+
         let figtreeRegular16: Font = HorizonUI.Fonts.figtreeR16.scaledFont()
         let figtreeRegular14: Font = HorizonUI.Fonts.figtreeR14.scaledFont()
         let figtreeRegular12: Font = HorizonUI.Fonts.figtreeR12.scaledFont()
@@ -100,6 +100,7 @@ public extension HorizonUI {
 
     static let fonts = HorizonUI.Fonts()
 }
+
 extension Font {
     static let huiFonts = HorizonUI.fonts
 }

@@ -53,8 +53,8 @@ extension HorizonUI.CornerRadius: Identifiable {
     var details: String {
         let str = "\(id)"
         let components = str.components(separatedBy: "level")
-        
-        let attributesString = "\(Int(self.attributes.radius)) px, \(Int(self.attributes.smoothness))% Smoothing"
+
+        let attributesString = "\(Int(attributes.radius)) px, \(Int(attributes.smoothness))% Smoothing"
         return "Level \(components[1]) - \(attributesString)"
     }
 }

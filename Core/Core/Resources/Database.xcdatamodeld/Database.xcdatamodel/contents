@@ -593,6 +593,7 @@
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
     </entity>
     <entity name="ExternalToolLaunchPlacement" representedClassName="Core.ExternalToolLaunchPlacement" syncable="YES">
         <attribute name="definitionID" attributeType="String"/>

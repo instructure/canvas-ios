@@ -112,6 +112,16 @@ extension AppEnvironment {
 
         return .shared
     }
+
+    /// This method returns an `AppEnvironmentOverride` using the given `baseURL`s host if it
+    /// doesn't match the one on `AppEnvironment.shared`.
+    static func resolved(for baseURL: URL?) -> AppEnvironment {
+        guard
+            let baseURL,
+            let components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
+        else { return .shared }
+        return resolved(for: components)
+    }
 }
 
 // MARK: - Utils

@@ -13,7 +13,7 @@
       "targets" : [
         {
           "containerPath" : "container:Student.xcodeproj",
-          "identifier" : "492704721CF4AF7100C631C6",
+          "identifier" : "8FD2A76760D57F6AC5D5C101",
           "name" : "Student"
         }
       ]
@@ -24,7 +24,8 @@
       "containerPath" : "container:Student.xcodeproj",
       "identifier" : "492704721CF4AF7100C631C6",
       "name" : "Student"
-    }
+    },
+    "uiTestingScreenshotsLifetime" : "keepNever"
   },
   "testTargets" : [
     {

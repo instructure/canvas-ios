@@ -81,7 +81,7 @@ public extension HorizonUI.Controls {
     )
 }
 
-fileprivate extension HorizonUI.Controls {
+private extension HorizonUI.Controls {
     struct CheckboxStyle: ToggleStyle {
         let style: HorizonUI.Controls.Checkbox.Style
 

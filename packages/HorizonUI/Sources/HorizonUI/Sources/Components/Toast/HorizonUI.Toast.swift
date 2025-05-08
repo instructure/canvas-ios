@@ -21,14 +21,14 @@ import SwiftUI
 public extension HorizonUI {
     struct Toast: View {
         // MARK: - Properties
-        
+
         private let cornerRadius = CornerRadius.level2
-        
+
         // MARK: - Dependencies
-        
+
         private let viewModel: Toast.ViewModel
         private let onTapDismiss: (() -> Void)?
-        
+
         public init(
             viewModel: Toast.ViewModel,
             onTapDismiss: (() -> Void)? = nil
@@ -36,19 +36,19 @@ public extension HorizonUI {
             self.viewModel = viewModel
             self.onTapDismiss = onTapDismiss
         }
-        
+
         public var body: some View {
             ZStack {
                 RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
                     .fill(Color.huiColors.surface.pageSecondary)
                     .stroke(viewModel.style.color, lineWidth: HorizonUI.Borders.level2.rawValue)
-                
+
                 contentView
             }
             .fixedSize(horizontal: false, vertical: true)
             .padding(.horizontal, .huiSpaces.space24)
         }
-        
+
         private var contentView: some View {
             HStack(alignment: .top, spacing: .zero) {
                 alertIcon
@@ -59,11 +59,11 @@ public extension HorizonUI {
                         .padding(.bottom, .huiSpaces.space16)
                 }
                 trailingButtons
-                    .padding(.top,.huiSpaces.space16)
+                    .padding(.top, .huiSpaces.space16)
             }
             .frame(minHeight: 64)
         }
-        
+
         private var alertIcon: some View {
             Rectangle()
                 .fill(viewModel.style.color)
@@ -74,17 +74,17 @@ public extension HorizonUI {
                         .foregroundStyle(Color.huiColors.icon.surfaceColored)
                 }
         }
-        
+
         private var textView: some View {
             Text(viewModel.text)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.p1)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-        
+
         private var trailingButtons: some View {
             HStack(alignment: .top, spacing: .huiSpaces.space16) {
-                if case .single(confirmButton: let confirmButton) =  viewModel.buttons {
+                if case let .single(confirmButton: confirmButton) = viewModel.buttons {
                     HorizonUI.PrimaryButton(confirmButton.title, type: .black) {
                         confirmButton.action()
                     }
@@ -101,15 +101,15 @@ public extension HorizonUI {
                 }
             }
         }
-        
+
         @ViewBuilder
         private var groupButtons: some View {
-            if case let .double(cancelButton: cancelButton, confirmButton: confirmButton) =  viewModel.buttons  {
+            if case let .double(cancelButton: cancelButton, confirmButton: confirmButton) = viewModel.buttons {
                 HStack(alignment: .top) {
                     HorizonUI.PrimaryButton(cancelButton.title, type: .white) {
                         cancelButton.action()
                     }
-                    
+
                     HorizonUI.PrimaryButton(confirmButton.title, type: .black) {
                         confirmButton.action()
                     }
@@ -142,26 +142,26 @@ public extension HorizonUI.Toast {
             self.direction = direction
             self.dismissAfter = dismissAfter
             if let confirmActionButton, let cancelActionButton {
-                buttons = .double(cancelButton: cancelActionButton, confirmButton: confirmActionButton)
+                self.buttons = .double(cancelButton: cancelActionButton, confirmButton: confirmActionButton)
             } else if let confirmActionButton {
-                buttons = .single(confirmButton: confirmActionButton)
+                self.buttons = .single(confirmButton: confirmActionButton)
             } else {
                 self.buttons = nil
             }
         }
     }
-    
+
     enum Direction {
         case top
         case bottom
-        
+
         public var alignment: Alignment {
             switch self {
             case .top: return .top
             case .bottom: return .bottom
             }
         }
-        
+
         public var edge: Edge {
             switch self {
             case .top: return .top
@@ -185,6 +185,7 @@ public extension HorizonUI {
         }
     }
 }
+
 #Preview {
     ZStack {
         Color.black

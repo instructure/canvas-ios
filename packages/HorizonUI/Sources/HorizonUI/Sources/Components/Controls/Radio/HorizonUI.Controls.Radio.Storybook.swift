@@ -99,11 +99,9 @@ extension HorizonUI.Controls.Radio {
                 }
             }
         }
-
     }
 }
 
 #Preview {
     HorizonUI.Controls.Radio.Storybook()
 }
-
