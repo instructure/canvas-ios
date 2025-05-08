@@ -240,6 +240,7 @@ private struct FileButton<I: View>: View {
                     Text(title)
                         .font(.semibold14)
                         .foregroundColor(.textDarkest)
+                        .lineLimit(2)
                     if let subtitle {
                         Text(subtitle)
                             .font(.regular12)

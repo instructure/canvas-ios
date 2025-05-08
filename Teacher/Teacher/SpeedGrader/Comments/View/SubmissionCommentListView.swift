@@ -190,7 +190,7 @@ struct SubmissionCommentListView: View {
             },
             label: {
                 Image.circleArrowUpSolid
-                    .size(20, paddedTo: 24)
+                    .scaledSize(20, paddedTo: 24, useIconScale: true)
                     .foregroundStyle(viewModel.contextColor)
             }
         )
