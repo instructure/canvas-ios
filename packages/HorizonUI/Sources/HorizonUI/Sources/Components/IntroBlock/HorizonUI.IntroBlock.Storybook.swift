@@ -81,3 +81,46 @@ public extension HorizonUI.IntroBlock {
 #Preview {
     HorizonUI.IntroBlock.Storybook()
 }
+
+// TODO: - This for make the Storybook & will remove later
+struct FrameReader: View {
+    // MARK: - Dependencies
+
+    let coordinateSpace: CoordinateSpace
+    let onChange: (_ frame: CGRect) -> Void
+
+    // MARK: - Init
+
+    init(
+        coordinateSpace: CoordinateSpace,
+        onChange: @escaping (_ frame: CGRect) -> Void
+    ) {
+        self.coordinateSpace = coordinateSpace
+        self.onChange = onChange
+    }
+
+    var body: some View {
+        GeometryReader { geometry in
+            Text("")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onAppear {
+                    onChange(geometry.frame(in: coordinateSpace))
+                }
+                .onChange(of: geometry.frame(in: coordinateSpace)) { _, newState in
+                    onChange(newState)
+                }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+extension View {
+    func readingFrame(
+        coordinateSpace: CoordinateSpace = .global,
+        onChange: @escaping (_ frame: CGRect) -> Void
+    ) -> some View {
+        background(
+            FrameReader(coordinateSpace: coordinateSpace, onChange: onChange)
+        )
+    }
+}
