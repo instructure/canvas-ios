@@ -58,7 +58,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         .map { assignment, course in
             SpeedGraderContextInfo(
                 courseName: course.name ?? "",
-                courseColor: course.color,
+                courseColor: Color(course.color),
                 assignmentName: assignment.name
             )
         }
