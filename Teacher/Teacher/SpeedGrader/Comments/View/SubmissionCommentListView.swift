@@ -98,7 +98,7 @@ struct SubmissionCommentListView: View {
                         .transition(.opacity)
                 }
             }.sheet(isPresented: $showCommentLibrary) {
-                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment) {
+                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment, contextColor: viewModel.contextColor) {
                     sendComment()
                 }
             }

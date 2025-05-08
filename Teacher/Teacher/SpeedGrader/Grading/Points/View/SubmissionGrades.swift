@@ -131,7 +131,8 @@ struct SubmissionGrades: View {
             shouldShowCommentLibrary: false,
             showCommentLibrary: .constant(false),
             action: rubricsViewModel.saveComment,
-            containerHeight: containerHeight
+            containerHeight: containerHeight,
+            contextColor: Color(Brand.shared.primary)
         )
         .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
         .background(Color.backgroundLight)
