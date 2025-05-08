@@ -20,7 +20,6 @@ import Core
 
 class RedwoodCreateNoteMutation: APIGraphQLRequestable {
     let variables: NewCourseNoteInput
-    private let jwt: String
 
     var path: String {
         "/graphql"
@@ -29,17 +28,12 @@ class RedwoodCreateNoteMutation: APIGraphQLRequestable {
     var headers: [String: String?] {
         [
             "x-apollo-operation-name": "CreateNote",
-            HttpHeader.accept: "application/json",
-            HttpHeader.authorization: "Bearer \(jwt)"
+            HttpHeader.accept: "application/json"
         ]
     }
 
-    public init(
-        jwt: String,
-        note: NewRedwoodNote
-    ) {
+    public init(note: NewRedwoodNote) {
         self.variables = NewCourseNoteInput(input: note)
-        self.jwt = jwt
     }
 
     public static let operationName: String = "CreateNote"

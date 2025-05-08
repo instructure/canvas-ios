@@ -30,9 +30,10 @@ struct NotebookView: View {
             InstUI.BaseScreen(
                 state: viewModel.state,
                 config: .init(
-                    refreshable: false,
+                    refreshable: true,
                     loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
-                )
+                ),
+                refreshAction: viewModel.refresh
             ) { _ in
                 content
                     .padding(.all, .huiSpaces.space16)
@@ -151,7 +152,7 @@ struct NotebookView: View {
     NotebookView(
         viewModel: .init(
             courseId: "123",
-            getCourseNotesInteractor: GetCourseNotesInteractorPreview()
+            courseNoteInteractor: CourseNoteInteractorPreview()
         ))
 }
 #endif

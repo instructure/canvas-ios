@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E248" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E263" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -229,6 +229,24 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDNotebookNote" representedClassName=".CDNotebookNote" syncable="YES">
+        <attribute name="after" optional="YES" attributeType="String"/>
+        <attribute name="before" optional="YES" attributeType="String"/>
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="end" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endContainer" optional="YES" attributeType="String"/>
+        <attribute name="endOffset" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="labels" optional="YES" attributeType="String"/>
+        <attribute name="objectType" attributeType="String"/>
+        <attribute name="pageID" attributeType="String"/>
+        <attribute name="selectedText" optional="YES" attributeType="String"/>
+        <attribute name="start" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startContainer" optional="YES" attributeType="String"/>
+        <attribute name="startOffset" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDRubricCriterion" representedClassName="Core.CDRubricCriterion" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>

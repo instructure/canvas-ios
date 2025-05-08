@@ -23,8 +23,6 @@ import Combine
 class GetNotesQuery: APIGraphQLRequestable {
     public let variables: GetNotesQueryInput
 
-    private let jwt: String
-
     var path: String {
         "/graphql"
     }
@@ -32,20 +30,16 @@ class GetNotesQuery: APIGraphQLRequestable {
     var headers: [String: String?] {
         [
             "x-apollo-operation-name": "FetchNotes",
-            HttpHeader.accept: "application/json",
-            HttpHeader.authorization: "Bearer \(jwt)"
+            HttpHeader.accept: "application/json"
         ]
     }
 
     public init(
-        jwt: String,
         after: String,
         reactions: [String]? = nil,
         courseId: String? = nil,
         objectId: String? = nil
     ) {
-        self.jwt = jwt
-
         let filter = GetNotesQuery.NoteFilterInput.build(
             courseId: courseId,
             objectId: objectId,
@@ -59,14 +53,11 @@ class GetNotesQuery: APIGraphQLRequestable {
     }
 
     public init(
-        jwt: String,
         before: String,
         reactions: [String]? = nil,
         courseId: String? = nil,
         objectId: String? = nil
     ) {
-        self.jwt = jwt
-
         self.variables = GetNotesQueryInput(
             before: before,
             filter: GetNotesQuery.NoteFilterInput.build(
@@ -78,12 +69,10 @@ class GetNotesQuery: APIGraphQLRequestable {
     }
 
     public init(
-        jwt: String,
         reactions: [String]? = nil,
         courseId: String? = nil,
         objectId: String? = nil
     ) {
-        self.jwt = jwt
         self.variables = GetNotesQueryInput(
             filter: GetNotesQuery.NoteFilterInput.build(
                 courseId: courseId,
@@ -123,7 +112,7 @@ class GetNotesQuery: APIGraphQLRequestable {
     typealias Response = RedwoodFetchNotesQueryResponse
 
     struct GetNotesQueryInput: Codable, Equatable {
-        private static let pageSize: Float = 10
+        private static let pageSize: Float = 1000
 
         let after: String?
         let before: String?
@@ -215,7 +204,6 @@ class GetNotesQuery: APIGraphQLRequestable {
 // MARK: - Codeables
 
 public struct RedwoodFetchNotesQueryResponse: Codable {
-
     let data: ResponseData
 
     public struct ResponseData: Codable {
@@ -235,16 +223,5 @@ public struct RedwoodFetchNotesQueryResponse: Codable {
     public struct PageInfo: Codable {
         let hasNextPage: Bool
         let hasPreviousPage: Bool
-    }
-}
-
-extension RedwoodFetchNotesQueryResponse {
-    var courseNotebookNotes: [CourseNotebookNote] {
-        data.notes.edges.compactMap { edge in
-            .init(
-                from: edge,
-                pageInfo: data.notes.pageInfo
-            )
-        }
     }
 }

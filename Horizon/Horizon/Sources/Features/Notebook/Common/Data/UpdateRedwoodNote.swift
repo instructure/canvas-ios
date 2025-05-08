@@ -18,16 +18,16 @@
 
 import Foundation
 
-class UpdateRedwoodNote: Codable, Equatable {
+public class UpdateRedwoodNote: Codable, Equatable {
     public static func == (lhs: UpdateRedwoodNote, rhs: UpdateRedwoodNote) -> Bool {
         lhs.userText == rhs.userText &&
         lhs.reaction == rhs.reaction &&
         lhs.highlightData == rhs.highlightData
     }
 
-    let userText: String
-    let reaction: [String]?
-    let highlightData: NotebookHighlight?
+    public let userText: String
+    public let reaction: [String]?
+    public let highlightData: NotebookHighlight?
 
     enum CodingKeys: String, CodingKey {
         case userText, reaction, createdAt, highlightData
