@@ -33,7 +33,7 @@ final class LTIViewModel {
     // MARK: - Init
 
     init(
-        tools: LTITools = .init(isQuizLTI: false),
+        tools: LTITools = .init(isQuizLTI: false, env: .shared),
         name _: String? = nil
     ) {
         self.tools = tools

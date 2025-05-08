@@ -108,7 +108,7 @@ struct ScoresAssignmentsView: View {
                     id: "2",
                     name: "iOS Debugging Quiz",
                     commentsCount: 0,
-                    dueAt: Date().addingTimeInterval(172800),
+                    dueAt: Date().addingTimeInterval(172_800),
                     htmlUrl: URL(string: "https://dev.ce.com/assignment2"),
                     pointsPossible: 50,
                     score: nil,
