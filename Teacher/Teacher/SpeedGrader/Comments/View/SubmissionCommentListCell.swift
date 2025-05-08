@@ -25,8 +25,15 @@ private enum Size {
     static let commentBubblePadding: CGFloat = 8
     static let commentBubbleCorner: CGFloat = 16
     static let attachmentSpacing: CGFloat = 4
-    static let attachmentCorner: CGFloat = 4
-    static let attachmentIcon: CGFloat = 18
+
+    enum File {
+        static let width: CGFloat = 294
+        static let corner: CGFloat = 24
+        static let padding: CGFloat = 4
+        static let icon: CGFloat = 27
+        static let thumbnail: CGFloat = 56
+        static let thumbnailCorner: CGFloat = 20
+    }
 }
 
 struct SubmissionCommentListCell: View {
@@ -139,7 +146,7 @@ struct SubmissionCommentListCell: View {
                 .accessibilityHidden(true) // already included in header
                 .identifier("SubmissionComments.textCell.\(viewModel.id)")
             ForEach(files, id: \.id) { file in
-                CommentFileButton(file: file) {
+                AttachmentButton(file: file) {
                     viewModel.didTapFileButton.send((file.id, controller))
                 }
                 .padding(.top, Size.attachmentSpacing)
@@ -151,23 +158,23 @@ struct SubmissionCommentListCell: View {
                 .identifier("SubmissionComments.audioCell.\(viewModel.id)")
         case .video(let url):
             VideoPlayer(url: url)
-                .cornerRadius(Size.attachmentCorner)
+                .cornerRadius(4)
                 .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)
                 .identifier("SubmissionComments.videoCell.\(viewModel.id)")
         case .attempt(let attempt, let submission):
-            AttemptFileButton(submission: submission) {
+            AttemptButton(submission: submission) {
                 self.attempt = attempt
             }
-            .padding(.top, Size.attachmentSpacing)
             .accessibilityLabel(viewModel.accessibilityLabelForAttempt)
             .accessibilityHint(Text("Double tap to view attempt", bundle: .core))
         case .attemptWithAttachments(let attempt, let files):
             ForEach(files, id: \.id) { file in
-                CommentFileButton(file: file) {
+                let isFirst = file.id == files.first?.id
+                AttachmentButton(file: file) {
                     self.attempt = attempt
                     self.fileID = file.id
                 }
-                .padding(.top, Size.attachmentSpacing)
+                .padding(.top, isFirst ? 0 : Size.attachmentSpacing)
                 .accessibilityLabel(viewModel.accessibilityLabelForAttemptAttachment(file))
                 .accessibilityHint(Text("Double tap to view file", bundle: .core))
             }
@@ -175,13 +182,19 @@ struct SubmissionCommentListCell: View {
     }
 }
 
-private struct CommentFileButton: View {
+private struct AttachmentButton: View {
     let file: File
     let action: () -> Void
 
     var body: some View {
         FileButton(
-            icon: FileThumbnail(file: file, size: Size.attachmentIcon),
+            icon: FileThumbnail(
+                file: file,
+                iconSize: Size.File.icon,
+                thumbnailSize: Size.File.thumbnail,
+                iconBackgroundColor: .backgroundLight,
+                cornerRadius: Size.File.thumbnailCorner
+            ),
             title: file.displayName ?? file.filename,
             subtitle: file.size.humanReadableFileSize,
             hasSubtitleLineLimit: false,
@@ -191,7 +204,7 @@ private struct CommentFileButton: View {
     }
 }
 
-private struct AttemptFileButton: View {
+private struct AttemptButton: View {
     let submission: Submission
     let action: () -> Void
 
@@ -199,8 +212,9 @@ private struct AttemptFileButton: View {
         let icon = submission.attemptIcon.map { Image(uiImage: $0) }
         FileButton(
             icon: icon?
-                .size(Size.attachmentIcon)
-                .foregroundStyle(Color.accentColor),
+                .scaledSize(Size.File.icon, paddedTo: Size.File.thumbnail)
+                .background(Color.backgroundLight.cornerRadius(Size.File.thumbnailCorner))
+                .foregroundStyle(Color.textDarkest),
             title: submission.attemptTitle ?? "",
             subtitle: submission.attemptSubtitle ?? "",
             hasSubtitleLineLimit: true,
@@ -220,7 +234,7 @@ private struct FileButton<I: View>: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(alignment: .top, spacing: 6) {
+            HStack(alignment: .center, spacing: Size.horizontalSpacing) {
                 icon
                 VStack(alignment: .leading, spacing: 0) {
                     Text(title)
@@ -228,19 +242,17 @@ private struct FileButton<I: View>: View {
                         .foregroundColor(.textDarkest)
                     if let subtitle {
                         Text(subtitle)
-                            .font(.medium12)
+                            .font(.regular12)
                             .foregroundColor(.textDark)
                             .lineLimit(hasSubtitleLineLimit ? 1 : 0)
                     }
                 }
-                .multilineTextAlignment(.leading)
                 Spacer()
             }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 6)
-            .frame(width: 300)
+            .padding(Size.File.padding)
+            .frame(width: Size.File.width)
             .background(
-                RoundedRectangle(cornerRadius: Size.attachmentCorner)
+                RoundedRectangle(cornerRadius: Size.File.corner)
                     .stroke(Color.borderMedium)
             )
         }
