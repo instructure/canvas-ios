@@ -20,19 +20,15 @@ import Core
 import UIKit
 
 struct HInboxAssembly {
-    private static func makeView() -> HInboxView {
-        HInboxView(
-            notAvailableYetFeatureView: NotAvailableYetFeatureView(
-                viewModel: NotAvailableYetFeatureViewModel(
-                    feature: .inbox,
-                    router: AppEnvironment.shared.router,
-                    baseURL: AppEnvironment.shared.currentSession?.baseURL
-                )
-            )
-        )
-    }
-
     static func makeViewController() -> UIViewController {
-        CoreHostingController(makeView())
+        let inboxViewModel = HInboxViewModel()
+        let viewModel = HEmbeddedWebPageContainerViewModel(
+            webPage: inboxViewModel
+        )
+
+        let viewController = CoreHostingController(
+            HInboxView(viewModel: viewModel)
+        )
+        return viewController
     }
 }
