@@ -16,21 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
+import SwiftUI
 
-<<<<<<<< HEAD:Core/Core/Common/Extensions/UIKit/Array+UIBarButtonItem.swift
-extension Array where Element: UIBarButtonItem {
-    func removeDuplicates() -> [Element] {
-        return reduce([]) { result, element in
-            result.contains { $0.action == element.action } ? result : result + [element]
-        }
-========
 public extension HorizonUI.Colors {
     struct LineAndBorders: Sendable, ColorCollection {
         public let containerStroke = Color(hexString: "#6A7883")
         public let lineConnector = Color(hexString: "#D7DADE")
         public let lineDivider = Color(hexString: "#D7DADE")
         public let lineStroke = Color(hexString: "#D7DADE")
->>>>>>>> origin/master:packages/HorizonUI/Sources/HorizonUI/Sources/Foundation/Colors/HorizonUI.Colors.LineAndBorders.swift
     }
 }

@@ -113,13 +113,13 @@ struct FrameReader: View {
     }
 }
 
-extension View {
-    func readingFrame(
-        coordinateSpace: CoordinateSpace = .global,
-        onChange: @escaping (_ frame: CGRect) -> Void
-    ) -> some View {
-        background(
-            FrameReader(coordinateSpace: coordinateSpace, onChange: onChange)
-        )
-    }
-}
+//extension View {
+//    func readingFrame(
+//        coordinateSpace: CoordinateSpace = .global,
+//        onChange: @escaping (_ frame: CGRect) -> Void
+//    ) -> some View {
+//        background(
+//            FrameReader(coordinateSpace: coordinateSpace, onChange: onChange)
+//        )
+//    }
+//}

@@ -46,7 +46,7 @@ struct FileDetailsViewRepresentable: UIViewControllerRepresentable {
     }
 
     func makeUIViewController(context: Self.Context) -> UIViewController {
-        let viewController = FileDetailsViewController.create(context: self.context, fileID: fileID)
+        let viewController = FileDetailsViewController.create(context: self.context, fileID: fileID, environment: AppEnvironment.shared)
         viewController.didFinishLoading = {
             isFinishLoading = true
             if let scrollView = findScrollView(in: viewController.view) {

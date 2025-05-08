@@ -98,6 +98,7 @@ final class AssignmentDetailsViewModel {
     private(set) var isCompletedItem: Bool
     private let moduleID: String
     private let itemID: String
+    private let environment: AppEnvironment
     private let interactor: AssignmentInteractor
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let textEntryInteractor: AssignmentTextEntryInteractor
@@ -109,6 +110,7 @@ final class AssignmentDetailsViewModel {
     // MARK: - Init
 
     init(
+        environment: AppEnvironment = .shared,
         interactor: AssignmentInteractor,
         moduleItemInteractor: ModuleItemSequenceInteractor,
         textEntryInteractor: AssignmentTextEntryInteractor,
@@ -123,6 +125,7 @@ final class AssignmentDetailsViewModel {
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         didLoadAssignment: @escaping (String?, HModuleItem) -> Void
     ) {
+        self.environment = environment
         self.interactor = interactor
         self.moduleItemInteractor = moduleItemInteractor
         self.textEntryInteractor = textEntryInteractor
@@ -274,7 +277,8 @@ final class AssignmentDetailsViewModel {
             id: assignment?.externalToolContentID,
             launchType: .assessment,
             isQuizLTI: assignment?.isQuizLTI,
-            assignmentID: assignmentID
+            assignmentID: assignmentID,
+            env: environment
         )
 
         isLoaderVisible = true

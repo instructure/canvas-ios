@@ -17,25 +17,7 @@
 //
 
 import SwiftUI
-import HorizonUI
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Notebook/Notebook/View/NotebookCard.swift
-struct NotebookCard<Content: View>: View {
-    private let content: Content
-
-    init(@ViewBuilder _ content: () -> Content) {
-        self.content = content()
-    }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) { content }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.huiSpaces.space24)
-            .background(Color.white)
-            .cornerRadius(.huiSpaces.space16)
-            .huiElevation(level: .level4)
-    }
-========
 public extension HorizonUI.Spaces {
     struct Primitives: Sendable {
         public let space2: CGFloat = 2
@@ -50,5 +32,4 @@ public extension HorizonUI.Spaces {
         public let space40: CGFloat = 40
         public let space48: CGFloat = 48
     }
->>>>>>>> origin/master:packages/HorizonUI/Sources/HorizonUI/Sources/Foundation/Spaces/HorizonUI.Spaces.Primitivies.swift
 }

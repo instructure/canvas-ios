@@ -18,13 +18,8 @@
 
 import Foundation
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Util/BundleExtension.swift
 private class Placeholder {}
 
 public extension Bundle {
     static let horizon = Bundle(for: Placeholder.self)
-========
-public extension CGSize {
-    var isZero: Bool { self == .zero }
->>>>>>>> origin/master:Core/Core/Common/Extensions/Foundation/CGSizeExtensions.swift
 }

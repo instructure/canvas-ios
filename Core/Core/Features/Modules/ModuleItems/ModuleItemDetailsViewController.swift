@@ -141,7 +141,6 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
             return ExternalURLViewController.create(env: env, name: item.title, url: url, courseID: item.courseID)
         case let .externalTool(toolID, url):
             let tools = LTITools(
-                env: env,
                 context: .course(courseID),
                 id: toolID,
                 url: url,

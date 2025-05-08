@@ -18,32 +18,6 @@
 
 import SwiftUI
 
-<<<<<<<< HEAD:Core/Core/Features/Search/Model/SearchSupportButtonModel.swift
-public struct SearchSupportButtonModel<Action: SearchSupportAction> {
-    let action: Action
-    let icon: SearchSupportIcon
-
-    public init(action: Action, icon: SearchSupportIcon = .help) {
-        self.action = action
-        self.icon = icon
-    }
-}
-
-// MARK: - Icon
-
-public struct SearchSupportIcon {
-    public static var help = SearchSupportIcon(image: .questionLine, uiImage: .questionLine)
-
-    let image: () -> Image
-    let uiImage: () -> UIImage?
-
-    public init(
-        image: @autoclosure @escaping () -> Image,
-        uiImage: @autoclosure @escaping () -> UIImage?
-    ) {
-        self.image = image
-        self.uiImage = uiImage
-========
 public extension HorizonUI.ProgressBar {
     enum Size: Equatable {
         case small
@@ -66,7 +40,6 @@ public extension HorizonUI.ProgressBar {
                 return .clear
             }
         }
->>>>>>>> origin/master:packages/HorizonUI/Sources/HorizonUI/Sources/Components/ProgressBar/HorizonUI.ProgressBar.Size.swift
     }
 
     enum NumberPosition {

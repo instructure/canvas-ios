@@ -19,15 +19,6 @@
 import Core
 import SwiftUI
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Account/Notifications/NotificationSettingsAssembly.swift
-final class NotificationSettingsAssembly {
-    static func makeView() -> UIViewController {
-        CoreHostingController(
-            NotificationSettingsView(
-                viewModel: NotificationSettingsViewModel(router: AppEnvironment.shared.router)
-            )
-        )
-========
 public extension HorizonUI.Spinner {
     enum Size {
         case xSmall
@@ -52,14 +43,5 @@ public extension HorizonUI.Spinner {
             case .large: return 8
             }
         }
->>>>>>>> origin/master:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Spinner/HorizonUI.Spinner.Size.swift
     }
-
-    #if DEBUG
-    static func makePreview() -> NotificationSettingsView {
-        NotificationSettingsView(
-            viewModel: NotificationSettingsViewModel(router: AppEnvironment.shared.router)
-        )
-    }
-    #endif
 }
