@@ -19,6 +19,7 @@
 import Combine
 import Core
 import CoreData
+import SwiftUI
 
 class SubmissionGraderViewModel: ObservableObject {
 
@@ -32,6 +33,7 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var file: File?
     @Published private(set) var fileID: String?
     @Published private(set) var fileTabTitle: String = ""
+    @Published private(set) var contextColor = Color(Brand.shared.primary)
     let assignment: Assignment
     let submission: Submission
 
@@ -50,6 +52,7 @@ class SubmissionGraderViewModel: ObservableObject {
     init(
         assignment: Assignment,
         latestSubmission: Submission,
+        contextColor: AnyPublisher<Color, Never>,
         env: AppEnvironment
     ) {
         self.assignment = assignment
@@ -64,6 +67,9 @@ class SubmissionGraderViewModel: ObservableObject {
             env: env
         )
         self.env = env
+
+        contextColor.assign(to: &$contextColor)
+
         observeAttemptChangesInDatabase()
         didSelectNewAttempt(attemptIndex: submission.attempt)
     }

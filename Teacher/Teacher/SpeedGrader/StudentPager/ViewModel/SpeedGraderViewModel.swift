@@ -95,6 +95,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
             viewModel: SubmissionGraderViewModel(
                 assignment: data.assignment,
                 latestSubmission: data.submissions[index],
+                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 env: environment
             ),
             handleRefresh: { [weak self] in
@@ -144,7 +145,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
             .sink { [weak self] contextInfo in
                 self?.navigationTitle = contextInfo.assignmentName
                 self?.navigationSubtitle = contextInfo.courseName
-                self?.navigationBarColor = contextInfo.courseColor
+                self?.navigationBarColor = UIColor(contextInfo.courseColor)
             }
             .store(in: &subscriptions)
     }
