@@ -48,8 +48,7 @@ final class LearnViewModel {
                 receiveCompletion: { _ in
                     // TODO: Handle error case
                 },
-                receiveValue: {
-                    [weak self] course in
+                receiveValue: { [weak self] course in
                     self?.courseID = course.id
                     self?.enrollmentID = course.enrollmentId
                     self?.isLoaderVisible = false

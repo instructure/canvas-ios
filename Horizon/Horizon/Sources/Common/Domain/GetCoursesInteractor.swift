@@ -25,8 +25,6 @@ import Foundation
 protocol GetCoursesInteractor {
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
     func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
-    func getInstitutionName() -> AnyPublisher<String, Never>
-    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
     func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never>
 }
@@ -75,14 +73,6 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getInstitutionName() -> AnyPublisher<String, Never> {
-        ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId, horizonCourses: true))
-            .getEntities()
-            .replaceError(with: [])
-            .compactMap { $0.first?.institutionName }
-            .eraseToAnyPublisher()
-    }
-
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
         NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)
@@ -99,33 +89,6 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             }
             .replaceError(with: [])
             .map { _ in () }
-            .eraseToAnyPublisher()
-    }
-
-    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
-        unowned let unownedSelf = self
-
-        return NotificationCenter.default
-            .publisher(for: .moduleItemRequirementCompleted)
-            .prepend(.init(name: .moduleItemRequirementCompleted))
-            .delay(for: .milliseconds(500), scheduler: scheduler)
-            .flatMapLatest {
-                let shouldIgnoreCache = $0.object != nil ? true : ignoreCache
-                return ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, horizonCourses: true))
-                    .getEntities(ignoreCache: shouldIgnoreCache)
-                    .replaceError(with: [])
-                    .flatMap {
-                        $0.publisher
-                            .flatMap { $0.mapToDashboardCourse() }
-                            .compactMap { $0 }
-                            .collect()
-                    }
-            }
-            .map { courses in
-                courses.sorted {
-                    ($0.learningObjectCardViewModel != nil) && ($1.learningObjectCardViewModel == nil)
-                }
-            }
             .eraseToAnyPublisher()
     }
 
@@ -147,7 +110,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     }
 }
 
-private extension CDDashboardCourse {
+extension CDDashboardCourse {
     func mapToDashboardCourse() -> AnyPublisher<DashboardCourse?, Never> {
         let name = course.name ?? ""
         let progress = completionPercentage / 100.0
@@ -186,7 +149,9 @@ private extension CDDashboardCourse {
         )
         .eraseToAnyPublisher()
     }
+}
 
+private extension CDDashboardCourse {
     func fetchModules(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
         let courseID = courseID
         let institutionName = institutionName

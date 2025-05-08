@@ -30,12 +30,14 @@ class DashboardViewModel {
     var title: String = ""
     private(set) var courses: [DashboardCourse] = []
     private(set) var invitedCourses: [InvitedCourse] = []
+
     // MARK: - Input / Outputs
 
     var isAlertPresented = false
 
     // MARK: - Dependencies
 
+    private let getDashboardCoursesInteractor: DashboardInteractor
     private let getCoursesInteractor: GetCoursesInteractor
     private let router: Router
 
@@ -48,11 +50,13 @@ class DashboardViewModel {
     // MARK: - Init
 
     init(
+        getDashboardCoursesInteractor: DashboardInteractor,
         getCoursesInteractor: GetCoursesInteractor,
         router: Router
     ) {
-        self.router = router
+        self.getDashboardCoursesInteractor = getDashboardCoursesInteractor
         self.getCoursesInteractor = getCoursesInteractor
+        self.router = router
         getCourses()
     }
 
@@ -70,10 +74,10 @@ class DashboardViewModel {
         getDashboardCoursesCancellable?.cancel()
         refreshCompletedModuleItemCancellable?.cancel()
 
-        getDashboardCoursesCancellable = getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
+        getDashboardCoursesCancellable = getDashboardCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
-                self?.courses = items.filter({ $0.state == DashboardCourse.EnrollmentState.active.rawValue })
-                let invitedCourses = items.filter({ $0.state == DashboardCourse.EnrollmentState.invited.rawValue  })
+                self?.courses = items.filter { $0.state == DashboardCourse.EnrollmentState.active.rawValue }
+                let invitedCourses = items.filter { $0.state == DashboardCourse.EnrollmentState.invited.rawValue }
                 let message = String(localized: "You have been invited to join", bundle: .horizon)
                 self?.invitedCourses = invitedCourses.map { .init(id: $0.courseId, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
                 self?.state = .data

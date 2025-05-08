@@ -29,7 +29,7 @@ public class GetDashboardCoursesWithProgressionsUseCase: APIUseCase {
     // MARK: - Properties
 
     public var cacheKey: String? {
-        return "Courses-Progression"
+        return "dashboard-courses"
     }
     private let courseId: String?
     private let userId: String

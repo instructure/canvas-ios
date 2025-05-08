@@ -18,31 +18,11 @@
 
 #if DEBUG
 import Combine
-import Foundation
 import Core
+import Foundation
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getDashboardCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
-        Just(
-            [.init(
-                name: "AI Introductions",
-                progress: 0.2,
-                courseId: "11",
-                state: "active",
-                enrollmentID: "222",
-                learningObjectCardViewModel: nil
-            )
-            ]
-        )
-        .eraseToAnyPublisher()
-    }
-
-    func getInstitutionName() -> AnyPublisher<String, Never> {
-        Just("Canvas Career")
-            .eraseToAnyPublisher()
-    }
-
-    func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
+    func getCourses(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
         Just([course])
             .eraseToAnyPublisher()
     }
@@ -57,7 +37,7 @@ class GetCoursesInteractorPreview: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never> {
+    func fetchCourseProgression(courseId _: String) -> AnyPublisher<Double, Never> {
         Just(90.6)
             .eraseToAnyPublisher()
     }
