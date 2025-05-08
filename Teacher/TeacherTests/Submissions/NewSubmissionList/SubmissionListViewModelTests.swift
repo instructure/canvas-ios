@@ -237,7 +237,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
                 .first
         )
 
-        let mockItem = SubmissionListItem(submission: mockSubmission, assignment: assignment, order: 1)
+        let mockItem = SubmissionListItem(submission: mockSubmission, assignment: assignment)
 
         // When
         interactor.assignmentSubject.send(assignment)

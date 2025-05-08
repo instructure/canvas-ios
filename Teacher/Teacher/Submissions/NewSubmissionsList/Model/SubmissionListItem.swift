@@ -50,9 +50,9 @@ public struct SubmissionListItem: Identifiable {
     let gradeFormatted: String
     let needsGrading: Bool
     let user: User?
-    let order: Int
+    var orderInList: Int = 0
 
-    init(submission: Submission, assignment: Assignment?, order: Int) {
+    init(submission: Submission, assignment: Assignment?) {
         self.id = submission.id
         self.originalUserID = submission.userID
         self.groupID = submission.groupID
@@ -63,7 +63,6 @@ public struct SubmissionListItem: Identifiable {
         self.status = submission.status(gradedChecked: true)
         self.needsGrading = submission.needsGrading
         self.gradeFormatted = GradeFormatter.shortString(for: assignment, submission: submission)
-        self.order = order
     }
 }
 
@@ -87,8 +86,7 @@ extension SubmissionListItem {
         needsGrading: Bool,
         user: User?,
         groupID: String?,
-        groupName: String?,
-        order: Int
+        groupName: String?
     ) {
         self.id = id
         self.originalUserID = originalUserID
@@ -98,7 +96,6 @@ extension SubmissionListItem {
         self.user = user
         self.groupID = groupID
         self.groupName = groupName
-        self.order = order
     }
 
     static func make(
@@ -109,8 +106,7 @@ extension SubmissionListItem {
         needsGrading: Bool = false,
         user: User? = nil,
         groupID: String? = nil,
-        groupName: String? = nil,
-        order: Int = -1
+        groupName: String? = nil
     ) -> SubmissionListItem {
         SubmissionListItem(
             id: id,
@@ -120,8 +116,7 @@ extension SubmissionListItem {
             needsGrading: needsGrading,
             user: user,
             groupID: groupID,
-            groupName: groupName,
-            order: order
+            groupName: groupName
         )
     }
 }

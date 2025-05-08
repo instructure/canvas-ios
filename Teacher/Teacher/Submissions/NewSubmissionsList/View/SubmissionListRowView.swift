@@ -62,9 +62,9 @@ struct SubmissionListRowView: View {
     private var nameLabel: some View {
         let nameText: Text = if anonymizeStudents != false {
             if item.groupID != nil {
-                Text("Group \(item.order)", bundle: .teacher)
+                Text("Group \(item.orderInList)", bundle: .teacher)
             } else {
-                Text("Student \(item.order)", bundle: .teacher)
+                Text("Student \(item.orderInList)", bundle: .teacher)
             }
         } else {
             Text(

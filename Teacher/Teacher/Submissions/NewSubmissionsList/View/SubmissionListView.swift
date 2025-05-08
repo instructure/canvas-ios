@@ -53,8 +53,11 @@ struct SubmissionListView: View {
             }
 
             if viewModel.state == .data {
-                Section {
-                    SearchView(viewModel: viewModel)
+
+                if anonymizeStudents == false {
+                    Section {
+                        SearchView(viewModel: viewModel)
+                    }
                 }
 
                 ForEach($viewModel.sections) { $section in
@@ -68,7 +71,7 @@ struct SubmissionListView: View {
                                         },
                                         label: {
                                             SubmissionListRowView(
-                                                anonymizeStudents: viewModel.assignment?.anonymizeStudents,
+                                                anonymizeStudents: anonymizeStudents,
                                                 item: item
                                             )
                                         }
@@ -126,6 +129,10 @@ struct SubmissionListView: View {
         .sheet(isPresented: $isFilterSelectorPresented) {
             SubmissionsFilterView(viewModel: viewModel)
         }
+    }
+
+    private var anonymizeStudents: Bool {
+        viewModel.assignment?.anonymizeStudents ?? false
     }
 }
 

@@ -66,7 +66,7 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
 
         submissionsSubscription?.cancel()
         submissionsSubscription = submissionsStore?
-            .getEntities(keepObservingDatabaseChanges: true)
+            .getEntities(ignoreCache: true, keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .sink { [weak self] list in
                 self?.submissionsSubject.send(list)

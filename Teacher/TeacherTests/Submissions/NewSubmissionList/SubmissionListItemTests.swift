@@ -58,7 +58,7 @@ class SubmissionListItemTests: TeacherTestCase {
         submission.score = 85
 
         // When
-        let item = SubmissionListItem(submission: submission, assignment: assignment, order: 1)
+        let item = SubmissionListItem(submission: submission, assignment: assignment)
 
         // Then
         let expectedGrade = GradeFormatter.shortString(for: assignment, submission: submission)

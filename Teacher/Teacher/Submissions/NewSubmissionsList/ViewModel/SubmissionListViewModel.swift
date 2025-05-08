@@ -60,35 +60,39 @@ class SubmissionListViewModel: ObservableObject {
 
         Publishers.CombineLatest(
             interactor.submissions.receive(on: scheduler),
-            $searchText.throttle(for: 0.5, scheduler: scheduler, latest: true)
+            $searchText.throttle(for: 1, scheduler: scheduler, latest: true)
         )
         .map({ (list, searchText) in
 
             let searchTerm = searchText.lowercased()
-            var curatedItems = list
-                .enumerated()
-                .map { [weak self] offset, sub in
-                    let item = SubmissionListItem(
-                        submission: sub,
-                        assignment: self?.assignment,
-                        order: offset + 1
-                    )
-                    return (item, sub)
-                }
-
+            let curatedList: [Submission]
             if searchTerm.isNotEmpty {
-                curatedItems = curatedItems.filter { $0.1.user?.nameContains(searchTerm) ?? false }
+                curatedList = list.filter { $0.user?.nameContains(searchTerm) ?? false }
+            } else {
+                curatedList = list
             }
 
-            return SubmissionListSection.Kind
+            var sections = SubmissionListSection.Kind
                 .allCases
-                .map { kind in
-                    let items = curatedItems
-                        .filter { kind.filter($0.1) }
-                        .map { $0.0 }
+                .map { [weak self] kind in
+                    let items = curatedList
+                        .filter { kind.filter($0) }
+                        .map { SubmissionListItem(submission: $0, assignment: self?.assignment) }
                     return SubmissionListSection(kind: kind, items: items)
                 }
-                .filter({ $0.items.isNotEmpty })
+                .filter { $0.items.isNotEmpty }
+
+            var orderInList = 1
+            sections.indices.forEach { sectionIndex in
+                var section = sections[sectionIndex]
+                section.items.indices.forEach { itemIndex in
+                    section.items[itemIndex].orderInList = orderInList
+                    orderInList += 1
+                }
+                sections[sectionIndex] = section
+            }
+
+            return sections
         })
         .assign(to: &$sections)
 
