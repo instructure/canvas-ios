@@ -31,7 +31,7 @@ public struct CourseDetailsCellView: View {
 
     public var body: some View {
         PrimaryButton(isAvailable: $viewModel.isAvailable) {
-            viewModel.selected(router: env.router, viewController: controller)
+            viewModel.selected(environment: env, viewController: controller)
         } label: {
             HStack(spacing: 12) {
                 Image(uiImage: viewModel.iconImage)

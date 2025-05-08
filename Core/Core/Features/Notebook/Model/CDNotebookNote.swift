@@ -25,17 +25,17 @@ final public class CDNotebookNote: NSManagedObject {
     @NSManaged public var content: String? // the text of the note
     @NSManaged public var courseID: String
     @NSManaged public var date: Date // the date the note was created
-    @NSManaged public var end: Int16
+    @NSManaged public var end: NSNumber?
     @NSManaged public var endContainer: String?
-    @NSManaged public var endOffset: Int16
+    @NSManaged public var endOffset: NSNumber?
     @NSManaged public var id: String
     @NSManaged public var labels: String?
     @NSManaged public var objectType: String
     @NSManaged public var pageID: String
     @NSManaged public var selectedText: String?
-    @NSManaged public var start: Int16
+    @NSManaged public var start: NSNumber?
     @NSManaged public var startContainer: String?
-    @NSManaged public var startOffset: Int16
+    @NSManaged public var startOffset: NSNumber?
 }
 
 extension String? {

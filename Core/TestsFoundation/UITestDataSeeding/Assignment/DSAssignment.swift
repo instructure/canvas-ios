@@ -22,7 +22,7 @@ import Foundation
 public struct DSAssignment: Codable {
     public let name: String
     public let id: String
-    public let position: Int
+    public let position: Int?
     public let submission_types: [SubmissionType]
     public let points_possible: Int?
     public let grading_type: GradingType?

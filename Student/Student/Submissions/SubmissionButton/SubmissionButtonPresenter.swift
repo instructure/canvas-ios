@@ -122,12 +122,12 @@ class SubmissionButtonPresenter: NSObject {
         case .basic_lti_launch, .external_tool:
             Analytics.shared.logEvent("assignment_launchlti_selected")
             LTITools(
-                env: env,
                 context: .course(courseID),
                 id: assignment.externalToolContentID,
                 launchType: .assessment,
                 isQuizLTI: assignment.isQuizLTI,
-                assignmentID: assignment.id
+                assignmentID: assignment.id,
+                env: env
             ).presentTool(from: view, animated: true)
         case .discussion_topic:
             Analytics.shared.logEvent("assignment_detail_discussionlaunch")

@@ -25,7 +25,6 @@ public extension HorizonUI.SegmentedControl {
         private let largeSetItems: [String] = ["Item 1", "Item 2", "Item 3", "Item 4"]
         private let extraLargeSetItems: [String] = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
 
-
         @State private var selectedIndices: [Int] = Array(repeating: 0, count: 13)
 
         public var body: some View {
@@ -41,26 +40,26 @@ public extension HorizonUI.SegmentedControl {
                     HorizonUI.SegmentedControl(
                         items: smallSetItems,
                         icon: .add,
-                        selectedIndex:  $selectedIndices[1]
+                        selectedIndex: $selectedIndices[1]
                     )
 
                     HorizonUI.SegmentedControl(
                         items: smallSetItems,
-                        selectedIndex:  $selectedIndices[2]
+                        selectedIndex: $selectedIndices[2]
                     )
 
                     HorizonUI.SegmentedControl(
                         items: smallSetItems,
                         icon: .checkMark,
                         iconAlignment: .leading,
-                        selectedIndex:  $selectedIndices[3]
+                        selectedIndex: $selectedIndices[3]
                     )
 
                     HorizonUI.SegmentedControl(
                         items: smallSetItems,
                         icon: .checkMark,
                         iconAlignment: .trailing,
-                        selectedIndex:  $selectedIndices[4]
+                        selectedIndex: $selectedIndices[4]
                     )
 
                     HorizonUI.SegmentedControl(
@@ -68,7 +67,7 @@ public extension HorizonUI.SegmentedControl {
                         icon: .checkMark,
                         iconAlignment: .trailing,
                         isShowIconForAllItems: false,
-                        selectedIndex:  $selectedIndices[5]
+                        selectedIndex: $selectedIndices[5]
                     )
 
                     HorizonUI.SegmentedControl(

@@ -24,7 +24,7 @@ public extension HorizonUI.Modal {
         @State private var isShowConfirmModal: Bool = false
 
         public var body: some View {
-            VStack(spacing: 24)  {
+            VStack(spacing: 24) {
                 Button("Show Success Modal") {
                     isShowSuccessModal.toggle()
                 }
@@ -36,14 +36,16 @@ public extension HorizonUI.Modal {
             .huiModal(
                 headerTitle: "Confirm Submission",
                 confirmButton: .init(title: "Submit Attempt") { print("Submit Attempt") },
-                isPresented: $isShowConfirmModal) { confirmModalContent}
+                isPresented: $isShowConfirmModal
+            ) { confirmModalContent }
             .huiModal(
                 headerTitle: "Assignment Successfully Submitted!",
                 headerIcon: Image.huiIcons.checkCircleFull,
                 headerIconColor: Color.huiColors.icon.success,
                 isShowCancelButton: false,
                 confirmButton: .init(title: "View Submission") { print("Tapped") },
-                isPresented: $isShowSuccessModal) { successModalContent }
+                isPresented: $isShowSuccessModal
+            ) { successModalContent }
         }
 
         private var successModalContent: some View {

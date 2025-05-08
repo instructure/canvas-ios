@@ -23,6 +23,9 @@ import SwiftUI
 
 @Observable
 final class NotebookViewModel {
+    // MARK: - Types
+    typealias RefreshCompletion = () -> Void
+
     // MARK: - Dependencies
 
     private let courseId: String?
@@ -51,6 +54,9 @@ final class NotebookViewModel {
     var isFiltersVisible: Bool { courseId == nil }
     var isNavigationBarVisible: Bool { courseId == nil || pageUrl != nil }
     private(set) var isNextDisabled: Bool = true
+    var isPaginationButtonsVisible: Bool {
+        !(isNextDisabled && isPreviousDisabled)
+    }
     private(set) var isPreviousDisabled: Bool = true
     var navigationBarTopPadding: CGFloat { courseId == nil ? .zero : .huiSpaces.space24 }
     private(set) var notes: [NotebookNote] = []
@@ -60,6 +66,7 @@ final class NotebookViewModel {
     // MARK: - Private variables
 
     private var subscriptions: Set<AnyCancellable> = []
+    private var refreshComplete: RefreshCompletion?
 
     // MARK: - Init
 
@@ -121,26 +128,32 @@ final class NotebookViewModel {
         courseNoteInteractor.set(cursor: Cursor(next: cursor))
     }
 
+    func refresh(refreshComplete: @escaping RefreshCompletion) {
+        self.refreshComplete = refreshComplete
+        courseNoteInteractor.refresh()
+    }
+
     // MARK: - Private functions
 
     private func loadNotes() {
-        weak var weakSelf = self
         courseNoteInteractor
             .get()
             .replaceError(with: [])
-            .sink { (courseNotes: [CourseNotebookNote]) in
-                guard let self = weakSelf else { return }
-
-                withAnimation {
-                    self.notes = courseNotes.map { note in
-                        NotebookNote(courseNotebookNote: note)
-                    }
-                    self.isNextDisabled = courseNotes.last?.hasNext != true
-                    self.isPreviousDisabled = courseNotes.first?.hasPrevious != true
-                    self.state = .data
-                }
-            }
+            .sink(receiveValue: loadNotesComplete)
             .store(in: &subscriptions)
+    }
+
+    private func loadNotesComplete(courseNotes: [CourseNotebookNote]) {
+        withAnimation {
+            self.notes = courseNotes.map { note in
+                NotebookNote(courseNotebookNote: note)
+            }
+            self.isNextDisabled = courseNotes.last?.hasNext != true
+            self.isPreviousDisabled = courseNotes.first?.hasPrevious != true
+            self.state = .data
+            self.refreshComplete?()
+            self.refreshComplete = nil
+        }
     }
 }
 

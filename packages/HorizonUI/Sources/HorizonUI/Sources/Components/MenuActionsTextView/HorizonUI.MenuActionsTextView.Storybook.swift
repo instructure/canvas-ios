@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension HorizonUI.MenuActionsTextView {
     struct Storybook: View, HorizonUI.MenuActionsTextView.Delegate {
-        public func getMenu(textView: UITextView, range: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu {
+        public func getMenu(textView _: UITextView, range _: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu {
             UIMenu(
                 title: "",
                 children: [
@@ -33,9 +33,8 @@ public extension HorizonUI.MenuActionsTextView {
             )
         }
 
-        public func onTap(gesture: UITapGestureRecognizer) {
-        }
-        
+        public func onTap(gesture _: UITapGestureRecognizer) {}
+
         public var body: some View {
             HorizonUI.MenuActionsTextView(
                 attributedText: NSAttributedString("This is some text that can be selected. After you select it, you'll see your custom menu options."),

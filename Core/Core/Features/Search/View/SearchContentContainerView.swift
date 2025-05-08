@@ -103,8 +103,8 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                     .accessibilityLabel(Text("Back", bundle: .core))
                 }
             }
-            .onChange(of: searchText) { newValue in
-                searchContext.searchText.send(newValue)
+            .onChange(of: searchText) {
+                searchContext.searchText.send(searchText)
             }
             .sheet(
                 isPresented: $isFilterEditorPresented,

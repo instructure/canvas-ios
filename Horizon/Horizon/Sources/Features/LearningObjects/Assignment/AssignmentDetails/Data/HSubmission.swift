@@ -36,14 +36,6 @@ struct HSubmission: Hashable, Equatable {
     let showSubmitButton: Bool
     private(set) var numberOfComments: Int?
 
-    public var status: HSubmission.Status {
-        if late { return .late }
-        if missing { return .missing }
-        if submittedAt != nil { return .submitted }
-        if excused != nil { return .excused }
-        return .notSubmitted
-    }
-
     // MARK: - Init
 
     init(entity: GetSubmission.Model) {
@@ -112,30 +104,5 @@ struct HSubmission: Hashable, Equatable {
             showSubmitButton: showSubmitButton,
             numberOfComments: numberOfComments
         )
-    }
-}
-
-extension HSubmission {
-    enum Status {
-        case late
-        case missing
-        case submitted
-        case notSubmitted
-        case excused
-
-        var text: String {
-            switch self {
-            case .late:
-                return String(localized: "Late", bundle: .horizon)
-            case .missing:
-                return String(localized: "Missing", bundle: .horizon)
-            case .submitted:
-                return String(localized: "Submitted", bundle: .horizon)
-            case .notSubmitted:
-                return String(localized: "Not Submitted", bundle: .horizon)
-            case .excused:
-                return String(localized: "Excused", bundle: .horizon)
-            }
-        }
     }
 }

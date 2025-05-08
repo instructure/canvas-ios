@@ -19,12 +19,65 @@
 import TestsFoundation
 import XCTest
 
-class GradesTests: E2ETestCase {
+class SpeedGraderTests: E2ETestCase {
     typealias Helper = GradesHelper
     typealias DetailsHelper = AssignmentsHelper.Details
     typealias EditorHelper = DetailsHelper.Editor
     typealias SubmissionsHelper = DetailsHelper.Submissions
     typealias SpeedGraderHelper = AssignmentsHelper.SpeedGrader
+
+    func testOpenAndSwipeBetweenUsers() {
+        var student1: DSUser!
+        var student2: DSUser!
+        var teacher: DSUser!
+        var course: DSCourse!
+        var assignment: DSAssignment!
+
+        XCTContext.runActivity(named: "Seed two students") { _ in
+            student1 = seeder.createUser(name: "DS iOS User A")
+            student2 = seeder.createUser(name: "DS iOS User B")
+            teacher = seeder.createUser()
+            course = seeder.createCourse()
+            assignment = AssignmentsHelper.createAssignment(course: course)
+            seeder.enrollStudent(student1, in: course)
+            seeder.enrollStudent(student2, in: course)
+            seeder.enrollTeacher(teacher, in: course)
+        }
+
+        logInDSUser(teacher)
+
+        XCTContext.runActivity(named: "Navigate to assignment's submission list") { _ in
+            DashboardHelper.courseCard(course: course).waitUntil(.visible)
+            AssignmentsHelper.navigateToAssignments(course: course)
+            let assignmentItem = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
+            assignmentItem.hit()
+            let notSubmittedButton = DetailsHelper.notSubmittedButton.waitUntil(.visible)
+            notSubmittedButton.hit()
+        }
+
+        XCTContext.runActivity(named: "Start SpeedGrader with the second student") { _ in
+            let submissionItem = SubmissionsHelper.cell(student: student2).waitUntil(.visible)
+            submissionItem.hit()
+            XCTAssertVisible(SpeedGraderHelper.userNameLabel(user: student2).waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.userButton.waitUntil(.visible))
+        }
+
+        XCTContext.runActivity(named: "Check navigation bar") { _ in
+            XCTAssertVisible(SpeedGraderHelper.doneButton.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.postPolicyButton.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.assignmentNameLabel(assignment: assignment).waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.courseNameLabel(course: course).waitUntil(.visible))
+        }
+
+        XCTContext.runActivity(named: "Swipe to the first student") { _ in
+            let firstUserNameLabel = SpeedGraderHelper.userNameLabel(user: student1)
+            firstUserNameLabel.actionUntilElementCondition(
+                action: .swipeRight(.onApp),
+                condition: .visible
+            )
+            XCTAssertVisible(firstUserNameLabel)
+        }
+    }
 
     func testGradeAssignmentSubmission() {
         // MARK: Seed the usual stuff with a submitted assignment

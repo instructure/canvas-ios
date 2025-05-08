@@ -36,9 +36,9 @@ public extension HorizonUI.Colors {
         public let pageTertiary = Color(hexString: "#E8EAEC")
         public let warning = Color(hexString: "#CF4A00")
         public let success = Color(hexString: "#03893D")
-        
+
         static let institutionWrapper = InstitutionWrapper()
-        
+
         /// Helper data struct to set and get the primary brand color that is handled as Institution Color.
         final class InstitutionWrapper: @unchecked Sendable {
             // MARK: - Private Properties

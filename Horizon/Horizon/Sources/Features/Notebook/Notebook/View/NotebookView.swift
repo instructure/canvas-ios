@@ -30,9 +30,10 @@ struct NotebookView: View {
             InstUI.BaseScreen(
                 state: viewModel.state,
                 config: .init(
-                    refreshable: false,
+                    refreshable: true,
                     loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
-                )
+                ),
+                refreshAction: viewModel.refresh
             ) { _ in
                 content
                     .padding(.all, .huiSpaces.space16)
@@ -65,27 +66,29 @@ struct NotebookView: View {
         .padding(.bottom, .huiSpaces.space16)
     }
 
+    @ViewBuilder
     private var forwardBackButtons: some View {
-        HStack {
-            HorizonUI.IconButton(
-                .huiIcons.chevronLeft,
-                type: .black,
-                isSmall: true
-            ) {
-                viewModel.previousPage()
+        if viewModel.isPaginationButtonsVisible {
+            HStack {
+                HorizonUI.IconButton(
+                    .huiIcons.chevronLeft,
+                    type: .black,
+                    isSmall: true
+                ) {
+                    viewModel.previousPage()
+                }
+                .disabled(viewModel.isPreviousDisabled)
+                HorizonUI.IconButton(
+                    .huiIcons.chevronRight,
+                    type: .black,
+                    isSmall: true
+                ) {
+                    viewModel.nextPage()
+                }
+                .disabled(viewModel.isNextDisabled)
             }
-            .disabled(viewModel.isPreviousDisabled)
-
-            HorizonUI.IconButton(
-                .huiIcons.chevronRight,
-                type: .black,
-                isSmall: true
-            ) {
-                viewModel.nextPage()
-            }
-            .disabled(viewModel.isNextDisabled)
+            .padding(.top, .huiSpaces.space24)
         }
-        .padding(.top, .huiSpaces.space24)
     }
 
     private var navigationBar: some View {

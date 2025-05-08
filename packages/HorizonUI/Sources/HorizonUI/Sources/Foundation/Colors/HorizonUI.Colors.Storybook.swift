@@ -30,7 +30,6 @@ public extension HorizonUI.Colors {
                     alignment: .leading,
                     spacing: 16
                 ) {
-
                     ForEach(colors) { section in
                         Section(
                             header: headerView(section.title)
@@ -64,7 +63,7 @@ public extension HorizonUI.Colors {
         let code: Color
         public let id: String
 
-        init(_ name: String, _ code: Color , id: String? = nil) {
+        init(_ name: String, _ code: Color, id: String? = nil) {
             self.name = name
             self.code = code
             self.id = id ?? name
@@ -76,8 +75,8 @@ public extension HorizonUI.Colors {
     HorizonUI.Colors.Storybook()
 }
 
-fileprivate extension HorizonUI.Colors {
-     struct StorybookColorModel: Identifiable {
+private extension HorizonUI.Colors {
+    struct StorybookColorModel: Identifiable {
         let title: String
         let colors: [ColorWithID]
 
@@ -87,9 +86,10 @@ fileprivate extension HorizonUI.Colors {
                 .init(title: "Text", colors: Color.huiColors.text.extractColorsWithIDs()),
                 .init(title: "Icon", colors: Color.huiColors.icon.extractColorsWithIDs()),
                 .init(title: "Line & Borders ", colors: Color.huiColors.lineAndBorders.extractColorsWithIDs()),
-                .init(title: "Surfaces", colors: Color.huiColors.surface.extractColorsWithIDs()),
+                .init(title: "Surfaces", colors: Color.huiColors.surface.extractColorsWithIDs())
             ]
         }
+
         var id: String { title }
     }
 }

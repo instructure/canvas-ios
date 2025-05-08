@@ -63,7 +63,7 @@ class GetNotebookNotesUseCase: CollectionUseCase {
         labels: [String] = [],
         courseID: String? = nil,
         pageID: String? = nil,
-        redwood: DomainService = DomainService(.redwood),
+        redwood: DomainService = DomainService(.redwood)
     ) {
         self.labels = labels
         self.courseID = courseID

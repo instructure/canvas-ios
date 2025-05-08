@@ -77,6 +77,7 @@ struct DashboardView: View {
                     .onTapGesture {
                         viewModel.navigateToCourseDetails(
                             id: course.courseId,
+                            enrollmentID: course.enrollmentID,
                             viewController: viewController
                         )
                     }

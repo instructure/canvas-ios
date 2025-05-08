@@ -26,7 +26,7 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         AppEnvironment.shared.currentSession = LoginSession.make()
-        testee = CourseSyncPeopleInteractorLive()
+        testee = CourseSyncPeopleInteractorLive(envResolver: envResolver)
 
         mockCourseColors()
         mockCourse()

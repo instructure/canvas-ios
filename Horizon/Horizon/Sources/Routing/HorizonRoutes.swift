@@ -115,9 +115,10 @@ enum HorizonRoutes {
 
     private static var courseRoutes: [RouteHandler] {
         [
-            RouteHandler("/courses/:courseID") { _, params, _ in
+            RouteHandler("/courses/:courseID/:enrollmentID") { _, params, _ in
                 let courseID = params["courseID"] ?? ""
-                return LearnAssembly.makeCourseDetailsViewController(courseID: courseID)
+                let enrollmentID = params["enrollmentID"] ?? ""
+                return LearnAssembly.makeCourseDetailsViewController(courseID: courseID, enrollmentID: enrollmentID)
             }
         ]
     }
@@ -210,10 +211,10 @@ enum HorizonRoutes {
 
     private static var externalToolRoutes: [RouteHandler] {
         [
-            RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _ in
+            RouteHandler("/courses/:courseID/external_tools/:toolID") { _, params, _, env in
                 guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
                 guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
-                let tools = LTITools(context: .course(courseID), id: toolID, isQuizLTI: nil)
+                let tools = LTITools(context: .course(courseID), id: toolID, isQuizLTI: nil, env: env)
                 tools.presentTool(from: vc, animated: true)
                 return nil
             }
@@ -369,7 +370,7 @@ extension HorizonRoutes {
                 url: url
             )
         }
-        return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID)
+        return FileDetailsViewController.create(context: context, fileID: fileID, originURL: url, assignmentID: assignmentID, environment: environment)
     }
 
     private static func fileEditor(url: URLComponents, params: [String: String], userInfo _: [String: Any]?) -> UIViewController? {

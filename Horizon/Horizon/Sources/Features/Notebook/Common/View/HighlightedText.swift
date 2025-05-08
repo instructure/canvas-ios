@@ -42,12 +42,13 @@ struct HighlightedText: View {
             .padding(.horizontal, .huiSpaces.space2)
             .padding(.top, .huiSpaces.space2)
             .huiTypography(.p1)
-            .overlay(
-                Rectangle()
-                    .frame(height: 2)
-                    .foregroundColor(firstType.color),
-                alignment: .bottom
-            )
+            .underline(true, color: firstType.color)
             .background(firstType.color.opacity(0.2))
+            .baselineOffset(3)
     }
+}
+
+#Preview {
+    HighlightedText("Important Note. Not only is it important, but it's also quite long so that it wraps.", ofTypes: [.important])
+        .padding()
 }

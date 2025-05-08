@@ -19,11 +19,12 @@
 import Core
 
 enum ScoresAssembly {
-    static func makeView(courseID: String) -> ScoresView {
+    static func makeView(courseID: String, enrollmentID: String) -> ScoresView {
         ScoresView(
             viewModel: ScoresViewModel(
                 interactor: ScoresInteractorLive(
-                    courseID: courseID
+                    courseID: courseID,
+                    enrollmentID: enrollmentID
                 ),
                 router: AppEnvironment.shared.router
             )
@@ -34,10 +35,11 @@ enum ScoresAssembly {
         ScoresView(viewModel: viewModel)
     }
 
-    static func makeViewModel(courseID: String) -> ScoresViewModel {
+    static func makeViewModel(courseID: String, enrollmentID: String) -> ScoresViewModel {
         ScoresViewModel(
             interactor: ScoresInteractorLive(
-                courseID: courseID
+                courseID: courseID,
+                enrollmentID: enrollmentID
             ),
             router: AppEnvironment.shared.router
         )

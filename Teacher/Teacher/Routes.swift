@@ -175,13 +175,13 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, _, env in
         guard
             let context = Context(path: url.path),
-            let assignmentID = url.queryValue(for: "assignment_id")
+            let assignmentId = url.queryValue(for: "assignment_id")
         else { return nil }
 
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
-            assignmentID: assignmentID,
-            userID: url.queryValue(for: "student_id"),
+            assignmentId: assignmentId,
+            userId: url.queryValue(for: "student_id"),
             env: env,
             filter: [])
     },
@@ -189,8 +189,8 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _, env in
         guard
             let context = Context(path: url.path),
-            let assignmentID = params["assignmentID"],
-            let userID = params["userID"]
+            let assignmentId = params["assignmentID"],
+            let userId = params["userID"]
         else { return nil }
 
         let filter = url
@@ -201,8 +201,8 @@ let router = Router(routes: [
             } ?? []
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
-            assignmentID: assignmentID,
-            userID: userID,
+            assignmentId: assignmentId,
+            userId: userId,
             env: env,
             filter: filter)
     },
@@ -450,7 +450,7 @@ let router = Router(routes: [
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
     }
-])
+], courseTabUrlInteractor: .init())
 
 private func discussionDetails(
     url: URLComponents,
@@ -485,7 +485,7 @@ private func discussionDetails(
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?, environment: AppEnvironment) -> UIViewController? {
     guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {
-        return fileDetails(url: url, params: params, userInfo: userInfo)
+        return fileDetails(url: url, params: params, userInfo: userInfo, env: environment)
     }
     return FileListViewController.create(
         env: environment,
@@ -494,10 +494,10 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
     )
 }
 
-private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
     let canEdit = url.queryItems?.first(where: { $0.name == "canEdit" })?.value?.boolValue ?? true
-    return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID, originURL: url, canEdit: canEdit)
+    return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID, originURL: url, canEdit: canEdit, environment: env)
 }
 
 private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

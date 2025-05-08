@@ -214,7 +214,7 @@ extension SubmissionListViewController: UITableViewDataSource, UITableViewDelega
             env.router.route(
                 to: "/\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)\(query)",
                 from: self,
-                options: .modal(.fullScreen, isDismissable: false)
+                options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
             )
         }
     }
