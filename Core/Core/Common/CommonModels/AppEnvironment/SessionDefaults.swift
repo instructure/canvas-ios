@@ -235,11 +235,6 @@ public struct SessionDefaults: Equatable {
         set { self["selectedSortByOptionIDs"] = newValue }
     }
 
-    public var selectedSortByOptionIDs: [String: String]? {
-        get { self["selectedSortByOptionIDs"] as? [String: String] }
-        set { self["selectedSortByOptionIDs"] = newValue }
-    }
-
     // MARK: - Assignments
     public var assignmentListGroupBySettingByCourseId: [String: String]? {
         get { self["assignmentListGroupBySettingByCourseId"] as? [String: String] }

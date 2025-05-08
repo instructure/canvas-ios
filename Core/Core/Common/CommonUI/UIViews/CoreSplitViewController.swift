@@ -73,34 +73,6 @@ public class CoreSplitViewController: UISplitViewController {
         preBackgroundedSecondaryController = nil
     }
 
-    private func setupBackgroundStateObservers() {
-        NotificationCenter
-            .default
-            .publisher(for: UIApplication.didEnterBackgroundNotification)
-            .mapToVoid()
-            .sink { [weak self] in
-                self?.saveCurrentSecondaryController()
-            }
-            .store(in: &subscriptions)
-
-        NotificationCenter
-            .default
-            .publisher(for: UIApplication.willEnterForegroundNotification)
-            .mapToVoid()
-            .sink { [weak self] in
-                self?.removePreBackgroundedSecondaryController()
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func saveCurrentSecondaryController() {
-        preBackgroundedSecondaryController = viewControllers.last
-    }
-
-    private func removePreBackgroundedSecondaryController() {
-        preBackgroundedSecondaryController = nil
-    }
-
     public override var prefersStatusBarHidden: Bool {
         return masterNavigationController?.prefersStatusBarHidden ?? false
     }
