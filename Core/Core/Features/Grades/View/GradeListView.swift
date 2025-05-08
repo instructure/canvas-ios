@@ -241,6 +241,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.", bundle: .core)
         )
         .padding(.horizontal, 16)
+        .accessibilityIdentifier("GradeList.emptyView")
         .containerRelativeFrame([.horizontal, .vertical])
     }
 
