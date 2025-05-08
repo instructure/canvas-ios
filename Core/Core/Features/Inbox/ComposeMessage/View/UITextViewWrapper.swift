@@ -19,28 +19,36 @@
 import Foundation
 import SwiftUI
 
-struct UITextViewWrapper: UIViewRepresentable {
+public struct UITextViewWrapper: UIViewRepresentable {
     @Binding var text: String
     let textViewBuilder: () -> UITextView
 
-    func makeUIView(context: UIViewRepresentableContext<UITextViewWrapper>) -> UITextView {
+    public init(
+        text: Binding<String>,
+        textViewBuilder: @escaping () -> UITextView
+    ) {
+        self._text = text
+        self.textViewBuilder = textViewBuilder
+    }
+
+    public func makeUIView(context: UIViewRepresentableContext<UITextViewWrapper>) -> UITextView {
         let tv = textViewBuilder()
         tv.delegate = context.coordinator
         return tv
     }
 
-    func updateUIView(_ textView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
+    public func updateUIView(_ textView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
         if text != textView.text {
             textView.text = text
         }
     }
 
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         let coordinator = Coordinator(self)
         return coordinator
     }
 
-    class Coordinator: NSObject, UITextViewDelegate {
+    public class Coordinator: NSObject, UITextViewDelegate {
 
         var parent: UITextViewWrapper
 
@@ -48,7 +56,7 @@ struct UITextViewWrapper: UIViewRepresentable {
             self.parent = textField
         }
 
-        func textViewDidChange(_ textView: UITextView) {
+        public func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
         }
     }

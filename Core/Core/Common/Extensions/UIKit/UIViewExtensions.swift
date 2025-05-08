@@ -23,7 +23,7 @@ extension UIView: ViewLoader {}
 extension ViewLoader where Self: UIView {
     /// Returns a newly initialized view controller.
     /// This can assume the nib name matches the type name and the bundle contains the type.
-    public static func loadFromXib(nibName name: String = String(describing: Self.self)) -> Self {
+    public static  func loadFromXib(nibName name: String = String(describing: Self.self)) -> Self {
         guard let view = Bundle(for: self).loadNibNamed(name, owner: self, options: nil)?.first as? Self else {
             fatalError("Could not create \(name) from a xib.")
         }

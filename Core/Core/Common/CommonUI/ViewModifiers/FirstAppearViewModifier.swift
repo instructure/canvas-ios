@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-extension View {
-    public func onFirstAppear(perform action: (() -> Void)? = nil) -> some View {
+public extension View {
+    func onFirstAppear(perform action: (() -> Void)? = nil) -> some View {
         modifier(FirstAppearViewModifier(action: action))
     }
 }
