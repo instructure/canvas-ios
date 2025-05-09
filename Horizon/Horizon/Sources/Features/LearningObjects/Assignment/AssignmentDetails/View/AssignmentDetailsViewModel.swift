@@ -330,7 +330,6 @@ final class AssignmentDetailsViewModel {
                 switch result {
                 case .success:
                     self?.fetchSubmissions()
-                    self?.interactor.cancelAllFiles()
                 case let .failure(error):
                     self?.isLoaderVisible = false
                     self?.errorMessage = error.localizedDescription
