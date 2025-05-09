@@ -16,32 +16,65 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 import Core
 
 struct AssistFlashCardItemView: View {
     let item: AssistFlashCardModel
 
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(item.title)
-                .font(.regular16)
-            Spacer()
-            Text(item.currentContent)
-                .multilineTextAlignment(.leading)
-                .font(.regular20)
+    @State
+    private var isScrollable: Bool = true
 
-            Spacer()
-            Text("Tap to flip", bundle: .horizon)
-                .font(.regular12)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .foregroundStyle(item.isFlipped ? Color.textLightest : Color.textDark)
-        .rotation3DEffect(.degrees(item.isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
-        .padding(14)
-        .background {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(item.isFlipped ? Color.backgroundLightest.opacity(0.2) : Color.backgroundLightest)
+    private var isFlipped: Bool {
+        item.isFlipped
+    }
+
+    private var textColor: Color {
+        isFlipped ? HorizonUI.colors.text.body : HorizonUI.colors.text.surfaceColored
+    }
+
+    var body: some View {
+        GeometryReader { geometry in
+            VStack(alignment: .leading) {
+                Text(item.title)
+                    .foregroundStyle(textColor)
+                    .huiTypography(.p1)
+                    .padding(.horizontal, HorizonUI.spaces.space24)
+                    .padding(.top, HorizonUI.spaces.space24)
+                Spacer()
+                ScrollView(
+                    [.vertical],
+                    showsIndicators: isScrollable
+                ) {
+                    Text(item.currentContent)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .foregroundStyle(textColor)
+                        .huiTypography(.sh3)
+                        .padding(.horizontal, HorizonUI.spaces.space24)
+                        .readingFrame { frame in
+                            isScrollable = frame.size.height > geometry.size.height
+                        }
+                }
+                .disabled(!isScrollable)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                Spacer()
+
+                Text("Tap to flip", bundle: .horizon)
+                    .huiTypography(.labelSmall)
+                    .foregroundStyle(textColor)
+                    .padding(.horizontal, HorizonUI.spaces.space24)
+                    .padding(.bottom, HorizonUI.spaces.space24)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(item.isFlipped ? Color.textLightest : Color.textDark)
+            .rotation3DEffect(.degrees(item.isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
+            .background {
+                RoundedRectangle(cornerRadius: HorizonUI.spaces.space16)
+                    .fill(Color.backgroundLightest.opacity(item.isFlipped ? 1.0 : 0.1))
+            }
         }
     }
 }
