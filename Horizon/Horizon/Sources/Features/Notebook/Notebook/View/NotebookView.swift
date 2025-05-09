@@ -141,6 +141,8 @@ struct NotebookView: View {
             )
             .huiTypography(.p1)
         }
+        .padding(.horizontal, viewModel.isNavigationBarVisible ? .huiSpaces.space24 : 0)
+        .padding(.vertical, viewModel.isNavigationBarVisible ? .huiSpaces.space32 : 0)
     }
 }
 
