@@ -49,6 +49,7 @@ final class HEmbeddedWebPageContainerViewModel {
 
     private func constructURL(from webPage: EmbeddedWebPageViewModel) -> URL? {
         var baseURL = AppEnvironment.shared.currentSession?.baseURL
+        baseURL = baseURL?.replaceHostWithCanvasForCareer()
         baseURL?.appendPathComponent(webPage.urlPathComponent)
         baseURL?.append(queryItems: webPage.queryItems)
         baseURL?.append(queryItems: [

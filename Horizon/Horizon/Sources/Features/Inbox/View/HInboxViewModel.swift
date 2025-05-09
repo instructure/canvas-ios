@@ -16,25 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum NotAvailableYetFeature {
-    case skillspace
-    case inbox
+import Core
+import Foundation
+import WebKit
 
-    var description: String {
-        switch self {
-        case .skillspace:
-            return String(localized: "Skillspace", bundle: .horizon)
-        case .inbox:
-            return String(localized: "your inbox", bundle: .horizon)
-        }
-    }
+final class HInboxViewModel: EmbeddedWebPageViewModel {
+    var urlPathComponent: String
+    var queryItems: [URLQueryItem] = []
+    var navigationBarTitle: String
 
-    var path: String {
-        switch self {
-        case .skillspace:
-            return "skillspace"
-        case .inbox:
-            return "inbox"
-        }
+    init() {
+        urlPathComponent = "/inbox"
+        navigationBarTitle = String(localized: "Inbox", bundle: .horizon)
     }
 }

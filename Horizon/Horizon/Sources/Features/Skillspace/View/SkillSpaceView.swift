@@ -16,27 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 import HorizonUI
 
 struct SkillSpaceView: View {
     // TODO: - Set with correct url later
-    @Environment(\.viewController) private var viewController
     private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
 
-    let notAvailableYetFeatureView: NotAvailableYetFeatureView
+    let viewModel: HEmbeddedWebPageContainerViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space24) {
-            navigationBar
-            Text("Skillspace", bundle: .horizon)
-                .huiTypography(.h1)
-                .foregroundStyle(Color.huiColors.text.body)
-            notAvailableYetFeatureView
-        }
-        .frame(maxHeight: .infinity, alignment: .top)
-        .padding(.horizontal, .huiSpaces.space24)
+        HEmbeddedWebPageContainerView(viewModel: viewModel)
+            .toolbar(.hidden)
+            .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
     }
 
     private var navigationBar: some View {
@@ -44,21 +36,7 @@ struct SkillSpaceView: View {
             HorizonUI.NavigationBar.Leading(logoURL: logoURL)
             Spacer()
         }
+        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.bottom, .huiSpaces.space4)
     }
-}
-
-#Preview {
-    VStack(alignment: .leading) {
-        SkillSpaceView(
-            notAvailableYetFeatureView: NotAvailableYetFeatureView(
-                viewModel: NotAvailableYetFeatureViewModel(
-                    feature: .inbox,
-                    router: AppEnvironment.shared.router,
-                    baseURL: URL(string: "https://www.instructure.com")!
-                )
-            )
-        )
-        .frame(maxHeight: .infinity)
-    }
-    .frame(maxHeight: .infinity)
 }
