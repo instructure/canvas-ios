@@ -25,6 +25,12 @@ public extension HorizonUI.Pill.Style {
         let textColor: Color
         let iconColor: Color
 
+        public init(borderColor: Color, textColor: Color, iconColor: Color) {
+            self.borderColor = borderColor
+            self.textColor = textColor
+            self.iconColor = iconColor
+        }
+
         public static let `default` = Outline(
             borderColor: .huiColors.surface.inversePrimary,
             textColor: .huiColors.text.body,

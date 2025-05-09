@@ -20,6 +20,32 @@
         }
       }
     },
+    "%@ Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment."
+    },
+    "%lld Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Attempt Allowed"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld Attempts Allowed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Abu Dhabi (+04:00/+04:00)" : {
 
     },
@@ -264,6 +290,9 @@
 
     },
     "Dublin (+01:00/+00:00)" : {
+
+    },
+    "Due" : {
 
     },
     "Due Date" : {
@@ -632,6 +661,9 @@
     "Osaka (+09:00)" : {
 
     },
+    "Overdue" : {
+
+    },
     "Overview" : {
 
     },
@@ -656,6 +688,9 @@
 
     },
     "Philippines (+08:00)" : {
+
+    },
+    "Points Possible" : {
 
     },
     "Port Moresby (+10:00/+10:00)" : {
