@@ -37,7 +37,6 @@ class DashboardViewModel {
 
     // MARK: - Dependencies
 
-    private let getDashboardCoursesInteractor: DashboardInteractor
     private let getCoursesInteractor: GetCoursesInteractor
     private let router: Router
 
@@ -50,11 +49,9 @@ class DashboardViewModel {
     // MARK: - Init
 
     init(
-        getDashboardCoursesInteractor: DashboardInteractor,
         getCoursesInteractor: GetCoursesInteractor,
         router: Router
     ) {
-        self.getDashboardCoursesInteractor = getDashboardCoursesInteractor
         self.getCoursesInteractor = getCoursesInteractor
         self.router = router
         getCourses()
@@ -74,7 +71,7 @@ class DashboardViewModel {
         getDashboardCoursesCancellable?.cancel()
         refreshCompletedModuleItemCancellable?.cancel()
 
-        getDashboardCoursesCancellable = getDashboardCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
+        getDashboardCoursesCancellable = getCoursesInteractor.getCourses(ignoreCache: ignoreCache)
             .sink { [weak self] items in
                 self?.courses = items.filter { $0.state == DashboardCourse.EnrollmentState.active.rawValue }
                 let invitedCourses = items.filter { $0.state == DashboardCourse.EnrollmentState.invited.rawValue }

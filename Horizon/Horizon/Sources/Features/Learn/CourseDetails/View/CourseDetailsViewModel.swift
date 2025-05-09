@@ -57,7 +57,7 @@ final class CourseDetailsViewModel {
         self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID, enrollmentID: enrollmentID)
         self.isLoaderVisible = true
 
-        getCoursesInteractor.getCourse(id: courseID, ignoreCache: false)
+        getCoursesInteractor.getCourseAndModules(id: courseID, ignoreCache: false)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
                 let currentProgress = self.course.progress
@@ -69,10 +69,11 @@ final class CourseDetailsViewModel {
             }
             .store(in: &subscriptions)
 
-        refreshCompletedModuleItemCancellable = getCoursesInteractor.fetchCourseProgression(courseId: courseID)
-            .sink { [weak self] progress in
-                self?.course.progress = progress
-            }
+//        refreshCompletedModuleItemCancellable = getCoursesInteractor.fetchCourseProgression(courseId: courseID)
+//            .sink { [weak self] progress in
+//                print("🟨 pro", progress)
+//                self?.course.progress = progress
+//            }
     }
 
     deinit {
@@ -88,7 +89,7 @@ final class CourseDetailsViewModel {
         NotificationCenter.default.post(name: .courseDetailsForceRefreshed, object: nil)
 
         await withCheckedContinuation { continuation in
-            getCoursesInteractor.getCourse(id: courseID, ignoreCache: true)
+            getCoursesInteractor.getCourseAndModules(id: courseID, ignoreCache: true)
                 .first()
                 .sink { [weak self] course in
                     continuation.resume()

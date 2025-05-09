@@ -82,8 +82,8 @@ struct DashboardView: View {
                         )
                     }
 
-                if let learningObjectCardViewModel = course.learningObjectCardViewModel {
-                    learningObjectCard(model: learningObjectCardViewModel, progress: course.progress)
+                if let learningObjectCardModel = course.learningObjectCardModel {
+                    learningObjectCard(model: learningObjectCardModel, progress: course.progress)
                 } else {
                     Text("Congrats! You've completed your course.", bundle: .horizon)
                         .huiTypography(.h3)

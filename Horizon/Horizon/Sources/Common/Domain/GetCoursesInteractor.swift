@@ -23,10 +23,10 @@ import Core
 import Foundation
 
 protocol GetCoursesInteractor {
-    func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
-    func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
+    func getCoursesAndModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
+    func getCourseAndModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
-    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -48,28 +48,44 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     // MARK: - Functions
 
-    func getCourses(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
+    func getCoursesAndModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         fetchCourses(ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
-    func getCourse(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
+    func getCourseAndModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
         fetchCourses(courseId: id, ignoreCache: ignoreCache)
             .map { $0.first }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
-    func fetchCourseProgression(courseId: String) -> AnyPublisher<Double, Never> {
-        NotificationCenter.default
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
+        unowned let unownedSelf = self
+
+        return NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)
-            .flatMap { [self] _ in
-                ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userId, courseId: courseId))
-                    .getEntities(ignoreCache: true)
+            .prepend(.init(name: .moduleItemRequirementCompleted))
+            .delay(for: .milliseconds(500), scheduler: scheduler)
+            .flatMapLatest {
+                let shouldIgnoreCache = $0.object != nil ? true : ignoreCache
+                return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: unownedSelf.userId, horizonCourses: true))
+                    .getEntities(ignoreCache: shouldIgnoreCache)
                     .replaceError(with: [])
-                    .compactMap { $0.first?.completionPercentage }
+                    .flatMap {
+                        $0.publisher
+                            .flatMap { $0.mapToDashboardCourse() }
+                            .compactMap { $0 }
+                            .collect()
+                    }
             }
+            .map { courses in
+                courses.sorted {
+                    ($0.learningObjectCardModel != nil) && ($1.learningObjectCardModel == nil)
+                }
+            }
+            .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
@@ -97,20 +113,20 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     private func fetchCourses(courseId: String? = nil, ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         unowned let unownedSelf = self
 
-        return ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: unownedSelf.userId, courseId: courseId, horizonCourses: true))
-            .getEntities(ignoreCache: ignoreCache)
+        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: unownedSelf.userId, courseId: courseId, horizonCourses: true))
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
             .eraseToAnyPublisher()
     }
 
-    private func fetchModules(dashboardCourses: [CDDashboardCourse], ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
+    private func fetchModules(dashboardCourses: [CDCourse], ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         let publishers = dashboardCourses.map { $0.fetchModules(ignoreCache: ignoreCache) }
         return publishers.combineLatest().eraseToAnyPublisher()
     }
 }
 
-extension CDDashboardCourse {
+private extension CDCourse {
     func mapToDashboardCourse() -> AnyPublisher<DashboardCourse?, Never> {
         let name = course.name ?? ""
         let progress = completionPercentage / 100.0
@@ -123,7 +139,7 @@ extension CDDashboardCourse {
                     courseId: courseID,
                     state: state,
                     enrollmentID: enrollmentID,
-                    learningObjectCardViewModel: nil
+                    learningObjectCardModel: nil
                 )
             )
             .eraseToAnyPublisher()
@@ -144,14 +160,12 @@ extension CDDashboardCourse {
                 courseId: courseID,
                 state: state,
                 enrollmentID: enrollmentID,
-                learningObjectCardViewModel: moduleItem
+                learningObjectCardModel: moduleItem
             )
         )
         .eraseToAnyPublisher()
     }
-}
 
-private extension CDDashboardCourse {
     func fetchModules(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
         let courseID = courseID
         let institutionName = institutionName

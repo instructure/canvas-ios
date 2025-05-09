@@ -22,12 +22,26 @@ import Core
 import Foundation
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourses(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
+    func getCourses(ignoreCache _: Bool) -> AnyPublisher<[DashboardCourse], Never> {
+        Just(
+            [.init(
+                name: "AI Introductions",
+                progress: 0.2,
+                courseId: "11",
+                state: "active",
+                enrollmentID: "222",
+                learningObjectCardModel: nil
+            )]
+        )
+        .eraseToAnyPublisher()
+    }
+    
+    func getCoursesAndModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
         Just([course])
             .eraseToAnyPublisher()
     }
 
-    func getCourse(id _: String, ignoreCache _: Bool) -> AnyPublisher<HCourse?, Never> {
+    func getCourseAndModules(id _: String, ignoreCache _: Bool) -> AnyPublisher<HCourse?, Never> {
         Just(course)
             .eraseToAnyPublisher()
     }

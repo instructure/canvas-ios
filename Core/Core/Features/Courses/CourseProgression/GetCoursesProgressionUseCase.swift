@@ -16,21 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-public class GetDashboardCoursesWithProgressionsUseCase: APIUseCase {
-
+public class GetCoursesProgressionUseCase: APIUseCase {
     // MARK: - Typealias
 
-    public typealias Model = CDDashboardCourse
+    public typealias Model = CDCourse
     public typealias Request = GetCoursesProgressionRequest
 
     // MARK: - Properties
 
     public var cacheKey: String? {
-        return "dashboard-courses"
+        if let courseId {
+            return "courses-progression-\(courseId)"
+        } else {
+            return "courses-progression"
+        }
     }
+
     private let courseId: String?
     private let userId: String
     private let horizonCourses: Bool
@@ -51,20 +55,19 @@ public class GetDashboardCoursesWithProgressionsUseCase: APIUseCase {
 
     public func write(
         response: GetCoursesProgressionResponse?,
-        urlResponse: URLResponse?,
+        urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
         enrollments.forEach { enrollment in
-            CDDashboardCourse.save(enrollment, in: client)
+            CDCourse.save(enrollment, in: client)
         }
     }
 
     public var scope: Scope {
         if let courseId = courseId {
-            return .where(#keyPath(CDDashboardCourse.courseID), equals: courseId)
+            return .where(#keyPath(CDCourse.courseID), equals: courseId)
         }
         return .all
     }
-
 }

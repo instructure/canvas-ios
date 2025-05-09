@@ -58,7 +58,7 @@ final class CourseListViewModel: ObservableObject {
     private func getCourses(ignoreCache: Bool, completion: (() -> Void)? = nil) {
         unowned let unownedSelf = self
 
-        interactor.getCourses(ignoreCache: ignoreCache)
+        interactor.getCoursesAndModules(ignoreCache: ignoreCache)
             .sink { hCourses in
                 unownedSelf.courses = hCourses.map {
                     CourseListCourse(

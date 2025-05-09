@@ -24,7 +24,7 @@ struct DashboardCourse: Identifiable {
     let courseId: String
     let state: String
     let enrollmentID: String
-    let learningObjectCardViewModel: LearningObjectCard?
+    let learningObjectCardModel: LearningObjectCard?
     var id: String { name }
 
     enum EnrollmentState: String {
