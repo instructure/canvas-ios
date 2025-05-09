@@ -526,7 +526,18 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
     func publish(action: AssistChatAction) {}
-    var listen: AnyPublisher<AssistChatResponse, Error> = Empty().eraseToAnyPublisher()
+    var listen: AnyPublisher<AssistChatResponse, Error> = Just(
+        AssistChatResponse(
+            quizItem: .init(
+                question: "What is the capital of France?",
+                answers: ["Paris", "London", "Berlin", "Madrid"],
+                correctAnswerIndex: 0
+            ),
+            chatHistory: []
+        )
+    )
+    .setFailureType(to: Error.self)
+    .eraseToAnyPublisher()
 }
 
 extension API {

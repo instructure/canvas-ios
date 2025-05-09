@@ -125,8 +125,10 @@ struct CourseDetailsView: View {
                             .id(index)
                     case .scores:
                         ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
+                            .padding(.horizontal, .huiSpaces.space24)
                     case .notebook:
                         notebookView
+                            .padding(.horizontal, .huiSpaces.space24)
                     }
                 }
                 .scaleEffect(index == selectedTabIndex ? 1 : 0.8)
@@ -135,7 +137,6 @@ struct CourseDetailsView: View {
                     await viewModel.refresh()
                 }
             }
-            .padding(.horizontal, .huiSpaces.space24)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .animation(.smooth, value: selectedTabIndex)
