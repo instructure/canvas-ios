@@ -19,7 +19,6 @@
 import SwiftUI
 
 extension View {
-    @ViewBuilder
     public func scaledOffset(x: CGFloat = 0, y: CGFloat = 0, useIconScale: Bool = false, alignment: Alignment = .center) -> some View {
         modifier(ScaledOffsetModifier(x: x, y: y, useIconScale: useIconScale))
     }

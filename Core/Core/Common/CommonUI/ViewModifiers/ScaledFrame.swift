@@ -19,12 +19,10 @@
 import SwiftUI
 
 extension View {
-    @ViewBuilder
     public func scaledFrame(width: CGFloat? = nil, height: CGFloat? = nil, useIconScale: Bool = false, alignment: Alignment = .center) -> some View {
         modifier(ScaledFrameModifier(width: width, height: height, useIconScale: useIconScale, alignment: alignment))
     }
 
-    @ViewBuilder
     public func scaledFrame(size: CGFloat? = nil, useIconScale: Bool = false, alignment: Alignment = .center) -> some View {
         modifier(ScaledFrameModifier(width: size, height: size, useIconScale: useIconScale, alignment: alignment))
     }
