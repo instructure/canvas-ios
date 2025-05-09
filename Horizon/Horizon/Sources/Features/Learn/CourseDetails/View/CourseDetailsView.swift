@@ -24,15 +24,11 @@ struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
-    @State private var isShowHeader: Bool = true
-    /// Threshold value used to determine header visibility adjustments.
-    /// A negative value (-100) indicates the scroll offset at which the header should hide.
-    private let threshold: CGFloat = -100
+    @State private var webViewHeight: CGFloat?
     private var tabs: [Tabs] {
         let showingOverview = !viewModel.course.overviewDescription.isEmpty
         return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
     }
-
     // MARK: - Dependencies
 
     private let notebookView: NotebookView
@@ -51,26 +47,19 @@ struct CourseDetailsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            if isShowHeader {
+            if viewModel.isShowHeader {
                 headerView
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
-            tabSelectorView
-            ScrollView {
-                topView
-                learningContentView()
-            }
-            .refreshable {
-                await viewModel.refresh()
-            }
+            learningContentView()
         }
         .padding(.top, .huiSpaces.space12)
         .hidden(viewModel.isLoaderVisible)
+        .animation(.linear, value: viewModel.isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .onAppear { viewModel.showTabBar() }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .toolbar(.hidden)
-        .animation(.linear, value: isShowHeader)
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -113,31 +102,10 @@ struct CourseDetailsView: View {
 
     private func learningContentView() -> some View {
         VStack(spacing: .huiSpaces.space24) {
-            let selectedTab = tabs[safe: viewModel.selectedTabIndex] ?? .myProgress
-            switch selectedTab {
-            case .myProgress:
-                modulesView(modules: viewModel.course.modules)
-                    .id(viewModel.selectedTabIndex)
-            case .overview:
-                overview(htmlString: viewModel.course.overviewDescription)
-                    .id(viewModel.selectedTabIndex)
-            case .scores:
-                ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
-            case .notebook:
-                notebookView
-            }
+            tabSelectorView
+            tabDetailsView()
         }
-        .padding(.huiSpaces.space24)
-        .animation(.smooth, value: viewModel.selectedTabIndex)
         .background(Color.huiColors.surface.pagePrimary)
-    }
-
-    private var topView: some View {
-        Color.clear
-            .frame(height: 0)
-            .readingFrame { frame in
-                isShowHeader = frame.minY > threshold
-            }
     }
 
     private var tabSelectorView: some View {
@@ -149,6 +117,47 @@ struct CourseDetailsView: View {
             )
         )
         .background(Color.huiColors.surface.pagePrimary)
+    }
+
+    private func tabDetailsView() -> some View {
+        TabView(selection: $viewModel.selectedTabIndex) {
+            ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
+                ScrollView(.vertical, showsIndicators: false) {
+                    topView
+                    switch tab {
+                    case .myProgress:
+                        modulesView(modules: viewModel.course.modules)
+                            .id(index)
+                            .padding(.bottom, .huiSpaces.space24)
+                    case .overview:
+                        overview(htmlString: viewModel.course.overviewDescription)
+                            .id(index)
+                            .padding(.bottom, .huiSpaces.space24)
+                    case .scores:
+                        ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
+                    case .notebook:
+                        notebookView
+                            .padding(.bottom, .huiSpaces.space24)
+                    }
+                }
+                .scaleEffect(index == viewModel.selectedTabIndex ? 1 : 0.8)
+                .tag(index)
+                .refreshable {
+                    await viewModel.refresh()
+                }
+            }
+            .padding(.horizontal, .huiSpaces.space24)
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .animation(.smooth, value: viewModel.selectedTabIndex)
+    }
+
+    private var topView: some View {
+        Color.clear
+            .frame(height: 0)
+            .readingFrame { frame in
+                viewModel.showHeaderPublisher.send(frame.minY > -100)
+            }
     }
 
     private func modulesView(modules: [HModule]) -> some View {
@@ -168,14 +177,19 @@ struct CourseDetailsView: View {
     private func overview(htmlString: String?) -> some View {
         if let htmlString {
             WebView(html: htmlString, isScrollEnabled: false)
-                .frameToFit()
+                .onChangeSize { height in
+                    if webViewHeight == nil {
+                        webViewHeight = height
+                    }
+                }
+                .frame(height: webViewHeight ?? 0)
                 .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         }
     }
 }
 
 extension CourseDetailsView {
-    enum Tabs: Int, CaseIterable, Identifiable {
+    enum Tabs: CaseIterable, Identifiable {
         case overview
         case myProgress
         case scores

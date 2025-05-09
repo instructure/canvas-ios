@@ -141,8 +141,6 @@ struct NotebookView: View {
             )
             .huiTypography(.p1)
         }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.vertical, .huiSpaces.space32)
     }
 }
 

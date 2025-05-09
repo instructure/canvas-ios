@@ -26,9 +26,14 @@ final class CourseDetailsViewModel {
 
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var course: HCourse
+    private(set) var isShowHeader = true
     let courseID: String
     private(set) var isLoaderVisible: Bool = false
     let scoresViewModel: ScoresViewModel
+
+    // MARK: - Inputs
+
+    private(set) var showHeaderPublisher = PassthroughSubject<Bool, Never>()
 
     // MARK: - Inputs / Outputs
 
@@ -79,6 +84,14 @@ final class CourseDetailsViewModel {
             .sink { [weak self] progress in
                 self?.course.progress = progress
             }
+
+        showHeaderPublisher
+            .removeDuplicates()
+            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.isShowHeader = value
+            }
+            .store(in: &subscriptions)
     }
 
     deinit {
