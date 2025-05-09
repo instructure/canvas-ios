@@ -50,4 +50,18 @@ extension View {
             self
         }
     }
+
+    /// This method can be used to trigger a callback when the size of the view changes.
+    public func onSizeChange(_ perform: @escaping (CGSize) -> Void) -> some View {
+        overlay {
+            GeometryReader { geometry in
+                Color.clear
+                    .onGeometryChange(for: CGSize.self) { geometry in
+                        geometry.size
+                    } action: { size in
+                        perform(size)
+                    }
+            }
+        }
+    }
 }

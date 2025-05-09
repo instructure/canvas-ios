@@ -22,10 +22,13 @@ import Core
 struct SubmissionHeaderView: View {
     let assignment: Assignment
     let submission: Submission
+    let isLandscapeLayout: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @ScaledMetric private var uiScale: CGFloat = 1
+    @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    @State private var profileSize = CGSize.zero
 
     var isGroupSubmission: Bool { !assignment.gradedIndividually && submission.groupID != nil }
     var groupName: String? { isGroupSubmission ? submission.groupName : nil }
@@ -58,9 +61,15 @@ struct SubmissionHeaderView: View {
                 }
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 0))
             })
-                .buttonStyle(PlainButtonStyle())
-                .identifier("SpeedGrader.userButton")
+            .buttonStyle(PlainButtonStyle())
+            .onSizeChange { size in
+                profileSize = size
+            }
+            .identifier("SpeedGrader.userButton")
             Spacer()
+            if isLandscapeLayout {
+                resizeDragger
+            }
         }
     }
 
@@ -92,4 +101,41 @@ struct SubmissionHeaderView: View {
             options: .modal(embedInNav: true, addDoneButton: true)
         )
     }
+
+    private var resizeDragger: some View {
+        return Image.moveEndLine
+            .size(uiScale.iconScale * 24)
+            .rotationEffect(landscapeSplitLayoutViewModel.dragIconRotation)
+            .paddingStyle(.horizontal, .standard)
+            .frame(maxHeight: profileSize.height)
+            .contentShape(Rectangle())
+            .gesture(resizeGesture)
+            .onTapGesture {
+                landscapeSplitLayoutViewModel.didTapDragIcon()
+            }
+    }
+
+    private var resizeGesture: some Gesture {
+        DragGesture(
+            minimumDistance: 5,
+            coordinateSpace: .global
+        )
+        .onChanged { value in
+            let translation = value.translation.width
+            landscapeSplitLayoutViewModel.dragDidUpdate(horizontalTranslation: translation)
+        }
+        .onEnded { _ in
+            landscapeSplitLayoutViewModel.dragDidEnd()
+        }
+    }
+}
+
+#Preview {
+    let testData = SpeedGraderAssembly.testData()
+    SubmissionHeaderView(
+        assignment: testData.assignment,
+        submission: testData.submissions[0],
+        isLandscapeLayout: true,
+        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
+    )
 }

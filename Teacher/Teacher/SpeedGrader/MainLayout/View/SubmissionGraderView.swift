@@ -45,6 +45,7 @@ struct SubmissionGraderView: View {
     @StateObject private var commentLibrary = SubmissionCommentLibraryViewModel()
     @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SubmissionGraderViewModel
+    @StateObject private var landscapeSplitLayoutViewModel = SpeedGraderLandscapeSplitLayoutViewModel()
 
     private var handleRefresh: (() -> Void)?
 
@@ -94,6 +95,10 @@ struct SubmissionGraderView: View {
             }
         }
         .avoidKeyboardArea()
+        .onSizeChange { newSize in
+            landscapeSplitLayoutViewModel.updateScreenWidth(newSize.width)
+        }
+        .clipped()
     }
 
     private func updateSegmentedControlAppearance() {
@@ -133,7 +138,9 @@ struct SubmissionGraderView: View {
             VStack(spacing: 0) {
                 SubmissionHeaderView(
                     assignment: viewModel.assignment,
-                    submission: viewModel.submission
+                    submission: viewModel.submission,
+                    isLandscapeLayout: true,
+                    landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
                 )
                 .accessibility(sortPriority: 2)
                 .measuringSize($profileHeaderSize)
@@ -162,11 +169,12 @@ struct SubmissionGraderView: View {
                 .zIndex(1)
                 .accessibility(sortPriority: 1)
             }
+            .frame(width: landscapeSplitLayoutViewModel.leftColumnWidth)
             Divider()
             VStack(spacing: 0) {
                 tools(bottomInset: bottomInset, isDrawer: false)
             }
-            .frame(width: 375)
+            .frame(width: landscapeSplitLayoutViewModel.rightColumnWidth)
         }
         .onAppear { didChangeLayout(to: .landscape) }
     }
@@ -178,7 +186,12 @@ struct SubmissionGraderView: View {
     ) -> some View {
         ZStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 0) {
-                SubmissionHeaderView(assignment: viewModel.assignment, submission: viewModel.submission)
+                SubmissionHeaderView(
+                    assignment: viewModel.assignment,
+                    submission: viewModel.submission,
+                    isLandscapeLayout: false,
+                    landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
+                )
                 attemptToggle
                     .accessibility(hidden: drawerState == .max)
                 Divider()
@@ -316,7 +329,8 @@ struct SubmissionGraderView: View {
             .identifier("SpeedGrader.toolPicker")
             Divider()
         } else {
-            Picker("", selection: $tab.animation()) {
+            // Simply passing a string will be treated as a localized key
+            Picker("" as String, selection: $tab.animation()) {
                 ForEach(GraderTab.allCases, id: \.self) { tab in
                     Text(tab.title(viewModel: viewModel))
                         .tag(tab)
@@ -482,4 +496,3 @@ private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toM
 }
 
 #endif
-
