@@ -168,6 +168,14 @@ public class LTITools: NSObject {
         getSessionlessLaunch { [weak view, originalUrl = url, env, isQuizLTI] response in
             guard let view else { return }
             guard let response = response else {
+
+                view
+                    .findSnackBarViewModel()?
+                    .showSnack(
+                        String(localized: "This tool is not accessible!", bundle: .core),
+                        swallowDuplicatedSnacks: true
+                    )
+
                 completionHandler?(false)
                 return
             }

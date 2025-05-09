@@ -613,12 +613,12 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
                 if offlineModeInteractor?.isOfflineModeEnabled() == true && !url.pathComponents.contains("offline") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
                     let offlineURL = "/courses/\(context.id)/files/\(isAnnouncement ? OfflineFolderPrefix.announcements : OfflineFolderPrefix.discussions)/\(topicID)/\(fileId)/offline"
-                    env.router.route(to: offlineURL, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                    route(in: env, to: offlineURL, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
                 } else {
-                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                    route(in: env, to: url, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
                 }
             } else {
-                env.router.route(to: url, from: self)
+                route(in: env, to: url)
             }
             return true
         }
@@ -631,7 +631,7 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             }
 
             Analytics.shared.logEvent(isAnnouncement ? "announcement_replied" : "discussion_topic_replied")
-            env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            route(in: env, to: url, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             return true
         }
         // Reply to thread
@@ -641,7 +641,7 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
                 return true
             }
 
-            env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            route(in: env, to: url, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             return true
         }
         if path.count == 2, path[0] == "replies" {
@@ -654,7 +654,7 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             env.router.show(controller, from: self)
             return true
         }
-        env.router.route(to: url, from: self)
+        route(in: env, to: url)
         return true
     }
 }

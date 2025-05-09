@@ -107,7 +107,7 @@ extension StudentQuizWebViewController: CoreWebViewLinkDelegate {
             url.absoluteString.hasPrefix(take.absoluteString) {
             return false
         }
-        env.router.route(to: url, from: self)
+        route(in: env, to: url)
         return true
     }
 }
