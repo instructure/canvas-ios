@@ -145,12 +145,19 @@ struct IntroBlock: View {
     }
 
     private var attemptsAllowed: String? {
-        guard let attemptCount = attemptCount,
-              let attempts = Int(attemptCount) else {
+        guard let attemptCount = attemptCount else {
             return nil
         }
+
+        if let attempts = Int(attemptCount) {
+            return String(
+                localized: "\(attempts) Attempts Allowed",
+                comment: "The number of attempts allowed for this assignment."
+            )
+        }
+
         return String(
-            localized: "\(attempts) Attempts Allowed",
+            localized: "\(attemptCount) Attempts Allowed",
             comment: "The number of attempts allowed for this assignment."
         )
     }

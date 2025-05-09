@@ -20,6 +20,9 @@
         }
       }
     },
+    "%@ Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment."
+    },
     "%lld %@ %lld" : {
       "localizations" : {
         "en" : {
