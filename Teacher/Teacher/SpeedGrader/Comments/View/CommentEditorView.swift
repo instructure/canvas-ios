@@ -27,6 +27,7 @@ struct CommentEditorView: View {
     @Binding var showCommentLibrary: Bool
     let action: () -> Void
     let containerHeight: CGFloat
+    let contextColor: Color
 
     var body: some View {
         HStack(alignment: .bottom) {
@@ -48,23 +49,22 @@ struct CommentEditorView: View {
                         }
                     }
                 }
-            Button(action: {
-                action()
-                controller.view.endEditing(true)
-            }, label: {
-                Image
-                    .miniArrowUpSolid
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .offset(y: -1)
-                    .foregroundColor(Color(Brand.shared.buttonPrimaryText))
-                    .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
-                    .padding(.bottom, 1.5)
-            })
-                .opacity(text.isEmpty ? 0.5 : 1)
-                .disabled(text.isEmpty)
-                .accessibility(label: Text("Send", bundle: .teacher))
-                .identifier("SubmissionComments.addCommentButton")
+            Button(
+                action: {
+                    action()
+                    controller.view.endEditing(true)
+                },
+                label: {
+                    Image.circleArrowUpSolid
+                        .scaledSize(20, paddedTo: 24, useIconScale: true)
+                        .foregroundStyle(contextColor)
+                }
+            )
+            .scaledOffset(y: -5, useIconScale: true)
+            .buttonStyle(.plain)
+            .disabled(text.isEmpty)
+            .accessibility(label: Text("Send", bundle: .teacher))
+            .identifier("SubmissionComments.addCommentButton")
         }
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 6))
             .background(RoundedRectangle(cornerRadius: 22).fill(Color.backgroundLightest))
@@ -77,11 +77,14 @@ struct CommentEditorView: View {
 struct CommentEditor_Previews: PreviewProvider {
     static var previews: some View {
         @State var showCommentLibrary = false
-        CommentEditorView(text: .constant("Sample Text"),
-                      shouldShowCommentLibrary: true,
-                      showCommentLibrary: $showCommentLibrary,
-                      action: {},
-                      containerHeight: 30)
+        CommentEditorView(
+            text: .constant("Sample Text"),
+            shouldShowCommentLibrary: true,
+            showCommentLibrary: $showCommentLibrary,
+            action: {},
+            containerHeight: 30,
+            contextColor: .green
+        )
         .frame(width: 200)
         .previewLayout(.sizeThatFits)
     }

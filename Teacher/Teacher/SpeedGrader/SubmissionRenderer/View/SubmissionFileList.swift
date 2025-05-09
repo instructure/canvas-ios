@@ -68,24 +68,66 @@ struct SubmissionFileList: View {
 }
 
 struct FileThumbnail: View {
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     let file: File
-    var size: CGFloat = 24
+    var iconSize: CGFloat = 24
+    var thumbnailSize: CGFloat = 24
+    var iconBackgroundColor: Color = .clear
+    var cornerRadius: CGFloat = 4
 
     var body: some View {
+        let size = iconSize * uiScale.iconScale
+        let scaledThumbnailSize = thumbnailSize * uiScale.iconScale
+
         if let url = file.thumbnailURL {
-            RemoteImage(url, width: size, height: size).cornerRadius(4)
-        } else if file.mimeClass == "audio" || file.contentType?.hasPrefix("audio/") == true {
-            Image.audioLine.size(size)
-        } else if file.mimeClass == "doc" {
-            Image.documentLine.size(size)
-        } else if file.mimeClass == "image" || file.contentType?.hasPrefix("image/") == true {
-            Image.imageLine.size(size)
-        } else if file.mimeClass == "pdf" {
-            Image.pdfLine.size(size)
-        } else if file.mimeClass == "video" || file.contentType?.hasPrefix("video/") == true {
-            Image.videoLine.size(size)
+            RemoteImage(url, size: scaledThumbnailSize)
+                .cornerRadius(cornerRadius)
         } else {
-            Image.documentLine.size(size)
+            icon
+                .scaledSize(size, paddedTo: thumbnailSize)
+                .background(iconBackgroundColor.cornerRadius(cornerRadius))
+                .foregroundStyle(Color.textDarkest)
+        }
+    }
+
+    private var icon: Image {
+        if file.mimeClass == "audio" || file.contentType?.hasPrefix("audio/") == true {
+            Image.audioLine
+        } else if file.mimeClass == "doc" {
+            Image.documentLine
+        } else if file.mimeClass == "image" || file.contentType?.hasPrefix("image/") == true {
+            Image.imageLine
+        } else if file.mimeClass == "pdf" {
+            Image.pdfLine
+        } else if file.mimeClass == "video" || file.contentType?.hasPrefix("video/") == true {
+            Image.videoLine
+        } else {
+            Image.documentLine
         }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    let context = PreviewEnvironment().database.viewContext
+
+    HStack {
+        FileThumbnail(
+            file: File.save(.make(mime_class: "doc"), in: context)
+        )
+
+        FileThumbnail(
+            file: File.save(.make(mime_class: "doc"), in: context),
+            iconSize: 27,
+            thumbnailSize: 56,
+            iconBackgroundColor: .backgroundLight,
+            cornerRadius: 20
+        )
+    }
+    .padding(20)
+    .background(Color.yellow)
+}
+
+#endif

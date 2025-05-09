@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,19 +19,21 @@
 import SwiftUI
 
 extension View {
-
-    public func style(_ style: Typography.Style) -> some View {
-        self.font(style.fontName, lineHeight: style.lineHeight)
+    public func scaledOffset(x: CGFloat = 0, y: CGFloat = 0, useIconScale: Bool = false, alignment: Alignment = .center) -> some View {
+        modifier(ScaledOffsetModifier(x: x, y: y, useIconScale: useIconScale))
     }
+}
 
-    public func font(_ fontName: UIFont.Name, lineHeight: Typography.LineHeight) -> some View {
-        let font = UIFont.scaledNamedFont(fontName)
-        let spacing = lineHeight.lineSpacing(for: font)
-        let styledSelf = self
-            .lineSpacing(spacing)
-            .font(Font(font))
-            .padding(.top, spacing/2)
-            .padding(.bottom, spacing/2)
-        return styledSelf
+private struct ScaledOffsetModifier: ViewModifier {
+    @ScaledMetric private var uiScale: CGFloat = 1
+
+    let x: CGFloat
+    let y: CGFloat
+    let useIconScale: Bool
+
+    func body(content: Content) -> some View {
+        let scale = useIconScale ? uiScale.iconScale : uiScale
+        content
+            .offset(x: x * scale, y: y * scale)
     }
 }

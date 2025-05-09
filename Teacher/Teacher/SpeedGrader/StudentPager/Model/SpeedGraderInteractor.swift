@@ -18,7 +18,7 @@
 
 import Combine
 import Core
-import UIKit
+import SwiftUI
 
 protocol SpeedGraderInteractor: AnyObject {
     var state: CurrentValueSubject<SpeedGraderInteractorState, Never> { get }
@@ -37,13 +37,17 @@ protocol SpeedGraderInteractor: AnyObject {
 
 struct SpeedGraderContextInfo: Equatable {
     let courseName: String
-    let courseColor: UIColor
+    let courseColor: Color
     let assignmentName: String
 }
 
 struct SpeedGraderData {
     let assignment: Assignment
+
+    /// Latest submission for each student
     let submissions: [Submission]
+
+    /// Index for the selected student
     let focusedSubmissionIndex: Int
 }
 

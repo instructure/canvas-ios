@@ -139,3 +139,18 @@ struct RubricCriterionView: View {
         .padding(.top, 8)
     }
 }
+
+private struct CommentBackground: Shape {
+    func path(in rect: CGRect) -> Path { Path { path in
+        let r: CGFloat = 12
+        path.move(to: CGPoint(x: 0, y: -5))
+        path.addLine(to: CGPoint(x: 0, y: rect.maxY - r))
+        path.addArc(tangent1End: CGPoint(x: 0, y: rect.maxY), tangent2End: CGPoint(x: r, y: rect.maxY), radius: r)
+        path.addLine(to: CGPoint(x: rect.maxX - r, y: rect.maxY))
+        path.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.maxY), tangent2End: CGPoint(x: rect.maxX, y: rect.maxY - r), radius: r)
+        path.addLine(to: CGPoint(x: rect.maxX, y: r))
+        path.addArc(tangent1End: CGPoint(x: rect.maxX, y: 0), tangent2End: CGPoint(x: rect.maxX - r, y: 0), radius: r)
+        path.addLine(to: CGPoint(x: 20, y: 0))
+        path.addRelativeArc(center: CGPoint(x: 20, y: -24), radius: 24, startAngle: .radians(0.5 * .pi), delta: .degrees(56))
+    } }
+}
