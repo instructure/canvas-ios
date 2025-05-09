@@ -47,7 +47,8 @@ final class LTIQuizViewModel {
         name: String,
         assignmentID: String,
         isQuizLTI: Bool?,
-        externalToolContentID: String?
+        externalToolContentID: String?,
+        environment: AppEnvironment = .shared
     ) {
         self.courseID = courseID
         self.moduleID = moduleID
@@ -61,7 +62,8 @@ final class LTIQuizViewModel {
             id: externalToolContentID,
             launchType: .assessment,
             isQuizLTI: isQuizLTI,
-            assignmentID: assignmentID
+            assignmentID: assignmentID,
+            env: environment
         )
         tools.getSessionlessLaunch { [weak self] value in
             self?.isLoaderVisible = false

@@ -19,6 +19,8 @@
 import SwiftUI
 
 public struct FileViewer: UIViewControllerRepresentable {
+    @Environment(\.appEnvironment) private var env
+
     public let fileID: String
 
     public init(fileID: String) {
@@ -31,7 +33,7 @@ public struct FileViewer: UIViewControllerRepresentable {
         let prev = uiViewController.children.first as? FileDetailsViewController
         if prev?.fileID != fileID {
             prev?.unembed()
-            let next = FileDetailsViewController.create(context: nil, fileID: fileID)
+            let next = FileDetailsViewController.create(context: nil, fileID: fileID, environment: env)
             uiViewController.embed(next, in: uiViewController.view)
         }
     }

@@ -16,29 +16,56 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct NotebookHighlight: Codable, Equatable {
-    let selectedText: String
-    let textPosition: TextPosition
-    let range: Range
+public struct NotebookHighlight: Codable, Equatable {
+    public let selectedText: String
+    public let textPosition: TextPosition
+    public let range: Range
+
+    public init(
+        selectedText: String,
+        textPosition: TextPosition,
+        range: Range
+    ) {
+        self.selectedText = selectedText
+        self.textPosition = textPosition
+        self.range = range
+    }
 
     enum CodingKeys: String, CodingKey {
         case selectedText, textPosition, range
     }
 
-    struct TextPosition: Codable, Equatable {
-        let start: Int
-        let end: Int
+    public struct TextPosition: Codable, Equatable {
+        public let start: Int
+        public let end: Int
+
+        public init(start: Int, end: Int) {
+            self.start = start
+            self.end = end
+        }
 
         enum CodingKeys: String, CodingKey {
             case start, end
         }
     }
 
-    struct Range: Codable, Equatable {
-        let startContainer: String
-        let startOffset: Int
-        let endContainer: String
-        let endOffset: Int
+    public struct Range: Codable, Equatable {
+        public let startContainer: String
+        public let startOffset: Int
+        public let endContainer: String
+        public let endOffset: Int
+
+        public init(
+            startContainer: String,
+            startOffset: Int,
+            endContainer: String,
+            endOffset: Int
+        ) {
+            self.startContainer = startContainer
+            self.startOffset = startOffset
+            self.endContainer = endContainer
+            self.endOffset = endOffset
+        }
 
         enum CodingKeys: String, CodingKey {
             case startContainer, startOffset, endContainer, endOffset

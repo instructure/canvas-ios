@@ -37,6 +37,7 @@ class CoreTestCase: XCTestCase {
     var remoteLogHandler = MockRemoteLogHandler()
 
     lazy var environment = TestEnvironment()
+    lazy var envResolver = CourseSyncEnvironmentResolverMock(env: environment)
     var currentSession: LoginSession!
     var login = TestLoginDelegate()
 
@@ -79,6 +80,7 @@ class CoreTestCase: XCTestCase {
         AppEnvironment.shared = environment
         AppEnvironment.shared.uploadManager = uploadManager
         LoginSession.add(environment.currentSession!)
+        envResolver.offlineDirectoryOverride = workingDirectory
         pushNotificationsInteractor = PushNotificationsInteractor(
             notificationCenter: notificationCenter,
             notificationCenterDelegate: UserNotificationCenterDelegate(),

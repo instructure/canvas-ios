@@ -31,8 +31,8 @@ class AttendanceCellViewModel: CourseDetailsCellViewModel {
                    selectedCallback: selectedCallback)
     }
 
-    public override func selected(router: Router, viewController: WeakViewController) {
-        super.selected(router: router, viewController: viewController)
-        router.route(to: route, from: viewController)
+    public override func selected(environment: AppEnvironment, viewController: WeakViewController) {
+        super.selected(environment: environment, viewController: viewController)
+        environment.router.route(to: route, from: viewController)
     }
 }

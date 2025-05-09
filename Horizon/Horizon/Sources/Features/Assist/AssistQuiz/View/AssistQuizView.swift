@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 import Core
 
@@ -52,18 +53,8 @@ struct AssistQuizView: View {
 
 extension AssistQuizView {
     private var headerView: some View {
-        ZStack(alignment: .trailingLastTextBaseline) {
-            AssistTitle()
-
-            Button {
-                viewModel.dismiss(controller: viewController)
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.textLightest)
-                    .padding()
-                    .background(Color.backgroundLightest.opacity(0.2))
-                    .clipShape(.circle)
-            }
+        AssistTitle {
+            viewModel.dismiss(controller: viewController)
         }
     }
 
@@ -94,27 +85,23 @@ extension AssistQuizView {
     }
 
     private var submitQuizButton: some View {
-        Button(action: {
+        HorizonUI.PrimaryButton(
+            String(localized: "Check Answer", bundle: .horizon),
+            type: .white,
+            fillsWidth: true
+        ) {
             viewModel.submitQuiz()
-        }) {
-            Text("Check Answer", bundle: .horizon)
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background(viewModel.isSubmitButtonDisabled ? Color.backgroundLightest.opacity(0.2) : Color.backgroundLightest)
-                .foregroundColor(viewModel.isSubmitButtonDisabled ? Color.textDarkest.opacity(0.2) : Color.textDarkest)
-                .clipShape(.capsule)
         }
         .disabled(viewModel.isSubmitButtonDisabled)
     }
 
     private var regenerateQuizButton: some View {
-        Button(action: {
+        HorizonUI.PrimaryButton(
+            String(localized: "Regenerate", bundle: .horizon),
+            type: .black,
+            fillsWidth: true
+        ) {
             viewModel.regenerateQuiz()
-        }) {
-            Text("Regenerate", bundle: .horizon)
-                .underline()
-                .foregroundColor(.textLightest)
-                .font(.regular16)
         }
     }
 

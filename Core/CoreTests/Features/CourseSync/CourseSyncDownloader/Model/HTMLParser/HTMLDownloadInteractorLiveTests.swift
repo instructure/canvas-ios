@@ -23,7 +23,7 @@ import Combine
 
 class HTMLDownloadInteractorLiveTests: CoreTestCase {
 
-    let testCourseId = "1"
+    let testCourseId: CourseSyncID = "1"
     let testResourceId = "2"
     let testFileId = "3"
     let testSectionName = "testSection"
@@ -32,8 +32,8 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
     func testDownload() {
         let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
         let testee = HTMLDownloadInteractorLive(
-            loginSession: environment.currentSession!,
             sectionName: testSectionName,
+            envResolver: envResolver,
             scheduler: .main,
             downloadTaskProvider: mockPublisherProvider
         )
@@ -56,8 +56,8 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
         let testURL = URL(string: "https://www.instructure.com/\(testFileId)")!
         let mockPublisherProvider = URLSessionDataTaskPublisherProviderMock()
         let testee = HTMLDownloadInteractorLive(
-            loginSession: environment.currentSession!,
             sectionName: testSectionName,
+            envResolver: envResolver,
             scheduler: .main,
             downloadTaskProvider: mockPublisherProvider
         )
@@ -69,12 +69,12 @@ class HTMLDownloadInteractorLiveTests: CoreTestCase {
 
     func testBaseContentSave() {
         var subscriptions: [AnyCancellable] = []
-        let testee = HTMLDownloadInteractorLive(loginSession: environment.currentSession!, sectionName: testSectionName, scheduler: .main)
+        let testee = HTMLDownloadInteractorLive(sectionName: testSectionName, envResolver: envResolver, scheduler: .main)
 
         let rootURL = URL.Directories.documents.appendingPathComponent(
                 URL.Paths.Offline.courseSectionFolder(
                     sessionId: environment.currentSession!.uniqueID,
-                    courseId: testCourseId,
+                    courseId: testCourseId.value,
                     sectionName: testSectionName
                 )
             )

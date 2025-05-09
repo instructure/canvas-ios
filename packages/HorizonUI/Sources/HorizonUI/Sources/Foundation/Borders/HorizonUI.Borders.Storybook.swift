@@ -53,8 +53,8 @@ extension HorizonUI.Borders: Identifiable {
     var details: String {
         let str = "\(id)"
         let components = str.components(separatedBy: "level")
-        
-        let attributesString = "\(Int(self.rawValue)) px"
+
+        let attributesString = "\(Int(rawValue)) px"
         return "Level \(components[1]) - \(attributesString)"
     }
 }

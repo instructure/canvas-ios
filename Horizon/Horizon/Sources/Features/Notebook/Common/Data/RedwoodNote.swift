@@ -18,15 +18,15 @@
 
 import Foundation
 
-class RedwoodNote: NewRedwoodNote {
+public class RedwoodNote: NewRedwoodNote {
     public static func == (lhs: RedwoodNote, rhs: RedwoodNote) -> Bool {
         lhs.id == rhs.id &&
         lhs.createdAt == rhs.createdAt &&
         (lhs as NewRedwoodNote) == (rhs as NewRedwoodNote)
     }
 
-    let id: String?
-    let createdAt: Date?
+    public let id: String
+    public let createdAt: Date
 
     enum CodingKeys: String, CodingKey {
         case id, courseId, objectId, objectType, userText, reaction, createdAt, highlightData
@@ -63,7 +63,7 @@ class RedwoodNote: NewRedwoodNote {
 
         try container.encode(id, forKey: .id)
 
-        let dateString = RedwoodNote.dateFormatter.string(from: createdAt ?? Date())
+        let dateString = RedwoodNote.dateFormatter.string(from: createdAt)
         try container.encode(dateString, forKey: .createdAt)
     }
 }

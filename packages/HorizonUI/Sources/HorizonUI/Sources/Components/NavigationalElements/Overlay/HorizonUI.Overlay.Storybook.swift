@@ -22,17 +22,16 @@ public extension HorizonUI.Overlay {
     struct Storybook: View {
         @State private var isPresented: Bool = false
         @State private var height: CGFloat = 0.0
-        @State private var buttons:[ButtonAttribute] = []
+        @State private var buttons: [ButtonAttribute] = []
         @State private var title: String = ""
         private let viewModel = StorybookViewModel()
-        
+
         public var body: some View {
             VStack {
                 Button("Present File Sheet") {
                     buttons = viewModel.fileUploadButtons
                     title = "Upload File"
                     isPresented.toggle()
-
                 }
 
                 Button("Tools Sheet") {
@@ -68,7 +67,7 @@ public extension HorizonUI.Overlay {
         var toolsButtons: [ButtonAttribute] {
             [
                 .init(title: "Attempt History", icon: Image.huiIcons.history) { print("Attempt History") },
-                .init(title: "Comments", icon: Image.huiIcons.chat) { print("Comments") },
+                .init(title: "Comments", icon: Image.huiIcons.chat) { print("Comments") }
             ]
         }
     }

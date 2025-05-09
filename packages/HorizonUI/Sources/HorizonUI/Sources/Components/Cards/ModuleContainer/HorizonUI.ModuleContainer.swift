@@ -20,7 +20,6 @@ import SwiftUI
 
 public extension HorizonUI {
     struct ModuleContainer: View {
-
         // MARK: - Dependencies
 
         private let title: String
@@ -134,4 +133,3 @@ public extension HorizonUI {
         numberOfPastDueItems: 32
     )
 }
-

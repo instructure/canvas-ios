@@ -20,7 +20,26 @@ import HorizonUI
 import SwiftUI
 
 struct AssistTitle: View {
+    typealias AssistTitleClose = () -> Void
+
+    private let onClose: AssistTitleClose?
+
+    init(onClose: AssistTitleClose? = nil) {
+        self.onClose = onClose
+    }
+
     var body: some View {
+        HStack {
+            closeButton()
+                .opacity(0)
+
+            title
+
+           closeButton()
+        }
+    }
+
+    private var title: some View {
         HStack {
             HorizonUI.icons.ai
             Text(String(localized: "Assist", bundle: .horizon))
@@ -29,4 +48,26 @@ struct AssistTitle: View {
         .foregroundStyle(Color.textLightest)
         .frame(maxWidth: .infinity)
     }
+
+    @ViewBuilder
+    private func closeButton() -> some View {
+        if let onClose = onClose {
+            HorizonUI.IconButton(
+                Image.huiIcons.close,
+                type: .white,
+                isSmall: true,
+                action: onClose
+            )
+        }
+    }
+}
+
+#Preview {
+    VStack(alignment: .leading) {
+        AssistTitle {
+        }
+    }
+    .frame(maxHeight: .infinity)
+    .padding(.horizontal, .huiSpaces.space16)
+    .background(Color.gray)
 }

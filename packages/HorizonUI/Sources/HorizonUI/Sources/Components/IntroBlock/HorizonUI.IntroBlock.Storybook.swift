@@ -40,7 +40,7 @@ public extension HorizonUI.IntroBlock {
                         moduleItemName: "Learning Object Name Lorem Ipsum Dolor Learning Object",
                         duration: "XX Mins",
                         dueDate: "Due 10/12",
-                        onBack: {dismiss()},
+                        onBack: { dismiss() },
                         onMenu: {}
                     )
                     .transition(.move(edge: .top).combined(with: .opacity))
@@ -54,7 +54,7 @@ public extension HorizonUI.IntroBlock {
                 ScrollView {
                     topView
                     VStack {
-                        ForEach(0..<10) { _ in
+                        ForEach(0 ..< 10) { _ in
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.green)
                                 .frame(height: 200)
@@ -67,6 +67,7 @@ public extension HorizonUI.IntroBlock {
                 .huiCornerRadius(level: .level5, corners: [.topRight, .topLeft])
             }
         }
+
         private var topView: some View {
             Color.clear
                 .frame(height: 0)

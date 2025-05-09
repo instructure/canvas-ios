@@ -135,8 +135,10 @@ struct CourseDetailsView: View {
                             .padding(.bottom, .huiSpaces.space24)
                     case .scores:
                         ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
+                            .padding(.horizontal, .huiSpaces.space24)
                     case .notebook:
                         notebookView
+                            .padding(.horizontal, .huiSpaces.space24)
                             .padding(.bottom, .huiSpaces.space24)
                     }
                 }
@@ -146,7 +148,6 @@ struct CourseDetailsView: View {
                     await viewModel.refresh()
                 }
             }
-            .padding(.horizontal, .huiSpaces.space24)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .animation(.smooth, value: viewModel.selectedTabIndex)

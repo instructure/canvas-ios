@@ -24,7 +24,7 @@ import SafariServices
 
 class LTIViewControllerTests: CoreTestCase {
     func testLayout() {
-        let tools = LTITools(id: "1", isQuizLTI: nil)
+        let tools = LTITools(id: "1", isQuizLTI: nil, env: environment)
         let controller = LTIViewController.create(env: environment, tools: tools)
         var task = api.mock(tools.request, value: .make(name: "So Descriptive", url: .make()))
         task.suspend()
@@ -49,7 +49,7 @@ class LTIViewControllerTests: CoreTestCase {
     }
 
     func testName() {
-        let tools = LTITools(env: environment, id: "1", isQuizLTI: nil)
+        let tools = LTITools(id: "1", isQuizLTI: nil, env: environment)
         let controller = LTIViewController.create(env: environment, tools: tools, name: "Fancy Tool")
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.nameLabel.text, "Fancy Tool")
@@ -57,7 +57,7 @@ class LTIViewControllerTests: CoreTestCase {
 
     func testCourseSubtitle() {
         let course = APICourse.make(id: "1", name: "Fancy Course")
-        let tools = LTITools(env: environment, context: .course(course.id.value), isQuizLTI: nil)
+        let tools = LTITools(context: .course(course.id.value), isQuizLTI: nil, env: environment)
         let controller = LTIViewController.create(env: environment, tools: tools)
         api.mock(controller.courses!, value: course)
         controller.view.layoutIfNeeded()
@@ -65,14 +65,14 @@ class LTIViewControllerTests: CoreTestCase {
     }
 
     func testTextsWhenIsQuizLTI() {
-        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: true))
+        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: true, env: environment))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.descriptionLabel.text?.lowercased().contains("quiz"), true)
         XCTAssertEqual(controller.openButton.titleLabel?.text?.lowercased().contains("quiz"), true)
     }
 
     func testTextsWhenIsNotQuizLTI() {
-        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: false))
+        let controller = LTIViewController.create(env: environment, tools: .init(isQuizLTI: false, env: environment))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.descriptionLabel.text?.lowercased().contains("quiz"), false)
         XCTAssertEqual(controller.openButton.titleLabel?.text?.lowercased().contains("quiz"), false)
