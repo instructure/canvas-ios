@@ -35,7 +35,7 @@ struct ScoresAssignmentGroupsView: View {
             .huiTypography(.h2)
             .foregroundStyle(Color.huiColors.text.body)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding([.leading, .trailing], .huiSpaces.space24)
+            .padding(.horizontal, .huiSpaces.space24)
             HStack(spacing: .huiSpaces.space8) {
                 arrowIcon
                 Text("Assignment Group Weights", bundle: .horizon)
@@ -49,8 +49,8 @@ struct ScoresAssignmentGroupsView: View {
                 assignmentGroupList(groups: details.assignmentGroups)
             }
         }
-        .padding(.top, .huiSpaces.space24)
-        .padding(.bottom, isExpanded ? 0 : .huiSpaces.space24)
+        .padding(.top, .huiSpaces.space16)
+        .padding(.bottom, isExpanded ? 0 : .huiSpaces.space16)
         .background(Color.huiColors.primitives.white10)
         .huiCornerRadius(level: .level5)
         .onTapGesture {
@@ -89,7 +89,7 @@ struct ScoresAssignmentGroupsView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, .huiSpaces.space16)
             .padding(.bottom, .huiSpaces.space24)
-            .padding([.leading, .trailing], .huiSpaces.space24)
+            .padding(.horizontal, .huiSpaces.space24)
         }
     }
 

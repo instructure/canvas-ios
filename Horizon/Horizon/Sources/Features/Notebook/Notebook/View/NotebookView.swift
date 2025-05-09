@@ -120,7 +120,7 @@ struct NotebookView: View {
     private var filterButtons: some View {
         if viewModel.isFiltersVisible {
             NotebookSectionHeading(title: String(localized: "Filter", bundle: .horizon))
-
+                .padding(.top, .huiSpaces.space24)
             HStack(spacing: .huiSpaces.space12) {
                 ForEach(viewModel.courseNoteLabels, id: \.rawValue) { filter in
                     NoteCardFilterButton(type: filter, selected: viewModel.isEnabled(filter: filter))
@@ -142,8 +142,8 @@ struct NotebookView: View {
             )
             .huiTypography(.p1)
         }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.vertical, .huiSpaces.space32)
+        .padding(.horizontal, viewModel.isNavigationBarVisible ? .huiSpaces.space24 : 0)
+        .padding(.vertical, viewModel.isNavigationBarVisible ? .huiSpaces.space32 : 0)
     }
 }
 
