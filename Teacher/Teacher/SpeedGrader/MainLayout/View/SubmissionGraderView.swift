@@ -84,7 +84,6 @@ struct SubmissionGraderView: View {
             .scaleEffect(scale)
             .edgesIgnoringSafeArea(.bottom)
         }
-        .avoidKeyboardArea()
     }
 
     @ViewBuilder
@@ -413,11 +412,6 @@ struct SubmissionGraderView: View {
     }
 
     private func didChangeLayout(to layout: Layout) {
-        if lastPresentedLayout != layout {
-            // When the layout changes the keyboard disappears without any system notifications
-            // on iPads so we simulate one to allow .avoidKeyboardArea() to work correctly.
-            NotificationCenter.default.post(name: UIApplication.keyboardWillHideNotification, object: nil, userInfo: [:])
-        }
         lastPresentedLayout = layout
     }
 }
