@@ -194,14 +194,18 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
     func testRoute() {
         let url = URL(string: "somewhere")!
-        let destRouteURL = URLComponents.parse(presenter.destinationRouteForLink(of: url))
-        XCTAssertEqual(destRouteURL, .parse(url))
+        let controller = UIViewController()
+        let router = env.router as? TestRouter
+        XCTAssertTrue(presenter.route(to: url, from: controller))
+        XCTAssertEqual(router?.calls.last?.0, .parse(url))
     }
 
     func testRouteFile() {
         let url = URL(string: "/course/1/files/2")!
-        let destRouteURL = URLComponents.parse(presenter.destinationRouteForLink(of: url))
-        XCTAssertEqual(destRouteURL, .parse("/course/1/files/2?courseID=1&assignmentID=1&skipModuleItemSequence=true"))
+        let controller = UIViewController()
+        let router = env.router as? TestRouter
+        XCTAssertTrue(presenter.route(to: url, from: controller))
+        XCTAssertEqual(router?.calls.last?.0, .parse("/course/1/files/2?courseID=1&assignmentID=1&skipModuleItemSequence=true"))
     }
 
     func testSubmit() {
