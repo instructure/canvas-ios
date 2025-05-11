@@ -61,16 +61,7 @@ extension CoreWebViewLinkDelegate {
         to url: URLComponents,
         options: RouteOptions = Router.DefaultRouteOptions
     ) {
-        env
-            .router
-            .route(
-                to: url,
-                userInfo: allowsExternalToolsLinks
-                    ? [CourseTabUrlInteractor.allowExternalToolsInnerLinksKey: true]
-                    : nil,
-                from: routeLinksFrom,
-                options: options
-            )
+        env.router.route(to: url, from: routeLinksFrom, options: options)
     }
 }
 

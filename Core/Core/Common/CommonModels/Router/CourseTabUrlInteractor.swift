@@ -25,7 +25,6 @@ import Combine
 public final class CourseTabUrlInteractor {
 
     public static let blockDisabledTabUserInfoKey = "shouldBlockDisabledCourseTabKey"
-    public static let allowExternalToolsInnerLinksKey = "allowExternalToolsInnerLinksKey"
 
     private struct TabModel {
         let id: String
@@ -91,26 +90,8 @@ public final class CourseTabUrlInteractor {
             return true
         }
 
-        if isAllowedAsExternalToolLink(relativePath, context: context, userInfo: userInfo) {
-            return true
-        }
-
         // it's a tab that may be disabled, if it matches any of the enabled tabs allow it, otherwise block it
         return enabledTabs.contains(relativePath)
-    }
-
-    /// Allows links to external tools when `allowExternalToolsInnerLinksKey` of `userInfo` is `true`.
-    /// Ideally, this is needed only for links found in inner course pages.
-    /// Expects relative path, with "/api/v1" already stripped,
-    private func isAllowedAsExternalToolLink(
-        _ relativePath: String,
-        context: Context,
-        userInfo: [String: Any]?
-    ) -> Bool {
-        guard
-            let isExternalToolsAllowed = userInfo?[Self.allowExternalToolsInnerLinksKey] as? Bool,
-            isExternalToolsAllowed else { return false }
-        return relativePath.hasPrefix("/\(context.pathComponent)/external_tools/")
     }
 
     /// Expects relative paths, with "/api/v1" already stripped
@@ -125,8 +106,15 @@ public final class CourseTabUrlInteractor {
     /// These tabs should always be allowed to visit, they are simply removed from the Course Tab list.
     private func isHideOnlyTab(_ path: String) -> Bool {
         let parts = path.splitUsingSlash
-        return parts.count == 3
-            && (parts[2] == "discussion_topics" || parts[2] == "grades")
+
+        switch parts.count {
+        case 3:
+            return ["discussion_topics", "grades"].contains(parts[2])
+        case 4:
+            return parts[2] == "external_tools"
+        default:
+            return false
+        }
     }
 
     // MARK: - Enabled tab list

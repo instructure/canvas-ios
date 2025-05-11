@@ -96,6 +96,9 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/discussion_topics")), true)
 
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/not_grades_or_discussuions")), false)
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/466")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools")), false)
     }
 
     // MARK: - UserInfo
