@@ -182,7 +182,8 @@ public class LTITools: NSObject {
             if isQuizLTI == true {
                 let controller = CoreWebViewController(features: [
                     .invertColorsInDarkMode,
-                    .hideReturnButtonInQuizLTI
+                    .hideReturnButtonInQuizLTI,
+                    .disableLinksOverlayPreviews
                 ])
                 controller.webView.load(URLRequest(url: url))
                 controller.title = String(localized: "Quiz", bundle: .core)
