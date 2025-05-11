@@ -576,10 +576,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
 extension AssignmentDetailsViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
-        guard let destRoute = presenter?.destinationRouteForLink(of: url)
-        else { return false }
-        route(in: env, to: destRoute)
-        return true
+        guard let presenter = presenter else { return false }
+        return presenter.route(to: url, from: self)
     }
 }
 

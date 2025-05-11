@@ -311,7 +311,7 @@ class AssignmentDetailsPresenter {
         env.router.route(to: route, from: view)
     }
 
-    func destinationRouteForLink(of url: URL) -> URL {
+    func route(to url: URL, from view: UIViewController) -> Bool {
         var dest = url
         if url.path.contains("/files/") {
             dest = url.appendingQueryItems(
@@ -320,7 +320,8 @@ class AssignmentDetailsPresenter {
                 URLQueryItem(name: "skipModuleItemSequence", value: "true")
             )
         }
-        return dest
+        env.router.route(to: dest, from: view)
+        return true
     }
 
     func submit(button: UIView) {
