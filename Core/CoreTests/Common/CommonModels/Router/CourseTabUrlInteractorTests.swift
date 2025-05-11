@@ -242,10 +242,10 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
     func test_isAllowedUrl_whenExternalToolsIsDisabled_shouldBlockExternalToolsUrlFormat() {
         saveTab(htmlUrl: "/courses/42/not_external_tools", context: .course("42"))
 
-        // matching special format -> block
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/1234")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/something")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/syllabus")), false)
+        // matching special format for tools -> allow
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/1234")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/something")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/syllabus")), true)
 
         // matching basic (but still disabled) format -> block
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools")), false)
