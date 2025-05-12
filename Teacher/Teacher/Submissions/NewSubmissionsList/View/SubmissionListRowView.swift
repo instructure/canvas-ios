@@ -43,6 +43,7 @@ struct SubmissionListRowView: View {
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 15)
+        .accessibilityIdentifier("SubmissionListCell.\(item.originalUserID)")
     }
 
     @ViewBuilder

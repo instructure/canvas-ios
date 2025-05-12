@@ -69,6 +69,7 @@ struct RedesignedDateSection<ViewModel: DateSectionViewModelProtocol>: View {
                 .padding(16)
 
                 if viewModel.isButton {
+                    Spacer()
                     InstUI.DisclosureIndicator().padding(.trailing, 16)
                 }
             }

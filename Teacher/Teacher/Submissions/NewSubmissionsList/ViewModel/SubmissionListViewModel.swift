@@ -177,7 +177,7 @@ class SubmissionListViewModel: ObservableObject {
         env.router.route(
             to: assignmentRoute + "/submissions/\(submission.originalUserID)\(query)",
             from: controller.value,
-            options: .modal(.fullScreen, isDismissable: false)
+            options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
         )
     }
 }

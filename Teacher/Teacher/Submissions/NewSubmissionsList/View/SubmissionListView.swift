@@ -117,6 +117,7 @@ struct SubmissionListView: View {
                     Image.eyeLine
                 }
                 .tint(Color.textLightest)
+                .accessibilityIdentifier("SubmissionsList.postPolicyButton")
 
                 Button {
                     viewModel.messageUsers(from: controller)
