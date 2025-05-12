@@ -239,7 +239,7 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/any_component_here/front_page")), true)
     }
 
-    func test_isAllowedUrl_whenExternalToolsIsDisabled_shouldBlockExternalToolsUrlFormat() {
+    func test_isAllowedUrl_whenExternalToolsIsDisabled_shouldAllowExternalToolsUrlFormat() {
         saveTab(htmlUrl: "/courses/42/not_external_tools", context: .course("42"))
 
         // matching special format for tools -> allow
