@@ -30,7 +30,9 @@ extension InstUI {
 
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let label: Label
+        private let label: Text
+        private let labelTransform: (Text) -> Label
+        private let customAccessibilityLabel: Text?
         private let mode: Mode
         private let defaultDate: Date
         private let validFrom: Date
@@ -41,7 +43,9 @@ extension InstUI {
         @Binding private var date: Date?
 
         public init(
-            label: Label,
+            label: Text,
+            labelTransform: @escaping (Text) -> Label = { $0 },
+            customAccessibilityLabel: Text? = nil,
             date: Binding<Date?>,
             mode: Mode = .dateAndTime,
             defaultDate: Date = .now,
@@ -51,6 +55,8 @@ extension InstUI {
             isClearable: Bool = false
         ) {
             self.label = label
+            self.labelTransform = labelTransform
+            self.customAccessibilityLabel = customAccessibilityLabel
             self._date = date
             self.mode = mode
             self.defaultDate = defaultDate
@@ -96,22 +102,9 @@ extension InstUI {
 
         @ViewBuilder
         private var labelView: some View {
-            let dateTimeValue = switch mode {
-            case .dateOnly: date?.dateOnlyString
-            case .timeOnly: date?.timeOnlyString
-            case .dateAndTime: date?.dateTimeString
-            }
-
-            let errorValue: String? = {
-                guard let errorMessage else { return nil }
-                return String.localizedAccessibilityErrorMessage(errorMessage)
-            }()
-
-            let value = [dateTimeValue, errorValue].joined(separator: ", ")
-
-            label
+            labelTransform(label)
                 .textStyle(.cellLabel)
-                .accessibilityValue(value)
+                .accessibilityValue(accessibilityValue(mode: mode))
         }
 
         @ViewBuilder
@@ -148,6 +141,25 @@ extension InstUI {
                 label: {}
             )
             .accessibilityRefocusingOnPopoverDismissal()
+        }
+
+        private var accessibilityLabel: Text {
+            customAccessibilityLabel ?? label
+        }
+
+        private func accessibilityValue(mode: Mode) -> String {
+            let dateTimeValue = switch mode {
+            case .dateOnly: date?.dateOnlyString
+            case .timeOnly: date?.timeOnlyString
+            case .dateAndTime: date?.dateTimeString
+            }
+
+            let errorValue: String? = {
+                guard let errorMessage else { return nil }
+                return String.localizedAccessibilityErrorMessage(errorMessage)
+            }()
+
+            return [dateTimeValue, errorValue].joined(separator: ", ")
         }
 
         @ViewBuilder
@@ -203,8 +215,10 @@ extension InstUI {
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: true)
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: false)
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), errorMessage: "Someting is wrong here.")
+        InstUI.DatePickerCell(label: Text(verbatim: "Just Date"), date: .constant(.now), mode: .dateOnly)
         InstUI.DatePickerCell(
-            label: Text(verbatim: "Important Date").foregroundStyle(Color.red).textStyle(.heading),
+            label: Text(verbatim: "Important Date"),
+            labelTransform: { $0.foregroundStyle(Color.red).textStyle(.heading) },
             date: .constant(.now)
         )
     }
