@@ -106,8 +106,15 @@ public final class CourseTabUrlInteractor {
     /// These tabs should always be allowed to visit, they are simply removed from the Course Tab list.
     private func isHideOnlyTab(_ path: String) -> Bool {
         let parts = path.splitUsingSlash
-        return parts.count == 3
-            && (parts[2] == "discussion_topics" || parts[2] == "grades")
+
+        switch parts.count {
+        case 3:
+            return ["discussion_topics", "grades"].contains(parts[2])
+        case 4:
+            return parts[2] == "external_tools"
+        default:
+            return false
+        }
     }
 
     // MARK: - Enabled tab list
