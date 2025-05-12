@@ -25,53 +25,55 @@ struct RedesignedDateSection<ViewModel: DateSectionViewModelProtocol>: View {
     @Environment(\.viewController) var controller
 
     var body: some View {
-        Button(action: buttonTapped, label: { HStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 6) {
-                HStack {
-                    Text("Assignment Dates", bundle: .core).font(.regular14)
-                    Spacer()
-                }
-                .foregroundColor(.textDark)
+        Button(action: buttonTapped) {
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Assignment Dates", bundle: .core)
+                        .font(.regular14)
+                        .foregroundColor(.textDark)
 
-                if viewModel.hasMultipleDueDates {
-                    Text("Multiple Due Dates", bundle: .core)
-                } else {
-                    if let dueAt = viewModel.dueAt {
-                        Line(Text("Due:", bundle: .core), Text(dueAt.dateTimeString))
+                    if viewModel.hasMultipleDueDates {
+                        Text("Multiple Due Dates", bundle: .core)
                     } else {
-                        Line(Text("Due:", bundle: .core), Text(verbatim: "--"))
-                            .accessibility(label: Text("No due date set.", bundle: .core))
-                    }
-
-                    Line(Text("For:", bundle: .core), Text(viewModel.forText))
-
-                    let lockAt = viewModel.lockAt
-                    if let to = lockAt, to < Clock.now {
-                        Line(Text("Availability:", bundle: .core), Text("Closed", bundle: .core))
-                    } else {
-                        if let from = viewModel.unlockAt {
-                            Line(Text("Available from:", bundle: .core), Text(from.dateTimeString))
+                        if let dueAt = viewModel.dueAt {
+                            Line(Text("Due:", bundle: .core), Text(dueAt.dateTimeString))
                         } else {
-                            Line(Text("Available from:", bundle: .core), Text(verbatim: "--"))
-                                .accessibility(label: Text("No available from date set.", bundle: .core))
+                            Line(Text("Due:", bundle: .core), Text(verbatim: "--"))
+                                .accessibility(label: Text("No due date set.", bundle: .core))
                         }
 
-                        if let to = lockAt {
-                            Line(Text("Available until:", bundle: .core), Text(to.dateTimeString))
+                        Line(Text("For:", bundle: .core), Text(viewModel.forText))
+
+                        let lockAt = viewModel.lockAt
+                        if let to = lockAt, to < Clock.now {
+                            Line(Text("Availability:", bundle: .core), Text("Closed", bundle: .core))
                         } else {
-                            Line(Text("Available until:", bundle: .core), Text(verbatim: "--"))
-                                .accessibility(label: Text("No available until date set.", bundle: .core))
+                            if let from = viewModel.unlockAt {
+                                Line(Text("Available from:", bundle: .core), Text(from.dateTimeString))
+                            } else {
+                                Line(Text("Available from:", bundle: .core), Text(verbatim: "--"))
+                                    .accessibility(label: Text("No available from date set.", bundle: .core))
+                            }
+
+                            if let to = lockAt {
+                                Line(Text("Available until:", bundle: .core), Text(to.dateTimeString))
+                            } else {
+                                Line(Text("Available until:", bundle: .core), Text(verbatim: "--"))
+                                    .accessibility(label: Text("No available until date set.", bundle: .core))
+                            }
                         }
                     }
                 }
-            }
-                .font(.regular16).foregroundColor(.textDarkest)
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
                 .padding(16)
-            if viewModel.isButton {
-                InstUI.DisclosureIndicator().padding(.trailing, 16)
+
+                if viewModel.isButton {
+                    InstUI.DisclosureIndicator().padding(.trailing, 16)
+                }
             }
-        } })
-            .accessibility(hint: Text("Due Dates, Double tap for details.", bundle: .core))
+        }
+        .accessibility(hint: Text("Due Dates, Double tap for details.", bundle: .core))
     }
 
     @ViewBuilder

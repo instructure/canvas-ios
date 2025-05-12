@@ -372,6 +372,6 @@ extension AssignmentDetailsView {
     }
 
     var design: Design {
-        ExperimentalFeature.redesignedSubmissionList.isEnabled ? .redesigned : .old
+        ExperimentalFeature.hideRedesignedSubmissionList.isEnabled ? .old : .redesigned
     }
 }
