@@ -125,7 +125,7 @@ struct SubmissionGraderView: View {
                     landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
                 )
                 .accessibility(sortPriority: 2)
-                .measuringSize($profileHeaderSize)
+                .onSizeChange(update: $profileHeaderSize)
                 InstUI.Divider()
                 VStack(alignment: .leading, spacing: 0) {
                     attemptToggle
