@@ -107,26 +107,28 @@ let router = Router(routes: [
         return ActivityStreamViewController.create(context: context)
     },
 
-    RouteHandler("/:context/:contextID/announcements") { url, _, _ in
+    RouteHandler("/:context/:contextID/announcements") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return AnnouncementListViewController.create(context: context)
+        return AnnouncementListViewController.create(context: context, env: env)
     },
 
-    RouteHandler("/:context/:contextID/announcements/new") { url, _, userInfo in
+    RouteHandler("/:context/:contextID/announcements/new") { url, _, userInfo, env in
         guard let context = Context(path: url.path) else { return nil }
         return DiscussionsAssembly.makeDiscussionCreateViewController(
             context: context,
             isAnnouncement: true,
-            routeUserInfo: userInfo
+            routeUserInfo: userInfo,
+            environment: env
         )
     },
 
-    RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _ in
+    RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _, env in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
         return DiscussionsAssembly.makeDiscussionEditViewController(
             context: context,
             topicID: topicID,
-            isAnnouncement: true
+            isAnnouncement: true,
+            environment: env
         )
     },
 
@@ -215,29 +217,31 @@ let router = Router(routes: [
         return nil
     },
 
-    RouteHandler("/:context/:contextID/discussions") { url, _, _ in
+    RouteHandler("/:context/:contextID/discussions") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return DiscussionListViewController.create(context: context)
+        return DiscussionListViewController.create(context: context, env: env)
     },
-    RouteHandler("/:context/:contextID/discussion_topics") { url, _, _ in
+    RouteHandler("/:context/:contextID/discussion_topics") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return DiscussionListViewController.create(context: context)
+        return DiscussionListViewController.create(context: context, env: env)
     },
 
-    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, userInfo in
+    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, userInfo, env in
         guard let context = Context(path: url.path) else { return nil }
         return DiscussionsAssembly.makeDiscussionCreateViewController(
             context: context,
             isAnnouncement: false,
-            routeUserInfo: userInfo
+            routeUserInfo: userInfo,
+            environment: env
         )
     },
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _ in
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _, env in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
         return DiscussionsAssembly.makeDiscussionEditViewController(
             context: context,
             topicID: topicID,
-            isAnnouncement: false
+            isAnnouncement: false,
+            environment: env
         )
     },
 
@@ -575,7 +579,12 @@ private func discussionViewController(
     }
 
     if OfflineModeAssembly.make().isOfflineModeEnabled() {
-        return DiscussionDetailsViewController.create(context: context, topicID: discussionId)
+        return DiscussionDetailsViewController
+            .create(
+                context: context,
+                topicID: discussionId,
+                env: environment
+            )
     } else {
         let isAnnouncement = (params["announcementID"] != nil)
         let webPageModel = DiscussionDetailsWebViewModel(
@@ -584,13 +593,15 @@ private func discussionViewController(
         )
         let viewModel = EmbeddedWebPageContainerViewModel(
             context: context,
-            webPageModel: webPageModel
+            webPageModel: webPageModel,
+            env: environment
         )
         return CoreHostingController(
             EmbeddedWebPageContainerScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
-            )
+            ),
+            env: environment
         )
     }
 }

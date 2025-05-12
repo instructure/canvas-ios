@@ -31,7 +31,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
     public var color: UIColor?
     var context = Context.currentUser
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var selectedFirstTopic: Bool = false
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/discussion_topics"
@@ -56,10 +56,11 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
     private var offlineModeInteractor: OfflineModeInteractor?
 
-    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> DiscussionListViewController {
+    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(), env: AppEnvironment) -> DiscussionListViewController {
         let controller = loadFromStoryboard()
-        controller.context = context
+        controller.context = context.local
         controller.offlineModeInteractor = offlineModeInteractor
+        controller.env = env
         return controller
     }
 
@@ -144,9 +145,8 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         if offlineModeInteractor?.isOfflineModeEnabled() == true {
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
-
         env.router.route(
-            to: "\(context.pathComponent)/discussion_topics/new",
+            to: "\(context.pathComponent)/discussion_topics/new".asRoutePath(in: env),
             userInfo: [DiscussionsAssembly.SourceViewKey: self],
             from: self,
             options: .modal(isDismissable: false, embedInNav: true)

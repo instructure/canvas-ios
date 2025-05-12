@@ -40,7 +40,7 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
 
         // MARK: - WHEN
         OfflineModeAssembly.mock(AlwaysOfflineModeInteractor())
-        let testee = AnnouncementListViewController.create(context: .course("testCourse"))
+        let testee = AnnouncementListViewController.create(context: .course("testCourse"), env: environment)
         testee.view.layoutIfNeeded()
         testee.viewWillAppear(false)
 

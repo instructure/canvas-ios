@@ -31,7 +31,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     public var color: UIColor?
     var context = Context.currentUser
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "\(context.pathComponent)/announcements")
 
     var selectedFirstTopic: Bool = false
@@ -51,9 +51,10 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context))
 
-    public static func create(context: Context) -> AnnouncementListViewController {
+    public static func create(context: Context, env: AppEnvironment) -> AnnouncementListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
+        controller.env = env
         return controller
     }
 
@@ -136,7 +137,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     @objc func add() {
         env.router.route(
-            to: "\(context.pathComponent)/announcements/new",
+            to: "\(context.pathComponent)/announcements/new".asRoutePath(in: env),
             userInfo: [DiscussionsAssembly.SourceViewKey: self],
             from: self,
             options: .modal(isDismissable: false, embedInNav: true)

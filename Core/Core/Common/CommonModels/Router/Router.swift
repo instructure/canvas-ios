@@ -164,6 +164,10 @@ open class Router {
     public func route(to url: String, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
     }
+    public func route(to routePath: RoutePath, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
+        let url = routePath.correctedPath()
+        return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
+    }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
         let isExternalUrl = isExternalWebsiteURL(url)

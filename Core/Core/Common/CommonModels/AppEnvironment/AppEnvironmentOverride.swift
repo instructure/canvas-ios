@@ -127,6 +127,26 @@ extension AppEnvironment {
 
 // MARK: - Utils
 
+public struct RoutePath {
+    let value: String
+    let env: AppEnvironment
+
+    /// This method returns the correct path using env `baseURL`
+    /// if it was different from the one used on `AppEnvironment.shared.api`
+    func correctedPath() -> String {
+        guard env.api.baseURL != AppEnvironment.shared.api.baseURL else {
+            return value
+        }
+        return env.api.baseURL.appending(path: value).absoluteString
+    }
+}
+
+public extension String {
+    func asRoutePath(in env: AppEnvironment) -> RoutePath {
+        RoutePath(value: self, env: env)
+    }
+}
+
 private extension URLComponents {
     func with(scheme: String?) -> Self {
         var copy = self
