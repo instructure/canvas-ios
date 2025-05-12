@@ -45,7 +45,7 @@ struct SubmissionGraderView: View {
     @StateObject private var commentLibrary = SubmissionCommentLibraryViewModel()
     @StateObject private var rubricsViewModel: RubricsViewModel
     @StateObject private var viewModel: SubmissionGraderViewModel
-    @StateObject private var landscapeSplitLayoutViewModel = SpeedGraderLandscapeSplitLayoutViewModel()
+    @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
 
     private var handleRefresh: (() -> Void)?
 
@@ -53,10 +53,12 @@ struct SubmissionGraderView: View {
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
         viewModel: SubmissionGraderViewModel,
+        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel,
         handleRefresh: (() -> Void)?
     ) {
         self.userIndexInSubmissionList = userIndexInSubmissionList
         self._viewModel = StateObject(wrappedValue: viewModel)
+        self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
         _rubricsViewModel = StateObject(wrappedValue:
             RubricsViewModel(
