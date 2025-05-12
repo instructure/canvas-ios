@@ -90,7 +90,7 @@ final class SubmissionCommentViewModel {
             receiveCompletion: { completion in
                 switch completion {
                 case .finished:
-                    weakSelf?.getComments()
+                    weakSelf?.getComments(ignoreCache: true)
                 case .failure:
                     weakSelf?.viewState = .error
                 }
@@ -101,13 +101,13 @@ final class SubmissionCommentViewModel {
 
     // MARK: - Private functions
 
-    private func getComments() {
+    private func getComments(ignoreCache: Bool = false) {
         weak var weakSelf = self
 
         interactor.getComments(
-            courseID: courseID,
             assignmentID: assignmentID,
-            attempt: attempt
+            attempt: attempt,
+            ignoreCache: ignoreCache
         )
         .sink(
             receiveCompletion: { completion in

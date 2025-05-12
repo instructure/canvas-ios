@@ -47,7 +47,7 @@ final class ModuleItemSequenceViewModel {
     var visibleButtons: [ModuleNavBarUtilityButtons] {
         var buttons: [ModuleNavBarUtilityButtons] = [.chatBot(navigateToTutor)]
         if isAssignmentOptionsButtonVisible, moduleItem?.isQuizLTI == false {
-          buttons.append(.assignmentMoreOptions(assignmentOptionsTapped))
+          buttons.append(.assignmentMoreOptions(assignmentOptionsTapped, hasBadge: true))
         } else if moduleItem?.type?.assetType == .page && isNotebookDisabled == false {
           buttons.append(.notebook(navigateToNotebook))
         }

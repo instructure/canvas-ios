@@ -151,7 +151,7 @@ final class AssignmentDetailsViewModel {
             assignmentID: assignmentID,
             attempt: submission?.attempt ?? 0
         )
-        router.show(view, from: controller, options: .modal())
+        router.show(view, from: controller, options: .modal(isDismissable: false))
     }
 
     func viewAttempts(controller: WeakViewController) {

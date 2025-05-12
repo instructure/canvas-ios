@@ -21,9 +21,9 @@ import Core
 
 protocol SubmissionCommentInteractor {
     func getComments(
-        courseID: String,
         assignmentID: String,
-        attempt: Int?
+        attempt: Int?,
+        ignoreCache: Bool
     ) -> AnyPublisher<[SubmissionComment], Error>
 
     func postComment(
@@ -51,27 +51,29 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
     }
 
     func getComments(
-        courseID: String,
         assignmentID: String,
-        attempt: Int?
+        attempt: Int?,
+        ignoreCache: Bool
     ) -> AnyPublisher<[SubmissionComment], Error> {
-        sessionInteractor.getUserID()
-            .flatMap { userID in
-                ReactiveStore(
-                    useCase: GetSubmissionComments(
-                        context: .course(courseID),
-                        assignmentID: assignmentID,
-                        userID: userID,
-                        isAscendingOrder: true
-                    )
-                )
-                .getEntities()
-                .flatMap { $0.publisher }
-                // TODO: Remove $0.mediaURL == nil once media comments like audio, video, image is supported
-                .filter { ($0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt) && $0.mediaURL == nil && !$0.id.contains("submission") }
-                .map { SubmissionComment(from: $0, isCurrentUsersComment: $0.authorID?.localID == userID) }
-                .collect()
-                .eraseToAnyPublisher()
+        let userID = sessionInteractor.getUserID() ?? ""
+        let useCase = GetSubmissionCommentsUseCase(
+            userId: userID,
+            assignmentId: assignmentID,
+            attempt: attempt
+        )
+        return ReactiveStore(useCase: useCase)
+            .getEntities(ignoreCache: ignoreCache)
+            .map { entities in
+                entities
+                    .flatMap { $0.comments }
+                    .filter { $0.attempt == attempt || $0.attempt == nil }
+                    .map {
+                        SubmissionComment(
+                            from: $0,
+                            isCurrentUsersComment: $0.authorID == userID
+                        )
+                    }
+                    .sorted { ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast) }
             }
             .eraseToAnyPublisher()
     }
@@ -82,9 +84,9 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
         attempt: Int?
     ) -> AnyPublisher<Int, Error> {
         getComments(
-            courseID: courseID,
             assignmentID: assignmentID,
-            attempt: attempt
+            attempt: attempt,
+            ignoreCache: false
         )
         .map { $0.count }
         .eraseToAnyPublisher()

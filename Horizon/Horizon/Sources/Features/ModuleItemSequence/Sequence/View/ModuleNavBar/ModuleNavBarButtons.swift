@@ -40,7 +40,7 @@ enum ModuleNavBarUtilityButtons: Equatable, Hashable {
     case tts(OnTap? = nil)
     case chatBot(OnTap? = nil)
     case notebook(OnTap? = nil)
-    case assignmentMoreOptions(OnTap? = nil)
+    case assignmentMoreOptions(OnTap? = nil, hasBadge: Bool = false)
 
     var image: Image? {
         switch self {
@@ -82,8 +82,17 @@ enum ModuleNavBarUtilityButtons: Equatable, Hashable {
         case .tts(let onTap),
                 .chatBot(let onTap),
                 .notebook(let onTap),
-                .assignmentMoreOptions(let onTap):
+                .assignmentMoreOptions(let onTap, _):
             return onTap
+        }
+    }
+
+    var hasBadge: Bool {
+        switch self {
+        case .assignmentMoreOptions(_, hasBadge: let hasBadge):
+            return hasBadge
+        default:
+            return false
         }
     }
 

@@ -21,13 +21,13 @@ import Foundation
 
 struct SubmissionComment: Identifiable {
     let id: String
-    let assignmentID: String
     let attempt: Int?
     let authorID: String?
     let authorName: String
     let comment: String
     let createdAt: Date?
     let isCurrentUsersComment: Bool
+    var isRead: Bool = true
 
     var createdAtString: String? {
         if let createdAt {
@@ -52,34 +52,36 @@ struct SubmissionComment: Identifiable {
         return formatter
     }()
 
-    init(from entity: Core.SubmissionComment, isCurrentUsersComment: Bool) {
+    init(
+        from entity: Core.CDAssignmentComment,
+        isCurrentUsersComment: Bool
+    ) {
         self.id = entity.id
-        self.assignmentID = entity.assignmentID
         self.attempt = entity.attempt
         self.authorID = entity.authorID
-        self.authorName = entity.authorName
-        self.comment = entity.comment
+        self.authorName = entity.authorName ?? ""
+        self.comment = entity.comment ?? ""
         self.createdAt = entity.createdAt
         self.isCurrentUsersComment = isCurrentUsersComment
     }
 
     init(
         id: String,
-        assignmentID: String,
         attempt: Int?,
         authorID: String?,
         authorName: String,
         comment: String,
         createdAt: Date?,
-        isCurrentUsersComment: Bool
+        isCurrentUsersComment: Bool,
+        isRead: Bool = true
     ) {
         self.id = id
-        self.assignmentID = assignmentID
         self.attempt = attempt
         self.authorID = authorID
         self.authorName = authorName
         self.comment = comment
         self.createdAt = createdAt
         self.isCurrentUsersComment = isCurrentUsersComment
+        self.isRead = isRead
     }
 }
