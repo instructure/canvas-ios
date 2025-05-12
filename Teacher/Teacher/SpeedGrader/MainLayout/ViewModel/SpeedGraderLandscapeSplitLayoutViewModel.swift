@@ -23,11 +23,11 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
 
     // MARK: - Output
 
-    @Published var dragIconA11yLabel: String = ""
-    @Published var dragIconRotation: Angle = .degrees(0)
-    @Published var isRightColumnHidden = false
-    @Published var rightColumnWidth: CGFloat?
-    @Published var leftColumnWidth: CGFloat? {
+    @Published private(set) var dragIconA11yLabel: String = ""
+    @Published private(set) var dragIconRotation: Angle = .degrees(0)
+    @Published private(set) var isRightColumnHidden = false
+    @Published private(set) var rightColumnWidth: CGFloat?
+    @Published private(set) var leftColumnWidth: CGFloat? {
         didSet {
             let isRightColumnHidden = (leftColumnWidth == screenWidth)
             withAnimation(.snappy) {

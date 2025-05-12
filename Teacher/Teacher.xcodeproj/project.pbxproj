@@ -126,6 +126,7 @@
 		CF67D00C2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00E2B18E9A1009D826A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */; };
 		CF67D0102B18E9A1009D826A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00F2B18E9A1009D826A /* Localizable.xcstrings */; };
+		CF7D8D682DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D8D672DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift */; };
 		CF93FCB82D5A5AF600C4538F /* SpeedGraderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93FCB72D5A5AF000C4538F /* SpeedGraderAssembly.swift */; };
 		CFAA40232AE2633A002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA40222AE2633A002C7AAE /* PSPDFKit */; };
 		CFCADAEA2D9BE21F003796E7 /* RubricCriterionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAE92D9BE213003796E7 /* RubricCriterionViewModel.swift */; };
@@ -344,6 +345,7 @@
 		CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CF67D00F2B18E9A1009D826A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CF7D8D672DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderLandscapeSplitLayoutViewModelTests.swift; sourceTree = "<group>"; };
 		CF93FCB72D5A5AF000C4538F /* SpeedGraderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderAssembly.swift; sourceTree = "<group>"; };
 		CFCADAE92D9BE213003796E7 /* RubricCriterionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricCriterionViewModel.swift; sourceTree = "<group>"; };
 		CFCADAEF2D9D6E1B003796E7 /* RubricRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricRatingViewModel.swift; sourceTree = "<group>"; };
@@ -991,6 +993,7 @@
 		CF0606002D96E4750014C2EC /* MainLayout */ = {
 			isa = PBXGroup;
 			children = (
+				CF7D8D692DD24B6E00FA67CE /* ViewModel */,
 				CF0606012D96E47E0014C2EC /* View */,
 			);
 			path = MainLayout;
@@ -1139,6 +1142,14 @@
 				CF12471E2DB00B6700EB10F6 /* SpeedGraderInteractorPreview.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CF7D8D692DD24B6E00FA67CE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF7D8D672DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CFCADAF72D9D9086003796E7 /* Ratings */ = {
@@ -1595,6 +1606,7 @@
 			files = (
 				7D3DC0C7252432DD00B0EBC1 /* SubmissionFilterPickerViewControllerTests.swift in Sources */,
 				7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */,
+				CF7D8D682DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				CF56B71525F68CD3000DD32F /* SubmissionHeaderViewTests.swift in Sources */,
 				D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */,

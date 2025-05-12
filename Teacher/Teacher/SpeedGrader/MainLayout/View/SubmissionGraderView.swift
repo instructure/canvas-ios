@@ -464,6 +464,7 @@ struct SubmissionGraderView: View {
         if verticalSizeClass == .compact {
             return .landscape
         }
+
         return width > 834 ? .landscape : .portrait
     }
 
