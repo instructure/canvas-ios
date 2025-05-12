@@ -56,7 +56,7 @@ struct ScoreDetails {
                 case .dueDate:
                     return (lhs.dueAt ?? Date.distantFuture) < (rhs.dueAt ?? Date.distantFuture)
                 case .assignmentName:
-                    return lhs.name < rhs.name
+                    return lhs.name.lowercased() < rhs.name.lowercased()
                 }
             }
     }
