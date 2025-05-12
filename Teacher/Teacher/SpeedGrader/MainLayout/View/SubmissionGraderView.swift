@@ -87,33 +87,12 @@ struct SubmissionGraderView: View {
             .cornerRadius(cornerRadius)
             .scaleEffect(scale)
             .edgesIgnoringSafeArea(.bottom)
-            .onAppear {
-                updateSegmentedControlAppearance()
-            }
-            .onChange(of: viewModel.contextColor) {
-                updateSegmentedControlAppearance()
-            }
         }
         .avoidKeyboardArea()
         .onSizeChange { newSize in
             landscapeSplitLayoutViewModel.updateScreenWidth(newSize.width)
         }
         .clipped()
-    }
-
-    private func updateSegmentedControlAppearance() {
-        let appearance = UISegmentedControl.appearance()
-        appearance.setTitleTextAttributes(
-            [
-                .font: UIFont.scaledNamedFont(.semibold13),
-                .foregroundColor: UIColor.textDarkest
-            ],
-            for: .normal
-        )
-        appearance.setTitleTextAttributes(
-            [.foregroundColor: UIColor(viewModel.contextColor)],
-            for: .selected
-        )
     }
 
     @ViewBuilder
@@ -296,7 +275,7 @@ struct SubmissionGraderView: View {
             let titles = GraderTab.allCases.map {
                 $0.title(viewModel: viewModel)
             }
-            SegmentedPicker(
+            OldSegmentedPicker(
                 titles,
                 selectedIndex: Binding(
                     get: { selectedDrawerTabIndex },
@@ -329,14 +308,12 @@ struct SubmissionGraderView: View {
             .identifier("SpeedGrader.toolPicker")
             Divider()
         } else {
-            // Simply passing a string will be treated as a localized key
-            Picker("" as String, selection: $tab.animation()) {
+            InstUI.SegmentedPicker(selection: $tab.animation()) {
                 ForEach(GraderTab.allCases, id: \.self) { tab in
                     Text(tab.title(viewModel: viewModel))
                         .tag(tab)
                 }
             }
-            .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal, 16)
             .frame(height: profileHeaderSize.height)
             InstUI.Divider()
