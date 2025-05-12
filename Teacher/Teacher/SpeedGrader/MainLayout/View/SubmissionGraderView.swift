@@ -30,6 +30,7 @@ struct SubmissionGraderView: View {
 
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     @State private var selectedDrawerTabIndex = 0
     @State private var drawerState: DrawerState = .min
@@ -457,6 +458,11 @@ struct SubmissionGraderView: View {
         // To overcome this we force the last presented layout in case the app is in the background.
         guard UIApplication.shared.applicationState != .background else {
             return lastPresentedLayout
+        }
+
+        // If we are vertically compact then we are in iPhone landscape mode.
+        if verticalSizeClass == .compact {
+            return .landscape
         }
         return width > 834 ? .landscape : .portrait
     }
