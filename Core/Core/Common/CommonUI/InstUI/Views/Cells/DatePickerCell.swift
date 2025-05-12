@@ -86,7 +86,7 @@ extension InstUI {
                             .textStyle(.errorMessage)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .padding(.top, 8)
-                            .accessibilityHidden(true) // it is included in the label's a11yValue
+                            .accessibilityHidden(true)
                     }
                 }
                 .paddingStyle(.leading, .standard)
@@ -94,7 +94,6 @@ extension InstUI {
                 // best effort estimations to match the height of other cells, correcting for DatePicker
                 .padding(.top, 5)
                 .padding(.bottom, 7)
-                .accessibilityElement(children: .contain)
 
                 InstUI.Divider()
             }
@@ -104,14 +103,14 @@ extension InstUI {
         private var labelView: some View {
             labelTransform(label)
                 .textStyle(.cellLabel)
-                .accessibilityValue(accessibilityValue(mode: mode))
+                .accessibilityHidden(true)
         }
 
         @ViewBuilder
         private var datePickerView: some View {
             HStack {
                 if date != nil {
-                    datePicker
+                    datePickerParts
                 } else {
                     placeholderButtons
                 }
@@ -122,7 +121,25 @@ extension InstUI {
         }
 
         @ViewBuilder
-        private var datePicker: some View {
+        private var datePickerParts: some View {
+            HStack(spacing: 4) {
+                switch mode {
+                case .dateOnly:
+                    datePicker(mode: .dateOnly)
+                case .timeOnly:
+                    datePicker(mode: .timeOnly)
+                case .dateAndTime:
+                    // Using separate date and time pickers because otherwise VoiceOver doesn't read
+                    // neither "Date Picker" nor "Time Picker" for them.
+                    datePicker(mode: .dateOnly)
+                    datePicker(mode: .timeOnly)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+
+        @ViewBuilder
+        private func datePicker(mode: Mode) -> some View {
             let binding = Binding(
                 get: { date ?? defaultDate },
                 set: { newDate in date = newDate }
@@ -140,26 +157,10 @@ extension InstUI {
                 displayedComponents: components,
                 label: {}
             )
+            .labelsHidden() // This is needed to avoid the empty label filling up all the space
+            .accessibilityLabel(customAccessibilityLabel ?? label)
+            .accessibilityValue(String.localizedAccessibilityErrorMessage(errorMessage) ?? "") // Actual value is contained already
             .accessibilityRefocusingOnPopoverDismissal()
-        }
-
-        private var accessibilityLabel: Text {
-            customAccessibilityLabel ?? label
-        }
-
-        private func accessibilityValue(mode: Mode) -> String {
-            let dateTimeValue = switch mode {
-            case .dateOnly: date?.dateOnlyString
-            case .timeOnly: date?.timeOnlyString
-            case .dateAndTime: date?.dateTimeString
-            }
-
-            let errorValue: String? = {
-                guard let errorMessage else { return nil }
-                return String.localizedAccessibilityErrorMessage(errorMessage)
-            }()
-
-            return [dateTimeValue, errorValue].joined(separator: ", ")
         }
 
         @ViewBuilder
