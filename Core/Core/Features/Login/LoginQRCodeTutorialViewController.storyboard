@@ -56,6 +56,10 @@
                             <constraint firstItem="fbs-ss-nmW" firstAttribute="top" secondItem="71w-02-G9T" secondAttribute="bottom" constant="8" id="uDz-Lm-kET"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="helperLabel" destination="fbs-ss-nmW" id="SCa-W8-Pgf"/>
+                        <outlet property="whereToFindLabel" destination="71w-02-G9T" id="Q34-fg-elb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZc-Dn-dfx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
