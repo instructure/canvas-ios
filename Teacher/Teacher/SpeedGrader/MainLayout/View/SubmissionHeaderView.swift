@@ -103,7 +103,7 @@ struct SubmissionHeaderView: View {
     }
 
     private var resizeDragger: some View {
-        return Image.moveEndLine
+        Image.moveEndLine
             .size(uiScale.iconScale * 24)
             .rotationEffect(landscapeSplitLayoutViewModel.dragIconRotation)
             .paddingStyle(.horizontal, .standard)
@@ -113,6 +113,9 @@ struct SubmissionHeaderView: View {
             .onTapGesture {
                 landscapeSplitLayoutViewModel.didTapDragIcon()
             }
+            .accessibilityLabel(Text(landscapeSplitLayoutViewModel.dragIconA11yLabel))
+            .accessibilityAddTraits(.isButton)
+            .accessibilityRemoveTraits(.isImage)
     }
 
     private var resizeGesture: some Gesture {
@@ -122,10 +125,10 @@ struct SubmissionHeaderView: View {
         )
         .onChanged { value in
             let translation = value.translation.width
-            landscapeSplitLayoutViewModel.dragDidUpdate(horizontalTranslation: translation)
+            landscapeSplitLayoutViewModel.didUpdateDragGesturePosition(horizontalTranslation: translation)
         }
         .onEnded { _ in
-            landscapeSplitLayoutViewModel.dragDidEnd()
+            landscapeSplitLayoutViewModel.didEndDragGesture()
         }
     }
 }

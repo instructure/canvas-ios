@@ -125,10 +125,9 @@ struct SubmissionGraderView: View {
                 )
                 .accessibility(sortPriority: 2)
                 .measuringSize($profileHeaderSize)
-                Divider()
+                InstUI.Divider()
                 VStack(alignment: .leading, spacing: 0) {
                     attemptToggle
-                    Divider()
                     ZStack(alignment: .top) {
                         VStack(spacing: 0) {
                             SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
@@ -151,11 +150,12 @@ struct SubmissionGraderView: View {
                 .accessibility(sortPriority: 1)
             }
             .frame(width: landscapeSplitLayoutViewModel.leftColumnWidth)
-            Divider()
+            InstUI.Divider()
             VStack(spacing: 0) {
                 tools(bottomInset: bottomInset, isDrawer: false)
             }
             .frame(width: landscapeSplitLayoutViewModel.rightColumnWidth)
+            .hidden(landscapeSplitLayoutViewModel.isRightColumnHidden)
         }
         .onAppear { didChangeLayout(to: .landscape) }
     }
@@ -173,9 +173,9 @@ struct SubmissionGraderView: View {
                     isLandscapeLayout: false,
                     landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
                 )
+                InstUI.Divider()
                 attemptToggle
                     .accessibility(hidden: drawerState == .max)
-                Divider()
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
@@ -225,6 +225,7 @@ struct SubmissionGraderView: View {
                 .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
             }
             .disabled(viewModel.isSingleSubmission)
+            InstUI.Divider()
         }
     }
 
@@ -251,7 +252,7 @@ struct SubmissionGraderView: View {
                 }
                 .labelsHidden()
                 .pickerStyle(WheelPickerStyle())
-                Divider()
+                InstUI.Divider()
             }
             .background(Color.backgroundLightest)
         }
@@ -308,7 +309,7 @@ struct SubmissionGraderView: View {
                 }
             )
             .identifier("SpeedGrader.toolPicker")
-            Divider()
+            InstUI.Divider()
         } else {
             InstUI.SegmentedPicker(selection: $tab.animation()) {
                 ForEach(GraderTab.allCases, id: \.self) { tab in
@@ -318,6 +319,13 @@ struct SubmissionGraderView: View {
             }
             .padding(.horizontal, 16)
             .frame(height: profileHeaderSize.height)
+            .onChange(of: tab) {
+                controller.view.endEditing(true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    focusedTab = tab
+                }
+            }
+            .identifier("SpeedGrader.toolPicker")
             InstUI.Divider()
         }
         GeometryReader { geometry in

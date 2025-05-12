@@ -20,15 +20,26 @@ import Foundation
 import SwiftUI
 
 class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
+
+    // MARK: - Output
+
+    @Published var dragIconA11yLabel: String = ""
     @Published var dragIconRotation: Angle = .degrees(0)
+    @Published var isRightColumnHidden = false
     @Published var rightColumnWidth: CGFloat?
     @Published var leftColumnWidth: CGFloat? {
         didSet {
+            let isRightColumnHidden = (leftColumnWidth == screenWidth)
             withAnimation(.snappy) {
-                dragIconRotation = .degrees(leftColumnWidth == screenWidth ? -180 : 0)
+                dragIconRotation = .degrees(isRightColumnHidden ? -180 : 0)
+                dragIconA11yLabel = isRightColumnHidden ? String(localized: "Show drawer menu", bundle: .teacher)
+                                                        : String(localized: "Hide drawer menu", bundle: .teacher)
+                self.isRightColumnHidden = isRightColumnHidden
             }
         }
     }
+
+    // MARK: - Private Properties
 
     private var screenWidth: CGFloat = 0
     private var leftSideMinWidth: CGFloat = 0
@@ -50,6 +61,8 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
         leftColumnWidthBeforeFullScreen = nil
     }
 
+    // MARK: - User Actions
+
     func didTapDragIcon() {
         if isFullScreen {
             withAnimation(.snappy) {
@@ -67,7 +80,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
         }
     }
 
-    func dragDidEnd() {
+    func didEndDragGesture() {
         isDraggingInProgress = false
         leftColumnWidthBeforeFullScreen = nil
 
@@ -94,7 +107,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
         }
     }
 
-    func dragDidUpdate(horizontalTranslation: CGFloat) {
+    func didUpdateDragGesturePosition(horizontalTranslation: CGFloat) {
         if isDraggingInProgress == false {
             isDraggingInProgress = true
             dragStartLeftColumnWidth = leftColumnWidth ?? 0

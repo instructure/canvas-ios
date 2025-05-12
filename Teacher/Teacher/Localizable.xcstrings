@@ -19043,6 +19043,9 @@
         }
       }
     },
+    "Hide drawer menu" : {
+
+    },
     "Hide Grades" : {
       "localizations" : {
         "ar" : {
@@ -29796,6 +29799,9 @@
           }
         }
       }
+    },
+    "Show drawer menu" : {
+
     },
     "Similarity Score" : {
       "localizations" : {
