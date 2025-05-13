@@ -19,7 +19,6 @@
 import Foundation
 
 public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
-
     public typealias Response = GetCoursesProgressionResponse
     public let variables: Input
 
@@ -29,7 +28,7 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
     }
 
     public init(userId: String, horizonCourses: Bool = true) {
-        variables = Input(id: userId, horizonCourses: horizonCourses)
+        self.variables = Input(id: userId, horizonCourses: horizonCourses)
     }
 
     public static let operationName = "GetUserCourses"
@@ -148,7 +147,7 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                                 }
                                                                 ... on ExternalTool {
                                                                     id: _id
-                                                                    title: name                                                                    
+                                                                    title: name
                                                                     type: __typename
                                                                 }
                                                                 ... on ExternalUrl {

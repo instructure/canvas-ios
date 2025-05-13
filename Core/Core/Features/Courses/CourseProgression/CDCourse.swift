@@ -23,6 +23,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
 
     // MARK: - Properties
+
     @NSManaged public var courseID: String
     @NSManaged public var completionPercentage: Double
     @NSManaged public var state: String
@@ -76,7 +77,6 @@ public final class CDCourse: NSManagedObject, WriteableModel {
         course: Course,
         in context: NSManagedObjectContext
     ) -> CDCourse {
-
         let courseId = enrollmentModel.course.id
         let institutionName = enrollmentModel.course.account?.name
         let courseProgression = enrollmentModel
@@ -91,8 +91,8 @@ public final class CDCourse: NSManagedObject, WriteableModel {
 
         let incompleteModules =
             courseProgression?
-            .incompleteModulesConnection?
-            .nodes ?? []
+                .incompleteModulesConnection?
+                .nodes ?? []
 
         let model: CDCourse =
             context.first(where: #keyPath(CDCourse.courseID), equals: courseId) ?? context.insert()
@@ -116,13 +116,13 @@ public final class CDCourse: NSManagedObject, WriteableModel {
             model.nextModuleItemName = nil
             return model
         }
-        
+
         // Find the next published modules connection
         let nextModuleConnection = incompleteModules.first { modulesConnection in
             modulesConnection.module?.published != false
         }
         let nextModule = nextModuleConnection?.module
-        
+
         // Find the next published module item within a module connection
         let nextModuleItem = nextModuleConnection?.incompleteItemsConnection?.nodes.first { module in
             module.content?.published != false
@@ -131,7 +131,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
 
         // If the user has not started the course yet, "incompleteItemsConnection" will be null.
         // Try to set the first module item from "modulesConnection".
-        if (!hasNextModuleItem || completionPercentage == nil) {
+        if !hasNextModuleItem || completionPercentage == nil {
             let node = enrollmentModel.course.modulesConnection?.edges?.first?.node
             let firstItem = node?.moduleItems?.first
             if node?.published != false, firstItem?.content?.published != false {
@@ -153,7 +153,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
                 model.nextModuleItemURL = nil
                 model.nextModuleItemName = nil
             }
-        // If user has already started the course, set the module from "incompleteModuleItemsConnections"
+            // If user has already started the course, set the module from "incompleteModuleItemsConnections"
         } else {
             model.nextModuleID = nextModule?.id
             model.nextModuleItemID = nextModuleItem?.id
