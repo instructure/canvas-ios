@@ -133,6 +133,8 @@ struct SubmissionHeaderView: View {
     }
 }
 
+#if DEBUG
+
 #Preview {
     let testData = SpeedGraderAssembly.testData()
     SubmissionHeaderView(
@@ -142,3 +144,5 @@ struct SubmissionHeaderView: View {
         landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
     )
 }
+
+#endif
