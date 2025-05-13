@@ -291,7 +291,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                         env.router.route(
                             to: "/courses/\(courseID)/gradebook/speed_grader?assignment_id=\(assignmentID)",
                             from: controller,
-                            options: .modal(.fullScreen, isDismissable: false)
+                            options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
                         )
                     }
                 )
