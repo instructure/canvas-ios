@@ -39,6 +39,8 @@ extension CoreWebViewLinkDelegate {
     public func coreWebView(_ webView: CoreWebView, didFinishAttachmentDownload attachment: CoreWebAttachment) {}
 }
 
+// MARK: - Links Handling
+
 extension CoreWebViewLinkDelegate where Self: UIViewController {
     public func handleLink(_ url: URL) -> Bool {
         AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
