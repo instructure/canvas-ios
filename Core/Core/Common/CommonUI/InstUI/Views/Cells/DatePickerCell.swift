@@ -41,6 +41,7 @@ extension InstUI {
         private let label: Text
         private let labelTransform: (Text) -> Label
         private let customAccessibilityLabel: Text?
+        private let accessibilityIdPrefix: String?
         private let mode: Mode
         private let defaultDate: Date
         private let validFrom: Date
@@ -54,6 +55,7 @@ extension InstUI {
             label: Text,
             labelTransform: @escaping (Text) -> Label = { $0 },
             customAccessibilityLabel: Text? = nil,
+            accessibilityIdPrefix: String? = nil,
             date: Binding<Date?>,
             mode: Mode = .dateAndTime,
             defaultDate: Date = .now,
@@ -65,6 +67,7 @@ extension InstUI {
             self.label = label
             self.labelTransform = labelTransform
             self.customAccessibilityLabel = customAccessibilityLabel
+            self.accessibilityIdPrefix = accessibilityIdPrefix
             self._date = date
             self.mode = mode
             self.defaultDate = defaultDate
@@ -188,6 +191,12 @@ extension InstUI {
             case .dateAndTime: [.date, .hourAndMinute]
             }
 
+            let accessibilityId = switch mode {
+            case .dateOnly: "date"
+            case .timeOnly: "time"
+            case .dateAndTime: "dateAndTime"
+            }
+
             DatePicker(
                 selection: binding,
                 in: validFrom...validUntil,
@@ -197,6 +206,7 @@ extension InstUI {
             .labelsHidden() // This is needed to avoid the empty label filling up all the space
             .accessibilityLabel(customAccessibilityLabel ?? label)
             .accessibilityValue(String.localizedAccessibilityErrorMessage(errorMessage) ?? "") // Actual value is contained already
+            .accessibilityIdentifier(accessibilityIdPrefix?.appending(".\(accessibilityId)"))
             .accessibilityRefocusingOnPopoverDismissal()
         }
 
