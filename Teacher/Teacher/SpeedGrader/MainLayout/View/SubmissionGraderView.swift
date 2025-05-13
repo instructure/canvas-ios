@@ -93,7 +93,10 @@ struct SubmissionGraderView: View {
         }
         .avoidKeyboardArea()
         .onSizeChange { newSize in
-            landscapeSplitLayoutViewModel.updateScreenWidth(newSize.width)
+            // These conditions are to avoid reseting the landscape layout when the app is backgrounded or rotated to portrait.
+            if layoutForWidth(newSize.width) == .landscape, UIApplication.shared.applicationState != .background {
+                landscapeSplitLayoutViewModel.updateScreenWidth(newSize.width)
+            }
         }
         .clipped()
     }

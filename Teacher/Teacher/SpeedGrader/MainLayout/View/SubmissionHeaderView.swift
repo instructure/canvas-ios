@@ -116,6 +116,7 @@ struct SubmissionHeaderView: View {
             .accessibilityLabel(Text(landscapeSplitLayoutViewModel.dragIconA11yLabel))
             .accessibilityAddTraits(.isButton)
             .accessibilityRemoveTraits(.isImage)
+            .accessibility(identifier: "SpeedGrader.fullScreenToggleInLandscape")
     }
 
     private var resizeGesture: some Gesture {
