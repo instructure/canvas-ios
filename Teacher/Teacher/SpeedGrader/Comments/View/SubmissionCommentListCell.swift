@@ -212,7 +212,7 @@ private struct AttemptButton: View {
         let icon = submission.attemptIcon.map { Image(uiImage: $0) }
         FileButton(
             icon: icon?
-                .scaledSize(Size.File.icon, paddedTo: Size.File.thumbnail)
+                .scaledSize(Size.File.icon, paddedTo: Size.File.thumbnail, useIconScale: true)
                 .background(Color.backgroundLight.cornerRadius(Size.File.thumbnailCorner))
                 .foregroundStyle(Color.textDarkest),
             title: submission.attemptTitle ?? "",

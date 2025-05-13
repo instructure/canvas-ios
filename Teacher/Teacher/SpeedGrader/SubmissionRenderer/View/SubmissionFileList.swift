@@ -77,7 +77,7 @@ struct FileThumbnail: View {
     var cornerRadius: CGFloat = 4
 
     var body: some View {
-        let size = iconSize * uiScale.iconScale
+        let scaledIconSize = iconSize * uiScale.iconScale
         let scaledThumbnailSize = thumbnailSize * uiScale.iconScale
 
         if let url = file.thumbnailURL {
@@ -85,7 +85,7 @@ struct FileThumbnail: View {
                 .cornerRadius(cornerRadius)
         } else {
             icon
-                .scaledSize(size, paddedTo: thumbnailSize)
+                .size(scaledIconSize, paddedTo: scaledThumbnailSize)
                 .background(iconBackgroundColor.cornerRadius(cornerRadius))
                 .foregroundStyle(Color.textDarkest)
         }
