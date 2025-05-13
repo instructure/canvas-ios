@@ -122858,9 +122858,6 @@
         }
       }
     },
-    "Text Field" : {
-
-    },
     "Text Submission" : {
       "comment" : "Generic name for a submission entered online.",
       "extractionState" : "manual",
