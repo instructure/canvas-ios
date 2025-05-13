@@ -57,7 +57,7 @@ public enum GradeListAssembly {
             router: env.router
         )
         let viewController = CoreHostingController(GradeListView(viewModel: viewModel))
-        viewController.defaultViewRoute = .init(url: "/empty")
+        viewController.setDefaultViewRoute("/empty")
         return viewController
     }
 

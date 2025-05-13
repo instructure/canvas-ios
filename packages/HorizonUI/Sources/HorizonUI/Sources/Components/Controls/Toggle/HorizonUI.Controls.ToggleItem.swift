@@ -68,15 +68,16 @@ public extension HorizonUI.Controls {
 }
 
 #Preview {
-    HorizonUI.Controls.ToggleItem(isOn: .constant(true),
-                         title: "Title",
-                         description: "Description",
-                         isRequired: true,
-                         isDisabled: true)
+    HorizonUI.Controls.ToggleItem(
+        isOn: .constant(true),
+        title: "Title",
+        description: "Description",
+        isRequired: true,
+        isDisabled: true
+    )
 }
 
-
-fileprivate extension HorizonUI.Controls {
+private extension HorizonUI.Controls {
     struct ToggleItemStyle: ToggleStyle {
         let alignment: VerticalAlignment
 

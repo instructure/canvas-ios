@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 import Core
 
@@ -24,13 +25,13 @@ struct AssistFlashCardStepIndicatorView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                perviousButton
-                let currentCardIndex = (viewModel.currentCardIndex ?? 0) + 1
-                let ofText = String(localized: "of", bundle: .horizon)
-                Text("\(currentCardIndex) \(ofText) \(viewModel.flashCards.count)")
-                    .font(.headline)
-                    .foregroundColor(.white)
+            HStack(spacing: HorizonUI.spaces.space24) {
+                previousButton
+
+                Text(viewModel.ofText)
+                    .huiTypography(.p1)
+                    .foregroundColor(HorizonUI.colors.text.surfaceColored)
+
                 nextButton
             }
         }
@@ -40,35 +41,31 @@ struct AssistFlashCardStepIndicatorView: View {
 // MARK: - Components
 
 extension AssistFlashCardStepIndicatorView {
-    private var perviousButton: some View {
-        Button(action: {
+    private var previousButton: some View {
+        stepButton(
+            image: Image.huiIcons.chevronLeft,
+            disabled: viewModel.isPreviousButtonDisabled
+        ) {
             viewModel.goToPreviousCard()
-        }) {
-            stepIcon(imageName: "chevron.left", isDisabled: viewModel.isPreviousButtonDisabled)
         }
-        .disabled(viewModel.isPreviousButtonDisabled)
     }
 
     private var nextButton: some View {
-        Button(action: {
+        stepButton(
+            image: Image.huiIcons.chevronRight,
+            disabled: viewModel.isNextButtonDisabled
+        ) {
             viewModel.goToNextCard()
-        }) {
-            stepIcon(imageName: "chevron.right", isDisabled: viewModel.isNextButtonDisabled)
         }
-        .disabled(viewModel.isNextButtonDisabled)
     }
 
-    private func stepIcon(imageName: String, isDisabled: Bool) -> some View {
-        Image(systemName: imageName)
-            .foregroundColor(Color.textDarkest)
-            .padding()
-            .background {
-                Circle()
-                    .fill(isDisabled
-                          ? Color.backgroundLightest.opacity(0.2)
-                          : Color.backgroundLightest
-                    )
-            }
+    private func stepButton(image: Image, disabled: Bool, action: @escaping () -> Void) -> some View {
+        HorizonUI.IconButton(
+            image,
+            type: .white,
+            action: action
+        )
+        .disabled(disabled)
     }
 }
 

@@ -21,7 +21,7 @@ import SwiftUI
 public extension HorizonUI {
     struct Badge: View {
         // MARK: - Dependancies
-        
+
         private let type: Badge.BadgeType
         private let style: Badge.Style
 
@@ -47,13 +47,13 @@ public extension HorizonUI {
         @ViewBuilder
         private var contentView: some View {
             switch type {
-            case .number(let number):
+            case let .number(number):
                 Text(number)
                     .huiTypography(.tag)
                     .frame(minWidth: 19, minHeight: 19)
                     .padding(.huiSpaces.space4)
                     .multilineTextAlignment(.center)
-            case .icon(let icon):
+            case let .icon(icon):
                 icon
                     .resizable()
                     .frame(width: 17, height: 17)
@@ -75,14 +75,14 @@ public extension HorizonUI {
         )
 }
 
-extension HorizonUI.Badge {
-    public enum BadgeType {
+public extension HorizonUI.Badge {
+    enum BadgeType {
         case number(String)
         case icon(Image)
         case solidColor
     }
 
-    public enum Style {
+    enum Style {
         case primary
         case success
         case danger
@@ -93,7 +93,7 @@ extension HorizonUI.Badge {
             switch self {
             case .primary:
                 return .huiColors.surface.institution
-            case .custom(let backgroundColor, _):
+            case let .custom(backgroundColor, _):
                 return backgroundColor
             case .success: return .huiColors.surface.success
             case .danger: return .huiColors.surface.error
@@ -107,7 +107,7 @@ extension HorizonUI.Badge {
                 return .huiColors.text.surfaceColored
             case .primaryWhite:
                 return .huiColors.text.body
-            case .custom(_, let foregroundColor):
+            case let .custom(_, foregroundColor):
                 return foregroundColor
             }
         }

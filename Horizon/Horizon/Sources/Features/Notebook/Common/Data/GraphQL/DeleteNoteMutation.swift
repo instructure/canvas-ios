@@ -20,7 +20,6 @@ import Core
 
 class RedwoodDeleteNoteMutation: APIGraphQLRequestable {
     let variables: Input
-    private let jwt: String
 
     var path: String {
         "/graphql"
@@ -34,11 +33,9 @@ class RedwoodDeleteNoteMutation: APIGraphQLRequestable {
     }
 
     public init(
-        jwt: String,
         id: String
     ) {
         self.variables = Input(id: id)
-        self.jwt = jwt
     }
 
     public static let operationName: String = "DeleteNote"

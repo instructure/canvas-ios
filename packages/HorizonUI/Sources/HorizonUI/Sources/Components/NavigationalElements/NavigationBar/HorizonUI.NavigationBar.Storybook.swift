@@ -20,12 +20,20 @@ import SwiftUI
 public extension HorizonUI.NavigationBar {
     struct Storybook: View {
         public var body: some View {
-            VStack {
-                
-            }
-            .navigationBarItems(leading: HorizonUI.NavigationBar.Leading(logoURL: "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"))
-            .navigationBarItems(trailing: HorizonUI.NavigationBar.Trailing(onNotebookDidTap: {}, onNotificationDidTap: {}, onMailDidTap: {}))
-            .navigationTitle("NavigationBar")
+            VStack {}
+                .navigationBarItems(
+                    leading: HorizonUI.NavigationBar.Leading(
+                        logoURL: "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
+                    )
+                )
+                .navigationBarItems(
+                    trailing: HorizonUI.NavigationBar.Trailing(
+                        onNotebookDidTap: {},
+                        onNotificationDidTap: {},
+                        onMailDidTap: {}
+                    )
+                )
+                .navigationTitle("NavigationBar")
         }
     }
 }

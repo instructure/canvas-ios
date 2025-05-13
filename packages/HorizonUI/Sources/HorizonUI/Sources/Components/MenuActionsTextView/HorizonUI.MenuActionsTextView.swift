@@ -19,10 +19,9 @@
 import SwiftUI
 import UIKit
 
-extension HorizonUI {
-
+public extension HorizonUI {
     /// Wraps the custom UITextView in UIViewRepresentable to make it available for SwiftUI
-    public struct MenuActionsTextView: UIViewRepresentable {
+    struct MenuActionsTextView: UIViewRepresentable {
         private let attributedText: NSAttributedString
         private let delegate: HorizonUI.MenuActionsTextView.Delegate
 
@@ -34,11 +33,11 @@ extension HorizonUI {
             self.delegate = delegate
         }
 
-        public func makeUIView(context: Context) -> UITextView {
+        public func makeUIView(context _: Context) -> UITextView {
             MenuActionsUITextView(delegate: delegate)
         }
 
-        public func updateUIView(_ uiView: UITextView, context: Context) {
+        public func updateUIView(_ uiView: UITextView, context _: Context) {
             uiView.attributedText = attributedText
             uiView.sizeToFit()
         }
@@ -46,9 +45,9 @@ extension HorizonUI {
 }
 
 /// Methods that our custom UITextView depends on having implemented
-extension HorizonUI.MenuActionsTextView {
+public extension HorizonUI.MenuActionsTextView {
     @MainActor
-    public protocol Delegate {
+    protocol Delegate {
         /// Gets the buttons to be displayed to the user when a body of text is selected
         func getMenu(
             textView: UITextView,
@@ -63,7 +62,6 @@ extension HorizonUI.MenuActionsTextView {
 
 /// A custom UITextView for adding the custom buttons when highlighting text
 private class MenuActionsUITextView: UITextView {
-
     private let menuActionsUITextViewDelegate: HorizonUI.MenuActionsTextView.Delegate?
 
     init(delegate: HorizonUI.MenuActionsTextView.Delegate) {
@@ -71,20 +69,20 @@ private class MenuActionsUITextView: UITextView {
 
         super.init(frame: .zero, textContainer: nil)
 
-        self.setContentHuggingPriority(.required, for: .horizontal)
-        self.setContentHuggingPriority(.required, for: .vertical)
-        self.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        setContentHuggingPriority(.required, for: .horizontal)
+        setContentHuggingPriority(.required, for: .vertical)
+        setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         self.contentInset = .zero
-        self.textContainer.lineFragmentPadding = 0
+        textContainer.lineFragmentPadding = 0
         self.backgroundColor = .clear
 
         self.isEditable = false
         self.isSelectable = true
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
 
         DispatchQueue.main.async {
-            //on the first pass, the contentSize is incorrect
-            //we invalidate the intrinsic content size to cause a recalculation
+            // on the first pass, the contentSize is incorrect
+            // we invalidate the intrinsic content size to cause a recalculation
             self.invalidateIntrinsicContentSize()
         }
     }

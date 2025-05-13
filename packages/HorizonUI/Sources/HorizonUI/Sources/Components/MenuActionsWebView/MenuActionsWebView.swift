@@ -19,10 +19,9 @@
 import SwiftUI
 import WebKit
 
-extension HorizonUI {
-
+public extension HorizonUI {
     /// Wraps the custom WKWebView in UIViewRepresentable to make it available for SwiftUI
-    public struct MenuActionsWebView: UIViewRepresentable {
+    struct MenuActionsWebView: UIViewRepresentable {
         private let htmlString: String
         private let delegate: HorizonUI.MenuActionsWebView.Delegate
 
@@ -34,22 +33,22 @@ extension HorizonUI {
             self.delegate = delegate
         }
 
-        public func makeUIView(context: Context) -> WKWebView {
+        public func makeUIView(context _: Context) -> WKWebView {
             let webView = WKWebView()
             webView.loadHTMLString(htmlString, baseURL: nil)
             return webView
         }
 
-        public func updateUIView(_ uiView: WKWebView, context: Context) {
+        public func updateUIView(_ uiView: WKWebView, context _: Context) {
             uiView.loadHTMLString(htmlString, baseURL: nil)
         }
     }
 }
 
 /// Methods that our custom WKWebView depends on having implemented
-extension HorizonUI.MenuActionsWebView {
+public extension HorizonUI.MenuActionsWebView {
     @MainActor
-    public protocol Delegate {
+    protocol Delegate {
         /// Gets the buttons to be displayed to the user when a body of text is selected
         func getMenu(
             webView: WKWebView,
@@ -64,7 +63,6 @@ extension HorizonUI.MenuActionsWebView {
 
 /// A custom WKWebView for adding the custom buttons when highlighting text
 private class MenuActionsWKWebView: WKWebView, WKUIDelegate {
-
     private let menuActionsWKWebViewDelegate: HorizonUI.MenuActionsWebView.Delegate?
 
     init(delegate: HorizonUI.MenuActionsWebView.Delegate) {
@@ -76,11 +74,11 @@ private class MenuActionsWKWebView: WKWebView, WKUIDelegate {
         self.isOpaque = false
         self.backgroundColor = .clear
 
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
 
         DispatchQueue.main.async {
-            //on the first pass, the contentSize is incorrect
-            //we invalidate the intrinsic content size to cause a recalculation
+            // on the first pass, the contentSize is incorrect
+            // we invalidate the intrinsic content size to cause a recalculation
             self.scrollView.contentSize = CGSize(width: self.frame.width, height: self.scrollView.contentSize.height)
         }
     }
@@ -95,20 +93,20 @@ private class MenuActionsWKWebView: WKWebView, WKUIDelegate {
     }
 
     // Override method to handle custom menu options
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+    func webView(_: WKWebView, createWebViewWith _: WKWebViewConfiguration, for _: WKNavigationAction, windowFeatures _: WKWindowFeatures) -> WKWebView? {
         // Custom menu logic can be added here if needed
         return nil
     }
 
     // Method to create custom menu options when text is highlighted
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    func webView(_: WKWebView, didFinish _: WKNavigation!) {
         let customMenuJS = """
         document.body.addEventListener('contextmenu', function(event) {
             event.preventDefault();
             window.location.href = 'custommenu://' + window.getSelection().toString();
         });
         """
-        self.evaluateJavaScript(customMenuJS, completionHandler: nil)
+        evaluateJavaScript(customMenuJS, completionHandler: nil)
     }
 
     override var intrinsicContentSize: CGSize {

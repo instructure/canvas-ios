@@ -20,12 +20,28 @@
         }
       }
     },
-    "%lld %@ %lld" : {
+    "%@ Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment."
+    },
+    "%lld Attempts Allowed" : {
+      "comment" : "The number of attempts allowed for this assignment.",
       "localizations" : {
         "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld %2$@ %3$lld"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Attempt Allowed"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld Attempts Allowed"
+                }
+              }
+            }
           }
         }
       }
@@ -55,9 +71,6 @@
 
     },
     "Advanced" : {
-
-    },
-    "AI Assist" : {
 
     },
     "Alaska (-09:00/-08:00)" : {
@@ -277,6 +290,9 @@
 
     },
     "Dublin (+01:00/+00:00)" : {
+
+    },
+    "Due" : {
 
     },
     "Due Date" : {
@@ -630,9 +646,6 @@
     "Nuku'alofa (+13:00/+13:00)" : {
 
     },
-    "of" : {
-
-    },
     "Ok" : {
 
     },
@@ -648,11 +661,25 @@
     "Osaka (+09:00)" : {
 
     },
+    "Overdue" : {
+
+    },
     "Overview" : {
 
     },
     "Pacific Time (US & Canada) (-08:00/-07:00)" : {
 
+    },
+    "page_of_pages" : {
+      "comment" : "Showing the user the page index they're on compared to the total number of pages",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d of %d"
+          }
+        }
+      }
     },
     "Paris (+01:00/+02:00)" : {
 
@@ -661,6 +688,9 @@
 
     },
     "Philippines (+08:00)" : {
+
+    },
+    "Points Possible" : {
 
     },
     "Port Moresby (+10:00/+10:00)" : {

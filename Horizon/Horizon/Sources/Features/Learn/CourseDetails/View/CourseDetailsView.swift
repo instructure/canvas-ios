@@ -24,8 +24,11 @@ struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedTabIndex: Int = 1
-
+    @State private var webViewHeight: CGFloat?
+    private var tabs: [Tabs] {
+        let showingOverview = !viewModel.course.overviewDescription.isEmpty
+        return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
+    }
     // MARK: - Dependencies
 
     private let notebookView: NotebookView
@@ -44,11 +47,15 @@ struct CourseDetailsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            headerView
+            if viewModel.isShowHeader {
+                headerView
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
             learningContentView()
         }
         .padding(.top, .huiSpaces.space12)
         .hidden(viewModel.isLoaderVisible)
+        .animation(.linear, value: viewModel.isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .onAppear { viewModel.showTabBar() }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
@@ -87,7 +94,7 @@ struct CourseDetailsView: View {
             HorizonUI.ProgressBar(
                 progress: viewModel.course.progress / 100,
                 size: .medium,
-                textColor: .huiColors.primitives.white10
+                numberPosition: .outside
             )
         }
         .padding([.horizontal, .bottom], .huiSpaces.space24)
@@ -103,42 +110,55 @@ struct CourseDetailsView: View {
 
     private var tabSelectorView: some View {
         HorizonUI.Tabs(
-            tabs: Tabs.titles,
+            tabs: tabs.map(\.localizedString),
             selectTabIndex: Binding(
-                get: { selectedTabIndex },
-                set: { selectedTabIndex = $0 ?? 0 }
+                get: { viewModel.selectedTabIndex },
+                set: { viewModel.selectedTabIndex = $0 ?? 0 }
             )
         )
         .background(Color.huiColors.surface.pagePrimary)
     }
 
     private func tabDetailsView() -> some View {
-        TabView(selection: $selectedTabIndex) {
-            ForEach(Array(Tabs.allCases.enumerated()), id: \.offset) { index, tab in
+        TabView(selection: $viewModel.selectedTabIndex) {
+            ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
+                    topView
                     switch tab {
                     case .myProgress:
                         modulesView(modules: viewModel.course.modules)
                             .id(index)
+                            .padding(.bottom, .huiSpaces.space24)
                     case .overview:
                         overview(htmlString: viewModel.course.overviewDescription)
                             .id(index)
+                            .padding(.bottom, .huiSpaces.space24)
                     case .scores:
                         ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
+                            .padding(.horizontal, .huiSpaces.space24)
                     case .notebook:
                         notebookView
+                            .padding(.horizontal, .huiSpaces.space24)
+                            .padding(.bottom, .huiSpaces.space24)
                     }
                 }
-                .scaleEffect(index == selectedTabIndex ? 1 : 0.8)
+                .scaleEffect(index == viewModel.selectedTabIndex ? 1 : 0.8)
                 .tag(index)
                 .refreshable {
                     await viewModel.refresh()
                 }
             }
-            .padding(.horizontal, .huiSpaces.space24)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .animation(.smooth, value: selectedTabIndex)
+        .animation(.smooth, value: viewModel.selectedTabIndex)
+    }
+
+    private var topView: some View {
+        Color.clear
+            .frame(height: 0)
+            .readingFrame { frame in
+                viewModel.showHeaderPublisher.send(frame.minY > -100)
+            }
     }
 
     private func modulesView(modules: [HModule]) -> some View {
@@ -157,16 +177,14 @@ struct CourseDetailsView: View {
     @ViewBuilder
     private func overview(htmlString: String?) -> some View {
         if let htmlString {
-            WebView(html: htmlString)
-                .clipShape(
-                    .rect(
-                        topLeadingRadius: 32,
-                        bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0,
-                        topTrailingRadius: 32
-                    )
-                )
-                .containerRelativeFrame(.vertical)
+            WebView(html: htmlString, isScrollEnabled: false)
+                .onChangeSize { height in
+                    if webViewHeight == nil {
+                        webViewHeight = height
+                    }
+                }
+                .frame(height: webViewHeight ?? 0)
+                .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         }
     }
 }
@@ -196,10 +214,6 @@ extension CourseDetailsView {
 
         var id: Self {
             self
-        }
-
-        static var titles: [String] {
-            Tabs.allCases.map(\.localizedString)
         }
     }
 }

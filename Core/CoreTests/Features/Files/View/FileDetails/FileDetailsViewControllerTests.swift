@@ -27,7 +27,13 @@ import TestsFoundation
 class FileDetailsViewControllerTests: CoreTestCase {
     let file = APIFile.make()
     var context = Context(.course, id: "2")
-    lazy var controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
+    lazy var controller = FileDetailsViewController
+        .create(
+            context: context,
+            fileID: "1",
+            assignmentID: "3",
+            environment: environment
+        )
     var navigation: UINavigationController!
     var saveWasCalled = false
     var didSaveExpectation: XCTestExpectation!

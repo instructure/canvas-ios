@@ -33,8 +33,8 @@ struct ScoresAssignmentsView: View {
                 label: String(localized: "Sort By", bundle: .horizon),
                 options: ScoreDetails.SortOption.allCases.map(\.localizedTitle)
             )
-            .padding(.horizontal, .huiSpaces.space16)
-            .padding(.top, .huiSpaces.space16)
+            .padding(.horizontal, .huiSpaces.space24)
+            .padding(.top, .huiSpaces.space24)
             VStack(spacing: .zero) {
                 ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
                     VStack(alignment: .leading, spacing: .huiSpaces.space8) {
@@ -73,7 +73,8 @@ struct ScoresAssignmentsView: View {
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding([.top, .bottom], .huiSpaces.space16)
+                    .padding(.vertical, .huiSpaces.space16)
+                    .padding(.horizontal, .huiSpaces.space24)
                     .onTapGesture {
                         openAssignmentDetails(assignment.htmlUrl)
                     }
@@ -85,7 +86,6 @@ struct ScoresAssignmentsView: View {
                 Spacer()
             }
             .padding(.vertical, .huiSpaces.space8)
-            .padding(.horizontal, .huiSpaces.space24)
         }
         .background(Color.huiColors.primitives.white10)
         .huiCornerRadius(level: .level5)
@@ -108,7 +108,7 @@ struct ScoresAssignmentsView: View {
                     id: "2",
                     name: "iOS Debugging Quiz",
                     commentsCount: 0,
-                    dueAt: Date().addingTimeInterval(172800),
+                    dueAt: Date().addingTimeInterval(172_800),
                     htmlUrl: URL(string: "https://dev.ce.com/assignment2"),
                     pointsPossible: 50,
                     score: nil,

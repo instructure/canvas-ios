@@ -25,10 +25,11 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
     var fileNames: [String] = []
     private var counter: Int = 0
     var savedBaseContents: [URL] = []
+    var envResolver: CourseSyncEnvironmentResolver = .mocked()
 
     func download(
         _ url: URL,
-        courseId: String,
+        courseId: CourseSyncID,
         resourceId: String,
         documentsDirectory: URL
     ) -> AnyPublisher<String, Error> {
@@ -39,7 +40,7 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func copy(_ localURL: URL, fileName: String, courseId: String, resourceId: String) -> AnyPublisher<URL, Error> {
+    private func copy(_ localURL: URL, fileName: String, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<URL, Error> {
         let saveURL = URL.Directories.documents.appendingPathComponent(fileName)
 
         return Just(saveURL)
@@ -47,7 +48,7 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
             .eraseToAnyPublisher()
     }
 
-    func downloadFile(_ url: URL, courseId: String, resourceId: String) -> AnyPublisher<String, Never> {
+    func downloadFile(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, Never> {
         fileNames.append(url.lastPathComponent)
 
         return Just(url.path)

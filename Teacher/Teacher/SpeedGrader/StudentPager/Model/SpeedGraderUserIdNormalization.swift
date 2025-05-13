@@ -16,21 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import CombineExt
-import Core
+enum SpeedGraderUserIdNormalization {
 
-extension API {
-    func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
-        AnyPublisher<Request.Response?, Error> { [weak self] subscriber in
-            self?.makeRequest(requestable) { response, _, error in
-                if let error = error {
-                    subscriber.send(completion: .failure(error))
-                    return
-                }
-                subscriber.send(response)
-            }
-            return AnyCancellable { }
+    /// Helper function to help normalize user ids coming from webview urls
+    static func normalizeUserId(_ userId: String?) -> String {
+        if let userId, userId.containsOnlyNumbers {
+            return userId
         }
+
+        return SpeedGraderAllUsersUserId
     }
 }

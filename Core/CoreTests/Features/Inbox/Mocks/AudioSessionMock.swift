@@ -22,10 +22,10 @@ import AVKit
 
 final class AudioSessionMock: AudioSessionProtocol {
     // MARK: - Properties
-    var mockPermission: AVAudioSession.RecordPermission = .denied
+    var mockPermission: AVAudioApplication.recordPermission = .denied
     var shouldGrantPermission: Bool = false
 
-    var recordPermission: AVAudioSession.RecordPermission {
+    var recordPermission: AVAudioApplication.recordPermission {
         return mockPermission
     }
 

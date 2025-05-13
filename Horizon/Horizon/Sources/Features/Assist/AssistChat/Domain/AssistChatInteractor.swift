@@ -526,5 +526,31 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
     func publish(action: AssistChatAction) {}
-    var listen: AnyPublisher<AssistChatResponse, Error> = Empty().eraseToAnyPublisher()
+    var listen: AnyPublisher<AssistChatResponse, Error> = Just(
+        AssistChatResponse(
+            quizItem: .init(
+                question: "What is the capital of France?",
+                answers: ["Paris", "London", "Berlin", "Madrid"],
+                correctAnswerIndex: 0
+            ),
+            chatHistory: []
+        )
+    )
+    .setFailureType(to: Error.self)
+    .eraseToAnyPublisher()
+}
+
+extension API {
+    func makeRequest<Request: APIRequestable>(_ requestable: Request) -> AnyPublisher<Request.Response?, Error> {
+        AnyPublisher<Request.Response?, Error> { [weak self] subscriber in
+            self?.makeRequest(requestable) { response, _, error in
+                if let error = error {
+                    subscriber.send(completion: .failure(error))
+                    return
+                }
+                subscriber.send(response)
+            }
+            return AnyCancellable { }
+        }
+    }
 }

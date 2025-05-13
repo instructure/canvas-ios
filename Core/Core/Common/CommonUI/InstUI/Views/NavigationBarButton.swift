@@ -191,6 +191,7 @@ extension InstUI.NavigationBarButton {
         isBackgroundContextColor: Bool = false,
         isEnabled isEnabledOverride: Bool? = nil,
         isAvailableOffline: Bool = true,
+        accessibilityId: String? = nil,
         action: @escaping () -> Void
     ) -> Self {
         .init(
@@ -198,6 +199,7 @@ extension InstUI.NavigationBarButton {
             isEnabled: isEnabledOverride,
             isAvailableOffline: isAvailableOffline,
             title: String(localized: "Done", bundle: .core),
+            accessibilityId: accessibilityId,
             action: action
         )
     }

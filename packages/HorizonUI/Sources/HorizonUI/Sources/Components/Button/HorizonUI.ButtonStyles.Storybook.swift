@@ -39,8 +39,9 @@ extension HorizonUI.ButtonStyles {
                                 title: "Regular Height - Relative Width Buttons"
                             ),
                             StorybookConfiguration(
-                                isSmall: true, isDisabled: false, title: "Small Height - Block Width Buttons"),
-                            StorybookConfiguration(isSmall: false, isDisabled: true, title: "Disabled Buttons"),
+                                isSmall: true, isDisabled: false, title: "Small Height - Block Width Buttons"
+                            ),
+                            StorybookConfiguration(isSmall: false, isDisabled: true, title: "Disabled Buttons")
                         ]
                     ) { storybookConfiguration in
                         section(storybookConfiguration)
@@ -59,7 +60,8 @@ extension HorizonUI.ButtonStyles {
                     ForEach(HorizonUI.ButtonStyles.ButtonType.allCases) { type in
                         row(
                             type: type, isSmall: storybookConfiguration.isSmall,
-                            isDisabled: storybookConfiguration.isDisabled)
+                            isDisabled: storybookConfiguration.isDisabled
+                        )
                     }
                 }
             }
@@ -76,7 +78,7 @@ extension HorizonUI.ButtonStyles {
                     type: type,
                     isSmall: isSmall
                 ) {}
-                .disabled(isDisabled)
+                    .disabled(isDisabled)
 
                 HorizonUI.PrimaryButton(
                     "\(type.rawValue) Button",
@@ -84,14 +86,14 @@ extension HorizonUI.ButtonStyles {
                     isSmall: isSmall,
                     fillsWidth: isSmall
                 ) {}
-                .disabled(isDisabled)
+                    .disabled(isDisabled)
 
                 HorizonUI.TextButton(
                     "\(type.rawValue) Button",
                     type: type,
                     fillsWidth: isSmall
                 ) {}
-                .disabled(isDisabled)
+                    .disabled(isDisabled)
             }
         }
 

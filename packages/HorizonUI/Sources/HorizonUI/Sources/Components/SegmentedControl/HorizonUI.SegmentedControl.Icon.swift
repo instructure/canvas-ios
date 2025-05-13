@@ -31,7 +31,7 @@ public extension HorizonUI.SegmentedControl {
             }
         }
     }
-    
+
     enum IconAlignment {
         case leading
         case trailing

@@ -76,7 +76,7 @@ public extension HorizonUI.Controls.ToggleItem {
                         errorMessage: "Error Text"
                     )
                 }
-                
+
                 GridRow {
                     HorizonUI.Controls.ToggleItem(
                         isOn: $toggleStates[8],
@@ -91,7 +91,6 @@ public extension HorizonUI.Controls.ToggleItem {
                 }
             }
         }
-
     }
 }
 
