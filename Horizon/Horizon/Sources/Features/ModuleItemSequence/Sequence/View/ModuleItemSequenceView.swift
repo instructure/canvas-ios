@@ -134,7 +134,7 @@ public struct ModuleItemSequenceView: View {
     @ViewBuilder
     private var introBlock: some View {
         if isShowHeader {
-            HorizonUI.IntroBlock(
+            IntroBlock(
                 moduleName: viewModel.moduleItem?.moduleName ?? "",
                 moduleItemName: viewModel.moduleItem?.title ?? "",
                 duration: viewModel.estimatedTime,
