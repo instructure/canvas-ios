@@ -68,12 +68,6 @@ final class CourseDetailsViewModel {
                 self.isLoaderVisible = false
             }
             .store(in: &subscriptions)
-
-//        refreshCompletedModuleItemCancellable = getCoursesInteractor.fetchCourseProgression(courseId: courseID)
-//            .sink { [weak self] progress in
-//                print("🟨 pro", progress)
-//                self?.course.progress = progress
-//            }
     }
 
     deinit {

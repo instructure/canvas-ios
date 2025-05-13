@@ -37,7 +37,7 @@ class DashboardViewModel {
 
     // MARK: - Dependencies
 
-    private let getCoursesInteractor: GetCoursesInteractor
+    private let dashboardInteractor: DashboardInteractor
     private let router: Router
 
     // MARK: - Private variables
@@ -49,10 +49,10 @@ class DashboardViewModel {
     // MARK: - Init
 
     init(
-        getCoursesInteractor: GetCoursesInteractor,
+        dashboardInteractor: DashboardInteractor,
         router: Router
     ) {
-        self.getCoursesInteractor = getCoursesInteractor
+        self.dashboardInteractor = dashboardInteractor
         self.router = router
         getCourses()
     }
@@ -71,7 +71,7 @@ class DashboardViewModel {
         getDashboardCoursesCancellable?.cancel()
         refreshCompletedModuleItemCancellable?.cancel()
 
-        getDashboardCoursesCancellable = getCoursesInteractor.getCoursesWithoutModules(ignoreCache: ignoreCache)
+        getDashboardCoursesCancellable = dashboardInteractor.getAndObserveCoursesWithoutModules(ignoreCache: ignoreCache)
             .sink { [weak self] items in
                 self?.courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
                 let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
@@ -81,7 +81,7 @@ class DashboardViewModel {
                 completion?()
             }
 
-        refreshCompletedModuleItemCancellable = getCoursesInteractor.refreshModuleItemsUponCompletions()
+        refreshCompletedModuleItemCancellable = dashboardInteractor.refreshModuleItemsUponCompletions()
             .sink()
     }
 

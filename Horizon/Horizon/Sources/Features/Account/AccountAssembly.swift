@@ -23,7 +23,6 @@ final class AccountAssembly {
         AccountView(
             viewModel: AccountViewModel(
                 getUserInteractor: GetUserInteractorLive(),
-                getCoursesInteractor: GetCoursesInteractorLive(),
                 sessionInteractor: SessionInteractor(),
                 router: AppEnvironment.shared.router
             )
@@ -35,7 +34,6 @@ final class AccountAssembly {
         let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = AccountViewModel(
             getUserInteractor: getUserInteractorPreview,
-            getCoursesInteractor: GetCoursesInteractorPreview(),
             sessionInteractor: SessionInteractor(),
             router: AppEnvironment.shared.router
         )

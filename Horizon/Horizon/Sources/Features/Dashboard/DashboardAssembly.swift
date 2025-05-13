@@ -20,8 +20,8 @@ import Core
 import Foundation
 
 final class DashboardAssembly {
-    static func makeGetCoursesInteractor() -> GetCoursesInteractor {
-        GetCoursesInteractorLive()
+    static func makeDashboardInteractor() -> DashboardInteractor {
+        DashboardInteractorLive()
     }
 
     static func makeGetUserInteractor() -> GetUserInteractor {
@@ -31,7 +31,7 @@ final class DashboardAssembly {
     static func makeView() -> DashboardView {
         DashboardView(
             viewModel: .init(
-                getCoursesInteractor: makeGetCoursesInteractor(),
+                dashboardInteractor: makeDashboardInteractor(),
                 router: AppEnvironment.shared.router
             )
         )
@@ -39,9 +39,9 @@ final class DashboardAssembly {
 
     #if DEBUG
     static func makePreview() -> DashboardView {
-        let getCoursesInteractorPreview = GetCoursesInteractorPreview()
+        let dashboardInteractorPreview = DashboardInteractorPreview()
         let viewModel = DashboardViewModel(
-            getCoursesInteractor: getCoursesInteractorPreview,
+            dashboardInteractor: dashboardInteractorPreview,
             router: AppEnvironment.shared.router
         )
         return DashboardView(viewModel: viewModel)

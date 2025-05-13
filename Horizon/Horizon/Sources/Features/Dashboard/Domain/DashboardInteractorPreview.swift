@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,30 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
 import Combine
-import Core
-import Foundation
 
-class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourseWithModules(id _: String, ignoreCache _: Bool) -> AnyPublisher<HCourse?, Never> {
-        Just(course).eraseToAnyPublisher()
-    }
-
-    func getCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
-        Just([course]).eraseToAnyPublisher()
-    }
-
-    private var course: HCourse {
-        .init(
-            id: "123",
-            name: "Course Name",
-            institutionName: "Instructure",
-            enrollments: [],
-            modules: [],
-            progress: 0.5,
-            overviewDescription: "Course Description"
+final class DashboardInteractorPreview: DashboardInteractor {
+    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
+        Just(
+            [.init(
+                id: "11",
+                name: "AI Introductions",
+                state: "active",
+                enrollmentID: "222",
+                progress: 0.2,
+                learningObjectCardModel: nil
+            )]
         )
+        .eraseToAnyPublisher()
+    }
+
+    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
+        Just(())
+            .eraseToAnyPublisher()
     }
 }
-#endif

@@ -25,7 +25,6 @@ import Foundation
 protocol GetCoursesInteractor {
     func getCourseWithModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
     func getCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
-    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -62,52 +61,16 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    /// Fetches all courses from graphQL but doesn't fetch modules from the REST api.
-    /// In addition, it keeps listening for `moduleItemRequirementCompleted` notifications and makes a new request to graphQL whenever it receives one.
     func getCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
-        unowned let unownedSelf = self
-
-        return NotificationCenter.default
-            .publisher(for: .moduleItemRequirementCompleted)
-            .prepend(.init(name: .moduleItemRequirementCompleted))
-            .delay(for: .milliseconds(500), scheduler: scheduler)
-            .flatMapLatest {
-                let shouldIgnoreCache = $0.object != nil ? true : ignoreCache
-                return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: unownedSelf.userId, horizonCourses: true))
-                    .getEntities(ignoreCache: shouldIgnoreCache)
-                    .replaceError(with: [])
-                    .flatMap {
-                        $0.publisher
-                            .map { HCourse(from: $0, modules: nil) }
-                            .compactMap { $0 }
-                            .collect()
-                    }
-            }
-            .map { courses in
-                courses.sorted {
-                    ($0.learningObjectCardModel != nil) && ($1.learningObjectCardModel == nil)
-                }
-            }
-            .receive(on: scheduler)
-            .eraseToAnyPublisher()
-    }
-
-    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
-        NotificationCenter.default
-            .publisher(for: .moduleItemRequirementCompleted)
-            .compactMap { $0.object as? ModuleItemAttributes }
-            .flatMap {
-                ReactiveStore(
-                    useCase: GetModuleItem(
-                        courseID: $0.courseID,
-                        moduleID: $0.moduleID,
-                        itemID: $0.itemID
-                    )
-                )
-                .getEntities(ignoreCache: true)
-            }
+        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, horizonCourses: true))
+            .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
-            .map { _ in () }
+            .flatMap {
+                $0.publisher
+                    .map { HCourse(from: $0, modules: nil) }
+                    .compactMap { $0 }
+                    .collect()
+            }
             .eraseToAnyPublisher()
     }
 
@@ -119,8 +82,8 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
     }
 }
 
-private extension CDCourse {
-    func fetchModules(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
+extension CDCourse {
+    fileprivate func fetchModules(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
         let courseID = courseID
         let institutionName = institutionName
         let name = course.name ?? ""
