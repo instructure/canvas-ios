@@ -27,7 +27,7 @@ struct SubmissionComment: Identifiable {
     let comment: String
     let createdAt: Date?
     let isCurrentUsersComment: Bool
-    var isRead: Bool = true
+    let isRead: Bool
 
     var createdAtString: String? {
         if let createdAt {
@@ -38,8 +38,9 @@ struct SubmissionComment: Identifiable {
     }
 
     var attemptString: String? {
-        if let attempt {
-            return String(attempt)
+        if let attempt, attempt > 0 {
+            let attemptKey = String(localized: "Attempt", bundle: .horizon)
+            return String("\(attemptKey) \(attempt)")
         } else {
             return nil
         }
@@ -63,6 +64,7 @@ struct SubmissionComment: Identifiable {
         self.comment = entity.comment ?? ""
         self.createdAt = entity.createdAt
         self.isCurrentUsersComment = isCurrentUsersComment
+        self.isRead = entity.isRead
     }
 
     init(

@@ -30,7 +30,7 @@ final class AssignmentDetailsAssembly {
         moduleID: String,
         itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
-        didLoadAssignment: @escaping (String?, HModuleItem) -> Void
+        didLoadAssignment: @escaping (AssignmentLoadInfo?) -> Void
     ) -> AssignmentDetailsViewModel {
         let uploadManager = HUploadFileManagerLive(
             uploadManager: .shared,
@@ -58,11 +58,13 @@ final class AssignmentDetailsAssembly {
             userDefaults: userDefaults
         )
         let router = AppEnvironment.shared.router
+        let commentInteractor = SubmissionCommentInteractorLive(sessionInteractor: SessionInteractor())
 
         return AssignmentDetailsViewModel(
             interactor: interactor,
             moduleItemInteractor: moduleItemInteractor,
             textEntryInteractor: textEntryInteractor,
+            commentInteractor: commentInteractor,
             isMarkedAsDone: isMarkedAsDone,
             isCompletedItem: isCompletedItem,
             moduleID: moduleID,
@@ -83,7 +85,7 @@ final class AssignmentDetailsAssembly {
         moduleID: String,
         itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
-        didLoadAssignment: @escaping (String?, HModuleItem) -> Void
+        didLoadAssignment: @escaping (AssignmentLoadInfo?) -> Void
     ) -> AssignmentDetails {
         AssignmentDetails(
             viewModel: makeViewModel(
@@ -115,6 +117,7 @@ final class AssignmentDetailsAssembly {
             interactor: interactor,
             moduleItemInteractor: ModuleItemSequenceInteractorPreview(),
             textEntryInteractor: assignmentTextEntryInteractor,
+            commentInteractor: SubmissionCommentInteractorPreview(),
             isMarkedAsDone: false,
             isCompletedItem: false,
             moduleID: "3",
@@ -123,7 +126,7 @@ final class AssignmentDetailsAssembly {
             courseID: "1",
             assignmentID: "assignmentID",
             onTapAssignmentOptions: .init()
-        ) { _, _ in}
+        ) { _ in}
     }
 #endif
 }

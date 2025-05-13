@@ -50,6 +50,7 @@ final class AssignmentDetailsViewModel {
     private(set) var isSegmentControlVisible: Bool = false
     private(set) var selectedSubmission: AssignmentSubmissionType = .text
     private(set) var externalURL: URL?
+    private(set) var loadInfo: AssignmentLoadInfo?
     var isStartTyping = false
     var assignmentPreference: AssignmentPreferenceKeyType?
     var isSubmitButtonHidden: Bool {
@@ -62,6 +63,7 @@ final class AssignmentDetailsViewModel {
     private var textEntryTimestamp: String?
     private var fileUploadTimestamp: String?
     private var submissions: [HSubmission] = []
+    private var submissionComments: [SubmissionComment] = []
     var selectedSubmissionIndex: Int = 0 {
         didSet {
             selectedSubmission = AssignmentSubmissionType(index: selectedSubmissionIndex)
@@ -100,12 +102,13 @@ final class AssignmentDetailsViewModel {
     private let itemID: String
     private let environment: AppEnvironment
     private let interactor: AssignmentInteractor
+    private let commentInteractor: SubmissionCommentInteractor
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let textEntryInteractor: AssignmentTextEntryInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var onTapAssignmentOptions: PassthroughSubject<Void, Never>
-    private let didLoadAssignment: (String?, HModuleItem) -> Void
+    private let didLoadAssignment: (AssignmentLoadInfo?) -> Void
 
     // MARK: - Init
 
@@ -114,6 +117,7 @@ final class AssignmentDetailsViewModel {
         interactor: AssignmentInteractor,
         moduleItemInteractor: ModuleItemSequenceInteractor,
         textEntryInteractor: AssignmentTextEntryInteractor,
+        commentInteractor: SubmissionCommentInteractor,
         isMarkedAsDone: Bool,
         isCompletedItem: Bool,
         moduleID: String,
@@ -123,12 +127,13 @@ final class AssignmentDetailsViewModel {
         assignmentID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
-        didLoadAssignment: @escaping (String?, HModuleItem) -> Void
+        didLoadAssignment: @escaping (AssignmentLoadInfo?) -> Void
     ) {
         self.environment = environment
         self.interactor = interactor
         self.moduleItemInteractor = moduleItemInteractor
         self.textEntryInteractor = textEntryInteractor
+        self.commentInteractor = commentInteractor
         self.isShowMarkAsDoneButton = isMarkedAsDone
         self.isCompletedItem = isCompletedItem
         self.moduleID = moduleID
@@ -164,6 +169,8 @@ final class AssignmentDetailsViewModel {
             }
             hasSubmittedBefore = true
             submission = selectedSubmission
+            loadInfo?.hasUnreadComments = hasUnreadComments(for: selectedSubmission?.attempt)
+            didLoadAssignment(loadInfo)
         }
         router.show(view, from: controller, options: .modal(isDismissable: false))
     }
@@ -223,10 +230,23 @@ final class AssignmentDetailsViewModel {
     // MARK: - Private Functions
 
     private func fetchAssignmentDetails() {
+        unowned let unownedSelf = self
         Publishers.Zip(interactor.getAssignmentDetails(), interactor.getSubmissions())
+            .flatMap { assignmentDetails, submissions in
+                unownedSelf.commentInteractor.getComments(
+                        assignmentID: unownedSelf.assignmentID,
+                        ignoreCache: true
+                    )
+                .replaceError(with: [])
+                .map {(assignmentDetails, submissions, $0)}
+            }
             .receive(on: scheduler)
-            .sink { [weak self] assignmentDetails, submissions in
-                self?.configAssignmentDetails(response: assignmentDetails, submissions: submissions)
+            .sink { [weak self] assignmentDetails, submissions, comments in
+                self?.configAssignmentDetails(
+                    response: assignmentDetails,
+                    submissions: submissions,
+                    submissionComments: comments
+                )
             }
             .store(in: &subscriptions)
     }
@@ -250,10 +270,15 @@ final class AssignmentDetailsViewModel {
             .store(in: &subscriptions)
     }
 
-    private func configAssignmentDetails(response: HAssignment, submissions: [HSubmission]) {
+    private func configAssignmentDetails(
+        response: HAssignment,
+        submissions: [HSubmission],
+        submissionComments: [SubmissionComment]
+    ) {
         isLoaderVisible = false
         assignment = response
         self.submissions = submissions
+        self.submissionComments = submissionComments
         if response.assignmentSubmissionTypes.first == .externalTool {
             selectedSubmission = .externalTool
             fetchExternalURL()
@@ -268,7 +293,13 @@ final class AssignmentDetailsViewModel {
             selectedSubmission = hasSubmittedBefore == true ? latestSubmission : selectedSubmission
             submission = submissions.first
         }
-        didLoadAssignment(response.attemptCount, getModuleItem(assignment: response))
+
+        loadInfo = .init(
+            attemptCount: response.attemptCount,
+            moduleItem: getModuleItem(assignment: response),
+            hasUnreadComments: hasUnreadComments(for: submission?.attempt)
+        )
+        didLoadAssignment(loadInfo)
     }
 
     private func fetchExternalURL() {
@@ -285,6 +316,12 @@ final class AssignmentDetailsViewModel {
         tools.getSessionlessLaunch { [weak self] value in
             self?.isLoaderVisible = false
             self?.externalURL = value?.url
+        }
+    }
+
+    private func hasUnreadComments(for attempt: Int?) -> Bool {
+        submissionComments.contains { comment in
+            comment.attempt == attempt && !comment.isRead
         }
     }
 

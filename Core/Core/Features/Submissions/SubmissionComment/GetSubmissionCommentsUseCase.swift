@@ -29,18 +29,16 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
     // MARK: - Properties
 
     public var cacheKey: String? {
-        return "Submission-Comments-\(assignmentId)-\(userId)-\(attempt ?? 0)"
+        return "Submission-\(assignmentId)-\(userId)-Comments"
     }
 
     private let userId: String
     private let assignmentId: String
-    private let attempt: Int?
 
     public var request: GetSubmissionCommentsRequest {
         .init(
             assignmentId: assignmentId,
-            userId: userId,
-            attempt: attempt
+            userId: userId
         )
     }
 
@@ -49,15 +47,13 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
     public init(
         userId: String,
         assignmentId: String,
-        attempt: Int?
     ) {
         self.userId = userId
         self.assignmentId = assignmentId
-        self.attempt = attempt
     }
 
     // MARK: - Functions
-    
+
     public func write(
         response: GetSubmissionCommentsResponse?,
         urlResponse: URLResponse?,

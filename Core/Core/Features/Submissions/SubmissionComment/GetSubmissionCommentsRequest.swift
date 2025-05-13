@@ -25,28 +25,25 @@ public struct GetSubmissionCommentsRequest: APIGraphQLRequestable {
     public struct Input: Codable, Equatable {
         var userId: String
         var assignmentId: String
-        var attempt: Int?
     }
 
     public init(
         assignmentId: String,
-        userId: String,
-        attempt: Int?
+        userId: String
     ) {
         variables = Input(
             userId: userId,
-            assignmentId: assignmentId,
-            attempt: attempt
+            assignmentId: assignmentId
         )
     }
 
     public static let query = """
-        query GetSubmissionComments($assignmentId: ID!, $userId: ID!, $attempt: Int) {
+        query GetSubmissionComments($assignmentId: ID!, $userId: ID!) {
             submission(assignmentId: $assignmentId, userId: $userId) {
                ...on Submission {
                  id: _id
                  unreadCommentCount
-                 commentsConnection(sortOrder: asc, filter:{forAttempt: $attempt}) {
+                 commentsConnection(sortOrder: asc, filter:{allComments: true}) {
                    pageInfo {
                      endCursor
                      startCursor
