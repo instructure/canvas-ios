@@ -96,7 +96,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
             viewModel: SubmissionGraderViewModel(
                 assignment: data.assignment,
                 submission: data.submissions[index],
-                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
+                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher()
             ),
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
