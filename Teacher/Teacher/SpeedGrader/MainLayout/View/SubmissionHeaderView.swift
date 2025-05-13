@@ -61,7 +61,7 @@ struct SubmissionHeaderView: View {
                 }
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 0))
             })
-            .buttonStyle(PlainButtonStyle())
+            .buttonStyle(.plain)
             .onSizeChange { size in
                 profileSize = size
             }
