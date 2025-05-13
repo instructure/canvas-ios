@@ -30,7 +30,7 @@ private enum Size {
         static let width: CGFloat = 294
         static let corner: CGFloat = 24
         static let padding: CGFloat = 4
-        static let icon: CGFloat = 27
+        static let icon: CGFloat = 32
         static let thumbnail: CGFloat = 56
         static let thumbnailCorner: CGFloat = 20
     }
@@ -212,7 +212,7 @@ private struct AttemptButton: View {
         let icon = submission.attemptIcon.map { Image(uiImage: $0) }
         FileButton(
             icon: icon?
-                .scaledSize(Size.File.icon, paddedTo: Size.File.thumbnail, useIconScale: true)
+                .scaledIcon(size: Size.File.icon, paddedTo: Size.File.thumbnail)
                 .background(Color.backgroundLight.cornerRadius(Size.File.thumbnailCorner))
                 .foregroundStyle(Color.textDarkest),
             title: submission.attemptTitle ?? "",

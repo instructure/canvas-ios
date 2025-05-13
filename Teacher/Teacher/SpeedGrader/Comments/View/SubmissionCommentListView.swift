@@ -145,7 +145,7 @@ struct SubmissionCommentListView: View {
             action: { showCommentLibrary = true },
             label: {
                 Image.chevronUpLine
-                    .scaledSize(16, paddedTo: 24, useIconScale: true)
+                    .scaledIcon()
                     .foregroundColor(.textDark)
             }
         )
@@ -158,7 +158,7 @@ struct SubmissionCommentListView: View {
             action: { showMediaOptions = true },
             label: {
                 Image.paperclipLine
-                    .scaledSize(20, paddedTo: 24, useIconScale: true)
+                    .scaledIcon()
                     .foregroundColor(.textDark)
             }
         )
@@ -190,7 +190,7 @@ struct SubmissionCommentListView: View {
             },
             label: {
                 Image.circleArrowUpSolid
-                    .scaledSize(20, paddedTo: 24, useIconScale: true)
+                    .scaledIcon()
                     .foregroundStyle(viewModel.contextColor)
             }
         )

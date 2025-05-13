@@ -56,7 +56,7 @@ struct CommentEditorView: View {
                 },
                 label: {
                     Image.circleArrowUpSolid
-                        .scaledSize(20, paddedTo: 24, useIconScale: true)
+                        .scaledIcon()
                         .foregroundStyle(contextColor)
                 }
             )
