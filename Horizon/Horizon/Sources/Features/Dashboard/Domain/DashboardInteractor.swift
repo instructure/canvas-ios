@@ -72,7 +72,7 @@ final class DashboardInteractorLive: DashboardInteractor {
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
-    
+
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
         NotificationCenter.default
             .publisher(for: .moduleItemRequirementCompleted)

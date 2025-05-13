@@ -148,8 +148,7 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                                 }
                                                                 ... on ExternalTool {
                                                                     id: _id
-                                                                    title
-                                                                    published
+                                                                    title: name                                                                    
                                                                     type: __typename
                                                                 }
                                                                 ... on ExternalUrl {
