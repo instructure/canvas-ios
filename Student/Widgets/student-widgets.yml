@@ -37,3 +37,12 @@ schemes:
         Widgets: all
       environmentVariables:
         _XCWidgetKind: GradesWidget
+  Widgets - Todo:
+    build:
+      targets:
+        Widgets: all
+    run:
+      targets:
+        Widgets: all
+      environmentVariables:
+        _XCWidgetKind: TodoWidget

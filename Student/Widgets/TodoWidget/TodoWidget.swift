@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,13 +19,14 @@
 import SwiftUI
 import WidgetKit
 
-@main
-struct Widgets: WidgetBundle {
+struct TodoWidget: Widget {
+    let kind: String = "TodoWidget"
 
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        GradesWidget()
-        TodoWidget()
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: TodoWidgetProvider()) { model in
+            TodoWidgetScreen(model: model)
+        }
+        .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
+        .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))
     }
 }
