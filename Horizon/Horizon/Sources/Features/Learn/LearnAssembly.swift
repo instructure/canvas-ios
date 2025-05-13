@@ -24,15 +24,6 @@ final class LearnAssembly {
         GetCoursesInteractorLive()
     }
 
-    static func makeCoursesView() -> CourseListView {
-        CourseListView(
-            viewModel: .init(
-                router: CommonAssembly.makeRouter(),
-                interactor: makeGetCoursesInteractor()
-            )
-        )
-    }
-
     static func makeCourseDetailsViewController(
         courseID: String,
         enrollmentID: String,

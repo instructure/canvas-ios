@@ -154,7 +154,7 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
 
     func getCourse() -> AnyPublisher<HCourse, Never> {
         getCoursesInteractor
-            .getCourseAndModules(id: courseID, ignoreCache: false)
+            .getCourseWithModules(id: courseID, ignoreCache: false)
             .compactMap { $0 }
             .eraseToAnyPublisher()
     }

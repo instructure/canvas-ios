@@ -57,7 +57,7 @@ final class CourseDetailsViewModel {
         self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID, enrollmentID: enrollmentID)
         self.isLoaderVisible = true
 
-        getCoursesInteractor.getCourseAndModules(id: courseID, ignoreCache: false)
+        getCoursesInteractor.getCourseWithModules(id: courseID, ignoreCache: false)
             .sink { [weak self] course in
                 guard let course = course, let self = self else { return }
                 let currentProgress = self.course.progress
@@ -89,7 +89,7 @@ final class CourseDetailsViewModel {
         NotificationCenter.default.post(name: .courseDetailsForceRefreshed, object: nil)
 
         await withCheckedContinuation { continuation in
-            getCoursesInteractor.getCourseAndModules(id: courseID, ignoreCache: true)
+            getCoursesInteractor.getCourseWithModules(id: courseID, ignoreCache: true)
                 .first()
                 .sink { [weak self] course in
                     continuation.resume()

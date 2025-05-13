@@ -23,9 +23,8 @@ import Core
 import Foundation
 
 protocol GetCoursesInteractor {
-    func getCoursesAndModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
-    func getCourseAndModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
-    func getCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never>
+    func getCourseWithModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
+    func getCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
     func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never>
 }
 
@@ -48,20 +47,24 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     // MARK: - Functions
 
-    func getCoursesAndModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
-        fetchCourses(ignoreCache: ignoreCache)
-            .receive(on: scheduler)
-            .eraseToAnyPublisher()
-    }
+    /// Fetches a singular course from graphQL, then fetches all the modules and module items from the REST api.
+    /// In addition, it keeps observing Core Data changes so whenever other parts of the app update this particular course in Core Data, the caller site will also get
+    /// the updated data without the need of making a new API request.
+    func getCourseWithModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
+        unowned let unownedSelf = self
 
-    func getCourseAndModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
-        fetchCourses(courseId: id, ignoreCache: ignoreCache)
+        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: id, horizonCourses: true))
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
             .map { $0.first }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
 
-    func getCourses(ignoreCache: Bool) -> AnyPublisher<[DashboardCourse], Never> {
+    /// Fetches all courses from graphQL but doesn't fetch modules from the REST api.
+    /// In addition, it keeps listening for `moduleItemRequirementCompleted` notifications and makes a new request to graphQL whenever it receives one.
+    func getCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         unowned let unownedSelf = self
 
         return NotificationCenter.default
@@ -75,7 +78,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
                     .replaceError(with: [])
                     .flatMap {
                         $0.publisher
-                            .flatMap { $0.mapToDashboardCourse() }
+                            .map { HCourse(from: $0, modules: nil) }
                             .compactMap { $0 }
                             .collect()
                     }
@@ -110,16 +113,6 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
     // MARK: - Private
 
-    private func fetchCourses(courseId: String? = nil, ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
-        unowned let unownedSelf = self
-
-        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: unownedSelf.userId, courseId: courseId, horizonCourses: true))
-            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
-            .replaceError(with: [])
-            .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
-            .eraseToAnyPublisher()
-    }
-
     private func fetchModules(dashboardCourses: [CDCourse], ignoreCache: Bool) -> AnyPublisher<[HCourse], Never> {
         let publishers = dashboardCourses.map { $0.fetchModules(ignoreCache: ignoreCache) }
         return publishers.combineLatest().eraseToAnyPublisher()
@@ -127,55 +120,13 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 }
 
 private extension CDCourse {
-    func mapToDashboardCourse() -> AnyPublisher<DashboardCourse?, Never> {
-        let name = course.name ?? ""
-        let progress = completionPercentage / 100.0
-        let hasNextModuleItem: Bool = nextModuleID != nil && nextModuleItemID != name
-        guard hasNextModuleItem else {
-            return Just(
-                DashboardCourse(
-                    name: name,
-                    progress: progress,
-                    courseId: courseID,
-                    state: state,
-                    enrollmentID: enrollmentID,
-                    learningObjectCardModel: nil
-                )
-            )
-            .eraseToAnyPublisher()
-        }
-
-        let moduleItem = LearningObjectCard(
-            moduleTitle: nextModuleName ?? "",
-            learningObjectName: nextModuleItemName ?? "",
-            type: nextModuleItemType,
-            dueDate: nextModuleItemDueDate?.relativeShortDateOnlyString,
-            url: URL(string: nextModuleItemURL ?? ""),
-            estimatedTime: nextModuleItemEstimatedTime?.toISO8601Duration
-        )
-        return Just(
-            DashboardCourse(
-                name: name,
-                progress: progress,
-                courseId: courseID,
-                state: state,
-                enrollmentID: enrollmentID,
-                learningObjectCardModel: moduleItem
-            )
-        )
-        .eraseToAnyPublisher()
-    }
-
     func fetchModules(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
         let courseID = courseID
         let institutionName = institutionName
         let name = course.name ?? ""
         let overviewDescription = course.syllabusBody
         let progress = completionPercentage
-        let incompleteModule = IncompleteModule(
-            moduleId: nextModuleID,
-            moduleItemId: nextModuleItemID
-        )
+
         return ReactiveStore(
             useCase: GetModules(
                 courseID: courseID,
@@ -184,16 +135,10 @@ private extension CDCourse {
         )
         .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
         .replaceError(with: [])
-        .map { [enrollmentID] in
+        .map {
             HCourse(
-                id: courseID,
-                enrollmentID: enrollmentID,
-                institutionName: institutionName ?? "",
-                name: name,
-                overviewDescription: overviewDescription,
-                progress: progress,
-                modules: $0.map { HModule(from: $0) },
-                incompleteModule: incompleteModule
+                from: self,
+                modules: $0.map { HModule(from: $0) }
             )
         }
         .eraseToAnyPublisher()

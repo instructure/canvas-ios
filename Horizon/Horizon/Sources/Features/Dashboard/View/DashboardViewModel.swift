@@ -28,7 +28,7 @@ class DashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var errorMessage = ""
     var title: String = ""
-    private(set) var courses: [DashboardCourse] = []
+    private(set) var courses: [HCourse] = []
     private(set) var invitedCourses: [InvitedCourse] = []
 
     // MARK: - Input / Outputs
@@ -71,12 +71,12 @@ class DashboardViewModel {
         getDashboardCoursesCancellable?.cancel()
         refreshCompletedModuleItemCancellable?.cancel()
 
-        getDashboardCoursesCancellable = getCoursesInteractor.getCourses(ignoreCache: ignoreCache)
+        getDashboardCoursesCancellable = getCoursesInteractor.getCoursesWithoutModules(ignoreCache: ignoreCache)
             .sink { [weak self] items in
-                self?.courses = items.filter { $0.state == DashboardCourse.EnrollmentState.active.rawValue }
-                let invitedCourses = items.filter { $0.state == DashboardCourse.EnrollmentState.invited.rawValue }
+                self?.courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
+                let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
                 let message = String(localized: "You have been invited to join", bundle: .horizon)
-                self?.invitedCourses = invitedCourses.map { .init(id: $0.courseId, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
+                self?.invitedCourses = invitedCourses.map { .init(id: $0.id, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
                 self?.state = .data
                 completion?()
             }

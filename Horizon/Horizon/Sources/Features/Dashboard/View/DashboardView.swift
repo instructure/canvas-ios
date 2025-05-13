@@ -69,14 +69,14 @@ struct DashboardView: View {
         }
     }
 
-    private func contentView(courses: [DashboardCourse]) -> some View {
+    private func contentView(courses: [HCourse]) -> some View {
         ForEach(courses) { course in
             VStack(alignment: .leading, spacing: .zero) {
                 courseProgressionView(course: course)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         viewModel.navigateToCourseDetails(
-                            id: course.courseId,
+                            id: course.id,
                             enrollmentID: course.enrollmentID,
                             viewController: viewController
                         )
@@ -99,7 +99,7 @@ struct DashboardView: View {
         }
     }
 
-    private func courseProgressionView(course: DashboardCourse) -> some View {
+    private func courseProgressionView(course: HCourse) -> some View {
         Group {
             Text(course.name)
                 .huiTypography(.h1)
@@ -108,14 +108,14 @@ struct DashboardView: View {
                 .padding(.bottom, .huiSpaces.space16)
 
             HorizonUI.ProgressBar(
-                progress: course.progress,
+                progress: course.progress / 100.0,
                 size: .medium,
                 numberPosition: .outside
             )
         }
     }
 
-    private func learningObjectCard(model: LearningObjectCard, progress: Double) -> some View {
+    private func learningObjectCard(model: HCourse.LearningObjectCard, progress: Double) -> some View {
         VStack(alignment: .leading, spacing: .zero) {
             Text("Resume Learning", bundle: .horizon)
                 .huiTypography(.h3)

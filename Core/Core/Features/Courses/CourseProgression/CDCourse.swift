@@ -100,26 +100,63 @@ public final class CDCourse: NSManagedObject, WriteableModel {
         model.course = course
         model.courseID = courseId
         model.institutionName = institutionName
-        model.completionPercentage = completionPercentage ?? 0.0
-        let nextModule = incompleteModules.first?.module
-        let nextModuleItem = incompleteModules.first?.incompleteItemsConnection?.nodes.first
-        let hasNextModuleItem = nextModule != nil && nextModuleItem != nil
-        model.nextModuleID = nextModule?.id
-        model.nextModuleItemID = nextModuleItem?.id
         model.state = enrollmentModel.state
         model.enrollmentID = enrollmentModel.id
-        if !hasNextModuleItem, completionPercentage == nil {
+        model.completionPercentage = completionPercentage ?? 0.0
+
+        // If this is a completed course, return early
+        if completionPercentage == 100 {
+            model.nextModuleID = nil
+            model.nextModuleItemID = nil
+            model.nextModuleItemEstimatedTime = nil
+            model.nextModuleItemType = nil
+            model.nextModuleItemDueDate = nil
+            model.nextModuleName = nil
+            model.nextModuleItemURL = nil
+            model.nextModuleItemName = nil
+            return model
+        }
+        
+        // Find the next published modules connection
+        let nextModuleConnection = incompleteModules.first { modulesConnection in
+            modulesConnection.module?.published != false
+        }
+        let nextModule = nextModuleConnection?.module
+        
+        // Find the next published module item within a module connection
+        let nextModuleItem = nextModuleConnection?.incompleteItemsConnection?.nodes.first { module in
+            module.content?.published != false
+        }
+        let hasNextModuleItem = nextModule != nil && nextModuleItem != nil && nextModule?.published != false && nextModuleItem?.content?.published != false
+
+        // If the user has not started the course yet, "incompleteItemsConnection" will be null.
+        // Try to set the first module item from "modulesConnection".
+        if (!hasNextModuleItem || completionPercentage == nil) {
             let node = enrollmentModel.course.modulesConnection?.edges?.first?.node
             let firstItem = node?.moduleItems?.first
-            model.nextModuleID = node?.id
-            model.nextModuleItemID = firstItem?.content?.id
-            model.nextModuleItemEstimatedTime = firstItem?.estimatedDuration
-            model.nextModuleItemType = firstItem?.content?.type
-            model.nextModuleItemDueDate = firstItem?.content?.dueAt
-            model.nextModuleName = node?.name
-            model.nextModuleItemURL = firstItem?.url
-            model.nextModuleItemName = firstItem?.content?.title
+            if node?.published != false, firstItem?.content?.published != false {
+                model.nextModuleID = node?.id
+                model.nextModuleItemID = firstItem?.content?.id
+                model.nextModuleItemEstimatedTime = firstItem?.estimatedDuration
+                model.nextModuleItemType = firstItem?.content?.type
+                model.nextModuleItemDueDate = firstItem?.content?.dueAt
+                model.nextModuleName = node?.name
+                model.nextModuleItemURL = firstItem?.url
+                model.nextModuleItemName = firstItem?.content?.title
+            } else {
+                model.nextModuleID = nil
+                model.nextModuleItemID = nil
+                model.nextModuleItemEstimatedTime = nil
+                model.nextModuleItemType = nil
+                model.nextModuleItemDueDate = nil
+                model.nextModuleName = nil
+                model.nextModuleItemURL = nil
+                model.nextModuleItemName = nil
+            }
+        // If user has already started the course, set the module from "incompleteModuleItemsConnections"
         } else {
+            model.nextModuleID = nextModule?.id
+            model.nextModuleItemID = nextModuleItem?.id
             model.nextModuleItemEstimatedTime = nextModuleItem?.estimatedDuration
             model.nextModuleItemType = nextModuleItem?.content?.type
             model.nextModuleItemDueDate = nextModuleItem?.content?.dueAt

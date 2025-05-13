@@ -17,54 +17,80 @@
 //
 
 import Core
+import Foundation
 
 struct HCourse: Identifiable {
+    enum EnrollmentState: String {
+        case active
+        case invited
+    }
+
+    struct LearningObjectCard {
+        let moduleTitle: String
+        let learningObjectName: String
+        let type: String?
+        let dueDate: String?
+        let url: URL?
+        let estimatedTime: String?
+    }
+
     let id: String
-    let institutionName: String
     let name: String
-    let overviewDescription: String
-    var progress: Double
+    let institutionName: String
+    let state: String // active or inactive
+    let enrollmentID: String
     let enrollments: [HEnrollment]
     let modules: [HModule]
-    let incompleteModule: IncompleteModule?
-    let enrollmentID: String
+    var progress: Double
+    let overviewDescription: String
+    let learningObjectCardModel: LearningObjectCard? // upcoming module item details
 
     init(
         id: String = "",
-        enrollmentID: String = "",
-        institutionName: String = "",
         name: String = " ",
-        overviewDescription: String? = nil,
-        progress: Double = 0,
+        institutionName: String = "",
+        state: String = "",
+        enrollmentID: String = "",
         enrollments: [HEnrollment] = [],
         modules: [HModule] = [],
-        incompleteModule: IncompleteModule? = nil
+        progress: Double = 0,
+        overviewDescription: String? = nil,
+        learningObjectCardModel: LearningObjectCard? = nil
     ) {
         self.id = id
-        self.enrollmentID = enrollmentID
-        self.institutionName = institutionName
         self.name = name
-        self.overviewDescription = overviewDescription ?? ""
-        self.progress = progress
+        self.institutionName = institutionName
+        self.state = state
+        self.enrollmentID = enrollmentID
         self.enrollments = enrollments
         self.modules = modules
-        self.incompleteModule = incompleteModule
+        self.progress = progress
+        self.overviewDescription = overviewDescription ?? ""
+        self.learningObjectCardModel = learningObjectCardModel
     }
 
-    init(from entity: Course, modulesEntity: [Module]) {
-        self.id = entity.id
-        self.enrollmentID = ""
-        self.institutionName = ""
-        self.name = entity.name ?? ""
-        self.overviewDescription = entity.syllabusBody ?? ""
-        self.progress = 0
-        if let enrollments = entity.enrollments {
-            self.enrollments = Array(enrollments).map { HEnrollment(from: $0) }
+    init(from entity: CDCourse, modules: [HModule]?) {
+        self.id = entity.courseID
+        self.name = entity.course.name ?? ""
+        self.institutionName = entity.institutionName ?? ""
+        self.state = entity.state
+        self.enrollmentID = entity.enrollmentID
+        self.enrollments = [] // TODO: Find where to set
+        self.modules = modules ?? []
+        self.progress = entity.completionPercentage
+        self.overviewDescription = entity.course.syllabusBody ?? ""
+
+        if entity.nextModuleID != nil, entity.nextModuleItemID != name {
+            self.learningObjectCardModel = LearningObjectCard(
+                moduleTitle: entity.nextModuleName ?? "",
+                learningObjectName: entity.nextModuleItemName ?? "",
+                type: entity.nextModuleItemType,
+                dueDate: entity.nextModuleItemDueDate?.relativeShortDateOnlyString,
+                url: URL(string: entity.nextModuleItemURL ?? ""),
+                estimatedTime: entity.nextModuleItemEstimatedTime?.toISO8601Duration
+            )
         } else {
-            self.enrollments = []
+            self.learningObjectCardModel = nil
         }
-       self.modules = modulesEntity
-            .map { HModule(from: $0) }
-        self.incompleteModule = nil
     }
 }
