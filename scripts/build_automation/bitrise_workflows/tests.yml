@@ -98,7 +98,7 @@ workflows:
                 -scheme CITests \
                 -sdk iphonesimulator \
                 -configuration Debug \
-                -destination 'platform=iOS Simulator,name=Bitrise iOS default,OS=latest' \
+                -destination 'platform=iOS Simulator,name=Bitrise iOS default,OS=18.4' \
                 COMPILER_INDEX_STORE_ENABLE=NO \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
@@ -116,7 +116,7 @@ workflows:
             xcodebuild \
                 -workspace Canvas.xcworkspace \
                 -scheme CITests \
-                -destination 'platform=iOS Simulator,name=Bitrise iOS default' \
+                -destination 'platform=iOS Simulator,name=Bitrise iOS default,OS=18.4' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
                 test-without-building 2>&1 | xcbeautify
     - script:
