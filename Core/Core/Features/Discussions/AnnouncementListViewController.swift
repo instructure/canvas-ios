@@ -137,7 +137,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     @objc func add() {
         env.router.route(
-            to: "\(context.pathComponent)/announcements/new".asRoutePath(in: env),
+            to: "\(context.pathComponent)/announcements/new".asRoute(in: env),
             userInfo: [DiscussionsAssembly.SourceViewKey: self],
             from: self,
             options: .modal(isDismissable: false, embedInNav: true)
