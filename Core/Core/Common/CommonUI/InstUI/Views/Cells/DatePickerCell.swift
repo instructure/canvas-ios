@@ -39,7 +39,7 @@ extension InstUI {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let label: Text
-        private let labelTransform: (Text) -> Label
+        private let labelModifiers: (Text) -> Label
         private let customAccessibilityLabel: Text?
         private let accessibilityIdPrefix: String?
         private let mode: Mode
@@ -53,7 +53,7 @@ extension InstUI {
 
         public init(
             label: Text,
-            labelTransform: @escaping (Text) -> Label = { $0 },
+            labelModifiers: @escaping (Text) -> Label = { $0 },
             customAccessibilityLabel: Text? = nil,
             accessibilityIdPrefix: String? = nil,
             date: Binding<Date?>,
@@ -65,7 +65,7 @@ extension InstUI {
             isClearable: Bool = false
         ) {
             self.label = label
-            self.labelTransform = labelTransform
+            self.labelModifiers = labelModifiers
             self.customAccessibilityLabel = customAccessibilityLabel
             self.accessibilityIdPrefix = accessibilityIdPrefix
             self._date = date
@@ -121,7 +121,7 @@ extension InstUI {
         }
 
         private var labelView: some View {
-            labelTransform(label)
+            labelModifiers(label)
                 .textStyle(.cellLabel)
                 .accessibilityHidden(true)
         }
@@ -275,7 +275,7 @@ extension InstUI {
         InstUI.DatePickerCell(label: Text(verbatim: "Just Date"), date: .constant(.now), mode: .dateOnly)
         InstUI.DatePickerCell(
             label: Text(verbatim: "Important Date"),
-            labelTransform: { $0.foregroundStyle(Color.red).textStyle(.heading) },
+            labelModifiers: { $0.foregroundStyle(Color.red).textStyle(.heading) },
             date: .constant(.now)
         )
     }
