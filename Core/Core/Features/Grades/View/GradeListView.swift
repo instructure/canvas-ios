@@ -36,6 +36,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     @State private var isScoreEditorPresented = false
 
     @State private var originalScrollOffset: CGFloat = 0
+    @State private var nonCollapsableHeaderHeight: CGFloat = 0
     @State private var scrollOffset: CGFloat?
     @State private var collapsableHeaderOriginalHeight: CGFloat = 0
 
@@ -81,7 +82,13 @@ public struct GradeListView: View, ScreenViewTrackable {
         .animation(.smooth, value: isScoreEditorPresented)
         .safeAreaInset(edge: .top, spacing: 0) {
             switch viewModel.state {
-            case .data, .empty: nonCollapsableGradeDetails
+            case .data, .empty:
+                nonCollapsableGradeDetails
+                    .readingFrame { frame in
+                        if nonCollapsableHeaderHeight != frame.height {
+                            nonCollapsableHeaderHeight = frame.height
+                        }
+                    }
             default: SwiftUI.EmptyView()
             }
         }
@@ -126,22 +133,35 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ViewBuilder
     private var contentView: some View {
         VStack(spacing: 0) {
-            switch viewModel.state {
-            case .data, .empty:
-                collapsableToggles
-                    .bindTopPosition(id: "togggles", coordinateSpace: .global, to: $scrollOffset)
-                    .onAppear {
-                        originalScrollOffset = (scrollOffset ?? 0)
-                    }
-                    .onFrameChange(id: "collapsableHeaderHeight", coordinateSpace: .global) { frame in
-                        if frame.height > collapsableHeaderOriginalHeight {
-                            collapsableHeaderOriginalHeight = frame.height
-                        }
-                    }
+            Color.clear.frame(height: .zero)
+                .bindTopPosition(id: "togggles", coordinateSpace: .global, to: $scrollOffset)
+                .onAppear {
+                    originalScrollOffset = scrollOffset ?? 0
+                }
+                .onChange(of: scrollOffset) { oldValue, newValue in
+                    print("scrollOffset", scrollOffset ?? 0)
 
-            default:
-                SwiftUI.EmptyView()
-            }
+                }
+//            switch viewModel.state {
+//            case .data, .empty:
+//                collapsableToggles
+////                    .onAppear {
+////                        originalScrollOffset = scrollOffset ?? 0
+////                    }
+//                    .readingFrame { frame in
+//                        print("nonCollapsableHeaderHeight", nonCollapsableHeaderHeight)
+//                        print("originalScrollOffset", originalScrollOffset)
+//                        print("scrollOffset", scrollOffset ?? 0)
+//                        print("collapsableHeaderOriginalHeight", collapsableHeaderOriginalHeight)
+//                        print("--------------------------------------------------------------------")
+////                        if frame.height > collapsableHeaderOriginalHeight {
+//                            collapsableHeaderOriginalHeight = frame.height
+////                        }
+//                    }
+//
+//            default:
+//                SwiftUI.EmptyView()
+//            }
 
             switch viewModel.state {
             case .initialLoading: loadingView
@@ -296,7 +316,6 @@ public struct GradeListView: View, ScreenViewTrackable {
                     .multilineTextAlignment(.leading)
             }
             .frame(minHeight: 51)
-            .padding(.horizontal, 16)
             .accessibilityIdentifier("BasedOnGradedToggle")
 
             if viewModel.isWhatIfScoreFlagEnabled {
@@ -309,7 +328,6 @@ public struct GradeListView: View, ScreenViewTrackable {
                         .multilineTextAlignment(.leading)
                 }
                 .frame(minHeight: 51)
-                .padding(.horizontal, 16)
             }
         }
     }
