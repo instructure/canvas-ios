@@ -27,8 +27,7 @@ struct SkillSpaceAssembly {
             router: environment.router
         )
         let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPage: skillSpaceinboxViewModel,
-            navigationDelegate: skillSpaceinboxViewModel
+            webPage: skillSpaceinboxViewModel
         )
         return viewModel
     }
