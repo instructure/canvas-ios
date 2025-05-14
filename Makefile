@@ -6,7 +6,7 @@ provision: ## Environment setup
 
 provision-ci: ## CI environment setup
 	@brew install "xcodegen"
-	@generate-placeholder-plist-files
+	@$(MAKE) generate-placeholder-plist-files
 
 sync: ## xproj file generation
 	@echo 🟡 Running xcodegen
