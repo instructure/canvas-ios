@@ -21,9 +21,6 @@ import Combine
 
 class SubmissionListInteractorLive: SubmissionListInteractor {
 
-    private var submissionsSubject = PassthroughSubject<[Submission], Never>()
-    private var filtersSubject: CurrentValueSubject<[GetSubmissions.Filter], Never>
-
     let context: Context
     let assignmentID: String
 
@@ -34,6 +31,9 @@ class SubmissionListInteractorLive: SubmissionListInteractor {
     private var courseStore: ReactiveStore<GetCourse>
     private var assignmentStore: ReactiveStore<GetAssignment>
     private var submissionsStore: ReactiveStore<GetSubmissions>?
+
+    private var submissionsSubject = PassthroughSubject<[Submission], Never>()
+    private var filtersSubject: CurrentValueSubject<[GetSubmissions.Filter], Never>
 
     init(context: Context, assignmentID: String, filters: [GetSubmissions.Filter], env: AppEnvironment) {
         self.context = context

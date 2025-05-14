@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0856FCCC2DB641EC009067CF /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCCB2DB641D5009067CF /* SubmissionListView.swift */; };
+		0856FCCC2DB641EC009067CF /* SubmissionListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCCB2DB641D5009067CF /* SubmissionListScreen.swift */; };
 		0856FCCE2DB64425009067CF /* SubmissionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCCD2DB64422009067CF /* SubmissionListViewModel.swift */; };
 		0856FCD02DB644F5009067CF /* SubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCCF2DB644EC009067CF /* SubmissionListInteractor.swift */; };
 		0856FCD22DB64665009067CF /* SubmissionListInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */; };
@@ -17,7 +17,7 @@
 		0856FCFC2DCA4196009067CF /* SubmissionListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFB2DCA418B009067CF /* SubmissionListViewModelTests.swift */; };
 		0856FCFE2DCA41B6009067CF /* SubmissionListInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */; };
 		0856FD002DCB09D6009067CF /* SubmissionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */; };
-		0856FD022DCB09F5009067CF /* SubmissionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FD012DCB09F3009067CF /* SubmissionSection.swift */; };
+		0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FD012DCB09F3009067CF /* SubmissionListSection.swift */; };
 		089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */; };
 		089AAC942DCC02200022F341 /* MockSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */; };
 		089AAC962DCC024A0022F341 /* NSManagedObjectContext+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */; };
@@ -234,7 +234,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0856FCCB2DB641D5009067CF /* SubmissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
+		0856FCCB2DB641D5009067CF /* SubmissionListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListScreen.swift; sourceTree = "<group>"; };
 		0856FCCD2DB64422009067CF /* SubmissionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListViewModel.swift; sourceTree = "<group>"; };
 		0856FCCF2DB644EC009067CF /* SubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractor.swift; sourceTree = "<group>"; };
 		0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractorLive.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		0856FCFB2DCA418B009067CF /* SubmissionListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListViewModelTests.swift; sourceTree = "<group>"; };
 		0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractorLiveTests.swift; sourceTree = "<group>"; };
 		0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItem.swift; sourceTree = "<group>"; };
-		0856FD012DCB09F3009067CF /* SubmissionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSection.swift; sourceTree = "<group>"; };
+		0856FD012DCB09F3009067CF /* SubmissionListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListSection.swift; sourceTree = "<group>"; };
 		089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItemTests.swift; sourceTree = "<group>"; };
 		089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSubmissionListInteractor.swift; sourceTree = "<group>"; };
 		089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+TestUtils.swift"; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0856FCC72DB64195009067CF /* NewSubmissionsList */ = {
+		0856FCC72DB64195009067CF /* SubmissionsList */ = {
 			isa = PBXGroup;
 			children = (
 				0856FCCA2DB641BD009067CF /* ViewModel */,
@@ -458,13 +458,13 @@
 				0856FCC82DB641A5009067CF /* Model */,
 				0856FCD52DB65837009067CF /* SubmissionListAssembly.swift */,
 			);
-			path = NewSubmissionsList;
+			path = SubmissionsList;
 			sourceTree = "<group>";
 		};
 		0856FCC82DB641A5009067CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0856FD012DCB09F3009067CF /* SubmissionSection.swift */,
+				0856FD012DCB09F3009067CF /* SubmissionListSection.swift */,
 				0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */,
 				0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */,
 				0856FCCF2DB644EC009067CF /* SubmissionListInteractor.swift */,
@@ -477,7 +477,7 @@
 			children = (
 				0856FCF32DC7613C009067CF /* SubmissionsFilterView.swift */,
 				0856FCD32DB64FD4009067CF /* SubmissionListRowView.swift */,
-				0856FCCB2DB641D5009067CF /* SubmissionListView.swift */,
+				0856FCCB2DB641D5009067CF /* SubmissionListScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -571,7 +571,7 @@
 		3B55FEC522FC861F00FCB7B2 /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
-				0856FCC72DB64195009067CF /* NewSubmissionsList */,
+				0856FCC72DB64195009067CF /* SubmissionsList */,
 				CF13E549299D08E000F57F69 /* QuizSubmissionList */,
 				3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */,
 				3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */,
@@ -1605,7 +1605,7 @@
 				7D7126C425374457000DEDE4 /* SubmissionCommentListView.swift in Sources */,
 				7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */,
 				CFCADAF02D9D6E1D003796E7 /* RubricRatingViewModel.swift in Sources */,
-				0856FCCC2DB641EC009067CF /* SubmissionListView.swift in Sources */,
+				0856FCCC2DB641EC009067CF /* SubmissionListScreen.swift in Sources */,
 				7D742F382554D01400FD6CF1 /* RubricsView.swift in Sources */,
 				CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
@@ -1648,7 +1648,7 @@
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,
 				0856FCD42DB64FE8009067CF /* SubmissionListRowView.swift in Sources */,
 				0856FCF42DC76144009067CF /* SubmissionsFilterView.swift in Sources */,
-				0856FD022DCB09F5009067CF /* SubmissionSection.swift in Sources */,
+				0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
 				0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */,
 				CF13E552299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift in Sources */,
@@ -1709,7 +1709,6 @@
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */,
 				089AAC962DCC024A0022F341 /* NSManagedObjectContext+TestUtils.swift in Sources */,
-				7DE062A625126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift in Sources */,
 				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				CF0F18902DC0DAB50054D21A /* SpeedGraderUserIdNormalizationTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,

@@ -10499,9 +10499,6 @@
         }
       }
     },
-    "Error loading data" : {
-
-    },
     "Error: No data returned from the rollcall api." : {
       "comment" : "rollcall status error",
       "localizations" : {
@@ -22375,9 +22372,6 @@
           }
         }
       }
-    },
-    "No submissions!" : {
-
     },
     "No suggestions available" : {
       "localizations" : {

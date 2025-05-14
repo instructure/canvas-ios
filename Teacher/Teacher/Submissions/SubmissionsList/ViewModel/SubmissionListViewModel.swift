@@ -23,14 +23,8 @@ import CombineSchedulers
 
 class SubmissionListViewModel: ObservableObject {
 
-    enum ViewState: Equatable {
-        case loading
-        case data
-        case empty
-        case error
-    }
-
-    @Published private(set) var state: ViewState = .loading
+    let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
+    @Published private(set) var state: InstUI.ScreenState = .loading
 
     @Published var searchText: String = ""
     @Published var filterMode: SubmissionFilterMode
@@ -99,7 +93,7 @@ class SubmissionListViewModel: ObservableObject {
         interactor
             .submissions
             .receive(on: scheduler)
-            .map({ $0.isEmpty ? ViewState.empty : ViewState.data })
+            .map({ $0.isEmpty ? .empty : .data })
             .assign(to: &$state)
 
         $filterMode
@@ -115,19 +109,14 @@ class SubmissionListViewModel: ObservableObject {
 
     // MARK: Exposed To View
 
-    func refresh() async {
-
-        await withCheckedContinuation { [weak self] continuation in
-            guard let self else { return continuation.resume() }
-
-            interactor
-                .refresh()
-                .receive(on: scheduler)
-                .sink {
-                    continuation.resume()
-                }
-                .store(in: &self.subscriptions)
-        }
+    func refresh(_ completion: @escaping () -> Void) {
+        interactor
+            .refresh()
+            .receive(on: scheduler)
+            .sink {
+                completion()
+            }
+            .store(in: &self.subscriptions)
     }
 
     func messageUsers(from controller: WeakViewController) {

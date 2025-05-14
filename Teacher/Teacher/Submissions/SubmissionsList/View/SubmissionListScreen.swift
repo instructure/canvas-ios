@@ -19,116 +19,96 @@
 import SwiftUI
 import Core
 
-struct SubmissionListView: View {
+struct SubmissionListScreen: View {
 
     @Environment(\.viewController) private var controller
+    @Environment(\.appEnvironment) private var env
 
     @StateObject private var viewModel: SubmissionListViewModel
-    @State private var isFilterSelectorPresented: Bool = false
 
     init(viewModel: SubmissionListViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
-        Group {
-            switch viewModel.state {
-            case .loading:
-                ProgressView().progressViewStyle(.indeterminateCircle())
-            case .data, .empty:
-                listView
-            case .error:
-                Text("Error loading data")
-            }
-        }
+        InstUI.BaseScreen(
+            state: viewModel.state,
+            refreshAction: { completion in
+                viewModel.refresh(completion)
+            },
+            content: { _ in listView }
+        )
+        .toolbar(content: { toolbarContent })
         .navigationTitle(Text("Submissions", bundle: .teacher))
         .navigationBarStyle(.color(viewModel.course?.color))
     }
 
     private var listView: some View {
-        List {
-
+        LazyVStack {
             Section {
                 HeaderView(courseName: viewModel.assignment?.name ?? "")
             }
-
-            if viewModel.state == .data {
-
-                if anonymizeStudents == false {
-                    Section {
-                        SearchView(viewModel: viewModel)
-                    }
+            if anonymizeStudents == false {
+                Section {
+                    SearchView(viewModel: viewModel)
                 }
-
-                ForEach($viewModel.sections) { $section in
-                    Section {
-                        if !section.isCollapsed {
-                            ForEach(section.items) { item in
-                                SeparatedRow {
-                                    Button(
-                                        action: {
-                                            viewModel.didTapSubmissionRow(item, from: controller)
-                                        },
-                                        label: {
-                                            SubmissionListRowView(
-                                                anonymizeStudents: anonymizeStudents,
-                                                item: item
-                                            )
-                                        }
-                                    )
-                                }
+            }
+            ForEach($viewModel.sections) { $section in
+                Section {
+                    if !section.isCollapsed {
+                        ForEach(section.items) { item in
+                            SeparatedRow {
+                                Button(
+                                    action: {
+                                        viewModel.didTapSubmissionRow(item, from: controller)
+                                    },
+                                    label: {
+                                        SubmissionListRowView(
+                                            anonymizeStudents: anonymizeStudents,
+                                            item: item
+                                        )
+                                    }
+                                )
                             }
                         }
-                    } header: {
-                        SectionHeaderView(title: section.kind.title, isCollapsed: $section.isCollapsed)
                     }
+                } header: {
+                    SectionHeaderView(title: section.kind.title, isCollapsed: $section.isCollapsed)
                 }
-            } else {
-                Text("No submissions!")
-                    .font(.regular14)
-                    .foregroundStyle(Color.textDark)
-                    .padding(.vertical, 30)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .listRowBackground(Color.backgroundLight)
-                    .listRowSeparator(.hidden)
             }
         }
-        .listSectionSpacing(0)
-        .listSectionSeparator(.hidden)
-        .listStyle(.plain)
-        .background(Color.backgroundLight)
-        .refreshable {
-            await viewModel.refresh()
-        }
-        .toolbar {
+    }
 
-            ToolbarItemGroup(placement: .topBarTrailing) {
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
 
-                Button {
-                    isFilterSelectorPresented = true
-                } label: {
-                    viewModel.filterMode == .all ? Image.filterLine : Image.filterSolid
-                }
-                .tint(Color.textLightest)
+        ToolbarItemGroup(placement: .topBarTrailing) {
 
-                Button {
-                    viewModel.openPostPolicy(from: controller)
-                } label: {
-                    Image.eyeLine
-                }
-                .tint(Color.textLightest)
-                .accessibilityIdentifier("SubmissionsList.postPolicyButton")
-
-                Button {
-                    viewModel.messageUsers(from: controller)
-                } label: {
-                    Image.emailLine
-                }
-                .tint(Color.textLightest)
+            Button {
+                let filterVC = CoreHostingController(
+                    SubmissionsFilterView(viewModel: viewModel),
+                    env: env
+                )
+                env.router.show(filterVC, from: controller, options: .modal(embedInNav: true))
+            } label: {
+                viewModel.filterMode == .all ? Image.filterLine : Image.filterSolid
             }
-        }
-        .sheet(isPresented: $isFilterSelectorPresented) {
-            SubmissionsFilterView(viewModel: viewModel)
+            .tint(Color.textLightest)
+
+            Button {
+                viewModel.openPostPolicy(from: controller)
+            } label: {
+                Image.eyeLine
+            }
+            .tint(Color.textLightest)
+            .accessibilityIdentifier("SubmissionsList.postPolicyButton")
+
+            Button {
+                viewModel.messageUsers(from: controller)
+            } label: {
+                Image.emailLine
+            }
+            .tint(Color.textLightest)
         }
     }
 
@@ -137,7 +117,7 @@ struct SubmissionListView: View {
     }
 }
 
-private extension SubmissionListView {
+private extension SubmissionListScreen {
 
     struct SeparatedRow<Content: View>: View {
         @ViewBuilder let content: () -> Content

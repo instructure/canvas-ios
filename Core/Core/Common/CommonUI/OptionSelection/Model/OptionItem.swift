@@ -19,7 +19,7 @@
 import SwiftUI
 
 /// Represents a selectable option and its properties required to display it.
-public struct OptionItem: Equatable, Hashable, Identifiable {
+ public struct OptionItem: Equatable, Hashable, Identifiable {
 
     /// A common id to support an "All" option which is typically represented as `nil` so it has no relevant `id`.
     public static let allId = "_this_is_an_unlikely_id_preserved_for_the_all_option_"

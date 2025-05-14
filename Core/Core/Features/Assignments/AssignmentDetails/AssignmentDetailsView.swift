@@ -212,7 +212,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         case .old:
             SubmissionBreakdown(viewModel: viewModel)
         case .redesigned:
-            RedesignedSubmissionBreakdown(viewModel: viewModel)
+            RedesignedSubmissionBreakdownView(viewModel: viewModel)
         }
     }
 

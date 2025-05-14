@@ -27,10 +27,34 @@ public enum SubmissionListAssembly {
         assignmentID: String,
         filter: [GetSubmissions.Filter]
     ) -> UIViewController {
+
+        if ExperimentalFeature.hideRedesignedSubmissionList.isEnabled {
+            return SubmissionListViewController.create(
+                env: env,
+                context: context,
+                assignmentID: assignmentID,
+                filter: filter
+            )
+        } else {
+            return makeSubmissionListController(
+                env: env,
+                context: context,
+                assignmentID: assignmentID,
+                filter: filter
+            )
+        }
+    }
+
+    private static func makeSubmissionListController(
+        env: AppEnvironment,
+        context: Context,
+        assignmentID: String,
+        filter: [GetSubmissions.Filter]
+    ) -> UIViewController {
         let filterMode = SubmissionFilterMode.allCases.first(where: { $0.filters == filter }) ?? .all
         let interactor = SubmissionListInteractorLive(context: context, assignmentID: assignmentID, filters: filter, env: env)
         let viewModel = SubmissionListViewModel(interactor: interactor, filterMode: filterMode, env: env)
-        let view = SubmissionListView(viewModel: viewModel)
+        let view = SubmissionListScreen(viewModel: viewModel)
         return CoreHostingController(view)
     }
 }

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct RedesignedSubmissionBreakdown<ViewModel: SubmissionBreakdownViewModelProtocol>: View {
+struct RedesignedSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
 
     @Environment(\.appEnvironment) var env
@@ -208,10 +208,10 @@ struct RedesignedSubmissionBreakdown_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = PreviewSubmissionBreakdownViewModel(graded: 1, ungraded: 2, unsubmitted: 3, submissionCount: 6)
 
-        RedesignedSubmissionBreakdown(viewModel: viewModel)
+        RedesignedSubmissionBreakdownView(viewModel: viewModel)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
-        RedesignedSubmissionBreakdown(viewModel: viewModel)
+        RedesignedSubmissionBreakdownView(viewModel: viewModel)
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
     }

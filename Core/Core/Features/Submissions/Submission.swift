@@ -419,11 +419,11 @@ extension Submission {
     }
 
     public var status: SubmissionStatus {
-        status(gradedChecked: false)
+        status(includingGradedState: false)
     }
 
-    public func status(gradedChecked: Bool) -> SubmissionStatus {
-        if gradedChecked && isGraded {
+    public func status(includingGradedState: Bool) -> SubmissionStatus {
+        if includingGradedState && isGraded {
             return excused == true ? .excused : .graded
         }
 

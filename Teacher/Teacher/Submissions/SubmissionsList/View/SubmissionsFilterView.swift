@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-enum SubmissionFilterMode: CaseIterable {
+enum SubmissionFilterMode: String, CaseIterable {
     case all
     case needsGrading
     case notSubmitted
@@ -54,70 +54,77 @@ enum SubmissionFilterMode: CaseIterable {
 
 struct SubmissionsFilterView: View {
 
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel: SubmissionListViewModel
-    @State private var selectedFilterMode: SubmissionFilterMode? = .all
+    private let filterOptions: SingleSelectionOptions
 
     init(viewModel: SubmissionListViewModel) {
-         self.viewModel = viewModel
-        self._selectedFilterMode = State(initialValue: viewModel.filterMode)
-    }
+        self.viewModel = viewModel
 
-    private var color: Color {
-        Color(uiColor: viewModel.course?.color ?? UIColor.gray)
+        let color = viewModel.course.flatMap({ Color(uiColor: $0.color) })
+        let initialMode = viewModel.filterMode
+
+        self.filterOptions = SingleSelectionOptions(
+            all: SubmissionFilterMode.allCases.map {
+                OptionItem(id: $0.rawValue, title: $0.title, color: color)
+            },
+            initial: OptionItem(id: initialMode.rawValue, title: initialMode.title)
+        )
     }
 
     var body: some View {
-        NavigationStack {
-            VStack {
-                VStack(spacing: 8) {
-                    Divider()
-                    Text("Submission Filter", bundle: .teacher)
-                        .font(.semibold14)
-                        .foregroundStyle(Color.textDark)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 16)
-                    Divider()
-                }
-
-                ForEach(SubmissionFilterMode.allCases, id: \.self) { mode in
-                    InstUI.RadioButtonCell(
-                        title: mode.title,
-                        value: mode,
-                        selectedValue: $selectedFilterMode,
-                        color: color
-                    )
-                }
-
-                Spacer()
-            }
-            .background(Color.backgroundLightest)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitleView(
-                title: "Submission list Preferences",
-                subtitle: viewModel.assignment?.name
+        VStack {
+            SingleSelectionView(
+                title: String(localized: "Submission Filter", bundle: .core),
+                accessibilityIdentifier: "SubmissionsFilter.filterOptions",
+                options: filterOptions
             )
-            .toolbar {
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button(action: {
-                        viewModel.filterMode = selectedFilterMode ?? .all
-                        dismiss()
-                    }, label: {
+            Spacer()
+        }
+        .background(Color.backgroundLightest)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(
+                    action: {
+                        viewModel.filterMode = selectedFilterMode
+                        controller.value.dismiss(animated: true)
+                    },
+                    label: {
                         Text("Done", bundle: .teacher)
                             .font(.semibold16)
                             .foregroundColor(color)
-                    })
-                }
+                    }
+                )
+            }
 
-                ToolbarItemGroup(placement: .topBarLeading) {
-                    Button(action: { dismiss() }, label: {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(
+                    action: { controller.value.dismiss(animated: true) },
+                    label: {
                         Text("Cancel", bundle: .teacher)
                             .font(.regular16)
                             .foregroundColor(color)
-                    })
-                }
+                    }
+                )
             }
         }
+        .navigationBarStyle(.modal)
+        .navigationBarTitleView(
+            title: "Submission list Preferences",
+            subtitle: viewModel.assignment?.name
+        )
+    }
+
+    private var selectedFilterMode: SubmissionFilterMode {
+        guard
+            let modeID = filterOptions.selected.value?.id,
+            let mode = SubmissionFilterMode(rawValue: modeID)
+        else { return .all }
+        return mode
+    }
+
+    private var color: Color {
+        viewModel.course.flatMap({ Color(uiColor: $0.color) }) ?? .accentColor
     }
 }

@@ -78,14 +78,14 @@ struct RedesignedDateSection<ViewModel: DateSectionViewModelProtocol>: View {
     }
 
     @ViewBuilder
-    func Line(_ title: Text, _ value: Text) -> some View {
+    private func Line(_ title: Text, _ value: Text) -> some View {
         HStack(spacing: 4) {
             title.font(.regular16).foregroundStyle(Color.textDark)
             value.font(.regular16).foregroundStyle(Color.textDarkest)
         }
     }
 
-    func buttonTapped() {
+    private func buttonTapped() {
         viewModel.buttonTapped(router: env.router, viewController: controller)
     }
 }

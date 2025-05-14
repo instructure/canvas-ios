@@ -320,6 +320,16 @@ class SubmissionTests: CoreTestCase {
 
         let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         XCTAssertEqual(notSubmitted.status, .notSubmitted)
+
+        let graded = Submission.make(from: .make(excused: false, score: 95, submitted_at: Date(), workflow_state: .graded))
+        XCTAssertEqual(graded.status(includingGradedState: true), .graded)
+        XCTAssertEqual(graded.status(includingGradedState: false), .submitted)
+        XCTAssertEqual(graded.status(includingGradedState: false), graded.status)
+
+        let excused = Submission.make(from: .make(excused: true, score: 95, submitted_at: Date(), workflow_state: .graded))
+        XCTAssertEqual(excused.status(includingGradedState: true), .excused)
+        XCTAssertEqual(excused.status(includingGradedState: false), .submitted)
+        XCTAssertEqual(excused.status(includingGradedState: false), excused.status)
     }
 
     func testSubmissionStateDisplayProperties() {
