@@ -64,9 +64,7 @@ workflows:
             set -euxo pipefail
 
             brew reinstall swiftlint jq
-            brew install xcodegen
-
-            rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
+            make provision-ci            
     - &yarn-install-root
       yarn:
         title: yarn install root dependencies
