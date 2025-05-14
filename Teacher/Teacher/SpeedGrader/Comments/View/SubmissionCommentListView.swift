@@ -76,7 +76,7 @@ struct SubmissionCommentListView: View {
                     .scaleEffect(y: viewModel.state == .data ? -1 : 1)
                 switch showRecorder {
                 case .audio:
-                    Divider()
+                    InstUI.Divider()
                     AudioRecorder {
                         show(recorder: nil)
                         sendMediaComment(type: .audio, url: $0)
@@ -85,7 +85,7 @@ struct SubmissionCommentListView: View {
                         .frame(height: 240)
                         .transition(.move(edge: .bottom))
                 case .video:
-                    Divider()
+                    InstUI.Divider()
                     VideoRecorder(camera: .front) {
                         show(recorder: nil)
                         sendMediaComment(type: .video, url: $0)

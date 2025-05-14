@@ -38,8 +38,8 @@ class SubmissionGraderViewModel: ObservableObject {
     let submission: Submission
 
     // sub-viewmodels
-    @Published private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
-    @Published private(set) var commentListViewModel: SubmissionCommentListViewModel
+    private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
+    let commentListViewModel: SubmissionCommentListViewModel
 
     // MARK: - Inputs
 
