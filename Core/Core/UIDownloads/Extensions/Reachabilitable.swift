@@ -17,6 +17,7 @@
 //
 
 import Combine
+import UIKit
 
 protocol Reachabilitable: AnyObject {
     var reachability: ReachabilityProvider { get }

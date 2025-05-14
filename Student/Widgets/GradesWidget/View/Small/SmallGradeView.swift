@@ -37,7 +37,6 @@ struct SmallGradeView: View {
                 .minimumScaleFactor(0.5)
             Spacer(minLength: 0)
         }
-        .compatibleContentMargins()
         .widgetURL(gradeItem.route)
     }
 
@@ -54,8 +53,10 @@ struct SmallGradeViewPreviews: PreviewProvider {
     static var previews: some View {
         SmallGradeView(gradeItem: GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long",
                                             grade: "95.50 / 100",
-                                            color: .crimson))
-        .compatibleContainerBackground()
+                                            color: .textDanger))
+        .containerBackground(for: .widget) {
+            SwiftUI.EmptyView()
+        }
         .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

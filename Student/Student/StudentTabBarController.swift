@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import CanvasCore
 import Core
 
 class StudentTabBarController: UITabBarController, SnackBarProvider {
@@ -37,12 +36,6 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
-            // Setting the horizontal size class will force the tab bar
-            // to be displayed at the bottom.
-            traitOverrides.horizontalSizeClass = .compact
-        }
 
         delegate = self
         viewControllers = [
@@ -69,6 +62,12 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         attachDownloadingBarView()
         attachConnectionBarView()
         addSnackBar()
+        registerForTraitChanges()
+    }
+
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        configureStyle()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -79,6 +78,20 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
+    private func registerForTraitChanges() {
+        let traits = [UITraitUserInterfaceStyle.self]
+        registerForTraitChanges(traits) { (self: StudentTabBarController, _) in
+            self.configureStyle()
+        }
+    }
+
+    private func configureStyle() {
+        tabBar.useGlobalNavStyle()
+
+        // This changes the elevated tab bar's text color (but for some reason only in light mode)
+        view.tintColor = Brand.shared.tabBarHighlightColor
     }
 
     func dashboardTab() -> UIViewController {
@@ -98,7 +111,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             tabBarImageSelected = .homeroomTabActive
         } else {
             let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
-                                                                    showOnlyTeacherEnrollment: false))
+                                                                         showOnlyTeacherEnrollment: false))
             result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "dashboard page title")
@@ -116,8 +129,16 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func calendarTab() -> UIViewController {
         let split = CoreSplitViewController()
+
+        let planner: UIViewController
+        if ExperimentalFeature.rebuiltCalendar.isEnabled {
+            planner = PlannerAssembly.makeNewPlannerViewController()
+        } else {
+            planner = CoreNavigationController(rootViewController: PlannerViewController.create())
+        }
+
         split.viewControllers = [
-            CoreNavigationController(rootViewController: PlannerViewController.create()),
+            planner,
             CoreNavigationController(rootViewController: EmptyViewController())
         ]
         split.view.tintColor = Brand.shared.primary
@@ -187,7 +208,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
         let map = [AppEnvironment.shared.k5.isK5Enabled ? "homeroom": "dashboard", "calendar", "todo", "notifications", "conversations"]
         let event = map[tabIndex]
-        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+        RemoteLogger.shared.logBreadcrumb(route: "/tabs/" + event, viewController: viewController)
     }
 
     @objc private func checkForPolicyChanges() {
@@ -197,14 +218,22 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
     }
 
     private func attachDownloadingBarView() {
-        downloadingBarView.attach(tabBar: tabBar, in: view)
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            downloadingBarView.attach(in: view)
+        } else {
+            downloadingBarView.attach(tabBar: tabBar, in: view)
+        }
         downloadingBarView.onTap = { [weak self] in
             self?.showDownloadingView()
         }
     }
 
     private func attachConnectionBarView() {
-        connectionBarView.attach(tabBar: tabBar, in: view)
+        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
+            connectionBarView.attach(in: view)
+        } else {
+            connectionBarView.attach(tabBar: tabBar, in: view)
+        }
     }
 
     private func showDownloadingView() {
@@ -223,6 +252,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 }
 
 extension StudentTabBarController: UITabBarControllerDelegate {
+
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         tabBarController.resetViewControllerIfSelected(viewController)
 
@@ -247,5 +277,13 @@ extension StudentTabBarController: UITabBarControllerDelegate {
         } else {
             downloadingBarView.hidden()
         }
+    }
+
+    func tabBarController(
+        _ tabBarController: UITabBarController,
+        animationControllerForTransitionFrom fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> (any UIViewControllerAnimatedTransitioning)? {
+        InstUI.TabChangeTransition()
     }
 }

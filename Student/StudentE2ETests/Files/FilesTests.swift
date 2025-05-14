@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class FilesTests: E2ETestCase {
     typealias Helper = FilesHelper
@@ -42,7 +43,7 @@ class FilesTests: E2ETestCase {
         addressLabel.waitUntil(.visible)
         XCTAssertTrue(addressLabel.isVisible)
 
-        addressLabel.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
+        addressLabel.writeText(text: FilesHelper.TestPDF.url, hitEnter: true, customApp: SafariAppHelper.safariApp)
         let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
         XCTAssertTrue(shareButton.isVisible)
 
@@ -147,7 +148,7 @@ class FilesTests: E2ETestCase {
         // MARK: Check uploaded file in list
         let uploadedFileListItem = FileList.file(index: 0).waitUntil(.visible)
         XCTAssertTrue(uploadedFileListItem.isVisible)
-        XCTAssertTrue(uploadedFileListItem.hasLabel(label: Helper.TestPDF.title, strict: false))
+        XCTAssertContains(uploadedFileListItem.label, Helper.TestPDF.title)
 
         // MARK: Tap test PDF file, check details
         uploadedFileListItem.hit()

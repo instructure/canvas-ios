@@ -43,7 +43,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .white).hexString)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.hexString)
         XCTAssertEqual(controller.title, "Course One")
         XCTAssertEqual(controller.titleLabel.text, "some assignment")
         XCTAssertEqual(controller.dateLabel.text, dueAt.dateTimeString)
@@ -59,12 +59,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.descriptionView.isHidden, true)
 
         controller.composeButton.sendActions(for: .primaryActionTriggered)
-        let compose = router.presented as? ComposeViewController
-        XCTAssertEqual(compose?.context, .course("1"))
-        XCTAssertEqual(compose?.observeeID, "1")
-        XCTAssertEqual(compose?.recipientsView.recipients.map { $0.id }, [ "2" ])
-        XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Assignment - some assignment")
-        XCTAssertEqual(compose?.hiddenMessage, "Regarding: John Doe, \(url)")
+        XCTAssert(router.presented is CoreHostingController<ComposeMessageView>)
     }
 
     func testScoreLayoutWhenQuantitativeDataDisabled() {
@@ -140,5 +135,38 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertTrue(presentation?.0 is ParentSubmissionViewController)
         XCTAssertEqual(presentation?.1, controller)
         XCTAssertEqual(presentation?.2, .modal(.overFullScreen))
+    }
+
+    func testUsesSubmissionInteractorForSubmissionPresentation() {
+        let submissionURLInteractorMock = ParentSubmissionURLInteractorMock()
+        let testee = AssignmentDetailsViewController.create(
+            studentID: "1",
+            courseID: "1",
+            assignmentID: "1",
+            userNotificationCenter: notificationCenter,
+            submissionURLInteractor: submissionURLInteractorMock
+        )
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(submissionURLInteractorMock.isSubmissionURLCalled, false)
+
+        // WHEN
+        testee.submissionAndRubricButtonPressed(self)
+
+        // THEN
+        XCTAssertEqual(submissionURLInteractorMock.isSubmissionURLCalled, true)
+    }
+}
+
+class ParentSubmissionURLInteractorMock: ParentSubmissionURLInteractor {
+    var isSubmissionURLCalled = false
+
+    func submissionURL(
+        assignmentHtmlURL: URL,
+        observedUserID: String,
+        isAssignmentEnhancementsEnabled: Bool
+    ) -> URL {
+        isSubmissionURLCalled = true
+        return .make("/submissionURL")
     }
 }

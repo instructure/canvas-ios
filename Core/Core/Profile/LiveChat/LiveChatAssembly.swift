@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum LiveChatAssembly {
     public static func makeLiveChatViewController() -> UIViewController {

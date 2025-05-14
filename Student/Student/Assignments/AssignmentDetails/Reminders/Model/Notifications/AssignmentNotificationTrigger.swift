@@ -23,7 +23,7 @@ extension UNCalendarNotificationTrigger {
 
     convenience init(assignmentDueDate: Date,
                      beforeTime: DateComponents,
-                     currentDate: Date = .now) throws {
+                     currentDate: Date = Clock.now) throws {
         let negativeBeforeTime: DateComponents = {
             var result = beforeTime
             result.minute = result.minute.flatMap { -$0 }
@@ -34,8 +34,10 @@ extension UNCalendarNotificationTrigger {
         }()
 
         guard let triggerDate = Calendar.current.date(byAdding: negativeBeforeTime, to: assignmentDueDate) else {
-            Analytics.shared.logError(name: "Could not create assignment reminder trigger date",
-                                      reason: "negativeBeforeTime: \(negativeBeforeTime)")
+            RemoteLogger.shared.logError(
+                name: "Could not create assignment reminder trigger date",
+                reason: "negativeBeforeTime: \(negativeBeforeTime)"
+            )
             throw AssignmentReminderError.application
         }
 

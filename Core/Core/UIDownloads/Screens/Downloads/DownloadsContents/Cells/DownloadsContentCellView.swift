@@ -23,7 +23,7 @@ public struct DownloadsContentCellView: View {
     // MARK: - Properties -
 
     let viewModel: DownloadsModuleCellViewModel
-    var color: Color = .oxford
+    var color: Color = .textDarkest.variantForLightMode
     var onTap: (() -> Void)?
     var onDelete: (() -> Void)?
 
@@ -77,6 +77,6 @@ public struct DownloadsContentCellView: View {
             )
         )
         .font(.regular14)
-        .foregroundColor(.oxford)
+        .foregroundColor(.textDarkest.variantForLightMode)
     }
 }

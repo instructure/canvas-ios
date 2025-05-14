@@ -75,10 +75,6 @@ function run(cmd, args, opts) {
 
 async function exportTranslations() {
   const toUpload = []
-  // install react dependencies
-  const reactProjectFolder = 'rn/Teacher/i18n/locales'
-  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` })
-  await run('make', ['pod'])
   await processNativeLocalizations(toUpload)
   await pushToS3(toUpload)
   console.log('Finished!')
@@ -116,12 +112,14 @@ async function pushToS3(toUpload) {
 
 async function exportLocalizations(outputPath) {
   await run('xcodebuild', [
-  	'-exportLocalizations',
-	'-workspace',
-  	'Canvas.xcworkspace',
-  	'-localizationPath',
-  	outputPath,
-  	'-n'
+    '-exportLocalizations',
+    '-workspace',
+    'Canvas.xcworkspace',
+    '-sdk',
+    'iphonesimulator',
+    '-localizationPath',
+    outputPath,
+    '-n'
   ])
 }
 

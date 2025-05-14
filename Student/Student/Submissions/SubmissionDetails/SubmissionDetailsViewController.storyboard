@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="lato_regular.ttf">
-            <string>Lato-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Submission Details View Controller-->
         <scene sceneID="RqT-cb-7Go">
             <objects>
-                <viewController storyboardIdentifier="SubmissionDetailsViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l3A-rq-KxF" customClass="SubmissionDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SubmissionDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l3A-rq-KxF" customClass="SubmissionDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bcu-XY-Y5h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,45 +23,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-d9-7i7">
-                                <rect key="frame" x="0.0" y="60" width="375" height="493"/>
+                                <rect key="frame" x="0.0" y="16" width="375" height="537"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="c1S-ft-Bsw">
-                                <rect key="frame" x="16" y="8" width="343" height="51"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h3-p7-4c5">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="51"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                        <color key="textColor" name="textDark"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="313" y="0.0" width="30" height="51"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPickerToggle"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                        <color key="tintColor" name="textDarkest"/>
-                                        <inset key="titleEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="4" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal">
-                                            <color key="titleColor" name="textDark"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pickerButtonTapped:" destination="l3A-rq-KxF" eventType="touchUpInside" id="Q9L-ki-qe4"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="ksX-K9-tbO"/>
-                                </constraints>
-                            </stackView>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8l-gf-K01">
-                                <rect key="frame" x="0.0" y="59" width="375" height="216"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAY-Hn-Rdg" userLabel="Attempt Picker" customClass="SubmissionAttemptPickerView" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="16"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPicker"/>
-                            </pickerView>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FS1-GB-kdN" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="16" y="59" width="343" height="1"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="eo0-QM-how"/>
+                                    <constraint firstAttribute="height" priority="250" constant="16" id="dDM-VJ-aAt"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGl-0o-0RI" userLabel="Divider" customClass="DividerView" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="16" y="15" width="343" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="fKZ-4U-Lpu"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
@@ -80,43 +50,39 @@
                         <viewLayoutGuide key="safeArea" id="Bea-4p-X3b"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="c1S-ft-Bsw" secondAttribute="trailing" constant="16" id="3jU-tz-mQi"/>
-                            <constraint firstItem="FS1-GB-kdN" firstAttribute="leading" secondItem="bcu-XY-Y5h" secondAttribute="leading" constant="16" id="7rg-jZ-IMg"/>
-                            <constraint firstItem="c1S-ft-Bsw" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" constant="8" id="9Z3-e2-afK"/>
+                            <constraint firstItem="gAY-Hn-Rdg" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="9Z3-e2-afK"/>
                             <constraint firstItem="ac8-45-rao" firstAttribute="bottom" secondItem="Bea-4p-X3b" secondAttribute="bottom" constant="2" id="DNT-bc-RmK"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="pNE-3D-zl2" secondAttribute="bottom" id="FAL-2f-Lut"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="ac8-45-rao" secondAttribute="trailing" id="Fvv-Fw-X8e"/>
-                            <constraint firstItem="FS1-GB-kdN" firstAttribute="top" secondItem="c1S-ft-Bsw" secondAttribute="bottom" id="HGp-Hh-hg8"/>
-                            <constraint firstItem="OAc-d9-7i7" firstAttribute="top" secondItem="FS1-GB-kdN" secondAttribute="bottom" id="KYL-Ok-7ua"/>
+                            <constraint firstItem="gAY-Hn-Rdg" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="KPg-v1-NjU"/>
+                            <constraint firstItem="OAc-d9-7i7" firstAttribute="top" secondItem="gAY-Hn-Rdg" secondAttribute="bottom" id="KYL-Ok-7ua"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="gAY-Hn-Rdg" secondAttribute="trailing" id="L34-YA-nwM"/>
                             <constraint firstItem="pNE-3D-zl2" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="Mc9-sM-Te4"/>
-                            <constraint firstItem="z8l-gf-K01" firstAttribute="trailing" secondItem="Bea-4p-X3b" secondAttribute="trailing" id="Mjf-XO-1RO"/>
+                            <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="ZGl-0o-0RI" secondAttribute="trailing" constant="16" id="NDF-gO-xjx"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="EAM-Lb-Jft" secondAttribute="trailing" id="NfL-9z-gwq"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="pNE-3D-zl2" secondAttribute="trailing" id="Nn7-Gn-7L1"/>
                             <constraint firstItem="pNE-3D-zl2" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Osr-nX-LR6"/>
+                            <constraint firstItem="ZGl-0o-0RI" firstAttribute="bottom" secondItem="gAY-Hn-Rdg" secondAttribute="bottom" id="Qf4-3q-YW6"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="EAM-Lb-Jft" secondAttribute="bottom" id="SHX-ME-PMK"/>
                             <constraint firstItem="ac8-45-rao" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Xvg-IC-BXr"/>
+                            <constraint firstItem="ZGl-0o-0RI" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" constant="16" id="Z93-b3-e1p"/>
                             <constraint firstItem="OAc-d9-7i7" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="Zqn-R4-3wF"/>
                             <constraint firstItem="ac8-45-rao" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bea-4p-X3b" secondAttribute="top" id="dQD-Sk-A89"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="OAc-d9-7i7" secondAttribute="bottom" constant="50" id="eA4-7r-3Ap"/>
-                            <constraint firstItem="z8l-gf-K01" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="eS9-Ez-DZK"/>
-                            <constraint firstAttribute="trailing" secondItem="FS1-GB-kdN" secondAttribute="trailing" constant="16" id="hOW-ji-Ao7"/>
                             <constraint firstItem="EAM-Lb-Jft" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="hXv-Ld-Phi"/>
                             <constraint firstItem="OAc-d9-7i7" firstAttribute="trailing" secondItem="Bea-4p-X3b" secondAttribute="trailing" id="jse-aL-OdG"/>
                             <constraint firstItem="EAM-Lb-Jft" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" id="qCv-OG-ra3"/>
-                            <constraint firstItem="z8l-gf-K01" firstAttribute="top" secondItem="c1S-ft-Bsw" secondAttribute="bottom" id="qVN-8N-QnT"/>
-                            <constraint firstItem="c1S-ft-Bsw" firstAttribute="leading" secondItem="Bea-4p-X3b" secondAttribute="leading" constant="16" id="tyQ-ad-for"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="attemptLabel" destination="5h3-p7-4c5" id="5qz-3t-O2l"/>
+                        <outlet property="attemptPicker" destination="gAY-Hn-Rdg" id="Vce-Uf-bGQ"/>
                         <outlet property="contentView" destination="OAc-d9-7i7" id="xfM-xF-980"/>
+                        <outlet property="contentViewSafeAreaConstraint" destination="KYL-Ok-7ua" id="Hf5-hF-NCB"/>
+                        <outlet property="dividerView" destination="ZGl-0o-0RI" id="n3g-bP-TCa"/>
                         <outlet property="drawer" destination="ac8-45-rao" id="r8P-vQ-czH"/>
                         <outlet property="emptyView" destination="pNE-3D-zl2" id="WQS-H9-pBe"/>
                         <outlet property="lockedEmptyView" destination="EAM-Lb-Jft" id="wV7-dY-BB3"/>
-                        <outlet property="picker" destination="z8l-gf-K01" id="K9b-dG-QGh"/>
-                        <outlet property="pickerButton" destination="9Iq-2N-D4G" id="9io-yg-ETE"/>
-                        <outlet property="pickerButtonDivider" destination="FS1-GB-kdN" id="EFw-ol-chr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUa-IC-nOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,17 +90,9 @@
             <point key="canvasLocation" x="205.59999999999999" y="-266.71664167916043"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="9Iq-2N-D4G">
-            <size key="intrinsicContentSize" width="30" height="29"/>
-        </designable>
-    </designables>
     <resources>
-        <namedColor name="textDark">
-            <color red="0.33333333333333331" green="0.396078431372549" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="textDarkest">
-            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

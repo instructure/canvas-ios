@@ -40,9 +40,10 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     var keyboard: KeyboardTransitioning?
     var presenter: SubmissionCommentsPresenter?
     var submissionPresenter: SubmissionDetailsPresenter?
+    var env: AppEnvironment = .shared
 
     static func create(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         context: Context,
         assignmentID: String,
         userID: String,
@@ -50,6 +51,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         submissionPresenter: SubmissionDetailsPresenter
     ) -> SubmissionCommentsViewController {
         let controller = loadFromStoryboard()
+        controller.env = env
         controller.presenter = SubmissionCommentsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID, submissionID: submissionID)
         controller.submissionPresenter = submissionPresenter
         controller.currentUserID = env.currentSession?.userID
@@ -70,6 +72,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
+        addCommentTextView.tintColor = .systemBlue
         addCommentView.backgroundColor = .backgroundLightest
         emptyContainer.isHidden = true
         emptyLabel.text = String(localized: "Have questions about your assignment?\nMessage your instructor.", bundle: .student)
@@ -84,6 +87,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            UIAccessibility.post(notification: .screenChanged, argument: self.tableView.visibleCells.first)
+         }
     }
 
     @IBAction func addCommentButtonPressed(_ sender: UIButton) {
@@ -94,7 +100,8 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let title = String(localized: "Select Attachment Type", bundle: .student)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(String(localized: "Record Audio", bundle: .student), style: .default) { _ in
             AudioRecorderViewController.requestPermission { [weak self] allowed in
                 guard let self = self else { return }
@@ -130,12 +137,13 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
             }
         })
         alert.addAction(AlertAction(String(localized: "Choose File", bundle: .student), style: .default) { [weak self] _ in
-            let picker = FilePickerViewController.create()
+            guard let self else { return }
+            let picker = FilePickerViewController.create(env: env)
             picker.delegate = self
             picker.title = String(localized: "Attachments", bundle: .student)
             picker.submitButtonTitle = String(localized: "Send", bundle: .student)
             let nav = UINavigationController(rootViewController: picker)
-            self?.present(nav, animated: true, completion: nil)
+            present(nav, animated: true, completion: nil)
         })
         alert.addAction(AlertAction(String(localized: "Cancel", bundle: .student), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
@@ -230,8 +238,10 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let comment = presenter?.comments[indexPath.row / 2] else { return UITableViewCell() }
 
+        let isFromAuthor = currentUserID?.localID == comment.authorID?.localID
+
         if indexPath.row % 2 == 1 {
-            let reuseID = currentUserID == comment.authorID ? "myHeader" : "theirHeader"
+            let reuseID = isFromAuthor ? "myHeader" : "theirHeader"
             let cell: SubmissionCommentHeaderCell = tableView.dequeue(withID: reuseID, for: indexPath)
             cell.update(comment: comment)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -241,7 +251,7 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
         if let attempt = comment.attempt {
             let submission = submissionPresenter?.submissions.first { $0.attempt == attempt }
             let cell: SubmissionCommentAttemptCell = tableView.dequeue(for: indexPath)
-            cell.stackView?.alignment = currentUserID == comment.authorID ? .trailing : .leading
+            cell.stackView?.alignment = isFromAuthor ? .trailing : .leading
             cell.update(comment: comment, submission: submission) { [weak self] (submission: Submission?, file: File?) in
                 guard let attempt = submission?.attempt else { return }
                 self?.submissionPresenter?.select(attempt: attempt, fileID: file?.id)
@@ -250,21 +260,21 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
             return cell
         }
 
-        if comment.mediaURL != nil, comment.mediaType == .some(.audio) {
+        if comment.mediaURL != nil, comment.mediaType == .audio {
             let cell: SubmissionCommentAudioCell = tableView.dequeue(for: indexPath)
             cell.update(comment: comment, parent: self)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }
 
-        if comment.mediaURL != nil, comment.mediaType == .some(.video) {
+        if comment.mediaURL != nil, comment.mediaType == .video {
             let cell: SubmissionCommentVideoCell = tableView.dequeue(for: indexPath)
             cell.update(comment: comment, parent: self)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }
 
-        let reuseID = currentUserID == comment.authorID ? "myComment" : "theirComment"
+        let reuseID = isFromAuthor ? "myComment" : "theirComment"
         let cell: SubmissionCommentTextCell = tableView.dequeue(withID: reuseID, for: indexPath)
         cell.update(comment: comment)
         cell.onTapAttachment = { [weak self] file in

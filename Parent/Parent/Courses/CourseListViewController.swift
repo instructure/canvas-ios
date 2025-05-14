@@ -111,6 +111,7 @@ class CourseListCell: UITableViewCell {
         backgroundColor = .backgroundLightest
         let id = course?.id ?? ""
         accessibilityIdentifier = "course_cell_\(id)"
+        accessibilityTraits = .button
 
         nameLabel.accessibilityIdentifier = "course_title_\(id)"
         nameLabel.setText(course?.name, style: .textCellTitle)
@@ -156,7 +157,8 @@ class CourseListCell: UITableViewCell {
             }
         }
 
-        guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {
+        guard let scoreNoNil = score,
+              let scoreString = course.gradingScheme.formattedScore(from: scoreNoNil) else {
             return grade ?? String(localized: "No Grade", bundle: .parent)
         }
 

@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 import UserNotifications
 import Core
@@ -33,7 +32,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var reminderDateButton: UIButton!
     @IBOutlet weak var reminderHeadingLabel: UILabel!
     @IBOutlet weak var reminderMessageLabel: UILabel!
-    @IBOutlet weak var reminderSwitch: UISwitch!
+    @IBOutlet weak var reminderSwitch: CoreSwitch!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var statusIconView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
@@ -51,6 +50,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     private var maxDate = Clock.now
     private var userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
     private lazy var localNotifications = LocalNotificationsInteractor(notificationCenter: userNotificationCenter)
+    private var submissionURLInteractor: ParentSubmissionURLInteractor!
 
     lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.observed_users, .submission])) {  [weak self] in
         self?.update()
@@ -64,18 +64,22 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
         self?.update()
     }
+    lazy var featuresStore = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID))) {
+    }
 
     static func create(
         studentID: String,
         courseID: String,
         assignmentID: String,
-        userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current()
+        userNotificationCenter: UserNotificationCenterProtocol = UNUserNotificationCenter.current(),
+        submissionURLInteractor: ParentSubmissionURLInteractor = ParentSubmissionURLInteractorLive()
     ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.studentID = studentID
         controller.userNotificationCenter = userNotificationCenter
+        controller.submissionURLInteractor = submissionURLInteractor
         return controller
     }
 
@@ -93,7 +97,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         scrollView.refreshControl = refreshControl
 
         composeButton.accessibilityLabel = String(localized: "Compose message to teachers", bundle: .parent)
-        composeButton.backgroundColor = ColorScheme.observee(studentID).color.darkenToEnsureContrast(against: .white)
+        composeButton.backgroundColor = ColorScheme.observee(studentID).color.darkenToEnsureContrast(against: .textLightest.variantForLightMode)
         composeButton.isHidden = true
 
         dateHeadingLabel.text = String(localized: "Due", bundle: .parent)
@@ -107,6 +111,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         reminderMessageLabel.text = String(localized: "Set a date and time to be notified of this event.", bundle: .parent)
         reminderSwitch.accessibilityLabel = String(localized: "Remind Me", bundle: .parent)
         reminderSwitch.isEnabled = false
+        reminderSwitch.tintColor = ColorScheme.observee(studentID).color
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
         reminderDateButton.setTitleColor(
@@ -141,6 +146,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         course.refresh()
         student.refresh()
         teachers.refresh()
+        featuresStore.refresh()
         localNotifications.getReminder(assignmentID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
@@ -169,11 +175,13 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         course.refresh(force: true)
         student.refresh(force: true)
         teachers.refresh(force: true)
+        featuresStore.refresh(force: true)
     }
 
     func update() {
         guard let assignment = assignment.first else { return }
-        let status = assignment.submissions?.first(where: { $0.userID == studentID })?.status ?? .notSubmitted
+        let submission = assignment.submissions?.first(where: { $0.userID == studentID })
+        let displayProperties = submission?.stateDisplayProperties ?? .usingStatus(.notSubmitted)
         title = course.first?.name ?? String(localized: "Assignment Details", bundle: .parent)
 
         titleLabel.text = assignment.name
@@ -184,11 +192,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return assignment.pointsPossibleText
         }()
         statusIconView.isHidden = assignment.submissionStatusIsHidden
-        statusIconView.image = status.icon
-        statusIconView.tintColor = status.color
+        statusIconView.image = displayProperties.icon
+        statusIconView.tintColor = displayProperties.color
         statusLabel.isHidden = assignment.submissionStatusIsHidden
-        statusLabel.textColor = status.color
-        statusLabel?.text = assignment.submission?.statusText
+        statusLabel.textColor = displayProperties.color
+        statusLabel?.text = displayProperties.text
         dateLabel.text = assignment.dueAt?.dateTimeString ?? String(localized: "No Due Date", bundle: .parent)
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
@@ -251,7 +259,11 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     }
 
     @IBAction func compose() {
-        guard let assignment = assignment.first, let name = student.first?.fullName else { return }
+        guard let assignment = assignment.first,
+              let name = student.first?.fullName,
+              let course = course.first
+        else { return }
+
         let subject = String.localizedStringWithFormat(
             String(localized: "Regarding: %@, Assignment - %@", bundle: .parent, comment: "Regarding <Name>, Assignment - <Assignment Name>"),
             name,
@@ -263,14 +275,21 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             assignment.htmlURL?.absoluteString ?? ""
         )
 
-        let compose = ComposeViewController.create(
-            context: .course(courseID),
-            observeeID: studentID,
-            recipients: teachers.all,
-            subject: subject,
-            hiddenMessage: hiddenMessage
+        let options = ComposeMessageOptions(
+            disabledFields: .init(
+                contextDisabled: true
+            ),
+            fieldsContents: .init(
+                selectedContext: .init(course: course),
+                subjectText: subject
+            ),
+            extras: .init(
+                hiddenMessage: hiddenMessage,
+                autoTeacherSelect: true
+            )
         )
-        env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+        let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
+        env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 
     @IBAction func submissionAndRubricButtonPressed(_ sender: Any) {
@@ -278,8 +297,14 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             return
         }
 
-        let interactor = ParentSubmissionInteractorLive(
+        let submissionURL = submissionURLInteractor.submissionURL(
             assignmentHtmlURL: assignmentHtmlURL,
+            observedUserID: studentID,
+            isAssignmentEnhancementsEnabled: featuresStore.isFeatureFlagEnabled(.assignmentEnhancements)
+        )
+
+        let interactor = ParentSubmissionInteractorLive(
+            assignmentHtmlURL: submissionURL,
             observedUserID: studentID
         )
         let viewModel = ParentSubmissionViewModel(interactor: interactor, router: router)

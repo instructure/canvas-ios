@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class AssignmentsTests: E2ETestCase {
     typealias Helper = AssignmentsHelper
@@ -63,47 +64,47 @@ class AssignmentsTests: E2ETestCase {
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        XCTAssertTrue(assignmentButton.hasLabel(label: assignment.name, strict: false))
+        XCTAssertContains(assignmentButton.label, assignment.name)
 
         // MARK: Tap on the assignment and check details
         assignmentButton.hit()
         let nameLabel = DetailsHelper.name.waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
-        XCTAssertTrue(nameLabel.hasLabel(label: assignment.name))
+        XCTAssertEqual(nameLabel.label, assignment.name)
 
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertTrue(pointsLabel.hasLabel(label: "\(assignment.points_possible!) pt"))
+        XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pt")
 
         let statusLabel = DetailsHelper.status.waitUntil(.visible)
         XCTAssertTrue(statusLabel.isVisible)
-        XCTAssertTrue(statusLabel.hasLabel(label: "Not Submitted"))
+        XCTAssertEqual(statusLabel.label, "Not Submitted")
 
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
-        XCTAssertTrue(dueLabel.hasLabel(label: "No Due Date"))
+        XCTAssertEqual(dueLabel.label, "No Due Date")
 
         let submissionTypesLabel = DetailsHelper.submissionTypes.waitUntil(.visible)
         XCTAssertTrue(submissionTypesLabel.isVisible)
-        XCTAssertTrue(submissionTypesLabel.hasLabel(label: "Text Entry"))
+        XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
 
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(descriptionLabel.isVisible)
-        XCTAssertTrue(descriptionLabel.hasLabel(label: assignment.description!))
+        XCTAssertEqual(descriptionLabel.label, assignment.description!)
 
         let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
-        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Submit Assignment"))
+        XCTAssertEqual(submitAssignmentButton.label, "Submit Assignment")
 
         let submissionButton = DetailsHelper.submissionAndRubricButton.waitUntil(.visible)
         XCTAssertTrue(submissionButton.isVisible)
 
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
-        pullToRefresh()
-        XCTAssertTrue(statusLabel.waitUntil(.visible).hasLabel(label: "Submitted"))
+        app.pullToRefresh()
+        XCTAssertEqual(statusLabel.waitUntil(.visible).label, "Submitted")
 
         XCTAssertTrue(submitAssignmentButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Resubmit Assignment"))
+        XCTAssertEqual(submitAssignmentButton.label, "Resubmit Assignment")
     }
 
     func testSubmitAssignment() {
@@ -122,36 +123,36 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and tap the assignment
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         assignmentButton.hit()
 
         var submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
-        submitAssignmentButton.hit()
+        // simply `hit()` does not register sometimes, even if the button is there
+        submitAssignmentButton.actionUntilElementCondition(
+            action: .tap,
+            element: SubmissionHelper.cancelButton,
+            condition: .visible,
+            gracePeriod: 2
+        )
 
         // MARK: Check visibility of elements on submission edit screen
-        let submissionNavBar = SubmissionHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(submissionNavBar.isVisible)
-
         let submissionCancelButton = SubmissionHelper.cancelButton.waitUntil(.visible)
         XCTAssertTrue(submissionCancelButton.isVisible)
-        XCTAssertTrue(submissionCancelButton.hasLabel(label: "Cancel"))
+        XCTAssertEqual(submissionCancelButton.label, "Cancel")
 
         var submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertTrue(submissionSubmitButton.isVisible)
         XCTAssertTrue(submissionSubmitButton.isDisabled)
-        XCTAssertTrue(submissionSubmitButton.hasLabel(label: "Submit"))
+        XCTAssertEqual(submissionSubmitButton.label, "Submit")
 
-        let textField = SubmissionHelper.textField.waitUntil(.visible)
-        XCTAssertTrue(textField.isVisible)
+        let textView = SubmissionHelper.textView.waitUntil(.visible)
+        XCTAssertTrue(textView.isVisible)
 
         // MARK: Write some text and submit the assignment
         let testText = "SubmitAssignment test"
-        textField.pasteText(text: testText)
+        textView.writeText(text: testText)
 
         submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertTrue(submissionSubmitButton.isEnabled)
@@ -161,11 +162,11 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Check if submission was successful
         let successfulSubmissionLabel = DetailsHelper.successfulSubmissionLabel.waitUntil(.visible)
         XCTAssertTrue(successfulSubmissionLabel.isVisible)
-        XCTAssertTrue(successfulSubmissionLabel.hasLabel(label: "Successfully submitted!"))
+        XCTAssertEqual(successfulSubmissionLabel.label, "Successfully submitted!")
 
         submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
-        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Resubmit Assignment"))
+        XCTAssertEqual(submitAssignmentButton.label, "Resubmit Assignment")
     }
 
     func testAssignmentDueDate() {
@@ -194,12 +195,12 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Check Yesterdays Assignment due date
         let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitUntil(.visible)
         XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
-        XCTAssertTrue(yesterdaysAssignmentButton.hasLabel(label: "Due Yesterday", strict: false))
+        XCTAssertContains(yesterdaysAssignmentButton.label, "Due Yesterday")
 
         // MARK: Check Tomorrows Assignment due date
         let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment).waitUntil(.visible)
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
-        XCTAssertTrue(tomorrowsAssignmentButton.hasLabel(label: "Due Tomorrow", strict: false))
+        XCTAssertContains(tomorrowsAssignmentButton.label, "Due Tomorrow")
     }
 
     func testLockedAssignment() {
@@ -226,7 +227,7 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Check Locked Assignment
         let lockedAssignmentButton = Helper.assignmentButton(assignment: lockedAssignment).waitUntil(.visible)
         XCTAssertTrue(lockedAssignmentButton.isVisible)
-        XCTAssertTrue(lockedAssignmentButton.hasLabel(label: "Availability: Closed", strict: false))
+        XCTAssertContains(lockedAssignmentButton.label, "Availability: Closed")
 
         lockedAssignmentButton.hit()
         let lockSectionElement = DetailsHelper.lockSection.waitUntil(.visible)
@@ -298,7 +299,7 @@ class AssignmentsTests: E2ETestCase {
         assignmentButton.hit()
         let excusedLabel = DetailsHelper.gradeDisplayGrade.waitUntil(.visible)
         XCTAssertTrue(excusedLabel.isVisible)
-        XCTAssertTrue(excusedLabel.hasLabel(label: "Excused"))
+        XCTAssertEqual(excusedLabel.label, "Excused")
     }
 
     func testAttemptSelectorAndSubmissionAndRubricScreen() {
@@ -349,23 +350,26 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(commentTextView.isVisible)
 
         // MARK: Check attemptSelector
-        drawerGripper.tapAndHoldAndDragToElement(element: commentTextView)
-        let attemptPickerToggle = DetailsHelper.SubmissionDetails.attemptPickerToggle.waitUntil(.visible)
-        XCTAssertTrue(attemptPickerToggle.isVisible)
-
-        attemptPickerToggle.hit()
         let attemptPicker = DetailsHelper.SubmissionDetails.attemptPicker.waitUntil(.visible)
-        let pickerWheel = DetailsHelper.SubmissionDetails.pickerWheel.waitUntil(.visible)
-        XCTAssertTrue(attemptPicker.isVisible)
-        XCTAssertTrue(pickerWheel.isVisible)
-        XCTAssertTrue(pickerWheel.hasValue(value: "Attempt 2", strict: false))
+        XCTAssert(attemptPicker.isVisible)
+        XCTAssertHasPrefix(attemptPicker.label, "Attempt 2")
 
-        pickerWheel.tapAndHoldAndDragToElement(element: attemptPickerToggle)
-        XCTAssertTrue(pickerWheel.hasValue(value: "Attempt 1", strict: false))
+        attemptPicker.tap()
+        let attemptPickerItems = DetailsHelper.SubmissionDetails.attemptPickerItems.map { $0.waitUntil(.visible) }
+        if attemptPickerItems.count == 2 {
+            XCTAssert(attemptPickerItems[0].label.contains("Attempt 2"))
+            XCTAssert(attemptPickerItems[0].isSelected)
+            XCTAssert(attemptPickerItems[1].label.contains("Attempt 1"))
+            XCTAssert(attemptPickerItems[1].isUnselected)
+
+            attemptPickerItems[1].tap()
+            attemptPicker.waitUntil(.visible)
+            XCTAssertHasPrefix(attemptPicker.label, "Attempt 1")
+        } else {
+            XCTFail("Invalid count")
+        }
 
         // MARK: Check adding a comment
-        attemptPickerToggle.hit()
-        drawerGripper.tapAndHoldAndDragToElement(element: attemptPickerToggle)
         commentTextView.writeText(text: "Test Comment")
         XCTAssertTrue(addCommentButton.waitUntil(.visible).isVisible)
         XCTAssertTrue(addCommentButton.isEnabled)
@@ -384,17 +388,17 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(rubricDescriptionButton.isVisible)
         XCTAssertTrue(rubricRatingZero.isVisible)
         XCTAssertTrue(rubricRatingOne.isVisible)
-        XCTAssertTrue(rubricRatingZero.hasLabel(label: rubric.data[0].ratings[1].description, strict: false))
-        XCTAssertTrue(rubricRatingOne.hasLabel(label: rubric.data[0].ratings[0].description, strict: false))
+        XCTAssertContains(rubricRatingZero.label, rubric.data[0].ratings[1].description)
+        XCTAssertContains(rubricRatingOne.label, rubric.data[0].ratings[0].description)
 
         rubricRatingOne.hit()
         let rubricRatingTitle = DetailsHelper.SubmissionComments.rubricRatingTitle(rubric: rubric).waitUntil(.visible)
         XCTAssertTrue(rubricRatingTitle.isVisible)
-        XCTAssertTrue(rubricRatingTitle.hasLabel(label: rubric.data[0].ratings[0].description))
+        XCTAssertEqual(rubricRatingTitle.label, rubric.data[0].ratings[0].description)
 
         rubricRatingZero.hit()
         XCTAssertTrue(rubricRatingTitle.waitUntil(.visible).isVisible)
-        XCTAssertTrue(rubricRatingTitle.hasLabel(label: rubric.data[0].ratings[1].description))
+        XCTAssertEqual(rubricRatingTitle.label, rubric.data[0].ratings[1].description)
 
         rubricDescriptionButton.hit()
         let rubricLongDescriptionLabel = DetailsHelper.SubmissionComments

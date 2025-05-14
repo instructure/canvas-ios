@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Post Grades View Controller-->
+        <scene sceneID="MZy-zS-2b7">
+            <objects>
+                <viewController storyboardIdentifier="PostGradesViewController" id="aW3-7i-Bwb" customClass="PostGradesViewController" customModule="Teacher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bXh-QH-fWl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YcC-TQ-h2X">
+                                <rect key="frame" x="0.0" y="48" width="414" height="758"/>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="aW3-7i-Bwb" id="2UE-wk-5uL"/>
+                                    <outlet property="delegate" destination="aW3-7i-Bwb" id="AvP-zt-9an"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlB-jJ-y1w" customClass="DynamicButton" customModule="Core">
+                                <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PostPolicy.postGradesButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="exj-mb-ME9"/>
+                                </constraints>
+                                <state key="normal" title="Post Grades"/>
+                                <connections>
+                                    <action selector="actionUserDidClickPostGrades:" destination="aW3-7i-Bwb" eventType="touchUpInside" id="427-rk-Ofp"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNE-2B-Mg6">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaGrades" translatesAutoresizingMaskIntoConstraints="NO" id="61v-qe-CCM" customClass="IconView" customModule="Teacher" customModuleProvider="target">
+                                        <rect key="frame" x="87" y="247" width="240" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="e6V-eU-gjs"/>
+                                            <constraint firstAttribute="width" constant="240" id="hcu-Tq-qFM"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaGrades"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Posted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRm-Rr-fzw" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="493" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium20"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All grades are currently posted." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DY-Dq-0wc" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="521.5" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PostPolicy.allGradesPosted"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4DY-Dq-0wc" secondAttribute="trailing" constant="16" id="41V-uK-VAf"/>
+                                    <constraint firstItem="rRm-Rr-fzw" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="CRi-yb-3O9"/>
+                                    <constraint firstItem="4DY-Dq-0wc" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="N6f-34-iM8"/>
+                                    <constraint firstAttribute="trailing" secondItem="rRm-Rr-fzw" secondAttribute="trailing" constant="16" id="P9n-Mk-PgS"/>
+                                    <constraint firstItem="4DY-Dq-0wc" firstAttribute="top" secondItem="rRm-Rr-fzw" secondAttribute="bottom" constant="8" id="Tnf-fa-piC"/>
+                                    <constraint firstItem="rRm-Rr-fzw" firstAttribute="top" secondItem="61v-qe-CCM" secondAttribute="bottom" constant="46" id="VkN-i9-7QU"/>
+                                    <constraint firstItem="61v-qe-CCM" firstAttribute="centerX" secondItem="cNE-2B-Mg6" secondAttribute="centerX" id="ZHi-NM-EkH"/>
+                                    <constraint firstItem="61v-qe-CCM" firstAttribute="centerY" secondItem="cNE-2B-Mg6" secondAttribute="centerY" multiplier="0.85" constant="1" id="cKp-FS-S9I"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="s9d-36-Fgj"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JlB-jJ-y1w" firstAttribute="top" secondItem="YcC-TQ-h2X" secondAttribute="bottom" id="9GT-pM-leW"/>
+                            <constraint firstItem="s9d-36-Fgj" firstAttribute="trailing" secondItem="cNE-2B-Mg6" secondAttribute="trailing" id="CvI-zs-BB8"/>
+                            <constraint firstItem="s9d-36-Fgj" firstAttribute="trailing" secondItem="YcC-TQ-h2X" secondAttribute="trailing" id="Fig-ML-TEc"/>
+                            <constraint firstItem="cNE-2B-Mg6" firstAttribute="top" secondItem="s9d-36-Fgj" secondAttribute="top" id="QOK-Af-6A5"/>
+                            <constraint firstItem="JlB-jJ-y1w" firstAttribute="leading" secondItem="s9d-36-Fgj" secondAttribute="leading" id="VDo-Ti-BKk"/>
+                            <constraint firstItem="YcC-TQ-h2X" firstAttribute="leading" secondItem="s9d-36-Fgj" secondAttribute="leading" id="Xjc-Et-SGW"/>
+                            <constraint firstItem="cNE-2B-Mg6" firstAttribute="leading" secondItem="s9d-36-Fgj" secondAttribute="leading" id="d3l-Xv-OOk"/>
+                            <constraint firstItem="YcC-TQ-h2X" firstAttribute="top" secondItem="s9d-36-Fgj" secondAttribute="top" id="dOF-68-Gge"/>
+                            <constraint firstItem="s9d-36-Fgj" firstAttribute="trailing" secondItem="JlB-jJ-y1w" secondAttribute="trailing" id="goy-MM-Zd7"/>
+                            <constraint firstItem="cNE-2B-Mg6" firstAttribute="bottom" secondItem="s9d-36-Fgj" secondAttribute="bottom" id="rGz-6B-DQX"/>
+                            <constraint firstItem="s9d-36-Fgj" firstAttribute="bottom" secondItem="JlB-jJ-y1w" secondAttribute="bottom" id="x39-vd-gWF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="allGradesPostedLabel" destination="rRm-Rr-fzw" id="ky8-eO-MdU"/>
+                        <outlet property="allGradesPostedSubheader" destination="4DY-Dq-0wc" id="acu-by-lWe"/>
+                        <outlet property="allGradesPostedView" destination="cNE-2B-Mg6" id="R9G-zL-Xl9"/>
+                        <outlet property="postGradesButton" destination="JlB-jJ-y1w" id="6eO-Tt-QjV"/>
+                        <outlet property="tableView" destination="YcC-TQ-h2X" id="0i9-Vd-TWB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5TJ-7R-ogC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-268.1159420289855" y="-117.1875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="PandaGrades" width="219" height="229"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class ManageStudentsTests: E2ETestCase {
     func testManageStudents() {
@@ -75,23 +76,23 @@ class ManageStudentsTests: E2ETestCase {
         assignmentGradeBelow.writeText(text: lowPercent)
         courseAnnouncements.hit()
         institutionAnnouncements.hit()
-        XCTAssertTrue(courseGradeAbove.waitUntil(.value(expected: highPercent)).hasValue(value: highPercent))
-        XCTAssertTrue(courseGradeBelow.waitUntil(.value(expected: lowPercent)).hasValue(value: lowPercent))
-        XCTAssertTrue(assignmentMissing.waitUntil(.value(expected: "1")).hasValue(value: "1"))
-        XCTAssertTrue(assignmentGradeAbove.waitUntil(.value(expected: highPercent)).hasValue(value: highPercent))
-        XCTAssertTrue(assignmentGradeBelow.waitUntil(.value(expected: lowPercent)).hasValue(value: lowPercent))
-        XCTAssertTrue(courseAnnouncements.waitUntil(.value(expected: "1")).hasValue(value: "1"))
-        XCTAssertTrue(institutionAnnouncements.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        XCTAssertEqual(courseGradeAbove.waitUntil(.value(expected: highPercent)).stringValue, highPercent)
+        XCTAssertEqual(courseGradeBelow.waitUntil(.value(expected: lowPercent)).stringValue, lowPercent)
+        XCTAssertEqual(assignmentMissing.waitUntil(.value(expected: "on")).stringValue, "on")
+        XCTAssertEqual(assignmentGradeAbove.waitUntil(.value(expected: highPercent)).stringValue, highPercent)
+        XCTAssertEqual(assignmentGradeBelow.waitUntil(.value(expected: lowPercent)).stringValue, lowPercent)
+        XCTAssertEqual(courseAnnouncements.waitUntil(.value(expected: "on")).stringValue, "on")
+        XCTAssertEqual(institutionAnnouncements.waitUntil(.value(expected: "on")).stringValue, "on")
 
         // MARK: Go back, then open details and check if the new values got saved
         backButton.hit()
         student1cell.hit()
-        XCTAssertTrue(courseGradeAbove.waitUntil(.visible).hasValue(value: highPercent))
-        XCTAssertTrue(courseGradeBelow.waitUntil(.visible).hasValue(value: lowPercent))
-        XCTAssertTrue(assignmentMissing.waitUntil(.visible).hasValue(value: "1"))
-        XCTAssertTrue(assignmentGradeAbove.waitUntil(.visible).hasValue(value: highPercent))
-        XCTAssertTrue(assignmentGradeBelow.waitUntil(.visible).hasValue(value: lowPercent))
-        XCTAssertTrue(courseAnnouncements.waitUntil(.visible).hasValue(value: "1"))
-        XCTAssertTrue(institutionAnnouncements.waitUntil(.visible).hasValue(value: "1"))
+        XCTAssertEqual(courseGradeAbove.waitUntil(.visible).stringValue, highPercent)
+        XCTAssertEqual(courseGradeBelow.waitUntil(.visible).stringValue, lowPercent)
+        XCTAssertEqual(assignmentMissing.waitUntil(.visible).stringValue, "on")
+        XCTAssertEqual(assignmentGradeAbove.waitUntil(.visible).stringValue, highPercent)
+        XCTAssertEqual(assignmentGradeBelow.waitUntil(.visible).stringValue, lowPercent)
+        XCTAssertEqual(courseAnnouncements.waitUntil(.visible).stringValue, "on")
+        XCTAssertEqual(institutionAnnouncements.waitUntil(.visible).stringValue, "on")
     }
 }

@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
+import XCTest
 
 class ActAsUserTests: CoreUITestCase {
     // TODO: Make it use DataSeeder
@@ -26,7 +26,7 @@ class ActAsUserTests: CoreUITestCase {
     func testActAsUser() {
         let profileButton = DashboardHelper.profileButton.hit()
         let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
+        XCTAssertEqual(userNameLabel.label, admin.name)
 
         var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(.visible)
         XCTAssertTrue(actAsUserButton.isVisible)
@@ -37,7 +37,7 @@ class ActAsUserTests: CoreUITestCase {
 
         userIDField.writeText(text: "613")
         let domainField = ActAsUserHelper.domainField.waitUntil(.visible)
-        if !domainField.hasValue(value: "https://\(user!.host)") {
+        if domainField.stringValue != "https://\(user.host)" {
             domainField.cutText()
             domainField.writeText(text: "https://\(user!.host)")
         }
@@ -48,7 +48,9 @@ class ActAsUserTests: CoreUITestCase {
         actAsUserButton.hit()
         DashboardHelper.courseCard(courseId: "262").waitUntil(.visible)
         profileButton.hit()
-        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Student One"))
+        userNameLabel.waitUntil(.visible)
+        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertEqual(userNameLabel.label, student.name)
 
         let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(.visible)
         XCTAssertTrue(endActAsUserButton.isVisible)
@@ -59,6 +61,8 @@ class ActAsUserTests: CoreUITestCase {
         XCTAssertFalse(endActAsUserButton.waitUntil(.vanish).isVisible)
 
         profileButton.hit()
-        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
+        userNameLabel.waitUntil(.visible)
+        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertEqual(userNameLabel.label, admin.name)
     }
 }

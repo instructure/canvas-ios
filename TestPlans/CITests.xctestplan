@@ -75,7 +75,7 @@
     },
     {
       "target" : {
-        "containerPath" : "container:rn\/Teacher\/ios\/Teacher.xcodeproj",
+        "containerPath" : "container:Teacher\/Teacher.xcodeproj",
         "identifier" : "B15CA25C221DDB820014FB02",
         "name" : "TeacherTests"
       }

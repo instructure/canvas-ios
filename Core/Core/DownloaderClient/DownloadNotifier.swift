@@ -19,6 +19,7 @@
 import Foundation
 import mobile_offline_downloader_ios
 import Combine
+import UserNotifications
 
 final class DownloadNotifier: Reachabilitable {
 
@@ -80,7 +81,7 @@ final class DownloadNotifier: Reachabilitable {
                 content: content,
                 trigger: nil
             )
-            UNUserNotificationCenter.current().add(request)
+            _ = UNUserNotificationCenter.current().add(request)
         }
     }
 }

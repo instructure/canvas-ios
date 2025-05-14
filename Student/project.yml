@@ -1,18 +1,20 @@
 ---
 name: Student
+attributes: { LastUpgradeCheck: "1600" }
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas.2u
   deploymentTarget:
-    iOS: 16.0
+    iOS: 17.0
   createIntermediateGroups: true
 settings:
-  CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
+  CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   DEVELOPMENT_TEAM: 58GH9WB284 ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
-  CURRENT_PROJECT_VERSION: 28
-  MARKETING_VERSION: 1.6
+  ENABLE_USER_SCRIPT_SANDBOXING: true
+  CURRENT_PROJECT_VERSION: 30
+  MARKETING_VERSION: 1.7
   platform: iOS
   DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
 sources:
@@ -26,20 +28,27 @@ include:
   - StudentE2ETests/student-e2e-tests.yml
   - StudentUnitTests/student-unit-tests.yml
 projectReferences:
-  CanvasCore:
-    path: ../CanvasCore/CanvasCore.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
 packages:
-  Heap:
-    url: https://github.com/heap/heap-ios-sdk.git
-    exactVersion: 9.1.0
+  Pendo:
+    url: https://github.com/pendo-io/pendo-mobile-sdk
+    exactVersion: 3.6.1
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.0.1
+    exactVersion: 13.9.1
   BugfenderLibrary:
     url: https://github.com/bugfender/BugfenderSDK-iOS
     exactVersion: 1.13.2
   AWSSDK:
     url: https://github.com/aws-amplify/aws-sdk-ios-spm
     exactVersion: 2.33.10
+  FirebaseCrashlytics:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1
+  FirebaseRemoteConfig:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1
+  FirebaseRemoteConfigSwift:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 10.23.1

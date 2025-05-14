@@ -80,13 +80,13 @@ class SubmissionDetailsPresenter {
     private var docViewerSessionURL: URL?
     private var docViewerSessionRequest: APITask?
 
-    init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) {
+    init(env: AppEnvironment, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
         self.env = env
         self.view = view
-        self.submissionButtonPresenter = SubmissionButtonPresenter(view: view, assignmentID: assignmentID)
+        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         self.selectedAttempt = selectedAttempt
     }
 
@@ -196,12 +196,13 @@ class SubmissionDetailsPresenter {
         // still be a submission inside the tool
         if assignment.requiresLTILaunch(toViewSubmission: submission) {
             let tools = LTITools(
-                env: .shared,
                 context: context,
                 launchType: .assessment,
-                assignmentID: assignmentID
+                isQuizLTI: assignment.isQuizLTI,
+                assignmentID: assignmentID,
+                env: env
             )
-            return LTIViewController.create(tools: tools)
+            return LTIViewController.create(env: env, tools: tools)
         }
 
         switch submission.type {
@@ -237,13 +238,14 @@ class SubmissionDetailsPresenter {
                 } else if let previewURL = attachment.previewURL,
                     DocViewerViewController.hasPSPDFKitLicense {
                     return DocViewerViewController.create(
+                        env: env,
                         filename: attachment.filename,
                         previewURL: previewURL,
                         fallbackURL: url,
                         navigationItem: view?.navigationItem
                     )
                 }
-                let controller = CoreWebViewController(features: [.invertColorsInDarkMode])
+                let controller = CoreWebViewController(features: [.invertColorsInDarkMode], dontDownloadMediaAutomatically: true)
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
@@ -268,14 +270,16 @@ class SubmissionDetailsPresenter {
             return controller
         case .some(.basic_lti_launch):
             let tools = LTITools(
-                env: .shared,
                 context: context,
-                url: submission.externalToolURL
+                url: submission.externalToolURL,
+                isQuizLTI: false,
+                env: env
             )
-            return LTIViewController.create(tools: tools)
+            return LTIViewController.create(env: env, tools: tools)
         case .student_annotation:
             guard let docViewerSessionURL = docViewerSessionURL else { return nil }
             return DocViewerViewController.create(
+                env: env,
                 filename: "", // filename unknown because this isn't a file the user attached but one attached to the assignment
                 previewURL: docViewerSessionURL,
                 fallbackURL: docViewerSessionURL,

@@ -17,8 +17,8 @@
 //
 
 import CoreData
-import Foundation
 @testable import Core
+import UIKit
 
 extension ContextColor {
     @discardableResult
@@ -27,8 +27,8 @@ extension ContextColor {
         color: UIColor = .red,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> ContextColor {
-        ContextColor.save(APICustomColors(custom_colors: [canvasContextID: color.hexString]), in: context)
+        let savedColors = ContextColor.save(APICustomColors(custom_colors: [canvasContextID: color.hexString]), in: context)
         try! context.save()
-        return context.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID)!
+        return savedColors.first!
     }
 }

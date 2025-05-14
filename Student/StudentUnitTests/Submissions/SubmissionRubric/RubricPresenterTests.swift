@@ -129,7 +129,7 @@ class RubricPresenterTests: StudentTestCase {
             submissionsStore.refreshExpectation,
             colorsStore.refreshExpectation,
             coursesStore.refreshExpectation
-        ], timeout: 0.1)
+        ], timeout: 1)
     }
 
     func testViewEmptyState() {
@@ -227,12 +227,12 @@ class RubricPresenterTests: StudentTestCase {
     }
 
     func testRubricViewModelRatingBlurb() {
-        let r = Rubric.make()
-        let rating = RubricRating.make()
+        let r = CDRubricCriterion.make()
+        let rating = CDRubricRating.make()
         let model = RubricViewModel(
             id: r.id,
-            title: r.desc,
-            longDescription: r.longDesc,
+            title: r.shortDescription,
+            longDescription: r.longDescription,
             selectedDesc: "Custom Grade",
             selectedIndex: 1,
             ratings: [1.0, 2.0],

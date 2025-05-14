@@ -74,7 +74,7 @@ struct DownloaderView: View, Navigatable {
                 deleteAllButton
             }
         }
-        .onChange(of: viewModel.error) { newValue in
+        .onChange(of: viewModel.error) { _, newValue in
             if newValue.isEmpty { return }
             navigationController?.showAlert(
                 title: NSLocalizedString(newValue, comment: ""),
@@ -83,12 +83,12 @@ struct DownloaderView: View, Navigatable {
             )
             viewModel.error = ""
         }
-        .onChange(of: viewModel.isConnected) { isConnected in
+        .onChange(of: viewModel.isConnected) { _, isConnected in
             if !isConnected {
                 presentationMode.wrappedValue.dismiss()
             }
         }
-        .onChange(of: viewModel.isEmpty) { isEmpty in
+        .onChange(of: viewModel.isEmpty) { _, isEmpty in
             if isEmpty {
                 presentationMode.wrappedValue.dismiss()
             }

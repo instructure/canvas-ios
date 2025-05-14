@@ -38,12 +38,25 @@ let router = Router(routes: [
     },
 
     RouteHandler("/conversations") { _, _, _ in
-        return ParentConversationListViewController.create()
+        return InboxAssembly.makeInboxViewControllerForParent()
+    },
+
+    // Special Inbox Compose route to handle 'New Message' action. This action has different implementation in the Parent app
+    RouteHandler("/conversations/new_message") { _, _, _ in
+        return ParentInboxCoursePickerAssembly.makeParentInboxCoursePickerBottomSheetViewController()
+    },
+
+    RouteHandler("/conversations/compose") { url, _, _ in
+        return ComposeMessageAssembly.makeComposeMessageViewController(url: url)
+    },
+
+    RouteHandler("/conversations/settings") { _, _, _ in
+        return InboxSettingsAssembly.makeInboxSettingsViewController()
     },
 
     RouteHandler("/conversations/:conversationID") { _, params, _ in
         guard let conversationID = params["conversationID"] else { return nil }
-        return ConversationDetailViewController.create(conversationID: conversationID)
+        return MessageDetailsAssembly.makeViewController(env: .shared, conversationID: conversationID, allowArchive: true)
     },
 
     RouteHandler("/courses") { _, _, _ in
@@ -94,6 +107,10 @@ let router = Router(routes: [
 
     RouteHandler("/profile") { _, _, _ in
         return CoreHostingController(SideMenuView(.observer), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
+    },
+
+    RouteHandler("/profile/settings") { _, _, _ in
+        return ProfileSettingsAssembly.makeProfileSettingsViewController()
     },
 
     RouteHandler("/profile/observees") { _, _, _ in
@@ -149,29 +166,30 @@ let router = Router(routes: [
     },
 
     RouteHandler("/:context/:contextID/pages/:url") {
-        pageViewController(url: $0, params: $1, userInfo: $2)
+        pageViewController(url: $0, params: $1, userInfo: $2, env: $3)
     },
 
     RouteHandler("/:context/:contextID/wiki/:url") {
-        pageViewController(url: $0, params: $1, userInfo: $2)
+        pageViewController(url: $0, params: $1, userInfo: $2, env: $3)
     }
 ])
 
-private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
-    return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+    return PageDetailsViewController
+        .create(context: context, pageURL: pageURL, app: .student, env: env)
 }
 
-private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {
-        return fileDetails(url: url, params: params, userInfo: userInfo)
+        return fileDetails(url: url, params: params, userInfo: userInfo, env: env)
     }
     Router.open(url: url)
     return nil
 }
 
-private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?, env: AppEnvironment) -> UIViewController? {
     guard let fileID = params["fileID"] else { return nil }
     let context = Context(path: url.path) ?? .currentUser
-    return FileDetailsViewController.create(context: context, fileID: fileID)
+    return FileDetailsViewController.create(context: context, fileID: fileID, environment: env)
 }

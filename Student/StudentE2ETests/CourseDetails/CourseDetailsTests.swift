@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class CourseDetailsTests: E2ETestCase {
     func testCourseDetails() {
@@ -40,11 +41,11 @@ class CourseDetailsTests: E2ETestCase {
         courseCard.hit()
         let titleLabel = CourseDetailsHelper.titleLabel.waitUntil(.visible)
         XCTAssertTrue(titleLabel.isVisible)
-        XCTAssertTrue(titleLabel.hasLabel(label: course.name))
+        XCTAssertEqual(titleLabel.label, course.name)
 
         let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitUntil(.visible)
         XCTAssertTrue(subtitleLabel.isVisible)
-        XCTAssertTrue(subtitleLabel.hasLabel(label: "Default Term"))
+        XCTAssertEqual(subtitleLabel.label, "Default Term")
 
         let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
         XCTAssertTrue(homeButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
@@ -101,7 +102,7 @@ class CourseDetailsTests: E2ETestCase {
         courseCard.hit()
         let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
         XCTAssertTrue(homeButton.isVisible)
-        XCTAssertTrue(homeButton.hasLabel(label: "Course Modules", strict: false))
+        XCTAssertContains(homeButton.label, "Course Modules")
 
         homeButton.hit()
         let moduleElement = ModulesHelper.moduleLabel(moduleIndex: 0).waitUntil(.visible)
@@ -113,7 +114,7 @@ class CourseDetailsTests: E2ETestCase {
         seeder.updateCourseWithDefaultView(course: course, default_view: .syllabus)
         backButton.hit()
         XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(homeButton.hasLabel(label: "Syllabus", strict: false))
+        XCTAssertContains(homeButton.label, "Syllabus")
 
         homeButton.hit()
         let syllabusBodyElement = SyllabusHelper.syllabusBody.waitUntil(.visible)
@@ -124,7 +125,7 @@ class CourseDetailsTests: E2ETestCase {
         seeder.updateCourseWithDefaultView(course: course, default_view: .wiki)
         backButton.hit()
         XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(homeButton.hasLabel(label: "Front Page", strict: false))
+        XCTAssertContains(homeButton.label, "Front Page")
 
         homeButton.hit()
         let pageTitleElement = PagesHelper.titleByText(text: frontPage.title).waitUntil(.visible)
@@ -135,7 +136,7 @@ class CourseDetailsTests: E2ETestCase {
         seeder.updateCourseWithDefaultView(course: course, default_view: .assignments)
         backButton.hit()
         XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(homeButton.hasLabel(label: "Assignments", strict: false))
+        XCTAssertContains(homeButton.label, "Assignments")
 
         homeButton.hit()
         let assignmentElement = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
@@ -146,7 +147,7 @@ class CourseDetailsTests: E2ETestCase {
         seeder.updateCourseWithDefaultView(course: course, default_view: .feed)
         backButton.hit()
         XCTAssertTrue(homeButton.waitUntil(.visible).isVisible)
-        XCTAssertTrue(homeButton.hasLabel(label: "Recent Activity", strict: false))
+        XCTAssertContains(homeButton.label, "Recent Activity")
 
         homeButton.hit()
         let noAlertsImageElement = app.find(id: "PandaNoAlerts", type: .image).waitUntil(.visible)

@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class DownloadCourseViewModel: Identifiable, Hashable {
     var id: String {
@@ -61,7 +62,7 @@ final class DownloadCourseViewModel: Identifiable, Hashable {
     }
 
     var color: UIColor {
-        UIColor(hexString: course?.courseColor) ?? .ash
+        UIColor(hexString: course?.courseColor) ?? .textDark
     }
 
     var textColor: UIColor {

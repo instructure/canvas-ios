@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class LogoutTests: E2ETestCase {
     func testLogout() {
@@ -38,7 +39,7 @@ class LogoutTests: E2ETestCase {
         let logoutButton = ProfileHelper.logOutButton.waitUntil(.visible)
         XCTAssertTrue(logoutButton.isVisible)
         XCTAssertTrue(usernameLabel.isVisible)
-        XCTAssertTrue(usernameLabel.hasLabel(label: parent.name))
+        XCTAssertEqual(usernameLabel.label, parent.name)
 
         // MARK: Get the user logged out
         logoutButton.hit()

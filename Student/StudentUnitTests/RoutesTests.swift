@@ -17,7 +17,6 @@
 //
 
 import XCTest
-@testable import CanvasCore
 @testable import Core
 @testable import Student
 import TestsFoundation
@@ -63,15 +62,15 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses") is CoreHostingController<AllCoursesView>)
 
         XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
-        XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<DiscussionEditorView>)
-        XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<DiscussionEditorView>)
+        XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<EmbeddedWebPageContainerScreen>)
+        XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<EmbeddedWebPageContainerScreen>)
 
         XCTAssert(router.match("/courses/2/discussions") is DiscussionListViewController)
         XCTAssert(router.match("/courses/2/discussion_topics") is DiscussionListViewController)
-        XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<DiscussionEditorView>)
-        XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
+        XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<EmbeddedWebPageContainerScreen>)
+        XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<EmbeddedWebPageContainerScreen>)
 
-        XCTAssert(router.match("/courses/1/assignments") is CoreHostingController<AssignmentListView>)
+        XCTAssert(router.match("/courses/1/assignments") is CoreHostingController<AssignmentListScreen>)
         XCTAssert(router.match("/courses/2/assignments/3") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions/2") is SubmissionDetailsViewController)
 
@@ -105,8 +104,8 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
-        XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageContainerScreen>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageContainerScreen>)
     }
 
     func testNativeGroupDiscussionDetailsRouteWhenDeviceIsOffline() {
@@ -121,8 +120,8 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
-        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageContainerScreen>)
+        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageContainerScreen>)
     }
 
     func testNativeAnnouncementDiscussionDetailsRoute() {
@@ -136,7 +135,7 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageContainerScreen>)
     }
 
     func testNativeGroupAnnouncementDiscussionDetailsRouteWhenDeviceIsOffline() {
@@ -150,7 +149,7 @@ class RoutesTests: XCTestCase {
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
         OfflineModeAssembly.mock(mockInteractor)
 
-        XCTAssert(router.match("/groups/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/groups/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageContainerScreen>)
     }
 
     func testOfflineScreenRoutes() {
@@ -164,6 +163,7 @@ class RoutesTests: XCTestCase {
     func testK5SubjectViewRoute() {
         // User and accounts are in K5 mode
         ExperimentalFeature.K5Dashboard.isEnabled = true
+
         let env = AppEnvironment.shared
         guard let session = env.currentSession else { XCTFail(); return }
         env.userDidLogin(session: session)
@@ -177,12 +177,13 @@ class RoutesTests: XCTestCase {
 
         // Non-K5 account login
         env.k5.userDidLogin(isK5Account: false)
-        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
+        XCTAssert(router.match("/courses/1") is CoreSearchController)
     }
 
     func testRegularCourseDetailsInK5Mode() {
         // User and accounts are in K5 mode
         ExperimentalFeature.K5Dashboard.isEnabled = true
+
         let env = AppEnvironment.shared
         guard let session = env.currentSession else { XCTFail(); return }
         env.userDidLogin(session: session)
@@ -192,7 +193,7 @@ class RoutesTests: XCTestCase {
         // Opened course is a non-K5 one
         DashboardCard.save(.make(isK5Subject: false), position: 0, in: env.database.viewContext)
 
-        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
+        XCTAssert(router.match("/courses/1") is CoreSearchController)
     }
 
     func testMissingDashboardCardInfoWhenOpeningK5SubjectRoute() {
@@ -217,10 +218,10 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/1/assignments/2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/assignments/2?origin=module_item_details") is AssignmentDetailsViewController)
         XCTAssert(router.match("/courses/1/discussions/2") is ModuleItemSequenceViewController)
-        XCTAssert(router.match("/groups/1/discussions/2") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/groups/1/discussions/2") is CoreHostingController<EmbeddedWebPageContainerScreen>)
         XCTAssert(router.match("/courses/1/discussion_topics/2") is ModuleItemSequenceViewController)
-        XCTAssert(router.match("/groups/1/discussion_topics/2") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
-        XCTAssert(router.match("/courses/1/discussion_topics/2?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/groups/1/discussion_topics/2") is CoreHostingController<EmbeddedWebPageContainerScreen>)
+        XCTAssert(router.match("/courses/1/discussion_topics/2?origin=module_item_details") is CoreHostingController<EmbeddedWebPageContainerScreen>)
         XCTAssert(router.match("/files/1") is FileDetailsViewController)
         XCTAssert(router.match("/files/1/download") is FileDetailsViewController)
         XCTAssert(router.match("/courses/1/files/2") is ModuleItemSequenceViewController)
@@ -242,7 +243,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/groups/1/wiki/2") is PageDetailsViewController)
         XCTAssert(router.match("/courses/1/pages/2?origin=module_item_details") is PageDetailsViewController)
         XCTAssert(router.match("/courses/1/wiki/2?origin=module_item_details") is PageDetailsViewController)
-        XCTAssert(router.match("/courses/1/quizzes/2?origin=module_item_details") is QuizDetailsViewController)
+        XCTAssert(router.match("/courses/1/quizzes/2?origin=module_item_details") is StudentQuizDetailsViewController)
     }
 
     func testFallbackNonHTTP() {

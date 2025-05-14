@@ -86,28 +86,6 @@ class ParentSubmissionViewModelTests: ParentTestCase {
         wait(for: [didHideLoadingIndicator], timeout: 1)
         subscription.cancel()
     }
-
-    func testUpdatesShowWebBackNavigationButtonState() {
-        mockInteractor.feedbackViewLoadShouldFail = false
-
-        let testee = ParentSubmissionViewModel(
-            interactor: mockInteractor,
-            router: router
-        )
-        testee.viewDidLoad(viewController: host, webView: mockWebView)
-
-        // WHEN
-        mockWebView.mockedCanGoBackResult = true
-
-        // THEN
-        XCTAssertSingleOutputEquals(testee.showWebBackNavigationButton, true)
-
-        // WHEN
-        mockWebView.mockedCanGoBackResult = false
-
-        // THEN
-        XCTAssertSingleOutputEquals(testee.showWebBackNavigationButton, false)
-    }
 }
 
 private class MockParentSubmissionInteractor: ParentSubmissionInteractor {
@@ -133,19 +111,6 @@ private class MockParentSubmissionInteractor: ParentSubmissionInteractor {
 }
 
 private class MockWebView: WKWebView {
-    var mockedCanGoBackResult = false {
-        willSet {
-            willChangeValue(for: \.canGoBack)
-        }
-        didSet {
-            didChangeValue(for: \.canGoBack)
-        }
-    }
-
-    override var canGoBack: Bool {
-        mockedCanGoBackResult
-    }
-
     init() {
         let config = WKWebViewConfiguration()
         config.websiteDataStore = .nonPersistent()

@@ -19,6 +19,7 @@
 import Foundation
 import Swifter
 @testable import Core
+import XCTest
 
 enum ServerError: Error {
     case responseError(HttpResponse)
@@ -218,7 +219,7 @@ public class MiniCanvasServer {
         return try handler(request)
     }
 
-    open class MiniCanvasExpectation: XCTestExpectation {
+    open class MiniCanvasExpectation: XCTestExpectation, @unchecked Sendable {
         public var lastRequest: HttpRequest?
     }
 }

@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class HelpTests: E2ETestCase {
     func testHelpPage() {
@@ -80,15 +81,6 @@ class HelpTests: E2ETestCase {
 
         submitAFeatureButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
-
-        // MARK: Check "COVID-19 Canvas Resources" button
-        HelpHelper.returnToHelpPage()
-        let covid19Button = HelpHelper.covid19.waitUntil(.visible)
-        XCTAssertTrue(covid19Button.isVisible)
-
-        covid19Button.hit()
-        browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Contingency-Resources/gh-p/contingency"))
+        XCTAssertTrue(browserURL.contains("canvas-ideas-themes"))
     }
 }

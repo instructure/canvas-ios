@@ -18,6 +18,7 @@
 
 import Foundation
 import mobile_offline_downloader_ios
+import UIKit
 
 public struct DownloaderClient {
     public static func setup(with session: LoginSession) {
@@ -29,7 +30,7 @@ public struct DownloaderClient {
         var pathComponents = path.components(separatedBy: "/")
         pathComponents.append(session.baseURL.host ?? "unknownSchool")
         pathComponents.append(session.userID)
-        
+
         let downloaderConfig = OfflineDownloaderConfig()
         downloaderConfig.rootPath = pathComponents.joined(separator: "/")
         downloaderConfig.errorsDescriptionHandler = { errorInfo, isCritical in

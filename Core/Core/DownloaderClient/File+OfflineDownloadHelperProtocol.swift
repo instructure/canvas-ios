@@ -16,7 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import mobile_offline_downloader_ios
+@preconcurrency import mobile_offline_downloader_ios
+import UIKit
 
 extension File: OfflineDownloadTypeProtocol {
     public static func canDownload(entry: OfflineDownloaderEntry) -> Bool {
@@ -53,7 +54,7 @@ extension File: OfflineDownloadTypeProtocol {
             return false
         }
     }
-    
+
     public static func replaceHTML(tag: String?) -> String? {
         nil
     }

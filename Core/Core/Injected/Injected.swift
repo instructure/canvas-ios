@@ -17,7 +17,6 @@
 //
 
 import Foundation
-//import mobile_offline_downloader_ios
 
 @propertyWrapper
 public struct Injected<T> {
@@ -72,9 +71,9 @@ public extension InjectedValues {
     }
 }
 
-//private struct LocalStorageInjectionKey: InjectionKey {
+//  private struct LocalStorageInjectionKey: InjectionKey {
 //    static var currentValue: LocalStorage = StorageProvider.current
-//}
+//  }
 
 private struct NetworkProviderKey: InjectionKey {
     static var currentValue: ReachabilityProvider = ReachabilityProvider()

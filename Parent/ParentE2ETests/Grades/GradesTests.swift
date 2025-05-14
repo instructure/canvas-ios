@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class GradesTests: E2ETestCase {
     typealias Helper = GradesHelper
@@ -47,7 +48,7 @@ class GradesTests: E2ETestCase {
         let courseCardGradeLabel = DashboardHelperParent.courseGradeLabel(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
         XCTAssertTrue(courseCardGradeLabel.isVisible)
-        XCTAssertTrue(courseCardGradeLabel.hasLabel(label: totalGrade), "\(courseCardGradeLabel.label) != \(totalGrade)")
+        XCTAssertEqual(courseCardGradeLabel.label, totalGrade)
 
         // MARK: Tap on course, check grades
         courseCard.hit()
@@ -59,16 +60,16 @@ class GradesTests: E2ETestCase {
         let passFailAssignmentCell = GradesHelper.cell(assignment: passFailAssignment).waitUntil(.visible)
         let passFailAssignmentGrade = passFailAssignmentCell.find(labelContaining: "Grade, ", type: .staticText).waitUntil(.visible)
         XCTAssertTrue(courseTotalGradeLabel.isVisible)
-        XCTAssertTrue(courseTotalGradeLabel.hasLabel(label: "Total grade is \(totalGrade)"))
+        XCTAssertEqual(courseTotalGradeLabel.label, "Total grade is \(totalGrade)")
         XCTAssertTrue(pointsAssignmentCell.isVisible)
         XCTAssertTrue(pointsAssignmentGrade.isVisible)
-        XCTAssertTrue(pointsAssignmentGrade.hasLabel(label: "6 out of 10", strict: false))
+        XCTAssertContains(pointsAssignmentGrade.label, "6 out of 10")
         XCTAssertTrue(percentAssignmentCell.isVisible)
         XCTAssertTrue(percentAssignmentGrade.isVisible)
-        XCTAssertTrue(percentAssignmentGrade.hasLabel(label: "70%", strict: false))
+        XCTAssertContains(percentAssignmentGrade.label, "70%")
         XCTAssertTrue(passFailAssignmentCell.isVisible)
         XCTAssertTrue(passFailAssignmentGrade.isVisible)
-        XCTAssertTrue(passFailAssignmentGrade.hasLabel(label: "Complete", strict: false))
+        XCTAssertContains(passFailAssignmentGrade.label, "Complete")
     }
 
     func testLetterGradeOnly() {
@@ -105,7 +106,7 @@ class GradesTests: E2ETestCase {
         let percentAssignmentCell = GradesHelper.cell(assignment: percentAssignment).waitUntil(.visible)
         let passFailAssignmentCell = GradesHelper.cell(assignment: passFailAssignment).waitUntil(.visible)
         XCTAssertTrue(courseTotalGradeLabel.isVisible)
-        XCTAssertTrue(courseTotalGradeLabel.hasLabel(label: "Total grade is \(totalGrade)"))
+        XCTAssertEqual(courseTotalGradeLabel.label, "Total grade is \(totalGrade)")
         XCTAssertTrue(pointsAssignmentCell.isVisible)
         XCTAssertTrue(percentAssignmentCell.isVisible)
         XCTAssertTrue(passFailAssignmentCell.isVisible)

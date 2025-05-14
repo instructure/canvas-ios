@@ -18,6 +18,7 @@
 
 import Foundation
 import mobile_offline_downloader_ios
+import UIKit
 
 final class DownloadsCourseCategoryViewModel: Identifiable, Hashable {
     static func == (lhs: DownloadsCourseCategoryViewModel, rhs: DownloadsCourseCategoryViewModel) -> Bool {

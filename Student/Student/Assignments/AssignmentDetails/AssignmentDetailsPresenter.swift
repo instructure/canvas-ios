@@ -19,6 +19,7 @@
 import Foundation
 import Core
 import CoreData
+import UIKit
 
 struct SubmissionAction: Equatable {
     let title: String
@@ -31,6 +32,8 @@ enum OnlineUploadState {
 }
 
 protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
+    var accessibilityFocusAfterAttemptSelection: UIView? { get }
+
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
     func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?)
     func showSubmitAssignmentButton(title: String?)
@@ -74,7 +77,7 @@ class AssignmentDetailsPresenter {
 
     var quizzes: Store<GetQuiz>?
 
-    let env = AppEnvironment.shared
+    let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
     let courseID: String
     let assignmentID: String
@@ -131,14 +134,15 @@ class AssignmentDetailsPresenter {
         }
     }
 
-    init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
+    init(env: AppEnvironment, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
+        self.env = env
         self.view = view
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.fragment = fragment
-        self.submissionButtonPresenter = SubmissionButtonPresenter(view: view, assignmentID: assignmentID)
+        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
         if let session = env.currentSession {
-            self.userID = session.userID
+            self.userID = session.userID.localID
         }
         subscribeToSuccessfulSubmissionNotification(assignmentID: assignmentID)
     }
@@ -218,13 +222,12 @@ class AssignmentDetailsPresenter {
         let items: [UIAction] = {
             guard isActive else { return [] }
             return validSubmissions.map { submission in
-                let attemptNumber = String.localizedStringWithFormat(
-                    String(localized: "Attempt %d", bundle: .student),
-                    submission.attempt
-                )
                 let date = submission.submittedAt?.dateTimeString ?? ""
+                let attemptNumber = String.localizedAttemptNumber(submission.attempt)
                 return UIAction(title: date, subtitle: attemptNumber) { [weak self] _ in
                     self?.selectedSubmission = submission
+                    let a11yFocusTarget = self?.view?.accessibilityFocusAfterAttemptSelection
+                    UIAccessibility.post(notification: .screenChanged, argument: a11yFocusTarget)
                 }
             }
         }()
@@ -235,10 +238,7 @@ class AssignmentDetailsPresenter {
     }
 
     private func updateAttemptInfo(submission: Submission) {
-        let attemptNumber = String.localizedStringWithFormat(
-            String(localized: "Attempt %d", bundle: .student),
-            submission.attempt
-        )
+        let attemptNumber = String.localizedAttemptNumber(submission.attempt)
         view?.updateAttemptInfo(attemptNumber: attemptNumber)
     }
 

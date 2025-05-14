@@ -38,7 +38,7 @@ public struct DownloadsCourseDetailsCellView: View {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                InstDisclosureIndicator()
+                InstUI.DisclosureIndicator()
             }
             .padding(.horizontal, 16)
             .fixedSize(horizontal: false, vertical: true)

@@ -17,8 +17,9 @@
 //
 
 import TestsFoundation
+import XCTest
 
-class FeatureFlagOfflineTests: OfflineE2ETest {
+class FeatureFlagOfflineTests: OfflineE2ETestCase {
 
     func testDiscussionsFallbackToNativeAppearanceWhenOffline() {
         // MARK: Seed the usual stuff with discussion and announcement
@@ -61,11 +62,8 @@ class FeatureFlagOfflineTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = DashboardHelper.Options.OfflineContent.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check contents
         let isOffline = setNetworkStateOffline()

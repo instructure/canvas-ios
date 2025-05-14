@@ -1,13 +1,13 @@
 ---
 name: Core
 attributes: {
-  LastUpgradeCheck: "1500"
+  LastUpgradeCheck: "1600"
 }
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
   deploymentTarget:
-    iOS: 16.0
+    iOS: 17.0
   createIntermediateGroups: true
 settings:
   CODE_SIGN_STYLE: Automatic
@@ -15,6 +15,7 @@ settings:
   APPLICATION_EXTENSION_API_ONLY: true
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
+  ENABLE_USER_SCRIPT_SANDBOXING: false
   platform: iOS
 packages:
   CombineSchedulers:
@@ -26,9 +27,12 @@ packages:
   Lottie:
     url: https://github.com/airbnb/lottie-ios.git
     exactVersion: 3.5.0
+  Pendo:
+    url: https://github.com/pendo-io/pendo-mobile-sdk
+    exactVersion: 3.6.1
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 13.0.1
+    exactVersion: 13.9.1
   CombineReachability:
     url: https://github.com/istvan-kreisz/CombineReachability.git
     branch: master
@@ -51,14 +55,17 @@ targets:
       - package: CombineSchedulers
       - package: CombineExt
       - package: Lottie
+      - package: Pendo
       - package: PSPDFKit
       - package: CombineReachability
       - package: mobile-offline-downloader-ios
       - package: SwiftUIIntrospect
     preBuildScripts:
-      - path: ../scripts/swiftLint.sh
+      - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/.swiftlint.yml
     settings:
       SWIFT_EMIT_LOC_STRINGS: true
   CoreTests:    
@@ -78,7 +85,7 @@ targets:
     platform: iOS
     transitivelyLinkDependencies: false
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.CoreTester
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.CoreTester.2u
       CODE_SIGN_ENTITLEMENTS: CoreTester/CoreTester.entitlements
     sources:
       - path: CoreTester
@@ -95,9 +102,11 @@ targets:
       - target: Core
       - package: Swifter
     preBuildScripts:
-      - path: ../scripts/swiftLint.sh
+      - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+        inputFiles:
+          - $(SRCROOT)/.swiftlint.yml
 schemes:
   Core:
     build:

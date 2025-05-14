@@ -20,11 +20,9 @@ import AVKit
 import AWSLambda
 import AWSSNS
 import BugfenderSDK
-import CanvasCore
 import Combine
 import Core
 import Firebase
-import Heap
 import PSPDFKit
 import UIKit
 import UserNotifications
@@ -46,6 +44,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
+    private lazy var analyticsTracker: PendoAnalyticsTracker = {
+        .init(environment: environment)
+    }()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
@@ -61,14 +63,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         #endif
 
         DocViewerViewController.setup(.studentPSPDFKitLicense)
-        prepareReactNative()
         setupDefaultErrorHandling()
         setupPageViewLogging()
-        TabBarBadgeCounts.application = UIApplication.shared
         PushNotificationsInteractor.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
-        FontAppearance.update()
+        Appearance.update()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,
@@ -86,7 +86,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
-            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
         setupAWS()
         setupBugfender()
@@ -133,12 +133,12 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             self.environmentFeatureFlags?.refresh(force: true) { _ in
                 defer { self.environmentFeatureFlags = nil }
                 guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-                self.initializeTracking()
+                self.initializeTracking(environmentFeatureFlags: envFlags.all)
             }
 
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(loginSession: session)
+            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
 
             // NotificationManager.registerForRemoteNotifications is not called in UITests,
             // so we need to requestAuthorization in order to be able to test notification related logic like
@@ -161,27 +161,48 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 ReactiveStore(useCase: GetBrandVariables())
                     .getEntities()
                     .receive(on: RunLoop.main)
-                    .sink(receiveCompletion: { _ in }) { brandVars in
+                    .replaceError(with: [])
+                    .sink { [weak self] brandVars in
                         brandVars.first?.applyBrandTheme()
-                        NativeLoginManager.login(as: session)
+                        self?.setTabBarController()
                     }
                     .store(in: &self.subscriptions)
             }
         }}
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    func setTabBarController() {
+        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
+        appearance.barTintColor = nil
+        appearance.tintColor = nil
+        appearance.titleTextAttributes = nil
+
+        guard let window = self.window else { return }
+        let controller = StudentTabBarController()
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            window.rootViewController = controller
+        }, completion: { _ in
+            self.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        })
+    }
+
+    func application(_: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.scheme?.range(of: "pendo") != nil {
+            analyticsTracker.initManager(with: url)
+            return true
+        }
+
         if options[.sourceApplication] as? String == Bundle.teacherBundleID,
            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
            components.path.contains("student_view"),
            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
             shouldSetK5StudentView = components.path.contains("k5")
-            if environment.currentSession != nil {
-                NativeLoginManager.shared().logout() // Cleanup old to prevent token errors
-            }
             userDidLogin(session: fakeStudent)
             return true
         }
+
         return openURL(url)
     }
 
@@ -214,7 +235,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
             setupFileSubmissionAssemblyForBackgroundUploads(completion: completionHandler)
         } else {
-            let manager = UploadManager(identifier: identifier)
+            let manager = UploadManager(env: environment, identifier: identifier)
             manager.completionHandler = {
                 DispatchQueue.main.async {
                     completionHandler()
@@ -285,7 +306,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        PushNotifications.record(response.notification)
         if let url = response.notification.request.routeURL {
             openURL(url, userInfo: [
                 "forceRefresh": true,
@@ -296,39 +316,32 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
+// MARK: - Usage Analytics
+
 extension StudentAppDelegate: Core.AnalyticsHandler {
-
-    func handleScreenView(screenName: String, screenClass: String, application: String) {
-        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
-    }
-
-    func handleError(_ name: String, reason: String) {
-        let model = ExceptionModel(name: name, reason: reason)
-        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
-    }
-
     func handleEvent(_ name: String, parameters: [String: Any]?) {
+        analyticsTracker.track(name, properties: parameters)
+
+        PageViewEventController.instance.logPageView(
+            name,
+            attributes: parameters
+        )
     }
 
-    private func initializeTracking() {
-        guard
-            let environmentFeatureFlags,
-            !ProcessInfo.isUITest,
-            let heapID = Secret.heapID.string
-        else {
-            return
-        }
+    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
+        guard !ProcessInfo.isUITest else { return }
 
-        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-        let options = HeapOptions()
-        options.disableTracking = !isSendUsageMetricsEnabled
-        Heap.initialize(heapID, with: options)
-        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
-        environment.heapID = Heap.userId()
+        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+
+        if isTrackingEnabled {
+            analyticsTracker.startSession()
+        } else {
+            analyticsTracker.endSession()
+        }
     }
 
     private func disableTracking() {
-        Heap.setTrackingEnabled(false)
+        analyticsTracker.endSession()
     }
 }
 
@@ -366,8 +379,8 @@ extension StudentAppDelegate {
             FirebaseApp.configure()
             configureRemoteConfig()
             Core.Analytics.shared.handler = self
+            RemoteLogger.shared.handler = self
         }
-        CanvasCrashlytics.setupForReactNative()
     }
 
     func setupDebugCrashLogging() {
@@ -378,6 +391,18 @@ extension StudentAppDelegate {
                 print("  \(symbol)")
             }
         }
+    }
+}
+
+extension StudentAppDelegate: RemoteLogHandler {
+
+    func handleBreadcrumb(_ name: String) {
+        Firebase.Crashlytics.crashlytics().log(name)
+    }
+
+    func handleError(_ name: String, reason: String) {
+        let model = ExceptionModel(name: name, reason: reason)
+        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
     }
 }
 
@@ -423,7 +448,7 @@ extension StudentAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
-            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
+            RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
@@ -458,11 +483,11 @@ extension StudentAppDelegate {
 
 // MARK: - Login Delegate
 
-extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+extension StudentAppDelegate: LoginDelegate {
     func changeUser() {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
-        guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        guard let window, window.isShowingLoginStartViewController == false else { return }
         disableTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .student)
     }
@@ -500,7 +525,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.deleteDevicePlatformEndpoint(session: session)
 //        PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        UNUserNotificationCenter.current().setBadgeCount(0)
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
         deleteAssignmentRemindersAsync(userId: session.userID)

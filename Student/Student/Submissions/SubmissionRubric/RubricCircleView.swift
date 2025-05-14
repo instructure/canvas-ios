@@ -94,7 +94,7 @@ class RubricCircleView: UIView {
                 bgColor = UIColor.backgroundLightest
             }
 
-            let title = (rubric?.hideRubricPoints ?? false) ? (rubric?.rubricRatings[i].desc ?? "-") + RubricCircleView.stringPadding : RubricCircleView.formatter.string(for: r) ?? ""
+            let title = (rubric?.hideRubricPoints ?? false) ? (rubric?.rubricRatings[i].shortDescription ?? "-") + RubricCircleView.stringPadding : RubricCircleView.formatter.string(for: r) ?? ""
             let size = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)])
             let circleWidth = ceil( max( RubricCircleView.w, size.width ) )
 
@@ -144,6 +144,8 @@ class RubricCircleView: UIView {
             let h = RubricCircleView.computedHeight(rubric: rubric, maxWidth: frame.size.width)
             addConstraintsWithVFL("V:[view(h)]", metrics: ["h": h])
         }
+
+        registerForTraitChanges()
     }
 
     var isAnimating = false
@@ -247,7 +249,7 @@ class RubricCircleView: UIView {
         var rows: CGFloat = 1
         var total: CGFloat = 0.0
         rubric.rubricRatings.forEach { r in
-            let str = r.desc + stringPadding
+            let str = r.shortDescription + stringPadding
             let fontAttributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)]
             let size = str.size(withAttributes: fontAttributes)
             let width = ceil( max(w, size.width) )
@@ -260,10 +262,17 @@ class RubricCircleView: UIView {
         return (rows * w) + ((rows - 1) * space)
     }
 
-    internal override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if buttonsDidLayout {
-            setupButtons()
+    private func registerForTraitChanges() {
+        let traits: [UITrait] = [
+            UITraitUserInterfaceStyle.self,
+            UITraitVerticalSizeClass.self,
+            UITraitHorizontalSizeClass.self,
+            UITraitLayoutDirection.self
+        ]
+        registerForTraitChanges(traits) { (self: RubricCircleView, _) in
+            if self.buttonsDidLayout {
+                self.setupButtons()
+            }
         }
     }
 }

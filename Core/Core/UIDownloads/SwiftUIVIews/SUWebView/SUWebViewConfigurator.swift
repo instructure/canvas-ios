@@ -7,7 +7,7 @@ public struct WebViewConfigurator {
 public extension WebViewConfigurator {
     enum RequestType {
         case url(URL)
-        case indexURL(_ url: URL,_ allowingReadAccessTo: URL)
+        case indexURL(_ url: URL, _ allowingReadAccessTo: URL)
         case request(URLRequest)
     }
 }

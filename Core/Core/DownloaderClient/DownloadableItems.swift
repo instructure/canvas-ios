@@ -17,28 +17,14 @@
 //
 
 import mobile_offline_downloader_ios
+import UIKit
 
 public struct DownloadableItem {
-
     private(set) var objectId: String
     private(set) var userInfo: String
     private(set) var assetType: String
     private(set) var object: OfflineDownloadTypeProtocol
     private(set) var course: Course
-
-     init(
-        objectId: String,
-        userInfo: String,
-        assetType: String,
-        object: OfflineDownloadTypeProtocol,
-        course: Course
-    ) {
-        self.objectId = objectId
-        self.userInfo = userInfo
-        self.assetType = assetType
-        self.object = object
-        self.course = course
-    }
 }
 
 protocol DownloadableItems: UIViewController {

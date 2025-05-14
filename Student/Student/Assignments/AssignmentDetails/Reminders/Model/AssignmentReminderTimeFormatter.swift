@@ -18,7 +18,7 @@
 
 import Foundation
 
-class AssignmentReminderTimeFormatter: DateComponentsFormatter {
+class AssignmentReminderTimeFormatter: DateComponentsFormatter, @unchecked Sendable {
 
     override init() {
         super.init()

@@ -17,7 +17,7 @@
 //
 
 import Foundation
-import mobile_offline_downloader_ios
+@preconcurrency import mobile_offline_downloader_ios
 import SwiftSoup
 import Reachability
 
@@ -67,6 +67,7 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         }
     }
 
+    @MainActor
     static func preparePage(entry: OfflineDownloaderEntry, url: String, courseID: String) async throws {
         let context = Context(.course, id: courseID)
         return try await withCheckedThrowingContinuation({[weak entry] continuation in

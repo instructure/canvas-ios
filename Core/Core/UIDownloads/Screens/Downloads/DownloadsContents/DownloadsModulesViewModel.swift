@@ -51,7 +51,7 @@ final class DownloadsModulesViewModel: ObservableObject {
     var onDeletedAll: (() -> Void)?
 
     var color: UIColor {
-        UIColor(hexString: courseDataModel.course.courseColor) ?? .oxford
+        UIColor(hexString: courseDataModel.course.courseColor) ?? .textDarkest.variantForLightMode
     }
 
     init(

@@ -98,7 +98,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradListAssembly.makeGradeListViewController(
+        gradesViewController = GradeListAssembly.makeGradeListViewController(
             env: AppEnvironment.shared,
             courseID: courseID,
             userID: studentID
@@ -134,8 +134,8 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         replyButton?.accessibilityTraits.insert(.header)
         replyButton?.setImage(UIImage.commentSolid, for: .normal)
         replyButton?.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 17, leading: 17, bottom: 15, trailing: 15)
-        replyButton?.tintColor = .white
-        replyButton?.backgroundColor = colorScheme?.color.darkenToEnsureContrast(against: .white)
+        replyButton?.tintColor = .textLightest.variantForLightMode
+        replyButton?.backgroundColor = colorScheme?.color.darkenToEnsureContrast(against: .textLightest.variantForLightMode)
         if let replyButton = replyButton { view.addSubview(replyButton) }
 
         let metrics: [String: CGFloat] = ["buttonSize": buttonSize, "margin": margin, "bottomMargin": bottomMargin]
@@ -173,6 +173,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func messagingReady() {
+        guard let course = courses.first else { return }
         let pending = teachers.pending || student.pending
         if !pending && replyStarted {
             let name = student.first?.fullName ?? ""
@@ -181,14 +182,21 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             var template = String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <John Doe>, <Grades | Syllabus>")
             let subject = String.localizedStringWithFormat(template, name, tabTitle)
             template = String(localized: "Regarding: %@, %@", bundle: .parent, comment: "Regarding <John Doe>, [link to grades or syllabus]")
-            let compose = ComposeViewController.create(
-                context: .course(courseID),
-                observeeID: studentID,
-                recipients: teachers.all,
-                subject: subject,
-                hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink())
+            let options = ComposeMessageOptions(
+                disabledFields: .init(
+                    contextDisabled: true
+                ),
+                fieldsContents: .init(
+                    selectedContext: .init(course: course),
+                    subjectText: subject
+                ),
+                extras: .init(
+                    hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink()),
+                    autoTeacherSelect: true
+                )
             )
-            env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+            let composeController = ComposeMessageAssembly.makeComposeMessageViewController(options: options)
+            env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
 
             replyButton?.isEnabled = true
         }
@@ -258,6 +266,26 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             }
         case .summary:
             return String(localized: "Summary", bundle: .parent)
+        }
+    }
+
+    func didSelectMenuItem(at: IndexPath) {
+        guard let menuItem = MenuItem(rawValue: at.row) else { return }
+
+        let targetVC: UIViewController? = switch menuItem {
+        case .grades:
+            gradesViewController
+        case .syllabus:
+            syllabusViewController
+        case .summary:
+            summaryViewController
+        }
+
+        if let vc = targetVC {
+            UIAccessibility.post(notification: .screenChanged, argument: vc)
+        } else {
+            let itemView = viewForMenuItem(at: at)
+            UIAccessibility.post(notification: .screenChanged, argument: itemView)
         }
     }
 }

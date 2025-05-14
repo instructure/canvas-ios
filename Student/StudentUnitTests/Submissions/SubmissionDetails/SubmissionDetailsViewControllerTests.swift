@@ -22,7 +22,13 @@ import XCTest
 import TestsFoundation
 
 class SubmissionDetailsViewControllerTests: StudentTestCase {
-    lazy var controller = SubmissionDetailsViewController.create(context: .course("1"), assignmentID: "1", userID: "1")
+    lazy var controller = SubmissionDetailsViewController
+        .create(
+            env: env,
+            context: .course("1"),
+            assignmentID: "1",
+            userID: "1"
+        )
 
     func testKeyboardShown() {
         controller.view.layoutIfNeeded()
@@ -37,15 +43,18 @@ class SubmissionDetailsViewControllerTests: StudentTestCase {
         Submission.make(from: .make(attempt: 7, id: "2", score: 2))
 
         // WHEN
-        let testee = SubmissionDetailsViewController.create(context: .course("1"),
-                                                            assignmentID: "1",
-                                                            userID: "1",
-                                                            selectedAttempt: 1)
+        let testee = SubmissionDetailsViewController
+            .create(
+                env: env,
+                context: .course("1"),
+                assignmentID: "1",
+                userID: "1",
+                selectedAttempt: 1
+            )
         testee.loadViewIfNeeded()
 
         // THEN
         XCTAssertEqual(testee.presenter?.selectedAttempt, 1)
-        XCTAssertEqual(testee.picker?.selectedRow(inComponent: 0), 1)
         XCTAssertEqual(testee.presenter?.pickerSubmissions[1].attempt, 1)
     }
 }

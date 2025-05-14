@@ -17,8 +17,9 @@
 //
 
 import TestsFoundation
+import XCTest
 
-class OfflineTests: OfflineE2ETest {
+class OfflineTests: OfflineE2ETestCase {
     func testNetworkConnectionLose() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -37,9 +38,7 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(profileButton.isVisible)
 
         profileButton.hit()
-        offlineLine = ProfileHelper.offlineLine.waitUntil(.visible)
         let offlineLabel = ProfileHelper.offlineLabel.waitUntil(.visible)
-        XCTAssertTrue(offlineLine.isVisible)
         XCTAssertTrue(offlineLabel.isVisible)
 
         // MARK: Go back online and check app behaviour
@@ -51,8 +50,6 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(profileButton.waitUntil(.visible).isVisible)
 
         profileButton.hit()
-        offlineLine = ProfileHelper.offlineLine.waitUntil(.vanish)
-        XCTAssertTrue(offlineLine.isVanished)
         XCTAssertTrue(offlineLabel.waitUntil(.vanish).isVanished)
     }
 
@@ -75,25 +72,25 @@ class OfflineTests: OfflineE2ETest {
         let valueOfOfflineSync = SettingsHelper.valueOfMenuItem(item: .synchronization)!.waitUntil(.visible)
         XCTAssertTrue(offlineSync.isVisible)
         XCTAssertTrue(valueOfOfflineSync.isVisible)
-        XCTAssertTrue(valueOfOfflineSync.hasLabel(label: "Manual"))
+        XCTAssertEqual(valueOfOfflineSync.label, "Manual")
 
         offlineSync.hit()
 
         let autoContentSyncSwitch = SettingsHelper.OfflineSync.autoContentSyncSwitch.waitUntil(.visible)
         let backButton = SettingsHelper.OfflineSync.backButton.waitUntil(.visible)
         XCTAssertTrue(autoContentSyncSwitch.isVisible)
-        XCTAssertTrue(autoContentSyncSwitch.hasValue(value: "0"))
+        XCTAssertEqual(autoContentSyncSwitch.stringValue, "off")
         XCTAssertTrue(backButton.isVisible)
 
         // MARK: Turn on "Auto Content Sync", check the changes
         autoContentSyncSwitch.hit()
         let syncFrequencyButton = SettingsHelper.OfflineSync.syncFrequencyButton.waitUntil(.visible)
         let syncContentOverWifiOnlySwitch = SettingsHelper.OfflineSync.wifiOnlySwitch.waitUntil(.visible)
-        XCTAssertTrue(autoContentSyncSwitch.hasValue(value: "1"))
+        XCTAssertEqual(autoContentSyncSwitch.stringValue, "on")
         XCTAssertTrue(syncFrequencyButton.isVisible)
-        XCTAssertTrue(syncFrequencyButton.hasLabel(label: "Daily", strict: false))
+        XCTAssertContains(syncFrequencyButton.label, "Daily")
         XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
-        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "1"))
+        XCTAssertEqual(syncContentOverWifiOnlySwitch.stringValue, "on")
 
         // MARK: Change "Sync Frequency" from "Daily" to "Weekly"
         syncFrequencyButton.hit()
@@ -107,9 +104,9 @@ class OfflineTests: OfflineE2ETest {
         weekly.hit()
         syncFrequencyButton.waitUntil(.visible)
         XCTAssertTrue(syncFrequencyButton.isVisible)
-        XCTAssertTrue(syncFrequencyButton.hasLabel(label: "Weekly", strict: false))
+        XCTAssertContains(syncFrequencyButton.label, "Weekly")
         XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
-        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "1"))
+        XCTAssertEqual(syncContentOverWifiOnlySwitch.stringValue, "on")
 
         // MARK: Turn off "Sync Content Over Wifi Only"
         syncContentOverWifiOnlySwitch.hit()
@@ -119,8 +116,8 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(turnOffButton.isVisible)
 
         turnOffButton.hit()
-        syncContentOverWifiOnlySwitch.waitUntil(.value(expected: "0"))
-        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "0"))
+        syncContentOverWifiOnlySwitch.waitUntil(.value(expected: "off"))
+        XCTAssertEqual(syncContentOverWifiOnlySwitch.stringValue, "off")
         XCTAssertTrue(backButton.isVisible)
 
         backButton.hit()
@@ -128,7 +125,7 @@ class OfflineTests: OfflineE2ETest {
         valueOfOfflineSync.waitUntil(.visible)
         XCTAssertTrue(offlineSync.isVisible)
         XCTAssertTrue(valueOfOfflineSync.isVisible)
-        XCTAssertTrue(valueOfOfflineSync.hasLabel(label: "Weekly Auto"))
+        XCTAssertEqual(valueOfOfflineSync.label, "Weekly Auto")
     }
 
     func testManageOfflineContentScreen() {
@@ -160,19 +157,19 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(headerLabel.isVisible)
         XCTAssertTrue(storageInfoLabel.isVisible)
         XCTAssertTrue(courseButton.isVisible)
-        XCTAssertTrue(courseButton.hasLabel(label: "Deselected", strict: false))
+        XCTAssertContains(courseButton.label, "Deselected")
         XCTAssertTrue(unselectedTickerOfCourseButton.isVisible)
         XCTAssertTrue(selectedTickerOfCourseButton.isVanished)
         XCTAssertTrue(syncButton.isVisible)
 
         unselectedTickerOfCourseButton.hit()
-        XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Selected")).hasLabel(label: "Selected", strict: false))
+        XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Selected")).label, "Selected")
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.visible).isVisible)
         XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
 
         selectedTickerOfCourseButton.hit()
-        XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Deselected")).hasLabel(label: "Deselected", strict: false))
+        XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Deselected")).label, "Deselected")
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.visible).isVisible)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
 
@@ -191,8 +188,7 @@ class OfflineTests: OfflineE2ETest {
         discussionsButton.hit()
         let partiallySelectedTickerOfCourse = DashboardHelper.Options.OfflineContent.partiallySelectedTickerOfCourseButton(course: course)
             .waitUntil(.visible)
-        XCTAssertTrue(courseButton.waitUntil(.labelContaining(expected: "Partially selected"))
-            .hasLabel(label: "Partially selected", strict: false))
+        XCTAssertContains(courseButton.waitUntil(.labelContaining(expected: "Partially selected")).label, "Partially selected")
         XCTAssertTrue(partiallySelectedTickerOfCourse.isVisible)
         XCTAssertTrue(unselectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
         XCTAssertTrue(selectedTickerOfCourseButton.waitUntil(.vanish).isVanished)
@@ -239,11 +235,8 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = DashboardHelper.Options.OfflineContent.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check contents
         let isOffline = setNetworkStateOffline()
@@ -337,11 +330,8 @@ class OfflineTests: OfflineE2ETest {
         XCTAssertTrue(alertSyncButton.isVisible)
 
         alertSyncButton.hit()
-        let syncingOfflineContentLabel = DashboardHelper.Options.OfflineContent.syncingOfflineContentLabel.waitUntil(.visible)
-        XCTAssertTrue(syncingOfflineContentLabel.isVisible)
-
-        syncingOfflineContentLabel.waitUntil(.vanish)
-        XCTAssertTrue(syncingOfflineContentLabel.isVanished)
+        let successNotification = SpringboardAppHelper.successNotification.waitUntil(.visible, timeout: 30)
+        XCTAssertTrue(successNotification.isVisible)
 
         // MARK: Go offline, check contents
         let isOffline = setNetworkStateOffline()

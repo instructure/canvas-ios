@@ -17,6 +17,7 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class LogoutTests: E2ETestCase {
     func testLogout() {
@@ -41,6 +42,6 @@ class LogoutTests: E2ETestCase {
         logoutButton.hit()
         let lastLoginButton = LoginHelper.Start.lastLoginButton.waitUntil(.visible)
         XCTAssertTrue(lastLoginButton.isVisible)
-        XCTAssertTrue(lastLoginButton.hasLabel(label: user.host))
+        XCTAssertEqual(lastLoginButton.label, user.host)
     }
 }

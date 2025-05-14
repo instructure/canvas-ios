@@ -37,7 +37,7 @@ class StudentDetailsViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .white).hexString)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
         XCTAssertEqual(controller.nameLabel.text, "Legion (They/Them)")
 
         for (index, type) in AlertThresholdType.allCases.enumerated() {
@@ -50,7 +50,6 @@ class StudentDetailsViewControllerTests: ParentTestCase {
                 XCTAssert(field.delegate === controller)
             } else {
                 let toggle = try XCTUnwrap(controller.alertSwitches.first { $0.tag == index })
-                XCTAssertEqual(toggle.accessibilityLabel, type.name)
                 XCTAssertEqual(toggle.isOn, type == .assignmentMissing)
             }
         }

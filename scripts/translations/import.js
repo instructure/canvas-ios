@@ -130,11 +130,6 @@ function normalizeLocale(locale) {
 }
 
 async function importXcodeTranslations() {
-  // install react dependencies
-  const reactProjectFolder = 'rn/Teacher/i18n/locales'
-  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` }) 
-
-  await run('make', ['pod'])
   const folder = 'scripts/translations/imports/all'
   const files = await new Promise(resolve =>
     readdir(folder, (err, files) => resolve(files || []))
@@ -149,6 +144,8 @@ async function importXcodeTranslations() {
         `${folder}/${file}`,
         '-workspace',
         'Canvas.xcworkspace',
+        '-sdk',
+        'iphonesimulator',
       ])
   }
 }

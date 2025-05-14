@@ -34,15 +34,14 @@ class SubmissionCommentTextCell: UITableViewCell {
 
     func update(comment: SubmissionComment) {
         guard !comment.isFault else { return }
+
         self.comment = comment
-        accessibilityIdentifier = "SubmissionComments.textCell.\(comment.id)"
-        accessibilityLabel = String.localizedStringWithFormat(
-            String(localized: "On %@ %@ commented \"%@\"", bundle: .student),
-            comment.createdAtLocalizedString,
-            comment.authorName,
-            comment.comment
-        )
         commentLabel?.setText(comment.comment, lineHeight: .body)
+
+        accessibilityIdentifier = "SubmissionComments.textCell.\(comment.id)"
+        let hasAttachements = comment.attachments?.isNotEmpty ?? false
+        accessibilityElementsHidden = !hasAttachements
+        commentLabel?.accessibilityElementsHidden = true
 
         attachmentsStackView?.arrangedSubviews.forEach { subview in
             attachmentsStackView?.removeArrangedSubview(subview)
@@ -67,9 +66,11 @@ class SubmissionCommentTextCell: UITableViewCell {
             button.imageView?.contentMode = .scaleAspectFit
             button.setTitle(attachment.displayName, for: .normal)
             button.setTitleColor(color, for: .normal)
+            button.accessibilityLabel = comment.accessibilityLabelForCommentAttachment(attachment)
+            button.accessibilityHint = String(localized: "Double tap to view file", bundle: .core)
 
             button.layer.cornerRadius = 4
-            button.layer.borderColor = UIColor.borderMedium.ensureContrast(against: .white).cgColor
+            button.layer.borderColor = UIColor.borderMedium.ensureContrast(against: .textLightest.variantForLightMode).cgColor
             button.layer.borderWidth = 1
             button.tag = index
             button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .touchUpInside)
