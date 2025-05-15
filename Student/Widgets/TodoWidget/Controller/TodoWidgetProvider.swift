@@ -34,34 +34,52 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
 
     override func fetchData() {
         colors = env.subscribe(GetCustomColors())
-        colors?.refresh { [weak self] _ in
+        colors?.refresh(force: true) { [weak self] _ in
             guard let self = self, let colors = self.colors, !colors.pending else { return }
 
-            self.plannables = self.env.subscribe(GetPlannables(userID: "self", startDate: startDate, endDate: endDate)) { [weak self] in self?.handleFetchFinished() }
-            self.plannables?.refresh()
-            self.courses = self.env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
-            self.courses?.refresh()
-            self.favoriteCourses = self.env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
-            self.favoriteCourses?.refresh()
+            self.courses = self.env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.courseFetchFinished() }
+            self.courses?.refresh(force: true)
+
+            self.favoriteCourses = self.env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.courseFetchFinished() }
+            self.favoriteCourses?.refresh(force: true)
         }
     }
 
-    private func handleFetchFinished() {
+    private func courseFetchFinished() {
         guard
-            let plannables = plannables, !plannables.pending,
             let courses = courses, !courses.pending,
             let favoriteCourses = favoriteCourses, !favoriteCourses.pending
         else {
             return
         }
 
+        let coursesToMap = favoriteCourses.all.isNotEmpty ? favoriteCourses.all : courses.all
+        let contextCodes = coursesToMap.compactMap(\.id).map { courseId in
+            return "course_\(courseId)"
+        }
+        plannables = env.subscribe(
+            GetPlannables(
+                userID: "self",
+                startDate: startDate,
+                endDate: endDate,
+                contextCodes: contextCodes
+            )
+        ) { [weak self] in
+            self?.plannableFetchFinished()
+        }
+        self.plannables?.refresh(force: true)
+    }
+
+    private func plannableFetchFinished() {
+        guard let plannables = plannables, !plannables.pending else { return }
+
         let compactPlannables = plannables.compactMap { $0 }
         let plannableItems: [Plannable] = compactPlannables.filter {
             $0.plannableType != .announcement && $0.plannableType != .assessment_request
         }
         let todoItems = plannableItems.map { plannableItem in
-            let courseColor = courses.all.first { $0.id == plannableItem.canvasContextIDRaw }?.color ?? .textDarkest
-            return TodoItem(id: ID(plannableItem.id), name: plannableItem.title ?? "", dueDate: plannableItem.date ?? Date.now, color: courseColor)
+            let courseColor = courses?.all.first { $0.id == plannableItem.canvasContextIDRaw }?.color ?? .textDarkest
+            return TodoItem(id: plannableItem.id, name: plannableItem.title ?? "", dueDate: plannableItem.date ?? Date.now, color: courseColor)
         }
 
         updateWidget(model: TodoModel(todoItems: todoItems))

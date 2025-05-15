@@ -22,7 +22,7 @@ import WidgetKit
 
 /** Widgets need the Encodable protocol but since Color is not Encodable we store its hex value as a string. */
 struct TodoItem: Hashable, Encodable, Identifiable {
-    let id: ID
+    let id: String
     let name: String
     let dueDate: Date
     let colorHex: String
