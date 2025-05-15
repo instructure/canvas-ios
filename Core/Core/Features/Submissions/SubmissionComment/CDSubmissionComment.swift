@@ -18,7 +18,7 @@
 
 import CoreData
 
-final public class CDAssignmentComment: NSManagedObject {
+final public class CDSubmissionComment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var attemptFromAPI: NSNumber?
     @NSManaged public var authorID: String?
@@ -40,10 +40,10 @@ final public class CDAssignmentComment: NSManagedObject {
         _ apiEntity: GetSubmissionCommentsResponse.Comment?,
         assignmentID: String,
         in context: NSManagedObjectContext
-    ) -> CDAssignmentComment {
+    ) -> CDSubmissionComment {
 
-        let dbEntity: CDAssignmentComment = context.first(
-            where: #keyPath(CDAssignmentComment.id),
+        let dbEntity: CDSubmissionComment = context.first(
+            where: #keyPath(CDSubmissionComment.id),
             equals: apiEntity?.id
         ) ?? context.insert()
 

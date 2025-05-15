@@ -50,7 +50,7 @@ final class AssignmentDetailsViewModel {
     private(set) var isSegmentControlVisible: Bool = false
     private(set) var selectedSubmission: AssignmentSubmissionType = .text
     private(set) var externalURL: URL?
-    private(set) var loadInfo: AssignmentLoadInfo?
+    private(set) var loadInfo: SubmissionProperties?
     var isStartTyping = false
     var assignmentPreference: AssignmentPreferenceKeyType?
     var isSubmitButtonHidden: Bool {
@@ -108,7 +108,7 @@ final class AssignmentDetailsViewModel {
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var onTapAssignmentOptions: PassthroughSubject<Void, Never>
-    private let didLoadAssignment: (AssignmentLoadInfo?) -> Void
+    private let didLoadAssignment: (SubmissionProperties?) -> Void
 
     // MARK: - Init
 
@@ -127,7 +127,7 @@ final class AssignmentDetailsViewModel {
         assignmentID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
-        didLoadAssignment: @escaping (AssignmentLoadInfo?) -> Void
+        didLoadAssignment: @escaping (SubmissionProperties?) -> Void
     ) {
         self.environment = environment
         self.interactor = interactor
@@ -242,7 +242,7 @@ final class AssignmentDetailsViewModel {
             }
             .receive(on: scheduler)
             .sink { [weak self] assignmentDetails, submissions, comments in
-                self?.configAssignmentDetails(
+                self?.setAssignmentDetails(
                     response: assignmentDetails,
                     submissions: submissions,
                     submissionComments: comments
@@ -270,7 +270,7 @@ final class AssignmentDetailsViewModel {
             .store(in: &subscriptions)
     }
 
-    private func configAssignmentDetails(
+    private func setAssignmentDetails(
         response: HAssignment,
         submissions: [HSubmission],
         submissionComments: [SubmissionComment]
@@ -320,8 +320,8 @@ final class AssignmentDetailsViewModel {
     }
 
     private func hasUnreadComments(for attempt: Int?) -> Bool {
-        submissionComments.contains { comment in
-            comment.attempt == attempt && !comment.isRead
+       return submissionComments.contains { comment in
+            (comment.attempt == attempt || attempt == nil) && !comment.isRead
         }
     }
 

@@ -23,7 +23,7 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
 
     // MARK: - Typealias
 
-    public typealias Model = CDAssignmentSubmissionComment
+    public typealias Model = CDSubmission
     public typealias Request = GetSubmissionCommentsRequest
 
     // MARK: - Properties
@@ -62,7 +62,7 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
         guard let response else {
             return
         }
-        CDAssignmentSubmissionComment.save(
+        CDSubmission.save(
             response,
             assignmentID: assignmentId,
             in: client
@@ -70,6 +70,6 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CDAssignmentSubmissionComment.assignmentID), equals: assignmentId)
+        return .where(#keyPath(CDSubmission.assignmentID), equals: assignmentId)
     }
 }

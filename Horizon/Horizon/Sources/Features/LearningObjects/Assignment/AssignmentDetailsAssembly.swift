@@ -30,7 +30,7 @@ final class AssignmentDetailsAssembly {
         moduleID: String,
         itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
-        didLoadAssignment: @escaping (AssignmentLoadInfo?) -> Void
+        didLoadAssignment: @escaping (SubmissionProperties?) -> Void
     ) -> AssignmentDetailsViewModel {
         let uploadManager = HUploadFileManagerLive(
             uploadManager: .shared,
@@ -85,7 +85,7 @@ final class AssignmentDetailsAssembly {
         moduleID: String,
         itemID: String,
         onTapAssignmentOptions: PassthroughSubject<Void, Never>,
-        didLoadAssignment: @escaping (AssignmentLoadInfo?) -> Void
+        didLoadAssignment: @escaping (SubmissionProperties?) -> Void
     ) -> AssignmentDetails {
         AssignmentDetails(
             viewModel: makeViewModel(

@@ -54,7 +54,7 @@ struct SubmissionComment: Identifiable {
     }()
 
     init(
-        from entity: Core.CDAssignmentComment,
+        from entity: Core.CDSubmissionComment,
         isCurrentUsersComment: Bool
     ) {
         self.id = entity.id

@@ -59,7 +59,7 @@ final class ModuleItemSequenceViewModel {
     var offsetX: CGFloat = 0
     var isShowErrorAlert: Bool = false
     var onTapAssignmentOptions = PassthroughSubject<Void, Never>()
-    var didLoadAssignment: (AssignmentLoadInfo?) -> Void = { _ in }
+    var didLoadAssignment: (SubmissionProperties?) -> Void = { _ in }
     private var isAssignmentAvailableInItemSequence = true
 
     // MARK: - Private Properties

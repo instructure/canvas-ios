@@ -165,22 +165,6 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
     </entity>
-    <entity name="CDAssignmentComment" representedClassName="Core.CDAssignmentComment" syncable="YES">
-        <attribute name="attemptFromAPI" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="authorID" optional="YES" attributeType="String"/>
-        <attribute name="authorName" optional="YES" attributeType="String"/>
-        <attribute name="comment" optional="YES" attributeType="String"/>
-        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAssignmentSubmissionComment" inverseName="comments" inverseEntity="CDAssignmentSubmissionComment"/>
-    </entity>
-    <entity name="CDAssignmentSubmissionComment" representedClassName="Core.CDAssignmentSubmissionComment" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="hasUnreadComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="String"/>
-        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDAssignmentComment" inverseName="relationship" inverseEntity="CDAssignmentComment"/>
-    </entity>
     <entity name="CDBrandVariables" representedClassName="Core.CDBrandVariables" syncable="YES">
         <attribute name="apiBrandVariablesRaw" attributeType="String"/>
         <attribute name="headerImageRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
@@ -322,6 +306,22 @@
         <attribute name="hideFinalGrade" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="settings" inverseEntity="CDScoresCourse"/>
+    </entity>
+    <entity name="CDSubmission" representedClassName="Core.CDSubmission" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="hasUnreadComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDSubmissionComment" inverseName="relationship" inverseEntity="CDSubmissionComment"/>
+    </entity>
+    <entity name="CDSubmissionComment" representedClassName="Core.CDSubmissionComment" syncable="YES">
+        <attribute name="attemptFromAPI" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="authorID" optional="YES" attributeType="String"/>
+        <attribute name="authorName" optional="YES" attributeType="String"/>
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmission" inverseName="comments" inverseEntity="CDSubmission"/>
     </entity>
     <entity name="CDSubmissionScores" representedClassName="Core.CDSubmissionScores" syncable="YES">
         <attribute name="enrollmentID" attributeType="String"/>

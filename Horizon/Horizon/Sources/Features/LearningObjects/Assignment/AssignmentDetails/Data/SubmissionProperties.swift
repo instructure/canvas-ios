@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct AssignmentLoadInfo {
+struct SubmissionProperties {
     let attemptCount: String?
     let moduleItem: HModuleItem
     var hasUnreadComments: Bool = false
