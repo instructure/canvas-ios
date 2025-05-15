@@ -23,24 +23,20 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
 
     // MARK: - Output
 
-    @Published private(set) var dragIconA11yLabel: String = ""
+    @Published private(set) var dragIconA11yValue: String = ""
+    @Published private(set) var dragIconA11yHint: String = ""
     @Published private(set) var dragIconRotation: Angle = .degrees(0)
     @Published private(set) var isRightColumnHidden = false
     @Published private(set) var rightColumnWidth: CGFloat?
     @Published private(set) var leftColumnWidth: CGFloat? {
         didSet {
-            let isRightColumnHidden = (leftColumnWidth == screenWidth)
-            withAnimation(.snappy) {
-                dragIconRotation = .degrees(isRightColumnHidden ? -180 : 0)
-                dragIconA11yLabel = isRightColumnHidden ? String(localized: "Show drawer menu", bundle: .teacher)
-                                                        : String(localized: "Hide drawer menu", bundle: .teacher)
-                self.isRightColumnHidden = isRightColumnHidden
-            }
+            didUpdateLeftColumnWidth()
         }
     }
 
     // MARK: - Private Properties
 
+    private let moveAnimation = Animation.snappy
     private var screenWidth: CGFloat = 0
     private var leftSideMinWidth: CGFloat = 0
     private var leftSideMaxWidth: CGFloat = 0
@@ -65,7 +61,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
 
     func didTapDragIcon() {
         if isFullScreen {
-            withAnimation(.snappy) {
+            withAnimation(moveAnimation) {
                 let leftColumnWidth = leftColumnWidthBeforeFullScreen ?? leftSideMaxWidth
                 self.leftColumnWidth = leftColumnWidth
                 rightColumnWidth = screenWidth - leftColumnWidth
@@ -73,7 +69,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
             leftColumnWidthBeforeFullScreen = nil
         } else {
             leftColumnWidthBeforeFullScreen = leftColumnWidth
-            withAnimation(.snappy) {
+            withAnimation(moveAnimation) {
                 leftColumnWidth = screenWidth
                 rightColumnWidth = leftSideMinWidth
             }
@@ -91,7 +87,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
         let snapThreshold = screenWidth - (leftSideMinWidth / 2)
 
         if leftColumnWidth > leftSideMaxWidth {
-            withAnimation(.snappy) {
+            withAnimation(moveAnimation) {
                 if leftColumnWidth > snapThreshold {
                     self.leftColumnWidth = screenWidth
                 } else {
@@ -100,7 +96,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
                 }
             }
         } else if leftColumnWidth < leftSideMinWidth {
-            withAnimation(.snappy) {
+            withAnimation(moveAnimation) {
                 self.leftColumnWidth = leftSideMinWidth
                 self.rightColumnWidth = screenWidth - leftSideMinWidth
             }
@@ -127,6 +123,19 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
         } else {
             leftColumnWidth = dragPosition
             rightColumnWidth = screenWidth - dragPosition
+        }
+    }
+
+    // MARK: - Private
+
+    private func didUpdateLeftColumnWidth() {
+        withAnimation(moveAnimation) { [isFullScreen] in
+            dragIconRotation = .degrees(isFullScreen ? -180 : 0)
+            dragIconA11yValue = isFullScreen ? String(localized: "Closed", bundle: .teacher)
+                                             : String(localized: "Open", bundle: .teacher)
+            dragIconA11yHint = isFullScreen ? String(localized: "Double tap to open drawer", bundle: .teacher)
+                                            : String(localized: "Double tap to close drawer", bundle: .teacher)
+            self.isRightColumnHidden = isFullScreen
         }
     }
 }

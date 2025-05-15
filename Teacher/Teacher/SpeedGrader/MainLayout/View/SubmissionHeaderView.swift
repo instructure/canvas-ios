@@ -113,7 +113,9 @@ struct SubmissionHeaderView: View {
             .onTapGesture {
                 landscapeSplitLayoutViewModel.didTapDragIcon()
             }
-            .accessibilityLabel(Text(landscapeSplitLayoutViewModel.dragIconA11yLabel))
+            .accessibilityLabel(Text("Drawer menu", bundle: .teacher))
+            .accessibilityHint(landscapeSplitLayoutViewModel.dragIconA11yHint)
+            .accessibilityValue(landscapeSplitLayoutViewModel.dragIconA11yValue)
             .accessibilityAddTraits(.isButton)
             .accessibilityRemoveTraits(.isImage)
             .accessibility(identifier: "SpeedGrader.fullScreenToggleInLandscape")

@@ -58,10 +58,7 @@ extension InstUI {
             )
             // updateFontAppearance() overrides the selected state so we have to restore it
             appearance.setTitleTextAttributes(
-                [
-                    .font: UIFont.scaledNamedFont(.semibold13),
-                    .foregroundColor: UIColor.textDarkest
-                ],
+                appearance.titleTextAttributes(for: .normal),
                 for: .selected
             )
             appearance.selectedSegmentTintColor = .backgroundLightest
