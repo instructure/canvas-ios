@@ -24,7 +24,7 @@ extension InstUI {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let label: Text?
-        private let labelTransform: (Text) -> Label
+        private let labelModifiers: (Text) -> Label
         private let customAccessibilityLabel: Text?
         private let placeholder: String?
 
@@ -41,13 +41,13 @@ extension InstUI {
 
         public init(
             label: Text?,
-            labelTransform: @escaping (Text) -> Label = { $0 },
+            labelModifiers: @escaping (Text) -> Label = { $0 },
             customAccessibilityLabel: Text? = nil,
             placeholder: String? = nil,
             text: Binding<String>
         ) {
             self.label = label
-            self.labelTransform = labelTransform
+            self.labelModifiers = labelModifiers
             self.customAccessibilityLabel = customAccessibilityLabel
             self.placeholder = placeholder
             self._text = text
@@ -60,7 +60,7 @@ extension InstUI {
         ) where Label == Text? {
             self.init(
                 label: nil,
-                labelTransform: { $0 },
+                labelModifiers: { $0 },
                 customAccessibilityLabel: customAccessibilityLabel,
                 placeholder: placeholder,
                 text: text
@@ -71,7 +71,7 @@ extension InstUI {
             SwiftUI.Group {
                 if let label {
                     VStack(spacing: 0) {
-                        labelTransform(label)
+                        labelModifiers(label)
                             .textStyle(.cellLabel)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .paddingStyle(.bottom, .cellBottom)
@@ -153,11 +153,7 @@ extension InstUI {
             InstUI.Divider()
             InstUI.TextEditorCell(
                 label: Text(verbatim: "Styled Label"),
-                labelTransform: {
-                    $0
-                        .foregroundStyle(Color.red)
-                        .textStyle(.heading)
-                },
+                labelModifiers: { $0.foregroundStyle(Color.red).textStyle(.heading) },
                 text: .constant(InstUI.PreviewData.loremIpsumLong(2))
             )
             InstUI.Divider()

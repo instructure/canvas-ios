@@ -60,15 +60,15 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
 
                         if !viewModel.isAllDay {
                             InstUI.DatePickerCell(
-                                label: Text("From", bundle: .core)
-                                    .accessibilityLabel(Text("Start time", bundle: .core)),
+                                label: Text("From", bundle: .core),
+                                customAccessibilityLabel: Text("Start time", bundle: .core),
                                 date: $viewModel.startTime,
                                 mode: .timeOnly
                             )
 
                             InstUI.DatePickerCell(
-                                label: Text("To", bundle: .core)
-                                    .accessibilityLabel(Text("End time", bundle: .core)),
+                                label: Text("To", bundle: .core),
+                                customAccessibilityLabel: Text("End time", bundle: .core),
                                 date: $viewModel.endTime,
                                 mode: .timeOnly,
                                 errorMessage: viewModel.endTimeErrorMessage

@@ -42,6 +42,13 @@ extension String {
         return String.localizedStringWithFormat(format, errorMessage)
     }
 
+    /// Localized string to be used for error messages intended for accessibility usage. Adds some context for VoiceOver users that this is an error.
+    /// The `errorMessage` itself is expected to be localized already.
+    /// Example: "Error: Invalid start time"
+    public static func localizedAccessibilityErrorMessage(_ errorMessage: String?) -> String? {
+        errorMessage.map { String.localizedAccessibilityErrorMessage($0) }
+    }
+
     /// Localized string to be used when we need attempt number. Example: "Attempt 5"
     public static func localizedAttemptNumber(_ attempt: Int) -> String {
         String.localizedStringWithFormat(String(localized: "Attempt %d", bundle: .core), attempt)

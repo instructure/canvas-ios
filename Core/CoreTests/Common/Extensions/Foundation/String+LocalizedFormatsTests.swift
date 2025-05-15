@@ -34,6 +34,12 @@ class StringLocalizedFormatsTests: XCTestCase {
     func testLocalizedAccessibilityErrorMessage() {
         XCTAssertEqual(String.localizedAccessibilityErrorMessage("Some error description"), "Error: Some error description")
         XCTAssertEqual(String.localizedAccessibilityErrorMessage(""), "Error: ")
+
+        var optionalString: String? = "Some error description"
+        XCTAssertEqual(String.localizedAccessibilityErrorMessage(optionalString), "Error: Some error description")
+
+        optionalString = nil
+        XCTAssertEqual(String.localizedAccessibilityErrorMessage(optionalString), nil)
     }
 
     func testLocalizedAttemptNumber() {
