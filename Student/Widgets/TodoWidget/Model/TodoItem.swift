@@ -31,7 +31,7 @@ struct TodoItem: Hashable, Encodable, Identifiable {
         Color(hexString: colorHex) ?? .textDarkest
     }
 
-    init(id: ID, name: String, dueDate: Date, color: UIColor) {
+    init(id: String, name: String, dueDate: Date, color: UIColor) {
         self.id = id
         self.name = name
         self.dueDate = dueDate
