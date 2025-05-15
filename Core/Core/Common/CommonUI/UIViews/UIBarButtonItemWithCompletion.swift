@@ -21,13 +21,13 @@ import UIKit
 public class UIBarButtonItemWithCompletion: UIBarButtonItem {
     private var actionHandler: (() -> Void)?
 
-    convenience init(title: String?, style: UIBarButtonItem.Style = .done, actionHandler: (() -> Void)?) {
+    public convenience init(title: String?, style: UIBarButtonItem.Style = .done, actionHandler: (() -> Void)?) {
         self.init(title: title, style: style, target: nil, action: #selector(buttonDidTap))
         self.target = self
         self.actionHandler = actionHandler
     }
 
-    convenience init(
+    public convenience init(
         image: UIImage?,
         landscapeImagePhone: UIImage?,
         style: UIBarButtonItem.Style,
@@ -44,7 +44,7 @@ public class UIBarButtonItemWithCompletion: UIBarButtonItem {
         self.actionHandler = actionHandler
     }
 
-    convenience init(
+    public convenience init(
         title: String?,
         image: UIImage?,
         actionHandler: (() -> Void)?
@@ -59,7 +59,7 @@ public class UIBarButtonItemWithCompletion: UIBarButtonItem {
         self.actionHandler = actionHandler
     }
 
-    @objc func buttonDidTap(sender: UIBarButtonItem) {
+    @objc private func buttonDidTap(sender: UIBarButtonItem) {
         actionHandler?()
     }
 }

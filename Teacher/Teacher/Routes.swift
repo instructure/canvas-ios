@@ -135,7 +135,7 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return CoreHostingController(
-            AssignmentDetailsView(env: env, courseID: courseID, assignmentID: assignmentID),
+            TeacherAssignmentDetailsScreen(env: env, courseID: courseID, assignmentID: assignmentID),
             env: env
         )
     },

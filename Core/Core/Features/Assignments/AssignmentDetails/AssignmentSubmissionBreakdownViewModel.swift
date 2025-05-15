@@ -46,7 +46,7 @@ public class AssignmentSubmissionBreakdownViewModel: SubmissionBreakdownViewMode
     private var summary: Store<GetSubmissionSummary>
     private var submissionsPath: String { "courses/\(courseID)/assignments/\(assignmentID)/submissions" }
 
-    init(courseID: String, assignmentID: String, submissionTypes: [SubmissionType]) {
+    public init(courseID: String, assignmentID: String, submissionTypes: [SubmissionType]) {
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.submissionTypes = submissionTypes

@@ -1537,6 +1537,9 @@
         }
       }
     },
+    "All" : {
+
+    },
     "All grades are currently hidden." : {
       "localizations" : {
         "ar" : {
@@ -3073,6 +3076,12 @@
         }
       }
     },
+    "Assignment Dates" : {
+
+    },
+    "Assignment Details" : {
+
+    },
     "Attempt %lld" : {
       "localizations" : {
         "ar" : {
@@ -3840,6 +3849,15 @@
           }
         }
       }
+    },
+    "Availability:" : {
+
+    },
+    "Available from:" : {
+
+    },
+    "Available until:" : {
+
     },
     "Back" : {
       "localizations" : {
@@ -6145,6 +6163,9 @@
           }
         }
       }
+    },
+    "Closed" : {
+
     },
     "Comment" : {
       "localizations" : {
@@ -8707,6 +8728,9 @@
         }
       }
     },
+    "Description" : {
+
+    },
     "Dismiss" : {
       "localizations" : {
         "ar" : {
@@ -9986,6 +10010,12 @@
           }
         }
       }
+    },
+    "Due Dates, Double tap for details." : {
+
+    },
+    "Due:" : {
+
     },
     "Edit" : {
       "localizations" : {
@@ -14084,6 +14114,9 @@
           }
         }
       }
+    },
+    "For:" : {
+
     },
     "GPA" : {
       "localizations" : {
@@ -19043,6 +19076,9 @@
         }
       }
     },
+    "Help your students with this assignment by adding instructions." : {
+
+    },
     "Hide Grades" : {
       "localizations" : {
         "ar" : {
@@ -21605,6 +21641,9 @@
         }
       }
     },
+    "Multiple Due Dates" : {
+
+    },
     "Needs Grading" : {
       "localizations" : {
         "ar" : {
@@ -21860,6 +21899,15 @@
           }
         }
       }
+    },
+    "No available from date set." : {
+
+    },
+    "No available until date set." : {
+
+    },
+    "No due date set." : {
+
     },
     "No Grade" : {
       "localizations" : {
@@ -27237,6 +27285,9 @@
         }
       }
     },
+    "Published" : {
+
+    },
     "Record Audio" : {
       "localizations" : {
         "ar" : {
@@ -30830,6 +30881,12 @@
     "Submission Filter" : {
 
     },
+    "Submission list Preferences" : {
+
+    },
+    "Submission Types" : {
+
+    },
     "Submissions" : {
       "localizations" : {
         "ar" : {
@@ -31341,6 +31398,9 @@
           }
         }
       }
+    },
+    "Tap to view submissions list." : {
+
     },
     "Test Student" : {
       "localizations" : {
@@ -32109,6 +32169,9 @@
           }
         }
       }
+    },
+    "there_are_d_assignees_without_grades" : {
+
     },
     "This assignment does not allow submissions." : {
       "localizations" : {
@@ -35182,6 +35245,9 @@
         }
       }
     },
+    "Unpublished" : {
+
+    },
     "URL Preview Image" : {
       "localizations" : {
         "ar" : {
@@ -35437,6 +35503,12 @@
           }
         }
       }
+    },
+    "View all submissions" : {
+
+    },
+    "View Discussion" : {
+
     },
     "View file %@ %@" : {
       "extractionState" : "stale",
@@ -36470,6 +36542,9 @@
           }
         }
       }
+    },
+    "You are not authorized to perform this action" : {
+
     }
   },
   "version" : "1.0"

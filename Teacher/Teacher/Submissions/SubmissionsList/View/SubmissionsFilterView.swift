@@ -76,7 +76,7 @@ struct SubmissionsFilterView: View {
     var body: some View {
         VStack {
             SingleSelectionView(
-                title: String(localized: "Submission Filter", bundle: .core),
+                title: String(localized: "Submission Filter", bundle: .teacher),
                 accessibilityIdentifier: "SubmissionsFilter.filterOptions",
                 options: filterOptions
             )
@@ -111,7 +111,7 @@ struct SubmissionsFilterView: View {
         }
         .navigationBarStyle(.modal)
         .navigationBarTitleView(
-            title: "Submission list Preferences",
+            title: String(localized: "Submission list Preferences", bundle: .teacher),
             subtitle: viewModel.assignment?.name
         )
     }

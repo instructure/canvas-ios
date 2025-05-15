@@ -52,7 +52,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 title: String(localized: "Assignment Details", bundle: .core),
                 subtitle: course.first?.name
             )
-            .rightBarButtonItems(rightBarItems)
+            .rightBarButtonItems(editButton)
             .navigationBarStyle(.color(course.first?.color))
             .onAppear {
                 refreshAssignments()
@@ -97,29 +97,21 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     @ViewBuilder func details(assignment: Assignment) -> some View {
         Section {
             Text(assignment.name)
-                .font(design.headerTitleFont)
-                .foregroundColor(.textDarkest)
-                .accessibility(identifier: "AssignmentDetails.name")
+                .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "AssignmentDetails.name")
                 .accessibilityAddTraits(.isHeader)
             HStack(spacing: 0) {
                 Text(assignment.pointsPossibleText)
-                    .font(design.textFont)
-                    .foregroundColor(.textDark)
-                    .accessibility(identifier: "AssignmentDetails.points")
+                    .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.points")
                     .padding(.trailing, 12)
                 HStack {
                     if assignment.published {
                         Image.publishSolid.foregroundColor(.textSuccess)
                         Text("Published", bundle: .core)
-                            .font(design.textFont)
-                            .foregroundColor(.textSuccess)
-                            .accessibility(identifier: "AssignmentDetails.published")
+                            .font(.medium16).foregroundColor(.textSuccess).accessibility(identifier: "AssignmentDetails.published")
                     } else {
                         Image.noSolid.foregroundColor(.textDark)
                         Text("Unpublished", bundle: .core)
-                            .font(design.textFont)
-                            .foregroundColor(.textDark)
-                            .accessibility(identifier: "AssignmentDetails.unpublished")
+                            .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.unpublished")
                     }
                 }
                     .accessibilityElement(children: .combine)
@@ -130,15 +122,11 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
 
         Divider().padding(.horizontal, 16)
 
-        if isTeacherEnrollment && design == .redesigned {
-            submissionsBreakdownView(assignment: assignment)
-            Divider().padding(.horizontal, 16)
-        }
+        DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment)).accessibility(identifier: "AssignmentDetails.due")
 
-        dateSection(assignment: assignment)
         Divider().padding(.horizontal, 16)
 
-        let types = Section(label: Text("Submission Types", bundle: .core), design: design) {
+        let types = Section(label: Text("Submission Types", bundle: .core)) {
             Text(ListFormatter.localizedString(
                 from: assignment.submissionTypesWithQuizLTIMapping.map { $0.localizedString },
                 conjunction: .or
@@ -159,24 +147,23 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
 
         Divider().padding(.horizontal, 16)
 
-        if isTeacherEnrollment && design == .old {
-            submissionsBreakdownView(assignment: assignment)
+        if isTeacherEnrollment {
+            let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
+            SubmissionBreakdown(viewModel: viewModel)
             Divider().padding(.horizontal, 16)
         }
 
         if let html = assignment.details, !html.isEmpty {
             Text("Description", bundle: .core)
-                .font(design.sectionLabelFont)
-                .foregroundColor(.textDark)
+                .font(.medium16).foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
             WebView(html: html, baseURL: URL.Directories.documents, canToggleTheme: true)
                 .frameToFit()
         } else {
-            Section(label: Text("Description", bundle: .core), design: design) {
+            Section(label: Text("Description", bundle: .core)) {
                 HStack {
                     Text("Help your students with this assignment by adding instructions.", bundle: .core)
-                        .font(design.textFont)
-                        .foregroundColor(.textDarkest)
+                        .font(.regular14).foregroundColor(.textDark)
                         .fixedSize(horizontal: false, vertical: true)
                     Spacer()
                 }
@@ -204,55 +191,28 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         }
     }
 
-    @ViewBuilder
-    private func submissionsBreakdownView(assignment: Assignment) -> some View {
-        let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
-
-        switch design {
-        case .old:
-            SubmissionBreakdown(viewModel: viewModel)
-        case .redesigned:
-            RedesignedSubmissionBreakdownView(viewModel: viewModel)
-        }
-    }
-
-    @ViewBuilder
-    private func dateSection(assignment: Assignment) -> some View {
-        switch design {
-        case .old:
-            DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment)).accessibility(identifier: "AssignmentDetails.due")
-        case .redesigned:
-            RedesignedDateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment)).accessibility(identifier: "AssignmentDetails.due")
-        }
-    }
-
     struct Section<Label: View, Content: View>: View {
-
         let content: Content
         let label: Label?
-        let design: Design
 
-        init(label: Label, design: Design, @ViewBuilder content: () -> Content) {
+        init(label: Label?, @ViewBuilder content: () -> Content) {
             self.content = content()
             self.label = label
-            self.design = design
         }
 
         init(@ViewBuilder content: () -> Content) where Label == Text {
             self.content = content()
             self.label = nil
-            self.design = .old
         }
 
         var body: some View {
             VStack(alignment: .leading, spacing: 0) {
                 label?
-                    .font(design.sectionLabelFont)
-                    .foregroundColor(.textDark)
-                    .padding(.bottom, design.sectionLabelBottomPadding)
+                    .font(.medium16).foregroundColor(.textDark)
+                    .padding(.bottom, 4)
                 content
             }
-            .padding(16)
+                .padding(16)
         }
     }
 
@@ -261,44 +221,22 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
      because when this view is embedded into a `ModuleItemSequenceViewController` bar button updates don't get synced
      so no matter if the `isTeacherEnrollment` turns to true the change won't propagate via KVO in `UIViewControllerExtensions.syncNavigationBar`
      */
-    private func rightBarItems() -> [UIBarButtonItemWithCompletion] {
-        var items = [
-            UIBarButtonItemWithCompletion(
-                title: String(localized: "Edit", bundle: .core),
-                image: .editLine,
-                actionHandler: { [_isTeacherEnrollment] in
-                    if _isTeacherEnrollment.wrappedValue {
-                        env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                                         from: controller,
-                                         options: .modal(isDismissable: false, embedInNav: true))
-                    } else {
-                        let alert = UIAlertController(title: String(localized: "Error", bundle: .core),
-                                                      message: String(localized: "You are not authorized to perform this action", bundle: .core),
-                                                      preferredStyle: .alert)
-                        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default))
-                        env.router.show(alert, from: controller, options: .modal())
-                    }
+    private func editButton() -> [UIBarButtonItemWithCompletion] {
+        [
+            UIBarButtonItemWithCompletion(title: String(localized: "Edit", bundle: .core)) { [_isTeacherEnrollment] in
+                if _isTeacherEnrollment.wrappedValue {
+                    env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                                     from: controller,
+                                     options: .modal(isDismissable: false, embedInNav: true))
+                } else {
+                    let alert = UIAlertController(title: String(localized: "Error", bundle: .core),
+                                                  message: String(localized: "You are not authorized to perform this action", bundle: .core),
+                                                  preferredStyle: .alert)
+                    alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default))
+                    env.router.show(alert, from: controller, options: .modal())
                 }
-            )
+            }
         ]
-
-        if isTeacherEnrollment && design == .redesigned {
-            items.append(
-                UIBarButtonItemWithCompletion(
-                    title: String(localized: "SpeedGrader", bundle: .core),
-                    image: .speedGraderLine,
-                    actionHandler: {
-                        env.router.route(
-                            to: "/courses/\(courseID)/gradebook/speed_grader?assignment_id=\(assignmentID)",
-                            from: controller,
-                            options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
-                        )
-                    }
-                )
-            )
-        }
-
-        return items
     }
 
     private func refreshAssignments() {
@@ -327,51 +265,12 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     }
 }
 
-private extension Assignment {
+public extension Assignment {
     var openLtiButtonTitle: String {
         if isQuizLTI {
             String(localized: "Open the Quiz", bundle: .core)
         } else {
             String(localized: "Launch External Tool", bundle: .core)
         }
-    }
-}
-
-extension AssignmentDetailsView {
-
-    enum Design {
-        case old, redesigned
-
-        var sectionLabelFont: Font {
-            switch self {
-            case .old: .medium16
-            case .redesigned: .regular14
-            }
-        }
-
-        var sectionLabelBottomPadding: CGFloat {
-            switch self {
-            case .old: 4
-            case .redesigned: 5
-            }
-        }
-
-        var textFont: Font {
-            switch self {
-            case .old: .regular16
-            case .redesigned: .regular14
-            }
-        }
-
-        var headerTitleFont: Font {
-            switch self {
-            case .old: .heavy24
-            case .redesigned: .semibold22
-            }
-        }
-    }
-
-    var design: Design {
-        ExperimentalFeature.hideRedesignedSubmissionList.isEnabled ? .old : .redesigned
     }
 }
