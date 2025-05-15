@@ -87,7 +87,6 @@ public struct GetCoursesProgressionResponse: Codable {
         struct Node: Codable {
             let id: String?
             let name: String?
-            let published: Bool?
             let moduleItems: [ModuleItem]?
         }
 
@@ -103,7 +102,6 @@ public struct GetCoursesProgressionResponse: Codable {
             let title: String?
             let type: String?
             let dueAt: Date?
-            let published: Bool?
         }
     }
 
@@ -111,7 +109,6 @@ public struct GetCoursesProgressionResponse: Codable {
         public let id: String
         public let name: String
         public let position: Int?
-        public let published: Bool?
     }
 
     struct IncompleteItemsConnection: Codable {
@@ -131,6 +128,5 @@ public struct GetCoursesProgressionResponse: Codable {
         public let dueAt: Date?
         public let position: Double?
         public let type: String?
-        public let published: Bool?
     }
 }

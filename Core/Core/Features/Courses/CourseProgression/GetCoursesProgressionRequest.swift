@@ -53,7 +53,6 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                     node {
                                       id
                                       name
-                                      published
                                       moduleItems {
                                         id
                                         estimatedDuration
@@ -122,7 +121,6 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                         id: _id
                                                         name
                                                         position
-                                                        published
                                                     }
                                                     incompleteItemsConnection {
                                                         nodes {
@@ -135,14 +133,12 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                                     title
                                                                     dueAt
                                                                     position
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                                 ... on Discussion {
                                                                     id
                                                                     title
                                                                     position
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                                 ... on ExternalTool {
@@ -153,37 +149,31 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                                 ... on ExternalUrl {
                                                                     id: _id
                                                                     title
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                                 ... on File {
                                                                     id
                                                                     title
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                                 ... on ModuleExternalTool {
                                                                     id: _id
                                                                     title
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                                 ... on Page {
                                                                     id
                                                                     title
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                                 ... on Quiz {
                                                                     id
                                                                     title
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                                 ... on SubHeader {
                                                                     id: title
                                                                     title
-                                                                    published
                                                                     type: __typename
                                                                 }
                                                             }
