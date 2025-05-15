@@ -157,10 +157,16 @@ final class SubmissionListViewModelTests: TeacherTestCase {
         XCTAssertEqual(interactor.appliedFilters, [.graded])
     }
 
-    func testRefresh() async {
-        await viewModel.refresh()
-        await viewModel.refresh()
-        await viewModel.refresh()
+    func testRefresh() {
+
+        let exp = expectation(description: "refreshed called")
+        exp.expectedFulfillmentCount = 3
+
+        viewModel.refresh { exp.fulfill() }
+        viewModel.refresh { exp.fulfill() }
+        viewModel.refresh { exp.fulfill() }
+
+        waitForExpectations(timeout: 1)
         XCTAssertEqual(interactor.refreshCalls, 3)
     }
 

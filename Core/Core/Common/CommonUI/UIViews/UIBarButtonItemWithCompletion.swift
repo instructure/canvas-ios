@@ -59,7 +59,7 @@ public class UIBarButtonItemWithCompletion: UIBarButtonItem {
         self.actionHandler = actionHandler
     }
 
-    @objc private func buttonDidTap(sender: UIBarButtonItem) {
+    @objc func buttonDidTap(sender: UIBarButtonItem) {
         actionHandler?()
     }
 }

@@ -71,7 +71,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<EmbeddedWebPageContainerScreen>)
         XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
-        XCTAssert(router.match("/courses/1/assignments/1/submissions") is CoreHostingController<SubmissionListView>)
+        XCTAssert(router.match("/courses/1/assignments/1/submissions") is CoreHostingController<SubmissionListScreen>)
         XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is CoreHostingController<SpeedGraderScreen>)
         XCTAssert(router.match("/courses/1/gradebook/speed_grader?assignment_id=1") is CoreHostingController<SpeedGraderScreen>)
         XCTAssert(router.match("/courses/1/quizzes") is QuizListViewController)
