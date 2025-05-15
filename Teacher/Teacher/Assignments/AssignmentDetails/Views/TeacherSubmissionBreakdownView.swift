@@ -124,7 +124,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                     Spacer().frame(height: 16)
                 }
                 .padding(16)
-                .background(Color.backgroundLightest)
+                .background(Color.backgroundLightestElevated)
                 .cornerRadius(6)
                 .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
                 .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
