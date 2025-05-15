@@ -84,13 +84,7 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
 extension CDCourse {
     fileprivate func fetchModules(ignoreCache: Bool) -> AnyPublisher<HCourse, Never> {
-        let courseID = courseID
-        let institutionName = institutionName
-        let name = course.name ?? ""
-        let overviewDescription = course.syllabusBody
-        let progress = completionPercentage
-
-        return ReactiveStore(
+        ReactiveStore(
             useCase: GetModules(
                 courseID: courseID,
                 includes: GetModulesRequest.Include.allCases
