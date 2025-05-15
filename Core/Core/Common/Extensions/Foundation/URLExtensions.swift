@@ -302,3 +302,21 @@ public extension Array where Element == URL {
         }
     }
 }
+
+public extension URL {
+    func replaceHostWithCanvasForCareer() -> URL? {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+            return nil
+        }
+        var newComponents = components
+        newComponents.host = newComponents.host?.replaceHostWithCanvasForCareer()
+        return newComponents.url
+    }
+}
+
+public extension String {
+    func replaceHostWithCanvasForCareer() -> String {
+        replacing("pd.instructure.com", with: "pd.canvasforcareer.com")
+            .replacing("horizon.cd.instructure.com", with: "dev.cd.canvashorizon.com")
+    }
+}

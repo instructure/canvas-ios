@@ -20,19 +20,21 @@ import Core
 import UIKit
 
 struct SkillSpaceAssembly {
-    private static func makeNotAvailableYetFeatureView() -> NotAvailableYetFeatureView {
-        NotAvailableYetFeatureView(
-            viewModel: NotAvailableYetFeatureViewModel(
-                feature: .skillspace,
-                router: AppEnvironment.shared.router,
-                baseURL: AppEnvironment.shared.currentSession?.baseURL
-            )
+    private static func makeViewModel() -> HEmbeddedWebPageContainerViewModel {
+        let environment = AppEnvironment.shared
+        let skillSpaceinboxViewModel = SkillSpaceViewModel(
+            baseURL: environment.api.baseURL,
+            router: environment.router
         )
+        let viewModel = HEmbeddedWebPageContainerViewModel(
+            webPage: skillSpaceinboxViewModel
+        )
+        return viewModel
     }
 
     static func makeView() -> UIViewController {
         CoreHostingController(
-            SkillSpaceView(notAvailableYetFeatureView: makeNotAvailableYetFeatureView())
+            SkillSpaceView(viewModel: makeViewModel())
         )
     }
 }

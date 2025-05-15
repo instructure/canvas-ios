@@ -20,9 +20,10 @@ import Foundation
 import Core
 import WebKit
 import Observation
+import SwiftUI
 
 @Observable
-final class HEmbeddedWebPageContainerViewModel {
+final class HEmbeddedWebPageContainerViewModel: EmbeddedWebPageNavigation {
     // MARK: - Outputs
 
     private(set) var url: URL?
@@ -30,18 +31,15 @@ final class HEmbeddedWebPageContainerViewModel {
 
     // MARK: - Dependencies
 
+    private let router: Router
     private let webPage: EmbeddedWebPageViewModel
-    private weak var navigationDelegate: EmbeddedWebPageNavigation?
 
     // MARK: - Init
 
-    init(
-        webPage: EmbeddedWebPageViewModel,
-        navigationDelegate: EmbeddedWebPageNavigation? = nil
-    ) {
+    init(webPage: EmbeddedWebPageViewModel, router: Router = AppEnvironment.shared.router) {
         self.webPage = webPage
-        self.navigationDelegate = navigationDelegate
         self.navTitle = webPage.navigationBarTitle
+        self.router = router
         self.url = constructURL(from: webPage)
     }
 
@@ -49,6 +47,7 @@ final class HEmbeddedWebPageContainerViewModel {
 
     private func constructURL(from webPage: EmbeddedWebPageViewModel) -> URL? {
         var baseURL = AppEnvironment.shared.currentSession?.baseURL
+        baseURL = baseURL?.replaceHostWithCanvasForCareer()
         baseURL?.appendPathComponent(webPage.urlPathComponent)
         baseURL?.append(queryItems: webPage.queryItems)
         baseURL?.append(queryItems: [
@@ -61,10 +60,13 @@ final class HEmbeddedWebPageContainerViewModel {
     // MARK: - Actions Functions
 
     func openURL(_ url: URL, viewController: WeakViewController) {
-        navigationDelegate?.openURL(url, viewController: viewController)
+        if url.containsQueryItem(named: "back") {
+            router.dismiss(viewController)
+        }
     }
 
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {        webPage.webView(
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        webPage.webView(
             webView,
             didStartProvisionalNavigation: navigation
         )
