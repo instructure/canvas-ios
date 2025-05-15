@@ -175,6 +175,22 @@
         <attribute name="rawContextID" attributeType="String"/>
         <attribute name="rawPurpose" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="CDCourse" representedClassName="Core.CDCourse" syncable="YES">
+        <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="enrollmentID" attributeType="String"/>
+        <attribute name="institutionName" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleID" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemDueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextModuleItemEstimatedTime" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemID" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemName" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemType" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleItemURL" optional="YES" attributeType="String"/>
+        <attribute name="nextModuleName" optional="YES" attributeType="String"/>
+        <attribute name="state" attributeType="String"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="courseProgress" inverseEntity="Course"/>
+    </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -190,22 +206,6 @@
         <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tabID" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="CDDashboardCourse" representedClassName="Core.CDDashboardCourse" syncable="YES">
-        <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="courseID" attributeType="String"/>
-        <attribute name="enrollmentID" attributeType="String"/>
-        <attribute name="institutionName" optional="YES" attributeType="String"/>
-        <attribute name="nextModuleID" optional="YES" attributeType="String"/>
-        <attribute name="nextModuleItemDueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="nextModuleItemEstimatedTime" optional="YES" attributeType="String"/>
-        <attribute name="nextModuleItemID" optional="YES" attributeType="String"/>
-        <attribute name="nextModuleItemName" optional="YES" attributeType="String"/>
-        <attribute name="nextModuleItemType" optional="YES" attributeType="String"/>
-        <attribute name="nextModuleItemURL" optional="YES" attributeType="String"/>
-        <attribute name="nextModuleName" optional="YES" attributeType="String"/>
-        <attribute name="state" attributeType="String"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="courseProgress" inverseEntity="Course"/>
     </entity>
     <entity name="CDEnvironmentSettings" representedClassName="Core.CDEnvironmentSettings" syncable="YES">
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -229,6 +229,11 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDLearnCourse" representedClassName="Core.CDLearnCourse" syncable="YES">
+        <attribute name="enrollmentId" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="CDNotebookNote" representedClassName=".CDNotebookNote" syncable="YES">
         <attribute name="after" optional="YES" attributeType="String"/>
@@ -438,7 +443,7 @@
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>
-        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDDashboardCourse" inverseName="course" inverseEntity="CDDashboardCourse"/>
+        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCourse" inverseName="course" inverseEntity="CDCourse"/>
         <relationship name="dashboardCards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>

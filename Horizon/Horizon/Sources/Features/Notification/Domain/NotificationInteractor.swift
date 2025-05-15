@@ -59,11 +59,11 @@ final class NotificationInteractorLive: NotificationInteractor {
     }
 
     private func fetchCourses() -> AnyPublisher<[HCourse], Never> {
-        ReactiveStore(useCase: GetDashboardCoursesWithProgressionsUseCase(userId: userID))
+        ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userID))
             .getEntities()
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0)}
-            .map { HCourse(from: $0.course, modulesEntity: []) }
+            .map { HCourse(from: $0, modules: []) }
             .collect()
             .eraseToAnyPublisher()
     }

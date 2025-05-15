@@ -59,10 +59,10 @@ struct CourseProgressAssembly {
         ]
         let course = HCourse(
             id: "10",
-            institutionName: "Instructure",
             name: "AI for Everyone course",
-            overviewDescription: "overview Description",
-            modules: modules
+            institutionName: "Instructure",
+            modules: modules,
+            overviewDescription: "overview Description"
         )
         let viewModel = CourseProgressViewModel(
             router: AppEnvironment.shared.router,

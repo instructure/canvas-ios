@@ -16,55 +16,43 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-public class GetDashboardCoursesWithProgressionsUseCase: APIUseCase {
-
+public class GetLearnCoursesUseCase: APIUseCase {
     // MARK: - Typealias
 
-    public typealias Model = CDDashboardCourse
+    public typealias Model = CDLearnCourse
     public typealias Request = GetCoursesProgressionRequest
 
     // MARK: - Properties
 
     public var cacheKey: String? {
-        return "Courses-Progression"
+        return "learn-courses"
     }
-    private let courseId: String?
+
     private let userId: String
-    private let horizonCourses: Bool
 
     public var request: GetCoursesProgressionRequest {
-        .init(userId: userId, horizonCourses: horizonCourses)
+        .init(userId: userId, horizonCourses: true)
     }
 
     // MARK: - Init
 
-    public init(userId: String, courseId: String? = nil, horizonCourses: Bool = false) {
+    public init(userId: String) {
         self.userId = userId
-        self.courseId = courseId
-        self.horizonCourses = horizonCourses
     }
 
     // MARK: - Functions
 
     public func write(
         response: GetCoursesProgressionResponse?,
-        urlResponse: URLResponse?,
+        urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
         enrollments.forEach { enrollment in
-            CDDashboardCourse.save(enrollment, in: client)
+            CDLearnCourse.save(enrollment, in: client)
         }
     }
-
-    public var scope: Scope {
-        if let courseId = courseId {
-            return .where(#keyPath(CDDashboardCourse.courseID), equals: courseId)
-        }
-        return .all
-    }
-
 }

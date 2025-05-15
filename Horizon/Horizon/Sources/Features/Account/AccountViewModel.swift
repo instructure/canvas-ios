@@ -48,7 +48,6 @@ final class AccountViewModel {
 
     init(
         getUserInteractor: GetUserInteractor,
-        getCoursesInteractor: GetCoursesInteractor,
         sessionInteractor: SessionInteractor,
         router: Router = AppEnvironment.shared.router
     ) {

@@ -16,28 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
-struct DashboardCourse: Identifiable {
-    let name: String
-    let progress: Double
-    let courseId: String
-    let state: String
-    let enrollmentID: String
-    let learningObjectCardViewModel: LearningObjectCard?
-    var id: String { name }
-
-    enum EnrollmentState: String {
-        case active
-        case invited
+final class DashboardInteractorPreview: DashboardInteractor {
+    func getAndObserveCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
+        Just(
+            [.init(
+                id: "11",
+                name: "AI Introductions",
+                state: "active",
+                enrollmentID: "222",
+                progress: 0.2,
+                learningObjectCardModel: nil
+            )]
+        )
+        .eraseToAnyPublisher()
     }
-}
 
-struct LearningObjectCard {
-    let moduleTitle: String
-    let learningObjectName: String
-    let type: String?
-    let dueDate: String?
-    let url: URL?
-    let estimatedTime: String?
+    func refreshModuleItemsUponCompletions() -> AnyPublisher<Void, Never> {
+        Just(())
+            .eraseToAnyPublisher()
+    }
 }

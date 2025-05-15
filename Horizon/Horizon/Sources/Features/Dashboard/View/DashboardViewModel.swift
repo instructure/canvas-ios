@@ -28,15 +28,16 @@ class DashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var errorMessage = ""
     var title: String = ""
-    private(set) var courses: [DashboardCourse] = []
+    private(set) var courses: [HCourse] = []
     private(set) var invitedCourses: [InvitedCourse] = []
+
     // MARK: - Input / Outputs
 
     var isAlertPresented = false
 
     // MARK: - Dependencies
 
-    private let getCoursesInteractor: GetCoursesInteractor
+    private let dashboardInteractor: DashboardInteractor
     private let router: Router
 
     // MARK: - Private variables
@@ -48,11 +49,11 @@ class DashboardViewModel {
     // MARK: - Init
 
     init(
-        getCoursesInteractor: GetCoursesInteractor,
+        dashboardInteractor: DashboardInteractor,
         router: Router
     ) {
+        self.dashboardInteractor = dashboardInteractor
         self.router = router
-        self.getCoursesInteractor = getCoursesInteractor
         getCourses()
     }
 
@@ -70,17 +71,17 @@ class DashboardViewModel {
         getDashboardCoursesCancellable?.cancel()
         refreshCompletedModuleItemCancellable?.cancel()
 
-        getDashboardCoursesCancellable = getCoursesInteractor.getDashboardCourses(ignoreCache: ignoreCache)
+        getDashboardCoursesCancellable = dashboardInteractor.getAndObserveCoursesWithoutModules(ignoreCache: ignoreCache)
             .sink { [weak self] items in
-                self?.courses = items.filter({ $0.state == DashboardCourse.EnrollmentState.active.rawValue })
-                let invitedCourses = items.filter({ $0.state == DashboardCourse.EnrollmentState.invited.rawValue  })
+                self?.courses = items.filter { $0.state == HCourse.EnrollmentState.active.rawValue }
+                let invitedCourses = items.filter { $0.state == HCourse.EnrollmentState.invited.rawValue }
                 let message = String(localized: "You have been invited to join", bundle: .horizon)
-                self?.invitedCourses = invitedCourses.map { .init(id: $0.courseId, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
+                self?.invitedCourses = invitedCourses.map { .init(id: $0.id, name: "\(message) \($0.name)", enrollmentID: $0.enrollmentID) }
                 self?.state = .data
                 completion?()
             }
 
-        refreshCompletedModuleItemCancellable = getCoursesInteractor.refreshModuleItemsUponCompletions()
+        refreshCompletedModuleItemCancellable = dashboardInteractor.refreshModuleItemsUponCompletions()
             .sink()
     }
 

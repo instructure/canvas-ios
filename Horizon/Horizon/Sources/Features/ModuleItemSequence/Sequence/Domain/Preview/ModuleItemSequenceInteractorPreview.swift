@@ -59,7 +59,7 @@ final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
     }
 
     func getCourse() -> AnyPublisher<HCourse, Never> {
-        Just(HCourse(id: "", enrollmentID: "232", name: "", overviewDescription: "", modules: []))
+        Just(HCourse(id: "", name: "", enrollmentID: "232", modules: [], overviewDescription: ""))
             .eraseToAnyPublisher()
     }
 }

@@ -28,10 +28,10 @@ struct LearnView: View {
 
     var body: some View {
         VStack {
-            if let corseID = viewModel.corseID, let enrollmentID = viewModel.enrollmentID {
+            if let corseID = viewModel.courseID, let enrollmentID = viewModel.enrollmentID {
                 LearnAssembly.makeCourseDetailsView(courseID: corseID, enrollmentID: enrollmentID)
                     .id(corseID)
-            } else if viewModel.corseID == nil, !viewModel.isLoaderVisible {
+            } else if viewModel.courseID == nil, !viewModel.isLoaderVisible {
                 Text("You aren’t currently enrolled in a course.", bundle: .horizon)
                     .padding(.huiSpaces.space24)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

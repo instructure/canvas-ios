@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,30 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-import Combine
 import Core
-import Foundation
 
-class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourseWithModules(id _: String, ignoreCache _: Bool) -> AnyPublisher<HCourse?, Never> {
-        Just(course).eraseToAnyPublisher()
+struct LearnCourse {
+    let id: String
+    let name: String
+    let enrollmentId: String
+
+    init(id: String, name: String, enrollmentId: String) {
+        self.id = id
+        self.name = name
+        self.enrollmentId = enrollmentId
     }
 
-    func getCoursesWithoutModules(ignoreCache _: Bool) -> AnyPublisher<[HCourse], Never> {
-        Just([course]).eraseToAnyPublisher()
-    }
-
-    private var course: HCourse {
-        .init(
-            id: "123",
-            name: "Course Name",
-            institutionName: "Instructure",
-            enrollments: [],
-            modules: [],
-            progress: 0.5,
-            overviewDescription: "Course Description"
-        )
+    init(from entity: CDLearnCourse) {
+        self.id = entity.id
+        self.name = entity.name
+        self.enrollmentId = entity.enrollmentId
     }
 }
-#endif
