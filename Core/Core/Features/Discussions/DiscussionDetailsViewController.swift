@@ -41,7 +41,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
     public var color: UIColor?
     var context = Context.currentUser
-    let env = AppEnvironment.shared
+    private(set) var env = AppEnvironment.shared
     var isAnnouncementRoute = false
     var isAnnouncement: Bool { topic.first?.isAnnouncement ?? isAnnouncementRoute }
     var isReady = false
@@ -106,7 +106,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         isAnnouncement: Bool = false,
         showEntryID: String? = nil,
         showRepliesToEntryID: String? = nil,
-        offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make()
+        offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make(),
+        env: AppEnvironment
     ) -> DiscussionDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
@@ -117,6 +118,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         controller.offlineModeInteractor = offlineModeInteractor
         // needs to be set early for helm to correctly place done button
         controller.navigationItem.rightBarButtonItem = controller.optionsButton
+        controller.env = env
         return controller
     }
 
@@ -520,7 +522,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
                     context: self.context,
                     topicID: self.topicID,
                     isAnnouncement: self.isAnnouncement,
-                    showRepliesToEntryID: entryID
+                    showRepliesToEntryID: entryID,
+                    env: self.env
                 )
                 self.env.router.show(controller, from: self)
             }
@@ -649,7 +652,8 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
                 context: context,
                 topicID: topicID,
                 isAnnouncement: isAnnouncement,
-                showRepliesToEntryID: path[1]
+                showRepliesToEntryID: path[1],
+                env: env
             )
             env.router.show(controller, from: self)
             return true
