@@ -23,6 +23,7 @@ struct CommentLibrarySheet: View {
     @ObservedObject var viewModel: SubmissionCommentLibraryViewModel
     @Environment(\.presentationMode) var presentationMode
     @Binding var comment: String
+    let contextColor: Color
     let sendAction: () -> Void
 
     var body: some View {
@@ -36,7 +37,9 @@ struct CommentLibrarySheet: View {
                     text: $comment,
                     shouldShowCommentLibrary: false,
                     showCommentLibrary: .constant(false),
-                    action: editorAction, containerHeight: geometry.size.height
+                    action: editorAction,
+                    containerHeight: geometry.size.height,
+                    contextColor: contextColor
                 )
                     .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                     .background(Color.backgroundLight)
