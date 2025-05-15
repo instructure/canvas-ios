@@ -20,8 +20,9 @@ import WidgetKit
 import SwiftUI
 import Core
 
-struct LargeTodoScreen: BaseTodoScreen {
-    var model: TodoModel
+struct TodoScreen: BaseTodoScreen {
+    let model: TodoModel
+    let widgetSize: WidgetSize
     let todoItems: [TodoItem]
     var body: some View {
         ZStack(alignment: .top) {
@@ -57,21 +58,32 @@ struct LargeTodoScreen: BaseTodoScreen {
         }
     }
 
-    init(model: TodoModel) {
+    init(model: TodoModel, widgetSize: WidgetSize) {
         self.model = model
-        self.todoItems = model.todoItems.forLargeTodoScreen
+        self.widgetSize = widgetSize
+        switch widgetSize {
+        case .large: self.todoItems = model.todoItems.forLargeTodoScreen
+        case .medium: self.todoItems = model.todoItems.forMediumTodoScreen
+        }
     }
 }
 
 #if DEBUG
 
-struct LargeTodoScreenPreviews: PreviewProvider {
+struct TodoScreenPreviews: PreviewProvider {
     static var previews: some View {
-        LargeTodoScreen(model: TodoModel.make())
+        TodoScreen(model: TodoModel.make(), widgetSize: .large)
         .containerBackground(for: .widget) {
             SwiftUI.EmptyView()
         }
         .previewContext(WidgetPreviewContext(family: .systemLarge))
+        .previewDisplayName("Large Size")
+        TodoScreen(model: TodoModel.make(), widgetSize: .medium)
+        .containerBackground(for: .widget) {
+            SwiftUI.EmptyView()
+        }
+        .previewContext(WidgetPreviewContext(family: .systemMedium))
+        .previewDisplayName("Medium Size")
     }
 }
 

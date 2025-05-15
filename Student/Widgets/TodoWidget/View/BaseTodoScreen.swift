@@ -21,7 +21,8 @@ import SwiftUI
 import Core
 
 protocol BaseTodoScreen: View {
-    var model: TodoModel { get set }
+    var model: TodoModel { get }
+    var widgetSize: WidgetSize { get }
 }
 
 extension BaseTodoScreen {
@@ -115,4 +116,9 @@ struct TodoItemRow: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .minimumScaleFactor(0.5)
     }
+}
+
+public enum WidgetSize {
+    case medium
+    case large
 }

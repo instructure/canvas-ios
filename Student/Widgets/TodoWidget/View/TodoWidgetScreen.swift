@@ -42,11 +42,11 @@ struct TodoWidgetScreen: View {
         if model.todoItems.isNotEmpty {
             switch family {
             case .systemMedium:
-                MediumTodoScreen(model: model)
+                TodoScreen(model: model, widgetSize: .medium)
             case .systemLarge:
-                MediumTodoScreen(model: model)
+                TodoScreen(model: model, widgetSize: .large)
             default:
-                MediumTodoScreen(model: model)
+                TodoScreen(model: model, widgetSize: .medium)
             }
         } else if model.isLoggedIn {
             EmptyView(title: Text("Oops! Something Went Wrong"), message: Text("We're having trouble showing your tasks right now. Please try again in a bit or head to the app."))
