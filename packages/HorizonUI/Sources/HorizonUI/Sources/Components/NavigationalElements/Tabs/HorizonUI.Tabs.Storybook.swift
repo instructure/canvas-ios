@@ -32,7 +32,3 @@ public extension HorizonUI.Tabs {
         }
     }
 }
-
-#Preview {
-    HorizonUI.Tabs.Storybook()
-}

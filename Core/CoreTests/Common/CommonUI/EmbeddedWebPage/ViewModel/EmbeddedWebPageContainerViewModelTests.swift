@@ -33,7 +33,8 @@ class EmbeddedWebPageContainerViewModelTests: CoreTestCase {
         // WHEN
         let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
-            webPageModel: mockWebPageViewModel
+            webPageModel: mockWebPageViewModel,
+            env: environment
         )
 
         // THEN
@@ -46,7 +47,8 @@ class EmbeddedWebPageContainerViewModelTests: CoreTestCase {
         // WHEN
         let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
-            webPageModel: mockWebPageViewModel
+            webPageModel: mockWebPageViewModel,
+            env: environment
         )
 
         // THEN
@@ -62,7 +64,8 @@ class EmbeddedWebPageContainerViewModelTests: CoreTestCase {
         // WHEN
         let testee = EmbeddedWebPageContainerViewModel(
             context: .group("1"),
-            webPageModel: mockWebPageViewModel
+            webPageModel: mockWebPageViewModel,
+            env: environment
         )
 
         // THEN
@@ -80,7 +83,8 @@ class EmbeddedWebPageContainerViewModelTests: CoreTestCase {
         // WHEN
         let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
-            webPageModel: mockWebPageViewModel
+            webPageModel: mockWebPageViewModel,
+            env: environment
         )
 
         // THEN
@@ -97,7 +101,8 @@ class EmbeddedWebPageContainerViewModelTests: CoreTestCase {
         // WHEN
         let testee = EmbeddedWebPageContainerViewModel(
             context: .group("1"),
-            webPageModel: mockWebPageViewModel
+            webPageModel: mockWebPageViewModel,
+            env: environment
         )
 
         // THEN
@@ -112,7 +117,8 @@ class EmbeddedWebPageContainerViewModelTests: CoreTestCase {
     func testForwardsProvisionalNavigationStartCallback() {
         let testee = EmbeddedWebPageContainerViewModel(
             context: .course("1"),
-            webPageModel: mockWebPageViewModel
+            webPageModel: mockWebPageViewModel,
+            env: environment
         )
 
         // WHEN
