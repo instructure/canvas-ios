@@ -18,6 +18,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
 
@@ -41,6 +42,15 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
     private var dragStartLeftColumnWidth: CGFloat = 0
     private var isDraggingInProgress: Bool = false
     private var isFullScreen: Bool { leftColumnWidth == screenWidth }
+    private var subscriptions = Set<AnyCancellable>()
+
+    init() {
+        NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+            .sink { [weak self] _ in
+                self?.handleDeviceOrientationChange()
+            }
+            .store(in: &subscriptions)
+    }
 
     func updateScreenWidth(_ screenWidth: CGFloat) {
         guard self.screenWidth != screenWidth else { return }
@@ -51,6 +61,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
         leftColumnWidth = screenWidth - leftSideMinWidth
         rightColumnWidth = leftSideMinWidth
         leftColumnWidthBeforeFullScreen = nil
+        didUpdateLeftColumnWidth()
     }
 
     // MARK: - User Actions
@@ -136,5 +147,13 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
         dragIconA11yHint = isFullScreen ? String(localized: "Double tap to open drawer", bundle: .teacher)
                                         : String(localized: "Double tap to close drawer", bundle: .teacher)
         isRightColumnHidden = isFullScreen
+    }
+
+    /// When the dvice orientation changes while a gesture is in progress its `onEnded` callback is not called
+    /// so we have to manually stop the drag gesture.
+    private func handleDeviceOrientationChange() {
+        if isDraggingInProgress {
+            didEndDragGesture()
+        }
     }
 }
