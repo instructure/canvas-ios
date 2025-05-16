@@ -98,6 +98,7 @@ const whitelist = [
   'mini-arrow-up',
   'module',
   'more',
+  'move-end',
   'next-unread',
   'no',
   'note',

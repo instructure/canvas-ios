@@ -50,4 +50,20 @@ extension View {
             self
         }
     }
+
+    public func onSizeChange(_ perform: @escaping (CGSize) -> Void) -> some View {
+        onGeometryChange(for: CGSize.self) { geometry in
+            geometry.size
+        } action: { size in
+            perform(size)
+        }
+    }
+
+    public func onSizeChange(update binding: Binding<CGSize>) -> some View {
+        onGeometryChange(for: CGSize.self) { geometry in
+            geometry.size
+        } action: { size in
+            binding.wrappedValue = size
+        }
+    }
 }
