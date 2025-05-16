@@ -36,12 +36,14 @@ public struct GradeListView: View, ScreenViewTrackable {
     @State private var isScoreEditorPresented = false
 
     @State private var originalScrollOffset: CGFloat = 0
-    @State private var nonCollapsableHeaderHeight: CGFloat = 0
+//    @State private var nonCollapsableHeaderHeight: CGFloat = 0
     @State private var scrollOffset: CGFloat?
-    @State private var collapsableHeaderOriginalHeight: CGFloat = 0
+    @State private var collapsableHeaderHeight: CGFloat = 0
+
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     private var toggleViewIsVisible: Bool {
-        scrollOffset ?? 0 > originalScrollOffset - collapsableHeaderOriginalHeight
+        scrollOffset ?? 0 > originalScrollOffset - collapsableHeaderHeight
     }
 
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
@@ -84,11 +86,11 @@ public struct GradeListView: View, ScreenViewTrackable {
             switch viewModel.state {
             case .data, .empty:
                 nonCollapsableGradeDetails
-                    .readingFrame { frame in
-                        if nonCollapsableHeaderHeight != frame.height {
-                            nonCollapsableHeaderHeight = frame.height
-                        }
-                    }
+//                    .readingFrame { frame in
+//                        if nonCollapsableHeaderHeight != frame.height {
+//                            nonCollapsableHeaderHeight = frame.height
+//                        }
+//                    }
             default: SwiftUI.EmptyView()
             }
         }
@@ -133,35 +135,33 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ViewBuilder
     private var contentView: some View {
         VStack(spacing: 0) {
-            Color.clear.frame(height: .zero)
-                .bindTopPosition(id: "togggles", coordinateSpace: .global, to: $scrollOffset)
-                .onAppear {
-                    originalScrollOffset = scrollOffset ?? 0
-                }
-                .onChange(of: scrollOffset) { oldValue, newValue in
-                    print("scrollOffset", scrollOffset ?? 0)
-
-                }
-//            switch viewModel.state {
-//            case .data, .empty:
-//                collapsableToggles
-////                    .onAppear {
-////                        originalScrollOffset = scrollOffset ?? 0
-////                    }
-//                    .readingFrame { frame in
+            switch viewModel.state {
+            case .data, .empty:
+                collapsableToggles
+                    .bindTopPosition(id: "collapsableHeader", coordinateSpace: .global, to: $scrollOffset)
+                    .readingFrame { frame in
+                        if collapsableHeaderHeight != frame.height {
+                            collapsableHeaderHeight = frame.height
+                        }
+                    }
+//                    .onChange(of: scrollOffset) { _, _ in
 //                        print("nonCollapsableHeaderHeight", nonCollapsableHeaderHeight)
+//                        print("collapsableHeaderHeight", collapsableHeaderHeight)
 //                        print("originalScrollOffset", originalScrollOffset)
 //                        print("scrollOffset", scrollOffset ?? 0)
-//                        print("collapsableHeaderOriginalHeight", collapsableHeaderOriginalHeight)
+//                        print(originalScrollOffset - collapsableHeaderHeight)
 //                        print("--------------------------------------------------------------------")
-////                        if frame.height > collapsableHeaderOriginalHeight {
-//                            collapsableHeaderOriginalHeight = frame.height
-////                        }
-//                    }
 //
-//            default:
-//                SwiftUI.EmptyView()
-//            }
+//                    }
+                    .onFirstAppear {
+                        originalScrollOffset = scrollOffset ?? 0
+                    }
+//                    .onAppear {
+//                        originalScrollOffset = scrollOffset ?? 0
+//                    }
+            default:
+                SwiftUI.EmptyView()
+            }
 
             switch viewModel.state {
             case .initialLoading: loadingView
@@ -294,6 +294,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             .font(.regular14)
             .accessibilityHidden(true)
             .animation(.smooth, value: isShowGradeAssignment)
+            .lineLimit(1)
     }
 
     @ViewBuilder
