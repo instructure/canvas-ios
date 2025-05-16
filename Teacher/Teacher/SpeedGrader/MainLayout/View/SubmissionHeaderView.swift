@@ -31,40 +31,59 @@ struct SubmissionHeaderView: View {
     var groupName: String? { isGroupSubmission ? submission.groupName : nil }
     var routeToSubmitter: String? {
         if isGroupSubmission {
-            return nil
+            nil
         } else {
-            return "/courses/\(assignment.courseID)/users/\(submission.userID)"
+            "/courses/\(assignment.courseID)/users/\(submission.userID)"
         }
     }
 
     var body: some View {
         HStack(spacing: 0) {
-            Button(action: navigateToSubmitter, label: {
-                HStack(spacing: 0) {
+            Button(action: navigateToSubmitter) {
+                HStack(spacing: 12) {
                     avatar
 
                     VStack(alignment: .leading, spacing: 2) {
                         nameText
-                            .font(.semibold16).foregroundColor(.textDarkest)
-                        HStack(spacing: 2) {
-                            Image(uiImage: submission.status.icon)
-                                .size(uiScale.iconScale * 18)
-                                .foregroundStyle(Color(submission.status.color))
-                            Text(submission.status.text)
-                                .font(.medium14).foregroundColor(Color(submission.status.color))
+                            .font(.semibold16)
+                            .foregroundStyle(.textDarkest)
+
+                        HStack(spacing: 4) {
+                            HStack(spacing: 2) {
+                                Image(uiImage: submission.status.icon)
+                                    .size(uiScale.iconScale * 16)
+                                    .foregroundStyle(Color(submission.status.color))
+
+                                Text(submission.status.text)
+                                    .font(.regular14)
+                                    .foregroundColor(Color(submission.status.color))
+                            }
+
+                            Divider()
+                                .frame(width: 1)
+                                .overlay(Color.borderMedium)
+                                .clipShape(RoundedRectangle(cornerRadius: 2))
+
+                            Text(assignment.dueText)
+                                .font(.regular14)
+                                .foregroundStyle(.textDark)
                         }
+                        .fixedSize(horizontal: false, vertical: true)
                     }
-                        .padding(.leading, 12)
                 }
-                    .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 0))
-            })
-                .buttonStyle(PlainButtonStyle())
-                .identifier("SpeedGrader.userButton")
+                .padding(.leading, 6)
+                .padding(.trailing, 16)
+            }
+            .padding(.init(top: 12, leading: 16, bottom: 12, trailing: 0))
+            .buttonStyle(PlainButtonStyle())
+            .identifier("SpeedGrader.userButton")
+
             Spacer()
         }
     }
 
-    @ViewBuilder var avatar: some View {
+    @ViewBuilder
+    var avatar: some View {
         if assignment.anonymizeStudents {
             Avatar.Anonymous(isGroup: isGroupSubmission)
         } else if isGroupSubmission {
@@ -76,20 +95,40 @@ struct SubmissionHeaderView: View {
 
     var nameText: Text {
         if assignment.anonymizeStudents {
-            return isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
+            if isGroupSubmission {
+                Text("Group", bundle: .teacher)
+            } else {
+                Text("Student", bundle: .teacher)
+            }
+        } else {
+            Text(groupName ?? submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
         }
-        return Text(groupName ?? submission.user.flatMap {
-            User.displayName($0.name, pronouns: $0.pronouns)
-        } ?? "")
     }
 
     func navigateToSubmitter() {
         guard !assignment.anonymizeStudents, let routeToSubmitter = routeToSubmitter else { return }
         env.router.route(
             to: routeToSubmitter,
-            userInfo: [ "courseID": assignment.courseID, "navigatorOptions": ["modal": true] ],
+            userInfo: ["courseID": assignment.courseID, "navigatorOptions": ["modal": true]],
             from: controller,
             options: .modal(embedInNav: true, addDoneButton: true)
         )
     }
+}
+
+#Preview {
+    let environment = PreviewEnvironment()
+
+    SubmissionHeaderView(
+        assignment: .save(
+            .make(due_at: Calendar.current.date(from: .init(year: 2024, month: 5, day: 7, hour: 8, minute: 9))),
+            in: environment.globalDatabase.viewContext,
+            updateSubmission: false,
+            updateScoreStatistics: false
+        ),
+        submission: .save(
+            .make(user: .make(name: "Szentkirályi Alexandra", pronouns: ("visszalépés"))),
+            in: environment.globalDatabase.viewContext
+        )
+    )
 }
