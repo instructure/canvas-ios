@@ -65,7 +65,7 @@ public extension HorizonUI {
     struct IconButton: View {
         private let type: HorizonUI.ButtonStyles.ButtonType
         private let isSmall: Bool
-        private let badgeNumber: String?
+        private let badgeType: HorizonUI.Badge.BadgeType?
         private let icon: Image?
         private let action: () -> Void
 
@@ -73,12 +73,12 @@ public extension HorizonUI {
             _ icon: Image?,
             type: HorizonUI.ButtonStyles.ButtonType = .blue,
             isSmall: Bool = false,
-            badgeNumber: String? = nil,
+            badgeType: HorizonUI.Badge.BadgeType? = nil,
             action: @escaping () -> Void
         ) {
             self.type = type
             self.isSmall = isSmall
-            self.badgeNumber = badgeNumber
+            self.badgeType = badgeType
             self.icon = icon
             self.action = action
         }
@@ -90,7 +90,7 @@ public extension HorizonUI {
                     HorizonUI.ButtonStyles.icon(
                         type,
                         isSmall: isSmall,
-                        badgeNumber: badgeNumber,
+                        badgeType: badgeType,
                         icon: icon
                     )
                 )

@@ -86,23 +86,4 @@ struct HSubmission: Hashable, Equatable {
         self.showSubmitButton = showSubmitButton
         self.numberOfComments = numberOfComments
     }
-
-    func update(numberOfComments: Int? = nil) -> HSubmission {
-        HSubmission(
-            id: id,
-            assignmentID: assignmentID,
-            attachments: attachments,
-            body: body,
-            type: type,
-            attempt: attempt,
-            submittedAt: submittedAt,
-            late: late,
-            missing: missing,
-            excused: excused,
-            grade: grade,
-            score: score,
-            showSubmitButton: showSubmitButton,
-            numberOfComments: numberOfComments
-        )
-    }
 }

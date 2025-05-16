@@ -185,6 +185,7 @@ public struct ModuleItemSequenceView: View {
                 previousButton: previousButton,
                 visibleButtons: viewModel.visibleButtons
             )
+            .id(viewModel.hasUnreadComments)
             .padding(.vertical, .huiSpaces.space8)
             .padding(.horizontal, .huiSpaces.space16)
             .background(Color.huiColors.surface.pagePrimary)

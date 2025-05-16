@@ -38,8 +38,8 @@ public extension HorizonUI {
 
         // MARK: - Icon Button Dependencies
 
-        private let badgeNumber: String?
         private let badgeStyle: HorizonUI.Badge.Style?
+        private let badgeType: HorizonUI.Badge.BadgeType?
         private let icon: Image?
 
         fileprivate init(
@@ -58,9 +58,8 @@ public extension HorizonUI {
             self.leading = leading
             self.trailing = trailing
             self.isTextUnderlined = isTextUnderlined
-
-            self.badgeNumber = nil
             self.badgeStyle = nil
+            self.badgeType = nil
             self.icon = nil
         }
 
@@ -68,13 +67,13 @@ public extension HorizonUI {
             backgroundColor: any ShapeStyle,
             foregroundColor: Color,
             badgeStyle: HorizonUI.Badge.Style,
+            badgeType: HorizonUI.Badge.BadgeType?,
             isSmall: Bool = false,
             icon: Image,
-            badgeNumber: String? = nil
         ) {
             self.backgroundColor = AnyShapeStyle(backgroundColor)
-            self.badgeNumber = badgeNumber
             self.badgeStyle = badgeStyle
+            self.badgeType = badgeType
             self.foregroundColor = foregroundColor
             self.icon = icon
             self.isSmall = isSmall
@@ -108,8 +107,8 @@ public extension HorizonUI {
                         .huiCornerRadius(level: .level6)
                         .foregroundColor(foregroundColor)
 
-                    if let badgeNumber = badgeNumber, let badgeStyle = badgeStyle {
-                        HorizonUI.Badge(type: .number(badgeNumber), style: badgeStyle)
+                    if let badgeType, let badgeStyle {
+                        HorizonUI.Badge(type: badgeType, style: badgeStyle)
                             .offset(x: 15, y: -15)
                     }
                 }
@@ -268,16 +267,16 @@ public extension HorizonUI.ButtonStyles {
     static func icon(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
-        badgeNumber: String? = nil,
+        badgeType: HorizonUI.Badge.BadgeType? = nil,
         icon: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         .init(
             backgroundColor: type.background,
             foregroundColor: type.foregroundColor,
             badgeStyle: type.badgeStyle,
+            badgeType: badgeType,
             isSmall: isSmall,
             icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add),
-            badgeNumber: badgeNumber
         )
     }
 }
@@ -321,16 +320,16 @@ public extension ButtonStyle where Self == HorizonUI.ButtonStyles {
     static func icon(
         _ type: HorizonUI.ButtonStyles.ButtonType,
         isSmall: Bool = false,
-        badgeNumber: String? = nil,
+        badgeType: HorizonUI.Badge.BadgeType? = nil,
         icon: Image? = nil
     ) -> HorizonUI.ButtonStyles {
         HorizonUI.ButtonStyles(
             backgroundColor: type.background,
             foregroundColor: type.foregroundColor,
             badgeStyle: type.badgeStyle,
+            badgeType: badgeType,
             isSmall: isSmall,
-            icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add),
-            badgeNumber: badgeNumber
+            icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add)
         )
     }
 }
@@ -342,7 +341,7 @@ public extension ButtonStyle where Self == HorizonUI.ButtonStyles {
                 ForEach(HorizonUI.ButtonStyles.ButtonType.allCases, id: \.self) { type in
                     HStack {
                         Button("AI Icon Button") {}
-                            .buttonStyle(HorizonUI.ButtonStyles.icon(type, badgeNumber: "99"))
+                            .buttonStyle(HorizonUI.ButtonStyles.icon(type, badgeType: .number("100")))
                             .disabled(true)
                         Button("AI Button") {}
                             .buttonStyle(HorizonUI.ButtonStyles.primary(type))

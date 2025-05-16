@@ -65,7 +65,7 @@ final public class CDScoresAssignment: NSManagedObject {
 
         dbEntity.commentsCount = NSNumber(value: submission?.commentsConnection?.nodes?.count ?? 0)
         dbEntity.pointsPossible = apiEntity.pointsPossible ?? 0
-        dbEntity.isRead = submission?.commentsConnection?.nodes?.allSatisfy { $0.read == true } ?? false
+        dbEntity.isRead = (submission?.unreadCommentCount ?? 0) == 0
 
         return dbEntity
     }

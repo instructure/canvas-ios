@@ -212,7 +212,9 @@ struct AssignmentDetails: View {
 
         let commentButton = HorizonUI.Overlay.ButtonAttribute(
             title: AssignmentLocalizedKeys.comments.title,
-            icon: Image.huiIcons.chat
+            icon: viewModel
+                .submissionProperties?
+                .hasUnreadComments == true ? Image.huiIcons.markUnreadChat : Image.huiIcons.chat
         ) {
             viewModel.isOverlayToolsPresented.toggle()
             // Wait until the tools sheet is dismissed

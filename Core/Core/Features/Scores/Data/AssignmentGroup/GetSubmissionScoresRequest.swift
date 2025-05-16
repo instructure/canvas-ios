@@ -68,6 +68,8 @@ public struct GetSubmissionScoresRequest: APIGraphQLRequestable {
                                               missing
                                               score
                                               grade
+                                              submittedAt
+                                              unreadCommentCount
                                               submissionStatus
                                               commentsConnection {
                                                   nodes {

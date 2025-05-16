@@ -22,14 +22,12 @@ import Foundation
 
 final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
     func getComments(
-        courseID _: String,
-        assignmentID _: String,
-        attempt _: Int? = nil
+        assignmentID: String,
+        ignoreCache: Bool
     ) -> AnyPublisher<[SubmissionComment], any Error> {
         Just([
             SubmissionComment(
                 id: "1",
-                assignmentID: "1",
                 attempt: 1,
                 authorID: "1",
                 authorName: "Learner",
@@ -39,7 +37,35 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
             ),
             SubmissionComment(
                 id: "2",
-                assignmentID: "1",
+                attempt: 1,
+                authorID: "2",
+                authorName: "Educator",
+                comment: "Replying to Learner",
+                createdAt: Date(),
+                isCurrentUsersComment: false
+            )
+        ])
+        .setFailureType(to: Error.self)
+        .eraseToAnyPublisher()
+    }
+
+    func getComments(
+        assignmentID _: String,
+        attempt _: Int? = nil,
+        ignoreCache: Bool = false
+    ) -> AnyPublisher<[SubmissionComment], any Error> {
+        Just([
+            SubmissionComment(
+                id: "1",
+                attempt: 1,
+                authorID: "1",
+                authorName: "Learner",
+                comment: "First comment on submission",
+                createdAt: Date(),
+                isCurrentUsersComment: true
+            ),
+            SubmissionComment(
+                id: "2",
                 attempt: 1,
                 authorID: "2",
                 authorName: "Educator",
@@ -49,7 +75,6 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
             ),
             SubmissionComment(
                 id: "3",
-                assignmentID: "1",
                 attempt: 1,
                 authorID: "2",
                 authorName: "Educator",
@@ -59,7 +84,6 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
             ),
             SubmissionComment(
                 id: "4",
-                assignmentID: "1",
                 attempt: 1,
                 authorID: "1",
                 authorName: "Learner",
