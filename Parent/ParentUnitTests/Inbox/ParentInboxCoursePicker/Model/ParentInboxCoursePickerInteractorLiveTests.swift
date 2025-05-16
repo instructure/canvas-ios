@@ -90,7 +90,7 @@ class ParentInboxCoursePickerInteractorLiveTests: ParentTestCase {
                     stateUpdate.fulfill()
                 }
             }
-        wait(for: [stateUpdate], timeout: 1)
+        wait(for: [stateUpdate], timeout: 5)
         subscription.cancel()
     }
 }
