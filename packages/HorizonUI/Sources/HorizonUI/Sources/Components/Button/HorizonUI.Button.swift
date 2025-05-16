@@ -30,7 +30,7 @@ extension HorizonUI {
 
         public init(
             _ label: String,
-            type: HorizonUI.ButtonStyles.ButtonType = .blue,
+            type: HorizonUI.ButtonStyles.ButtonType = .institution,
             isSmall: Bool = false,
             fillsWidth: Bool = false,
             leading: Image? = nil,
@@ -71,7 +71,7 @@ public extension HorizonUI {
 
         public init(
             _ icon: Image?,
-            type: HorizonUI.ButtonStyles.ButtonType = .blue,
+            type: HorizonUI.ButtonStyles.ButtonType = .institution,
             isSmall: Bool = false,
             badgeNumber: String? = nil,
             action: @escaping () -> Void
@@ -110,7 +110,7 @@ public extension HorizonUI {
 
         public init(
             _ label: String,
-            type: HorizonUI.ButtonStyles.ButtonType = .blue,
+            type: HorizonUI.ButtonStyles.ButtonType = .institution,
             isSmall: Bool = false,
             fillsWidth: Bool = false,
             leading: Image? = nil,

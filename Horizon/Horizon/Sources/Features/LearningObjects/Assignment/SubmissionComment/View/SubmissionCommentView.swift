@@ -168,7 +168,7 @@ struct SubmissionCommentView: View {
     private var postButton: some View {
         SavingButton(
             title: String(localized: "Post", bundle: .horizon),
-            type: .blue,
+            type: .institution,
             fillsWidth: true,
             isLoading: postingCommentBinding,
             isDisabled: Binding(
