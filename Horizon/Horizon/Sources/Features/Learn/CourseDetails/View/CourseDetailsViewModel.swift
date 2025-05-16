@@ -102,7 +102,7 @@ final class CourseDetailsViewModel {
 
     private func observeCourseSelection() {
         onSelectCourse = { [weak self] selectedCourse in
-            guard let self else {
+            guard let self, self.selectedCoure != selectedCourse else {
                 return
             }
 
@@ -159,7 +159,10 @@ final class CourseDetailsViewModel {
                         // Prevent redundant updates if the same course is already selected.
                         // This case can occur when navigating to a module item sequence view.
                         (self.selectedCoure == nil || self.selectedCoure?.id != course.id)
-                    else { return }
+                    else {
+                        promise(.success(unownedSelf.course))
+                        return
+                    }
                     let currentProgress = self.course.progress
                     let nextProgress = course.progress
                     self.course = course
