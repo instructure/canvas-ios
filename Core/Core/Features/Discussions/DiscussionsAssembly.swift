@@ -27,23 +27,27 @@ public enum DiscussionsAssembly {
     public static func makeDiscussionCreateViewController(
         context: Context,
         isAnnouncement: Bool,
-        routeUserInfo: [String: Any]? = [:]
+        routeUserInfo: [String: Any]? = [:],
+        environment: AppEnvironment
     ) -> UIViewController {
         let newDiscussionPushSource = routeUserInfo?[SourceViewKey] as? UIViewController
         let webPageModel = DiscussionCreateWebViewModel(
             isAnnouncement: isAnnouncement,
+            router: environment.router,
             newDiscussionPushSource: newDiscussionPushSource
         )
         return makeEmbeddedWebPage(
             context: context,
-            webPageModel: webPageModel
+            webPageModel: webPageModel,
+            environment: environment
         )
     }
 
     public static func makeDiscussionEditViewController(
         context: Context,
         topicID: String,
-        isAnnouncement: Bool
+        isAnnouncement: Bool,
+        environment: AppEnvironment
     ) -> UIViewController {
         let webPageModel = DiscussionEditWebViewModel(
             discussionId: topicID,
@@ -51,23 +55,27 @@ public enum DiscussionsAssembly {
         )
         return makeEmbeddedWebPage(
             context: context,
-            webPageModel: webPageModel
+            webPageModel: webPageModel,
+            environment: environment
         )
     }
 
     private static func makeEmbeddedWebPage(
         context: Context,
-        webPageModel: EmbeddedWebPageViewModel
+        webPageModel: EmbeddedWebPageViewModel,
+        environment: AppEnvironment
     ) -> UIViewController {
         let viewModel = EmbeddedWebPageContainerViewModel(
             context: context,
-            webPageModel: webPageModel
+            webPageModel: webPageModel,
+            env: environment
         )
         return CoreHostingController(
             EmbeddedWebPageContainerScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
-            )
+            ),
+            env: environment
         )
     }
 }

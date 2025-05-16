@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/LearningObjects/Assignment/AssignmentDetails/View/AssignmentPreferences.swift
 import SwiftUICore
 
 enum AssignmentPreferenceKeyType: Equatable {
@@ -36,5 +37,27 @@ struct AssignmentPreferenceKey: PreferenceKey {
 
     static func reduce(value: inout AssignmentPreferenceKeyType?, nextValue: () -> AssignmentPreferenceKeyType?) {
         value = nextValue()
+========
+import WebKit
+
+public protocol EmbeddedWebPageViewModel {
+    var urlPathComponent: String { get }
+    var queryItems: [URLQueryItem] { get }
+    var navigationBarTitle: String { get }
+
+    func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton?
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
+}
+
+public extension EmbeddedWebPageViewModel {
+
+    func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton? {
+        nil
+>>>>>>>> master:Core/Core/Common/CommonUI/EmbeddedWebPage/ViewModel/EmbeddedWebPageViewModel.swift
     }
+
+    func webView(
+        _ webView: WKWebView,
+        didStartProvisionalNavigation navigation: WKNavigation!
+    ) {}
 }

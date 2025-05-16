@@ -24,7 +24,11 @@ public class StudentQuizWebViewController: UIViewController {
     var quizID = ""
 
     let env = AppEnvironment.shared
-    let webView = CoreWebView(features: [.invertColorsInDarkMode, .skipJSInjection(CoreWebView.mathJaxJS)])
+    let webView = CoreWebView(features: [
+        .invertColorsInDarkMode,
+        .skipJSInjection(CoreWebView.mathJaxJS),
+        .disableLinksOverlayPreviews
+    ])
 
     public static func create(courseID: String, quizID: String) -> StudentQuizWebViewController {
         let controller = StudentQuizWebViewController()

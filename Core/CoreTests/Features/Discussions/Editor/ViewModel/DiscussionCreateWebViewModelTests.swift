@@ -32,6 +32,7 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
     func test_init_discussion() {
         let testee = DiscussionCreateWebViewModel(
             isAnnouncement: false,
+            router: router,
             newDiscussionPushSource: discussionList
         )
 
@@ -43,6 +44,7 @@ class DiscussionCreateWebViewModelTests: CoreTestCase {
     func test_init_announcement() {
         let testee = DiscussionCreateWebViewModel(
             isAnnouncement: true,
+            router: router,
             newDiscussionPushSource: discussionList
         )
 
