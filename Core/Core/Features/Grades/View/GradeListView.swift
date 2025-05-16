@@ -29,12 +29,22 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.verticalSizeClass) private var verticalSizeClass
-    @State private var toggleViewIsVisible = true
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Private properties
     @State private var offsets = CGSize.zero
     @State private var isScoreEditorPresented = false
+
+    @State private var originalScrollOffset: CGFloat = 0
+    @State private var scrollOffset: CGFloat?
+    @State private var collapsableHeaderHeight: CGFloat = 0
+
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private var toggleViewIsVisible: Bool {
+        scrollOffset ?? 0 > originalScrollOffset - collapsableHeaderHeight
+    }
+
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
     private var subscriptions = Set<AnyCancellable>()
 
@@ -54,30 +64,27 @@ public struct GradeListView: View, ScreenViewTrackable {
     // MARK: - Components
 
     public var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                ScrollView(showsIndicators: false) {
-                    contentView(geometry: geometry)
-                }
-                .background(Color.backgroundLightest)
-                .accessibilityHidden(isScoreEditorPresented)
-                .refreshable {
-                    await withCheckedContinuation { continuation in
-                        viewModel.pullToRefreshDidTrigger.accept {
-                            continuation.resume()
-                        }
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                contentView
+            }
+            .background(Color.backgroundLight)
+            .accessibilityHidden(isScoreEditorPresented)
+            .refreshable {
+                await withCheckedContinuation { continuation in
+                    viewModel.pullToRefreshDidTrigger.accept {
+                        continuation.resume()
                     }
                 }
-                whatIfScoreEditorView()
             }
-            .animation(.smooth, value: isScoreEditorPresented)
+
+            whatIfScoreEditorView
         }
+        .animation(.smooth, value: isScoreEditorPresented)
         .safeAreaInset(edge: .top, spacing: 0) {
             switch viewModel.state {
-            case .data, .empty:
-                courseSummaryView(viewModel.totalGradeText)
-            default:
-                SwiftUI.EmptyView()
+            case .data, .empty: nonCollapsableGradeDetails
+            default: SwiftUI.EmptyView()
             }
         }
         .background(Color.backgroundLightest)
@@ -101,9 +108,9 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     private var filterButton: some View {
-        Button(action: {
+        Button {
             viewModel.navigateToFilter(viewController: viewController)
-        }) {
+        } label: {
             Image.filterLine
                 .size(24)
                 .padding(5)
@@ -118,70 +125,65 @@ public struct GradeListView: View, ScreenViewTrackable {
         .accessibilityIdentifier("GradeList.filterButton")
     }
 
-    private func contentView(geometry: GeometryProxy) -> some View {
+    @ViewBuilder
+    private var contentView: some View {
         VStack(spacing: 0) {
             switch viewModel.state {
-            case .initialLoading:
-                loadingView(geometry: geometry)
-            case let .data(data):
-                dataView(
-                    data,
-                    isRefreshing: false,
-                    isEmpty: false,
-                    geometry: geometry
-                )
-            case let .empty(data):
-                dataView(
-                    data,
-                    isRefreshing: false,
-                    isEmpty: true,
-                    geometry: geometry
-                )
-            case .error:
-                ZStack(alignment: .center) {
-                    errorView()
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
+            case .data, .empty:
+                collapsableToggles
+                    .bindTopPosition(id: "collapsableHeader", coordinateSpace: .global, to: $scrollOffset)
+                    .readingFrame { frame in
+                        if collapsableHeaderHeight != frame.height {
+                            collapsableHeaderHeight = frame.height
+                        }
+                    }
+                    .onFirstAppear {
+                        originalScrollOffset = scrollOffset ?? 0
+                    }
+            default:
+                SwiftUI.EmptyView()
+            }
+
+            switch viewModel.state {
+            case .initialLoading: loadingView
+            case .data(let data): dataView(data)
+            case .empty: emptyView
+            case .error: errorView
             }
             Spacer()
         }
         .background(Color.backgroundLightest)
     }
 
-    private func loadingView(geometry: GeometryProxy) -> some View {
-        ZStack(alignment: .center) {
-            ProgressView()
-                .progressViewStyle(.indeterminateCircle())
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
+    @ViewBuilder
+    private var loadingView: some View {
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
+            .containerRelativeFrame([.vertical, .horizontal])
     }
 
     @ViewBuilder
-    private func dataView(
-        _ gradeListData: GradeListData,
-        isRefreshing: Bool,
-        isEmpty: Bool,
-        geometry: GeometryProxy
-    ) -> some View {
-        if isEmpty {
-            emptyView()
-                .frame(width: geometry.size.width, height: geometry.size.height)
-        } else {
-            assignmentListView(
-                courseColor: gradeListData.courseColor,
-                assignmentSections: gradeListData.assignmentSections,
-                userID: gradeListData.userID ?? ""
-            )
-            .accessibilityFocused($accessibilityFocus, equals: .list)
-        }
+    private func dataView(_ gradeListData: GradeListData) -> some View {
+        assignmentListView(
+            courseColor: gradeListData.courseColor,
+            assignmentSections: gradeListData.assignmentSections,
+            userID: gradeListData.userID ?? ""
+        )
+        .accessibilityFocused($accessibilityFocus, equals: .list)
     }
 
-    private func gradeDetailsView(_ totalGrade: String?) -> some View {
+    @ViewBuilder
+    private var gradeDetailsView: some View {
         HStack {
-            totalLabelText()
+            totalLabelText
                 .frame(maxWidth: .infinity, alignment: .leading)
-            if let totalGrade {
-                totalGradeText(totalGrade)
+            if let totalGrade = viewModel.totalGradeText {
+                Text(totalGrade)
+                    .foregroundStyle(Color.textDarkest)
+                    .font(.semibold22)
+                    .multilineTextAlignment(.center)
+                    .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
+                    .accessibilityIdentifier("CourseTotalGrade")
             } else {
                 Image(uiImage: .lockLine)
                     .size(16)
@@ -199,48 +201,53 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func courseSummaryView(_ totalGrade: String?) -> some View {
-        let hasBottomPadding = (totalGrade == nil || !toggleViewIsVisible)
+    private var nonCollapsableGradeDetails: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center) {
-                gradeDetailsView(totalGrade)
+                gradeDetailsView
                 if viewModel.isParentApp {
                     filterButton
                         .paddingStyle(.leading, .standard)
                 }
             }
             .padding([.horizontal, .top], 16)
-            .padding(.bottom, 5)
-            .padding(.bottom, hasBottomPadding ? 10 : 0)
-
-            if totalGrade != nil {
-                if toggleViewIsVisible {
-                    togglesView()
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                        .zIndex(-1)
+            .padding(.bottom, 10)
+            .background(Color.backgroundLight)
+            .overlay(alignment: .bottom) {
+                if !toggleViewIsVisible {
+                    InstUI.Divider()
                 }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var collapsableToggles: some View {
+        VStack(spacing: 0) {
+            if viewModel.totalGradeText != nil {
+                togglesView
+                    .frame(minHeight: 51)
+                    .padding(.horizontal, 16)
             }
             InstUI.Divider()
         }
         .background(Color.backgroundLight)
-        .fixedSize(horizontal: false, vertical: true)
-        .animation(.linear, value: toggleViewIsVisible)
     }
 
     @ViewBuilder
-    private func emptyView() -> some View {
+    private var emptyView: some View {
         InteractivePanda(
             scene: SpacePanda(),
             title: String(localized: "No Assignments", bundle: .core),
             subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.", bundle: .core)
         )
         .padding(.horizontal, 16)
+        .containerRelativeFrame([.horizontal, .vertical])
         .accessibilityIdentifier("GradeList.emptyView")
     }
 
     @ViewBuilder
-    private func errorView() -> some View {
-        Spacer()
+    private var errorView: some View {
         InteractivePanda(
             scene: NoResultsPanda(),
             title: String(localized: "Something Went Wrong", bundle: .core),
@@ -250,11 +257,11 @@ public struct GradeListView: View, ScreenViewTrackable {
         .listSectionSeparator(.hidden)
         .listSectionSeparatorTint(Color.clear)
         .listRowBackground(Color.clear)
-        Spacer()
+        .containerRelativeFrame([.horizontal, .vertical])
     }
 
     @ViewBuilder
-    private func totalLabelText() -> some View {
+    private var totalLabelText: some View {
         let isShowGradeAssignment = !toggleViewIsVisible &&
         viewModel.baseOnGradedAssignment &&
         viewModel.totalGradeText != nil
@@ -268,6 +275,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             .font(.regular14)
             .accessibilityHidden(true)
             .animation(.smooth, value: isShowGradeAssignment)
+            .lineLimit(1)
     }
 
     @ViewBuilder
@@ -281,7 +289,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func togglesView() -> some View {
+    private var togglesView: some View {
         VStack(spacing: 0) {
             InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
                 Text("Based on graded assignments", bundle: .core)
@@ -290,7 +298,6 @@ public struct GradeListView: View, ScreenViewTrackable {
                     .multilineTextAlignment(.leading)
             }
             .frame(minHeight: 51)
-            .padding(.horizontal, 16)
             .accessibilityIdentifier("BasedOnGradedToggle")
 
             if viewModel.isWhatIfScoreFlagEnabled {
@@ -303,7 +310,6 @@ public struct GradeListView: View, ScreenViewTrackable {
                         .multilineTextAlignment(.leading)
                 }
                 .frame(minHeight: 51)
-                .padding(.horizontal, 16)
             }
         }
     }
@@ -314,9 +320,6 @@ public struct GradeListView: View, ScreenViewTrackable {
         assignmentSections: [GradeListData.AssignmentSections],
         userID: String
     ) -> some View {
-
-        topView // For reading frame
-
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(assignmentSections, id: \.id) { section in
                 let itemCountLabel = String.localizedNumberOfItems(section.assignments.count)
@@ -347,19 +350,8 @@ public struct GradeListView: View, ScreenViewTrackable {
             }
         }
 
-        Rectangle()
-            .fill(Color.backgroundLightest)
+        Color.backgroundLightest
             .frame(height: 30)
-
-    }
-
-    /// For reading frames while scrolling top and down
-    private var topView: some View {
-        Color.clear
-            .frame(height: 0)
-            .readingFrame { frame in
-                toggleViewIsVisible = frame.minY > 0
-            }
     }
 
     @ViewBuilder
@@ -400,7 +392,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func whatIfScoreEditorView() -> some View {
+    private var whatIfScoreEditorView: some View {
         if isScoreEditorPresented {
             WhatIfScoreEditorView(isPresented: $isScoreEditorPresented) {}
                 .accessibilitySortPriority(1)
@@ -420,10 +412,10 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     private func revertWhatIfScoreSwipeButton(id: String) -> [SwipeModel] {
         let slot = SwipeModel(id: id,
-                        image: { Image(uiImage: .replyLine)},
-                        action: { viewModel.isShowingRevertDialog = true },
-                        style: .init(background: Color.backgroundDark))
-       return viewModel.isWhatIfScoreModeOn ? [slot] : []
+                              image: { Image(uiImage: .replyLine)},
+                              action: { viewModel.isShowingRevertDialog = true },
+                              style: .init(background: Color.backgroundDark))
+        return viewModel.isWhatIfScoreModeOn ? [slot] : []
     }
 }
 
