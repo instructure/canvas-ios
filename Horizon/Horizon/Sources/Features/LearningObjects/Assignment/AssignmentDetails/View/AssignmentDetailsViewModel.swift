@@ -50,7 +50,7 @@ final class AssignmentDetailsViewModel {
     private(set) var isSegmentControlVisible: Bool = false
     private(set) var selectedSubmission: AssignmentSubmissionType = .text
     private(set) var externalURL: URL?
-    private(set) var loadInfo: SubmissionProperties?
+    private(set) var submissionProperties: SubmissionProperties?
     var isStartTyping = false
     var assignmentPreference: AssignmentPreferenceKeyType?
     var isSubmitButtonHidden: Bool {
@@ -169,8 +169,8 @@ final class AssignmentDetailsViewModel {
             }
             hasSubmittedBefore = true
             submission = selectedSubmission
-            loadInfo?.hasUnreadComments = hasUnreadComments(for: selectedSubmission?.attempt)
-            didLoadAssignment(loadInfo)
+            submissionProperties?.hasUnreadComments = hasUnreadComments(for: selectedSubmission?.attempt)
+            didLoadAssignment(submissionProperties)
         }
         router.show(view, from: controller, options: .modal(isDismissable: false))
     }
@@ -294,12 +294,12 @@ final class AssignmentDetailsViewModel {
             submission = submissions.first
         }
 
-        loadInfo = .init(
+        submissionProperties = .init(
             attemptCount: response.attemptCount,
             moduleItem: getModuleItem(assignment: response),
             hasUnreadComments: hasUnreadComments(for: submission?.attempt)
         )
-        didLoadAssignment(loadInfo)
+        didLoadAssignment(submissionProperties)
     }
 
     private func fetchExternalURL() {
