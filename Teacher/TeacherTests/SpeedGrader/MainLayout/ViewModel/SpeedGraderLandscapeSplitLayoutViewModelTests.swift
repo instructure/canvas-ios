@@ -51,7 +51,8 @@ class SpeedGraderLandscapeSplitLayoutViewModelTests: XCTestCase {
         XCTAssertEqual(testee.leftColumnWidth, screenWidth)
         XCTAssertEqual(testee.rightColumnWidth, screenWidth / 3)
         XCTAssertEqual(testee.isRightColumnHidden, true)
-        XCTAssertEqual(testee.dragIconA11yLabel, "Show drawer menu")
+        XCTAssertEqual(testee.dragIconA11yHint, "Double tap to open drawer")
+        XCTAssertEqual(testee.dragIconA11yValue, "Closed")
         XCTAssertEqual(testee.dragIconRotation, .degrees(-180))
 
         // WHEN
@@ -61,7 +62,8 @@ class SpeedGraderLandscapeSplitLayoutViewModelTests: XCTestCase {
         XCTAssertEqual(testee.leftColumnWidth, (2 * screenWidth) / 3 - 100)
         XCTAssertEqual(testee.rightColumnWidth, screenWidth / 3 + 100)
         XCTAssertEqual(testee.isRightColumnHidden, false)
-        XCTAssertEqual(testee.dragIconA11yLabel, "Hide drawer menu")
+        XCTAssertEqual(testee.dragIconA11yHint, "Double tap to close drawer")
+        XCTAssertEqual(testee.dragIconA11yValue, "Open")
         XCTAssertEqual(testee.dragIconRotation, .degrees(0))
     }
 

@@ -160,6 +160,11 @@ struct SubmissionGraderView: View {
                 .hidden(landscapeSplitLayoutViewModel.isRightColumnHidden)
         }
         .onAppear { didChangeLayout(to: .landscape) }
+        .onChange(of: landscapeSplitLayoutViewModel.isRightColumnHidden) { _, isHidden in
+            // Auto focus voiceover on the selected tab when the right column is shown
+            if isHidden { return }
+            focusedTab = tab
+        }
     }
 
     private func portraitLayout(
