@@ -36,7 +36,6 @@ public struct GradeListView: View, ScreenViewTrackable {
     @State private var isScoreEditorPresented = false
 
     @State private var originalScrollOffset: CGFloat = 0
-//    @State private var nonCollapsableHeaderHeight: CGFloat = 0
     @State private var scrollOffset: CGFloat?
     @State private var collapsableHeaderHeight: CGFloat = 0
 
@@ -86,11 +85,6 @@ public struct GradeListView: View, ScreenViewTrackable {
             switch viewModel.state {
             case .data, .empty:
                 nonCollapsableGradeDetails
-//                    .readingFrame { frame in
-//                        if nonCollapsableHeaderHeight != frame.height {
-//                            nonCollapsableHeaderHeight = frame.height
-//                        }
-//                    }
             default: SwiftUI.EmptyView()
             }
         }
@@ -144,21 +138,9 @@ public struct GradeListView: View, ScreenViewTrackable {
                             collapsableHeaderHeight = frame.height
                         }
                     }
-//                    .onChange(of: scrollOffset) { _, _ in
-//                        print("nonCollapsableHeaderHeight", nonCollapsableHeaderHeight)
-//                        print("collapsableHeaderHeight", collapsableHeaderHeight)
-//                        print("originalScrollOffset", originalScrollOffset)
-//                        print("scrollOffset", scrollOffset ?? 0)
-//                        print(originalScrollOffset - collapsableHeaderHeight)
-//                        print("--------------------------------------------------------------------")
-//
-//                    }
                     .onFirstAppear {
                         originalScrollOffset = scrollOffset ?? 0
                     }
-//                    .onAppear {
-//                        originalScrollOffset = scrollOffset ?? 0
-//                    }
             default:
                 SwiftUI.EmptyView()
             }
