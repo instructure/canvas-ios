@@ -218,7 +218,10 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
         default:
             XCTFail("Expected data state")
         }
-        NotificationCenter.default.post(name: .SpeedGraderAttemptPickerChanged, object: 2)
+        NotificationCenter.default.post(
+            name: .SpeedGraderAttemptPickerChanged,
+            object: SpeedGraderAttemptChangeInfo(attemptIndex: 2, userId: "1")
+        )
 
         // THEN
         switch testee.state {
