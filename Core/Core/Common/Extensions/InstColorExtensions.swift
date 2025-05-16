@@ -49,6 +49,20 @@ public extension Color {
     static let textWarning = Color(uiColor: .textWarning)
 }
 
+public extension ShapeStyle where Self == Color {
+    static var textDanger: Color { Color(uiColor: .textDanger) }
+    static var textDark: Color { Color(uiColor: .textDark) }
+    static var textDarkest: Color { Color(uiColor: .textDarkest) }
+    static var textInfo: Color { Color(uiColor: .textInfo) }
+    static var textLight: Color { Color(uiColor: .textLight) }
+    static var textLightest: Color { Color(uiColor: .textLightest) }
+    static var textLink: Color { Color(uiColor: .textLink) }
+    static var textMasquerade: Color { Color(uiColor: .textMasquerade) }
+    static var textPlaceholder: Color { Color(uiColor: .textPlaceholder) }
+    static var textSuccess: Color { Color(uiColor: .textSuccess) }
+    static var textWarning: Color { Color(uiColor: .textWarning) }
+}
+
 // MARK: - Background Colors
 
 public extension UIColor {
@@ -83,6 +97,22 @@ public extension Color {
     static let backgroundWarning = Color(uiColor: .backgroundWarning)
 }
 
+public extension ShapeStyle where Self == Color {
+    static var backgroundDanger: Color { Color(uiColor: .backgroundDanger) }
+    static var backgroundDark: Color { Color(uiColor: .backgroundDark) }
+    static var backgroundDarkest: Color { Color(uiColor: .backgroundDarkest) }
+    static var backgroundGrouped: Color { Color(uiColor: .backgroundGrouped) }
+    static var backgroundGroupedCell: Color { Color(uiColor: .backgroundGroupedCell) }
+    static var backgroundInfo: Color { Color(uiColor: .backgroundInfo) }
+    static var backgroundLight: Color { Color(uiColor: .backgroundLight) }
+    static var backgroundLightest: Color { Color(uiColor: .backgroundLightest) }
+    static var backgroundLightestElevated: Color { Color(uiColor: .backgroundLightestElevated) }
+    static var backgroundMasquerade: Color { Color(uiColor: .backgroundMasquerade) }
+    static var backgroundMedium: Color { Color(uiColor: .backgroundMedium) }
+    static var backgroundSuccess: Color { Color(uiColor: .backgroundSuccess) }
+    static var backgroundWarning: Color { Color(uiColor: .backgroundWarning) }
+}
+
 // MARK: - Border Colors
 
 public extension UIColor {
@@ -111,6 +141,20 @@ public extension Color {
     static let borderMedium = Color(uiColor: .borderMedium)
     static let borderSuccess = Color(uiColor: .borderSuccess)
     static let borderWarning = Color(uiColor: .borderWarning)
+}
+
+public extension ShapeStyle where Self == Color {
+    static var borderDanger: Color { Color(uiColor: .borderDanger) }
+    static var borderDark: Color { Color(uiColor: .borderDark) }
+    static var borderDarkest: Color { Color(uiColor: .borderDarkest) }
+    static var borderDebug: Color { Color(uiColor: .borderDebug) }
+    static var borderInfo: Color { Color(uiColor: .borderInfo) }
+    static var borderLight: Color { Color(uiColor: .borderLight) }
+    static var borderLightest: Color { Color(uiColor: .borderLightest) }
+    static var borderMasquerade: Color { Color(uiColor: .borderMasquerade) }
+    static var borderMedium: Color { Color(uiColor: .borderMedium) }
+    static var borderSuccess: Color { Color(uiColor: .borderSuccess) }
+    static var borderWarning: Color { Color(uiColor: .borderWarning) }
 }
 
 // MARK: - Course Colors
@@ -145,6 +189,21 @@ public extension Color {
     static let course12 = Color(uiColor: .course12)
 }
 
+public extension ShapeStyle where Self == Color {
+    static var course1: Color { Color(uiColor: .course1) }
+    static var course2: Color { Color(uiColor: .course2) }
+    static var course3: Color { Color(uiColor: .course3) }
+    static var course4: Color { Color(uiColor: .course4) }
+    static var course5: Color { Color(uiColor: .course5) }
+    static var course6: Color { Color(uiColor: .course6) }
+    static var course7: Color { Color(uiColor: .course7) }
+    static var course8: Color { Color(uiColor: .course8) }
+    static var course9: Color { Color(uiColor: .course9) }
+    static var course10: Color { Color(uiColor: .course10) }
+    static var course11: Color { Color(uiColor: .course11) }
+    static var course12: Color { Color(uiColor: .course12) }
+}
+
 // MARK: - iOS Specific Colors
 
 public extension UIColor {
@@ -153,4 +212,8 @@ public extension UIColor {
 
 public extension Color {
     static let disabledGray = Color(uiColor: .disabledGray)
+}
+
+public extension ShapeStyle where Self == Color {
+    static var disabledGray: Color { Color(uiColor: .disabledGray) }
 }
