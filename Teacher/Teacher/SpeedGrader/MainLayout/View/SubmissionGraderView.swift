@@ -355,7 +355,10 @@ struct SubmissionGraderView: View {
                 .background(Color.backgroundLightest)
                 .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
             }
+            // Since we are offsetting the content, we need to clip it to avoid showing other tabs outside of the drawer.
             .clipped()
+            // Clipping won't prevent user interaction so we need to limit it not to swallow touches outside of the drawer.
+            .contentShape(Rectangle())
         }
     }
 
