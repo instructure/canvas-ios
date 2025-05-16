@@ -83,8 +83,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         .animation(.smooth, value: isScoreEditorPresented)
         .safeAreaInset(edge: .top, spacing: 0) {
             switch viewModel.state {
-            case .data, .empty:
-                nonCollapsableGradeDetails
+            case .data, .empty: nonCollapsableGradeDetails
             default: SwiftUI.EmptyView()
             }
         }
