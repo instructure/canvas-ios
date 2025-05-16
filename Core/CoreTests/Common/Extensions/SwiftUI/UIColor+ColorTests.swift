@@ -1,10 +1,6 @@
 //
 // This file is part of Canvas.
-<<<<<<<< HEAD:Core/CoreTests/Common/Extensions/SwiftUI/UIColor+ColorTests.swift
 // Copyright (C) 2025-present  Instructure, Inc.
-========
-// Copyright (C) 2024-present  Instructure, Inc.
->>>>>>>> master:Core/Core/Common/Extensions/SwiftUI/UIColor+Color.swift
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -20,25 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-<<<<<<<< HEAD:Core/CoreTests/Common/Extensions/SwiftUI/UIColor+ColorTests.swift
 import Core
 import SwiftUI
 import XCTest
 
 class UIColorColorTests: XCTestCase {
-
     func test_creates_color_from_ui_color() {
         let uiColor = UIColor.textDarkest
         let testee = uiColor.asColor
 
         XCTAssertEqual(uiColor.hexString, testee.hexString)
-========
-import UIKit
-import SwiftUI
-
-extension UIColor {
-    public var asColor: Color {
-        Color(self)
->>>>>>>> master:Core/Core/Common/Extensions/SwiftUI/UIColor+Color.swift
     }
 }
