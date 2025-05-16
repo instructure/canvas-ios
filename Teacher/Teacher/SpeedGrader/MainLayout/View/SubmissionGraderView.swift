@@ -30,7 +30,6 @@ struct SubmissionGraderView: View {
 
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     @State private var selectedDrawerTabIndex = 0
     @State private var drawerState: DrawerState = .min
@@ -94,7 +93,7 @@ struct SubmissionGraderView: View {
         .avoidKeyboardArea()
         .onSizeChange { newSize in
             // These conditions are to avoid reseting the landscape layout when the app is backgrounded or rotated to portrait.
-            if layoutForWidth(newSize.width) == .landscape, UIApplication.shared.applicationState != .background {
+            if layout(for: newSize) == .landscape, UIApplication.shared.applicationState != .background {
                 landscapeSplitLayoutViewModel.updateScreenWidth(newSize.width)
             }
         }
@@ -108,7 +107,7 @@ struct SubmissionGraderView: View {
         minHeight: CGFloat,
         maxHeight: CGFloat
     ) -> some View {
-        switch layoutForWidth(geometry.size.width) {
+        switch layout(for: geometry.size) {
         case .landscape:
             landscapeLayout(bottomInset: bottomInset)
         case .portrait:
@@ -461,19 +460,14 @@ struct SubmissionGraderView: View {
 
     // MARK: - Rotation
 
-    private func layoutForWidth(_ width: CGFloat) -> Layout {
+    private func layout(for size: CGSize) -> Layout {
         // On iPads if the app is backgrounded then it changes the device orientation back and forth causing the UI to re-render and the submission to re-load.
         // To overcome this we force the last presented layout in case the app is in the background.
         guard UIApplication.shared.applicationState != .background else {
             return lastPresentedLayout
         }
 
-        // If we are vertically compact then we are in iPhone landscape mode.
-        if verticalSizeClass == .compact {
-            return .landscape
-        }
-
-        return width > 834 ? .landscape : .portrait
+        return size.width > size.height ? .landscape : .portrait
     }
 
     private func didChangeLayout(to layout: Layout) {
