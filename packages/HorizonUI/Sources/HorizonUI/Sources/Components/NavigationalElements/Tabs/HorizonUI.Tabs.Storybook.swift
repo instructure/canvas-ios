@@ -22,7 +22,6 @@ public extension HorizonUI.Tabs {
         @State private var selectedTabIndex: Int? = 0
         private let tabs = ["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5", "Tab 6"]
 
-<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/NavigationalElements/Tabs/HorizonUI.Tabs.Storybook.swift
         public var body: some View {
             VStack {
                 HorizonUI.Tabs(tabs: tabs, selectTabIndex: $selectedTabIndex)
@@ -32,24 +31,4 @@ public extension HorizonUI.Tabs {
             .navigationTitle("Tabs")
         }
     }
-}
-
-#Preview {
-    HorizonUI.Tabs.Storybook()
-========
-public extension HorizonUI.Spaces {
-    struct Primitives: Sendable {
-        public let space2: CGFloat = 2
-        public let space4: CGFloat = 4
-        public let space8: CGFloat = 8
-        public let space10: CGFloat = 10
-        public let space12: CGFloat = 12
-        public let space16: CGFloat = 16
-        public let space24: CGFloat = 24
-        public let space32: CGFloat = 32
-        public let space36: CGFloat = 36
-        public let space40: CGFloat = 40
-        public let space48: CGFloat = 48
-    }
->>>>>>>> master:packages/HorizonUI/Sources/HorizonUI/Sources/Foundation/Spaces/HorizonUI.Spaces.Primitivies.swift
 }
