@@ -22,7 +22,7 @@ import Foundation
 
 /// A representation of our domain services
 /// These are configured the the .xcconfig files and in the target info build settings
-struct DomainService {
+final class DomainService {
 
     // MARK: - Dependencies
 
@@ -64,9 +64,13 @@ struct DomainService {
                     service: option.service
                 )
             )
-            .tryMap(tokenResponseToUtf8String)
-            .map { jwt in
-                API(
+            .tryMap { [weak self] response, urlResponse in
+                guard let self else { throw DomainService.Issue.unableToGetToken }
+                return try tokenResponseToUtf8String(tokenResponse: response, urlResponse: urlResponse)
+            }
+            .compactMap { [weak self] jwt in
+                guard let self else { return nil }
+                return API(
                     LoginSession(
                         accessToken: jwt,
                         baseURL: baseURL,

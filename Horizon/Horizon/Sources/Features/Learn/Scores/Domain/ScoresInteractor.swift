@@ -30,20 +30,17 @@ final class ScoresInteractorLive: ScoresInteractor {
     let courseID: String
     private let enrollmentID: String
     private let userId: String
-    private let submissionCommentInteractor: SubmissionCommentInteractor
 
     // MARK: - Init
 
     init(
         courseID: String,
         enrollmentID: String,
-        userId: String =  AppEnvironment.shared.currentSession?.userID ?? "",
-        submissionCommentInteractor: SubmissionCommentInteractor = SubmissionCommentAssembly.makeSubmissionCommentInteractor()
+        userId: String = AppEnvironment.shared.currentSession?.userID ?? ""
     ) {
         self.courseID = courseID
         self.enrollmentID = enrollmentID
         self.userId = userId
-        self.submissionCommentInteractor = submissionCommentInteractor
     }
 
     func getScores(sortedBy: ScoreDetails.SortOption, ignoreCache: Bool) -> AnyPublisher<ScoreDetails, Error> {

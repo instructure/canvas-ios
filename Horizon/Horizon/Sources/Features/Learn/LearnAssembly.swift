@@ -37,8 +37,7 @@ final class LearnAssembly {
                     getCoursesInteractor: makeGetCoursesInteractor(),
                     courseID: courseID,
                     enrollmentID: enrollmentID,
-                    course: course,
-                    onShowTabBar: appEnvironment.tabBar(isVisible:)
+                    course: course
                 )
             )
         )
@@ -56,8 +55,7 @@ final class LearnAssembly {
                 getCoursesInteractor: makeGetCoursesInteractor(),
                 courseID: courseID,
                 enrollmentID: enrollmentID,
-                course: course,
-                onShowTabBar: appEnvironment.tabBar(isVisible:)
+                course: course
             ),
             isBackButtonVisible: false
         )
