@@ -37,29 +37,29 @@ struct TeacherDateSection<ViewModel: DateSectionViewModelProtocol>: View {
                         Text("Multiple Due Dates", bundle: .teacher)
                     } else {
                         if let dueAt = viewModel.dueAt {
-                            Line(Text("Due:", bundle: .teacher), Text(dueAt.dateTimeString))
+                            line(Text("Due:", bundle: .teacher), Text(dueAt.dateTimeString))
                         } else {
-                            Line(Text("Due:", bundle: .teacher), Text(verbatim: "--"))
+                            line(Text("Due:", bundle: .teacher), Text(verbatim: "--"))
                                 .accessibility(label: Text("No due date set.", bundle: .teacher))
                         }
 
-                        Line(Text("For:", bundle: .teacher), Text(viewModel.forText))
+                        line(Text("For:", bundle: .teacher), Text(viewModel.forText))
 
                         let lockAt = viewModel.lockAt
                         if let to = lockAt, to < Clock.now {
-                            Line(Text("Availability:", bundle: .teacher), Text("Closed", bundle: .teacher))
+                            line(Text("Availability:", bundle: .teacher), Text("Closed", bundle: .teacher))
                         } else {
                             if let from = viewModel.unlockAt {
-                                Line(Text("Available from:", bundle: .teacher), Text(from.dateTimeString))
+                                line(Text("Available from:", bundle: .teacher), Text(from.dateTimeString))
                             } else {
-                                Line(Text("Available from:", bundle: .teacher), Text(verbatim: "--"))
+                                line(Text("Available from:", bundle: .teacher), Text(verbatim: "--"))
                                     .accessibility(label: Text("No available from date set.", bundle: .teacher))
                             }
 
                             if let to = lockAt {
-                                Line(Text("Available until:", bundle: .teacher), Text(to.dateTimeString))
+                                line(Text("Available until:", bundle: .teacher), Text(to.dateTimeString))
                             } else {
-                                Line(Text("Available until:", bundle: .teacher), Text(verbatim: "--"))
+                                line(Text("Available until:", bundle: .teacher), Text(verbatim: "--"))
                                     .accessibility(label: Text("No available until date set.", bundle: .teacher))
                             }
                         }
@@ -79,7 +79,7 @@ struct TeacherDateSection<ViewModel: DateSectionViewModelProtocol>: View {
     }
 
     @ViewBuilder
-    private func Line(_ title: Text, _ value: Text) -> some View {
+    private func line(_ title: Text, _ value: Text) -> some View {
         HStack(spacing: 4) {
             title.font(.regular16).foregroundStyle(Color.textDark)
             value.font(.regular16).foregroundStyle(Color.textDarkest)

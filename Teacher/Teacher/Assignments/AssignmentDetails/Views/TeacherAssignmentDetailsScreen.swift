@@ -99,7 +99,7 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
 
         HeaderView(assignment: assignment)
 
-        Divider()
+        InstUI.Divider()
 
         TeacherSubmissionBreakdownView(
             viewModel: AssignmentSubmissionBreakdownViewModel(
@@ -108,15 +108,15 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
                 submissionTypes: assignment.submissionTypes
             )
         )
-        Divider()
+        InstUI.Divider()
 
         TeacherDateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
             .accessibility(identifier: "AssignmentDetails.due")
-        Divider()
+        InstUI.Divider()
 
         SubmissionTypesView(assignment: assignment)
 
-        Divider()
+        InstUI.Divider()
 
         DescriptionView(assignment: assignment)
 
@@ -327,7 +327,7 @@ extension TeacherAssignmentDetailsScreen {
         if isTeacherEnrollment {
             items.append(
                 UIBarButtonItemWithCompletion(
-                    title: "SpeedGrader",
+                    title: "SpeedGrader", // not localized on purpose
                     image: .speedGraderLine,
                     actionHandler: {
                         env.router.route(

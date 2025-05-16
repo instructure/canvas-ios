@@ -109,11 +109,11 @@ struct SubmissionsFilterView: View {
                 )
             }
         }
-        .navigationBarStyle(.modal)
         .navigationBarTitleView(
             title: String(localized: "Submission list Preferences", bundle: .teacher),
             subtitle: viewModel.assignment?.name
         )
+        .navigationBarStyle(.modal)
     }
 
     private var selectedFilterMode: SubmissionFilterMode {
