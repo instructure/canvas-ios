@@ -33,7 +33,7 @@ struct HeaderVisibilityKey: PreferenceKey {
 
 struct AssignmentPreferenceKey: PreferenceKey {
     static var defaultValue: AssignmentPreferenceKeyType?
-    
+
     static func reduce(value: inout AssignmentPreferenceKeyType?, nextValue: () -> AssignmentPreferenceKeyType?) {
         value = nextValue()
     }
