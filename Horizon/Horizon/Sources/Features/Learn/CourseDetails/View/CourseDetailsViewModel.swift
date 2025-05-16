@@ -153,7 +153,13 @@ final class CourseDetailsViewModel {
         return Future<HCourse, Never> { promise in
             unownedSelf.getCoursesInteractor.getCourseWithModules(id: id, ignoreCache: false)
                 .sink { [weak self] course in
-                    guard let course = course, let self = self else { return }
+                    guard
+                        let course = course,
+                        let self = self,
+                        // Prevent redundant updates if the same course is already selected.
+                        // This case can occur when navigating to a module item sequence view.
+                        (self.selectedCoure == nil || self.selectedCoure?.id != course.id)
+                    else { return }
                     let currentProgress = self.course.progress
                     let nextProgress = course.progress
                     self.course = course
