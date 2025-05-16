@@ -123,7 +123,7 @@ struct SubmissionHeaderView: View {
 
     private var resizeGesture: some Gesture {
         DragGesture(
-            minimumDistance: 5,
+            minimumDistance: 10,
             coordinateSpace: .global
         )
         .onChanged { value in

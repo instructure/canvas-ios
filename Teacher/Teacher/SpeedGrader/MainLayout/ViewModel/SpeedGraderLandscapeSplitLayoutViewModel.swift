@@ -28,15 +28,11 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
     @Published private(set) var dragIconRotation: Angle = .degrees(0)
     @Published private(set) var isRightColumnHidden = false
     @Published private(set) var rightColumnWidth: CGFloat?
-    @Published private(set) var leftColumnWidth: CGFloat? {
-        didSet {
-            didUpdateLeftColumnWidth()
-        }
-    }
+    @Published private(set) var leftColumnWidth: CGFloat?
 
     // MARK: - Private Properties
 
-    private let moveAnimation = Animation.snappy
+    private let moveAnimation = Animation.smooth(duration: 0.3)
     private var screenWidth: CGFloat = 0
     private var leftSideMinWidth: CGFloat = 0
     private var leftSideMaxWidth: CGFloat = 0
@@ -65,6 +61,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
                 let leftColumnWidth = leftColumnWidthBeforeFullScreen ?? leftSideMaxWidth
                 self.leftColumnWidth = leftColumnWidth
                 rightColumnWidth = screenWidth - leftColumnWidth
+                didUpdateLeftColumnWidth()
             }
             leftColumnWidthBeforeFullScreen = nil
         } else {
@@ -72,6 +69,7 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
             withAnimation(moveAnimation) {
                 leftColumnWidth = screenWidth
                 rightColumnWidth = leftSideMinWidth
+                didUpdateLeftColumnWidth()
             }
         }
     }
@@ -94,11 +92,13 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
                     self.leftColumnWidth = leftSideMaxWidth
                     self.rightColumnWidth = leftSideMinWidth
                 }
+                didUpdateLeftColumnWidth()
             }
         } else if leftColumnWidth < leftSideMinWidth {
             withAnimation(moveAnimation) {
                 self.leftColumnWidth = leftSideMinWidth
                 self.rightColumnWidth = screenWidth - leftSideMinWidth
+                didUpdateLeftColumnWidth()
             }
         }
     }
@@ -124,18 +124,17 @@ class SpeedGraderLandscapeSplitLayoutViewModel: ObservableObject {
             leftColumnWidth = dragPosition
             rightColumnWidth = screenWidth - dragPosition
         }
+        didUpdateLeftColumnWidth()
     }
 
     // MARK: - Private
 
     private func didUpdateLeftColumnWidth() {
-        withAnimation(moveAnimation) { [isFullScreen] in
-            dragIconRotation = .degrees(isFullScreen ? -180 : 0)
-            dragIconA11yValue = isFullScreen ? String(localized: "Closed", bundle: .teacher)
-                                             : String(localized: "Open", bundle: .teacher)
-            dragIconA11yHint = isFullScreen ? String(localized: "Double tap to open drawer", bundle: .teacher)
-                                            : String(localized: "Double tap to close drawer", bundle: .teacher)
-            self.isRightColumnHidden = isFullScreen
-        }
+        dragIconRotation = .degrees(isFullScreen ? -180 : 0)
+        dragIconA11yValue = isFullScreen ? String(localized: "Closed", bundle: .teacher)
+                                         : String(localized: "Open", bundle: .teacher)
+        dragIconA11yHint = isFullScreen ? String(localized: "Double tap to open drawer", bundle: .teacher)
+                                        : String(localized: "Double tap to close drawer", bundle: .teacher)
+        isRightColumnHidden = isFullScreen
     }
 }
