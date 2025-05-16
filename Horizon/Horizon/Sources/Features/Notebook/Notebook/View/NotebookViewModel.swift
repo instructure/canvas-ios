@@ -19,7 +19,6 @@
 import Combine
 import Core
 import Foundation
-import SwiftUI
 
 @Observable
 final class NotebookViewModel {
@@ -73,8 +72,8 @@ final class NotebookViewModel {
     init(
         courseId: String? = nil,
         pageUrl: String? = nil,
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(),
-        router: Router = AppEnvironment.defaultValue.router
+        courseNoteInteractor: CourseNoteInteractor,
+        router: Router
     ) {
         self.courseId = courseId
         self.pageUrl = pageUrl
@@ -139,21 +138,21 @@ final class NotebookViewModel {
         courseNoteInteractor
             .get()
             .replaceError(with: [])
-            .sink(receiveValue: loadNotesComplete)
+            .sink { [weak self] notes in
+                self?.loadNotesComplete(courseNotes: notes)
+            }
             .store(in: &subscriptions)
     }
 
     private func loadNotesComplete(courseNotes: [CourseNotebookNote]) {
-        withAnimation {
-            self.notes = courseNotes.map { note in
-                NotebookNote(courseNotebookNote: note)
-            }
-            self.isNextDisabled = courseNotes.last?.hasNext != true
-            self.isPreviousDisabled = courseNotes.first?.hasPrevious != true
-            self.state = .data
-            self.refreshComplete?()
-            self.refreshComplete = nil
+        notes = courseNotes.map { note in
+            NotebookNote(courseNotebookNote: note)
         }
+        isNextDisabled = courseNotes.last?.hasNext != true
+        isPreviousDisabled = courseNotes.first?.hasPrevious != true
+        state = .data
+        refreshComplete?()
+        refreshComplete = nil
     }
 }
 

@@ -27,12 +27,13 @@ final class CourseDetailsViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var course: HCourse
     private(set) var isShowHeader = true
-    let courseID: String
+    private(set) var courses: [DropdownMenuItem] = []
+    private(set) var selectedCoure: DropdownMenuItem?
     private(set) var isLoaderVisible: Bool = false
-    let scoresViewModel: ScoresViewModel
 
     // MARK: - Inputs
 
+    var onSelectCourse: (DropdownMenuItem?) -> Void = { _ in }
     private(set) var showHeaderPublisher = PassthroughSubject<Bool, Never>()
 
     // MARK: - Inputs / Outputs
@@ -41,11 +42,11 @@ final class CourseDetailsViewModel {
 
     // MARK: - Private
 
-    private let onShowTabBar: (Bool) -> Void
     private let router: Router
+    private let courseID: String
     private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
-    private var refreshCompletedModuleItemCancellable: AnyCancellable?
+    private var pullToRefreshCancellable: AnyCancellable?
 
     // MARK: - Init
 
@@ -56,42 +57,15 @@ final class CourseDetailsViewModel {
         courseID: String,
         enrollmentID: String,
         course: HCourse?,
-        onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
         self.courseID = courseID
         self.course = course ?? .init()
-        self.onShowTabBar = onShowTabBar
-        self.scoresViewModel = ScoresAssembly.makeViewModel(courseID: courseID, enrollmentID: enrollmentID)
         self.isLoaderVisible = true
-
-        getCoursesInteractor.getCourseWithModules(id: courseID, ignoreCache: false)
-            .sink { [weak self] course in
-                guard let course = course, let self = self else { return }
-                let currentProgress = self.course.progress
-                let nextProgress = course.progress
-                self.course = course
-                self.course.progress = max(nextProgress, currentProgress)
-                self.state = .data
-                self.isLoaderVisible = false
-                // Firt tab is 0 -> Overview 1 -> MyProgress
-                self.selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1
-            }
-            .store(in: &subscriptions)
-
-        showHeaderPublisher
-            .removeDuplicates()
-            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
-            .sink { [weak self] value in
-                self?.isShowHeader = value
-            }
-            .store(in: &subscriptions)
-    }
-
-    deinit {
-        refreshCompletedModuleItemCancellable?.cancel()
-        refreshCompletedModuleItemCancellable = nil
+        fetchData()
+        observeCourseSelection()
+        observeHeaderVisiablity()
     }
 
     // MARK: - Inputs
@@ -101,24 +75,97 @@ final class CourseDetailsViewModel {
         // Let other screens know about pull to refresh action
         NotificationCenter.default.post(name: .courseDetailsForceRefreshed, object: nil)
 
-        await withCheckedContinuation { continuation in
-            getCoursesInteractor.getCourseWithModules(id: courseID, ignoreCache: true)
+        await withCheckedContinuation { [weak self] continuation in
+            guard let self else {
+                continuation.resume()
+                return
+            }
+             pullToRefreshCancellable = getCoursesInteractor.getCourseWithModules(id: course.id, ignoreCache: true)
                 .first()
                 .sink { [weak self] course in
                     continuation.resume()
                     guard let course = course, let self = self else { return }
                     self.course = course
                 }
-                .store(in: &subscriptions)
         }
+    }
+
+    func didTapBackButton(viewController: WeakViewController) {
+        router.dismiss(viewController)
     }
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
         router.route(to: url, from: from)
     }
 
-    func showTabBar() {
-        onShowTabBar(true)
+    // MARK: - Private Functions
+
+    private func observeCourseSelection() {
+        onSelectCourse = { [weak self] selectedCourse in
+            guard let self else {
+                return
+            }
+
+            // Needs to cancel refresh api after change the course
+            pullToRefreshCancellable?.cancel()
+            pullToRefreshCancellable = nil
+            isLoaderVisible = true
+            selectedTabIndex = 1
+            getCourse(for: selectedCourse?.id ?? "")
+                .sink { [weak self] _ in
+                    self?.isLoaderVisible = false
+                }
+                .store(in: &subscriptions)
+        }
+    }
+
+    private func observeHeaderVisiablity() {
+        showHeaderPublisher
+            .removeDuplicates()
+            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.isShowHeader = value
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func fetchData() {
+        Publishers.Zip(getCourse(for: courseID), getCourses())
+            .sink { [weak self] _, courses in
+                self?.courses = courses
+                self?.isLoaderVisible = false
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func getCourses() -> AnyPublisher<[DropdownMenuItem], Never> {
+        getCoursesInteractor
+            .getCoursesWithoutModules(ignoreCache: false)
+            .flatMap { Publishers.Sequence(sequence: $0) }
+            .map { DropdownMenuItem(id: $0.id, name: $0.name) }
+            .collect()
+            .eraseToAnyPublisher()
+    }
+
+    @discardableResult
+    private func getCourse(for id: String) -> AnyPublisher<HCourse, Never> {
+        unowned let unownedSelf = self
+        return Future<HCourse, Never> { promise in
+            unownedSelf.getCoursesInteractor.getCourseWithModules(id: id, ignoreCache: false)
+                .sink { [weak self] course in
+                    guard let course = course, let self = self else { return }
+                    let currentProgress = self.course.progress
+                    let nextProgress = course.progress
+                    self.course = course
+                    self.course.progress = max(nextProgress, currentProgress)
+                    self.state = .data
+                    self.selectedCoure = .init(id: course.id, name: course.name)
+                    // Firt tab is 0 -> Overview 1 -> MyProgress
+                    self.selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1
+                    promise(.success(course))
+                }
+                .store(in: &unownedSelf.subscriptions)
+        }.eraseToAnyPublisher()
     }
 }
 

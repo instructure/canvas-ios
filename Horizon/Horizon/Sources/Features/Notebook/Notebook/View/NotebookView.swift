@@ -64,6 +64,7 @@ struct NotebookView: View {
             }
         }
         .padding(.bottom, .huiSpaces.space16)
+        .animation(.smooth, value: viewModel.notes.count)
     }
 
     @ViewBuilder
@@ -152,7 +153,8 @@ struct NotebookView: View {
     NotebookView(
         viewModel: .init(
             courseId: "123",
-            courseNoteInteractor: CourseNoteInteractorPreview()
+            courseNoteInteractor: CourseNoteInteractorPreview(),
+            router: AppEnvironment.shared.router
         ))
 }
 #endif
