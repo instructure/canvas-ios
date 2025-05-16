@@ -230,15 +230,15 @@ public class AssignmentsHelper: BaseHelper {
 
         // Teacher
         public struct Submissions {
-            public static var needsGradingLabel: XCUIElement { app.find(id: "Needs Grading") }
+            public static var needsGradingLabel: XCUIElement { app.find(labelContaining: "Needs Grading") }
             public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
 
             public static func cell(student: DSUser) -> XCUIElement {
                 return app.find(id: "SubmissionListCell.\(student.id)")
             }
 
-            public static func navBar(assignment: DSAssignment) -> XCUIElement {
-                return app.find(id: "Submissions, \(assignment.name)", type: .navigationBar)
+            public static var navBar: XCUIElement {
+                return app.find(idStartingWith: "Submissions", type: .navigationBar)
             }
         }
 

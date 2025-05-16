@@ -137,7 +137,7 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return CoreHostingController(
-            AssignmentDetailsView(env: env, courseID: courseID, assignmentID: assignmentID),
+            TeacherAssignmentDetailsScreen(env: env, courseID: courseID, assignmentID: assignmentID),
             env: env
         )
     },
@@ -165,13 +165,12 @@ let router = Router(routes: [
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
 
-        return SubmissionListViewController
-            .create(
-                env: env,
-                context: context,
-                assignmentID: assignmentID,
-                filter: filter
-            )
+        return SubmissionListAssembly.makeViewController(
+            env: env,
+            context: context,
+            assignmentID: assignmentID,
+            filter: filter
+        )
     },
 
     RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, _, env in
