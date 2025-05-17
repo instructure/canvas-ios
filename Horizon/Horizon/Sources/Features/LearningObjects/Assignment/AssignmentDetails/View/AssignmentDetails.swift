@@ -103,7 +103,7 @@ struct AssignmentDetails: View {
         if viewModel.assignment?.isQuizLTI == true {
             HorizonUI.PrimaryButton(
                 String(localized: "Start Quiz", bundle: .horizon),
-                type: .blue,
+                type: .institution,
                 isSmall: false
             ) {
                 viewModel.showQuizLTI(controller: viewController)

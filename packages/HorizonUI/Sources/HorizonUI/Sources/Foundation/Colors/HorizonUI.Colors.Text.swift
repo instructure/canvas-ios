@@ -21,7 +21,7 @@ import SwiftUI
 public extension HorizonUI.Colors {
     struct TextColor: Sendable, ColorCollection {
         public let author = Color(hexString: "#586874")
-        public let beigePrimary = Color(hexString: "#F2F4F4")
+        public let greyPrimary = Color(hexString: "#F2F4F4")
         public let beigeSecondary = Color(hexString: "#F9F9F9")
         public let body = Color(hexString: "#273540")
         public let dataPoint = Color(hexString: "#586874")

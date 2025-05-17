@@ -37,7 +37,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         viewControllers = [
             dashboardTab(),
             learnTab(),
-            fakeTab(),
+            chatBotTab(),
             careerTab(),
             accountTab()
         ]
@@ -90,7 +90,7 @@ final class HorizonTabBarController: UITabBarController, UITabBarControllerDeleg
         return vc
     }
 
-    private func fakeTab() -> UIViewController {
+    private func chatBotTab() -> UIViewController {
         if shouldPresentChatBot {
             let vc = UIViewController()
             vc.tabBarItem.image = UIImage(resource: .chatBot)

@@ -46,7 +46,7 @@ struct MarkAsDoneButton: View {
             } else {
                 HorizonUI.PrimaryButton(
                     text,
-                    type: .beige,
+                    type: .gray,
                     leading: image
                 ) {
                     onTap()

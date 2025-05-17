@@ -83,7 +83,7 @@ struct MyAssignmentSubmissionsView: View {
                         }
                     }
                 RoundedRectangle(cornerRadius: 32)
-                    .fill(Color.huiColors.text.beigePrimary)
+                    .fill(Color.huiColors.text.greyPrimary)
                     .frame(width: 4, height: textHeight)
             }
         case .externalTool:
