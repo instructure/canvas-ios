@@ -25,6 +25,7 @@ struct SubmissionListSection: Identifiable {
         case submitted
         case unsubmitted
         case graded
+        case others
 
         var title: String {
             switch self {
@@ -34,6 +35,8 @@ struct SubmissionListSection: Identifiable {
                 return String(localized: "Not Submitted", bundle: .teacher)
             case .graded:
                 return String(localized: "Graded", bundle: .teacher)
+            case .others:
+                return String(localized: "Others", bundle: .teacher)
             }
         }
 
@@ -45,6 +48,14 @@ struct SubmissionListSection: Identifiable {
                 { $0.workflowState == .unsubmitted }
             case .graded:
                 { $0.isGraded }
+            case .others:
+                { submission in
+                    let matchOnOfFirstThree = Self
+                        .allCases
+                        .dropLast()
+                        .contains(where: { $0.filter(submission) })
+                    return matchOnOfFirstThree == false
+                }
             }
         }
     }

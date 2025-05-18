@@ -419,18 +419,15 @@ extension Submission {
     }
 
     public var status: SubmissionStatus {
-        status(includingGradedState: false)
-    }
-
-    public func status(includingGradedState: Bool) -> SubmissionStatus {
-        if includingGradedState && isGraded {
-            return excused == true ? .excused : .graded
-        }
-
         if late { return .late }
         if missing { return .missing }
         if submittedAt != nil { return .submitted }
         return .notSubmitted
+    }
+
+    public var statusIncludingGradedState: SubmissionStatus {
+        if isGraded { return excused == true ? .excused : .graded }
+        return status
     }
 }
 

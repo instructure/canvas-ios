@@ -60,7 +60,7 @@ public struct SubmissionListItem: Identifiable {
         self.user = submission.user.flatMap {
             return User(id: $0.id, name: $0.name, pronouns: $0.pronouns, avatarURL: $0.avatarURL)
         }
-        self.status = submission.status(includingGradedState: true)
+        self.status = submission.statusIncludingGradedState
         self.needsGrading = submission.needsGrading
         self.gradeFormatted = GradeFormatter.shortString(for: assignment, submission: submission)
     }
