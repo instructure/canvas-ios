@@ -13,14 +13,13 @@
 		0856FCD22DB64665009067CF /* SubmissionListInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */; };
 		0856FCD42DB64FE8009067CF /* SubmissionListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCD32DB64FD4009067CF /* SubmissionListRowView.swift */; };
 		0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCD52DB65837009067CF /* SubmissionListAssembly.swift */; };
-		0856FCF42DC76144009067CF /* SubmissionsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCF32DC7613C009067CF /* SubmissionsFilterView.swift */; };
+		0856FCF42DC76144009067CF /* SubmissionsFilterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCF32DC7613C009067CF /* SubmissionsFilterScreen.swift */; };
 		0856FCFC2DCA4196009067CF /* SubmissionListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFB2DCA418B009067CF /* SubmissionListViewModelTests.swift */; };
 		0856FCFE2DCA41B6009067CF /* SubmissionListInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */; };
 		0856FD002DCB09D6009067CF /* SubmissionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */; };
 		0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856FD012DCB09F3009067CF /* SubmissionListSection.swift */; };
 		089AAC902DCC01370022F341 /* SubmissionListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */; };
 		089AAC942DCC02200022F341 /* MockSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */; };
-		089AAC962DCC024A0022F341 /* NSManagedObjectContext+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */; };
 		089AACBA2DD5F7FB0022F341 /* TeacherAssignmentDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACB92DD5F7F80022F341 /* TeacherAssignmentDetailsScreen.swift */; };
 		089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACBD2DD5FAAA0022F341 /* TeacherDateSection.swift */; };
 		089AACC02DD5FAF20022F341 /* TeacherSubmissionBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089AACBF2DD5FAEC0022F341 /* TeacherSubmissionBreakdownView.swift */; };
@@ -243,14 +242,13 @@
 		0856FCD12DB64663009067CF /* SubmissionListInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractorLive.swift; sourceTree = "<group>"; };
 		0856FCD32DB64FD4009067CF /* SubmissionListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListRowView.swift; sourceTree = "<group>"; };
 		0856FCD52DB65837009067CF /* SubmissionListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListAssembly.swift; sourceTree = "<group>"; };
-		0856FCF32DC7613C009067CF /* SubmissionsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsFilterView.swift; sourceTree = "<group>"; };
+		0856FCF32DC7613C009067CF /* SubmissionsFilterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsFilterScreen.swift; sourceTree = "<group>"; };
 		0856FCFB2DCA418B009067CF /* SubmissionListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListViewModelTests.swift; sourceTree = "<group>"; };
 		0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListInteractorLiveTests.swift; sourceTree = "<group>"; };
 		0856FCFF2DCB09CE009067CF /* SubmissionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItem.swift; sourceTree = "<group>"; };
 		0856FD012DCB09F3009067CF /* SubmissionListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListSection.swift; sourceTree = "<group>"; };
 		089AAC8F2DCC01340022F341 /* SubmissionListItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItemTests.swift; sourceTree = "<group>"; };
 		089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSubmissionListInteractor.swift; sourceTree = "<group>"; };
-		089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+TestUtils.swift"; sourceTree = "<group>"; };
 		089AACB92DD5F7F80022F341 /* TeacherAssignmentDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherAssignmentDetailsScreen.swift; sourceTree = "<group>"; };
 		089AACBD2DD5FAAA0022F341 /* TeacherDateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDateSection.swift; sourceTree = "<group>"; };
 		089AACBF2DD5FAEC0022F341 /* TeacherSubmissionBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSubmissionBreakdownView.swift; sourceTree = "<group>"; };
@@ -481,7 +479,7 @@
 		0856FCC92DB641A9009067CF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0856FCF32DC7613C009067CF /* SubmissionsFilterView.swift */,
+				0856FCF32DC7613C009067CF /* SubmissionsFilterScreen.swift */,
 				0856FCD32DB64FD4009067CF /* SubmissionListRowView.swift */,
 				0856FCCB2DB641D5009067CF /* SubmissionListScreen.swift */,
 			);
@@ -496,7 +494,7 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		0856FCFA2DCA417F009067CF /* NewSubmissionList */ = {
+		0856FCFA2DCA417F009067CF /* SubmissionList */ = {
 			isa = PBXGroup;
 			children = (
 				089AAC912DCC01FB0022F341 /* Utils */,
@@ -504,13 +502,12 @@
 				0856FCFD2DCA41A4009067CF /* SubmissionListInteractorLiveTests.swift */,
 				0856FCFB2DCA418B009067CF /* SubmissionListViewModelTests.swift */,
 			);
-			path = NewSubmissionList;
+			path = SubmissionList;
 			sourceTree = "<group>";
 		};
 		089AAC912DCC01FB0022F341 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				089AAC952DCC02430022F341 /* NSManagedObjectContext+TestUtils.swift */,
 				089AAC932DCC021F0022F341 /* MockSubmissionListInteractor.swift */,
 			);
 			path = Utils;
@@ -592,7 +589,7 @@
 		3B1D37C72310855E0017CCA2 /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
-				0856FCFA2DCA417F009067CF /* NewSubmissionList */,
+				0856FCFA2DCA417F009067CF /* SubmissionList */,
 				D9624A7B29C4AECB00F5303F /* QuizSubmissionList */,
 				3B1D37C8231085830017CCA2 /* PostGradesPresenterTests.swift */,
 				7D3DC0C6252432DD00B0EBC1 /* SubmissionFilterPickerViewControllerTests.swift */,
@@ -1683,7 +1680,7 @@
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,
 				0856FCD42DB64FE8009067CF /* SubmissionListRowView.swift in Sources */,
-				0856FCF42DC76144009067CF /* SubmissionsFilterView.swift in Sources */,
+				0856FCF42DC76144009067CF /* SubmissionsFilterScreen.swift in Sources */,
 				0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
 				0856FCD62DB6583C009067CF /* SubmissionListAssembly.swift in Sources */,
@@ -1744,7 +1741,6 @@
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */,
-				089AAC962DCC024A0022F341 /* NSManagedObjectContext+TestUtils.swift in Sources */,
 				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				CF0F18902DC0DAB50054D21A /* SpeedGraderUserIdNormalizationTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,

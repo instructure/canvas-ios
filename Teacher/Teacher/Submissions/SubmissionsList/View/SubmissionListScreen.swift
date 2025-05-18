@@ -84,16 +84,16 @@ struct SubmissionListScreen: View {
 
         ToolbarItemGroup(placement: .topBarTrailing) {
 
-            Button {
-                let filterVC = CoreHostingController(
-                    SubmissionsFilterView(viewModel: viewModel),
-                    env: env
+            InstUI
+                .NavigationBarButton
+                .filterIcon(
+                    isBackgroundContextColor: true,
+                    isSolid: viewModel.filterMode != .all,
+                    action: {
+                        viewModel.showFilterScreen(from: controller)
+                    }
                 )
-                env.router.show(filterVC, from: controller, options: .modal(embedInNav: true))
-            } label: {
-                viewModel.filterMode == .all ? Image.filterLine : Image.filterSolid
-            }
-            .tint(Color.textLightest)
+                .tint(Color.textLightest)
 
             Button {
                 viewModel.openPostPolicy(from: controller)
@@ -101,6 +101,7 @@ struct SubmissionListScreen: View {
                 Image.eyeLine
             }
             .tint(Color.textLightest)
+            .accessibilityLabel(Text("Post settings", bundle: .teacher))
             .accessibilityIdentifier("SubmissionsList.postPolicyButton")
 
             Button {
@@ -109,6 +110,7 @@ struct SubmissionListScreen: View {
                 Image.emailLine
             }
             .tint(Color.textLightest)
+            .accessibility(label: Text("Send message to users", bundle: .teacher))
         }
     }
 
@@ -124,7 +126,7 @@ private extension SubmissionListScreen {
         var body: some View {
             VStack(spacing: 0) {
                 content()
-                Divider()
+                InstUI.Divider()
                 Spacer().frame(height: 0.5)
             }
             .listRowInsets(.zero)
@@ -144,8 +146,14 @@ private extension SubmissionListScreen {
         var body: some View {
             SeparatedRow {
                 HStack(spacing: 9) {
-                    Image.searchLine.size(uiScale.iconScale * 16).foregroundStyle(Color.textDark)
-                    TextField("Search Submissions", text: $viewModel.searchText, prompt: Text("Search"))
+                    Image
+                        .searchLine
+                        .size(uiScale.iconScale * 16)
+                        .foregroundStyle(Color.textDark)
+                        .accessibilityHidden(true)
+                    TextField(
+                        String(localized: "Search Submissions", bundle: .teacher),
+                        text: $viewModel.searchText, prompt: Text("Search", bundle: .teacher))
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .font(.regular14)
@@ -216,11 +224,5 @@ private extension SubmissionListScreen {
                 .buttonStyle(.plain)
             }
         }
-    }
-}
-
-extension EdgeInsets {
-    static var zero: EdgeInsets {
-        EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     }
 }

@@ -17,6 +17,7 @@
 //
 
 import XCTest
+import TestsFoundation
 @testable import Core
 @testable import Teacher
 
@@ -34,12 +35,12 @@ class SubmissionListItemTests: TeacherTestCase {
 
     func testMakingFromSubmission() {
         // Given
-        let assignment = databaseClient.bring(\Assignment.id, equals: TestConstants.assignmentID)
+        let assignment = databaseClient.fetchFirstOrInsert(\Assignment.id, equals: TestConstants.assignmentID)
         assignment.id = TestConstants.assignmentID
         assignment.courseID = TestConstants.courseID
         assignment.name = "Test Assignment"
 
-        let submission = databaseClient.bring(\Submission.id, equals: TestConstants.submissionID)
+        let submission = databaseClient.fetchFirstOrInsert(\Submission.id, equals: TestConstants.submissionID)
         submission.assignmentID = TestConstants.assignmentID
         submission.userID = "u23244"
         submission.groupID = "g87323"

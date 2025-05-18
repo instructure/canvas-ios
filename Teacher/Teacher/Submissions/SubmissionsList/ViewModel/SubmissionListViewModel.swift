@@ -157,8 +157,16 @@ class SubmissionListViewModel: ObservableObject {
         env.router.route(
             to: assignmentRoute + "/post_policy",
             from: controller,
-            options: .modal(embedInNav: true)
+            options: .modal(embedInNav: true, addDoneButton: true)
         )
+    }
+
+    func showFilterScreen(from controller: WeakViewController) {
+        let filterVC = CoreHostingController(
+            SubmissionsFilterScreen(viewModel: self),
+            env: env
+        )
+        env.router.show(filterVC, from: controller, options: .modal(embedInNav: true))
     }
 
     func didTapSubmissionRow(_ submission: SubmissionListItem, from controller: WeakViewController) {

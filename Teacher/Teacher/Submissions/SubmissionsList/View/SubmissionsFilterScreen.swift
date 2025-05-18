@@ -52,7 +52,7 @@ enum SubmissionFilterMode: String, CaseIterable {
     }
 }
 
-struct SubmissionsFilterView: View {
+struct SubmissionsFilterScreen: View {
 
     @Environment(\.viewController) private var controller
 
@@ -62,7 +62,7 @@ struct SubmissionsFilterView: View {
     init(viewModel: SubmissionListViewModel) {
         self.viewModel = viewModel
 
-        let color = viewModel.course.flatMap({ Color(uiColor: $0.color) })
+        let color = viewModel.course.flatMap { Color(uiColor: $0.color) }
         let initialMode = viewModel.filterMode
 
         self.filterOptions = SingleSelectionOptions(
@@ -110,7 +110,7 @@ struct SubmissionsFilterView: View {
             }
         }
         .navigationBarTitleView(
-            title: String(localized: "Submission list Preferences", bundle: .teacher),
+            title: String(localized: "Submission List Preferences", bundle: .teacher),
             subtitle: viewModel.assignment?.name
         )
         .navigationBarStyle(.modal)
@@ -125,6 +125,6 @@ struct SubmissionsFilterView: View {
     }
 
     private var color: Color {
-        viewModel.course.flatMap({ Color(uiColor: $0.color) }) ?? .accentColor
+        viewModel.course.flatMap { Color(uiColor: $0.color) } ?? .accentColor
     }
 }

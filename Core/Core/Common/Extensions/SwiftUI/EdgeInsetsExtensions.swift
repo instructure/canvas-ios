@@ -16,25 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
+import SwiftUI
 
-extension NSManagedObjectContext {
-
-    func bring<T: NSManagedObject>(
-        _ idKey: KeyPath<T, String>,
-        equals value: String
-    ) -> T {
-        let keyPath = NSExpression(forKeyPath: idKey).keyPath
-        let obj: T = first(scope: .where(keyPath, equals: value)) ?? T(context: self)
-        obj.setValue(value, forKeyPath: keyPath)
-        return obj
-    }
-
-    func object<T: NSManagedObject>(
-        of idKey: KeyPath<T, String>,
-        equals value: String
-    ) -> T? {
-        let keyPath = NSExpression(forKeyPath: idKey).keyPath
-        return first(scope: .where(keyPath, equals: value))
+public extension EdgeInsets {
+    static var zero: EdgeInsets {
+        EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     }
 }

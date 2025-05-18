@@ -286,7 +286,7 @@ final class SubmissionListViewModelTests: TeacherTestCase {
 extension SubmissionListViewModelTests.TestConstants {
 
     static func assignment(in client: NSManagedObjectContext) -> Assignment {
-        let assignment = client.bring(\Assignment.id, equals: assignmentID)
+        let assignment = client.fetchFirstOrInsert(\Assignment.id, equals: assignmentID)
         assignment.id = assignmentID
         assignment.courseID = courseID
         assignment.name = "Test Assignment"
@@ -294,7 +294,7 @@ extension SubmissionListViewModelTests.TestConstants {
     }
 
     static func course(in client: NSManagedObjectContext) -> Course {
-        let course = client.bring(\Course.id, equals: courseID)
+        let course = client.fetchFirstOrInsert(\Course.id, equals: courseID)
         course.id = courseID
         course.name = "Test Course"
         return course
