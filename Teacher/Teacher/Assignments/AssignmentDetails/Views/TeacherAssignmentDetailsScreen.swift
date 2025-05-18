@@ -105,7 +105,8 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
             viewModel: AssignmentSubmissionBreakdownViewModel(
                 courseID: courseID,
                 assignmentID: assignmentID,
-                submissionTypes: assignment.submissionTypes
+                submissionTypes: assignment.submissionTypes,
+                color: course.first?.color
             )
         )
         InstUI.Divider()

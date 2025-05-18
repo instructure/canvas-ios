@@ -26,8 +26,6 @@ public class TeacherQuizSubmissionBreakdownViewModelLive: SubmissionBreakdownVie
     @Published public var unsubmitted: Int = 0
     @Published public var submissionCount: Int = 0
 
-    public var color: Color { course.first.flatMap({ Color(uiColor: $0.color) }) ?? .accentColor }
-
     public var noSubmissionTypes = false
     public var paperSubmissionTypes = false
     public var noGradingNeeded = true
