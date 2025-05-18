@@ -43,7 +43,11 @@ struct SubmissionListSection: Identifiable {
         var filter: (Submission) -> Bool {
             switch self {
             case .submitted:
-                { $0.workflowState == .submitted }
+                { submission in
+                    submission.submittedAt != nil
+                    && submission.workflowState != .graded
+                    && (submission.excused ?? false) == false
+                }
             case .unsubmitted:
                 { $0.workflowState == .unsubmitted }
             case .graded:
