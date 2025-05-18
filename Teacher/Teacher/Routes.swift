@@ -134,10 +134,18 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        return CoreHostingController(
-            TeacherAssignmentDetailsScreen(env: env, courseID: courseID, assignmentID: assignmentID),
-            env: env
-        )
+
+        if ExperimentalFeature.hideRedesignedSubmissionList.isEnabled {
+            return CoreHostingController(
+                AssignmentDetailsView(env: env, courseID: courseID, assignmentID: assignmentID),
+                env: env
+            )
+        } else {
+            return CoreHostingController(
+                TeacherAssignmentDetailsScreen(env: env, courseID: courseID, assignmentID: assignmentID),
+                env: env
+            )
+        }
     },
     RouteHandler("/courses/:courseID/assignments/:assignmentID/edit") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
