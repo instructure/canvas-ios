@@ -159,7 +159,7 @@ struct HorizonButtonModifier: ViewModifier {
         type: HorizonUI.ButtonStyles.ButtonType,
         isEnabled: Bool,
         isTextUnderlined: Bool,
-        configuration: ButtonStyleConfiguration,
+        configuration: ButtonStyleConfiguration
     ) {
         self.type = type
         self.isEnabled = isEnabled
