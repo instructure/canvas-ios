@@ -51,6 +51,7 @@ struct DropdownMenu: View {
             contentView
                 .frame(height: isExpanded ? (contentHeight ?? 0) : 0)
                 .transition(.move(edge: .top).combined(with: .opacity))
+                .animation(.easeInOut, value: isExpanded)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .frame(height: titleHeight, alignment: .top)
