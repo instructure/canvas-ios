@@ -11,6 +11,7 @@
     ".*Preview[.]swift",
     "\\/Views\\/",
     "Core\/Common\/CommonUI\/EmbeddedWebPage\/ViewModel\/EmbeddedWebPageViewModel.swift",
+    "Core\/Core\/Common\/Extensions\/InstColorExtensions.swift",
     "Core\/Common\/CommonUI\/InstUI\/",
     "Core\/Common\/CommonUI\/SnackBar\/View\/SwiftUI\/SnackBarViewModifier.swift",
     "Core\/Common\/CommonUI\/SwiftUIViews\/",
