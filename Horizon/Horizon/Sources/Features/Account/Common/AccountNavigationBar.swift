@@ -54,7 +54,7 @@ struct AccountNavigationBar: View {
             HStack(spacing: 0) {
                 HorizonUI.IconButton(
                     HorizonUI.icons.arrowBack,
-                    type: .beige,
+                    type: .gray,
                     isSmall: false
                 ) {
                     viewModel.navigateBack(viewController: viewController)

@@ -88,7 +88,7 @@ struct NotebookNoteView: View {
     @ViewBuilder
     private var deleteButton: some View {
         if viewModel.isDeleteButtonVisible {
-            HorizonUI.IconButton(.huiIcons.delete, type: .red, isSmall: true) {
+            HorizonUI.IconButton(.huiIcons.delete, type: .danger, isSmall: true) {
                 viewModel.presentDeleteAlert()
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -171,7 +171,7 @@ struct NotebookNoteView: View {
                 Text(String(localized: "Save", bundle: .horizon))
             }
             .buttonStyle(
-                HorizonUI.ButtonStyles.primary(.blue, fillsWidth: true)
+                HorizonUI.ButtonStyles.primary(.institution, fillsWidth: true)
             )
             .disabled(viewModel.isSaveDisabled)
         }

@@ -58,7 +58,7 @@ struct FileDownloadStatusView: View {
     private var initialView: some View {
         HorizonUI.PrimaryButton(
             String(localized: "Download File", bundle: .horizon),
-            type: .blue,
+            type: .institution,
             isSmall: false,
             trailing: Image.huiIcons.download
         ) {
