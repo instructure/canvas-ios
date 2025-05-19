@@ -58,7 +58,7 @@ final class CourseDetailsViewModel {
         learnCoursesInteractor: GetLearnCoursesInteractor,
         courseID: String,
         enrollmentID: String,
-        course: HCourse?,
+        course: HCourse?
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
