@@ -26,7 +26,8 @@ enum SpeedGraderAssembly {
         assignmentId: String,
         userId: String?,
         env: AppEnvironment,
-        filter: [GetSubmissions.Filter]
+        filter: [GetSubmissions.Filter],
+        sortingUponGradingNeeds: Bool = false
     ) -> UIViewController {
         let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
         let interactor = SpeedGraderInteractorLive(
@@ -34,6 +35,7 @@ enum SpeedGraderAssembly {
             assignmentID: assignmentId,
             userID: normalizedUserId,
             filter: filter,
+            sortingUponGradingNeeds: sortingUponGradingNeeds,
             env: env
         )
         let viewModel = SpeedGraderViewModel(

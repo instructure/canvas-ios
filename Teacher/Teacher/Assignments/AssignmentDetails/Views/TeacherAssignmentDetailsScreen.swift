@@ -333,6 +333,7 @@ extension TeacherAssignmentDetailsScreen {
                     actionHandler: {
                         env.router.route(
                             to: "/courses/\(courseID)/gradebook/speed_grader?assignment_id=\(assignmentID)",
+                            userInfo: [SpeedGraderUserInfoKey.showGradingNeedsFirst: true],
                             from: controller,
                             options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
                         )

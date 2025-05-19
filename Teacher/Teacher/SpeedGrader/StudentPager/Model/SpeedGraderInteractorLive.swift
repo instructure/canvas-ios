@@ -33,12 +33,14 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     private let env: AppEnvironment
     private let filter: [GetSubmissions.Filter]
     private var subscriptions = Set<AnyCancellable>()
+    private let sortingUponGradingNeeds: Bool
 
     init(
         context: Context,
         assignmentID: String,
         userID: String,
         filter: [GetSubmissions.Filter],
+        sortingUponGradingNeeds: Bool = false,
         env: AppEnvironment
     ) {
         self.env = env
@@ -46,6 +48,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.assignmentID = assignmentID
         self.userID = userID
         self.filter = filter
+        self.sortingUponGradingNeeds = sortingUponGradingNeeds
     }
 
     func load() {
@@ -84,8 +87,12 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 if case .failure(let error) = completion {
                     self?.state.send(.error(.unexpectedError(error)))
                 }
-            } receiveValue: { [weak self] (assignment: Assignment, submissions: [Submission]) in
+            } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission]) in
                 guard let self else { return }
+
+                let submissions = sortingUponGradingNeeds
+                    ? fetchedSubmissions.sorted(by: Self.gradingNeedsSortingStrategy)
+                    : fetchedSubmissions
 
                 if submissions.isEmpty {
                     state.send(.error(.submissionNotFound))
@@ -159,5 +166,28 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         return ReactiveStore(useCase: enrollmentsUseCase, environment: env)
             .getEntities(loadAllPages: true)
             .eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Grading-Based Sorting Strategy
+
+public enum SpeedGraderUserInfoKey {
+    static let showGradingNeedsFirst = "showGradingNeedsFirstUserInfoKey"
+}
+
+private extension SpeedGraderInteractorLive {
+
+    static let gradingNeedsSortingStrategy: (Submission, Submission) -> Bool = { sub1, sub2 in
+        /// Put 'Needs Grading' first
+        if sub1.needsGrading != sub2.needsGrading {
+            return sub1.needsGrading
+        }
+
+        /// Put 'Graded' last
+        if sub1.isGraded != sub2.isGraded {
+            return sub2.isGraded
+        }
+
+        return false
     }
 }
