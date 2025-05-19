@@ -137,7 +137,10 @@ class SubmissionListViewModel: ObservableObject {
         )
 
         let composeMessageOptions = ComposeMessageOptions(
-            disabledFields: .init(contextDisabled: true, recipientsDisabled: true, individualDisabled: true),
+            disabledFields: .init(
+                contextDisabled: true,
+                individualDisabled: true
+            ),
             fieldsContents: .init(
                 selectedContext: recipientContext,
                 selectedRecipients: recipients,
