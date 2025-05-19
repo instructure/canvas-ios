@@ -159,8 +159,7 @@ final class CourseDetailsViewModel {
     }
 
     private func updateCourse(course: HCourse?) {
-        guard let course,
-        (selectedCoure == nil || selectedCoure?.id != course.id)
+        guard let course, (selectedCoure == nil || selectedCoure?.id != course.id)
         else {
             return
         }
