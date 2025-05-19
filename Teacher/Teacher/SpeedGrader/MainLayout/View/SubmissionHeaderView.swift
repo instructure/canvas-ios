@@ -114,20 +114,3 @@ struct SubmissionHeaderView: View {
         )
     }
 }
-
-#Preview {
-    let environment = PreviewEnvironment()
-
-    SubmissionHeaderView(
-        assignment: .save(
-            .make(due_at: .distantPast),
-            in: environment.globalDatabase.viewContext,
-            updateSubmission: false,
-            updateScoreStatistics: false
-        ),
-        submission: .save(
-            .make(user: .make(name: "Samantha Lastname", pronouns: ("she/her"))),
-            in: environment.globalDatabase.viewContext
-        )
-    )
-}
