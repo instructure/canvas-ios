@@ -23,15 +23,13 @@ import SwiftUI
 struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
-    @Environment(\.dismiss) private var dismiss
-    @State private var webViewHeight: CGFloat?
+
     private var tabs: [Tabs] {
         let showingOverview = !viewModel.course.overviewDescription.isEmpty
         return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
     }
     // MARK: - Dependencies
 
-    private let notebookView: NotebookView
     private let isBackButtonVisible: Bool
 
     // MARK: - Init
@@ -41,15 +39,24 @@ struct CourseDetailsView: View {
         isBackButtonVisible: Bool = true
     ) {
         self.viewModel = viewModel
-        self.notebookView = NotebookAssembly.makeView(courseID: viewModel.courseID)
         self.isBackButtonVisible = isBackButtonVisible
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             if viewModel.isShowHeader {
-                headerView
-                    .transition(.move(edge: .top).combined(with: .opacity))
+                Group {
+                    DropdownMenu(
+                        items: viewModel.courses,
+                        selectedItem: viewModel.selectedCoure,
+                        onSelect: viewModel.onSelectCourse
+                    )
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.bottom, .huiSpaces.space16)
+
+                    headerView
+                }
+                .transition(.move(edge: .top).combined(with: .opacity))
             }
             learningContentView()
         }
@@ -57,7 +64,6 @@ struct CourseDetailsView: View {
         .hidden(viewModel.isLoaderVisible)
         .animation(.linear, value: viewModel.isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
-        .onAppear { viewModel.showTabBar() }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .toolbar(.hidden)
         .overlay {
@@ -72,7 +78,7 @@ struct CourseDetailsView: View {
         if isBackButtonVisible {
             HStack {
                 Button {
-                    dismiss()
+                    viewModel.didTapBackButton(viewController: viewController)
                 } label: {
                     Image.huiIcons.arrowBack
                         .foregroundStyle(Color.huiColors.icon.default)
@@ -87,10 +93,6 @@ struct CourseDetailsView: View {
 
     private var headerView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            Text(viewModel.course.name)
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.primitives.black174)
-
             HorizonUI.ProgressBar(
                 progress: viewModel.course.progress / 100,
                 size: .medium,
@@ -124,23 +126,7 @@ struct CourseDetailsView: View {
             ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
                 ScrollView(.vertical, showsIndicators: false) {
                     topView
-                    switch tab {
-                    case .myProgress:
-                        modulesView(modules: viewModel.course.modules)
-                            .id(index)
-                            .padding(.bottom, .huiSpaces.space24)
-                    case .overview:
-                        overview(htmlString: viewModel.course.overviewDescription)
-                            .id(index)
-                            .padding(.bottom, .huiSpaces.space24)
-                    case .scores:
-                        ScoresAssembly.makeView(viewModel: viewModel.scoresViewModel)
-                            .padding(.horizontal, .huiSpaces.space24)
-                    case .notebook:
-                        notebookView
-                            .padding(.horizontal, .huiSpaces.space24)
-                            .padding(.bottom, .huiSpaces.space24)
-                    }
+                    CotentView(selectedTab: tab, viewModel: viewModel)
                 }
                 .scaleEffect(index == viewModel.selectedTabIndex ? 1 : 0.8)
                 .tag(index)
@@ -159,6 +145,31 @@ struct CourseDetailsView: View {
             .readingFrame { frame in
                 viewModel.showHeaderPublisher.send(frame.minY > -100)
             }
+    }
+}
+
+private struct CotentView: View {
+    @Environment(\.viewController) private var viewController
+    @State private var webViewHeight: CGFloat?
+    let selectedTab: CourseDetailsView.Tabs
+    let viewModel: CourseDetailsViewModel
+
+    var body: some View {
+        switch selectedTab {
+        case .myProgress:
+            modulesView(modules: viewModel.course.modules)
+                .padding(.bottom, .huiSpaces.space24)
+        case .overview:
+            overview(htmlString: viewModel.course.overviewDescription)
+                .padding(.bottom, .huiSpaces.space24)
+        case .scores:
+            ScoresAssembly.makeView(courseID: viewModel.course.id, enrollmentID: viewModel.course.enrollmentID)
+                .padding(.horizontal, .huiSpaces.space24)
+        case .notebook:
+            NotebookAssembly.makeView(courseID: viewModel.course.id)
+                .padding(.horizontal, .huiSpaces.space24)
+                .padding(.bottom, .huiSpaces.space24)
+        }
     }
 
     private func modulesView(modules: [HModule]) -> some View {
