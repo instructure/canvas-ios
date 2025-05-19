@@ -65,7 +65,7 @@ struct ModuleItemListView: View {
                 HorizonUI.LearningObjectItem(
                     name: item.title,
                     isSelected: selectedModuleItem == item,
-                    requirement: item.isOptional ? .optional : .required,
+                    requirement: item.isOptional ? .optional : .required(description: item.minScoreDescription),
                     status: item.status,
                     type: item.isQuizLTI ? .assessment : itemType,
                     duration: item.estimatedDurationFormatted,

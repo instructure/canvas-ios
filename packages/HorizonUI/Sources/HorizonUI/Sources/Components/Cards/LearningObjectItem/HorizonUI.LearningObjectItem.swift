@@ -139,7 +139,7 @@ public extension HorizonUI {
         }
 
         private var itemStatusText: String {
-            if status == .completed, requirement == .required {
+            if status == .completed, requirement.isRequired {
                 return type.status
             }
             return requirement.title
@@ -159,7 +159,7 @@ public extension HorizonUI {
     HorizonUI.LearningObjectItem(
         name: "Module Item Name",
         isSelected: true,
-        requirement: .required,
+        requirement: .required(description: "Required"),
         status: .completed,
         type: .externalLink,
         duration: "XX Mins",

@@ -27,7 +27,7 @@ public extension HorizonUI.LearningObjectItem {
                     HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
                         isSelected: true,
-                        requirement: .required,
+                        requirement: .required(description: "Required"),
                         status: .completed,
                         type: .externalLink,
                         duration: "XX Mins",
@@ -50,7 +50,7 @@ public extension HorizonUI.LearningObjectItem {
                     HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
                         isSelected: true,
-                        requirement: .required,
+                        requirement: .required(description: "Required"),
                         status: .locked,
                         type: .externalLink,
                         duration: "XX Mins",
@@ -62,7 +62,7 @@ public extension HorizonUI.LearningObjectItem {
                     HorizonUI.LearningObjectItem(
                         name: "Module Item Name",
                         isSelected: false,
-                        requirement: .required,
+                        requirement: .required(description: "Required"),
                         type: .externalLink,
                         duration: "XX Mins",
                         dueDate: "22/12",

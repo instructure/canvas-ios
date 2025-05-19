@@ -21,12 +21,26 @@ import SwiftUI
 public extension HorizonUI.LearningObjectItem {
     enum RequirementType {
         case optional
-        case required
+        case required(description: String?)
 
         var title: String {
             switch self {
             case .optional: return String(localized: "Optional")
-            case .required: return String(localized: "Required")
+            case .required(let description):
+                let requiredString = String(localized: "Required")
+
+                if let description {
+                   return "\(requiredString)  \(description)"
+                } else {
+                   return requiredString
+                }
+            }
+        }
+
+        var isRequired: Bool {
+            switch self {
+            case .optional: return false
+            case .required: return true
             }
         }
     }
@@ -64,7 +78,7 @@ extension HorizonUI.LearningObjectItem {
         var body: some View {
             if let status {
                 statusView(for: status)
-            } else if requirement == .required {
+            } else if requirement.isRequired {
                 requiredImage
             }
         }
@@ -86,7 +100,7 @@ extension HorizonUI.LearningObjectItem {
 
         @ViewBuilder
         private var completedImage: some View {
-            if requirement == .required {
+            if requirement.isRequired {
                 Image.huiIcons.checkCircleFull
                     .resizable()
                     .frame(width: 20, height: 20)
@@ -119,7 +133,7 @@ extension HorizonUI.LearningObjectItem {
 #Preview {
     HorizonUI.LearningObjectItem.StatusView(
         status: .locked,
-        requirement: .required,
+        requirement: .required(description: "Required"),
         lockedMessage: "Jan XX at XX:XX."
     )
 }
