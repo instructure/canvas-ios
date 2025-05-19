@@ -200,22 +200,25 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 return $0
             }
             .flatMap { [weak self] view in
+                // Move to loading state so when the confirmation alert dismisses
+                // the user can't modify the selection until the selector dismisses
                 self?.state = .loading
 
                 return Publishers.Zip(
                     selectorInteractor.getDeselectedCourseIds()
-                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
                         .receive(on: DispatchQueue.main)
                         .handleEvents(receiveOutput: { entries in
                             NotificationCenter.default.post(name: .OfflineSyncCleanTriggered, object: entries)
-                            AppEnvironment.shared.router.dismiss(view)
                         }),
                     selectorInteractor.getSelectedCourseEntries()
-                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
+                        .flatMap { entries in
+                            UIAccessibility
+                                .announcePersistently(String(localized: "Offline sync started", bundle: .core))
+                                .map { entries }
+                        }
                         .receive(on: DispatchQueue.main)
                         .handleEvents(receiveOutput: { entries in
                             NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
-                            UIAccessibility.announce(String(localized: "Offline sync started", bundle: .core))
                             AppEnvironment.shared.router.dismiss(view)
                         })
                 ).eraseToAnyPublisher()
