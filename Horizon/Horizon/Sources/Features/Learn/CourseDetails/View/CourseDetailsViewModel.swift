@@ -46,6 +46,7 @@ final class CourseDetailsViewModel {
     private let courseID: String
     private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
+    private let learnCoursesInteractor: GetLearnCoursesInteractor
     private var pullToRefreshCancellable: AnyCancellable?
 
     // MARK: - Init
@@ -54,12 +55,14 @@ final class CourseDetailsViewModel {
     init(
         router: Router,
         getCoursesInteractor: GetCoursesInteractor,
+        learnCoursesInteractor: GetLearnCoursesInteractor,
         courseID: String,
         enrollmentID: String,
         course: HCourse?,
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
+        self.learnCoursesInteractor = learnCoursesInteractor
         self.courseID = courseID
         self.course = course ?? .init()
         self.isLoaderVisible = true
@@ -139,8 +142,8 @@ final class CourseDetailsViewModel {
     }
 
     private func getCourses() -> AnyPublisher<[DropdownMenuItem], Never> {
-        getCoursesInteractor
-            .getCoursesWithoutModules(ignoreCache: false)
+        learnCoursesInteractor
+            .getCourses(ignoreCache: false)
             .flatMap { Publishers.Sequence(sequence: $0) }
             .map { DropdownMenuItem(id: $0.id, name: $0.name) }
             .collect()
