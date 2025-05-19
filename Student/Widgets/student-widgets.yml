@@ -46,3 +46,4 @@ schemes:
         Widgets: all
       environmentVariables:
         _XCWidgetKind: TodoWidget
+        _XCWidgetFamily: systemMedium

@@ -21,7 +21,7 @@ import WidgetKit
 class TodoModel: WidgetModel {
     override class var publicPreview: TodoModel {
         TodoModel(todoItems: [
-            TodoItem(id: "1", name: "Todo Item 1", dueDate: .now, color: .red)
+            TodoItem(id: "1", name: "My Todo Item 1", date: .now, color: .red, contextName: "My Course")
         ])
     }
 
@@ -37,14 +37,14 @@ class TodoModel: WidgetModel {
 extension TodoModel {
     public static func make() -> TodoModel {
         TodoModel(todoItems: [
-            TodoItem(id: "1", name: "Explosion 101 Assignment", dueDate: .now, color: .systemRed),
-            TodoItem(id: "2", name: "Explosion 101 Quiz", dueDate: .now.addDays(1), color: .systemYellow),
-            TodoItem(id: "3", name: "Explosion 101 New Quiz", dueDate: .now.addDays(1), color: .systemBlue),
-            TodoItem(id: "4", name: "Explosion 101 New Quiz 2", dueDate: .now.addDays(1), color: .systemGreen),
-            TodoItem(id: "5", name: "Explosion 101 Discussion", dueDate: .now.addDays(2), color: .systemPink),
-            TodoItem(id: "6", name: "Explosion 101 Discussion", dueDate: .now.addDays(2), color: .systemCyan),
-            TodoItem(id: "7", name: "Explosion 101 Discussion", dueDate: .now.addDays(2), color: .systemBrown),
-            TodoItem(id: "8", name: "Explosion 101 Discussion", dueDate: .now.addDays(2), color: .systemBlue)
+            TodoItem(id: "1", name: "Explosion 101 Assignment", date: .now, color: .systemRed, contextName: "My First Course"),
+            TodoItem(id: "8", name: "My Todo Item", date: .now.addDays(2), color: .systemBlue, contextName: "User Calendar"),
+            TodoItem(id: "2", name: "Explosion 101 Quiz", date: .now.addDays(1), color: .systemYellow, contextName: "My Second Course"),
+            TodoItem(id: "3", name: "Explosion 101 New Quiz", date: .now.addDays(1), color: .systemBlue, contextName: "My Second Course"),
+            TodoItem(id: "4", name: "Explosion 101 New Quiz 2", date: .now.addDays(1), color: .systemGreen, contextName: "My First Course"),
+            TodoItem(id: "5", name: "Explosion 101 Discussion", date: .now.addDays(2), color: .systemPink, contextName: "My First Course"),
+            TodoItem(id: "6", name: "Explosion 101 Discussion", date: .now.addDays(2), color: .systemCyan, contextName: "My First Course"),
+            TodoItem(id: "7", name: "Explosion 101 Discussion", date: .now.addDays(2), color: .systemBrown, contextName: "My First Course")
         ])
     }
 }

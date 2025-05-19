@@ -179,7 +179,7 @@ public class GetPlannables: UseCase {
                 completionHandler(.init(calendarEvents: events, plannerNotes: notes), urlResponse, error)
             }
 
-        case .student:
+        case .student, .none:
             let request = GetPlannablesRequest(
                 userID: userID,
                 startDate: startDate,
@@ -190,8 +190,6 @@ public class GetPlannables: UseCase {
             environment.api.exhaust(request) { response, urlResponse, error in
                 completionHandler(.init(plannables: response), urlResponse, error)
             }
-        case .none:
-            break
         }
     }
 

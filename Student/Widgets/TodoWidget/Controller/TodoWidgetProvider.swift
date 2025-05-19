@@ -32,16 +32,16 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
         super.init(loggedOutModel: TodoModel(isLoggedIn: false), timeout: 2 * 60 * 60)
     }
 
-    override func fetchData() {
+    override func fetchData(completion: @escaping (TodoModel) -> Void) {
         colors = env.subscribe(GetCustomColors())
-        colors?.refresh(force: true) { [weak self] _ in
+        colors?.refresh { [weak self] _ in
             guard let self = self, let colors = self.colors, !colors.pending else { return }
 
             self.courses = self.env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.courseFetchFinished() }
-            self.courses?.refresh(force: true)
+            self.courses?.refresh()
 
             self.favoriteCourses = self.env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.courseFetchFinished() }
-            self.favoriteCourses?.refresh(force: true)
+            self.favoriteCourses?.refresh()
         }
     }
 
@@ -54,8 +54,11 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
         }
 
         let coursesToMap = favoriteCourses.all.isNotEmpty ? favoriteCourses.all : courses.all
-        let contextCodes = coursesToMap.compactMap(\.id).map { courseId in
+        var contextCodes = coursesToMap.compactMap(\.id).map { courseId in
             return "course_\(courseId)"
+        }
+        if let userId = LoginSession.mostRecent?.userID {
+            contextCodes.append("user_\(userId)")
         }
         plannables = env.subscribe(
             GetPlannables(
@@ -79,7 +82,13 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
         }
         let todoItems = plannableItems.map { plannableItem in
             let courseColor = courses?.all.first { $0.id == plannableItem.canvasContextIDRaw }?.color ?? .textDarkest
-            return TodoItem(id: plannableItem.id, name: plannableItem.title ?? "", dueDate: plannableItem.date ?? Date.now, color: courseColor)
+            return TodoItem(
+                id: plannableItem.id,
+                name: plannableItem.title ?? "",
+                date: plannableItem.date ?? Date.now,
+                color: courseColor,
+                contextName: plannableItem.contextName
+            )
         }
 
         updateWidget(model: TodoModel(todoItems: todoItems))

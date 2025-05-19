@@ -3340,6 +3340,9 @@
         }
       }
     },
+    "Let's Get You Logged in!" : {
+
+    },
     "No Announcements" : {
       "localizations" : {
         "ar" : {
@@ -3851,6 +3854,9 @@
           }
         }
       }
+    },
+    "Oops! Something Went Wrong" : {
+
     },
     "Please log in via the application" : {
       "localizations" : {
@@ -4879,6 +4885,15 @@
         }
       }
     },
+    "To see your to-dos, please log in to your account in the app. It'll just take a sec." : {
+
+    },
+    "Todo" : {
+      "comment" : "Name of the todo widget"
+    },
+    "View Full List" : {
+
+    },
     "View the latest announcements from your courses." : {
       "comment" : "Description of the announcements widget",
       "localizations" : {
@@ -5392,6 +5407,12 @@
           }
         }
       }
+    },
+    "View your todo items." : {
+      "comment" : "Description of the todo widget"
+    },
+    "We're having trouble showing your tasks right now. Please try again in a bit or head to the app." : {
+
     },
     "Zoo Field Trip!" : {
       "comment" : "Example announcement title",

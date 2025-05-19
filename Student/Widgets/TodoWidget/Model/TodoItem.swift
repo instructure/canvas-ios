@@ -24,32 +24,34 @@ import WidgetKit
 struct TodoItem: Hashable, Encodable, Identifiable {
     let id: String
     let name: String
-    let dueDate: Date
+    let date: Date
     let colorHex: String
+    let contextName: String?
 
     var color: Color {
         Color(hexString: colorHex) ?? .textDarkest
     }
 
-    init(id: String, name: String, dueDate: Date, color: UIColor) {
+    init(id: String, name: String, date: Date, color: UIColor, contextName: String? = nil) {
         self.id = id
         self.name = name
-        self.dueDate = dueDate
+        self.date = date
         self.colorHex = color.hexString
+        self.contextName = contextName
     }
 }
 
 extension Array where Element == TodoItem {
     func sortedByDueDate() -> [Element] {
-        sorted { $0.dueDate < $1.dueDate }
+        sorted { $0.date < $1.date }
     }
 
     func itemDueOnSameDateAsPrevious(_ item: Element) -> Bool {
         guard let indexOfItem = firstIndex(of: item) else { return false }
         guard indexOfItem > 0 else { return false }
         let previousItem = self[indexOfItem - 1]
-        let dateStringOfPrevious = previousItem.dueDate.formatted(.dateTime.year().month().day())
-        let dateStringOfCurrent = item.dueDate.formatted(.dateTime.year().month().day())
+        let dateStringOfPrevious = previousItem.date.formatted(.dateTime.year().month().day())
+        let dateStringOfCurrent = item.date.formatted(.dateTime.year().month().day())
         return dateStringOfCurrent == dateStringOfPrevious
     }
 
@@ -57,8 +59,8 @@ extension Array where Element == TodoItem {
         guard let indexOfItem = firstIndex(of: item) else { return false }
         guard count > indexOfItem + 1 else { return false }
         let nextItem = self[indexOfItem + 1]
-        let dateStringOfNext = nextItem.dueDate.formatted(.dateTime.year().month().day())
-        let dateStringOfCurrent = item.dueDate.formatted(.dateTime.year().month().day())
+        let dateStringOfNext = nextItem.date.formatted(.dateTime.year().month().day())
+        let dateStringOfCurrent = item.date.formatted(.dateTime.year().month().day())
         return dateStringOfCurrent == dateStringOfNext
     }
 
