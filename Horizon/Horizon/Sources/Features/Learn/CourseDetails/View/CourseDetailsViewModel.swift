@@ -115,8 +115,9 @@ final class CourseDetailsViewModel {
             isLoaderVisible = true
             selectedTabIndex = 1
             getCourse(for: selectedCourse?.id ?? "")
-                .sink { [weak self] _ in
+                .sink { [weak self] course in
                     self?.isLoaderVisible = false
+                    self?.updateCourse(course: course)
                 }
                 .store(in: &subscriptions)
         }
@@ -134,8 +135,9 @@ final class CourseDetailsViewModel {
 
     private func fetchData() {
         Publishers.Zip(getCourse(for: courseID), getCourses())
-            .sink { [weak self] _, courses in
+            .sink { [weak self] course, courses in
                 self?.courses = courses
+                self?.updateCourse(course: course)
                 self?.isLoaderVisible = false
             }
             .store(in: &subscriptions)
@@ -150,34 +152,26 @@ final class CourseDetailsViewModel {
             .eraseToAnyPublisher()
     }
 
-    @discardableResult
-    private func getCourse(for id: String) -> AnyPublisher<HCourse, Never> {
-        unowned let unownedSelf = self
-        return Future<HCourse, Never> { promise in
-            unownedSelf.getCoursesInteractor.getCourseWithModules(id: id, ignoreCache: false)
-                .sink { [weak self] course in
-                    guard
-                        let course = course,
-                        let self = self,
-                        // Prevent redundant updates if the same course is already selected.
-                        // This case can occur when navigating to a module item sequence view.
-                        (self.selectedCoure == nil || self.selectedCoure?.id != course.id)
-                    else {
-                        promise(.success(unownedSelf.course))
-                        return
-                    }
-                    let currentProgress = self.course.progress
-                    let nextProgress = course.progress
-                    self.course = course
-                    self.course.progress = max(nextProgress, currentProgress)
-                    self.state = .data
-                    self.selectedCoure = .init(id: course.id, name: course.name)
-                    // Firt tab is 0 -> Overview 1 -> MyProgress
-                    self.selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1
-                    promise(.success(course))
-                }
-                .store(in: &unownedSelf.subscriptions)
-        }.eraseToAnyPublisher()
+    private func getCourse(for id: String) -> AnyPublisher<HCourse?, Never> {
+        getCoursesInteractor
+            .getCourseWithModules(id: id, ignoreCache: false)
+            .eraseToAnyPublisher()
+    }
+
+    private func updateCourse(course: HCourse?) {
+        guard let course,
+        (selectedCoure == nil || selectedCoure?.id != course.id)
+        else {
+            return
+        }
+        let currentProgress = self.course.progress
+        let nextProgress = course.progress
+        self.course = course
+        self.course.progress = max(nextProgress, currentProgress)
+        state = .data
+        selectedCoure = .init(id: course.id, name: course.name)
+        // Firt tab is 0 -> Overview 1 -> MyProgress
+        selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1
     }
 }
 
