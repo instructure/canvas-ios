@@ -56,12 +56,11 @@ struct SubmissionHeaderView: View {
 
                                 Text(submission.status.text)
                                     .font(.regular14)
-                                    .foregroundColor(Color(submission.status.color))
+                                    .foregroundStyle(Color(submission.status.color))
                             }
 
-                            Divider()
+                            Color.borderMedium
                                 .frame(width: 1)
-                                .overlay(Color.borderMedium)
                                 .clipShape(RoundedRectangle(cornerRadius: 2))
 
                             Text(assignment.dueText)
@@ -121,13 +120,13 @@ struct SubmissionHeaderView: View {
 
     SubmissionHeaderView(
         assignment: .save(
-            .make(due_at: Calendar.current.date(from: .init(year: 2024, month: 5, day: 7, hour: 8, minute: 9))),
+            .make(due_at: .distantPast),
             in: environment.globalDatabase.viewContext,
             updateSubmission: false,
             updateScoreStatistics: false
         ),
         submission: .save(
-            .make(user: .make(name: "Szentkirályi Alexandra", pronouns: ("visszalépés"))),
+            .make(user: .make(name: "Samantha Lastname", pronouns: ("she/her"))),
             in: environment.globalDatabase.viewContext
         )
     )
