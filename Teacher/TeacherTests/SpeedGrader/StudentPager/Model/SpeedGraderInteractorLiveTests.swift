@@ -88,6 +88,58 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         XCTAssertEqual(receivedData.focusedSubmissionIndex, 0)
     }
 
+    func test_dataState_gradingBased_sorting() throws {
+        // Given
+        let getEnrollments = GetEnrollments(context: testData.context)
+        api.mock(getEnrollments, value: [
+            .make(id: "1", course_id: "1", enrollment_state: .active, user_id: "1"),
+            .make(id: "2", course_id: "1", enrollment_state: .active, user_id: "2"),
+            .make(id: "3", course_id: "1", enrollment_state: .active, user_id: "3"),
+            .make(id: "4", course_id: "1", enrollment_state: .active, user_id: "4"),
+            .make(id: "5", course_id: "1", enrollment_state: .inactive, user_id: "5")
+        ])
+
+        let getSubmission = GetSubmissions(
+            context: testData.context,
+            assignmentID: testData.assignmentId
+        )
+        api.mock(getSubmission, value: [
+            .make(id: "1", submission_history: [], submission_type: .online_upload, user_id: "1", workflow_state: .unsubmitted),
+            .make(id: "2", submission_history: [], submission_type: .online_upload, user_id: "2", workflow_state: .pending_review),
+            .make(id: "3", score: 98, submission_history: [], submission_type: .online_upload, user_id: "3", workflow_state: .graded),
+            .make(id: "4", submission_history: [], submission_type: .online_upload, user_id: "4", workflow_state: .unsubmitted),
+            .make(id: "5", submission_history: [], submission_type: .online_upload, user_id: "5")
+        ])
+
+        // When
+        testee = SpeedGraderInteractorLive(
+            context: testData.context,
+            assignmentID: testData.assignmentId,
+            userID: "1",
+            filter: [],
+            sortingUponGradingNeeds: true,
+            env: environment
+        )
+
+        // Then
+        XCTAssertEqual(testee.state.value, .loading)
+
+        // WHEN
+        testee.load()
+
+        // THEN
+        let publisher = testee.state.filter { $0 != .loading }
+        XCTAssertSingleOutputEquals(publisher, .data)
+
+        let receivedData = try XCTUnwrap(testee.data)
+        XCTAssertEqual(receivedData.submissions.count, 4)
+        XCTAssertEqual(receivedData.assignment.name, testData.assignmentName)
+        XCTAssertEqual(receivedData.focusedSubmissionIndex, 1)
+
+        let submissionsIDs = receivedData.submissions.map(\.id)
+        XCTAssertEqual(submissionsIDs, ["2", "1", "4", "3"])
+    }
+
     // MARK: - Error States
 
     func test_errorState_unexpectedError() {
