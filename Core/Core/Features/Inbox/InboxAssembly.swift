@@ -36,7 +36,6 @@ public enum InboxAssembly {
 
         let inboxVC = CoreHostingController(InboxView(model: viewModel))
         inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
-        inboxVC.navigationItem.titleView?.accessibilityElementsHidden = true
 
         let nav = CoreNavigationController(rootViewController: inboxVC)
         nav.navigationBar.useGlobalNavStyle()

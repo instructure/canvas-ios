@@ -57,7 +57,6 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         title = String(localized: "To Do", bundle: .core)
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.titleView = Brand.shared.headerImageView()
-        navigationItem.titleView?.accessibilityElementsHidden = true
 
         emptyDescLabel.text = String(localized: "Your to do list is empty. Time to recharge.", bundle: .core)
         emptyTitleLabel.text = String(localized: "Well Done!", bundle: .core)
