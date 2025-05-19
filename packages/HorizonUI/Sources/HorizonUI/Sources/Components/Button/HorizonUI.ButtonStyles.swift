@@ -68,7 +68,7 @@ public extension HorizonUI {
             badgeStyle: HorizonUI.Badge.Style,
             badgeType: HorizonUI.Badge.BadgeType?,
             isSmall: Bool = false,
-            icon: Image,
+            icon: Image
         ) {
             self.type = type
             self.badgeStyle = badgeStyle
@@ -363,7 +363,7 @@ public extension HorizonUI.ButtonStyles {
             badgeStyle: type.badgeStyle,
             badgeType: badgeType,
             isSmall: isSmall,
-            icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add),
+            icon: icon ?? (type == .ai ? HorizonUI.icons.ai : HorizonUI.icons.add)
         )
     }
 }
