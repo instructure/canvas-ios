@@ -78,6 +78,8 @@ final class HighlightWebView: CoreWebView {
 
         super.init(features: [highlightWebFeature])
 
+        self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
+
         listenForSelectionChange()
         listenForHighlightTaps()
     }
@@ -215,8 +217,6 @@ final class HighlightWebView: CoreWebView {
         }
 
         courseNoteInteractor.add(
-            courseID: courseID,
-            pageURL: pageURL,
             content: "",
             labels: [label],
             notebookHighlight: notebookHighlight

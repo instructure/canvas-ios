@@ -23,8 +23,6 @@ import Foundation
 
 protocol CourseNoteInteractor {
     func add(
-        courseID: String,
-        pageURL: String,
         content: String,
         labels: [CourseNoteLabel],
         notebookHighlight: NotebookHighlight?
@@ -75,17 +73,15 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     // MARK: - Public
 
     func add(
-        courseID: String,
-        pageURL: String,
         content: String = "",
         labels: [CourseNoteLabel] = [],
         notebookHighlight: NotebookHighlight? = nil
     ) -> AnyPublisher<CourseNotebookNote, NotebookError> {
         pageIDPublisher
             .mapError { _ in NotebookError.unknown }
-            .flatMap { pageID in
+            .flatMap { [weak self] pageID in
 
-            guard let pageID = pageID else {
+                guard let courseID = self?.objectFilters.value.courseID, let pageID = pageID else {
                 return Fail<CourseNotebookNote, NotebookError>(error: NotebookError.unableToCreateNote)
                     .eraseToAnyPublisher()
             }
@@ -320,8 +316,6 @@ struct Cursor {
 #if DEBUG
 final class CourseNoteInteractorPreview: CourseNoteInteractor {
     func add(
-        courseID: String,
-        pageURL: String,
         content: String,
         labels: [CourseNoteLabel],
         notebookHighlight: NotebookHighlight?
