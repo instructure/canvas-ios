@@ -69,6 +69,7 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
         super.viewDidLoad()
         title = String(localized: "Notifications", bundle: .student, comment: "Notifications tab title")
         navigationItem.titleView = Brand.shared.headerImageView()
+        navigationItem.titleView?.accessibilityElementsHidden = true
         view.backgroundColor = .backgroundLightest
         setupTableView()
         emptyStateHeader.text = String(localized: "No Notifications", bundle: .student)
