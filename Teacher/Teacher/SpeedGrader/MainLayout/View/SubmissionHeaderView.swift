@@ -74,7 +74,7 @@ struct SubmissionHeaderView: View {
                 .padding(.trailing, 16)
             }
             .padding(.init(top: 12, leading: 16, bottom: 12, trailing: 0))
-            .buttonStyle(PlainButtonStyle())
+            .buttonStyle(.plain)
             .identifier("SpeedGrader.userButton")
 
             Spacer()
