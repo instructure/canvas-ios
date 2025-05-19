@@ -109,7 +109,6 @@ struct DropdownMenu: View {
             }
             .padding(.huiSpaces.space10)
             .background(Color.huiColors.surface.cardPrimary)
-            .background(Color.blue)
             .readingFrame { frame in
                 if contentHeight == nil {
                     contentHeight = min(frame.height, 300)
@@ -117,7 +116,6 @@ struct DropdownMenu: View {
             }
         }
         .background(Color.huiColors.surface.cardPrimary)
-        .background(Color.red)
         .huiCornerRadius(level: .level1)
         .huiElevation(level: .level1)
     }
