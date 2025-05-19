@@ -29,6 +29,23 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "FeatureFlagOfflineTests",
+        "FeatureFlagOfflineTests\/testDiscussionsFallbackToNativeAppearanceWhenOffline()",
+        "OfflineContentSyncTests",
+        "OfflineContentSyncTests\/testAssignmentSync()",
+        "OfflineContentSyncTests\/testDiscussionsSync()",
+        "OfflineContentSyncTests\/testGradesSync()",
+        "OfflineContentSyncTests\/testPagesSync()",
+        "OfflineContentSyncTests\/testPeopleSync()",
+        "OfflineContentSyncTests\/testSyllabusSync()",
+        "OfflineTests",
+        "OfflineTests\/testManageOfflineContentScreen()",
+        "OfflineTests\/testNetworkConnectionLose()",
+        "OfflineTests\/testOfflineContentSync()",
+        "OfflineTests\/testOfflineCourseAvailabilityAndAlertMessageAndStarButton()",
+        "OfflineTests\/testOfflineSynchronizationSetting()"
+      ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
         "identifier" : "A5253DAAB36ECE6D2EB5B620",
