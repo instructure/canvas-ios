@@ -20,7 +20,7 @@ private class InvertColorsInDarkMode: CoreWebViewFeature {
     private let script: String = {
         let darkCss = """
         @media (prefers-color-scheme: dark) {
-        
+
             /* Apply dark mode filter to the whole page. */
             html {
                 filter: invert(100%) hue-rotate(180deg);
