@@ -47,7 +47,7 @@ final class ModuleItemSequenceViewModel {
     var visibleButtons: [ModuleNavBarUtilityButtons] {
         var buttons: [ModuleNavBarUtilityButtons] = [.chatBot(navigateToTutor)]
         if isAssignmentOptionsButtonVisible, moduleItem?.isQuizLTI == false {
-          buttons.append(.assignmentMoreOptions(assignmentOptionsTapped))
+          buttons.append(.assignmentMoreOptions(assignmentOptionsTapped, hasBadge: hasUnreadComments))
         } else if moduleItem?.type?.assetType == .page && isNotebookDisabled == false {
           buttons.append(.notebook(navigateToNotebook))
         }
@@ -59,7 +59,7 @@ final class ModuleItemSequenceViewModel {
     var offsetX: CGFloat = 0
     var isShowErrorAlert: Bool = false
     var onTapAssignmentOptions = PassthroughSubject<Void, Never>()
-    var didLoadAssignment: (String?, HModuleItem) -> Void = { _, _ in }
+    var didLoadAssignment: (SubmissionProperties?) -> Void = { _ in }
     private var isAssignmentAvailableInItemSequence = true
 
     // MARK: - Private Properties
@@ -69,6 +69,7 @@ final class ModuleItemSequenceViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private var sequence: HModuleItemSequence?
     private var course: HCourse?
+    var hasUnreadComments: Bool = false
 
     // MARK: - Dependencies
 
@@ -112,13 +113,14 @@ final class ModuleItemSequenceViewModel {
             }
             .store(in: &subscriptions)
 
-        didLoadAssignment = { [weak self] count, moduleItem in
-            if moduleItem.isQuizLTI == false {
-                self?.assignmentAttemptCount = count
+        didLoadAssignment = { [weak self] model in
+            if model?.moduleItem.isQuizLTI == false {
+                self?.assignmentAttemptCount = model?.attemptCount
             }
             if self?.isAssignmentAvailableInItemSequence == false {
-                self?.moduleItem = moduleItem
+                self?.moduleItem = model?.moduleItem
             }
+            self?.hasUnreadComments = model?.hasUnreadComments ?? false
         }
 
         NotificationCenter.default.addObserver(

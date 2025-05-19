@@ -93,7 +93,8 @@ struct ModuleNavBarView: View {
     private func buttonView(_ button: ModuleNavBarUtilityButtons) -> some View {
         HorizonUI.IconButton(
             button.image,
-            type: button.buttonStyle
+            type: button.buttonStyle,
+            badgeType: button.hasBadge ? .solidColor : nil
         ) {
             button.onTap?(controller)
         }

@@ -312,6 +312,22 @@
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="settings" inverseEntity="CDScoresCourse"/>
     </entity>
+    <entity name="CDSubmission" representedClassName="Core.CDSubmission" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="hasUnreadComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDSubmissionComment" inverseName="relationship" inverseEntity="CDSubmissionComment"/>
+    </entity>
+    <entity name="CDSubmissionComment" representedClassName="Core.CDSubmissionComment" syncable="YES">
+        <attribute name="attemptFromAPI" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="authorID" optional="YES" attributeType="String"/>
+        <attribute name="authorName" optional="YES" attributeType="String"/>
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmission" inverseName="comments" inverseEntity="CDSubmission"/>
+    </entity>
     <entity name="CDSubmissionScores" representedClassName="Core.CDSubmissionScores" syncable="YES">
         <attribute name="enrollmentID" attributeType="String"/>
         <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDScoresAssignmentGroup"/>
