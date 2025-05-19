@@ -52,6 +52,7 @@ struct GlobalNavigationBarModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         controller.value.navigationItem.titleView = Brand.shared.headerImageView()
+        controller.value.navigationItem.titleView?.accessibilityElementsHidden = true
         return content.navigationBarStyle(.global)
     }
 }
