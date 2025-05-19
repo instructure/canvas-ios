@@ -135,7 +135,9 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
         lockView.isHidden = true
 
-        if presentingViewController != nil, navigationItem.leftBarButtonItem == nil {
+        if presentingViewController != nil,
+           navigationItem.leftBarButtonItem == nil,
+           navigationController?.viewControllers.count == 1 {
             addDoneButton(side: .left)
         }
         navigationItem.rightBarButtonItem = canEdit ? editButton : shareButton

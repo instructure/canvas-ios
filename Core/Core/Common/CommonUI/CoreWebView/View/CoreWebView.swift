@@ -64,6 +64,7 @@ open class CoreWebView: WKWebView {
         themeSwitcher?.isThemeInverted ?? false
     }
     private var fullScreenVideoSupport: FullScreenVideoSupport?
+    private var contentHeight: CGFloat = .nan
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -156,7 +157,9 @@ open class CoreWebView: WKWebView {
                   let height = body["height"]
             else { return }
 
-            self.sizeDelegate?.coreWebView(self, didChangeContentHeight: height)
+            self.contentHeight = height
+            self.reportContentHeight()
+
             if self.autoresizesHeight, let constraint = self.constraints.first(where: { $0.firstItem === self && $0.firstAttribute == .height }) {
                 constraint.constant = height
                 self.setNeedsLayout()
@@ -370,12 +373,18 @@ open class CoreWebView: WKWebView {
         let traits = [UITraitUserInterfaceStyle.self]
         registerForTraitChanges(traits) { (self: CoreWebView, _) in
             self.updateInterfaceStyle()
+            self.reportContentHeight()
         }
     }
 
     func updateInterfaceStyle() {
         let traitCollection = viewController?.traitCollection ?? traitCollection
         themeSwitcher?.updateUserInterfaceStyle(with: traitCollection.userInterfaceStyle)
+    }
+
+    private func reportContentHeight() {
+        guard contentHeight.isFinite else { return }
+        sizeDelegate?.coreWebView(self, didChangeContentHeight: contentHeight)
     }
 }
 

@@ -53,6 +53,10 @@ final class ScoresViewModel {
 
     // MARK: - Init
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     init(
         interactor: ScoresInteractor,
         router: Router

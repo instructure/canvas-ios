@@ -42,17 +42,20 @@ public protocol APIGraphQLRequestable: APIRequestable {
     var variables: Variables { get }
 }
 
-public extension APIGraphQLRequestable {
-    var method: APIMethod {
+extension APIGraphQLRequestable {
+    public var method: APIMethod {
         .post
     }
-    var path: String {
+
+    public var path: String {
         "/api/graphql"
     }
-    static var operationName: String {
+
+    public static var operationName: String {
         "\(self)"
     }
-    var body: GraphQLBody<Variables>? {
+
+    public var body: GraphQLBody<Variables>? {
         GraphQLBody(query: Self.query, operationName: Self.operationName, variables: variables)
     }
 }

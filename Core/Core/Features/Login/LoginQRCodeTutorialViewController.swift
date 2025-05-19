@@ -25,6 +25,9 @@ protocol LoginQRCodeTutorialDelegate: AnyObject {
 class LoginQRCodeTutorialViewController: UIViewController {
     weak var delegate: LoginQRCodeTutorialDelegate?
 
+    @IBOutlet weak var whereToFindLabel: DynamicLabel!
+    @IBOutlet weak var helperLabel: DynamicLabel!
+
     static func create() -> LoginQRCodeTutorialViewController {
         let vc = loadFromStoryboard()
         let next = UIBarButtonItem(
@@ -39,6 +42,15 @@ class LoginQRCodeTutorialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        whereToFindLabel.text = String(
+            localized: "Find the QR code in your account profile on the web under 'QR for Mobile Login'",
+            bundle: .core
+        )
+
+        helperLabel.text = String(
+            localized: "If it's not there, your institution has disabled this option.",
+            bundle: .core
+        )
 
         navigationItem.title = String(localized: "Locate QR Code", bundle: .core)
     }

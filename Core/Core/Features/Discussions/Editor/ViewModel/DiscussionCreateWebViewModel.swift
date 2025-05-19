@@ -33,7 +33,7 @@ public struct DiscussionCreateWebViewModel: EmbeddedWebPageViewModel {
     ///   If this variable is nil then only the create modal will be dismissed.
     public init(
         isAnnouncement: Bool,
-        router: Router = AppEnvironment.shared.router,
+        router: Router,
         newDiscussionPushSource: UIViewController?
     ) {
         navigationBarTitle = isAnnouncement ? String(localized: "New Announcement", bundle: .core)

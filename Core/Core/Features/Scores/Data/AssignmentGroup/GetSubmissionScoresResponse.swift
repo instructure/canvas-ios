@@ -75,6 +75,7 @@ public struct GetSubmissionScoresResponse: Codable {
         let state: String?
         let late, excused, missing: Bool?
         let submittedAt: Date?
+        let unreadCommentCount: Int?
         let score: Double?
         let grade: String?
         let submissionStatus: String?

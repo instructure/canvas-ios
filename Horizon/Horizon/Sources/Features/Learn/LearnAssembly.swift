@@ -35,10 +35,10 @@ final class LearnAssembly {
                 viewModel: .init(
                     router: appEnvironment.router,
                     getCoursesInteractor: makeGetCoursesInteractor(),
+                    learnCoursesInteractor: GetLearnCoursesInteractorLive(),
                     courseID: courseID,
                     enrollmentID: enrollmentID,
-                    course: course,
-                    onShowTabBar: appEnvironment.tabBar(isVisible:)
+                    course: course
                 )
             )
         )
@@ -54,10 +54,10 @@ final class LearnAssembly {
             viewModel: .init(
                 router: appEnvironment.router,
                 getCoursesInteractor: makeGetCoursesInteractor(),
+                learnCoursesInteractor: GetLearnCoursesInteractorLive(),
                 courseID: courseID,
                 enrollmentID: enrollmentID,
-                course: course,
-                onShowTabBar: appEnvironment.tabBar(isVisible:)
+                course: course
             ),
             isBackButtonVisible: false
         )

@@ -81,9 +81,14 @@ struct SubmissionCommentView: View {
     private func commentView(_ comment: SubmissionComment) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space12) {
             VStack(alignment: .leading, spacing: .huiSpaces.space2) {
-                Text(comment.authorName)
-                    .huiTypography(.labelLargeBold)
-                    .foregroundStyle(Color.huiColors.text.title)
+               HStack {
+                    Text(comment.authorName)
+                        .huiTypography(.labelLargeBold)
+                        .foregroundStyle(Color.huiColors.text.title)
+                       Spacer()
+                       HorizonUI.Badge(type: .solidColor, style: .primary)
+                           .hidden(comment.isRead)
+                }
 
                 if let createdAtString = comment.createdAtString {
                     Text(createdAtString)

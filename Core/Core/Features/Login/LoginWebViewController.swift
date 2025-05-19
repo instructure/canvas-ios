@@ -332,7 +332,6 @@ extension LoginWebViewController: WKNavigationDelegate {
                         weakSelf?.handleLoginResult(oauthType: oauthType, response: response, error: error)
                     }
                 }
-
             } else if let challenge = challenge, let hostURLWithHttpsPrefix, let clientID {
                 let oauthType = OAuthType.pkce(
                     .init(

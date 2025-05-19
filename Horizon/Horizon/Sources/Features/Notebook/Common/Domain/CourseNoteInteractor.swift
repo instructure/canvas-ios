@@ -57,10 +57,6 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     typealias ObjectFilter = (courseID: String?, pageURL: String?)
     typealias FilteringNotes = (all: [CourseNotebookNote], filtered: [CourseNotebookNote])
 
-    // MARK: - Dependencies
-
-    private let redwoodDomainService: DomainService
-
     // MARK: - Private Properties
 
     private var cursor: Cursor? {
@@ -74,14 +70,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     }
     private var objectFilters: CurrentValueRelay<ObjectFilter> = CurrentValueRelay((nil, nil))
     private let refreshSubject = CurrentValueRelay<Date?>(nil)
-    private var subscriptions = Set<AnyCancellable>()
     private var lastRefresh: Date?
-
-    // MARK: - Init
-
-    init(redwoodDomainService: DomainService = DomainService(.redwood)) {
-        self.redwoodDomainService = redwoodDomainService
-    }
 
     // MARK: - Public
 
@@ -205,7 +194,8 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
     }
 
     private func notesRequest(pageID: String? = nil, isRefresh: Bool) -> AnyPublisher<[CourseNotebookNote], any Error> {
-        ReactiveStore(
+        weak var weakSelf = self
+        return ReactiveStore(
             useCase: GetNotebookNotesUseCase(
                 labels: [filter?.rawValue].compactMap { $0 },
                 courseID: objectFilters.value.0,
@@ -217,7 +207,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
             keepObservingDatabaseChanges: true
         )
         .map { $0.courseNotebookNotes }
-        .map(filteredToPage)
+        .map { weakSelf?.filteredToPage($0) ?? ([], [])  }
         .map { tuple in tuple.filtered }
         .eraseToAnyPublisher()
     }

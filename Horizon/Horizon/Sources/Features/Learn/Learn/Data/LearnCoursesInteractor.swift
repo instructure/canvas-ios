@@ -23,6 +23,7 @@ import Foundation
 
 protocol GetLearnCoursesInteractor {
     func getFirstCourse(ignoreCache: Bool) -> AnyPublisher<LearnCourse, Error>
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[LearnCourse], Never>
 }
 
 final class GetLearnCoursesInteractorLive: GetLearnCoursesInteractor {
@@ -47,6 +48,19 @@ final class GetLearnCoursesInteractorLive: GetLearnCoursesInteractor {
             .getEntities()
             .compactMap { $0.first }
             .map { LearnCourse(from: $0) }
+            .eraseToAnyPublisher()
+    }
+
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[LearnCourse], Never> {
+        ReactiveStore(useCase: GetLearnCoursesUseCase(userId: userId))
+            .getEntities()
+            .replaceError(with: [])
+            .flatMap {
+                $0.publisher
+                    .map { LearnCourse(from: $0) }
+                    .compactMap { $0 }
+                    .collect()
+            }
             .eraseToAnyPublisher()
     }
 }

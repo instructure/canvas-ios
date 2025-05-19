@@ -21,7 +21,6 @@ import SwiftUI
 import XCTest
 
 class UIColorColorTests: XCTestCase {
-
     func test_creates_color_from_ui_color() {
         let uiColor = UIColor.textDarkest
         let testee = uiColor.asColor

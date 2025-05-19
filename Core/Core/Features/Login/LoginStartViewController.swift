@@ -96,6 +96,7 @@ class LoginStartViewController: UIViewController {
         previousLoginsLabel.text = String(localized: "Previous Logins", bundle: .core)
         whatsNewLabel.text = String(localized: "We've made a few changes.", bundle: .core)
         whatsNewLink.setTitle(String(localized: "See what's new.", bundle: .core), for: .normal)
+        useQRCodeButton.setTitle(String(localized: "QR Login", bundle: .core), for: .normal)
         whatsNewContainer.isHidden = loginDelegate?.whatsNewURL == nil
         wordmarkLabel.attributedText = NSAttributedString.init(string: (
             Bundle.main.isParentApp ? "PARENT"
