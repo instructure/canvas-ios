@@ -46,7 +46,7 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
 
     public init(
         userId: String,
-        assignmentId: String,
+        assignmentId: String
     ) {
         self.userId = userId
         self.assignmentId = assignmentId
