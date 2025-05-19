@@ -430,8 +430,6 @@ public extension ButtonStyle where Self == HorizonUI.ButtonStyles {
                         Button("AI Icon Button") {}
                             .buttonStyle(HorizonUI.ButtonStyles.icon(type, badgeType: .number("100")))
                             .disabled(true)
-                        Button("AI Button") {}
-                            .buttonStyle(HorizonUI.ButtonStyles.primary(type))
                         Button("Link Button") {}
                             .buttonStyle(HorizonUI.ButtonStyles.textLink(type))
                         Button("\(type) Button") {}
