@@ -19,7 +19,26 @@
 import SwiftUI
 
 extension Image {
-    public func size(_ size: CGFloat?) -> some View {
-        resizable().scaledToFill().frame(width: size, height: size)
+    public static let defaultIconSize: CGFloat = 24
+
+    public func size(_ size: CGFloat?, paddedTo boundingSize: CGFloat? = nil) -> some View {
+        resizable()
+            .scaledToFill()
+            .frame(width: size, height: size)
+            .frame(width: boundingSize, height: boundingSize)
+    }
+
+    public func scaledSize(_ size: CGFloat?, paddedTo boundingSize: CGFloat? = nil) -> some View {
+        resizable()
+            .scaledToFill()
+            .scaledFrame(size: size, useIconScale: false)
+            .scaledFrame(size: boundingSize, useIconScale: false)
+    }
+
+    public func scaledIcon(size: CGFloat? = Image.defaultIconSize, paddedTo boundingSize: CGFloat? = nil) -> some View {
+        resizable()
+            .scaledToFill()
+            .scaledFrame(size: size, useIconScale: true)
+            .scaledFrame(size: boundingSize, useIconScale: true)
     }
 }
