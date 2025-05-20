@@ -42,6 +42,7 @@ struct HModuleItem: Equatable {
     let completionRequirementType: CompletionRequirementType?
     let moduleName: String?
     let estimatedDuration: String?
+    let completionRequirement: CompletionRequirement?
 
     init(
         id: String,
@@ -63,7 +64,8 @@ struct HModuleItem: Equatable {
         isQuizLTI: Bool = false,
         completionRequirementType: CompletionRequirementType? = nil,
         moduleName: String? = nil,
-        estimatedDuration: String? = nil
+        estimatedDuration: String? = nil,
+        completionRequirement: CompletionRequirement? = nil
 
     ) {
         self.id = id
@@ -87,6 +89,7 @@ struct HModuleItem: Equatable {
         self.completionRequirementType = completionRequirementType
         self.moduleName = moduleName
         self.estimatedDuration = estimatedDuration
+        self.completionRequirement = completionRequirement
     }
 
     init(from entity: ModuleItem) {
@@ -100,6 +103,7 @@ struct HModuleItem: Equatable {
         self.moduleState = entity.module?.state
         self.points = entity.pointsPossible
         self.isOptional = entity.completionRequirement == nil
+        self.completionRequirement = entity.completionRequirement
         self.lockedMessage = HModuleItemLockMessage(html: entity.lockExplanation ?? "").generate()
         self.moduleID = entity.moduleID
         self.url = entity.url
@@ -124,6 +128,10 @@ struct HModuleItem: Equatable {
 
     var estimatedDurationFormatted: String? {
         return estimatedDuration?.toISO8601Duration
+    }
+
+    var minScoreDescription: String? {
+        return completionRequirement?.type == .min_score ? completionRequirement?.description : nil
     }
 }
 
