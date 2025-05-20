@@ -35,6 +35,7 @@ public extension HorizonUI {
         private let dueDate: String?
         private let lockedMessage: String?
         private let points: String?
+        private let minScore: String?
         private let isOverdue: Bool
 
         // MARK: - Init
@@ -49,6 +50,7 @@ public extension HorizonUI {
             dueDate: String? = nil,
             lockedMessage: String? = nil,
             points: String? = nil,
+            minScore: String? = nil,
             isOverdue: Bool = false
         ) {
             self.name = name
@@ -60,6 +62,7 @@ public extension HorizonUI {
             self.dueDate = dueDate
             self.lockedMessage = lockedMessage
             self.points = points
+            self.minScore = minScore
             self.isOverdue = isOverdue
         }
 
@@ -122,14 +125,20 @@ public extension HorizonUI {
                 }
                 .padding(.top, .huiSpaces.space12)
 
-                HStack(spacing: .huiSpaces.space16) {
+                HStack(spacing: .zero) {
                     if let dueDate {
                         dueDateView(dueDate)
                             .padding(.top, .huiSpaces.space24)
+                            .padding(.trailing, .huiSpaces.space16)
                     }
 
                     if let points {
                         Text("\(points) pts")
+                            .foregroundStyle(Color.huiColors.text.timestamp)
+                            .padding(.top, .huiSpaces.space24)
+                    }
+                    if let minScore {
+                        Text(" | \(minScore)")
                             .foregroundStyle(Color.huiColors.text.timestamp)
                             .padding(.top, .huiSpaces.space24)
                     }
@@ -139,7 +148,7 @@ public extension HorizonUI {
         }
 
         private var itemStatusText: String {
-            if status == .completed, requirement.isRequired {
+            if status == .completed, requirement == .required {
                 return type.status
             }
             return requirement.title
@@ -159,12 +168,13 @@ public extension HorizonUI {
     HorizonUI.LearningObjectItem(
         name: "Module Item Name",
         isSelected: true,
-        requirement: .required(description: "Required"),
+        requirement: .required,
         status: .completed,
         type: .externalLink,
         duration: "XX Mins",
         dueDate: "22/12",
         points: "22",
+        minScore: "Score at least 10",
         isOverdue: true
     )
 }
