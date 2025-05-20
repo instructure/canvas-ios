@@ -386,7 +386,16 @@ class LoginStartViewController: UIViewController {
                 // don't dismiss loading here
                 // it will eventually be dismissed once userDidLogin api calls are finished
                 Analytics.shared.logEvent("qr_code_login_success")
-                self?.loginDelegate?.userDidLogin(session: session)
+
+                if AppEnvironment.shared.app == .horizon {
+                    loading?.dismiss(animated: true) { [weak self] in
+                        guard let self = self else { return }
+                        self.loginDelegate?.userDidLogin(session: session)
+                        self.env.router.route(to: "/splash", from: self)
+                    }
+                } else {
+                    self?.loginDelegate?.userDidLogin(session: session)
+                }
             }
         }
     }
