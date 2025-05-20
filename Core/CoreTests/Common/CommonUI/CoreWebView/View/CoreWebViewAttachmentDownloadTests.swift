@@ -19,6 +19,7 @@
 import XCTest
 import WebKit
 @testable import Core
+import TestsFoundation
 
 class CoreWebViewAttachmentDownloadTests: CoreTestCase {
 
@@ -154,8 +155,4 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
         XCTAssertEqual(failedAttachment.contentType, "video/mp4")
         XCTAssertEqual(failure, error)
     }
-}
-
-private struct MockError: Equatable, Error {
-    let code: Int
 }

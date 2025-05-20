@@ -72,7 +72,7 @@ enum SpeedGraderAssembly {
         )
     }
 
-    private static func testData() -> SpeedGraderData {
+    static func testData() -> SpeedGraderData {
         let context = PreviewEnvironment().database.viewContext
         let assignment = Assignment.save(.make(), in: context, updateSubmission: false, updateScoreStatistics: false)
         let submission1 = Submission.save(.make(id: "1", user: .make(name: "User 1")), in: context)

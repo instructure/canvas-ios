@@ -9243,6 +9243,12 @@
         }
       }
     },
+    "Double tap to close drawer" : {
+
+    },
+    "Double tap to open drawer" : {
+
+    },
     "Double tap to view attempt" : {
       "localizations" : {
         "ar" : {
@@ -10011,10 +10017,7 @@
         }
       }
     },
-    "Due Dates, Double tap for details." : {
-
-    },
-    "Due:" : {
+    "Drawer menu" : {
 
     },
     "Edit" : {
@@ -23444,6 +23447,9 @@
           }
         }
       }
+    },
+    "Open" : {
+
     },
     "Open comment library" : {
       "localizations" : {

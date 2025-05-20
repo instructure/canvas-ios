@@ -19,7 +19,6 @@
 import Combine
 import Core
 import Foundation
-import SwiftUI
 
 class SpeedGraderInteractorLive: SpeedGraderInteractor {
     let state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
@@ -61,7 +60,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         .map { assignment, course in
             SpeedGraderContextInfo(
                 courseName: course.name ?? "",
-                courseColor: course.color,
+                courseColor: course.color.asColor,
                 assignmentName: assignment.name
             )
         }

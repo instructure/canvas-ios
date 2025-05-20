@@ -52,7 +52,7 @@ public class EmbeddedWebPageContainerViewModel: ObservableObject {
     private let webPageModel: EmbeddedWebPageViewModel
     private let isMasqueradingUser: Bool
     private let context: Context
-    private let env = AppEnvironment.shared
+    private let env: AppEnvironment
     private lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
@@ -68,15 +68,16 @@ public class EmbeddedWebPageContainerViewModel: ObservableObject {
     public init(
         context: Context,
         webPageModel: EmbeddedWebPageViewModel,
-        environment: AppEnvironment = .shared
+        env: AppEnvironment
     ) {
         self.webPageModel = webPageModel
         self.context = context
-        self.isMasqueradingUser = environment.currentSession?.actAsUserID != nil
+        self.isMasqueradingUser = env.currentSession?.actAsUserID != nil
         self.navTitle = webPageModel.navigationBarTitle
+        self.env = env
 
         self.url = {
-            guard var baseURL = AppEnvironment.shared.currentSession?.baseURL else {
+            guard var baseURL = env.currentSession?.baseURL else {
                 return URL(string: "/")! // should never happen
             }
 

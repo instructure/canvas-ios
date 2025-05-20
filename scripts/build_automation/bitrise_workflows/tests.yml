@@ -64,9 +64,7 @@ workflows:
             set -euxo pipefail
 
             brew reinstall swiftlint jq
-            brew install xcodegen
-
-            rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
+            make provision-ci            
     - &yarn-install-root
       yarn:
         title: yarn install root dependencies
@@ -98,7 +96,7 @@ workflows:
                 -scheme CITests \
                 -sdk iphonesimulator \
                 -configuration Debug \
-                -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=latest' \
+                -destination 'platform=iOS Simulator,name=Bitrise iOS default,OS=18.4' \
                 COMPILER_INDEX_STORE_ENABLE=NO \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
@@ -116,7 +114,7 @@ workflows:
             xcodebuild \
                 -workspace Canvas.xcworkspace \
                 -scheme CITests \
-                -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' \
+                -destination 'platform=iOS Simulator,name=Bitrise iOS default,OS=18.4' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
                 test-without-building 2>&1 | xcbeautify
     - script:

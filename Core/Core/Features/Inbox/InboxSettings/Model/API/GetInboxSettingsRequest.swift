@@ -29,8 +29,8 @@ public struct GetInboxSettingsRequest: APIGraphQLRequestable {
         variables = Variables()
     }
 
-    static let operationName = "InboxSettings"
-    static let query = """
+    public static let operationName = "InboxSettings"
+    public static let query = """
         query \(operationName) {
           myInboxSettings {
                 createdAt

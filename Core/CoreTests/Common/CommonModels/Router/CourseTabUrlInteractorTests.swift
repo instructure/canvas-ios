@@ -96,6 +96,9 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/discussion_topics")), true)
 
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/not_grades_or_discussuions")), false)
+
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/466")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools")), false)
     }
 
     // MARK: - UserInfo
@@ -236,13 +239,13 @@ final class CourseTabUrlInteractorTests: CoreTestCase {
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/any_component_here/front_page")), true)
     }
 
-    func test_isAllowedUrl_whenExternalToolsIsDisabled_shouldBlockExternalToolsUrlFormat() {
+    func test_isAllowedUrl_whenExternalToolsIsDisabled_shouldAllowExternalToolsUrlFormat() {
         saveTab(htmlUrl: "/courses/42/not_external_tools", context: .course("42"))
 
-        // matching special format -> block
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/1234")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/something")), false)
-        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/syllabus")), false)
+        // matching special format for tools -> allow
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/1234")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/something")), true)
+        XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools/syllabus")), true)
 
         // matching basic (but still disabled) format -> block
         XCTAssertEqual(testee.isAllowedUrl(.make("/courses/42/external_tools")), false)

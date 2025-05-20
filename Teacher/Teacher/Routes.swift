@@ -94,26 +94,28 @@ let router = Router(routes: [
         return CoreHostingController(CourseSettingsView(viewModel: viewModel))
     },
 
-    RouteHandler("/:context/:contextID/announcements") { url, _, _ in
+    RouteHandler("/:context/:contextID/announcements") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return AnnouncementListViewController.create(context: context)
+        return AnnouncementListViewController.create(context: context, env: env)
     },
 
-    RouteHandler("/:context/:contextID/announcements/new") { url, _, userInfo in
+    RouteHandler("/:context/:contextID/announcements/new") { url, _, userInfo, env in
         guard let context = Context(path: url.path) else { return nil }
         return DiscussionsAssembly.makeDiscussionCreateViewController(
             context: context,
             isAnnouncement: true,
-            routeUserInfo: userInfo
+            routeUserInfo: userInfo,
+            environment: env
         )
     },
 
-    RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _ in
+    RouteHandler("/:context/:contextID/announcements/:announcementID/edit") { url, params, _, env in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
         return DiscussionsAssembly.makeDiscussionEditViewController(
             context: context,
             topicID: topicID,
-            isAnnouncement: true
+            isAnnouncement: true,
+            environment: env
         )
     },
 
@@ -225,49 +227,51 @@ let router = Router(routes: [
         return AttendanceViewController(context: .course(courseID), toolID: toolID)
     },
 
-    RouteHandler("/:context/:contextID/discussions") { url, _, _ in
+    RouteHandler("/:context/:contextID/discussions") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return DiscussionListViewController.create(context: context)
+        return DiscussionListViewController.create(context: context, env: env)
     },
-    RouteHandler("/:context/:contextID/discussion_topics") { url, _, _ in
+    RouteHandler("/:context/:contextID/discussion_topics") { url, _, _, env in
         guard let context = Context(path: url.path) else { return nil }
-        return DiscussionListViewController.create(context: context)
+        return DiscussionListViewController.create(context: context, env: env)
     },
 
-    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, userInfo in
+    RouteHandler("/:context/:contextID/discussion_topics/new") { url, _, userInfo, env in
         guard let context = Context(path: url.path) else { return nil }
         return DiscussionsAssembly.makeDiscussionCreateViewController(
             context: context,
             isAnnouncement: false,
-            routeUserInfo: userInfo
+            routeUserInfo: userInfo,
+            environment: env
         )
     },
 
     RouteHandler("/:context/:contextID/discussions/:discussionID", factory: discussionDetails),
     RouteHandler("/:context/:contextID/discussion_topics/:discussionID", factory: discussionDetails),
 
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _ in
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/edit") { url, params, _, env in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
         return DiscussionsAssembly.makeDiscussionEditViewController(
             context: context,
             topicID: topicID,
-            isAnnouncement: false
+            isAnnouncement: false,
+            environment: env
         )
     },
 
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/reply") { url, params, _ in
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/reply") { url, params, _, env in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
-        return DiscussionReplyViewController.create(env: .shared, context: context, topicID: topicID)
+        return DiscussionReplyViewController.create(env: env, context: context, topicID: topicID)
     },
 
-    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies") { url, params, _ in
+    RouteHandler("/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies") { url, params, _, env in
         guard
             let context = Context(path: url.path),
             let topicID = params["discussionID"],
             let entryID = params["entryID"]
         else { return nil }
         return DiscussionReplyViewController
-            .create(env: .shared, context: context, topicID: topicID, replyToEntryID: entryID)
+            .create(env: env, context: context, topicID: topicID, replyToEntryID: entryID)
     },
 
     RouteHandler("/files", factory: fileList),
@@ -468,7 +472,8 @@ let router = Router(routes: [
 private func discussionDetails(
     url: URLComponents,
     params: [String: String],
-    userInfo: [String: Any]?
+    userInfo: [String: Any]?,
+    env: AppEnvironment
 ) -> UIViewController? {
     guard
         let context = Context(path: url.path),
@@ -476,7 +481,12 @@ private func discussionDetails(
     else { return nil }
 
     if OfflineModeAssembly.make().isOfflineModeEnabled() {
-        return DiscussionDetailsViewController.create(context: context, topicID: discussionId)
+        return DiscussionDetailsViewController
+            .create(
+                context: context,
+                topicID: discussionId,
+                env: env
+            )
     } else {
         let isAnnouncement = (params["announcementID"] != nil)
         let webPageModel = DiscussionDetailsWebViewModel(
@@ -485,13 +495,15 @@ private func discussionDetails(
         )
         let viewModel = EmbeddedWebPageContainerViewModel(
             context: context,
-            webPageModel: webPageModel
+            webPageModel: webPageModel,
+            env: env
         )
         return CoreHostingController(
             EmbeddedWebPageContainerScreen(
                 viewModel: viewModel,
                 isPullToRefreshEnabled: true
-            )
+            ),
+            env: env
         )
     }
 }
