@@ -17,7 +17,7 @@
 //
 
 import SwiftUI
-public struct SegmentedPicker<Element, Content>: View where Content: View {
+public struct OldSegmentedPicker<Element, Content>: View where Content: View {
     public typealias Data = [Element]
 
     @State private var frames: [CGRect]

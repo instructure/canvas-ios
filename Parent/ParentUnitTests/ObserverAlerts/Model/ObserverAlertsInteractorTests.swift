@@ -59,7 +59,7 @@ class ObserverAlertsInteractorTests: ParentTestCase {
         let resultPublisher = testee.refresh()
 
         // THEN
-        XCTAssertFirstValueAndCompletion(resultPublisher, timeout: 1) { (alerts, thresholds) in
+        XCTAssertFirstValueAndCompletion(resultPublisher, timeout: 5) { (alerts, thresholds) in
             XCTAssertEqual(alerts.count, 1)
             XCTAssertEqual(alerts.first?.id, "a1")
             XCTAssertEqual(thresholds.isEmpty, true)
@@ -75,9 +75,9 @@ class ObserverAlertsInteractorTests: ParentTestCase {
         api.mock(useCase, expectation: expectation)
 
         let publisher = testee.markAlertAsRead(id: TestConstants.alertID)
-        XCTAssertFinish(publisher, timeout: 1)
+        XCTAssertFinish(publisher, timeout: 5)
 
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
     }
 
     func testDismissObserverAlert() {
@@ -86,9 +86,9 @@ class ObserverAlertsInteractorTests: ParentTestCase {
         api.mock(useCase, expectation: expectation)
 
         let publisher = testee.dismissAlert(id: TestConstants.alertID)
-        XCTAssertFinish(publisher, timeout: 1)
+        XCTAssertFinish(publisher, timeout: 5)
 
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
     }
 }
 

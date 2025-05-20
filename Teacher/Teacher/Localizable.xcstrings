@@ -6146,6 +6146,9 @@
         }
       }
     },
+    "Closed" : {
+
+    },
     "Comment" : {
       "localizations" : {
         "ar" : {
@@ -9219,6 +9222,12 @@
         }
       }
     },
+    "Double tap to close drawer" : {
+
+    },
+    "Double tap to open drawer" : {
+
+    },
     "Double tap to view attempt" : {
       "localizations" : {
         "ar" : {
@@ -9986,6 +9995,9 @@
           }
         }
       }
+    },
+    "Drawer menu" : {
+
     },
     "Edit" : {
       "localizations" : {
@@ -23396,6 +23408,9 @@
           }
         }
       }
+    },
+    "Open" : {
+
     },
     "Open comment library" : {
       "localizations" : {
