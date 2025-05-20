@@ -23,6 +23,7 @@ import Foundation
 
 protocol ModuleItemSequenceInteractor {
     func fetchModuleItems(
+        assetType: GetModuleItemSequenceRequest.AssetType,
         assetId: String,
         moduleID: String?,
         itemID: String?
@@ -46,26 +47,24 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
     // MARK: - Dependencies
 
     private let courseID: String
-    private let assetType: AssetType
     private let offlineModeInteractor: OfflineModeInteractor
     private let getCoursesInteractor: GetCoursesInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         courseID: String,
-        assetType: AssetType,
         getCoursesInteractor: GetCoursesInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) {
         self.courseID = courseID
-        self.assetType = assetType
         self.getCoursesInteractor = getCoursesInteractor
         self.scheduler = scheduler
         self.offlineModeInteractor = offlineModeInteractor
     }
 
     func fetchModuleItems(
+        assetType: GetModuleItemSequenceRequest.AssetType,
         assetId: String,
         moduleID: String?,
         itemID: String?

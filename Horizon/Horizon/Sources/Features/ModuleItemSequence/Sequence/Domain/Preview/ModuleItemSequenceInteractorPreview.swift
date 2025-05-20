@@ -22,6 +22,7 @@ import Combine
 
 final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
     func fetchModuleItems(
+        assetType: GetModuleItemSequenceRequest.AssetType,
         assetId: String,
         moduleID: String?,
         itemID: String?
