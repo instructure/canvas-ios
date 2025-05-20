@@ -131,7 +131,7 @@ struct HModuleItem: Equatable {
     }
 
     var minScoreDescription: String? {
-        completionRequirement?.type == .min_score ? completionRequirement?.description : nil
+        return completionRequirement?.type == .min_score ? completionRequirement?.description : nil
     }
 }
 
