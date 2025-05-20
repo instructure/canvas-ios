@@ -84,7 +84,6 @@ struct SubmissionGraderView: View {
             .scaleEffect(scale)
             .edgesIgnoringSafeArea(.bottom)
         }
-        .avoidKeyboardArea()
     }
 
     @ViewBuilder
@@ -364,9 +363,7 @@ struct SubmissionGraderView: View {
         let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
         VStack(spacing: 0) {
             SubmissionCommentListView(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                attempts: viewModel.attempts,
+                viewModel: viewModel.commentListViewModel,
                 attempt: drawerAttempt,
                 fileID: fileID,
                 showRecorder: $showRecorder,
@@ -380,7 +377,6 @@ struct SubmissionGraderView: View {
             }
         }
         .frame(width: geometry.size.width, height: geometry.size.height)
-        .background(Color.backgroundLight)
         .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
         .accessibility(hidden: !isCommentsOnScreen)
     }
@@ -416,11 +412,6 @@ struct SubmissionGraderView: View {
     }
 
     private func didChangeLayout(to layout: Layout) {
-        if lastPresentedLayout != layout {
-            // When the layout changes the keyboard disappears without any system notifications
-            // on iPads so we simulate one to allow .avoidKeyboardArea() to work correctly.
-            NotificationCenter.default.post(name: UIApplication.keyboardWillHideNotification, object: nil, userInfo: [:])
-        }
         lastPresentedLayout = layout
     }
 }
