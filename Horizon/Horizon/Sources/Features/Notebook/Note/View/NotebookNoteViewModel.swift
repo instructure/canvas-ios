@@ -111,6 +111,8 @@ final class NotebookNoteViewModel {
 
         self.courseNote = nil
 
+        self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
+
         initUI()
     }
 
@@ -170,6 +172,7 @@ final class NotebookNoteViewModel {
             isSavedToastVisible = true
 
             do {
+                // Allow the toast a couple of seconds to show before dismissing
                 try await Task.sleep(nanoseconds: 2_000_000_000)
             } catch { }
 
@@ -221,15 +224,9 @@ final class NotebookNoteViewModel {
     }
 
     private func tryAdd() async -> Bool {
-        guard let courseID = courseID,
-              let pageURL = pageURL else {
-            return false
-        }
         do {
             _ = try await courseNoteInteractor
                 .add(
-                    courseID: courseID,
-                    pageURL: pageURL,
                     content: note,
                     labels: labels,
                     notebookHighlight: notebookHighlight
