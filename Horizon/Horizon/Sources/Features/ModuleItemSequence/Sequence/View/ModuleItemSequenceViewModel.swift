@@ -176,8 +176,12 @@ final class ModuleItemSequenceViewModel {
             itemID: itemID
         )
         .sink { [weak self] result in
-            self?.assetType = .moduleItem
             self?.isLoaderVisible = false
+            if result.1 == nil {
+                // TODO: Handle the error
+                return
+            }
+            self?.assetType = .moduleItem
             let firstSequence = result.0
             self?.sequence = firstSequence
             self?.isNextButtonEnabled = firstSequence?.next != nil
