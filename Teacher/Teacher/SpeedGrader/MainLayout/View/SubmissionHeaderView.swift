@@ -23,8 +23,6 @@ struct SubmissionHeaderView: View {
     let assignment: Assignment
     let submission: Submission
 
-    var avatarSize: CGFloat = 32
-
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @ScaledMetric private var uiScale: CGFloat = 1
@@ -85,12 +83,14 @@ struct SubmissionHeaderView: View {
 
     @ViewBuilder
     var avatar: some View {
+        let size: CGFloat = 32
+
         if assignment.anonymizeStudents {
-            Avatar.Anonymous(isGroup: isGroupSubmission, size: avatarSize)
+            Avatar.Anonymous(isGroup: isGroupSubmission, size: size)
         } else if isGroupSubmission {
-            Avatar.Anonymous(isGroup: true, size: avatarSize)
+            Avatar.Anonymous(isGroup: true, size: size)
         } else {
-            Avatar(name: submission.user?.name, url: submission.user?.avatarURL, size: avatarSize)
+            Avatar(name: submission.user?.name, url: submission.user?.avatarURL, size: size)
         }
     }
 
