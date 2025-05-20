@@ -25,7 +25,7 @@ struct SubmissionListSection: Identifiable {
         case submitted
         case unsubmitted
         case graded
-        case others
+        case others // Keep this case the last
 
         var title: String {
             switch self {
@@ -54,11 +54,11 @@ struct SubmissionListSection: Identifiable {
                 { $0.isGraded }
             case .others:
                 { submission in
-                    let matchOnOfFirstThree = Self
+                    let matchesTheOtherCases = Self
                         .allCases
                         .dropLast()
                         .contains(where: { $0.filter(submission) })
-                    return matchOnOfFirstThree == false
+                    return matchesTheOtherCases == false
                 }
             }
         }

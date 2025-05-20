@@ -43,6 +43,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId,
             userID: testData.userId,
             filter: [],
+            sortNeedsGradingSubmissionsFirst: false,
             env: environment
         )
     }
@@ -117,7 +118,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId,
             userID: "1",
             filter: [],
-            sortingUponGradingNeeds: true,
+            sortNeedsGradingSubmissionsFirst: true,
             env: environment
         )
 
@@ -181,6 +182,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
             assignmentID: testData.assignmentId,
             userID: testData.invalidUserId,
             filter: [],
+            sortNeedsGradingSubmissionsFirst: false,
             env: environment
         )
         XCTAssertEqual(testee.state.value, .loading)

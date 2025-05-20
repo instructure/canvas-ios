@@ -14116,7 +14116,7 @@
       }
     },
     "For:" : {
-
+      "comment" : "Examples: 'For: Everyone', 'For: Group 1'"
     },
     "GPA" : {
       "localizations" : {
@@ -32172,6 +32172,9 @@
           }
         }
       }
+    },
+    "there_are_d_assignees_without_grades" : {
+
     },
     "This assignment does not allow submissions." : {
       "localizations" : {

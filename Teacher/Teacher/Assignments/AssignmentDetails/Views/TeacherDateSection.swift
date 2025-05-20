@@ -43,7 +43,14 @@ struct TeacherDateSection<ViewModel: DateSectionViewModelProtocol>: View {
                                 .accessibility(label: Text("No due date set.", bundle: .teacher))
                         }
 
-                        line(Text("For:", bundle: .teacher), Text(viewModel.forText))
+                        line(
+                            Text(
+                                "For:",
+                                bundle: .teacher,
+                                comment: "Examples: 'For: Everyone', 'For: Group 1'"
+                            ),
+                            Text(viewModel.forText)
+                        )
 
                         let lockAt = viewModel.lockAt
                         if let to = lockAt, to < Clock.now {

@@ -66,7 +66,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                                 color: viewModel.color
                             )
                             Text(String.localizedStringWithFormat(
-                                String(localized: "there_are_d_assignees_without_grades", bundle: .core),
+                                String(localized: "there_are_d_assignees_without_grades", bundle: .teacher),
                                 viewModel.ungraded + viewModel.unsubmitted
                             ))
                                 .font(.regular14).foregroundColor(.textDarkest)

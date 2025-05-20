@@ -185,15 +185,15 @@ let router = Router(routes: [
             let assignmentId = url.queryValue(for: "assignment_id")
         else { return nil }
 
-        let sortingUponGradingNeeds = (userInfo?[SpeedGraderUserInfoKey.showGradingNeedsFirst] as? Bool) ?? false
+        let sortNeedsGradingFirst = (userInfo?[SpeedGraderUserInfoKey.sortNeedsGradingSubmissionsFirst] as? Bool) ?? false
 
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: url.queryValue(for: "student_id"),
-            env: env,
             filter: [],
-            sortingUponGradingNeeds: sortingUponGradingNeeds
+            sortNeedsGradingSubmissionsFirst: sortNeedsGradingFirst,
+            env: env
         )
     },
 
@@ -214,8 +214,10 @@ let router = Router(routes: [
             context: context,
             assignmentId: assignmentId,
             userId: userId,
-            env: env,
-            filter: filter)
+            filter: filter,
+            sortNeedsGradingSubmissionsFirst: false,
+            env: env
+        )
     },
 
     RouteHandler("/courses/:courseID/attendance/:toolID") { _, params, _ in
