@@ -20,14 +20,20 @@ private class InvertColorsInDarkMode: CoreWebViewFeature {
     private let script: String = {
         let darkCss = """
         @media (prefers-color-scheme: dark) {
+
+            /* Apply dark mode filter to the whole page. */
             html {
                 filter: invert(100%) hue-rotate(180deg);
             }
-            img:not(.ignore-color-scheme), video:not(.ignore-color-scheme), .ignore-color-scheme {
-                filter: invert(100%) hue-rotate(180deg) !important;
-            }
-            /* Invert old graded discussion profile images again to get them back to their original look in SpeedGrader. */
-            a.fs-exclude.avatar {
+
+            /* Apply the filter again for these selectors to get back their original colors. */
+            img,
+            video,
+            iframe,
+            canvas,
+            a.fs-exclude.avatar, /* Old graded discussion profile images */
+            .ignore-color-scheme
+            {
                 filter: invert(100%) hue-rotate(180deg) !important;
             }
         }
