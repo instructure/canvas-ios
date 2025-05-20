@@ -23,6 +23,8 @@ struct SubmissionHeaderView: View {
     let assignment: Assignment
     let submission: Submission
 
+    var avatarSize: CGFloat = 32
+
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @ScaledMetric private var uiScale: CGFloat = 1
@@ -70,10 +72,10 @@ struct SubmissionHeaderView: View {
                         .fixedSize(horizontal: false, vertical: true)
                     }
                 }
-                .padding(.leading, 6)
-                .padding(.trailing, 16)
+                .paddingStyle(.leading, .cellIconLeading)
+                .paddingStyle(.trailing, .standard)
+                .padding(.vertical, 8)
             }
-            .padding(.init(top: 12, leading: 16, bottom: 12, trailing: 0))
             .buttonStyle(.plain)
             .identifier("SpeedGrader.userButton")
 
@@ -84,11 +86,11 @@ struct SubmissionHeaderView: View {
     @ViewBuilder
     var avatar: some View {
         if assignment.anonymizeStudents {
-            Avatar.Anonymous(isGroup: isGroupSubmission)
+            Avatar.Anonymous(isGroup: isGroupSubmission, size: avatarSize)
         } else if isGroupSubmission {
-            Avatar.Anonymous(isGroup: true)
+            Avatar.Anonymous(isGroup: true, size: avatarSize)
         } else {
-            Avatar(name: submission.user?.name, url: submission.user?.avatarURL)
+            Avatar(name: submission.user?.name, url: submission.user?.avatarURL, size: avatarSize)
         }
     }
 
