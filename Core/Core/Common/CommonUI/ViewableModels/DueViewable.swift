@@ -31,6 +31,14 @@ extension DueViewable {
         return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
     }
 
+    public var dueTextWithColon: String {
+        guard let dueAt = self.dueAt else {
+            return String(localized: "No Due Date", bundle: .core)
+        }
+        let format = String(localized: "Due: %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
+        return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
+    }
+
     public var assignmentDueByText: String {
         guard let dueAt = self.dueAt else {
             return String(localized: "No Due Date", bundle: .core)
