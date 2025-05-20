@@ -205,25 +205,25 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 self?.state = .loading
 
                 return Publishers.Zip(
-                    selectorInteractor.getDeselectedCourseIds()
-                        .receive(on: DispatchQueue.main)
-                        .handleEvents(receiveOutput: { entries in
-                            NotificationCenter.default.post(name: .OfflineSyncCleanTriggered, object: entries)
-                        }),
+                    selectorInteractor.getDeselectedCourseIds(),
                     selectorInteractor.getSelectedCourseEntries()
-                        .flatMap { entries in
-                            UIAccessibility
-                                .announcePersistently(String(localized: "Offline sync started", bundle: .core))
-                                .map { entries }
-                        }
-                        .receive(on: DispatchQueue.main)
-                        .handleEvents(receiveOutput: { entries in
-                            NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
-                            AppEnvironment.shared.router.dismiss(view)
-                        })
-                ).eraseToAnyPublisher()
+                )
+                // Add some delay to let voiceover settle after the alert's dismissal
+                .delay(for: .milliseconds(UIAccessibility.isVoiceOverRunning ? 500 : 0), scheduler: RunLoop.main)
+                .flatMap { deSelectedEntries, selectedEntries in
+                    let willDownloadEntries = selectedEntries.isNotEmpty
+                    let announcement = willDownloadEntries ? String(localized: "Offline sync started", bundle: .core)
+                                                           : String(localized: "Offline sync completed", bundle: .core)
+                    return UIAccessibility
+                        .announcePersistently(announcement)
+                        .map { (deSelectedEntries, selectedEntries, view) }
+                }
             }
-            .sink()
+            .sink { (deSelectedEntries, selectedEntries, view) in
+                NotificationCenter.default.post(name: .OfflineSyncCleanTriggered, object: deSelectedEntries)
+                NotificationCenter.default.post(name: .OfflineSyncTriggered, object: selectedEntries)
+                AppEnvironment.shared.router.dismiss(view)
+            }
             .store(in: &subscriptions)
     }
 
