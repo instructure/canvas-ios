@@ -113,7 +113,11 @@ final class CourseDetailsViewModel {
             pullToRefreshCancellable?.cancel()
             pullToRefreshCancellable = nil
             isLoaderVisible = true
-            getCourse(for: selectedCourse?.id ?? "")
+            getCoursesInteractor
+                .getCourseWithModulesWithoutObservation(
+                    id: selectedCourse?.id ?? "",
+                    ignoreCache: false
+                )
                 .sink { [weak self] course in
                     self?.updateCourse(course: course)
                     self?.isLoaderVisible = false
@@ -154,7 +158,6 @@ final class CourseDetailsViewModel {
     private func getCourse(for id: String) -> AnyPublisher<HCourse?, Never> {
         getCoursesInteractor
             .getCourseWithModules(id: id, ignoreCache: false)
-            .removeDuplicates(by: { $0?.id == $1?.id })
             .eraseToAnyPublisher()
     }
 

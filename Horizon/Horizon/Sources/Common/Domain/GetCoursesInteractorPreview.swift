@@ -22,6 +22,11 @@ import Core
 import Foundation
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
+
+    func getCourseWithModulesWithoutObservation(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
+        Just(course).eraseToAnyPublisher()
+    }
+    
     func getCourseWithModules(id _: String, ignoreCache _: Bool) -> AnyPublisher<HCourse?, Never> {
         Just(course).eraseToAnyPublisher()
     }
