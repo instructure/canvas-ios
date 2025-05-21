@@ -355,19 +355,6 @@ class AssistChatInteractorLive: AssistChatInteractor {
             return
                 chatMethod
                 .map { AssistChatResponse(message: AssistChatMessage(botResponse: $0), chatHistory: history) }
-                .flatMap { [weak self] response in
-                    guard let self = self else {
-                        return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
-                    }
-                    return self.chipGenerator(history: response.chatHistory, pageContext: pageContext)
-                        .map { chipOptions in
-                            AssistChatResponse(
-                                chipOptions: chipOptions,
-                                chatHistory: response.chatHistory
-                            )
-                        }
-                        .eraseToAnyPublisher()
-                }
                 .eraseToAnyPublisher()
         case .flashcards:
             return flashcards(
