@@ -311,6 +311,36 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertFalse(fileManager.fileExists(atPath: binaryURL.path))
     }
 
+    func testFileUploadAnnouncementMapping() {
+        let uploadedFile = File.save(.make(id: "uploadedID"), in: context)
+        let failedFile = File.save(.make(id: "nil"), in: context)
+        failedFile.id = nil
+        failedFile.uploadError = "Upload failed."
+
+        XCTAssertEqual(
+            [uploadedFile].toUploadAnnouncement,
+            "1 file uploaded successfully."
+        )
+        XCTAssertEqual(
+            [uploadedFile, uploadedFile].toUploadAnnouncement,
+            "2 files uploaded successfully."
+        )
+        XCTAssertEqual(
+            [failedFile].toUploadAnnouncement,
+            "1 file failed to upload."
+        )
+        XCTAssertEqual(
+            [failedFile, failedFile].toUploadAnnouncement,
+            "2 files failed to upload."
+        )
+        XCTAssertEqual(
+            [failedFile, failedFile, uploadedFile].toUploadAnnouncement,
+            "1 file uploaded successfully. 2 files failed to upload."
+        )
+    }
+
+    // MARK: - Mocks
+
     private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: String, accessToken: String? = nil) {
         let submission = CreateSubmissionRequest.Body.Submission(
             text_comment: comment,

@@ -337,65 +337,86 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             files = context.fetch(predicate(userID: user.id, batchID: batchID))
         }
         guard files.allSatisfy({ $0.isUploaded }) else { return }
-        let fileIDs = files.compactMap { $0.id }
-        let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, group_comment: nil, submission_type: .online_upload, file_ids: fileIDs)
-        let requestable = CreateSubmissionRequest(context: .course(courseID), assignmentID: assignmentID, body: .init(submission: submission))
-        var task: APITask?
-        // This is to make the background task wait until we receive the submission response from the API.
-        let semaphore = DispatchSemaphore(value: 0)
-        let objectID = file.objectID
-        process.performExpiringActivity(reason: "submit assignment") { expired in
-            if expired {
-                task?.cancel()
-            }
-            self.submissionsStatus.addTasks(fileIDs: fileIDs)
-            task = self.environment.api.makeRequest(requestable) { [weak self] response, _, error in
-                guard let self else { return }
 
-                UIAccessibility
-                    .announceSubmission(
-                        isSuccessful: response != nil && error == nil,
-                        maxAttempts: 5
-                    )
-                    .sink { [weak self] in
-                        guard let self else { return }
+        announceFileUploadStatus(files: files) { [weak self] in
+            guard let self else { return }
 
-                        self.context.performAndWait {
-                            defer {
-                                self.submissionsStatus.removeTasks(fileIDs: fileIDs)
-                                semaphore.signal()
+            let fileIDs = files.compactMap { $0.id }
+            let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, group_comment: nil, submission_type: .online_upload, file_ids: fileIDs)
+            let requestable = CreateSubmissionRequest(context: .course(courseID), assignmentID: assignmentID, body: .init(submission: submission))
+            var task: APITask?
+            // This is to make the background task wait until we receive the submission response from the API.
+            let semaphore = DispatchSemaphore(value: 0)
+            let objectID = file.objectID
+            process.performExpiringActivity(reason: "submit assignment") { expired in
+                if expired {
+                    task?.cancel()
+                }
+                self.submissionsStatus.addTasks(fileIDs: fileIDs)
+                task = self.environment.api.makeRequest(requestable) { [weak self] response, _, error in
+                    guard let self else { return }
+
+                    UIAccessibility
+                        .announceSubmission(
+                            isSuccessful: response != nil && error == nil,
+                            maxAttempts: 5
+                        )
+                        .sink { [weak self] in
+                            guard let self else { return }
+
+                            self.context.performAndWait {
+                                defer {
+                                    self.submissionsStatus.removeTasks(fileIDs: fileIDs)
+                                    semaphore.signal()
+                                }
+                                guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
+                                guard let submission = response, error == nil else {
+                                    Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
+                                        "error": error?.localizedDescription ?? "unknown"
+                                    ])
+                                    RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
+                                    self.complete(file: file, error: error)
+                                    return
+                                }
+                                NotificationCenter.default.post(
+                                    name: UploadManager.AssignmentSubmittedNotification,
+                                    object: nil,
+                                    userInfo: ["assignmentID": assignmentID, "submission": submission]
+                                )
+                                NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+                                if submission.late != true {
+                                    NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
+                                        "assignmentID": assignmentID
+                                    ])
+                                }
+                                if let userID = file.userID, let batchID = file.batchID {
+                                    self.delete(userID: userID, batchID: batchID, in: self.context)
+                                }
+                                Analytics.shared.logEvent("submit_fileupload_succeeded")
+                                self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                             }
-                            guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
-                            guard let submission = response, error == nil else {
-                                Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
-                                    "error": error?.localizedDescription ?? "unknown"
-                                ])
-                                RemoteLogger.shared.logError(name: "File upload failed during submission", reason: error?.localizedDescription)
-                                self.complete(file: file, error: error)
-                                return
-                            }
-                            NotificationCenter.default.post(
-                                name: UploadManager.AssignmentSubmittedNotification,
-                                object: nil,
-                                userInfo: ["assignmentID": assignmentID, "submission": submission]
-                            )
-                            NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
-                            if submission.late != true {
-                                NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
-                                    "assignmentID": assignmentID
-                                ])
-                            }
-                            if let userID = file.userID, let batchID = file.batchID {
-                                self.delete(userID: userID, batchID: batchID, in: self.context)
-                            }
-                            Analytics.shared.logEvent("submit_fileupload_succeeded")
-                            self.localNotifications.sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                         }
-                    }
-                    .store(in: &subscriptions)
+                        .store(in: &subscriptions)
+                }
+                semaphore.wait()
             }
-            semaphore.wait()
         }
+    }
+
+    private func announceFileUploadStatus(
+        files: [File],
+        completion: @escaping () -> Void
+    ) {
+        Just(files)
+            .map { $0.toUploadAnnouncement }
+            .flatMap { announcement in
+               UIAccessibility.announcePersistently(announcement)
+            }
+            .sink(
+                receiveCompletion: { _ in completion() },
+                receiveValue: {}
+            )
+            .store(in: &subscriptions)
     }
 
     public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
@@ -439,5 +460,28 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 }
             }
         }
+    }
+}
+
+extension [File] {
+
+    var toUploadAnnouncement: String {
+        let uploadedFilesCount = uploadedFilesCount
+        let failedFilesCount = failedFilesCount
+
+        var message = ""
+
+        if uploadedFilesCount > 0 {
+            let format = String(localized: "d_files_uploaded_successfully", bundle: .core)
+            message += String(format: format, uploadedFilesCount)
+        }
+        if failedFilesCount > 0 {
+            if message.isNotEmpty {
+                message += " "
+            }
+            let format = String(localized: "d_files_failed_to_upload", bundle: .core)
+            message += String(format: format, failedFilesCount)
+        }
+        return message
     }
 }
