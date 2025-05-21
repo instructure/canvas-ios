@@ -24,6 +24,7 @@ import Combine
 final class SingleSelectionViewModelTests: XCTestCase {
 
     private enum TestConstants {
+        static let title = "some title"
         static let items: [OptionItem] = [
             .make(id: "0"),
             .make(id: "1"),
@@ -38,6 +39,7 @@ final class SingleSelectionViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         testee = SingleSelectionViewModel(
+            title: TestConstants.title,
             allOptions: TestConstants.items,
             selectedOption: inputSelectedOption
         )
@@ -48,8 +50,28 @@ final class SingleSelectionViewModelTests: XCTestCase {
         super.tearDown()
     }
 
+    func test_title() {
+        XCTAssertEqual(testee.title, TestConstants.title)
+    }
+
     func test_allOptions() {
         XCTAssertEqual(testee.allOptions, TestConstants.items)
+    }
+
+    func test_optionsCounts_whenSectionHasTitle() {
+        XCTAssertEqual(testee.optionCount, TestConstants.items.count)
+        XCTAssertEqual(testee.listLevelAccessibilityLabel, nil)
+    }
+
+    func test_optionsCounts_whenSectionHasNoTitle() {
+        testee = SingleSelectionViewModel(
+            title: nil,
+            allOptions: TestConstants.items,
+            selectedOption: inputSelectedOption
+        )
+
+        XCTAssertEqual(testee.optionCount, TestConstants.items.count)
+        XCTAssertEqual(testee.listLevelAccessibilityLabel, "List, \(TestConstants.items.count) items")
     }
 
     func test_selectedOption_shouldMatchInputSubject() {

@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class CourseSyncFrequencyTests: XCTestCase {
@@ -26,24 +27,19 @@ class CourseSyncFrequencyTests: XCTestCase {
         XCTAssertEqual(CourseSyncFrequency.daily.stringValue, "Daily")
     }
 
-    func testSyncFrequenciesToItemPickerData() {
+    func testSyncFrequenciesToItemPickerData() throws {
         let testee = CourseSyncFrequency.itemPickerData
-        XCTAssertEqual(testee.count, 1)
 
-        guard let section = testee.first else {
-            return XCTFail()
-        }
+        guard testee.count == 3 else { throw InvalidCountError() }
 
-        XCTAssertNil(section.title)
-        XCTAssertEqual(section.items.count, 3)
         // First entry is a debug one which we don't test
-        XCTAssertEqual(section.items[1].title, "Daily")
-        XCTAssertEqual(section.items[1].accessibilityIdentifier, nil)
-        XCTAssertEqual(section.items[1].image, nil)
-        XCTAssertEqual(section.items[1].subtitle, nil)
-        XCTAssertEqual(section.items[2].title, "Weekly")
-        XCTAssertEqual(section.items[2].accessibilityIdentifier, nil)
-        XCTAssertEqual(section.items[2].image, nil)
-        XCTAssertEqual(section.items[2].subtitle, nil)
+        XCTAssertEqual(testee[1].title, "Daily")
+        XCTAssertEqual(testee[1].accessibilityIdentifier, nil)
+        XCTAssertEqual(testee[1].image, nil)
+        XCTAssertEqual(testee[1].subtitle, nil)
+        XCTAssertEqual(testee[2].title, "Weekly")
+        XCTAssertEqual(testee[2].accessibilityIdentifier, nil)
+        XCTAssertEqual(testee[2].image, nil)
+        XCTAssertEqual(testee[2].subtitle, nil)
     }
 }
