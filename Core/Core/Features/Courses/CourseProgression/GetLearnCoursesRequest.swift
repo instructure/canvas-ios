@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct GetLearnCoursesRequest: APIGraphQLRequestable {
+public struct GetLearnCoursesProgressionRequest: APIGraphQLRequestable {
     public typealias Response = GetCoursesProgressionResponse
     public let variables: Input
 

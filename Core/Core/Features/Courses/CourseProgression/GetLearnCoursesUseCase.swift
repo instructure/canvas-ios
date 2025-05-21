@@ -23,7 +23,7 @@ public class GetLearnCoursesUseCase: APIUseCase {
     // MARK: - Typealias
 
     public typealias Model = CDLearnCourse
-    public typealias Request = GetLearnCoursesRequest
+    public typealias Request = GetCoursesProgressionRequest
 
     // MARK: - Properties
 
@@ -33,8 +33,8 @@ public class GetLearnCoursesUseCase: APIUseCase {
 
     private let userId: String
 
-    public var request: GetLearnCoursesRequest {
-        .init(userId: userId)
+    public var request: GetCoursesProgressionRequest {
+        .init(userId: userId, horizonCourses: true)
     }
 
     // MARK: - Init
