@@ -45,8 +45,7 @@ public enum CourseSyncFrequency: Int, CaseIterable {
         }
     }
 
-    static var itemPickerData: [ItemPickerSection] {
-        let pickerRows = allCases.map { ItemPickerItem(title: $0.stringValue) }
-        return [ItemPickerSection(items: pickerRows)]
+    static var itemPickerData: [ItemPickerItem] {
+        allCases.map { ItemPickerItem(title: $0.stringValue) }
     }
 }

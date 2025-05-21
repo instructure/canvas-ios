@@ -247,14 +247,20 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             Row(String(localized: "Appearance", bundle: .core), detail: options[selectedStyleIndex].title, isSupportedOffline: true) { [weak self] in
                 guard let self = self else { return }
 
-                let pickerVC = ItemPickerViewController.create(title: String(localized: "Appearance", bundle: .core),
-                                                               sections: [ ItemPickerSection(items: options) ],
-                                                               selected: IndexPath(row: selectedStyleIndex, section: 0)) { indexPath in
-                    if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
+                let pageTitle = String(localized: "Appearance", bundle: .core)
+                let picker = ItemPickerScreen(
+                    pageTitle: pageTitle,
+                    items: options,
+                    initialSelectionIndex: selectedStyleIndex,
+                    didSelect: {
+                        guard let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: $0) else { return }
+
                         window.updateInterfaceStyle(style)
                         self.env.userDefaults?.interfaceStyle = style
                     }
-                }
+                )
+                let pickerVC = CoreHostingController(picker)
+                pickerVC.navigationItem.title = pageTitle
                 self.show(pickerVC, sender: self)
             }
         ]
@@ -264,16 +270,21 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         return [
             Row(String(localized: "Landing Page", bundle: .core), detail: landingPage.name, isSupportedOffline: true) { [weak self] in
                 guard let self = self else { return }
-                self.show(ItemPickerViewController.create(
-                    title: String(localized: "Landing Page", bundle: .core),
-                    sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
+                let pageTitle = String(localized: "Landing Page", bundle: .core)
+                let picker = ItemPickerScreen(
+                    pageTitle: pageTitle,
+                    items: LandingPage.appCases.map { page in
                         ItemPickerItem(title: page.name)
-                    }) ],
-                    selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
-                        IndexPath(row: $0, section: 0)
                     },
-                    delegate: self
-                ), sender: self)
+                    initialSelectionIndex: LandingPage.appCases.firstIndex(of: self.landingPage),
+                    didSelect: {
+                        self.landingPage = LandingPage.appCases[$0]
+                        self.reloadData()
+                    }
+                )
+                let pickerVC = CoreHostingController(picker)
+                pickerVC.navigationItem.title = pageTitle
+                self.show(pickerVC, sender: self)
             }
         ]
     }
@@ -409,13 +420,6 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension ProfileSettingsViewController: ItemPickerDelegate {
-    public func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
-        landingPage = LandingPage.appCases[indexPath.row]
-        reloadData()
     }
 }
 

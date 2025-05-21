@@ -112,18 +112,23 @@ extension ProfileSettingsViewModel {
 
     private func showAppereanceItemPicker(controller: WeakViewController, selectedIndex: CurrentValueSubject<Int, Never>, options: [ItemPickerItem]) {
         let selectedStyleIndex = environment.userDefaults?.interfaceStyle?.rawValue ?? 0
-        let pickerVC = ItemPickerViewController.create(
-            title: String(localized: "Appearance", bundle: .core),
-            sections: [ ItemPickerSection(items: options) ],
-            selected: IndexPath(row: selectedStyleIndex, section: 0)
-        ) { [weak self] indexPath in
-            if let window = self?.environment.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
-                window.updateInterfaceStyle(style)
-                self?.environment.userDefaults?.interfaceStyle = style
-            }
 
-            selectedIndex.send(indexPath.row)
-        }
+        let pageTitle = String(localized: "Appearance", bundle: .core)
+        let picker = ItemPickerScreen(
+            pageTitle: pageTitle,
+            items: options,
+            initialSelectionIndex: selectedStyleIndex,
+            didSelect: { [weak self] in
+                if let window = self?.environment.window, let style = UIUserInterfaceStyle(rawValue: $0) {
+                    window.updateInterfaceStyle(style)
+                    self?.environment.userDefaults?.interfaceStyle = style
+                }
+
+                selectedIndex.send($0)
+            }
+        )
+        let pickerVC = CoreHostingController(picker)
+        pickerVC.navigationItem.title = pageTitle
         controller.value.show(pickerVC, sender: controller)
     }
 }

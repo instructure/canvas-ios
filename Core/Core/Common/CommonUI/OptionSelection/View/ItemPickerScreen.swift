@@ -27,6 +27,7 @@ public struct ItemPickerScreen: View {
     private let allOptions: [OptionItem]
     private let selectedOption: CurrentValueSubject<OptionItem?, Never>
 
+    @State private var isInitialPublish: Bool = true
     private let didSelect: ((Int) -> Void)?
 
     public init(
@@ -86,6 +87,10 @@ public struct ItemPickerScreen: View {
         .navigationBarTitleView(pageTitle)
         .navigationBarStyle(.modal)
         .onReceive(selectedOption) { option in
+            if isInitialPublish {
+                isInitialPublish = false
+                return
+            }
             guard let option, let id = Int(option.id) else { return }
             didSelect?(id)
         }

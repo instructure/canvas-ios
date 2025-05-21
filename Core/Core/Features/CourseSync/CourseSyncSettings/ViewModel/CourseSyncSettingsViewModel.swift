@@ -171,27 +171,31 @@ class CourseSyncSettingsViewModel: ObservableObject {
                                                 sourceController: UIViewController)
     -> AnyPublisher<CourseSyncFrequency, Never> {
         Future<CourseSyncFrequency, Never> { promise in
-            let selection = IndexPath(row: previousSelection, section: 0)
-            let handleNewSelection: (IndexPath) -> Void = { newSelection in
+            let handleNewSelection: (Int) -> Void = { newSelection in
                 defer {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                        if sourceController.navigationController?.topViewController is ItemPickerViewController {
+                        if sourceController.navigationController?.topViewController is CoreHostingController<ItemPickerScreen> {
                             sourceController.navigationController?.popViewController(animated: true)
                         }
                     }
                 }
-                guard let newFrequency = CourseSyncFrequency(rawValue: newSelection.row) else {
+                guard let newFrequency = CourseSyncFrequency(rawValue: newSelection) else {
                     return
                 }
 
                 promise(.success(newFrequency))
             }
-            let picker = ItemPickerViewController
-                .create(title: String(localized: "Sync Frequency", bundle: .core),
-                        sections: CourseSyncFrequency.itemPickerData,
-                        selected: selection,
-                        didSelect: handleNewSelection)
-            sourceController.show(picker, sender: sourceController)
+
+            let pageTitle = String(localized: "Sync Frequency", bundle: .core)
+            let picker = ItemPickerScreen(
+                pageTitle: pageTitle,
+                items: CourseSyncFrequency.itemPickerData,
+                initialSelectionIndex: previousSelection,
+                didSelect: handleNewSelection
+            )
+            let pickerVC = CoreHostingController(picker)
+            pickerVC.navigationItem.title = pageTitle
+            sourceController.show(pickerVC, sender: self)
         }
         .eraseToAnyPublisher()
     }
