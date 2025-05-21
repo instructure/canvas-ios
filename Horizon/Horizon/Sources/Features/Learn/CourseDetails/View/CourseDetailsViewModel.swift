@@ -24,7 +24,6 @@ import Foundation
 final class CourseDetailsViewModel {
     // MARK: - Outputs
 
-    private(set) var state: InstUI.ScreenState = .loading
     private(set) var course: HCourse
     private(set) var isShowHeader = true
     private(set) var courses: [DropdownMenuItem] = []
@@ -66,9 +65,19 @@ final class CourseDetailsViewModel {
         self.courseID = courseID
         self.course = course ?? .init()
         self.isLoaderVisible = true
-        fetchData()
-        observeCourseSelection()
+//        fetchData()
+//        observeCourseSelection()
         observeHeaderVisiablity()
+
+        getCoursesInteractor.getCourseWithModules(
+            id: courseID,
+            ignoreCache: false
+        )
+        .sink { [weak self] course in
+            self?.updateCourse(course: course)
+            self?.isLoaderVisible = false
+        }
+        .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -83,7 +92,7 @@ final class CourseDetailsViewModel {
                 continuation.resume()
                 return
             }
-             pullToRefreshCancellable = getCoursesInteractor.getCourseWithModules(id: course.id, ignoreCache: true)
+             pullToRefreshCancellable = getCoursesInteractor.getCourseWithModules(id: courseID, ignoreCache: true)
                 .first()
                 .sink { [weak self] course in
                     continuation.resume()
@@ -159,15 +168,13 @@ final class CourseDetailsViewModel {
     }
 
     private func updateCourse(course: HCourse?) {
-        guard let course, (selectedCoure == nil || selectedCoure?.id != course.id)
-        else {
+        guard let course else {
             return
         }
         let currentProgress = self.course.progress
         let nextProgress = course.progress
         self.course = course
         self.course.progress = max(nextProgress, currentProgress)
-        state = .data
         selectedCoure = .init(id: course.id, name: course.name)
         // Firt tab is 0 -> Overview 1 -> MyProgress
         selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1

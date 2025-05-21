@@ -46,13 +46,14 @@ struct CourseDetailsView: View {
         VStack(alignment: .leading, spacing: .zero) {
             if viewModel.isShowHeader {
                 Group {
-                    DropdownMenu(
-                        items: viewModel.courses,
-                        selectedItem: viewModel.selectedCoure,
-                        onSelect: viewModel.onSelectCourse
-                    )
-                    .padding(.horizontal, .huiSpaces.space24)
-                    .padding(.bottom, .huiSpaces.space16)
+                    // Hide courses DropdownMenu
+//                    DropdownMenu(
+//                        items: viewModel.courses,
+//                        selectedItem: viewModel.selectedCoure,
+//                        onSelect: viewModel.onSelectCourse
+//                    )
+//                    .padding(.horizontal, .huiSpaces.space24)
+//                    .padding(.bottom, .huiSpaces.space16)
 
                     headerView
                 }
@@ -93,6 +94,9 @@ struct CourseDetailsView: View {
 
     private var headerView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
+            Text(viewModel.course.name)
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.primitives.black174)
             HorizonUI.ProgressBar(
                 progress: viewModel.course.progress / 100,
                 size: .medium,
