@@ -30,17 +30,17 @@ public struct SingleSelectionView: View {
 
     @StateObject private var viewModel: SingleSelectionViewModel
 
-    private let accessibilityIdentifier: String?
+    private let identifierGroup: String?
     private let style: Style
 
     public init(
         title: String?,
-        accessibilityIdentifier: String? = nil,
+        identifierGroup: String? = nil,
         allOptions: [OptionItem],
         selectedOption: CurrentValueSubject<OptionItem?, Never>,
         style: Style = .radioButton
     ) {
-        self.accessibilityIdentifier = accessibilityIdentifier
+        self.identifierGroup = identifierGroup
         self.style = style
 
         self._viewModel = StateObject(wrappedValue: .init(
@@ -52,13 +52,13 @@ public struct SingleSelectionView: View {
 
     public init(
         title: String?,
-        accessibilityIdentifier: String? = nil,
+        identifierGroup: String? = nil,
         options: SingleSelectionOptions,
         style: Style = .radioButton
     ) {
         self.init(
             title: title,
-            accessibilityIdentifier: accessibilityIdentifier,
+            identifierGroup: identifierGroup,
             allOptions: options.all,
             selectedOption: options.selected,
             style: style
@@ -71,7 +71,7 @@ public struct SingleSelectionView: View {
             Section {
                 ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)
-                        .accessibilityIdentifier(accessibilityIdentifier(for: item))
+                        .identifier(identifierGroup, item.id)
                 }
             } header: {
                 InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
@@ -111,10 +111,6 @@ public struct SingleSelectionView: View {
             viewModel.selectedOption.send(selectedValue)
         }
     }
-
-    private func accessibilityIdentifier(for item: OptionItem) -> String {
-        [accessibilityIdentifier, item.id].joined(separator: ".")
-    }
 }
 
 #if DEBUG
@@ -124,7 +120,6 @@ public struct SingleSelectionView: View {
         InstUI.Divider()
         SingleSelectionView(
             title: "Radio group",
-            accessibilityIdentifier: nil,
             allOptions: [
                 .make(id: "1", title: "Option 1"),
                 .make(id: "2", title: "Option 2"),
@@ -134,7 +129,6 @@ public struct SingleSelectionView: View {
         )
         SingleSelectionView(
             title: "Radio group with colors",
-            accessibilityIdentifier: nil,
             allOptions: [
                 .make(id: "A", title: "Option A", color: .textDanger),
                 .make(id: "B", title: "Option B", color: .textSuccess),
@@ -144,7 +138,6 @@ public struct SingleSelectionView: View {
         )
         SingleSelectionView(
             title: "Item picker",
-            accessibilityIdentifier: nil,
             allOptions: [
                 .make(id: "A", title: "Option A", color: .textDanger),
                 .make(id: "B", title: "Option B", color: .textSuccess),

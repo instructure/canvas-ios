@@ -24,17 +24,17 @@ public struct MultiSelectionView: View {
 
     @StateObject private var viewModel: MultiSelectionViewModel
 
-    private let accessibilityIdentifier: String?
+    private let identifierGroup: String?
     private let hasAllSelectionButton: Bool
 
     public init(
         title: String?,
-        accessibilityIdentifier: String? = nil,
+        identifierGroup: String? = nil,
         hasAllSelectionButton: Bool = false,
         allOptions: [OptionItem],
         selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     ) {
-        self.accessibilityIdentifier = accessibilityIdentifier
+        self.identifierGroup = identifierGroup
         self.hasAllSelectionButton = hasAllSelectionButton
 
         self._viewModel = StateObject(wrappedValue: .init(
@@ -46,13 +46,13 @@ public struct MultiSelectionView: View {
 
     public init(
         title: String?,
-        accessibilityIdentifier: String? = nil,
+        identifierGroup: String? = nil,
         hasAllSelectionButton: Bool = false,
         options: MultiSelectionOptions
     ) {
         self.init(
             title: title,
-            accessibilityIdentifier: accessibilityIdentifier,
+            identifierGroup: identifierGroup,
             hasAllSelectionButton: hasAllSelectionButton,
             allOptions: options.all,
             selectedOptions: options.selected
@@ -65,6 +65,7 @@ public struct MultiSelectionView: View {
             Section {
                 ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)
+                        .identifier(identifierGroup, item.id)
                 }
             } header: {
                 if hasAllSelectionButton {
@@ -93,7 +94,6 @@ public struct MultiSelectionView: View {
             accessoryView: { item.accessoryIcon?.foregroundStyle(item.color) },
             dividerStyle: viewModel.dividerStyle(for: item)
         )
-        .accessibilityIdentifier(accessibilityIdentifier(for: item))
     }
 
     private func selectionBinding(for item: OptionItem) -> Binding<Bool> {
@@ -102,10 +102,6 @@ public struct MultiSelectionView: View {
         } set: { newValue in
             viewModel.didToggleSelection.send((option: item, isSelected: newValue))
         }
-    }
-
-    private func accessibilityIdentifier(for item: OptionItem) -> String {
-        [accessibilityIdentifier, item.id].joined(separator: ".")
     }
 }
 
@@ -116,7 +112,6 @@ public struct MultiSelectionView: View {
         InstUI.Divider()
         MultiSelectionView(
             title: "Section 1 title",
-            accessibilityIdentifier: nil,
             allOptions: [
                 .make(id: "1", title: "Option 1"),
                 .make(id: "2", title: "Option 2"),
@@ -126,7 +121,6 @@ public struct MultiSelectionView: View {
         )
         MultiSelectionView(
             title: "Section 2 title",
-            accessibilityIdentifier: nil,
             hasAllSelectionButton: true,
             allOptions: [
                 .make(id: "A", title: "Option A", color: .textDanger),

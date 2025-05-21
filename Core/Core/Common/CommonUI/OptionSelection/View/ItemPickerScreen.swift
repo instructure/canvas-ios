@@ -22,7 +22,7 @@ import SwiftUI
 public struct ItemPickerScreen: View {
 
     private let pageTitle: String
-    private let accessibilityIdentifier: String?
+    private let identifierGroup: String?
 
     private let allOptions: [OptionItem]
     private let selectedOption: CurrentValueSubject<OptionItem?, Never>
@@ -32,12 +32,12 @@ public struct ItemPickerScreen: View {
 
     public init(
         pageTitle: String,
-        accessibilityIdentifier: String? = nil,
+        identifierGroup: String? = nil,
         allOptions: [OptionItem],
         selectedOption: CurrentValueSubject<OptionItem?, Never>
     ) {
         self.pageTitle = pageTitle
-        self.accessibilityIdentifier = accessibilityIdentifier
+        self.identifierGroup = identifierGroup
         self.allOptions = allOptions
         self.selectedOption = selectedOption
         self.didSelect = nil
@@ -45,12 +45,12 @@ public struct ItemPickerScreen: View {
 
     public init(
         pageTitle: String,
-        accessibilityIdentifier: String? = nil,
+        identifierGroup: String? = nil,
         options: SingleSelectionOptions
     ) {
         self.init(
             pageTitle: pageTitle,
-            accessibilityIdentifier: accessibilityIdentifier,
+            identifierGroup: identifierGroup,
             allOptions: options.all,
             selectedOption: options.selected
         )
@@ -58,13 +58,13 @@ public struct ItemPickerScreen: View {
 
     public init(
         pageTitle: String,
-        accessibilityIdentifier: String? = nil,
+        identifierGroup: String? = nil,
         items: [ItemPickerItem],
         initialSelectionIndex: Int?,
         didSelect: ((Int) -> Void)?
     ) {
         self.pageTitle = pageTitle
-        self.accessibilityIdentifier = accessibilityIdentifier
+        self.identifierGroup = identifierGroup
 
         let allOptions = items.indices.map { items[$0].optionItem(id: $0) }
         let initialOption = allOptions[safeIndex: initialSelectionIndex ?? -1]
@@ -78,7 +78,7 @@ public struct ItemPickerScreen: View {
         InstUI.BaseScreen(state: .data, config: .init(refreshable: false, scrollBounce: .automatic)) { _ in
             SingleSelectionView(
                 title: nil,
-                accessibilityIdentifier: accessibilityIdentifier,
+                identifierGroup: identifierGroup,
                 allOptions: allOptions,
                 selectedOption: selectedOption,
                 style: .trailingCheckmark
