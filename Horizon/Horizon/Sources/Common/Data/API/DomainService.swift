@@ -21,7 +21,6 @@ import Core
 import Foundation
 
 /// A representation of our domain services
-/// These are configured the the .xcconfig files and in the target info build settings
 final class DomainService {
 
     // MARK: - Dependencies
@@ -117,13 +116,22 @@ extension DomainService {
         case pine
         case redwood
 
-        func audience() throws -> String {
-            // configured in the .xcconfig files and in the target info build settings
-            guard let dict = Bundle.main.object(forInfoDictionaryKey: "Domain Service URLs") as? NSDictionary,
-                  let audience = dict[rawValue] as? String else {
-                    throw(DomainService.Issue.serviceConfigurationNotFound)
-                  }
-            return audience
+        func audience(baseURL: String? = AppEnvironment.shared.currentSession?.baseURL.absoluteString) throws -> String {
+            let serviceUrls: [Option: String] = baseURL?.contains("horizon.cd.instructure.com") == true ?
+                [
+                    .cedar: "cedar-api-dev.domain-svcs.nonprod.inseng.io",
+                    .pine: "pine-api-dev.domain-svcs.nonprod.inseng.io",
+                    .redwood: "redwood-api-dev.domain-svcs.nonprod.inseng.io"
+                ] : [
+                    .cedar: "cedar-api-production.us-east-1.temp.prod.inseng.io",
+                    .pine: "pine-api-production.us-east-1.temp.prod.inseng.io",
+                    .redwood: "redwood-api-production.us-east-1.temp.prod.inseng.io"
+                ]
+
+            guard let serviceUrl = serviceUrls[self] else {
+                throw DomainService.Issue.serviceConfigurationNotFound
+            }
+            return serviceUrl
         }
 
         var service: String {
