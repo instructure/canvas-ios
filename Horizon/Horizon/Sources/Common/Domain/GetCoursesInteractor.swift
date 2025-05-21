@@ -25,6 +25,7 @@ import Foundation
 protocol GetCoursesInteractor {
     func getCourseWithModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
     func getCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
+    func getCourseWithModulesWithoutObservation(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -54,6 +55,18 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
 
         return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: id, horizonCourses: true))
             .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
+            .map { $0.first }
+            .receive(on: scheduler)
+            .eraseToAnyPublisher()
+    }
+
+    func getCourseWithModulesWithoutObservation(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never> {
+        unowned let unownedSelf = self
+
+        return ReactiveStore(useCase: GetCoursesProgressionUseCase(userId: userId, courseId: id, horizonCourses: true))
+            .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { unownedSelf.fetchModules(dashboardCourses: $0, ignoreCache: ignoreCache) }
             .map { $0.first }

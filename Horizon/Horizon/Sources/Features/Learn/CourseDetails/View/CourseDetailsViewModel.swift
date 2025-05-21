@@ -108,16 +108,19 @@ final class CourseDetailsViewModel {
             guard let self, self.selectedCoure != selectedCourse else {
                 return
             }
-
+            self.selectedCoure = selectedCourse
             // Needs to cancel refresh api after change the course
             pullToRefreshCancellable?.cancel()
             pullToRefreshCancellable = nil
             isLoaderVisible = true
-            selectedTabIndex = 1
-            getCourse(for: selectedCourse?.id ?? "")
+            getCoursesInteractor
+                .getCourseWithModulesWithoutObservation(
+                    id: selectedCourse?.id ?? "",
+                    ignoreCache: false
+                )
                 .sink { [weak self] course in
-                    self?.isLoaderVisible = false
                     self?.updateCourse(course: course)
+                    self?.isLoaderVisible = false
                 }
                 .store(in: &subscriptions)
         }
@@ -159,7 +162,7 @@ final class CourseDetailsViewModel {
     }
 
     private func updateCourse(course: HCourse?) {
-        guard let course, (selectedCoure == nil || selectedCoure?.id != course.id)
+        guard let course, (selectedCoure == nil || selectedCoure?.id == course.id)
         else {
             return
         }
