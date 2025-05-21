@@ -168,8 +168,7 @@ final class CourseDetailsViewModel {
     }
 
     private func updateCourse(course: HCourse?) {
-        guard let course, (selectedCoure == nil || selectedCoure?.id != course.id)
-        else {
+        guard let course else {
             return
         }
         let currentProgress = self.course.progress
