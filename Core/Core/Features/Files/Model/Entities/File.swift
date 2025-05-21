@@ -245,4 +245,7 @@ extension Sequence where Element == File {
     public var containsError: Bool { contains(where: { file in file.uploadError != nil }) }
     public var containsUploading: Bool { contains(where: { file in file.isUploading }) }
     public var isAllUploaded: Bool { allSatisfy { file in file.isUploaded } }
+
+    public var uploadedFilesCount: Int { filter { $0.isUploaded }.count }
+    public var failedFilesCount: Int { filter { $0.uploadError != nil }.count }
 }
