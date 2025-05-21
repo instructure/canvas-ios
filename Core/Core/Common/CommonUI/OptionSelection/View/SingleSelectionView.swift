@@ -20,21 +20,30 @@ import Combine
 import SwiftUI
 
 public struct SingleSelectionView: View {
+
+    public enum Style {
+        case radioButton
+        case trailingCheckmark
+    }
+
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @StateObject private var viewModel: SingleSelectionViewModel
 
     private let title: String?
     private let accessibilityIdentifier: String?
+    private let style: Style
 
     public init(
         title: String?,
         accessibilityIdentifier: String? = nil,
         allOptions: [OptionItem],
-        selectedOption: CurrentValueSubject<OptionItem?, Never>
+        selectedOption: CurrentValueSubject<OptionItem?, Never>,
+        style: Style = .radioButton
     ) {
         self.title = title
         self.accessibilityIdentifier = accessibilityIdentifier
+        self.style = style
 
         self._viewModel = StateObject(wrappedValue: .init(
             allOptions: allOptions,
@@ -45,13 +54,15 @@ public struct SingleSelectionView: View {
     public init(
         title: String?,
         accessibilityIdentifier: String? = nil,
-        options: SingleSelectionOptions
+        options: SingleSelectionOptions,
+        style: Style = .radioButton
     ) {
         self.init(
             title: title,
             accessibilityIdentifier: accessibilityIdentifier,
             allOptions: options.all,
-            selectedOption: options.selected
+            selectedOption: options.selected,
+            style: style
         )
     }
 
@@ -61,6 +72,7 @@ public struct SingleSelectionView: View {
             Section {
                 ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)
+                        .accessibilityIdentifier(accessibilityIdentifier(for: item))
                 }
             } header: {
                 InstUI.ListSectionHeader(title: title)
@@ -70,14 +82,25 @@ public struct SingleSelectionView: View {
 
     @ViewBuilder
     private func optionCell(with item: OptionItem) -> some View {
-        InstUI.RadioButtonCell(
-            title: item.title,
-            value: item,
-            selectedValue: selectionBinding,
-            color: item.color,
-            dividerStyle: viewModel.dividerStyle(for: item)
-        )
-        .accessibilityIdentifier(accessibilityIdentifier(for: item))
+        switch style {
+        case .radioButton:
+            InstUI.RadioButtonCell(
+                title: item.title,
+                value: item,
+                selectedValue: selectionBinding,
+                color: item.color,
+                dividerStyle: viewModel.dividerStyle(for: item)
+            )
+        case .trailingCheckmark:
+            InstUI.TrailingCheckmarkCell(
+                title: item.title,
+                subtitle: item.subtitle,
+                value: item,
+                selectedValue: selectionBinding,
+                color: item.color,
+                dividerStyle: viewModel.dividerStyle(for: item)
+            )
+        }
     }
 
     private var selectionBinding: Binding<OptionItem?> {
@@ -99,7 +122,7 @@ public struct SingleSelectionView: View {
     VStack(spacing: 0) {
         InstUI.Divider()
         SingleSelectionView(
-            title: "Section 1 title",
+            title: "Radio group",
             accessibilityIdentifier: nil,
             allOptions: [
                 .make(id: "1", title: "Option 1"),
@@ -109,7 +132,7 @@ public struct SingleSelectionView: View {
             selectedOption: .init(nil)
         )
         SingleSelectionView(
-            title: "Section 2 title",
+            title: "Radio group with colors",
             accessibilityIdentifier: nil,
             allOptions: [
                 .make(id: "A", title: "Option A", color: .textDanger),
@@ -117,6 +140,17 @@ public struct SingleSelectionView: View {
                 .make(id: "C", title: "Option C", color: .textInfo)
             ],
             selectedOption: .init(nil)
+        )
+        SingleSelectionView(
+            title: "Item picker",
+            accessibilityIdentifier: nil,
+            allOptions: [
+                .make(id: "A", title: "Option A", color: .textDanger),
+                .make(id: "B", title: "Option B", color: .textSuccess),
+                .make(id: "C", title: "Option C", color: .textInfo)
+            ],
+            selectedOption: .init(nil),
+            style: .trailingCheckmark
         )
     }
 }
