@@ -241,6 +241,66 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+      <entity name="CDScoresAssignment" representedClassName="Core.CDScoresAssignment" syncable="YES">
+        <attribute name="commentsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="htmlUrl" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isExcused" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isLate" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isMissing" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
+        <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresAssignmentGroup" inverseName="assignments" inverseEntity="CDScoresAssignmentGroup"/>
+    </entity>
+    <entity name="CDScoresAssignmentGroup" representedClassName="Core.CDScoresAssignmentGroup" syncable="YES">
+        <attribute name="enrollmentID" attributeType="String"/>
+        <attribute name="groupWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresAssignment" inverseName="relationship" inverseEntity="CDScoresAssignment"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmissionScores" inverseName="assignmentGroups" inverseEntity="CDSubmissionScores"/>
+    </entity>
+    <entity name="CDScoresCourse" representedClassName="Core.CDScoresCourse" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresCourseEnrollment" inverseName="relationship" inverseEntity="CDScoresCourseEnrollment"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourseSettings" inverseName="course" inverseEntity="CDScoresCourseSettings"/>
+    </entity>
+    <entity name="CDScoresCourseEnrollment" representedClassName="Core.CDScoresCourseEnrollment" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="grade" optional="YES" attributeType="String"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="enrollments" inverseEntity="CDScoresCourse"/>
+    </entity>
+    <entity name="CDScoresCourseSettings" representedClassName="Core.CDScoresCourseSettings" syncable="YES">
+        <attribute name="hideFinalGrade" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="settings" inverseEntity="CDScoresCourse"/>
+    </entity>
+    <entity name="CDSubmission" representedClassName="Core.CDSubmission" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="hasUnreadComment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDSubmissionComment" inverseName="relationship" inverseEntity="CDSubmissionComment"/>
+    </entity>
+    <entity name="CDSubmissionComment" representedClassName="Core.CDSubmissionComment" syncable="YES">
+        <attribute name="attemptFromAPI" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="authorID" optional="YES" attributeType="String"/>
+        <attribute name="authorName" optional="YES" attributeType="String"/>
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmission" inverseName="comments" inverseEntity="CDSubmission"/>
+    </entity>
+    <entity name="CDSubmissionScores" representedClassName="Core.CDSubmissionScores" syncable="YES">
+        <attribute name="enrollmentID" attributeType="String"/>
+        <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDScoresAssignmentGroup"/>
+    </entity>
     <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="role" attributeType="String"/>
