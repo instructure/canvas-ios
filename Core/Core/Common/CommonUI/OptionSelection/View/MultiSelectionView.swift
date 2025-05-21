@@ -24,7 +24,6 @@ public struct MultiSelectionView: View {
 
     @StateObject private var viewModel: MultiSelectionViewModel
 
-    private let title: String?
     private let accessibilityIdentifier: String?
     private let hasAllSelectionButton: Bool
 
@@ -35,11 +34,11 @@ public struct MultiSelectionView: View {
         allOptions: [OptionItem],
         selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     ) {
-        self.title = title
         self.accessibilityIdentifier = accessibilityIdentifier
         self.hasAllSelectionButton = hasAllSelectionButton
 
         self._viewModel = StateObject(wrappedValue: .init(
+            title: title,
             allOptions: allOptions,
             selectedOptions: selectedOptions
         ))
@@ -70,15 +69,18 @@ public struct MultiSelectionView: View {
             } header: {
                 if hasAllSelectionButton {
                     InstUI.ListSectionHeader(
-                        title: title,
+                        title: viewModel.title,
+                        itemCount: viewModel.optionCount,
                         buttonLabel: Text(viewModel.allSelectionButtonTitle),
                         buttonAction: { viewModel.didTapAllSelectionButton.send() }
                     )
                 } else {
-                    InstUI.ListSectionHeader(title: title)
+                    InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
                 }
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
     }
 
     @ViewBuilder

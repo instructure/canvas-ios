@@ -30,7 +30,6 @@ public struct SingleSelectionView: View {
 
     @StateObject private var viewModel: SingleSelectionViewModel
 
-    private let title: String?
     private let accessibilityIdentifier: String?
     private let style: Style
 
@@ -41,11 +40,11 @@ public struct SingleSelectionView: View {
         selectedOption: CurrentValueSubject<OptionItem?, Never>,
         style: Style = .radioButton
     ) {
-        self.title = title
         self.accessibilityIdentifier = accessibilityIdentifier
         self.style = style
 
         self._viewModel = StateObject(wrappedValue: .init(
+            title: title,
             allOptions: allOptions,
             selectedOption: selectedOption
         ))
@@ -75,9 +74,11 @@ public struct SingleSelectionView: View {
                         .accessibilityIdentifier(accessibilityIdentifier(for: item))
                 }
             } header: {
-                InstUI.ListSectionHeader(title: title)
+                InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
     }
 
     @ViewBuilder

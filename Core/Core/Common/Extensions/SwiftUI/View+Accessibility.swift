@@ -30,4 +30,22 @@ extension View {
             self
         }
     }
+
+    @ViewBuilder
+    public func accessibilityLabel(_ label: String?) -> some View {
+        if let label {
+            self.accessibilityLabel(Text(label))
+        } else {
+            self
+        }
+    }
+
+    @ViewBuilder
+    public func accessibilityLabel(_ label: Text?) -> some View {
+        if let label {
+            self.accessibilityLabel(label)
+        } else {
+            self
+        }
+    }
 }
