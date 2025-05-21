@@ -33,7 +33,6 @@ enum ModuleItemSequenceAssembly {
         let isNotebookDisabled = url.queryItems?.first(where: { $0.name == "notebook_disabled" })?.value?.boolValue ?? false
         let interactor = ModuleItemSequenceInteractorLive(
             courseID: courseID,
-            assetType: assetType,
             getCoursesInteractor: getCoursesInteractor
         )
         let stateInteractor = ModuleItemStateInteractorLive(

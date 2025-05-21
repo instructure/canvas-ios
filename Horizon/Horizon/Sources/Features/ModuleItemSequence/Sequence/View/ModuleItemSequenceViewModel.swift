@@ -76,7 +76,7 @@ final class ModuleItemSequenceViewModel {
     private let moduleItemInteractor: ModuleItemSequenceInteractor
     private let moduleItemStateInteractor: ModuleItemStateInteractor
     private let router: Router
-    private let assetType: AssetType
+    private var assetType: AssetType
     private let assetID: String
     private let courseID: String
     private let isNotebookDisabled: Bool
@@ -170,12 +170,18 @@ final class ModuleItemSequenceViewModel {
     ) {
         isLoaderVisible = true
         moduleItemInteractor.fetchModuleItems(
+            assetType: assetType,
             assetId: assetId,
             moduleID: moduleID,
             itemID: itemID
         )
         .sink { [weak self] result in
             self?.isLoaderVisible = false
+            if result.1 == nil {
+                // TODO: Handle the error
+                return
+            }
+            self?.assetType = .moduleItem
             let firstSequence = result.0
             self?.sequence = firstSequence
             self?.isNextButtonEnabled = firstSequence?.next != nil
@@ -318,6 +324,7 @@ final class ModuleItemSequenceViewModel {
     private func refershModuleItem() {
         guard let next = sequence?.next else { return }
         moduleItemInteractor.fetchModuleItems(
+            assetType: assetType,
             assetId: next.id,
             moduleID: next.moduleID,
             itemID: next.id
