@@ -53,27 +53,25 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let plannable: Plannable
+    private var plannable: Plannable?
     private let interactor: CalendarToDoInteractor
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
-    public init(plannable: Plannable, interactor: CalendarToDoInteractor, router: Router) {
-        self.plannable = plannable
+    public init(plannableId: String, interactor: CalendarToDoInteractor, router: Router) {
         self.interactor = interactor
         self.router = router
 
-        interactor.getToDo(id: plannable.id)
+        interactor.getToDo(id: plannableId)
             .sink(
                 receiveCompletion: { [weak self] in
                     switch $0 {
                     case .finished:
                         break
                     case .failure:
-                        // fallback to input plannable values
-                        self?.updateValues(with: plannable)
+                        self?.state = .error
                     }
                 },
                 receiveValue: { [weak self] in
@@ -101,6 +99,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     // MARK: - Private methods
 
     private func updateValues(with plannable: Plannable) {
+        self.plannable = plannable
         title = plannable.title
         date = plannable.date?.dateTimeString
         description = plannable.details
@@ -108,6 +107,9 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     }
 
     private func showEditScreen(from source: WeakViewController) {
+        guard let plannable = plannable else {
+            return
+        }
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeEditToDoViewController(plannable: plannable) { [router] _ in
             router.dismiss(weakVC)
@@ -119,6 +121,9 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
 
     private func deleteToDo(from source: WeakViewController) {
         state = .data(loadingOverlay: true)
+        guard let plannable = plannable else {
+            return
+        }
 
         interactor.deleteToDo(id: plannable.id)
             .sink(

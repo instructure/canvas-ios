@@ -29,7 +29,7 @@ class GradesWidgetProvider: CommonWidgetProvider<GradeModel> {
         super.init(loggedOutModel: GradeModel(isLoggedIn: false), timeout: 2 * 60 * 60)
     }
 
-    override func fetchData(completion: @escaping (GradeModel) -> Void) {
+    override func fetchData() {
         colors = env.subscribe(GetCustomColors())
         colors?.refresh { [weak self] _ in
             guard let self = self, let colors = self.colors, !colors.pending else { return }

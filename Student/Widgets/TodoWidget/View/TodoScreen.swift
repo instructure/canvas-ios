@@ -23,11 +23,12 @@ import Core
 struct TodoScreen: BaseTodoScreen {
     let model: TodoModel
     let widgetSize: WidgetSize
-    let todoItems: [TodoItem]
+    let items: [Plannable]
     var body: some View {
         ZStack(alignment: .top) {
             VStack(spacing: 5) {
                 todoList
+                Spacer()
                 bottomSection
             }
             canvasLogo
@@ -38,21 +39,23 @@ struct TodoScreen: BaseTodoScreen {
         self.model = model
         self.widgetSize = widgetSize
         switch widgetSize {
-        case .large: self.todoItems = model.todoItems.forLargeTodoScreen
-        case .medium: self.todoItems = model.todoItems.forMediumTodoScreen
+        case .large: self.items = model.items.forLargeTodoScreen
+        case .medium: self.items = model.items.forMediumTodoScreen
         }
     }
 
     private var todoList: some View {
-        ForEach(todoItems) { item in
-            let itemDueOnSameDateAsPrevious: Bool = todoItems.itemDueOnSameDateAsPrevious(item)
-            let itemDueOnSameDateAsNext: Bool = todoItems.itemDueOnSameDateAsNext(item)
+        ForEach(items, id: \.id) { item in
+            let itemDueOnSameDateAsPrevious: Bool = items.itemDueOnSameDateAsPrevious(item)
+            let itemDueOnSameDateAsNext: Bool = items.itemDueOnSameDateAsNext(item)
 
-            HStack(alignment: .top, spacing: 5) {
-                TodoItemDate(todoItem: item, itemDueOnSameDateAsPrevious: itemDueOnSameDateAsPrevious)
-                TodoItemDetail(todoItem: item, itemDueOnSameDateAsNext: itemDueOnSameDateAsNext)
+            Link(destination: item.route) {
+                HStack(alignment: .top, spacing: 5) {
+                    TodoItemDate(item: item, itemDueOnSameDateAsPrevious: itemDueOnSameDateAsPrevious)
+                    TodoItemDetail(item: item, itemDueOnSameDateAsNext: itemDueOnSameDateAsNext)
+                }
             }
-            if item != todoItems.last! && !itemDueOnSameDateAsNext {
+            if item != items.last! && !itemDueOnSameDateAsNext {
                 InstUI.Divider()
             }
         }

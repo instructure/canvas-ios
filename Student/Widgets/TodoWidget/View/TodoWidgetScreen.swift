@@ -39,7 +39,7 @@ struct TodoWidgetScreen: View {
 
     @ViewBuilder
     private func buildView() -> some View {
-        if model.todoItems.isNotEmpty {
+        if model.items.isNotEmpty {
             switch family {
             case .systemMedium:
                 TodoScreen(model: model, widgetSize: .medium)

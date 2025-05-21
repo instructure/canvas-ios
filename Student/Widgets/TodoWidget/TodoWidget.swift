@@ -28,5 +28,6 @@ struct TodoWidget: Widget {
         }
         .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
         .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

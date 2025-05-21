@@ -59,7 +59,7 @@ extension BaseTodoScreen {
     var bottomSection: some View {
         HStack {
             ZStack {
-                if model.todoItems.count > 2 {
+                if model.items.count > widgetSize.rawValue {
                     Rectangle()
                         .fill(
                             LinearGradient(
@@ -82,80 +82,7 @@ extension BaseTodoScreen {
     }
 }
 
-struct TodoItemDate: View {
-    var todoItem: TodoItem
-    let itemDueOnSameDateAsPrevious: Bool
-    var isToday: Bool {
-        todoItem.date.dateOnlyString == Date.now.dateOnlyString
-    }
-
-    var body: some View {
-        VStack(spacing: 2) {
-            if !itemDueOnSameDateAsPrevious {
-                Text(todoItem.date.formatted(.dateTime.weekday()))
-                    .font(.regular12)
-                    .foregroundStyle(isToday ? .pink : .textDark)
-                ZStack {
-                    if isToday {
-                        Circle()
-                            .fill(.background)
-                            .stroke(.pink, style: .init(lineWidth: 1))
-                            .frame(width: 32, height: 32)
-                    }
-                    Text(todoItem.date.formatted(.dateTime.day()))
-                        .font(.bold12)
-                        .foregroundStyle(isToday ? .pink : .textDark)
-                }
-            }
-        }
-        .frame(minWidth: 34)
-    }
-}
-
-struct TodoItemDetail: View {
-    var todoItem: TodoItem
-    let itemDueOnSameDateAsNext: Bool
-    var isToday: Bool {
-        todoItem.date.dateOnlyString == Date.now.dateOnlyString
-    }
-
-    var body: some View {
-        VStack(spacing: 2) {
-            contextSection
-            titleSection
-            timeSection
-            if itemDueOnSameDateAsNext {
-                InstUI.Divider()
-                    .padding(.top, 3)
-            }
-        }
-    }
-
-    private var contextSection: some View {
-        HStack(spacing: 0) {
-            Text(todoItem.contextName ?? "ASD")
-            Spacer()
-        }
-        .font(.regular12)
-        .foregroundStyle(.blue) // course color
-    }
-
-    private var titleSection: some View {
-        Text(todoItem.name)
-            .font(.semibold14)
-            .foregroundStyle(Color.textDarkest)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .lineLimit(40)
-    }
-
-    private var timeSection: some View {
-        Text(todoItem.date.formatted(.dateTime.hour().minute()))
-            .font(.regular12)
-            .frame(maxWidth: .infinity, alignment: .leading)
-    }
-}
-
-public enum WidgetSize {
-    case medium
-    case large
+public enum WidgetSize: Int {
+    case medium = 2
+    case large = 5
 }

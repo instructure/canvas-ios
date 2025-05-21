@@ -480,6 +480,11 @@ let router = Router(routes: [
 
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
+    },
+
+    RouteHandler("/planner-notes/:plannableId") { _, params, _ in
+        guard let plannableId = params["plannableId"] else { return nil }
+        return PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
     }
 ], courseTabUrlInteractor: .init())
 

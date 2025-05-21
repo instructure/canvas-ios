@@ -36,3 +36,15 @@ extension Assignment {
         return URL(string: "\(scheme)\(host)/courses/\(courseID)/assignments/\(id)")!
     }
 }
+
+extension Plannable {
+    var route: URL {
+        guard let host = host else { return defaultRoute }
+        let url = switch plannableType {
+        case .calendar_event: URL(string: "\(scheme)\(host)/calendar_events/\(id)")!
+        case .planner_note: URL(string: "\(scheme)\(host)/planner-notes/\(id)")!
+        default: htmlURL ?? defaultRoute
+        }
+        return url
+    }
+}

@@ -37,7 +37,7 @@ class CommonWidgetProvider<Model: WidgetModel> {
         self.timeout = timeout
     }
 
-    func fetchData(completion: @escaping (Model) -> Void) {
+    func fetchData() {
         assertionFailure("This method should be overridden in subclasses.")
     }
 
@@ -60,11 +60,7 @@ class CommonWidgetProvider<Model: WidgetModel> {
         }
 
         setupLastLoginCredentials()
-        fetchData(completion: { [weak self] model in
-            guard let self else { return }
-            self.completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(self.timeout))))
-            self.completion = nil
-        })
+        fetchData()
     }
 
     private func setupLastLoginCredentials() {
@@ -87,7 +83,7 @@ extension CommonWidgetProvider: TimelineProvider {
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
         if context.isPreview {
-            completion(Timeline(entries: [placeholder(in: context)], policy: .after(Date())))
+            completion(Timeline(entries: [placeholder(in: context)], policy: .after(.distantFuture)))
             return
         }
 

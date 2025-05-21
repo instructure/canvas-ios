@@ -28,7 +28,7 @@ class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
         super.init(loggedOutModel: AnnouncementsEntry(isLoggedIn: false), timeout: GetWidgetAnnouncements.Timeout)
     }
 
-    override func fetchData(completion: @escaping (AnnouncementsEntry) -> Void) {
+    override func fetchData() {
         colors = env.subscribe(GetCustomColors())
         colors?.refresh { [weak self] _ in
             guard let self = self, let colors = self.colors, !colors.pending else { return }

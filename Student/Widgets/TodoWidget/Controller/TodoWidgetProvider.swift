@@ -32,7 +32,7 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
         super.init(loggedOutModel: TodoModel(isLoggedIn: false), timeout: 2 * 60 * 60)
     }
 
-    override func fetchData(completion: @escaping (TodoModel) -> Void) {
+    override func fetchData() {
         colors = env.subscribe(GetCustomColors())
         colors?.refresh { [weak self] _ in
             guard let self = self, let colors = self.colors, !colors.pending else { return }
@@ -70,7 +70,7 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
         ) { [weak self] in
             self?.plannableFetchFinished()
         }
-        self.plannables?.refresh(force: true)
+        self.plannables?.refresh()
     }
 
     private func plannableFetchFinished() {
@@ -80,17 +80,7 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
         let plannableItems: [Plannable] = compactPlannables.filter {
             $0.plannableType != .announcement && $0.plannableType != .assessment_request
         }
-        let todoItems = plannableItems.map { plannableItem in
-            let courseColor = courses?.all.first { $0.id == plannableItem.canvasContextIDRaw }?.color ?? .textDarkest
-            return TodoItem(
-                id: plannableItem.id,
-                name: plannableItem.title ?? "",
-                date: plannableItem.date ?? Date.now,
-                color: courseColor,
-                contextName: plannableItem.contextName
-            )
-        }
 
-        updateWidget(model: TodoModel(todoItems: todoItems))
+        updateWidget(model: TodoModel(items: plannableItems))
     }
 }

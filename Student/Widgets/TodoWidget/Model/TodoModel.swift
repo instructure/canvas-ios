@@ -17,18 +17,17 @@
 //
 
 import WidgetKit
+import Core
 
 class TodoModel: WidgetModel {
     override class var publicPreview: TodoModel {
-        TodoModel(todoItems: [
-            TodoItem(id: "1", name: "My Todo Item 1", date: .now, color: .red, contextName: "My Course")
-        ])
+        Self.make()
     }
 
-    let todoItems: [TodoItem]
+    let items: [Plannable]
 
-    init(isLoggedIn: Bool = true, todoItems: [TodoItem] = []) {
-        self.todoItems = todoItems
+    init(isLoggedIn: Bool = true, items: [Plannable] = []) {
+        self.items = items
         super.init(isLoggedIn: isLoggedIn)
     }
 }
@@ -36,16 +35,17 @@ class TodoModel: WidgetModel {
 #if DEBUG
 extension TodoModel {
     public static func make() -> TodoModel {
-        TodoModel(todoItems: [
-            TodoItem(id: "1", name: "Explosion 101 Assignment", date: .now, color: .systemRed, contextName: "My First Course"),
-            TodoItem(id: "8", name: "My Todo Item", date: .now.addDays(2), color: .systemBlue, contextName: "User Calendar"),
-            TodoItem(id: "2", name: "Explosion 101 Quiz", date: .now.addDays(1), color: .systemYellow, contextName: "My Second Course"),
-            TodoItem(id: "3", name: "Explosion 101 New Quiz", date: .now.addDays(1), color: .systemBlue, contextName: "My Second Course"),
-            TodoItem(id: "4", name: "Explosion 101 New Quiz 2", date: .now.addDays(1), color: .systemGreen, contextName: "My First Course"),
-            TodoItem(id: "5", name: "Explosion 101 Discussion", date: .now.addDays(2), color: .systemPink, contextName: "My First Course"),
-            TodoItem(id: "6", name: "Explosion 101 Discussion", date: .now.addDays(2), color: .systemCyan, contextName: "My First Course"),
-            TodoItem(id: "7", name: "Explosion 101 Discussion", date: .now.addDays(2), color: .systemBrown, contextName: "My First Course")
-        ])
+        let apiPlannables: [APIPlannable] = [
+            .make(plannable_id: "1", plannable_type: "assignment", plannable: .init(details: "Details", title: "Important Assignment")),
+            .make(plannable_id: "2", plannable_type: "discussion", plannable: .init(details: "Details", title: "Discussion About Everything")),
+            .make(plannable_id: "3", plannable_type: "calendar_event", plannable: .init(details: "Details", title: "Huge Event")),
+            .make(plannable_id: "4", plannable_type: "planner_note", plannable: .init(details: "Details", title: "Don't forget")),
+            .make(plannable_id: "5", plannable_type: "quiz", plannable: .init(details: "Details", title: "Quiz About Life"))
+        ]
+        let items = apiPlannables.map {
+            Plannable.save($0, userID: "", in: PreviewEnvironment().database.viewContext)
+        }
+        return TodoModel(items: items)
     }
 }
 #endif
