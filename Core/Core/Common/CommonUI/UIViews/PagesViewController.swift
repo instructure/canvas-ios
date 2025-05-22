@@ -28,7 +28,7 @@ public protocol PagesViewControllerDataSource: AnyObject {
     @objc optional func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController)
 }
 
-public final class PagesViewController: UIViewController, UIScrollViewDelegate {
+public class PagesViewController: UIViewController, UIScrollViewDelegate {
     public weak var dataSource: PagesViewControllerDataSource?
     public weak var delegate: PagesViewControllerDelegate?
     public let scrollView = UIScrollView()
