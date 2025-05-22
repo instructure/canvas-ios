@@ -233,6 +233,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
 
             let picker = ItemPickerScreen(
                 pageTitle: pageTitle,
+                identifierGroup: "Settings.\(channelType.rawValue)Notifications.\(row.category)",
                 allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.name, subtitle: $0.label) },
                 initialOptionId: row.frequency.optionItemId,
                 didSelectOption: { [weak self] in
