@@ -70,26 +70,6 @@ public struct ItemPickerScreen: View {
         )
     }
 
-    public init(
-        pageTitle: String,
-        identifierGroup: String? = nil,
-        items: [ItemPickerItem],
-        initialSelectionIndex: Int?,
-        didSelectIndex: @escaping ((Int) -> Void)
-    ) {
-        self.pageTitle = pageTitle
-        self.identifierGroup = identifierGroup
-
-        let allOptions = items.indices.map { items[$0].optionItem(id: $0) }
-        let initialOption = allOptions[safeIndex: initialSelectionIndex ?? -1]
-        self.allOptions = allOptions
-        self.selectedOption = .init(initialOption)
-        self.didSelectOption = {
-            guard let id = Int($0.id) else { return }
-            didSelectIndex(id)
-        }
-    }
-
     public var body: some View {
         InstUI.BaseScreen(state: .data, config: .init(refreshable: false, scrollBounce: .automatic)) { _ in
             SingleSelectionView(
@@ -112,15 +92,5 @@ public struct ItemPickerScreen: View {
 
             didSelectOption?(option)
         }
-    }
-}
-
-private extension ItemPickerItem {
-    func optionItem(id: Int) -> OptionItem {
-        .init(
-            id: String(id),
-            title: title,
-            subtitle: subtitle
-        )
     }
 }
