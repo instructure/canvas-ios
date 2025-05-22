@@ -56,7 +56,7 @@ struct ScoresAssignmentGroup: Identifiable {
 }
 
 extension Array where Element == ScoresAssignmentGroup {
-    private var groupWeightSum: Double {
+     var groupWeightSum: Double {
         reduce(0) { result, group in
             result + (group.groupWeight ?? 0)
         }

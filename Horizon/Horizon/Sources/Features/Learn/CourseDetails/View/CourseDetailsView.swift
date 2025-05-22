@@ -25,7 +25,7 @@ struct CourseDetailsView: View {
     @Environment(\.viewController) private var viewController
 
     private var tabs: [Tabs] {
-        let showingOverview = !viewModel.course.overviewDescription.isEmpty
+        let showingOverview = !viewModel.overviewDescription.isEmpty
         return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
     }
     // MARK: - Dependencies
@@ -132,7 +132,6 @@ struct CourseDetailsView: View {
                     topView
                     CotentView(selectedTab: tab, viewModel: viewModel)
                 }
-                .scaleEffect(index == viewModel.selectedTabIndex ? 1 : 0.8)
                 .tag(index)
                 .refreshable {
                     await viewModel.refresh()
@@ -147,14 +146,16 @@ struct CourseDetailsView: View {
         Color.clear
             .frame(height: 0)
             .readingFrame { frame in
-                viewModel.showHeaderPublisher.send(frame.minY > -100)
+                // Need to make sure the tabBar is visible before starting the animation, because we hide it when going through the module item sequence.
+                if viewController.isTabBarVisible {
+                    viewModel.showHeaderPublisher.send(frame.minY > -100)
+                }
             }
     }
 }
 
 private struct CotentView: View {
     @Environment(\.viewController) private var viewController
-    @State private var webViewHeight: CGFloat?
     let selectedTab: CourseDetailsView.Tabs
     let viewModel: CourseDetailsViewModel
 
@@ -164,7 +165,7 @@ private struct CotentView: View {
             modulesView(modules: viewModel.course.modules)
                 .padding(.bottom, .huiSpaces.space24)
         case .overview:
-            overview(htmlString: viewModel.course.overviewDescription)
+            overview(htmlString: viewModel.overviewDescription)
                 .padding(.bottom, .huiSpaces.space24)
         case .scores:
             ScoresAssembly.makeView(courseID: viewModel.course.id, enrollmentID: viewModel.course.enrollmentID)
@@ -193,12 +194,7 @@ private struct CotentView: View {
     private func overview(htmlString: String?) -> some View {
         if let htmlString {
             WebView(html: htmlString, isScrollEnabled: false)
-                .onChangeSize { height in
-                    if webViewHeight == nil {
-                        webViewHeight = height
-                    }
-                }
-                .frame(height: webViewHeight ?? 0)
+                .frameToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         }
     }

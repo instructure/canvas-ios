@@ -16,25 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
 import Core
 
-struct LearnCourse {
-    let id: String
-    let name: String
-    let enrollmentId: String
-
-    init(id: String, name: String, enrollmentId: String) {
-        self.id = id
-        self.name = name
-        self.enrollmentId = enrollmentId
-    }
-
-    init?(from entity: CDLearnCourse?) {
-        guard let entity else {
-            return nil
-        }
-        self.id = entity.id
-        self.name = entity.name
-        self.enrollmentId = entity.enrollmentId
+extension WeakViewController {
+    var isTabBarVisible: Bool {
+        !((value.tabBarController?.tabBar.isHidden) ?? true)
     }
 }
