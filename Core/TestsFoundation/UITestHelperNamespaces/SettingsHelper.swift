@@ -91,11 +91,11 @@ public class SettingsHelper: BaseHelper {
         public static var QRCodeImage: XCUIElement { app.find(id: "QRCodeImage") }
 
         public static func landingPageMenuItem(item: LandingPageMenuItem) -> XCUIElement {
-            return app.find(type: .table).find(label: item.rawValue, type: .staticText)
+            return app.find(idStartingWith: "Settings.landingPageOptions", label: item.rawValue)
         }
 
         public static func appearanceMenuItem(item: AppearanceMenuItem) -> XCUIElement {
-            return app.find(id: "ItemPickerItem.0-\(item.rawValue)")
+            return app.find(id: "Settings.appearanceOptions.\(item.rawValue)")
         }
 
         public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
@@ -122,9 +122,11 @@ public class SettingsHelper: BaseHelper {
         public static var turnOffButton: XCUIElement { app.find(label: "Turn Off", type: .button) }
 
         public struct SyncFrequency {
-            public static var asTheOsAllows: XCUIElement { app.find(labelContaining: "as the OS allows", type: .staticText) }
-            public static var daily: XCUIElement { app.find(label: "Daily", type: .staticText) }
-            public static var weekly: XCUIElement { app.find(label: "Weekly", type: .staticText) }
+            private static let group = "Settings.OfflineSync.syncFrequencyOptions"
+
+            public static var asTheOsAllows: XCUIElement { app.find(idStartingWith: group, labelContaining: "as the OS allows") }
+            public static var daily: XCUIElement { app.find(idStartingWith: group, label: "Daily") }
+            public static var weekly: XCUIElement { app.find(idStartingWith: group, label: "Weekly") }
         }
     }
 }

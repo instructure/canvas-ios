@@ -250,6 +250,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 let pageTitle = String(localized: "Appearance", bundle: .core)
                 let picker = ItemPickerScreen(
                     pageTitle: pageTitle,
+                    identifierGroup: "Settings.appearanceOptions",
                     items: options,
                     initialSelectionIndex: selectedStyleIndex,
                     didSelect: {
@@ -273,6 +274,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 let pageTitle = String(localized: "Landing Page", bundle: .core)
                 let picker = ItemPickerScreen(
                     pageTitle: pageTitle,
+                    identifierGroup: "Settings.landingPageOptions",
                     items: LandingPage.appCases.map { page in
                         ItemPickerItem(title: page.name)
                     },

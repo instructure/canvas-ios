@@ -189,6 +189,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
             let pageTitle = String(localized: "Sync Frequency", bundle: .core)
             let picker = ItemPickerScreen(
                 pageTitle: pageTitle,
+                identifierGroup: "Settings.OfflineSync.syncFrequencyOptions",
                 items: CourseSyncFrequency.itemPickerData,
                 initialSelectionIndex: previousSelection,
                 didSelect: handleNewSelection

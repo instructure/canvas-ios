@@ -116,6 +116,7 @@ extension ProfileSettingsViewModel {
         let pageTitle = String(localized: "Appearance", bundle: .core)
         let picker = ItemPickerScreen(
             pageTitle: pageTitle,
+            identifierGroup: "Settings.appearanceOptions",
             items: options,
             initialSelectionIndex: selectedStyleIndex,
             didSelect: { [weak self] in
