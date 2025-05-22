@@ -23,23 +23,12 @@ import XCTest
 class CourseSyncFrequencyTests: XCTestCase {
 
     func testSyncFrequencyNames() {
-        XCTAssertEqual(CourseSyncFrequency.weekly.stringValue, "Weekly")
         XCTAssertEqual(CourseSyncFrequency.daily.stringValue, "Daily")
+        XCTAssertEqual(CourseSyncFrequency.weekly.stringValue, "Weekly")
     }
 
-    func testSyncFrequenciesToItemPickerData() throws {
-        let testee = CourseSyncFrequency.itemPickerData
-
-        guard testee.count == 3 else { throw InvalidCountError() }
-
-        // First entry is a debug one which we don't test
-        XCTAssertEqual(testee[1].title, "Daily")
-        XCTAssertEqual(testee[1].accessibilityIdentifier, nil)
-        XCTAssertEqual(testee[1].image, nil)
-        XCTAssertEqual(testee[1].subtitle, nil)
-        XCTAssertEqual(testee[2].title, "Weekly")
-        XCTAssertEqual(testee[2].accessibilityIdentifier, nil)
-        XCTAssertEqual(testee[2].image, nil)
-        XCTAssertEqual(testee[2].subtitle, nil)
+    func testSyncFrequencyOptionItemId() throws {
+        XCTAssertEqual(CourseSyncFrequency.daily.optionItemId, "daily")
+        XCTAssertEqual(CourseSyncFrequency.weekly.optionItemId, "weekly")
     }
 }

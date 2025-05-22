@@ -236,30 +236,28 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private var interfaceStyleSettings: [Row] {
-        let options = [
-            ItemPickerItem(title: String(localized: "System Settings", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Light Theme", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core))
-        ]
-        let selectedStyleIndex = env.userDefaults?.interfaceStyle?.rawValue ?? 0
+        let selectedStyle = env.userDefaults?.interfaceStyle ?? .unspecified
 
         return [
-            Row(String(localized: "Appearance", bundle: .core), detail: options[selectedStyleIndex].title, isSupportedOffline: true) { [weak self] in
-                guard let self = self else { return }
+            Row(String(localized: "Appearance", bundle: .core), detail: selectedStyle.settingsTitle, isSupportedOffline: true) { [weak self] in
+                guard let self else { return }
 
                 let pageTitle = String(localized: "Appearance", bundle: .core)
+                let allCases: [UIUserInterfaceStyle] = [.unspecified, .light, .dark]
+
                 let picker = ItemPickerScreen(
                     pageTitle: pageTitle,
                     identifierGroup: "Settings.appearanceOptions",
-                    items: options,
-                    initialSelectionIndex: selectedStyleIndex,
-                    didSelect: {
-                        guard let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: $0) else { return }
+                    allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.settingsTitle) },
+                    initialOptionId: selectedStyle.optionItemId,
+                    didSelectOption: {
+                        guard let selectedCase = allCases.element(for: $0) else { return }
 
-                        window.updateInterfaceStyle(style)
-                        self.env.userDefaults?.interfaceStyle = style
+                        self.env.window?.updateInterfaceStyle(selectedCase)
+                        self.env.userDefaults?.interfaceStyle = selectedCase
                     }
                 )
+
                 let pickerVC = CoreHostingController(picker)
                 pickerVC.navigationItem.title = pageTitle
                 self.show(pickerVC, sender: self)
@@ -270,20 +268,24 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var landingPageRow: [Row] {
         return [
             Row(String(localized: "Landing Page", bundle: .core), detail: landingPage.name, isSupportedOffline: true) { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
+
                 let pageTitle = String(localized: "Landing Page", bundle: .core)
+                let allCases = LandingPage.appCases
+
                 let picker = ItemPickerScreen(
                     pageTitle: pageTitle,
                     identifierGroup: "Settings.landingPageOptions",
-                    items: LandingPage.appCases.map { page in
-                        ItemPickerItem(title: page.name)
-                    },
-                    initialSelectionIndex: LandingPage.appCases.firstIndex(of: self.landingPage),
-                    didSelect: {
-                        self.landingPage = LandingPage.appCases[$0]
+                    allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.name) },
+                    initialOptionId: self.landingPage.optionItemId,
+                    didSelectOption: {
+                        guard let selectedCase = allCases.element(for: $0) else { return }
+
+                        self.landingPage = selectedCase
                         self.reloadData()
                     }
                 )
+
                 let pickerVC = CoreHostingController(picker)
                 pickerVC.navigationItem.title = pageTitle
                 self.show(pickerVC, sender: self)
@@ -481,12 +483,22 @@ private class Switch {
     }
 }
 
-private enum LandingPage: String {
+private enum LandingPage: String, OptionItemIdentifiable {
     case dashboard = "/"
     case calendar = "/calendar"
     case todo = "/to-do"
     case notifications = "/notifications"
     case inbox = "/conversations"
+
+    var optionItemId: String {
+        switch self {
+        case .dashboard: "dashboard"
+        case .calendar: "calendar"
+        case .todo: "todo"
+        case .notifications: "notifications"
+        case .inbox: "inbox"
+        }
+    }
 
     var name: String {
         switch self {

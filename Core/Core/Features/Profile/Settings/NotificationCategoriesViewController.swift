@@ -229,17 +229,21 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
             selectedCategory = (row.category, row.notifications)
 
             let pageTitle = categoryMap[row.category]?.1 ?? ""
+            let allCases = NotificationFrequency.allCases
+
             let picker = ItemPickerScreen(
                 pageTitle: pageTitle,
-                items: NotificationFrequency.allCases.map { frequency in
-                    ItemPickerItem(title: frequency.name, subtitle: frequency.label)
-                },
-                initialSelectionIndex: NotificationFrequency.allCases.firstIndex(of: row.frequency),
-                didSelect: { [weak self] in
-                    guard let self, let (category, notifications) = selectedCategory else { return }
-                    update(category, notifications: notifications, frequency: NotificationFrequency.allCases[$0])
+                allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.name, subtitle: $0.label) },
+                initialOptionId: row.frequency.optionItemId,
+                didSelectOption: { [weak self] in
+                    guard let self,
+                          let (category, notifications) = selectedCategory,
+                          let selectedCase = allCases.element(for: $0)
+                    else { return }
+                    update(category, notifications: notifications, frequency: selectedCase)
                 }
             )
+
             let pickerVC = CoreHostingController(picker)
             pickerVC.navigationItem.title = pageTitle
             self.show(pickerVC, sender: self)

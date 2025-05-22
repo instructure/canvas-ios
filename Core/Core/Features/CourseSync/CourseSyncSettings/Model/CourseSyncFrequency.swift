@@ -44,8 +44,16 @@ public enum CourseSyncFrequency: Int, CaseIterable {
         case .weekly: return date.addingTimeInterval(7 * 24 * 60 * 60)
         }
     }
+}
 
-    static var itemPickerData: [ItemPickerItem] {
-        allCases.map { ItemPickerItem(title: $0.stringValue) }
+extension CourseSyncFrequency: OptionItemIdentifiable {
+    public var optionItemId: String {
+        switch self {
+        #if DEBUG
+        case .osBased: "osBased"
+        #endif
+        case .daily: "daily"
+        case .weekly: "weekly"
+        }
     }
 }

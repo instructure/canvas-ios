@@ -74,24 +74,28 @@ extension ProfileSettingsViewModel {
     }
 
     private func initAppearanceGroupItem() -> SettingsGroupItemView {
-        let options = [
-            ItemPickerItem(title: String(localized: "System Settings", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Light Theme", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core))
-        ]
-        let selectedStyleIndex = CurrentValueSubject<Int, Never>(environment.userDefaults?.interfaceStyle?.rawValue ?? 0)
+        let allCases: [UIUserInterfaceStyle] = [.unspecified, .light, .dark]
+        let selectedStyle = environment.userDefaults?.interfaceStyle ?? .unspecified
+
+        let options = SingleSelectionOptions(
+            all: allCases.map { OptionItem(id: $0.optionItemId, title: $0.settingsTitle) },
+            initialId: selectedStyle.optionItemId
+        )
 
         let itemViewModel = SettingsGroupItemViewModel(
             title: String(localized: "Appearance", bundle: .core),
             valueLabel: nil
         ) { [weak self] controller in
-            guard let self = self else { return }
-            self.showAppereanceItemPicker(controller: controller, selectedIndex: selectedStyleIndex, options: options)
+            self?.showAppereanceItemPicker(controller: controller, options: options)
         }
 
-        selectedStyleIndex
-            .sink { index in
-                itemViewModel.valueLabel = options[safeIndex: index]?.title
+        options.selected
+            .compactMap { allCases.element(for: $0) }
+            .sink { [weak self] in
+                self?.environment.window?.updateInterfaceStyle($0)
+                self?.environment.userDefaults?.interfaceStyle = $0
+
+                itemViewModel.valueLabel = $0.settingsTitle
             }
             .store(in: &subscriptions)
 
@@ -110,23 +114,12 @@ extension ProfileSettingsViewModel {
         return SettingsGroupItemView(viewModel: itemViewModel)
     }
 
-    private func showAppereanceItemPicker(controller: WeakViewController, selectedIndex: CurrentValueSubject<Int, Never>, options: [ItemPickerItem]) {
-        let selectedStyleIndex = environment.userDefaults?.interfaceStyle?.rawValue ?? 0
-
+    private func showAppereanceItemPicker(controller: WeakViewController, options: SingleSelectionOptions) {
         let pageTitle = String(localized: "Appearance", bundle: .core)
         let picker = ItemPickerScreen(
             pageTitle: pageTitle,
             identifierGroup: "Settings.appearanceOptions",
-            items: options,
-            initialSelectionIndex: selectedStyleIndex,
-            didSelect: { [weak self] in
-                if let window = self?.environment.window, let style = UIUserInterfaceStyle(rawValue: $0) {
-                    window.updateInterfaceStyle(style)
-                    self?.environment.userDefaults?.interfaceStyle = style
-                }
-
-                selectedIndex.send($0)
-            }
+            options: options
         )
         let pickerVC = CoreHostingController(picker)
         pickerVC.navigationItem.title = pageTitle

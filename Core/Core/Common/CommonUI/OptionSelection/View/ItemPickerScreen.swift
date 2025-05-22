@@ -28,7 +28,7 @@ public struct ItemPickerScreen: View {
     private let selectedOption: CurrentValueSubject<OptionItem?, Never>
 
     @State private var isInitialPublish: Bool = true
-    private let didSelect: ((Int) -> Void)?
+    private let didSelectOption: ((OptionItem) -> Void)?
 
     public init(
         pageTitle: String,
@@ -40,7 +40,21 @@ public struct ItemPickerScreen: View {
         self.identifierGroup = identifierGroup
         self.allOptions = allOptions
         self.selectedOption = selectedOption
-        self.didSelect = nil
+        self.didSelectOption = nil
+    }
+
+    public init(
+        pageTitle: String,
+        identifierGroup: String? = nil,
+        allOptions: [OptionItem],
+        initialOptionId: String?,
+        didSelectOption: @escaping (OptionItem) -> Void
+    ) {
+        self.pageTitle = pageTitle
+        self.identifierGroup = identifierGroup
+        self.allOptions = allOptions
+        self.selectedOption = .init(allOptions.option(with: initialOptionId))
+        self.didSelectOption = didSelectOption
     }
 
     public init(
@@ -61,7 +75,7 @@ public struct ItemPickerScreen: View {
         identifierGroup: String? = nil,
         items: [ItemPickerItem],
         initialSelectionIndex: Int?,
-        didSelect: ((Int) -> Void)?
+        didSelectIndex: @escaping ((Int) -> Void)
     ) {
         self.pageTitle = pageTitle
         self.identifierGroup = identifierGroup
@@ -70,8 +84,10 @@ public struct ItemPickerScreen: View {
         let initialOption = allOptions[safeIndex: initialSelectionIndex ?? -1]
         self.allOptions = allOptions
         self.selectedOption = .init(initialOption)
-
-        self.didSelect = didSelect
+        self.didSelectOption = {
+            guard let id = Int($0.id) else { return }
+            didSelectIndex(id)
+        }
     }
 
     public var body: some View {
@@ -91,8 +107,10 @@ public struct ItemPickerScreen: View {
                 isInitialPublish = false
                 return
             }
-            guard let option, let id = Int(option.id) else { return }
-            didSelect?(id)
+
+            guard let option else { return }
+
+            didSelectOption?(option)
         }
     }
 }

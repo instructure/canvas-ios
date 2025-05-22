@@ -30,18 +30,17 @@ public enum SettingsMenuItem: String {
 }
 
 public enum LandingPageMenuItem: String {
-    case dashboard = "Dashboard"
-    case calendar = "Calendar"
-    case toDo = "To Do"
-    case notifications = "Notifications"
-    case inbox = "Inbox"
-    case courses = "Courses"
+    case dashboard
+    case calendar
+    case todo
+    case notifications
+    case inbox
 }
 
-public enum AppearanceMenuItem: Int {
-    case system = 0
-    case light = 1
-    case dark = 2
+public enum AppearanceMenuItem: String {
+    case system
+    case light
+    case dark
 }
 
 public class SettingsHelper: BaseHelper {
@@ -91,7 +90,7 @@ public class SettingsHelper: BaseHelper {
         public static var QRCodeImage: XCUIElement { app.find(id: "QRCodeImage") }
 
         public static func landingPageMenuItem(item: LandingPageMenuItem) -> XCUIElement {
-            return app.find(idStartingWith: "Settings.landingPageOptions", label: item.rawValue)
+            return app.find(id: "Settings.landingPageOptions.\(item.rawValue)")
         }
 
         public static func appearanceMenuItem(item: AppearanceMenuItem) -> XCUIElement {
@@ -124,9 +123,9 @@ public class SettingsHelper: BaseHelper {
         public struct SyncFrequency {
             private static let group = "Settings.OfflineSync.syncFrequencyOptions"
 
-            public static var asTheOsAllows: XCUIElement { app.find(idStartingWith: group, labelContaining: "as the OS allows") }
-            public static var daily: XCUIElement { app.find(idStartingWith: group, label: "Daily") }
-            public static var weekly: XCUIElement { app.find(idStartingWith: group, label: "Weekly") }
+            public static var asTheOsAllows: XCUIElement { app.find(id: "\(group).osBased") }
+            public static var daily: XCUIElement { app.find(id: "\(group).daily") }
+            public static var weekly: XCUIElement { app.find(id: "\(group).weekly") }
         }
     }
 }
