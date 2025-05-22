@@ -30,6 +30,7 @@ struct SubmissionListRowView: View {
             avatarView
             VStack(alignment: .leading, spacing: 4) {
                 nameLabel
+                    .layoutPriority(1)
 
                 HStack(spacing: 4) {
                     if item.needsGrading {
@@ -79,15 +80,15 @@ struct SubmissionListRowView: View {
         }
 
         return nameText
+            .multilineTextAlignment(.leading)
             .font(.semibold16)
             .foregroundStyle(Color.textDarkest)
-            .multilineTextAlignment(.leading)
     }
 
     private var statusLabel: some View {
         HStack(spacing: 2) {
             item.status.redesignAppearance.icon.size(16 * uiScale.iconScale)
-            Text(item.status.text)
+            Text(item.status.text).multilineTextAlignment(.leading)
         }
         .font(.regular14)
         .foregroundStyle(item.status.redesignAppearance.color)
@@ -105,6 +106,7 @@ struct SubmissionListRowView: View {
         Text("Needs Grading", bundle: .teacher)
             .font(.regular14)
             .foregroundStyle(Color.textWarning)
+            .multilineTextAlignment(.leading)
     }
 
     private var gradeText: some View {

@@ -74,6 +74,7 @@ struct SubmissionListScreen: View {
                     }
                 } header: {
                     SectionHeaderView(title: section.kind.title, isCollapsed: $section.isCollapsed)
+                        .accessibilityLabel(section.accessibilityLabel)
                 }
             }
         }
@@ -212,6 +213,7 @@ private extension SubmissionListScreen {
                     HStack {
                         Text(title)
                             .font(.semibold14)
+                            .multilineTextAlignment(.leading)
                             .foregroundStyle(Color.textDark)
                         Spacer()
                         Image
@@ -227,5 +229,11 @@ private extension SubmissionListScreen {
                 .buttonStyle(.plain)
             }
         }
+    }
+}
+
+private extension SubmissionListSection {
+    var accessibilityLabel: Text {
+        Text(kind.title + ", " + String.localizedAccessibilityListCount(items.count))
     }
 }

@@ -26,119 +26,120 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
     @Environment(\.viewController) var controller
 
     var body: some View {
-        Button(action: routeToAll, label: {
-            HStack(spacing: 0) {
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text("Submissions", bundle: .teacher)
-                            .font(.semibold16)
-                            .foregroundColor(.textDarkest)
-                        Spacer()
-                        if !viewModel.noSubmissionTypes {
-                            Button(
-                                action: routeToAll, label: {
-                                    HStack(spacing: 5) {
-                                        Text("All", bundle: .teacher)
-                                        InstUI.DisclosureIndicator()
-                                    }
-                                }
-                            )
-                            .font(.regular16)
-                            .tint(viewModel.color)
-                        }
-                    }
-                    Spacer().frame(height: 20)
-                    if viewModel.noSubmissionTypes {
-                        HStack {
-                            Text("Tap to view submissions list.", bundle: .teacher)
-                                .font(.regular16)
-                                .foregroundColor(.textDarkest)
-                            Spacer()
-                            InstUI.DisclosureIndicator()
-                        }
-                    } else if viewModel.paperSubmissionTypes {
-                        HStack(alignment: .top, spacing: 0) {
-                            Graph(
-                                action: routeToGraded,
-                                label: Text("Graded", bundle: .teacher),
-                                count: viewModel.graded,
-                                total: viewModel.submissionCount,
-                                color: viewModel.color
-                            )
-                            Text(String.localizedStringWithFormat(
-                                String(localized: "there_are_d_assignees_without_grades", bundle: .teacher),
-                                viewModel.ungraded + viewModel.unsubmitted
-                            ))
-                                .font(.regular14).foregroundColor(.textDarkest)
-                                .padding(.leading, 22)
-                            Spacer()
-                        }
-                    } else if viewModel.noGradingNeeded {
-                        HStack(alignment: .top, spacing: 0) {
-                            Graph(
-                                action: routeToGraded,
-                                label: Text("Submitted", bundle: .teacher),
-                                count: viewModel.graded,
-                                total: viewModel.submissionCount,
-                                color: viewModel.color
-                            )
-                            .frame(maxWidth: .infinity)
-                            Graph(
-                                action: routeToUnsubmitted,
-                                label: Text("Not Submitted", bundle: .teacher),
-                                count: viewModel.unsubmitted,
-                                total: viewModel.submissionCount,
-                                color: viewModel.color
-                            )
-                            .frame(maxWidth: .infinity)
-                        }
-                    } else {
-                        HStack(alignment: .top, spacing: 0) {
-                            Graph(
-                                action: routeToGraded,
-                                label: Text("Graded", bundle: .teacher),
-                                count: viewModel.graded,
-                                total: viewModel.submissionCount,
-                                color: viewModel.color
-                            )
-                                .frame(maxWidth: .infinity)
-                            Graph(
-                                action: routeToUngraded,
-                                label: Text("Needs Grading", bundle: .teacher),
-                                count: viewModel.ungraded,
-                                total: viewModel.submissionCount,
-                                color: viewModel.color
-                            )
-                                .frame(maxWidth: .infinity)
-                            Graph(
-                                action: routeToUnsubmitted,
-                                label: Text("Not Submitted", bundle: .teacher),
-                                count: viewModel.unsubmitted,
-                                total: viewModel.submissionCount,
-                                color: viewModel.color
-                            )
-                                .frame(maxWidth: .infinity)
-                        }
-                            .frame(maxWidth: 400)
-                    }
-                    Spacer().frame(height: 16)
-                }
-                .padding(16)
-                .background(Color.backgroundLightestElevated)
-                .cornerRadius(6)
-                .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
-                .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
-                .padding(16)
-            }
-                // Fix tapping in whitespace, without covering divider in DiscussionDetails
-                .background(Color.backgroundLightest.padding(.bottom, 1))
-        })
-            .buttonStyle(ScaleButtonStyle(scale: 1))
+        ZStack {
+            Button(
+                action: routeToAll,
+                label: { Color.clear }
+            )
+            .contentShape(Rectangle())
             .accessibility(label: Text("View all submissions", bundle: .teacher))
             .identifier("AssignmentDetails.viewAllSubmissionsButton")
-            .onAppear {
-                viewModel.viewDidAppear()
+
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text("Submissions", bundle: .teacher)
+                        .font(.semibold16)
+                        .foregroundColor(.textDarkest)
+                    Spacer()
+                    if !viewModel.noSubmissionTypes {
+                        Button(
+                            action: routeToAll, label: {
+                                HStack(spacing: 5) {
+                                    Text("All", bundle: .teacher)
+                                    InstUI.DisclosureIndicator()
+                                }
+                            }
+                        )
+                        .font(.regular16)
+                        .tint(viewModel.color)
+                    }
+                }
+                Spacer().frame(height: 20)
+                if viewModel.noSubmissionTypes {
+                    HStack {
+                        Text("Tap to view submissions list.", bundle: .teacher)
+                            .font(.regular16)
+                            .foregroundColor(.textDarkest)
+                        Spacer()
+                        InstUI.DisclosureIndicator()
+                    }
+                } else if viewModel.paperSubmissionTypes {
+                    HStack(alignment: .top, spacing: 0) {
+                        Graph(
+                            action: routeToGraded,
+                            label: Text("Graded", bundle: .teacher),
+                            count: viewModel.graded,
+                            total: viewModel.submissionCount,
+                            color: viewModel.color
+                        )
+                        Text(String.localizedStringWithFormat(
+                            String(localized: "there_are_d_assignees_without_grades", bundle: .teacher),
+                            viewModel.ungraded + viewModel.unsubmitted
+                        ))
+                        .font(.regular14).foregroundColor(.textDarkest)
+                        .padding(.leading, 22)
+                        Spacer()
+                    }
+                } else if viewModel.noGradingNeeded {
+                    HStack(alignment: .top, spacing: 0) {
+                        Graph(
+                            action: routeToGraded,
+                            label: Text("Submitted", bundle: .teacher),
+                            count: viewModel.graded,
+                            total: viewModel.submissionCount,
+                            color: viewModel.color
+                        )
+                        .frame(maxWidth: .infinity)
+                        Graph(
+                            action: routeToUnsubmitted,
+                            label: Text("Not Submitted", bundle: .teacher),
+                            count: viewModel.unsubmitted,
+                            total: viewModel.submissionCount,
+                            color: viewModel.color
+                        )
+                        .frame(maxWidth: .infinity)
+                    }
+                } else {
+                    HStack(alignment: .top, spacing: 0) {
+                        Graph(
+                            action: routeToGraded,
+                            label: Text("Graded", bundle: .teacher),
+                            count: viewModel.graded,
+                            total: viewModel.submissionCount,
+                            color: viewModel.color
+                        )
+                        .frame(maxWidth: .infinity)
+                        Graph(
+                            action: routeToUngraded,
+                            label: Text("Needs Grading", bundle: .teacher),
+                            count: viewModel.ungraded,
+                            total: viewModel.submissionCount,
+                            color: viewModel.color
+                        )
+                        .frame(maxWidth: .infinity)
+                        Graph(
+                            action: routeToUnsubmitted,
+                            label: Text("Not Submitted", bundle: .teacher),
+                            count: viewModel.unsubmitted,
+                            total: viewModel.submissionCount,
+                            color: viewModel.color
+                        )
+                        .frame(maxWidth: .infinity)
+                    }
+                    .frame(maxWidth: 400)
+                }
+                Spacer().frame(height: 16)
             }
+            .padding(16)
+        }
+        .background(Color.backgroundLightestElevated)
+        .cornerRadius(6)
+        .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
+        .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
+        .padding(16)
+        .onAppear {
+            viewModel.viewDidAppear()
+        }
     }
 
     struct Graph: View {
@@ -167,8 +168,10 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                         .foregroundColor(.textDark)
                         .multilineTextAlignment(.center)
                 }
+                .contentShape(Rectangle())
             })
                 .buttonStyle(ScaleButtonStyle(scale: 0.95))
+                .accessibilityLabel(label)
         }
     }
 
