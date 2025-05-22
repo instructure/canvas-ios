@@ -34,6 +34,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
             .contentShape(Rectangle())
             .accessibility(label: Text("View all submissions", bundle: .teacher))
             .identifier("AssignmentDetails.viewAllSubmissionsButton")
+            .accessibilitySortPriority(1)
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
@@ -137,6 +138,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
         .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
         .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
         .padding(16)
+        .accessibilityElement(children: .contain)
         .onAppear {
             viewModel.viewDidAppear()
         }

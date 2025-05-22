@@ -6167,6 +6167,9 @@
     "Closed" : {
 
     },
+    "Collapsed" : {
+
+    },
     "Comment" : {
       "localizations" : {
         "ar" : {
@@ -11562,6 +11565,9 @@
           }
         }
       }
+    },
+    "Expanded" : {
+
     },
     "Failed to launch rollcall LTI tool." : {
       "localizations" : {

@@ -75,6 +75,11 @@ struct SubmissionListScreen: View {
                 } header: {
                     SectionHeaderView(title: section.kind.title, isCollapsed: $section.isCollapsed)
                         .accessibilityLabel(section.accessibilityLabel)
+                        .accessibilityHint(
+                            section.isCollapsed
+                                ? String(localized: "Collapsed", bundle: .teacher)
+                                : String(localized: "Expanded", bundle: .teacher)
+                        )
                 }
             }
         }
