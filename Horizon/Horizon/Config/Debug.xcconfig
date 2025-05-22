@@ -19,6 +19,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-CEDAR_BASE_URL=cedar-api-dev.domain-svcs.nonprod.inseng.io
-PINE_BASE_URL=pine-api-dev.domain-svcs.nonprod.inseng.io
-REDWOOD_BASE_URL=redwood-api-dev.domain-svcs.nonprod.inseng.io
+CEDAR_BASE_URL=cedar-api-production.us-east-1.temp.prod.inseng.io
+PINE_BASE_URL=pine-api-production.us-east-1.temp.prod.inseng.io
+REDWOOD_BASE_URL=redwood-api-production.us-east-1.temp.prod.inseng.io
