@@ -20,6 +20,7 @@ import XCTest
 import UIKit
 @testable import Core
 import WebKit
+import AVKit
 
 class UIViewControllerExtensionsTests: XCTestCase {
     class MockController: UIViewController {
@@ -114,6 +115,48 @@ class UIViewControllerExtensionsTests: XCTestCase {
         XCTAssertTrue(mockWebView.pauseAllMediaPlaybackCalled)
         XCTAssertTrue(mockNestedWebView.pauseAllMediaPlaybackCalled)
     }
+
+    func test_findAllChildViewControllers() {
+        let parent = UIViewController()
+
+        let child1 = UIViewController()
+        let child1_1 = UIViewController()
+        child1.addChild(child1_1)
+
+        let child2 = UIViewController()
+
+        parent.addChild(child1)
+        parent.addChild(child2)
+
+        // WHEN
+        let result = parent.findAllChildViewControllers(ofType: UIViewController.self)
+
+        // THEN
+        XCTAssertEqual(result, Set([child1, child1_1, child2]))
+    }
+
+    func test_pauseMediaPlayback() {
+        let parentViewController = UIViewController()
+
+        let mockPlayer1 = MockAVPlayerViewController()
+        let mockPlayer2 = MockAVPlayerViewController()
+        let deepNestedPlayer = MockAVPlayerViewController()
+
+        let containerController = UIViewController()
+        containerController.addChild(deepNestedPlayer)
+
+        parentViewController.addChild(mockPlayer1)
+        parentViewController.addChild(mockPlayer2)
+        parentViewController.addChild(containerController)
+
+        // WHEN
+        parentViewController.pauseMediaPlayback()
+
+        // THEN
+        XCTAssertTrue(mockPlayer1.playerMock.pauseCalled)
+        XCTAssertTrue(mockPlayer2.playerMock.pauseCalled)
+        XCTAssertTrue(deepNestedPlayer.playerMock.pauseCalled)
+    }
 }
 
 private class MockWKWebView: WKWebView {
@@ -123,5 +166,26 @@ private class MockWKWebView: WKWebView {
         completionHandler: (@MainActor @Sendable () -> Void)? = nil
     ) {
         pauseAllMediaPlaybackCalled = true
+    }
+}
+
+private class MockAVPlayerViewController: AVPlayerViewController {
+    let playerMock = MockAVPlayer()
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        player = playerMock
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+private class MockAVPlayer: AVPlayer {
+    var pauseCalled = false
+
+    override func pause() {
+        pauseCalled = true
     }
 }

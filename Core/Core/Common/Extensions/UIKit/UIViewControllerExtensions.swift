@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import WebKit
 
@@ -74,6 +75,19 @@ extension UIViewController {
         } else {
             return nil
         }
+    }
+
+    public func findAllChildViewControllers<T: UIViewController>(ofType type: T.Type) -> Set<T> {
+        var result = Set<T>()
+
+        for subview in children {
+            if let match = subview as? T {
+                result.insert(match)
+            }
+            result.formUnion(subview.findAllChildViewControllers(ofType: type))
+        }
+
+        return result
     }
 
     public func addNavigationButton(_ button: UIBarButtonItem, side: NavigationItemSide) {
@@ -223,11 +237,30 @@ extension UIViewController {
         }
     }
 
-    /// Pauses media playback on all WKWebView instances in the view hierarchy.
+    /// Pauses media playback on all `WKWebView` instances in the view hierarchy.
     @objc
     public func pauseWebViewPlayback() {
         view.findAllSubviews(ofType: WKWebView.self).forEach { $0.pauseAllMediaPlayback() }
     }
+
+    /// Pauses media playback on all `AVPlayerViewController` instances in the view hierarchy.
+    @objc
+    public func pauseMediaPlayback() {
+        findAllChildViewControllers(ofType: AVPlayerViewController.self).forEach { $0.player?.pause() }
+    }
+
+#if DEBUG
+
+    public func printViewControllerHierarchy(nestingLevel: Int = 0) {
+        let prefix = (nestingLevel == 0) ? "" : String(repeating: " ", count: nestingLevel * 4).appending("|-")
+        print("\(prefix)\(type(of: self))")
+
+        for childViewController in children {
+            childViewController.printViewControllerHierarchy(nestingLevel: nestingLevel + 1)
+        }
+    }
+
+#endif
 }
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {

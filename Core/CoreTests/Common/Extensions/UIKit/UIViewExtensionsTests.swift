@@ -109,22 +109,23 @@ class UIViewExtensionsTests: XCTestCase {
 
     func test_findAllSubviews() {
         let label1 = UILabel()
-        let nestedLabel = UILabel()
-        let containerView = UIView()
-        containerView.addSubview(label1)
-        containerView.addSubview(nestedLabel)
+        let label1_1 = UILabel()
+        label1.addSubview(label1_1)
 
+        let containerView = UIView()
         let label2 = UILabel()
         let button = UIButton()
+        containerView.addSubview(label2)
+        containerView.addSubview(button)
+
         let parentView = UIView()
-        parentView.addSubview(label2)
-        parentView.addSubview(button)
+        parentView.addSubview(label1)
         parentView.addSubview(containerView)
 
         // WHEN
         let foundLabels = parentView.findAllSubviews(ofType: UILabel.self)
 
         // THEN
-        XCTAssertEqual(foundLabels, Set([label1, label2, nestedLabel]))
+        XCTAssertEqual(foundLabels, Set([label1, label1_1, label2]))
     }
 }
