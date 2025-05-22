@@ -58,45 +58,17 @@ class UpdateNotebookNoteUseCase: UseCase {
             .store(in: &subscriptions)
     }
 
-    func write(response: RedwoodUpdateNoteMutationResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    func write(
+        response: RedwoodUpdateNoteMutationResponse?,
+        urlResponse: URLResponse?,
+        to client: NSManagedObjectContext
+    ) {
         if let redwoodNote = response?.data.updateNote {
-            CDNotebookNote.save(redwoodNote, in: client)
+            CDNotebookNote.save(
+                redwoodNote,
+                userID: Context.currentUser.id,
+                in: client
+            )
         }
-    }
-}
-
-extension CDNotebookNote {
-    @discardableResult
-    public static func save(
-        _ item: RedwoodNote,
-        notebookNote: CDNotebookNote? = nil,
-        in context: NSManagedObjectContext
-    ) -> CDNotebookNote {
-        let model: CDNotebookNote = notebookNote ?? context.first(where: #keyPath(CDNotebookNote.id), equals: item.id) ?? context.insert()
-
-        model.content = item.userText
-        model.courseID = item.courseId
-        model.date = item.createdAt
-        if let end = item.highlightData?.textPosition.end {
-            model.end = NSNumber(value: end)
-        }
-        model.endContainer = item.highlightData?.range.endContainer
-        if let endOffset = item.highlightData?.range.endOffset {
-            model.endOffset = NSNumber(value: endOffset)
-        }
-        model.id = item.id
-        model.labels = item.reaction?.serializeLabels
-        model.objectType = item.objectType
-        model.pageID = item.objectId
-        model.selectedText = item.highlightData?.selectedText
-        if let start = item.highlightData?.textPosition.start {
-            model.start = NSNumber(value: start)
-        }
-        model.startContainer = item.highlightData?.range.startContainer
-        if let startOffset = item.highlightData?.range.startOffset {
-            model.startOffset = NSNumber(value: startOffset)
-        }
-
-        return model
     }
 }

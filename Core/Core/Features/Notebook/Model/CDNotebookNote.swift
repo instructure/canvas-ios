@@ -36,6 +36,7 @@ final public class CDNotebookNote: NSManagedObject {
     @NSManaged public var start: NSNumber?
     @NSManaged public var startContainer: String?
     @NSManaged public var startOffset: NSNumber?
+    @NSManaged public var userID: String?
 }
 
 extension String? {
