@@ -29,6 +29,7 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
         let testee = TeacherQuizSubmissionBreakdownViewModelLive(courseID: courseID, quizID: quizID)
         testee.viewDidAppear()
 
+        XCTAssertEqual(testee.color, .accentColor)
         XCTAssertEqual(testee.graded, 2)
         XCTAssertEqual(testee.ungraded, 0)
         XCTAssertEqual(testee.unsubmitted, 3)
