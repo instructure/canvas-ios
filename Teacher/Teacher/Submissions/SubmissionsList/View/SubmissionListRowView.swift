@@ -20,6 +20,8 @@ import SwiftUI
 import Core
 
 struct SubmissionListRowView: View {
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     let anonymizeStudents: Bool?
     let item: SubmissionListItem
 
@@ -28,18 +30,19 @@ struct SubmissionListRowView: View {
             avatarView
             VStack(alignment: .leading, spacing: 4) {
                 nameLabel
-                if item.needsGrading {
-                    HStack(spacing: 4) {
+
+                HStack(spacing: 4) {
+                    if item.needsGrading {
                         statusLabel
                         statusDivider
                         needsGradingLabel
+                    } else {
+                        statusLabel
                     }
-                } else {
-                    statusLabel
+                    Spacer()
+                    gradeText
                 }
             }
-            Spacer()
-            gradeText
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 15)
@@ -78,11 +81,12 @@ struct SubmissionListRowView: View {
         return nameText
             .font(.semibold16)
             .foregroundStyle(Color.textDarkest)
+            .multilineTextAlignment(.leading)
     }
 
     private var statusLabel: some View {
         HStack(spacing: 2) {
-            item.status.redesignAppearance.icon.size(16)
+            item.status.redesignAppearance.icon.size(16 * uiScale.iconScale)
             Text(item.status.text)
         }
         .font(.regular14)
@@ -90,7 +94,11 @@ struct SubmissionListRowView: View {
     }
 
     private var statusDivider: some View {
-        Text(verbatim: "|").font(.regular14).foregroundStyle(Color.borderMedium)
+        Color
+            .borderMedium
+            .frame(width: 1)
+            .padding(2)
+            .accessibilityHidden(true)
     }
 
     private var needsGradingLabel: some View {
@@ -100,9 +108,16 @@ struct SubmissionListRowView: View {
     }
 
     private var gradeText: some View {
+        let isBlank = item
+            .gradeFormatted
+            .replacingOccurrences(of: "-", with: "")
+            .trimmed()
+            .isEmpty
+
         return Text(item.gradeFormatted)
             .font(.semibold16)
             .foregroundStyle(Color.course2)
+            .accessibilityHidden(isBlank)
     }
 }
 

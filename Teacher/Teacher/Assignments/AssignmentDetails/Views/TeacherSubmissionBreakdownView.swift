@@ -163,7 +163,9 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                         .padding(.horizontal, 10).padding(.top, 4)
                         .animation(Animation.easeOut(duration: 0.5).delay(0.2), value: count)
                     label
-                        .font(.regular12).foregroundColor(.textDark)
+                        .font(.regular12)
+                        .foregroundColor(.textDark)
+                        .multilineTextAlignment(.center)
                 }
             })
                 .buttonStyle(ScaleButtonStyle(scale: 0.95))
@@ -171,6 +173,9 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
     }
 
     struct Counter: AnimatableModifier {
+
+        @ScaledMetric private var uiScale: CGFloat = 1
+
         var count: Double = 0
 
         var animatableData: Double {
@@ -181,7 +186,8 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
         func body(content: Content) -> some View {
             content.overlay(
                 Text(floor(count))
-                    .font(.regular22).foregroundColor(.textDarkest)
+                    .font(.regular22)
+                    .foregroundColor(.textDarkest)
             )
         }
     }

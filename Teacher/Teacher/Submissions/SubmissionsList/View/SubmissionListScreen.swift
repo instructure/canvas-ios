@@ -122,7 +122,9 @@ struct SubmissionListScreen: View {
 private extension SubmissionListScreen {
 
     struct SeparatedRow<Content: View>: View {
+        @ScaledMetric private var uiScale: CGFloat = 1
         @ViewBuilder let content: () -> Content
+
         var body: some View {
             VStack(spacing: 0) {
                 content()
@@ -170,6 +172,7 @@ private extension SubmissionListScreen {
 
     struct HeaderView: View {
 
+        @ScaledMetric private var uiScale: CGFloat = 1
         let courseName: String
 
         var body: some View {
