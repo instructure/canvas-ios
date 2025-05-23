@@ -24,9 +24,6 @@ struct DashboardView: View {
     @Bindable private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
 
-    // TODO: - Set with correct url later
-    private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
-
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
     }
@@ -143,7 +140,7 @@ struct DashboardView: View {
 
     private var navigationBar: some View {
         HStack(spacing: .zero) {
-            HorizonUI.NavigationBar.Leading(logoURL: logoURL)
+            InstitutionLogo()
             Spacer()
             HorizonUI.NavigationBar.Trailing {
                 viewModel.notebookDidTap(viewController: viewController)

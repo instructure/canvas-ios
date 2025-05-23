@@ -168,6 +168,7 @@
     <entity name="CDBrandVariables" representedClassName="Core.CDBrandVariables" syncable="YES">
         <attribute name="apiBrandVariablesRaw" attributeType="String"/>
         <attribute name="headerImageRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="institutionLogo" optional="YES" attributeType="URI"/>
     </entity>
     <entity name="CDCalendarFilterEntry" representedClassName="Core.CDCalendarFilterEntry" syncable="YES">
         <attribute name="name" attributeType="String"/>

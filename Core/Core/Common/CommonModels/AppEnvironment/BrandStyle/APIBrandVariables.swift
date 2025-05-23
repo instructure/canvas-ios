@@ -36,6 +36,7 @@ public struct APIBrandVariables: Codable, Equatable {
     let nav_text_color: String?
     let nav_text_color_active: String?
     let primary: String?
+    let institutionLogo: URL?
 
     enum CodingKeys: String, CodingKey {
         case button_primary_bgd = "ic-brand-button--primary-bgd"
@@ -54,6 +55,7 @@ public struct APIBrandVariables: Codable, Equatable {
         case nav_text_color = "ic-brand-global-nav-menu-item__text-color"
         case nav_text_color_active = "ic-brand-global-nav-menu-item__text-color--active"
         case primary = "ic-brand-primary"
+        case institutionLogo = "ic-brand-mobile-global-nav-logo"
     }
 }
 
@@ -93,7 +95,8 @@ extension APIBrandVariables {
             nav_icon_fill_active: nav_icon_fill_active,
             nav_text_color: nav_text_color,
             nav_text_color_active: nav_text_color_active,
-            primary: primary
+            primary: primary,
+            institutionLogo: nil
         )
     }
 }
