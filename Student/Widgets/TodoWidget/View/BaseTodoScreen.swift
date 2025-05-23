@@ -29,15 +29,17 @@ extension BaseTodoScreen {
     var canvasLogo: some View {
         HStack {
             Spacer()
-            ZStack {
-                Circle()
-                    .fill(Color.backgroundDanger)
-                    .frame(width: 32)
-                Image("student-logomark")
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundStyle(Color.backgroundLightest)
-                    .frame(width: 18, height: 18)
+            Link(destination: viewFullListRoute) {
+                ZStack {
+                    Circle()
+                        .fill(Color.backgroundDanger)
+                        .frame(width: 32)
+                    Image("student-logomark")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundStyle(Color.backgroundLightest)
+                        .frame(width: 18, height: 18)
+                }
             }
         }
     }
@@ -57,8 +59,9 @@ extension BaseTodoScreen {
     }
 
     var bottomSection: some View {
-        HStack {
-            ZStack {
+        VStack {
+            Spacer()
+            ZStack(alignment: .center) {
                 if model.items.count > widgetSize.rawValue {
                     Rectangle()
                         .fill(
@@ -68,13 +71,17 @@ extension BaseTodoScreen {
                                 endPoint: .center
                             )
                         )
-                    Text("View Full List")
-                        .font(.regular16)
-                        .foregroundStyle(Color.purple)
+                    Link(destination: viewFullListRoute) {
+                        Text("View Full List")
+                            .font(.regular16)
+                            .foregroundStyle(Color.purple)
+                    }
                 }
                 HStack {
                     Spacer()
-                    addButton
+                    Link(destination: addTodoRoute) {
+                        addButton
+                    }
                 }
             }
         }

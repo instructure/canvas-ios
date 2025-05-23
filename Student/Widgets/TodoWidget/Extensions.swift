@@ -50,12 +50,4 @@ extension Array where Element == Plannable {
         guard count >= n else { return self }
         return Array(self[..<n])
     }
-
-    var forMediumTodoScreen: [Element] {
-        sortedByDueDate().firstN(2)
-    }
-
-    var forLargeTodoScreen: [Element] {
-        sortedByDueDate().firstN(5)
-    }
 }

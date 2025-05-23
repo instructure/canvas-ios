@@ -48,3 +48,15 @@ extension Plannable {
         return url
     }
 }
+
+extension BaseTodoScreen {
+    var viewFullListRoute: URL {
+        guard let host = host else { return defaultRoute }
+        return URL(string: "\(scheme)\(host)/planner-notes")!
+    }
+
+    var addTodoRoute: URL {
+        guard let host = host else { return defaultRoute }
+        return URL(string: "\(scheme)\(host)/planner-notes/new")!
+    }
+}

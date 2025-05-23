@@ -482,9 +482,20 @@ let router = Router(routes: [
         AboutAssembly.makeAboutViewController()
     },
 
+    RouteHandler("/planner-notes/new") { _, _, _ in
+        let weakVc = WeakViewController()
+        let vc = PlannerAssembly.makeCreateToDoViewController(selectedDate: Clock.now) { _ in
+            AppEnvironment.shared.router.dismiss(weakVc)
+        }
+        weakVc.setValue(vc)
+        return vc
+    },
     RouteHandler("/planner-notes/:plannableId") { _, params, _ in
         guard let plannableId = params["plannableId"] else { return nil }
         return PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
+    },
+    RouteHandler("/planner-notes") { _, _, _ in
+        return TodoListViewController.create()
     }
 ], courseTabUrlInteractor: .init())
 

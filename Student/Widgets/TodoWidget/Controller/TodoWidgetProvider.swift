@@ -25,8 +25,8 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
     private var courses: Store<GetCourses>?
     private var favoriteCourses: Store<GetCourses>?
 
-    let startDate: Date = .now
-    let endDate: Date = .now.addDays(28)
+    static let startDate: Date = .now.startOfDay()
+    static let endDate: Date = startDate.addDays(28)
 
     init() {
         super.init(loggedOutModel: TodoModel(isLoggedIn: false), timeout: 2 * 60 * 60)
@@ -63,8 +63,8 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
         plannables = env.subscribe(
             GetPlannables(
                 userID: "self",
-                startDate: startDate,
-                endDate: endDate,
+                startDate: Self.startDate,
+                endDate: Self.endDate,
                 contextCodes: contextCodes
             )
         ) { [weak self] in

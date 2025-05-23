@@ -25,39 +25,39 @@ struct TodoScreen: BaseTodoScreen {
     let widgetSize: WidgetSize
     let items: [Plannable]
     var body: some View {
-        ZStack(alignment: .top) {
-            VStack(spacing: 5) {
-                todoList
+        ZStack {
+            todoList
+            VStack {
+                canvasLogo
                 Spacer()
                 bottomSection
             }
-            canvasLogo
         }
     }
 
     init(model: TodoModel, widgetSize: WidgetSize) {
         self.model = model
         self.widgetSize = widgetSize
-        switch widgetSize {
-        case .large: self.items = model.items.forLargeTodoScreen
-        case .medium: self.items = model.items.forMediumTodoScreen
-        }
+        self.items = model.items.sortedByDueDate().firstN(widgetSize.rawValue)
     }
 
     private var todoList: some View {
-        ForEach(items, id: \.id) { item in
-            let itemDueOnSameDateAsPrevious: Bool = items.itemDueOnSameDateAsPrevious(item)
-            let itemDueOnSameDateAsNext: Bool = items.itemDueOnSameDateAsNext(item)
+        VStack {
+            ForEach(items, id: \.id) { item in
+                let itemDueOnSameDateAsPrevious: Bool = items.itemDueOnSameDateAsPrevious(item)
+                let itemDueOnSameDateAsNext: Bool = items.itemDueOnSameDateAsNext(item)
 
-            Link(destination: item.route) {
-                HStack(alignment: .top, spacing: 5) {
-                    TodoItemDate(item: item, itemDueOnSameDateAsPrevious: itemDueOnSameDateAsPrevious)
-                    TodoItemDetail(item: item, itemDueOnSameDateAsNext: itemDueOnSameDateAsNext)
+                Link(destination: item.route) {
+                    HStack(alignment: .top, spacing: 5) {
+                        TodoItemDate(item: item, itemDueOnSameDateAsPrevious: itemDueOnSameDateAsPrevious)
+                        TodoItemDetail(item: item, itemDueOnSameDateAsNext: itemDueOnSameDateAsNext)
+                    }
+                }
+                if item != items.last! && !itemDueOnSameDateAsNext {
+                    InstUI.Divider()
                 }
             }
-            if item != items.last! && !itemDueOnSameDateAsNext {
-                InstUI.Divider()
-            }
+            Spacer()
         }
     }
 }
