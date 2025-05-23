@@ -66,7 +66,7 @@ struct SubmissionHeaderView: View {
                                 .frame(width: 1)
                                 .clipShape(RoundedRectangle(cornerRadius: 2))
 
-                            Text(assignment.dueTextWithColon)
+                            Text(assignment.dueText)
                                 .font(.regular14)
                                 .foregroundStyle(.textDark)
                         }
