@@ -51,7 +51,7 @@ struct TitleBar<Content>: View where Content: View {
 
     var body: some View {
         HStack {
-            backButton
+            HorizonBackButton(onBack: () { self.onBack?(viewController) })
             titleView
             closeButton
         }
@@ -59,19 +59,6 @@ struct TitleBar<Content>: View where Content: View {
     }
 
     // MARK: - Private
-
-    private var backButton: some View {
-        HorizonUI.IconButton(
-            .huiIcons.arrowBack,
-            type: .white,
-            isSmall: true
-        ) {
-            onBack?(viewController)
-        }
-        .disabled(onBack == nil)
-        .opacity(onBack == nil ? 0 : 1)
-        .huiElevation(level: .level4)
-    }
 
     private var closeButton: some View {
         HorizonUI.IconButton(
