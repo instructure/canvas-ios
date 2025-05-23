@@ -177,7 +177,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         paging.willSelectRow(at: indexPath)
-        return nil
+        return indexPath
     }
 
     @objc
