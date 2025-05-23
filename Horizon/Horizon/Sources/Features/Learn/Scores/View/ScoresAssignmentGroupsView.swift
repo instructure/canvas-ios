@@ -36,7 +36,7 @@ struct ScoresAssignmentGroupsView: View {
             .foregroundStyle(Color.huiColors.text.body)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, .huiSpaces.space24)
-            if details.assignmentGroups.groupWeightSum > 0 {
+            if details.assignmentGroups.isAssignmentGroupWeightsVisible {
                 HStack(spacing: .huiSpaces.space8) {
                     arrowIcon
                     Text("Assignment Group Weights", bundle: .horizon)
@@ -58,7 +58,7 @@ struct ScoresAssignmentGroupsView: View {
         .onTapGesture {
             isExpanded.toggle()
         }
-        .disabled(details.assignmentGroups.groupWeightSum == 0)
+        .disabled(!details.assignmentGroups.isAssignmentGroupWeightsVisible)
     }
 
     private var arrowIcon: some View {

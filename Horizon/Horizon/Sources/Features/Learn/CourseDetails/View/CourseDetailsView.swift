@@ -228,3 +228,9 @@ extension CourseDetailsView {
         }
     }
 }
+
+extension WeakViewController {
+   fileprivate var isTabBarVisible: Bool {
+        !((value.tabBarController?.tabBar.isHidden) ?? true)
+    }
+}
