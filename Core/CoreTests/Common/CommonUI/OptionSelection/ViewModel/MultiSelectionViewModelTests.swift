@@ -80,7 +80,7 @@ final class MultiSelectionViewModelTests: XCTestCase {
         )
 
         XCTAssertEqual(testee.optionCount, TestConstants.allItems.count)
-        XCTAssertEqual(testee.listLevelAccessibilityLabel, "List, \(TestConstants.allItems.count) items")
+        XCTAssertEqual(testee.listLevelAccessibilityLabel, "\(TestConstants.allItems.count) items")
     }
 
     func test_selectedOption_shouldMatchInputSubject() {

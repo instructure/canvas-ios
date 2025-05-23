@@ -80,7 +80,7 @@ extension InstUI {
                                 .animation(.default, value: selectedValue)
                         }
                     }
-                    .paddingStyle(set: .iconCell)
+                    .paddingStyle(set: .standardCell)
                 }
                 .accessibilityAddTraits(isSelected ? .isSelected : [])
 

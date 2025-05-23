@@ -71,7 +71,7 @@ final class SingleSelectionViewModelTests: XCTestCase {
         )
 
         XCTAssertEqual(testee.optionCount, TestConstants.items.count)
-        XCTAssertEqual(testee.listLevelAccessibilityLabel, "List, \(TestConstants.items.count) items")
+        XCTAssertEqual(testee.listLevelAccessibilityLabel, "\(TestConstants.items.count) items")
     }
 
     func test_selectedOption_shouldMatchInputSubject() {
