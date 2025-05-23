@@ -234,11 +234,14 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         }
         self.challenge = challenge
 
+        let isCanvasLogin = AppEnvironment.shared.app == .horizon && hostURL.absoluteString.lowercased().contains("intelvio.instructure.com") == true
+
         let requestable = LoginWebRequestPKCE(
             clientID: clientID,
             host: hostURL,
             challenge: challenge,
-            isSiteAdminLogin: method == .siteAdminLogin
+            isSiteAdminLogin: method == .siteAdminLogin,
+            isCanvasLogin: isCanvasLogin
         )
         if var request = try? requestable.urlRequest(relativeTo: hostURL, accessToken: nil, actAsUserID: nil) {
             request.timeoutInterval = 30
@@ -376,7 +379,8 @@ extension LoginWebViewController: WKNavigationDelegate {
             refreshToken: token.refresh_token,
             userID: token.user.id.value,
             userName: token.user.name,
-            oauthType: oauthType
+            oauthType: oauthType,
+            canvasRegion: token.canvas_region
         )
 
         if let completion = self.loginCompletion {

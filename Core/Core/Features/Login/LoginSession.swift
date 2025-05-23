@@ -30,6 +30,7 @@ public struct LoginSession: Codable, Hashable {
     public let userID: String
     public let userName: String
     public let userEmail: String?
+    public let canvasRegion: String?
 
     public let oauthType: OAuthType?
 
@@ -73,6 +74,7 @@ public struct LoginSession: Codable, Hashable {
         userName: String,
         userEmail: String? = nil,
         oauthType: OAuthType? = nil,
+        canvasRegion: String? = nil,
         isFakeStudent: Bool = false
     ) {
         self.accessToken = accessToken
@@ -90,6 +92,7 @@ public struct LoginSession: Codable, Hashable {
         self.userName = userName
         self.userEmail = userEmail
         self.oauthType = oauthType
+        self.canvasRegion = canvasRegion
     }
 
     // Only keep 1 entry per account user

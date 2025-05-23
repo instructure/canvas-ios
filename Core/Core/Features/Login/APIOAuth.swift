@@ -39,6 +39,7 @@ public struct APIOAuthToken: Codable, Equatable {
     let user: APIOAuthUser
     let real_user: RealUser?
     let expires_in: TimeInterval?
+    let canvas_region: String?
 }
 
 public struct APIOAuthUser: Codable, Equatable {
@@ -56,7 +57,8 @@ extension APIOAuthToken {
         tokenType: String = "token-type",
         user: APIOAuthUser = .make(),
         realUser: APIOAuthToken.RealUser? = nil,
-        expiresIn: TimeInterval? = nil
+        expiresIn: TimeInterval? = nil,
+        canvasRegion: String? = nil
     ) -> APIOAuthToken {
         return APIOAuthToken(
             access_token: accessToken,
@@ -64,7 +66,8 @@ extension APIOAuthToken {
             token_type: tokenType,
             user: user,
             real_user: realUser,
-            expires_in: expiresIn
+            expires_in: expiresIn,
+            canvas_region: canvasRegion
         )
     }
 }
