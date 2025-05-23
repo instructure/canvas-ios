@@ -42,21 +42,28 @@ extension Plannable {
         guard let host = host else { return defaultRoute }
         let url = switch plannableType {
         case .calendar_event: URL(string: "\(scheme)\(host)/calendar_events/\(id)")!
-        case .planner_note: URL(string: "\(scheme)\(host)/planner-notes/\(id)")!
+        case .planner_note: URL(string: "\(scheme)\(host)/widget/planner-notes/\(id)")!
         default: htmlURL ?? defaultRoute
         }
         return url
     }
 }
 
-extension BaseTodoScreen {
+extension TodoScreen {
     var viewFullListRoute: URL {
         guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/planner-notes")!
+        return URL(string: "\(scheme)\(host)/widget/planner-notes")!
     }
 
     var addTodoRoute: URL {
         guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/planner-notes/new")!
+        return URL(string: "\(scheme)\(host)/widget/planner-notes/new")!
+    }
+}
+
+extension TodoItemDate {
+    func calendarDateRoute(_ date: Date) -> URL {
+        guard let host = host else { return defaultRoute }
+        return URL(string: "\(scheme)\(host)/widget/calendar/\(date)")!
     }
 }

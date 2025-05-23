@@ -27,13 +27,15 @@ struct TodoItemDetail: View {
     var isToday: Bool { itemDate.dateOnlyString == Date.now.dateOnlyString }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            contextSection
-            titleSection
-            timeSection
-            if itemDueOnSameDateAsNext {
-                InstUI.Divider()
-                    .padding(.top, 3)
+        Link(destination: item.route) {
+            VStack(alignment: .leading, spacing: 2) {
+                contextSection
+                titleSection
+                timeSection
+                if itemDueOnSameDateAsNext {
+                    InstUI.Divider()
+                        .padding(.top, 3)
+                }
             }
         }
     }

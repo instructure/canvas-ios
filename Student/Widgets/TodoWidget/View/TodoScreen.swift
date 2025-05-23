@@ -20,10 +20,22 @@ import WidgetKit
 import SwiftUI
 import Core
 
-struct TodoScreen: BaseTodoScreen {
+public enum WidgetSize: Int {
+    case medium = 2
+    case large = 5
+}
+
+struct TodoScreen: View {
     let model: TodoModel
     let widgetSize: WidgetSize
     let items: [Plannable]
+
+    init(model: TodoModel, widgetSize: WidgetSize) {
+        self.model = model
+        self.widgetSize = widgetSize
+        self.items = model.items.sortedByDueDate().firstN(widgetSize.rawValue)
+    }
+
     var body: some View {
         ZStack {
             todoList
@@ -35,23 +47,15 @@ struct TodoScreen: BaseTodoScreen {
         }
     }
 
-    init(model: TodoModel, widgetSize: WidgetSize) {
-        self.model = model
-        self.widgetSize = widgetSize
-        self.items = model.items.sortedByDueDate().firstN(widgetSize.rawValue)
-    }
-
     private var todoList: some View {
         VStack {
             ForEach(items, id: \.id) { item in
                 let itemDueOnSameDateAsPrevious: Bool = items.itemDueOnSameDateAsPrevious(item)
                 let itemDueOnSameDateAsNext: Bool = items.itemDueOnSameDateAsNext(item)
 
-                Link(destination: item.route) {
-                    HStack(alignment: .top, spacing: 5) {
-                        TodoItemDate(item: item, itemDueOnSameDateAsPrevious: itemDueOnSameDateAsPrevious)
-                        TodoItemDetail(item: item, itemDueOnSameDateAsNext: itemDueOnSameDateAsNext)
-                    }
+                HStack(alignment: .top, spacing: 5) {
+                    TodoItemDate(item: item, itemDueOnSameDateAsPrevious: itemDueOnSameDateAsPrevious)
+                    TodoItemDetail(item: item, itemDueOnSameDateAsNext: itemDueOnSameDateAsNext)
                 }
                 if item != items.last! && !itemDueOnSameDateAsNext {
                     InstUI.Divider()
@@ -59,6 +63,68 @@ struct TodoScreen: BaseTodoScreen {
             }
             Spacer()
         }
+    }
+
+    private var canvasLogo: some View {
+        HStack {
+            Spacer()
+            Link(destination: viewFullListRoute) {
+                ZStack {
+                    Circle()
+                        .fill(Color.backgroundDanger)
+                        .frame(width: 32)
+                    Image("student-logomark")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundStyle(Color.backgroundLightest)
+                        .frame(width: 18, height: 18)
+                }
+            }
+        }
+    }
+
+    private var addButton: some View {
+        ZStack {
+            Circle()
+                .fill(Color.purple)
+                .frame(width: 32)
+            Image.addLine
+                .resizable()
+                .renderingMode(.template)
+                .foregroundStyle(Color.backgroundLightest)
+                .frame(width: 18, height: 18)
+        }
+        .frame(minHeight: 32)
+    }
+
+    private var bottomSection: some View {
+        VStack {
+            Spacer()
+            ZStack(alignment: .center) {
+                if model.items.count > widgetSize.rawValue {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.clear, .backgroundLightest]),
+                                startPoint: .top,
+                                endPoint: .center
+                            )
+                        )
+                    Link(destination: viewFullListRoute) {
+                        Text("View Full List")
+                            .font(.regular16)
+                            .foregroundStyle(Color.purple)
+                    }
+                }
+                HStack {
+                    Spacer()
+                    Link(destination: addTodoRoute) {
+                        addButton
+                    }
+                }
+            }
+        }
+        .frame(maxHeight: 32)
     }
 }
 

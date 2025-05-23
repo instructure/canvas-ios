@@ -29,19 +29,21 @@ struct TodoItemDate: View {
     var body: some View {
         VStack(spacing: 2) {
             if !itemDueOnSameDateAsPrevious {
-                Text(itemDate.formatted(.dateTime.weekday()))
-                    .font(.regular12)
-                    .foregroundStyle(isToday ? .pink : .textDark)
-                ZStack {
-                    if isToday {
-                        Circle()
-                            .fill(.background)
-                            .stroke(.pink, style: .init(lineWidth: 1))
-                            .frame(width: 32, height: 32)
-                    }
-                    Text(itemDate.formatted(.dateTime.day()))
-                        .font(.bold12)
+                Link(destination: calendarDateRoute(itemDate)) {
+                    Text(itemDate.formatted(.dateTime.weekday()))
+                        .font(.regular12)
                         .foregroundStyle(isToday ? .pink : .textDark)
+                    ZStack {
+                        if isToday {
+                            Circle()
+                                .fill(.background)
+                                .stroke(.pink, style: .init(lineWidth: 1))
+                                .frame(width: 32, height: 32)
+                        }
+                        Text(itemDate.formatted(.dateTime.day()))
+                            .font(.bold12)
+                            .foregroundStyle(isToday ? .pink : .textDark)
+                    }
                 }
             }
         }
