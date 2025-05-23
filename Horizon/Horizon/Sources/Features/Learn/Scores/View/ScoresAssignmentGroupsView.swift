@@ -36,17 +36,19 @@ struct ScoresAssignmentGroupsView: View {
             .foregroundStyle(Color.huiColors.text.body)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, .huiSpaces.space24)
-            HStack(spacing: .huiSpaces.space8) {
-                arrowIcon
-                Text("Assignment Group Weights", bundle: .horizon)
-                    .huiTypography(.p1)
-                    .foregroundStyle(Color.huiColors.text.body)
-            }
-            .padding([.leading, .trailing], .huiSpaces.space24)
-            .padding(.bottom, isExpanded ? -16 : 0)
+            if details.assignmentGroups.isAssignmentGroupWeightsVisible {
+                HStack(spacing: .huiSpaces.space8) {
+                    arrowIcon
+                    Text("Assignment Group Weights", bundle: .horizon)
+                        .huiTypography(.p1)
+                        .foregroundStyle(Color.huiColors.text.body)
+                }
+                .padding([.leading, .trailing], .huiSpaces.space24)
+                .padding(.bottom, isExpanded ? -16 : 0)
 
-            if isExpanded {
-                assignmentGroupList(groups: details.assignmentGroups)
+                if isExpanded {
+                    assignmentGroupList(groups: details.assignmentGroups)
+                }
             }
         }
         .padding(.top, .huiSpaces.space16)
@@ -56,6 +58,7 @@ struct ScoresAssignmentGroupsView: View {
         .onTapGesture {
             isExpanded.toggle()
         }
+        .disabled(!details.assignmentGroups.isAssignmentGroupWeightsVisible)
     }
 
     private var arrowIcon: some View {
@@ -71,10 +74,12 @@ struct ScoresAssignmentGroupsView: View {
     private func assignmentGroupList(groups: [ScoresAssignmentGroup]) -> some View {
         VStack(spacing: .zero) {
             ForEach(Array(groups.enumerated()), id: \.offset) { index, group in
-                assignmentGroupListRow(group: group)
-                    .padding([.leading, .trailing], .huiSpaces.space24)
-                if index != groups.count - 1 {
-                    divider
+                if group.groupWeight != nil {
+                    assignmentGroupListRow(group: group)
+                        .padding([.leading, .trailing], .huiSpaces.space24)
+                    if index != groups.count - 1 {
+                        divider
+                    }
                 }
             }
             divider

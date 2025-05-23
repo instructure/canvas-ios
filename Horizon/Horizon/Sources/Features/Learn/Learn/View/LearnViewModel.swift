@@ -26,6 +26,11 @@ final class LearnViewModel {
     private(set) var isLoaderVisible: Bool = false
     private(set) var courseID: String?
     private(set) var enrollmentID: String?
+    private(set) var errorMessage = ""
+
+    // MARK: - Input / Outputs
+
+    var isAlertPresented = false
 
     // MARK: - Private variables
 
@@ -41,20 +46,39 @@ final class LearnViewModel {
         self.interactor = interactor
     }
 
-    func fetchCourses() {
-        isLoaderVisible = true
-        interactor.getFirstCourse(ignoreCache: false)
+    func fetchCourses(
+        ignoreCache: Bool = false,
+        isShowLoader: Bool = true,
+        completionHandler: (() -> Void)? = nil
+    ) {
+        isLoaderVisible = isShowLoader
+        interactor.getFirstCourse(ignoreCache: ignoreCache)
             .sink(
-                receiveCompletion: { _ in
-                    // TODO: Handle error case
-                },
-                receiveValue: { [weak self] course in
-                    self?.courseID = course.id
-                    self?.enrollmentID = course.enrollmentId
+                receiveCompletion: { [weak self] completion in
                     self?.isLoaderVisible = false
+                    completionHandler?()
+
+                    if case .failure(let failure) = completion {
+                        self?.errorMessage = failure.localizedDescription
+                        self?.isAlertPresented = true
+                    }
+                },
+                receiveValue: { course in
+                    guard let course else {
+                        return
+                    }
+                    self.courseID = course.id
+                    self.enrollmentID = course.enrollmentId
                 }
             )
-
             .store(in: &subscriptions)
+    }
+
+    func refreshCourses() async {
+        await withCheckedContinuation { continuation in
+            fetchCourses(ignoreCache: true, isShowLoader: false) {
+                continuation.resume()
+            }
+        }
     }
 }

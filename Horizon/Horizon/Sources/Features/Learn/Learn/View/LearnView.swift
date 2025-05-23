@@ -21,10 +21,7 @@ import SwiftUI
 import HorizonUI
 
 struct LearnView: View {
-    // TODO: - Set with correct url later
-    private let logoURL = "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png"
-
-    let viewModel: LearnViewModel
+    @Bindable var viewModel: LearnViewModel
 
     var body: some View {
         VStack {
@@ -32,17 +29,25 @@ struct LearnView: View {
                 LearnAssembly.makeCourseDetailsView(courseID: corseID, enrollmentID: enrollmentID)
                     .id(corseID)
             } else if viewModel.courseID == nil, !viewModel.isLoaderVisible {
-                Text("You aren’t currently enrolled in a course.", bundle: .horizon)
-                    .padding(.huiSpaces.space24)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .huiTypography(.h3)
+               ScrollView {
+                    Text("You aren’t currently enrolled in a course.", bundle: .horizon)
+                        .padding(.huiSpaces.space24)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .huiTypography(.h3)
+                        .padding(.top, .huiSpaces.space32)
+                }
+               .refreshable {
+                   await viewModel.refreshCourses()
+               }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .background(Color.huiColors.surface.pagePrimary)
+        .alert(isPresented: $viewModel.isAlertPresented) {
+            Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
+        }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -51,14 +56,5 @@ struct LearnView: View {
         .onFirstAppear {
             viewModel.fetchCourses()
         }
-    }
-
-    private var navigationBar: some View {
-        HStack(spacing: .zero) {
-            HorizonUI.NavigationBar.Leading(logoURL: logoURL)
-            Spacer()
-        }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.bottom, .huiSpaces.space4)
     }
 }

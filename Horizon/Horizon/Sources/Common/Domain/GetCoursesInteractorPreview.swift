@@ -22,6 +22,10 @@ import Core
 import Foundation
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
+    func getCourseSyllabus(courseID: String) -> AnyPublisher<String?, Never> {
+        Just("Syllabus Information").eraseToAnyPublisher()
+    }
+
     func getCourseWithModules(id _: String, ignoreCache _: Bool) -> AnyPublisher<HCourse?, Never> {
         Just(course).eraseToAnyPublisher()
     }

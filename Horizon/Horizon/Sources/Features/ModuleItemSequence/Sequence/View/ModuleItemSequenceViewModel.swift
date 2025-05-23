@@ -177,10 +177,6 @@ final class ModuleItemSequenceViewModel {
         )
         .sink { [weak self] result in
             self?.isLoaderVisible = false
-            if result.1 == nil {
-                // TODO: Handle the error
-                return
-            }
             self?.assetType = .moduleItem
             let firstSequence = result.0
             self?.sequence = firstSequence
@@ -262,9 +258,12 @@ final class ModuleItemSequenceViewModel {
         }
         isAssignmentOptionsButtonVisible = state?.isAssignment ?? false
         /// In some cases, the module sequence API returns an empty response for assignment type only.
-        if state?.isExternalURL == true, assetType == .assignment {
-            state = getAssignmentModuleItem()
-            isAssignmentAvailableInItemSequence = false
+        if state?.isExternalURL == true, item == nil {
+           let assignemtModuleItem = getAssignmentModuleItem()
+             if assignemtModuleItem.isAssignment {
+                isAssignmentAvailableInItemSequence = false
+                 state = assignemtModuleItem
+            }
         }
         return state
     }
