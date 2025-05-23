@@ -22,10 +22,13 @@ import Core
 struct SubmissionHeaderView: View {
     let assignment: Assignment
     let submission: Submission
+    let isLandscapeLayout: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @ScaledMetric private var uiScale: CGFloat = 1
+    @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    @State private var profileSize = CGSize.zero
 
     var isGroupSubmission: Bool { !assignment.gradedIndividually && submission.groupID != nil }
     var groupName: String? { isGroupSubmission ? submission.groupName : nil }
@@ -75,9 +78,16 @@ struct SubmissionHeaderView: View {
                 .padding(.vertical, 8)
             }
             .buttonStyle(.plain)
+            .onSizeChange { size in
+                profileSize = size
+            }
             .identifier("SpeedGrader.userButton")
 
             Spacer()
+
+            if isLandscapeLayout {
+                resizeDragger
+            }
         }
     }
 
@@ -115,4 +125,51 @@ struct SubmissionHeaderView: View {
             options: .modal(embedInNav: true, addDoneButton: true)
         )
     }
+
+    private var resizeDragger: some View {
+        Image.moveEndLine
+            .size(uiScale.iconScale * 24)
+            .rotationEffect(landscapeSplitLayoutViewModel.dragIconRotation)
+            .paddingStyle(.horizontal, .standard)
+            .frame(maxHeight: profileSize.height)
+            .contentShape(Rectangle())
+            .gesture(resizeGesture)
+            .onTapGesture {
+                landscapeSplitLayoutViewModel.didTapDragIcon()
+            }
+            .accessibilityLabel(Text("Drawer menu", bundle: .teacher))
+            .accessibilityHint(landscapeSplitLayoutViewModel.dragIconA11yHint)
+            .accessibilityValue(landscapeSplitLayoutViewModel.dragIconA11yValue)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityRemoveTraits(.isImage)
+            .accessibility(identifier: "SpeedGrader.fullScreenToggleInLandscape")
+    }
+
+    private var resizeGesture: some Gesture {
+        DragGesture(
+            minimumDistance: 10,
+            coordinateSpace: .global
+        )
+        .onChanged { value in
+            let translation = value.translation.width
+            landscapeSplitLayoutViewModel.didUpdateDragGesturePosition(horizontalTranslation: translation)
+        }
+        .onEnded { _ in
+            landscapeSplitLayoutViewModel.didEndDragGesture()
+        }
+    }
 }
+
+#if DEBUG
+
+#Preview {
+    let testData = SpeedGraderAssembly.testData()
+    SubmissionHeaderView(
+        assignment: testData.assignment,
+        submission: testData.submissions[0],
+        isLandscapeLayout: true,
+        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
+    )
+}
+
+#endif

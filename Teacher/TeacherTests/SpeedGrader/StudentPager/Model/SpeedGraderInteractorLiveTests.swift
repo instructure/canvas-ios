@@ -21,6 +21,7 @@ import XCTest
 import Combine
 @testable import Teacher
 import TestsFoundation
+import SwiftUI
 
 class SpeedGraderInteractorLiveTests: TeacherTestCase {
     private var testee: SpeedGraderInteractorLive!
@@ -32,7 +33,7 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         invalidUserId: "invalid",
         assignmentName: "test assignment",
         courseName: "test course",
-        courseColor: UIColor.course1
+        courseColor: Color.course1
     )
 
     override func setUp() {
