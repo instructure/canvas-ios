@@ -18,6 +18,7 @@
     "Core\/Common\/CommonUI\/UITestHelpers\/",
     "Core\/Common\/CommonUI\/ViewModifiers\/",
     "Core\/Common\/Extensions\/CoreData\/NSPersistentContainerExtensions.swift",
+    "Core\/Common\/Extensions\/InstColorExtensions.swift",
     "Core\/Common\/Extensions\/UIKit\/UIGestureRecognizerExtensions.swift",
     "Core\/Common\/Extensions\/UIKit\/UINavigationControllerExtensions.swift",
     "Core\/Common\/Extensions\/UIKit\/UISplitViewControllerExtensions.swift",
