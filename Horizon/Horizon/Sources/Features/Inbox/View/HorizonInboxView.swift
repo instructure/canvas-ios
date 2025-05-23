@@ -25,18 +25,13 @@ struct MessagesView: View {
             VStack {
                 // Top Navigation Bar
                 HStack {
-                    
+                    HorizonBackButton { _ in }
                     Spacer()
-                    Button(action: {
-                        // Create message action
-                    }) {
-                        Text("Create message")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                    .padding()
+                    HorizonUI.PrimaryButton(
+                        String(localized: "Create message", bundle: .horizon),
+                        type: .institution,
+                        leading: HorizonUI.icons.editSquare
+                    ) { }
                 }
                 .padding(.horizontal)
 

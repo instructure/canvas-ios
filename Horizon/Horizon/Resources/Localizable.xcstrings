@@ -76,6 +76,9 @@
     "Alaska (-09:00/-08:00)" : {
 
     },
+    "All Messages" : {
+
+    },
     "Almaty (+05:00/+05:00)" : {
 
     },
@@ -268,6 +271,9 @@
     "Copenhagen (+01:00/+02:00)" : {
 
     },
+    "Create message" : {
+
+    },
     "Cuiaba (-04:00/-04:00)" : {
 
     },
@@ -356,6 +362,9 @@
 
     },
     "Filter" : {
+
+    },
+    "Filter by person" : {
 
     },
     "Flash cards" : {

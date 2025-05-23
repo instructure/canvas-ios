@@ -16,13 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct HorizonBackButton: View {
-    typealias OnBack = () -> Void
+    typealias OnBack = (WeakViewController) -> Void
+
+    @Environment(\.viewController) private var viewController
 
     let onBack: OnBack?
+
+    init(onBack: OnBack? = nil) {
+        self.onBack = onBack
+    }
 
     var body: some View {
         HorizonUI.IconButton(
@@ -30,7 +37,7 @@ struct HorizonBackButton: View {
             type: .white,
             isSmall: true
         ) {
-            onBack?()
+            onBack?(viewController)
         }
         .disabled(onBack == nil)
         .opacity(onBack == nil ? 0 : 1)

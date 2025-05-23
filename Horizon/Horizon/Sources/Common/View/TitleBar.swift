@@ -51,7 +51,7 @@ struct TitleBar<Content>: View where Content: View {
 
     var body: some View {
         HStack {
-            HorizonBackButton(onBack: () { self.onBack?(viewController) })
+            HorizonBackButton(onBack: self.onBack)
             titleView
             closeButton
         }
