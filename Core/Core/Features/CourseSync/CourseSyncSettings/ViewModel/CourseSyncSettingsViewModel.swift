@@ -147,7 +147,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
                 interactor
                     .getStoredPreferences()
                     .map {(
-                        previousSelection: $0.syncFrequency.rawValue,
+                        previousSelection: $0.syncFrequency,
                         sourceController: sourceController
                     )}
             }
@@ -167,31 +167,39 @@ class CourseSyncSettingsViewModel: ObservableObject {
             .assign(to: &$isAllSettingsVisible)
     }
 
-    private static func getNewFrequencyFromUser(previousSelection: Int,
+    private static func getNewFrequencyFromUser(previousSelection: CourseSyncFrequency,
                                                 sourceController: UIViewController)
     -> AnyPublisher<CourseSyncFrequency, Never> {
         Future<CourseSyncFrequency, Never> { promise in
-            let selection = IndexPath(row: previousSelection, section: 0)
-            let handleNewSelection: (IndexPath) -> Void = { newSelection in
+            let pageTitle = String(localized: "Sync Frequency", bundle: .core)
+            let allCases = CourseSyncFrequency.allCases
+
+            let handleNewSelection: (OptionItem) -> Void = { newSelection in
                 defer {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                        if sourceController.navigationController?.topViewController is ItemPickerViewController {
+                        if sourceController.navigationController?.topViewController is CoreHostingController<ItemPickerScreen> {
                             sourceController.navigationController?.popViewController(animated: true)
                         }
                     }
                 }
-                guard let newFrequency = CourseSyncFrequency(rawValue: newSelection.row) else {
+                guard let newFrequency = allCases.element(for: newSelection) else {
                     return
                 }
 
                 promise(.success(newFrequency))
             }
-            let picker = ItemPickerViewController
-                .create(title: String(localized: "Sync Frequency", bundle: .core),
-                        sections: CourseSyncFrequency.itemPickerData,
-                        selected: selection,
-                        didSelect: handleNewSelection)
-            sourceController.show(picker, sender: sourceController)
+
+            let picker = ItemPickerScreen(
+                pageTitle: pageTitle,
+                identifierGroup: "Settings.OfflineSync.syncFrequencyOptions",
+                allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.stringValue) },
+                initialOptionId: previousSelection.optionItemId,
+                didSelectOption: handleNewSelection
+            )
+
+            let pickerVC = CoreHostingController(picker)
+            pickerVC.navigationItem.title = pageTitle
+            sourceController.show(pickerVC, sender: self)
         }
         .eraseToAnyPublisher()
     }

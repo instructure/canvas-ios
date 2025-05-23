@@ -20,17 +20,34 @@ import Combine
 
 final class SingleSelectionViewModel: ObservableObject {
 
+    let title: String?
+
     let allOptions: [OptionItem]
     let selectedOption: CurrentValueSubject<OptionItem?, Never>
+
+    let optionCount: Int
+    let listLevelAccessibilityLabel: String?
 
     private var subscriptions = Set<AnyCancellable>()
 
     init(
+        title: String?,
         allOptions: [OptionItem],
         selectedOption: CurrentValueSubject<OptionItem?, Never>
     ) {
+        self.title = title
+
         self.allOptions = allOptions
         self.selectedOption = selectedOption
+
+        self.optionCount = allOptions.count
+        if title != nil {
+            // if there is a title -> list count is already in section header
+            self.listLevelAccessibilityLabel = nil
+        } else {
+            // if there is no title -> add list count to first focused option
+            self.listLevelAccessibilityLabel = String.localizedNumberOfItems(optionCount)
+        }
 
         selectedOption
             .removeDuplicates()

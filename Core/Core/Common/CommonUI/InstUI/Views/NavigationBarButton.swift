@@ -59,7 +59,7 @@ extension InstUI {
             button
                 .foregroundStyle(color)
                 .environment(\.isEnabled, isEnabled)
-                .accessibilityIdentifier(accessibilityId)
+                .identifier(accessibilityId)
         }
 
         @ViewBuilder

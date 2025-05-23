@@ -53,6 +53,12 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
     }
 }
 
+extension Array<OptionItem> {
+    public func option(with id: String?) -> OptionItem? {
+        first { $0.id == id }
+    }
+}
+
 #if DEBUG
 extension OptionItem {
     static func make(

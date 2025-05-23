@@ -24,21 +24,24 @@ extension InstUI {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let title: String?
+        private let itemCount: Int
         private let buttonLabel: ButtonLabel?
         private let buttonAction: (() -> Void)?
 
         public init(
             title: String?,
+            itemCount: Int,
             buttonLabel: ButtonLabel?,
             buttonAction: (() -> Void)? = nil
         ) {
             self.title = title
+            self.itemCount = itemCount
             self.buttonLabel = buttonLabel
             self.buttonAction = buttonAction
         }
 
-        public init(title: String?) where ButtonLabel == SwiftUI.EmptyView {
-            self.init(title: title, buttonLabel: nil)
+        public init(title: String?, itemCount: Int) where ButtonLabel == SwiftUI.EmptyView {
+            self.init(title: title, itemCount: itemCount, buttonLabel: nil)
         }
 
         @ViewBuilder
@@ -49,6 +52,7 @@ extension InstUI {
                         Text(title)
                             .textStyle(.sectionHeader)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .accessibilityLabel(title + ", " + String.localizedAccessibilityListCount(itemCount))
                             .accessibilityAddTraits([.isHeader])
 
                         if let buttonLabel {
@@ -79,10 +83,10 @@ extension InstUI {
 #Preview {
     VStack(spacing: 0) {
         InstUI.Divider()
-        InstUI.ListSectionHeader(title: "Section Header Cell")
-        InstUI.ListSectionHeader(title: "Section Header with Button", buttonLabel: Text("Select all"))
-        InstUI.ListSectionHeader(title: "Section Header with red Button", buttonLabel: Text("Delete all").foregroundStyle(Color.textDanger))
-        InstUI.ListSectionHeader(title: "Section Header with custom styled Button", buttonLabel: Text("This is a big button").textStyle(.heading))
+        InstUI.ListSectionHeader(title: "Section Header Cell", itemCount: 0)
+        InstUI.ListSectionHeader(title: "Section Header with Button", itemCount: 0, buttonLabel: Text("Select all"))
+        InstUI.ListSectionHeader(title: "Section Header with red Button", itemCount: 0, buttonLabel: Text("Delete all").foregroundStyle(Color.textDanger))
+        InstUI.ListSectionHeader(title: "Section Header with custom styled Button", itemCount: 0, buttonLabel: Text("This is a big button").textStyle(.heading))
     }
 }
 

@@ -236,25 +236,30 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private var interfaceStyleSettings: [Row] {
-        let options = [
-            ItemPickerItem(title: String(localized: "System Settings", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Light Theme", bundle: .core)),
-            ItemPickerItem(title: String(localized: "Dark Theme", bundle: .core))
-        ]
-        let selectedStyleIndex = env.userDefaults?.interfaceStyle?.rawValue ?? 0
+        let selectedStyle = env.userDefaults?.interfaceStyle ?? .unspecified
 
         return [
-            Row(String(localized: "Appearance", bundle: .core), detail: options[selectedStyleIndex].title, isSupportedOffline: true) { [weak self] in
-                guard let self = self else { return }
+            Row(String(localized: "Appearance", bundle: .core), detail: selectedStyle.settingsTitle, isSupportedOffline: true) { [weak self] in
+                guard let self else { return }
 
-                let pickerVC = ItemPickerViewController.create(title: String(localized: "Appearance", bundle: .core),
-                                                               sections: [ ItemPickerSection(items: options) ],
-                                                               selected: IndexPath(row: selectedStyleIndex, section: 0)) { indexPath in
-                    if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
-                        window.updateInterfaceStyle(style)
-                        self.env.userDefaults?.interfaceStyle = style
+                let pageTitle = String(localized: "Appearance", bundle: .core)
+                let allCases: [UIUserInterfaceStyle] = [.unspecified, .light, .dark]
+
+                let picker = ItemPickerScreen(
+                    pageTitle: pageTitle,
+                    identifierGroup: "Settings.appearanceOptions",
+                    allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.settingsTitle) },
+                    initialOptionId: selectedStyle.optionItemId,
+                    didSelectOption: {
+                        guard let selectedCase = allCases.element(for: $0) else { return }
+
+                        self.env.window?.updateInterfaceStyle(selectedCase)
+                        self.env.userDefaults?.interfaceStyle = selectedCase
                     }
-                }
+                )
+
+                let pickerVC = CoreHostingController(picker)
+                pickerVC.navigationItem.title = pageTitle
                 self.show(pickerVC, sender: self)
             }
         ]
@@ -263,17 +268,27 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var landingPageRow: [Row] {
         return [
             Row(String(localized: "Landing Page", bundle: .core), detail: landingPage.name, isSupportedOffline: true) { [weak self] in
-                guard let self = self else { return }
-                self.show(ItemPickerViewController.create(
-                    title: String(localized: "Landing Page", bundle: .core),
-                    sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
-                        ItemPickerItem(title: page.name)
-                    }) ],
-                    selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
-                        IndexPath(row: $0, section: 0)
-                    },
-                    delegate: self
-                ), sender: self)
+                guard let self else { return }
+
+                let pageTitle = String(localized: "Landing Page", bundle: .core)
+                let allCases = LandingPage.appCases
+
+                let picker = ItemPickerScreen(
+                    pageTitle: pageTitle,
+                    identifierGroup: "Settings.landingPageOptions",
+                    allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.name) },
+                    initialOptionId: self.landingPage.optionItemId,
+                    didSelectOption: {
+                        guard let selectedCase = allCases.element(for: $0) else { return }
+
+                        self.landingPage = selectedCase
+                        self.reloadData()
+                    }
+                )
+
+                let pickerVC = CoreHostingController(picker)
+                pickerVC.navigationItem.title = pageTitle
+                self.show(pickerVC, sender: self)
             }
         ]
     }
@@ -412,13 +427,6 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
     }
 }
 
-extension ProfileSettingsViewController: ItemPickerDelegate {
-    public func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
-        landingPage = LandingPage.appCases[indexPath.row]
-        reloadData()
-    }
-}
-
 private struct Section {
     let title: String
     let rows: [Any]
@@ -475,12 +483,22 @@ private class Switch {
     }
 }
 
-private enum LandingPage: String {
+private enum LandingPage: String, OptionItemIdentifiable {
     case dashboard = "/"
     case calendar = "/calendar"
     case todo = "/to-do"
     case notifications = "/notifications"
     case inbox = "/conversations"
+
+    var optionItemId: String {
+        switch self {
+        case .dashboard: "dashboard"
+        case .calendar: "calendar"
+        case .todo: "todo"
+        case .notifications: "notifications"
+        case .inbox: "inbox"
+        }
+    }
 
     var name: String {
         switch self {

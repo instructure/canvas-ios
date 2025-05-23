@@ -297,6 +297,14 @@ public extension XCUIElement {
         return descendants(matching: type).matching(idStartingWith: prefix).firstMatch
     }
 
+    func find(idStartingWith idPrefix: String, label: String) -> XCUIElement {
+        return descendants(matching: .any).matching(idStartingWith: idPrefix).matching(label: label).firstMatch
+    }
+
+    func find(idStartingWith idPrefix: String, labelContaining labelPart: String) -> XCUIElement {
+        return descendants(matching: .any).matching(idStartingWith: idPrefix).matching(labelContaining: labelPart).firstMatch
+    }
+
     func find(value: String, type: ElementType = .any) -> XCUIElement {
         return descendants(matching: type).matching(value: value).firstMatch
     }

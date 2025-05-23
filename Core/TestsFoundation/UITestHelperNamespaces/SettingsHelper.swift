@@ -30,18 +30,17 @@ public enum SettingsMenuItem: String {
 }
 
 public enum LandingPageMenuItem: String {
-    case dashboard = "Dashboard"
-    case calendar = "Calendar"
-    case toDo = "To Do"
-    case notifications = "Notifications"
-    case inbox = "Inbox"
-    case courses = "Courses"
+    case dashboard
+    case calendar
+    case todo
+    case notifications
+    case inbox
 }
 
-public enum AppearanceMenuItem: Int {
-    case system = 0
-    case light = 1
-    case dark = 2
+public enum AppearanceMenuItem: String {
+    case system
+    case light
+    case dark
 }
 
 public class SettingsHelper: BaseHelper {
@@ -91,11 +90,11 @@ public class SettingsHelper: BaseHelper {
         public static var QRCodeImage: XCUIElement { app.find(id: "QRCodeImage") }
 
         public static func landingPageMenuItem(item: LandingPageMenuItem) -> XCUIElement {
-            return app.find(type: .table).find(label: item.rawValue, type: .staticText)
+            return app.find(id: "Settings.landingPageOptions.\(item.rawValue)")
         }
 
         public static func appearanceMenuItem(item: AppearanceMenuItem) -> XCUIElement {
-            return app.find(id: "ItemPickerItem.0-\(item.rawValue)")
+            return app.find(id: "Settings.appearanceOptions.\(item.rawValue)")
         }
 
         public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
@@ -122,9 +121,11 @@ public class SettingsHelper: BaseHelper {
         public static var turnOffButton: XCUIElement { app.find(label: "Turn Off", type: .button) }
 
         public struct SyncFrequency {
-            public static var asTheOsAllows: XCUIElement { app.find(labelContaining: "as the OS allows", type: .staticText) }
-            public static var daily: XCUIElement { app.find(label: "Daily", type: .staticText) }
-            public static var weekly: XCUIElement { app.find(label: "Weekly", type: .staticText) }
+            private static let group = "Settings.OfflineSync.syncFrequencyOptions"
+
+            public static var asTheOsAllows: XCUIElement { app.find(id: "\(group).osBased") }
+            public static var daily: XCUIElement { app.find(id: "\(group).daily") }
+            public static var weekly: XCUIElement { app.find(id: "\(group).weekly") }
         }
     }
 }

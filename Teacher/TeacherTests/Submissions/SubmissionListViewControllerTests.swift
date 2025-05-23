@@ -121,7 +121,7 @@ class SubmissionListViewControllerTests: TeacherTestCase {
         XCTAssertEqual(controller.emptyView.isHidden, false)
 
         _ = controller.postPolicyButton.target?.perform(controller.postPolicyButton.action)
-        XCTAssert(router.lastRoutedTo("/courses/1/assignments/1/post_policy", withOptions: .modal(embedInNav: true)))
+        XCTAssert(router.lastRoutedTo("/courses/1/assignments/1/post_policy", withOptions: .modal(embedInNav: true, addDoneButton: true)))
 
         _ = controller.messageUsersButton.target?.perform(controller.messageUsersButton.action)
         XCTAssert(router.lastRoutedTo("/conversations/compose", withOptions: .modal(embedInNav: true)))

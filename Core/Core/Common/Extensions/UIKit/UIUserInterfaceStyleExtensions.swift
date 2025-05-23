@@ -30,3 +30,23 @@ extension UIUserInterfaceStyle {
         return style
     }
 }
+
+extension UIUserInterfaceStyle: OptionItemIdentifiable {
+    public var optionItemId: String {
+        switch self {
+        case .unspecified: "system"
+        case .light: "light"
+        case .dark: "dark"
+        @unknown default: "_unknown"
+        }
+    }
+
+    public var settingsTitle: String {
+        switch self {
+        case .unspecified: String(localized: "System Settings", bundle: .core)
+        case .light: String(localized: "Light Theme", bundle: .core)
+        case .dark: String(localized: "Dark Theme", bundle: .core)
+        @unknown default: ""
+        }
+    }
+}

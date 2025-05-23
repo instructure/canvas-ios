@@ -46,11 +46,11 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                         text: $viewModel.title
                     )
                     .focused($focusedInput, equals: .title)
-                    .accessibilityIdentifier("Calendar.Todo.title")
+                    .identifier("Calendar.Todo.title")
 
                     InstUI.DatePickerCell(
                         label: Text("Date", bundle: .core),
-                        accessibilityIdPrefix: "Calendar.Todo.datePicker",
+                        identifierGroup: "Calendar.Todo.datePicker",
                         date: $viewModel.date
                     )
 
@@ -61,14 +61,14 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                             viewModel.showCalendarSelector.send(viewController)
                         }
                     )
-                    .accessibilityIdentifier("Calendar.Todo.calendar")
+                    .identifier("Calendar.Todo.calendar")
 
                     InstUI.TextEditorCell(
                         label: Text("Details", bundle: .core),
                         text: $viewModel.details
                     )
                     .focused($focusedInput, equals: .details)
-                    .accessibilityIdentifier("Calendar.Todo.details")
+                    .identifier("Calendar.Todo.details")
                 }
                 // defocus inputs when otherwise non-tappable area is tapped
                 .background(

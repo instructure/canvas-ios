@@ -76,7 +76,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var studentFilterSection: some View {
         MultiSelectionView(
             title: String(localized: "Assignment Filter", bundle: .core),
-            accessibilityIdentifier: "AssignmentFilter.studentFilterOptions",
+            identifierGroup: "AssignmentFilter.studentFilterOptions",
             options: viewModel.studentFilterOptions
         )
     }
@@ -85,7 +85,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var teacherFilterSection: some View {
         SingleSelectionView(
             title: String(localized: "Assignment Filter", bundle: .core),
-            accessibilityIdentifier: "AssignmentFilter.teacherFilterOptions",
+            identifierGroup: "AssignmentFilter.teacherFilterOptions",
             options: viewModel.teacherFilterOptions
         )
     }
@@ -93,7 +93,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var teacherPublishStatusFilterSection: some View {
         SingleSelectionView(
             title: String(localized: "Status Filter", bundle: .core),
-            accessibilityIdentifier: "AssignmentFilter.teacherPublishStatusFilterOptions",
+            identifierGroup: "AssignmentFilter.teacherPublishStatusFilterOptions",
             options: viewModel.teacherPublishStatusFilterOptions
         )
     }
@@ -101,7 +101,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var sortBySection: some View {
         SingleSelectionView(
             title: String(localized: "Grouped By", bundle: .core),
-            accessibilityIdentifier: "AssignmentFilter.sortModeOptions",
+            identifierGroup: "AssignmentFilter.sortModeOptions",
             options: viewModel.sortModeOptions
         )
     }
@@ -109,7 +109,7 @@ public struct AssignmentListPreferencesScreen: View {
     private var gradingPeriodsSection: some View {
         SingleSelectionView(
             title: String(localized: "Grading Periods", bundle: .core),
-            accessibilityIdentifier: "AssignmentFilter.gradingPeriodOption",
+            identifierGroup: "AssignmentFilter.gradingPeriodOption",
             options: viewModel.gradingPeriodOptions
         )
     }

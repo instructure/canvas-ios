@@ -123,7 +123,7 @@ extension Array where Element: PostPolicyLogicProtocol {
     }
 }
 
-public enum PostGradePolicy: String, CaseIterable {
+public enum PostGradePolicy: String, CaseIterable, OptionItemIdentifiable {
     case everyone, graded
 }
 

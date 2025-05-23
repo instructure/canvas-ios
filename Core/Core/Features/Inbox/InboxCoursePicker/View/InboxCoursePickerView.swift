@@ -88,7 +88,7 @@ public struct InboxCoursePickerView: View {
             Section {
                 ForEach(courses, id: \.id) { courseRow($0) }
             } header: {
-                InstUI.ListSectionHeader(title: title)
+                InstUI.ListSectionHeader(title: title, itemCount: courses.count)
             }
         }
     }
@@ -102,7 +102,7 @@ public struct InboxCoursePickerView: View {
                     }
                 } header: {
                     VStack(spacing: 0) {
-                        InstUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core))
+                        InstUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core), itemCount: groups.count)
                     }
                 }
             }

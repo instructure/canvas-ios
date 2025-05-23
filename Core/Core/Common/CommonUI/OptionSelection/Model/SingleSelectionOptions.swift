@@ -48,6 +48,15 @@ public struct SingleSelectionOptions {
         self.init(all: all, selected: .init(initial), initial: initial)
     }
 
+    /// Uses `initialId` to create the `initial` value and the `selected` subject.
+    public init(
+        all: [OptionItem],
+        initialId: String?
+    ) {
+        let initial = all.option(with: initialId)
+        self.init(all: all, selected: .init(initial), initial: initial)
+    }
+
     /// Uses `selected` subject's current value as `initial` value.
     public init(
         all: [OptionItem],

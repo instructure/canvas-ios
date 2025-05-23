@@ -17,33 +17,18 @@
 //
 
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class CourseSyncFrequencyTests: XCTestCase {
 
     func testSyncFrequencyNames() {
-        XCTAssertEqual(CourseSyncFrequency.weekly.stringValue, "Weekly")
         XCTAssertEqual(CourseSyncFrequency.daily.stringValue, "Daily")
+        XCTAssertEqual(CourseSyncFrequency.weekly.stringValue, "Weekly")
     }
 
-    func testSyncFrequenciesToItemPickerData() {
-        let testee = CourseSyncFrequency.itemPickerData
-        XCTAssertEqual(testee.count, 1)
-
-        guard let section = testee.first else {
-            return XCTFail()
-        }
-
-        XCTAssertNil(section.title)
-        XCTAssertEqual(section.items.count, 3)
-        // First entry is a debug one which we don't test
-        XCTAssertEqual(section.items[1].title, "Daily")
-        XCTAssertEqual(section.items[1].accessibilityIdentifier, nil)
-        XCTAssertEqual(section.items[1].image, nil)
-        XCTAssertEqual(section.items[1].subtitle, nil)
-        XCTAssertEqual(section.items[2].title, "Weekly")
-        XCTAssertEqual(section.items[2].accessibilityIdentifier, nil)
-        XCTAssertEqual(section.items[2].image, nil)
-        XCTAssertEqual(section.items[2].subtitle, nil)
+    func testSyncFrequencyOptionItemId() throws {
+        XCTAssertEqual(CourseSyncFrequency.daily.optionItemId, "daily")
+        XCTAssertEqual(CourseSyncFrequency.weekly.optionItemId, "weekly")
     }
 }
