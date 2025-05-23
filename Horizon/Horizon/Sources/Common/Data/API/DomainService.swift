@@ -23,28 +23,45 @@ import Foundation
 /// A representation of our domain services
 final class DomainService {
 
+    enum Region: String {
+        case central1 = "ca-central-1"
+        case east1 = "us-east-1"
+        case west2 = "us-west-2"
+    }
+
     // MARK: - Dependencies
 
-    private let option: Option
+    private let baseURL: String
     private let horizonApi: API
+    private let option: Option
+    private let region: Region
 
     // MARK: - Private
 
-    var baseURL: URL {
-        guard let baseUrl = try? option.audience(),
-              let url = URL(string: "https://\(baseUrl)") else {
-            fatalError("Unable to get the base URL for the domain service")
-        }
-        return url
+    private var audience: String {
+        baseURL.contains("horizon.cd.instructure.com") == true ? horizonCDURL : productionURL
+    }
+
+    private var horizonCDURL: String {
+        "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
+    }
+
+    private var productionURL: String {
+        "\(option)-api-production.\(region.rawValue).temp.prod.inseng.io"
     }
 
     // MARK: - Init
 
     init(
         _ domainServiceOption: Option,
+        baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
+        region: Region? = nil,
         horizonApi: API = AppEnvironment.defaultValue.api
     ) {
+        let defaultRegion = AppEnvironment.shared.currentSession?.canvasRegion.map { Region(rawValue: $0) ?? .east1 } ?? .east1
         self.option = domainServiceOption
+        self.baseURL = baseURL
+        self.region = region ?? defaultRegion
         self.horizonApi = horizonApi
     }
 
@@ -53,10 +70,7 @@ final class DomainService {
     // TODO: cache the token and reuse it
     /// Get the API for the domain service
     func api() -> AnyPublisher<API, Error> {
-        guard let audience = try? option.audience() else {
-            return Fail(error: DomainService.Issue.serviceConfigurationNotFound).eraseToAnyPublisher()
-        }
-        return horizonApi
+        horizonApi
             .makeRequest(
                 JWTTokenRequest(
                     audience: audience,
@@ -69,14 +83,17 @@ final class DomainService {
             }
             .compactMap { [weak self] jwt in
                 guard let self else { return nil }
+                guard let url = URL(string: "https://\(self.audience)") else {
+                    fatalError("Unable to get the base URL for the domain service")
+                }
                 return API(
                     LoginSession(
                         accessToken: jwt,
-                        baseURL: baseURL,
+                        baseURL: url,
                         userID: "",
                         userName: ""
                     ),
-                    baseURL: baseURL
+                    baseURL: url
                 )
             }
             .eraseToAnyPublisher()
@@ -111,28 +128,9 @@ extension DomainService {
 
 extension DomainService {
     enum Option: String {
-
         case cedar
         case pine
         case redwood
-
-        func audience(baseURL: String? = AppEnvironment.shared.currentSession?.baseURL.absoluteString) throws -> String {
-            let serviceUrls: [Option: String] = baseURL?.contains("horizon.cd.instructure.com") == true ?
-                [
-                    .cedar: "cedar-api-dev.domain-svcs.nonprod.inseng.io",
-                    .pine: "pine-api-dev.domain-svcs.nonprod.inseng.io",
-                    .redwood: "redwood-api-dev.domain-svcs.nonprod.inseng.io"
-                ] : [
-                    .cedar: "cedar-api-production.us-east-1.temp.prod.inseng.io",
-                    .pine: "pine-api-production.us-east-1.temp.prod.inseng.io",
-                    .redwood: "redwood-api-production.us-east-1.temp.prod.inseng.io"
-                ]
-
-            guard let serviceUrl = serviceUrls[self] else {
-                throw DomainService.Issue.serviceConfigurationNotFound
-            }
-            return serviceUrl
-        }
 
         var service: String {
             rawValue

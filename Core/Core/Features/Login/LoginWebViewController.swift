@@ -125,14 +125,6 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
             title = mobileVerifyModel.base_url?.absoluteString
             loadManualOAuthLoginWebRequest()
         // For PKCE OAuth login, we provide a client_id and generate a code challenge pair.
-        } else if method == .canvasLogin {
-            // Lookup OAuth from mobile verify
-            task?.cancel()
-            task = API().makeRequest(GetMobileVerifyRequest(domain: host)) { [weak self] (response, _, _) in performUIUpdate {
-                self?.mobileVerifyModel = response
-                self?.task = nil
-                self?.loadLoginWebRequest()
-            } }
         } else {
             guard clientID != nil else {
                 fatalError("App Client ID not set")
@@ -242,26 +234,16 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         }
         self.challenge = challenge
 
+        let isCanvasLogin = hostURL.absoluteString.lowercased().contains("intelvio.instructure.com") == true
+
         let requestable = LoginWebRequestPKCE(
             clientID: clientID,
             host: hostURL,
             challenge: challenge,
-            isSiteAdminLogin: method == .siteAdminLogin
+            isSiteAdminLogin: method == .siteAdminLogin,
+            isCanvasLogin: isCanvasLogin
         )
         if var request = try? requestable.urlRequest(relativeTo: hostURL, accessToken: nil, actAsUserID: nil) {
-            request.timeoutInterval = 30
-            webView.load(request)
-        }
-    }
-
-    private func loadLoginWebRequest() {
-        guard let verify = mobileVerifyModel, let url = verify.base_url, let clientID = verify.client_id else {
-            showFailedPanda(reason: .invalidDomain)
-            return
-        }
-
-        let requestable = LoginWebRequest(authMethod: method, clientID: clientID, provider: authenticationProvider)
-        if var request = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil) {
             request.timeoutInterval = 30
             webView.load(request)
         }
@@ -397,7 +379,8 @@ extension LoginWebViewController: WKNavigationDelegate {
             refreshToken: token.refresh_token,
             userID: token.user.id.value,
             userName: token.user.name,
-            oauthType: oauthType
+            oauthType: oauthType,
+            canvasRegion: token.canvas_region
         )
 
         if let completion = self.loginCompletion {
