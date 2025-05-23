@@ -26,18 +26,15 @@ struct SubmissionHeaderView: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-    @ScaledMetric private var uiScale: CGFloat = 1
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+
     @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
     @State private var profileSize = CGSize.zero
 
     var isGroupSubmission: Bool { !assignment.gradedIndividually && submission.groupID != nil }
     var groupName: String? { isGroupSubmission ? submission.groupName : nil }
     var routeToSubmitter: String? {
-        if isGroupSubmission {
-            nil
-        } else {
-            "/courses/\(assignment.courseID)/users/\(submission.userID)"
-        }
+        isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
     }
 
     var body: some View {
@@ -48,27 +45,16 @@ struct SubmissionHeaderView: View {
 
                     VStack(alignment: .leading, spacing: 2) {
                         nameText
-                            .font(.semibold16)
-                            .foregroundStyle(.textDarkest)
 
-                        HStack(spacing: 4) {
-                            HStack(spacing: 2) {
-                                Image(uiImage: submission.status.icon)
-                                    .size(uiScale.iconScale * 16)
-                                    .foregroundStyle(Color(submission.status.color))
-
-                                Text(submission.status.text)
-                                    .font(.regular14)
-                                    .foregroundStyle(Color(submission.status.color))
-                            }
+                        HStack(alignment: .top, spacing: 4) {
+                            status
+                                .layoutPriority(1)
 
                             Color.borderMedium
                                 .frame(width: 1)
                                 .clipShape(RoundedRectangle(cornerRadius: 2))
 
-                            Text(assignment.dueText)
-                                .font(.regular14)
-                                .foregroundStyle(.textDark)
+                            dueText
                         }
                         .fixedSize(horizontal: false, vertical: true)
                     }
@@ -78,12 +64,11 @@ struct SubmissionHeaderView: View {
                 .padding(.vertical, 8)
             }
             .buttonStyle(.plain)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .onSizeChange { size in
                 profileSize = size
             }
             .identifier("SpeedGrader.userButton")
-
-            Spacer()
 
             if isLandscapeLayout {
                 resizeDragger
@@ -92,7 +77,7 @@ struct SubmissionHeaderView: View {
     }
 
     @ViewBuilder
-    var avatar: some View {
+    private var avatar: some View {
         let size: CGFloat = 32
 
         if assignment.anonymizeStudents {
@@ -104,20 +89,38 @@ struct SubmissionHeaderView: View {
         }
     }
 
-    var nameText: Text {
+    private var nameText: some View {
+        let name: Text
         if assignment.anonymizeStudents {
-            if isGroupSubmission {
-                Text("Group", bundle: .teacher)
-            } else {
-                Text("Student", bundle: .teacher)
-            }
+            name = isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
         } else {
-            Text(groupName ?? submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
+            name = Text(groupName ?? submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
         }
+
+        return name
+            .font(.semibold16)
+            .foregroundStyle(.textDarkest)
     }
 
-    func navigateToSubmitter() {
-        guard !assignment.anonymizeStudents, let routeToSubmitter = routeToSubmitter else { return }
+    private var status: some View {
+        HStack(spacing: 2) {
+            Image(uiImage: submission.status.icon)
+                .scaledIcon(size: 16)
+            Text(submission.status.text)
+                .font(.regular14)
+        }
+        .foregroundStyle(Color(submission.status.color))
+    }
+
+    private var dueText: some View {
+        Text(assignment.dueText)
+            .font(.regular14)
+            .foregroundStyle(.textDark)
+    }
+
+    private func navigateToSubmitter() {
+        guard !assignment.anonymizeStudents, let routeToSubmitter else { return }
+
         env.router.route(
             to: routeToSubmitter,
             userInfo: ["courseID": assignment.courseID, "navigatorOptions": ["modal": true]],
@@ -128,7 +131,7 @@ struct SubmissionHeaderView: View {
 
     private var resizeDragger: some View {
         Image.moveEndLine
-            .size(uiScale.iconScale * 24)
+            .scaledIcon()
             .rotationEffect(landscapeSplitLayoutViewModel.dragIconRotation)
             .paddingStyle(.horizontal, .standard)
             .frame(maxHeight: profileSize.height)
