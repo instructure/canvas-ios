@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,27 +17,16 @@
 //
 
 import SwiftUI
+import Core
 
-public extension HorizonUI.NavigationBar {
-    struct Leading: View {
-        let logoURL: String
-
-        public init(logoURL: String) {
-            self.logoURL = logoURL
-        }
-
-        public var body: some View {
-            AsyncImage(url: URL(string: logoURL)) { image in
-                image
-                    .image?
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 118, height: 44)
-            }
+struct InstitutionLogo: View {
+    var body: some View {
+        if let url = Brand.shared.institutionLogo {
+            RemoteImage(url, width: 100, height: 50, shouldHandleAnimatedGif: false)
         }
     }
 }
 
 #Preview {
-    HorizonUI.NavigationBar.Leading(logoURL: "https://cdn.prod.website-files.com/5f7685be6c8c113f558855d9/62c87dbd6208a1e98e89e707_Logo_Canvas_Red_Vertical%20copy.png")
+    InstitutionLogo()
 }
