@@ -19,33 +19,84 @@
 import Core
 import WidgetKit
 
-class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
+struct TodoWidgetEntry: TimelineEntry {
+    static let publicPreview: Self = .init(
+        data: .make(),
+        date: Date(),
+        message: "Preview"
+    )
+    static let loggedOutModel: Self = .init(
+        data: TodoModel(isLoggedIn: false),
+        date: Date(),
+        message: "Logged out"
+    )
+
+    let data: TodoModel
+    let date: Date
+    let message: String
+
+    var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
+}
+
+class TodoWidgetProvider: TimelineProvider {
+    typealias Entry = TodoWidgetEntry
+
+    static let startDate: Date = .now.startOfDay()
+    static let endDate: Date = startDate.addDays(28)
+
     private var colors: Store<GetCustomColors>?
     private var plannables: Store<GetPlannables>?
     private var courses: Store<GetCourses>?
     private var favoriteCourses: Store<GetCourses>?
 
-    static let startDate: Date = .now.startOfDay()
-    static let endDate: Date = startDate.addDays(28)
+    private let env = AppEnvironment.shared
+    private var isLoggedIn: Bool { LoginSession.mostRecent != nil }
+    private var completionCalled: Bool = false
+    private var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
 
-    init() {
-        super.init(loggedOutModel: TodoModel(isLoggedIn: false), timeout: 2 * 60 * 60)
+    func placeholder(in context: TimelineProvider.Context) -> Entry { .publicPreview }
+
+    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping @Sendable (TodoWidgetEntry) -> Void) {
+        completion(placeholder(in: context))
     }
 
-    override func fetchData() {
+    func getTimeline(in context: TimelineProvider.Context, completion: @escaping @Sendable (Timeline<TodoWidgetEntry>) -> Void) {
+        if context.isPreview {
+            let timeline = Timeline(entries: [placeholder(in: context)], policy: .after(refreshDate))
+            completion(timeline)
+            return
+        }
+        guard isLoggedIn else {
+            completion(Timeline(entries: [.loggedOutModel], policy: .after(refreshDate)))
+            return
+        }
+        guard !completionCalled else {
+            return
+        }
+
+        setupLastLoginCredentials()
+        fetchData(completion: completion)
+    }
+
+    private func setupLastLoginCredentials() {
+        guard let session = LoginSession.mostRecent else { return }
+        env.userDidLogin(session: session)
+    }
+
+    private func fetchData(completion: @escaping (Timeline<TodoWidgetEntry>) -> Void) {
         colors = env.subscribe(GetCustomColors())
         colors?.refresh { [weak self] _ in
             guard let self = self, let colors = self.colors, !colors.pending else { return }
 
-            self.courses = self.env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.courseFetchFinished() }
+            self.courses = self.env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.courseFetchFinished(completion: completion) }
             self.courses?.refresh()
 
-            self.favoriteCourses = self.env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.courseFetchFinished() }
+            self.favoriteCourses = self.env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.courseFetchFinished(completion: completion) }
             self.favoriteCourses?.refresh()
         }
     }
 
-    private func courseFetchFinished() {
+    private func courseFetchFinished(completion: @escaping (Timeline<TodoWidgetEntry>) -> Void) {
         guard
             let courses = courses, !courses.pending,
             let favoriteCourses = favoriteCourses, !favoriteCourses.pending
@@ -68,12 +119,12 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
                 contextCodes: contextCodes
             )
         ) { [weak self] in
-            self?.plannableFetchFinished()
+            self?.plannableFetchFinished(completion: completion)
         }
-        self.plannables?.refresh()
+        self.plannables?.refresh(force: true)
     }
 
-    private func plannableFetchFinished() {
+    private func plannableFetchFinished(completion: @escaping (Timeline<TodoWidgetEntry>) -> Void) {
         guard let plannables = plannables, !plannables.pending else { return }
 
         let compactPlannables = plannables.compactMap { $0 }
@@ -81,6 +132,10 @@ class TodoWidgetProvider: CommonWidgetProvider<TodoModel> {
             $0.plannableType != .announcement && $0.plannableType != .assessment_request
         }
 
-        updateWidget(model: TodoModel(items: plannableItems))
+        let model = TodoModel(items: plannableItems)
+        let entry = TodoWidgetEntry(data: model, date: Date(), message: "Data")
+        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+        completion(timeline)
+        completionCalled = true
     }
 }

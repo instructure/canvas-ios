@@ -24,7 +24,7 @@ struct TodoWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: TodoWidgetProvider()) { model in
-            TodoWidgetScreen(model: model)
+            TodoWidgetScreen(model: model.data)
         }
         .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
         .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))

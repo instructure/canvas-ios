@@ -19,6 +19,10 @@
 import Core
 import Foundation
 
+extension TimeInterval {
+    static let widgetRefresh: TimeInterval = 7200 // 2 hours
+}
+
 extension Array where Element == Plannable {
     func sortedByDueDate() -> [Element] {
         sorted { $0.date ?? Date.distantFuture < $1.date ?? Date.distantFuture }
