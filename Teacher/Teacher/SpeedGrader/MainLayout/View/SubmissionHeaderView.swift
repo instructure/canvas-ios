@@ -46,17 +46,19 @@ struct SubmissionHeaderView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         nameText
 
-                        HStack(alignment: .top, spacing: 4) {
-                            status
-                                .layoutPriority(1)
+                        ViewThatFits(in: .horizontal) {
+                            HStack(alignment: .top, spacing: 4) {
+                                status
+                                statusDueTextDivider
+                                dueText
+                            }
+                            .fixedSize(horizontal: false, vertical: true)
 
-                            Color.borderMedium
-                                .frame(width: 1)
-                                .clipShape(RoundedRectangle(cornerRadius: 2))
-
-                            dueText
+                            VStack(alignment: .leading, spacing: 2) {
+                                status
+                                dueText
+                            }
                         }
-                        .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 .paddingStyle(.leading, .cellIconLeading)
@@ -116,6 +118,12 @@ struct SubmissionHeaderView: View {
         Text(assignment.dueText)
             .font(.regular14)
             .foregroundStyle(.textDark)
+    }
+
+    private var statusDueTextDivider: some View {
+        Color.borderMedium
+            .frame(width: 1)
+            .clipShape(RoundedRectangle(cornerRadius: 2))
     }
 
     private func navigateToSubmitter() {
