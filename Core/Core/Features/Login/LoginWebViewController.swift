@@ -125,6 +125,14 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
             title = mobileVerifyModel.base_url?.absoluteString
             loadManualOAuthLoginWebRequest()
         // For PKCE OAuth login, we provide a client_id and generate a code challenge pair.
+        } else if method == .canvasLogin {
+            // Lookup OAuth from mobile verify
+            task?.cancel()
+            task = API().makeRequest(GetMobileVerifyRequest(domain: host)) { [weak self] (response, _, _) in performUIUpdate {
+                self?.mobileVerifyModel = response
+                self?.task = nil
+                self?.loadLoginWebRequest()
+            } }
         } else {
             guard clientID != nil else {
                 fatalError("App Client ID not set")
@@ -241,6 +249,19 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
             isSiteAdminLogin: method == .siteAdminLogin
         )
         if var request = try? requestable.urlRequest(relativeTo: hostURL, accessToken: nil, actAsUserID: nil) {
+            request.timeoutInterval = 30
+            webView.load(request)
+        }
+    }
+
+    private func loadLoginWebRequest() {
+        guard let verify = mobileVerifyModel, let url = verify.base_url, let clientID = verify.client_id else {
+            showFailedPanda(reason: .invalidDomain)
+            return
+        }
+
+        let requestable = LoginWebRequest(authMethod: method, clientID: clientID, provider: authenticationProvider)
+        if var request = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil) {
             request.timeoutInterval = 30
             webView.load(request)
         }
