@@ -234,7 +234,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         }
         self.challenge = challenge
 
-        let isCanvasLogin = hostURL.absoluteString.lowercased().contains("intelvio.instructure.com") == true
+        let isCanvasLogin = AppEnvironment.shared.app == .horizon && hostURL.absoluteString.lowercased().contains("intelvio.instructure.com") == true
 
         let requestable = LoginWebRequestPKCE(
             clientID: clientID,
