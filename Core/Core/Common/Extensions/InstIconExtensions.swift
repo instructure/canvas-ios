@@ -56,6 +56,8 @@ public extension UIImage {
     static var calendarClockSolid: UIImage { UIImage(named: "calendarClockSolid", in: .core, compatibleWith: nil)! }
     static var calendarMonthLine: UIImage { UIImage(named: "calendarMonthLine", in: .core, compatibleWith: nil)! }
     static var calendarMonthSolid: UIImage { UIImage(named: "calendarMonthSolid", in: .core, compatibleWith: nil)! }
+    static var chatLine: UIImage { UIImage(named: "chatLine", in: .core, compatibleWith: nil)! }
+    static var chatSolid: UIImage { UIImage(named: "chatSolid", in: .core, compatibleWith: nil)! }
     static var checkLine: UIImage { UIImage(named: "checkLine", in: .core, compatibleWith: nil)! }
     static var checkSolid: UIImage { UIImage(named: "checkSolid", in: .core, compatibleWith: nil)! }
     static var circleArrowDownLine: UIImage { UIImage(named: "circleArrowDownLine", in: .core, compatibleWith: nil)! }
@@ -219,9 +221,6 @@ public extension UIImage {
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
 
-    static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
-    static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
-
     static var addAudioLine: UIImage { UIImage(named: "addAudioLine", in: .core, compatibleWith: nil)! }
     static var addCameraLine: UIImage { UIImage(named: "addCameraLine", in: .core, compatibleWith: nil)! }
     static var addDocumentLine: UIImage { UIImage(named: "addDocumentLine", in: .core, compatibleWith: nil)! }
@@ -242,8 +241,6 @@ public extension UIImage {
     static var checkbox: UIImage { UIImage(named: "checkbox", in: .core, compatibleWith: nil)! }
     static var checkboxSelected: UIImage { UIImage(named: "checkboxSelected", in: .core, compatibleWith: nil)! }
     static var chevronDown: UIImage { UIImage(named: "chevronDown", in: .core, compatibleWith: nil)! }
-    static var chevronUpLine: UIImage { UIImage(named: "chevronUpLine", in: .core, compatibleWith: nil)! }
-    static var chevronUpSolid: UIImage { UIImage(named: "chevronUpSolid", in: .core, compatibleWith: nil)! }
     static var collaborations: UIImage { UIImage(named: "collaborations", in: .core, compatibleWith: nil)! }
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }
@@ -274,6 +271,8 @@ public extension UIImage {
     static var radioButtonSelected: UIImage { UIImage(named: "radioButtonSelected", in: .core, compatibleWith: nil)! }
     static var radioButtonUnselected: UIImage { UIImage(named: "radioButtonUnselected", in: .core, compatibleWith: nil)! }
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
+    static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
+    static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
     static var unionLine: UIImage { UIImage(named: "unionLine", in: .core, compatibleWith: nil)! }
@@ -314,6 +313,8 @@ public extension Image {
     static var calendarClockSolid: Image { Image("calendarClockSolid", bundle: .core) }
     static var calendarMonthLine: Image { Image("calendarMonthLine", bundle: .core) }
     static var calendarMonthSolid: Image { Image("calendarMonthSolid", bundle: .core) }
+    static var chatLine: Image { Image("chatLine", bundle: .core) }
+    static var chatSolid: Image { Image("chatSolid", bundle: .core) }
     static var checkLine: Image { Image("checkLine", bundle: .core) }
     static var checkSolid: Image { Image("checkSolid", bundle: .core) }
     static var circleArrowDownLine: Image { Image("circleArrowDownLine", bundle: .core) }
@@ -477,9 +478,6 @@ public extension Image {
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
 
-    static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
-    static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }
-
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -500,8 +498,6 @@ public extension Image {
     static var checkbox: Image { Image("checkbox", bundle: .core) }
     static var checkboxSelected: Image { Image("checkboxSelected", bundle: .core) }
     static var chevronDown: Image { Image("chevronDown", bundle: .core) }
-    static var chevronUpLine: Image { Image("chevronUpLine", bundle: .core) }
-    static var chevronUpSolid: Image { Image("chevronUpSolid", bundle: .core) }
     static var collaborations: Image { Image("collaborations", bundle: .core) }
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
@@ -532,6 +528,8 @@ public extension Image {
     static var radioButtonSelected: Image { Image("radioButtonSelected", bundle: .core) }
     static var radioButtonUnselected: Image { Image("radioButtonUnselected", bundle: .core) }
     static var share: Image { Image("share", bundle: .core) }
+    static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
+    static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
     static var unionLine: Image { Image("unionLine", bundle: .core) }

@@ -144,7 +144,7 @@ struct SubmissionCommentListView: View {
         Button(
             action: { showCommentLibrary = true },
             label: {
-                Image.chevronUpLine
+                Image.chatLine
                     .scaledIcon()
                     .foregroundColor(.textDark)
             }
