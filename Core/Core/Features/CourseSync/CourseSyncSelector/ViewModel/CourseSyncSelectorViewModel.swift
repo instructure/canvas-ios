@@ -213,7 +213,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 .flatMap { deSelectedEntries, selectedEntries in
                     let willDownloadEntries = selectedEntries.isNotEmpty
                     let announcement = willDownloadEntries ? String(localized: "Offline sync started", bundle: .core)
-                                                           : String(localized: "Offline sync completed", bundle: .core)
+                                                           : String(localized: "Offline sync completed successfully", bundle: .core)
                     return UIAccessibility
                         .announcePersistently(announcement)
                         .map { (deSelectedEntries, selectedEntries, view) }
