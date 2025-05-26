@@ -33,7 +33,7 @@ struct CommentLibrarySheet: View {
                 CommentLibraryList(viewModel: viewModel, comment: $comment) {
                     presentationMode.wrappedValue.dismiss()
                 }
-                CommentEditorView(
+                OldCommentEditorView(
                     text: $comment,
                     shouldShowCommentLibrary: false,
                     showCommentLibrary: .constant(false),

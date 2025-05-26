@@ -124,80 +124,22 @@ struct SubmissionCommentListView: View {
     }
 
     private var toolbar: some View {
-        HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-            if commentLibrary.shouldShow {
-                commentLibraryButton
-                    .commentToolbarButtonOffset()
-            }
-            attachmentButton
-                .commentToolbarButtonOffset()
-            commentEditor
-                .accessibilityFocused($focusedTab, equals: .comments)
-            sendButton
-                .commentToolbarButtonOffset()
-        }
-        .paddingStyle(.horizontal, .standard)
-        .padding(.vertical, 4)
-    }
-
-    private var commentLibraryButton: some View {
-        Button(
-            action: { showCommentLibrary = true },
-            label: {
-                Image.chatLine
-                    .scaledIcon()
-                    .foregroundColor(.textDark)
-            }
-        )
-        .accessibilityLabel(Text("Open comment library", bundle: .teacher))
-        .identifier("SubmissionComments.showCommentLibraryButton")
-    }
-
-    private var attachmentButton: some View {
-        Button(
-            action: { showMediaOptions = true },
-            label: {
-                Image.paperclipLine
-                    .scaledIcon()
-                    .foregroundColor(.textDark)
-            }
-        )
-        .accessibility(label: Text("Add Attachment", bundle: .teacher))
-        .identifier("SubmissionComments.addMediaButton")
-        .actionSheet(isPresented: $showMediaOptions) {
-            ActionSheet(title: Text("Add Attachment", bundle: .teacher), buttons: [
-                .default(Text("Record Audio", bundle: .teacher), action: recordAudio),
-                .default(Text("Record Video", bundle: .teacher), action: recordVideo),
-                .default(Text("Choose Files", bundle: .teacher), action: chooseFile),
-                .cancel()
-            ])
-        }
-    }
-
-    private var commentEditor: some View {
-        DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Write your Comment here", bundle: .teacher))
-            .font(.regular16)
-            .lineLimit(10)
-            .accessibility(label: Text("Comment", bundle: .teacher))
-            .identifier("SubmissionComments.commentTextView")
-    }
-
-    private var sendButton: some View {
-        Button(
-            action: {
-                sendComment()
-                controller.view.endEditing(true)
+        CommentInputView(
+            comment: $comment,
+            hasCommentLibraryButton: commentLibrary.shouldShow,
+            hasAttachmentButton: true,
+            contextColor: viewModel.contextColor,
+            showCommentLibraryAction: { showCommentLibrary = true },
+            addAttachmentAction: { type in
+                switch type {
+                case .audio: recordAudio()
+                case .video: recordVideo()
+                case .file: chooseFile()
+                }
             },
-            label: {
-                Image.circleArrowUpSolid
-                    .scaledIcon()
-                    .foregroundStyle(viewModel.contextColor)
-            }
+            sendAction: sendComment
         )
-        .buttonStyle(.plain)
-        .disabled(comment.isEmpty)
-        .accessibilityLabel(Text("Send", bundle: .teacher))
-        .identifier("SubmissionComments.addCommentButton")
+        .accessibilityFocused($focusedTab, equals: .comments)
     }
 
     func sendComment() {
