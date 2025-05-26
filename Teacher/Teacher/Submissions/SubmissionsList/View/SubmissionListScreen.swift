@@ -23,6 +23,7 @@ struct SubmissionListScreen: View {
 
     @Environment(\.viewController) private var controller
     @Environment(\.appEnvironment) private var env
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @StateObject private var viewModel: SubmissionListViewModel
 
@@ -128,7 +129,6 @@ struct SubmissionListScreen: View {
 private extension SubmissionListScreen {
 
     struct SeparatedRow<Content: View>: View {
-        @ScaledMetric private var uiScale: CGFloat = 1
         @ViewBuilder let content: () -> Content
 
         var body: some View {
@@ -145,6 +145,8 @@ private extension SubmissionListScreen {
     struct SearchView: View {
 
         @ObservedObject private var viewModel: SubmissionListViewModel
+
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         @ScaledMetric private var uiScale: CGFloat = 1
 
         init(viewModel: SubmissionListViewModel) {
@@ -177,8 +179,8 @@ private extension SubmissionListScreen {
     }
 
     struct HeaderView: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        @ScaledMetric private var uiScale: CGFloat = 1
         let courseName: String
 
         var body: some View {

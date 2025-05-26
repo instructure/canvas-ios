@@ -62,7 +62,7 @@ public struct SubmissionListItem: Identifiable {
         }
         self.status = submission.statusIncludingGradedState
         self.needsGrading = submission.needsGrading
-        self.gradeFormatted = GradeFormatter.shortString(for: assignment, submission: submission)
+        self.gradeFormatted = GradeFormatter.shortString(for: assignment, submission: submission, blankPlaceholder: .oneDash)
     }
 }
 

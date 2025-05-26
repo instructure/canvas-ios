@@ -15413,6 +15413,9 @@
         }
       }
     },
+    "Graded to %@" : {
+      "comment" : "Examples: Graded to A, Graded to 95%"
+    },
     "Grades" : {
       "localizations" : {
         "ar" : {

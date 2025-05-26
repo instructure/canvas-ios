@@ -28,22 +28,24 @@ struct SubmissionListRowView: View {
     var body: some View {
         HStack(spacing: 16) {
             avatarView
+                .layoutPriority(3)
             VStack(alignment: .leading, spacing: 4) {
                 nameLabel
                     .layoutPriority(1)
-
-                HStack(spacing: 4) {
-                    if item.needsGrading {
+                if item.needsGrading {
+                    HStack(spacing: 4) {
                         statusLabel
                         statusDivider
                         needsGradingLabel
-                    } else {
-                        statusLabel
                     }
-                    Spacer()
-                    gradeText
+                } else {
+                    statusLabel
                 }
             }
+            .layoutPriority(1)
+            Spacer()
+            gradeLabel
+                .layoutPriority(2)
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 15)
@@ -86,12 +88,13 @@ struct SubmissionListRowView: View {
     }
 
     private var statusLabel: some View {
-        HStack(spacing: 2) {
+        HStack(alignment: .top, spacing: 2) {
             item.status.redesignAppearance.icon.size(16 * uiScale.iconScale)
             Text(item.status.text).multilineTextAlignment(.leading)
         }
         .font(.regular14)
         .foregroundStyle(item.status.redesignAppearance.color)
+        .accessibilityHidden(isGradeBlank == false && item.status == .graded)
     }
 
     private var statusDivider: some View {
@@ -109,17 +112,26 @@ struct SubmissionListRowView: View {
             .multilineTextAlignment(.leading)
     }
 
-    private var gradeText: some View {
-        let isBlank = item
+    private var isGradeBlank: Bool {
+        return item
             .gradeFormatted
             .replacingOccurrences(of: "-", with: "")
             .trimmed()
             .isEmpty
+    }
 
+    private var gradeLabel: some View {
+        let grade = item.gradeFormatted
+        let accLabelFormat = String(
+            localized: "Graded to %@",
+            bundle: .teacher,
+            comment: "Examples: Graded to A, Graded to 95%"
+        )
         return Text(item.gradeFormatted)
             .font(.semibold16)
             .foregroundStyle(Color.course2)
-            .accessibilityHidden(isBlank)
+            .accessibilityLabel(Text(String(format: accLabelFormat, grade)))
+            .accessibilityHidden(isGradeBlank)
     }
 }
 
