@@ -239,6 +239,6 @@ private extension SubmissionListScreen {
 
 private extension SubmissionListSection {
     var accessibilityLabel: Text {
-        Text(kind.title + ", " + String.localizedAccessibilityListCount(items.count))
+        Text(kind.title + ", " + String.localizedNumberOfItems(items.count))
     }
 }
