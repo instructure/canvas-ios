@@ -32,10 +32,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                 label: { Color.clear }
             )
             .contentShape(Rectangle())
-            .accessibility(label: Text("View all submissions", bundle: .teacher))
-            .identifier("AssignmentDetails.viewAllSubmissionsButton")
-            .accessibilityActions(baseAccessibilityActions)
-            .accessibilitySortPriority(1)
+            .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
@@ -54,6 +51,9 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                         )
                         .font(.regular16)
                         .tint(viewModel.color)
+                        .accessibilityLabel(
+                            Text("View all submissions", bundle: .teacher)
+                        )
                     }
                 }
                 Spacer().frame(height: 20)
@@ -140,45 +140,9 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
         .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
         .padding(16)
         .accessibilityElement(children: .contain)
+        .identifier("AssignmentDetails.viewAllSubmissionsButton")
         .onAppear {
             viewModel.viewDidAppear()
-        }
-    }
-
-    @ViewBuilder
-    private func baseAccessibilityActions() -> some View {
-        Button(
-            action: routeToAll,
-            label: { Text("View all submissions", bundle: .teacher) }
-        )
-
-        if viewModel.paperSubmissionTypes {
-            Button(
-                action: routeToGraded,
-                label: { Text("Graded", bundle: .teacher) }
-            )
-        } else if viewModel.noGradingNeeded {
-            Button(
-                action: routeToGraded,
-                label: { Text("Submitted", bundle: .teacher) }
-            )
-            Button(
-                action: routeToUnsubmitted,
-                label: { Text("Not Submitted", bundle: .teacher) }
-            )
-        } else {
-            Button(
-                action: routeToGraded,
-                label: { Text("Graded", bundle: .teacher) }
-            )
-            Button(
-                action: routeToUngraded,
-                label: { Text("Needs Grading", bundle: .teacher) }
-            )
-            Button(
-                action: routeToUnsubmitted,
-                label: { Text("Not Submitted", bundle: .teacher) }
-            )
         }
     }
 
@@ -200,6 +164,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                                 color: color
                             )
                         )
+                        .accessibilityValue(String.localizedNumberOfItems(count))
                         .modifier(Counter(count: Double(count)))
                         .padding(.horizontal, 10).padding(.top, 4)
                         .animation(Animation.easeOut(duration: 0.5).delay(0.2), value: count)

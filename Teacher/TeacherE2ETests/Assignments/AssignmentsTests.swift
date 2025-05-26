@@ -70,7 +70,6 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submissionTypesLabel.isVisible)
         XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
         XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertEqual(viewAllSubmissionsButton.label, "View all submissions")
         XCTAssertTrue(oneNeedsGrading.isVisible)
         XCTAssertEqual(oneNeedsGrading.stringValue, "100%")
         XCTAssertTrue(descriptionLabel.isVisible)
