@@ -23,6 +23,7 @@ public final class CDBrandVariables: NSManagedObject {
     /// An `APIBrandVariables` object encoded as JSON.
     @NSManaged public var apiBrandVariablesRaw: String
     @NSManaged public var headerImageRaw: Data?
+    @NSManaged public var institutionLogo: URL?
 
     public private(set) lazy var brandVariables: APIBrandVariables? = {
         let decoder = JSONDecoder()
@@ -55,6 +56,7 @@ public final class CDBrandVariables: NSManagedObject {
         let dbEntity: CDBrandVariables = context.first(scope: .all) ?? context.insert()
         dbEntity.apiBrandVariablesRaw = json
         dbEntity.headerImageRaw = headerImageData
+        dbEntity.institutionLogo = item.institutionLogo
         return dbEntity
     }
 
