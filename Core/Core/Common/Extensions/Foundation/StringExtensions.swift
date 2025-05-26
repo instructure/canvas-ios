@@ -138,6 +138,18 @@ extension String {
         let hashedData = SHA256.hash(data: inputData)
         return hashedData.map { String(format: "%02x", $0) }.joined()
     }
+
+    /// - returns: The first value for an attribute name if it was included in string in the form of `attributeName="value"`
+    public func extractValue(forAttributeName attributeName: String) -> String? {
+        let pattern = "\(attributeName)=\"([^\"]*)\""
+        let regex = try? NSRegularExpression(pattern: pattern)
+        let nsString = self as NSString
+        let results = regex?.firstMatch(in: self, range: NSRange(location: 0, length: nsString.length))
+        if let range = results?.range(at: 1) {
+            return nsString.substring(with: range)
+        }
+        return nil
+    }
 }
 
 public extension Array<String?> {

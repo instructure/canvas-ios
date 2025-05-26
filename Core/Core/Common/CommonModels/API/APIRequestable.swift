@@ -246,12 +246,15 @@ extension APIRequestable {
         if let token = accessToken, request.url?.host == baseURL.host {
             request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         }
+
         request.setValue(UserAgent.default.description, forHTTPHeaderField: HttpHeader.userAgent)
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
 
         request.httpShouldHandleCookies = shouldHandleCookies
+
+        print(request)
 
         return request
     }
@@ -311,6 +314,9 @@ extension URLRequest: APIRequestable {
         if let token = accessToken, url.host == baseURL.host {
             request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         }
+
+        request.setValue(UserAgent.default.description, forHTTPHeaderField: HttpHeader.userAgent)
+
         if let actAsUserID = actAsUserID {
             request.url = url.appendingQueryItems(URLQueryItem(name: "as_user_id", value: actAsUserID))
         }

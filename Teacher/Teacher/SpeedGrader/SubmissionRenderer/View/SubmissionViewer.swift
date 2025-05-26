@@ -79,7 +79,9 @@ struct SubmissionViewer: View {
                 }
             }
         case .media_recording:
-            VideoPlayer(url: submission.mediaComment?.url)
+            RemoteAttachmentFile(url: submission.mediaComment?.url) { url in
+                VideoPlayer(url: url)
+            }
         case .online_text_entry:
             WebView(
                 html: submission.body,

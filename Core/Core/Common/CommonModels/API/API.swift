@@ -123,6 +123,8 @@ public class API {
             request.httpMethod = method.rawValue.uppercased()
         }
 
+        request.setValue(UserAgent.default.description, forHTTPHeaderField: HttpHeader.userAgent)
+
         let task: APITask
         #if DEBUG
         if API.shouldMock(request) {
