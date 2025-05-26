@@ -56,7 +56,7 @@ struct ScoresAssignmentGroup: Identifiable {
 }
 
 extension Array where Element == ScoresAssignmentGroup {
-    private var groupWeightSum: Double {
+   private var groupWeightSum: Double {
         reduce(0) { result, group in
             result + (group.groupWeight ?? 0)
         }
@@ -66,5 +66,8 @@ extension Array where Element == ScoresAssignmentGroup {
         GradeFormatter.numberFormatter.string(
             from: NSNumber(value: groupWeightSum)
         ) ?? ""
+    }
+    var isAssignmentGroupWeightsVisible: Bool {
+        groupWeightSum > 0
     }
 }

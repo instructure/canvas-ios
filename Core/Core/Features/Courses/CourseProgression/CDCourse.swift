@@ -170,7 +170,6 @@ public final class CDCourse: NSManagedObject, WriteableModel {
         let course: Course = context.first(where: #keyPath(Course.id), equals: courseId) ?? context.insert()
         course.id = courseId
         course.name = enrollmentModelCourse.name
-        course.syllabusBody = enrollmentModelCourse.syllabusBody
         return course
     }
 }

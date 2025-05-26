@@ -29,6 +29,7 @@ final class CourseDetailsViewModel {
     private(set) var courses: [DropdownMenuItem] = []
     private(set) var selectedCoure: DropdownMenuItem?
     private(set) var isLoaderVisible: Bool = false
+    private(set) var overviewDescription = ""
 
     // MARK: - Inputs
 
@@ -68,12 +69,17 @@ final class CourseDetailsViewModel {
 //        fetchData()
 //        observeCourseSelection()
         observeHeaderVisiablity()
-
-        getCoursesInteractor.getCourseWithModules(
+        Publishers.Zip(
+            getCoursesInteractor.getCourseWithModules(
             id: courseID,
             ignoreCache: false
+            ),
+            getCoursesInteractor.getCourseSyllabus(
+                courseID: courseID
+            )
         )
-        .sink { [weak self] course in
+        .sink { [weak self] course, syllabus in
+            self?.overviewDescription = syllabus ?? ""
             self?.updateCourse(course: course)
             self?.isLoaderVisible = false
         }
@@ -177,7 +183,7 @@ final class CourseDetailsViewModel {
         self.course.progress = max(nextProgress, currentProgress)
         selectedCoure = .init(id: course.id, name: course.name)
         // Firt tab is 0 -> Overview 1 -> MyProgress
-        selectedTabIndex = course.overviewDescription.isEmpty ? 0 : 1
+        selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
     }
 }
 
