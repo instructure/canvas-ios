@@ -26,7 +26,7 @@ public class LTITools: NSObject {
     let env: AppEnvironment
     let context: Context
     let id: String?
-    let url: URL?
+    public let url: URL?
     let launchType: GetSessionlessLaunchURLRequest.LaunchType?
     let isQuizLTI: Bool? // This is optional because not all entry points provide this info
     let assignmentID: String?
@@ -168,6 +168,14 @@ public class LTITools: NSObject {
         getSessionlessLaunch { [weak view, originalUrl = url, env, isQuizLTI] response in
             guard let view else { return }
             guard let response = response else {
+
+                view
+                    .findSnackBarViewModel()?
+                    .showSnack(
+                        String(localized: "This tool is not accessible!", bundle: .core),
+                        swallowDuplicatedSnacks: true
+                    )
+
                 completionHandler?(false)
                 return
             }
@@ -182,7 +190,8 @@ public class LTITools: NSObject {
             if isQuizLTI == true {
                 let controller = CoreWebViewController(features: [
                     .invertColorsInDarkMode,
-                    .hideReturnButtonInQuizLTI
+                    .hideReturnButtonInQuizLTI,
+                    .disableLinksOverlayPreviews
                 ])
                 controller.webView.load(URLRequest(url: url))
                 controller.title = String(localized: "Quiz", bundle: .core)

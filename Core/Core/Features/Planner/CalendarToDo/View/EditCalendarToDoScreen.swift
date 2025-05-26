@@ -50,9 +50,9 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
 
                     InstUI.DatePickerCell(
                         label: Text("Date", bundle: .core),
+                        accessibilityIdPrefix: "Calendar.Todo.datePicker",
                         date: $viewModel.date
                     )
-                    .accessibilityIdentifier("Calendar.Todo.datePicker")
 
                     InstUI.LabelValueCell(
                         label: Text("Calendar", bundle: .core),

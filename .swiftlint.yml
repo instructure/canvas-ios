@@ -17,8 +17,10 @@ included: # paths to include during linting. `--path` is ignored if present.
   - Core
   - Student
   - Teacher
+  - Horizon
   - Parent
   - TestsFoundation
+  - packages/HorizonUI/Sources/HorizonUI
   - scripts/swift
 excluded: # paths to ignore during linting. Takes precedence over `included`.
 

@@ -22,4 +22,5 @@ public enum App: String {
     case student
     case teacher
     case parent
+    case horizon
 }

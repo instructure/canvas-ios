@@ -44,6 +44,8 @@ public class GetSSOLogin {
             return "code_ios_teacher"
         case .parent:
             return "code" // "code_ios_parent"
+        case .horizon:
+            return "code"
         }
     }
 

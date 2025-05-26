@@ -249,6 +249,8 @@ public enum PlannerAssembly {
             return CalendarFilterEntryProviderStudent()
         case .teacher:
             return CalendarFilterEntryProviderTeacher(purpose: forCreating ? .creating : .viewing)
+        case .horizon:
+            fatalError("Invalid app.")
         }
     }
 

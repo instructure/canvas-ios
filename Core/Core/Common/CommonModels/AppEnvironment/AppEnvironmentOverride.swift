@@ -127,6 +127,24 @@ extension AppEnvironment {
 
 // MARK: - Utils
 
+extension String {
+
+    public func asRoute(in env: AppEnvironment) -> String {
+        // Skip for full valid URLs
+        if isFullURLString { return self }
+
+        // Skip when baseURL equals to the shared one.
+        if env.api.baseURL == AppEnvironment.shared.api.baseURL { return self }
+
+        return env.api.baseURL.appending(path: self).absoluteString
+    }
+
+    private var isFullURLString: Bool {
+        guard let url = URL(string: self) else { return false }
+        return url.host() != nil
+    }
+}
+
 private extension URLComponents {
     func with(scheme: String?) -> Self {
         var copy = self

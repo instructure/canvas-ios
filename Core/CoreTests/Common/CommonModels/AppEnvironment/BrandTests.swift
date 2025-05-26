@@ -48,5 +48,6 @@ class BrandTests: XCTestCase {
         XCTAssertEqual(view.backgroundColor!.hexString, Brand.shared.headerImageBackground.hexString)
         XCTAssertEqual(view.frame, CGRect(x: 0, y: 0, width: 44, height: 44))
         XCTAssertEqual(view.image, headerImage)
+        XCTAssertTrue(view.accessibilityElementsHidden)
     }
 }

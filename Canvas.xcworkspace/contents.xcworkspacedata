@@ -53,4 +53,11 @@
    <FileRef
       location = "group:package.json">
    </FileRef>
+   <Group
+      location = "group:packages"
+      name = "packages">
+      <FileRef
+         location = "group:HorizonUI">
+      </FileRef>
+   </Group>
 </Workspace>

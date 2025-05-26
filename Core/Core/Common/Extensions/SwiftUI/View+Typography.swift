@@ -20,11 +20,11 @@ import SwiftUI
 
 extension View {
 
-    func style(_ style: Typography.Style) -> some View {
+    public func style(_ style: Typography.Style) -> some View {
         self.font(style.fontName, lineHeight: style.lineHeight)
     }
 
-    func font(_ fontName: UIFont.Name, lineHeight: Typography.LineHeight) -> some View {
+    public func font(_ fontName: UIFont.Name, lineHeight: Typography.LineHeight) -> some View {
         let font = UIFont.scaledNamedFont(fontName)
         let spacing = lineHeight.lineSpacing(for: font)
         let styledSelf = self

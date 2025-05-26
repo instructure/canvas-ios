@@ -47,13 +47,15 @@ extension InstUI {
         }
 
         public var body: some View {
+            let isSelected = value == selectedValue
+
             VStack(spacing: 0) {
                 Button {
                     selectedValue = value
                 } label: {
                     HStack(spacing: 0) {
                         InstUI.RadioButton(
-                            isSelected: (value == selectedValue),
+                            isSelected: isSelected,
                             color: color
                         )
                         .paddingStyle(.trailing, .cellIconText)
@@ -66,19 +68,19 @@ extension InstUI {
                     }
                     .paddingStyle(set: .iconCell)
                 }
+                .accessibilityLabel(Text(accessibilityLabel))
+                .accessibilityRemoveTraits(.isButton)
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
+
                 InstUI.Divider(dividerStyle)
             }
-            .accessibilityRepresentation {
-                let binding = Binding {
-                    value == selectedValue
-                } set: { _ in
-                    selectedValue = value
-                }
+        }
 
-                SwiftUI.Toggle(isOn: binding) {
-                    Text(title)
-                }
-            }
+        // This is a workaround to not having a `isRadioButton` trait.
+        // The closing "." is needed to make VoiceOver read "Button" the same as with the trait.
+        private var accessibilityLabel: String {
+            let radioButton = String(localized: "Radio Button", bundle: .core, comment: "UI element type read out in VoiceOver.")
+            return "\(title), \(radioButton)."
         }
     }
 }
