@@ -34,6 +34,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
             .contentShape(Rectangle())
             .accessibility(label: Text("View all submissions", bundle: .teacher))
             .identifier("AssignmentDetails.viewAllSubmissionsButton")
+            .accessibilityActions(baseAccessibilityActions)
             .accessibilitySortPriority(1)
 
             VStack(alignment: .leading, spacing: 4) {
@@ -141,6 +142,43 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
         .accessibilityElement(children: .contain)
         .onAppear {
             viewModel.viewDidAppear()
+        }
+    }
+
+    @ViewBuilder
+    private func baseAccessibilityActions() -> some View {
+        Button(
+            action: routeToAll,
+            label: { Text("View all submissions", bundle: .teacher) }
+        )
+
+        if viewModel.paperSubmissionTypes {
+            Button(
+                action: routeToGraded,
+                label: { Text("Graded", bundle: .teacher) }
+            )
+        } else if viewModel.noGradingNeeded {
+            Button(
+                action: routeToGraded,
+                label: { Text("Submitted", bundle: .teacher) }
+            )
+            Button(
+                action: routeToUnsubmitted,
+                label: { Text("Not Submitted", bundle: .teacher) }
+            )
+        } else {
+            Button(
+                action: routeToGraded,
+                label: { Text("Graded", bundle: .teacher) }
+            )
+            Button(
+                action: routeToUngraded,
+                label: { Text("Needs Grading", bundle: .teacher) }
+            )
+            Button(
+                action: routeToUnsubmitted,
+                label: { Text("Not Submitted", bundle: .teacher) }
+            )
         }
     }
 
