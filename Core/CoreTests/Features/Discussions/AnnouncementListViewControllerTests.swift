@@ -29,7 +29,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         static let date20201102 = DateComponents(calendar: .current, year: 2020, month: 11, day: 2).date!
     }
 
-    lazy var controller = AnnouncementListViewController.create(context: .course("1"))
+    lazy var controller = AnnouncementListViewController.create(context: .course("1"), env: environment)
 
     override func setUp() {
         super.setUp()
@@ -125,7 +125,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
     }
 
     func testGroupAnnouncements() {
-        controller = AnnouncementListViewController.create(context: .group("1"))
+        controller = AnnouncementListViewController.create(context: .group("1"), env: environment)
         api.mock(GetGroup(groupID: "1"), value: .make(permissions: .make(create_announcement: true)))
         api.mock(controller.colors, value: .init(custom_colors: [ "group_1": "#000000" ]))
         api.mock(controller.topics, value: [

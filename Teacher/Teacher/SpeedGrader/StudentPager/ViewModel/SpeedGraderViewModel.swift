@@ -42,6 +42,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
     // MARK: - Private
 
     private let interactor: SpeedGraderInteractor
+    private let landscapeSplitLayoutViewModel = SpeedGraderLandscapeSplitLayoutViewModel()
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
@@ -98,6 +99,7 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
                 contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
                 env: environment
             ),
+            landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 self?.interactor.refreshSubmission(forUserId: data.submissions[index].userID)
             }

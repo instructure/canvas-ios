@@ -25,6 +25,7 @@ xctestrun/
 **/IDEWorkspaceChecks.plist
 Core/Core.xcodeproj/
 Student/Student.xcodeproj/
+Horizon/Horizon.xcodeproj/
 Brewfile.lock
 
 # AppCode
@@ -87,3 +88,6 @@ screenlog.0
 **/*.xcassets/Secrets/*.dataset
 !**/*.xcassets/Secrets/testSecret.dataset
 .bitrise.secrets.yml
+
+# Ignore all GoogleService-Info.plist files
+**/GoogleService-Info.plist

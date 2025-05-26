@@ -76,7 +76,10 @@ class SubmissionGraderViewModel: ObservableObject {
     }
 
     func didSelectNewAttempt(attemptIndex: Int) {
-        NotificationCenter.default.post(name: .SpeedGraderAttemptPickerChanged, object: attemptIndex)
+        NotificationCenter.default.post(
+            name: .SpeedGraderAttemptPickerChanged,
+            object: SpeedGraderAttemptChangeInfo(attemptIndex: attemptIndex, userId: submission.userID)
+        )
         selectedAttemptIndex = attemptIndex
         selectedAttempt = attempts.first { selectedAttemptIndex == $0.attempt } ?? submission
         fileTabTitle = {
@@ -128,4 +131,9 @@ extension [Submission] {
 
 extension NSNotification.Name {
     public static var SpeedGraderAttemptPickerChanged = NSNotification.Name("com.instructure.core.speedgrader-attempt-changed")
+}
+
+struct SpeedGraderAttemptChangeInfo {
+    let attemptIndex: Int
+    let userId: String
 }

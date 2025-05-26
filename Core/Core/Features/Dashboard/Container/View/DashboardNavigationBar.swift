@@ -60,6 +60,7 @@ struct DashboardNavigationBar: ViewModifier {
                     .aspectRatio(contentMode: .fit)
             }
             .frame(width: 44, height: 44)
+            .accessibilityHidden(true)
         }
     }
 }

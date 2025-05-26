@@ -111,7 +111,9 @@ class SubmissionCommentListViewModel: ObservableObject {
         .store(in: &subscriptions)
 
         NotificationCenter.default.publisher(for: .SpeedGraderAttemptPickerChanged)
-            .compactMap { $0.object as? Int }
+            .compactMap { $0.object as? SpeedGraderAttemptChangeInfo }
+            .filter { $0.userId == userID }
+            .map { $0.attemptIndex }
             .sink { unownedSelf.updateComments(attempt: $0) }
             .store(in: &subscriptions)
     }

@@ -20,6 +20,14 @@ import SwiftUI
 
 extension InstUI {
 
+    private enum Spacing {
+        static let horizontal: CGFloat = InstUI.Styles.Padding.standard.rawValue
+        static let vertical: CGFloat = InstUI.Styles.Padding.textVertical.rawValue
+        static let pickerHorizontal: CGFloat = 4
+        static let pickerVertical: CGFloat = InstUI.Styles.Padding.textVertical.rawValue
+        static let errorVertical: CGFloat = 8
+    }
+
     public struct DatePickerCell<Label: View>: View {
 
         public enum Mode {
@@ -30,7 +38,10 @@ extension InstUI {
 
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let label: Label
+        private let label: Text
+        private let labelModifiers: (Text) -> Label
+        private let customAccessibilityLabel: Text?
+        private let accessibilityIdPrefix: String?
         private let mode: Mode
         private let defaultDate: Date
         private let validFrom: Date
@@ -41,7 +52,10 @@ extension InstUI {
         @Binding private var date: Date?
 
         public init(
-            label: Label,
+            label: Text,
+            labelModifiers: @escaping (Text) -> Label = { $0 },
+            customAccessibilityLabel: Text? = nil,
+            accessibilityIdPrefix: String? = nil,
             date: Binding<Date?>,
             mode: Mode = .dateAndTime,
             defaultDate: Date = .now,
@@ -51,6 +65,9 @@ extension InstUI {
             isClearable: Bool = false
         ) {
             self.label = label
+            self.labelModifiers = labelModifiers
+            self.customAccessibilityLabel = customAccessibilityLabel
+            self.accessibilityIdPrefix = accessibilityIdPrefix
             self._date = date
             self.mode = mode
             self.defaultDate = defaultDate
@@ -62,65 +79,62 @@ extension InstUI {
 
         public var body: some View {
             VStack(spacing: 0) {
-                VStack(spacing: 0) {
-                    ViewThatFits {
-                        HStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
-                            labelView
-                            datePickerView
-                        }
-                        VStack(alignment: .leading, spacing: InstUI.Styles.Padding.textVertical.rawValue) {
-                            labelView
-                            datePickerView
-                        }
-                    }
-                    .frame(minHeight: 36) // To always have the same height despite datepicker visibility
+                VStack(spacing: Spacing.errorVertical) {
+                    mainContent
+                        .frame(minHeight: 36) // To always have the same height despite datepicker visibility
 
-                    if let errorMessage {
-                        Text(errorMessage)
-                            .textStyle(.errorMessage)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding(.top, 8)
-                            .accessibilityHidden(true) // it is included in the label's a11yValue
-                    }
+                    errorMessageView
                 }
                 .paddingStyle(.leading, .standard)
                 .paddingStyle(.trailing, .standard)
                 // best effort estimations to match the height of other cells, correcting for DatePicker
                 .padding(.top, 5)
                 .padding(.bottom, 7)
-                .accessibilityElement(children: .contain)
 
                 InstUI.Divider()
             }
         }
 
-        @ViewBuilder
-        private var labelView: some View {
-            let dateTimeValue = switch mode {
-            case .dateOnly: date?.dateOnlyString
-            case .timeOnly: date?.timeOnlyString
-            case .dateAndTime: date?.dateTimeString
+        // MARK: - Main views
+
+        private var mainContent: some View {
+            // Prefer to fit the whole content in one line, but break subviews gradually if needed.
+            // Using only one level of `ViewThatFits`, because nesting them is visibly less performant.
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: Spacing.horizontal) {
+                    labelView
+                    datePickerView(.horizontal)
+                }
+                HStack(spacing: Spacing.horizontal) {
+                    labelView
+                    datePickerView(.vertical)
+                }
+                VStack(alignment: .leading, spacing: Spacing.vertical) {
+                    labelView
+                    datePickerView(.horizontal)
+                }
+                VStack(alignment: .leading, spacing: Spacing.vertical) {
+                    labelView
+                    datePickerView(.vertical)
+                }
             }
+        }
 
-            let errorValue: String? = {
-                guard let errorMessage else { return nil }
-                return String.localizedAccessibilityErrorMessage(errorMessage)
-            }()
-
-            let value = [dateTimeValue, errorValue].joined(separator: ", ")
-
-            label
+        private var labelView: some View {
+            labelModifiers(label)
                 .textStyle(.cellLabel)
-                .accessibilityValue(value)
+                .accessibilityHidden(true)
         }
 
         @ViewBuilder
-        private var datePickerView: some View {
-            HStack {
+        private func datePickerView(_ axis: Axis) -> some View {
+            HStack(spacing: Spacing.horizontal) {
                 if date != nil {
-                    datePicker
+                    datePickerParts(axis)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                 } else {
-                    placeholderButtons
+                    placeholderButtons(axis)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 if isClearable {
                     clearButton
@@ -129,7 +143,43 @@ extension InstUI {
         }
 
         @ViewBuilder
-        private var datePicker: some View {
+        private var errorMessageView: some View {
+            if let errorMessage {
+                Text(errorMessage)
+                    .textStyle(.errorMessage)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .accessibilityHidden(true)
+            }
+        }
+
+        // MARK: - Date picker
+
+        @ViewBuilder
+        private func datePickerParts(_ axis: Axis) -> some View {
+            switch mode {
+            case .dateOnly:
+                datePicker(mode: .dateOnly)
+            case .timeOnly:
+                datePicker(mode: .timeOnly)
+            case .dateAndTime:
+                // Using separate date and time pickers because otherwise VoiceOver doesn't read
+                // neither "Date Picker" nor "Time Picker" for them.
+                let pickers = SwiftUI.Group {
+                    datePicker(mode: .dateOnly)
+                    datePicker(mode: .timeOnly)
+                }
+
+                switch axis {
+                case .horizontal:
+                    HStack(spacing: Spacing.pickerHorizontal) { pickers }
+                case .vertical:
+                    VStack(alignment: .trailing, spacing: Spacing.pickerVertical) { pickers }
+                }
+            }
+        }
+
+        @ViewBuilder
+        private func datePicker(mode: Mode) -> some View {
             let binding = Binding(
                 get: { date ?? defaultDate },
                 set: { newDate in date = newDate }
@@ -141,29 +191,47 @@ extension InstUI {
             case .dateAndTime: [.date, .hourAndMinute]
             }
 
+            let accessibilityId = switch mode {
+            case .dateOnly: "date"
+            case .timeOnly: "time"
+            case .dateAndTime: "dateAndTime"
+            }
+
             DatePicker(
                 selection: binding,
                 in: validFrom...validUntil,
                 displayedComponents: components,
                 label: {}
             )
+            .labelsHidden() // This is needed to avoid the empty label filling up all the space
+            .accessibilityLabel(customAccessibilityLabel ?? label)
+            .accessibilityValue(String.localizedAccessibilityErrorMessage(errorMessage) ?? "") // Actual value is contained already
+            .accessibilityIdentifier(accessibilityIdPrefix?.appending(".\(accessibilityId)"))
             .accessibilityRefocusingOnPopoverDismissal()
         }
 
+        // MARK: - Placeholder
+
         @ViewBuilder
-        private var placeholderButtons: some View {
-            HStack(spacing: 4) {
-                switch mode {
-                case .dateOnly:
-                    placeholderButton(Text("Date", bundle: .core))
-                case .timeOnly:
-                    placeholderButton(Text("Time", bundle: .core))
-                case .dateAndTime:
+        private func placeholderButtons(_ axis: Axis) -> some View {
+            switch mode {
+            case .dateOnly:
+                placeholderButton(Text("Date", bundle: .core))
+            case .timeOnly:
+                placeholderButton(Text("Time", bundle: .core))
+            case .dateAndTime:
+                let buttons = SwiftUI.Group {
                     placeholderButton(Text("Date", bundle: .core))
                     placeholderButton(Text("Time", bundle: .core))
                 }
+
+                switch axis {
+                case .horizontal:
+                    HStack(spacing: Spacing.pickerHorizontal) { buttons }
+                case .vertical:
+                    VStack(alignment: .trailing, spacing: Spacing.pickerVertical) { buttons }
+                }
             }
-            .frame(maxWidth: .infinity, alignment: .trailing)
         }
 
         private func placeholderButton(_ buttonLabel: Text) -> some View {
@@ -178,7 +246,8 @@ extension InstUI {
             .foregroundStyle(Color.textDarkest)
         }
 
-        @ViewBuilder
+        // MARK: - Clear button
+
         private var clearButton: some View {
             Button {
                 date = nil
@@ -203,8 +272,10 @@ extension InstUI {
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: true)
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), isClearable: false)
         InstUI.DatePickerCell(label: Text(verbatim: "Favorite Date"), date: .constant(.now), errorMessage: "Someting is wrong here.")
+        InstUI.DatePickerCell(label: Text(verbatim: "Just Date"), date: .constant(.now), mode: .dateOnly)
         InstUI.DatePickerCell(
-            label: Text(verbatim: "Important Date").foregroundStyle(Color.red).textStyle(.heading),
+            label: Text(verbatim: "Important Date"),
+            labelModifiers: { $0.foregroundStyle(Color.red).textStyle(.heading) },
             date: .constant(.now)
         )
     }

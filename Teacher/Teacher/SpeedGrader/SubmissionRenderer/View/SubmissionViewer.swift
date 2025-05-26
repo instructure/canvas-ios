@@ -44,7 +44,8 @@ struct SubmissionViewer: View {
                 WebView(url: url,
                         features: [
                             .userAgent(UserAgent.safariLTI.description),
-                            .invertColorsInDarkMode
+                            .invertColorsInDarkMode,
+                            .disableLinksOverlayPreviews
                         ]
                 )
                 .onLink(openInSafari)
@@ -69,7 +70,10 @@ struct SubmissionViewer: View {
             } else {
                 WebSession(url: submission.previewUrl) { url in
                     WebView(url: url,
-                            features: [.invertColorsInDarkMode])
+                            features: [
+                                .invertColorsInDarkMode,
+                                .disableLinksOverlayPreviews
+                            ])
                     .onLink(handleLink)
                     .onNavigationFinished(handleRefresh)
                 }

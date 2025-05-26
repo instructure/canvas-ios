@@ -28,7 +28,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
         static let date1103 = DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date!
     }
 
-    lazy var controller = DiscussionListViewController.create(context: .course("1"))
+    lazy var controller = DiscussionListViewController.create(context: .course("1"), env: environment)
 
     func testCourseDiscussions() {
         api.mock(GetCourse(courseID: "1"), value: .make(enrollments: [
@@ -213,7 +213,7 @@ class DiscussionListViewControllerTests: CoreTestCase {
     }
 
     func testGroupDiscussions() {
-        controller = DiscussionListViewController.create(context: .group("1"))
+        controller = DiscussionListViewController.create(context: .group("1"), env: environment)
         api.mock(GetGroup(groupID: "1"), value: .make(permissions: .make(create_discussion_topic: true)))
         api.mock(controller.colors, value: .init(custom_colors: [ "group_1": "#000000" ]))
         api.mock(controller.topics, value: [
@@ -257,7 +257,11 @@ class DiscussionListViewControllerTests: CoreTestCase {
     func testAnonymousDiscussionDeviceIsOffline() {
         // Given
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: true)
-        controller = DiscussionListViewController.create(context: .course("1"), offlineModeInteractor: mockInteractor)
+        controller = DiscussionListViewController.create(
+            context: .course("1"),
+            offlineModeInteractor: mockInteractor,
+            env: environment
+        )
         mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
 
         // When
@@ -273,7 +277,11 @@ class DiscussionListViewControllerTests: CoreTestCase {
     func testAnonymousDiscussionWhenDeviceIsOnline() {
         // Given
         let mockInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: false)
-        controller = DiscussionListViewController.create(context: .course("1"), offlineModeInteractor: mockInteractor)
+        controller = DiscussionListViewController.create(
+            context: .course("1"),
+            offlineModeInteractor: mockInteractor,
+            env: environment
+        )
         mockCourseAndAssignmentWith(restrict_quantitative_data: false, isAnonymousDiscussion: true)
 
         // When
