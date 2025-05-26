@@ -199,11 +199,17 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
         interactor.getIsAssignmentEnhancementsEnabledResult = Publishers.typedJust(true)
         let testee = makeViewModel(latestAttemptNumber: 2)
 
-        NotificationCenter.default.post(name: .SpeedGraderAttemptPickerChanged, object: 3)
+        NotificationCenter.default.post(
+            name: .SpeedGraderAttemptPickerChanged,
+            object: SpeedGraderAttemptChangeInfo(attemptIndex: 3, userId: TestConstants.submissionUserId)
+        )
         XCTAssertEqual(testee.state, .empty)
         XCTAssertEqual(testee.cellViewModels.count, 0)
 
-        NotificationCenter.default.post(name: .SpeedGraderAttemptPickerChanged, object: 1)
+        NotificationCenter.default.post(
+            name: .SpeedGraderAttemptPickerChanged,
+            object: SpeedGraderAttemptChangeInfo(attemptIndex: 1, userId: TestConstants.submissionUserId)
+        )
         XCTAssertEqual(testee.state, .data)
         guard testee.cellViewModels.count == 1 else { throw InvalidCountError() }
         XCTAssertEqual(testee.cellViewModels[0].id, "1")
