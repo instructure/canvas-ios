@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 import MobileCoreServices
 import VisionKit
@@ -53,6 +54,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public var mediaTypes: [String] = [UTType.movie.identifier, UTType.image.identifier]
     public var batchID = ""
     public var maxFileCount = Int.max
+
+    private var subscriptions = Set<AnyCancellable>()
 
     public lazy var files = env.uploadManager.subscribe(batchID: batchID) { [weak self] in
         self?.update()
@@ -321,7 +324,11 @@ extension FilePickerViewController: UIDocumentPickerDelegate {
         env.uploadManager.viewContext.performAndWait {
             do {
                 try env.uploadManager.add(url: url, batchID: self.batchID)
-                if self.files.count == self.maxFileCount { self.didReachMaxFileCount() }
+                UIAccessibility.announcePersistently(String(localized: "File added", bundle: .core))
+                    .sink {
+                        if self.files.count == self.maxFileCount { self.didReachMaxFileCount() }
+                    }
+                    .store(in: &self.subscriptions)
             } catch {
                 self.showError(error)
             }

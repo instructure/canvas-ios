@@ -318,23 +318,23 @@ class UploadManagerTests: CoreTestCase {
         failedFile.uploadError = "Upload failed."
 
         XCTAssertEqual(
-            [uploadedFile].toUploadAnnouncement,
+            [uploadedFile].uploadCompletionAnnouncement,
             "1 file uploaded successfully."
         )
         XCTAssertEqual(
-            [uploadedFile, uploadedFile].toUploadAnnouncement,
+            [uploadedFile, uploadedFile].uploadCompletionAnnouncement,
             "2 files uploaded successfully."
         )
         XCTAssertEqual(
-            [failedFile].toUploadAnnouncement,
+            [failedFile].uploadCompletionAnnouncement,
             "1 file failed to upload."
         )
         XCTAssertEqual(
-            [failedFile, failedFile].toUploadAnnouncement,
+            [failedFile, failedFile].uploadCompletionAnnouncement,
             "2 files failed to upload."
         )
         XCTAssertEqual(
-            [failedFile, failedFile, uploadedFile].toUploadAnnouncement,
+            [failedFile, failedFile, uploadedFile].uploadCompletionAnnouncement,
             "1 file uploaded successfully. 2 files failed to upload."
         )
     }

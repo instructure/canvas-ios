@@ -408,7 +408,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         completion: @escaping () -> Void
     ) {
         Just(files)
-            .map { $0.toUploadAnnouncement }
+            .map { $0.uploadCompletionAnnouncement }
             .flatMap { announcement in
                UIAccessibility.announcePersistently(announcement)
             }
@@ -465,7 +465,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
 extension [File] {
 
-    var toUploadAnnouncement: String {
+    internal var uploadCompletionAnnouncement: String {
         let uploadedFilesCount = uploadedFilesCount
         let failedFilesCount = failedFilesCount
 
