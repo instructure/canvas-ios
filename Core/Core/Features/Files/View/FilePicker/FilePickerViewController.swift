@@ -325,7 +325,8 @@ extension FilePickerViewController: UIDocumentPickerDelegate {
             do {
                 try env.uploadManager.add(url: url, batchID: self.batchID)
                 UIAccessibility.announcePersistently(String(localized: "File added", bundle: .core))
-                    .sink {
+                    .sink { [weak self] _ in
+                        guard let self else { return }
                         if self.files.count == self.maxFileCount { self.didReachMaxFileCount() }
                     }
                     .store(in: &self.subscriptions)
