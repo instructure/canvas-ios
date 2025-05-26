@@ -184,7 +184,8 @@ class LoginWebViewControllerTests: CoreTestCase {
                 email: nil
             ),
             real_user: nil,
-            expires_in: nil
+            expires_in: nil,
+            canvas_region: "us-east-1"
         )
         let pkceOAuth = OAuthType.pkce(
             .init(

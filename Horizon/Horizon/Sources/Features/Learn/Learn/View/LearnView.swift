@@ -21,7 +21,7 @@ import SwiftUI
 import HorizonUI
 
 struct LearnView: View {
-    let viewModel: LearnViewModel
+    @Bindable var viewModel: LearnViewModel
 
     var body: some View {
         VStack {
@@ -29,17 +29,25 @@ struct LearnView: View {
                 LearnAssembly.makeCourseDetailsView(courseID: corseID, enrollmentID: enrollmentID)
                     .id(corseID)
             } else if viewModel.courseID == nil, !viewModel.isLoaderVisible {
-                Text("You aren’t currently enrolled in a course.", bundle: .horizon)
-                    .padding(.huiSpaces.space24)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .huiTypography(.h3)
+               ScrollView {
+                    Text("You aren’t currently enrolled in a course.", bundle: .horizon)
+                        .padding(.huiSpaces.space24)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .huiTypography(.h3)
+                        .padding(.top, .huiSpaces.space32)
+                }
+               .refreshable {
+                   await viewModel.refreshCourses()
+               }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .background(Color.huiColors.surface.pagePrimary)
+        .alert(isPresented: $viewModel.isAlertPresented) {
+            Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
+        }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -48,14 +56,5 @@ struct LearnView: View {
         .onFirstAppear {
             viewModel.fetchCourses()
         }
-    }
-
-    private var navigationBar: some View {
-        HStack(spacing: .zero) {
-            InstitutionLogo()
-            Spacer()
-        }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.bottom, .huiSpaces.space4)
     }
 }

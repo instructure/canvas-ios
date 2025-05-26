@@ -316,8 +316,10 @@ public extension URL {
 
 public extension String {
     func replaceHostWithCanvasForCareer() -> String {
-        replacing("pd.instructure.com", with: "pd.canvasforcareer.com")
-            .replacing("intelvio.instructure.com", with: "intelvio.canvasforcareer.com")
-            .replacing("horizon.cd.instructure.com", with: "dev.cd.canvashorizon.com")
+        let newString = replacing("horizon.cd.instructure.com", with: "dev.cd.canvashorizon.com")
+        if let range = newString.range(of: "instructure.com") {
+            return newString.replacingCharacters(in: range, with: "canvasforcareer.com")
+        }
+        return newString
     }
 }
