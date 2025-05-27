@@ -262,21 +262,11 @@ class SubmissionDetailsPresenter {
             guard let mediaUrl = submission.mediaComment?.url else {
                 return nil
             }
-
-            return CoreNavigationController(
-                rootViewController: RemoteFileLoadingController(
-                    url: mediaUrl,
-                    env: env,
-                    viewController: { localUrl in
-                        let player = AVPlayer(url: localUrl)
-                        let controller = AVPlayerViewController()
-                        controller.player = player
-                        controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
-                        return controller
-                    }
-                )
-            )
-
+            let player = AVPlayer(url: mediaUrl)
+            let controller = AVPlayerViewController()
+            controller.player = player
+            controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
+            return controller
         case .some(.basic_lti_launch):
             let tools = LTITools(
                 context: context,
@@ -348,43 +338,5 @@ class SubmissionDetailsPresenter {
 
     func lockedEmptyViewHeader() -> String {
         return assignment.first?.quizID != nil ? String(localized: "Quiz Locked", bundle: .student) : String(localized: "Assignment Locked", bundle: .student)
-    }
-}
-
-class RemoteFileLoadingController: UIViewController {
-    required init?(coder: NSCoder) { nil }
-
-    private let url: URL
-    private let env: AppEnvironment
-    private let viewController: (URL) -> UIViewController
-
-    private let activityIndicator = UIActivityIndicatorView(style: .medium)
-
-    init(url: URL, env: AppEnvironment, viewController: @escaping (URL) -> UIViewController) {
-        self.url = url
-        self.env = env
-        self.viewController = viewController
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
-
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-
-        Task { @MainActor in
-            let localURL = try await DownloadToLocalFileTask.execute(url, using: env)
-            showContentViewController(localURL)
-        }
-    }
-
-    private func showContentViewController(_ localURL: URL) {
-        navigationController?.setViewControllers([viewController(localURL)], animated: false)
     }
 }
