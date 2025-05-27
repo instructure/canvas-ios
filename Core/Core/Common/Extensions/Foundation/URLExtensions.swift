@@ -300,7 +300,7 @@ public extension URL {
         }
         let asset = AVURLAsset(
             url: self,
-            options: [ AVURLAssetHTTPUserAgentKey: UserAgent.default.description ]
+            options: [AVURLAssetHTTPUserAgentKey: UserAgent.default.description]
         )
         return AVPlayerItem(asset: asset)
     }
