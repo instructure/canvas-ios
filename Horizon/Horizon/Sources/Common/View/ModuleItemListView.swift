@@ -56,7 +56,7 @@ struct ModuleItemListView: View {
         Text(item.title)
             .huiTypography(.labelMediumBold)
             .foregroundStyle(Color.huiColors.text.body)
-            .padding(.top, .huiSpaces.space12)
+            .padding(.top, items.first?.id == item.id ? .zero : .huiSpaces.space32)
     }
 
     private func moduleItemButton(item: HModuleItem, type: ModuleItemType) -> some View {

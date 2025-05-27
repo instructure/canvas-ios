@@ -120,22 +120,21 @@ public extension HorizonUI {
                         Text(duration)
                             .foregroundStyle(Color.huiColors.text.timestamp)
                             .huiTypography(.labelSmall)
-                            .padding(.leading, .huiSpaces.space16)
                     }
                 }
-                .padding(.top, .huiSpaces.space12)
+                .padding(.top, .huiSpaces.space4)
 
                 HStack(spacing: .zero) {
                     if let dueDate {
                         dueDateView(dueDate)
-                            .padding(.top, .huiSpaces.space24)
+                            .padding(.top, .huiSpaces.space4)
                             .padding(.trailing, .huiSpaces.space16)
                     }
 
                     if let points {
                         Text("\(points) pts")
                             .foregroundStyle(Color.huiColors.text.timestamp)
-                            .padding(.top, .huiSpaces.space24)
+                            .padding(.top, .huiSpaces.space4)
                     }
                 }
                 .huiTypography(.labelSmall)
