@@ -49,14 +49,14 @@ struct TodoItemDetail: View {
                 InstUI.Divider()
                     .frame(maxHeight: 16)
             }
-            Text(item.contextName ?? "ASD")
+            Text(item.contextName ?? "")
                 .foregroundStyle(item.color.asColor)
                 .font(.regular12)
         }
     }
 
     private var titleSection: some View {
-        Text(item.title ?? "ASD")
+        Text(item.title ?? "")
             .font(.semibold14)
             .foregroundStyle(Color.textDarkest)
     }

@@ -17,6 +17,7 @@
 //
 
 import Core
+import Combine
 import WidgetKit
 
 struct TodoWidgetEntry: TimelineEntry {
@@ -41,18 +42,13 @@ struct TodoWidgetEntry: TimelineEntry {
 class TodoWidgetProvider: TimelineProvider {
     typealias Entry = TodoWidgetEntry
 
-    static let startDate: Date = .now.startOfDay()
-    static let endDate: Date = startDate.addDays(28)
-
-    private var colors: Store<GetCustomColors>?
-    private var plannables: Store<GetPlannables>?
-    private var courses: Store<GetCourses>?
-    private var favoriteCourses: Store<GetCourses>?
+    private var startDate: Date { .now.startOfDay() }
+    private var endDate: Date { startDate.addDays(28) }
 
     private let env = AppEnvironment.shared
     private var isLoggedIn: Bool { LoginSession.mostRecent != nil }
-    private var completionCalled: Bool = false
     private var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
+    private var fetchSubscription: AnyCancellable?
 
     func placeholder(in context: TimelineProvider.Context) -> Entry { .publicPreview }
 
@@ -70,72 +66,72 @@ class TodoWidgetProvider: TimelineProvider {
             completion(Timeline(entries: [.loggedOutModel], policy: .after(refreshDate)))
             return
         }
-        guard !completionCalled else {
+
+        if fetchSubscription != nil {
             return
         }
 
         setupLastLoginCredentials()
-        fetchData(completion: completion)
+        fetchSubscription = fetch()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] timeline in
+                completion(timeline)
+                self?.fetchSubscription = nil
+            }
     }
 
     private func setupLastLoginCredentials() {
         guard let session = LoginSession.mostRecent else { return }
+        env.app = .student // Otherwise getPlannables never completes
         env.userDidLogin(session: session)
     }
 
-    private func fetchData(completion: @escaping (Timeline<TodoWidgetEntry>) -> Void) {
-        colors = env.subscribe(GetCustomColors())
-        colors?.refresh { [weak self] _ in
-            guard let self = self, let colors = self.colors, !colors.pending else { return }
+    private func fetch() -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
+        let env = env
+        let startDate = startDate
+        let endDate = endDate
+        let refreshDate = refreshDate
+        let colors = ReactiveStore(useCase: GetCustomColors(), environment: env)
+        let courses = ReactiveStore(useCase: GetCourses(showFavorites: false, perPage: 100), environment: env)
 
-            self.courses = self.env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.courseFetchFinished(completion: completion) }
-            self.courses?.refresh()
-
-            self.favoriteCourses = self.env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.courseFetchFinished(completion: completion) }
-            self.favoriteCourses?.refresh()
-        }
-    }
-
-    private func courseFetchFinished(completion: @escaping (Timeline<TodoWidgetEntry>) -> Void) {
-        guard
-            let courses = courses, !courses.pending,
-            let favoriteCourses = favoriteCourses, !favoriteCourses.pending
-        else {
-            return
-        }
-
-        let coursesToMap = favoriteCourses.all.isNotEmpty ? favoriteCourses.all : courses.all
-        var contextCodes = coursesToMap.compactMap(\.id).map { courseId in
-            return "course_\(courseId)"
-        }
-        if let userId = LoginSession.mostRecent?.userID {
-            contextCodes.append("user_\(userId)")
-        }
-        plannables = env.subscribe(
-            GetPlannables(
+        return Publishers.CombineLatest(
+            colors.getEntities(),
+            courses.getEntities(loadAllPages: true)
+        )
+        .flatMap { _, courses in
+            let favoriteCourses = courses.filter { $0.isFavorite }
+            let coursesToMap = favoriteCourses.isNotEmpty ? favoriteCourses : courses
+            var contextCodesToFetch = coursesToMap
+                .compactMap(\.id)
+                .map { courseId in
+                    "course_\(courseId)"
+                }
+            if let userId = LoginSession.mostRecent?.userID {
+                contextCodesToFetch.append("user_\(userId)")
+            }
+            let plannablesUseCase = GetPlannables(
                 userID: "self",
-                startDate: Self.startDate,
-                endDate: Self.endDate,
-                contextCodes: contextCodes
+                startDate: startDate,
+                endDate: endDate,
+                contextCodes: contextCodesToFetch
             )
-        ) { [weak self] in
-            self?.plannableFetchFinished(completion: completion)
+            let plannablesStore = ReactiveStore(
+                useCase: plannablesUseCase,
+                environment: env
+            )
+
+            return plannablesStore.getEntities()
         }
-        self.plannables?.refresh(force: true)
-    }
+        .map { plannables in
+            let plannableItems = plannables.filter {
+                $0.plannableType != .announcement && $0.plannableType != .assessment_request
+            }
 
-    private func plannableFetchFinished(completion: @escaping (Timeline<TodoWidgetEntry>) -> Void) {
-        guard let plannables = plannables, !plannables.pending else { return }
-
-        let compactPlannables = plannables.compactMap { $0 }
-        let plannableItems: [Plannable] = compactPlannables.filter {
-            $0.plannableType != .announcement && $0.plannableType != .assessment_request
+            let model = TodoModel(items: plannableItems)
+            let entry = TodoWidgetEntry(data: model, date: Date(), message: "Data")
+            return Timeline(entries: [entry], policy: .after(refreshDate))
         }
-
-        let model = TodoModel(items: plannableItems)
-        let entry = TodoWidgetEntry(data: model, date: Date(), message: "Data")
-        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-        completion(timeline)
-        completionCalled = true
+        .replaceError(with: Timeline(entries: [], policy: .after(refreshDate)))
+        .eraseToAnyPublisher()
     }
 }
