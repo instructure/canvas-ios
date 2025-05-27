@@ -189,6 +189,7 @@ private extension SubmissionListScreen {
                     Text(courseName)
                         .foregroundStyle(Color.textDarkest)
                         .font(.semibold16)
+                        .accessibilityAddTraits(.isHeader)
 
                     Spacer()
                 }

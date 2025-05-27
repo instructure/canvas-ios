@@ -20,35 +20,42 @@ import SwiftUI
 import Core
 
 struct SubmissionListRowView: View {
-    @ScaledMetric private var uiScale: CGFloat = 1
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     let anonymizeStudents: Bool?
     let item: SubmissionListItem
 
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 12) {
             avatarView
                 .layoutPriority(3)
             VStack(alignment: .leading, spacing: 4) {
                 nameLabel
                     .layoutPriority(1)
                 if item.needsGrading {
-                    HStack(spacing: 4) {
-                        statusLabel
-                        statusDivider
-                        needsGradingLabel
+                    if dynamicTypeSize < .accessibility3 {
+                        HStack(alignment: .top, spacing: 4) {
+                            statusLabel
+                                .layoutPriority(1)
+                            statusDivider
+                            needsGradingLabel
+                        }
+                    } else {
+                        VStack(alignment: .leading, spacing: 2) {
+                            statusLabel
+                            needsGradingLabel
+                        }
                     }
                 } else {
                     statusLabel
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .layoutPriority(1)
-            Spacer()
             gradeLabel
                 .layoutPriority(2)
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 15)
+        .paddingStyle(set: .standardCell)
         .accessibilityIdentifier("SubmissionListCell.\(item.originalUserID)")
     }
 
@@ -88,8 +95,8 @@ struct SubmissionListRowView: View {
     }
 
     private var statusLabel: some View {
-        HStack(alignment: .top, spacing: 2) {
-            item.status.redesignAppearance.icon.size(16 * uiScale.iconScale)
+        HStack(alignment: .center, spacing: 2) {
+            item.status.redesignAppearance.icon.scaledIcon(size: 16)
             Text(item.status.text).multilineTextAlignment(.leading)
         }
         .font(.regular14)
@@ -101,7 +108,7 @@ struct SubmissionListRowView: View {
         Color
             .borderMedium
             .frame(width: 1)
-            .padding(2)
+            .padding(.vertical, 2)
             .accessibilityHidden(true)
     }
 

@@ -39,6 +39,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                     Text("Submissions", bundle: .teacher)
                         .font(.semibold16)
                         .foregroundColor(.textDarkest)
+                        .accessibilityAddTraits(.isHeader)
                     Spacer()
                     if !viewModel.noSubmissionTypes {
                         Button(
