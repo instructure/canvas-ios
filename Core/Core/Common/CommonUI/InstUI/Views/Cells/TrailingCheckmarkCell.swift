@@ -77,7 +77,6 @@ extension InstUI {
                                 .foregroundStyle(color)
                                 .layoutPriority(1)
                                 .paddingStyle(.leading, .cellAccessoryPadding)
-                                .animation(.default, value: selectedValue)
                         }
                     }
                     .paddingStyle(set: .standardCell)
