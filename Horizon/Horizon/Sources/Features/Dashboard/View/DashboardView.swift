@@ -105,6 +105,7 @@ struct DashboardView: View {
 
                 if let learningObjectCardModel = course.learningObjectCardModel {
                     learningObjectCard(model: learningObjectCardModel, progress: course.progress)
+                        .padding(.bottom, .huiSpaces.space16)
                 } else {
                     Text("Congrats! You've completed your course.", bundle: .horizon)
                         .huiTypography(.h3)
@@ -125,7 +126,7 @@ struct DashboardView: View {
             Text(course.name)
                 .huiTypography(.h1)
                 .foregroundStyle(Color.huiColors.text.title)
-                .padding(.top, .huiSpaces.space36)
+                .padding(.top, .huiSpaces.space16)
                 .padding(.bottom, .huiSpaces.space16)
 
             HorizonUI.ProgressBar(
