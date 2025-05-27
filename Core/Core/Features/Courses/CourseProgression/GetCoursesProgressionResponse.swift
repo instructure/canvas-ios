@@ -100,7 +100,7 @@ public struct GetCoursesProgressionResponse: Codable {
         struct Content: Codable {
             let id: String?
             let title: String?
-            let type: String?
+            let __typename: String?
             let dueAt: Date?
         }
     }
@@ -127,6 +127,6 @@ public struct GetCoursesProgressionResponse: Codable {
         public let title: String?
         public let dueAt: Date?
         public let position: Double?
-        public let type: String?
+        public let __typename: String?
     }
 }
