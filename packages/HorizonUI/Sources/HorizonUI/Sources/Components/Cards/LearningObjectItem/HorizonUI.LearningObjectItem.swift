@@ -35,7 +35,7 @@ public extension HorizonUI {
         private let dueDate: String?
         private let lockedMessage: String?
         private let points: String?
-        private let minScore: String?
+        private let description: String
         private let isOverdue: Bool
 
         // MARK: - Init
@@ -50,7 +50,7 @@ public extension HorizonUI {
             dueDate: String? = nil,
             lockedMessage: String? = nil,
             points: String? = nil,
-            minScore: String? = nil,
+            description: String,
             isOverdue: Bool = false
         ) {
             self.name = name
@@ -62,7 +62,7 @@ public extension HorizonUI {
             self.dueDate = dueDate
             self.lockedMessage = lockedMessage
             self.points = points
-            self.minScore = minScore
+            self.description = description
             self.isOverdue = isOverdue
         }
 
@@ -111,7 +111,7 @@ public extension HorizonUI {
                         isUppercased: true,
                         icon: type.icon
                     )
-                    Text(itemStatusText)
+                    Text(description)
                         .foregroundStyle(Color.huiColors.text.body)
                         .huiTypography(.labelSmall)
                         .foregroundStyle(Color.huiColors.text.timestamp)
@@ -137,21 +137,9 @@ public extension HorizonUI {
                             .foregroundStyle(Color.huiColors.text.timestamp)
                             .padding(.top, .huiSpaces.space24)
                     }
-                    if let minScore {
-                        Text(" | \(minScore)")
-                            .foregroundStyle(Color.huiColors.text.timestamp)
-                            .padding(.top, .huiSpaces.space24)
-                    }
                 }
                 .huiTypography(.labelSmall)
             }
-        }
-
-        private var itemStatusText: String {
-            if status == .completed, requirement == .required {
-                return type.status
-            }
-            return requirement.title
         }
 
         @ViewBuilder
@@ -174,7 +162,7 @@ public extension HorizonUI {
         duration: "XX Mins",
         dueDate: "22/12",
         points: "22",
-        minScore: "Score at least 10",
+        description: "Score at least 10",
         isOverdue: true
     )
 }

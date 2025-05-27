@@ -32,6 +32,7 @@ public extension HorizonUI.LearningObjectItem {
                         type: .externalLink,
                         duration: "XX Mins",
                         points: "22",
+                        description: "Score at least 10",
                         isOverdue: false
                     )
 
@@ -44,6 +45,7 @@ public extension HorizonUI.LearningObjectItem {
                         duration: "XX Mins",
                         dueDate: "22/12",
                         points: "22",
+                        description: "Optional",
                         isOverdue: false
                     )
 
@@ -56,6 +58,7 @@ public extension HorizonUI.LearningObjectItem {
                         duration: "XX Mins",
                         dueDate: "22/12",
                         points: "22",
+                        description: "Required",
                         isOverdue: true
                     )
 
@@ -67,6 +70,7 @@ public extension HorizonUI.LearningObjectItem {
                         duration: "XX Mins",
                         dueDate: "22/12",
                         points: "22",
+                        description: "View",
                         isOverdue: true
                     )
 
