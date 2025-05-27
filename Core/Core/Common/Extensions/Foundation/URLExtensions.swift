@@ -292,6 +292,18 @@ public extension URL {
         )
         try imageData.write(to: url)
     }
+
+    /// Returns player item with User Agent is set for URL is remote.
+    func toPlayerItem() -> AVPlayerItem {
+        if isFileURL {
+            return AVPlayerItem(url: self)
+        }
+        let asset = AVURLAsset(
+            url: self,
+            options: [ AVURLAssetHTTPUserAgentKey: UserAgent.default.description ]
+        )
+        return AVPlayerItem(asset: asset)
+    }
 }
 
 public extension Array where Element == URL {

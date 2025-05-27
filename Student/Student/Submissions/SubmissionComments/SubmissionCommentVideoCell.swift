@@ -41,7 +41,10 @@ class SubmissionCommentVideoCell: UITableViewCell {
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.videoCell.\(comment.id)"
 
-        playerViewController.player = comment.mediaLocalOrRemoteURL.flatMap { AVPlayer(url: $0) }
+        playerViewController.player = comment
+            .mediaLocalOrRemoteURL
+            .flatMap { AVPlayer(playerItem: $0.toPlayerItem()) }
+
         if playerViewController.view?.superview == nil, let view = containerView {
             parent.embed(playerViewController, in: view)
         }

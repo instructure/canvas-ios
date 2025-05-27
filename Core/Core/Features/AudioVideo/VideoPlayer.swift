@@ -28,13 +28,16 @@ public struct VideoPlayer: UIViewControllerRepresentable {
 
     public func makeUIViewController(context: Self.Context) -> AVPlayerViewController {
         let uiViewController = AVPlayerViewController()
-        uiViewController.player = url.map { AVPlayer(url: $0) } ?? AVPlayer()
+        let player = url.flatMap { AVPlayer(playerItem: $0.toPlayerItem()) }
+        uiViewController.player = player ?? AVPlayer()
         return uiViewController
     }
 
     public func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Self.Context) {
         if url != (uiViewController.player?.currentItem?.asset as? AVURLAsset)?.url {
-            uiViewController.player?.replaceCurrentItem(with: url.map { AVPlayerItem(url: $0) })
+            uiViewController
+                .player?
+                .replaceCurrentItem(with: url?.toPlayerItem())
         }
     }
 }

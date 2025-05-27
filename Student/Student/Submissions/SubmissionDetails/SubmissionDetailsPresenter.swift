@@ -262,7 +262,7 @@ class SubmissionDetailsPresenter {
             guard let mediaUrl = submission.mediaComment?.url else {
                 return nil
             }
-            let player = AVPlayer(url: mediaUrl)
+            let player = AVPlayer(playerItem: mediaUrl.toPlayerItem())
             let controller = AVPlayerViewController()
             controller.player = player
             controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
