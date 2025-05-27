@@ -28,12 +28,13 @@ extension HorizonUI {
         private let label: String?
         private let options: [String]
         private let placeholder: String?
+        private let zIndex: Double
         @Binding private var selection: String
 
         // MARK: Properties
 
         private var bodyHeight: CGFloat {
-            textInputMeasuredHeight + displayedOptionHeight + errorHeight
+            textInputMeasuredHeight + errorHeight
         }
 
         // The computed height of a single option
@@ -67,7 +68,8 @@ extension HorizonUI {
             options: [String],
             disabled: Bool = false,
             placeholder: String? = nil,
-            error: String? = nil
+            error: String? = nil,
+            zIndex: Double = 101
         ) {
             self.label = label
             self.options = options
@@ -77,24 +79,28 @@ extension HorizonUI {
             self.error = error
             self.focusedBinding = focused
             self._focused = focused
+            self.zIndex = zIndex
         }
 
         public var body: some View {
-            VStack {
+            VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     labelText
                     textInput
                 }
                 .onTapGesture(perform: onTapText)
+
                 ZStack(alignment: .top) {
                     errorText
                     displayedOptions
+                        .zIndex(zIndex)
                 }
             }
             .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .zIndex(101)
+            .padding(.vertical, 1)
+            .zIndex(zIndex)
         }
 
         // MARK: - Private
@@ -113,6 +119,7 @@ extension HorizonUI {
             .background(Color.huiColors.surface.pageSecondary)
             .frame(height: displayedOptionsHeight)
             .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
+            .padding(.top, .huiSpaces.space12)
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
@@ -231,7 +238,7 @@ extension HorizonUI {
 
         private func textOverlay(isOuter: Bool = false) -> some View {
             RoundedRectangle(cornerRadius: textOverlayCornerRadius(isOuter: isOuter))
-                .fill(HorizonUI.colors.surface.cardPrimary)
+                .fill(isOuter ? Color.clear : HorizonUI.colors.surface.cardPrimary)
                 .stroke(
                     textOverlayStrokeColor(isOuter: isOuter),
                     lineWidth: textOverlayLineWidth(isOuter: isOuter)
@@ -323,9 +330,12 @@ extension HorizonUI {
                 error: "This is an error"
             )
             HorizonUI.SingleSelect(
-                selection: $selection,
-                focused: Binding<Bool>(
-                    get: { true },
+                selection: Binding(
+                    get: { "Test1" },
+                    set: { _ in }
+                ),
+                focused: Binding(
+                    get: { false },
                     set: { _ in }
                 ),
                 label: "Test2",
