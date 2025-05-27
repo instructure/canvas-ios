@@ -202,6 +202,12 @@ extension HorizonUI {
                     .padding(HorizonUI.spaces.space12)
                     .padding(.trailing, .huiSpaces.space24)
                     .overlay(textOverlay(isOuter: false))
+                    .background(
+                        HorizonUI.colors.surface.pageSecondary.clipShape(
+                            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                        )
+                    )
+
                 Image.huiIcons.chevronRight
                     .padding(.horizontal, .huiSpaces.space12)
                     .tint(Color.huiColors.icon.default)
@@ -238,12 +244,11 @@ extension HorizonUI {
 
         private func textOverlay(isOuter: Bool = false) -> some View {
             RoundedRectangle(cornerRadius: textOverlayCornerRadius(isOuter: isOuter))
-                .fill(isOuter ? Color.clear : HorizonUI.colors.surface.cardPrimary)
                 .stroke(
                     textOverlayStrokeColor(isOuter: isOuter),
                     lineWidth: textOverlayLineWidth(isOuter: isOuter)
                 )
-//                .opacity(textOverlayStrokeOpacity(isOuter: isOuter))
+                .opacity(textOverlayStrokeOpacity(isOuter: isOuter))
                 .animation(.easeInOut, value: focused)
                 .animation(.easeInOut, value: textOverlayStrokeColor(isOuter: isOuter))
         }
