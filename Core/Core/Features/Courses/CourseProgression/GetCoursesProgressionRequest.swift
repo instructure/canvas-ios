@@ -62,47 +62,47 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                            id
                                            title
                                            dueAt
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on Discussion {
                                            id
                                            title
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on ExternalTool {
                                            id: _id
                                            title: name
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on ExternalUrl {
                                            id: _id
                                            title
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on File {
                                            id
                                            title
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on ModuleExternalTool {
                                            id: _id
                                            title
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on Page {
                                            id
                                            title
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on Quiz {
                                            id
                                            title
-                                           type: __typename
+                                           __typename
                                          }
                                          ... on SubHeader {
                                            id: title
                                            title
-                                           type: __typename
+                                           __typename
                                          }
                                        }
                                       }
@@ -133,48 +133,48 @@ public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
                                                                     title
                                                                     dueAt
                                                                     position
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on Discussion {
                                                                     id
                                                                     title
                                                                     position
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on ExternalTool {
                                                                     id: _id
                                                                     title: name
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on ExternalUrl {
                                                                     id: _id
                                                                     title
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on File {
                                                                     id
                                                                     title
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on ModuleExternalTool {
                                                                     id: _id
                                                                     title
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on Page {
                                                                     id
                                                                     title
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on Quiz {
                                                                     id
                                                                     title
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                                 ... on SubHeader {
                                                                     id: title
                                                                     title
-                                                                    type: __typename
+                                                                    __typename
                                                                 }
                                                             }
                                                         }
