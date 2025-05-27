@@ -62,7 +62,8 @@ class K5ScheduleItemInfoTests: CoreTestCase {
                              navIconFillActive: nil,
                              navTextColor: nil,
                              navTextColorActive: nil,
-                             primary: .red)
+                             primary: .red,
+                             institutionLogo: nil)
         XCTAssertEqual(APIPlannable.make(course_id: ID("testID")).k5ScheduleSubject(courseInfoByCourseIDs: ["testID": (color: .green,
                                                                                                                        image: nil,
                                                                                                                        isHomeroom: false,

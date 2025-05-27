@@ -107,7 +107,7 @@ struct ScoresAssignmentGroupsView: View {
 
     @ViewBuilder
     private func assignmentGroupListRow(group: ScoresAssignmentGroup) -> some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space12) {
             Text(group.name)
                 .huiTypography(.p1)
                 .foregroundStyle(Color.huiColors.text.body)
