@@ -91,6 +91,7 @@ extension HorizonUI {
                     displayedOptions
                 }
             }
+            .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
             .zIndex(101)
@@ -212,7 +213,6 @@ extension HorizonUI {
                 }
             }
             .onTapGesture(perform: onTapText)
-            .background(Color.huiColors.surface.cardPrimary)
             .opacity(disabled ? 0.5 : 1.0)
         }
 
@@ -231,11 +231,12 @@ extension HorizonUI {
 
         private func textOverlay(isOuter: Bool = false) -> some View {
             RoundedRectangle(cornerRadius: textOverlayCornerRadius(isOuter: isOuter))
+                .fill(HorizonUI.colors.surface.cardPrimary)
                 .stroke(
                     textOverlayStrokeColor(isOuter: isOuter),
                     lineWidth: textOverlayLineWidth(isOuter: isOuter)
                 )
-                .opacity(textOverlayStrokeOpacity(isOuter: isOuter))
+//                .opacity(textOverlayStrokeOpacity(isOuter: isOuter))
                 .animation(.easeInOut, value: focused)
                 .animation(.easeInOut, value: textOverlayStrokeColor(isOuter: isOuter))
         }
@@ -311,17 +312,31 @@ extension HorizonUI {
     ]
 
     VStack {
-        HorizonUI.SingleSelect(
-            selection: $selection,
-            focused: $focused,
-            label: "Words of the Alphabet",
-            options: options,
-            disabled: false,
-            placeholder: "Select an option",
-            error: "This is an error"
-        )
-
-        HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
+        VStack {
+            HorizonUI.SingleSelect(
+                selection: $selection,
+                focused: $focused,
+                label: "Words of the Alphabet",
+                options: options,
+                disabled: false,
+                placeholder: "Select an option",
+                error: "This is an error"
+            )
+            HorizonUI.SingleSelect(
+                selection: $selection,
+                focused: Binding<Bool>(
+                    get: { true },
+                    set: { _ in }
+                ),
+                label: "Test2",
+                options: [],
+                disabled: true,
+                placeholder: "Select an option"
+            )
+            HorizonUI.PrimaryButton("Save Changes", type: .black, fillsWidth: true) {}
+        }
+        .padding(.horizontal, .huiSpaces.space24)
     }
-    .padding(.horizontal, .huiSpaces.space24)
+    .frame(maxHeight: .infinity, alignment: .top)
+    .background(HorizonUI.colors.surface.pagePrimary)
 }

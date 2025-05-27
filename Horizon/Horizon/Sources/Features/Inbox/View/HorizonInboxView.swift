@@ -20,10 +20,15 @@ import HorizonUI
 import SwiftUI
 
 struct MessagesView: View {
+
+    @State private var messagesFilterSelection: String = "All Messages"
+    @State private var filterByPersonSelection: String = ""
+    @State private var isMessagesFilterFocused: Bool = true
+    @State private var isFilterByPersonFocused: Bool = false
+
     var body: some View {
-        NavigationView {
+        VStack {
             VStack {
-                // Top Navigation Bar
                 HStack {
                     HorizonBackButton { _ in }
                     Spacer()
@@ -33,48 +38,53 @@ struct MessagesView: View {
                         leading: HorizonUI.icons.editSquare
                     ) { }
                 }
-                .padding(.horizontal)
 
-                // Filters
-                VStack {
-                    Picker("All Messages", selection: .constant(1)) {
-                        Text("All Messages").tag(1)
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .padding(.horizontal)
+                HorizonUI.SingleSelect(
+                    selection: $messagesFilterSelection,
+                    focused: $isMessagesFilterFocused,
+                    label: nil,
+                    options: [
+                        String(localized: "All Messages", bundle: .horizon),
+                        String(localized: "Announcements", bundle: .horizon),
+                        String(localized: "Unread", bundle: .horizon),
+                        String(localized: "Sent", bundle: .horizon)
+                    ]
+                )
 
-                    Picker("Filter by person", selection: .constant(1)) {
-                        Text("Filter by person").tag(1)
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .padding(.horizontal)
-                }
+                HorizonUI.SingleSelect(
+                    selection: $filterByPersonSelection,
+                    focused: $isFilterByPersonFocused,
+                    label: nil,
+                    options: [],
+                    placeholder: String(localized: "Filter by person", bundle: .horizon)
+                )
+            }.padding(.horizontal, .huiSpaces.space16)
 
-                // Message List
-                List {
-                    MessageRow(date: "Feb 28, 2022", subject: "[ Subject ]", names: "Sharon Peck")
-                    MessageRow(date: "Feb 28, 2022", subject: "[ Subject ]", names: "Jeffrey Johnson, Jeanne-Marie Beaubier")
-                    MessageRow(date: "Feb 28, 2022", subject: "[ Subject ]", names: "Jeffrey Johnson, Jeanne-Marie Beaubier")
-                }
-
-                Spacer()
-
-                // Bottom Navigation Bar
-                HStack {
-                    Spacer()
-                    Image(systemName: "house")
-                    Spacer()
-                    Image(systemName: "book")
-                    Spacer()
-                    Image(systemName: "sparkles")
-                    Spacer()
-                    Image(systemName: "person.circle")
-                    Spacer()
-                }
-                .padding()
+            // Message List
+            List {
+                MessageRow(date: "Feb 28, 2022", subject: "[ Subject ]", names: "Sharon Peck")
+                MessageRow(date: "Feb 28, 2022", subject: "[ Subject ]", names: "Jeffrey Johnson, Jeanne-Marie Beaubier")
+                MessageRow(date: "Feb 28, 2022", subject: "[ Subject ]", names: "Jeffrey Johnson, Jeanne-Marie Beaubier")
             }
-            .navigationBarHidden(true)
+
+            Spacer()
+
+            // Bottom Navigation Bar
+            HStack {
+                Spacer()
+                Image(systemName: "house")
+                Spacer()
+                Image(systemName: "book")
+                Spacer()
+                Image(systemName: "sparkles")
+                Spacer()
+                Image(systemName: "person.circle")
+                Spacer()
+            }
+            .padding()
         }
+        .background(HorizonUI.colors.surface.pagePrimary)
+        .navigationBarHidden(true)
     }
 }
 
