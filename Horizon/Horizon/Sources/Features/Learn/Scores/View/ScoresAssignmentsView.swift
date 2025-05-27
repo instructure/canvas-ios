@@ -37,7 +37,7 @@ struct ScoresAssignmentsView: View {
             .padding(.top, .huiSpaces.space24)
             VStack(spacing: .zero) {
                 ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
-                    VStack(alignment: .leading, spacing: .huiSpaces.space8) {
+                    VStack(alignment: .leading, spacing: .huiSpaces.space12) {
                         Text("Name: \(assignment.name)", bundle: .horizon)
                         if let dueAtString = assignment.dueAtString {
                             Text("Due Date: \(dueAtString)", bundle: .horizon)

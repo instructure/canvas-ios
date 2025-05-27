@@ -23,6 +23,7 @@ import SwiftUI
 struct DashboardView: View {
     @Bindable private var viewModel: DashboardViewModel
     @Environment(\.viewController) private var viewController
+    @State private var isShowHeader: Bool = true
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -41,7 +42,7 @@ struct DashboardView: View {
                 ),
                 refreshAction: viewModel.reload
             ) { _ in
-                LazyVStack(spacing: .zero) {
+                VStack(spacing: .zero) {
                     if viewModel.courses.isEmpty, viewModel.state == .data {
                         Text("You aren’t currently enrolled in a course.", bundle: .horizon)
                             .padding(.huiSpaces.space24)
@@ -50,20 +51,40 @@ struct DashboardView: View {
                             .huiTypography(.h3)
 
                     } else {
+                        topView
                         contentView(courses: viewModel.courses)
                             .padding(.bottom, .huiSpaces.space16)
                     }
                 }
             }
         }
-        .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
+        .safeAreaInset(edge: .top, spacing: .zero) {
+            if isShowHeader {
+                navigationBar
+                    .toolbar(.hidden)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            } else {
+                Rectangle()
+                    .fill(Color.huiColors.surface.pagePrimary)
+                    .frame(height: 55)
+                    .ignoresSafeArea()
+            }
+        }
         .scrollIndicators(.hidden, axes: .vertical)
         .background(Color.huiColors.surface.pagePrimary)
         .animation(.smooth, value: viewModel.invitedCourses)
+        .animation(.linear, value: isShowHeader)
         .alert(isPresented: $viewModel.isAlertPresented) {
             Alert(title: Text("Something went wrong", bundle: .horizon), message: Text(viewModel.errorMessage))
         }
+    }
+
+    private var topView: some View {
+        Color.clear
+            .frame(height: 0)
+            .readingFrame { frame in
+                isShowHeader = frame.minY > -100
+            }
     }
 
     private func contentView(courses: [HCourse]) -> some View {
@@ -81,6 +102,7 @@ struct DashboardView: View {
 
                 if let learningObjectCardModel = course.learningObjectCardModel {
                     learningObjectCard(model: learningObjectCardModel, progress: course.progress)
+                        .padding(.bottom, .huiSpaces.space16)
                 } else {
                     Text("Congrats! You've completed your course.", bundle: .horizon)
                         .huiTypography(.h3)
@@ -101,7 +123,7 @@ struct DashboardView: View {
             Text(course.name)
                 .huiTypography(.h1)
                 .foregroundStyle(Color.huiColors.text.title)
-                .padding(.top, .huiSpaces.space48)
+                .padding(.top, .huiSpaces.space16)
                 .padding(.bottom, .huiSpaces.space16)
 
             HorizonUI.ProgressBar(
