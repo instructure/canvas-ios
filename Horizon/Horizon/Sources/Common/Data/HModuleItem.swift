@@ -130,8 +130,8 @@ struct HModuleItem: Equatable {
         return estimatedDuration?.toISO8601Duration
     }
 
-    var minScoreDescription: String? {
-        return completionRequirement?.type == .min_score ? completionRequirement?.description : nil
+    var statusDescription: String {
+        return completionRequirement?.description ?? String(localized: "Optional")
     }
 }
 

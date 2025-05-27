@@ -72,7 +72,7 @@ struct ModuleItemListView: View {
                     dueDate: item.dueAt?.dateOnlyString,
                     lockedMessage: item.lockedMessage,
                     points: item.points?.trimmedString,
-                    minScore: item.minScoreDescription,
+                    description: item.statusDescription,
                     isOverdue: item.isOverDue
                 )
             }
