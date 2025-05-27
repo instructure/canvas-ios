@@ -34,7 +34,9 @@ class GetNotebookNotesUseCase: CollectionUseCase {
     let request = GetNotesQuery()
 
     public var scope: Scope {
-        var predicates: [NSPredicate] = []
+        var predicates: [NSPredicate] = [
+            NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.userID), Context.currentUser.id)
+        ]
         if let courseID = courseID {
             predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDNotebookNote.courseID), courseID))
         }
@@ -101,7 +103,11 @@ class GetNotebookNotesUseCase: CollectionUseCase {
         let removed = tuple.1
 
         changed.forEach { redwoodNote in
-            CDNotebookNote.save(redwoodNote, in: client)
+            CDNotebookNote.save(
+                redwoodNote,
+                userID: Context.currentUser.id,
+                in: client
+            )
         }
 
         removed.forEach { cdNotebookNote in
