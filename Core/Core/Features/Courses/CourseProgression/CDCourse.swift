@@ -133,7 +133,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
                 model.nextModuleID = node?.id
                 model.nextModuleItemID = firstItem.content?.id
                 model.nextModuleItemEstimatedTime = firstItem.estimatedDuration
-                model.nextModuleItemType = firstItem.content?.type
+                model.nextModuleItemType = firstItem.content?.__typename
                 model.nextModuleItemDueDate = firstItem.content?.dueAt
                 model.nextModuleName = node?.name
                 model.nextModuleItemURL = firstItem.url
@@ -153,7 +153,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
             model.nextModuleID = nextModule?.id
             model.nextModuleItemID = nextModuleItem?.id
             model.nextModuleItemEstimatedTime = nextModuleItem?.estimatedDuration
-            model.nextModuleItemType = nextModuleItem?.content?.type
+            model.nextModuleItemType = nextModuleItem?.content?.__typename
             model.nextModuleItemDueDate = nextModuleItem?.content?.dueAt
             model.nextModuleName = nextModule?.name
             model.nextModuleItemURL = nextModuleItem?.url
