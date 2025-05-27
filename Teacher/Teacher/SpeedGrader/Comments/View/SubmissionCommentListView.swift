@@ -48,15 +48,13 @@ struct SubmissionCommentListView: View {
         commentLibrary: SubmissionCommentLibraryViewModel,
         focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
     ) {
-        _viewModel = ObservedObject(wrappedValue: viewModel)
-
+        self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
         self._comment = enteredComment
         self.commentLibrary = commentLibrary
         self._focusedTab = focusedTab
-
     }
 
     var body: some View {
