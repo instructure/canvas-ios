@@ -16,9 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// Configuration settings file format documentation can be found at:
-// https://help.apple.com/xcode/#/dev745c5c974
+import SwiftUI
+import Core
 
-CEDAR_BASE_URL=cedar-api-dev.domain-svcs.nonprod.inseng.io
-PINE_BASE_URL=pine-api-dev.domain-svcs.nonprod.inseng.io
-REDWOOD_BASE_URL=redwood-api-dev.domain-svcs.nonprod.inseng.io
+struct InstitutionLogo: View {
+    var body: some View {
+        if let url = Brand.shared.institutionLogo {
+            RemoteImage(url, width: 100, height: 50, shouldHandleAnimatedGif: false)
+        }
+    }
+}
+
+#Preview {
+    InstitutionLogo()
+}

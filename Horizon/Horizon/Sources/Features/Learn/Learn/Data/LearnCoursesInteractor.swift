@@ -22,7 +22,7 @@ import CombineSchedulers
 import Foundation
 
 protocol GetLearnCoursesInteractor {
-    func getFirstCourse(ignoreCache: Bool) -> AnyPublisher<LearnCourse, Error>
+    func getFirstCourse(ignoreCache: Bool) -> AnyPublisher<LearnCourse?, Error>
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[LearnCourse], Never>
 }
 
@@ -43,10 +43,10 @@ final class GetLearnCoursesInteractorLive: GetLearnCoursesInteractor {
         self.scheduler = scheduler
     }
 
-    func getFirstCourse(ignoreCache: Bool) -> AnyPublisher<LearnCourse, any Error> {
+    func getFirstCourse(ignoreCache: Bool) -> AnyPublisher<LearnCourse?, any Error> {
         ReactiveStore(useCase: GetLearnCoursesUseCase(userId: userId))
-            .getEntities()
-            .compactMap { $0.first }
+            .getEntities(ignoreCache: ignoreCache)
+            .map { $0.first }
             .map { LearnCourse(from: $0) }
             .eraseToAnyPublisher()
     }
