@@ -119,7 +119,7 @@ final class CourseDetailsViewModel {
                 .sink { [weak self] courseInfo in
                     self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
                 }
-                .store(in: &self.subscriptions)
+                .store(in: &subscriptions)
         }
     }
 
