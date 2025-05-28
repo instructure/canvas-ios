@@ -41,9 +41,11 @@ schemes:
     build:
       targets:
         Widgets: all
+        Student: all
     run:
-      targets:
-        Widgets: all
+      askForAppToLaunch: true
       environmentVariables:
         _XCWidgetKind: TodoWidget
         _XCWidgetFamily: systemMedium
+    profile:
+      askForAppToLaunch: true

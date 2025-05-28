@@ -72,7 +72,6 @@ struct TodoScreen: View {
 
     private var canvasLogo: some View {
         HStack {
-            Text("777").padding().backgroundStyle(Color.red)
             Spacer()
             Link(destination: viewFullListRoute) {
                 ZStack {
