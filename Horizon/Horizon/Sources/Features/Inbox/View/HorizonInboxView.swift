@@ -22,7 +22,16 @@ import SwiftUI
 struct HorizonInboxView: View {
 
     @State private var messagesFilterSelection: String = "All Messages"
-    @State private var filterByPersonSelection: String = ""
+    @State private var filterByPersonSelection: [String] = [
+        "One",
+        "Two",
+        "Three",
+        "Four",
+        "Five",
+        "Six",
+        "Seven",
+        "Eight"
+    ]
     @State private var isMessagesFilterFocused: Bool = false
     @State private var isFilterByPersonFocused: Bool = false
 
@@ -46,8 +55,8 @@ struct HorizonInboxView: View {
                     )
                     .padding(.horizontal, .huiSpaces.space16)
 
-                    HorizonUI.SingleSelect(
-                        selection: $filterByPersonSelection,
+                    HorizonUI.MultiSelect(
+                        selections: $filterByPersonSelection,
                         focused: $isFilterByPersonFocused,
                         label: nil,
                         options: [

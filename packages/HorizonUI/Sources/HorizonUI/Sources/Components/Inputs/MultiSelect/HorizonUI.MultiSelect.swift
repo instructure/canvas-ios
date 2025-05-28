@@ -1,0 +1,383 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Flow
+import Observation
+import SwiftUI
+
+extension HorizonUI {
+    public struct MultiSelect: View {
+        // MARK: Dependencies
+
+        private let disabled: Bool
+        private let error: String?
+        private let label: String?
+        private let options: [String]
+        private var optionsFiltered: [String] {
+            options.filter { !selections.contains($0) }
+        }
+        private let placeholder: String?
+        private let zIndex: Double
+        @Binding private var selections: [String]
+
+        // MARK: Properties
+
+        private var bodyHeight: CGFloat {
+            textInputMeasuredHeight + errorHeight
+        }
+
+        // The computed height of a single option
+        @State private var displayedOptionHeight: CGFloat = 0
+
+        // Computed height of the container for all options
+        private var displayedOptionsHeight: CGFloat {
+            focused ? min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300) : 0
+        }
+
+        // The computed height of the error text
+        @State private var errorHeight: CGFloat = 0
+
+        @Binding private var focused: Bool
+        private let focusedBinding: Binding<Bool>?
+
+        // The computed height of the label
+        @State private var labelMeasuredHeight: CGFloat = 0
+
+        // The container height for the text input. This is used to fix the height
+        // of the entire component so when the options are displayed, it doesnt
+        // push the content below it down
+        @State private var textInputMeasuredHeight: CGFloat = 0
+
+        // MARK: - Init
+
+        public init(
+            selections: Binding<[String]>,
+            focused: Binding<Bool>,
+            label: String? = nil,
+            options: [String],
+            disabled: Bool = false,
+            placeholder: String? = nil,
+            error: String? = nil,
+            zIndex: Double = 101
+        ) {
+            self.label = label
+            self.options = options
+            self._selections = selections
+            self.disabled = disabled
+            self.placeholder = placeholder
+            self.error = error
+            self.focusedBinding = focused
+            self._focused = focused
+            self.zIndex = zIndex
+        }
+
+        public var body: some View {
+            VStack(spacing: 0) {
+                VStack(spacing: 8) {
+                    labelText
+                    textInput
+                }
+                .onTapGesture(perform: onTapText)
+
+                ZStack(alignment: .top) {
+                    errorText
+                    displayedOptions
+                        .zIndex(zIndex)
+                }
+            }
+            .background(.clear)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: bodyHeight, alignment: .top)
+            .padding(.vertical, 1)
+            .zIndex(zIndex)
+        }
+
+        // MARK: - Private
+
+        private var displayedOptions: some View {
+            ScrollView {
+                VStack(spacing: .zero) {
+                    ForEach(optionsFiltered, id: \.self) { item in
+                        displayedOption(item)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.huiColors.surface.pageSecondary)
+                .padding(.vertical, .huiSpaces.space4)
+            }
+            .background(Color.huiColors.surface.pageSecondary)
+            .frame(height: displayedOptionsHeight)
+            .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
+            .padding(.top, .huiSpaces.space12)
+            .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
+            .animation(.easeInOut, value: displayedOptionsHeight)
+        }
+
+        private func displayedOption(_ text: String) -> some View {
+            Text(text)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, .huiSpaces.space12)
+                .padding(.vertical, .huiSpaces.space8)
+                .background {
+                    GeometryReader { geometry in
+                        HStack {}
+                            .onAppear {
+                                if geometry.size.height != displayedOptionHeight {
+                                    displayedOptionHeight = geometry.size.height
+                                }
+                            }
+                    }
+                }
+                .background(Color.huiColors.surface.pageSecondary)
+                .huiTypography(.p1)
+                .onTapGesture {
+                    focused = false
+                    selections.append(text)
+                }
+        }
+
+        @ViewBuilder
+        private var errorText: some View {
+            if let error = error {
+                HStack {
+                    HorizonUI.icons.error
+                        .frame(width: .huiSpaces.space16, height: .huiSpaces.space16)
+                        .foregroundColor(.huiColors.text.error)
+                    Text(error)
+                        .huiTypography(.p2)
+                        .foregroundColor(.huiColors.text.error)
+                }
+                .background {
+                    GeometryReader { geometry in
+                        HStack {}
+                            .onAppear {
+                                errorHeight = geometry.size.height
+                            }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, .huiSpaces.space8)
+                .padding(.top, .huiSpaces.space2)
+            }
+        }
+
+        @ViewBuilder
+        private func option(_ text: String) -> some View {
+            HStack {
+                Text(text)
+                    .huiTypography(.p3)
+                HorizonUI.icons.closeSmall
+                    .frame(width: HorizonUI.spaces.space12, height: HorizonUI.spaces.space12)
+            }
+            .padding(.vertical, .huiSpaces.space4)
+            .padding(.horizontal, .huiSpaces.space8)
+            .background(
+                HorizonUI.colors.surface.cardSecondary
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1.attributes.radius)
+                    )
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1.attributes.radius)
+                    .stroke(
+                        Color.huiColors.lineAndBorders.lineStroke,
+                        lineWidth: HorizonUI.Borders.level1.rawValue
+                    )
+            )
+            .onTapGesture {
+                selections.removeAll(where: { $0 == text })
+            }
+        }
+
+        @ViewBuilder
+        private var labelText: some View {
+            if let label = label {
+                Text(label)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, .huiSpaces.space8)
+                    .huiTypography(.labelLargeBold)
+                    .foregroundColor(.huiColors.text.body)
+                    .background {
+                        GeometryReader { geometry in
+                            HStack {}
+                                .onAppear {
+                                    labelMeasuredHeight = geometry.size.height
+                                }
+                        }
+                    }
+            }
+        }
+
+        private var textInput: some View {
+            ZStack(alignment: .topTrailing) {
+                HFlow {
+                    if selections.isEmpty {
+                        Text(placeholder ?? "")
+                            .huiTypography(.p1)
+                    } else {
+                        ForEach(selections, id: \.self) { selection in
+                            option(selection)
+                        }
+                    }
+                }
+                .foregroundColor(textInputTextColor)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(HorizonUI.spaces.space12)
+                .padding(.trailing, .huiSpaces.space24)
+                .overlay(textOverlay(isOuter: false))
+                .background(
+                    HorizonUI.colors.surface.pageSecondary.clipShape(
+                        RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                    )
+                )
+
+                Image.huiIcons.chevronRight
+                    .padding(.horizontal, .huiSpaces.space12)
+                    .padding(.vertical, .huiSpaces.space16)
+                    .tint(Color.huiColors.icon.default)
+                    .rotationEffect(.degrees(focused ? -90 : 90))
+                    .animation(.easeInOut, value: focused)
+            }
+            .padding(.huiSpaces.space4)
+            .overlay(textOverlay(isOuter: true))
+            .frame(maxWidth: .infinity)
+            .background {
+                GeometryReader { geometry in
+                    HStack {}
+                        .onAppear {
+                            textInputMeasuredHeight = geometry.size.height
+                        }
+                }
+            }
+            .onTapGesture(perform: onTapText)
+            .opacity(disabled ? 0.5 : 1.0)
+        }
+
+        // MARK: - Private Functions
+
+        private func onTapText() {
+            if disabled || optionsFiltered.isEmpty {
+                return
+            }
+            focused = !focused
+        }
+
+        private var textInputTextColor: Color {
+            selections.isEmpty ? .huiColors.text.placeholder : .huiColors.text.body
+        }
+
+        private func textOverlay(isOuter: Bool = false) -> some View {
+            RoundedRectangle(cornerRadius: textOverlayCornerRadius(isOuter: isOuter))
+                .stroke(
+                    textOverlayStrokeColor(isOuter: isOuter),
+                    lineWidth: textOverlayLineWidth(isOuter: isOuter)
+                )
+                .opacity(textOverlayStrokeOpacity(isOuter: isOuter))
+                .animation(.easeInOut, value: focused)
+                .animation(.easeInOut, value: textOverlayStrokeColor(isOuter: isOuter))
+        }
+
+        private func textOverlayCornerRadius(isOuter: Bool = false) -> CGFloat {
+            HorizonUI.CornerRadius.level1_5.attributes.radius + (isOuter ? 2 : 0)
+        }
+
+        private func textOverlayStrokeOpacity(isOuter: Bool = false) -> Double {
+            focused ? 1.0 : (isOuter ? 0.0 : 0.5)
+        }
+
+        private func textOverlayLineWidth(isOuter: Bool = false) -> CGFloat {
+            isOuter ? HorizonUI.Borders.level2.rawValue : HorizonUI.Borders.level1.rawValue
+        }
+
+        private func textOverlayStrokeColor(isOuter: Bool = false) -> Color {
+            if error?.isEmpty ?? true {
+                if isOuter {
+                    return .huiColors.surface.institution
+                } else {
+                    return .huiColors.lineAndBorders.containerStroke
+                }
+            }
+            return .huiColors.text.error
+        }
+    }
+
+    private struct VStackHeightKey: PreferenceKey {
+        typealias Value = CGFloat
+
+        static let defaultValue: CGFloat = 0
+
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = nextValue()
+        }
+    }
+}
+
+#Preview {
+    @Previewable @State var selections = ["One", "Two"]
+    @Previewable @State var focused = false
+
+    @Previewable @State var selectedOptionIndex = 0
+
+    let options = [
+        "Alphabet",
+        "Backyard",
+        "Country",
+        "Doctor",
+        "Elephant",
+        "Fuzz",
+        "Gorilla",
+        "Horse",
+        "Igloo",
+        "Jelly",
+        "Kangaroo",
+        "Lemon",
+        "Mango",
+        "Nose",
+        "Orange",
+        "Pineapple",
+        "Quilt",
+        "Rabbit",
+        "Squirrel",
+        "Tiger",
+        "Umbrella",
+        "Violet",
+        "Wagon",
+        "Xylophone",
+        "Yak",
+        "Zebra"
+    ]
+
+    VStack {
+        VStack {
+            HorizonUI.MultiSelect(
+                selections: $selections,
+                focused: $focused,
+                label: "Words of the Alphabet",
+                options: options,
+                disabled: false,
+                placeholder: "Select an option",
+                error: "This is an error"
+            )
+        }
+        .padding(.horizontal, .huiSpaces.space24)
+    }
+    .frame(maxHeight: .infinity, alignment: .top)
+    .background(HorizonUI.colors.surface.pagePrimary)
+}

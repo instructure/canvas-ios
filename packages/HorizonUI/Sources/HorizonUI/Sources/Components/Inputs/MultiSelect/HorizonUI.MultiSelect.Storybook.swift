@@ -16,19 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import SwiftUI
 
-struct HInboxAssembly {
-    static func makeView() -> UIViewController {
-        let inboxViewModel = HInboxViewModel()
-        let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPage: inboxViewModel
-        )
+extension HorizonUI.MultiSelect {
+    struct Storybook: View {
 
-        let viewController = CoreHostingController(
-            HorizonInboxView()
-        )
-        return viewController
+        @State var focused = false
+        @State var selections = ["Option 1"]
+
+        var body: some View {
+            HorizonUI.MultiSelect(
+                selections: $selections,
+                focused: $focused,
+                label: "Label",
+                options: Array(1 ... 20).map { "Option \($0)" }
+            )
+            .frame(maxHeight: .infinity, alignment: .top)
+            .padding(.horizontal, .huiSpaces.space36)
+        }
     }
+}
+
+#Preview {
+    HorizonUI.MultiSelect.Storybook()
 }
