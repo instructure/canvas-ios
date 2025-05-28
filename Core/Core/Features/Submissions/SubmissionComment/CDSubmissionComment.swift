@@ -26,6 +26,7 @@ final public class CDSubmissionComment: NSManagedObject {
     @NSManaged public var comment: String?
     @NSManaged public var createdAt: Date?
     @NSManaged public var isRead: Bool
+    @NSManaged public var attachments: Set<CDCommentAttachment>?
 
     public var attempt: Int? {
         if let attemptFromAPI {
@@ -55,6 +56,14 @@ final public class CDSubmissionComment: NSManagedObject {
         dbEntity.createdAt = apiEntity?.createdAt
         dbEntity.isRead = apiEntity?.read ?? true
 
+        if let attachments = apiEntity?.attachments {
+            let attachmentsEntities: [CDCommentAttachment] = attachments.map { apiItem in
+                return CDCommentAttachment.save(apiItem, in: context)
+            }
+            dbEntity.attachments = Set(attachmentsEntities)
+        } else {
+            dbEntity.attachments = []
+        }
         return dbEntity
     }
 }

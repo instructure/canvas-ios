@@ -23,7 +23,7 @@ import SwiftUI
 struct SubmissionCommentView: View {
     @Bindable var viewModel: SubmissionCommentViewModel
     @FocusState private var isTextAreaFocused: Bool
-
+    @State private var selectedAttachment: CommentAttachment?
     @Environment(\.dismiss) private var dismiss
     @Environment(\.viewController) private var viewController
 
@@ -81,15 +81,15 @@ struct SubmissionCommentView: View {
     private func commentView(_ comment: SubmissionComment) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space12) {
             VStack(alignment: .leading, spacing: .huiSpaces.space2) {
-               HStack {
+                HStack {
                     Text(comment.authorName)
                         .huiTypography(.labelLargeBold)
                         .foregroundStyle(Color.huiColors.text.title)
-                       Spacer()
-                       HorizonUI.Badge(type: .solidColor, style: .primary)
-                           .hidden(comment.isRead)
+                    Spacer()
+                    HorizonUI.Badge(type: .solidColor, style: .primary)
+                        .hidden(comment.isRead)
                 }
-
+                
                 if let createdAtString = comment.createdAtString {
                     Text(createdAtString)
                         .huiTypography(.p2)
@@ -105,6 +105,8 @@ struct SubmissionCommentView: View {
             Text(comment.comment)
                 .huiTypography(.p1)
                 .foregroundStyle(Color.huiColors.text.body)
+            
+            attachmentsViews(comment.attachments)
         }
         .padding(.huiSpaces.space16)
         .background(Color.huiColors.surface.pageSecondary)
@@ -116,6 +118,37 @@ struct SubmissionCommentView: View {
         .huiCornerRadius(level: .level3)
         .padding(.leading, comment.isCurrentUsersComment ? .huiSpaces.space24 : .zero)
         .padding(.trailing, comment.isCurrentUsersComment ? .zero : .huiSpaces.space24)
+    }
+
+    private func attachmentsViews(_ attachments: [CommentAttachment]) -> some View {
+        ForEach(attachments) { attachment in
+            Button {
+                selectedAttachment = attachment
+            } label: {
+                attachmentRow(for: attachment)
+            }
+        }
+    }
+
+    private func attachmentRow(for attachment: CommentAttachment) -> some View {
+        HorizonUI.UploadedFile(
+            fileName: attachment.displayName ?? "",
+            actionType: selectedAttachment == attachment
+            ? (viewModel.fileState == .loading ? .loading : .download)
+            : .download,
+            isSelected: selectedAttachment == attachment
+        ) {
+            handleAttachmentTap(attachment)
+        }
+    }
+
+    private func handleAttachmentTap(_ attachment: CommentAttachment) {
+        selectedAttachment = attachment
+        if viewModel.fileState == .loading {
+            viewModel.cancelDownload()
+        } else {
+            viewModel.downloadFile(attachment: attachment, viewController: viewController)
+        }
     }
 
     @ViewBuilder
