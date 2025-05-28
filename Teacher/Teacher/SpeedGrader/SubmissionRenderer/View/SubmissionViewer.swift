@@ -27,6 +27,7 @@ struct SubmissionViewer: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @ObservedObject private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
 
     public init(assignment: Assignment, submission: Submission, fileID: String?, studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel, handleRefresh: (() -> Void)?) {
@@ -65,7 +66,9 @@ struct SubmissionViewer: View {
                     Text("This student's responses are hidden because this assignment is anonymous.", bundle: .teacher)
                     Spacer()
                 }
-                .font(.regular16).foregroundColor(.textDarkest)
+                .font(.regular16)
+                .padding(InstUI.Styles.Padding.standard.rawValue)
+                .foregroundColor(.textDarkest)
                 .multilineTextAlignment(.center)
             } else {
                 WebSession(url: submission.previewUrl) { url in
@@ -105,17 +108,19 @@ struct SubmissionViewer: View {
                 VStack(alignment: .center, spacing: 0) {
                     Spacer()
                     Text("Failed to load submission data!", bundle: .teacher)
-                        .font(.regular16).foregroundColor(.textDarkest)
+                        .font(.regular16)
+                        .foregroundColor(.textDarkest)
                     Text(error.localizedDescription)
-                        .font(.regular16).foregroundColor(.textDarkest)
+                        .font(.regular16)
+                        .foregroundColor(.textDarkest)
                         .padding(.bottom, 10)
-                    Button(action: studentAnnotationViewModel.retry, label: {
+                    Button(action: studentAnnotationViewModel.retry) {
                         Text("Retry", bundle: .teacher)
                             .foregroundColor(Color(Brand.shared.primary))
-                    })
+                    }
                     Spacer()
                 }
-                .padding()
+                .padding(InstUI.Styles.Padding.standard.rawValue)
                 .frame(maxWidth: .infinity)
             case nil:
                 ProgressView()
@@ -140,7 +145,9 @@ struct SubmissionViewer: View {
                 }
                 Spacer()
             }
-                .font(.regular16).foregroundColor(.textDarkest)
+                .font(.regular16)
+                .padding(InstUI.Styles.Padding.standard.rawValue)
+                .foregroundColor(.textDarkest)
                 .multilineTextAlignment(.center)
         }
     }
@@ -154,4 +161,23 @@ struct SubmissionViewer: View {
         env.loginDelegate?.openExternalURL(url)
         return true
     }
+}
+
+#Preview {
+    let environment = PreviewEnvironment()
+    SubmissionViewer(
+        assignment: .save(
+            .make(anonymous_submissions: true),
+            in: environment.database.viewContext,
+            updateSubmission: false,
+            updateScoreStatistics: false
+        ),
+        submission: .save(
+            .make(submission_type: .online_quiz),
+            in: environment.database.viewContext,
+        ),
+        fileID: nil,
+        studentAnnotationViewModel: .init(submission: .save(.make(), in: environment.database.viewContext)),
+        handleRefresh: { }
+    )
 }
