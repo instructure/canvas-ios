@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import CoreData
 @testable import Core
+import CoreData
+import XCTest
 
 class GetCoursesProgressionUseCaseTests: CoreTestCase {
     func testCacheKeyWithCourseId() {
@@ -34,7 +34,7 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
     func testRequestProperties() {
         let useCase = GetCoursesProgressionUseCase(userId: "user_1", horizonCourses: true)
         let request = useCase.request
-        
+
         XCTAssertEqual(request.variables.id, "user_1")
         XCTAssertEqual(request.variables.horizonCourses, true)
     }
@@ -42,10 +42,10 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
     func testScopeWithCourseId() {
         let useCase = GetCoursesProgressionUseCase(userId: "user_1", courseId: "course_123")
         let scope = useCase.scope
-        
+
         // Test that the predicate matches the expected format for a where clause
         XCTAssertEqual(scope.predicate.predicateFormat, "courseID == \"course_123\"")
-        
+
         // Test that the sort descriptor is correct
         XCTAssertEqual(scope.order.count, 1)
         XCTAssertEqual(scope.order.first?.key, "courseID")
@@ -55,10 +55,10 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
     func testScopeWithoutCourseId() {
         let useCase = GetCoursesProgressionUseCase(userId: "user_1")
         let scope = useCase.scope
-        
+
         // For .all scope, we should get a TRUEPREDICATE
         XCTAssertTrue(scope.predicate.predicateFormat == "TRUEPREDICATE")
-        
+
         // Test that the sort descriptor is correct for .all
         XCTAssertEqual(scope.order.count, 1)
         XCTAssertEqual(scope.order.first?.key, "objectID")
@@ -79,7 +79,7 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
                 modulesConnection: nil
             )
         )
-        
+
         let response = GetCoursesProgressionResponse(
             data: GetCoursesProgressionResponse.DataModel(
                 user: GetCoursesProgressionResponse.LegacyNodeModel(
@@ -87,10 +87,10 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
                 )
             )
         )
-        
+
         let useCase = GetCoursesProgressionUseCase(userId: "user_1")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
-        
+
         let cdCourses: [CDCourse] = databaseClient.fetch(scope: .where(#keyPath(CDCourse.courseID), equals: "course_1"))
         XCTAssertEqual(cdCourses.count, 1)
         XCTAssertEqual(cdCourses.first?.courseID, "course_1")
