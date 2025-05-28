@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "777" : {
+
+    },
     "American literature IV" : {
       "comment" : "Example course name",
       "localizations" : {

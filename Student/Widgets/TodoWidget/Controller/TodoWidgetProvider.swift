@@ -23,18 +23,15 @@ import WidgetKit
 struct TodoWidgetEntry: TimelineEntry {
     static let publicPreview: Self = .init(
         data: .make(),
-        date: Date(),
-        message: "Preview"
+        date: Date()
     )
     static let loggedOutModel: Self = .init(
         data: TodoModel(isLoggedIn: false),
-        date: Date(),
-        message: "Logged out"
+        date: Date()
     )
 
     let data: TodoModel
     let date: Date
-    let message: String
 
     var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
 }
@@ -46,7 +43,6 @@ class TodoWidgetProvider: TimelineProvider {
     private var endDate: Date { startDate.addDays(28) }
 
     private let env = AppEnvironment.shared
-    private var isLoggedIn: Bool { LoginSession.mostRecent != nil }
     private var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
     private var fetchSubscription: AnyCancellable?
 
@@ -57,22 +53,22 @@ class TodoWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping @Sendable (Timeline<TodoWidgetEntry>) -> Void) {
+
         if context.isPreview {
-            let timeline = Timeline(entries: [placeholder(in: context)], policy: .after(refreshDate))
+            let timeline = Timeline(entries: [placeholder(in: context)], policy: .never)
             completion(timeline)
             return
         }
-        guard isLoggedIn else {
+
+        guard let session = LoginSession.mostRecent else {
             completion(Timeline(entries: [.loggedOutModel], policy: .after(refreshDate)))
             return
         }
 
-        if fetchSubscription != nil {
-            return
-        }
+        if fetchSubscription != nil { return }
 
-        setupLastLoginCredentials()
-        fetchSubscription = fetch()
+        setupEnvironment(with: session)
+        fetchSubscription = fetch(for: session)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] timeline in
                 completion(timeline)
@@ -80,13 +76,15 @@ class TodoWidgetProvider: TimelineProvider {
             }
     }
 
-    private func setupLastLoginCredentials() {
-        guard let session = LoginSession.mostRecent else { return }
+    private func setupEnvironment(with session: LoginSession) {
+        print("prepare environment")
         env.app = .student // Otherwise getPlannables never completes
-        env.userDidLogin(session: session)
+        env.userDidLogin(session: session, isSilent: true)
     }
 
-    private func fetch() -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
+    private func fetch(for session: LoginSession) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
+        print("fetch plannables")
+
         let env = env
         let startDate = startDate
         let endDate = endDate
@@ -101,34 +99,31 @@ class TodoWidgetProvider: TimelineProvider {
         .flatMap { _, courses in
             let favoriteCourses = courses.filter { $0.isFavorite }
             let coursesToMap = favoriteCourses.isNotEmpty ? favoriteCourses : courses
-            var contextCodesToFetch = coursesToMap
-                .compactMap(\.id)
-                .map { courseId in
-                    "course_\(courseId)"
-                }
-            if let userId = LoginSession.mostRecent?.userID {
-                contextCodesToFetch.append("user_\(userId)")
-            }
-            let plannablesUseCase = GetPlannables(
-                userID: "self",
-                startDate: startDate,
-                endDate: endDate,
-                contextCodes: contextCodesToFetch
-            )
-            let plannablesStore = ReactiveStore(
-                useCase: plannablesUseCase,
+            var contextCodesToFetch = coursesToMap.map(\.canvasContextID)
+
+            let userContext = Core.Context(.user, id: session.userID)
+            contextCodesToFetch.append(userContext.canvasContextID)
+
+            return ReactiveStore(
+                useCase: GetPlannables(
+                    userID: "self",
+                    startDate: startDate,
+                    endDate: endDate,
+                    contextCodes: contextCodesToFetch
+                ),
                 environment: env
             )
-
-            return plannablesStore.getEntities()
+            .getEntities()
         }
         .map { plannables in
-            let plannableItems = plannables.filter {
-                $0.plannableType != .announcement && $0.plannableType != .assessment_request
-            }
+            let todoItems = plannables
+                .filter {
+                    $0.plannableType != .announcement && $0.plannableType != .assessment_request
+                }
+                .compactMap(TodoItem.init)
 
-            let model = TodoModel(items: plannableItems)
-            let entry = TodoWidgetEntry(data: model, date: Date(), message: "Data")
+            let model = TodoModel(items: todoItems)
+            let entry = TodoWidgetEntry(data: model, date: Date())
             return Timeline(entries: [entry], policy: .after(refreshDate))
         }
         .replaceError(with: Timeline(entries: [], policy: .after(refreshDate)))

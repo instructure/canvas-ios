@@ -37,10 +37,10 @@ extension Assignment {
     }
 }
 
-extension Plannable {
+extension TodoItem {
     var route: URL {
         guard let host = host else { return defaultRoute }
-        let url = switch plannableType {
+        let url = switch type {
         case .calendar_event: URL(string: "\(scheme)\(host)/calendar_events/\(id)")!
         case .planner_note: URL(string: "\(scheme)\(host)/widget/planner-notes/\(id)")!
         default: htmlURL ?? defaultRoute

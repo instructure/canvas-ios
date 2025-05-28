@@ -23,35 +23,25 @@ extension TimeInterval {
     static let widgetRefresh: TimeInterval = 7200 // 2 hours
 }
 
-extension Array where Element == Plannable {
-    func sortedByDueDate() -> [Element] {
-        sorted { $0.date ?? Date.distantFuture < $1.date ?? Date.distantFuture }
-    }
+extension Array where Element == TodoItem {
 
     func itemDueOnSameDateAsPrevious(_ item: Element) -> Bool {
-        guard let indexOfItem = firstIndex(of: item) else { return false }
-        guard indexOfItem > 0 else { return false }
-        guard let itemDate = item.date else { return false }
+        guard
+            let indexOfItem = firstIndex(of: item),
+            indexOfItem > startIndex
+        else { return false }
+
         let previousItem = self[indexOfItem - 1]
-        guard let previousItemDate = previousItem.date else { return false }
-        let dateStringOfPrevious = previousItemDate.formatted(.dateTime.year().month().day())
-        let dateStringOfCurrent = itemDate.formatted(.dateTime.year().month().day())
-        return dateStringOfCurrent == dateStringOfPrevious
+        return previousItem.date.startOfDay() == item.date.startOfDay()
     }
 
     func itemDueOnSameDateAsNext(_ item: Element) -> Bool {
-        guard let indexOfItem = firstIndex(of: item) else { return false }
-        guard count > indexOfItem + 1 else { return false }
-        guard let itemDate = item.date else { return false }
+        guard
+            let indexOfItem = firstIndex(of: item),
+            indexOfItem < index(before: endIndex)
+        else { return false }
+        
         let nextItem = self[indexOfItem + 1]
-        guard let nextItemDate = nextItem.date else { return false }
-        let dateStringOfNext = nextItemDate.formatted(.dateTime.year().month().day())
-        let dateStringOfCurrent = itemDate.formatted(.dateTime.year().month().day())
-        return dateStringOfCurrent == dateStringOfNext
-    }
-
-    func firstN(_ n: Int) -> [Element] {
-        guard count >= n else { return self }
-        return Array(self[..<n])
+        return nextItem.date.startOfDay() == item.date.startOfDay()
     }
 }

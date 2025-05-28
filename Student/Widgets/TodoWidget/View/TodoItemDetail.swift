@@ -21,10 +21,8 @@ import WidgetKit
 import Core
 
 struct TodoItemDetail: View {
-    var item: Plannable
+    var item: TodoItem
     let itemDueOnSameDateAsNext: Bool
-    var itemDate: Date { item.date ?? Date.distantFuture }
-    var isToday: Bool { itemDate.dateOnlyString == Date.now.dateOnlyString }
 
     var body: some View {
         Link(destination: item.route) {
@@ -42,29 +40,33 @@ struct TodoItemDetail: View {
 
     private var contextSection: some View {
         HStack(spacing: 4) {
-            if let itemIcon = item.icon() {
-                Image(uiImage: itemIcon)
+            if let itemIcon = item.icon {
+                itemIcon
                     .size(16)
-                    .foregroundStyle(item.color.asColor)
+                    .foregroundStyle(item.color)
                 InstUI.Divider()
                     .frame(maxHeight: 16)
             }
-            Text(item.contextName ?? "")
-                .foregroundStyle(item.color.asColor)
+            Text(item.contextName)
+                .foregroundStyle(item.color)
                 .font(.regular12)
         }
     }
 
     private var titleSection: some View {
-        Text(item.title ?? "")
+        Text(item.title)
             .font(.semibold14)
             .foregroundStyle(Color.textDarkest)
     }
 
     private var timeSection: some View {
-        Text(itemDate.formatted(.dateTime.hour().minute()))
+        Text(item.date.formatted(.dateTime.hour().minute()))
             .font(.regular12)
             .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var isToday: Bool {
+        return item.date.startOfDay() == Date.now.startOfDay()
     }
 }
 
@@ -72,19 +74,17 @@ struct TodoItemDetail: View {
 
 struct TodoItemDetailPreviews: PreviewProvider {
     static var previews: some View {
-        let apiPlannable = APIPlannable.make(
-            plannable_type: "assignment",
-            plannable: APIPlannable.plannable(
-                details: "Description",
-                title: "Important Assignment"
-            )
+        let item = TodoItem(
+            plannableID: "1",
+            type: .assignment,
+            title: "Important Assignment"
         )
-        let item = Plannable.save(apiPlannable, userID: "", in: PreviewEnvironment().database.viewContext)
+
         return TodoItemDetail(item: item, itemDueOnSameDateAsNext: false)
-        .containerBackground(for: .widget) {
-            SwiftUI.EmptyView()
-        }
-        .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .containerBackground(for: .widget) {
+                SwiftUI.EmptyView()
+            }
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
 

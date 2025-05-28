@@ -28,12 +28,17 @@ public enum WidgetSize: Int {
 struct TodoScreen: View {
     let model: TodoModel
     let widgetSize: WidgetSize
-    let items: [Plannable]
+    let items: [TodoItem]
 
     init(model: TodoModel, widgetSize: WidgetSize) {
         self.model = model
         self.widgetSize = widgetSize
-        self.items = model.items.sortedByDueDate().firstN(widgetSize.rawValue)
+        self.items = Array(
+            model
+                .items
+                .sorted { $0.date < $1.date }
+                .prefix(widgetSize.rawValue)
+        )
     }
 
     var body: some View {
@@ -49,7 +54,7 @@ struct TodoScreen: View {
 
     private var todoList: some View {
         VStack {
-            ForEach(items, id: \.id) { item in
+            ForEach(items) { item in
                 let itemDueOnSameDateAsPrevious: Bool = items.itemDueOnSameDateAsPrevious(item)
                 let itemDueOnSameDateAsNext: Bool = items.itemDueOnSameDateAsNext(item)
 
@@ -67,6 +72,7 @@ struct TodoScreen: View {
 
     private var canvasLogo: some View {
         HStack {
+            Text("777").padding().backgroundStyle(Color.red)
             Spacer()
             Link(destination: viewFullListRoute) {
                 ZStack {

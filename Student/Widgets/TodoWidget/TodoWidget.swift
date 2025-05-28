@@ -24,6 +24,8 @@ struct TodoWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: TodoWidgetProvider()) { model in
+
+            let _ = print("update todo widget ..")
             TodoWidgetScreen(model: model.data)
         }
         .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))

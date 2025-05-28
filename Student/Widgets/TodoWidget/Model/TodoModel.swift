@@ -17,6 +17,7 @@
 //
 
 import WidgetKit
+import SwiftUI
 import Core
 
 class TodoModel: WidgetModel {
@@ -24,27 +25,79 @@ class TodoModel: WidgetModel {
         Self.make()
     }
 
-    let items: [Plannable]
-
-    init(isLoggedIn: Bool = true, items: [Plannable] = []) {
+    let items: [TodoItem]
+    init(isLoggedIn: Bool = true, items: [TodoItem] = []) {
         self.items = items
         super.init(isLoggedIn: isLoggedIn)
     }
 }
 
+struct TodoItem: Identifiable, Equatable {
+    let plannableID: String
+    let type: PlannableType
+    let date: Date
+
+    let title: String
+    let contextName: String
+    let htmlURL: URL?
+
+    let color: Color
+    let icon: Image?
+
+    init?(_ plannable: Plannable) {
+        guard let date = plannable.date else { return nil }
+
+        self.plannableID = plannable.id
+        self.type = plannable.plannableType
+        self.date = date
+
+        self.title = plannable.title ?? ""
+        self.contextName = plannable.contextName ?? ""
+        self.htmlURL = plannable.htmlURL
+
+        self.color = plannable.color.asColor
+        self.icon = plannable.icon().flatMap({ Image(uiImage: $0) })
+    }
+
+    var id: String { plannableID }
+
 #if DEBUG
+    init(
+        plannableID: String = "1",
+        type: PlannableType = .calendar_event,
+        date: Date = Clock.now,
+        title: String = "Example Todo",
+        contextName: String = "Example Course",
+        htmlURL: URL? = nil,
+        color: Color = .red,
+        icon: Image? = Image.assignmentLine
+    ) {
+
+        self.plannableID = plannableID
+        self.type = type
+        self.date = date
+
+        self.title = title
+        self.contextName = contextName
+        self.htmlURL = htmlURL
+
+        self.color = color
+        self.icon = icon
+    }
+#endif
+}
+
+#if DEBUG
+
 extension TodoModel {
     public static func make() -> TodoModel {
-        let apiPlannables: [APIPlannable] = [
-            .make(plannable_id: "1", plannable_type: "assignment", plannable: .init(details: "Details", title: "Important Assignment")),
-            .make(plannable_id: "2", plannable_type: "discussion", plannable: .init(details: "Details", title: "Discussion About Everything")),
-            .make(plannable_id: "3", plannable_type: "calendar_event", plannable: .init(details: "Details", title: "Huge Event")),
-            .make(plannable_id: "4", plannable_type: "planner_note", plannable: .init(details: "Details", title: "Don't forget")),
-            .make(plannable_id: "5", plannable_type: "quiz", plannable: .init(details: "Details", title: "Quiz About Life"))
+        let items = [
+            TodoItem(plannableID: "1", type: .assignment, title: "Important Assignment"),
+            TodoItem(plannableID: "2", type: .discussion_topic, title: "Discussion About Everything"),
+            TodoItem(plannableID: "3", type: .calendar_event, title: "Huge Event"),
+            TodoItem(plannableID: "4", type: .planner_note, title: "Don't forget"),
+            TodoItem(plannableID: "5", type: .quiz, title: "Quiz About Life")
         ]
-        let items = apiPlannables.map {
-            Plannable.save($0, userID: "", in: PreviewEnvironment().database.viewContext)
-        }
         return TodoModel(items: items)
     }
 }

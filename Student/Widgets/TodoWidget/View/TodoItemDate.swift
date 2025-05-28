@@ -21,16 +21,14 @@ import Core
 import WidgetKit
 
 struct TodoItemDate: View {
-    var item: Plannable
+    var item: TodoItem
     let itemDueOnSameDateAsPrevious: Bool
-    var itemDate: Date { item.date ?? Date.distantFuture }
-    var isToday: Bool { itemDate.dateOnlyString == Date.now.dateOnlyString }
 
     var body: some View {
         VStack(spacing: 2) {
             if !itemDueOnSameDateAsPrevious {
-                Link(destination: calendarDateRoute(itemDate)) {
-                    Text(itemDate.formatted(.dateTime.weekday()))
+                Link(destination: calendarDateRoute(item.date)) {
+                    Text(item.date.formatted(.dateTime.weekday()))
                         .font(.regular12)
                         .foregroundStyle(isToday ? .pink : .textDark)
                     ZStack {
@@ -40,7 +38,7 @@ struct TodoItemDate: View {
                                 .stroke(.pink, style: .init(lineWidth: 1))
                                 .frame(width: 32, height: 32)
                         }
-                        Text(itemDate.formatted(.dateTime.day()))
+                        Text(item.date.formatted(.dateTime.day()))
                             .font(.bold12)
                             .foregroundStyle(isToday ? .pink : .textDark)
                     }
@@ -49,25 +47,27 @@ struct TodoItemDate: View {
         }
         .frame(minWidth: 34)
     }
+
+    private var isToday: Bool {
+        return item.date.startOfDay() == Date.now.startOfDay()
+    }
 }
 
 #if DEBUG
 
 struct TodoItemDatePreviews: PreviewProvider {
     static var previews: some View {
-        let apiPlannable = APIPlannable.make(
-            plannable_type: "assignment",
-            plannable: APIPlannable.plannable(
-                details: "Description",
-                title: "Important Assignment"
-            )
+        let item = TodoItem(
+            plannableID: "1",
+            type: .assignment,
+            title: "Important Assignment"
         )
-        let item = Plannable.save(apiPlannable, userID: "", in: PreviewEnvironment().database.viewContext)
+
         return TodoItemDate(item: item, itemDueOnSameDateAsPrevious: false)
-        .containerBackground(for: .widget) {
-            SwiftUI.EmptyView()
-        }
-        .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .containerBackground(for: .widget) {
+                SwiftUI.EmptyView()
+            }
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
 
