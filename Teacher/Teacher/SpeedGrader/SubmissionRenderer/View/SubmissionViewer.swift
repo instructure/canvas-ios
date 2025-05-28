@@ -163,6 +163,8 @@ struct SubmissionViewer: View {
     }
 }
 
+#if DEBUG
+
 #Preview {
     let environment = PreviewEnvironment()
     SubmissionViewer(
@@ -181,3 +183,5 @@ struct SubmissionViewer: View {
         handleRefresh: { }
     )
 }
+
+#endif
