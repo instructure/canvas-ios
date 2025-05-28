@@ -16,27 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+import Combine
 import HorizonUI
 import SwiftUI
 
 struct HorizonInboxView: View {
 
+    @Bindable var viewModel: HorizonInboxViewModel
+
     @State private var messagesFilterSelection: String = "All Messages"
-    @State private var filterByPersonSelection: [String] = [
-        "One",
-        "Two",
-        "Three",
-        "Four",
-        "Five",
-        "Six",
-        "Seven",
-        "Eight"
-    ]
     @State private var isMessagesFilterFocused: Bool = false
     @State private var isFilterByPersonFocused: Bool = false
 
     var body: some View {
-//        GeometryReader { geometry in
         VStack {
             topBar
             ScrollView {
@@ -56,18 +49,10 @@ struct HorizonInboxView: View {
                     .padding(.horizontal, .huiSpaces.space16)
 
                     HorizonUI.MultiSelect(
-                        selections: $filterByPersonSelection,
+                        selections: $viewModel.filterByPersonSelections,
                         focused: $isFilterByPersonFocused,
                         label: nil,
-                        options: [
-                            "I",
-                            "Just",
-                            "Realized",
-                            "I",
-                            "Have",
-                            "No",
-                            "Options"
-                        ],
+                        options: viewModel.personOptions,
                         placeholder: String(localized: "Filter by person", bundle: .horizon)
                     )
                     .padding(.horizontal, .huiSpaces.space16)
@@ -108,7 +93,7 @@ struct HorizonInboxView: View {
 
     var topBar: some View {
         HStack {
-            HorizonBackButton { _ in }
+            HorizonBackButton(onBack: viewModel.goBack)
             Spacer()
             HorizonUI.PrimaryButton(
                 String(localized: "Create message", bundle: .horizon),
@@ -157,6 +142,28 @@ struct MessageRow: View {
     }
 }
 
+struct AddressbookInteractorPreview: AddressbookInteractor {
+    var state: CurrentValueSubject<StoreState, Never> {
+        CurrentValueSubject(.data)
+    }
+    var recipients: CurrentValueSubject<[SearchRecipient], Never> {
+        CurrentValueSubject([])
+    }
+    var canSelectAllRecipient: CurrentValueSubject<Bool, Never> {
+        CurrentValueSubject(false)
+    }
+
+    func refresh() -> Future<Void, Never> {
+        Future { promise in
+            promise(.success(()))
+        }
+    }
+}
+
 #Preview {
-    HorizonInboxView()
+    HorizonInboxView(
+        viewModel: HorizonInboxViewModel(
+            addressBookInteractor: AddressbookInteractorPreview()
+        )
+    )
 }

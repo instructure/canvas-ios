@@ -16,3 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+import Combine
+import SwiftUI
+
+@Observable
+class HorizonInboxViewModel {
+
+    // MARK: - Outputs
+    var personOptions: [String] = []
+    var filterByPersonSelections: [String] = []
+
+    // MARK: - Private
+
+    private let router: Router
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(
+        addressBookInteractor: AddressbookInteractor,
+        router: Router = AppEnvironment.shared.router
+    ) {
+        self.router = router
+
+        addressBookInteractor.recipients.sink { [weak self] recipients in
+            self?.personOptions = recipients.map { $0.name }
+        }.store(in: &subscriptions)
+    }
+
+    func goBack(_ viewController: WeakViewController) {
+        router.pop(from: viewController)
+    }
+}

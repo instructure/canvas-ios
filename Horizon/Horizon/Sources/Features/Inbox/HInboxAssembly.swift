@@ -27,7 +27,17 @@ struct HInboxAssembly {
         )
 
         let viewController = CoreHostingController(
-            HorizonInboxView()
+            HorizonInboxView(
+                viewModel: HorizonInboxViewModel(
+                    addressBookInteractor: AddressbookInteractorLive(
+                        env: AppEnvironment.shared,
+                        recipientContext: RecipientContext(
+                            name: "",
+                            context: .user(AppEnvironment.shared.currentSession?.userID ?? "")
+                        )
+                    )
+                )
+            )
         )
         return viewController
     }
