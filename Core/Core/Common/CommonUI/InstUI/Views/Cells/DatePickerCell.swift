@@ -41,7 +41,7 @@ extension InstUI {
         private let label: Text
         private let labelModifiers: (Text) -> Label
         private let customAccessibilityLabel: Text?
-        private let accessibilityIdPrefix: String?
+        private let identifierGroup: String?
         private let mode: Mode
         private let defaultDate: Date
         private let validFrom: Date
@@ -55,7 +55,7 @@ extension InstUI {
             label: Text,
             labelModifiers: @escaping (Text) -> Label = { $0 },
             customAccessibilityLabel: Text? = nil,
-            accessibilityIdPrefix: String? = nil,
+            identifierGroup: String? = nil,
             date: Binding<Date?>,
             mode: Mode = .dateAndTime,
             defaultDate: Date = .now,
@@ -67,7 +67,7 @@ extension InstUI {
             self.label = label
             self.labelModifiers = labelModifiers
             self.customAccessibilityLabel = customAccessibilityLabel
-            self.accessibilityIdPrefix = accessibilityIdPrefix
+            self.identifierGroup = identifierGroup
             self._date = date
             self.mode = mode
             self.defaultDate = defaultDate
@@ -206,8 +206,8 @@ extension InstUI {
             .labelsHidden() // This is needed to avoid the empty label filling up all the space
             .accessibilityLabel(customAccessibilityLabel ?? label)
             .accessibilityValue(String.localizedAccessibilityErrorMessage(errorMessage) ?? "") // Actual value is contained already
-            .accessibilityIdentifier(accessibilityIdPrefix?.appending(".\(accessibilityId)"))
             .accessibilityRefocusingOnPopoverDismissal()
+            .identifier(identifierGroup, accessibilityId)
         }
 
         // MARK: - Placeholder

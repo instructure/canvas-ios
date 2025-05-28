@@ -40,6 +40,23 @@ final class SingleSelectionOptionsTests: XCTestCase {
         XCTAssertEqual(testee.selected.value, TestConstants.items[3])
     }
 
+    func test_init_whenInitialIdIsProvided_shouldPopulateInitialAndSelected() {
+        let testee = SingleSelectionOptions(
+            all: TestConstants.items,
+            initialId: "3"
+        )
+
+        XCTAssertEqual(testee.selected.value, TestConstants.items[3])
+
+        // select something else
+        testee.selected.send(TestConstants.items[1])
+        XCTAssertEqual(testee.selected.value, TestConstants.items[1])
+
+        // reset to initial
+        testee.resetSelection()
+        XCTAssertEqual(testee.selected.value, TestConstants.items[3])
+    }
+
     func test_init_whenSelectedIsProvided_shouldPopulateInitial() {
         let testee = SingleSelectionOptions(
             all: TestConstants.items,

@@ -158,16 +158,25 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let row = Row(rawValue: indexPath.row), row == .postTo {
-            show(ItemPickerViewController.create(
-                title: String(localized: "Post to...", bundle: .teacher),
-                sections: [ ItemPickerSection(items: PostGradePolicy.allCases.map {
-                    ItemPickerItem(title: $0.title, subtitle: $0.subtitle, accessibilityIdentifier: "PostToSelection.\($0.rawValue)")
-                }) ],
-                selected: PostGradePolicy.allCases.firstIndex(of: postPolicy).flatMap {
-                    IndexPath(row: $0, section: 0)
-                },
-                delegate: self
-            ), sender: self)
+            let pageTitle = String(localized: "Post to...", bundle: .teacher)
+            let allCases = PostGradePolicy.allCases
+
+            let picker = ItemPickerScreen(
+                pageTitle: pageTitle,
+                identifierGroup: "PostPolicy.postToOptions",
+                allOptions: allCases.map { OptionItem(id: $0.optionItemId, title: $0.title, subtitle: $0.subtitle) },
+                initialOptionId: postPolicy.optionItemId,
+                didSelectOption: { [weak self] in
+                    guard let selectedCase = allCases.element(for: $0) else { return }
+
+                    self?.postPolicy = selectedCase
+                    self?.tableView.reloadData()
+                }
+            )
+
+            let pickerVC = CoreHostingController(picker)
+            pickerVC.navigationItem.title = pageTitle
+            show(pickerVC, sender: self)
         }
     }
 
@@ -230,13 +239,6 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-    }
-}
-
-extension PostGradesViewController: ItemPickerDelegate {
-    func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
-        postPolicy = PostGradePolicy.allCases[indexPath.row]
-        tableView.reloadData()
     }
 }
 
