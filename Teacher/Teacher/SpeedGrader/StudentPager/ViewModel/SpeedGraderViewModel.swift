@@ -20,7 +20,7 @@ import Combine
 import Core
 import SwiftUI
 
-class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, PagesViewControllerDelegate {
+class SpeedGraderViewModel: ObservableObject {
     typealias Page = CoreHostingController<SubmissionGraderView>
 
     // MARK: - Outputs
@@ -65,58 +65,6 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
         updateNavigationBarTheme(onChangeOf: interactor.contextInfo)
 
         interactor.load()
-    }
-
-    // MARK: - PagesViewControllerDataSource
-
-    func pagesViewController(_ pages: PagesViewController, pageBefore page: UIViewController) -> UIViewController? {
-        (page as? Page).flatMap { controller(for: $0.rootView.content.userIndexInSubmissionList - 1) }
-    }
-
-    func pagesViewController(_ pages: PagesViewController, pageAfter page: UIViewController) -> UIViewController? {
-        (page as? Page).flatMap { controller(for: $0.rootView.content.userIndexInSubmissionList + 1) }
-    }
-
-    func controller(for index: Int) -> UIViewController? {
-        let controller = grader(for: index).map { CoreHostingController($0, env: environment) }
-        controller?.view.backgroundColor = nil
-        return controller
-    }
-
-    func grader(for index: Int) -> SubmissionGraderView? {
-        guard
-            let data = interactor.data,
-            index >= 0,
-            index < data.submissions.count
-        else { return nil }
-
-        return SubmissionGraderView(
-            env: environment,
-            userIndexInSubmissionList: index,
-            viewModel: SubmissionGraderViewModel(
-                assignment: data.assignment,
-                submission: data.submissions[index],
-                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher()
-            ),
-            landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
-            handleRefresh: { [weak self] in
-                self?.interactor.refreshSubmission(forUserId: data.submissions[index].userID)
-            }
-        )
-    }
-
-    private func updatePages(_ pages: PagesViewController) {
-        guard let data = interactor.data else { return }
-
-        if let page = controller(for: data.focusedSubmissionIndex) {
-            pages.setCurrentPage(page)
-        }
-
-        for page in pages.children.compactMap({ $0 as? Page }) {
-            if let grader = grader(for: page.rootView.content.userIndexInSubmissionList) {
-                page.rootView.content = grader
-            }
-        }
     }
 
     // MARK: - State Subscription
@@ -194,5 +142,78 @@ class SpeedGraderViewModel: ObservableObject, PagesViewControllerDataSource, Pag
                 self?.updatePages(pages)
             }
             .store(in: &subscriptions)
+    }
+}
+
+// MARK: - PagesViewControllerDataSource
+
+extension SpeedGraderViewModel: PagesViewControllerDataSource {
+
+    func pagesViewController(
+        _ pages: PagesViewController,
+        pageBefore page: UIViewController
+    ) -> UIViewController? {
+        (page as? Page).flatMap { controller(for: $0.rootView.content.userIndexInSubmissionList - 1) }
+    }
+
+    func pagesViewController(
+        _ pages: PagesViewController,
+        pageAfter page: UIViewController
+    ) -> UIViewController? {
+        (page as? Page).flatMap { controller(for: $0.rootView.content.userIndexInSubmissionList + 1) }
+    }
+
+    private func controller(for index: Int) -> UIViewController? {
+        let controller = grader(for: index).map { CoreHostingController($0, env: environment) }
+        controller?.view.backgroundColor = nil
+        return controller
+    }
+
+    private func grader(for index: Int) -> SubmissionGraderView? {
+        guard
+            let data = interactor.data,
+            data.submissions.indices.contains(index)
+        else { return nil }
+
+        return SubmissionGraderView(
+            env: environment,
+            userIndexInSubmissionList: index,
+            viewModel: SubmissionGraderViewModel(
+                assignment: data.assignment,
+                submission: data.submissions[index],
+                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher()
+            ),
+            landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
+            handleRefresh: { [weak self] in
+                self?.interactor.refreshSubmission(forUserId: data.submissions[index].userID)
+            }
+        )
+    }
+
+    private func updatePages(_ pages: PagesViewController) {
+        guard let data = interactor.data else { return }
+
+        if let page = controller(for: data.focusedSubmissionIndex) {
+            pages.setCurrentPage(page)
+        }
+
+        for page in pages.children.compactMap({ $0 as? Page }) {
+            if let grader = grader(for: page.rootView.content.userIndexInSubmissionList) {
+                page.rootView.content = grader
+            }
+        }
+    }
+}
+
+// MARK: - PagesViewControllerDelegate
+
+extension SpeedGraderViewModel: PagesViewControllerDelegate {
+
+    func pagesViewController(
+        _ pages: PagesViewController,
+        didTransitionTo page: UIViewController
+    ) {
+        pages.pauseWebViewPlayback()
+        pages.pauseMediaPlayback()
     }
 }
