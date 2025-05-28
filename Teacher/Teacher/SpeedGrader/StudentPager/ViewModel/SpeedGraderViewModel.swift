@@ -172,8 +172,7 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
     private func grader(for index: Int) -> SubmissionGraderView? {
         guard
             let data = interactor.data,
-            index >= 0,
-            index < data.submissions.count
+            data.submissions.indices.contains(index)
         else { return nil }
 
         return SubmissionGraderView(
