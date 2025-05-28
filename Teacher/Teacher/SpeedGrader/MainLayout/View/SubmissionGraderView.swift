@@ -132,8 +132,11 @@ struct SubmissionGraderView: View {
                 .accessibility(sortPriority: 2)
                 .onSizeChange(update: $profileHeaderSize)
                 InstUI.Divider()
+
                 VStack(alignment: .leading, spacing: 0) {
-                    attemptToggle
+                    attemptAndFilePickers
+                    InstUI.Divider()
+
                     ZStack(alignment: .top) {
                         VStack(spacing: 0) {
                             SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
@@ -148,7 +151,6 @@ struct SubmissionGraderView: View {
                         // Disable submission content interaction in case attempt picker is above it
                         .accessibilityElement(children: showAttempts ? .ignore : .contain)
                         .accessibility(hidden: showAttempts)
-                        attemptPicker
                     }
                     Spacer().frame(height: bottomInset)
                 }
@@ -183,8 +185,11 @@ struct SubmissionGraderView: View {
                     landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
                 )
                 InstUI.Divider()
-                attemptToggle
+
+                attemptAndFilePickers
                     .accessibility(hidden: drawerState == .max)
+                InstUI.Divider()
+
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
@@ -199,7 +204,6 @@ struct SubmissionGraderView: View {
                     }
                     .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
                     .accessibility(hidden: isSubmissionContentHiddenFromA11y)
-                    attemptPicker
                 }
                 Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
             }
@@ -208,6 +212,49 @@ struct SubmissionGraderView: View {
             }
         }
         .onAppear { didChangeLayout(to: .portrait) }
+    }
+
+    private var attemptAndFilePickers: some View {
+        HStack(alignment: .center, spacing: 12) {
+            Menu(
+                content: {
+                    InstUI.MenuItem(title: "Attempt 1", image: nil, action: {})
+                    InstUI.MenuItem(title: "Attempt 2", image: nil, action: {})
+                    InstUI.MenuItem(title: "Attempt 3", image: nil, action: {})
+                },
+                label: {
+                    pickerButton(title: "Attempt 3", icon: .clockLine, count: 1, truncationMode: .head)
+                }
+            )
+            Menu(
+                content: {
+                    InstUI.MenuItem(title: "File 1", image: nil, action: {})
+                    InstUI.MenuItem(title: "File 2", image: nil, action: {})
+                    InstUI.MenuItem(title: "File 3", image: nil, action: {})
+                },
+                label: {
+                    pickerButton(title: "MyBestFile2000.jpg", icon: .documentLine, count: 42, truncationMode: .tail)
+                }
+            )
+        }
+        .paddingStyle(.horizontal, .standard)
+        .padding(.vertical, 6)
+    }
+
+    private func pickerButton(title: String, icon: Image, count: Int, truncationMode: Text.TruncationMode) -> some View {
+        HStack(spacing: 8) {
+            icon.scaledIcon(size: 18)
+            Text(title)
+                .font(.regular16)
+        }
+        .lineLimit(1)
+        .truncationMode(truncationMode)
+        .foregroundStyle(viewModel.contextColor)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading, 12)
+        .padding(.trailing, 16)
+        .padding(.vertical, 8)
+        .elevation(.pill, aboveBackground: .lightest)
     }
 
     @ViewBuilder
