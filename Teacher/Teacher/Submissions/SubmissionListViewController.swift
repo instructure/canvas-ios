@@ -138,7 +138,11 @@ class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNa
     }
 
     @objc func openPostPolicy() {
-        env.router.route(to: "/\(context.pathComponent)/assignments/\(assignmentID)/post_policy", from: self, options: .modal(embedInNav: true))
+        env.router.route(
+            to: "/\(context.pathComponent)/assignments/\(assignmentID)/post_policy",
+            from: self,
+            options: .modal(embedInNav: true, addDoneButton: true)
+        )
     }
 
     @objc func messageUsers() {

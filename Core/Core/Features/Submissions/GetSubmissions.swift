@@ -224,7 +224,9 @@ public class GetSubmissions: CollectionUseCase {
         self.shuffled = shuffled
     }
 
-    public var cacheKey: String? { "\(context.pathComponent)/assignments/\(assignmentID)/submissions" }
+    public var cacheKey: String? {
+        "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
+    }
 
     public var request: GetSubmissionsRequest {
         GetSubmissionsRequest(context: context, assignmentID: assignmentID, grouped: true, include: GetSubmissionsRequest.Include.allCases)
@@ -334,7 +336,7 @@ public class GetSubmissions: CollectionUseCase {
             }
         }
 
-        var predicate: NSPredicate {
+        public var predicate: NSPredicate {
             switch self {
             case .late:
                 return NSPredicate(key: #keyPath(Submission.late), equals: true)

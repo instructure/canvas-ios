@@ -20,12 +20,23 @@ import SwiftUI
 
 extension View {
 
-    /// This is a convenience overload of the `accessibilityIdentifier` function but this accepts an optional.
-    /// If the passed `identifier` is nil this method does nothing.
+    /// This is a convenience overload of the `accessibilityLabel` method but this accepts an optional.
+    /// If the passed `label` is nil this method does nothing.
     @ViewBuilder
-    public func accessibilityIdentifier(_ identifier: String?) -> some View {
-        if let identifier {
-            self.accessibilityIdentifier(identifier)
+    public func accessibilityLabel(_ label: String?) -> some View {
+        if let label {
+            self.accessibilityLabel(Text(label))
+        } else {
+            self
+        }
+    }
+
+    /// This is a convenience overload of the `accessibilityLabel` method but this accepts an optional.
+    /// If the passed `label` is nil this method does nothing.
+    @ViewBuilder
+    public func accessibilityLabel(_ label: Text?) -> some View {
+        if let label {
+            self.accessibilityLabel(label)
         } else {
             self
         }

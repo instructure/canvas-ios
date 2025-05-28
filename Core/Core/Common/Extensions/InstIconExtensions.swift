@@ -186,10 +186,14 @@ public extension UIImage {
     static var replyAllSolid: UIImage { UIImage(named: "replyAllSolid", in: .core, compatibleWith: nil)! }
     static var rubricLine: UIImage { UIImage(named: "rubricLine", in: .core, compatibleWith: nil)! }
     static var rubricSolid: UIImage { UIImage(named: "rubricSolid", in: .core, compatibleWith: nil)! }
+    static var searchLine: UIImage { UIImage(named: "searchLine", in: .core, compatibleWith: nil)! }
+    static var searchSolid: UIImage { UIImage(named: "searchSolid", in: .core, compatibleWith: nil)! }
     static var settingsLine: UIImage { UIImage(named: "settingsLine", in: .core, compatibleWith: nil)! }
     static var settingsSolid: UIImage { UIImage(named: "settingsSolid", in: .core, compatibleWith: nil)! }
     static var sortLine: UIImage { UIImage(named: "sortLine", in: .core, compatibleWith: nil)! }
     static var sortSolid: UIImage { UIImage(named: "sortSolid", in: .core, compatibleWith: nil)! }
+    static var speedGraderLine: UIImage { UIImage(named: "speedGraderLine", in: .core, compatibleWith: nil)! }
+    static var speedGraderSolid: UIImage { UIImage(named: "speedGraderSolid", in: .core, compatibleWith: nil)! }
     static var starLine: UIImage { UIImage(named: "starLine", in: .core, compatibleWith: nil)! }
     static var starSolid: UIImage { UIImage(named: "starSolid", in: .core, compatibleWith: nil)! }
     static var strikethroughLine: UIImage { UIImage(named: "strikethroughLine", in: .core, compatibleWith: nil)! }
@@ -443,10 +447,14 @@ public extension Image {
     static var replyAllSolid: Image { Image("replyAllSolid", bundle: .core) }
     static var rubricLine: Image { Image("rubricLine", bundle: .core) }
     static var rubricSolid: Image { Image("rubricSolid", bundle: .core) }
+    static var searchLine: Image { Image("searchLine", bundle: .core) }
+    static var searchSolid: Image { Image("searchSolid", bundle: .core) }
     static var settingsLine: Image { Image("settingsLine", bundle: .core) }
     static var settingsSolid: Image { Image("settingsSolid", bundle: .core) }
     static var sortLine: Image { Image("sortLine", bundle: .core) }
     static var sortSolid: Image { Image("sortSolid", bundle: .core) }
+    static var speedGraderLine: Image { Image("speedGraderLine", bundle: .core) }
+    static var speedGraderSolid: Image { Image("speedGraderSolid", bundle: .core) }
     static var starLine: Image { Image("starLine", bundle: .core) }
     static var starSolid: Image { Image("starSolid", bundle: .core) }
     static var strikethroughLine: Image { Image("strikethroughLine", bundle: .core) }
