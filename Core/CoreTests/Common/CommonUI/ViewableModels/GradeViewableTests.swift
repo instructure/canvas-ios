@@ -77,6 +77,6 @@ class GradeViewableTests: XCTestCase {
     func testEnteredGradeText() {
         XCTAssertNil(Model(viewableEnteredScore: nil).enteredGradeText)
         XCTAssertEqual(Model(viewableEnteredScore: 1).enteredGradeText, "Your Grade: 1 pt")
-        XCTAssertEqual(Model(viewableEnteredScore: 99).enteredGradeText, "Your Grade: 99 pts")
+        XCTAssertEqual(Model(viewableEnteredScore: 99.5).enteredGradeText, "Your Grade: 99.5 pts")
     }
 }

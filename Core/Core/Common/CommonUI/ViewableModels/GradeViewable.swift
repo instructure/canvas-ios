@@ -64,11 +64,15 @@ extension GradeViewable {
 
     /** This is used to communicate the original score received before late penalty is deducted. */
     public var enteredGradeText: String? {
-        if let score = viewableEnteredScore {
-            return String(localized: "Your Grade: \(score, specifier: "%.0f") pt",
-                          bundle: .core)
-        }
-        return nil
+        guard let score = viewableEnteredScore else { return nil }
+
+        let truncatedScore = GradeFormatter.truncate(score)
+        let formattedGrade = GradeFormatter.numberFormatter.string(from: truncatedScore)
+
+        guard let formattedGrade else { return nil }
+
+        let format = String(localized: "your_grade_pts", bundle: .core)
+        return String.localizedStringWithFormat(format, score, formattedGrade)
     }
 
     public var finalGradeText: String? {

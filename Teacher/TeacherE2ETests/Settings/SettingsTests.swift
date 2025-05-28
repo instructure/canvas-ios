@@ -66,8 +66,8 @@ class SettingsTests: E2ETestCase {
 
         landingPage.hit()
         let landingPageNavBar = SubSettingsHelper.landingPageNavBar.waitUntil(.visible)
-        let courses = SubSettingsHelper.landingPageMenuItem(item: .courses).waitUntil(.visible)
-        let toDo = SubSettingsHelper.landingPageMenuItem(item: .toDo).waitUntil(.visible)
+        let courses = SubSettingsHelper.landingPageMenuItem(item: .dashboard).waitUntil(.visible)
+        let toDo = SubSettingsHelper.landingPageMenuItem(item: .todo).waitUntil(.visible)
         let inbox = SubSettingsHelper.landingPageMenuItem(item: .inbox).waitUntil(.visible)
         let backButton = SubSettingsHelper.backButton.waitUntil(.visible)
         XCTAssertTrue(landingPageNavBar.isVisible)
