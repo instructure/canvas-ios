@@ -189,7 +189,8 @@ class AssistChatInteractorLive: AssistChatInteractor {
                     PineQueryMutation(
                         messages: history.reversed().filter { $0.prompt != nil }.map {
                             PineQueryMutation.APIMessageInput(
-                                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
+                                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User
+                            )
                         }
                     )
                 )
