@@ -188,6 +188,8 @@ public class DocViewerViewController: UIViewController {
             pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
             annotationToolbar.tintColor = Brand.shared.primary
+            annotationToolbar.backgroundView = nil
+            annotationToolbar.backgroundColor = .backgroundLightest
             annotationToolbar.isDragButtonSelected
                 .sink { [weak self] isDragEnabled in
                     self?.dragGestureViewModel?.isEnabled = isDragEnabled
@@ -319,7 +321,7 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
 
         performUIUpdate {
             syncAnnotationsButton.isEnabled = false
-            syncAnnotationsButton.backgroundColor = .backgroundLight
+            syncAnnotationsButton.backgroundColor = .backgroundLightest
             syncAnnotationsButton.setTitle(title, for: .normal)
             syncAnnotationsButton.accessibilityTraits.remove(.button)
         }
