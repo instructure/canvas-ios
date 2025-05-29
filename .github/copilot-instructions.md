@@ -23,11 +23,16 @@
 - Prefer searching through codebase before suggesting solutions
 - Use error checking after code edits
 
+## Code Style Preferences
+- Don't add comments or documentation unless its specifically requested
+- Avoid explanatory comments in code, especially in test files (no "// First create...", "// Verify...", etc.)
+- Code should be self-explanatory without inline comments
+- When generating test files, only include license headers and the actual test code without explanatory comments
+- When formatting the code, use SwiftLint rules defined in the project
+
 ## Implementation Preferences
 - Follow project's component structure and naming conventions
 - Use existing utility functions and shared components when possible
 - Ensure the code compiles and runs without errors
-- When formatting the code, use SwiftLint rules defined in the project
 - If you create a new file, ensure you call `make sync` in the terminal so the file is added to the Xcode project
 - When writing tests, make sure the tests pass
-- Don't add comments or documentation unless its specifically requested
