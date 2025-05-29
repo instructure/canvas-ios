@@ -39,14 +39,20 @@ final public class CDNotebookNote: NSManagedObject {
     @NSManaged public var userID: String?
 }
 
+extension String {
+    public var deserializeLabels: [String]? {
+        split(separator: ";").map { String($0) }
+    }
+}
+
 extension String? {
     public var deserializeLabels: [String]? {
-        self?.split(separator: ";").map { String($0) }
+        self?.deserializeLabels
     }
 }
 
 extension Array where Element == String {
     public var serializeLabels: String? {
-        self.sorted().joined(separator: ";")
+        sorted().joined(separator: ";")
     }
 }
