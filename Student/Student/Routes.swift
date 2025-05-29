@@ -484,32 +484,6 @@ let router = Router(routes: [
 
     RouteHandler("/about") { _, _, _ in
         AboutAssembly.makeAboutViewController()
-    },
-
-    // Todo Widget
-    RouteHandler("widget/planner-notes/new") { _, _, _ in
-        let weakVc = WeakViewController()
-        let vc = PlannerAssembly.makeCreateToDoViewController(selectedDate: Clock.now) { _ in
-            AppEnvironment.shared.router.dismiss(weakVc)
-        }
-        weakVc.setValue(vc)
-        return vc
-    },
-    RouteHandler("/widget/planner-notes/:plannableId") { _, params, _ in
-        guard let plannableId = params["plannableId"] else { return nil }
-        return PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
-    },
-    RouteHandler("/widget/planner-notes") { _, _, _ in
-        return TodoListViewController.create()
-    },
-    RouteHandler("/widget/calendar/:date") { _, params, _ in
-        guard let dateString = params["date"] else { return nil }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        guard let date = dateFormatter.date(from: dateString) else { return nil }
-        let controller = PlannerViewController.create(selectedDate: date)
-        controller.view.tintColor = Brand.shared.primary
-        return controller
     }
 ], courseTabUrlInteractor: .init())
 

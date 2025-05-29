@@ -19,31 +19,27 @@
 import Core
 import Foundation
 
-private let scheme = "canvas-courses://"
-private var host: String? { AppEnvironment.shared.currentSession?.baseURL.host }
-private let defaultRoute = URL(string: scheme)!
-
 extension Course {
     var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(id)/grades")!
+        return .appRoute("courses/\(id)/grades")
     }
 }
 
 extension Assignment {
     var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(courseID)/assignments/\(id)")!
+        return .appRoute("courses/\(courseID)/assignments/\(id)")
     }
 }
 
 extension TodoItem {
     var route: URL {
-        guard let host = host else { return defaultRoute }
         let url = switch type {
-        case .calendar_event: URL(string: "\(scheme)\(host)/calendar_events/\(id)")!
-        case .planner_note: URL(string: "\(scheme)\(host)/widget/planner-notes/\(id)")!
-        default: htmlURL ?? defaultRoute
+        case .calendar_event:
+            URL.todoWidgetRoute("todo-widget/calendar_events/\(id)")
+        case .planner_note:
+            URL.todoWidgetRoute("todo-widget/planner-notes/\(id)")
+        default:
+            htmlURL?.appendingOrigin("todo-widget") ?? .appEmptyRoute
         }
         return url
     }
@@ -51,19 +47,16 @@ extension TodoItem {
 
 extension TodoScreen {
     var viewFullListRoute: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/widget/planner-notes")!
+        .todoWidgetRoute("todo-widget/planner-notes")
     }
 
     var addTodoRoute: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/widget/planner-notes/new")!
+        .todoWidgetRoute("todo-widget/planner-notes/new")
     }
 }
 
 extension TodoItemDate {
     func calendarDateRoute(_ date: Date) -> URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/widget/calendar/\(date)")!
+        .todoWidgetRoute("todo-widget/calendar/\(date)")
     }
 }

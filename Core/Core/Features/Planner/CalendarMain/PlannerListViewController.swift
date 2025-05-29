@@ -202,7 +202,7 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     private func routeToPlannableDetailsAtUrl(_ url: URL?) {
         guard let url else { return }
 
-        let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+        let to = url.appendingOrigin("calendar")
         env.router.route(to: to, from: self, options: .detail)
     }
 

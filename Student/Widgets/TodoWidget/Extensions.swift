@@ -20,7 +20,11 @@ import Core
 import Foundation
 
 extension TimeInterval {
+    #if DEBUG
+    static let widgetRefresh: TimeInterval = 120
+    #else
     static let widgetRefresh: TimeInterval = 7200 // 2 hours
+    #endif
 }
 
 extension Array where Element == TodoItem {
@@ -40,7 +44,7 @@ extension Array where Element == TodoItem {
             let indexOfItem = firstIndex(of: item),
             indexOfItem < index(before: endIndex)
         else { return false }
-        
+
         let nextItem = self[indexOfItem + 1]
         return nextItem.date.startOfDay() == item.date.startOfDay()
     }
