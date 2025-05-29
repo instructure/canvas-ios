@@ -24,11 +24,16 @@
 - Use error checking after code edits
 
 ## Code Style Preferences
+- Follow SwiftLint rules strictly - they are enforced in all Swift files
+- Pay special attention to:
+  - No trailing whitespace at end of lines
+  - Line length (warning: 200 chars)
+  - Function body length (100 lines)
+  - Type name length (min: 3 chars, max: 50 chars)
 - Don't add comments or documentation unless its specifically requested
 - Avoid explanatory comments in code, especially in test files (no "// First create...", "// Verify...", etc.)
 - Code should be self-explanatory without inline comments
 - When generating test files, only include license headers and the actual test code without explanatory comments
-- When formatting the code, use SwiftLint rules defined in the project
 
 ## Implementation Preferences
 - Follow project's component structure and naming conventions
