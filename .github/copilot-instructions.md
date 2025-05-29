@@ -41,3 +41,7 @@
 - Ensure the code compiles and runs without errors
 - If you create a new file, ensure you call `make sync` in the terminal so the file is added to the Xcode project
 - When writing tests, make sure the tests pass
+
+## Building and Testing Preferences
+- When you invoke xcodebuild to build for test, use the `CITests` scheme
+- When you invoke xcodebuild to build for run or test, use the latest iOS Simulator available which is currently iOS 18.4
