@@ -22,8 +22,10 @@ import Foundation
 extension TimeInterval {
     #if DEBUG
     static let widgetRefresh: TimeInterval = 120
+    static let widgetRecover: TimeInterval = 10
     #else
     static let widgetRefresh: TimeInterval = 7200 // 2 hours
+    static let widgetRecover: TimeInterval = 900 // 15 minutes
     #endif
 }
 

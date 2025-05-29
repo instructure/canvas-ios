@@ -57,6 +57,6 @@ extension TodoScreen {
 
 extension TodoItemDate {
     func calendarDateRoute(_ date: Date) -> URL {
-        .todoWidgetRoute("todo-widget/calendar/\(date)")
+        .todoWidgetRoute("todo-widget/calendar/\(date.formatted(.queryDateStyle))")
     }
 }

@@ -32,15 +32,10 @@ struct TodoWidgetEntry: TimelineEntry {
 
     let data: TodoModel
     let date: Date
-
-    var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
 }
 
 class TodoWidgetProvider: TimelineProvider {
     typealias Entry = TodoWidgetEntry
-
-    private var startDate: Date { .now.startOfDay() }
-    private var endDate: Date { startDate.addDays(28) }
 
     private let env = AppEnvironment.shared
     private var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
@@ -86,9 +81,6 @@ class TodoWidgetProvider: TimelineProvider {
         print("fetch plannables")
 
         let env = env
-        let startDate = startDate
-        let endDate = endDate
-        let refreshDate = refreshDate
         let colors = ReactiveStore(useCase: GetCustomColors(), environment: env)
         let courses = ReactiveStore(useCase: GetCourses(showFavorites: false, perPage: 100), environment: env)
 
@@ -107,8 +99,8 @@ class TodoWidgetProvider: TimelineProvider {
             return ReactiveStore(
                 useCase: GetPlannables(
                     userID: "self",
-                    startDate: startDate,
-                    endDate: endDate,
+                    startDate: Clock.now,
+                    endDate: Clock.now.addDays(28),
                     contextCodes: contextCodesToFetch
                 ),
                 environment: env
@@ -123,10 +115,14 @@ class TodoWidgetProvider: TimelineProvider {
                 .compactMap(TodoItem.init)
 
             let model = TodoModel(items: todoItems)
-            let entry = TodoWidgetEntry(data: model, date: Date())
+            let entry = TodoWidgetEntry(data: model, date: Clock.now)
+            let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
             return Timeline(entries: [entry], policy: .after(refreshDate))
         }
-        .replaceError(with: Timeline(entries: [], policy: .after(refreshDate)))
+        .replaceError(with: {
+            let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
+            return Timeline(entries: [], policy: .after(recoveryDate))
+        }())
         .eraseToAnyPublisher()
     }
 }
