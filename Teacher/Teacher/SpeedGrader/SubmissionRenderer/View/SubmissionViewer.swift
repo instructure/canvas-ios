@@ -125,6 +125,7 @@ struct SubmissionViewer: View {
             case nil:
                 ProgressView()
                     .progressViewStyle(.indeterminateCircle())
+                    .padding(InstUI.Styles.Padding.standard.rawValue)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .onAppear {
                         studentAnnotationViewModel.viewDidAppear()
@@ -164,7 +165,6 @@ struct SubmissionViewer: View {
 }
 
 #if DEBUG
-
 #Preview {
     let environment = PreviewEnvironment()
     SubmissionViewer(
@@ -183,5 +183,4 @@ struct SubmissionViewer: View {
         handleRefresh: { }
     )
 }
-
 #endif
