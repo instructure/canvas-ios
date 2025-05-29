@@ -32,8 +32,8 @@ final public class GetSubmissionScoresUseCase: APIUseCase {
         return "Submission-Scores-\(enrollmentId)"
     }
 
-    private let userId: String
-    private let enrollmentId: String
+    let userId: String
+    let enrollmentId: String
 
     public var request: GetSubmissionScoresRequest {
         .init(userId: userId, enrollmentId: enrollmentId)
