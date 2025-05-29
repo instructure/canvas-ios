@@ -118,7 +118,8 @@ public class API {
                                     callback: ((URL?, URLResponse?, Error?) -> Void)? = nil)
     -> APITask? {
         var request = URLRequest(url: url)
-
+        let token = AppEnvironment.shared.currentSession?.accessToken ?? ""
+        request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         if let method {
             request.httpMethod = method.rawValue.uppercased()
         }
