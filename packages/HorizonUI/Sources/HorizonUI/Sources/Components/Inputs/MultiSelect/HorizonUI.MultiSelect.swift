@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Flow
+//import Flow
 import Observation
 import SwiftUI
 
@@ -38,7 +38,7 @@ extension HorizonUI {
         // MARK: Properties
 
         private var bodyHeight: CGFloat {
-            textInputMeasuredHeight + errorHeight
+            textInputMeasuredHeight + labelMeasuredHeight + errorHeight
         }
 
         // The computed height of a single option
@@ -46,22 +46,36 @@ extension HorizonUI {
 
         // Computed height of the container for all options
         private var displayedOptionsHeight: CGFloat {
-            focused ? min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300) : 0
+            if !focused {
+                return 0
+            }
+            return max(
+                loading ? spinnerHeight : 0,
+                min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300)
+            )
         }
 
         // The computed height of the error text
         @State private var errorHeight: CGFloat = 0
 
         @Binding private var focused: Bool
-        private let focusedBinding: Binding<Bool>?
 
         // The computed height of the label
         @State private var labelMeasuredHeight: CGFloat = 0
+
+        @Binding private var loading: Bool
+
+        @State private var spinnerHeight = 0.0
 
         // The container height for the text input. This is used to fix the height
         // of the entire component so when the options are displayed, it doesnt
         // push the content below it down
         @State private var textInputMeasuredHeight: CGFloat = 0
+
+        // The text in the TextField
+        @Binding private var textInput: String
+
+        @FocusState private var textFieldFocusState: Bool
 
         // MARK: - Init
 
@@ -69,20 +83,23 @@ extension HorizonUI {
             selections: Binding<[String]>,
             focused: Binding<Bool>,
             label: String? = nil,
+            textInput: Binding<String>,
             options: [String],
+            loading: Binding<Bool>,
             disabled: Bool = false,
             placeholder: String? = nil,
             error: String? = nil,
             zIndex: Double = 101
         ) {
-            self.label = label
-            self.options = options
             self._selections = selections
+            self._focused = focused
+            self.label = label
+            self._textInput = textInput
+            self.options = options
+            self._loading = loading
             self.disabled = disabled
             self.placeholder = placeholder
             self.error = error
-            self.focusedBinding = focused
-            self._focused = focused
             self.zIndex = zIndex
         }
 
@@ -90,7 +107,7 @@ extension HorizonUI {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     labelText
-                    textInput
+                    textField
                 }
                 .onTapGesture(perform: onTapText)
 
@@ -111,17 +128,32 @@ extension HorizonUI {
 
         private var displayedOptions: some View {
             ScrollView {
-                VStack(spacing: .zero) {
-                    ForEach(optionsFiltered, id: \.self) { item in
-                        displayedOption(item)
+                ZStack(alignment: .top) {
+                    VStack(spacing: .zero) {
+                        ForEach(optionsFiltered, id: \.self) { item in
+                            displayedOption(item)
+                        }
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.huiColors.surface.pageSecondary)
+                    .padding(.vertical, .huiSpaces.space4)
+
+                    HorizonUI.Spinner(size: .xSmall)
+                        .opacity(loading ? 1 : 0)
+                        .padding(.vertical, HorizonUI.spaces.space8)
+                        .background {
+                            GeometryReader { geometry in
+                                HStack {}
+                                    .onAppear {
+                                        spinnerHeight = geometry.size.height
+                                    }
+                            }
+                        }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.huiColors.surface.pageSecondary)
-                .padding(.vertical, .huiSpaces.space4)
             }
             .background(Color.huiColors.surface.pageSecondary)
             .frame(height: displayedOptionsHeight)
+            .opacity(!loading && optionsFiltered.isEmpty ? 0 : 1)
             .cornerRadius(HorizonUI.CornerRadius.level1_5.attributes.radius)
             .padding(.top, .huiSpaces.space12)
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
@@ -203,6 +235,7 @@ extension HorizonUI {
             )
             .onTapGesture {
                 selections.removeAll(where: { $0 == text })
+                textInput = ""
             }
         }
 
@@ -225,13 +258,24 @@ extension HorizonUI {
             }
         }
 
-        private var textInput: some View {
+        private var textField: some View {
             ZStack(alignment: .topTrailing) {
-                HFlow {
-                    if selections.isEmpty {
-                        Text(placeholder ?? "")
-                            .huiTypography(.p1)
-                    } else {
+                VStack(alignment: .leading) {
+                    if focused || selections.isEmpty {
+                        TextField(
+                            placeholder ?? String(localized: "Filter"),
+                            text: $textInput
+                        )
+                        .focused($textFieldFocusState)
+                        .onChange(of: textFieldFocusState, initial: false) {
+                            if focused != textFieldFocusState {
+                                focused = textFieldFocusState
+                            }
+                        }
+                        .padding(.bottom, .huiSpaces.space4)
+                        .huiTypography(.p1)
+                    }
+                    HStack {
                         ForEach(selections, id: \.self) { selection in
                             option(selection)
                         }
@@ -261,7 +305,7 @@ extension HorizonUI {
             .background {
                 GeometryReader { geometry in
                     HStack {}
-                        .onAppear {
+                        .onChange(of: geometry.size.height, initial: true) {
                             textInputMeasuredHeight = geometry.size.height
                         }
                 }
@@ -277,6 +321,7 @@ extension HorizonUI {
                 return
             }
             focused = !focused
+            textInput = ""
         }
 
         private var textInputTextColor: Color {
@@ -331,9 +376,10 @@ extension HorizonUI {
 
 #Preview {
     @Previewable @State var selections = ["One", "Two"]
-    @Previewable @State var focused = false
-
+    @Previewable @State var focused = true
+    @Previewable @State var textInput = "Type here"
     @Previewable @State var selectedOptionIndex = 0
+    @Previewable @State var loading = false
 
     let options = [
         "Alphabet",
@@ -364,17 +410,20 @@ extension HorizonUI {
         "Zebra"
     ]
 
-    VStack {
-        VStack {
+    VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
             HorizonUI.MultiSelect(
                 selections: $selections,
                 focused: $focused,
                 label: "Words of the Alphabet",
+                textInput: $textInput,
                 options: options,
+                loading: $loading,
                 disabled: false,
-                placeholder: "Select an option",
+                placeholder: "Filter",
                 error: "This is an error"
             )
+            Text("Some Text Below")
         }
         .padding(.horizontal, .huiSpaces.space24)
     }

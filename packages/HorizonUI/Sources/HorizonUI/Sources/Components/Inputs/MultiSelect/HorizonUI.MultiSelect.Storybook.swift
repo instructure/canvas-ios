@@ -23,13 +23,17 @@ extension HorizonUI.MultiSelect {
 
         @State var focused = false
         @State var selections = ["Option 1"]
+        @State var textInput = ""
+        @State var loading = false
 
         var body: some View {
             HorizonUI.MultiSelect(
                 selections: $selections,
                 focused: $focused,
                 label: "Label",
-                options: Array(1 ... 20).map { "Option \($0)" }
+                textInput: $textInput,
+                options: Array(1 ... 20).map { "Option \($0)" },
+                loading: $loading
             )
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, .huiSpaces.space36)

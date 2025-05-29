@@ -27,7 +27,6 @@ struct HorizonInboxView: View {
 
     @State private var messagesFilterSelection: String = "All Messages"
     @State private var isMessagesFilterFocused: Bool = false
-    @State private var isFilterByPersonFocused: Bool = false
 
     var body: some View {
         VStack {
@@ -50,9 +49,11 @@ struct HorizonInboxView: View {
 
                     HorizonUI.MultiSelect(
                         selections: $viewModel.filterByPersonSelections,
-                        focused: $isFilterByPersonFocused,
+                        focused: $viewModel.isSearchFocused,
                         label: nil,
+                        textInput: $viewModel.filter,
                         options: viewModel.personOptions,
+                        loading: $viewModel.searchLoading,
                         placeholder: String(localized: "Filter by person", bundle: .horizon)
                     )
                     .padding(.horizontal, .huiSpaces.space16)
@@ -158,12 +159,13 @@ struct AddressbookInteractorPreview: AddressbookInteractor {
             promise(.success(()))
         }
     }
+
+    func setSearch(_ searchString: String) {
+    }
 }
 
 #Preview {
     HorizonInboxView(
-        viewModel: HorizonInboxViewModel(
-            addressBookInteractor: AddressbookInteractorPreview()
-        )
+        viewModel: HorizonInboxViewModel()
     )
 }

@@ -26,24 +26,70 @@ class HorizonInboxViewModel {
     // MARK: - Outputs
     var personOptions: [String] = []
     var filterByPersonSelections: [String] = []
+    var filter: String = "" {
+        didSet {
+            onFilterSet()
+        }
+    }
+    var searchLoading: Bool = false
+    var isSearchFocused: Bool = false {
+        didSet {
+            onSearchFocused()
+        }
+    }
 
     // MARK: - Private
 
+    private let api: API
+    private var searchAPITask: APITask?
     private let router: Router
+    private var searchDebounceTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        addressBookInteractor: AddressbookInteractor,
+        api: API = AppEnvironment.shared.api,
         router: Router = AppEnvironment.shared.router
     ) {
+        self.api = api
         self.router = router
-
-        addressBookInteractor.recipients.sink { [weak self] recipients in
-            self?.personOptions = recipients.map { $0.name }
-        }.store(in: &subscriptions)
     }
 
     func goBack(_ viewController: WeakViewController) {
         router.pop(from: viewController)
+    }
+
+    private func onFilterSet() {
+        searchDebounceTask?.cancel()
+        searchDebounceTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 500_000_000)
+            if Task.isCancelled {
+                return
+            }
+            self?.makeRequest()
+        }
+    }
+
+    private func onSearchFocused() {
+        if isSearchFocused {
+            makeRequest()
+        }
+    }
+
+    private func makeRequest() {
+        searchLoading = true
+        searchAPITask?.cancel()
+        searchAPITask = api.makeRequest(
+            GetSearchRecipientsRequest(
+                context: .user(AppEnvironment.shared.currentSession?.userID ?? ""),
+                search: filter,
+                perPage: 10
+            )
+        ) { [weak self] apiSearchRecipients, _, _ in
+            guard let apiSearchRecipients = apiSearchRecipients else {
+                return
+            }
+            self?.personOptions = apiSearchRecipients.map { $0.name }
+            self?.searchLoading = false
+        }
     }
 }
