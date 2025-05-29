@@ -44,4 +44,4 @@
 
 ## Building and Testing Preferences
 - When you invoke xcodebuild to build for test, use the `CITests` scheme
-- When you invoke xcodebuild to build for run or test, use the latest iOS Simulator available which is currently iOS 18.4
+- When you invoke xcodebuild to build for run or test, use the latest iOS Simulator available which is currently iOS 18.4 running on an iPhone 16
