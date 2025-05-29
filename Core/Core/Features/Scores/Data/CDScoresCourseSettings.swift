@@ -20,7 +20,6 @@ import CoreData
 
 public final class CDScoresCourseSettings: NSManagedObject {
     @NSManaged public var restrictQuantitativeData: Bool
-    @NSManaged public var hideFinalGrade: Bool
     @NSManaged public var course: CDScoresCourse
 
     @discardableResult
@@ -39,16 +38,11 @@ public final class CDScoresCourseSettings: NSManagedObject {
 
             let settings: CDScoresCourseSettings = context.insert()
             settings.restrictQuantitativeData = false
-            settings.hideFinalGrade = false
             return settings
         }()
 
         if let restrict_quantitative_data = item.restrict_quantitative_data, AppEnvironment.shared.app != .teacher {
             entity.restrictQuantitativeData = restrict_quantitative_data
-        }
-
-        if let hideFinalGrade = item.restrict_quantitative_data {
-            entity.hideFinalGrade = hideFinalGrade
         }
 
         entity.course = course

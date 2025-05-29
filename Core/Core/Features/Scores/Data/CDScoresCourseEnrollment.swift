@@ -38,6 +38,8 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
         dbEntity.grade = apiEntity.computed_current_grade
         if let score = apiEntity.computed_current_score {
             dbEntity.score = NSNumber(value: score)
+        } else {
+            dbEntity.score = nil
         }
         return dbEntity
     }
@@ -55,6 +57,8 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
         dbEntity.grade = apiEntity.computed_current_grade
         if let score = apiEntity.computed_current_score {
             dbEntity.score = NSNumber(value: score)
+        } else {
+            dbEntity.score = nil
         }
     }
 }

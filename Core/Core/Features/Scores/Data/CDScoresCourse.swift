@@ -20,6 +20,7 @@ import CoreData
 
 public final class CDScoresCourse: NSManagedObject {
     @NSManaged public var courseID: String
+    @NSManaged public var hideFinalGrade: Bool
     @NSManaged public var enrollments: Set<CDScoresCourseEnrollment>
     @NSManaged public var settings: CDScoresCourseSettings?
 
@@ -58,6 +59,8 @@ public final class CDScoresCourse: NSManagedObject {
             )
             dbEntity.settings = settingsEntity
         }
+        
+        dbEntity.hideFinalGrade = apiEntity.hide_final_grades ?? false
 
         return dbEntity
     }

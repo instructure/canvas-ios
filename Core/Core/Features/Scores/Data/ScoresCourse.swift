@@ -19,28 +19,29 @@
 public struct ScoresCourse {
     public let courseID: String
     public let enrollments: [ScoresCourseEnrollment]
+    public let hideFinalGrade: Bool
     public let settings: ScoresCourseSettings
 
     public init(
         courseID: String,
         enrollments: [ScoresCourseEnrollment],
+        hideFinalGrade: Bool,
         settings: ScoresCourseSettings
     ) {
         self.courseID = courseID
         self.enrollments = enrollments
+        self.hideFinalGrade = hideFinalGrade
         self.settings = settings
     }
 
     public init(from entity: CDScoresCourse) {
         self.courseID = entity.courseID
         self.enrollments = entity.enrollments.map(ScoresCourseEnrollment.init(from:))
+        self.hideFinalGrade = entity.hideFinalGrade
         if let settings = entity.settings {
             self.settings = .init(from: settings)
         } else {
-            self.settings = .init(
-                restrictQuantitativeData: false,
-                hideFinalGrade: false
-            )
+            self.settings = .init(restrictQuantitativeData: false)
         }
     }
 }

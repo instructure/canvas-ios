@@ -300,6 +300,7 @@
     </entity>
     <entity name="CDScoresCourse" representedClassName="Core.CDScoresCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
+        <attribute name="hideFinalGrade" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresCourseEnrollment" inverseName="relationship" inverseEntity="CDScoresCourseEnrollment"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourseSettings" inverseName="course" inverseEntity="CDScoresCourseSettings"/>
     </entity>
@@ -310,7 +311,6 @@
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="enrollments" inverseEntity="CDScoresCourse"/>
     </entity>
     <entity name="CDScoresCourseSettings" representedClassName="Core.CDScoresCourseSettings" syncable="YES">
-        <attribute name="hideFinalGrade" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="settings" inverseEntity="CDScoresCourse"/>
     </entity>

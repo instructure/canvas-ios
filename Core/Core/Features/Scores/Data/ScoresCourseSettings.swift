@@ -18,18 +18,12 @@
 
 public struct ScoresCourseSettings {
     public let restrictQuantitativeData: Bool
-    public let hideFinalGrade: Bool
 
-    init(
-        restrictQuantitativeData: Bool,
-        hideFinalGrade: Bool
-    ) {
+    init(restrictQuantitativeData: Bool) {
         self.restrictQuantitativeData = restrictQuantitativeData
-        self.hideFinalGrade = hideFinalGrade
     }
 
     init(from entity: CDScoresCourseSettings) {
         self.restrictQuantitativeData = entity.restrictQuantitativeData
-        self.hideFinalGrade = entity.hideFinalGrade
     }
 }
