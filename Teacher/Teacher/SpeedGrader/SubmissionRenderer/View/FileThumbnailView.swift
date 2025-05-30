@@ -19,43 +19,24 @@
 import SwiftUI
 import Core
 
-struct FileThumbnail: View {
+struct FileThumbnailView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
     let file: File
-    var iconSize: CGFloat = 24
-    var thumbnailSize: CGFloat = 24
+    var thumbnailSize: CGFloat = Image.defaultIconSize
+    var innerIconSize: CGFloat = Image.defaultIconSize
     var iconBackgroundColor: Color = .clear
     var cornerRadius: CGFloat = 4
 
     var body: some View {
-        let scaledIconSize = iconSize * uiScale.iconScale
-        let scaledThumbnailSize = thumbnailSize * uiScale.iconScale
-
         if let url = file.thumbnailURL {
-            RemoteImage(url, size: scaledThumbnailSize)
+            RemoteImage(url, size: thumbnailSize * uiScale.iconScale)
                 .cornerRadius(cornerRadius)
         } else {
-            icon
-                .size(scaledIconSize, paddedTo: scaledThumbnailSize)
+            Image(uiImage: file.icon)
+                .scaledIcon(size: innerIconSize, paddedTo: thumbnailSize)
                 .background(iconBackgroundColor.cornerRadius(cornerRadius))
                 .foregroundStyle(Color.textDarkest)
-        }
-    }
-
-    private var icon: Image {
-        if file.mimeClass == "audio" || file.contentType?.hasPrefix("audio/") == true {
-            Image.audioLine
-        } else if file.mimeClass == "doc" {
-            Image.documentLine
-        } else if file.mimeClass == "image" || file.contentType?.hasPrefix("image/") == true {
-            Image.imageLine
-        } else if file.mimeClass == "pdf" {
-            Image.pdfLine
-        } else if file.mimeClass == "video" || file.contentType?.hasPrefix("video/") == true {
-            Image.videoLine
-        } else {
-            Image.documentLine
         }
     }
 }
@@ -66,14 +47,14 @@ struct FileThumbnail: View {
     let context = PreviewEnvironment().database.viewContext
 
     HStack {
-        FileThumbnail(
+        FileThumbnailView(
             file: File.save(.make(mime_class: "doc"), in: context)
         )
 
-        FileThumbnail(
+        FileThumbnailView(
             file: File.save(.make(mime_class: "doc"), in: context),
-            iconSize: 27,
             thumbnailSize: 56,
+            innerIconSize: 27,
             iconBackgroundColor: .backgroundLight,
             cornerRadius: 20
         )
