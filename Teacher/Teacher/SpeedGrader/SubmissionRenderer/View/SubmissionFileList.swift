@@ -26,7 +26,7 @@ struct SubmissionFileList: View {
 
     init(submission: Submission, fileID: Binding<String?>) {
         _fileID = fileID
-        files = submission.attachments?.sorted(by: File.idCompare) ?? []
+        files = submission.attachmentsSorted
         self.submission = submission
     }
 
