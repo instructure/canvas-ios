@@ -136,17 +136,20 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
 extension ActivityStreamViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        activities.count
+        activities.count { $0.type != .conversation }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ActivityCell = tableView.dequeue(for: indexPath)
-        if let a = activities[indexPath] { cell.update(a, courseCache: courseCache) }
+        let filteredActivities = activities.filter { $0.type != .conversation }
+
+        cell.update(filteredActivities[indexPath.row], courseCache: courseCache)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let a = activities[indexPath], let url = a.htmlURL else { return }
+        let filteredActivities = activities.filter { $0.type != .conversation }
+        guard let url = filteredActivities[indexPath.row].htmlURL else { return }
         env.router.route(to: url, from: self, options: .detail)
     }
 }
@@ -180,7 +183,7 @@ class ActivityCell: UITableViewCell {
             courseCode.text = nil
             courseCode.isHidden = true
         }
-
+        
         if let date = activity.updatedAt {
             subTitleLabel.setText(ActivityStreamViewController.dateFormatter.string(from: date), style: .textCellSupportingText)
         }
