@@ -29,10 +29,13 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var selectedAttempt: Submission
     @Published private(set) var attempts: [Submission] = []
     @Published private(set) var attemptPickerOptions: [OptionItem] = []
-    @Published private(set) var hasSubmissions = false
-    @Published private(set) var isSingleSubmission = false
-    @Published private(set) var file: File?
-    @Published private(set) var fileID: String?
+    @Published private(set) var hasSubmissions: Bool = false
+    @Published private(set) var isSingleSubmission: Bool = false
+
+    @Published private(set) var hasFiles: Bool = false
+    @Published private(set) var filePickerOptions: [OptionItem] = []
+    @Published private(set) var selectedFile: File?
+    @Published private(set) var selectedFileName: String = ""
     @Published private(set) var fileTabTitle: String = ""
     @Published private(set) var contextColor = Color(Brand.shared.primary)
     let assignment: Assignment
@@ -83,25 +86,42 @@ class SubmissionGraderViewModel: ObservableObject {
         )
         selectedAttemptIndex = attemptIndex
         selectedAttempt = attempts.first { selectedAttemptIndex == $0.attempt } ?? submission
-        fileTabTitle = {
-            if selectedAttempt.type == .online_upload, let count = selectedAttempt.attachments?.count, count > 0 {
-                return String(localized: "Files (\(count))", bundle: .teacher)
-            } else {
-                return String(localized: "Files", bundle: .teacher)
+
+        hasFiles = selectedAttempt.type == .online_upload && selectedAttempt.attachments?.isNotEmpty ?? false
+        if hasFiles {
+            let files = selectedAttempt.attachmentsSorted
+            filePickerOptions = files.compactMap { file in
+                guard let fileId = file.id else { return nil }
+                return OptionItem(
+                    id: fileId,
+                    title: file.displayName ?? file.filename,
+                    accessoryIcon: Image(uiImage: file.icon)
+                )
             }
-        }()
+            fileTabTitle = {
+                if selectedAttempt.type == .online_upload, let count = selectedAttempt.attachments?.count, count > 0 {
+                    return String(localized: "Files (\(count))", bundle: .teacher)
+                } else {
+                    return String(localized: "Files", bundle: .teacher)
+                }
+            }()
+            didSelectFile(files.first)
+        } else {
+            filePickerOptions = []
+            didSelectFile(nil)
+        }
+
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
-        didSelectFile(fileID: nil)
     }
 
     func didSelectFile(fileID: String?) {
-        self.fileID = fileID
-        updateSelectedFile()
+        let file = selectedAttempt.attachments?.first { fileID == $0.id }
+        didSelectFile(file)
     }
 
-    private func updateSelectedFile() {
-        file = selectedAttempt.attachments?.first { fileID == $0.id } ??
-                selectedAttempt.attachments?.sorted(by: File.idCompare).first
+    private func didSelectFile(_ file: File?) {
+        self.selectedFile = file
+        selectedFileName = file?.displayName ?? file?.filename ?? ""
     }
 
     private func observeAttemptChangesInDatabase() {

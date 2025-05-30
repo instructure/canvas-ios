@@ -142,11 +142,11 @@ struct SubmissionGraderView: View {
 
                     ZStack(alignment: .top) {
                         VStack(spacing: 0) {
-                            SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
+                            SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
                             SubmissionViewer(
                                 assignment: viewModel.assignment,
                                 submission: viewModel.selectedAttempt,
-                                fileID: viewModel.fileID,
+                                fileID: viewModel.selectedFile?.id,
                                 studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
                                 handleRefresh: handleRefresh
                             )
@@ -198,11 +198,11 @@ struct SubmissionGraderView: View {
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
-                        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
+                        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
                         SubmissionViewer(
                             assignment: viewModel.assignment,
                             submission: viewModel.selectedAttempt,
-                            fileID: viewModel.fileID,
+                            fileID: viewModel.selectedFile?.id,
                             studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
                             handleRefresh: handleRefresh
                         )
@@ -237,16 +237,23 @@ struct SubmissionGraderView: View {
                 }
             )
 
-            Menu(
-                content: {
-                    InstUI.MenuItem(title: "File 1", image: nil, action: {})
-                    InstUI.MenuItem(title: "File 2", image: nil, action: {})
-                    InstUI.MenuItem(title: "File 3", image: nil, action: {})
-                },
-                label: {
-                    pickerButton(title: "MyBestFile2000.jpg", icon: .documentLine, count: 42, truncationMode: .tail)
-                }
-            )
+            if viewModel.hasFiles {
+                InstUI.PickerMenu(
+                    selectedId: Binding(
+                        get: { viewModel.selectedFile?.id },
+                        set: { filePickerDidSelect(id: $0) }
+                    ),
+                    allOptions: viewModel.filePickerOptions,
+                    label: {
+                        pickerButton(
+                            title: viewModel.selectedFileName,
+                            icon: .documentLine,
+                            count: viewModel.filePickerOptions.count,
+                            truncationMode: .tail
+                        )
+                    }
+                )
+            }
         }
         .paddingStyle(.horizontal, .standard)
         .padding(.vertical, 6)
@@ -256,6 +263,11 @@ struct SubmissionGraderView: View {
         withTransaction(.exclusive()) {
             viewModel.didSelectNewAttempt(attemptIndex: index)
         }
+    }
+
+    private func filePickerDidSelect(id: String?) {
+        viewModel.didSelectFile(fileID: id)
+        snapDrawerTo(.min)
     }
 
     private func pickerButton(title: String, icon: Image, count: Int, truncationMode: Text.TruncationMode) -> some View {
@@ -349,7 +361,7 @@ struct SubmissionGraderView: View {
                 HStack(spacing: 0) {
                     let drawerFileID = Binding<String?>(
                         get: {
-                            viewModel.fileID
+                            viewModel.selectedFile?.id
                         },
                         set: {
                             viewModel.didSelectFile(fileID: $0)
