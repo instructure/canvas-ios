@@ -19,54 +19,6 @@
 import SwiftUI
 import Core
 
-struct SubmissionFileList: View {
-    let submission: Submission
-    let files: [File]
-    @Binding var fileID: String?
-
-    init(submission: Submission, fileID: Binding<String?>) {
-        _fileID = fileID
-        files = submission.attachmentsSorted
-        self.submission = submission
-    }
-
-    var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                if submission.type != .online_upload || files.isEmpty {
-                    EmptyPanda(.Papers, message: Text("This submission has no files.", bundle: .teacher))
-                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
-                } else {
-                    LazyVStack(alignment: .leading, spacing: 0) { list }
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    var list: some View {
-        Divider().padding(.top, -1)
-        ForEach(files, id: \.id) { (file: File) in
-            let isSelected = file.id == (fileID ?? files.first?.id)
-            Button(action: { if !isSelected { fileID = file.id } }, label: {
-                HStack(spacing: 0) {
-                    FileThumbnail(file: file)
-                    Text(file.displayName ?? file.filename)
-                        .font(.semibold16).foregroundColor(.textDarkest)
-                        .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 8))
-                    Spacer()
-                    Image.checkSolid.size(18)
-                        .opacity(isSelected ? 1 : 0)
-                }
-                    .padding(.vertical, 12)
-                    .padding(.horizontal, 16)
-            })
-                .accessibility(addTraits: isSelected ? .isSelected : [])
-            Divider()
-        }
-    }
-}
-
 struct FileThumbnail: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 

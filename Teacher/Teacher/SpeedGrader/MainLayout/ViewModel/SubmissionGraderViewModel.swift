@@ -36,7 +36,6 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var filePickerOptions: [OptionItem] = []
     @Published private(set) var selectedFile: File?
     @Published private(set) var selectedFileName: String = ""
-    @Published private(set) var fileTabTitle: String = ""
     @Published private(set) var contextColor = Color(Brand.shared.primary)
     let assignment: Assignment
     let submission: Submission
@@ -98,13 +97,6 @@ class SubmissionGraderViewModel: ObservableObject {
                     accessoryIcon: Image(uiImage: file.icon)
                 )
             }
-            fileTabTitle = {
-                if selectedAttempt.type == .online_upload, let count = selectedAttempt.attachments?.count, count > 0 {
-                    return String(localized: "Files (\(count))", bundle: .teacher)
-                } else {
-                    return String(localized: "Files", bundle: .teacher)
-                }
-            }()
             didSelectFile(files.first)
         } else {
             filePickerOptions = []

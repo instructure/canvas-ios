@@ -12086,6 +12086,7 @@
       }
     },
     "Files" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12599,6 +12600,7 @@
       }
     },
     "Files (%lld)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -33738,6 +33740,7 @@
       }
     },
     "This submission has no files." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

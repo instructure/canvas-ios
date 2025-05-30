@@ -289,13 +289,13 @@ struct SubmissionGraderView: View {
     // MARK: - Drawer
 
     enum GraderTab: Int, CaseIterable {
-        case grades, comments, files
+        case grades
+        case comments
 
         func title(viewModel: SubmissionGraderViewModel) -> String {
             switch self {
             case .grades: return String(localized: "Grades", bundle: .teacher)
             case .comments: return String(localized: "Comments", bundle: .teacher)
-            case .files: return viewModel.fileTabTitle
             }
         }
     }
@@ -371,7 +371,6 @@ struct SubmissionGraderView: View {
 
                     gradesTab(bottomInset: bottomInset, isDrawer: isDrawer, geometry: geometry)
                     commentsTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
-                    filesTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
@@ -459,25 +458,6 @@ struct SubmissionGraderView: View {
         .frame(width: geometry.size.width, height: geometry.size.height)
         .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
         .accessibility(hidden: !isCommentsOnScreen)
-    }
-
-    @ViewBuilder
-    private func filesTab(
-        bottomInset: CGFloat,
-        isDrawer: Bool,
-        fileID: Binding<String?>,
-        geometry: GeometryProxy
-    ) -> some View {
-        let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
-        VStack(spacing: 0) {
-            SubmissionFileList(submission: viewModel.selectedAttempt, fileID: fileID)
-                .clipped()
-            Spacer().frame(height: bottomInset)
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isFilesOnScreen)
-        .accessibilityFocused($focusedTab, equals: .files)
     }
 
     // MARK: - Rotation
