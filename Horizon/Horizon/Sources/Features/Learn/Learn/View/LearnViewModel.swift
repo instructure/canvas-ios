@@ -24,9 +24,8 @@ final class LearnViewModel {
     // MARK: - Outputs
 
     private(set) var isLoaderVisible: Bool = false
-    private(set) var courseID: String?
-    private(set) var enrollmentID: String?
     private(set) var errorMessage = ""
+    private(set) var courseDetailsViewModel: CourseDetailsViewModel?
 
     // MARK: - Input / Outputs
 
@@ -63,12 +62,14 @@ final class LearnViewModel {
                         self?.isAlertPresented = true
                     }
                 },
-                receiveValue: { course in
-                    guard let course else {
+                receiveValue: { [weak self] course in
+                    guard let self, let course else {
                         return
                     }
-                    self.courseID = course.id
-                    self.enrollmentID = course.enrollmentId
+                    courseDetailsViewModel = LearnAssembly.makeViewModel(
+                        courseID: course.id,
+                        enrollmentID: course.enrollmentId
+                    )
                 }
             )
             .store(in: &subscriptions)

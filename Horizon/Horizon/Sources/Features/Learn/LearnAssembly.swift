@@ -44,21 +44,40 @@ final class LearnAssembly {
         )
     }
 
+    static func makeViewModel(
+        courseID: String,
+        enrollmentID: String,
+        course: HCourse? = nil
+    ) -> CourseDetailsViewModel {
+        let appEnvironment = AppEnvironment.shared
+        return .init(
+            router: appEnvironment.router,
+            getCoursesInteractor: makeGetCoursesInteractor(),
+            learnCoursesInteractor: GetLearnCoursesInteractorLive(),
+            courseID: courseID,
+            enrollmentID: enrollmentID,
+            course: course
+        )
+    }
+
     static func makeCourseDetailsView(
         courseID: String,
         enrollmentID: String,
         course: HCourse? = nil
     ) -> CourseDetailsView {
-        let appEnvironment = AppEnvironment.shared
         return CourseDetailsView(
-            viewModel: .init(
-                router: appEnvironment.router,
-                getCoursesInteractor: makeGetCoursesInteractor(),
-                learnCoursesInteractor: GetLearnCoursesInteractorLive(),
+            viewModel: makeViewModel(
                 courseID: courseID,
                 enrollmentID: enrollmentID,
                 course: course
             ),
+            isBackButtonVisible: false
+        )
+    }
+
+    static func makeCourseDetailsView(viewModel: CourseDetailsViewModel) -> CourseDetailsView {
+        CourseDetailsView(
+            viewModel: viewModel,
             isBackButtonVisible: false
         )
     }
