@@ -25,13 +25,7 @@ struct AssistQuizView: View {
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            config: .init(
-                refreshable: false,
-                loaderBackgroundColor: Color.backgroundDark.opacity(0.3)
-            )
-        ) { _ in
+        ScrollView {
             VStack(spacing: 20) {
                 headerView
                 questionTitle
@@ -40,18 +34,33 @@ struct AssistQuizView: View {
             .animation(.smooth, value: viewModel.didSubmitQuiz)
             .paddingStyle(.all, .standard)
         }
+        .scrollBounceBehavior(.basedOnSize)
         .applyHorizonGradient()
         .safeAreaInset(edge: .bottom) {
-            if viewModel.state == .data {
+            if !viewModel.isLoaderVisible {
                 footerView
             }
         }
+        .overlay { loaderView }
     }
 }
 
 // MARK: - Components
 
 extension AssistQuizView {
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            ZStack {
+                Rectangle()
+                    .fill(Color.clear)
+                    .applyHorizonGradient()
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
+    }
+    
     private var headerView: some View {
         AssistTitle {
             viewModel.dismiss(controller: viewController)

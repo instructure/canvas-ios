@@ -62,6 +62,8 @@ final class HEmbeddedWebPageContainerViewModel: EmbeddedWebPageNavigation {
     func openURL(_ url: URL, viewController: WeakViewController) {
         if url.containsQueryItem(named: "back") {
             router.dismiss(viewController)
+        } else {
+            router.route(to: url, from: viewController)
         }
     }
 
