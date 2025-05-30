@@ -28,6 +28,7 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var selectedAttemptIndex: Int
     @Published private(set) var selectedAttempt: Submission
     @Published private(set) var attempts: [Submission] = []
+    @Published private(set) var attemptPickerOptions: [OptionItem] = []
     @Published private(set) var hasSubmissions = false
     @Published private(set) var isSingleSubmission = false
     @Published private(set) var file: File?
@@ -112,13 +113,33 @@ class SubmissionGraderViewModel: ObservableObject {
             .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] attempts in
+            .map { Array($0.reversed()) }
+            .sink { [weak self] (attempts: [Submission]) in
                 guard let self else { return }
                 self.attempts = attempts
                 hasSubmissions = attempts.lastAttemptIndex > 0
                 isSingleSubmission = attempts.lastAttemptIndex == 1
+                updateAttemptPickerOptions()
             }
             .store(in: &subscriptions)
+    }
+
+    private func updateAttemptPickerOptions() {
+        attemptPickerOptions = attempts.map { attempt in
+            let title = String.localizedAttemptNumber(attempt.attempt)
+            let subtitle = attempt.submittedAt?.dateTimeString
+            let accessibilityLabel = subtitle.map {
+                let format = String(localized: "%1$@, submitted on %2$@", bundle: .teacher, comment: "Attempt 30, submitted on 2025. Feb 6. at 18:21")
+                return String.localizedStringWithFormat(format, title, $0)
+            }
+
+            return OptionItem(
+                id: String(attempt.attempt),
+                title: title,
+                subtitle: subtitle,
+                customAccessibilityLabel: accessibilityLabel
+            )
+        }
     }
 }
 

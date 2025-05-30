@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%1$@, submitted on %2$@" : {
+      "comment" : "Attempt 30, submitted on 2025. Feb 6. at 18:21"
+    },
     "%g out of %g" : {
       "localizations" : {
         "ar" : {

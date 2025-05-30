@@ -216,16 +216,22 @@ struct SubmissionGraderView: View {
 
     private var attemptAndFilePickers: some View {
         HStack(alignment: .center, spacing: 12) {
-            Menu(
-                content: {
-                    InstUI.MenuItem(title: "Attempt 1", image: nil, action: {})
-                    InstUI.MenuItem(title: "Attempt 2", image: nil, action: {})
-                    InstUI.MenuItem(title: "Attempt 3", image: nil, action: {})
-                },
+            InstUI.PickerMenu(
+                selectedId: Binding(
+                    get: { viewModel.selectedAttemptIndex },
+                    set: { attemptPickerDidSelect(index: $0) }
+                ),
+                allOptions: viewModel.attemptPickerOptions,
                 label: {
-                    pickerButton(title: "Attempt 3", icon: .clockLine, count: 1, truncationMode: .head)
+                    pickerButton(
+                        title: String.localizedAttemptNumber(viewModel.selectedAttemptIndex),
+                        icon: .clockLine,
+                        count: viewModel.attemptPickerOptions.count,
+                        truncationMode: .head
+                    )
                 }
             )
+
             Menu(
                 content: {
                     InstUI.MenuItem(title: "File 1", image: nil, action: {})
@@ -239,6 +245,12 @@ struct SubmissionGraderView: View {
         }
         .paddingStyle(.horizontal, .standard)
         .padding(.vertical, 6)
+    }
+
+    private func attemptPickerDidSelect(index: Int) {
+        withTransaction(.exclusive()) {
+            viewModel.didSelectNewAttempt(attemptIndex: index)
+        }
     }
 
     private func pickerButton(title: String, icon: Image, count: Int, truncationMode: Text.TruncationMode) -> some View {
