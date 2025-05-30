@@ -30,13 +30,13 @@ final class AssistQuizViewModel {
 
     // MARK: - Output
 
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var isLoaderVisible = true
     var quiz: AssistQuizModel? {
         didSet {
             if quiz == nil {
                 regenerateQuiz()
             } else {
-                state = .data
+                isLoaderVisible = false
             }
         }
     }
@@ -94,7 +94,7 @@ final class AssistQuizViewModel {
 
     func regenerateQuiz() {
         didSubmitQuiz = false
-        state = .loading
+        isLoaderVisible = true
         self.chatBotInteractor.publish(
             action: .chip(option: AssistChipOption(.quiz), history: chatHistory)
         )
