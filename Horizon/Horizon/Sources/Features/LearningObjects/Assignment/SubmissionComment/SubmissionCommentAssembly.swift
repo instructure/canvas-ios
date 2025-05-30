@@ -51,7 +51,7 @@ enum SubmissionCommentAssembly {
         }
         return viewController
     }
-
+#if DEBUG
     static func makePreview() -> SubmissionCommentView {
         SubmissionCommentView(
             viewModel: SubmissionCommentViewModel(
@@ -64,4 +64,5 @@ enum SubmissionCommentAssembly {
             )
         )
     }
+#endif
 }

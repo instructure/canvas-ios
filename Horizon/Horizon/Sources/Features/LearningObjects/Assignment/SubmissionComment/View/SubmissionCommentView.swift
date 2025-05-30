@@ -274,6 +274,8 @@ private struct TextArea: View {
     }
 }
 
+#if DEBUG
 #Preview {
     SubmissionCommentAssembly.makePreview()
 }
+#endif
