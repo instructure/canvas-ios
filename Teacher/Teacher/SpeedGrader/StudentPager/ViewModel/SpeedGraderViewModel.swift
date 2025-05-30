@@ -180,8 +180,9 @@ extension SpeedGraderViewModel: PagesViewControllerDataSource {
             userIndexInSubmissionList: index,
             viewModel: SubmissionGraderViewModel(
                 assignment: data.assignment,
-                submission: data.submissions[index],
-                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher()
+                latestSubmission: data.submissions[index],
+                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
+                env: environment
             ),
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in

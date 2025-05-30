@@ -34,7 +34,7 @@ public struct DynamicHeightTextEditor: View {
     // These are estimated values. SwiftUI.TextEditor has some internal paddings which we cannot influence nor measure.
     private let textEditorVerticalPadding: CGFloat = 7
     private let textEditorHorizontalPadding: CGFloat = 5
-    private let textEditorTopPadding: CGFloat = 0.5
+    private let textEditorTopPadding: CGFloat = 2
     @State private var textToMeasureHeight: String = "Placeholder"
 
     // MARK: - Init

@@ -21,8 +21,6 @@ import Core
 import Combine
 
 struct SubmissionCommentListView: View {
-    let assignment: Assignment
-    let submission: Submission
     let filePicker = FilePicker(env: .shared)
     @Binding var attempt: Int
     @Binding var fileID: String?
@@ -32,10 +30,9 @@ struct SubmissionCommentListView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    var attempts: [Submission]
+    @ObservedObject private var viewModel: SubmissionCommentListViewModel
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
-    @StateObject private var viewModel: SubmissionCommentListViewModel
     @State var error: Text?
     @State var showMediaOptions = false
     @State var showCommentLibrary = false
@@ -43,9 +40,7 @@ struct SubmissionCommentListView: View {
     @AccessibilityFocusState private var focusedTab: SubmissionGraderView.GraderTab?
 
     init(
-        assignment: Assignment,
-        submission: Submission,
-        attempts: [Submission],
+        viewModel: SubmissionCommentListViewModel,
         attempt: Binding<Int>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
@@ -53,22 +48,13 @@ struct SubmissionCommentListView: View {
         commentLibrary: SubmissionCommentLibraryViewModel,
         focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
     ) {
-        self.assignment = assignment
-        self.submission = submission
+        self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
         self._comment = enteredComment
-        self.attempts = attempts
         self.commentLibrary = commentLibrary
         self._focusedTab = focusedTab
-
-        _viewModel = StateObject(wrappedValue: SubmissionCommentListViewModel(
-            attempt: attempt.wrappedValue,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID
-        ))
     }
 
     var body: some View {
@@ -76,8 +62,8 @@ struct SubmissionCommentListView: View {
             VStack(spacing: 0) {
                 ScrollView {
                     switch viewModel.state {
-                    case .data(let comments):
-                        LazyVStack(alignment: .leading, spacing: 0) { list(comments) }
+                    case .data:
+                        comments
                     // Assume already loaded by parent, so skip loading & error
                     case .loading, .empty, .error:
                         EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
@@ -85,10 +71,10 @@ struct SubmissionCommentListView: View {
                     }
                 }
                     .background(Color.backgroundLightest)
-                    .scaleEffect(y: viewModel.state.isData ? -1 : 1)
-                Divider()
+                    .scaleEffect(y: viewModel.state == .data ? -1 : 1)
                 switch showRecorder {
                 case .audio:
+                    InstUI.Divider()
                     AudioRecorder {
                         show(recorder: nil)
                         sendMediaComment(type: .audio, url: $0)
@@ -97,6 +83,7 @@ struct SubmissionCommentListView: View {
                         .frame(height: 240)
                         .transition(.move(edge: .bottom))
                 case .video:
+                    InstUI.Divider()
                     VideoRecorder(camera: .front) {
                         show(recorder: nil)
                         sendMediaComment(type: .video, url: $0)
@@ -105,11 +92,11 @@ struct SubmissionCommentListView: View {
                         .frame(height: geometry.size.height)
                         .transition(.move(edge: .bottom))
                 case nil:
-                    toolbar(containerHeight: geometry.size.height)
+                    toolbar
                         .transition(.opacity)
                 }
             }.sheet(isPresented: $showCommentLibrary) {
-                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment) {
+                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment, contextColor: viewModel.contextColor) {
                     sendComment()
                 }
             }
@@ -117,89 +104,53 @@ struct SubmissionCommentListView: View {
     }
 
     @ViewBuilder
-    func list(_ comments: [SubmissionComment]) -> some View {
-        error?
-            .font(.semibold16).foregroundColor(.textDanger)
-            .padding(16)
-            .scaleEffect(y: -1)
-        ForEach(comments, id: \.id) { comment in
-            SubmissionCommentListCell(
-                assignment: assignment,
-                submission: submissionForComment(comment),
-                comment: comment,
-                attempt: $attempt,
-                fileID: $fileID
-            )
+    private var comments: some View {
+        LazyVStack(alignment: .leading, spacing: 0) {
+            error?
+                .font(.semibold16).foregroundColor(.textDanger)
+                .padding(16)
                 .scaleEffect(y: -1)
+            ForEach(viewModel.cellViewModels, id: \.id) { cellViewModel in
+                SubmissionCommentListCell(
+                    viewModel: cellViewModel,
+                    attempt: $attempt,
+                    fileID: $fileID
+                )
+                .scaleEffect(y: -1)
+            }
         }
     }
 
-    private func submissionForComment(_ comment: SubmissionComment) -> Submission {
-        let result = attempts.first(where: { $0.attempt == comment.attempt }) ?? submission
-        if result.assignment == nil {
-            result.assignment = assignment
-        }
-        return result
-    }
-
-    func toolbar(containerHeight: CGFloat) -> some View {
-        HStack(spacing: 0) {
-            Button(action: { showMediaOptions = true }, label: {
-                Image.paperclipLine.size(18)
-                    .foregroundColor(.textDark)
-                    .padding(EdgeInsets(top: 11, leading: 11, bottom: 11, trailing: 11))
-            })
-                .accessibility(label: Text("Add Attachment", bundle: .teacher))
-                .identifier("SubmissionComments.addMediaButton")
-                .actionSheet(isPresented: $showMediaOptions) {
-                    ActionSheet(title: Text("Add Attachment", bundle: .teacher), buttons: [
-                        .default(Text("Record Audio", bundle: .teacher), action: recordAudio),
-                        .default(Text("Record Video", bundle: .teacher), action: recordVideo),
-                        .default(Text("Choose Files", bundle: .teacher), action: chooseFile),
-                        .cancel()
-                    ])
+    private var toolbar: some View {
+        CommentInputView(
+            comment: $comment,
+            hasCommentLibraryButton: commentLibrary.shouldShow,
+            hasAttachmentButton: true,
+            contextColor: viewModel.contextColor,
+            showCommentLibraryAction: { showCommentLibrary = true },
+            addAttachmentAction: { type in
+                switch type {
+                case .audio: recordAudio()
+                case .video: recordVideo()
+                case .file: chooseFile()
                 }
-            CommentEditorView(
-                text: $comment,
-                shouldShowCommentLibrary: commentLibrary.shouldShow,
-                showCommentLibrary: $showCommentLibrary,
-                action: sendComment,
-                containerHeight: containerHeight
-            )
-                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
-                .accessibilityFocused($focusedTab, equals: .comments)
-        }
-            .background(Color.backgroundLight)
+            },
+            sendAction: sendComment
+        )
+        .accessibilityFocused($focusedTab, equals: .comments)
     }
 
     func sendComment() {
         let text = comment.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
+
         error = nil
         comment = ""
-        let commentAttempt: Int?
-        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
-            commentAttempt = attempt
-        } else {
-            commentAttempt = nil
-        }
-        CreateTextComment(
-            env: env,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            isGroup: assignment.gradedIndividually == false,
-            text: text,
-            attempt: commentAttempt
-        ).fetch { comment, error in
-            if error != nil || comment == nil {
-                let genericErrorMessage = String(localized: "Could not save the comment.", bundle: .teacher)
+        viewModel.sendTextComment(text) { result in
+            if result.isFailure {
                 self.comment = text
-                self.error = error.map { Text($0.localizedDescription) } ?? Text(genericErrorMessage)
-                UIAccessibility.announce(genericErrorMessage)
-            } else {
-                UIAccessibility.announce(String(localized: "Comment sent successfully", bundle: .teacher))
             }
+            handleSendCommentResult(result)
         }
     }
 
@@ -230,26 +181,11 @@ struct SubmissionCommentListView: View {
     }
 
     func sendMediaComment(type: MediaCommentType, url: URL?) {
-        guard let url = url else { return }
-        let commentAttempt: Int?
-        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
-            commentAttempt = attempt
-        } else {
-            commentAttempt = nil
-        }
-        UploadMediaComment(
-            env: env,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            isGroup: assignment.gradedIndividually == false,
-            type: type,
-            url: url,
-            attempt: commentAttempt
-        ).fetch { comment, error in
-            if error != nil || comment == nil {
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
-            }
+        guard let url else { return }
+
+        error = nil
+        viewModel.sendMediaComment(type: type, url: url) { result in
+            handleSendCommentResult(result)
         }
     }
 
@@ -261,24 +197,19 @@ struct SubmissionCommentListView: View {
     }
 
     func sendFileComment(batchID: String) {
-        let commentAttempt: Int?
-        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
-            commentAttempt = attempt
-        } else {
-            commentAttempt = nil
+        error = nil
+        viewModel.sendFileComment(batchId: batchID) { result in
+            handleSendCommentResult(result)
         }
-        UploadFileComment(
-            env: env,
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            isGroup: assignment.gradedIndividually == false,
-            batchID: batchID,
-            attempt: commentAttempt
-        ).fetch { comment, error in
-            if error != nil || comment == nil {
-                self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.", bundle: .teacher)
-            }
+    }
+
+    private func handleSendCommentResult(_ result: Result<String, Error>) {
+        switch result {
+        case .success(let message):
+            UIAccessibility.announce(message)
+        case .failure(let error):
+            self.error = Text(error.localizedDescription)
+            UIAccessibility.announce(error.localizedDescription)
         }
     }
 
@@ -286,5 +217,13 @@ struct SubmissionCommentListView: View {
         withAnimation(.default) {
             showRecorder = recorder
         }
+    }
+}
+
+private extension View {
+    // Toolbar buttons should be center aligned with the last row of the comment textfield.
+    // This offset is an approximation for that.
+    func commentToolbarButtonOffset() -> some View {
+        scaledOffset(y: -5, useIconScale: true)
     }
 }

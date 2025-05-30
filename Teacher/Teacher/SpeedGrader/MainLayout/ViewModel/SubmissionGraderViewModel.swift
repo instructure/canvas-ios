@@ -27,7 +27,6 @@ class SubmissionGraderViewModel: ObservableObject {
 
     @Published private(set) var selectedAttemptIndex: Int
     @Published private(set) var selectedAttempt: Submission
-    @Published private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     @Published private(set) var attempts: [Submission] = []
     @Published private(set) var hasSubmissions = false
     @Published private(set) var isSingleSubmission = false
@@ -38,23 +37,37 @@ class SubmissionGraderViewModel: ObservableObject {
     let assignment: Assignment
     let submission: Submission
 
+    // sub-viewmodels
+    private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
+    let commentListViewModel: SubmissionCommentListViewModel
+
     // MARK: - Inputs
 
     /** This is mainly used by `SubmissionCommentList` but since it's re-created on rotation and app backgrounding the entered text is lost. */
     @Published var enteredComment: String = ""
 
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
     init(
         assignment: Assignment,
-        submission: Submission,
-        contextColor: AnyPublisher<Color, Never>
+        latestSubmission: Submission,
+        contextColor: AnyPublisher<Color, Never>,
+        env: AppEnvironment
     ) {
         self.assignment = assignment
-        self.submission = submission
-        selectedAttempt = submission
-        selectedAttemptIndex = submission.attempt
+        self.submission = latestSubmission
+        selectedAttempt = latestSubmission
+        selectedAttemptIndex = latestSubmission.attempt
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
+        commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
+            assignment: assignment,
+            latestSubmission: latestSubmission,
+            latestAttemptNumber: latestSubmission.attempt,
+            contextColor: contextColor,
+            env: env
+        )
+        self.env = env
 
         contextColor.assign(to: &$contextColor)
 
@@ -91,15 +104,10 @@ class SubmissionGraderViewModel: ObservableObject {
     }
 
     private func observeAttemptChangesInDatabase() {
-        let scope = Scope(
-            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignment.id),
-                NSPredicate(key: #keyPath(Submission.userID), equals: submission.userID),
-                NSPredicate(format: "%K != nil", #keyPath(Submission.submittedAt))
-            ]),
-            orderBy: #keyPath(Submission.attempt)
+        let useCase = GetSubmissionAttemptsLocal(
+            assignmentId: assignment.id,
+            userId: submission.userID
         )
-        let useCase = LocalUseCase<Submission>(scope: scope)
         ReactiveStore(useCase: useCase)
             .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
