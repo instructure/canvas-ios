@@ -25,63 +25,24 @@ struct HorizonInboxView: View {
 
     @Bindable var viewModel: HorizonInboxViewModel
 
-    @State private var messagesFilterSelection: String = "All Messages"
     @State private var isMessagesFilterFocused: Bool = false
 
     var body: some View {
         VStack {
             topBar
-            ScrollView {
-                VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
-                    HorizonUI.SingleSelect(
-                        selection: $messagesFilterSelection,
-                        focused: $isMessagesFilterFocused,
-                        label: nil,
-                        options: [
-                            String(localized: "All Messages", bundle: .horizon),
-                            String(localized: "Announcements", bundle: .horizon),
-                            String(localized: "Unread", bundle: .horizon),
-                            String(localized: "Sent", bundle: .horizon)
-                        ],
-                        zIndex: 102
-                    )
-                    .padding(.horizontal, .huiSpaces.space16)
+            ScrollViewReader { scrollViewProxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
+                        filterSelection
 
-                    HorizonUI.MultiSelect(
-                        selections: $viewModel.filterByPersonSelections,
-                        focused: $viewModel.isSearchFocused,
-                        label: nil,
-                        textInput: $viewModel.filter,
-                        options: viewModel.personOptions,
-                        loading: $viewModel.searchLoading,
-                        placeholder: String(localized: "Filter by person", bundle: .horizon)
-                    )
-                    .padding(.horizontal, .huiSpaces.space16)
+                        searchFilter
 
-                    VStack {
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
-                        MessageRow(date: "Today", subject: "Welcome to Canvas!", names: "John Doe, Jane Smith")
+                        messageList
                     }
-                    .frame(maxHeight: .infinity, alignment: .top)
-                    .frame(maxWidth: .infinity)
-                    .background(HorizonUI.colors.surface.pageSecondary)
-                    .clipShape(
-                        .rect(
-                            topLeadingRadius: 32,
-                            bottomLeadingRadius: 0,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: 32
-                        )
-                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .onChange(of: scrollViewProxy) { proxy in
+
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
@@ -90,6 +51,49 @@ struct HorizonInboxView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(HorizonUI.colors.surface.pagePrimary)
         .navigationBarHidden(true)
+    }
+
+    var messageList: some View {
+        VStack {
+            ForEach(viewModel.messageRows, id: \.self) { messageRow in
+                MessageRow(viewModel: messageRow)
+            }
+        }
+        .frame(maxHeight: .infinity, alignment: .top)
+        .frame(maxWidth: .infinity)
+        .background(HorizonUI.colors.surface.pageSecondary)
+        .clipShape(
+            .rect(
+                topLeadingRadius: 32,
+                bottomLeadingRadius: 0,
+                bottomTrailingRadius: 0,
+                topTrailingRadius: 32
+            )
+        )
+    }
+
+    var filterSelection: some View {
+        HorizonUI.SingleSelect(
+            selection: $viewModel.filter,
+            focused: $isMessagesFilterFocused,
+            label: nil,
+            options: HorizonInboxViewModel.FilterOption.allCases.map { $0.title },
+            zIndex: 102
+        )
+        .padding(.horizontal, .huiSpaces.space16)
+    }
+
+    var searchFilter: some View {
+        HorizonUI.MultiSelect(
+            selections: $viewModel.searchByPersonSelections,
+            focused: $viewModel.isSearchFocused,
+            label: nil,
+            textInput: $viewModel.searchString,
+            options: viewModel.personOptions,
+            loading: $viewModel.searchLoading,
+            placeholder: String(localized: "Filter by person", bundle: .horizon)
+        )
+        .padding(.horizontal, .huiSpaces.space16)
     }
 
     var topBar: some View {
@@ -107,26 +111,27 @@ struct HorizonInboxView: View {
 }
 
 struct MessageRow: View {
-    var date: String
-    var subject: String
-    var names: String
+
+    var viewModel: HorizonInboxViewModel.MessageRowViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
-                Text(date)
+                Text(viewModel.date)
                     .huiTypography(.p2)
                     .padding(.bottom, .huiSpaces.space8)
+
                 Spacer()
-                HStack {}
-                    .frame(width: HorizonUI.spaces.space8, height: HorizonUI.spaces.space8)
-                    .background(HorizonUI.colors.surface.institution)
-                    .clipShape(Circle())
+
+                if viewModel.isNew {
+                    newIndicatorBadge
+                }
             }
 
-            Text(subject)
+            Text(viewModel.subject)
                 .huiTypography(.labelMediumBold)
-            Text(names)
+
+            Text(viewModel.names)
                 .huiTypography(.labelMediumBold)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -140,6 +145,13 @@ struct MessageRow: View {
                 .foregroundStyle(HorizonUI.colors.lineAndBorders.lineStroke),
             alignment: .bottom
         )
+    }
+
+    var newIndicatorBadge: some View {
+        HStack {}
+            .frame(width: HorizonUI.spaces.space8, height: HorizonUI.spaces.space8)
+            .background(HorizonUI.colors.surface.institution)
+            .clipShape(Circle())
     }
 }
 

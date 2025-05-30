@@ -23,12 +23,55 @@ import SwiftUI
 @Observable
 class HorizonInboxViewModel {
 
+    enum FilterOption: CaseIterable {
+        // caution: ordering here matters, it is used in the UI
+        case all
+        case announcements
+        case unread
+        case sent
+
+        var title: String {
+            switch self {
+            case .all:
+                return String(localized: "All Messages", bundle: .horizon)
+            case .announcements:
+                return String(localized: "Announcements", bundle: .horizon)
+            case .unread:
+                return String(localized: "Unread", bundle: .horizon)
+            case .sent:
+                return String(localized: "Sent", bundle: .horizon)
+            }
+        }
+
+        var inboxMessageInteractorScope: InboxMessageScope? {
+            let map = [
+                FilterOption.all: InboxMessageScope.inbox,
+                FilterOption.unread: InboxMessageScope.unread,
+                FilterOption.sent: InboxMessageScope.sent
+            ]
+            return map[self]
+        }
+    }
+
     // MARK: - Outputs
-    var personOptions: [String] = []
-    var filterByPersonSelections: [String] = []
-    var filter: String = "" {
+    var filter: String = FilterOption.all.title {
         didSet {
-            onFilterSet()
+            didSetFilter()
+        }
+    }
+    var messageRows: [MessageRowViewModel] = []
+    var personOptions: [String] = []
+    var searchByPersonSelections: [String] {
+        get {
+            personFilterSubject.value
+        }
+        set {
+            personFilterSubject.send(newValue)
+        }
+    }
+    var searchString: String = "" {
+        didSet {
+            onSearchStringSet()
         }
     }
     var searchLoading: Bool = false
@@ -40,25 +83,94 @@ class HorizonInboxViewModel {
 
     // MARK: - Private
 
-    private let api: API
+    // don't do animations until the user updates the filter or search
+    private var shouldAnimateListUpdates: Bool = false
     private var searchAPITask: APITask?
-    private let router: Router
     private var searchDebounceTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
 
+    // MARK: - Dependencies
+
+    private let api: API
+    private let inboxMessageInteractor: InboxMessageInteractor
+    private let router: Router
+    private let personFilterSubject = CurrentValueSubject<[String], Never>([])
+
     init(
         api: API = AppEnvironment.shared.api,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        inboxMessageInteractor: InboxMessageInteractor = InboxMessageInteractorLive(
+            env: AppEnvironment.shared,
+            tabBarCountUpdater: .init(),
+            messageListStateUpdater: .init()
+        )
     ) {
         self.api = api
         self.router = router
+        self.inboxMessageInteractor = inboxMessageInteractor
+
+        _ = inboxMessageInteractor.setContext(.user(AppEnvironment.shared.currentSession?.userID ?? ""))
+
+        Publishers.CombineLatest(
+            inboxMessageInteractor.messages,
+            personFilterSubject
+        )
+        .sink(receiveValue: onInboxMessageListItems)
+        .store(in: &subscriptions)
+
+        inboxMessageInteractor
+            .hasNextPage
+            .sink(receiveValue: onHasNextPage)
+            .store(in: &subscriptions)
     }
 
     func goBack(_ viewController: WeakViewController) {
         router.pop(from: viewController)
     }
 
-    private func onFilterSet() {
+    // MARK: - Private Methods
+
+    private func onHasNextPage(_ hasNextPage: Bool) {
+    }
+
+    private func onInboxMessageListItems(tuple: ([InboxMessageListItem], [String])) {
+        let inboxMessageListItems = tuple.0
+        let personFilter = tuple.1
+        withAnimation(shouldAnimateListUpdates ? .default : nil) {
+            messageRows = inboxMessageListItems
+                .filter { messageListItem in
+                    // technically, this should probably be in the interactor...
+                    if personFilter.isEmpty {
+                        return true
+                    }
+                    return personFilter.contains { current in
+                        messageListItem.participantName.lowercased().contains(current.lowercased())
+                    }
+                }
+                .map { messageListItem in
+                    MessageRowViewModel(
+                        date: messageListItem.date,
+                        subject: messageListItem.title,
+                        names: messageListItem.participantName,
+                        isNew: messageListItem.isUnread
+                    )
+                }
+        }
+    }
+
+    private func didSetFilter() {
+        guard let filterOption = FilterOption.allCases.first(where: { $0.title == self.filter }) else {
+            return
+        }
+        shouldAnimateListUpdates = true
+        if let inboxMessageInteractorScope = filterOption.inboxMessageInteractorScope {
+            _ = inboxMessageInteractor.setScope(inboxMessageInteractorScope)
+        } else {
+            messageRows = []
+        }
+    }
+
+    private func onSearchStringSet() {
         searchDebounceTask?.cancel()
         searchDebounceTask = Task { [weak self] in
             try? await Task.sleep(nanoseconds: 500_000_000)
@@ -76,12 +188,13 @@ class HorizonInboxViewModel {
     }
 
     private func makeRequest() {
+        shouldAnimateListUpdates = true
         searchLoading = true
         searchAPITask?.cancel()
         searchAPITask = api.makeRequest(
             GetSearchRecipientsRequest(
                 context: .user(AppEnvironment.shared.currentSession?.userID ?? ""),
-                search: filter,
+                search: searchString,
                 perPage: 10
             )
         ) { [weak self] apiSearchRecipients, _, _ in
@@ -90,6 +203,16 @@ class HorizonInboxViewModel {
             }
             self?.personOptions = apiSearchRecipients.map { $0.name }
             self?.searchLoading = false
+        }
+    }
+
+    struct MessageRowViewModel: Hashable, Identifiable {
+        let date: String
+        let subject: String
+        let names: String
+        let isNew: Bool
+        var id: String {
+            "\(date)-\(subject)-\(names)-\(isNew)"
         }
     }
 }
