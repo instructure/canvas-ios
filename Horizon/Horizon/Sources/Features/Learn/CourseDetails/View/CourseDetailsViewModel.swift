@@ -66,24 +66,9 @@ final class CourseDetailsViewModel {
         self.courseID = courseID
         self.course = course ?? .init()
         self.isLoaderVisible = true
-//        fetchData()
-//        observeCourseSelection()
+        fetchData()
+        observeCourseSelection()
         observeHeaderVisiablity()
-        Publishers.Zip(
-            getCoursesInteractor.getCourseWithModules(
-            id: courseID,
-            ignoreCache: false
-            ),
-            getCoursesInteractor.getCourseSyllabus(
-                courseID: courseID
-            )
-        )
-        .sink { [weak self] course, syllabus in
-            self?.overviewDescription = syllabus ?? ""
-            self?.updateCourse(course: course)
-            self?.isLoaderVisible = false
-        }
-        .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -98,7 +83,7 @@ final class CourseDetailsViewModel {
                 continuation.resume()
                 return
             }
-             pullToRefreshCancellable = getCoursesInteractor.getCourseWithModules(id: courseID, ignoreCache: true)
+            pullToRefreshCancellable = getCoursesInteractor.getCourseWithModules(id: course.id, ignoreCache: true)
                 .first()
                 .sink { [weak self] course in
                     continuation.resume()
@@ -129,10 +114,10 @@ final class CourseDetailsViewModel {
             pullToRefreshCancellable = nil
             isLoaderVisible = true
             selectedTabIndex = 1
+            self.selectedCoure = selectedCourse
             getCourse(for: selectedCourse?.id ?? "")
-                .sink { [weak self] course in
-                    self?.isLoaderVisible = false
-                    self?.updateCourse(course: course)
+                .sink { [weak self] courseInfo in
+                    self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
                 }
                 .store(in: &subscriptions)
         }
@@ -149,13 +134,16 @@ final class CourseDetailsViewModel {
     }
 
     private func fetchData() {
-        Publishers.Zip(getCourse(for: courseID), getCourses())
-            .sink { [weak self] course, courses in
-                self?.courses = courses
-                self?.updateCourse(course: course)
-                self?.isLoaderVisible = false
-            }
-            .store(in: &subscriptions)
+        Publishers.Zip(
+            getCourse(for: courseID),
+            getCourses()
+        )
+        .sink { [weak self] courseInfo, courses in
+            self?.courses = courses
+            self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
+            self?.isLoaderVisible = false
+        }
+        .store(in: &subscriptions)
     }
 
     private func getCourses() -> AnyPublisher<[DropdownMenuItem], Never> {
@@ -167,14 +155,18 @@ final class CourseDetailsViewModel {
             .eraseToAnyPublisher()
     }
 
-    private func getCourse(for id: String) -> AnyPublisher<HCourse?, Never> {
-        getCoursesInteractor
-            .getCourseWithModules(id: id, ignoreCache: false)
-            .eraseToAnyPublisher()
+    private func getCourse(for id: String) -> AnyPublisher<(course: HCourse?, syllabus: String?), Never> {
+        // Should use CombineLatest instead of Zip to track changes to the course
+        Publishers.CombineLatest(
+            getCoursesInteractor.getCourseWithModules(id: id, ignoreCache: false),
+            getCoursesInteractor.getCourseSyllabus(courseID: id)
+        )
+        .map { (course: $0, syllabus: $1) }
+        .eraseToAnyPublisher()
     }
 
-    private func updateCourse(course: HCourse?) {
-        guard let course else {
+    private func updateCourse(course: HCourse?, syllabus: String?) {
+        guard let course, (course.id == selectedCoure?.id || selectedCoure == nil ) else {
             return
         }
         let currentProgress = self.course.progress
@@ -182,8 +174,10 @@ final class CourseDetailsViewModel {
         self.course = course
         self.course.progress = max(nextProgress, currentProgress)
         selectedCoure = .init(id: course.id, name: course.name)
+        overviewDescription = syllabus ?? ""
         // Firt tab is 0 -> Overview 1 -> MyProgress
         selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
+        isLoaderVisible = false
     }
 }
 
