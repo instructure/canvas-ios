@@ -93,8 +93,7 @@ class SubmissionGraderViewModel: ObservableObject {
                 guard let fileId = file.id else { return nil }
                 return OptionItem(
                     id: fileId,
-                    title: file.displayName ?? file.filename,
-                    accessoryIcon: Image(uiImage: file.icon)
+                    title: file.displayName ?? file.filename
                 )
             }
             didSelectFile(files.first)
