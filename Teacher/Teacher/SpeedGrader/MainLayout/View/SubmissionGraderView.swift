@@ -274,63 +274,6 @@ struct SubmissionGraderView: View {
         .elevation(.pill, aboveBackground: .lightest)
     }
 
-    @ViewBuilder
-    private var attemptToggle: some View {
-        if viewModel.hasSubmissions {
-            Button {
-                showAttempts.toggle()
-            } label: {
-                HStack {
-                    Text("Attempt \(viewModel.selectedAttemptIndex)", bundle: .teacher)
-                    Spacer()
-                    Text(viewModel.selectedAttempt.submittedAt?.dateTimeString ?? "")
-                        .frame(minHeight: 24)
-
-                    if !viewModel.isSingleSubmission {
-                        Image.arrowOpenDownLine
-                            .resizable()
-                            .frame(width: 14, height: 14)
-                            .rotationEffect(.degrees(showAttempts ? 180 : 0))
-                    }
-                }
-                .font(.regular14)
-                .foregroundColor(.textDark)
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
-            }
-            .disabled(viewModel.isSingleSubmission)
-            InstUI.Divider()
-        }
-    }
-
-    @ViewBuilder
-    private var attemptPicker: some View {
-        if showAttempts {
-            VStack(spacing: 0) {
-                let binding = Binding(
-                    get: {
-                        viewModel.selectedAttemptIndex
-                    },
-                    set: { newAttemptIndex in
-                        withTransaction(.exclusive()) {
-                            viewModel.didSelectNewAttempt(attemptIndex: newAttemptIndex)
-                        }
-                        showAttempts = false
-                    }
-                )
-                Picker(selection: binding, label: Text(verbatim: "")) {
-                    ForEach(viewModel.attempts, id: \.attempt) { attempt in
-                        Text(attempt.submittedAt?.dateTimeString ?? "")
-                            .tag(Optional(attempt.attempt))
-                    }
-                }
-                .labelsHidden()
-                .pickerStyle(WheelPickerStyle())
-                InstUI.Divider()
-            }
-            .background(Color.backgroundLightest)
-        }
-    }
-
     // MARK: - Drawer
 
     enum GraderTab: Int, CaseIterable {

@@ -3086,6 +3086,7 @@
 
     },
     "Attempt %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
