@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import Foundation
 
 protocol ScoresInteractor {
     var courseID: String { get }
@@ -103,8 +104,8 @@ final class ScoresInteractorLive: ScoresInteractor {
 
     private func scoreGradeString(enrollment: ScoresCourseEnrollment) -> String? {
         var scoreString: String?
-        if let score = enrollment.score,
-           let formattedScore = GradeFormatter.numberFormatter.string(
+        let score = 36.52341
+        if let formattedScore = GradeFormatter.horizonNumberFormatter.string(
                from: GradeFormatter.truncate(score)
            ) {
             scoreString = "\(formattedScore)%"
@@ -120,4 +121,15 @@ final class ScoresInteractorLive: ScoresInteractor {
 
         return scoreGradesString.isEmpty ? nil : scoreGradesString
     }
+}
+
+extension GradeFormatter {
+    public static let horizonNumberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.maximumFractionDigits = 0
+        formatter.minimumFractionDigits = 0
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
 }
