@@ -42,6 +42,16 @@ public extension WKHTTPCookieStore {
             .eraseToAnyPublisher()
     }
 
+    func setCookies(_ cookies: [HTTPCookie]) -> AnyPublisher<Void, Never> {
+        Publishers.Sequence(sequence: cookies)
+            .flatMap(maxPublishers: .max(1)) { cookie in
+                self.setCookie(cookie)
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
     func setCookie(_ cookie: HTTPCookie) -> AnyPublisher<Void, Never> {
         Future { promise in
             self.setCookie(cookie) {
