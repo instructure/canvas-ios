@@ -68,6 +68,8 @@ public extension HorizonUI {
                 }
                 Text(fileName)
                     .huiTypography(.p1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
                     .foregroundStyle(Color.huiColors.text.body)
 
                 Spacer()

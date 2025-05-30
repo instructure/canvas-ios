@@ -16,31 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
 import Foundation
-import Combine
 import Core
 
-class DownloadFileInteractorPreview: DownloadFileInteractor {
-    func download(file: Core.File) -> AnyPublisher<URL, any Error> {
-        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+struct CommentAttachment: Identifiable, Equatable {
+    let id: String
+    let url: URL?
+    let displayName: String?
+
+    init(
+        id: String,
+        url: URL?,
+        displayName: String?
+    ) {
+        self.id = id
+        self.url = url
+        self.displayName = displayName
     }
 
-    func download(fileID: String) -> AnyPublisher<URL, Error> {
-        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
-    func download(
-        remoteURL: URL,
-        fileName: String
-    ) -> AnyPublisher<URL, Error> {
-        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    init(from entity: CDCommentAttachment) {
+        self.id = entity.id
+        self.displayName = entity.displayName
+        self.url = URL(string: entity.url ?? "")
     }
 }
-#endif

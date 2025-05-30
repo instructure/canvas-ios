@@ -63,6 +63,11 @@ public struct GetSubmissionCommentsRequest: APIGraphQLRequestable {
                        read
                        updatedAt
                        createdAt
+                       attachments {
+                        _id
+                        url
+                        displayName
+                       }
                      }
                    }
                  }

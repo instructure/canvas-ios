@@ -39,6 +39,7 @@ enum SubmissionCommentAssembly {
                 assignmentID: assignmentID,
                 attempt: attempt,
                 interactor: makeSubmissionCommentInteractor(),
+                fileInteractor: DownloadFileInteractorLive(courseID: courseID),
                 router: AppEnvironment.shared.router
             )
         )
@@ -58,6 +59,7 @@ enum SubmissionCommentAssembly {
                 assignmentID: "1",
                 attempt: nil,
                 interactor: makeSubmissionCommentInteractorPreview(),
+                fileInteractor: DownloadFileInteractorPreview(),
                 router: AppEnvironment.shared.router
             )
         )
