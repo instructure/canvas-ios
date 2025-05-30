@@ -134,8 +134,11 @@ struct SubmissionGraderView: View {
                 InstUI.Divider()
 
                 VStack(alignment: .leading, spacing: 0) {
-                    attemptAndFilePickers
-                    InstUI.Divider()
+
+                    if viewModel.hasSubmissions {
+                        attemptAndFilePickers
+                        InstUI.Divider()
+                    }
 
                     ZStack(alignment: .top) {
                         VStack(spacing: 0) {
@@ -186,9 +189,11 @@ struct SubmissionGraderView: View {
                 )
                 InstUI.Divider()
 
-                attemptAndFilePickers
-                    .accessibility(hidden: drawerState == .max)
-                InstUI.Divider()
+                if viewModel.hasSubmissions {
+                    attemptAndFilePickers
+                        .accessibility(hidden: drawerState == .max)
+                    InstUI.Divider()
+                }
 
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                 ZStack(alignment: .top) {
