@@ -236,6 +236,9 @@ struct SubmissionGraderView: View {
                     )
                 }
             )
+            .accessibilityShowsLargeContentViewer {
+                Text(String.localizedAttemptNumber(viewModel.selectedAttemptIndex))
+            }
 
             if viewModel.hasFiles {
                 InstUI.PickerMenu(
@@ -253,6 +256,9 @@ struct SubmissionGraderView: View {
                         )
                     }
                 )
+                .accessibilityShowsLargeContentViewer {
+                    Text(viewModel.selectedFileName)
+                }
             }
         }
         .paddingStyle(.horizontal, .standard)
