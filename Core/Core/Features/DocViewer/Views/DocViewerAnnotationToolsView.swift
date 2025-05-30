@@ -50,25 +50,28 @@ public struct RoundedCorners: Shape {
     }
 }
 
-struct DocViewerAnnotationToolsView: View {
-    @ObservedObject private var viewModel: DocViewerAnnotationSaveStateViewModel
-    @State private var isOpen = true
+struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
+    @ObservedObject private var viewModel: DocViewerAnnotationToolbarViewModel
     @State private var size: CGSize = .zero
     @State private var buttonSize: CGSize = .zero
-    private var buttonIcon: Image { isOpen ? .arrowOpenLeftSolid : .editLine }
-    private var cornerRadius: CGFloat { isOpen ? 0 : 30 }
-    private var trailingPadding: CGFloat { isOpen ? 16 : 10 }
-    private var offsetX: CGFloat { isOpen ? 0 : -(size.width - buttonSize.width - 2 * trailingPadding) }
+    private var buttonIcon: Image { viewModel.isOpen ? .arrowOpenLeftSolid : .editLine }
+    private var cornerRadius: CGFloat { viewModel.isOpen ? 0 : 30 }
+    private var trailingPadding: CGFloat { viewModel.isOpen ? 16 : 10 }
+    private var offsetX: CGFloat { viewModel.isOpen ? 0 : -(size.width - buttonSize.width - 2 * trailingPadding) }
+    private let annotationToolbarView: AnnotationBar
 
     init(
-        viewModel: DocViewerAnnotationSaveStateViewModel,
+        viewModel: DocViewerAnnotationToolbarViewModel,
+        annotationToolbarView: AnnotationBar
     ) {
         self.viewModel = viewModel
+        self.annotationToolbarView = annotationToolbarView
     }
 
     var body: some View {
         HStack(spacing: 0) {
             VStack(spacing: 0) {
+                annotationToolbarView
                 DocViewerAnnotationSaveStateView(viewModel: viewModel)
             }
             closeButton
@@ -88,9 +91,7 @@ struct DocViewerAnnotationToolsView: View {
 
     private var closeButton: some View {
         Button {
-            withAnimation(.easeInOut(duration: 0.3)) {
-                isOpen.toggle()
-            }
+            viewModel.didTapCloseToggle.send()
         } label: {
             Circle()
                 .frame(width: 32, height: 32)
@@ -110,7 +111,10 @@ struct DocViewerAnnotationToolsView: View {
 
 #Preview {
     VStack {
-        DocViewerAnnotationToolsView(viewModel: DocViewerAnnotationSaveStateViewModel())
+        DocViewerAnnotationToolsView(
+            viewModel: DocViewerAnnotationToolbarViewModel(),
+            annotationToolbarView: Text(verbatim: "Annotation Toolbar")
+        )
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.black)

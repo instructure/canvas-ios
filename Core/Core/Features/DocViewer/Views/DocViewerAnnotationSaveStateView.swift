@@ -16,62 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
 import SwiftUI
-import PSPDFKit
-import PSPDFKitUI
-
-class DocViewerAnnotationSaveStateViewModel: ObservableObject {
-    enum State: Equatable, CaseIterable {
-        case saving
-        case saved
-        case error
-
-        var text: String {
-            switch self {
-            case .saving: String(localized: "Saving...", bundle: .core)
-            case .saved: String(localized: "All annotations saved.", bundle: .core)
-            case .error: String(localized: "Error Saving. Tap to retry.", bundle: .core)
-            }
-        }
-
-        var foregroundColor: Color {
-            switch self {
-            case .saved: .textSuccess
-            case .error: .textDanger
-            default: .textDarkest
-            }
-        }
-
-        var icon: Image {
-            switch self {
-            case .saving: .circleArrowUpLine
-            case .saved: .checkSolid
-            case .error: .xSolid
-            }
-        }
-
-        var isEnabled: Bool {
-            self == .error
-        }
-    }
-
-    @Published fileprivate(set) var saveState: State = .saved
-    let didTapRetry = PassthroughSubject<Void, Never>()
-
-    init(state: State = .saved) {
-        self.saveState = state
-    }
-}
 
 struct DocViewerAnnotationSaveStateView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-//    @State private var isDragButtonSelected: Bool = false
-
-    @ObservedObject private var viewModel: DocViewerAnnotationSaveStateViewModel
+    @ObservedObject private var viewModel: DocViewerAnnotationToolbarViewModel
 
     init(
-        viewModel: DocViewerAnnotationSaveStateViewModel,
+        viewModel: DocViewerAnnotationToolbarViewModel,
     ) {
         self.viewModel = viewModel
     }
@@ -105,17 +57,17 @@ struct DocViewerAnnotationSaveStateView: View {
 #if DEBUG
 
 #Preview {
-    @Previewable @State var changingViewModel = DocViewerAnnotationSaveStateViewModel(state: .saving)
+    @Previewable @State var changingViewModel = DocViewerAnnotationToolbarViewModel(state: .saving)
 
     VStack(spacing: 0) {
         DocViewerAnnotationSaveStateView(
-            viewModel: DocViewerAnnotationSaveStateViewModel(state: .saving)
+            viewModel: DocViewerAnnotationToolbarViewModel(state: .saving)
         )
         DocViewerAnnotationSaveStateView(
-            viewModel: DocViewerAnnotationSaveStateViewModel(state: .error)
+            viewModel: DocViewerAnnotationToolbarViewModel(state: .error)
         )
         DocViewerAnnotationSaveStateView(
-            viewModel: DocViewerAnnotationSaveStateViewModel(state: .saved)
+            viewModel: DocViewerAnnotationToolbarViewModel(state: .saved)
         )
         DocViewerAnnotationSaveStateView(
             viewModel: changingViewModel
@@ -126,7 +78,7 @@ struct DocViewerAnnotationSaveStateView: View {
             withTimeInterval: 2.0,
             repeats: true
         ) { _ in
-            var possibleCases = DocViewerAnnotationSaveStateViewModel.State.allCases
+            var possibleCases = DocViewerAnnotationToolbarViewModel.State.allCases
             possibleCases.removeAll(where: { $0 == changingViewModel.saveState })
             if let randomState = possibleCases.randomElement() {
                 changingViewModel.saveState = randomState
@@ -137,67 +89,3 @@ struct DocViewerAnnotationSaveStateView: View {
 }
 
 #endif
-//
-//// MARK: - PSPDFKit Toolbar Representable
-//
-//struct AnnotationToolbarRepresentable: UIViewRepresentable {
-//    var annotationStateManager: AnnotationStateManager
-//    @Binding var isDragButtonSelected: Bool
-//
-//    func makeUIView(context: Context) -> DocViewerAnnotationToolbar {
-//        let toolbar = DocViewerAnnotationToolbar(annotationStateManager: annotationStateManager)
-//        toolbar.tintColor = Brand.shared.primary
-//        toolbar.backgroundView = nil
-//        toolbar.backgroundColor = .backgroundLightest
-//
-//        // Connect the publisher
-//        toolbar.isDragButtonSelected
-//            .sink { isDragSelected in
-//                isDragButtonSelected = isDragSelected
-//            }
-//            .store(in: &context.coordinator.subscriptions)
-//
-//        return toolbar
-//    }
-//
-//    func updateUIView(_ uiView: DocViewerAnnotationToolbar, context: Context) {
-//        // Update any toolbar properties here if needed
-//    }
-//
-//    func makeCoordinator() -> Coordinator {
-//        Coordinator()
-//    }
-//
-//    class Coordinator {
-//        var subscriptions = Set<AnyCancellable>()
-//    }
-//}
-//
-//// MARK: - Preview Provider
-//
-//struct DocViewerAnnotationToolsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let annotationStateManager = AnnotationStateManager()
-//
-//        VStack(spacing: 20) {
-//            DocViewerAnnotationToolsView(
-//                annotationStateManager: annotationStateManager,
-//                initialState: .saved,
-//                onRetry: {}
-//            )
-//
-//            DocViewerAnnotationToolsView(
-//                annotationStateManager: annotationStateManager,
-//                initialState: .saving,
-//                onRetry: {}
-//            )
-//
-//            DocViewerAnnotationToolsView(
-//                annotationStateManager: annotationStateManager,
-//                initialState: .error,
-//                onRetry: {}
-//            )
-//        }
-//        .previewLayout(.sizeThatFits)
-//    }
-//}
