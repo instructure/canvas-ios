@@ -35,4 +35,9 @@ public extension UISplitViewController {
     var detailTopViewController: UIViewController? {
         detailNavigationController?.topMostViewController()
     }
+
+    func resetToRoot(animated: Bool = false) {
+        masterNavigationController?.popToRootViewController(animated: animated)
+        detailNavigationController?.setViewControllers([EmptyViewController()], animated: animated)
+    }
 }

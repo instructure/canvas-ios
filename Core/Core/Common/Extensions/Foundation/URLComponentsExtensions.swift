@@ -68,6 +68,13 @@ public extension URLComponents {
         return cleaned
     }
 
+    func hasOrigin(_ value: String) -> Bool {
+        if queryItems?.first(where: { $0.name == "origin" })?.value == value {
+            return true
+        }
+        return false
+    }
+
     var originIsCalendar: Bool {
         if queryItems?.first(where: { $0.name == "origin" })?.value == "calendar" {
             return true
@@ -167,6 +174,20 @@ public extension URLComponents {
 
     func queryValue(for queryName: String) -> String? {
         queryItems?.first(where: { $0.name == queryName })?.value
+    }
+
+    func settingOrigin(_ origin: String) -> URLComponents {
+        var components = self
+        var items = queryItems ?? []
+
+        if let oIndex = items.firstIndex(where: { $0.name == "origin" }) {
+            items[oIndex].value = origin
+        } else {
+            items.append(URLQueryItem(name: "origin", value: origin))
+        }
+
+        components.queryItems = items
+        return components
     }
 }
 

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Foundation
+import SwiftUI
+import WidgetKit
 
-private let scheme = "canvas-courses://"
-private var host: String? { AppEnvironment.shared.currentSession?.baseURL.host }
-private let defaultRoute = URL(string: scheme)!
+struct TodoWidget: Widget {
+    let kind: String = "TodoWidget"
 
-extension Course {
-    var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(id)/grades")!
-    }
-}
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: TodoWidgetProvider()) { model in
 
-extension Assignment {
-    var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(courseID)/assignments/\(id)")!
+            let _ = print("update todo widget ..")
+            TodoWidgetScreen(model: model.data)
+        }
+        .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
+        .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

@@ -87,7 +87,7 @@ public final class Plannable: NSManagedObject {
 }
 
 extension Plannable {
-    func icon() -> UIImage? {
+    public func icon() -> UIImage? {
         switch(self.plannableType) {
         case .assignment:
             return UIImage.assignmentLine

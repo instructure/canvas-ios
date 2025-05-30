@@ -167,7 +167,17 @@ public enum PlannerAssembly {
 
     public static func makeToDoDetailsViewController(plannable: Plannable, env: AppEnvironment = .shared) -> UIViewController {
         let viewModel = CalendarToDoDetailsViewModel(
-            plannable: plannable,
+            plannableId: plannable.id,
+            interactor: CalendarToDoInteractorLive(),
+            router: env.router
+        )
+        let view = CalendarToDoDetailsScreen(viewModel: viewModel)
+        return CoreHostingController(view)
+    }
+
+    public static func makeToDoDetailsViewController(plannableId: String, env: AppEnvironment = .shared) -> UIViewController {
+        let viewModel = CalendarToDoDetailsViewModel(
+            plannableId: plannableId,
             interactor: CalendarToDoInteractorLive(),
             router: env.router
         )
@@ -189,7 +199,7 @@ public enum PlannerAssembly {
 
     public static func makeToDoDetailsScreenPreview(plannable: Plannable, env: AppEnvironment = .shared) -> some View {
         let viewModel = CalendarToDoDetailsViewModel(
-            plannable: plannable,
+            plannableId: plannable.id,
             interactor: CalendarToDoInteractorPreview(),
             router: env.router
         )

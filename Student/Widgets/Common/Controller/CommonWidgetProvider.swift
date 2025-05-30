@@ -83,7 +83,7 @@ extension CommonWidgetProvider: TimelineProvider {
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
         if context.isPreview {
-            completion(Timeline(entries: [placeholder(in: context)], policy: .after(Date())))
+            completion(Timeline(entries: [placeholder(in: context)], policy: .after(.distantFuture)))
             return
         }
 
