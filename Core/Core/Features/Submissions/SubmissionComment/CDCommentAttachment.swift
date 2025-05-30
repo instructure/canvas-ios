@@ -37,7 +37,6 @@ final public class CDCommentAttachment: NSManagedObject {
         dbEntity.id = apiEntity.id
         dbEntity.url = apiEntity.url
         dbEntity.displayName = apiEntity.displayName
-
         return dbEntity
     }
 }
