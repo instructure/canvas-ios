@@ -20,43 +20,37 @@ import WidgetKit
 import SwiftUI
 
 struct TodoWidgetScreen: View {
-    private let model: TodoModel
 
-    @Environment(\.widgetFamily)
-    private var family
-    private let lineCountByFamily: [WidgetFamily: Int] = [
-        .systemMedium: 2,
-        .systemLarge: 5,
-        .systemExtraLarge: 5
-    ]
+    let model: TodoModel
 
     var body: some View {
-        buildView()
-            .containerBackground(for: .widget) {
-                Color.backgroundLightest
-            }
-    }
+        if model.isLoggedIn {
 
-    @ViewBuilder
-    private func buildView() -> some View {
-        if model.items.isNotEmpty {
-            switch family {
-            case .systemMedium:
-                TodoScreen(model: model, widgetSize: .medium)
-            case .systemLarge:
-                TodoScreen(model: model, widgetSize: .large)
-            default:
-                TodoScreen(model: model, widgetSize: .medium)
+            if let error = model.error {
+                TodoFailureView(title: Text("Failure"), message: Text("Failure message"))
+
+            } else if model.items.isEmpty {
+                TodoEmptyView(
+                    title: Text("Oops! Something Went Wrong"),
+                    message: Text("We're having trouble showing your tasks right now. Please try again in a bit or head to the app.")
+                )
+            } else {
+                TodoListView(model: model)
             }
-        } else if model.isLoggedIn {
-            EmptyView(title: Text("Oops! Something Went Wrong"), message: Text("We're having trouble showing your tasks right now. Please try again in a bit or head to the app."))
+
         } else {
-            LoggedOutScreen(title: Text("Let's Get You Logged in!"), message: Text("To see your to-dos, please log in to your account in the app. It'll just take a sec."))
+
+            LoggedOutScreen(
+                title: Text("Let's Get You Logged in!"),
+                message: Text("To see your to-dos, please log in to your account in the app. It'll just take a sec.")
+            )
         }
     }
+}
 
-    init(model: TodoModel) {
-        self.model = model
+extension View {
+    func defaultTodoWidgetContainer() -> some View {
+        containerBackground(for: .widget) { Color.mint }
     }
 }
 
@@ -64,7 +58,9 @@ struct TodoWidgetScreen: View {
 
 struct TodoWidgetPreviews: PreviewProvider {
     static var previews: some View {
-        TodoWidgetScreen(model: TodoModel.make()).previewContext(WidgetPreviewContext(family: .systemMedium))
+        TodoWidgetScreen(model: TodoModel.make())
+            .defaultTodoWidgetContainer()
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
 

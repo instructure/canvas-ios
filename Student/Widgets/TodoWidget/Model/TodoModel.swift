@@ -26,10 +26,22 @@ class TodoModel: WidgetModel {
     }
 
     let items: [TodoItem]
-    init(isLoggedIn: Bool = true, items: [TodoItem] = []) {
+    let error: TodoError?
+
+    init(
+        isLoggedIn: Bool = true,
+        items: [TodoItem] = [],
+        error: TodoError? = nil
+    ) {
         self.items = items
+        self.error = error
+
         super.init(isLoggedIn: isLoggedIn)
     }
+}
+
+enum TodoError: Error {
+    case fetchingDataFailure
 }
 
 struct TodoItem: Identifiable, Equatable {

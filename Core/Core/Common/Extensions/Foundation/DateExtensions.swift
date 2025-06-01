@@ -296,7 +296,7 @@ extension DateFormatter {
 }
 
 extension Date.ISO8601FormatStyle {
-    public static var queryDateStyle: Self {
+    public static var queryDayDateStyle: Self {
         return Date
             .ISO8601FormatStyle()
             .year()
@@ -307,14 +307,14 @@ extension Date.ISO8601FormatStyle {
 }
 
 extension FormatStyle where Self == Date.ISO8601FormatStyle {
-    public static var queryDateStyle: Self {
-        Date.ISO8601FormatStyle.queryDateStyle
+    public static var queryDayDateStyle: Self {
+        Date.ISO8601FormatStyle.queryDayDateStyle
     }
 }
 
 extension ParseStrategy where Self == Date.ISO8601FormatStyle {
-    public static var queryDateStyle: Self {
-        Date.ISO8601FormatStyle.queryDateStyle
+    public static var queryDayDateStyle: Self {
+        Date.ISO8601FormatStyle.queryDayDateStyle
     }
 }
 

@@ -79,12 +79,7 @@ struct TodoItemDetailPreviews: PreviewProvider {
             type: .assignment,
             title: "Important Assignment"
         )
-
         return TodoItemDetail(item: item, itemDueOnSameDateAsNext: false)
-            .containerBackground(for: .widget) {
-                SwiftUI.EmptyView()
-            }
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
 

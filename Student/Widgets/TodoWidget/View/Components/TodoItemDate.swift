@@ -27,7 +27,7 @@ struct TodoItemDate: View {
     var body: some View {
         VStack(spacing: 2) {
             if !itemDueOnSameDateAsPrevious {
-                Link(destination: calendarDateRoute(item.date)) {
+                Link(destination: .calendarDayRoute(item.date)) {
                     Text(item.date.formatted(.dateTime.weekday()))
                         .font(.regular12)
                         .foregroundStyle(isToday ? .pink : .textDark)
@@ -64,10 +64,6 @@ struct TodoItemDatePreviews: PreviewProvider {
         )
 
         return TodoItemDate(item: item, itemDueOnSameDateAsPrevious: false)
-            .containerBackground(for: .widget) {
-                SwiftUI.EmptyView()
-            }
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
 

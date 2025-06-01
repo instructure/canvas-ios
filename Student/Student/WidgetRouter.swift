@@ -201,7 +201,7 @@ extension WidgetRouter {
             .init("/todo-widget/calendar/:date", action: { _, params, view in
                 guard
                     let dateString = params["date"],
-                    let date = try? Date(dateString, strategy: .queryDateStyle)
+                    let date = try? Date(dateString, strategy: .queryDayDateStyle)
                 else { return }
 
                 print(date)

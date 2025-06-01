@@ -119,10 +119,14 @@ class TodoWidgetProvider: TimelineProvider {
             let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
             return Timeline(entries: [entry], policy: .after(refreshDate))
         }
-        .replaceError(with: {
+        .catch({ _ in
+            let model = TodoModel(error: .fetchingDataFailure)
+            let entry = TodoWidgetEntry(data: model, date: Clock.now)
             let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
-            return Timeline(entries: [], policy: .after(recoveryDate))
-        }())
+            return Just(
+                Timeline(entries: [entry], policy: .after(recoveryDate))
+            )
+        })
         .eraseToAnyPublisher()
     }
 }

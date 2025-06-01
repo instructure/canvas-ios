@@ -16,20 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+
 import WidgetKit
 
-struct TodoWidget: Widget {
-    static let kind: String = "TodoWidget"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: Self.kind, provider: TodoWidgetProvider()) { model in
-
-            let _ = print("update todo widget ..")
-            TodoWidgetScreen(model: model.data)
+extension WidgetFamily {
+    var shownTodoItemsMaximumCount: Int {
+        switch self {
+        case .systemSmall: 1
+        case .systemMedium: 2
+        case .systemLarge: 5
+        default: 5
         }
-        .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
-        .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))
-        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

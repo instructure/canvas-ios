@@ -45,18 +45,17 @@ extension TodoItem {
     }
 }
 
-extension TodoScreen {
-    var viewFullListRoute: URL {
+extension URL {
+
+    static var todoListRoute: URL {
         .todoWidgetRoute("todo-widget/planner-notes")
     }
 
-    var addTodoRoute: URL {
+    static var addTodoRoute: URL {
         .todoWidgetRoute("todo-widget/planner-notes/new")
     }
-}
 
-extension TodoItemDate {
-    func calendarDateRoute(_ date: Date) -> URL {
-        .todoWidgetRoute("todo-widget/calendar/\(date.formatted(.queryDateStyle))")
+    static func calendarDayRoute(_ date: Date) -> URL {
+        .todoWidgetRoute("todo-widget/calendar/\(date.formatted(.queryDayDateStyle))")
     }
 }
