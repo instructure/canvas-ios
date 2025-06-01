@@ -24,6 +24,12 @@ struct TodoWidgetScreen: View {
     let model: TodoModel
 
     var body: some View {
+        content
+            .defaultTodoWidgetContainer()
+    }
+
+    @ViewBuilder
+    private var content: some View {
         if model.isLoggedIn {
 
             if let error = model.error {
@@ -59,6 +65,7 @@ extension View {
 struct TodoWidgetPreviews: PreviewProvider {
     static var previews: some View {
         TodoWidgetScreen(model: TodoModel.make())
+            .padding()
             .defaultTodoWidgetContainer()
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }

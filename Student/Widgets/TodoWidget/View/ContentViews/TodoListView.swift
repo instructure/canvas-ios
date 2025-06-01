@@ -32,20 +32,10 @@ struct TodoListView: View {
             actionRoute: .addTodoRoute,
             content: { listView }
         )
+        .padding()
         .overlay(alignment: .bottom) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(
-                    LinearGradient(
-                        gradient: Gradient(colors: [.clear, .red]),
-                        startPoint: .top,
-                        endPoint: .center
-                    )
-                )
-
+            fullListButtonView
         }
-        .ignoresSafeArea()
-        .containerBackground(for: .widget) { Color.mint }
-
     }
 
     // MARK: Privates
@@ -89,15 +79,12 @@ struct TodoListView: View {
             }
             Spacer()
         }
-        .overlay(alignment: .bottom) {
-            //fullListButtonView
-        }
     }
 
     private var fullListButtonView: some View {
         ZStack {
             if showsFullListButton {
-                RoundedRectangle(cornerRadius: 10)
+                Rectangle()
                     .fill(
                         LinearGradient(
                             gradient: Gradient(colors: [.clear, .backgroundLightest]),
@@ -124,10 +111,12 @@ struct TodoScreenPreviews: PreviewProvider {
     static var previews: some View {
 
         TodoListView(model: TodoModel.make())
+            .defaultTodoWidgetContainer()
             .previewContext(WidgetPreviewContext(family: .systemMedium))
             .previewDisplayName("Medium Size")
 
         TodoListView(model: TodoModel.make())
+            .defaultTodoWidgetContainer()
             .previewContext(WidgetPreviewContext(family: .systemLarge))
             .previewDisplayName("Large Size")
     }

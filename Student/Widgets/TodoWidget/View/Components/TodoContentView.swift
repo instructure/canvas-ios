@@ -61,7 +61,6 @@ struct TodoContentView<Content: View>: View {
                 bottomView
             }
         }
-        .defaultTodoWidgetContainer()
     }
 
     private var logoView: some View {

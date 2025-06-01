@@ -63,6 +63,7 @@ struct NoDataView_Previews: PreviewProvider {
             title: Text("Announcements"),
             message: Text("Please log in via the application")
         )
+        .defaultTodoWidgetContainer()
         .previewContext(WidgetPreviewContext(family: .systemSmall))
         .previewDisplayName("Empty Announcements")
 
@@ -70,6 +71,7 @@ struct NoDataView_Previews: PreviewProvider {
             title: Text("Grades"),
             message: Text("Please log in via the application")
         )
+        .defaultTodoWidgetContainer()
         .previewContext(WidgetPreviewContext(family: .systemSmall))
         .previewDisplayName("Empty Grades")
     }

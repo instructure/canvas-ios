@@ -24,12 +24,22 @@ struct TodoWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: TodoWidgetProvider()) { model in
-
             let _ = print("update todo widget ..")
             TodoWidgetScreen(model: model.data)
         }
         .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
+        .contentMarginsDisabled()
         .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }
+
+#if DEBUG
+
+#Preview("TodoWidget", as: .systemMedium) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
+}
+
+#endif
