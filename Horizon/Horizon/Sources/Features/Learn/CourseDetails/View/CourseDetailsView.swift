@@ -172,6 +172,7 @@ private struct CotentView: View {
             NotebookAssembly.makeView(courseID: viewModel.course.id)
                 .padding(.horizontal, .huiSpaces.space24)
                 .padding(.bottom, .huiSpaces.space24)
+                .id(viewModel.course.id)
         }
     }
 
