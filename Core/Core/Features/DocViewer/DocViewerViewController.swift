@@ -40,6 +40,7 @@ public struct FlexibleToolbarContainerView: UIViewRepresentable {
 public class DocViewerViewController: UIViewController {
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var contentView: UIView!
+    /// We store this to measure its height so we can enlarge the PDF view when the annotation toolbar is closed.
     private weak var annotationContainerView: UIView?
 
     var annotationProvider: DocViewerAnnotationProvider?
@@ -197,7 +198,6 @@ public class DocViewerViewController: UIViewController {
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
             annotationToolbar.tintColor = Brand.shared.primary
             annotationToolbar.backgroundView = nil
-            annotationToolbar.backgroundColor = .red
             annotationToolbar.borderedToolbarPositions = []
             annotationToolbar.isDragButtonSelected
                 .sink { [weak self] isDragEnabled in

@@ -72,12 +72,17 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
         HStack(spacing: 0) {
             VStack(spacing: 0) {
                 annotationToolbarView
+                    /// PSPDFKit's annotation toolbar has an internal rendering logic I couldn't control,
+                    /// so we need to apply some magic numbers to align it properly.
+                    .padding(.top, -7)
+                    .padding(.leading, -9)
+                    .frame(height: 39)
                 DocViewerAnnotationSaveStateView(viewModel: viewModel)
             }
             closeButton
                 .onSizeChange(update: $buttonSize)
         }
-        .frame(minHeight: 52)
+        .frame(minHeight: 56)
         .paddingStyle(.leading, .standard)
         .padding(.trailing, trailingPadding)
         .paddingStyle(.vertical, .textVertical)
