@@ -279,6 +279,8 @@ struct SubmissionGraderView: View {
     private func pickerButton(title: String, icon: Image, count: Int, truncationMode: Text.TruncationMode) -> some View {
         HStack(spacing: 8) {
             icon.scaledIcon(size: 18)
+                .instBadge(count, style: .hostSize18, isOverlayed: false, color: viewModel.contextColor)
+                .accessibilityHidden(true)
             Text(title)
                 .font(.regular16)
         }
