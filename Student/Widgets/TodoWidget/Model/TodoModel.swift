@@ -71,7 +71,7 @@ extension TodoModel {
                 type: .assignment,
                 date: Date.now, title: "Important Assignment",
                 contextName: "Student",
-                color: .green,
+                color: .orange,
                 icon: .assignmentLine
             ),
             TodoItem.make(
@@ -80,7 +80,7 @@ extension TodoModel {
                 date: Date.now,
                 title: "Discussion About Everything",
                 contextName: "Student",
-                color: .green,
+                color: .orange,
                 icon: .discussionLine
             ),
             TodoItem.make(
@@ -89,7 +89,7 @@ extension TodoModel {
                 date: Date.now,
                 title: "Huge Event",
                 contextName: "Student",
-                color: .green,
+                color: .orange,
                 icon: .calendarMonthLine
             ),
             TodoItem.make(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
