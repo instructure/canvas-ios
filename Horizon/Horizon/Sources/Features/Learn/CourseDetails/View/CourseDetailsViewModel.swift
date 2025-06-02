@@ -38,7 +38,7 @@ final class CourseDetailsViewModel {
 
     // MARK: - Inputs / Outputs
 
-    var selectedTabIndex: Int = 1
+    var selectedTabIndex: Int?
 
     // MARK: - Private
 
@@ -115,6 +115,7 @@ final class CourseDetailsViewModel {
             isLoaderVisible = true
             selectedTabIndex = 1
             self.selectedCoure = selectedCourse
+            self.selectedTabIndex = nil
             getCourse(for: selectedCourse?.id ?? "")
                 .sink { [weak self] courseInfo in
                     self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
@@ -172,7 +173,9 @@ final class CourseDetailsViewModel {
         selectedCoure = .init(id: course.id, name: course.name)
         overviewDescription = syllabus ?? ""
         // Firt tab is 0 -> Overview 1 -> MyProgress
-        selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
+        if selectedTabIndex == nil {
+            selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
+        }
         isLoaderVisible = false
     }
 }
