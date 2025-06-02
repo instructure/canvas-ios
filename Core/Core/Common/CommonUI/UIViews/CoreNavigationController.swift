@@ -18,7 +18,9 @@
 
 import UIKit
 
-open class CoreNavigationController: UINavigationController {
+open class CoreNavigationController: UINavigationController, VisibilityObservedViewController {
+    public private(set) var visibilityObservation = VisibilityObservation()
+
     public var remoteLogger = RemoteLogger.shared
     public override var prefersStatusBarHidden: Bool {
         topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
@@ -54,6 +56,16 @@ open class CoreNavigationController: UINavigationController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         self.interactivePopGestureRecognizer?.delegate = self
+    }
+
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        visibilityObservation.viewDidAppear()
+    }
+
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        visibilityObservation.viewDidDisappear()
     }
 
     // MARK: - Navigation Methods

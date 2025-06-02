@@ -19,33 +19,7 @@
 import Combine
 import UIKit
 
-open class ObservedViewController: UIViewController {
-
-    private var appearTask: (() -> Void)?
-    private var isVisible: Bool = false
-
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        isVisible = true
-        appearTask?()
-        appearTask = nil
-    }
-
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        isVisible = false
-    }
-
-    public func onAppear(_ block: @escaping () -> Void) {
-        if isVisible {
-            block()
-        } else {
-            appearTask = block
-        }
-    }
-}
-
-public class PlannerViewController: ObservedViewController {
+public class PlannerViewController: BaseVisibilityObservedViewController {
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
     lazy var addButton = UIBarButtonItem(image: .addSolid)
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))

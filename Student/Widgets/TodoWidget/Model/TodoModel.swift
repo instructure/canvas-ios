@@ -60,9 +60,9 @@ enum TodoError: Error {
     case fetchingDataFailure
 }
 
-#if DEBUG
 extension TodoModel {
-    public static func make(count: Int = 5) -> TodoModel {
+
+    static func make(count: Int = 5) -> TodoModel {
         let items = [
             TodoItem(plannableID: "1", type: .assignment, date: Date.now, title: "Important Assignment"),
             TodoItem(plannableID: "2", type: .discussion_topic, date: Date.now, title: "Discussion About Everything"),
@@ -75,4 +75,3 @@ extension TodoModel {
         return TodoModel(items: Array(items.prefix(count)))
     }
 }
-#endif

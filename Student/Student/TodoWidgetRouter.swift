@@ -94,127 +94,180 @@ extension TodoWidgetRouter {
 
     static func make() -> TodoWidgetRouter {
         TodoWidgetRouter(handlers: [
-            .init("/todo-widget/planner-notes", action: { _, _, view in
-                view.selectTab(at: 2)
-                view.resetSplitMasterToRoot()
-            }),
-            .init("/todo-widget/planner-notes/new", action: { _, _, view in
-                // Switch to Calendar tab
-                view.selectTab(at: 1)
-                view.resetSplitMasterToRoot()
+            plannerNotesListHandler,
+            newPlannerNoteHandler,
+            plannerNoteDetailHandler,
+            calendarEventHandler,
+            assignmentHandler,
+            assignmentWithSubmissionHandler,
+            calendarDayHandler
+        ])
+    }
 
-                let weakVC = WeakViewController()
-                let vc = PlannerAssembly.makeCreateToDoViewController(
-                    selectedDate: Clock.now,
-                    completion: { [weak env = view.env] _ in
-                        env?.router.dismiss(weakVC)
-                    }
-                )
+    private static var plannerNotesListHandler: RouteHandler {
+        .init("/todo-widget/planner-notes", action: { _, _, view in
+            view.selectTab(at: 2)
+            view.resetSplitMasterToRoot()
+        })
+    }
 
-                weakVC.setValue(vc)
-                view.env.router.show(
-                    vc,
-                    from: view.tabController,
-                    options: .modal(isDismissable: false, embedInNav: true),
-                    analyticsRoute: "/calendar/new"
-                )
-            }),
-            .init("/todo-widget/planner-notes/:plannableId", action: { _, params, view in
-                guard let plannableId = params["plannableId"] else { return }
+    private static var newPlannerNoteHandler: RouteHandler {
+        .init("/todo-widget/planner-notes/new", action: { _, _, view in
+            // Switch to Calendar tab
+            view.selectTab(at: 1)
+            view.resetSplitMasterToRoot()
 
-                // Switch to Calendar tab
-                view.selectTab(at: 1)
-                view.resetSplitMasterToRoot()
+            let weakVC = WeakViewController()
+            let vc = PlannerAssembly.makeCreateToDoViewController(
+                selectedDate: Clock.now,
+                completion: { [weak env = view.env] _ in
+                    env?.router.dismiss(weakVC)
+                }
+            )
 
-                let controller = PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
+            weakVC.setValue(vc)
+            view.env.router.show(
+                vc,
+                from: view.tabController,
+                options: .modal(isDismissable: false, embedInNav: true),
+                analyticsRoute: "/calendar/new"
+            )
+        })
+    }
 
-                if let calendarVC = view.selectedTabMasterRootController as? ObservedViewController {
-                    calendarVC.onAppear {
-                        view.env.router.show(controller, from: calendarVC, options: .detail)
-                    }
-                } else {
+    private static var plannerNoteDetailHandler: RouteHandler {
+        .init("/todo-widget/planner-notes/:plannableId", action: { _, params, view in
+            guard let plannableId = params["plannableId"] else { return }
+
+            // Switch to Calendar tab
+            view.selectTab(at: 1)
+            view.resetSplitMasterToRoot()
+
+            let controller = PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
+
+            if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
+                calendarVC.showing {
+                    view.env.router.show(controller, from: calendarVC, options: .detail)
+                }
+            } else {
+                controller.showing {
                     view.env.router.show(
                         controller,
                         from: view.tabController,
                         options: .modal(isDismissable: true, embedInNav: true)
                     )
                 }
-            }),
-            .init("/todo-widget/calendar_events/:eventId", action: { _, params, view in
-                guard let eventID = params["eventId"] else { return }
+            }
+        })
+    }
 
-                // Switch to Calendar tab
-                view.selectTab(at: 1)
-                view.resetSplitMasterToRoot()
+    private static var calendarEventHandler: RouteHandler {
+        .init("/todo-widget/calendar_events/:eventId", action: { _, params, view in
+            guard let eventID = params["eventId"] else { return }
 
-                let controller = PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
+            // Switch to Calendar tab
+            view.selectTab(at: 1)
+            view.resetSplitMasterToRoot()
 
-                if let calendarVC = view.selectedTabMasterRootController as? ObservedViewController {
-                    calendarVC.onAppear {
-                        view.env.router.show(controller, from: calendarVC, options: .detail)
-                    }
-                } else {
+            let controller = PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
+
+            if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
+                calendarVC.showing {
+                    view.env.router.show(controller, from: calendarVC, options: .detail)
+                }
+            } else {
+                controller.showing {
                     view.env.router.show(
                         controller,
                         from: view.tabController,
                         options: .modal(isDismissable: true, embedInNav: true)
                     )
                 }
-            }),
-            .init("/courses/:courseID/assignments/:assignmentID", action: { url, _, view in
+            }
+        })
+    }
 
-                // Switch to Dashboard tab
-                view.selectTab(at: 0)
-                view.resetSplitMasterToRoot()
+    private static var assignmentHandler: RouteHandler {
+        .init("/courses/:courseID/assignments/:assignmentID", action: { url, _, view in
 
+            // Switch to Dashboard tab
+            view.selectTab(at: 0)
+            view.resetSplitMasterToRoot()
+
+            guard let masterVC = view.selectedTabMasterRootController as? VisibilityObservedViewController
+            else { return }
+
+            masterVC.showing {
                 view.env.router.route(
                     to: url,
-                    from: view.tabController,
+                    from: masterVC,
                     options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
                 )
-            }),
-            .init("/courses/:courseID/assignments/:assignmentID/submissions/:userID", action: { url, _, view in
+            }
+        })
+    }
 
-                // Switch to Calendar tab
-                view.selectTab(at: 1)
-                view.resetSplitMasterToRoot()
+    private static var assignmentWithSubmissionHandler: RouteHandler {
+        .init("/courses/:courseID/assignments/:assignmentID/submissions/:userID", action: { url, _, view in
 
-                if let masterVC = view.selectedTabMasterRootController as? ObservedViewController {
+            // Switch to Calendar tab
+            view.selectTab(at: 1)
+            view.resetSplitMasterToRoot()
 
-                    masterVC.onAppear {
-                        view.env.router.route(
-                            to: url.settingOrigin("calendar"),
-                            from: masterVC,
-                            options: .detail
-                        )
-                    }
+            guard let masterVC = view.selectedTabMasterRootController as? VisibilityObservedViewController
+            else { return }
 
-                } else {
+            if let plannerVC = masterVC as? PlannerViewController {
 
+                plannerVC.showing {
+                    view.env.router.route(
+                        to: url.settingOrigin("calendar"),
+                        from: plannerVC,
+                        options: .detail
+                    )
+                }
+
+            } else {
+
+                masterVC.showing {
                     view.env.router.route(
                         to: url.settingOrigin("calendar"),
                         from: view.tabController,
                         options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
                     )
                 }
-            }),
-            .init("/todo-widget/calendar/:date", action: { _, params, view in
-                guard
-                    let dateString = params["date"]?.removingPercentEncoding,
-                    let date = try? Date(dateString, strategy: .queryDayDateStyle)
-                else { return }
+            }
+        })
+    }
 
-                // Switch to Calendar tab
-                view.selectTab(at: 1)
-                view.resetSplitMasterToRoot()
+    private static var calendarDayHandler: RouteHandler {
+        .init("/todo-widget/calendar/:date", action: { _, params, view in
+            guard
+                let dateString = params["date"]?.removingPercentEncoding,
+                let date = try? Date(dateString, strategy: .queryDayDateStyle)
+            else { return }
 
-                guard let plannerVC = view.selectedTabMasterRootController as? PlannerViewController
-                else { return }
+            // Switch to Calendar tab
+            view.selectTab(at: 1)
+            view.resetSplitMasterToRoot()
 
-                plannerVC.onAppear {
-                    plannerVC.selectDate(date)
-                }
-            })
-        ])
+            guard let plannerVC = view.selectedTabMasterRootController as? PlannerViewController
+            else { return }
+
+            plannerVC.showing {
+                plannerVC.selectDate(date)
+            }
+        })
+    }
+}
+
+extension UIViewController {
+
+    func showing(_ block: @escaping () -> Void) {
+        if let observedVC = self as? VisibilityObservedViewController {
+            observedVC.onAppear { block() }
+        } else {
+            block()
+        }
     }
 }
