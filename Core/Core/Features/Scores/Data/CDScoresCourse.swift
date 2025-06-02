@@ -59,7 +59,7 @@ public final class CDScoresCourse: NSManagedObject {
             )
             dbEntity.settings = settingsEntity
         }
-        
+
         dbEntity.hideFinalGrade = apiEntity.hide_final_grades ?? false
 
         return dbEntity
