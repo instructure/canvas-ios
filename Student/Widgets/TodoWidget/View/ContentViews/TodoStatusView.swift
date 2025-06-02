@@ -30,6 +30,7 @@ struct TodoStatusView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: status.imageHeight(for: family))
+                .accessibilityHidden(true)
             VStack(spacing: 5) {
                 Text(status.title)
                     .font(.semibold14)

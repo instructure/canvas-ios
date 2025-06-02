@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add Todo" : {
+
+    },
     "American literature IV" : {
       "comment" : "Example course name",
       "localizations" : {
@@ -1798,6 +1801,9 @@
           }
         }
       }
+    },
+    "Canvas Todo Widget" : {
+
     },
     "Course Grades" : {
       "localizations" : {
@@ -4374,6 +4380,9 @@
         }
       }
     },
+    "Reload" : {
+
+    },
     "Reload Widget" : {
 
     },
@@ -4637,6 +4646,9 @@
         }
       }
     },
+    "Tap to view full list of Todos" : {
+
+    },
     "Thomas McKempis" : {
       "comment" : "Example author name",
       "localizations" : {
@@ -4895,6 +4907,9 @@
       }
     },
     "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
+
+    },
+    "Today, " : {
 
     },
     "Todo" : {

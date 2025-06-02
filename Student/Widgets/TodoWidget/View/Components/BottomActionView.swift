@@ -30,7 +30,7 @@ extension BottomActionView {
     func actionView(_ icon: Image) -> some View {
         ZStack {
             Circle()
-                .fill(Color.purple)
+                .fill(Color.course2)
                 .frame(width: 32)
             icon
                 .resizable()
@@ -46,6 +46,7 @@ struct RouteActionView: BottomActionView {
 
     let icon: Image
     let url: URL
+    let accessibilityLabel: String?
 
     var body: some View {
         HStack {
@@ -53,6 +54,7 @@ struct RouteActionView: BottomActionView {
             Link(destination: url) {
                 actionView(icon)
             }
+            .accessibilityLabel(accessibilityLabel)
         }
         .frame(maxHeight: 32)
     }
@@ -62,6 +64,7 @@ struct IntentActionView<Intent: AppIntent>: BottomActionView {
 
     let icon: Image
     let intent: Intent
+    let accessibilityLabel: String?
 
     var body: some View {
         HStack {
@@ -70,6 +73,7 @@ struct IntentActionView<Intent: AppIntent>: BottomActionView {
                 actionView(icon)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(accessibilityLabel)
         }
         .frame(maxHeight: 32)
     }

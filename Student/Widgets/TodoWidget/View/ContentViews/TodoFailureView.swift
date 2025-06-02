@@ -30,7 +30,11 @@ struct TodoFailureView: View {
                     .invalidatableContent()
             },
             actionView: {
-                IntentActionView(icon: .refreshLine, intent: ReloadWidgetIntent())
+                IntentActionView(
+                    icon: .refreshSolid,
+                    intent: ReloadWidgetIntent(),
+                    accessibilityLabel: String(localized: "Reload")
+                )
             }
         )
     }

@@ -34,7 +34,11 @@ struct TodoListView: View {
             logoRoute: .todoListRoute,
             content: { listView },
             actionView: {
-                RouteActionView(icon: .addLine, url: .addTodoRoute)
+                RouteActionView(
+                    icon: .addSolid,
+                    url: .addTodoRoute,
+                    accessibilityLabel: String(localized: "Add Todo")
+                )
             }
         )
     }
@@ -89,7 +93,7 @@ struct TodoListView: View {
             Link(destination: .todoListRoute) {
                 Text("View Full List")
                     .font(.regular16)
-                    .foregroundStyle(Color.purple)
+                    .foregroundStyle(Color.course2)
             }
         }
         .ignoresSafeArea()

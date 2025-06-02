@@ -39,6 +39,7 @@ struct TodoItemView: View {
                 itemIcon
                     .size(16)
                     .foregroundStyle(item.color)
+                    .accessibilityHidden(true)
                 InstUI.Divider()
                     .frame(maxHeight: 16)
             }

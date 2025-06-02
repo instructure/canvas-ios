@@ -16,94 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import Core
-
-struct TodoDay: Identifiable {
-    let date: Date
-    let items: [TodoItem]
-    var id: Double { date.timeIntervalSince1970 }
-}
+import Foundation
 
 struct TodoList {
     let days: [TodoDay]
     let isFullList: Bool
 }
 
-struct TodoItem: Identifiable, Equatable {
-    let plannableID: String
-    let type: PlannableType
+struct TodoDay: Identifiable {
     let date: Date
-
-    let title: String
-    let contextName: String
-    let htmlURL: URL?
-
-    let color: Color
-    let icon: Image?
-
-    init?(_ plannable: Plannable) {
-        guard let date = plannable.date else { return nil }
-
-        self.plannableID = plannable.id
-        self.type = plannable.plannableType
-        self.date = date
-
-        self.title = plannable.title ?? ""
-        self.contextName = plannable.contextName ?? ""
-        self.htmlURL = plannable.htmlURL
-
-        self.color = plannable.color.asColor
-        self.icon = plannable.icon().flatMap({ Image(uiImage: $0) })
-    }
-
-    init(
-        plannableID: String,
-        type: PlannableType,
-        date: Date,
-        title: String,
-        contextName: String,
-        htmlURL: URL?,
-        color: Color,
-        icon: Image?
-    ) {
-
-        self.plannableID = plannableID
-        self.type = type
-        self.date = date
-
-        self.title = title
-        self.contextName = contextName
-        self.htmlURL = htmlURL
-
-        self.color = color
-        self.icon = icon
-    }
-
-    var id: String { plannableID }
-
-    // MARK: Preview & Testing
-
-    static func make(
-        plannableID: String = "1",
-        type: PlannableType = .assignment,
-        date: Date = Clock.now,
-        title: String = "Example Assignment",
-        contextName: String = "Example Course",
-        htmlURL: URL? = nil,
-        color: Color = .red,
-        icon: Image? = Image.assignmentLine
-    ) -> TodoItem {
-
-        TodoItem(
-            plannableID: plannableID,
-            type: type,
-            date: date,
-            title: title,
-            contextName: contextName,
-            htmlURL: htmlURL,
-            color: color,
-            icon: icon
-        )
-    }
+    let items: [TodoItem]
+    var id: Double { date.timeIntervalSince1970 }
 }

@@ -66,13 +66,36 @@ extension TodoModel {
 
     static func make(count: Int = 5) -> TodoModel {
         let items = [
-            TodoItem.make(plannableID: "1", type: .assignment, date: Date.now, title: "Important Assignment"),
-            TodoItem.make(plannableID: "2", type: .discussion_topic, date: Date.now, title: "Discussion About Everything"),
-            TodoItem.make(plannableID: "3", type: .calendar_event, date: Date.now, title: "Huge Event"),
-            TodoItem.make(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget"),
-            TodoItem.make(plannableID: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life"),
-            TodoItem.make(plannableID: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment"),
-            TodoItem.make(plannableID: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page")
+            TodoItem.make(
+                plannableID: "1",
+                type: .assignment,
+                date: Date.now, title: "Important Assignment",
+                contextName: "Student",
+                color: .green,
+                icon: .assignmentLine
+            ),
+            TodoItem.make(
+                plannableID: "2",
+                type: .discussion_topic,
+                date: Date.now,
+                title: "Discussion About Everything",
+                contextName: "Student",
+                color: .green,
+                icon: .discussionLine
+            ),
+            TodoItem.make(
+                plannableID: "3",
+                type: .calendar_event,
+                date: Date.now,
+                title: "Huge Event",
+                contextName: "Student",
+                color: .green,
+                icon: .calendarMonthLine
+            ),
+            TodoItem.make(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget", icon: .noteLine),
+            TodoItem.make(plannableID: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life", icon: .quizLine),
+            TodoItem.make(plannableID: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment", icon: .assignmentLine),
+            TodoItem.make(plannableID: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page", icon: .documentLine)
         ]
         return TodoModel(items: Array(items.prefix(count)))
     }

@@ -41,6 +41,10 @@ struct TodoDayView: View {
             }
         }
         .frame(minWidth: 34)
+        .accessibilityLabel(
+            (isToday ? String(localized: "Today, ") : "") +
+            date.formatted(.dateTime.weekday(.wide).month(.wide).day())
+        )
     }
 
     private var isToday: Bool {
