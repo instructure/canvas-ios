@@ -136,20 +136,18 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
 extension ActivityStreamViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        activities.count { $0.type != .conversation }
+        activities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ActivityCell = tableView.dequeue(for: indexPath)
-        let filteredActivities = activities.filter { $0.type != .conversation }
 
-        cell.update(filteredActivities[indexPath.row], courseCache: courseCache)
+        if let a = activities[indexPath] { cell.update(a, courseCache: courseCache) }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let filteredActivities = activities.filter { $0.type != .conversation }
-        guard let url = filteredActivities[indexPath.row].htmlURL else { return }
+        guard let a = activities[indexPath], let url = a.htmlURL else { return }
         env.router.route(to: url, from: self, options: .detail)
     }
 }

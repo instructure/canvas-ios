@@ -34,10 +34,11 @@ public class GetActivities: CollectionUseCase {
     }
 
     public var scope: Scope {
-        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@",
+        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@ && %K != %@",
                                #keyPath(Activity.typeRaw), ActivityType.conference.rawValue,
                                #keyPath(Activity.typeRaw), ActivityType.collaboration.rawValue,
-                               #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
+                               #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue,
+                               #keyPath(Activity.typeRaw), ActivityType.conversation.rawValue)
         var contextFilter: NSPredicate {
             guard let contextID = context?.canvasContextID  else {
                 return NSPredicate(value: true)
