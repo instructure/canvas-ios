@@ -27,7 +27,7 @@ struct TodoDayView: View {
         Link(destination: .calendarDayRoute(date)) {
             Text(date.formatted(.dateTime.weekday()))
                 .font(.regular12)
-                .foregroundStyle(isToday ? .pink : .textDark)
+                .foregroundStyle(isToday ? .course2 : .textDark)
             ZStack {
                 if isToday {
                     Circle()
