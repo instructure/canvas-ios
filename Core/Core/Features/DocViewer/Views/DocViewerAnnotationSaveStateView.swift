@@ -48,9 +48,19 @@ struct DocViewerAnnotationSaveStateView: View {
         .background(Color.backgroundLightest)
         .foregroundStyle(viewModel.saveState.foregroundColor)
         .clipped()
-        .disabled(!viewModel.saveState.isEnabled)
-        .accessibilityAddTraits(viewModel.saveState.isEnabled ? [.isButton] : [])
+        .disabled(!viewModel.saveState.isTapToRetryActionEnabled)
         .animation(.default, value: viewModel.saveState)
+        .accessibilityRepresentation {
+            if viewModel.saveState.isTapToRetryActionEnabled {
+                Button {
+                    viewModel.didTapRetry.send(())
+                } label: {
+                    Text(viewModel.saveState.text)
+                }
+            } else {
+                Text(viewModel.saveState.text)
+            }
+        }
     }
 }
 

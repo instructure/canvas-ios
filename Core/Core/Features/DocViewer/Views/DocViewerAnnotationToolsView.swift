@@ -18,44 +18,13 @@
 
 import SwiftUI
 
-// Extension to easily apply rounded corners to specific corners
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorners(radius: radius, corners: corners))
-    }
-}
-
-// Reusable shape for specific corner rounding
-public struct RoundedCorners: Shape {
-    private var radius: CGFloat
-    private var corners: UIRectCorner
-
-    init(radius: CGFloat, corners: UIRectCorner) {
-        self.radius = radius
-        self.corners = corners
-    }
-
-    public var animatableData: CGFloat {
-        get { radius }
-        set { radius = newValue }
-    }
-
-    public func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(
-            roundedRect: rect,
-            byRoundingCorners: corners,
-            cornerRadii: CGSize(width: radius, height: radius)
-        )
-        return Path(path.cgPath)
-    }
-}
-
 struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
     @ObservedObject private var viewModel: DocViewerAnnotationToolbarViewModel
     @State private var size: CGSize = .zero
     @State private var buttonSize: CGSize = .zero
+    @ScaledMetric private var closedStateCornerRadius: CGFloat = 30
     private var buttonIcon: Image { viewModel.isOpen ? .arrowOpenLeftSolid : .editLine }
-    private var cornerRadius: CGFloat { viewModel.isOpen ? 0 : 30 }
+    private var cornerRadius: CGFloat { viewModel.isOpen ? 0 : closedStateCornerRadius }
     private var trailingPadding: CGFloat { viewModel.isOpen ? 16 : 10 }
     private var offsetX: CGFloat { viewModel.isOpen ? 0 : -(size.width - buttonSize.width - 2 * trailingPadding) }
     private let annotationToolbarView: AnnotationBar
@@ -99,7 +68,7 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
             viewModel.didTapCloseToggle.send()
         } label: {
             Circle()
-                .frame(width: 32, height: 32)
+                .scaledFrame(size: 32, useIconScale: true)
                 .foregroundStyle(Color.backgroundLight)
                 .overlay(
                     buttonIcon
@@ -109,6 +78,9 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
                 )
         }
         .frame(minHeight: 52)
+        .accessibilityLabel(Text("Annotation toolbar", bundle: .core))
+        .accessibilityValue(viewModel.a11yValue)
+        .accessibilityHint(viewModel.a11yHint)
     }
 }
 

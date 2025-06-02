@@ -43,7 +43,11 @@ public class DocViewerViewController: UIViewController {
     /// We store this to measure its height so we can enlarge the PDF view when the annotation toolbar is closed.
     private weak var annotationContainerView: UIView?
 
-    var annotationProvider: DocViewerAnnotationProvider?
+    var annotationProvider: DocViewerAnnotationProvider? {
+        didSet {
+            annotationToolbarViewModel.annotationProvider = annotationProvider
+        }
+    }
     private var env: AppEnvironment = .defaultValue
     public var fallbackURL: URL!
     var fallbackUsed = false
@@ -103,7 +107,6 @@ public class DocViewerViewController: UIViewController {
         pdf.view.isHidden = true
         pdf.updateConfiguration(builder: docViewerConfigurationBuilder)
 
-        retryAnnotationUpload(on: annotationToolbarViewModel.didTapRetry)
         annotationSaveStateChanges(saving: false)
 
         let commentPinGestureRecognizer = UITapGestureRecognizer()
@@ -244,14 +247,6 @@ public class DocViewerViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(AlertAction(String(localized: "Dismiss", bundle: .core), style: .default))
         env.router.show(alert, from: self, options: .modal())
-    }
-
-    private func retryAnnotationUpload(on publisher: PassthroughSubject<Void, Never>) {
-        publisher
-            .sink { [weak annotationProvider] in
-                annotationProvider?.retryFailedRequest()
-            }
-            .store(in: &subscriptions)
     }
 
     private func resizePdfView(on toolbarOpenState: any Publisher<Bool, Never>) {

@@ -20,6 +20,9 @@ import Combine
 import SwiftUI
 
 class DocViewerAnnotationToolbarViewModel: ObservableObject {
+
+    // MARK: - Outputs
+
     enum State: Equatable, CaseIterable {
         case saving
         case saved
@@ -49,30 +52,41 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
             }
         }
 
-        var isEnabled: Bool {
+        var isTapToRetryActionEnabled: Bool {
             self == .error
         }
     }
 
-    // MARK: - Outputs
     @Published private(set) var isOpen = true
     @Published var saveState: State = .saved
-    public let uiAnimation = (
+    var a11yValue: String {
+        isOpen ? String(localized: "Open", bundle: .core)
+               : String(localized: "Closed", bundle: .core)
+    }
+    var a11yHint: String {
+        isOpen ? String(localized: "Double tap to close toolbar", bundle: .core)
+               : String(localized: "Double tap to open toolbar", bundle: .core)
+    }
+    let uiAnimation = (
         duration: CGFloat(0.3),
         options: UIView.AnimationOptions.curveEaseInOut
     )
-    public private(set) lazy var animation = Animation.easeInOut(duration: uiAnimation.duration)
+    private(set) lazy var animation = Animation.easeInOut(duration: uiAnimation.duration)
 
     // MARK: - Inputs
+
+    var annotationProvider: DocViewerAnnotationProvider?
     let didTapRetry = PassthroughSubject<Void, Never>()
     let didTapCloseToggle = PassthroughSubject<Void, Never>()
 
     // MARK: - Private
+
     private var subscriptions = Set<AnyCancellable>()
 
     init(state: State = .saved) {
         self.saveState = state
         toggleClosedState(on: didTapCloseToggle)
+        retryAnnotationUpload(on: didTapRetry)
     }
 
     private func toggleClosedState(on publisher: PassthroughSubject<Void, Never>) {
@@ -81,6 +95,14 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
                 withAnimation(animation) {
                     self?.isOpen.toggle()
                 }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func retryAnnotationUpload(on publisher: PassthroughSubject<Void, Never>) {
+        publisher
+            .sink { [weak self] in
+                self?.annotationProvider?.retryFailedRequest()
             }
             .store(in: &subscriptions)
     }
