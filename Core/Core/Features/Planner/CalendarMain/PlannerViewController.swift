@@ -19,7 +19,7 @@
 import Combine
 import UIKit
 
-public class PlannerViewController: BaseVisibilityObservedViewController {
+public class PlannerViewController: VisibilityObservedViewController {
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
     lazy var addButton = UIBarButtonItem(image: .addSolid)
     lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))

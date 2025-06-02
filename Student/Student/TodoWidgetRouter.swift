@@ -21,7 +21,7 @@ import UIKit
 
 struct TodoWidgetRouter {
 
-    struct ViewParameters {
+    struct ViewProxy {
         let env: AppEnvironment
         let tabController: UITabBarController
 
@@ -46,11 +46,11 @@ struct TodoWidgetRouter {
 
     struct RouteHandler {
         let route: Route
-        let action: (URLComponents, [String: String], ViewParameters) -> Void
+        let action: (URLComponents, [String: String], ViewProxy) -> Void
 
         init(
             _ template: String,
-            action: @escaping (URLComponents, [String: String], ViewParameters) -> Void
+            action: @escaping (URLComponents, [String: String], ViewProxy) -> Void
         ) {
             self.route = Route(template)
             self.action = action
@@ -71,15 +71,14 @@ struct TodoWidgetRouter {
         // Dismiss all modals
         rootViewController.dismiss(animated: false)
 
-        let viewParams = ViewParameters(
+        let viewProxy = ViewProxy(
             env: env,
             tabController: tabController
         )
 
         for handler in handlers {
-
             if let params = handler.route.match(url) {
-                handler.action(url, params, viewParams)
+                handler.action(url, params, viewProxy)
                 return true
             }
         }
@@ -146,7 +145,7 @@ extension TodoWidgetRouter {
             let controller = PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
 
             if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
-                calendarVC.showing {
+                calendarVC.onAppearPreferredPerform {
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
@@ -170,7 +169,7 @@ extension TodoWidgetRouter {
             let controller = PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
 
             if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
-                calendarVC.showing {
+                calendarVC.onAppearPreferredPerform {
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
@@ -207,7 +206,7 @@ extension TodoWidgetRouter {
 
             if let plannerVC = view.selectedTabMasterRootController as? PlannerViewController {
 
-                plannerVC.showing {
+                plannerVC.onAppearPreferredPerform {
                     view.env.router.route(
                         to: url.settingOrigin("calendar"),
                         from: plannerVC,
@@ -240,16 +239,15 @@ extension TodoWidgetRouter {
             guard let plannerVC = view.selectedTabMasterRootController as? PlannerViewController
             else { return }
 
-            plannerVC.showing {
+            plannerVC.onAppearPreferredPerform {
                 plannerVC.selectDate(date)
             }
         })
     }
 }
 
-extension UIViewController {
-
-    func showing(_ block: @escaping () -> Void) {
+private extension UIViewController {
+    func onAppearPreferredPerform(_ block: @escaping () -> Void) {
         if let observedVC = self as? VisibilityObservedViewController {
             observedVC.onAppear { block() }
         } else {

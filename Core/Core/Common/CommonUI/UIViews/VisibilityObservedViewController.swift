@@ -18,48 +18,28 @@
 
 import UIKit
 
-public protocol VisibilityObservedViewController: UIViewController {
-    var visibilityObservation: VisibilityObservation { get }
-}
+open class VisibilityObservedViewController: UIViewController {
 
-extension VisibilityObservedViewController {
-    public func onAppear(_ block: @escaping () -> Void) {
-        if visibilityObservation.isVisible {
-            block()
-        } else {
-            visibilityObservation.appearTask = block
-        }
-    }
-}
-
-public class VisibilityObservation {
-
-    fileprivate var appearTask: (() -> Void)?
-    fileprivate var isVisible: Bool = false
-
-    init() {}
-
-    func viewDidAppear() {
-        isVisible = true
-        appearTask?()
-        appearTask = nil
-    }
-
-    func viewDidDisappear() {
-        isVisible = false
-    }
-}
-
-open class BaseVisibilityObservedViewController: UIViewController, VisibilityObservedViewController {
-    public private(set) var visibilityObservation = VisibilityObservation()
+    private var onAppearTask: (() -> Void)?
+    private var isVisible: Bool = false
 
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        visibilityObservation.viewDidAppear()
+        isVisible = true
+        onAppearTask?()
+        onAppearTask = nil
     }
 
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        visibilityObservation.viewDidDisappear()
+        isVisible = false
+    }
+
+    public func onAppear(_ taskBlock: @escaping () -> Void) {
+        if isVisible {
+            taskBlock()
+        } else {
+            onAppearTask = taskBlock
+        }
     }
 }

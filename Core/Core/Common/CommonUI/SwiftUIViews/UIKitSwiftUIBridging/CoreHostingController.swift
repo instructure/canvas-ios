@@ -31,8 +31,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
                                                    NavigationBarStyled,
                                                    TestTreeHolder,
                                                    DefaultViewProvider,
-                                                   CoreHostingControllerProtocol,
-                                                   VisibilityObservedViewController {
+                                                   CoreHostingControllerProtocol {
     // MARK: - UIViewController Overrides
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations
@@ -44,8 +43,6 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
             return super.preferredStatusBarStyle
         }
     }
-
-    public private(set) var visibilityObservation = VisibilityObservation()
 
     // MARK: - Support Variables For Overrides
     /** The value to be returned by the `supportedInterfaceOrientations` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
@@ -99,12 +96,6 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         didAppearSubject.send()
-        visibilityObservation.viewDidAppear()
-    }
-
-    public override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        visibilityObservation.viewDidDisappear()
     }
 
     public var didAppearPublisher: AnyPublisher<Void, Never> {
