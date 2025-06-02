@@ -46,6 +46,7 @@ struct TodoItemView: View {
             Text(item.contextName)
                 .foregroundStyle(item.color)
                 .font(.regular12)
+                .lineLimit(1)
         }
     }
 
@@ -53,12 +54,14 @@ struct TodoItemView: View {
         Text(item.title)
             .font(.semibold14)
             .foregroundStyle(Color.textDarkest)
+            .lineLimit(1)
     }
 
     private var timeSection: some View {
         Text(item.date.formatted(.dateTime.hour().minute()))
             .font(.regular12)
             .foregroundStyle(Color.textDark)
+            .lineLimit(1)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
