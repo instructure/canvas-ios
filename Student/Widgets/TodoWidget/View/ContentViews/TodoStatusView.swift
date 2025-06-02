@@ -19,33 +19,27 @@
 import WidgetKit
 import SwiftUI
 
-struct TodoEmptyView: View {
+struct TodoStatusView: View {
+    @Environment(\.widgetFamily) private var family
+
+    let status: TodoStatusState
 
     var body: some View {
-        TodoContentView(
-            logoRoute: .todoListRoute,
-            actionIcon: .addLine,
-            actionRoute: .addTodoRoute,
-            content: {
-                TodoStatusView(status: .empty)
+        VStack(spacing: family == .systemMedium ? 10 : 15) {
+            Image(status.iconName, bundle: .core)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: status.imageHeight(for: family))
+            VStack(spacing: 5) {
+                Text(status.title)
+                    .font(.semibold14)
+                    .foregroundStyle(Color.textDarkest)
+                Text(status.subtitle)
+                    .font(.regular12)
+                    .foregroundStyle(Color.textDarkest)
+                    .multilineTextAlignment(.center)
             }
-        )
+        }
+        .padding(.horizontal, 10)
     }
 }
-
-#if DEBUG
-struct TodoEmptyView_Previews: PreviewProvider {
-    static var previews: some View {
-
-        TodoEmptyView()
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-            .previewDisplayName("Empty Todo - Medium")
-
-        TodoEmptyView()
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
-            .previewDisplayName("Empty Todo - Large")
-    }
-}
-#endif

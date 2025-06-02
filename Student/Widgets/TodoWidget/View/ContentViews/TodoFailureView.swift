@@ -17,6 +17,7 @@
 //
 
 import WidgetKit
+import Core
 import SwiftUI
 
 struct TodoFailureView: View {
@@ -28,54 +29,26 @@ struct TodoFailureView: View {
             actionHandler: {
                 WidgetCenter.shared.reloadTimelines(ofKind: TodoWidget.kind)
             },
-            content: { content }
+            content: {
+                TodoStatusView(status: .failure)
+            }
         )
-    }
-
-    private var content: some View {
-        VStack {
-            title
-                .font(.semibold12)
-                .foregroundColor(.textDark)
-                .allowsTightening(true)
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-            message
-                .font(.semibold12)
-                .foregroundColor(.textDark)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-    }
-
-    private let title: Text
-    private let message: Text
-
-    init(title: Text, message: Text) {
-        self.title = title
-        self.message = message
     }
 }
 
 #if DEBUG
-struct FailureView_Previews: PreviewProvider {
-
+struct TodoFailureView_Previews: PreviewProvider {
     static var previews: some View {
 
-        TodoFailureView(
-            title: Text("Announcements"),
-            message: Text("Please log in via the application")
-        )
-        .defaultTodoWidgetContainer()
-        .previewContext(WidgetPreviewContext(family: .systemSmall))
-        .previewDisplayName("Empty Announcements")
+        TodoFailureView()
+            .defaultTodoWidgetContainer()
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .previewDisplayName("Failure Todo - Medium")
 
-        TodoFailureView(
-            title: Text("Grades"),
-            message: Text("Please log in via the application")
-        )
-        .previewContext(WidgetPreviewContext(family: .systemSmall))
-        .previewDisplayName("Empty Grades")
+        TodoFailureView()
+            .defaultTodoWidgetContainer()
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .previewDisplayName("Failure Todo - Large")
     }
 }
 #endif

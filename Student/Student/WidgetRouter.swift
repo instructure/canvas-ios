@@ -200,11 +200,9 @@ extension WidgetRouter {
             }),
             .init("/todo-widget/calendar/:date", action: { _, params, view in
                 guard
-                    let dateString = params["date"],
+                    let dateString = params["date"]?.removingPercentEncoding,
                     let date = try? Date(dateString, strategy: .queryDayDateStyle)
                 else { return }
-
-                print(date)
 
                 // Switch to Calendar tab
                 view.selectTab(at: 1)

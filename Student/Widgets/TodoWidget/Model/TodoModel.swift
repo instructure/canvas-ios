@@ -38,6 +38,33 @@ class TodoModel: WidgetModel {
 
         super.init(isLoggedIn: isLoggedIn)
     }
+
+    func todoDays(for family: WidgetFamily) -> TodoList {
+        let todoItems = Array(
+            items
+                .sorted { $0.date < $1.date }
+                .prefix(family.shownTodoItemsMaximumCount)
+        )
+
+        let days = Dictionary(grouping: todoItems, by: { $0.date.startOfDay() })
+            .sorted(by: { $0.key < $1.key })
+            .map { (date, dayItems) in
+                return TodoDay(date: date, items: dayItems)
+            }
+
+        return TodoList(days: days, isFullList: todoItems.count == items.count)
+    }
+}
+
+struct TodoDay: Identifiable {
+    let date: Date
+    let items: [TodoItem]
+    var id: Double { date.timeIntervalSince1970 }
+}
+
+struct TodoList {
+    let days: [TodoDay]
+    let isFullList: Bool
 }
 
 enum TodoError: Error {
@@ -102,15 +129,29 @@ struct TodoItem: Identifiable, Equatable {
 #if DEBUG
 
 extension TodoModel {
-    public static func make() -> TodoModel {
+    public static func make(count: Int = 5) -> TodoModel {
         let items = [
-            TodoItem(plannableID: "1", type: .assignment, title: "Important Assignment"),
-            TodoItem(plannableID: "2", type: .discussion_topic, title: "Discussion About Everything"),
-            TodoItem(plannableID: "3", type: .calendar_event, title: "Huge Event"),
-            TodoItem(plannableID: "4", type: .planner_note, title: "Don't forget"),
-            TodoItem(plannableID: "5", type: .quiz, title: "Quiz About Life")
+            TodoItem(plannableID: "1", type: .assignment, date: Date.now, title: "Important Assignment"),
+            TodoItem(plannableID: "2", type: .discussion_topic, date: Date.now, title: "Discussion About Everything"),
+            TodoItem(plannableID: "3", type: .calendar_event, date: Date.now, title: "Huge Event"),
+            TodoItem(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget"),
+            TodoItem(plannableID: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life"),
+            TodoItem(plannableID: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment"),
+            TodoItem(plannableID: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page")
         ]
-        return TodoModel(items: items)
+        return TodoModel(items: Array(items.prefix(count)))
     }
 }
 #endif
+
+private extension WidgetFamily {
+
+    var shownTodoItemsMaximumCount: Int {
+        switch self {
+        case .systemSmall: 1
+        case .systemMedium: 2
+        case .systemLarge: 5
+        default: 5
+        }
+    }
+}

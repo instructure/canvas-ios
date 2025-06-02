@@ -56,6 +56,9 @@ extension URL {
     }
 
     static func calendarDayRoute(_ date: Date) -> URL {
-        .todoWidgetRoute("todo-widget/calendar/\(date.formatted(.queryDayDateStyle))")
+        let dateString = date
+            .formatted(.queryDayDateStyle)
+            .addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        return .todoWidgetRoute("todo-widget/calendar/\(dateString)")
     }
 }

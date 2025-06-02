@@ -22,24 +22,19 @@ import Core
 
 struct TodoItemDetail: View {
     var item: TodoItem
-    let itemDueOnSameDateAsNext: Bool
 
     var body: some View {
         Link(destination: item.route) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 0) {
                 contextSection
                 titleSection
                 timeSection
-                if itemDueOnSameDateAsNext {
-                    InstUI.Divider()
-                        .padding(.top, 3)
-                }
             }
         }
     }
 
     private var contextSection: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 5) {
             if let itemIcon = item.icon {
                 itemIcon
                     .size(16)
@@ -62,6 +57,7 @@ struct TodoItemDetail: View {
     private var timeSection: some View {
         Text(item.date.formatted(.dateTime.hour().minute()))
             .font(.regular12)
+            .foregroundStyle(Color.textDark)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
@@ -72,15 +68,13 @@ struct TodoItemDetail: View {
 
 #if DEBUG
 
-struct TodoItemDetailPreviews: PreviewProvider {
-    static var previews: some View {
-        let item = TodoItem(
-            plannableID: "1",
-            type: .assignment,
-            title: "Important Assignment"
-        )
-        return TodoItemDetail(item: item, itemDueOnSameDateAsNext: false)
-    }
+#Preview {
+    let item = TodoItem(
+        plannableID: "1",
+        type: .assignment,
+        title: "Important Assignment"
+    )
+    TodoItemDetail(item: item)
 }
 
 #endif

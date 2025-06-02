@@ -23,7 +23,11 @@ import Core
 struct TodoListView: View {
     @Environment(\.widgetFamily) private var family
 
-    let model: TodoModel
+    private let todoList: TodoList
+
+    init(todoList: TodoList) {
+        self.todoList = todoList
+    }
 
     var body: some View {
         TodoContentView(
@@ -32,75 +36,63 @@ struct TodoListView: View {
             actionRoute: .addTodoRoute,
             content: { listView }
         )
-        .padding()
-        .overlay(alignment: .bottom) {
-            fullListButtonView
-        }
-    }
-
-    // MARK: Privates
-
-    private var showsFullListButton: Bool {
-        model.items.count > family.shownTodoItemsMaximumCount
-    }
-
-    private var shownItems: [TodoItem] {
-        Array(
-            model
-                .items
-                .sorted { $0.date < $1.date }
-                .prefix(family.shownTodoItemsMaximumCount)
-        )
-    }
-
-    private func isShownLast(_ item: TodoItem) -> Bool {
-        guard let index = model.items.firstIndex(of: item) else {
-            return false
-        }
-        let count = min(model.items.count, family.shownTodoItemsMaximumCount)
-        return index == (count - 1)
     }
 
     // MARK: Subviews
 
     private var listView: some View {
-        VStack {
-            ForEach(shownItems) { item in
-                let itemDueOnSameDateAsPrevious: Bool = model.items.itemDueOnSameDateAsPrevious(item)
-                let itemDueOnSameDateAsNext: Bool = model.items.itemDueOnSameDateAsNext(item)
+        VStack(spacing: 5) {
+            ForEach(todoList.days) { day in
+                HStack(alignment: .top, spacing: 10) {
+                    TodoItemDate(date: day.date)
 
-                HStack(alignment: .top, spacing: 5) {
-                    TodoItemDate(item: item, itemDueOnSameDateAsPrevious: itemDueOnSameDateAsPrevious)
-                    TodoItemDetail(item: item, itemDueOnSameDateAsNext: itemDueOnSameDateAsNext)
+                    VStack(spacing: 8) {
+                        ForEach(day.items) { item in
+                            TodoItemDetail(item: item)
+
+                            if day.items.last != item {
+                                InstUI.Divider()
+                            }
+                        }
+                    }
                 }
-                if isShownLast(item) == false && !itemDueOnSameDateAsNext {
+
+                if todoList.days.last?.id != day.id {
                     InstUI.Divider()
                 }
             }
-            Spacer()
+            Spacer(minLength: 0)
+        }
+        .padding([.top, .leading, .trailing], 10)
+        .padding(.bottom, 35)
+        .overlay(alignment: .bottom) {
+            if todoList.isFullList == false {
+                fullListButtonView
+            }
         }
     }
 
     private var fullListButtonView: some View {
         ZStack {
-            if showsFullListButton {
-                Rectangle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [.clear, .backgroundLightest]),
-                            startPoint: .top,
-                            endPoint: .center
-                        )
+            Rectangle()
+                .fill(
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color.backgroundLightest,
+                            Color.backgroundLightest.opacity(0)
+                        ]),
+                        startPoint: .bottom,
+                        endPoint: .top
                     )
-                Link(destination: .todoListRoute) {
-                    Text("View Full List")
-                        .font(.regular16)
-                        .foregroundStyle(Color.purple)
-                }
+                )
+            Link(destination: .todoListRoute) {
+                Text("View Full List")
+                    .font(.regular16)
+                    .foregroundStyle(Color.purple)
             }
         }
         .ignoresSafeArea()
-        .frame(maxHeight: 32)
+        .frame(maxHeight: 54)
     }
 }
 
@@ -109,13 +101,14 @@ struct TodoListView: View {
 struct TodoScreenPreviews: PreviewProvider {
 
     static var previews: some View {
+        let model = TodoModel.make(count: 7)
 
-        TodoListView(model: TodoModel.make())
+        TodoListView(todoList: model.todoDays(for: .systemMedium))
             .defaultTodoWidgetContainer()
             .previewContext(WidgetPreviewContext(family: .systemMedium))
             .previewDisplayName("Medium Size")
 
-        TodoListView(model: TodoModel.make())
+        TodoListView(todoList: model.todoDays(for: .systemLarge))
             .defaultTodoWidgetContainer()
             .previewContext(WidgetPreviewContext(family: .systemLarge))
             .previewDisplayName("Large Size")

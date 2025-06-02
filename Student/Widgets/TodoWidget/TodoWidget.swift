@@ -27,8 +27,8 @@ struct TodoWidget: Widget {
             let _ = print("update todo widget ..")
             TodoWidgetScreen(model: model.data)
         }
-        .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
         .contentMarginsDisabled()
+        .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
         .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))
         .supportedFamilies([.systemMedium, .systemLarge])
     }
@@ -39,7 +39,15 @@ struct TodoWidget: Widget {
 #Preview("TodoWidget", as: .systemMedium) {
     TodoWidget()
 } timeline: {
-    TodoWidgetEntry(data: TodoModel.make(), date: Date())
+    let model = TodoModel()
+    TodoWidgetEntry(data: model, date: Date())
+}
+
+#Preview("TodoWidget", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    let model = TodoModel(isLoggedIn: false)
+    TodoWidgetEntry(data: model, date: Date())
 }
 
 #endif

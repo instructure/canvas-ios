@@ -299,9 +299,6 @@ extension Date.ISO8601FormatStyle {
     public static var queryDayDateStyle: Self {
         return Date
             .ISO8601FormatStyle()
-            .year()
-            .month()
-            .day()
             .locale(.init(languageCode: .english, languageRegion: .unitedStates))
     }
 }

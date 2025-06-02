@@ -21,6 +21,8 @@ import SwiftUI
 
 struct TodoWidgetScreen: View {
 
+    @Environment(\.widgetFamily) private var family
+
     let model: TodoModel
 
     var body: some View {
@@ -33,30 +35,23 @@ struct TodoWidgetScreen: View {
         if model.isLoggedIn {
 
             if let error = model.error {
-                TodoFailureView(title: Text("Failure"), message: Text("Failure message"))
-
+                TodoFailureView()
             } else if model.items.isEmpty {
-                TodoEmptyView(
-                    title: Text("Oops! Something Went Wrong"),
-                    message: Text("We're having trouble showing your tasks right now. Please try again in a bit or head to the app.")
-                )
+                TodoEmptyView()
             } else {
-                TodoListView(model: model)
+                TodoListView(todoList: model.todoDays(for: family))
             }
 
         } else {
 
-            LoggedOutScreen(
-                title: Text("Let's Get You Logged in!"),
-                message: Text("To see your to-dos, please log in to your account in the app. It'll just take a sec.")
-            )
+            TodoLoggedoutView()
         }
     }
 }
 
 extension View {
     func defaultTodoWidgetContainer() -> some View {
-        containerBackground(for: .widget) { Color.mint }
+        containerBackground(for: .widget) { Color.backgroundLightest }
     }
 }
 
@@ -65,7 +60,6 @@ extension View {
 struct TodoWidgetPreviews: PreviewProvider {
     static var previews: some View {
         TodoWidgetScreen(model: TodoModel.make())
-            .padding()
             .defaultTodoWidgetContainer()
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }

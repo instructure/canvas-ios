@@ -3340,7 +3340,10 @@
         }
       }
     },
-    "Let's Get You Logged in!" : {
+    "Let's Get You Logged In!" : {
+
+    },
+    "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
 
     },
     "No Announcements" : {
@@ -4885,7 +4888,7 @@
         }
       }
     },
-    "To see your to-dos, please log in to your account in the app. It'll just take a sec." : {
+    "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
 
     },
     "Todo" : {
@@ -5411,7 +5414,10 @@
     "View your todo items." : {
       "comment" : "Description of the todo widget"
     },
-    "We're having trouble showing your tasks right now. Please try again in a bit or head to the app." : {
+    "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app." : {
+
+    },
+    "You’re all done for now!" : {
 
     },
     "Zoo Field Trip!" : {

@@ -16,16 +16,33 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-
 import WidgetKit
+import SwiftUI
 
-extension WidgetFamily {
-    var shownTodoItemsMaximumCount: Int {
-        switch self {
-        case .systemSmall: 1
-        case .systemMedium: 2
-        case .systemLarge: 5
-        default: 5
-        }
+struct TodoLoggedoutView: View {
+
+    var body: some View {
+        TodoContentView(
+            content: {
+                TodoStatusView(status: .loggedOut)
+            }
+        )
     }
 }
+
+#if DEBUG
+struct TodoLoggedoutView_Previews: PreviewProvider {
+    static var previews: some View {
+
+        TodoLoggedoutView()
+            .defaultTodoWidgetContainer()
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .previewDisplayName("Loggedout Todo - Medium")
+
+        TodoLoggedoutView()
+            .defaultTodoWidgetContainer()
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .previewDisplayName("Loggedout Todo - Large")
+    }
+}
+#endif

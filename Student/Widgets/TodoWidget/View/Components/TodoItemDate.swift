@@ -21,50 +21,38 @@ import Core
 import WidgetKit
 
 struct TodoItemDate: View {
-    var item: TodoItem
-    let itemDueOnSameDateAsPrevious: Bool
+    let date: Date
 
     var body: some View {
-        VStack(spacing: 2) {
-            if !itemDueOnSameDateAsPrevious {
-                Link(destination: .calendarDayRoute(item.date)) {
-                    Text(item.date.formatted(.dateTime.weekday()))
-                        .font(.regular12)
-                        .foregroundStyle(isToday ? .pink : .textDark)
-                    ZStack {
-                        if isToday {
-                            Circle()
-                                .fill(.background)
-                                .stroke(.pink, style: .init(lineWidth: 1))
-                                .frame(width: 32, height: 32)
-                        }
-                        Text(item.date.formatted(.dateTime.day()))
-                            .font(.bold12)
-                            .foregroundStyle(isToday ? .pink : .textDark)
-                    }
+        Link(destination: .calendarDayRoute(date)) {
+            Text(date.formatted(.dateTime.weekday()))
+                .font(.regular12)
+                .foregroundStyle(isToday ? .pink : .textDark)
+            ZStack {
+                if isToday {
+                    Circle()
+                        .fill(.background)
+                        .stroke(.pink, style: .init(lineWidth: 1))
+                        .frame(width: 32, height: 32)
                 }
+                Text(date.formatted(.dateTime.day()))
+                    .font(.bold12)
+                    .foregroundStyle(isToday ? .pink : .textDark)
             }
         }
         .frame(minWidth: 34)
     }
 
     private var isToday: Bool {
-        return item.date.startOfDay() == Date.now.startOfDay()
+        return date.startOfDay() == Date.now.startOfDay()
     }
 }
 
 #if DEBUG
 
-struct TodoItemDatePreviews: PreviewProvider {
-    static var previews: some View {
-        let item = TodoItem(
-            plannableID: "1",
-            type: .assignment,
-            title: "Important Assignment"
-        )
-
-        return TodoItemDate(item: item, itemDueOnSameDateAsPrevious: false)
-    }
+#Preview {
+    TodoItemDate(date: Date())
+    TodoItemDate(date: Date().addDays(4))
 }
 
 #endif

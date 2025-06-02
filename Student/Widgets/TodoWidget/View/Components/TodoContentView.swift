@@ -16,17 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import WidgetKit
 import SwiftUI
 
 struct TodoContentView<Content: View>: View {
 
-    let logoRoute: URL?
+    private let logoRoute: URL?
 
-    let actionIcon: Image
-    let actionRoute: URL?
-    let actionHandler: (() -> Void)?
+    private var actionIcon: Image?
+    private var actionRoute: URL?
+    private var actionHandler: (() -> Void)?
 
-    let content: () -> Content
+    private let content: () -> Content
 
     init(logoRoute: URL? = nil,
          actionIcon: Image = .addLine,
@@ -36,7 +37,6 @@ struct TodoContentView<Content: View>: View {
         self.logoRoute = logoRoute
         self.actionIcon = actionIcon
         self.actionRoute = actionRoute
-        self.actionHandler = nil
         self.content = content
     }
 
@@ -47,8 +47,12 @@ struct TodoContentView<Content: View>: View {
     ) {
         self.logoRoute = logoRoute
         self.actionIcon = actionIcon
-        self.actionRoute = nil
         self.actionHandler = actionHandler
+        self.content = content
+    }
+
+    init(logoRoute: URL? = nil, content: @escaping () -> Content) {
+        self.logoRoute = logoRoute
         self.content = content
     }
 
@@ -58,8 +62,11 @@ struct TodoContentView<Content: View>: View {
             VStack {
                 topView
                 Spacer()
-                bottomView
+                if let icon = actionIcon {
+                    bottomView(icon)
+                }
             }
+            .padding(10)
         }
     }
 
@@ -76,12 +83,12 @@ struct TodoContentView<Content: View>: View {
         }
     }
 
-    private var actionView: some View {
+    private func actionView(_ icon: Image) -> some View {
         ZStack {
             Circle()
                 .fill(Color.purple)
                 .frame(width: 32)
-            actionIcon
+            icon
                 .resizable()
                 .renderingMode(.template)
                 .foregroundStyle(Color.backgroundLightest)
@@ -103,21 +110,39 @@ struct TodoContentView<Content: View>: View {
         }
     }
 
-    private var bottomView: some View {
+    private func bottomView(_ icon: Image) -> some View {
         HStack {
             Spacer()
             if let route = actionRoute {
                 Link(destination: route) {
-                    actionView
+                    actionView(icon)
                 }
             } else if let actionHandler {
                 Button(action: actionHandler) {
-                    actionView
+                    actionView(icon)
                 }
+                .buttonStyle(.plain)
             } else {
-                actionView
+                actionView(icon)
             }
         }
         .frame(maxHeight: 32)
     }
 }
+
+#if DEBUG
+
+#Preview("TodoWidgetData", as: .systemMedium) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
+}
+
+#Preview("TodoWidgetFailure", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    let model = TodoModel(error: .fetchingDataFailure)
+    TodoWidgetEntry(data: model, date: Date())
+}
+
+#endif
