@@ -60,7 +60,7 @@ extension AssistQuizView {
             }
         }
     }
-    
+
     private var headerView: some View {
         AssistTitle {
             viewModel.dismiss(controller: viewController)
