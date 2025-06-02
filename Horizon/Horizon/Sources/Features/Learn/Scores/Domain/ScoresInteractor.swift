@@ -62,6 +62,7 @@ final class ScoresInteractorLive: ScoresInteractor {
     private func fetchAssignmentGroups(ignoreCache: Bool) -> AnyPublisher<[ScoresAssignmentGroup], Error> {
          ReactiveStore(useCase: GetSubmissionScoresUseCase(userId: userId, enrollmentId: enrollmentID))
              .getEntities(ignoreCache: ignoreCache)
+             .removeDuplicates()
              .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
              .map { response in
                  ScoresAssignmentGroup(from: response)
