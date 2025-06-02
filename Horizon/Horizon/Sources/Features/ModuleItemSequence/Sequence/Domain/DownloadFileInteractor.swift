@@ -100,11 +100,11 @@ final class DownloadFileInteractorLive: DownloadFileInteractor {
         let localURL = URL.Directories.documents.appendingPathComponent(fileName)
         if self.fileManager.fileExists(atPath: localURL.path) {
             return Just(localURL)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
         } else {
-            return DownloadTaskPublisher(parameters:
-                DownloadTaskParameters(
+            return DownloadTaskPublisher(
+                parameters: DownloadTaskParameters(
                     remoteURL: remoteURL,
                     localURL: localURL
                 )

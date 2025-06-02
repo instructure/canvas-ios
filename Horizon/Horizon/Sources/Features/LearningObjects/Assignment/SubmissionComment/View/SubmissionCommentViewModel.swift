@@ -159,9 +159,8 @@ final class SubmissionCommentViewModel {
 
     private func showShareSheet(fileURL: URL, viewController: WeakViewController) {
         let controller = CoreActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-        print(fileURL.absoluteString)
-        DispatchQueue.main.async {
-            self.router.show(controller, from: viewController, options: .modal())
+        DispatchQueue.main.async { [weak self] in
+            self?.router.show(controller, from: viewController, options: .modal())
         }
     }
 }
