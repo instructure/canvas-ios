@@ -24,10 +24,11 @@ struct TodoEmptyView: View {
     var body: some View {
         TodoContentView(
             logoRoute: .todoListRoute,
-            actionIcon: .addLine,
-            actionRoute: .addTodoRoute,
             content: {
                 TodoStatusView(status: .empty)
+            },
+            actionView: {
+                RouteActionView(icon: .addLine, url: .addTodoRoute)
             }
         )
     }

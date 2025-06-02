@@ -81,14 +81,16 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
         interactor.getToDo(id: plannableID)
             .sink(
                 receiveCompletion: { [weak self] in
+                    guard let self else { return }
+
                     switch $0 {
                     case .finished:
                         break
                     case .failure:
-                        if let plannable = self?.plannable {
-                            self?.updateValues(with: plannable)
+                        if let plannable = self.plannable {
+                            self.updateValues(with: plannable)
                         } else {
-                            self?.state = .error
+                            self.state = .error
                         }
                     }
                 },

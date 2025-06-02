@@ -65,7 +65,7 @@ class CommonWidgetProvider<Model: WidgetModel> {
 
     private func setupLastLoginCredentials() {
         guard let session = LoginSession.mostRecent else { return }
-        env.userDidLogin(session: session)
+        env.userDidLogin(session: session, isSilent: true)
     }
 }
 
@@ -88,6 +88,8 @@ extension CommonWidgetProvider: TimelineProvider {
         }
 
         self.completion = completion
+
+        print("update timeline: \(Entry.self)")
         update()
     }
 }

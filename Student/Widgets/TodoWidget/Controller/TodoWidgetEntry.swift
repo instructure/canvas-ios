@@ -18,23 +18,16 @@
 
 import WidgetKit
 
-extension TimeInterval {
-    #if DEBUG
-    static let widgetRefresh: TimeInterval = 120
-    static let widgetRecover: TimeInterval = 10
-    #else
-    static let widgetRefresh: TimeInterval = 7200 // 2 hours
-    static let widgetRecover: TimeInterval = 900 // 15 minutes
-    #endif
-}
+struct TodoWidgetEntry: TimelineEntry {
+    static let publicPreview: Self = .init(
+        data: .make(),
+        date: Date()
+    )
+    static let loggedOutModel: Self = .init(
+        data: TodoModel(isLoggedIn: false),
+        date: Date()
+    )
 
-extension WidgetFamily {
-    var shownTodoItemsMaximumCount: Int {
-        switch self {
-        case .systemSmall: 1
-        case .systemMedium: 2
-        case .systemLarge: 5
-        default: 5
-        }
-    }
+    let data: TodoModel
+    let date: Date
 }

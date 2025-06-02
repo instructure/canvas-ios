@@ -40,7 +40,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
-    private lazy var widgetRouter = WidgetRouter.make()
+    private lazy var widgetRouter = TodoWidgetRouter.make()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)

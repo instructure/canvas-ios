@@ -4374,6 +4374,12 @@
         }
       }
     },
+    "Reload Widget" : {
+
+    },
+    "Reloading Widget" : {
+
+    },
     "Susan Jorgenson" : {
       "comment" : "Example author name",
       "localizations" : {

@@ -56,78 +56,11 @@ class TodoModel: WidgetModel {
     }
 }
 
-struct TodoDay: Identifiable {
-    let date: Date
-    let items: [TodoItem]
-    var id: Double { date.timeIntervalSince1970 }
-}
-
-struct TodoList {
-    let days: [TodoDay]
-    let isFullList: Bool
-}
-
 enum TodoError: Error {
     case fetchingDataFailure
 }
 
-struct TodoItem: Identifiable, Equatable {
-    let plannableID: String
-    let type: PlannableType
-    let date: Date
-
-    let title: String
-    let contextName: String
-    let htmlURL: URL?
-
-    let color: Color
-    let icon: Image?
-
-    init?(_ plannable: Plannable) {
-        guard let date = plannable.date else { return nil }
-
-        self.plannableID = plannable.id
-        self.type = plannable.plannableType
-        self.date = date
-
-        self.title = plannable.title ?? ""
-        self.contextName = plannable.contextName ?? ""
-        self.htmlURL = plannable.htmlURL
-
-        self.color = plannable.color.asColor
-        self.icon = plannable.icon().flatMap({ Image(uiImage: $0) })
-    }
-
-    var id: String { plannableID }
-
 #if DEBUG
-    init(
-        plannableID: String = "1",
-        type: PlannableType = .calendar_event,
-        date: Date = Clock.now,
-        title: String = "Example Todo",
-        contextName: String = "Example Course",
-        htmlURL: URL? = nil,
-        color: Color = .red,
-        icon: Image? = Image.assignmentLine
-    ) {
-
-        self.plannableID = plannableID
-        self.type = type
-        self.date = date
-
-        self.title = title
-        self.contextName = contextName
-        self.htmlURL = htmlURL
-
-        self.color = color
-        self.icon = icon
-    }
-#endif
-}
-
-#if DEBUG
-
 extension TodoModel {
     public static func make(count: Int = 5) -> TodoModel {
         let items = [
@@ -143,15 +76,3 @@ extension TodoModel {
     }
 }
 #endif
-
-private extension WidgetFamily {
-
-    var shownTodoItemsMaximumCount: Int {
-        switch self {
-        case .systemSmall: 1
-        case .systemMedium: 2
-        case .systemLarge: 5
-        default: 5
-        }
-    }
-}

@@ -19,7 +19,7 @@
 import Core
 import UIKit
 
-struct WidgetRouter {
+struct TodoWidgetRouter {
 
     struct ViewParameters {
         let env: AppEnvironment
@@ -90,10 +90,10 @@ struct WidgetRouter {
 
 // MARK: - Makers
 
-extension WidgetRouter {
+extension TodoWidgetRouter {
 
-    static func make() -> WidgetRouter {
-        WidgetRouter(handlers: [
+    static func make() -> TodoWidgetRouter {
+        TodoWidgetRouter(handlers: [
             .init("/todo-widget/planner-notes", action: { _, _, view in
                 view.selectTab(at: 2)
                 view.resetSplitMasterToRoot()

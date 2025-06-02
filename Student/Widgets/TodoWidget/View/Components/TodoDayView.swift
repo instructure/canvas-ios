@@ -20,7 +20,7 @@ import SwiftUI
 import Core
 import WidgetKit
 
-struct TodoItemDate: View {
+struct TodoDayView: View {
     let date: Date
 
     var body: some View {
@@ -51,8 +51,8 @@ struct TodoItemDate: View {
 #if DEBUG
 
 #Preview {
-    TodoItemDate(date: Date())
-    TodoItemDate(date: Date().addDays(4))
+    TodoDayView(date: Date())
+    TodoDayView(date: Date().addDays(4))
 }
 
 #endif

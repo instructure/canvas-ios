@@ -16,25 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WidgetKit
+import AppIntents
 
-extension TimeInterval {
-    #if DEBUG
-    static let widgetRefresh: TimeInterval = 120
-    static let widgetRecover: TimeInterval = 10
-    #else
-    static let widgetRefresh: TimeInterval = 7200 // 2 hours
-    static let widgetRecover: TimeInterval = 900 // 15 minutes
-    #endif
-}
-
-extension WidgetFamily {
-    var shownTodoItemsMaximumCount: Int {
-        switch self {
-        case .systemSmall: 1
-        case .systemMedium: 2
-        case .systemLarge: 5
-        default: 5
-        }
+struct ReloadWidgetIntent: AppIntent {
+    static var title: LocalizedStringResource = "Reload Widget"
+    static var description = IntentDescription("Reloading Widget")
+    static var isDiscoverable: Bool { false }
+    func perform() async throws -> some IntentResult {
+        return .result()
     }
 }

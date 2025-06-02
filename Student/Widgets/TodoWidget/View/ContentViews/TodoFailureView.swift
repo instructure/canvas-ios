@@ -19,18 +19,18 @@
 import WidgetKit
 import Core
 import SwiftUI
+import AppIntents
 
 struct TodoFailureView: View {
 
     var body: some View {
         TodoContentView(
-            logoRoute: .todoListRoute,
-            actionIcon: .refreshLine,
-            actionHandler: {
-                WidgetCenter.shared.reloadTimelines(ofKind: TodoWidget.kind)
-            },
             content: {
                 TodoStatusView(status: .failure)
+                    .invalidatableContent()
+            },
+            actionView: {
+                IntentActionView(icon: .refreshLine, intent: ReloadWidgetIntent())
             }
         )
     }

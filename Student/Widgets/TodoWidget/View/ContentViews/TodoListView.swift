@@ -32,9 +32,10 @@ struct TodoListView: View {
     var body: some View {
         TodoContentView(
             logoRoute: .todoListRoute,
-            actionIcon: .addLine,
-            actionRoute: .addTodoRoute,
-            content: { listView }
+            content: { listView },
+            actionView: {
+                RouteActionView(icon: .addLine, url: .addTodoRoute)
+            }
         )
     }
 
@@ -44,11 +45,11 @@ struct TodoListView: View {
         VStack(spacing: 5) {
             ForEach(todoList.days) { day in
                 HStack(alignment: .top, spacing: 10) {
-                    TodoItemDate(date: day.date)
+                    TodoDayView(date: day.date)
 
                     VStack(spacing: 8) {
                         ForEach(day.items) { item in
-                            TodoItemDetail(item: item)
+                            TodoItemView(item: item)
 
                             if day.items.last != item {
                                 InstUI.Divider()

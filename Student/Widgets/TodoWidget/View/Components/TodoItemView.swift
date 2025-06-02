@@ -20,7 +20,7 @@ import SwiftUI
 import WidgetKit
 import Core
 
-struct TodoItemDetail: View {
+struct TodoItemView: View {
     var item: TodoItem
 
     var body: some View {
@@ -74,7 +74,7 @@ struct TodoItemDetail: View {
         type: .assignment,
         title: "Important Assignment"
     )
-    TodoItemDetail(item: item)
+    TodoItemView(item: item)
 }
 
 #endif

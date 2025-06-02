@@ -20,20 +20,6 @@ import Core
 import Combine
 import WidgetKit
 
-struct TodoWidgetEntry: TimelineEntry {
-    static let publicPreview: Self = .init(
-        data: .make(),
-        date: Date()
-    )
-    static let loggedOutModel: Self = .init(
-        data: TodoModel(isLoggedIn: false),
-        date: Date()
-    )
-
-    let data: TodoModel
-    let date: Date
-}
-
 class TodoWidgetProvider: TimelineProvider {
     typealias Entry = TodoWidgetEntry
 
@@ -56,6 +42,7 @@ class TodoWidgetProvider: TimelineProvider {
         }
 
         guard let session = LoginSession.mostRecent else {
+            let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
             completion(Timeline(entries: [.loggedOutModel], policy: .after(refreshDate)))
             return
         }
@@ -97,11 +84,17 @@ class TodoWidgetProvider: TimelineProvider {
             let userContext = Core.Context(.user, id: session.userID)
             contextCodesToFetch.append(userContext.canvasContextID)
 
+            let start = Clock.now.startOfDay()
+            let end = start.addDays(28)
+
+            print(start, end)
+            print(contextCodesToFetch)
+
             return ReactiveStore(
                 useCase: GetPlannables(
                     userID: "self",
-                    startDate: Clock.now,
-                    endDate: Clock.now.addDays(28),
+                    startDate: start,
+                    endDate: end,
                     contextCodes: contextCodesToFetch
                 ),
                 environment: env
@@ -115,19 +108,21 @@ class TodoWidgetProvider: TimelineProvider {
                 }
                 .compactMap(TodoItem.init)
 
+            print("Todo items fetched: \(todoItems.count)")
+
             let model = TodoModel(items: todoItems)
             let entry = TodoWidgetEntry(data: model, date: Clock.now)
             let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
             return Timeline(entries: [entry], policy: .after(refreshDate))
         }
-        .catch({ _ in
+        .catch { _ in
             let model = TodoModel(error: .fetchingDataFailure)
             let entry = TodoWidgetEntry(data: model, date: Clock.now)
             let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
             return Just(
                 Timeline(entries: [entry], policy: .after(recoveryDate))
             )
-        })
+        }
         .eraseToAnyPublisher()
     }
 }

@@ -18,42 +18,22 @@
 
 import WidgetKit
 import SwiftUI
+import AppIntents
 
-struct TodoContentView<Content: View>: View {
+struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
 
-    private let logoRoute: URL?
+    fileprivate let logoRoute: URL?
+    fileprivate let content: () -> Content
+    fileprivate let actionView: () -> ActionView
 
-    private var actionIcon: Image?
-    private var actionRoute: URL?
-    private var actionHandler: (() -> Void)?
-
-    private let content: () -> Content
-
-    init(logoRoute: URL? = nil,
-         actionIcon: Image = .addLine,
-         actionRoute: URL,
-         content: @escaping () -> Content
+    init(
+        logoRoute: URL? = nil,
+        content: @escaping () -> Content,
+        actionView: @escaping () -> ActionView,
     ) {
         self.logoRoute = logoRoute
-        self.actionIcon = actionIcon
-        self.actionRoute = actionRoute
         self.content = content
-    }
-
-    init(logoRoute: URL? = nil,
-         actionIcon: Image,
-         actionHandler: @escaping () -> Void,
-         content: @escaping () -> Content
-    ) {
-        self.logoRoute = logoRoute
-        self.actionIcon = actionIcon
-        self.actionHandler = actionHandler
-        self.content = content
-    }
-
-    init(logoRoute: URL? = nil, content: @escaping () -> Content) {
-        self.logoRoute = logoRoute
-        self.content = content
+        self.actionView = actionView
     }
 
     var body: some View {
@@ -62,8 +42,10 @@ struct TodoContentView<Content: View>: View {
             VStack {
                 topView
                 Spacer()
-                if let icon = actionIcon {
-                    bottomView(icon)
+
+                let aView = actionView()
+                if aView.isVisible {
+                    aView
                 }
             }
             .padding(10)
@@ -83,20 +65,6 @@ struct TodoContentView<Content: View>: View {
         }
     }
 
-    private func actionView(_ icon: Image) -> some View {
-        ZStack {
-            Circle()
-                .fill(Color.purple)
-                .frame(width: 32)
-            icon
-                .resizable()
-                .renderingMode(.template)
-                .foregroundStyle(Color.backgroundLightest)
-                .frame(width: 18, height: 18)
-        }
-        .frame(minHeight: 32)
-    }
-
     private var topView: some View {
         HStack {
             Spacer()
@@ -109,24 +77,14 @@ struct TodoContentView<Content: View>: View {
             }
         }
     }
+}
 
-    private func bottomView(_ icon: Image) -> some View {
-        HStack {
-            Spacer()
-            if let route = actionRoute {
-                Link(destination: route) {
-                    actionView(icon)
-                }
-            } else if let actionHandler {
-                Button(action: actionHandler) {
-                    actionView(icon)
-                }
-                .buttonStyle(.plain)
-            } else {
-                actionView(icon)
-            }
-        }
-        .frame(maxHeight: 32)
+extension TodoContentView where ActionView == NoActionView {
+
+    init(logoRoute: URL? = nil, content: @escaping () -> Content) {
+        self.logoRoute = logoRoute
+        self.content = content
+        self.actionView = { ActionView() }
     }
 }
 
