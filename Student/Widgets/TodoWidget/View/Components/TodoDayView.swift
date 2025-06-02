@@ -25,19 +25,21 @@ struct TodoDayView: View {
 
     var body: some View {
         Link(destination: .calendarDayRoute(date)) {
-            Text(date.formatted(.dateTime.weekday()))
-                .font(.regular12)
-                .foregroundStyle(isToday ? .course2 : .textDark)
-            ZStack {
-                if isToday {
-                    Circle()
-                        .fill(.background)
-                        .stroke(.pink, style: .init(lineWidth: 1))
-                        .frame(width: 32, height: 32)
+            VStack(spacing: 3) {
+                Text(date.formatted(.dateTime.weekday()))
+                    .font(.regular12)
+                    .foregroundStyle(isToday ? .course2 : .textDark)
+                ZStack {
+                    if isToday {
+                        Circle()
+                            .fill(.background)
+                            .stroke(.course2, style: .init(lineWidth: 1))
+                            .frame(width: 30, height: 30)
+                    }
+                    Text(date.formatted(.dateTime.day()))
+                        .font(.bold12)
+                        .foregroundStyle(isToday ? .course2 : .textDark)
                 }
-                Text(date.formatted(.dateTime.day()))
-                    .font(.bold12)
-                    .foregroundStyle(isToday ? .pink : .textDark)
             }
         }
         .frame(minWidth: 34)
