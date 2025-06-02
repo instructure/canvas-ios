@@ -73,6 +73,7 @@ class TodoWidgetProvider: TimelineProvider {
 
     private func setupEnvironment(with session: LoginSession) {
         print("prepare environment")
+
         env.app = .student // Otherwise getPlannables never completes
         env.userDidLogin(session: session, isSilent: true)
     }

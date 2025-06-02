@@ -24,7 +24,6 @@ struct TodoWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: TodoWidgetProvider()) { model in
-            let _ = print("update todo widget ..")
             TodoWidgetScreen(model: model.data)
         }
         .contentMarginsDisabled()
