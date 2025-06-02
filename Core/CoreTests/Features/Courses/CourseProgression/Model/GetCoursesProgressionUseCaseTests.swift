@@ -43,10 +43,8 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
         let useCase = GetCoursesProgressionUseCase(userId: "user_1", courseId: "course_123")
         let scope = useCase.scope
 
-        // Test that the predicate matches the expected format for a where clause
         XCTAssertEqual(scope.predicate.predicateFormat, "courseID == \"course_123\"")
 
-        // Test that the sort descriptor is correct
         XCTAssertEqual(scope.order.count, 1)
         XCTAssertEqual(scope.order.first?.key, "courseID")
         XCTAssertTrue(scope.order.first?.ascending ?? false)
@@ -56,10 +54,8 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
         let useCase = GetCoursesProgressionUseCase(userId: "user_1")
         let scope = useCase.scope
 
-        // For .all scope, we should get a TRUEPREDICATE
         XCTAssertTrue(scope.predicate.predicateFormat == "TRUEPREDICATE")
 
-        // Test that the sort descriptor is correct for .all
         XCTAssertEqual(scope.order.count, 1)
         XCTAssertEqual(scope.order.first?.key, "objectID")
         XCTAssertTrue(scope.order.first?.ascending ?? false)
