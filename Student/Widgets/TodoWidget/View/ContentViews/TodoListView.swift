@@ -63,12 +63,12 @@ struct TodoListView: View {
                 }
 
                 if todoList.days.last?.id != day.id {
-                    InstUI.Divider().padding(.horizontal, 2)
+                    InstUI.Divider().padding(.horizontal, 4)
                 }
             }
             Spacer(minLength: 0)
         }
-        .padding([.top, .leading, .trailing], 12)
+        .padding([.top, .leading, .trailing], 10)
         .padding(.bottom, 35)
         .overlay(alignment: .bottom) {
             if todoList.isFullList == false {

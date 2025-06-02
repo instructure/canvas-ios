@@ -38,15 +38,13 @@ struct TodoWidget: Widget {
 #Preview("TodoWidget", as: .systemMedium) {
     TodoWidget()
 } timeline: {
-    let model = TodoModel()
-    TodoWidgetEntry(data: model, date: Date())
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
 }
 
 #Preview("TodoWidget", as: .systemLarge) {
     TodoWidget()
 } timeline: {
-    let model = TodoModel(isLoggedIn: false)
-    TodoWidgetEntry(data: model, date: Date())
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
 }
 
 #endif

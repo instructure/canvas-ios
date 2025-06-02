@@ -25,7 +25,7 @@ struct TodoItemView: View {
 
     var body: some View {
         Link(destination: item.route) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 0) {
                 contextSection
                 titleSection
                 timeSection

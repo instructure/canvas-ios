@@ -87,9 +87,6 @@ class TodoWidgetProvider: TimelineProvider {
             let start = Clock.now.startOfDay()
             let end = start.addDays(28)
 
-            print(start, end)
-            print(contextCodesToFetch)
-
             return ReactiveStore(
                 useCase: GetPlannables(
                     startDate: start,
@@ -106,8 +103,6 @@ class TodoWidgetProvider: TimelineProvider {
                     $0.plannableType != .announcement && $0.plannableType != .assessment_request
                 }
                 .compactMap(TodoItem.init)
-
-            print("Todo items fetched: \(todoItems.count)")
 
             let model = TodoModel(items: todoItems)
             let entry = TodoWidgetEntry(data: model, date: Clock.now)
