@@ -69,12 +69,7 @@ struct TodoItemView: View {
 #if DEBUG
 
 #Preview {
-    let item = TodoItem(
-        plannableID: "1",
-        type: .assignment,
-        title: "Important Assignment"
-    )
-    TodoItemView(item: item)
+    TodoItemView(item: .make())
 }
 
 #endif

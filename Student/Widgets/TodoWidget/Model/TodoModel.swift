@@ -60,17 +60,19 @@ enum TodoError: Error {
     case fetchingDataFailure
 }
 
+// MARK: - Previews
+
 extension TodoModel {
 
     static func make(count: Int = 5) -> TodoModel {
         let items = [
-            TodoItem(plannableID: "1", type: .assignment, date: Date.now, title: "Important Assignment"),
-            TodoItem(plannableID: "2", type: .discussion_topic, date: Date.now, title: "Discussion About Everything"),
-            TodoItem(plannableID: "3", type: .calendar_event, date: Date.now, title: "Huge Event"),
-            TodoItem(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget"),
-            TodoItem(plannableID: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life"),
-            TodoItem(plannableID: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment"),
-            TodoItem(plannableID: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page")
+            TodoItem.make(plannableID: "1", type: .assignment, date: Date.now, title: "Important Assignment"),
+            TodoItem.make(plannableID: "2", type: .discussion_topic, date: Date.now, title: "Discussion About Everything"),
+            TodoItem.make(plannableID: "3", type: .calendar_event, date: Date.now, title: "Huge Event"),
+            TodoItem.make(plannableID: "4", type: .planner_note, date: Date.now.addDays(3), title: "Don't forget"),
+            TodoItem.make(plannableID: "5", type: .quiz, date: Date.now.addDays(3), title: "Quiz About Life"),
+            TodoItem.make(plannableID: "6", type: .assignment, date: Date.now.addDays(3), title: "Another Assignment"),
+            TodoItem.make(plannableID: "7", type: .wiki_page, date: Date.now.addDays(3), title: "Some Page")
         ]
         return TodoModel(items: Array(items.prefix(count)))
     }

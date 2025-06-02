@@ -57,18 +57,15 @@ struct TodoItem: Identifiable, Equatable {
         self.icon = plannable.icon().flatMap({ Image(uiImage: $0) })
     }
 
-    var id: String { plannableID }
-
-#if DEBUG
     init(
-        plannableID: String = "1",
-        type: PlannableType = .calendar_event,
-        date: Date = Clock.now,
-        title: String = "Example Todo",
-        contextName: String = "Example Course",
-        htmlURL: URL? = nil,
-        color: Color = .red,
-        icon: Image? = Image.assignmentLine
+        plannableID: String,
+        type: PlannableType,
+        date: Date,
+        title: String,
+        contextName: String,
+        htmlURL: URL?,
+        color: Color,
+        icon: Image?
     ) {
 
         self.plannableID = plannableID
@@ -82,5 +79,31 @@ struct TodoItem: Identifiable, Equatable {
         self.color = color
         self.icon = icon
     }
-#endif
+
+    var id: String { plannableID }
+
+    // MARK: Preview & Testing
+
+    static func make(
+        plannableID: String = "1",
+        type: PlannableType = .assignment,
+        date: Date = Clock.now,
+        title: String = "Example Assignment",
+        contextName: String = "Example Course",
+        htmlURL: URL? = nil,
+        color: Color = .red,
+        icon: Image? = Image.assignmentLine
+    ) -> TodoItem {
+
+        TodoItem(
+            plannableID: plannableID,
+            type: type,
+            date: date,
+            title: title,
+            contextName: contextName,
+            htmlURL: htmlURL,
+            color: color,
+            icon: icon
+        )
+    }
 }

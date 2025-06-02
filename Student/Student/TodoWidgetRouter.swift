@@ -150,13 +150,11 @@ extension TodoWidgetRouter {
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
-                controller.showing {
-                    view.env.router.show(
-                        controller,
-                        from: view.tabController,
-                        options: .modal(isDismissable: true, embedInNav: true)
-                    )
-                }
+                view.env.router.show(
+                    controller,
+                    from: view.tabController,
+                    options: .modal(isDismissable: true, embedInNav: true)
+                )
             }
         })
     }
@@ -176,13 +174,11 @@ extension TodoWidgetRouter {
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
-                controller.showing {
-                    view.env.router.show(
-                        controller,
-                        from: view.tabController,
-                        options: .modal(isDismissable: true, embedInNav: true)
-                    )
-                }
+                view.env.router.show(
+                    controller,
+                    from: view.tabController,
+                    options: .modal(isDismissable: true, embedInNav: true)
+                )
             }
         })
     }
@@ -194,16 +190,11 @@ extension TodoWidgetRouter {
             view.selectTab(at: 0)
             view.resetSplitMasterToRoot()
 
-            guard let masterVC = view.selectedTabMasterRootController as? VisibilityObservedViewController
-            else { return }
-
-            masterVC.showing {
-                view.env.router.route(
-                    to: url,
-                    from: masterVC,
-                    options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
-                )
-            }
+            view.env.router.route(
+                to: url,
+                from: view.tabController,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
         })
     }
 
@@ -214,10 +205,7 @@ extension TodoWidgetRouter {
             view.selectTab(at: 1)
             view.resetSplitMasterToRoot()
 
-            guard let masterVC = view.selectedTabMasterRootController as? VisibilityObservedViewController
-            else { return }
-
-            if let plannerVC = masterVC as? PlannerViewController {
+            if let plannerVC = view.selectedTabMasterRootController as? PlannerViewController {
 
                 plannerVC.showing {
                     view.env.router.route(
@@ -229,13 +217,11 @@ extension TodoWidgetRouter {
 
             } else {
 
-                masterVC.showing {
-                    view.env.router.route(
-                        to: url.settingOrigin("calendar"),
-                        from: view.tabController,
-                        options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
-                    )
-                }
+                view.env.router.route(
+                    to: url.settingOrigin("calendar"),
+                    from: view.tabController,
+                    options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+                )
             }
         })
     }
