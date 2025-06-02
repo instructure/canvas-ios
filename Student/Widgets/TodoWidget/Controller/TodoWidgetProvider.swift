@@ -92,7 +92,6 @@ class TodoWidgetProvider: TimelineProvider {
 
             return ReactiveStore(
                 useCase: GetPlannables(
-                    userID: "self",
                     startDate: start,
                     endDate: end,
                     contextCodes: contextCodesToFetch
