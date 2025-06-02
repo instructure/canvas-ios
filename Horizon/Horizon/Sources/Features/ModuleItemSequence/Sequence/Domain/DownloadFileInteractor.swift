@@ -23,6 +23,7 @@ import Combine
 protocol DownloadFileInteractor {
     func download(fileID: String) -> AnyPublisher<URL, Error>
     func download(file: File) -> AnyPublisher<URL, Error>
+    func download(remoteURL: URL, fileName: String) -> AnyPublisher<URL, Error>
 }
 
 final class DownloadFileInteractorLive: DownloadFileInteractor {
@@ -86,6 +87,25 @@ final class DownloadFileInteractorLive: DownloadFileInteractor {
             return DownloadTaskPublisher(parameters:
                 DownloadTaskParameters(
                     remoteURL: file.url!,
+                    localURL: localURL
+                )
+            )
+            .collect() // Wait until the download is finished.
+            .mapToValue(localURL)
+            .eraseToAnyPublisher()
+        }
+    }
+
+    func download(remoteURL: URL, fileName: String) -> AnyPublisher<URL, Error> {
+        let localURL = URL.Directories.documents.appendingPathComponent(fileName)
+        if self.fileManager.fileExists(atPath: localURL.path) {
+            return Just(localURL)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } else {
+            return DownloadTaskPublisher(
+                parameters: DownloadTaskParameters(
+                    remoteURL: remoteURL,
                     localURL: localURL
                 )
             )

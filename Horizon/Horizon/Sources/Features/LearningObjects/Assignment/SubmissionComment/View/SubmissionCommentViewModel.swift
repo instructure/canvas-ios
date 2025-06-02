@@ -19,6 +19,7 @@
 import Combine
 import Core
 import Observation
+import Foundation
 
 @Observable
 final class SubmissionCommentViewModel {
@@ -36,6 +37,7 @@ final class SubmissionCommentViewModel {
     private let attempt: Int?
     private let router: Router
     private let interactor: SubmissionCommentInteractor
+    private let fileInteractor: DownloadFileInteractor
 
     // MARK: - Inputs/Outputs
 
@@ -46,10 +48,12 @@ final class SubmissionCommentViewModel {
     private(set) var viewState: ViewState = .initialLoading
     private(set) var isPostingComment: Bool = false
     private(set) var comments: [SubmissionComment] = []
+    private(set) var fileState: FileDownloadStatus = .initial
 
     // MARK: - Private properties
 
     private var subscriptions = Set<AnyCancellable>()
+    private var fileSubscription: AnyCancellable?
 
     // MARK: - Init
 
@@ -58,6 +62,7 @@ final class SubmissionCommentViewModel {
         assignmentID: String,
         attempt: Int?,
         interactor: SubmissionCommentInteractor,
+        fileInteractor: DownloadFileInteractor,
         router: Router
     ) {
         self.courseID = courseID
@@ -65,7 +70,7 @@ final class SubmissionCommentViewModel {
         self.attempt = attempt
         self.router = router
         self.interactor = interactor
-
+        self.fileInteractor = fileInteractor
         getComments()
     }
 
@@ -99,6 +104,34 @@ final class SubmissionCommentViewModel {
         ).store(in: &subscriptions)
     }
 
+    func downloadFile(attachment: CommentAttachment, viewController: WeakViewController) {
+        guard let url = attachment.url, let name = attachment.displayName else {
+            return
+        }
+        weak var weakSelf = self
+        fileState = .loading
+        fileSubscription = fileInteractor.download(
+            remoteURL: url,
+            fileName: name
+        )
+        .sink(
+            receiveCompletion: {  completion in
+                if case let .failure(error) = completion {
+                    weakSelf?.fileState = .error(error.localizedDescription)
+                }
+            },
+            receiveValue: { url in
+                weakSelf?.fileState = .initial
+                weakSelf?.showShareSheet(fileURL: url, viewController: viewController)
+            }
+        )
+    }
+
+    func cancelDownload() {
+        fileSubscription?.cancel()
+        fileState = .initial
+    }
+
     // MARK: - Private functions
 
     private func getComments(ignoreCache: Bool = false) {
@@ -122,5 +155,12 @@ final class SubmissionCommentViewModel {
             }
         )
         .store(in: &subscriptions)
+    }
+
+    private func showShareSheet(fileURL: URL, viewController: WeakViewController) {
+        let controller = CoreActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        DispatchQueue.main.async { [weak self] in
+            self?.router.show(controller, from: viewController, options: .modal())
+        }
     }
 }

@@ -39,6 +39,7 @@ enum SubmissionCommentAssembly {
                 assignmentID: assignmentID,
                 attempt: attempt,
                 interactor: makeSubmissionCommentInteractor(),
+                fileInteractor: DownloadFileInteractorLive(courseID: courseID),
                 router: AppEnvironment.shared.router
             )
         )
@@ -50,7 +51,7 @@ enum SubmissionCommentAssembly {
         }
         return viewController
     }
-
+#if DEBUG
     static func makePreview() -> SubmissionCommentView {
         SubmissionCommentView(
             viewModel: SubmissionCommentViewModel(
@@ -58,8 +59,10 @@ enum SubmissionCommentAssembly {
                 assignmentID: "1",
                 attempt: nil,
                 interactor: makeSubmissionCommentInteractorPreview(),
+                fileInteractor: DownloadFileInteractorPreview(),
                 router: AppEnvironment.shared.router
             )
         )
     }
+#endif
 }

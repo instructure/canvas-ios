@@ -28,6 +28,7 @@ struct SubmissionComment: Identifiable {
     let createdAt: Date?
     let isCurrentUsersComment: Bool
     let isRead: Bool
+    let attachments: [CommentAttachment]
 
     var createdAtString: String? {
         if let createdAt {
@@ -65,6 +66,7 @@ struct SubmissionComment: Identifiable {
         self.createdAt = entity.createdAt
         self.isCurrentUsersComment = isCurrentUsersComment
         self.isRead = entity.isRead
+        self.attachments = entity.attachments?.map { CommentAttachment(from: $0) } ?? []
     }
 
     init(
@@ -75,7 +77,8 @@ struct SubmissionComment: Identifiable {
         comment: String,
         createdAt: Date?,
         isCurrentUsersComment: Bool,
-        isRead: Bool = true
+        isRead: Bool = true,
+        attachments: [CommentAttachment] = []
     ) {
         self.id = id
         self.attempt = attempt
@@ -85,5 +88,6 @@ struct SubmissionComment: Identifiable {
         self.createdAt = createdAt
         self.isCurrentUsersComment = isCurrentUsersComment
         self.isRead = isRead
+        self.attachments = attachments
     }
 }
