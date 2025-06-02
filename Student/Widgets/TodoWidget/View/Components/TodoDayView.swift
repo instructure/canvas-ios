@@ -32,7 +32,6 @@ struct TodoDayView: View {
                 ZStack {
                     if isToday {
                         Circle()
-                            .fill(.background)
                             .stroke(.course2, style: .init(lineWidth: 1))
                             .frame(width: 30, height: 30)
                     }
@@ -43,6 +42,8 @@ struct TodoDayView: View {
             }
         }
         .frame(minWidth: 34)
+        .accessibilityElement()
+        .accessibilityAddTraits(.isButton)
         .accessibilityLabel(
             (isToday ? String(localized: "Today, ") : "") +
             date.formatted(.dateTime.weekday(.wide).month(.wide).day())
