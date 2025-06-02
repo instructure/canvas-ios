@@ -141,7 +141,6 @@ extension ActivityStreamViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ActivityCell = tableView.dequeue(for: indexPath)
-
         if let a = activities[indexPath] { cell.update(a, courseCache: courseCache) }
         return cell
     }
@@ -181,7 +180,7 @@ class ActivityCell: UITableViewCell {
             courseCode.text = nil
             courseCode.isHidden = true
         }
-        
+
         if let date = activity.updatedAt {
             subTitleLabel.setText(ActivityStreamViewController.dateFormatter.string(from: date), style: .textCellSupportingText)
         }
