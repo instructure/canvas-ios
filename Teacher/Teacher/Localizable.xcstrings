@@ -1537,6 +1537,9 @@
         }
       }
     },
+    "All" : {
+
+    },
     "All grades are currently hidden." : {
       "localizations" : {
         "ar" : {
@@ -3073,6 +3076,12 @@
         }
       }
     },
+    "Assignment Dates" : {
+
+    },
+    "Assignment Details" : {
+
+    },
     "Attempt %lld" : {
       "localizations" : {
         "ar" : {
@@ -3840,6 +3849,15 @@
           }
         }
       }
+    },
+    "Availability:" : {
+
+    },
+    "Available from:" : {
+
+    },
+    "Available until:" : {
+
     },
     "Back" : {
       "localizations" : {
@@ -6147,6 +6165,9 @@
       }
     },
     "Closed" : {
+
+    },
+    "Collapsed" : {
 
     },
     "Comment" : {
@@ -8710,6 +8731,9 @@
         }
       }
     },
+    "Description" : {
+
+    },
     "Dismiss" : {
       "localizations" : {
         "ar" : {
@@ -9997,6 +10021,12 @@
       }
     },
     "Drawer menu" : {
+
+    },
+    "Due Dates, Double tap for details." : {
+
+    },
+    "Due:" : {
 
     },
     "Edit" : {
@@ -11535,6 +11565,9 @@
           }
         }
       }
+    },
+    "Expanded" : {
+
     },
     "Failed to launch rollcall LTI tool." : {
       "localizations" : {
@@ -14097,6 +14130,9 @@
         }
       }
     },
+    "For:" : {
+      "comment" : "Examples: 'For: Everyone', 'For: Group 1'"
+    },
     "GPA" : {
       "localizations" : {
         "ar" : {
@@ -15376,6 +15412,9 @@
           }
         }
       }
+    },
+    "Graded to %@" : {
+      "comment" : "Examples: Graded to A, Graded to 95%"
     },
     "Grades" : {
       "localizations" : {
@@ -19055,6 +19094,9 @@
         }
       }
     },
+    "Help your students with this assignment by adding instructions." : {
+
+    },
     "Hide Grades" : {
       "localizations" : {
         "ar" : {
@@ -21617,6 +21659,9 @@
         }
       }
     },
+    "Multiple Due Dates" : {
+
+    },
     "Needs Grading" : {
       "localizations" : {
         "ar" : {
@@ -21872,6 +21917,15 @@
           }
         }
       }
+    },
+    "No available from date set." : {
+
+    },
+    "No available until date set." : {
+
+    },
+    "No due date set." : {
+
     },
     "No Grade" : {
       "localizations" : {
@@ -24179,6 +24233,9 @@
           }
         }
       }
+    },
+    "Others" : {
+
     },
     "out_of_g_pts" : {
       "localizations" : {
@@ -27252,6 +27309,9 @@
         }
       }
     },
+    "Published" : {
+
+    },
     "Record Audio" : {
       "localizations" : {
         "ar" : {
@@ -29043,6 +29103,12 @@
           }
         }
       }
+    },
+    "Search" : {
+
+    },
+    "Search Submissions" : {
+
     },
     "Select to change the roll call date" : {
       "localizations" : {
@@ -30836,6 +30902,15 @@
         }
       }
     },
+    "Submission Filter" : {
+
+    },
+    "Submission List Preferences" : {
+
+    },
+    "Submission Types" : {
+
+    },
     "Submissions" : {
       "localizations" : {
         "ar" : {
@@ -31347,6 +31422,9 @@
           }
         }
       }
+    },
+    "Tap to view submissions list." : {
+
     },
     "Test Student" : {
       "localizations" : {
@@ -32115,6 +32193,9 @@
           }
         }
       }
+    },
+    "there_are_d_assignees_without_grades" : {
+
     },
     "This assignment does not allow submissions." : {
       "localizations" : {
@@ -35188,6 +35269,9 @@
         }
       }
     },
+    "Unpublished" : {
+
+    },
     "URL Preview Image" : {
       "localizations" : {
         "ar" : {
@@ -35443,6 +35527,12 @@
           }
         }
       }
+    },
+    "View all submissions" : {
+
+    },
+    "View Discussion" : {
+
     },
     "View file %@ %@" : {
       "extractionState" : "stale",
@@ -36476,6 +36566,12 @@
           }
         }
       }
+    },
+    "Write your Comment here" : {
+
+    },
+    "You are not authorized to perform this action" : {
+
     }
   },
   "version" : "1.0"

@@ -36,6 +36,20 @@ public class GradeFormatter {
         }
     }
 
+    public enum BlankPlaceholder {
+        case oneDash
+        case doubleDash
+
+        var stringValue: String {
+            switch self {
+            case .oneDash:
+                String(localized: "-", bundle: .core, comment: "placeholder for the score of an ungraded submission")
+            case .doubleDash:
+                String(localized: "--", bundle: .core, comment: "placeholder for the score of an ungraded submission")
+            }
+        }
+    }
+
     public static let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
@@ -206,17 +220,20 @@ public class GradeFormatter {
     }
 
     // For teachers & graders in submission list
-    public static func shortString(for assignment: Assignment?, submission: Submission?) -> String {
+    public static func shortString(
+        for assignment: Assignment?,
+        submission: Submission?,
+        blankPlaceholder: BlankPlaceholder = .doubleDash
+    ) -> String {
         guard assignment?.gradingType != .not_graded else { return "" }
 
-        let placeholder = String(localized: "--", bundle: .core, comment: "placeholder for the score of an ungraded submission")
         guard let assignment = assignment, let submission = submission,
             submission.workflowState != .unsubmitted, !submission.needsGrading
-        else { return placeholder }
+        else { return blankPlaceholder.stringValue }
 
         guard submission.excused != true else { return String(localized: "Excused", bundle: .core) }
 
-        return gradeString(for: assignment, submission: submission) ?? placeholder
+        return gradeString(for: assignment, submission: submission) ?? blankPlaceholder.stringValue
     }
 
     public static func gradeString(for assignment: Assignment, submission: Submission, final: Bool = true) -> String? {

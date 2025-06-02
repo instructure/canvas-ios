@@ -67,9 +67,9 @@ public struct OldSegmentedPicker<Element, Content>: View where Content: View {
                         )
                         .buttonStyle(PlainButtonStyle())
                         .frame(maxWidth: .infinity, minHeight: 33)
-                        .background(GeometryReader { proxy in
-                            Color.clear.onAppear { frames[index] = proxy.frame(in: .global) }
-                        })
+                        .onSizeChange { size in
+                            frames[index].size = size
+                        }
                         .alignmentGuide(
                             .horizontalCenterAlignment,
                             isActive: selectedIndex == index

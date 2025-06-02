@@ -44,29 +44,34 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
     var type: ErrorReportType = .problem
     public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/support/problem")
 
-    var selectedImpact: IndexPath?
-    let impacts = [ ItemPickerSection(items: [
-        ItemPickerItem(
+    private var selectedImpact: OptionItem?
+    let impacts = [
+        OptionItem(
+            id: "comment",
             title: String(localized: "Comment", bundle: .core),
             subtitle: String(localized: "Casual question or suggestion", bundle: .core)
         ),
-        ItemPickerItem(
+        OptionItem(
+            id: "notUrgent",
             title: String(localized: "Not Urgent", bundle: .core),
             subtitle: String(localized: "I need help but it's not urgent", bundle: .core)
         ),
-        ItemPickerItem(
+        OptionItem(
+            id: "workaround",
             title: String(localized: "Workaround", bundle: .core),
             subtitle: String(localized: "Something is broken but I can work around it", bundle: .core)
         ),
-        ItemPickerItem(
+        OptionItem(
+            id: "blocking",
             title: String(localized: "Blocking", bundle: .core),
             subtitle: String(localized: "I can't get things done until I hear back from you", bundle: .core)
         ),
-        ItemPickerItem(
+        OptionItem(
+            id: "emergency",
             title: String(localized: "Emergency", bundle: .core),
             subtitle: String(localized: "Extremely critical emergency", bundle: .core)
         )
-    ]) ]
+    ]
 
     public static func create(env: AppEnvironment = .shared, type: ErrorReportType = .problem, error: NSError? = nil, subject: String? = nil) -> ErrorReportViewController {
         let controller = loadFromStoryboard()
@@ -141,7 +146,7 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
         guard
             let email = emailField?.text?.trimmingCharacters(in: .whitespacesAndNewlines), !email.isEmpty,
             let subject = subjectField?.text?.trimmingCharacters(in: .whitespacesAndNewlines), !subject.isEmpty,
-            let impact = selectedImpact?.row,
+            let impact = selectedImpact.flatMap({ impacts.firstIndex(of: $0) }),
             let comments = commentsField?.text?.trimmingCharacters(in: .whitespacesAndNewlines), !comments.isEmpty
         else { return }
 
@@ -172,22 +177,25 @@ public class ErrorReportViewController: ScreenViewTrackableViewController {
     }
 }
 
-extension ErrorReportViewController: ItemPickerDelegate {
+extension ErrorReportViewController {
     @IBAction public func pickImpact() {
-        show(ItemPickerViewController.create(
-            title: String(localized: "Impact Level", bundle: .core),
-            sections: impacts,
-            selected: selectedImpact,
-            delegate: self
-        ), sender: self)
-    }
+        let picker = ItemPickerScreen(
+            pageTitle: String(localized: "Impact Level", bundle: .core),
+            identifierGroup: "ErrorReport.impactLevelOptions",
+            allOptions: impacts,
+            initialOptionId: selectedImpact?.id,
+            didSelectOption: { [weak self] option in
+                guard let self else { return }
 
-    public func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
-        selectedImpact = indexPath
-        let impactTitle = impacts[indexPath.section].items[indexPath.row].title
-        impactButton?.setTitle(impactTitle, for: .normal)
-        impactButton?.accessibilityValue = impactTitle
-        updateSendButton()
+                selectedImpact = option
+                let impactTitle = option.title
+                impactButton?.setTitle(impactTitle, for: .normal)
+                impactButton?.accessibilityValue = impactTitle
+                updateSendButton()
+            }
+        )
+
+        show(CoreHostingController(picker), sender: self)
     }
 }
 

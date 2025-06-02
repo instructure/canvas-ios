@@ -194,6 +194,20 @@ public class GetSubmissionsForStudent: CollectionUseCase {
     }
 }
 
+public class GetSubmissionAttemptsLocal: LocalUseCase<Submission> {
+    public init(assignmentId: String, userId: String) {
+        let scope = Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentId),
+                NSPredicate(key: #keyPath(Submission.userID), equals: userId),
+                NSPredicate(format: "%K != nil", #keyPath(Submission.submittedAt))
+            ]),
+            orderBy: #keyPath(Submission.attempt)
+        )
+        super.init(scope: scope)
+    }
+}
+
 public class GetSubmissions: CollectionUseCase {
     public typealias Model = Submission
     public typealias Response = Request.Response
@@ -210,7 +224,9 @@ public class GetSubmissions: CollectionUseCase {
         self.shuffled = shuffled
     }
 
-    public var cacheKey: String? { "\(context.pathComponent)/assignments/\(assignmentID)/submissions" }
+    public var cacheKey: String? {
+        "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
+    }
 
     public var request: GetSubmissionsRequest {
         GetSubmissionsRequest(context: context, assignmentID: assignmentID, grouped: true, include: GetSubmissionsRequest.Include.allCases)
@@ -320,7 +336,7 @@ public class GetSubmissions: CollectionUseCase {
             }
         }
 
-        var predicate: NSPredicate {
+        public var predicate: NSPredicate {
             switch self {
             case .late:
                 return NSPredicate(key: #keyPath(Submission.late), equals: true)

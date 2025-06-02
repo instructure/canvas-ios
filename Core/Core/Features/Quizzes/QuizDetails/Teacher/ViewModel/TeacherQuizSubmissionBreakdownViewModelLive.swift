@@ -39,6 +39,7 @@ public class TeacherQuizSubmissionBreakdownViewModelLive: SubmissionBreakdownVie
     init(courseID: String, quizID: String) {
         self.quizID = quizID
         self.courseID = courseID
+
         submissions = AppEnvironment.shared.subscribe(GetAllQuizSubmissions(
             courseID: courseID,
             quizID: quizID))

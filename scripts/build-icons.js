@@ -57,6 +57,7 @@ const whitelist = [
   'bullet-list',
   'calendar-clock',
   'calendar-month',
+  'chat',
   'check',
   'circle-arrow-down',
   'circle-arrow-up',
@@ -137,6 +138,8 @@ const whitelist = [
   'warning-borderless',
   'x',
   'filter',
+  'search',
+  'speed-grader'
 ]
 
 const getImages = (path) => fs.readdirSync(path, { withFileTypes: true }).flatMap(dir => {
@@ -245,7 +248,7 @@ public extension Image {
       `static var ${name}Line: Image { Image("${name}Line", bundle: .core) }`,
       `static var ${name}Solid: Image { Image("${name}Solid", bundle: .core) }`,
     ]).join('\n    ')}
-    
+
     ${localIcons.map(name =>
       `static var ${name}: Image { Image("${name}", bundle: .core) }`
     ).join('\n    ')}

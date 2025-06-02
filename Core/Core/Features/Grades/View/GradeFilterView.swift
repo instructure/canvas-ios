@@ -51,7 +51,7 @@ public struct GradeFilterView: View {
     private var gradingPeriodSection: some View {
         SingleSelectionView(
             title: String(localized: "Grading Periods", bundle: .core),
-            accessibilityIdentifier: "GradeFilter.gradingPeriodOptions",
+            identifierGroup: "GradeFilter.gradingPeriodOptions",
             options: viewModel.gradingPeriodOptions
         )
     }
@@ -59,7 +59,7 @@ public struct GradeFilterView: View {
     private var sortBySection: some View {
         SingleSelectionView(
             title: String(localized: "Grouped By", bundle: .core),
-            accessibilityIdentifier: "GradeFilter.sortModeOptions",
+            identifierGroup: "GradeFilter.sortModeOptions",
             options: viewModel.sortModeOptions
         )
     }

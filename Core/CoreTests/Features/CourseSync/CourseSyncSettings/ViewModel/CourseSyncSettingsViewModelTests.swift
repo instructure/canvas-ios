@@ -31,7 +31,7 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
 
         drainMainQueue()
         XCTAssertEqual(navigation.children.count, 2)
-        XCTAssertTrue(navigation.children.last is ItemPickerViewController)
+        XCTAssertTrue(navigation.children.last is CoreHostingController<ItemPickerScreen>)
     }
 
     func testTogglesAllSettingsVisibility() {
