@@ -34,7 +34,7 @@ struct TodoWidgetScreen: View {
     private var content: some View {
         if model.isLoggedIn {
 
-            if let error = model.error {
+            if model.error != nil {
                 TodoFailureView()
             } else if model.items.isEmpty {
                 TodoEmptyView()
