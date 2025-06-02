@@ -48,6 +48,12 @@ struct SubmissionGraderView: View {
     @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
 
     private var handleRefresh: (() -> Void)?
+    /// We can't measure the view's size because when keyboard appears it shrinks it
+    /// and that would cause the layout to switch from portrait to landscape. We use the
+    /// navigation controller's view size instead to decide which layout to use.
+    private var containerSize: CGSize {
+        controller.value.navigationController?.view.frame.size ?? .zero
+    }
 
     init(
         env: AppEnvironment,
@@ -80,7 +86,6 @@ struct SubmissionGraderView: View {
             let cornerRadius = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 0, toMax: 20)
 
             mainLayout(
-                geometry: geometry,
                 bottomInset: bottomInset,
                 minHeight: minHeight,
                 maxHeight: maxHeight
@@ -90,10 +95,9 @@ struct SubmissionGraderView: View {
             .scaleEffect(scale)
             .edgesIgnoringSafeArea(.bottom)
         }
-        .avoidKeyboardArea()
         .onSizeChange { newSize in
             // These conditions are to avoid reseting the landscape layout when the app is backgrounded or rotated to portrait.
-            if layout(for: newSize) == .landscape, UIApplication.shared.applicationState != .background {
+            if layout(for: containerSize) == .landscape, UIApplication.shared.applicationState != .background {
                 landscapeSplitLayoutViewModel.updateScreenWidth(newSize.width)
             }
         }
@@ -102,12 +106,11 @@ struct SubmissionGraderView: View {
 
     @ViewBuilder
     private func mainLayout(
-        geometry: GeometryProxy,
         bottomInset: CGFloat,
         minHeight: CGFloat,
         maxHeight: CGFloat
     ) -> some View {
-        switch layout(for: geometry.size) {
+        switch layout(for: containerSize) {
         case .landscape:
             landscapeLayout(bottomInset: bottomInset)
         case .portrait:
@@ -421,9 +424,7 @@ struct SubmissionGraderView: View {
         let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
         VStack(spacing: 0) {
             SubmissionCommentListView(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                attempts: viewModel.attempts,
+                viewModel: viewModel.commentListViewModel,
                 attempt: drawerAttempt,
                 fileID: fileID,
                 showRecorder: $showRecorder,
@@ -437,7 +438,6 @@ struct SubmissionGraderView: View {
             }
         }
         .frame(width: geometry.size.width, height: geometry.size.height)
-        .background(Color.backgroundLight)
         .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
         .accessibility(hidden: !isCommentsOnScreen)
     }
@@ -474,11 +474,6 @@ struct SubmissionGraderView: View {
     }
 
     private func didChangeLayout(to layout: Layout) {
-        if lastPresentedLayout != layout {
-            // When the layout changes the keyboard disappears without any system notifications
-            // on iPads so we simulate one to allow .avoidKeyboardArea() to work correctly.
-            NotificationCenter.default.post(name: UIApplication.keyboardWillHideNotification, object: nil, userInfo: [:])
-        }
         lastPresentedLayout = layout
     }
 }

@@ -77,6 +77,7 @@ struct SubmissionsFilterScreen: View {
         VStack {
             SingleSelectionView(
                 title: String(localized: "Submission Filter", bundle: .teacher),
+                identifierGroup: "SubmissionsFilter.filterOptions",
                 options: filterOptions
             )
             Spacer()

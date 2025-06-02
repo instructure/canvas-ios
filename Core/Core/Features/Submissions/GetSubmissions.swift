@@ -206,6 +206,20 @@ public class GetSubmissionsForStudent: CollectionUseCase {
     }
 }
 
+public class GetSubmissionAttemptsLocal: LocalUseCase<Submission> {
+    public init(assignmentId: String, userId: String) {
+        let scope = Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentId),
+                NSPredicate(key: #keyPath(Submission.userID), equals: userId),
+                NSPredicate(format: "%K != nil", #keyPath(Submission.submittedAt))
+            ]),
+            orderBy: #keyPath(Submission.attempt)
+        )
+        super.init(scope: scope)
+    }
+}
+
 public class GetSubmissions: CollectionUseCase {
     public typealias Model = Submission
     public typealias Response = Request.Response
