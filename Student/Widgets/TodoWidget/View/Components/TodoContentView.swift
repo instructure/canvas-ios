@@ -22,6 +22,8 @@ import AppIntents
 
 struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
 
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     fileprivate let logoRoute: URL?
     fileprivate let content: () -> Content
     fileprivate let actionView: () -> ActionView
@@ -56,12 +58,12 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
         ZStack {
             Circle()
                 .fill(Color.backgroundDanger)
-                .frame(width: 32)
+                .frame(width: 32 * uiScale.iconScale)
             Image("student-logomark")
                 .resizable()
                 .renderingMode(.template)
                 .foregroundStyle(Color.backgroundLightest)
-                .frame(width: 18, height: 18)
+                .frame(width: 18 * uiScale.iconScale, height: 18 * uiScale.iconScale)
         }
     }
 

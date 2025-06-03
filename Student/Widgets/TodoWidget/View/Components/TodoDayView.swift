@@ -21,6 +21,9 @@ import Core
 import WidgetKit
 
 struct TodoDayView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     let date: Date
 
     var body: some View {
@@ -33,7 +36,10 @@ struct TodoDayView: View {
                     if isToday {
                         Circle()
                             .stroke(.course2, style: .init(lineWidth: 1))
-                            .frame(width: 30, height: 30)
+                            .frame(
+                                width: 30 * uiScale.iconScale,
+                                height: 30 * uiScale.iconScale
+                            )
                     }
                     Text(date.formatted(.dateTime.day()))
                         .font(.bold12)
@@ -41,7 +47,7 @@ struct TodoDayView: View {
                 }
             }
         }
-        .frame(minWidth: 34)
+        .frame(minWidth: 34 * uiScale.iconScale)
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(

@@ -72,12 +72,18 @@ struct TodoListView: View {
         .padding(.bottom, 35)
         .overlay(alignment: .bottom) {
             if todoList.isFullList == false {
-                fullListButtonView
+                ViewFullListButton()
             }
         }
     }
+}
 
-    private var fullListButtonView: some View {
+// MARK: - Components
+
+struct ViewFullListButton: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
         ZStack {
             Rectangle()
                 .fill(
@@ -100,6 +106,8 @@ struct TodoListView: View {
         .frame(maxHeight: 54)
     }
 }
+
+// MARK: - Previews
 
 #if DEBUG
 

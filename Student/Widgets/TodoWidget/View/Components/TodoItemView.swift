@@ -21,6 +21,9 @@ import WidgetKit
 import Core
 
 struct TodoItemView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     var item: TodoItem
 
     var body: some View {
@@ -37,11 +40,11 @@ struct TodoItemView: View {
         HStack(spacing: 5) {
             if let itemIcon = item.icon {
                 itemIcon
-                    .size(16)
+                    .size(16 * uiScale.iconScale)
                     .foregroundStyle(item.color)
                     .accessibilityHidden(true)
                 InstUI.Divider()
-                    .frame(maxHeight: 16)
+                    .frame(maxHeight: 16 * uiScale.iconScale)
             }
             Text(item.contextName)
                 .foregroundStyle(item.color)
