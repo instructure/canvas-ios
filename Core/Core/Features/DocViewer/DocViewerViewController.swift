@@ -22,21 +22,6 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-public struct FlexibleToolbarContainerView: UIViewRepresentable {
-    private let flexibleToolbar: FlexibleToolbarContainer
-
-    public init(flexibleToolbar: FlexibleToolbarContainer) {
-        self.flexibleToolbar = flexibleToolbar
-    }
-
-    public func makeUIView(context: Self.Context) -> FlexibleToolbarContainer {
-        flexibleToolbar
-    }
-
-    public func updateUIView(_ uiView: FlexibleToolbarContainer, context: Self.Context) {
-    }
-}
-
 public class DocViewerViewController: UIViewController {
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var contentView: UIView!
