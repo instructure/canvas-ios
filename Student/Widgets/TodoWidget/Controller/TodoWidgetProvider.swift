@@ -59,15 +59,11 @@ class TodoWidgetProvider: TimelineProvider {
     }
 
     private func setupEnvironment(with session: LoginSession) {
-        print("prepare environment")
-
         env.app = .student // Otherwise getPlannables never completes
         env.userDidLogin(session: session, isSilent: true)
     }
 
     private func fetch(for session: LoginSession) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
-        print("fetch plannables")
-
         let env = env
         let colors = ReactiveStore(useCase: GetCustomColors(), environment: env)
         let courses = ReactiveStore(useCase: GetCourses(showFavorites: false, perPage: 100), environment: env)
