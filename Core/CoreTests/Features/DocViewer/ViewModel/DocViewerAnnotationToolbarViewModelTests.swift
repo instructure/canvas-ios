@@ -26,6 +26,7 @@ class DocViewerAnnotationToolbarViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        AppEnvironment.shared.userDefaults?.isSpeedGraderAnnotationToolbarVisible = nil
         mockAnnotationProvider = MockDocViewerAnnotationProvider(isAnnotatingDisabledInApp: false, isAPIEnabledAnnotations: true)
         testee = DocViewerAnnotationToolbarViewModel()
         testee.annotationProvider = mockAnnotationProvider
@@ -39,7 +40,7 @@ class DocViewerAnnotationToolbarViewModelTests: XCTestCase {
 
     func testInitWithDefaultState() {
         XCTAssertEqual(testee.saveState, .saved)
-        XCTAssertTrue(testee.isOpen)
+        XCTAssertEqual(testee.isOpen, true)
     }
 
     func testInitWithCustomState() {
@@ -58,13 +59,13 @@ class DocViewerAnnotationToolbarViewModelTests: XCTestCase {
     }
 
     func testToggleClosedState() {
-        XCTAssertTrue(testee.isOpen)
+        XCTAssertEqual(testee.isOpen, true)
 
         testee.didTapCloseToggle.send()
-        XCTAssertFalse(testee.isOpen)
+        XCTAssertEqual(testee.isOpen, false)
 
         testee.didTapCloseToggle.send()
-        XCTAssertTrue(testee.isOpen)
+        XCTAssertEqual(testee.isOpen, true)
     }
 
     func testStateProperties() {
