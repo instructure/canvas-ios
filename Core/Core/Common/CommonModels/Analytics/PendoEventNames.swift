@@ -16,15 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import AppIntents
-import Core
-
-struct ReloadWidgetIntent: AppIntent {
-    static var title: LocalizedStringResource = "Reload Widget"
-    static var description = IntentDescription("Reloading Widget")
-    static var isDiscoverable: Bool { false }
-    func perform() async throws -> some IntentResult {
-        Analytics.shared.logEvent(TodoWidgetEventNames.refresh.rawValue)
-        return .result()
-    }
+public enum TodoWidgetEventNames: String {
+    case added = "widget_todo_added"
+    case deleted = "widget_todo_deleted"
+    case create = "widget_todo_create_action"
+    case openItem = "widget_todo_open_item_action"
+    case openTodos = "widget_todo_open_todos_action"
+    case refresh = "widget_todo_refresh_action"
 }

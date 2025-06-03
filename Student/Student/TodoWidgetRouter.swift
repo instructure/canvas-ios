@@ -107,11 +107,14 @@ extension TodoWidgetRouter {
         .init("/todo-widget/planner-notes", action: { _, _, view in
             view.selectTab(at: 2)
             view.resetSplitMasterToRoot()
+            Analytics.shared.logEvent(TodoWidgetEventNames.openTodos.rawValue)
         })
     }
 
     private static var newPlannerNoteHandler: RouteHandler {
         .init("/todo-widget/planner-notes/new", action: { _, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.create.rawValue)
+
             // Switch to Calendar tab
             view.selectTab(at: 1)
             view.resetSplitMasterToRoot()
@@ -155,6 +158,7 @@ extension TodoWidgetRouter {
                     options: .modal(isDismissable: true, embedInNav: true)
                 )
             }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
@@ -179,6 +183,7 @@ extension TodoWidgetRouter {
                     options: .modal(isDismissable: true, embedInNav: true)
                 )
             }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
@@ -194,6 +199,7 @@ extension TodoWidgetRouter {
                 from: view.tabController,
                 options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
             )
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
@@ -222,6 +228,7 @@ extension TodoWidgetRouter {
                     options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
                 )
             }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
@@ -242,6 +249,7 @@ extension TodoWidgetRouter {
             plannerVC.onAppearPreferredPerform {
                 plannerVC.selectDate(date)
             }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 }
