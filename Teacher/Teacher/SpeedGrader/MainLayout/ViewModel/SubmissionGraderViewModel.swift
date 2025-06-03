@@ -31,7 +31,6 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var selectedAttemptNumber: Int = 0
     @Published private(set) var selectedAttemptTitle: String = ""
     @Published private(set) var hasSubmissions: Bool = false
-    @Published private(set) var isSingleSubmission: Bool = false
 
     @Published private(set) var hasFiles: Bool = false
     @Published private(set) var filePickerOptions: [OptionItem] = []
@@ -130,8 +129,8 @@ class SubmissionGraderViewModel: ObservableObject {
             .sink { [weak self] (attempts: [Submission]) in
                 guard let self else { return }
                 self.attempts = attempts
-                hasSubmissions = attempts.lastAttemptIndex > 0
-                isSingleSubmission = attempts.lastAttemptIndex == 1
+                let latestAttemptIndex = attempts.first?.attempt ?? 0
+                hasSubmissions = latestAttemptIndex > 0
                 updateAttemptPickerOptions()
             }
             .store(in: &subscriptions)
@@ -153,13 +152,6 @@ class SubmissionGraderViewModel: ObservableObject {
                 customAccessibilityLabel: accessibilityLabel
             )
         }
-    }
-}
-
-extension [Submission] {
-
-    fileprivate var lastAttemptIndex: Int {
-        last?.attempt ?? 0
     }
 }
 
