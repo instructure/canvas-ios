@@ -169,8 +169,8 @@ private struct CotentView: View {
                 .padding(.horizontal, .huiSpaces.space24)
         case .notebook:
             NotebookAssembly.makeView(courseID: viewModel.course.id)
-                .padding(.horizontal, .huiSpaces.space24)
                 .padding(.bottom, .huiSpaces.space24)
+                .id(viewModel.course.id)
         }
     }
 
