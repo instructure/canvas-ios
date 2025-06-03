@@ -64,7 +64,7 @@ public class DocViewerViewController: UIViewController {
 
     private var dragGestureViewModel: AnnotationDragGestureViewModel?
     private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
-    private var annotationToolbarViewModel = DocViewerAnnotationToolbarViewModel()
+    internal var annotationToolbarViewModel = DocViewerAnnotationToolbarViewModel()
     private var offlineModeInteractor: OfflineModeInteractor!
 
     private var subscriptions = Set<AnyCancellable>()
