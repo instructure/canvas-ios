@@ -23,6 +23,7 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
     @State private var size: CGSize = .zero
     @State private var buttonSize: CGSize = .zero
     @ScaledMetric private var closedStateCornerRadius: CGFloat = 30
+    @ScaledMetric private var borderWidth: CGFloat = 1 / UIScreen.main.scale
     private var buttonIcon: Image { viewModel.isOpen ? .arrowOpenLeftSolid : .editLine }
     private var cornerRadius: CGFloat { viewModel.isOpen ? 0 : closedStateCornerRadius }
     private var trailingPadding: CGFloat { viewModel.isOpen ? 16 : 10 }
@@ -57,6 +58,10 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
         .paddingStyle(.vertical, .textVertical)
         .frame(maxWidth: .infinity)
         .background(Color.backgroundLightest)
+        .overlay(alignment: .bottom) {
+            ToolbarBorder(isOpen: viewModel.isOpen)
+                .stroke(Color.borderMedium, lineWidth: borderWidth)
+        }
         .cornerRadius(cornerRadius, corners: [.topRight, .bottomRight])
         .onSizeChange(update: $size)
         .offset(x: offsetX)
@@ -84,6 +89,35 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
     }
 }
 
+private struct ToolbarBorder: Shape {
+    let isOpen: Bool
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: 0, y: rect.height))
+        path.addLine(to: CGPoint(x: rect.maxX - (isOpen ? 0 : rect.height), y: rect.height))
+
+        if isOpen {
+            return path
+        }
+
+        let radius = rect.height / 2.0
+        let centerX = rect.maxX - radius
+        let centerY = rect.origin.y + rect.height / 2.0
+        let center = CGPoint(x: centerX, y: centerY)
+
+        path.addArc(
+            center: center,
+            radius: radius,
+            startAngle: .degrees(90),
+            endAngle: .degrees(-90),
+            clockwise: true
+        )
+
+        return path
+    }
+}
+
 #if DEBUG
 
 #Preview {
@@ -94,7 +128,7 @@ struct DocViewerAnnotationToolsView<AnnotationBar: View>: View {
         )
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.black)
+    .background(Color.white)
 }
 
 #endif
