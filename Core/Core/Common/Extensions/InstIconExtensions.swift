@@ -274,6 +274,8 @@ public extension UIImage {
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
     static var radioButtonSelected: UIImage { UIImage(named: "radioButtonSelected", in: .core, compatibleWith: nil)! }
     static var radioButtonUnselected: UIImage { UIImage(named: "radioButtonUnselected", in: .core, compatibleWith: nil)! }
+    static var resetHistoryLine: UIImage { UIImage(named: "resetHistoryLine", in: .core, compatibleWith: nil)! }
+    static var resetHistorySolid: UIImage { UIImage(named: "resetHistorySolid", in: .core, compatibleWith: nil)! }
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
     static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
@@ -535,6 +537,8 @@ public extension Image {
     static var qrCode: Image { Image("qrCode", bundle: .core) }
     static var radioButtonSelected: Image { Image("radioButtonSelected", bundle: .core) }
     static var radioButtonUnselected: Image { Image("radioButtonUnselected", bundle: .core) }
+    static var resetHistoryLine: Image { Image("resetHistoryLine", bundle: .core) }
+    static var resetHistorySolid: Image { Image("resetHistorySolid", bundle: .core) }
     static var share: Image { Image("share", bundle: .core) }
     static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
     static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }

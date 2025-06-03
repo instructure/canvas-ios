@@ -230,7 +230,7 @@ struct SubmissionGraderView: View {
                 label: {
                     pickerButton(
                         title: viewModel.selectedAttemptTitle,
-                        icon: .clockLine,
+                        icon: .resetHistoryLine,
                         count: nil, // not displaying count badge, partly to sidestep the issue of missing attempt numbers
                         truncationMode: .head
                     )

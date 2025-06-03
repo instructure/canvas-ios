@@ -71,6 +71,8 @@ class InstIconTests: XCTestCase {
         XCTAssertEqual(Image.partialSolid, Image("partialSolid", bundle: .core))
         XCTAssertEqual(Image.radioButtonSelected, Image("radioButtonSelected", bundle: .core))
         XCTAssertEqual(Image.radioButtonUnselected, Image("radioButtonUnselected", bundle: .core))
+        XCTAssertEqual(Image.resetHistoryLine, Image("resetHistoryLine", bundle: .core))
+        XCTAssertEqual(Image.resetHistorySolid, Image("resetHistorySolid", bundle: .core))
         XCTAssertEqual(Image.qrCode, Image("qrCode", bundle: .core))
         XCTAssertEqual(Image.share, Image("share", bundle: .core))
         XCTAssertEqual(Image.todoTab, Image("todoTab", bundle: .core))
