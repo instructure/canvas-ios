@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add To-do" : {
+
+    },
     "Add Todo" : {
 
     },
@@ -2060,6 +2063,9 @@
           }
         }
       }
+    },
+    "Double tap to view full list of to-VisibilityObservedViewController.swiftdos" : {
+
     },
     "Essay #1: The Rocky Planets" : {
       "comment" : "Example exam name",
@@ -4646,9 +4652,6 @@
         }
       }
     },
-    "Tap to view full list of Todos" : {
-
-    },
     "Thomas McKempis" : {
       "comment" : "Example author name",
       "localizations" : {
@@ -4909,11 +4912,11 @@
     "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
 
     },
+    "To-do" : {
+      "comment" : "Name of the to-do widget"
+    },
     "Today, " : {
 
-    },
-    "Todo" : {
-      "comment" : "Name of the todo widget"
     },
     "View Full List" : {
 
@@ -5432,8 +5435,8 @@
         }
       }
     },
-    "View your todo items." : {
-      "comment" : "Description of the todo widget"
+    "View your to-do items." : {
+      "comment" : "Description of the to-do widget"
     },
     "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app." : {
 

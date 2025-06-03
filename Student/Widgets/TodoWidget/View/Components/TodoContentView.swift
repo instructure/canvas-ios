@@ -73,7 +73,7 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
                     logoView
                 }
                 .accessibilityLabel(String(localized: "Canvas Todo Widget"))
-                .accessibilityHint(Text("Tap to view full list of Todos"))
+                .accessibilityHint(Text("Double tap to view full list of to-VisibilityObservedViewController.swiftdos"))
             } else {
                 logoView
             }

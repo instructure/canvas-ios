@@ -53,7 +53,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let plannableID: String
+    private let plannableId: String
     private var plannable: Plannable?
 
     private let interactor: CalendarToDoInteractor
@@ -63,7 +63,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     // MARK: - Init
 
     public init(plannable: Plannable, interactor: CalendarToDoInteractor, router: Router) {
-        self.plannableID = plannable.id
+        self.plannableId = plannable.id
         self.plannable = plannable
         self.interactor = interactor
         self.router = router
@@ -71,14 +71,15 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     }
 
     public init(plannableId: String, interactor: CalendarToDoInteractor, router: Router) {
-        self.plannableID = plannableId
+        self.plannableId = plannableId
         self.interactor = interactor
         self.router = router
         self.setupSubscriptions()
     }
 
     private func setupSubscriptions() {
-        interactor.getToDo(id: plannableID)
+        interactor
+            .getToDo(id: plannableId)
             .sink(
                 receiveCompletion: { [weak self] in
                     guard let self else { return }
@@ -142,7 +143,8 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     private func deleteToDo(from source: WeakViewController) {
         state = .data(loadingOverlay: true)
 
-        interactor.deleteToDo(id: plannableID)
+        interactor
+            .deleteToDo(id: plannableId)
             .sink(
                 receiveCompletion: { [weak self] in
                     switch $0 {
