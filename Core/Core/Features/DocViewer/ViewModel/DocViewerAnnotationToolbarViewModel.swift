@@ -57,7 +57,7 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
         }
     }
 
-    @Published private(set) var isOpen = true
+    @Published private(set) var isOpen: Bool
     @Published var saveState: State = .saved
     var a11yValue: String {
         isOpen ? String(localized: "Open", bundle: .core)
@@ -82,9 +82,15 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
+    private var userDefaults: SessionDefaults?
 
-    init(state: State = .saved) {
+    init(
+        state: State = .saved,
+        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults
+    ) {
         self.saveState = state
+        self.isOpen = userDefaults?.isSpeedGraderAnnotationToolbarVisible ?? true
+        self.userDefaults = userDefaults
         toggleClosedState(on: didTapCloseToggle)
         retryAnnotationUpload(on: didTapRetry)
     }
@@ -92,8 +98,11 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
     private func toggleClosedState(on publisher: PassthroughSubject<Void, Never>) {
         publisher
             .sink { [weak self, animation] in
+                guard let self else { return }
+                self.userDefaults?.isSpeedGraderAnnotationToolbarVisible = !self.isOpen
+
                 withAnimation(animation) {
-                    self?.isOpen.toggle()
+                    self.isOpen.toggle()
                 }
             }
             .store(in: &subscriptions)
