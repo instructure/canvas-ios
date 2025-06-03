@@ -256,6 +256,8 @@ struct SubmissionGraderView: View {
                         )
                     }
                 )
+                .accessibilityLabel(Text("File \(viewModel.selectedFileNumber) of \(viewModel.filePickerOptions.count)", bundle: .teacher, comment: "Example: File 1 of 2"))
+                .accessibilityValue(viewModel.selectedFileName)
                 .accessibilityShowsLargeContentViewer {
                     Text(viewModel.selectedFileName)
                 }

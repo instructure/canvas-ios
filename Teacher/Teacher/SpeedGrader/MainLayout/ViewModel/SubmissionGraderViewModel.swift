@@ -35,6 +35,7 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var hasFiles: Bool = false
     @Published private(set) var filePickerOptions: [OptionItem] = []
     @Published private(set) var selectedFile: File?
+    @Published private(set) var selectedFileNumber: Int = 0
     @Published private(set) var selectedFileName: String = ""
 
     @Published private(set) var contextColor = Color(Brand.shared.primary)
@@ -114,6 +115,12 @@ class SubmissionGraderViewModel: ObservableObject {
     private func didSelectFile(_ file: File?) {
         self.selectedFile = file
         selectedFileName = file?.displayName ?? file?.filename ?? ""
+
+        if let fileIndex = filePickerOptions.firstIndex(where: { $0.id == file?.id }) {
+            selectedFileNumber = fileIndex + 1
+        } else {
+            selectedFileNumber = 0
+        }
     }
 
     private func observeAttemptChangesInDatabase() {
