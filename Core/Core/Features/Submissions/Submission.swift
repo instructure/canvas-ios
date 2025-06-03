@@ -377,47 +377,6 @@ private extension String {
 
 extension Submission {
 
-    public var attemptAccessibilityDescription: String? {
-        guard let typeWithQuizLTIMapping else { return nil }
-
-        let title = typeWithQuizLTIMapping.localizedString
-
-        let subtitle: String? = switch typeWithQuizLTIMapping {
-        case .basic_lti_launch, .external_tool, .online_quiz:
-            // omitting attempt number, as it is included elsewhere
-            nil
-        case .discussion_topic:
-            discussionEntriesOrdered.first?.message?
-                .htmlToPlainText(lineBreaks: "\n")
-                .components(separatedBy: "\n")
-                .first
-        case .online_text_entry:
-            body?
-                .htmlToPlainText(lineBreaks: "\n")
-                .components(separatedBy: "\n")
-                .first
-        case .online_upload:
-            // omitting file size, as it is included elsewhere for each file
-            nil
-        default:
-            attemptSubtitle
-        }
-
-        return [title, subtitle].joined(separator: ", ")
-    }
-}
-
-private extension String {
-    func htmlToPlainText(lineBreaks lineBreakReplacement: String) -> String {
-        self
-            .replacingOccurrences(of: "<div>", with: lineBreakReplacement)
-            .replacingOccurrences(of: "<br>", with: lineBreakReplacement)
-            .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
-    }
-}
-
-extension Submission {
-
     /// See canvas-lms submission.rb `def needs_grading?`
     public var needsGrading: Bool {
         return excused != true &&
@@ -472,52 +431,6 @@ extension Submission {
     public var statusIncludingGradedState: SubmissionStatus {
         if isGraded { return excused == true ? .excused : .graded }
         return status
-    }
-}
-
-/// This is merely used to properly describe the state of submission in certain contexts.
-/// It is not strictly matching `SubmissionStatus` in all cases. And it is not
-/// meant to replace status cases, or be used in all related areas of the apps.
-/// i.e. use with caution.
-public enum SubmissionStateDisplayProperties: Equatable {
-    case usingStatus(SubmissionStatus)
-    case onPaper
-    case noSubmission
-    case graded
-
-    public var text: String {
-        switch self {
-        case .usingStatus(let status):
-            return status.text
-        case .onPaper:
-            return String(localized: "On Paper", bundle: .core)
-        case .noSubmission:
-            return String(localized: "No Submission", bundle: .core)
-        case .graded:
-            return String(localized: "Graded", bundle: .core)
-        }
-    }
-
-    public var color: UIColor {
-        switch self {
-        case .usingStatus(let status):
-            return status.color
-        case .onPaper, .noSubmission:
-            return .textDark
-        case .graded:
-            return .textSuccess
-        }
-    }
-
-    public var icon: UIImage {
-        switch self {
-        case .usingStatus(let status):
-            return status.icon
-        case .onPaper, .noSubmission:
-            return .noSolid
-        case .graded:
-            return .completeSolid
-        }
     }
 }
 

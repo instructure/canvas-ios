@@ -122,8 +122,6 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: applicationFont(ofSize: 22, weight: .bold))
         case .bold24:
             return scaledFont(.largeTitle, for: applicationFont(ofSize: 24, weight: .bold))
-        case .bold28:
-            return scaledFont(.largeTitle, for: applicationFont(ofSize: 28, weight: .bold))
         case .bold34:
             return scaledFont(.largeTitle, for: applicationFont(ofSize: 34, weight: .bold))
 

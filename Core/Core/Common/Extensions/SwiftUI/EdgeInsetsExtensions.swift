@@ -19,14 +19,8 @@
 import UIKit
 import SwiftUI
 
-<<<<<<<< HEAD:Core/Core/Common/Extensions/SwiftUI/UIColor+Color.swift
-extension UIColor {
-    public var asColor: Color {
-        Color(self)
-========
 extension EdgeInsets {
     public static var zero: EdgeInsets {
         EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
->>>>>>>> origin/master:Core/Core/Common/Extensions/SwiftUI/EdgeInsetsExtensions.swift
     }
 }

@@ -381,7 +381,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                                     self.complete(file: file, error: error)
                                     return
                                 }
-								didUploadFile.send(.success)
+                                self.didUploadFile.send(.success)
                                 NotificationCenter.default.post(
                                     name: UploadManager.AssignmentSubmittedNotification,
                                     object: nil,
