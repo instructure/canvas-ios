@@ -65,7 +65,7 @@ class CommonWidgetProvider<Model: WidgetModel> {
 
     private func setupLastLoginCredentials() {
         guard let session = LoginSession.mostRecent else { return }
-        env.userDidLogin(session: session, isSilent: true)
+        env.userDidLogin(session: session)
     }
 }
 
