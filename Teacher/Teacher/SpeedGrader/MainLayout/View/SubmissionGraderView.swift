@@ -223,13 +223,13 @@ struct SubmissionGraderView: View {
         HStack(alignment: .center, spacing: 12) {
             InstUI.PickerMenu(
                 selectedId: Binding(
-                    get: { viewModel.selectedAttemptIndex },
+                    get: { viewModel.selectedAttemptNumber },
                     set: { attemptPickerDidSelect(index: $0) }
                 ),
                 allOptions: viewModel.attemptPickerOptions,
                 label: {
                     pickerButton(
-                        title: String.localizedAttemptNumber(viewModel.selectedAttemptIndex),
+                        title: viewModel.selectedAttemptTitle,
                         icon: .clockLine,
                         count: viewModel.attemptPickerOptions.count,
                         truncationMode: .head
@@ -237,7 +237,7 @@ struct SubmissionGraderView: View {
                 }
             )
             .accessibilityShowsLargeContentViewer {
-                Text(String.localizedAttemptNumber(viewModel.selectedAttemptIndex))
+                Text(viewModel.selectedAttemptTitle)
             }
 
             if viewModel.hasFiles {
@@ -267,7 +267,7 @@ struct SubmissionGraderView: View {
 
     private func attemptPickerDidSelect(index: Int) {
         withTransaction(.exclusive()) {
-            viewModel.didSelectNewAttempt(attemptIndex: index)
+            viewModel.didSelectAttempt(attemptNumber: index)
         }
     }
 
@@ -441,9 +441,9 @@ struct SubmissionGraderView: View {
     ) -> some View {
         let drawerAttempt = Binding(
             get: {
-                viewModel.selectedAttemptIndex
+                viewModel.selectedAttemptNumber
             }, set: {
-                viewModel.didSelectNewAttempt(attemptIndex: $0)
+                viewModel.didSelectAttempt(attemptNumber: $0)
                 snapDrawerTo(.min)
             }
         )

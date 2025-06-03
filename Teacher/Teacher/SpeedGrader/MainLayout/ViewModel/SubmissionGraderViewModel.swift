@@ -25,10 +25,11 @@ class SubmissionGraderViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published private(set) var selectedAttemptIndex: Int
-    @Published private(set) var selectedAttempt: Submission
-    @Published private(set) var attempts: [Submission] = []
     @Published private(set) var attemptPickerOptions: [OptionItem] = []
+    @Published private(set) var attempts: [Submission] = []
+    @Published private(set) var selectedAttempt: Submission
+    @Published private(set) var selectedAttemptNumber: Int = 0
+    @Published private(set) var selectedAttemptTitle: String = ""
     @Published private(set) var hasSubmissions: Bool = false
     @Published private(set) var isSingleSubmission: Bool = false
 
@@ -36,6 +37,7 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var filePickerOptions: [OptionItem] = []
     @Published private(set) var selectedFile: File?
     @Published private(set) var selectedFileName: String = ""
+
     @Published private(set) var contextColor = Color(Brand.shared.primary)
     let assignment: Assignment
     let submission: Submission
@@ -61,7 +63,6 @@ class SubmissionGraderViewModel: ObservableObject {
         self.assignment = assignment
         self.submission = latestSubmission
         selectedAttempt = latestSubmission
-        selectedAttemptIndex = latestSubmission.attempt
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
         commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
             assignment: assignment,
@@ -75,16 +76,17 @@ class SubmissionGraderViewModel: ObservableObject {
         contextColor.assign(to: &$contextColor)
 
         observeAttemptChangesInDatabase()
-        didSelectNewAttempt(attemptIndex: submission.attempt)
+        didSelectAttempt(attemptNumber: submission.attempt)
     }
 
-    func didSelectNewAttempt(attemptIndex: Int) {
+    func didSelectAttempt(attemptNumber: Int) {
         NotificationCenter.default.post(
             name: .SpeedGraderAttemptPickerChanged,
-            object: SpeedGraderAttemptChangeInfo(attemptIndex: attemptIndex, userId: submission.userID)
+            object: SpeedGraderAttemptChangeInfo(attemptIndex: attemptNumber, userId: submission.userID)
         )
-        selectedAttemptIndex = attemptIndex
-        selectedAttempt = attempts.first { selectedAttemptIndex == $0.attempt } ?? submission
+        selectedAttempt = attempts.first { selectedAttemptNumber == $0.attempt } ?? submission
+        selectedAttemptNumber = attemptNumber
+        selectedAttemptTitle = String.localizedAttemptNumber(attemptNumber)
 
         hasFiles = selectedAttempt.type == .online_upload && selectedAttempt.attachments?.isNotEmpty ?? false
         if hasFiles {
