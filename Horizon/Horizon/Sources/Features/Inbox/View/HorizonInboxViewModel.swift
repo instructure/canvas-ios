@@ -54,9 +54,12 @@ class HorizonInboxViewModel {
     }
 
     // MARK: - Outputs
-    var filter: String = FilterOption.all.title {
-        didSet {
-            didSetFilter()
+    var filterTitle: String {
+        get {
+            filter.title
+        }
+        set {
+            filter = FilterOption.allCases.first { $0.title == newValue } ?? .all
         }
     }
     var messageRows: [MessageRowViewModel] = []
@@ -75,6 +78,9 @@ class HorizonInboxViewModel {
         }
     }
     var searchLoading: Bool = false
+    var isSearchDisabled: Bool {
+        filter == .announcements
+    }
     var isSearchFocused: Bool = false {
         didSet {
             onSearchFocused()
@@ -83,18 +89,23 @@ class HorizonInboxViewModel {
 
     // MARK: - Private
 
+    private let personFilterSubject = CurrentValueSubject<[String], Never>([])
     // don't do animations until the user updates the filter or search
-    private var shouldAnimateListUpdates: Bool = false
     private var searchAPITask: APITask?
     private var searchDebounceTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
+    private var filter: FilterOption = FilterOption.all {
+        didSet {
+            didSetFilter()
+        }
+    }
 
     // MARK: - Dependencies
 
+    private let announcementsInteractor: AnnouncementsInteractor
     private let api: API
     private let inboxMessageInteractor: InboxMessageInteractor
     private let router: Router
-    private let personFilterSubject = CurrentValueSubject<[String], Never>([])
 
     init(
         api: API = AppEnvironment.shared.api,
@@ -103,11 +114,13 @@ class HorizonInboxViewModel {
             env: AppEnvironment.shared,
             tabBarCountUpdater: .init(),
             messageListStateUpdater: .init()
-        )
+        ),
+        announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive()
     ) {
         self.api = api
         self.router = router
         self.inboxMessageInteractor = inboxMessageInteractor
+        self.announcementsInteractor = announcementsInteractor
 
         _ = inboxMessageInteractor.setContext(.user(AppEnvironment.shared.currentSession?.userID ?? ""))
 
@@ -136,37 +149,40 @@ class HorizonInboxViewModel {
     private func onInboxMessageListItems(tuple: ([InboxMessageListItem], [String])) {
         let inboxMessageListItems = tuple.0
         let personFilter = tuple.1
-        withAnimation(shouldAnimateListUpdates ? .default : nil) {
-            messageRows = inboxMessageListItems
-                .filter { messageListItem in
-                    // technically, this should probably be in the interactor...
-                    if personFilter.isEmpty {
-                        return true
-                    }
-                    return personFilter.contains { current in
-                        messageListItem.participantName.lowercased().contains(current.lowercased())
-                    }
+        messageRows = inboxMessageListItems
+            .filter { messageListItem in
+                // technically, this should probably be in the interactor...
+                if personFilter.isEmpty || filter == .announcements {
+                    return true
                 }
-                .map { messageListItem in
-                    MessageRowViewModel(
-                        date: messageListItem.date,
-                        subject: messageListItem.title,
-                        names: messageListItem.participantName,
-                        isNew: messageListItem.isUnread
-                    )
+                return personFilter.contains { current in
+                    messageListItem.participantName.lowercased().contains(current.lowercased())
                 }
-        }
+            }
+            .map { messageListItem in
+                MessageRowViewModel(
+                    date: messageListItem.date,
+                    title: messageListItem.title,
+                    subtitle: messageListItem.participantName,
+                    isNew: messageListItem.isUnread
+                )
+            }
     }
 
     private func didSetFilter() {
-        guard let filterOption = FilterOption.allCases.first(where: { $0.title == self.filter }) else {
+        guard let filterOption = FilterOption.allCases.first(where: { $0 == self.filter }) else {
             return
         }
-        shouldAnimateListUpdates = true
+        messageRows = []
         if let inboxMessageInteractorScope = filterOption.inboxMessageInteractorScope {
             _ = inboxMessageInteractor.setScope(inboxMessageInteractorScope)
         } else {
-            messageRows = []
+            announcementsInteractor
+                .messages
+                .sink { [weak self] announcements in
+                    self?.messageRows = announcements.map { $0.viewModel }
+                }
+                .store(in: &subscriptions)
         }
     }
 
@@ -188,7 +204,6 @@ class HorizonInboxViewModel {
     }
 
     private func makeRequest() {
-        shouldAnimateListUpdates = true
         searchLoading = true
         searchAPITask?.cancel()
         searchAPITask = api.makeRequest(
@@ -208,11 +223,26 @@ class HorizonInboxViewModel {
 
     struct MessageRowViewModel: Hashable, Identifiable {
         let date: String
-        let subject: String
-        let names: String
+        let title: String
+        let subtitle: String
         let isNew: Bool
         var id: String {
-            "\(date)-\(subject)-\(names)-\(isNew)"
+            "\(date)-\(title)-\(subtitle)-\(isNew)"
         }
+    }
+}
+
+extension Announcement {
+    var viewModel: HorizonInboxViewModel.MessageRowViewModel {
+        .init(
+            date: date.map { $0.relativeDateOnlyString } ?? "",
+            title: viewModelTitle,
+            subtitle: title,
+            isNew: false
+        )
+    }
+
+    private var viewModelTitle: String {
+        courseName != nil ? "Announcement for \(courseName ?? "")" : "Announcement"
     }
 }

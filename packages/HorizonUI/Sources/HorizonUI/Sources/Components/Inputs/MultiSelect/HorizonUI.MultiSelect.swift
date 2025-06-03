@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-//import Flow
+import Flow
 import Observation
 import SwiftUI
 
@@ -107,13 +107,13 @@ extension HorizonUI {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     labelText
-                    textField
+                    textFieldAndChevron
                 }
                 .onTapGesture(perform: onTapText)
 
                 ZStack(alignment: .top) {
                     errorText
-                    displayedOptions
+                    dropDownOptionsWithSpinner
                         .zIndex(zIndex)
                 }
             }
@@ -125,30 +125,56 @@ extension HorizonUI {
         }
 
         // MARK: - Private
+        @ViewBuilder
+        private var errorText: some View {
+            if let error = error {
+                HStack {
+                    HorizonUI.icons.error
+                        .frame(width: .huiSpaces.space16, height: .huiSpaces.space16)
+                        .foregroundColor(.huiColors.text.error)
+                    Text(error)
+                        .huiTypography(.p2)
+                        .foregroundColor(.huiColors.text.error)
+                }
+                .background {
+                    GeometryReader { geometry in
+                        HStack {}
+                            .onAppear {
+                                errorHeight = geometry.size.height
+                            }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, .huiSpaces.space8)
+                .padding(.top, .huiSpaces.space2)
+            }
+        }
 
-        private var displayedOptions: some View {
-            ScrollView {
-                ZStack(alignment: .top) {
-                    VStack(spacing: .zero) {
-                        ForEach(optionsFiltered, id: \.self) { item in
-                            displayedOption(item)
+        @ViewBuilder
+        private var labelText: some View {
+            if let label = label {
+                Text(label)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, .huiSpaces.space8)
+                    .huiTypography(.labelLargeBold)
+                    .foregroundColor(.huiColors.text.body)
+                    .background {
+                        GeometryReader { geometry in
+                            HStack {}
+                                .onAppear {
+                                    labelMeasuredHeight = geometry.size.height
+                                }
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.huiColors.surface.pageSecondary)
-                    .padding(.vertical, .huiSpaces.space4)
+            }
+        }
 
-                    HorizonUI.Spinner(size: .xSmall)
-                        .opacity(loading ? 1 : 0)
-                        .padding(.vertical, HorizonUI.spaces.space8)
-                        .background {
-                            GeometryReader { geometry in
-                                HStack {}
-                                    .onAppear {
-                                        spinnerHeight = geometry.size.height
-                                    }
-                            }
-                        }
+        // MARK: - DropDown Components
+        private var dropDownOptionsWithSpinner: some View {
+            ScrollView {
+                ZStack(alignment: .top) {
+                    dropDownOptions
+                    dropDownSpinner
                 }
             }
             .background(Color.huiColors.surface.pageSecondary)
@@ -160,7 +186,32 @@ extension HorizonUI {
             .animation(.easeInOut, value: displayedOptionsHeight)
         }
 
-        private func displayedOption(_ text: String) -> some View {
+        private var dropDownOptions: some View {
+            VStack(spacing: .zero) {
+                ForEach(optionsFiltered, id: \.self) { item in
+                    dropDownOption(item)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.huiColors.surface.pageSecondary)
+            .padding(.vertical, .huiSpaces.space4)
+        }
+
+        private var dropDownSpinner: some View {
+            HorizonUI.Spinner(size: .xSmall)
+                .opacity(loading ? 1 : 0)
+                .padding(.vertical, HorizonUI.spaces.space8)
+                .background {
+                    GeometryReader { geometry in
+                        HStack {}
+                            .onAppear {
+                                spinnerHeight = geometry.size.height
+                            }
+                    }
+                }
+        }
+
+        private func dropDownOption(_ text: String) -> some View {
             Text(text)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
@@ -185,28 +236,77 @@ extension HorizonUI {
                 }
         }
 
-        @ViewBuilder
-        private var errorText: some View {
-            if let error = error {
-                HStack {
-                    HorizonUI.icons.error
-                        .frame(width: .huiSpaces.space16, height: .huiSpaces.space16)
-                        .foregroundColor(.huiColors.text.error)
-                    Text(error)
-                        .huiTypography(.p2)
-                        .foregroundColor(.huiColors.text.error)
+        // MARK: - Text Field Components
+
+        private var textFieldAndChevron: some View {
+            ZStack(alignment: .init(horizontal: .trailing, vertical: .center)) {
+                textFieldAndOptions
+                chevron
+            }
+            .padding(.huiSpaces.space4)
+            .overlay(textOverlay(isOuter: true))
+            .frame(maxWidth: .infinity)
+            .background {
+                GeometryReader { geometry in
+                    HStack {}
+                        .onChange(of: geometry.size.height, initial: true) {
+                            textInputMeasuredHeight = geometry.size.height
+                        }
                 }
-                .background {
-                    GeometryReader { geometry in
-                        HStack {}
-                            .onAppear {
-                                errorHeight = geometry.size.height
-                            }
+            }
+            .onTapGesture(perform: onTapText)
+            .opacity(disabled ? 0.5 : 1.0)
+        }
+
+        private var textFieldAndOptions: some View {
+            VStack(alignment: .leading) {
+                textField
+                optionsView
+            }
+            .foregroundColor(textInputTextColor)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(HorizonUI.spaces.space12)
+            .padding(.trailing, .huiSpaces.space24)
+            .overlay(textOverlay(isOuter: false))
+            .background(
+                HorizonUI.colors.surface.pageSecondary.clipShape(
+                    RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                )
+            )
+        }
+
+        @ViewBuilder
+        private var textField: some View {
+            if focused || selections.isEmpty {
+                TextField(
+                    placeholder ?? String(localized: "Filter"),
+                    text: $textInput
+                )
+                .disabled(disabled)
+                .focused($textFieldFocusState)
+                .onChange(of: textFieldFocusState, initial: false) {
+                    if focused != textFieldFocusState {
+                        focused = textFieldFocusState
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, .huiSpaces.space8)
-                .padding(.top, .huiSpaces.space2)
+                .padding(.bottom, .huiSpaces.space4)
+                .huiTypography(.p1)
+            }
+        }
+
+        private var chevron: some View {
+            Image.huiIcons.chevronRight
+                .rotationEffect(.degrees(focused ? -90 : 90))
+                .padding(.trailing, .huiSpaces.space12)
+                .tint(Color.huiColors.icon.default)
+                .animation(.easeInOut, value: focused)
+        }
+
+        private var optionsView: some View {
+            HFlow {
+                ForEach(selections, id: \.self) { selection in
+                    option(selection)
+                }
             }
         }
 
@@ -237,81 +337,6 @@ extension HorizonUI {
                 selections.removeAll(where: { $0 == text })
                 textInput = ""
             }
-        }
-
-        @ViewBuilder
-        private var labelText: some View {
-            if let label = label {
-                Text(label)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, .huiSpaces.space8)
-                    .huiTypography(.labelLargeBold)
-                    .foregroundColor(.huiColors.text.body)
-                    .background {
-                        GeometryReader { geometry in
-                            HStack {}
-                                .onAppear {
-                                    labelMeasuredHeight = geometry.size.height
-                                }
-                        }
-                    }
-            }
-        }
-
-        private var textField: some View {
-            ZStack(alignment: .topTrailing) {
-                VStack(alignment: .leading) {
-                    if focused || selections.isEmpty {
-                        TextField(
-                            placeholder ?? String(localized: "Filter"),
-                            text: $textInput
-                        )
-                        .focused($textFieldFocusState)
-                        .onChange(of: textFieldFocusState, initial: false) {
-                            if focused != textFieldFocusState {
-                                focused = textFieldFocusState
-                            }
-                        }
-                        .padding(.bottom, .huiSpaces.space4)
-                        .huiTypography(.p1)
-                    }
-                    HStack {
-                        ForEach(selections, id: \.self) { selection in
-                            option(selection)
-                        }
-                    }
-                }
-                .foregroundColor(textInputTextColor)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(HorizonUI.spaces.space12)
-                .padding(.trailing, .huiSpaces.space24)
-                .overlay(textOverlay(isOuter: false))
-                .background(
-                    HorizonUI.colors.surface.pageSecondary.clipShape(
-                        RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
-                    )
-                )
-
-                Image.huiIcons.chevronRight
-                    .padding(.horizontal, .huiSpaces.space12)
-                    .padding(.vertical, .huiSpaces.space16)
-                    .tint(Color.huiColors.icon.default)
-                    .rotationEffect(.degrees(focused ? -90 : 90))
-                    .animation(.easeInOut, value: focused)
-            }
-            .padding(.huiSpaces.space4)
-            .overlay(textOverlay(isOuter: true))
-            .frame(maxWidth: .infinity)
-            .background {
-                GeometryReader { geometry in
-                    HStack {}
-                        .onChange(of: geometry.size.height, initial: true) {
-                            textInputMeasuredHeight = geometry.size.height
-                        }
-                }
-            }
-            .onTapGesture(perform: onTapText)
-            .opacity(disabled ? 0.5 : 1.0)
         }
 
         // MARK: - Private Functions

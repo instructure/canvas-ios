@@ -30,19 +30,15 @@ struct HorizonInboxView: View {
     var body: some View {
         VStack {
             topBar
-            ScrollViewReader { scrollViewProxy in
-                ScrollView {
-                    VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
+                    VStack {
                         filterSelection
-
                         searchFilter
-
-                        messageList
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .onChange(of: scrollViewProxy) { proxy in
+                    .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
+                    messageList
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
@@ -74,13 +70,12 @@ struct HorizonInboxView: View {
 
     var filterSelection: some View {
         HorizonUI.SingleSelect(
-            selection: $viewModel.filter,
+            selection: $viewModel.filterTitle,
             focused: $isMessagesFilterFocused,
             label: nil,
             options: HorizonInboxViewModel.FilterOption.allCases.map { $0.title },
             zIndex: 102
         )
-        .padding(.horizontal, .huiSpaces.space16)
     }
 
     var searchFilter: some View {
@@ -91,9 +86,9 @@ struct HorizonInboxView: View {
             textInput: $viewModel.searchString,
             options: viewModel.personOptions,
             loading: $viewModel.searchLoading,
+            disabled: viewModel.isSearchDisabled,
             placeholder: String(localized: "Filter by person", bundle: .horizon)
         )
-        .padding(.horizontal, .huiSpaces.space16)
     }
 
     var topBar: some View {
@@ -128,10 +123,10 @@ struct MessageRow: View {
                 }
             }
 
-            Text(viewModel.subject)
+            Text(viewModel.title)
                 .huiTypography(.labelMediumBold)
 
-            Text(viewModel.names)
+            Text(viewModel.subtitle)
                 .huiTypography(.labelMediumBold)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -19,13 +19,29 @@
 import Foundation
 import CoreData
 
-struct GetAccountNotifications: CollectionUseCase {
-    typealias Model = AccountNotification
-    typealias Response = Request.Response
+public struct GetAccountNotifications: CollectionUseCase {
+    public typealias Model = AccountNotification
+    public typealias Response = Request.Response
 
-    var cacheKey: String? { "accounts/self/account_notifications" }
-    var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest() }
-    var scope: Scope { .all(orderBy: #keyPath(AccountNotification.endAt), ascending: false) }
+    public var cacheKey: String? { "accounts/self/account_notifications" }
+    public var request: GetAccountNotificationsRequest {
+        GetAccountNotificationsRequest(
+            includePast: includePast,
+            showIsClosed: showIsClosed
+        )
+    }
+    public var scope: Scope { .all(orderBy: #keyPath(AccountNotification.endAt), ascending: false) }
+
+    private let includePast: Bool
+    private let showIsClosed: Bool
+
+    public init(
+        includePast: Bool = false,
+        showIsClosed: Bool = false
+    ) {
+        self.includePast = includePast
+        self.showIsClosed = showIsClosed
+    }
 }
 
 public class GetAccountNotification: APIUseCase {
