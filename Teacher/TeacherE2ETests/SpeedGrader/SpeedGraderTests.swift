@@ -108,7 +108,7 @@ class SpeedGraderTests: E2ETestCase {
         XCTAssertTrue(oneNeedsGradingButton.isVisible)
 
         oneNeedsGradingButton.hit()
-        let submissionsNavBar = SubmissionsHelper.navBar(assignment: assignment).waitUntil(.visible)
+        let submissionsNavBar = SubmissionsHelper.navBar.waitUntil(.visible)
         let needsGradingLabel = SubmissionsHelper.needsGradingLabel.waitUntil(.visible)
         let submissionItem = SubmissionsHelper.cell(student: student).waitUntil(.visible)
         XCTAssertTrue(submissionsNavBar.isVisible)

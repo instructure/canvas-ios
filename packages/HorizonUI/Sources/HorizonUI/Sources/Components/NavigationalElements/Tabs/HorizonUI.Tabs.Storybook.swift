@@ -22,6 +22,7 @@ public extension HorizonUI.Tabs {
         @State private var selectedTabIndex: Int? = 0
         private let tabs = ["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5", "Tab 6"]
 
+<<<<<<<< HEAD:packages/HorizonUI/Sources/HorizonUI/Sources/Components/NavigationalElements/Tabs/HorizonUI.Tabs.Storybook.swift
         public var body: some View {
             VStack {
                 HorizonUI.Tabs(tabs: tabs, selectTabIndex: $selectedTabIndex)
@@ -29,6 +30,36 @@ public extension HorizonUI.Tabs {
             }
             .padding(16)
             .navigationTitle("Tabs")
+========
+extension InstUI {
+
+    public struct Divider: View {
+        public enum Style {
+            case full
+            case padded
+            case hidden
+        }
+
+        private let style: Style
+
+        public init(_ style: Style = .full) {
+            self.style = style
+        }
+
+        public var body: some View {
+            switch style {
+            case .full:
+                divider
+            case .padded:
+                divider.paddingStyle(.horizontal, .standard)
+            case .hidden:
+                SwiftUI.EmptyView()
+            }
+        }
+
+        private var divider: some View {
+            SwiftUI.Divider().overlay(Color.borderMedium)
+>>>>>>>> origin/master:Core/Core/Common/CommonUI/InstUI/Views/Divider.swift
         }
     }
 }

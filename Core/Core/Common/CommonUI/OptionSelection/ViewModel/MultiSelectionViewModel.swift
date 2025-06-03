@@ -21,9 +21,14 @@ import UIKit
 
 final class MultiSelectionViewModel: ObservableObject {
 
+    let title: String?
+
     let allOptions: [OptionItem]
     let selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     var allSelectionButtonTitle: String = ""
+
+    let optionCount: Int
+    let listLevelAccessibilityLabel: String?
 
     let didToggleSelection = PassthroughSubject<(option: OptionItem, isSelected: Bool), Never>()
     let didTapAllSelectionButton = PassthroughSubject<Void, Never>()
@@ -31,11 +36,23 @@ final class MultiSelectionViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
+        title: String?,
         allOptions: [OptionItem],
         selectedOptions: CurrentValueSubject<Set<OptionItem>, Never>
     ) {
+        self.title = title
+
         self.allOptions = allOptions
         self.selectedOptions = selectedOptions
+
+        self.optionCount = allOptions.count
+        if title != nil {
+            // if there is a title -> list count is already in section header
+            self.listLevelAccessibilityLabel = nil
+        } else {
+            // if there is no title -> add list count to first focused option
+            self.listLevelAccessibilityLabel = String.localizedNumberOfItems(optionCount)
+        }
 
         selectedOptions
             .removeDuplicates()

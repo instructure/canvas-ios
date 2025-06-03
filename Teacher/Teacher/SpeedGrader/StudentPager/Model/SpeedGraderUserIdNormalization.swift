@@ -18,10 +18,20 @@
 
 enum SpeedGraderUserIdNormalization {
 
+<<<<<<<< HEAD:Core/Core/Common/Extensions/UIKit/UIUserInterfaceStyleExtensions.swift
+extension UIUserInterfaceStyle {
+
+    public static var current: UIUserInterfaceStyle {
+        var style = AppEnvironment.shared.userDefaults?.interfaceStyle ?? .unspecified
+
+        if style == .unspecified {
+            style = UIScreen.main.traitCollection.userInterfaceStyle
+========
     /// Helper function to help normalize user ids coming from webview urls
     static func normalizeUserId(_ userId: String?) -> String {
         if let userId, userId.containsOnlyNumbers {
             return userId
+>>>>>>>> origin/master:Teacher/Teacher/SpeedGrader/StudentPager/Model/SpeedGraderUserIdNormalization.swift
         }
 
         return SpeedGraderAllUsersUserId

@@ -19,6 +19,7 @@
 import SwiftUI
 import HorizonUI
 
+<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/Skillspace/View/SkillSpaceView.swift
 struct SkillSpaceView: View {
 
     let viewModel: HEmbeddedWebPageContainerViewModel
@@ -33,6 +34,31 @@ struct SkillSpaceView: View {
         HStack(spacing: .zero) {
             InstitutionLogo()
             Spacer()
+========
+public extension HorizonUI.Spinner {
+    enum Size {
+        case xSmall
+        case small
+        case medium
+        case large
+
+        var dimension: CGFloat {
+            switch self {
+            case .xSmall: return 20
+            case .small: return 42
+            case .medium: return 70
+            case .large: return 96
+            }
+        }
+
+        var strokeWidth: CGFloat {
+            switch self {
+            case .xSmall: return 2
+            case .small: return 4
+            case .medium: return 6
+            case .large: return 8
+            }
+>>>>>>>> origin/master:packages/HorizonUI/Sources/HorizonUI/Sources/Components/Spinner/HorizonUI.Spinner.Size.swift
         }
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.bottom, .huiSpaces.space4)

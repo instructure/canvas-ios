@@ -200,27 +200,30 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 return $0
             }
             .flatMap { [weak self] view in
+                // Move to loading state so when the confirmation alert dismisses
+                // the user can't modify the selection until the selector dismisses
                 self?.state = .loading
 
                 return Publishers.Zip(
-                    selectorInteractor.getDeselectedCourseIds()
-                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
-                        .receive(on: DispatchQueue.main)
-                        .handleEvents(receiveOutput: { entries in
-                            NotificationCenter.default.post(name: .OfflineSyncCleanTriggered, object: entries)
-                            AppEnvironment.shared.router.dismiss(view)
-                        }),
+                    selectorInteractor.getDeselectedCourseIds(),
                     selectorInteractor.getSelectedCourseEntries()
-                        .delay(for: .milliseconds(500), scheduler: RunLoop.main)
-                        .receive(on: DispatchQueue.main)
-                        .handleEvents(receiveOutput: { entries in
-                            NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
-                            UIAccessibility.announce(String(localized: "Offline sync started", bundle: .core))
-                            AppEnvironment.shared.router.dismiss(view)
-                        })
-                ).eraseToAnyPublisher()
+                )
+                // Add some delay to let voiceover settle after the alert's dismissal
+                .delay(for: .milliseconds(UIAccessibility.isVoiceOverRunning ? 500 : 0), scheduler: RunLoop.main)
+                .flatMap { deSelectedEntries, selectedEntries in
+                    let willDownloadEntries = selectedEntries.isNotEmpty
+                    let announcement = willDownloadEntries ? String(localized: "Offline sync started", bundle: .core)
+                                                           : String(localized: "Offline sync completed successfully", bundle: .core)
+                    return UIAccessibility
+                        .announcePersistently(announcement)
+                        .map { (deSelectedEntries, selectedEntries, view) }
+                }
             }
-            .sink()
+            .sink { (deSelectedEntries, selectedEntries, view) in
+                NotificationCenter.default.post(name: .OfflineSyncCleanTriggered, object: deSelectedEntries)
+                NotificationCenter.default.post(name: .OfflineSyncTriggered, object: selectedEntries)
+                AppEnvironment.shared.router.dismiss(view)
+            }
             .store(in: &subscriptions)
     }
 

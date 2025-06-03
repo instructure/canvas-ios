@@ -335,6 +335,16 @@ extension LoginWebViewController: WKNavigationDelegate {
                         weakSelf?.handleLoginResult(oauthType: oauthType, response: response, error: error)
                     }
                 }
+                let session = LoginSession(
+                    accessToken: token.access_token,
+                    baseURL: baseURL,
+                    expiresAt: token.expires_in.flatMap { Clock.now + $0 },
+                    locale: token.user.effective_locale,
+                    refreshToken: token.refresh_token,
+                    userID: token.user.id.value,
+                    userName: token.user.name,
+                    clientID: mobileVerify.client_id,
+                    clientSecret: mobileVerify.client_secret
             } else if let challenge = challenge, let hostURLWithHttpsPrefix, let clientID {
                 let oauthType = OAuthType.pkce(
                     .init(

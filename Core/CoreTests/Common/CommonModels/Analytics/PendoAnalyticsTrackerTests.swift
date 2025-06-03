@@ -109,7 +109,7 @@ class PendoAnalyticsTrackerTests: XCTestCase {
             visitorData: .init(id: "some visitor id", locale: "some visitor locale"),
             accountData: .init(id: "some account id", surveyOptOut: true)
         )
-        interactor.getMedatataResult = metadata
+        interactor.getMetadataResult = metadata
 
         try await testee.startSessionAsync()
 
@@ -234,8 +234,8 @@ private final class PendoManagerMock: PendoManagerWrapper {
 
 private class AnalyticsMetadataInteractorMock: AnalyticsMetadataInteractor {
 
-    var getMedatataResult: AnalyticsMetadata = .make()
+    var getMetadataResult: AnalyticsMetadata = .make()
     func getMetadata() async throws -> AnalyticsMetadata {
-        getMedatataResult
+        getMetadataResult
     }
 }

@@ -23,76 +23,114 @@ import Foundation
 import SwiftUI
 
 class SubmissionCommentListViewModel: ObservableObject {
-    enum ViewState: Equatable {
-        case loading, data([SubmissionComment]), error, empty
 
-        var isData: Bool {
-            if case .data = self {
-                return true
-            } else {
-                return false
-            }
-        }
+    enum ViewState: Equatable {
+        case loading
+        case data
+        case error
+        case empty
     }
 
     // MARK: - Outputs
 
     @Published private(set) var state: ViewState = .loading
+    @Published private(set) var contextColor: Color = Color(Brand.shared.primary)
+    @Published private(set) var cellViewModels: [SubmissionCommentListCellViewModel] = []
 
     // MARK: - Private variables
 
-    private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
-    private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
-    private var comments: [SubmissionComment] = []
-    private var attempt: Int?
-    public private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
+    private let assignment: Assignment
+    private let latestSubmission: Submission
+    private let currentUserId: String?
+
+    private var submissions: [Submission] = []
+    private var allComments: [SubmissionComment] = []
+    private var selectedAttemptNumber: Int?
+    private var isAssignmentEnhancementsEnabled = false
+
+    private let contextColorPublisher: AnyPublisher<Color, Never>
+    private let interactor: SubmissionCommentsInteractor
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
-    init(
-        attempt: Int?,
-        courseID: String,
-        assignmentID: String,
-        userID: String,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
-    ) {
-        self.attempt = attempt
+    private var attemptNumberForNewComment: Int? {
+        isAssignmentEnhancementsEnabled ? selectedAttemptNumber : nil
+    }
 
-        submissionCommentsStore = ReactiveStore(
-            useCase: GetSubmissionComments(
-                context: .course(courseID),
-                assignmentID: assignmentID,
-                userID: userID
-            )
-        )
-        featureFlagsStore = ReactiveStore(
-            useCase: GetEnabledFeatureFlags(context: .course(courseID))
-        )
+    // MARK: - Init
+
+    init(
+        assignment: Assignment,
+        latestSubmission: Submission,
+        latestAttemptNumber: Int?,
+        currentUserId: String?,
+        contextColor: AnyPublisher<Color, Never>,
+        interactor: SubmissionCommentsInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        env: AppEnvironment
+    ) {
+        self.assignment = assignment
+        self.latestSubmission = latestSubmission
+        self.submissions = []
+
+        self.selectedAttemptNumber = latestAttemptNumber
+        self.currentUserId = currentUserId
+
+        self.contextColorPublisher = contextColor
+        self.interactor = interactor
+        self.env = env
 
         unowned let unownedSelf = self
 
-        Publishers.CombineLatest(
-            submissionCommentsStore.getEntities(keepObservingDatabaseChanges: true),
-            featureFlagsStore.getEntities(keepObservingDatabaseChanges: true)
+        contextColor.assign(to: &$contextColor)
+
+        Publishers.CombineLatest3(
+            interactor.getSubmissionAttempts(),
+            interactor.getComments(),
+            interactor.getIsAssignmentEnhancementsEnabled()
         )
-        .eraseToAnyPublisher()
-        .map { comments, featureFlags in
-            unownedSelf.comments = comments
-            unownedSelf.isAssignmentEnhancementsFeatureFlagEnabled = featureFlags.isFeatureFlagEnabled(.assignmentEnhancements)
-            return unownedSelf.filterComments(comments: comments, attempt: unownedSelf.attempt)
+        .map { submissions, comments, isAssignmentEnhancementsEnabled in
+            unownedSelf.submissions = submissions
+            unownedSelf.allComments = comments
+            unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
+            return unownedSelf
+                .filterComments(comments, for: unownedSelf.selectedAttemptNumber)
+                .map(unownedSelf.commentViewModel)
         }
         .receive(on: scheduler)
-        .map { $0.isEmpty ? ViewState.empty : ViewState.data($0) }
-        .replaceError(with: .error)
-        .assign(to: &$state)
+        .sinkFailureOrValue(
+            receiveFailure: { _ in
+                unownedSelf.state = .error
+                unownedSelf.cellViewModels = []
+            },
+            receiveValue: {
+                unownedSelf.state = $0.isEmpty ? .empty : .data
+                unownedSelf.cellViewModels = $0
+            }
+        )
+        .store(in: &subscriptions)
 
         NotificationCenter.default.publisher(for: .SpeedGraderAttemptPickerChanged)
-            .compactMap { $0.object as? Int }
-            .sink(receiveValue: { unownedSelf.updateComments(attempt: $0) })
+            .compactMap { $0.object as? SpeedGraderAttemptChangeInfo }
+            .filter { $0.userId == latestSubmission.userID }
+            .map { $0.attemptIndex }
+            .sink { unownedSelf.updateComments(attempt: $0) }
             .store(in: &subscriptions)
     }
 
-    private func filterComments(comments: [SubmissionComment], attempt: Int?) -> [SubmissionComment] {
-        if isAssignmentEnhancementsFeatureFlagEnabled {
+    // MARK: - Get comments
+
+    private func updateComments(attempt: Int?) {
+        selectedAttemptNumber = attempt
+        guard state == .data || state == .empty else { return }
+
+        let comments = filterComments(allComments, for: attempt)
+        state = comments.isEmpty ? .empty : .data
+        cellViewModels = comments.map(commentViewModel)
+    }
+
+    private func filterComments(_ comments: [SubmissionComment], for attempt: Int?) -> [SubmissionComment] {
+        if isAssignmentEnhancementsEnabled {
             return comments.filter {
                 $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
             }
@@ -101,9 +139,59 @@ class SubmissionCommentListViewModel: ObservableObject {
         }
     }
 
-    private func updateComments(attempt: Int?) {
-        self.attempt = attempt
-        guard state.isData else { return }
-        state = .data(filterComments(comments: comments, attempt: attempt))
+    private func commentViewModel(comment: SubmissionComment) -> SubmissionCommentListCellViewModel {
+        .init(
+            comment: comment,
+            assignment: assignment,
+            submission: submissionForComment(comment),
+            currentUserId: currentUserId,
+            contextColor: contextColorPublisher,
+            router: env.router
+        )
+    }
+
+    private func submissionForComment(_ comment: SubmissionComment) -> Submission {
+        let result = submissions.first(where: { $0.attempt == comment.attempt }) ?? latestSubmission
+        if result.assignment == nil {
+            result.assignment = assignment
+        }
+        return result
+    }
+
+    // MARK: - Send comment
+
+    func sendTextComment(_ text: String, completion: @escaping (Result<String, Error>) -> Void) {
+        interactor.createTextComment(text, attemptNumber: attemptNumberForNewComment) { result in
+            completion(result.mapSendCommentResult())
+        }
+    }
+
+    func sendMediaComment(type: MediaCommentType, url: URL, completion: @escaping (Result<String, Error>) -> Void) {
+        interactor.createMediaComment(type: type, url: url, attemptNumber: attemptNumberForNewComment) { result in
+            completion(result.mapSendCommentResult())
+        }
+    }
+
+    func sendFileComment(batchId: String, completion: @escaping (Result<String, Error>) -> Void) {
+        interactor.createFileComment(batchId: batchId, attemptNumber: attemptNumberForNewComment) { result in
+            completion(result.mapSendCommentResult())
+        }
+    }
+}
+
+private extension Result<Void, Error> {
+    func mapSendCommentResult() -> Result<String, Error> {
+        switch self {
+        case .success:
+            let successMessage = String(localized: "Comment sent successfully", bundle: .teacher)
+            return .success(successMessage)
+        case .failure(let error):
+            if error.localizedDescription.isEmpty {
+                let genericErrorMessage = String(localized: "Could not save the comment.", bundle: .teacher)
+                return .failure(NSError.instructureError(genericErrorMessage))
+            } else {
+                return .failure(error)
+            }
+        }
     }
 }

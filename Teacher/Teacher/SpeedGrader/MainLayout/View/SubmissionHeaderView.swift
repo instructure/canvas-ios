@@ -22,74 +22,165 @@ import Core
 struct SubmissionHeaderView: View {
     let assignment: Assignment
     let submission: Submission
+    let isLandscapeLayout: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-    @ScaledMetric private var uiScale: CGFloat = 1
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+
+    @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    @State private var profileSize = CGSize.zero
 
     var isGroupSubmission: Bool { !assignment.gradedIndividually && submission.groupID != nil }
     var groupName: String? { isGroupSubmission ? submission.groupName : nil }
     var routeToSubmitter: String? {
-        if isGroupSubmission {
-            return nil
-        } else {
-            return "/courses/\(assignment.courseID)/users/\(submission.userID)"
-        }
+        isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
     }
 
     var body: some View {
         HStack(spacing: 0) {
-            Button(action: navigateToSubmitter, label: {
-                HStack(spacing: 0) {
+            Button(action: navigateToSubmitter) {
+                HStack(spacing: 12) {
                     avatar
 
                     VStack(alignment: .leading, spacing: 2) {
                         nameText
-                            .font(.semibold16).foregroundColor(.textDarkest)
-                        HStack(spacing: 2) {
-                            Image(uiImage: submission.status.icon)
-                                .size(uiScale.iconScale * 18)
-                                .foregroundStyle(Color(submission.status.color))
-                            Text(submission.status.text)
-                                .font(.medium14).foregroundColor(Color(submission.status.color))
+
+                        ViewThatFits(in: .horizontal) {
+                            HStack(alignment: .top, spacing: 4) {
+                                status
+                                statusDueTextDivider
+                                dueText
+                            }
+                            .fixedSize(horizontal: false, vertical: true)
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                status
+                                dueText
+                            }
                         }
                     }
-                        .padding(.leading, 12)
                 }
-                    .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 0))
-            })
-                .buttonStyle(PlainButtonStyle())
-                .identifier("SpeedGrader.userButton")
-            Spacer()
+                .paddingStyle(.leading, .cellIconLeading)
+                .paddingStyle(.trailing, .standard)
+                .padding(.vertical, 8)
+            }
+            .buttonStyle(.plain)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .onSizeChange { size in
+                profileSize = size
+            }
+            .identifier("SpeedGrader.userButton")
+
+            if isLandscapeLayout {
+                resizeDragger
+            }
         }
     }
 
-    @ViewBuilder var avatar: some View {
+    @ViewBuilder
+    private var avatar: some View {
+        let size: CGFloat = 32
+
         if assignment.anonymizeStudents {
-            Avatar.Anonymous(isGroup: isGroupSubmission)
+            Avatar.Anonymous(isGroup: isGroupSubmission, size: size)
         } else if isGroupSubmission {
-            Avatar.Anonymous(isGroup: true)
+            Avatar.Anonymous(isGroup: true, size: size)
         } else {
-            Avatar(name: submission.user?.name, url: submission.user?.avatarURL)
+            Avatar(name: submission.user?.name, url: submission.user?.avatarURL, size: size)
         }
     }
 
-    var nameText: Text {
+    private var nameText: some View {
+        let name: Text
         if assignment.anonymizeStudents {
-            return isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
+            name = isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
+        } else {
+            name = Text(groupName ?? submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
         }
-        return Text(groupName ?? submission.user.flatMap {
-            User.displayName($0.name, pronouns: $0.pronouns)
-        } ?? "")
+
+        return name
+            .font(.semibold16)
+            .foregroundStyle(.textDarkest)
     }
 
-    func navigateToSubmitter() {
-        guard !assignment.anonymizeStudents, let routeToSubmitter = routeToSubmitter else { return }
+    private var status: some View {
+        HStack(spacing: 2) {
+            Image(uiImage: submission.status.icon)
+                .scaledIcon(size: 16)
+            Text(submission.status.text)
+                .font(.regular14)
+        }
+        .foregroundStyle(Color(submission.status.color))
+    }
+
+    private var dueText: some View {
+        Text(assignment.dueText)
+            .font(.regular14)
+            .foregroundStyle(.textDark)
+    }
+
+    private var statusDueTextDivider: some View {
+        Color.borderMedium
+            .frame(width: 1)
+            .clipShape(RoundedRectangle(cornerRadius: 2))
+    }
+
+    private func navigateToSubmitter() {
+        guard !assignment.anonymizeStudents, let routeToSubmitter else { return }
+
         env.router.route(
             to: routeToSubmitter,
-            userInfo: [ "courseID": assignment.courseID, "navigatorOptions": ["modal": true] ],
+            userInfo: ["courseID": assignment.courseID, "navigatorOptions": ["modal": true]],
             from: controller,
             options: .modal(embedInNav: true, addDoneButton: true)
         )
     }
+
+    private var resizeDragger: some View {
+        Image.moveEndLine
+            .scaledIcon()
+            .rotationEffect(landscapeSplitLayoutViewModel.dragIconRotation)
+            .paddingStyle(.horizontal, .standard)
+            .frame(maxHeight: profileSize.height)
+            .contentShape(Rectangle())
+            .gesture(resizeGesture)
+            .onTapGesture {
+                landscapeSplitLayoutViewModel.didTapDragIcon()
+            }
+            .accessibilityLabel(Text("Drawer menu", bundle: .teacher))
+            .accessibilityHint(landscapeSplitLayoutViewModel.dragIconA11yHint)
+            .accessibilityValue(landscapeSplitLayoutViewModel.dragIconA11yValue)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityRemoveTraits(.isImage)
+            .accessibility(identifier: "SpeedGrader.fullScreenToggleInLandscape")
+    }
+
+    private var resizeGesture: some Gesture {
+        DragGesture(
+            minimumDistance: 10,
+            coordinateSpace: .global
+        )
+        .onChanged { value in
+            let translation = value.translation.width
+            landscapeSplitLayoutViewModel.didUpdateDragGesturePosition(horizontalTranslation: translation)
+        }
+        .onEnded { _ in
+            landscapeSplitLayoutViewModel.didEndDragGesture()
+        }
+    }
 }
+
+#if DEBUG
+
+#Preview {
+    let testData = SpeedGraderAssembly.testData()
+    SubmissionHeaderView(
+        assignment: testData.assignment,
+        submission: testData.submissions[0],
+        isLandscapeLayout: true,
+        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
+    )
+}
+
+#endif
