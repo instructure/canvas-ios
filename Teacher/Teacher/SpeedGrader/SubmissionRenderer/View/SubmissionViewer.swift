@@ -67,7 +67,7 @@ struct SubmissionViewer: View {
                     Spacer()
                 }
                 .font(.regular16)
-                .padding(InstUI.Styles.Padding.standard.rawValue)
+                .paddingStyle(.standard)
                 .foregroundColor(.textDarkest)
                 .multilineTextAlignment(.center)
             } else {
@@ -120,12 +120,12 @@ struct SubmissionViewer: View {
                     }
                     Spacer()
                 }
-                .padding(InstUI.Styles.Padding.standard.rawValue)
+                .paddingStyle(.standard)
                 .frame(maxWidth: .infinity)
             case nil:
                 ProgressView()
                     .progressViewStyle(.indeterminateCircle())
-                    .padding(InstUI.Styles.Padding.standard.rawValue)
+                    .paddingStyle(.standard)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .onAppear {
                         studentAnnotationViewModel.viewDidAppear()
@@ -147,7 +147,7 @@ struct SubmissionViewer: View {
                 Spacer()
             }
                 .font(.regular16)
-                .padding(InstUI.Styles.Padding.standard.rawValue)
+                .paddingStyle(.standard)
                 .foregroundColor(.textDarkest)
                 .multilineTextAlignment(.center)
         }
