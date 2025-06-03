@@ -4,9 +4,6 @@
     "Add To-do" : {
 
     },
-    "Add Todo" : {
-
-    },
     "American literature IV" : {
       "comment" : "Example course name",
       "localizations" : {
@@ -1805,7 +1802,7 @@
         }
       }
     },
-    "Canvas Todo Widget" : {
+    "Canvas To-do Widget" : {
 
     },
     "Course Grades" : {
@@ -2064,7 +2061,7 @@
         }
       }
     },
-    "Double tap to view full list of to-VisibilityObservedViewController.swiftdos" : {
+    "Double tap to view full list of to-dos" : {
 
     },
     "Essay #1: The Rocky Planets" : {
