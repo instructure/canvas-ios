@@ -240,7 +240,7 @@ struct SubmissionGraderView: View {
                 Text(viewModel.selectedAttemptTitle)
             }
 
-            if viewModel.hasFiles {
+            if viewModel.hasMultipleFiles {
                 InstUI.PickerMenu(
                     selectedId: Binding(
                         get: { viewModel.selectedFile?.id },

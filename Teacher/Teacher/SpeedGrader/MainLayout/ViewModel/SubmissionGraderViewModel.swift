@@ -32,7 +32,7 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var selectedAttemptTitle: String = ""
     @Published private(set) var hasSubmissions: Bool = false
 
-    @Published private(set) var hasFiles: Bool = false
+    @Published private(set) var hasMultipleFiles: Bool = false
     @Published private(set) var filePickerOptions: [OptionItem] = []
     @Published private(set) var selectedFile: File?
     @Published private(set) var selectedFileNumber: Int = 0
@@ -88,7 +88,8 @@ class SubmissionGraderViewModel: ObservableObject {
         selectedAttemptNumber = attemptNumber
         selectedAttemptTitle = String.localizedAttemptNumber(attemptNumber)
 
-        hasFiles = selectedAttempt.type == .online_upload && selectedAttempt.attachments?.isNotEmpty ?? false
+        let hasFiles = selectedAttempt.type == .online_upload && selectedAttempt.attachments?.isNotEmpty ?? false
+        hasMultipleFiles = hasFiles && selectedAttempt.attachments?.count ?? 0 > 1
         if hasFiles {
             let files = selectedAttempt.attachmentsSorted
             filePickerOptions = files.compactMap { file in
