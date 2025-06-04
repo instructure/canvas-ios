@@ -73,6 +73,7 @@ class TodoWidgetProvider: TimelineProvider {
             courses.getEntities(loadAllPages: true)
         )
         .flatMap { _, courses in
+            let courses = courses.filter { $0.isPublished }
             let favoriteCourses = courses.filter { $0.isFavorite }
             let coursesToMap = favoriteCourses.isNotEmpty ? favoriteCourses : courses
             var contextCodesToFetch = coursesToMap.map(\.canvasContextID)
