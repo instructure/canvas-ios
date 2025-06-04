@@ -25,18 +25,16 @@ struct HorizonInboxView: View {
 
     @Bindable var viewModel: HorizonInboxViewModel
 
-    @State private var isMessagesFilterFocused: Bool = false
-
     var body: some View {
         VStack {
             topBar
             ScrollView {
                 VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
-                    VStack {
-                        filterSelection
-                        searchFilter
-                    }
-                    .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+                    filterSelection
+                        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+
+                    searchFilter
+                        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
                     messageList
                 }
@@ -71,7 +69,7 @@ struct HorizonInboxView: View {
     var filterSelection: some View {
         HorizonUI.SingleSelect(
             selection: $viewModel.filterTitle,
-            focused: $isMessagesFilterFocused,
+            focused: $viewModel.isMessagesFilterFocused,
             label: nil,
             options: HorizonInboxViewModel.FilterOption.allCases.map { $0.title },
             zIndex: 102

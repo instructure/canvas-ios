@@ -78,6 +78,11 @@ class HorizonInboxViewModel {
         }
     }
     var searchLoading: Bool = false
+    var isMessagesFilterFocused: Bool = false {
+        didSet {
+            onMessagesFilterFocused()
+        }
+    }
     var isSearchDisabled: Bool {
         filter == .announcements
     }
@@ -186,6 +191,12 @@ class HorizonInboxViewModel {
         }
     }
 
+    private func onMessagesFilterFocused() {
+        if isMessagesFilterFocused {
+            isSearchFocused = false
+        }
+    }
+
     private func onSearchStringSet() {
         searchDebounceTask?.cancel()
         searchDebounceTask = Task { [weak self] in
@@ -199,6 +210,7 @@ class HorizonInboxViewModel {
 
     private func onSearchFocused() {
         if isSearchFocused {
+            isMessagesFilterFocused = false
             makeRequest()
         }
     }
