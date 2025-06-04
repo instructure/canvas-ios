@@ -53,7 +53,6 @@ struct TodoListView: View {
             ForEach(todoList.days) { day in
                 HStack(alignment: .top, spacing: 8) {
                     TodoDayView(date: day.date)
-                        .scaledFrame(width: 32)
 
                     VStack(spacing: 5) {
                         ForEach(day.items) { item in

@@ -28,20 +28,22 @@ struct TodoDayView: View {
 
     var body: some View {
         Link(destination: .calendarDayRoute(date)) {
-            VStack(spacing: 3) {
+            VStack(spacing: 4) {
                 Text(date.formatted(.dateTime.weekday()))
                     .font(.regular12)
                     .foregroundStyle(isToday ? .course2 : .textDark)
-                ZStack {
-                    if isToday {
-                        Circle()
-                            .stroke(.course2, style: .init(lineWidth: 1))
-                            .scaledFrame(size: 30, useIconScale: true)
+
+                Text(["33", "7"].randomElement() ?? "1")
+                    .font(.bold12)
+                    .foregroundStyle(isToday ? .course2 : .textDark)
+                    .padding(.vertical, isToday ? 13 : 0)
+                    .frame(minWidth: 32)
+                    .overlay {
+                        if isToday {
+                            Circle()
+                                .stroke(.course2, style: .init(lineWidth: 1))
+                        }
                     }
-                    Text(date.formatted(.dateTime.day()))
-                        .font(.bold12)
-                        .foregroundStyle(isToday ? .course2 : .textDark)
-                }
             }
         }
         .accessibilityElement()
@@ -59,9 +61,10 @@ struct TodoDayView: View {
 
 #if DEBUG
 
-#Preview {
-    TodoDayView(date: Date())
-    TodoDayView(date: Date().addDays(4))
+#Preview("TodoWidgetData", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
 }
 
 #endif
