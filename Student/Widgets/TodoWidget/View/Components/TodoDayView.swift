@@ -28,7 +28,7 @@ struct TodoDayView: View {
 
     var body: some View {
         Link(destination: .calendarDayRoute(date)) {
-            VStack(spacing: 4) {
+            VStack(spacing: 0) {
                 Text(date.formatted(.dateTime.weekday()))
                     .font(.regular12)
                     .foregroundStyle(isToday ? .course2 : .textDark)
@@ -36,7 +36,7 @@ struct TodoDayView: View {
                 Text(date.formatted(.dateTime.day()))
                     .font(.bold12)
                     .foregroundStyle(isToday ? .course2 : .textDark)
-                    .padding(.vertical, isToday ? 13 : 0)
+                    .padding(.vertical, isToday ? 13 : 4)
                     .frame(minWidth: 32)
                     .overlay {
                         if isToday {
