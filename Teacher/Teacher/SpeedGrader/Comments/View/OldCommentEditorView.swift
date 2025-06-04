@@ -19,11 +19,7 @@
 import SwiftUI
 import Core
 
-<<<<<<<< HEAD:Teacher/Teacher/SpeedGrader/Comments/View/CommentEditorView.swift
-struct CommentEditorView: View {
-========
 struct OldCommentEditorView: View {
->>>>>>>> origin/master:Teacher/Teacher/SpeedGrader/Comments/View/OldCommentEditorView.swift
     @Environment(\.viewController) var controller
 
     @Binding var text: String
@@ -53,25 +49,6 @@ struct OldCommentEditorView: View {
                         }
                     }
                 }
-<<<<<<<< HEAD:Teacher/Teacher/SpeedGrader/Comments/View/CommentEditorView.swift
-            Button(action: {
-                action()
-                controller.view.endEditing(true)
-            }, label: {
-                Image
-                    .miniArrowUpSolid
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .offset(y: -1)
-                    .foregroundColor(Color(Brand.shared.buttonPrimaryText))
-                    .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
-                    .padding(.bottom, 1.5)
-            })
-                .opacity(text.isEmpty ? 0.5 : 1)
-                .disabled(text.isEmpty)
-                .accessibility(label: Text("Send", bundle: .teacher))
-                .identifier("SubmissionComments.addCommentButton")
-========
             Button(
                 action: {
                     action()
@@ -88,7 +65,6 @@ struct OldCommentEditorView: View {
             .disabled(text.isEmpty)
             .accessibility(label: Text("Send", bundle: .teacher))
             .identifier("SubmissionComments.addCommentButton")
->>>>>>>> origin/master:Teacher/Teacher/SpeedGrader/Comments/View/OldCommentEditorView.swift
         }
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 6))
             .background(RoundedRectangle(cornerRadius: 22).fill(Color.backgroundLightest))
@@ -101,13 +77,6 @@ struct OldCommentEditorView: View {
 struct CommentEditor_Previews: PreviewProvider {
     static var previews: some View {
         @State var showCommentLibrary = false
-<<<<<<<< HEAD:Teacher/Teacher/SpeedGrader/Comments/View/CommentEditorView.swift
-        CommentEditorView(text: .constant("Sample Text"),
-                      shouldShowCommentLibrary: true,
-                      showCommentLibrary: $showCommentLibrary,
-                      action: {},
-                      containerHeight: 30)
-========
         OldCommentEditorView(
             text: .constant("Sample Text"),
             shouldShowCommentLibrary: true,
@@ -116,7 +85,6 @@ struct CommentEditor_Previews: PreviewProvider {
             containerHeight: 30,
             contextColor: .green
         )
->>>>>>>> origin/master:Teacher/Teacher/SpeedGrader/Comments/View/OldCommentEditorView.swift
         .frame(width: 200)
         .previewLayout(.sizeThatFits)
     }
