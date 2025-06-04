@@ -78687,6 +78687,7 @@
       }
     },
     "New Message" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
