@@ -23,6 +23,7 @@ import SwiftUI
 
 struct HorizonInboxView: View {
 
+    @Environment(\.viewController) private var viewController
     @Bindable var viewModel: HorizonInboxViewModel
 
     var body: some View {
@@ -33,7 +34,10 @@ struct HorizonInboxView: View {
                     filterSelection
                         .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
-                    searchFilter
+                    PeopleSelectionView(
+                        viewModel: viewModel.peopleSelectionViewModel,
+                        disabled: viewModel.isSearchDisabled
+                    )
                         .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
                     messageList
@@ -47,7 +51,7 @@ struct HorizonInboxView: View {
         .navigationBarHidden(true)
     }
 
-    var messageList: some View {
+    private var messageList: some View {
         VStack {
             ForEach(viewModel.messageRows, id: \.self) { messageRow in
                 MessageRow(viewModel: messageRow)
@@ -66,7 +70,7 @@ struct HorizonInboxView: View {
         )
     }
 
-    var filterSelection: some View {
+    private var filterSelection: some View {
         HorizonUI.SingleSelect(
             selection: $viewModel.filterTitle,
             focused: $viewModel.isMessagesFilterFocused,
@@ -76,20 +80,7 @@ struct HorizonInboxView: View {
         )
     }
 
-    var searchFilter: some View {
-        HorizonUI.MultiSelect(
-            selections: $viewModel.searchByPersonSelections,
-            focused: $viewModel.isSearchFocused,
-            label: nil,
-            textInput: $viewModel.searchString,
-            options: viewModel.personOptions,
-            loading: $viewModel.searchLoading,
-            disabled: viewModel.isSearchDisabled,
-            placeholder: String(localized: "Filter by person", bundle: .horizon)
-        )
-    }
-
-    var topBar: some View {
+    private var topBar: some View {
         HStack {
             HorizonBackButton(onBack: viewModel.goBack)
             Spacer()
@@ -97,7 +88,9 @@ struct HorizonInboxView: View {
                 String(localized: "Create message", bundle: .horizon),
                 type: .institution,
                 leading: HorizonUI.icons.editSquare
-            ) { }
+            ) {
+                viewModel.goToComposeMessage(viewController)
+            }
         }
         .padding(.horizontal, .huiSpaces.space16)
     }

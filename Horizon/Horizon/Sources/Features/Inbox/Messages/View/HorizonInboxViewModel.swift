@@ -72,11 +72,6 @@ class HorizonInboxViewModel {
             personFilterSubject.send(newValue)
         }
     }
-    var searchString: String = "" {
-        didSet {
-            onSearchStringSet()
-        }
-    }
     var searchLoading: Bool = false
     var isMessagesFilterFocused: Bool = false {
         didSet {
@@ -86,16 +81,16 @@ class HorizonInboxViewModel {
     var isSearchDisabled: Bool {
         filter == .announcements
     }
-    var isSearchFocused: Bool = false {
+    var peopleSelectionViewModel: PeopleSelectionViewModel!
+
+    // MARK: - Private
+    private let personFilterSubject = CurrentValueSubject<[String], Never>([])
+    // don't do animations until the user updates the filter or search
+    private var isSearchFocused: Bool = false {
         didSet {
             onSearchFocused()
         }
     }
-
-    // MARK: - Private
-
-    private let personFilterSubject = CurrentValueSubject<[String], Never>([])
-    // don't do animations until the user updates the filter or search
     private var searchAPITask: APITask?
     private var searchDebounceTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
@@ -126,6 +121,7 @@ class HorizonInboxViewModel {
         self.router = router
         self.inboxMessageInteractor = inboxMessageInteractor
         self.announcementsInteractor = announcementsInteractor
+        self.peopleSelectionViewModel = .init()
 
         _ = inboxMessageInteractor.setContext(.user(AppEnvironment.shared.currentSession?.userID ?? ""))
 
@@ -144,6 +140,10 @@ class HorizonInboxViewModel {
 
     func goBack(_ viewController: WeakViewController) {
         router.pop(from: viewController)
+    }
+
+    func goToComposeMessage(_ viewController: WeakViewController) {
+        router.route(to: "/conversations/create", from: viewController)
     }
 
     // MARK: - Private Methods
@@ -197,39 +197,9 @@ class HorizonInboxViewModel {
         }
     }
 
-    private func onSearchStringSet() {
-        searchDebounceTask?.cancel()
-        searchDebounceTask = Task { [weak self] in
-            try? await Task.sleep(nanoseconds: 500_000_000)
-            if Task.isCancelled {
-                return
-            }
-            self?.makeRequest()
-        }
-    }
-
     private func onSearchFocused() {
         if isSearchFocused {
             isMessagesFilterFocused = false
-            makeRequest()
-        }
-    }
-
-    private func makeRequest() {
-        searchLoading = true
-        searchAPITask?.cancel()
-        searchAPITask = api.makeRequest(
-            GetSearchRecipientsRequest(
-                context: .user(AppEnvironment.shared.currentSession?.userID ?? ""),
-                search: searchString,
-                perPage: 10
-            )
-        ) { [weak self] apiSearchRecipients, _, _ in
-            guard let apiSearchRecipients = apiSearchRecipients else {
-                return
-            }
-            self?.personOptions = apiSearchRecipients.map { $0.name }
-            self?.searchLoading = false
         }
     }
 

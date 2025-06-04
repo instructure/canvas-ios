@@ -59,7 +59,7 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
                 showIsClosed: true
             )
         )
-        .getEntities(ignoreCache: true)
+        .getEntities()
         .replaceError(with: [])
         .sink { [weak self] accountNotifications in
             self?.accountAnnouncements = accountNotifications.map { $0.announcement }
@@ -70,21 +70,20 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
             .getEntities()
             .replaceError(with: [])
             .flatMap { courses in
-                let courseIDs = courses.map { $0.courseID }
-                return ReactiveStore(
+                ReactiveStore(
                     useCase: GetAnnouncementsUseCase(
-                        courseIds: courseIDs,
+                        courseIds: courses.map { $0.courseID },
                         activeOnly: nil,
                         latestOnly: nil,
                         startDate: Date.now.addYears(-1),
                         endDate: Date.now
                     )
                 )
-                .getEntities(ignoreCache: true)
-                .map { courseAnnouncements in
-                    courseAnnouncements.map { courseAnnouncement in
-                        courseAnnouncement.announcement(
-                            courseName: courses.first { $0.courseID == courseAnnouncement.courseID }?.course.name
+                .getEntities()
+                .map { discussionTopics in
+                    discussionTopics.map { discussionTopic in
+                        discussionTopic.announcement(
+                            courseName: courses.first { $0.courseID == discussionTopic.courseID }?.course.name
                         )
                     }
                 }

@@ -191,6 +191,16 @@ enum HorizonRoutes {
     private static var inboxRoutes: [RouteHandler] {
         [
             RouteHandler("/conversations") { _, _, _ in HInboxAssembly.makeView() },
+            RouteHandler("/conversations/create") { _, _, _ in
+                guard let vc = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return nil }
+                let router: Router = AppEnvironment.shared.router
+                router.show(
+                    CreateMessageAssembly.makeViewController(),
+                    from: vc,
+                    options: .modal(.pageSheet, isDismissable: false)
+                )
+                return nil
+            },
             RouteHandler("/conversations/:conversationID") { _, params, userInfo in
                 guard let conversationID = params["conversationID"] else { return nil }
                 let allowArchive: Bool = {

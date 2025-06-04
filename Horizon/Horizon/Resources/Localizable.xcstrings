@@ -277,6 +277,9 @@
     "Create message" : {
 
     },
+    "Create Message" : {
+
+    },
     "Cuiaba (-04:00/-04:00)" : {
 
     },
@@ -799,6 +802,9 @@
 
     },
     "Select a Submission Type" : {
+
+    },
+    "Send individual messages to each recipient" : {
 
     },
     "Sent" : {
