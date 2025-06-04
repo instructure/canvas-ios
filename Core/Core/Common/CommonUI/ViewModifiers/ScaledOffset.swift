@@ -16,7 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUICore
+import SwiftUI
+
+extension View {
+    public func scaledOffset(x: CGFloat = 0, y: CGFloat = 0, useIconScale: Bool = false, alignment _: Alignment = .center) -> some View {
+        modifier(ScaledOffsetModifier(x: x, y: y, useIconScale: useIconScale))
+    }
+}
 
 private struct ScaledOffsetModifier: ViewModifier {
     @ScaledMetric private var uiScale: CGFloat = 1
