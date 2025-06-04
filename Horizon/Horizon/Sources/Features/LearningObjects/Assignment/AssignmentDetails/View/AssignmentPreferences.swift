@@ -18,7 +18,6 @@
 
 import SwiftUICore
 
-<<<<<<<< HEAD:Horizon/Horizon/Sources/Features/LearningObjects/Assignment/AssignmentDetails/View/AssignmentPreferences.swift
 enum AssignmentPreferenceKeyType: Equatable {
     case confirmation(viewModel: SubmissionAlertViewModel)
     case toastViewModel(viewModel: ToastViewModel)
@@ -37,24 +36,5 @@ struct AssignmentPreferenceKey: PreferenceKey {
 
     static func reduce(value: inout AssignmentPreferenceKeyType?, nextValue: () -> AssignmentPreferenceKeyType?) {
         value = nextValue()
-========
-extension View {
-    public func scaledOffset(x: CGFloat = 0, y: CGFloat = 0, useIconScale: Bool = false, alignment: Alignment = .center) -> some View {
-        modifier(ScaledOffsetModifier(x: x, y: y, useIconScale: useIconScale))
-    }
-}
-
-private struct ScaledOffsetModifier: ViewModifier {
-    @ScaledMetric private var uiScale: CGFloat = 1
-
-    let x: CGFloat
-    let y: CGFloat
-    let useIconScale: Bool
-
-    func body(content: Content) -> some View {
-        let scale = useIconScale ? uiScale.iconScale : uiScale
-        content
-            .offset(x: x * scale, y: y * scale)
->>>>>>>> origin/master:Core/Core/Common/CommonUI/ViewModifiers/ScaledOffset.swift
     }
 }
