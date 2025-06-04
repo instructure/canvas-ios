@@ -274,7 +274,7 @@ struct SubmissionGraderView: View {
     }
 
     private func filePickerDidSelect(id: String?) {
-        viewModel.didSelectFile(fileID: id)
+        viewModel.didSelectFile(fileId: id)
         snapDrawerTo(.min)
     }
 
@@ -374,7 +374,7 @@ struct SubmissionGraderView: View {
                             viewModel.selectedFile?.id
                         },
                         set: {
-                            viewModel.didSelectFile(fileID: $0)
+                            viewModel.didSelectFile(fileId: $0)
                             snapDrawerTo(.min)
                         }
                     )

@@ -84,7 +84,7 @@ class SubmissionGraderViewModel: ObservableObject {
             name: .SpeedGraderAttemptPickerChanged,
             object: SpeedGraderAttemptChangeInfo(attemptIndex: attemptNumber, userId: submission.userID)
         )
-        selectedAttempt = attempts.first { selectedAttemptNumber == $0.attempt } ?? submission
+        selectedAttempt = attempts.first { $0.attempt == attemptNumber } ?? submission
         selectedAttemptNumber = attemptNumber
         selectedAttemptTitle = String.localizedAttemptNumber(attemptNumber)
 
@@ -108,8 +108,8 @@ class SubmissionGraderViewModel: ObservableObject {
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
     }
 
-    func didSelectFile(fileID: String?) {
-        let file = selectedAttempt.attachments?.first { fileID == $0.id }
+    func didSelectFile(fileId: String?) {
+        let file = selectedAttempt.attachments?.first { $0.id == fileId }
         didSelectFile(file)
     }
 

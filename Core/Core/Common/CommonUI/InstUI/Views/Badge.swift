@@ -120,10 +120,8 @@ extension InstUI {
                                 .alignmentGuide(.top) { $0[VerticalAlignment.center] + deltaY }
                         }
                     }
-                    .onGeometryChange(for: CGFloat.self) { proxy in
-                        proxy.size.width
-                    } action: {
-                        badgedContentWidth = $0
+                    .onSizeChange {
+                        badgedContentWidth = $0.width
                     }
                 }
         }
