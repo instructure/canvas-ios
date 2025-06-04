@@ -418,9 +418,6 @@
     "hours" : {
 
     },
-    "How can I help today?" : {
-
-    },
     "Important" : {
 
     },
@@ -967,6 +964,12 @@
 
     },
     "Weight: %@" : {
+
+    },
+    "Welcome back, %@!" : {
+
+    },
+    "Welcome back, Steve!" : {
 
     },
     "Wellington (+12:00/+13:00)" : {

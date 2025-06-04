@@ -53,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
         window = UIWindow()
         _ = environment
-        window?.rootViewController = SplashAssembly.makeViewController()
+        window?.rootViewController = CoreHostingController(
+            AssistAssembly.makeAssistChatView()
+        )
         window?.makeKeyAndVisible()
 
         // MARK: Setups

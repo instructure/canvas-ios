@@ -208,7 +208,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 userShortName: userShortName
             )
         }
-        let message = String(localized: "How can I help today?", bundle: .horizon)
+        let message = String(localized: "Welcome back, \(userShortName)!", bundle: .horizon)
         let chatBotResponse =
             options.isEmpty
             ? AssistChatResponse(message: AssistChatMessage(prompt: nil, text: message, role: .Assistant))
@@ -515,12 +515,11 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     func publish(action: AssistChatAction) {}
     var listen: AnyPublisher<AssistChatResponse, Error> = Just(
         AssistChatResponse(
-            quizItem: .init(
-                question: "What is the capital of France?",
-                answers: ["Paris", "London", "Berlin", "Madrid"],
-                correctAnswerIndex: 0
-            ),
-            chatHistory: []
+            message: AssistChatMessage(
+                prompt: nil,
+                text: "Welcome Back, Steve!",
+                role: .Assistant
+            )
         )
     )
     .setFailureType(to: Error.self)

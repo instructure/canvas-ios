@@ -16,9 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import AVKit
+import Core
 import HorizonUI
 import SwiftUI
-import Core
 
 struct AssistChatView: View {
     // MARK: - Properties
@@ -29,12 +30,15 @@ struct AssistChatView: View {
 
     var body: some View {
         VStack {
-            topHeader
+            AssistTitle {
+                viewModel.dismiss(controller: viewController)
+            }
+
             InstUI.BaseScreen(
                 state: viewModel.state,
                 config: .init(refreshable: false)
             ) { _ in
-                contentView()
+                animatedOpening
             }
             .scrollDismissesKeyboard(.immediately)
             Spacer()
@@ -52,23 +56,7 @@ struct AssistChatView: View {
         .applyHorizonGradient()
     }
 
-    private var topHeader: some View {
-        ZStack(alignment: .trailingLastTextBaseline) {
-            AssistTitle()
-
-            Button {
-                viewModel.dismiss(controller: viewController)
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(Color.huiColors.icon.default)
-                    .padding()
-                    .background(Color.huiColors.surface.pageSecondary)
-                    .clipShape(.circle)
-            }
-        }
-    }
-
-    private func contentView() -> some View {
+    private var contentView: some View {
         ScrollViewReader { scrollViewProxy in
             LazyVStack(alignment: .leading, spacing: 12) {
                 ForEach(viewModel.messages) { message in
@@ -80,6 +68,17 @@ struct AssistChatView: View {
             .onAppear {
                 viewModel.scrollViewProxy = scrollViewProxy
             }
+        }
+    }
+
+    private var animatedOpening: some View {
+        VStack {
+            Text("Welcome back, Steve!")
+            LottieView(
+                name: "HappyPanda.lottie",
+                bundle: .horizon
+            )
+            .frame(width: 300, height: 200)
         }
     }
 
