@@ -40,6 +40,7 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
         content()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .containerRelativeFrame(.vertical, alignment: .top)
+            .accessibilitySortPriority(1)
             .overlay(alignment: .topTrailing) {
                 Group {
                     if let logoRoute {
@@ -48,6 +49,7 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
                         }
                         .accessibilityLabel(Text("Canvas To-do Widget"))
                         .accessibilityHint(Text("Double tap to view full list of to-dos"))
+                        .accessibilitySortPriority(2)
                     } else {
                         LogoView()
                     }

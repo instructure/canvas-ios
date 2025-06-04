@@ -31,17 +31,17 @@ struct TodoDayView: View {
             VStack(spacing: 0) {
                 Text(date.formatted(.dateTime.weekday()))
                     .font(.regular12)
-                    .foregroundStyle(isToday ? .course2 : .textDark)
+                    .foregroundStyle(isToday ? .brandPrimary : .textDark)
 
                 Text(date.formatted(.dateTime.day()))
                     .font(.bold12)
-                    .foregroundStyle(isToday ? .course2 : .textDark)
+                    .foregroundStyle(isToday ? .brandPrimary : .textDark)
                     .padding(.vertical, isToday ? 13 : 4)
                     .frame(minWidth: 32)
                     .overlay {
                         if isToday {
                             Circle()
-                                .stroke(.course2, style: .init(lineWidth: 1))
+                                .stroke(.brandPrimary, style: .init(lineWidth: 1))
                         }
                     }
             }

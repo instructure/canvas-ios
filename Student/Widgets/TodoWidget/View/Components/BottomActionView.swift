@@ -76,7 +76,7 @@ private struct ActionLabel: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.course2)
+                .fill(Color.brandPrimary)
                 .scaledFrame(width: 32, useIconScale: true)
             icon
                 .renderingMode(.template)

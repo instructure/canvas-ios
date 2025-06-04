@@ -104,7 +104,7 @@ struct ViewFullListButton: View {
             Link(destination: .todoListRoute) {
                 Text("View Full List")
                     .font(.regular16)
-                    .foregroundStyle(Color.course2)
+                    .foregroundStyle(Color.brandPrimary)
             }
         }
         .frame(maxHeight: 54)
