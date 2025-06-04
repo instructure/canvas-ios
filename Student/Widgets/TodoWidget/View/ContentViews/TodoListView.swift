@@ -86,6 +86,8 @@ struct TodoListView: View {
 
 struct ViewFullListButton: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     var body: some View {
         ZStack {
             Rectangle()
@@ -95,7 +97,7 @@ struct ViewFullListButton: View {
                             Color.backgroundLightest,
                             Color.backgroundLightest.opacity(0)
                         ]),
-                        startPoint: .bottom,
+                        startPoint: startPoint,
                         endPoint: .top
                     )
                 )
@@ -106,6 +108,21 @@ struct ViewFullListButton: View {
             }
         }
         .frame(maxHeight: 54)
+    }
+
+    private var startPoint: UnitPoint {
+        switch dynamicTypeSize {
+        case let size where size <= .xxLarge:
+            .bottom
+        case .xxxLarge:
+            .init(x: 0.5, y: 0.8)
+        case .accessibility1, .accessibility2:
+            .init(x: 0.5, y: 0.5)
+        case let size where size >= .accessibility3:
+            .init(x: 0.5, y: 0.4)
+        default:
+            .bottom
+        }
     }
 }
 

@@ -33,7 +33,7 @@ struct TodoDayView: View {
                     .font(.regular12)
                     .foregroundStyle(isToday ? .course2 : .textDark)
 
-                Text(["33", "7"].randomElement() ?? "1")
+                Text(date.formatted(.dateTime.day()))
                     .font(.bold12)
                     .foregroundStyle(isToday ? .course2 : .textDark)
                     .padding(.vertical, isToday ? 13 : 0)
