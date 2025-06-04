@@ -19,80 +19,10 @@
 import Core
 import UIKit
 
-struct TodoWidgetRouter {
+extension WidgetRouter {
 
-    struct ViewProxy {
-        let env: AppEnvironment
-        let tabController: UITabBarController
-
-        func selectTab(at index: Int) {
-            tabController.selectedIndex = index
-        }
-
-        func resetSplitMasterToRoot() {
-            (tabController.selectedViewController as? UISplitViewController)?.resetToRoot()
-        }
-
-        var selectedTabMasterController: UINavigationController? {
-            guard let splitController = tabController.selectedViewController as? UISplitViewController
-            else { return nil }
-            return splitController.masterNavigationController
-        }
-
-        var selectedTabMasterRootController: UIViewController? {
-            selectedTabMasterController?.viewControllers.first
-        }
-    }
-
-    struct RouteHandler {
-        let route: Route
-        let action: (URLComponents, [String: String], ViewProxy) -> Void
-
-        init(
-            _ template: String,
-            action: @escaping (URLComponents, [String: String], ViewProxy) -> Void
-        ) {
-            self.route = Route(template)
-            self.action = action
-        }
-    }
-
-    private let handlers: [RouteHandler]
-    fileprivate init(handlers: [RouteHandler]) {
-        self.handlers = handlers
-    }
-
-    func handling(_ url: URLComponents, in window: UIWindow?, env: AppEnvironment) -> Bool {
-        guard url.hasOrigin("todo-widget"),
-              let rootViewController = window?.rootViewController,
-              let tabController = rootViewController as? StudentTabBarController
-        else { return false }
-
-        // Dismiss all modals
-        rootViewController.dismiss(animated: false)
-
-        let viewProxy = ViewProxy(
-            env: env,
-            tabController: tabController
-        )
-
-        for handler in handlers {
-            if let params = handler.route.match(url) {
-                handler.action(url, params, viewProxy)
-                return true
-            }
-        }
-
-        return false
-    }
-}
-
-// MARK: - Makers
-
-extension TodoWidgetRouter {
-
-    static func make() -> TodoWidgetRouter {
-        TodoWidgetRouter(handlers: [
+    static func createTodoRouter() -> WidgetRouter {
+        WidgetRouter(originValue: "todo-widget", handlers: [
             plannerNotesListHandler,
             newPlannerNoteHandler,
             plannerNoteDetailHandler,
@@ -105,6 +35,8 @@ extension TodoWidgetRouter {
 
     private static var plannerNotesListHandler: RouteHandler {
         .init("/todo-widget/planner-notes", action: { _, _, view in
+
+            // Switch to Calendar tab
             view.selectTab(at: 2)
             view.resetSplitMasterToRoot()
         })
@@ -112,6 +44,7 @@ extension TodoWidgetRouter {
 
     private static var newPlannerNoteHandler: RouteHandler {
         .init("/todo-widget/planner-notes/new", action: { _, _, view in
+
             // Switch to Calendar tab
             view.selectTab(at: 1)
             view.resetSplitMasterToRoot()
@@ -145,7 +78,7 @@ extension TodoWidgetRouter {
             let controller = PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
 
             if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
-                calendarVC.onAppearPreferredPerform {
+                calendarVC.onAppearOnce {
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
@@ -169,7 +102,7 @@ extension TodoWidgetRouter {
             let controller = PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
 
             if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
-                calendarVC.onAppearPreferredPerform {
+                calendarVC.onAppearOnce {
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
@@ -206,7 +139,7 @@ extension TodoWidgetRouter {
 
             if let plannerVC = view.selectedTabMasterRootController as? PlannerViewController {
 
-                plannerVC.onAppearPreferredPerform {
+                plannerVC.onAppearOnce {
                     view.env.router.route(
                         to: url.settingOrigin("calendar"),
                         from: plannerVC,
@@ -239,19 +172,9 @@ extension TodoWidgetRouter {
             guard let plannerVC = view.selectedTabMasterRootController as? PlannerViewController
             else { return }
 
-            plannerVC.onAppearPreferredPerform {
+            plannerVC.onAppearOnce {
                 plannerVC.selectDate(date)
             }
         })
-    }
-}
-
-private extension UIViewController {
-    func onAppearPreferredPerform(_ block: @escaping () -> Void) {
-        if let observedVC = self as? VisibilityObservedViewController {
-            observedVC.onAppear { block() }
-        } else {
-            block()
-        }
     }
 }

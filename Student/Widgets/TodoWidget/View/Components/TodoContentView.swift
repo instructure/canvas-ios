@@ -74,8 +74,8 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
                 Link(destination: logoRoute) {
                     logoView
                 }
-                .accessibilityLabel(String(localized: "Canvas Todo Widget"))
-                .accessibilityHint(Text("Tap to view full list of Todos"))
+                .accessibilityLabel(Text("Canvas To-do Widget"))
+                .accessibilityHint(Text("Double tap to view full list of to-dos"))
             } else {
                 logoView
             }

@@ -40,7 +40,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
-    private lazy var widgetRouter = TodoWidgetRouter.make()
+    private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
@@ -455,7 +455,7 @@ extension StudentAppDelegate {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
 
                 if let url = comps,
-                   self.widgetRouter.handling(url, in: self.window, env: self.environment) {
+                   self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) {
                     return
                 }
 

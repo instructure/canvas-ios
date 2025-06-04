@@ -31,7 +31,7 @@ struct TodoEmptyView: View {
                 RouteActionView(
                     icon: .addSolid,
                     url: .addTodoRoute,
-                    accessibilityLabel: String(localized: "Add Todo")
+                    accessibilityLabel: String(localized: "Add To-do")
                 )
             }
         )

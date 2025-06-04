@@ -35,7 +35,9 @@ open class VisibilityObservedViewController: UIViewController {
         isVisible = false
     }
 
-    public func onAppear(_ taskBlock: @escaping () -> Void) {
+    /// Calls the closure one time, either instantly if the ViewController is visible,
+    /// or on the next appearance if not.
+    public func onAppearOnce(_ taskBlock: @escaping () -> Void) {
         if isVisible {
             taskBlock()
         } else {

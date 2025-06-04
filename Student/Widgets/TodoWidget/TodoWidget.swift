@@ -27,8 +27,8 @@ struct TodoWidget: Widget {
             TodoWidgetScreen(model: model.data)
         }
         .contentMarginsDisabled()
-        .configurationDisplayName(String(localized: "Todo", comment: "Name of the todo widget"))
-        .description(String(localized: "View your todo items.", comment: "Description of the todo widget"))
+        .configurationDisplayName(String(localized: "To-do", comment: "Name of the to-do widget"))
+        .description(String(localized: "View your to-do items.", comment: "Description of the to-do widget"))
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }
