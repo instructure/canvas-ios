@@ -36,7 +36,7 @@ extension WidgetRouter {
     private static var plannerNotesListHandler: RouteHandler {
         .init("/todo-widget/planner-notes", action: { _, _, view in
 
-            // Switch to Calendar tab
+            // Switch to To-do tab
             view.selectTab(at: 2)
             view.resetSplitMasterToRoot()
         })
