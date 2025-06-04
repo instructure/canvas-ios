@@ -22,6 +22,9 @@ import Core
 
 struct TodoListView: View {
     @Environment(\.widgetFamily) private var family
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    @ScaledMetric private var scale: CGFloat = 1
 
     private let todoList: TodoList
 
@@ -48,10 +51,11 @@ struct TodoListView: View {
     private var listView: some View {
         VStack(spacing: 5) {
             ForEach(todoList.days) { day in
-                HStack(alignment: .top, spacing: 10) {
+                HStack(alignment: .top, spacing: 8) {
                     TodoDayView(date: day.date)
+                        .scaledFrame(width: 32)
 
-                    VStack(spacing: 8) {
+                    VStack(spacing: 5) {
                         ForEach(day.items) { item in
                             TodoItemView(item: item)
 
@@ -69,7 +73,8 @@ struct TodoListView: View {
             Spacer(minLength: 0)
         }
         .padding([.top, .leading, .trailing], 10)
-        .padding(.bottom, 35)
+        .padding(.bottom, 40 * scale)
+        .containerRelativeFrame(.vertical, alignment: .top)
         .overlay(alignment: .bottom) {
             if todoList.isFullList == false {
                 ViewFullListButton()
@@ -81,7 +86,6 @@ struct TodoListView: View {
 // MARK: - Components
 
 struct ViewFullListButton: View {
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         ZStack {
@@ -102,7 +106,6 @@ struct ViewFullListButton: View {
                     .foregroundStyle(Color.course2)
             }
         }
-        .ignoresSafeArea()
         .frame(maxHeight: 54)
     }
 }
@@ -111,21 +114,16 @@ struct ViewFullListButton: View {
 
 #if DEBUG
 
-struct TodoScreenPreviews: PreviewProvider {
+#Preview("TodoWidgetData", as: .systemMedium) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
+}
 
-    static var previews: some View {
-        let model = TodoModel.make(count: 7)
-
-        TodoListView(todoList: model.todoDays(for: .systemMedium))
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-            .previewDisplayName("Medium Size")
-
-        TodoListView(todoList: model.todoDays(for: .systemLarge))
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
-            .previewDisplayName("Large Size")
-    }
+#Preview("TodoWidgetData", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(count: 7), date: Date())
 }
 
 #endif

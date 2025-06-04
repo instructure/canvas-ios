@@ -36,10 +36,7 @@ struct TodoDayView: View {
                     if isToday {
                         Circle()
                             .stroke(.course2, style: .init(lineWidth: 1))
-                            .frame(
-                                width: 30 * uiScale.iconScale,
-                                height: 30 * uiScale.iconScale
-                            )
+                            .scaledFrame(size: 30, useIconScale: true)
                     }
                     Text(date.formatted(.dateTime.day()))
                         .font(.bold12)
@@ -47,7 +44,6 @@ struct TodoDayView: View {
                 }
             }
         }
-        .frame(minWidth: 34 * uiScale.iconScale)
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(

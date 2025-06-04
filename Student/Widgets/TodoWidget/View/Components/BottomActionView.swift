@@ -70,7 +70,6 @@ struct NoActionView: BottomActionView {
 // MARK: Label View
 
 private struct ActionLabel: View {
-    @ScaledMetric private var uiScale: CGFloat = 1
 
     let icon: Image
 
@@ -78,13 +77,11 @@ private struct ActionLabel: View {
         ZStack {
             Circle()
                 .fill(Color.course2)
-                .frame(width: 32 * uiScale.iconScale)
+                .scaledFrame(width: 32, useIconScale: true)
             icon
-                .resizable()
                 .renderingMode(.template)
+                .scaledIcon(size: 18)
                 .foregroundStyle(Color.backgroundLightest)
-                .frame(width: 18 * uiScale.iconScale, height: 18 * uiScale.iconScale)
         }
-        .frame(minHeight: 32 * uiScale.iconScale)
     }
 }

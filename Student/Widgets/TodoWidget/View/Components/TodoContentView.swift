@@ -22,8 +22,6 @@ import AppIntents
 
 struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
 
-    @ScaledMetric private var uiScale: CGFloat = 1
-
     fileprivate let logoRoute: URL?
     fileprivate let content: () -> Content
     fileprivate let actionView: () -> ActionView
@@ -39,46 +37,43 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
     }
 
     var body: some View {
-        ZStack {
-            content()
-            VStack {
-                topView
-                Spacer()
-
+        content()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .containerRelativeFrame(.vertical, alignment: .top)
+            .overlay(alignment: .topTrailing) {
+                Group {
+                    if let logoRoute {
+                        Link(destination: logoRoute) {
+                            LogoView()
+                        }
+                        .accessibilityLabel(Text("Canvas To-do Widget"))
+                        .accessibilityHint(Text("Double tap to view full list of to-dos"))
+                    } else {
+                        LogoView()
+                    }
+                }
+                .padding(10)
+            }
+            .overlay(alignment: .bottomTrailing) {
                 let aView = actionView()
                 if aView.isVisible {
-                    aView
+                    aView.padding(10)
                 }
             }
-            .padding(10)
-        }
     }
+}
 
-    private var logoView: some View {
+private struct LogoView: View {
+
+    var body: some View {
         ZStack {
             Circle()
                 .fill(Color.backgroundDanger)
-                .frame(width: 32 * uiScale.iconScale)
+                .scaledFrame(width: 32, useIconScale: true)
             Image("student-logomark")
-                .resizable()
                 .renderingMode(.template)
+                .scaledIcon(size: 18)
                 .foregroundStyle(Color.backgroundLightest)
-                .frame(width: 18 * uiScale.iconScale, height: 18 * uiScale.iconScale)
-        }
-    }
-
-    private var topView: some View {
-        HStack {
-            Spacer()
-            if let logoRoute {
-                Link(destination: logoRoute) {
-                    logoView
-                }
-                .accessibilityLabel(Text("Canvas To-do Widget"))
-                .accessibilityHint(Text("Double tap to view full list of to-dos"))
-            } else {
-                logoView
-            }
         }
     }
 }
@@ -104,6 +99,20 @@ extension TodoContentView where ActionView == NoActionView {
     TodoWidget()
 } timeline: {
     let model = TodoModel(error: .fetchingDataFailure)
+    TodoWidgetEntry(data: model, date: Date())
+}
+
+#Preview("TodoWidgetLoggedout", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    let model = TodoModel(isLoggedIn: false)
+    TodoWidgetEntry(data: model, date: Date())
+}
+
+#Preview("TodoWidgetEmpty", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    let model = TodoModel(items: [])
     TodoWidgetEntry(data: model, date: Date())
 }
 
