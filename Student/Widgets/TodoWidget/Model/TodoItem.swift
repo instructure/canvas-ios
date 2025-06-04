@@ -39,7 +39,7 @@ struct TodoItem: Identifiable, Equatable {
         self.date = date
 
         self.title = plannable.title ?? ""
-        self.contextName = plannable.contextName ?? ""
+        self.contextName = plannable.contextName ?? String(localized: "To Do")
         self.htmlURL = plannable.htmlURL
 
         self.color = plannable.color.asColor
