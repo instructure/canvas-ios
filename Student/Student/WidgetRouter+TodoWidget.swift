@@ -49,6 +49,13 @@ extension WidgetRouter {
             view.selectTab(at: 1)
             view.resetSplitMasterToRoot()
 
+            // Preselect Today
+            if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
+                calendarVC.onAppearOnce {
+                    calendarVC.selectDate(Clock.now)
+                }
+            }
+
             let weakVC = WeakViewController()
             let vc = PlannerAssembly.makeCreateToDoViewController(
                 selectedDate: Clock.now,
@@ -68,7 +75,7 @@ extension WidgetRouter {
     }
 
     private static var plannerNoteDetailHandler: RouteHandler {
-        .init("/todo-widget/planner-notes/:plannableId", action: { _, params, view in
+        .init("/todo-widget/planner-notes/:plannableId", action: { url, params, view in
             guard let plannableId = params["plannableId"] else { return }
 
             // Switch to Calendar tab
@@ -79,6 +86,7 @@ extension WidgetRouter {
 
             if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
                 calendarVC.onAppearOnce {
+                    preselectDatePageIfPossible(url, in: calendarVC)
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
@@ -92,7 +100,7 @@ extension WidgetRouter {
     }
 
     private static var calendarEventHandler: RouteHandler {
-        .init("/todo-widget/calendar_events/:eventId", action: { _, params, view in
+        .init("/todo-widget/calendar_events/:eventId", action: { url, params, view in
             guard let eventID = params["eventId"] else { return }
 
             // Switch to Calendar tab
@@ -103,6 +111,7 @@ extension WidgetRouter {
 
             if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
                 calendarVC.onAppearOnce {
+                    preselectDatePageIfPossible(url, in: calendarVC)
                     view.env.router.show(controller, from: calendarVC, options: .detail)
                 }
             } else {
@@ -140,6 +149,7 @@ extension WidgetRouter {
             if let plannerVC = view.selectedTabMasterRootController as? PlannerViewController {
 
                 plannerVC.onAppearOnce {
+                    preselectDatePageIfPossible(url, in: plannerVC)
                     view.env.router.route(
                         to: url.settingOrigin("calendar"),
                         from: plannerVC,
@@ -176,5 +186,12 @@ extension WidgetRouter {
                 plannerVC.selectDate(date)
             }
         })
+    }
+
+    private static func preselectDatePageIfPossible(_ url: URLComponents, in plannerVC: PlannerViewController) {
+        if let dateString = url.queryValue(for: "todo_date")?.removingPercentEncoding,
+           let date = try? Date(dateString, strategy: .queryDayDateStyle) {
+            plannerVC.selectDate(date)
+        }
     }
 }

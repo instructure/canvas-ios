@@ -33,7 +33,7 @@ extension Assignment {
 
 extension TodoItem {
     var route: URL {
-        let url = switch type {
+        var url = switch type {
         case .calendar_event:
             URL.todoWidgetRoute("todo-widget/calendar_events/\(id)")
         case .planner_note:
@@ -41,6 +41,15 @@ extension TodoItem {
         default:
             htmlURL?.appendingOrigin("todo-widget") ?? .appEmptyRoute
         }
+
+        if let dateString = date
+            .formatted(.queryDayDateStyle)
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            url.append(queryItems: [
+                URLQueryItem(name: "todo_date", value: dateString)
+            ])
+        }
+
         return url
     }
 }
