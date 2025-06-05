@@ -24,14 +24,16 @@ extension WidgetRouter {
     static func createTodoRouter() -> WidgetRouter {
         WidgetRouter(originValue: "todo-widget", handlers: [
             plannerNotesListHandler,
+            calendarDayHandler,
             newPlannerNoteHandler,
-            plannerNoteDetailHandler,
+            plannerNoteHandler,
             calendarEventHandler,
             assignmentHandler,
-            assignmentWithSubmissionHandler,
-            calendarDayHandler
+            assignmentWithSubmissionHandler
         ])
     }
+
+    // MARK: - ToDos screen
 
     private static var plannerNotesListHandler: RouteHandler {
         .init("/todo-widget/planner-notes", action: { _, _, view in
@@ -42,6 +44,31 @@ extension WidgetRouter {
             view.resetSplitMasterToRoot()
         })
     }
+
+    // MARK: - Calendar screen
+
+    private static var calendarDayHandler: RouteHandler {
+        .init("/todo-widget/calendar/:date", action: { _, params, view in
+            guard
+                let dateString = params["date"]?.removingPercentEncoding,
+                let date = try? Date(dateString, strategy: .queryDayDateStyle)
+            else { return }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
+
+            // Switch to Calendar tab
+            view.selectTab(at: 1)
+            view.resetSplitMasterToRoot()
+
+            guard let plannerVC = view.selectedTabMasterRootController as? PlannerViewController
+            else { return }
+
+            plannerVC.onAppearOnce {
+                plannerVC.selectDate(date)
+            }
+        })
+    }
+
+    // MARK: - Add screens
 
     private static var newPlannerNoteHandler: RouteHandler {
         .init("/todo-widget/planner-notes/new", action: { _, _, view in
@@ -76,29 +103,15 @@ extension WidgetRouter {
         })
     }
 
-    private static var plannerNoteDetailHandler: RouteHandler {
+    // MARK: - Detail screens
+
+    private static var plannerNoteHandler: RouteHandler {
         .init("/todo-widget/planner-notes/:plannableId", action: { url, params, view in
             guard let plannableId = params["plannableId"] else { return }
             Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
-            // Switch to Calendar tab
-            view.selectTab(at: 1)
-            view.resetSplitMasterToRoot()
-
-            let controller = PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
-
-            if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
-                calendarVC.onAppearOnce {
-                    preselectDatePageIfPossible(url, in: calendarVC)
-                    view.env.router.show(controller, from: calendarVC, options: .detail)
-                }
-            } else {
-                view.env.router.show(
-                    controller,
-                    from: view.tabController,
-                    options: .modal(isDismissable: true, embedInNav: true)
-                )
-            }
+            let detailsVC = PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
+            showDetailsOnCalendarTab(detailsVC, url: url, view: view)
         })
     }
 
@@ -107,92 +120,69 @@ extension WidgetRouter {
             guard let eventID = params["eventId"] else { return }
             Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
-            // Switch to Calendar tab
-            view.selectTab(at: 1)
-            view.resetSplitMasterToRoot()
-
-            let controller = PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
-
-            if let calendarVC = view.selectedTabMasterRootController as? PlannerViewController {
-                calendarVC.onAppearOnce {
-                    preselectDatePageIfPossible(url, in: calendarVC)
-                    view.env.router.show(controller, from: calendarVC, options: .detail)
-                }
-            } else {
-                view.env.router.show(
-                    controller,
-                    from: view.tabController,
-                    options: .modal(isDismissable: true, embedInNav: true)
-                )
-            }
+            let detailsVC = PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
+            showDetailsOnCalendarTab(detailsVC, url: url, view: view)
         })
     }
 
     private static var assignmentHandler: RouteHandler {
         .init("/courses/:courseID/assignments/:assignmentID", action: { url, _, view in
             Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
-
-            // Switch to Dashboard tab
-            view.selectTab(at: 0)
-            view.resetSplitMasterToRoot()
-
-            view.env.router.route(
-                to: url,
-                from: view.tabController,
-                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
-            )
+            showDetailsOnCalendarTab(url: url, view: view)
         })
     }
 
     private static var assignmentWithSubmissionHandler: RouteHandler {
         .init("/courses/:courseID/assignments/:assignmentID/submissions/:userID", action: { url, _, view in
             Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
-
-            // Switch to Calendar tab
-            view.selectTab(at: 1)
-            view.resetSplitMasterToRoot()
-
-            if let plannerVC = view.selectedTabMasterRootController as? PlannerViewController {
-
-                plannerVC.onAppearOnce {
-                    preselectDatePageIfPossible(url, in: plannerVC)
-                    view.env.router.route(
-                        to: url.settingOrigin("calendar"),
-                        from: plannerVC,
-                        options: .detail
-                    )
-                }
-
-            } else {
-
-                view.env.router.route(
-                    to: url.settingOrigin("calendar"),
-                    from: view.tabController,
-                    options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
-                )
-            }
+            showDetailsOnCalendarTab(url: url, view: view)
         })
     }
 
-    private static var calendarDayHandler: RouteHandler {
-        .init("/todo-widget/calendar/:date", action: { _, params, view in
-            guard
-                let dateString = params["date"]?.removingPercentEncoding,
-                let date = try? Date(dateString, strategy: .queryDayDateStyle)
-            else { return }
-            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
+    // MARK: - Private helpers
 
-            // Switch to Calendar tab
-            view.selectTab(at: 1)
-            view.resetSplitMasterToRoot()
+    private static func showDetailsOnCalendarTab(_ detailsVC: UIViewController, url: URLComponents, view: WidgetRouter.ViewProxy) {
+        // Switch to Calendar tab
+        view.selectTab(at: 1)
+        view.resetSplitMasterToRoot()
 
-            guard let plannerVC = view.selectedTabMasterRootController as? PlannerViewController
-            else { return }
+        guard let calendarVC = view.selectedTabMasterRootController as? PlannerViewController else {
+            // just a fallback, this should not happen
+            view.env.router.show(
+                detailsVC,
+                from: view.tabController,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
+            return
+        }
 
-            plannerVC.onAppearOnce {
-                plannerVC.selectDate(date)
-            }
-        })
+        calendarVC.onAppearOnce {
+            preselectDatePageIfPossible(url, in: calendarVC)
+            view.env.router.show(detailsVC, from: calendarVC, options: .detail)
+        }
+    }
+
+    private static func showDetailsOnCalendarTab(url: URLComponents, view: WidgetRouter.ViewProxy) {
+        let urlWithOrigin = url.withOrigin("calendar")
+
+        // Switch to Calendar tab
+        view.selectTab(at: 1)
+        view.resetSplitMasterToRoot()
+
+        guard let calendarVC = view.selectedTabMasterRootController as? PlannerViewController else {
+            // just a fallback, this should not happen
+            view.env.router.route(
+                to: urlWithOrigin,
+                from: view.tabController,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
+            return
+        }
+
+        calendarVC.onAppearOnce {
+            preselectDatePageIfPossible(url, in: calendarVC)
+            view.env.router.route(to: urlWithOrigin, from: calendarVC, options: .detail)
+        }
     }
 
     private static func preselectDatePageIfPossible(_ url: URLComponents, in plannerVC: PlannerViewController) {

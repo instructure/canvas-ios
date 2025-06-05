@@ -25,22 +25,24 @@ struct WidgetRouter {
         let env: AppEnvironment
         let tabController: UITabBarController
 
+        var selectedTabSplitController: UISplitViewController? {
+            tabController.selectedViewController as? UISplitViewController
+        }
+
+        var selectedTabMasterController: UINavigationController? {
+            selectedTabSplitController?.masterNavigationController
+        }
+
+        var selectedTabMasterRootController: UIViewController? {
+            selectedTabMasterController?.viewControllers.first
+        }
+
         func selectTab(at index: Int) {
             tabController.selectedIndex = index
         }
 
         func resetSplitMasterToRoot() {
-            (tabController.selectedViewController as? UISplitViewController)?.resetToRoot()
-        }
-
-        var selectedTabMasterController: UINavigationController? {
-            guard let splitController = tabController.selectedViewController as? UISplitViewController
-            else { return nil }
-            return splitController.masterNavigationController
-        }
-
-        var selectedTabMasterRootController: UIViewController? {
-            selectedTabMasterController?.viewControllers.first
+            selectedTabSplitController?.resetToRoot()
         }
     }
 

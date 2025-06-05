@@ -176,7 +176,7 @@ public extension URLComponents {
         queryItems?.first(where: { $0.name == queryName })?.value
     }
 
-    func settingOrigin(_ origin: String) -> URLComponents {
+    func withOrigin(_ origin: String) -> URLComponents {
         var components = self
         var items = queryItems ?? []
 
