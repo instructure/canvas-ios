@@ -220,6 +220,6 @@ class PlannableTests: CoreTestCase {
         // ToDo, with context name
         testee = Plannable.make(from: .make(plannable_type: "planner_note", context_name: TestConstants.contextName))
         XCTAssertEqual(testee.contextName, TestConstants.contextName)
-        XCTAssertEqual(testee.contextNameUserFacing, TestConstants.contextName + " ToDo")
+        XCTAssertEqual(testee.contextNameUserFacing, TestConstants.contextName + " To Do")
     }
 }
