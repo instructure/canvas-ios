@@ -317,10 +317,10 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
     }
 
     func annotationDidFailToSave(error: Error) {
-        annotationToolbarViewModel.saveState = .error
+        annotationToolbarViewModel.didChangeSaveState.send(.error)
     }
 
     func annotationSaveStateChanges(saving: Bool) {
-        annotationToolbarViewModel.saveState = saving ? .saving : .saved
+        annotationToolbarViewModel.didChangeSaveState.send(saving ? .saving : .saved)
     }
 }

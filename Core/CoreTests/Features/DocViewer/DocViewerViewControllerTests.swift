@@ -21,6 +21,7 @@ import PSPDFKit
 import PSPDFKitUI
 import Combine
 @testable import Core
+import TestsFoundation
 
 class DocViewerViewControllerTests: CoreTestCase {
     lazy var controller: DocViewerViewController = {
@@ -254,7 +255,9 @@ class DocViewerViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.annotationDidFailToSave(error: APIDocViewerError.tooBig)
 
-        XCTAssertEqual(controller.annotationToolbarViewModel.saveState, .error)
+        waitUntil(1, shouldFail: true) {
+            controller.annotationToolbarViewModel.saveState == .error
+        }
     }
 
     func testAnnotationSaveStateChanges() {
@@ -264,6 +267,8 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.annotationToolbarViewModel.saveState, .saving)
 
         controller.annotationSaveStateChanges(saving: false)
-        XCTAssertEqual(controller.annotationToolbarViewModel.saveState, .saved)
+        waitUntil(1, shouldFail: true) {
+            controller.annotationToolbarViewModel.saveState == .saved
+        }
     }
 }

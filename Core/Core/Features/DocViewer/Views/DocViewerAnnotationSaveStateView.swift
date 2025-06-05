@@ -42,8 +42,9 @@ struct DocViewerAnnotationSaveStateView: View {
                     .font(.regular12, lineHeight: .fit)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .id(viewModel.saveState) // This will trigger a transition animation when the state changes
+            .geometryGroup() // To fix the icon and text animating at different speeds
             .transition(.push(from: .bottom))
+            .id(viewModel.saveState) // This will trigger a transition animation when the state changes
         }
         .background(Color.backgroundLightest)
         .foregroundStyle(viewModel.saveState.foregroundColor)
@@ -91,7 +92,7 @@ struct DocViewerAnnotationSaveStateView: View {
             var possibleCases = DocViewerAnnotationToolbarViewModel.State.allCases
             possibleCases.removeAll(where: { $0 == changingViewModel.saveState })
             if let randomState = possibleCases.randomElement() {
-                changingViewModel.saveState = randomState
+                changingViewModel.didChangeSaveState.send(randomState)
             }
         }
         timer.fire() // Trigger once immediately

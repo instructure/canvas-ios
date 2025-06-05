@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import SwiftUI
 
 class DocViewerAnnotationToolbarViewModel: ObservableObject {
@@ -58,7 +59,7 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
     }
 
     @Published private(set) var isOpen: Bool
-    @Published var saveState: State = .saved
+    @Published private(set) var saveState: State = .saved
     var a11yValue: String {
         isOpen ? String(localized: "Open", bundle: .core)
                : String(localized: "Closed", bundle: .core)
@@ -78,21 +79,26 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
     var annotationProvider: DocViewerAnnotationProvider?
     let didTapRetry = PassthroughSubject<Void, Never>()
     let didTapCloseToggle = PassthroughSubject<Void, Never>()
+    let didChangeSaveState = PassthroughSubject<State, Never>()
 
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
     private var userDefaults: SessionDefaults?
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         state: State = .saved,
-        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults
+        userDefaults: SessionDefaults? = AppEnvironment.shared.userDefaults,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.saveState = state
         self.isOpen = userDefaults?.isSpeedGraderAnnotationToolbarVisible ?? true
         self.userDefaults = userDefaults
+        self.scheduler = scheduler
         toggleClosedState(on: didTapCloseToggle)
         retryAnnotationUpload(on: didTapRetry)
+        updateSaveState(on: didChangeSaveState)
     }
 
     private func toggleClosedState(on publisher: PassthroughSubject<Void, Never>) {
@@ -112,6 +118,28 @@ class DocViewerAnnotationToolbarViewModel: ObservableObject {
         publisher
             .sink { [weak self] in
                 self?.annotationProvider?.retryFailedRequest()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func updateSaveState(on publisher: PassthroughSubject<State, Never>) {
+        // `Saving` updates should be displayed instantly on the UI. Better for the user
+        // to get instant feedback on the saving and also throttle don't swallow these events.
+        publisher
+            .filter { $0 == .saving }
+            .sink { [weak self] state in
+                guard let self else { return }
+                self.saveState = state
+            }
+            .store(in: &subscriptions)
+
+        // Small annotations save so fast that the state change animation can't even finish
+        // so we throttle finish events to make the UI more calm.
+        publisher
+            .throttle(for: .seconds(1), scheduler: scheduler, latest: true)
+            .sink { [weak self] state in
+                guard let self else { return }
+                self.saveState = state
             }
             .store(in: &subscriptions)
     }
