@@ -338,6 +338,8 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
 
     private func sendTodoWidgetActivityAnalytics(_ isTodoWidgetActive: Bool) {
         guard var userDefaults: SessionDefaults = environment.userDefaults else { return }
+
+        // We only log any event if the value has changed
         if userDefaults.isTodoWidgetActive != isTodoWidgetActive {
             let eventToLog: TodoWidgetEventNames = isTodoWidgetActive ? .added : .deleted
             Analytics.shared.logEvent(eventToLog.rawValue)
