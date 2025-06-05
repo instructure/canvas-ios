@@ -265,7 +265,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             if widgetInfo.contains(where: { configuration in
                 return configuration.kind == "TodoWidget"
             }) {
-                Analytics.shared.logEvent(TodoWidgetEventNames.added.rawValue)
+                Analytics.shared.logEvent(TodoWidgetEventNames.active.rawValue)
             }
         }
     }

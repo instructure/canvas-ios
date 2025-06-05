@@ -17,7 +17,7 @@
 //
 
 public enum TodoWidgetEventNames: String {
-    case added = "widget_todo_active"
+    case active = "widget_todo_active"
     case deleted = "widget_todo_deleted"
     case create = "widget_todo_create_action"
     case openItem = "widget_todo_open_item_action"
