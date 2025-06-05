@@ -27,6 +27,8 @@ class TodoWidgetProvider: TimelineProvider {
     private var refreshDate: Date { Date().addingTimeInterval(.widgetRefresh) }
     private var fetchSubscription: AnyCancellable?
 
+    // MARK: - TimelineProvider Protocol
+
     func placeholder(in context: TimelineProvider.Context) -> Entry { .publicPreview }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping @Sendable (TodoWidgetEntry) -> Void) {
@@ -50,7 +52,9 @@ class TodoWidgetProvider: TimelineProvider {
         if fetchSubscription != nil { return }
 
         setupEnvironment(with: session)
-        fetchSubscription = fetch(for: session)
+        /// The interactor needs to be created here, after the session is setup
+        let interactor = PlannerAssembly.makeFilterInteractor(observedUserId: nil)
+        fetchSubscription = fetch(interactor: interactor)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] timeline in
                 completion(timeline)
@@ -58,62 +62,59 @@ class TodoWidgetProvider: TimelineProvider {
             }
     }
 
+    // MARK: - Private
+
     private func setupEnvironment(with session: LoginSession) {
         env.app = .student // Otherwise getPlannables never completes
         env.userDidLogin(session: session, isSilent: true)
     }
 
-    private func fetch(for session: LoginSession) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
+    private func fetch(
+        interactor: CalendarFilterInteractor
+    ) -> AnyPublisher<Timeline<TodoWidgetEntry>, Never> {
         let env = env
-        let colors = ReactiveStore(useCase: GetCustomColors(), environment: env)
-        let courses = ReactiveStore(useCase: GetCourses(showFavorites: false, perPage: 100), environment: env)
+        return interactor
+            .load(ignoreCache: false)
+            .flatMap {
+                interactor.selectedContexts
+                    .first()
+                    .setFailureType(to: Error.self)
+            }
+            .flatMap { contexts in
+                let contextCodes = contexts.map(\.canvasContextID)
+                let start = Clock.now.startOfDay()
+                let end = start.addDays(28)
 
-        return Publishers.CombineLatest(
-            colors.getEntities(),
-            courses.getEntities(loadAllPages: true)
-        )
-        .flatMap { _, courses in
-            let courses = courses.filter { $0.isPublished }
-            let favoriteCourses = courses.filter { $0.isFavorite }
-            let coursesToMap = favoriteCourses.isNotEmpty ? favoriteCourses : courses
-            var contextCodesToFetch = coursesToMap.map(\.canvasContextID)
+                return ReactiveStore(
+                    useCase: GetPlannables(
+                        startDate: start,
+                        endDate: end,
+                        contextCodes: contextCodes
+                    ),
+                    environment: env
+                )
+                .getEntities()
+            }
+            .map { plannables in
+                let todoItems = plannables
+                    .filter {
+                        $0.plannableType != .announcement && $0.plannableType != .assessment_request
+                    }
+                    .compactMap(TodoItem.init)
 
-            let userContext = Core.Context(.user, id: session.userID)
-            contextCodesToFetch.append(userContext.canvasContextID)
-
-            let start = Clock.now.startOfDay()
-            let end = start.addDays(28)
-
-            return ReactiveStore(
-                useCase: GetPlannables(
-                    startDate: start,
-                    endDate: end,
-                    contextCodes: contextCodesToFetch
-                ),
-                environment: env
-            )
-            .getEntities()
-        }
-        .map { plannables in
-            let todoItems = plannables
-                .filter {
-                    $0.plannableType != .announcement && $0.plannableType != .assessment_request
-                }
-                .compactMap(TodoItem.init)
-
-            let model = TodoModel(items: todoItems)
-            let entry = TodoWidgetEntry(data: model, date: Clock.now)
-            let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
-            return Timeline(entries: [entry], policy: .after(refreshDate))
-        }
-        .catch { _ in
-            let model = TodoModel(error: .fetchingDataFailure)
-            let entry = TodoWidgetEntry(data: model, date: Clock.now)
-            let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
-            return Just(
-                Timeline(entries: [entry], policy: .after(recoveryDate))
-            )
-        }
-        .eraseToAnyPublisher()
+                let model = TodoModel(items: todoItems)
+                let entry = TodoWidgetEntry(data: model, date: Clock.now)
+                let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
+                return Timeline(entries: [entry], policy: .after(refreshDate))
+            }
+            .catch { error in
+                let model = TodoModel(error: .fetchingDataFailure)
+                let entry = TodoWidgetEntry(data: model, date: Clock.now)
+                let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
+                return Just(
+                    Timeline(entries: [entry], policy: .after(recoveryDate))
+                )
+            }
+            .eraseToAnyPublisher()
     }
 }
