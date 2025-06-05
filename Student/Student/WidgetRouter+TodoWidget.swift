@@ -37,6 +37,7 @@ extension WidgetRouter {
 
     private static var plannerNotesListHandler: RouteHandler {
         .init("/todo-widget/planner-notes", action: { _, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.openTodos.rawValue)
 
             // Switch to To-do tab
             view.selectTab(at: 2)
@@ -52,6 +53,7 @@ extension WidgetRouter {
                 let dateString = params["date"]?.removingPercentEncoding,
                 let date = try? Date(dateString, strategy: .queryDayDateStyle)
             else { return }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             // Switch to Calendar tab
             view.selectTab(at: 1)
@@ -70,6 +72,7 @@ extension WidgetRouter {
 
     private static var newPlannerNoteHandler: RouteHandler {
         .init("/todo-widget/planner-notes/new", action: { _, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.create.rawValue)
 
             // Switch to Calendar tab
             view.selectTab(at: 1)
@@ -105,6 +108,7 @@ extension WidgetRouter {
     private static var plannerNoteHandler: RouteHandler {
         .init("/todo-widget/planner-notes/:plannableId", action: { url, params, view in
             guard let plannableId = params["plannableId"] else { return }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             let detailsVC = PlannerAssembly.makeToDoDetailsViewController(plannableId: plannableId)
             showDetailsOnCalendarTab(detailsVC, url: url, view: view)
@@ -114,6 +118,7 @@ extension WidgetRouter {
     private static var calendarEventHandler: RouteHandler {
         .init("/todo-widget/calendar_events/:eventId", action: { url, params, view in
             guard let eventID = params["eventId"] else { return }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             let detailsVC = PlannerAssembly.makeEventDetailsViewController(eventId: eventID)
             showDetailsOnCalendarTab(detailsVC, url: url, view: view)
@@ -122,12 +127,14 @@ extension WidgetRouter {
 
     private static var assignmentHandler: RouteHandler {
         .init("/courses/:courseID/assignments/:assignmentID", action: { url, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
             showDetailsOnCalendarTab(url: url, view: view)
         })
     }
 
     private static var assignmentWithSubmissionHandler: RouteHandler {
         .init("/courses/:courseID/assignments/:assignmentID/submissions/:userID", action: { url, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
             showDetailsOnCalendarTab(url: url, view: view)
         })
     }
