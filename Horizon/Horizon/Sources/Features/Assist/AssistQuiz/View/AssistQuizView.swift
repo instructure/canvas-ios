@@ -32,7 +32,7 @@ struct AssistQuizView: View {
                 answerOptions
             }
             .animation(.smooth, value: viewModel.didSubmitQuiz)
-            .paddingStyle(.all, .standard)
+            .padding(.huiSpaces.space16)
         }
         .scrollBounceBehavior(.basedOnSize)
         .applyHorizonGradient()
@@ -62,8 +62,16 @@ extension AssistQuizView {
     }
 
     private var headerView: some View {
-        AssistTitle {
-            viewModel.dismiss(controller: viewController)
+        HStack {
+            HorizonUI.IconButton(Image.huiIcons.arrowBack, type: .white, isSmall: true) {
+                viewModel.pop(controller: viewController)
+            }
+            Spacer()
+            AssistTitle()
+            Spacer()
+            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
+                viewModel.dismiss(controller: viewController)
+            }
         }
     }
 

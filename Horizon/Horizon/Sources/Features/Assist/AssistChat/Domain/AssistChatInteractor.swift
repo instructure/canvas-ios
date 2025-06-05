@@ -23,8 +23,8 @@ import Foundation
 
 protocol AssistChatInteractor {
     func publish(action: AssistChatAction)
+    func setInitialState()
     var listen: AnyPublisher<AssistChatResponse, Error> { get }
-    var hasAssistChipOptions: Bool { get }
 }
 
 class AssistChatInteractorLive: AssistChatInteractor {
@@ -33,11 +33,13 @@ class AssistChatInteractorLive: AssistChatInteractor {
     private let cedarDomainService: DomainService
     private let downloadFileInteractor: DownloadFileInteractor?
     private let pineDomainService: DomainService
-    var hasAssistChipOptions: Bool = false
 
     // MARK: - Private
 
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
+    private var pageContextPublisher: AnyPublisher<AssistChatPageContext, Error>?
+    private let initialStatePublisher = PassthroughSubject<Void, Never>()
+    private var actionCancellable: AnyCancellable?
     private let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     private let responsePublisher = PassthroughSubject<AssistChatResponse, Error>()
     private var subscriptions = Set<AnyCancellable>()
@@ -59,7 +61,6 @@ class AssistChatInteractorLive: AssistChatInteractor {
             cedarDomainService: cedarDomainService,
             pineDomainService: pineDomainService
         )
-        hasAssistChipOptions = true
     }
 
     /// Initializes the interactor when viewing a file for context
@@ -91,31 +92,24 @@ class AssistChatInteractorLive: AssistChatInteractor {
         self.cedarDomainService = cedarDomainService
         self.pineDomainService = pineDomainService
         self.downloadFileInteractor = downloadFileInteractor
-
-        Publishers.CombineLatest3(
-            actionPublisher.setFailureType(to: Error.self),
-            pageContextPublisher ?? Just(AssistChatPageContext()).setFailureType(to: Error.self).eraseToAnyPublisher(),
-            userShortNamePublisher
-        )
-        .flatMap { [weak self] action, pageContext, userShortName in
-            guard let self = self,
-                let action = action
-            else {
-                return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+        self.pageContextPublisher = pageContextPublisher
+        unowned let unownedSelf = self
+        initialStatePublisher
+            .flatMap { unownedSelf.prepareCombinedPublisher() }
+            .flatMap { context, userShortName in
+                unownedSelf.actionHandler(
+                    action: .chat(prompt: "", history: []),
+                    pageContext: context,
+                    userShortName: userShortName
+                )
             }
-            return self.actionHandler(
-                action: action,
-                pageContext: pageContext,
-                userShortName: userShortName
+            .sink(
+                receiveCompletion: { _ in},
+                receiveValue: { [weak self]  response in
+                    self?.responsePublisher.send(response)
+                }
             )
-        }
-        .sink(
-            receiveCompletion: { _ in },
-            receiveValue: { [weak self] response in
-                self?.responsePublisher.send(response)
-            }
-        )
-        .store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
 
     // MARK: - Inputs
@@ -123,6 +117,37 @@ class AssistChatInteractorLive: AssistChatInteractor {
     /// Publishes a new user action to the interactor
     func publish(action: AssistChatAction) {
         actionPublisher.accept(action)
+        unowned let unownedSelf = self
+        actionCancellable = actionPublisher
+            .compactMap { $0 }
+            .flatMap { action in
+                unownedSelf.prepareCombinedPublisher()
+                    .map { (action, $0.0, $0.1) }
+            }
+            .flatMap { [weak self] action, pageContext, userShortName in
+                guard let self = self
+                else {
+                    return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+                }
+                return self.actionHandler(
+                    action: action,
+                    pageContext: pageContext,
+                    userShortName: userShortName
+                )
+            }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] response in
+                    self?.responsePublisher.send(response)
+                }
+            )
+    }
+
+    func setInitialState() {
+        // Cancel any previously triggered API calls.
+        actionCancellable?.cancel()
+        actionCancellable = nil
+        initialStatePublisher.send(())
     }
 
     /// Subscribe to the responses from the interactor
@@ -132,6 +157,15 @@ class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     // MARK: - Private
+
+    private func prepareCombinedPublisher() -> AnyPublisher<(AssistChatPageContext, String), Error> {
+        let contextPublisher = pageContextPublisher ?? Just(AssistChatPageContext())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+
+        return Publishers.CombineLatest(contextPublisher, userShortNamePublisher)
+            .eraseToAnyPublisher()
+    }
 
     /// When a new action comes in from the user, this function starts processing it
     private func actionHandler(
@@ -157,10 +191,10 @@ class AssistChatInteractorLive: AssistChatInteractor {
             return buildInitialResponse(for: pageContext, with: userShortName)
                 .eraseToAnyPublisher()
         }
-
+        unowned let unownedSelf = self
         return publish(using: action, with: userShortName)
             .flatMap { newHistory in
-                self.classifier(
+                unownedSelf.classifier(
                     prompt: prompt,
                     pageContext: pageContext,
                     userShortName: userShortName,
@@ -168,7 +202,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
                     history: newHistory
                 )
                 .flatMap { classification in
-                    self.handleClassifierPromptResponse(
+                    unownedSelf.handleClassifierPromptResponse(
                         classification: classification,
                         action: action,
                         pageContext: pageContext,
@@ -525,6 +559,8 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     )
     .setFailureType(to: Error.self)
     .eraseToAnyPublisher()
+
+    func setInitialState() {}
 }
 
 extension API {
