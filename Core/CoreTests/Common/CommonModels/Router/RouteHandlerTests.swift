@@ -21,8 +21,8 @@ import XCTest
 
 class RouteHandlerTests: XCTestCase {
     func testSegments() {
-        let route = RouteHandler("/a//b/:c/d/*e") { _, _, _ in return nil }
-        XCTAssertEqual(route.segments, [
+        let handler = RouteHandler("/a//b/:c/d/*e") { _, _, _ in return nil }
+        XCTAssertEqual(handler.route.segments, [
             .literal("a"),
             .literal("b"),
             .param("c"),
@@ -32,42 +32,42 @@ class RouteHandlerTests: XCTestCase {
     }
 
     func testMatch() {
-        let route = RouteHandler("/a//b/:c/d/*e") { _, _, _ in return nil }
-        XCTAssertEqual(route.match(.parse("/api/v1/a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")), [
+        let handler = RouteHandler("/a//b/:c/d/*e") { _, _, _ in return nil }
+        XCTAssertEqual(handler.match(.parse("/api/v1/a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")), [
             "c": "c",
             "e": "e/f/g"
         ])
     }
 
     func testMatchTooShort() {
-        let route = RouteHandler("/a//b/:c/d") { _, _, _ in return UIViewController() }
-        XCTAssertNil(route.match(.parse("a/b/c")))
+        let handler = RouteHandler("/a//b/:c/d") { _, _, _ in return UIViewController() }
+        XCTAssertNil(handler.match(.parse("a/b/c")))
     }
 
     func testMatchTooLong() {
-        let route = RouteHandler("/a//b/:c/d") { _, _, _ in return UIViewController() }
-        XCTAssertNil(route.match(.parse("a/b/c/d/e")))
+        let handler = RouteHandler("/a//b/:c/d") { _, _, _ in return UIViewController() }
+        XCTAssertNil(handler.match(.parse("a/b/c/d/e")))
     }
 
     func testMatchNone() {
-        let route = RouteHandler("a") { _, _, _ in return UIViewController() }
-        XCTAssertNil(route.match(.parse("b")))
+        let handler = RouteHandler("a") { _, _, _ in return UIViewController() }
+        XCTAssertNil(handler.match(.parse("b")))
     }
 
     func testMatchRoute() {
-        let route = RouteHandler("/courses") { _, _, _ in return UIViewController() }
-        XCTAssertNotNil(route.match(.parse("courses")))
+        let handler = RouteHandler("/courses") { _, _, _ in return UIViewController() }
+        XCTAssertNotNil(handler.match(.parse("courses")))
     }
 
     func testTildeIDExpansion() {
-        let route = RouteHandler(":contextID") { _, _, _ in return UIViewController() }
-        let parts = route.match(.parse("1234~5678"))
+        let handler = RouteHandler(":contextID") { _, _, _ in return UIViewController() }
+        let parts = handler.match(.parse("1234~5678"))
         XCTAssertEqual(parts?["contextID"], "12340000000005678")
     }
 
     func testTildeIDRoute() {
-        let route = RouteHandler("/courses/:courseID/quizzes/:quizID") { _, _, _ in return UIViewController() }
-        let parts = route.match(.parse("courses/1234~5678/quizzes/1234~567"))
+        let handler = RouteHandler("/courses/:courseID/quizzes/:quizID") { _, _, _ in return UIViewController() }
+        let parts = handler.match(.parse("courses/1234~5678/quizzes/1234~567"))
         XCTAssertEqual(parts?["courseID"], "12340000000005678")
         XCTAssertEqual(parts?["quizID"], "12340000000000567")
     }

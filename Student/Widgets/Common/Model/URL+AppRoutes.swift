@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import Foundation
+import Core
 
-private let scheme = "canvas-courses://"
-private var host: String? { AppEnvironment.shared.currentSession?.baseURL.host }
-private let defaultRoute = URL(string: scheme)!
+extension URL {
 
-extension Course {
-    var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(id)/grades")!
+    static var appEmptyRoute: URL {
+        appRoute("")
     }
-}
 
-extension Assignment {
-    var route: URL {
-        guard let host = host else { return defaultRoute }
-        return URL(string: "\(scheme)\(host)/courses/\(courseID)/assignments/\(id)")!
+    static func appRoute(_ path: String) -> URL {
+        var urlComps = URLComponents()
+        urlComps.scheme = "canvas-courses"
+        urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
+        urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        return urlComps.url ?? URL(filePath: "/")
+    }
+
+    static func todoWidgetRoute(_ path: String) -> URL {
+        appRoute(path).appendingOrigin("todo-widget")
     }
 }

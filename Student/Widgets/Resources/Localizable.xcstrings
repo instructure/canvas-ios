@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add To-do" : {
+
+    },
     "American literature IV" : {
       "comment" : "Example course name",
       "localizations" : {
@@ -1799,6 +1802,9 @@
         }
       }
     },
+    "Canvas To-do Widget" : {
+
+    },
     "Course Grades" : {
       "localizations" : {
         "ar" : {
@@ -2054,6 +2060,9 @@
           }
         }
       }
+    },
+    "Double tap to view full list of to-dos" : {
+
     },
     "Essay #1: The Rocky Planets" : {
       "comment" : "Example exam name",
@@ -3340,6 +3349,12 @@
         }
       }
     },
+    "Let's Get You Logged In!" : {
+
+    },
+    "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
+
+    },
     "No Announcements" : {
       "localizations" : {
         "ar" : {
@@ -3851,6 +3866,9 @@
           }
         }
       }
+    },
+    "Oops! Something Went Wrong" : {
+
     },
     "Please log in via the application" : {
       "localizations" : {
@@ -4364,6 +4382,15 @@
           }
         }
       }
+    },
+    "Reload" : {
+
+    },
+    "Reload Widget" : {
+
+    },
+    "Reloading Widget" : {
+
     },
     "Susan Jorgenson" : {
       "comment" : "Example author name",
@@ -4879,6 +4906,18 @@
         }
       }
     },
+    "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
+
+    },
+    "To-do" : {
+      "comment" : "Name of the to-do widget"
+    },
+    "Today, " : {
+
+    },
+    "View Full List" : {
+
+    },
     "View the latest announcements from your courses." : {
       "comment" : "Description of the announcements widget",
       "localizations" : {
@@ -5392,6 +5431,15 @@
           }
         }
       }
+    },
+    "View your to-do items." : {
+      "comment" : "Description of the to-do widget"
+    },
+    "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app." : {
+
+    },
+    "You’re all done for now!" : {
+
     },
     "Zoo Field Trip!" : {
       "comment" : "Example announcement title",

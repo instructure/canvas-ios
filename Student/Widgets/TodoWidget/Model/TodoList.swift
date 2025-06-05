@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import WidgetKit
+import Foundation
 
-@main
-struct Widgets: WidgetBundle {
+struct TodoList {
+    let days: [TodoDay]
+    let isFullList: Bool
+}
 
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        GradesWidget()
-        TodoWidget()
-    }
+struct TodoDay: Identifiable {
+    let date: Date
+    let items: [TodoItem]
+    var id: Double { date.timeIntervalSince1970 }
 }

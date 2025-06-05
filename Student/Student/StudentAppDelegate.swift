@@ -23,6 +23,7 @@ import Firebase
 import PSPDFKit
 import UIKit
 import UserNotifications
+import WidgetKit
 
 @UIApplicationMain
 class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
@@ -40,6 +41,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
+    private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
         .init(environment: environment)
@@ -256,6 +258,17 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             }
         }
     }
+
+    func checkForTodoWidgetPresence() {
+        WidgetCenter.shared.getCurrentConfigurations { result in
+            guard result.isSuccess, let widgetInfo = result.value else { return }
+            if widgetInfo.contains(where: { configuration in
+                return configuration.kind == "TodoWidget"
+            }) {
+                Analytics.shared.logEvent(TodoWidgetEventNames.active.rawValue)
+            }
+        }
+    }
 }
 
 // MARK: - Push notifications
@@ -313,7 +326,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
 
         if isTrackingEnabled {
-            analyticsTracker.startSession()
+            analyticsTracker.startSession(completion: checkForTodoWidgetPresence)
         } else {
             analyticsTracker.endSession()
         }
@@ -452,6 +465,12 @@ extension StudentAppDelegate {
                 }
             } else if let from = self.environment.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
+
+                if let url = comps,
+                   self.todoWidgetRouter.handling(url, in: self.window, env: self.environment) {
+                    return
+                }
+
                 comps?.originIsNotification = true
                 AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))
             }

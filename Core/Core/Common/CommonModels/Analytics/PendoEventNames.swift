@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import WidgetKit
-
-@main
-struct Widgets: WidgetBundle {
-
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        GradesWidget()
-        TodoWidget()
-    }
+public enum TodoWidgetEventNames: String {
+    case active = "widget_todo_active"
+    case deleted = "widget_todo_deleted"
+    case create = "widget_todo_create_action"
+    case openItem = "widget_todo_open_item_action"
+    case openTodos = "widget_todo_open_todos_action"
+    case refresh = "widget_todo_refresh_action"
 }
