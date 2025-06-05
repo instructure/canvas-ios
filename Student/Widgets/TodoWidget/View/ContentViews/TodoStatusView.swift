@@ -21,6 +21,7 @@ import SwiftUI
 
 struct TodoStatusView: View {
     @Environment(\.widgetFamily) private var family
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let status: TodoStatusState
 

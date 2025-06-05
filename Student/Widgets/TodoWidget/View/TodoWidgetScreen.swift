@@ -22,6 +22,7 @@ import SwiftUI
 struct TodoWidgetScreen: View {
 
     @Environment(\.widgetFamily) private var family
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let model: TodoModel
 

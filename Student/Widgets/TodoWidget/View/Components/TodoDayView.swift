@@ -21,27 +21,31 @@ import Core
 import WidgetKit
 
 struct TodoDayView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     let date: Date
 
     var body: some View {
         Link(destination: .calendarDayRoute(date)) {
-            VStack(spacing: 3) {
+            VStack(spacing: 0) {
                 Text(date.formatted(.dateTime.weekday()))
                     .font(.regular12)
-                    .foregroundStyle(isToday ? .course2 : .textDark)
-                ZStack {
-                    if isToday {
-                        Circle()
-                            .stroke(.course2, style: .init(lineWidth: 1))
-                            .frame(width: 30, height: 30)
+                    .foregroundStyle(isToday ? .brandPrimary : .textDark)
+
+                Text(date.formatted(.dateTime.day()))
+                    .font(.bold12)
+                    .foregroundStyle(isToday ? .brandPrimary : .textDark)
+                    .padding(.vertical, isToday ? 13 : 4)
+                    .frame(minWidth: 32)
+                    .overlay {
+                        if isToday {
+                            Circle()
+                                .stroke(.brandPrimary, style: .init(lineWidth: 1))
+                        }
                     }
-                    Text(date.formatted(.dateTime.day()))
-                        .font(.bold12)
-                        .foregroundStyle(isToday ? .course2 : .textDark)
-                }
             }
         }
-        .frame(minWidth: 34)
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(
@@ -57,9 +61,10 @@ struct TodoDayView: View {
 
 #if DEBUG
 
-#Preview {
-    TodoDayView(date: Date())
-    TodoDayView(date: Date().addDays(4))
+#Preview("TodoWidgetData", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
 }
 
 #endif
