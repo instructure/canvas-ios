@@ -52,6 +52,7 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
                         .accessibilitySortPriority(2)
                     } else {
                         LogoView()
+                            .accessibilityHidden(true)
                     }
                 }
                 .padding(10)

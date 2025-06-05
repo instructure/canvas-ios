@@ -73,7 +73,6 @@ struct TodoItemView: View {
             .year()
             .month(.wide)
             .day()
-            .weekday(.wide)
             .hour()
             .minute()
         return item.date.formatted(format)
