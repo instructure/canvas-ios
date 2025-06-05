@@ -54,9 +54,14 @@ class TodoWidgetProvider: TimelineProvider {
         setupEnvironment(with: session)
         /// The interactor needs to be created here, after the session is setup
         let interactor = PlannerAssembly.makeFilterInteractor(observedUserId: nil)
-        fetchSubscription = fetch(interactor: interactor)
+        let getTimeline = fetch(interactor: interactor)
+        let getBrandColors = ReactiveStore(useCase: GetBrandVariables())
+            .getEntities()
+            .replaceError(with: [])
+        fetchSubscription = Publishers.CombineLatest(getTimeline, getBrandColors)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] timeline in
+            .sink { [weak self] (timeline, brandVars) in
+                brandVars.first?.applyBrandTheme()
                 completion(timeline)
                 self?.fetchSubscription = nil
             }
