@@ -17,7 +17,6 @@
 //
 
 import AppIntents
-import Core
 
 struct ReloadWidgetIntent: AppIntent {
     static var title: LocalizedStringResource = "Reload Widget"
