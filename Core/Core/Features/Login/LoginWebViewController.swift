@@ -93,7 +93,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         loginDelegate: LoginDelegate?,
         method: AuthenticationMethod,
         pairingCode: String? = nil,
-        clientID: String? = Secret.appClientID.string // Used for PKCE Login, defaults to Secrets. Can be overriden for testing purposes. 
+        clientID: String? = Secret.appClientID.string // Used for PKCE Login, defaults to Secrets. Can be overriden for testing purposes.
     ) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.title = host

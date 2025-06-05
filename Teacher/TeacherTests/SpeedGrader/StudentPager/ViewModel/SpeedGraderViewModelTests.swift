@@ -19,9 +19,10 @@
 import XCTest
 import CoreData
 import Combine
-import Core
+@testable import Core
 @testable import Teacher
 import TestsFoundation
+import SwiftUI
 
 class SpeedGraderViewModelTests: TeacherTestCase {
     private var testee: SpeedGraderViewModel!
@@ -66,7 +67,7 @@ class SpeedGraderViewModelTests: TeacherTestCase {
 
         XCTAssertEqual(testee.navigationTitle, contextInfo.assignmentName)
         XCTAssertEqual(testee.navigationSubtitle, contextInfo.courseName)
-        XCTAssertEqual(testee.navigationBarColor, .red)
+        XCTAssertEqual(testee.navigationBarColor, UIColor(Color.red))
     }
 
     func test_interactorData_mapsToViewModelData() {
@@ -80,6 +81,18 @@ class SpeedGraderViewModelTests: TeacherTestCase {
 
         // THEN
         XCTAssertTrue(pagesController.children.allSatisfy { $0 is CoreHostingController<SubmissionGraderView> })
+    }
+
+    func test_didTransitionTo_pausesPlayback() {
+        let pagesViewController = MockPagesViewController()
+        let page = UIViewController()
+
+        // WHEN
+        testee.pagesViewController(pagesViewController, didTransitionTo: page)
+
+        // THEN
+        XCTAssertTrue(pagesViewController.webViewPlaybackPaused)
+        XCTAssertTrue(pagesViewController.mediaPlaybackPaused)
     }
 
     // MARK: - User Actions
@@ -133,5 +146,18 @@ private class SpeedGraderInteractorMock: SpeedGraderInteractor {
             submissions: [submission],
             focusedSubmissionIndex: 0
         )
+    }
+}
+
+private class MockPagesViewController: PagesViewController {
+    var webViewPlaybackPaused = false
+    var mediaPlaybackPaused = false
+
+    override func pauseWebViewPlayback() {
+        webViewPlaybackPaused = true
+    }
+
+    override func pauseMediaPlayback() {
+        mediaPlaybackPaused = true
     }
 }

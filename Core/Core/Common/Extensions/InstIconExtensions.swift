@@ -56,6 +56,8 @@ public extension UIImage {
     static var calendarClockSolid: UIImage { UIImage(named: "calendarClockSolid", in: .core, compatibleWith: nil)! }
     static var calendarMonthLine: UIImage { UIImage(named: "calendarMonthLine", in: .core, compatibleWith: nil)! }
     static var calendarMonthSolid: UIImage { UIImage(named: "calendarMonthSolid", in: .core, compatibleWith: nil)! }
+    static var chatLine: UIImage { UIImage(named: "chatLine", in: .core, compatibleWith: nil)! }
+    static var chatSolid: UIImage { UIImage(named: "chatSolid", in: .core, compatibleWith: nil)! }
     static var checkLine: UIImage { UIImage(named: "checkLine", in: .core, compatibleWith: nil)! }
     static var checkSolid: UIImage { UIImage(named: "checkSolid", in: .core, compatibleWith: nil)! }
     static var circleArrowDownLine: UIImage { UIImage(named: "circleArrowDownLine", in: .core, compatibleWith: nil)! }
@@ -142,6 +144,8 @@ public extension UIImage {
     static var moduleSolid: UIImage { UIImage(named: "moduleSolid", in: .core, compatibleWith: nil)! }
     static var moreLine: UIImage { UIImage(named: "moreLine", in: .core, compatibleWith: nil)! }
     static var moreSolid: UIImage { UIImage(named: "moreSolid", in: .core, compatibleWith: nil)! }
+    static var moveEndLine: UIImage { UIImage(named: "moveEndLine", in: .core, compatibleWith: nil)! }
+    static var moveEndSolid: UIImage { UIImage(named: "moveEndSolid", in: .core, compatibleWith: nil)! }
     static var nextUnreadLine: UIImage { UIImage(named: "nextUnreadLine", in: .core, compatibleWith: nil)! }
     static var nextUnreadSolid: UIImage { UIImage(named: "nextUnreadSolid", in: .core, compatibleWith: nil)! }
     static var noLine: UIImage { UIImage(named: "noLine", in: .core, compatibleWith: nil)! }
@@ -182,10 +186,14 @@ public extension UIImage {
     static var replyAllSolid: UIImage { UIImage(named: "replyAllSolid", in: .core, compatibleWith: nil)! }
     static var rubricLine: UIImage { UIImage(named: "rubricLine", in: .core, compatibleWith: nil)! }
     static var rubricSolid: UIImage { UIImage(named: "rubricSolid", in: .core, compatibleWith: nil)! }
+    static var searchLine: UIImage { UIImage(named: "searchLine", in: .core, compatibleWith: nil)! }
+    static var searchSolid: UIImage { UIImage(named: "searchSolid", in: .core, compatibleWith: nil)! }
     static var settingsLine: UIImage { UIImage(named: "settingsLine", in: .core, compatibleWith: nil)! }
     static var settingsSolid: UIImage { UIImage(named: "settingsSolid", in: .core, compatibleWith: nil)! }
     static var sortLine: UIImage { UIImage(named: "sortLine", in: .core, compatibleWith: nil)! }
     static var sortSolid: UIImage { UIImage(named: "sortSolid", in: .core, compatibleWith: nil)! }
+    static var speedGraderLine: UIImage { UIImage(named: "speedGraderLine", in: .core, compatibleWith: nil)! }
+    static var speedGraderSolid: UIImage { UIImage(named: "speedGraderSolid", in: .core, compatibleWith: nil)! }
     static var starLine: UIImage { UIImage(named: "starLine", in: .core, compatibleWith: nil)! }
     static var starSolid: UIImage { UIImage(named: "starSolid", in: .core, compatibleWith: nil)! }
     static var strikethroughLine: UIImage { UIImage(named: "strikethroughLine", in: .core, compatibleWith: nil)! }
@@ -216,9 +224,6 @@ public extension UIImage {
     static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
-
-    static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
-    static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
 
     static var addAudioLine: UIImage { UIImage(named: "addAudioLine", in: .core, compatibleWith: nil)! }
     static var addCameraLine: UIImage { UIImage(named: "addCameraLine", in: .core, compatibleWith: nil)! }
@@ -270,6 +275,8 @@ public extension UIImage {
     static var radioButtonSelected: UIImage { UIImage(named: "radioButtonSelected", in: .core, compatibleWith: nil)! }
     static var radioButtonUnselected: UIImage { UIImage(named: "radioButtonUnselected", in: .core, compatibleWith: nil)! }
     static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
+    static var smartSearchLine: UIImage { UIImage(named: "smartSearchLine", in: .core, compatibleWith: nil)! }
+    static var smartSearchSmallLine: UIImage { UIImage(named: "smartSearchSmallLine", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
     static var unionLine: UIImage { UIImage(named: "unionLine", in: .core, compatibleWith: nil)! }
@@ -310,6 +317,8 @@ public extension Image {
     static var calendarClockSolid: Image { Image("calendarClockSolid", bundle: .core) }
     static var calendarMonthLine: Image { Image("calendarMonthLine", bundle: .core) }
     static var calendarMonthSolid: Image { Image("calendarMonthSolid", bundle: .core) }
+    static var chatLine: Image { Image("chatLine", bundle: .core) }
+    static var chatSolid: Image { Image("chatSolid", bundle: .core) }
     static var checkLine: Image { Image("checkLine", bundle: .core) }
     static var checkSolid: Image { Image("checkSolid", bundle: .core) }
     static var circleArrowDownLine: Image { Image("circleArrowDownLine", bundle: .core) }
@@ -396,6 +405,8 @@ public extension Image {
     static var moduleSolid: Image { Image("moduleSolid", bundle: .core) }
     static var moreLine: Image { Image("moreLine", bundle: .core) }
     static var moreSolid: Image { Image("moreSolid", bundle: .core) }
+    static var moveEndLine: Image { Image("moveEndLine", bundle: .core) }
+    static var moveEndSolid: Image { Image("moveEndSolid", bundle: .core) }
     static var nextUnreadLine: Image { Image("nextUnreadLine", bundle: .core) }
     static var nextUnreadSolid: Image { Image("nextUnreadSolid", bundle: .core) }
     static var noLine: Image { Image("noLine", bundle: .core) }
@@ -436,10 +447,14 @@ public extension Image {
     static var replyAllSolid: Image { Image("replyAllSolid", bundle: .core) }
     static var rubricLine: Image { Image("rubricLine", bundle: .core) }
     static var rubricSolid: Image { Image("rubricSolid", bundle: .core) }
+    static var searchLine: Image { Image("searchLine", bundle: .core) }
+    static var searchSolid: Image { Image("searchSolid", bundle: .core) }
     static var settingsLine: Image { Image("settingsLine", bundle: .core) }
     static var settingsSolid: Image { Image("settingsSolid", bundle: .core) }
     static var sortLine: Image { Image("sortLine", bundle: .core) }
     static var sortSolid: Image { Image("sortSolid", bundle: .core) }
+    static var speedGraderLine: Image { Image("speedGraderLine", bundle: .core) }
+    static var speedGraderSolid: Image { Image("speedGraderSolid", bundle: .core) }
     static var starLine: Image { Image("starLine", bundle: .core) }
     static var starSolid: Image { Image("starSolid", bundle: .core) }
     static var strikethroughLine: Image { Image("strikethroughLine", bundle: .core) }
@@ -470,10 +485,6 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
-
-    static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
-    static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }
-
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }
@@ -524,6 +535,8 @@ public extension Image {
     static var radioButtonSelected: Image { Image("radioButtonSelected", bundle: .core) }
     static var radioButtonUnselected: Image { Image("radioButtonUnselected", bundle: .core) }
     static var share: Image { Image("share", bundle: .core) }
+    static var smartSearchLine: Image { Image("smartSearchLine", bundle: .core) }
+    static var smartSearchSmallLine: Image { Image("smartSearchSmallLine", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
     static var unionLine: Image { Image("unionLine", bundle: .core) }

@@ -82,7 +82,7 @@ class SettingsTests: E2ETestCase {
         let landingPageNavBar = SubSettingsHelper.landingPageNavBar.waitUntil(.visible)
         let dashboard = SubSettingsHelper.landingPageMenuItem(item: .dashboard).waitUntil(.visible)
         let calendar = SubSettingsHelper.landingPageMenuItem(item: .calendar).waitUntil(.visible)
-        let toDo = SubSettingsHelper.landingPageMenuItem(item: .toDo).waitUntil(.visible)
+        let toDo = SubSettingsHelper.landingPageMenuItem(item: .todo).waitUntil(.visible)
         let notifications = SubSettingsHelper.landingPageMenuItem(item: .notifications).waitUntil(.visible)
         let inbox = SubSettingsHelper.landingPageMenuItem(item: .inbox).waitUntil(.visible)
         let backButton = SubSettingsHelper.backButton.waitUntil(.visible)

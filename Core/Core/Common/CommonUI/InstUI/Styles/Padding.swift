@@ -146,11 +146,13 @@ extension InstUI.Styles {
 extension View {
 
     @inlinable
-    public func paddingStyle(
-        _ edges: Edge.Set = .all,
-        _ padding: InstUI.Styles.Padding? = nil
-    ) -> some View {
-        self.padding(edges, padding?.rawValue)
+    public func paddingStyle(_ edges: Edge.Set = .all, _ padding: InstUI.Styles.Padding) -> some View {
+        self.padding(edges, padding.rawValue)
+    }
+
+    @inlinable
+    public func paddingStyle(_ padding: InstUI.Styles.Padding) -> some View {
+        self.padding(padding.rawValue)
     }
 
     public func paddingStyle(set: InstUI.Styles.PaddingSet) -> some View {

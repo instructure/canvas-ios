@@ -144,11 +144,23 @@ extension UIView {
         for subview in subviews {
             if let match = subview as? T {
                 result.insert(match)
-            } else {
-                result.formUnion(subview.findAllSubviews(ofType: type))
             }
+            result.formUnion(subview.findAllSubviews(ofType: type))
         }
 
         return result
     }
+
+#if DEBUG
+
+    public func printViewHierarchy(nestingLevel: Int = 0) {
+        let prefix = (nestingLevel == 0) ? "" : String(repeating: " ", count: nestingLevel * 4).appending("|-")
+        print("\(prefix)\(type(of: self))")
+
+        for subview in subviews {
+            subview.printViewHierarchy(nestingLevel: nestingLevel + 1)
+        }
+    }
+
+#endif
 }

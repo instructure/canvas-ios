@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
+public struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
     // MARK: - Dependencies
 
     private let size: CGFloat
@@ -37,7 +37,7 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
         self.color = color
     }
 
-    func makeBody(configuration: Configuration) -> some View {
+    public func makeBody(configuration: Configuration) -> some View {
         let progress = configuration.fractionCompleted ?? 0
         return ZStack {
             Circle()
@@ -59,7 +59,7 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
     }
 }
 
-extension ProgressViewStyle where Self == DeterminateCircleProgressViewStyle {
+public extension ProgressViewStyle where Self == DeterminateCircleProgressViewStyle {
     static func determinateCircle(
         size: CGFloat = 32,
         lineWidth: CGFloat = 3,

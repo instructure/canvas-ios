@@ -208,15 +208,9 @@ public class CalendarHelper: BaseHelper {
         public static var saveButton: XCUIElement { app.find(label: "Save", type: .button) }
         public static var titleInput: XCUIElement { app.find(id: "Calendar.Todo.title") }
         public static var calendarSelector: XCUIElement { app.find(id: "Calendar.Todo.calendar") }
-        public static var datePickerContainer: XCUIElement { app.find(id: "Calendar.Todo.datePicker") }
 
-        public static var datePicker: XCUIElement {
-            datePickerContainer.find(type: .button).findAll(type: .button, minimumCount: 2)[0]
-        }
-
-        public static var timePicker: XCUIElement {
-            datePickerContainer.find(type: .button).findAll(type: .button, minimumCount: 2)[1]
-        }
+        public static var datePicker: XCUIElement { app.find(id: "Calendar.Todo.datePicker.date") }
+        public static var timePicker: XCUIElement { app.find(id: "Calendar.Todo.datePicker.time") }
 
         public static var detailsInput: XCUIElement { app.find(id: "Calendar.Todo.details") }
 

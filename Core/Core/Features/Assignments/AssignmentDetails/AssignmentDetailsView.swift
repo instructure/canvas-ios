@@ -265,7 +265,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     }
 }
 
-private extension Assignment {
+public extension Assignment {
     var openLtiButtonTitle: String {
         if isQuizLTI {
             String(localized: "Open the Quiz", bundle: .core)

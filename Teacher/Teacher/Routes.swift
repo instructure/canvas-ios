@@ -136,10 +136,18 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        return CoreHostingController(
-            AssignmentDetailsView(env: env, courseID: courseID, assignmentID: assignmentID),
-            env: env
-        )
+
+        if ExperimentalFeature.hideRedesignedSubmissionList.isEnabled {
+            return CoreHostingController(
+                AssignmentDetailsView(env: env, courseID: courseID, assignmentID: assignmentID),
+                env: env
+            )
+        } else {
+            return CoreHostingController(
+                TeacherAssignmentDetailsScreen(env: env, courseID: courseID, assignmentID: assignmentID),
+                env: env
+            )
+        }
     },
     RouteHandler("/courses/:courseID/assignments/:assignmentID/edit") { _, params, _, env in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
@@ -165,27 +173,30 @@ let router = Router(routes: [
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
 
-        return SubmissionListViewController
-            .create(
-                env: env,
-                context: context,
-                assignmentID: assignmentID,
-                filter: filter
-            )
+        return SubmissionListAssembly.makeViewController(
+            env: env,
+            context: context,
+            assignmentID: assignmentID,
+            filter: filter
+        )
     },
 
-    RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, _, env in
+    RouteHandler("/courses/:courseID/gradebook/speed_grader") { url, _, userInfo, env in
         guard
             let context = Context(path: url.path),
             let assignmentId = url.queryValue(for: "assignment_id")
         else { return nil }
 
+        let sortNeedsGradingFirst = (userInfo?[SpeedGraderUserInfoKey.sortNeedsGradingSubmissionsFirst] as? Bool) ?? false
+
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: url.queryValue(for: "student_id"),
-            env: env,
-            filter: [])
+            filter: [],
+            sortNeedsGradingSubmissionsFirst: sortNeedsGradingFirst,
+            env: env
+        )
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { url, params, _, env in
@@ -205,8 +216,10 @@ let router = Router(routes: [
             context: context,
             assignmentId: assignmentId,
             userId: userId,
-            env: env,
-            filter: filter)
+            filter: filter,
+            sortNeedsGradingSubmissionsFirst: false,
+            env: env
+        )
     },
 
     RouteHandler("/courses/:courseID/attendance/:toolID") { _, params, _ in

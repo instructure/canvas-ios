@@ -152,10 +152,6 @@ extension View {
         self
     }
     #endif
-
-    public func identifier(_ id: String) -> some View {
-        accessibility(identifier: id).testID(id)
-    }
 }
 
 extension Text {

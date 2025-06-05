@@ -6919,6 +6919,7 @@
       }
     },
     "Dark Theme" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12808,6 +12809,7 @@
       }
     },
     "Light Theme" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -21003,6 +21005,7 @@
       }
     },
     "System Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

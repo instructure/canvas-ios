@@ -25,7 +25,7 @@ public struct APINotificationPreference: Codable {
     let frequency: NotificationFrequency
 }
 
-public enum NotificationFrequency: String, CaseIterable, Codable {
+public enum NotificationFrequency: String, CaseIterable, Codable, OptionItemIdentifiable {
     case immediately, daily, weekly, never
 
     var name: String {

@@ -248,6 +248,7 @@ public struct Brand: Equatable {
         logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
         logoView.image = headerImage
         logoView.backgroundColor = headerImageBackground
+        logoView.accessibilityElementsHidden = true
         return logoView
     }
 }
