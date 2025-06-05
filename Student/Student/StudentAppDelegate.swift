@@ -88,7 +88,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
 
-        checkForTodoWidgetPresence()
         return true
     }
 
@@ -327,7 +326,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
 
         if isTrackingEnabled {
-            analyticsTracker.startSession()
+            analyticsTracker.startSession(completion: checkForTodoWidgetPresence)
         } else {
             analyticsTracker.endSession()
         }
