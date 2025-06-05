@@ -338,10 +338,10 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
 
     private func sendTodoWidgetActivityAnalytics(_ isTodoWidgetActive: Bool) {
         guard var userDefaults: SessionDefaults = environment.userDefaults else { return }
-        if userDefaults.isTodoWidgetCurrentlyUsed != isTodoWidgetActive {
+        if userDefaults.isTodoWidgetActive != isTodoWidgetActive {
             let eventToLog: TodoWidgetEventNames = isTodoWidgetActive ? .added : .deleted
             Analytics.shared.logEvent(eventToLog.rawValue)
-            userDefaults.isTodoWidgetCurrentlyUsed = isTodoWidgetActive
+            userDefaults.isTodoWidgetActive = isTodoWidgetActive
         }
     }
 }

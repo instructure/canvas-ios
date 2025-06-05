@@ -257,8 +257,8 @@ public struct SessionDefaults: Equatable {
     }
 
     // MARK: - Widgets
-    public var isTodoWidgetCurrentlyUsed: Bool {
-        get { self["isTodoWidgetCurrentlyUsed"] as? Bool ?? false }
-        set { self["isTodoWidgetCurrentlyUsed"] = newValue }
+    public var isTodoWidgetActive: Bool {
+        get { self["isTodoWidgetActive"] as? Bool ?? false }
+        set { self["isTodoWidgetActive"] = newValue }
     }
 }
