@@ -107,7 +107,7 @@ class TodoWidgetProvider: TimelineProvider {
                 let refreshDate = Clock.now.addingTimeInterval(.widgetRefresh)
                 return Timeline(entries: [entry], policy: .after(refreshDate))
             }
-            .catch { error in
+            .catch { _ in
                 let model = TodoModel(error: .fetchingDataFailure)
                 let entry = TodoWidgetEntry(data: model, date: Clock.now)
                 let recoveryDate = Clock.now.addingTimeInterval(.widgetRecover)
