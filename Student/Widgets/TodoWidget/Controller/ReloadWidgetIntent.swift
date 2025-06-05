@@ -24,7 +24,6 @@ struct ReloadWidgetIntent: AppIntent {
     static var description = IntentDescription("Reloading Widget")
     static var isDiscoverable: Bool { false }
     func perform() async throws -> some IntentResult {
-        Analytics.shared.logEvent(TodoWidgetEventNames.refresh.rawValue)
         return .result()
     }
 }

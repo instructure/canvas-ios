@@ -105,9 +105,9 @@ extension TodoWidgetRouter {
 
     private static var plannerNotesListHandler: RouteHandler {
         .init("/todo-widget/planner-notes", action: { _, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.openTodos.rawValue)
             view.selectTab(at: 2)
             view.resetSplitMasterToRoot()
-            Analytics.shared.logEvent(TodoWidgetEventNames.openTodos.rawValue)
         })
     }
 
@@ -140,6 +140,7 @@ extension TodoWidgetRouter {
     private static var plannerNoteDetailHandler: RouteHandler {
         .init("/todo-widget/planner-notes/:plannableId", action: { _, params, view in
             guard let plannableId = params["plannableId"] else { return }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             // Switch to Calendar tab
             view.selectTab(at: 1)
@@ -158,13 +159,13 @@ extension TodoWidgetRouter {
                     options: .modal(isDismissable: true, embedInNav: true)
                 )
             }
-            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
     private static var calendarEventHandler: RouteHandler {
         .init("/todo-widget/calendar_events/:eventId", action: { _, params, view in
             guard let eventID = params["eventId"] else { return }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             // Switch to Calendar tab
             view.selectTab(at: 1)
@@ -183,12 +184,12 @@ extension TodoWidgetRouter {
                     options: .modal(isDismissable: true, embedInNav: true)
                 )
             }
-            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
     private static var assignmentHandler: RouteHandler {
         .init("/courses/:courseID/assignments/:assignmentID", action: { url, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             // Switch to Dashboard tab
             view.selectTab(at: 0)
@@ -199,12 +200,12 @@ extension TodoWidgetRouter {
                 from: view.tabController,
                 options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
             )
-            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
     private static var assignmentWithSubmissionHandler: RouteHandler {
         .init("/courses/:courseID/assignments/:assignmentID/submissions/:userID", action: { url, _, view in
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             // Switch to Calendar tab
             view.selectTab(at: 1)
@@ -228,7 +229,6 @@ extension TodoWidgetRouter {
                     options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
                 )
             }
-            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 
@@ -238,6 +238,7 @@ extension TodoWidgetRouter {
                 let dateString = params["date"]?.removingPercentEncoding,
                 let date = try? Date(dateString, strategy: .queryDayDateStyle)
             else { return }
+            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
 
             // Switch to Calendar tab
             view.selectTab(at: 1)
@@ -249,7 +250,6 @@ extension TodoWidgetRouter {
             plannerVC.onAppearPreferredPerform {
                 plannerVC.selectDate(date)
             }
-            Analytics.shared.logEvent(TodoWidgetEventNames.openItem.rawValue)
         })
     }
 }

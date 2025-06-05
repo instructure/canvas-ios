@@ -23,6 +23,7 @@ import Firebase
 import PSPDFKit
 import UIKit
 import UserNotifications
+import WidgetKit
 
 @UIApplicationMain
 class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
@@ -87,6 +88,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
 
+        checkForTodoWidgetPresence()
         return true
     }
 
@@ -257,6 +259,16 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             }
         }
     }
+
+    func checkForTodoWidgetPresence() {
+        WidgetCenter.shared.getCurrentConfigurations {[weak self] result in
+            guard result.isSuccess, let widgetInfo = result.value else { return }
+            let isTodoWidgetActive = widgetInfo.contains { configuration in
+                return configuration.kind == "TodoWidget"
+            }
+            self?.sendTodoWidgetActivityAnalytics(isTodoWidgetActive)
+        }
+    }
 }
 
 // MARK: - Push notifications
@@ -322,6 +334,15 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
 
     private func disableTracking() {
         analyticsTracker.endSession()
+    }
+
+    private func sendTodoWidgetActivityAnalytics(_ isTodoWidgetActive: Bool) {
+        guard var userDefaults: SessionDefaults = environment.userDefaults else { return }
+        if userDefaults.isTodoWidgetCurrentlyUsed != isTodoWidgetActive {
+            let eventToLog: TodoWidgetEventNames = isTodoWidgetActive ? .added : .deleted
+            Analytics.shared.logEvent(eventToLog.rawValue)
+            userDefaults.isTodoWidgetCurrentlyUsed = isTodoWidgetActive
+        }
     }
 }
 

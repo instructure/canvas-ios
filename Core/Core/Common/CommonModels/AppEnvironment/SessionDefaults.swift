@@ -255,4 +255,10 @@ public struct SessionDefaults: Equatable {
         get { self["assignmentListTeacherStatusFilterSettingByCourseId"] as? [String: String] }
         set { self["assignmentListTeacherStatusFilterSettingByCourseId"] = newValue }
     }
+
+    // MARK: - Widgets
+    public var isTodoWidgetCurrentlyUsed: Bool {
+        get { self["isTodoWidgetCurrentlyUsed"] as? Bool ?? false }
+        set { self["isTodoWidgetCurrentlyUsed"] = newValue }
+    }
 }
