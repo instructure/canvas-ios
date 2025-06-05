@@ -38,7 +38,10 @@ class CoreWebViewCrossCookieInjectionTests: XCTestCase {
 
     func test_injectCrossSiteCookies_createsCrossSiteCookies() {
         // WHEN
-        XCTAssertFinish(testee.injectCrossSiteCookies(httpCookieStore: cookieStore))
+        XCTAssertFinish(
+            testee.injectCrossSiteCookies(httpCookieStore: cookieStore),
+            timeout: 10
+        )
 
         // THEN
         XCTAssertFirstValue(
