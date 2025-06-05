@@ -24,22 +24,7 @@ protocol BottomActionView: View {
 }
 
 extension BottomActionView {
-
     var isVisible: Bool { true }
-
-    func actionView(_ icon: Image) -> some View {
-        ZStack {
-            Circle()
-                .fill(Color.course2)
-                .frame(width: 32)
-            icon
-                .resizable()
-                .renderingMode(.template)
-                .foregroundStyle(Color.backgroundLightest)
-                .frame(width: 18, height: 18)
-        }
-        .frame(minHeight: 32)
-    }
 }
 
 struct RouteActionView: BottomActionView {
@@ -52,11 +37,10 @@ struct RouteActionView: BottomActionView {
         HStack {
             Spacer()
             Link(destination: url) {
-                actionView(icon)
+                ActionLabel(icon: icon)
             }
             .accessibilityLabel(accessibilityLabel)
         }
-        .frame(maxHeight: 32)
     }
 }
 
@@ -70,16 +54,34 @@ struct IntentActionView<Intent: AppIntent>: BottomActionView {
         HStack {
             Spacer()
             Button(intent: intent) {
-                actionView(icon)
+                ActionLabel(icon: icon)
             }
             .buttonStyle(.plain)
             .accessibilityLabel(accessibilityLabel)
         }
-        .frame(maxHeight: 32)
     }
 }
 
 struct NoActionView: BottomActionView {
     var isVisible: Bool { false }
     var body: some View {}
+}
+
+// MARK: Label View
+
+private struct ActionLabel: View {
+
+    let icon: Image
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color.brandPrimary)
+                .scaledFrame(width: 32, useIconScale: true)
+            icon
+                .renderingMode(.template)
+                .scaledIcon(size: 18)
+                .foregroundStyle(Color.backgroundLightest)
+        }
+    }
 }

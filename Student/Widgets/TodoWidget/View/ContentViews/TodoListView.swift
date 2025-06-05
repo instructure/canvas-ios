@@ -22,6 +22,9 @@ import Core
 
 struct TodoListView: View {
     @Environment(\.widgetFamily) private var family
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    @ScaledMetric private var scale: CGFloat = 1
 
     private let todoList: TodoList
 
@@ -37,7 +40,7 @@ struct TodoListView: View {
                 RouteActionView(
                     icon: .addSolid,
                     url: .addTodoRoute,
-                    accessibilityLabel: String(localized: "Add Todo")
+                    accessibilityLabel: String(localized: "Add To-do")
                 )
             }
         )
@@ -48,10 +51,10 @@ struct TodoListView: View {
     private var listView: some View {
         VStack(spacing: 5) {
             ForEach(todoList.days) { day in
-                HStack(alignment: .top, spacing: 10) {
+                HStack(alignment: .top, spacing: 8) {
                     TodoDayView(date: day.date)
 
-                    VStack(spacing: 8) {
+                    VStack(spacing: 5) {
                         ForEach(day.items) { item in
                             TodoItemView(item: item)
 
@@ -69,15 +72,23 @@ struct TodoListView: View {
             Spacer(minLength: 0)
         }
         .padding([.top, .leading, .trailing], 10)
-        .padding(.bottom, 35)
+        .padding(.bottom, 40 * scale)
+        .containerRelativeFrame(.vertical, alignment: .top)
         .overlay(alignment: .bottom) {
             if todoList.isFullList == false {
-                fullListButtonView
+                ViewFullListButton()
             }
         }
     }
+}
 
-    private var fullListButtonView: some View {
+// MARK: - Components
+
+struct ViewFullListButton: View {
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
         ZStack {
             Rectangle()
                 .fill(
@@ -86,38 +97,49 @@ struct TodoListView: View {
                             Color.backgroundLightest,
                             Color.backgroundLightest.opacity(0)
                         ]),
-                        startPoint: .bottom,
+                        startPoint: startPoint,
                         endPoint: .top
                     )
                 )
             Link(destination: .todoListRoute) {
                 Text("View Full List")
                     .font(.regular16)
-                    .foregroundStyle(Color.course2)
+                    .foregroundStyle(Color.brandPrimary)
             }
         }
-        .ignoresSafeArea()
         .frame(maxHeight: 54)
+    }
+
+    private var startPoint: UnitPoint {
+        switch dynamicTypeSize {
+        case let size where size <= .xxLarge:
+            .bottom
+        case .xxxLarge:
+            .init(x: 0.5, y: 0.8)
+        case .accessibility1, .accessibility2:
+            .init(x: 0.5, y: 0.5)
+        case let size where size >= .accessibility3:
+            .init(x: 0.5, y: 0.4)
+        default:
+            .bottom
+        }
     }
 }
 
+// MARK: - Previews
+
 #if DEBUG
 
-struct TodoScreenPreviews: PreviewProvider {
+#Preview("TodoWidgetData", as: .systemMedium) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(), date: Date())
+}
 
-    static var previews: some View {
-        let model = TodoModel.make(count: 7)
-
-        TodoListView(todoList: model.todoDays(for: .systemMedium))
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-            .previewDisplayName("Medium Size")
-
-        TodoListView(todoList: model.todoDays(for: .systemLarge))
-            .defaultTodoWidgetContainer()
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
-            .previewDisplayName("Large Size")
-    }
+#Preview("TodoWidgetData", as: .systemLarge) {
+    TodoWidget()
+} timeline: {
+    TodoWidgetEntry(data: TodoModel.make(count: 7), date: Date())
 }
 
 #endif

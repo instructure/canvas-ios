@@ -17,6 +17,8 @@
 //
 
 import WidgetKit
+import Core
+import SwiftUI
 
 extension TimeInterval {
     #if DEBUG
@@ -36,5 +38,17 @@ extension WidgetFamily {
         case .systemLarge: 5
         default: 5
         }
+    }
+}
+
+extension Color {
+    static var brandPrimary: Color {
+        Color(Brand.shared.primary)
+    }
+}
+
+extension ShapeStyle where Self == Color {
+    static var brandPrimary: Color {
+        .brandPrimary
     }
 }

@@ -21,6 +21,8 @@ import WidgetKit
 import Core
 
 struct TodoItemView: View {
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     var item: TodoItem
 
     var body: some View {
@@ -37,11 +39,10 @@ struct TodoItemView: View {
         HStack(spacing: 5) {
             if let itemIcon = item.icon {
                 itemIcon
-                    .size(16)
+                    .scaledIcon(size: 16)
                     .foregroundStyle(item.color)
                     .accessibilityHidden(true)
-                InstUI.Divider()
-                    .frame(maxHeight: 16)
+                InstUI.Divider().frame(maxHeight: 16 * uiScale)
             }
             Text(item.contextName)
                 .foregroundStyle(item.color)
@@ -63,6 +64,19 @@ struct TodoItemView: View {
             .foregroundStyle(Color.textDark)
             .lineLimit(1)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityLabel(timeAccessibilityLabel)
+    }
+
+    private var timeAccessibilityLabel: String {
+        let format = Date.FormatStyle
+            .dateTime
+            .year()
+            .month(.wide)
+            .day()
+            .weekday(.wide)
+            .hour()
+            .minute()
+        return item.date.formatted(format)
     }
 
     private var isToday: Bool {
