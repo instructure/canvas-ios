@@ -261,12 +261,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 
     func checkForTodoWidgetPresence() {
-        WidgetCenter.shared.getCurrentConfigurations {[weak self] result in
+        WidgetCenter.shared.getCurrentConfigurations { result in
             guard result.isSuccess, let widgetInfo = result.value else { return }
-            let isTodoWidgetActive = widgetInfo.contains { configuration in
+            if widgetInfo.contains(where: { configuration in
                 return configuration.kind == "TodoWidget"
+            }) {
+                Analytics.shared.logEvent(TodoWidgetEventNames.added.rawValue)
             }
-            self?.sendTodoWidgetActivityAnalytics(isTodoWidgetActive)
         }
     }
 }
@@ -334,17 +335,6 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
 
     private func disableTracking() {
         analyticsTracker.endSession()
-    }
-
-    private func sendTodoWidgetActivityAnalytics(_ isTodoWidgetActive: Bool) {
-        guard var userDefaults: SessionDefaults = environment.userDefaults else { return }
-
-        // We only log any event if the value has changed
-        if userDefaults.isTodoWidgetActive != isTodoWidgetActive {
-            let eventToLog: TodoWidgetEventNames = isTodoWidgetActive ? .added : .deleted
-            Analytics.shared.logEvent(eventToLog.rawValue)
-            userDefaults.isTodoWidgetActive = isTodoWidgetActive
-        }
     }
 }
 
