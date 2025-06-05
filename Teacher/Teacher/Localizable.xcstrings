@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%1$@, submitted on %2$@" : {
+      "comment" : "Attempt 30, submitted on 2025. Feb 6. at 18:21"
+    },
     "%g out of %g" : {
       "localizations" : {
         "ar" : {
@@ -3083,6 +3086,7 @@
 
     },
     "Attempt %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12081,7 +12085,19 @@
         }
       }
     },
+    "File %lld of %lld" : {
+      "comment" : "Example: File 1 of 2",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "File %1$lld of %2$lld"
+          }
+        }
+      }
+    },
     "Files" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12595,6 +12611,7 @@
       }
     },
     "Files (%lld)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -33734,6 +33751,7 @@
       }
     },
     "This submission has no files." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

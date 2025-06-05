@@ -132,15 +132,21 @@ struct SubmissionGraderView: View {
                 .accessibility(sortPriority: 2)
                 .onSizeChange(update: $profileHeaderSize)
                 InstUI.Divider()
+
                 VStack(alignment: .leading, spacing: 0) {
-                    attemptToggle
+
+                    if viewModel.hasSubmissions {
+                        attemptAndFilePickers
+                        InstUI.Divider()
+                    }
+
                     ZStack(alignment: .top) {
                         VStack(spacing: 0) {
-                            SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
+                            SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
                             SubmissionViewer(
                                 assignment: viewModel.assignment,
                                 submission: viewModel.selectedAttempt,
-                                fileID: viewModel.fileID,
+                                fileID: viewModel.selectedFile?.id,
                                 studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
                                 handleRefresh: handleRefresh
                             )
@@ -148,7 +154,6 @@ struct SubmissionGraderView: View {
                         // Disable submission content interaction in case attempt picker is above it
                         .accessibilityElement(children: showAttempts ? .ignore : .contain)
                         .accessibility(hidden: showAttempts)
-                        attemptPicker
                     }
                     Spacer().frame(height: bottomInset)
                 }
@@ -183,23 +188,27 @@ struct SubmissionGraderView: View {
                     landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel
                 )
                 InstUI.Divider()
-                attemptToggle
-                    .accessibility(hidden: drawerState == .max)
+
+                if viewModel.hasSubmissions {
+                    attemptAndFilePickers
+                        .accessibility(hidden: drawerState == .max)
+                    InstUI.Divider()
+                }
+
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
-                        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.file)
+                        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
                         SubmissionViewer(
                             assignment: viewModel.assignment,
                             submission: viewModel.selectedAttempt,
-                            fileID: viewModel.fileID,
+                            fileID: viewModel.selectedFile?.id,
                             studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
                             handleRefresh: handleRefresh
                         )
                     }
                     .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
                     .accessibility(hidden: isSubmissionContentHiddenFromA11y)
-                    attemptPicker
                 }
                 Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
             }
@@ -210,73 +219,93 @@ struct SubmissionGraderView: View {
         .onAppear { didChangeLayout(to: .portrait) }
     }
 
-    @ViewBuilder
-    private var attemptToggle: some View {
-        if viewModel.hasSubmissions {
-            Button {
-                showAttempts.toggle()
-            } label: {
-                HStack {
-                    Text("Attempt \(viewModel.selectedAttemptIndex)", bundle: .teacher)
-                    Spacer()
-                    Text(viewModel.selectedAttempt.submittedAt?.dateTimeString ?? "")
-                        .frame(minHeight: 24)
-
-                    if !viewModel.isSingleSubmission {
-                        Image.arrowOpenDownLine
-                            .resizable()
-                            .frame(width: 14, height: 14)
-                            .rotationEffect(.degrees(showAttempts ? 180 : 0))
-                    }
+    private var attemptAndFilePickers: some View {
+        HStack(alignment: .center, spacing: 12) {
+            InstUI.PickerMenu(
+                selectedId: Binding(
+                    get: { viewModel.selectedAttemptNumber },
+                    set: { attemptPickerDidSelect(index: $0) }
+                ),
+                allOptions: viewModel.attemptPickerOptions,
+                label: {
+                    pickerButton(
+                        title: viewModel.selectedAttemptTitle,
+                        icon: .resetHistoryLine,
+                        count: nil, // not displaying count badge, partly to sidestep the issue of missing attempt numbers
+                        truncationMode: .head
+                    )
                 }
-                .font(.regular14)
-                .foregroundColor(.textDark)
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
+            )
+            .accessibilityShowsLargeContentViewer {
+                Text(viewModel.selectedAttemptTitle)
             }
-            .disabled(viewModel.isSingleSubmission)
-            InstUI.Divider()
+
+            if viewModel.hasMultipleFiles {
+                InstUI.PickerMenu(
+                    selectedId: Binding(
+                        get: { viewModel.selectedFile?.id },
+                        set: { filePickerDidSelect(id: $0) }
+                    ),
+                    allOptions: viewModel.filePickerOptions,
+                    label: {
+                        pickerButton(
+                            title: viewModel.selectedFileName,
+                            icon: .documentLine,
+                            count: viewModel.filePickerOptions.count,
+                            truncationMode: .tail
+                        )
+                    }
+                )
+                .accessibilityLabel(Text("File \(viewModel.selectedFileNumber) of \(viewModel.filePickerOptions.count)", bundle: .teacher, comment: "Example: File 1 of 2"))
+                .accessibilityValue(viewModel.selectedFileName)
+                .accessibilityShowsLargeContentViewer {
+                    Text(viewModel.selectedFileName)
+                }
+            }
+        }
+        .paddingStyle(.horizontal, .standard)
+        .padding(.vertical, 6)
+    }
+
+    private func attemptPickerDidSelect(index: Int) {
+        withTransaction(.exclusive()) {
+            viewModel.didSelectAttempt(attemptNumber: index)
         }
     }
 
-    @ViewBuilder
-    private var attemptPicker: some View {
-        if showAttempts {
-            VStack(spacing: 0) {
-                let binding = Binding(
-                    get: {
-                        viewModel.selectedAttemptIndex
-                    },
-                    set: { newAttemptIndex in
-                        withTransaction(.exclusive()) {
-                            viewModel.didSelectNewAttempt(attemptIndex: newAttemptIndex)
-                        }
-                        showAttempts = false
-                    }
-                )
-                Picker(selection: binding, label: Text(verbatim: "")) {
-                    ForEach(viewModel.attempts, id: \.attempt) { attempt in
-                        Text(attempt.submittedAt?.dateTimeString ?? "")
-                            .tag(Optional(attempt.attempt))
-                    }
-                }
-                .labelsHidden()
-                .pickerStyle(WheelPickerStyle())
-                InstUI.Divider()
-            }
-            .background(Color.backgroundLightest)
+    private func filePickerDidSelect(id: String?) {
+        viewModel.didSelectFile(fileId: id)
+        snapDrawerTo(.min)
+    }
+
+    private func pickerButton(title: String, icon: Image, count: Int?, truncationMode: Text.TruncationMode) -> some View {
+        HStack(spacing: 8) {
+            icon.scaledIcon(size: 18)
+                .instBadge(count, style: .hostSize18, isOverlayed: false, color: viewModel.contextColor)
+                .accessibilityHidden(true)
+            Text(title)
+                .font(.regular16)
         }
+        .lineLimit(1)
+        .truncationMode(truncationMode)
+        .foregroundStyle(viewModel.contextColor)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading, 12)
+        .padding(.trailing, 16)
+        .padding(.vertical, 8)
+        .elevation(.pill, aboveBackground: .lightest)
     }
 
     // MARK: - Drawer
 
     enum GraderTab: Int, CaseIterable {
-        case grades, comments, files
+        case grades
+        case comments
 
         func title(viewModel: SubmissionGraderViewModel) -> String {
             switch self {
             case .grades: return String(localized: "Grades", bundle: .teacher)
             case .comments: return String(localized: "Comments", bundle: .teacher)
-            case .files: return viewModel.fileTabTitle
             }
         }
     }
@@ -342,17 +371,16 @@ struct SubmissionGraderView: View {
                 HStack(spacing: 0) {
                     let drawerFileID = Binding<String?>(
                         get: {
-                            viewModel.fileID
+                            viewModel.selectedFile?.id
                         },
                         set: {
-                            viewModel.didSelectFile(fileID: $0)
+                            viewModel.didSelectFile(fileId: $0)
                             snapDrawerTo(.min)
                         }
                     )
 
                     gradesTab(bottomInset: bottomInset, isDrawer: isDrawer, geometry: geometry)
                     commentsTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
-                    filesTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
@@ -415,9 +443,9 @@ struct SubmissionGraderView: View {
     ) -> some View {
         let drawerAttempt = Binding(
             get: {
-                viewModel.selectedAttemptIndex
+                viewModel.selectedAttemptNumber
             }, set: {
-                viewModel.didSelectNewAttempt(attemptIndex: $0)
+                viewModel.didSelectAttempt(attemptNumber: $0)
                 snapDrawerTo(.min)
             }
         )
@@ -440,25 +468,6 @@ struct SubmissionGraderView: View {
         .frame(width: geometry.size.width, height: geometry.size.height)
         .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
         .accessibility(hidden: !isCommentsOnScreen)
-    }
-
-    @ViewBuilder
-    private func filesTab(
-        bottomInset: CGFloat,
-        isDrawer: Bool,
-        fileID: Binding<String?>,
-        geometry: GeometryProxy
-    ) -> some View {
-        let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
-        VStack(spacing: 0) {
-            SubmissionFileList(submission: viewModel.selectedAttempt, fileID: fileID)
-                .clipped()
-            Spacer().frame(height: bottomInset)
-        }
-        .frame(width: geometry.size.width, height: geometry.size.height)
-        .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
-        .accessibility(hidden: !isFilesOnScreen)
-        .accessibilityFocused($focusedTab, equals: .files)
     }
 
     // MARK: - Rotation
