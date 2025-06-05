@@ -29,7 +29,7 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
     init(
         logoRoute: URL? = nil,
         content: @escaping () -> Content,
-        actionView: @escaping () -> ActionView,
+        actionView: @escaping () -> ActionView
     ) {
         self.logoRoute = logoRoute
         self.content = content

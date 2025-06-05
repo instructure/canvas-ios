@@ -129,4 +129,17 @@ extension Plannable {
             }
         }
     }
+
+    /// Suffixes the API returned `contextName` with "To Do" if the plannable is a ToDo.
+    public var contextNameUserFacing: String? {
+        if plannableType != .planner_note {
+            return contextName
+        }
+
+        if let contextName {
+            return String(localized: "\(contextName) To Do", bundle: .core, comment: "<CourseName> To Do")
+        } else {
+            return String(localized: "To Do", bundle: .core)
+        }
+    }
 }

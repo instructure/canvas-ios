@@ -200,4 +200,26 @@ class PlannableTests: CoreTestCase {
             .textDarkest
         )
     }
+
+    func testContextNameUserFacing() {
+        // not ToDo, without context name
+        var testee = Plannable.make(from: .make(plannable_type: "calendar_event", context_name: nil))
+        XCTAssertEqual(testee.contextName, nil)
+        XCTAssertEqual(testee.contextNameUserFacing, nil)
+
+        // not ToDo, with context name
+        testee = Plannable.make(from: .make(plannable_type: "calendar_event", context_name: TestConstants.contextName))
+        XCTAssertEqual(testee.contextName, TestConstants.contextName)
+        XCTAssertEqual(testee.contextNameUserFacing, TestConstants.contextName)
+
+        // ToDo, without context name
+        testee = Plannable.make(from: .make(plannable_type: "planner_note", context_name: nil))
+        XCTAssertEqual(testee.contextName, nil)
+        XCTAssertEqual(testee.contextNameUserFacing, "To Do")
+
+        // ToDo, with context name
+        testee = Plannable.make(from: .make(plannable_type: "planner_note", context_name: TestConstants.contextName))
+        XCTAssertEqual(testee.contextName, TestConstants.contextName)
+        XCTAssertEqual(testee.contextNameUserFacing, TestConstants.contextName + " ToDo")
+    }
 }
