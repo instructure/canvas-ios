@@ -99,8 +99,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         let commentType: CommentType
         if let attempt = comment.attempt {
             if submission.type == .online_upload {
-                let files = submission.attachments?.sorted(by: File.idCompare) ?? []
-                commentType = .attemptWithAttachments(attempt, files)
+                commentType = .attemptWithAttachments(attempt, submission.attachmentsSorted)
             } else {
                 commentType = .attempt(attempt, submission)
             }
@@ -109,8 +108,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
         } else if comment.mediaType == .video, let url = comment.mediaLocalOrRemoteURL {
             commentType = .video(url)
         } else {
-            let files = comment.attachments?.sorted(by: File.idCompare) ?? []
-            commentType = .text(comment.comment, files)
+            commentType = .text(comment.comment, comment.attachmentsSorted)
         }
         self.commentType = commentType
 

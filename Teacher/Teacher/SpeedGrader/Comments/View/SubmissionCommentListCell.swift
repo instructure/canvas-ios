@@ -188,10 +188,10 @@ private struct AttachmentButton: View {
 
     var body: some View {
         FileButton(
-            icon: FileThumbnail(
+            icon: FileThumbnailView(
                 file: file,
-                iconSize: Size.File.icon,
                 thumbnailSize: Size.File.thumbnail,
+                innerIconSize: Size.File.icon,
                 iconBackgroundColor: .backgroundLight,
                 cornerRadius: Size.File.thumbnailCorner
             ),

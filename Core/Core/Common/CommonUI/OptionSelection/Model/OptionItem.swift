@@ -28,12 +28,14 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
     public let title: String
     public let subtitle: String?
     public let color: Color
+    public let customAccessibilityLabel: String?
     public let accessoryIcon: Image?
 
     public init(
         id: String,
         title: String,
         subtitle: String? = nil,
+        customAccessibilityLabel: String? = nil,
         color: Color? = nil,
         accessoryIcon: Image? = nil
     ) {
@@ -41,6 +43,7 @@ public struct OptionItem: Equatable, Hashable, Identifiable {
         self.title = title
         self.subtitle = subtitle
         self.color = color ?? Color(uiColor: Brand.shared.primary)
+        self.customAccessibilityLabel = customAccessibilityLabel
         self.accessoryIcon = accessoryIcon
     }
 
@@ -65,10 +68,18 @@ extension OptionItem {
         id: String = "",
         title: String = "",
         subtitle: String? = nil,
+        customAccessibilityLabel: String? = nil,
         color: Color? = nil,
         accessoryIcon: Image? = nil
     ) -> OptionItem {
-        return OptionItem(id: id, title: title, subtitle: subtitle, color: color, accessoryIcon: accessoryIcon)
+        return OptionItem(
+            id: id,
+            title: title,
+            subtitle: subtitle,
+            customAccessibilityLabel: customAccessibilityLabel,
+            color: color,
+            accessoryIcon: accessoryIcon
+        )
     }
 }
 #endif

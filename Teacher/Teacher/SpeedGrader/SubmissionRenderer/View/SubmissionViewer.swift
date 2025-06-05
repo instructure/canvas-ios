@@ -92,7 +92,7 @@ struct SubmissionViewer: View {
             .onLink(handleLink)
         case .online_upload:
             let file = submission.attachments?.first { fileID == $0.id } ??
-                submission.attachments?.sorted(by: File.idCompare).first
+                submission.attachmentsSorted.first
             if let file = file, let url = file.url, let previewURL = file.previewURL {
                 DocViewer(filename: file.filename, previewURL: previewURL, fallbackURL: url)
             } else if let id = file?.id {

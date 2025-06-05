@@ -25,14 +25,19 @@ class SubmissionGraderViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published private(set) var selectedAttemptIndex: Int
-    @Published private(set) var selectedAttempt: Submission
+    @Published private(set) var attemptPickerOptions: [OptionItem] = []
     @Published private(set) var attempts: [Submission] = []
-    @Published private(set) var hasSubmissions = false
-    @Published private(set) var isSingleSubmission = false
-    @Published private(set) var file: File?
-    @Published private(set) var fileID: String?
-    @Published private(set) var fileTabTitle: String = ""
+    @Published private(set) var selectedAttempt: Submission
+    @Published private(set) var selectedAttemptNumber: Int = 0
+    @Published private(set) var selectedAttemptTitle: String = ""
+    @Published private(set) var hasSubmissions: Bool = false
+
+    @Published private(set) var hasMultipleFiles: Bool = false
+    @Published private(set) var filePickerOptions: [OptionItem] = []
+    @Published private(set) var selectedFile: File?
+    @Published private(set) var selectedFileNumber: Int = 0
+    @Published private(set) var selectedFileName: String = ""
+
     @Published private(set) var contextColor = Color(Brand.shared.primary)
     let assignment: Assignment
     let submission: Submission
@@ -58,7 +63,6 @@ class SubmissionGraderViewModel: ObservableObject {
         self.assignment = assignment
         self.submission = latestSubmission
         selectedAttempt = latestSubmission
-        selectedAttemptIndex = latestSubmission.attempt
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
         commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(
             assignment: assignment,
@@ -72,35 +76,52 @@ class SubmissionGraderViewModel: ObservableObject {
         contextColor.assign(to: &$contextColor)
 
         observeAttemptChangesInDatabase()
-        didSelectNewAttempt(attemptIndex: submission.attempt)
+        didSelectAttempt(attemptNumber: submission.attempt)
     }
 
-    func didSelectNewAttempt(attemptIndex: Int) {
+    func didSelectAttempt(attemptNumber: Int) {
         NotificationCenter.default.post(
             name: .SpeedGraderAttemptPickerChanged,
-            object: SpeedGraderAttemptChangeInfo(attemptIndex: attemptIndex, userId: submission.userID)
+            object: SpeedGraderAttemptChangeInfo(attemptIndex: attemptNumber, userId: submission.userID)
         )
-        selectedAttemptIndex = attemptIndex
-        selectedAttempt = attempts.first { selectedAttemptIndex == $0.attempt } ?? submission
-        fileTabTitle = {
-            if selectedAttempt.type == .online_upload, let count = selectedAttempt.attachments?.count, count > 0 {
-                return String(localized: "Files (\(count))", bundle: .teacher)
-            } else {
-                return String(localized: "Files", bundle: .teacher)
+        selectedAttempt = attempts.first { $0.attempt == attemptNumber } ?? submission
+        selectedAttemptNumber = attemptNumber
+        selectedAttemptTitle = String.localizedAttemptNumber(attemptNumber)
+
+        let hasFiles = selectedAttempt.type == .online_upload && selectedAttempt.attachments?.isNotEmpty ?? false
+        hasMultipleFiles = hasFiles && selectedAttempt.attachments?.count ?? 0 > 1
+        if hasFiles {
+            let files = selectedAttempt.attachmentsSorted
+            filePickerOptions = files.compactMap { file in
+                guard let fileId = file.id else { return nil }
+                return OptionItem(
+                    id: fileId,
+                    title: file.displayName ?? file.filename
+                )
             }
-        }()
+            didSelectFile(files.first)
+        } else {
+            filePickerOptions = []
+            didSelectFile(nil)
+        }
+
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
-        didSelectFile(fileID: nil)
     }
 
-    func didSelectFile(fileID: String?) {
-        self.fileID = fileID
-        updateSelectedFile()
+    func didSelectFile(fileId: String?) {
+        let file = selectedAttempt.attachments?.first { $0.id == fileId }
+        didSelectFile(file)
     }
 
-    private func updateSelectedFile() {
-        file = selectedAttempt.attachments?.first { fileID == $0.id } ??
-                selectedAttempt.attachments?.sorted(by: File.idCompare).first
+    private func didSelectFile(_ file: File?) {
+        self.selectedFile = file
+        selectedFileName = file?.displayName ?? file?.filename ?? ""
+
+        if let fileIndex = filePickerOptions.firstIndex(where: { $0.id == file?.id }) {
+            selectedFileNumber = fileIndex + 1
+        } else {
+            selectedFileNumber = 0
+        }
     }
 
     private func observeAttemptChangesInDatabase() {
@@ -112,20 +133,33 @@ class SubmissionGraderViewModel: ObservableObject {
             .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] attempts in
+            .map { Array($0.reversed()) }
+            .sink { [weak self] (attempts: [Submission]) in
                 guard let self else { return }
                 self.attempts = attempts
-                hasSubmissions = attempts.lastAttemptIndex > 0
-                isSingleSubmission = attempts.lastAttemptIndex == 1
+                let latestAttemptIndex = attempts.first?.attempt ?? 0
+                hasSubmissions = latestAttemptIndex > 0
+                updateAttemptPickerOptions()
             }
             .store(in: &subscriptions)
     }
-}
 
-extension [Submission] {
+    private func updateAttemptPickerOptions() {
+        attemptPickerOptions = attempts.map { attempt in
+            let title = String.localizedAttemptNumber(attempt.attempt)
+            let subtitle = attempt.submittedAt?.dateTimeString
+            let accessibilityLabel = subtitle.map {
+                let format = String(localized: "%1$@, submitted on %2$@", bundle: .teacher, comment: "Attempt 30, submitted on 2025. Feb 6. at 18:21")
+                return String.localizedStringWithFormat(format, title, $0)
+            }
 
-    fileprivate var lastAttemptIndex: Int {
-        last?.attempt ?? 0
+            return OptionItem(
+                id: String(attempt.attempt),
+                title: title,
+                subtitle: subtitle,
+                customAccessibilityLabel: accessibilityLabel
+            )
+        }
     }
 }
 

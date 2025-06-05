@@ -220,6 +220,18 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(submissions.first?.rubricAssessments?["1"], assessments.first)
     }
 
+    func testAttachmentsSorted() {
+        let submission = Submission.make(from: .make(
+            attachments: [
+                .make(id: "42"),
+                .make(id: "1"),
+                .make(id: "3")
+            ]
+        ))
+
+        XCTAssertEqual(submission.attachmentsSorted.map(\.id), ["1", "3", "42"])
+    }
+
     func testSaveCommentAttachments() throws {
         let item = APISubmission.make(
             submission_comments: [
