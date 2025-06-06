@@ -64,6 +64,9 @@ class SpeedGraderViewModel: ObservableObject {
         updatePostPolicyButtonVisibility(onChangeOf: interactor.state)
         updateNavigationBarTheme(onChangeOf: interactor.contextInfo)
 
+        // Start each session with a fresh state
+        environment.userDefaults?.isSpeedGraderAnnotationToolbarVisible = true
+
         interactor.load()
     }
 

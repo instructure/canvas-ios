@@ -255,4 +255,11 @@ public struct SessionDefaults: Equatable {
         get { self["assignmentListTeacherStatusFilterSettingByCourseId"] as? [String: String] }
         set { self["assignmentListTeacherStatusFilterSettingByCourseId"] = newValue }
     }
+
+    // MARK: - SpeedGrader
+
+    public var isSpeedGraderAnnotationToolbarVisible: Bool? {
+        get { self["isSpeedGraderAnnotationToolbarVisible"] as? Bool }
+        set { self["isSpeedGraderAnnotationToolbarVisible"] = newValue }
+    }
 }

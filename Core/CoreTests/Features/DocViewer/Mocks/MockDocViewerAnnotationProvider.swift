@@ -40,4 +40,11 @@ class MockDocViewerAnnotationProvider: DocViewerAnnotationProvider {
     override func getReplies(to: Annotation) -> [DocViewerCommentReplyAnnotation] {
         mockGetRepliesToAnnotationMethodResult
     }
+
+    var retryFailedRequestCalled = false
+
+    override func retryFailedRequest() {
+        retryFailedRequestCalled = true
+    }
+
 }
