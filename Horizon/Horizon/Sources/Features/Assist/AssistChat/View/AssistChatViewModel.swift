@@ -37,6 +37,9 @@ final class AssistChatViewModel {
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty
     }
+    var isFreeTextVisible: Bool = false
+    var isOpeningVisible: Bool = false
+    var openingText: String = ""
 
     // MARK: - Dependencies
 
@@ -53,6 +56,8 @@ final class AssistChatViewModel {
     private let pageUrl: String?
     private let fileId: String?
 
+    static var playOpening = true
+
     // MARK: - Init
     init(
         courseId: String? = nil,
@@ -67,6 +72,36 @@ final class AssistChatViewModel {
         self.router = router
         self.chatBotInteractor = chatBotInteractor
         self.hasAssistChipOptions = chatBotInteractor.hasAssistChipOptions
+
+        if AssistChatViewModel.playOpening {
+            AssistChatViewModel.playOpening = false
+            chatBotInteractor.userShortNamePublisher
+                .replaceError(with: "")
+                .sink { [weak self] userShortName in
+                    guard let self = self, !userShortName.isEmpty else {
+                        return
+                    }
+                    self.openingText = String(
+                        format: NSLocalizedString(
+                            "Welcome back, %@!",
+                            bundle: .horizon,
+                            comment: "Welcome message for the user in Assist Chat"
+                        ),
+                        userShortName
+                    )
+                    withAnimation {
+                        self.isOpeningVisible = true
+                    }
+                    Task { [weak self] in
+                        guard let self = self else { return }
+                        try? await Task.sleep(nanoseconds: 3_000_000_000)
+                        withAnimation {
+                            self.isOpeningVisible = false
+                        }
+                    }
+                }
+                .store(in: &subscriptions)
+        }
     }
 
     // MARK: - Inputs
@@ -116,6 +151,10 @@ final class AssistChatViewModel {
 
         var newMessages: [AssistChatMessageViewModel] = []
 
+        withAnimation {
+            isFreeTextVisible = response.isFreeTextAvailable
+        }
+
         // How the chips are displayed will depend on the history
         // If we have no history, they are displayed as semitransparent message bubbles
         // If we do have a history, they are pills at the end of the last message
@@ -161,15 +200,18 @@ final class AssistChatViewModel {
 
     /// add new messages to the list of messages
     private func add(newMessages: [AssistChatMessageViewModel]) {
-        withAnimation(.easeInOut(duration: animationDuration)) { [weak self] in
-            guard let self = self else { return }
 
-            newMessages.filter { newMessage in
-                !self.messages.contains { message in
-                    message.id == newMessage.id
+        newMessages.filter { newMessage in
+            !self.messages.contains { message in
+                message.id == newMessage.id
+            }
+        }.enumerated().forEach { index, message in
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index)) { [weak self] in
+                guard let self = self else { return }
+                withAnimation(.easeInOut(duration: animationDuration)) { [weak self] in
+                    guard let self = self else { return }
+                    self.messages.append(message)
                 }
-            }.forEach { message in
-                self.messages.append(message)
             }
         }
     }

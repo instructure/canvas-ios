@@ -34,15 +34,22 @@ struct AssistChatView: View {
                 viewModel.dismiss(controller: viewController)
             }
 
-            InstUI.BaseScreen(
-                state: viewModel.state,
-                config: .init(refreshable: false)
-            ) { _ in
+            ZStack {
                 animatedOpening
+
+                VStack {
+                    InstUI.BaseScreen(
+                        state: viewModel.state,
+                        config: .init(refreshable: false)
+                    ) { _ in
+                        contentView
+                    }
+                    .scrollDismissesKeyboard(.immediately)
+                    Spacer()
+                    sendMessageView
+                }
+                .opacity(viewModel.isOpeningVisible ? 0 : 1)
             }
-            .scrollDismissesKeyboard(.immediately)
-            Spacer()
-            sendMessageView
         }
         .scrollIndicators(.hidden)
         .onAppear {
@@ -58,7 +65,7 @@ struct AssistChatView: View {
 
     private var contentView: some View {
         ScrollViewReader { scrollViewProxy in
-            LazyVStack(alignment: .leading, spacing: 12) {
+            LazyVStack(alignment: .leading, spacing: .huiSpaces.space24) {
                 ForEach(viewModel.messages) { message in
                     AssistChatMessageView(message: message)
                         .id(message.id)
@@ -72,14 +79,23 @@ struct AssistChatView: View {
     }
 
     private var animatedOpening: some View {
-        VStack {
-            Text("Welcome back, Steve!")
-            LottieView(
-                name: "HappyPanda.lottie",
-                bundle: .horizon
-            )
-            .frame(width: 300, height: 200)
+        let w = 1024.0
+        let h = 768.0
+        let targetW = 200.0
+        let scaleEffect = targetW / w
+        let newW = w * scaleEffect
+        let newH = h * scaleEffect
+        return VStack(alignment: .center) {
+            LottieView(name: "HappyPanda", bundle: .horizon)
+                .scaleEffect(scaleEffect)
+                .frame(width: newW, height: newH)
+
+            Text(viewModel.openingText)
+                .foregroundStyle(Color.huiColors.text.surfaceColored)
+                .huiTypography(.h1)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .opacity(viewModel.isOpeningVisible ? 1 : 0)
     }
 
     private var sendMessageView: some View {
@@ -117,6 +133,7 @@ struct AssistChatView: View {
                 .disabled(viewModel.isDisableSendButton)
             }
         }
+        .opacity(viewModel.isFreeTextVisible ? 1 : 0)
     }
 }
 

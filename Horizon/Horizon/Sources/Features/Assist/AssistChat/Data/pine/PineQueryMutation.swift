@@ -32,20 +32,20 @@ class PineQueryMutation: APIGraphQLRequestable {
         ]
     }
 
-    public init(messages: [APIMessageInput]) {
+    public init(messages: [APIMessageInput], courseID: String) {
         self.variables = Variables(
-                input: RagQueryInput(
+            input: RagQueryInput(
                 messages: messages,
                 source: "canvas",
-                metadata: ""
+                metadata: Metadata(courseId: courseID)
             )
         )
     }
 
-    public static let operationName: String = "query"
+    public static let operationName: String = "ChatPrompt"
     public static var query: String = """
         mutation \(operationName)($input: RagQueryInput!) {
-            \(operationName)(input: $input) {
+            query(input: $input) {
                 response
             }
         }
@@ -60,7 +60,7 @@ class PineQueryMutation: APIGraphQLRequestable {
     struct RagQueryInput: Codable, Equatable {
         let messages: [APIMessageInput]
         let source: String
-        let metadata: String
+        let metadata: Metadata
     }
 
     struct APIMessageInput: Codable, Equatable {
@@ -88,5 +88,9 @@ class PineQueryMutation: APIGraphQLRequestable {
     enum Role: String, Codable {
         case Assistant
         case User
+    }
+
+    struct Metadata: Codable, Equatable {
+        let courseId: String
     }
 }

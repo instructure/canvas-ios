@@ -253,7 +253,33 @@ extension APIRequestable {
 
         request.httpShouldHandleCookies = shouldHandleCookies
 
+        curlCommand(from: request)
+
         return request
+    }
+
+    private func curlCommand(from request: URLRequest) {
+        guard let url = request.url else { return }
+
+        var components: [String] = ["curl", "-X", request.httpMethod ?? "GET"]
+
+        // Add headers
+        if let headers = request.allHTTPHeaderFields {
+            for (key, value) in headers {
+                components.append("-H \"\(key): \(value)\"")
+            }
+        }
+
+        // Add body
+        if let body = request.httpBody,
+           let bodyString = String(data: body, encoding: .utf8) {
+            components.append("-d '\(bodyString)'")
+        }
+
+        // Add URL
+        components.append("\"\(url.absoluteString)\"")
+
+        print(components.joined(separator: " "))
     }
 
     public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {

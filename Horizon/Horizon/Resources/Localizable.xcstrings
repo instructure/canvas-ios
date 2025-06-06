@@ -400,6 +400,9 @@
     "Hello, Career!" : {
 
     },
+    "Help me review material I've already studied" : {
+
+    },
     "Helsinki (+02:00/+03:00)" : {
 
     },
@@ -416,6 +419,12 @@
 
     },
     "hours" : {
+
+    },
+    "How can I help today with the %@ course material?" : {
+      "comment" : "Assist chat initial response when only one course is available"
+    },
+    "How would you like to review today?" : {
 
     },
     "Important" : {
@@ -446,6 +455,9 @@
 
     },
     "Istanbul (+03:00/+03:00)" : {
+
+    },
+    "It looks like you're not enrolled in any courses yet. Please enroll in a course and come back!" : {
 
     },
     "Jakarta (+07:00)" : {
@@ -879,6 +891,9 @@
     "Text" : {
 
     },
+    "Thanks for visiting! Please check back later." : {
+
+    },
     "There are no scored activities in this course." : {
 
     },
@@ -967,15 +982,15 @@
 
     },
     "Welcome back, %@!" : {
-
-    },
-    "Welcome back, Steve!" : {
-
+      "comment" : "Welcome message for the user in Assist Chat"
     },
     "Wellington (+12:00/+13:00)" : {
 
     },
     "West Central Africa (+01:00)" : {
+
+    },
+    "Which of your courses would you like to discuss?" : {
 
     },
     "Yakutsk (+09:00/+09:00)" : {

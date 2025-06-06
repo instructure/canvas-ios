@@ -16,19 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct AssistChipOption: Codable, Hashable {
+import Foundation
+
+struct AssistChipOption {
     let chip: String
-    let prompt: String
+    let localResponse: AssistStaticLearnerResponse?
+    let prompt: String?
 
     init(chip: String, prompt: String = "") {
         self.chip = chip
         self.prompt = prompt
+
+        self.localResponse = nil
     }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        chip = try container.decode(String.self, forKey: .chip)
-        prompt = try container.decode(String.self, forKey: .prompt)
+    init(chip: String, localResponse: AssistStaticLearnerResponse) {
+        self.chip = chip
+        self.localResponse = localResponse
+
+        self.prompt = localResponse.chip
     }
 
     enum Default: CaseIterable {
@@ -57,6 +63,7 @@ struct AssistChipOption: Codable, Hashable {
     // swiftlint:disable line_length
     init(_ option: Default, userShortName: String? = nil) {
         chip = option.rawValue
+        localResponse = nil
 
         var introduction = ""
         if let userShortName = userShortName {
@@ -76,4 +83,27 @@ struct AssistChipOption: Codable, Hashable {
         }
     }
     // swiftlint:enable line_length
+}
+
+extension AssistChipOption: Codable, Hashable {
+    enum CodingKeys: String, CodingKey {
+        case chip, prompt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.chip = try container.decode(String.self, forKey: .chip)
+        self.prompt = try container.decodeIfPresent(String.self, forKey: .prompt)
+        self.localResponse = nil  // Exclude from decoding
+    }
+
+    // Overload `==` for Equatable conformance
+    static func == (lhs: AssistChipOption, rhs: AssistChipOption) -> Bool {
+        return lhs.chip == rhs.chip && lhs.prompt == rhs.prompt
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(chip)
+        hasher.combine(prompt)
+    }
 }

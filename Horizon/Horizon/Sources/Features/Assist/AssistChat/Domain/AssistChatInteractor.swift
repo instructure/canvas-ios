@@ -25,6 +25,7 @@ protocol AssistChatInteractor {
     func publish(action: AssistChatAction)
     var listen: AnyPublisher<AssistChatResponse, Error> { get }
     var hasAssistChipOptions: Bool { get }
+    var userShortNamePublisher: CurrentValueSubject<String, Never> { get }
 }
 
 class AssistChatInteractorLive: AssistChatInteractor {
@@ -34,87 +35,132 @@ class AssistChatInteractorLive: AssistChatInteractor {
     private let downloadFileInteractor: DownloadFileInteractor?
     private let pineDomainService: DomainService
     var hasAssistChipOptions: Bool = false
+    private let userID: String
 
     // MARK: - Private
 
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
+    /// The ID of the course we're currently discussing
+    private var courseID: String?
     private let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    private let pageContextPublisher: CurrentValueSubject<AssistChatPageContext, Never> = .init(AssistChatPageContext())
     private let responsePublisher = PassthroughSubject<AssistChatResponse, Error>()
     private var subscriptions = Set<AnyCancellable>()
+    private var userShortName: String? {
+        userShortNamePublisher.value
+    }
+    /// Publishes the user's short name
+    let userShortNamePublisher: CurrentValueSubject<String, Never> = .init("")
 
     // MARK: - init
 
     /// Initializes the interactor when viewing a page for context
     convenience init(
-        courseId: String,
+        courseID: String,
         pageUrl: String,
         cedarDomainService: DomainService = DomainService(.cedar),
         pineDomainService: DomainService = DomainService(.pine)
     ) {
         self.init(
-            pageContextPublisher: AssistChatInteractorLive.pageContextPublisher(
-                courseId: courseId,
-                pageUrl: pageUrl
-            ),
             cedarDomainService: cedarDomainService,
-            pineDomainService: pineDomainService
+            pineDomainService: pineDomainService,
+            courseID: courseID
         )
         hasAssistChipOptions = true
+
+        ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageUrl))
+            .getEntities()
+            .map { AssistChatPageContext(title: $0.first?.title ?? "", body: $0.first?.body ?? "") }
+            .replaceError(with: AssistChatPageContext())
+            .sink { [weak self] pageContext in
+                guard let self = self else { return }
+                self.pageContextPublisher.send(pageContext)
+            }
+            .store(in: &subscriptions)
     }
 
     /// Initializes the interactor when viewing a file for context
     convenience init(
-        courseId: String,
-        fileId: String,
+        courseID: String,
+        fileID: String,
         downloadFileInteractor: DownloadFileInteractor,
         cedarDomainService: DomainService = DomainService(.cedar),
         pineDomainService: DomainService = DomainService(.pine)
     ) {
         self.init(
-            pageContextPublisher: AssistChatInteractorLive.pageContextPublisher(
-                downloadFileInteractor: downloadFileInteractor,
-                courseId: courseId,
-                fileId: fileId
-            ),
             cedarDomainService: cedarDomainService,
             pineDomainService: pineDomainService,
-            downloadFileInteractor: downloadFileInteractor
+            downloadFileInteractor: downloadFileInteractor,
+            courseID: courseID
         )
+
+        ReactiveStore(useCase: GetFile(context: .course(courseID), fileID: fileID))
+            .getEntities()
+            .map { files in files.first }
+            .flatMap { (file: File?) in
+                guard let file = file,
+                      let format = AssistChatDocumentType.from(mimeType: file.contentType) else {
+                    return Just(AssistChatPageContext()).setFailureType(to: Error.self).eraseToAnyPublisher()
+                }
+                return downloadFileInteractor
+                    .download(fileID: fileID)
+                    .map { try? Data(contentsOf: $0) }
+                    .map { $0?.base64EncodedString() }
+                    .map { (base64String: String?) in
+                        guard let base64String = base64String else {
+                            return AssistChatPageContext()
+                        }
+                        return AssistChatPageContext(
+                            format: format,
+                            name: file.filename,
+                            source: base64String
+                        )
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .replaceError(with: AssistChatPageContext())
+            .sink { [weak self] pageContext in
+                guard let self = self else { return }
+                self.pageContextPublisher.send(pageContext)
+            }
+            .store(in: &subscriptions)
     }
 
     init(
-        pageContextPublisher: AnyPublisher<AssistChatPageContext, Error>? = nil,
         cedarDomainService: DomainService = DomainService(.cedar),
         pineDomainService: DomainService = DomainService(.pine),
-        downloadFileInteractor: DownloadFileInteractor? = nil
+        downloadFileInteractor: DownloadFileInteractor? = nil,
+        userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
+        courseID: String? = nil
     ) {
         self.cedarDomainService = cedarDomainService
         self.pineDomainService = pineDomainService
         self.downloadFileInteractor = downloadFileInteractor
+        self.userID = userID
+        self.courseID = courseID
 
-        Publishers.CombineLatest3(
-            actionPublisher.setFailureType(to: Error.self),
-            pageContextPublisher ?? Just(AssistChatPageContext()).setFailureType(to: Error.self).eraseToAnyPublisher(),
-            userShortNamePublisher
-        )
-        .flatMap { [weak self] action, pageContext, userShortName in
-            guard let self = self,
-                let action = action
-            else {
-                return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+        self.listenForUserShortNameUpdates()
+
+        userShortNamePublisher.sink { [weak self] userShortName in
+            guard let self = self, !userShortName.isEmpty else { return }
+            return self.pageContextPublisher.sink { [weak self] _ in
+                guard let self = self else { return }
+                return self.actionPublisher.flatMap { [weak self] _ in
+                    guard let self = self else {
+                        return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+                    }
+                    return self.actionHandler()
+                }
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { [weak self] response in
+                        self?.responsePublisher.send(response)
+                    }
+                )
+                .store(in: &self.subscriptions)
             }
-            return self.actionHandler(
-                action: action,
-                pageContext: pageContext,
-                userShortName: userShortName
-            )
+            .store(in: &self.subscriptions)
         }
-        .sink(
-            receiveCompletion: { _ in },
-            receiveValue: { [weak self] response in
-                self?.responsePublisher.send(response)
-            }
-        )
         .store(in: &subscriptions)
     }
 
@@ -134,36 +180,45 @@ class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Private
 
     /// When a new action comes in from the user, this function starts processing it
-    private func actionHandler(
-        action: AssistChatAction,
-        pageContext: AssistChatPageContext,
-        userShortName: String
-    ) -> AnyPublisher<AssistChatResponse, any Error> {
-        var prompt: String!
-        var useAdvancedChat = false
+    private func actionHandler() -> AnyPublisher<AssistChatResponse, any Error> {
+        guard let action: AssistChatAction = actionPublisher.value else {
+            return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+        }
+        var prompt: String = ""
+        var localResponse: AssistStaticLearnerResponse?
+        var chatHistory: [AssistChatMessage] = []
 
         switch action {
-        case .chat(let message, _):
+        case .chat(let message, let history):
             prompt = message
-            // only use the advanced chat if we don't have a document context
-            useAdvancedChat = pageContext.prompt == nil
-        case .chip(let option, _):
-            prompt = option.prompt
-            useAdvancedChat = false
+            chatHistory = history
+        case .chip(let option, let history):
+            prompt = option.prompt ?? ""
+            localResponse = option.localResponse
+            if case .selectCourse(_, let courseID) = localResponse {
+                self.courseID = courseID
+            }
+            chatHistory = history
         }
 
         // This should really only happen when the user first opens the chat
+        guard let courseID = courseID else {
+            return courseSelectionResponse(chatHistory: chatHistory).eraseToAnyPublisher()
+        }
         if prompt.isEmpty {
-            return buildInitialResponse(for: pageContext, with: userShortName)
+            return courseSelectionResponse(chatHistory: chatHistory).eraseToAnyPublisher()
+        }
+
+        if let localResponse = localResponse {
+            return Just(localResponse.assistChatResponse(chatHistory: chatHistory))
+                .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
 
-        return publish(using: action, with: userShortName)
+        return publish(using: action)
             .flatMap { newHistory in
                 self.classifier(
                     prompt: prompt,
-                    pageContext: pageContext,
-                    userShortName: userShortName,
                     action: action,
                     history: newHistory
                 )
@@ -171,26 +226,43 @@ class AssistChatInteractorLive: AssistChatInteractor {
                     self.handleClassifierPromptResponse(
                         classification: classification,
                         action: action,
-                        pageContext: pageContext,
                         history: newHistory,
-                        userShortName: userShortName,
-                        useAdvancedChat: useAdvancedChat
+                        courseID: courseID
                     )
                 }
             }
             .eraseToAnyPublisher()
     }
 
+    private func listenForUserShortNameUpdates() {
+        ReactiveStore(useCase: GetUserProfile())
+            .getEntities()
+            .replaceError(with: [])
+            .map { $0.first?.shortName ?? String(localized: "Learner", bundle: .horizon) }
+            .sink { [weak self] userShortName in
+                guard let self = self else { return }
+                self.userShortNamePublisher.send(userShortName)
+            }
+            .store(in: &subscriptions)
+    }
+
     /// Makes a request to the pine endpoint using the given history
-    private func advancedChat(history: [AssistChatMessage]) -> AnyPublisher<String, Error> {
-        pineDomainService.api()
+    private func pineRAGService(history: [AssistChatMessage], courseID: String) -> AnyPublisher<String, Error> {
+        var messages = history.filter { $0.prompt != nil }.map {
+            PineQueryMutation.APIMessageInput(
+                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
+        }
+        if messages.first?.role != .User {
+            // the first and last messages are required to be user messages.
+            messages = [.init(text: "Hello", role: .User)] + messages
+        }
+
+        return pineDomainService.api()
             .flatMap { pineApi in
                 pineApi.makeRequest(
                     PineQueryMutation(
-                        messages: history.reversed().filter { $0.prompt != nil }.map {
-                            PineQueryMutation.APIMessageInput(
-                                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
-                        }
+                        messages: messages,
+                        courseID: courseID
                     )
                 )
                 .compactMap { ragData in
@@ -201,64 +273,34 @@ class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     /// Returns any configured chips to show based on the context. If there are none, we return a default message
-    private func buildInitialResponse(for pageContext: AssistChatPageContext, with userShortName: String) -> AnyPublisher<AssistChatResponse, Error> {
-        let options = pageContext.chips.map { option in
-            AssistChipOption(
-                option,
-                userShortName: userShortName
+    private func courseSelectionResponse(chatHistory: [AssistChatMessage]) -> AnyPublisher<AssistChatResponse, Error> {
+        ReactiveStore(
+            useCase: GetCoursesProgressionUseCase(userId: userID)
+        )
+        .getEntities()
+        .map { [weak self] courses in
+            if let course = courses.first{ $0.course.id == self?.courseID } {
+                return .courseHelp(courseName: course.course.name ?? "", chatHistory: chatHistory)
+            }
+            if let courseName = courses.first?.course.name, courses.count == 1 {
+                return AssistChatResponse.courseHelp(courseName: courseName)
+            }
+            if courses.count > 1 {
+                return AssistChatResponse.courseSelection(
+                    courses: courses.map { (name: $0.course.name ?? "", id: $0.courseID) },
+                )
+            }
+            return AssistChatResponse(
+                message: AssistChatMessage(
+                    botResponse: String(
+                        localized: "It looks like you're not enrolled in any courses yet. Please enroll in a course and come back!",
+                        bundle: .horizon
+                    )
+                ),
+                isFreeTextAvailable: false
             )
         }
-        let message = String(localized: "Welcome back, \(userShortName)!", bundle: .horizon)
-        let chatBotResponse =
-            options.isEmpty
-            ? AssistChatResponse(message: AssistChatMessage(prompt: nil, text: message, role: .Assistant))
-            : AssistChatResponse(chipOptions: options)
-
-        return Just(chatBotResponse)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
-    /// If necessary, downloads the file and returns the page context.
-    /// If we can't determine the format, we return an empty page context
-    private static func pageContextPublisher(
-        downloadFileInteractor: DownloadFileInteractor,
-        courseId: String,
-        fileId: String
-    ) -> AnyPublisher<AssistChatPageContext, Error> {
-        ReactiveStore(useCase: GetFile(context: .course(courseId), fileID: fileId))
-            .getEntities()
-            .map { files in files.first }
-            .flatMap { (file: File?) in
-                guard let file = file,
-                      let format = AssistChatDocumentType.from(mimeType: file.contentType) else {
-                    return Just(AssistChatPageContext()).setFailureType(to: Error.self).eraseToAnyPublisher()
-                }
-                return downloadFileInteractor
-                    .download(fileID: fileId)
-                    .map { try? Data(contentsOf: $0) }
-                    .map { $0?.base64EncodedString() }
-                    .map { (base64String: String?) in
-                        guard let base64String = base64String else {
-                            return AssistChatPageContext()
-                        }
-                        return AssistChatPageContext(
-                            format: format,
-                            name: file.filename,
-                            source: base64String
-                        )
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
-    }
-
-    /// Fetches a page to use for AI context
-    private static func pageContextPublisher(courseId: String, pageUrl: String) -> AnyPublisher<AssistChatPageContext, Error> {
-        ReactiveStore(useCase: GetPage(context: .course(courseId), url: pageUrl))
-            .getEntities()
-            .map { AssistChatPageContext(title: $0.first?.title ?? "", body: $0.first?.body ?? "") }
-            .eraseToAnyPublisher()
+        .eraseToAnyPublisher()
     }
 
     /// Makes a request to the cedar endpoint using the given prompt and returns an answer
@@ -294,14 +336,13 @@ class AssistChatInteractorLive: AssistChatInteractor {
     /// Given the prompt, ask the AI to classify it to one of our ClassifierOptions (e.g., chat, flashcards, quiz)
     private func classifier(
         prompt: String,
-        pageContext: AssistChatPageContext,
-        userShortName: String,
         action: AssistChatAction,
         history: [AssistChatMessage]
     ) -> AnyPublisher<String, any Error> {
         let longExplanations = ClassifierOption.allCases.map { $0.longExplanation }.joined(separator: ", ")
         let defaultOption = ClassifierOption.defaultOption.rawValue
         let shortOptions = ClassifierOption.allCases.map { $0.rawValue }.joined(separator: ", ")
+        let pageContext = pageContextPublisher.value
 
         // swiftlint:disable line_length
         let classifierPrompt =
@@ -314,11 +355,10 @@ class AssistChatInteractorLive: AssistChatInteractor {
     /// Calls the basic chat endpoint to generate flashcards
     private func flashcards(
         action: AssistChatAction,
-        pageContext: AssistChatPageContext,
-        history: [AssistChatMessage] = [],
-        userShortName: String
+        history: [AssistChatMessage] = []
     ) -> AnyPublisher<AssistChatResponse, Error> {
         let chipPrompt = AssistChipOption(AssistChipOption.Default.flashcards, userShortName: userShortName).prompt
+        let pageContext = pageContextPublisher.value
         let pageContextPrompt = pageContext.prompt ?? ""
         let prompt = "\(chipPrompt) \(pageContextPrompt) \(history.json)"
         return basicChat(
@@ -339,18 +379,21 @@ class AssistChatInteractorLive: AssistChatInteractor {
     private func handleClassifierPromptResponse(
         classification: String,
         action: AssistChatAction,
-        pageContext: AssistChatPageContext,
         history: [AssistChatMessage],
-        userShortName: String,
-        useAdvancedChat: Bool = true
+        courseID: String
     ) -> AnyPublisher<AssistChatResponse, Error> {
         let defaultOption = ClassifierOption.defaultOption
         let classifierOption = ClassifierOption(rawValue: classification) ?? defaultOption
+        let pageContext = pageContextPublisher.value
+
+        // only use Pine chat if we don't have a document context
+        let usePineRAGService = pageContext.prompt == nil
+
         switch classifierOption {
         case .chat:
             let chatMethod =
-                useAdvancedChat
-                ? advancedChat(history: history)
+                usePineRAGService
+            ? pineRAGService(history: history, courseID: courseID)
                 : basicChat(prompt: "\(history.json) \(pageContext.prompt ?? "")", pageContext: pageContext)
             return
                 chatMethod
@@ -359,22 +402,18 @@ class AssistChatInteractorLive: AssistChatInteractor {
         case .flashcards:
             return flashcards(
                 action: action,
-                pageContext: pageContext,
-                history: history,
-                userShortName: userShortName
+                history: history
             )
         case .quiz:
             return quiz(
                 action: action,
-                pageContext: pageContext,
-                history: history,
-                userShortName: userShortName
+                history: history
             )
         }
     }
 
     /// publishes an updated history based on the action the user took, then returns that updated history
-    private func publish(using action: AssistChatAction, with userShortName: String) -> AnyPublisher<[AssistChatMessage], Never> {
+    private func publish(using action: AssistChatAction) -> AnyPublisher<[AssistChatMessage], Never> {
         var response: AssistChatResponse!
         switch action {
         case .chat(let prompt, let history):
@@ -403,11 +442,10 @@ class AssistChatInteractorLive: AssistChatInteractor {
     /// Calls the cedar endpoint to generate a quiz
     private func quiz(
         action: AssistChatAction,
-        pageContext: AssistChatPageContext,
-        history: [AssistChatMessage],
-        userShortName: String
+        history: [AssistChatMessage]
     ) -> AnyPublisher<AssistChatResponse, Error> {
-        cedarDomainService.api()
+        let pageContext = pageContextPublisher.value
+        return cedarDomainService.api()
             .flatMap { cedarApi in
                 // swiftlint:disable line_length
                 let prompt =
@@ -421,7 +459,8 @@ class AssistChatInteractorLive: AssistChatInteractor {
                         guard let quizItem = quizOutput.quizItems.first else {
                             return AssistChatResponse(
                                 message: AssistChatMessage(
-                                    botResponse: "Sorry, I'm unable to generate a quiz for you at this time."),
+                                    botResponse: "Sorry, I'm unable to generate a quiz for you at this time."
+                                ),
                                 chatHistory: history
                             )
                         }
@@ -432,14 +471,6 @@ class AssistChatInteractorLive: AssistChatInteractor {
                     }
                 }
             }
-            .eraseToAnyPublisher()
-    }
-
-    /// Fetches the user's short name
-    private var userShortNamePublisher: AnyPublisher<String, Error> {
-        ReactiveStore(useCase: GetUserProfile())
-            .getEntities()
-            .map { $0.first?.shortName ?? String(localized: "Learner", bundle: .horizon) }
             .eraseToAnyPublisher()
     }
 
@@ -511,6 +542,7 @@ private extension String {
 
 struct AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
+    let userShortNamePublisher: CurrentValueSubject<String, Never> = .init("")
 
     func publish(action: AssistChatAction) {}
     var listen: AnyPublisher<AssistChatResponse, Error> = Just(
