@@ -38,7 +38,7 @@ struct AssistFlashCardView: View {
             .scrollPosition(id: $viewModel.currentCardIndex)
         }
         .animation(.smooth, value: viewModel.currentCardIndex)
-        .paddingStyle(.top, .standard)
+        .padding(.huiSpaces.space16)
         .safeAreaInset(edge: .bottom) {
             AssistFlashCardStepIndicatorView(viewModel: viewModel)
                 .padding(.bottom, 5)
@@ -51,10 +51,17 @@ struct AssistFlashCardView: View {
 
 extension AssistFlashCardView {
     private var headerView: some View {
-        AssistTitle {
-            viewModel.dismiss(controller: viewController)
+        HStack {
+            HorizonUI.IconButton(Image.huiIcons.arrowBack, type: .white, isSmall: true) {
+                viewModel.pop(controller: viewController)
+            }
+            Spacer()
+            AssistTitle()
+            Spacer()
+            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
+                viewModel.dismiss(controller: viewController)
+            }
         }
-        .padding(.horizontal, HorizonUI.spaces.space16)
     }
 
     @ViewBuilder

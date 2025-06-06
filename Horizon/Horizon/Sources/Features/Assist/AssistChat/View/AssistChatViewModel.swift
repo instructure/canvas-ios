@@ -30,12 +30,12 @@ final class AssistChatViewModel {
 
     private(set) var chipOptions: [String]?
     private(set) var messages: [AssistChatMessageViewModel] = []
+    private(set) var isBackButtonVisible: Bool = false
+    private(set) var shouludOpenKeyboard: Bool = false
     var scrollViewProxy: ScrollViewProxy?
     private(set) var state: InstUI.ScreenState = .data
-    let hasAssistChipOptions: Bool
-
     var isDisableSendButton: Bool {
-        message.trimmed().isEmpty
+        message.trimmed().isEmpty || !canSendMessage
     }
 
     // MARK: - Dependencies
@@ -48,10 +48,13 @@ final class AssistChatViewModel {
     private let animationDuration = 0.35
     private var chatMessages: [AssistChatMessage] = []
     private var dispatchWorkItem: DispatchWorkItem?
+    private var canSendMessage: Bool = true
     private var subscriptions = Set<AnyCancellable>()
     private let courseId: String?
     private let pageUrl: String?
     private let fileId: String?
+    private var viewController = WeakViewController()
+    private var hasAssistChipOptions: Bool = false
 
     // MARK: - Init
     init(
@@ -66,17 +69,10 @@ final class AssistChatViewModel {
         self.fileId = fileId
         self.router = router
         self.chatBotInteractor = chatBotInteractor
-        self.hasAssistChipOptions = chatBotInteractor.hasAssistChipOptions
-    }
 
-    // MARK: - Inputs
-
-    func dismiss(controller: WeakViewController) {
-        router.dismiss(controller)
-    }
-
-    func listenToChatBot(viewController: WeakViewController) {
-        chatBotInteractor.listen.receive(on: DispatchQueue.main).sink(
+        chatBotInteractor
+            .listen
+            .receive(on: DispatchQueue.main).sink(
             receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
                 switch completion {
@@ -87,12 +83,29 @@ final class AssistChatViewModel {
                 }
             },
             receiveValue: { [weak self] message in
-                self?.onMessage(message, viewController: viewController)
+                guard let self else { return }
+                self.onMessage(message, viewController: viewController)
             }
         )
         .store(in: &subscriptions)
 
         chatBotInteractor.publish(action: .chat())
+    }
+
+    // MARK: - Inputs
+
+    func setInitialState() {
+        shouludOpenKeyboard = false
+        chatBotInteractor.setInitialState()
+        self.isBackButtonVisible = false
+    }
+
+    func dismiss(controller: WeakViewController) {
+        router.dismiss(controller)
+    }
+
+    func setViewController(_ viewController: WeakViewController) {
+        self.viewController = viewController
     }
 
     func send() {
@@ -101,10 +114,14 @@ final class AssistChatViewModel {
 
     func send(chipOption: AssistChipOption) {
         chatBotInteractor.publish(action: .chip(option: chipOption, history: chatMessages))
+        isBackButtonVisible = true
     }
 
     func send(message: String) {
         chatBotInteractor.publish(action: .chat(prompt: message, history: chatMessages))
+        if hasAssistChipOptions {
+            isBackButtonVisible = true
+        }
         self.message = ""
     }
 
@@ -121,12 +138,15 @@ final class AssistChatViewModel {
         // If we do have a history, they are pills at the end of the last message
         if response.chatHistory.isEmpty {
             let chipOptions = response.chipOptions ?? []
+            hasAssistChipOptions = true
+            shouludOpenKeyboard = false
             newMessages = chipOptions.map { chipOption in
                 chipOption.viewModel { [weak self] in
                     self?.send(chipOption: chipOption)
                 }
             }
         } else {
+            shouludOpenKeyboard = true
             newMessages = response.chatHistory.map {
                 $0.viewModel(response: response) { [weak self] quickResponse in
                     self?.send(chipOption: quickResponse)
@@ -177,6 +197,7 @@ final class AssistChatViewModel {
     /// add a loading message after a delay if the response is still loading
     private func addLoadingMessageAfterDelay(if isLoading: Bool) {
         unowned let unownedSelf = self
+        canSendMessage = !isLoading
         if isLoading {
             dispatchWorkItem?.cancel()
             dispatchWorkItem = DispatchWorkItem {

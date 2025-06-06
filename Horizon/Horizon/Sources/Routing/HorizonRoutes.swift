@@ -285,13 +285,10 @@ enum HorizonRoutes {
                 let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
                 let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
                 let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
-
-                return CoreHostingController(
-                    AssistAssembly.makeAssistChatView(
-                        courseId: courseId,
-                        pageUrl: pageUrl,
-                        fileId: fileId
-                    )
+                return AssistAssembly.makeAssistChatView(
+                    courseId: courseId,
+                    pageUrl: pageUrl,
+                    fileId: fileId
                 )
             },
             RouteHandler("/assistant/flashcards") { _, _, userInfo in

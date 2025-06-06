@@ -104,6 +104,10 @@ final class AssistQuizViewModel {
         router.dismiss(controller)
     }
 
+    func pop(controller: WeakViewController) {
+        router.pop(from: controller)
+    }
+
     // MARK: - private
     private func onMessage(_ response: AssistChatResponse) {
         chatHistory = response.chatHistory

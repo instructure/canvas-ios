@@ -62,6 +62,10 @@ final class AssistFlashCardViewModel {
         router.dismiss(controller)
     }
 
+    func pop(controller: WeakViewController) {
+        router.pop(from: controller)
+    }
+
     func goToNextCard() {
         currentCardIndex = (currentCardIndex ?? 0) + 1
     }
