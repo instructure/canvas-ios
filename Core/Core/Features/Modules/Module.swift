@@ -107,4 +107,25 @@ public class Module: NSManagedObject {
         module.estimatedDuration = item.estimated_duration
         return module
     }
+
+    public static func update(
+        with item: APIModule,
+        forCourse courseID: String,
+        in context: NSManagedObjectContext
+    ) {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.id), item.id.value)
+        guard let module: Module = context.fetch(predicate).first else {
+            return
+        }
+        module.id = item.id.value
+        module.courseID = courseID
+        module.name = item.name
+        module.position = item.position
+        module.published = item.published
+        module.state = item.state
+        module.prerequisiteModuleIDs = item.prerequisite_module_ids
+        module.requireSequentialProgress = item.require_sequential_progress
+        module.unlockAt = item.unlock_at
+        module.estimatedDuration = item.estimated_duration
+    }
 }
