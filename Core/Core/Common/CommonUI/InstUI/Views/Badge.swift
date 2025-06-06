@@ -149,9 +149,9 @@ extension InstUI {
     @Previewable @State var badgeValueIndex: Int = 0
     let badgeValues: [Int?] = [nil, 1, 99, 100]
 
-    var clock18 = Image.clockLine.scaledIcon(size: 18)
-    var doc18 = Image.documentLine.scaledIcon(size: 18)
-    var menu24 = Image.hamburgerSolid.scaledIcon(size: 24)
+    let clock18 = Image.clockLine.scaledIcon(size: 18)
+    let doc18 = Image.documentLine.scaledIcon(size: 18)
+    let menu24 = Image.hamburgerSolid.scaledIcon(size: 24)
 
     VStack {
         Divider()
