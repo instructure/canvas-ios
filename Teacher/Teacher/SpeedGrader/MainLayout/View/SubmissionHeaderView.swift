@@ -99,8 +99,9 @@ struct SubmissionHeaderView: View {
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity, alignment: .leading)
             .onSizeChange { size in
-                if profileHeight == size.height { return }
-                profileHeight = size.height
+                if profileHeight != size.height {
+                    profileHeight = size.height
+                }
             }
             .identifier("SpeedGrader.userButton")
 
