@@ -123,7 +123,7 @@ struct SubmissionCommentListCell: View {
     }
 
     private var authorName: some View {
-        Text(User.displayName(viewModel.author.name, pronouns: viewModel.author.pronouns))
+        Text(viewModel.author.name)
             .font(.semibold16, lineHeight: .fit)
             .foregroundStyle(Color.textDarkest)
     }
