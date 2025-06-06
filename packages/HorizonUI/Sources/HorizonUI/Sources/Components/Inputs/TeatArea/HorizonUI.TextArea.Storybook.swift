@@ -16,27 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Observation
 import SwiftUI
 
-@Observable
-class CreateMessageViewModel {
-    // MARK: - Outputs
-    var body: String = ""
-    var isIndividualMessageEnabled: Bool = false
-    var title: String = ""
+extension HorizonUI.TextArea {
+    struct Storybook: View {
 
-    // MARK: - Properties
-    private let router: Router
+        @State var emptyTextInput: String = ""
 
-    init(router: Router = AppEnvironment.shared.router) {
-        self.router = router
+        var body: some View {
+            ScrollView {
+                VStack(spacing: 32) {
+                    HorizonUI.TextArea(
+                        .constant(""),
+                        label: "This is an empty text input",
+                        helperText: "This is helper text",
+                        placeholder: "This is placeholder text"
+                    )
+                }
+                .padding(24)
+            }
+        }
     }
+}
 
-    func close(viewController: WeakViewController) {
-        router.pop(from: viewController)
-    }
-
-    func sendMessage(viewController: WeakViewController) {
-    }
+#Preview {
+    HorizonUI.TextInput.Storybook()
 }

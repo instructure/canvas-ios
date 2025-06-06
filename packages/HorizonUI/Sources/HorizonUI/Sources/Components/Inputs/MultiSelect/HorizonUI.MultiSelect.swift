@@ -116,11 +116,12 @@ extension HorizonUI {
                     dropDownOptionsWithSpinner
                         .zIndex(zIndex)
                 }
+                .padding(.horizontal, 3)
             }
             .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .padding(.vertical, 1)
+            .padding(1)
             .zIndex(zIndex)
         }
 

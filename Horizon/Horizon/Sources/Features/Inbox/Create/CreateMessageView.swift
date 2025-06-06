@@ -28,13 +28,58 @@ struct CreateMessageView: View {
     var body: some View {
         VStack(alignment: .leading) {
             header
-            peopleSelection
-            individualMessageCheckbox
-            messageTitleInput
-            messageBodyInput
+            bodyContent
+            footer
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    // MARK: - Private
+
+    private var bodyContent: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: .huiSpaces.space24) {
+                peopleSelection
+                individualMessageCheckbox
+                messageTitleInput
+                messageBodyInput
+                Spacer()
+            }
+        }
         .padding(.horizontal, .huiSpaces.space24)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
+    }
+
+    private var footer: some View {
+        HStack {
+            Spacer()
+            HorizonUI.PrimaryButton(
+                String(localized: "Cancel", bundle: .horizon),
+                type: .white
+            ) {
+                viewModel.close(viewController: viewController)
+            }
+
+            HorizonUI.PrimaryButton(
+                String(localized: "Send", bundle: .horizon),
+                type: .institution
+            ) {
+                viewModel.sendMessage(viewController: viewController)
+            }
+        }
+        .frame(height: 92)
+        .padding(.horizontal, .huiSpaces.space24)
+        .overlay(
+            divider,
+            alignment: .top
+        )
+    }
+
+    private var divider: some View {
+        Rectangle()
+            .fill(Color.huiColors.surface.divider)
+            .frame(height: 1)
+            .frame(maxWidth: .infinity)
     }
 
     private var individualMessageCheckbox: some View {
@@ -57,22 +102,27 @@ struct CreateMessageView: View {
                 viewModel.close(viewController: viewController)
             }
         }
-        .padding(.vertical, .huiSpaces.space24)
-    }
-
-    private var messageBodyInput: some View {
-        HorizonUI.TextInput(
-            $viewModel.title,
-            placeholder: String(localized: "Title/Subject", bundle: .horizon)
+        .frame(height: 88)
+        .padding(.horizontal, .huiSpaces.space24)
+        .overlay(
+            divider,
+            alignment: .bottom
         )
     }
 
-    private var messageTitleInput: some View {
-        HorizonUI.TextInput(
+    private var messageBodyInput: some View {
+        HorizonUI.TextArea(
             $viewModel.body,
             placeholder: String(localized: "Message", bundle: .horizon)
         )
         .frame(height: 144)
+    }
+
+    private var messageTitleInput: some View {
+        HorizonUI.TextInput(
+            $viewModel.title,
+            placeholder: String(localized: "Title/Subject", bundle: .horizon)
+        )
     }
 
     private var peopleSelection: some View {

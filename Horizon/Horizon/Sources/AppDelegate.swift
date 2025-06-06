@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
         window = UIWindow()
         _ = environment
-        window?.rootViewController = SplashAssembly.makeViewController()
+        window?.rootViewController = CreateMessageAssembly.makeViewController()
         window?.makeKeyAndVisible()
 
         // MARK: Setups
