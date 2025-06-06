@@ -25,26 +25,40 @@ struct HorizonInboxView: View {
 
     @Environment(\.viewController) private var viewController
     @Bindable var viewModel: HorizonInboxViewModel
+    let coordinateSpaceName: String = "scroll"
 
     var body: some View {
         VStack {
             topBar
-            ScrollView {
-                VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
-                    filterSelection
+            GeometryReader { scrollViewProxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
+                        filterSelection
+                            .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+
+                        PeopleSelectionView(
+                            viewModel: viewModel.peopleSelectionViewModel,
+                            disabled: viewModel.isSearchDisabled
+                        )
                         .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
-                    PeopleSelectionView(
-                        viewModel: viewModel.peopleSelectionViewModel,
-                        disabled: viewModel.isSearchDisabled
+                        messageList
+                    }
+                    .background(
+                        GeometryReader { contentProxy in
+                            Color.clear
+                                .onChange(of: contentProxy.frame(in: .named(coordinateSpaceName)).minY) {
+                                    viewModel.loadMoreIfScrolledEnough(
+                                        scrollViewProxy: scrollViewProxy,
+                                        contentProxy: contentProxy,
+                                        coordinateSpaceName: coordinateSpaceName
+                                    )
+                                }
+                        }
                     )
-                        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
-
-                    messageList
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .coordinateSpace(name: coordinateSpaceName)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(HorizonUI.colors.surface.pagePrimary)
@@ -103,7 +117,7 @@ struct MessageRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
-                Text(viewModel.date)
+                Text(viewModel.dateString)
                     .huiTypography(.p2)
                     .padding(.bottom, .huiSpaces.space8)
 
@@ -161,6 +175,15 @@ struct AddressbookInteractorPreview: AddressbookInteractor {
     func setSearch(_ searchString: String) {
     }
 }
+
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
 
 #Preview {
     HorizonInboxView(

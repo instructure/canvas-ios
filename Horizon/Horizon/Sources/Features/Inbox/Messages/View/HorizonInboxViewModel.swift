@@ -63,16 +63,6 @@ class HorizonInboxViewModel {
         }
     }
     var messageRows: [MessageRowViewModel] = []
-    var personOptions: [String] = []
-    var searchByPersonSelections: [String] {
-        get {
-            personFilterSubject.value
-        }
-        set {
-            personFilterSubject.send(newValue)
-        }
-    }
-    var searchLoading: Bool = false
     var isMessagesFilterFocused: Bool = false {
         didSet {
             onMessagesFilterFocused()
@@ -84,7 +74,12 @@ class HorizonInboxViewModel {
     var peopleSelectionViewModel: PeopleSelectionViewModel!
 
     // MARK: - Private
-    private let personFilterSubject = CurrentValueSubject<[String], Never>([])
+    private var filter: FilterOption = FilterOption.all {
+        didSet {
+            didSetFilter()
+        }
+    }
+    private var hasNextPage: Bool = false
     // don't do animations until the user updates the filter or search
     private var isSearchFocused: Bool = false {
         didSet {
@@ -94,11 +89,6 @@ class HorizonInboxViewModel {
     private var searchAPITask: APITask?
     private var searchDebounceTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
-    private var filter: FilterOption = FilterOption.all {
-        didSet {
-            didSetFilter()
-        }
-    }
 
     // MARK: - Dependencies
 
@@ -127,15 +117,10 @@ class HorizonInboxViewModel {
 
         Publishers.CombineLatest(
             inboxMessageInteractor.messages,
-            personFilterSubject
+            peopleSelectionViewModel.personFilterSubject
         )
         .sink(receiveValue: onInboxMessageListItems)
         .store(in: &subscriptions)
-
-        inboxMessageInteractor
-            .hasNextPage
-            .sink(receiveValue: onHasNextPage)
-            .store(in: &subscriptions)
     }
 
     func goBack(_ viewController: WeakViewController) {
@@ -146,32 +131,55 @@ class HorizonInboxViewModel {
         router.route(to: "/conversations/create", from: viewController)
     }
 
-    // MARK: - Private Methods
+    func loadMoreIfScrolledEnough(
+        scrollViewProxy: GeometryProxy,
+        contentProxy: GeometryProxy,
+        coordinateSpaceName: String = "scroll"
+    ) {
+        let isLoadingMore = inboxMessageInteractor.state.value == .loading
+        let hasNextPage = inboxMessageInteractor.hasNextPage.value
+        if(!hasNextPage && !isLoadingMore) {
+            return
+        }
+        let contentHeight = contentProxy.size.height
+        let visibleHeight = scrollViewProxy.size.height
+        let offset = -contentProxy.frame(in: .named(coordinateSpaceName)).minY
+        let maxOffset = max(contentHeight - visibleHeight, 1)
+        let threshold = 150.0
+        let shouldLoadMore = offset > maxOffset - threshold
+        if !shouldLoadMore {
+            return
+        }
+        _ = inboxMessageInteractor.loadNextPage()
+    }
 
-    private func onHasNextPage(_ hasNextPage: Bool) {
+    // MARK: - Private Methods
+    private func addAnnouncements(to messageRows: [MessageRowViewModel]) -> [MessageRowViewModel] {
+        if filter != .all || peopleSelectionViewModel.personFilterSubject.value.isNotEmpty {
+            return messageRows
+        }
+        let announcements: [MessageRowViewModel] = announcementsInteractor.messages.value.map { $0.viewModel }
+        let isFinishedLoading = inboxMessageInteractor.hasNextPage.value == false
+        let fullList = (messageRows + announcements).sorted { (lhs: MessageRowViewModel, rhs: MessageRowViewModel) in
+            lhs.date ?? Date.distantPast > rhs.date ?? Date.distantPast
+        }
+        let indexOfLastNonAnnouncement = fullList.firstIndex { !$0.isAnnouncement } ?? 0
+        return fullList.enumerated().filter { (index, row) in
+            // if we're finished loading, show all the announcements and messages.
+            // if we're not finished loading, only show the announcements that are before the last non-announcement.
+            return !row.isAnnouncement || isFinishedLoading || index < indexOfLastNonAnnouncement
+        }.map { $0.element }
     }
 
     private func onInboxMessageListItems(tuple: ([InboxMessageListItem], [String])) {
         let inboxMessageListItems = tuple.0
-        let personFilter = tuple.1
-        messageRows = inboxMessageListItems
-            .filter { messageListItem in
-                // technically, this should probably be in the interactor...
-                if personFilter.isEmpty || filter == .announcements {
-                    return true
-                }
-                return personFilter.contains { current in
-                    messageListItem.participantName.lowercased().contains(current.lowercased())
-                }
-            }
-            .map { messageListItem in
-                MessageRowViewModel(
-                    date: messageListItem.date,
-                    title: messageListItem.title,
-                    subtitle: messageListItem.participantName,
-                    isNew: messageListItem.isUnread
-                )
-            }
+        let messageRowsInterim = inboxMessageListItems
+            .filter(filterByPerson)
+            .map { $0.viewModel }
+        messageRows = addAnnouncements(to: messageRowsInterim)
+        messageRows.forEach {
+            print($0.id)
+        }
     }
 
     private func didSetFilter() {
@@ -191,6 +199,16 @@ class HorizonInboxViewModel {
         }
     }
 
+    private func filterByPerson(messageListItem: InboxMessageListItem) -> Bool {
+        let personFilter = peopleSelectionViewModel.personFilterSubject.value
+        if personFilter.isEmpty || filter == .announcements {
+            return true
+        }
+        return personFilter.contains { current in
+            messageListItem.participantName.lowercased().contains(current.lowercased())
+        }
+    }
+
     private func onMessagesFilterFocused() {
         if isMessagesFilterFocused {
             isSearchFocused = false
@@ -204,12 +222,16 @@ class HorizonInboxViewModel {
     }
 
     struct MessageRowViewModel: Hashable, Identifiable {
-        let date: String
+        let date: Date?
+        var dateString: String {
+            date.map { $0.relativeDateOnlyString } ?? ""
+        }
         let title: String
         let subtitle: String
+        let isAnnouncement: Bool
         let isNew: Bool
         var id: String {
-            "\(date)-\(title)-\(subtitle)-\(isNew)"
+            "\(date?.timeIntervalSince1970 ?? 0)-\(title)-\(subtitle)-\(isNew)-\(isAnnouncement)"
         }
     }
 }
@@ -217,14 +239,27 @@ class HorizonInboxViewModel {
 extension Announcement {
     var viewModel: HorizonInboxViewModel.MessageRowViewModel {
         .init(
-            date: date.map { $0.relativeDateOnlyString } ?? "",
+            date: date,
             title: viewModelTitle,
             subtitle: title,
+            isAnnouncement: true,
             isNew: false
         )
     }
 
     private var viewModelTitle: String {
         courseName != nil ? "Announcement for \(courseName ?? "")" : "Announcement"
+    }
+}
+
+extension InboxMessageListItem {
+    var viewModel: HorizonInboxViewModel.MessageRowViewModel {
+        .init(
+            date: dateRaw,
+            title: title,
+            subtitle: participantName,
+            isAnnouncement: false,
+            isNew: isUnread
+        )
     }
 }

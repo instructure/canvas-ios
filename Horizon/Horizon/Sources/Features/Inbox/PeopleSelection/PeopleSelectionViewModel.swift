@@ -37,10 +37,10 @@ class PeopleSelectionViewModel {
             personFilterSubject.send(newValue)
         }
     }
+    let personFilterSubject = CurrentValueSubject<[String], Never>([])
     var searchLoading: Bool = false
 
     // MARK: - Private
-    private let personFilterSubject = CurrentValueSubject<[String], Never>([])
     private var searchAPITask: APITask?
     private var searchDebounceTask: Task<Void, Never>?
     var searchString: String = "" {

@@ -20,15 +20,9 @@ import Core
 import UIKit
 
 struct HInboxAssembly {
-    static func makeView() -> UIViewController {
-        let inboxViewModel = HInboxViewModel()
-        let viewModel = HEmbeddedWebPageContainerViewModel(
-            webPage: inboxViewModel
-        )
-
-        let viewController = CoreHostingController(
+    static func makeViewController() -> UIViewController {
+        CoreHostingController(
             HorizonInboxView(viewModel: HorizonInboxViewModel())
         )
-        return viewController
     }
 }
