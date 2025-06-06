@@ -19,29 +19,6 @@
 import SwiftUI
 import Core
 
-class SubmissionHeaderViewModel: ObservableObject {
-    let submitterName: String
-    let groupName: String?
-    let isGroupSubmission: Bool
-    let routeToSubmitter: String?
-
-    init(
-        assignment: Assignment,
-        submission: Submission
-    ) {
-        let isGroupSubmission = !assignment.gradedIndividually && submission.groupID != nil
-        self.isGroupSubmission = isGroupSubmission
-
-        let groupName = isGroupSubmission ? submission.groupName : nil
-        self.groupName = groupName
-
-        submitterName = {
-            groupName ?? (submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
-        }()
-        routeToSubmitter = isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
-    }
-}
-
 struct SubmissionHeaderView: View {
     let assignment: Assignment
     let submission: Submission
@@ -53,7 +30,7 @@ struct SubmissionHeaderView: View {
 
     @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
     @State private var profileHeight: CGFloat = 0
-    @StateObject private var viewModel: SubmissionHeaderViewModel
+    @StateObject internal var viewModel: SubmissionHeaderViewModel
 
     init(
         assignment: Assignment,

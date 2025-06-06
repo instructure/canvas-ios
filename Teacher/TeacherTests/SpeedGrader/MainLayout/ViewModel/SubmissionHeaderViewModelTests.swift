@@ -20,20 +20,18 @@ import Core
 @testable import Teacher
 import XCTest
 
-class SubmissionHeaderTests: TeacherTestCase {
+class SubmissionHeaderViewModelTests: TeacherTestCase {
 
     func testGroupSubmissionCheck() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
         assignment.gradedIndividually = false
         submission.groupID = "TestGroupID"
+
+        let testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
 
         XCTAssertTrue(testee.isGroupSubmission)
     }
@@ -41,52 +39,54 @@ class SubmissionHeaderTests: TeacherTestCase {
     func testGroupName() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
         assignment.gradedIndividually = false
         submission.groupName = "TestGroup Name"
+
+        var testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
         XCTAssertEqual(testee.groupName, nil)
 
         submission.groupID = "TestGroupID"
+
+        testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
+
         XCTAssertEqual(testee.groupName, "TestGroup Name")
     }
 
     func testRouteToGroupSubmitter() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
         assignment.gradedIndividually = false
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
+
+        let testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
+
         XCTAssertNil(testee.routeToSubmitter)
     }
 
     func testRouteToIndividialInGroupSubmission() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
         assignment.gradedIndividually = true
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
+
+        let testee = SubmissionHeaderViewModel(
+            assignment: assignment,
+            submission: submission,
+        )
+
         XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")
     }
 }
