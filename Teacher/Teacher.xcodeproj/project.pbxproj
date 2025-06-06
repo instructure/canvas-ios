@@ -143,8 +143,9 @@
 		CF20B5C02B1F9C7F00C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5BF2B1F9C7F00C00B39 /* LaunchScreen.storyboard */; };
 		CF27D8A72DCCA387009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF27D8A62DCCA379009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift */; };
 		CF28C6BD2DA4024A007CD65A /* SpeedGraderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF28C6BC2DA40246007CD65A /* SpeedGraderInteractor.swift */; };
+		CF45B9F22DF2F71800BD9E41 /* SubmissionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45B9F12DF2F71600BD9E41 /* SubmissionHeaderViewModel.swift */; };
 		CF4C5F7C2DA02401005AE000 /* SpeedGraderInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4C5F7B2DA023FB005AE000 /* SpeedGraderInteractorLive.swift */; };
-		CF56B71525F68CD3000DD32F /* SubmissionHeaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderViewTests.swift */; };
+		CF56B71525F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56B71425F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift */; };
 		CF67D00A2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00C2B18E9A1009D826A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */; };
 		CF67D00E2B18E9A1009D826A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */; };
@@ -385,8 +386,9 @@
 		CF20B5BF2B1F9C7F00C00B39 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF27D8A62DCCA379009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderLandscapeSplitLayoutViewModel.swift; sourceTree = "<group>"; };
 		CF28C6BC2DA40246007CD65A /* SpeedGraderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractor.swift; sourceTree = "<group>"; };
+		CF45B9F12DF2F71600BD9E41 /* SubmissionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderViewModel.swift; sourceTree = "<group>"; };
 		CF4C5F7B2DA023FB005AE000 /* SpeedGraderInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderInteractorLive.swift; sourceTree = "<group>"; };
-		CF56B71425F68CD3000DD32F /* SubmissionHeaderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderViewTests.swift; sourceTree = "<group>"; };
+		CF56B71425F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeaderViewModelTests.swift; sourceTree = "<group>"; };
 		CF67D0092B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00B2B18E9A1009D826A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CF67D00D2B18E9A1009D826A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -1148,17 +1150,8 @@
 			isa = PBXGroup;
 			children = (
 				CF7D8D692DD24B6E00FA67CE /* ViewModel */,
-				CF0606012D96E47E0014C2EC /* View */,
 			);
 			path = MainLayout;
-			sourceTree = "<group>";
-		};
-		CF0606012D96E47E0014C2EC /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CF56B71425F68CD3000DD32F /* SubmissionHeaderViewTests.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CF0606022D96E4920014C2EC /* CommentLibrary */ = {
@@ -1208,6 +1201,7 @@
 		CF0E06922DA8FEF9007AC131 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF45B9F12DF2F71600BD9E41 /* SubmissionHeaderViewModel.swift */,
 				CF27D8A62DCCA379009E2057 /* SpeedGraderLandscapeSplitLayoutViewModel.swift */,
 				CF0E06932DA8FFC4007AC131 /* SubmissionGraderViewModel.swift */,
 			);
@@ -1305,6 +1299,7 @@
 			children = (
 				CF7D8D672DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift */,
 				5BDD37D62DEF293700C8B7AD /* SubmissionGraderViewModelTests.swift */,
+				CF56B71425F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1735,6 +1730,7 @@
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */,
 				0856FCD42DB64FE8009067CF /* SubmissionListRowView.swift in Sources */,
+				CF45B9F22DF2F71800BD9E41 /* SubmissionHeaderViewModel.swift in Sources */,
 				0856FCF42DC76144009067CF /* SubmissionsFilterScreen.swift in Sources */,
 				0856FD022DCB09F5009067CF /* SubmissionListSection.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
@@ -1786,7 +1782,7 @@
 				5B4F3E602DC8B169001A9126 /* SubmissionCommentListCellViewModelTests.swift in Sources */,
 				CF7D8D682DD24B5E00FA67CE /* SpeedGraderLandscapeSplitLayoutViewModelTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
-				CF56B71525F68CD3000DD32F /* SubmissionHeaderViewTests.swift in Sources */,
+				CF56B71525F68CD3000DD32F /* SubmissionHeaderViewModelTests.swift in Sources */,
 				5BDD37D72DEF293700C8B7AD /* SubmissionGraderViewModelTests.swift in Sources */,
 				0856FCFC2DCA4196009067CF /* SubmissionListViewModelTests.swift in Sources */,
 				D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */,

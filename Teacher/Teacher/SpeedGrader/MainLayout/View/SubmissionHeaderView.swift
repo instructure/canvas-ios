@@ -29,12 +29,20 @@ struct SubmissionHeaderView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
-    @State private var profileSize = CGSize.zero
+    @State private var profileHeight: CGFloat = 0
+    @StateObject internal var viewModel: SubmissionHeaderViewModel
 
-    var isGroupSubmission: Bool { !assignment.gradedIndividually && submission.groupID != nil }
-    var groupName: String? { isGroupSubmission ? submission.groupName : nil }
-    var routeToSubmitter: String? {
-        isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
+    init(
+        assignment: Assignment,
+        submission: Submission,
+        isLandscapeLayout: Bool,
+        landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel
+    ) {
+        self.assignment = assignment
+        self.submission = submission
+        self.isLandscapeLayout = isLandscapeLayout
+        self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
+        _viewModel = StateObject(wrappedValue: SubmissionHeaderViewModel(assignment: assignment, submission: submission))
     }
 
     var body: some View {
@@ -68,7 +76,9 @@ struct SubmissionHeaderView: View {
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity, alignment: .leading)
             .onSizeChange { size in
-                profileSize = size
+                if profileHeight != size.height {
+                    profileHeight = size.height
+                }
             }
             .identifier("SpeedGrader.userButton")
 
@@ -83,8 +93,8 @@ struct SubmissionHeaderView: View {
         let size: CGFloat = 32
 
         if assignment.anonymizeStudents {
-            Avatar.Anonymous(isGroup: isGroupSubmission, size: size)
-        } else if isGroupSubmission {
+            Avatar.Anonymous(isGroup: viewModel.isGroupSubmission, size: size)
+        } else if viewModel.isGroupSubmission {
             Avatar.Anonymous(isGroup: true, size: size)
         } else {
             Avatar(name: submission.user?.name, url: submission.user?.avatarURL, size: size)
@@ -94,9 +104,9 @@ struct SubmissionHeaderView: View {
     private var nameText: some View {
         let name: Text
         if assignment.anonymizeStudents {
-            name = isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
+            name = viewModel.isGroupSubmission ? Text("Group", bundle: .teacher) : Text("Student", bundle: .teacher)
         } else {
-            name = Text(groupName ?? submission.user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? "")
+            name = Text(viewModel.submitterName)
         }
 
         return name
@@ -106,12 +116,12 @@ struct SubmissionHeaderView: View {
 
     private var status: some View {
         HStack(spacing: 2) {
-            Image(uiImage: submission.status.icon)
+            Image(uiImage: submission.statusIncludingGradedState.icon)
                 .scaledIcon(size: 16)
-            Text(submission.status.text)
+            Text(submission.statusIncludingGradedState.text)
                 .font(.regular14)
         }
-        .foregroundStyle(Color(submission.status.color))
+        .foregroundStyle(Color(submission.statusIncludingGradedState.color))
     }
 
     private var dueText: some View {
@@ -127,7 +137,7 @@ struct SubmissionHeaderView: View {
     }
 
     private func navigateToSubmitter() {
-        guard !assignment.anonymizeStudents, let routeToSubmitter else { return }
+        guard !assignment.anonymizeStudents, let routeToSubmitter = viewModel.routeToSubmitter else { return }
 
         env.router.route(
             to: routeToSubmitter,
@@ -142,7 +152,7 @@ struct SubmissionHeaderView: View {
             .scaledIcon()
             .rotationEffect(landscapeSplitLayoutViewModel.dragIconRotation)
             .paddingStyle(.horizontal, .standard)
-            .frame(maxHeight: profileSize.height)
+            .frame(maxHeight: profileHeight)
             .contentShape(Rectangle())
             .gesture(resizeGesture)
             .onTapGesture {

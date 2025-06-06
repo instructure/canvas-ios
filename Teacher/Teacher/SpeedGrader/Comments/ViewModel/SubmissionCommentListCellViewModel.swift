@@ -25,7 +25,6 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
     struct Author {
         var id: String?
         var name: String
-        var pronouns: String?
         var avatarUrl: URL?
         var isCurrentUser: Bool
         var isAnonymized: Bool
@@ -86,8 +85,7 @@ final class SubmissionCommentListCellViewModel: ObservableObject {
 
         self.author = Author(
             id: comment.authorID,
-            name: comment.authorName,
-            pronouns: comment.authorPronouns,
+            name: User.displayName(comment.authorName, pronouns: comment.authorPronouns),
             avatarUrl: comment.authorAvatarURL,
             isCurrentUser: comment.authorID == currentUserId,
             isAnonymized: assignment.anonymizeStudents,
