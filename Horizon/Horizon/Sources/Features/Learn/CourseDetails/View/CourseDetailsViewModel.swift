@@ -113,7 +113,6 @@ final class CourseDetailsViewModel {
             pullToRefreshCancellable?.cancel()
             pullToRefreshCancellable = nil
             isLoaderVisible = true
-            selectedTabIndex = 1
             self.selectedCoure = selectedCourse
             self.selectedTabIndex = nil
             getCourse(for: selectedCourse?.id ?? "")
