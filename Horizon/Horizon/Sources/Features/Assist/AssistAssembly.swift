@@ -26,19 +26,22 @@ final class AssistAssembly {
         courseId: String? = nil,
         pageUrl: String? = nil,
         fileId: String? = nil
-    ) -> AssistChatView {
-        AssistChatView(
-            viewModel: AssistChatViewModel(
+    ) -> UINavigationController {
+        let viewModel = AssistChatViewModel(
+            courseId: courseId,
+            pageUrl: pageUrl,
+            fileId: fileId,
+            chatBotInteractor: makeChatBotInteractor(
                 courseId: courseId,
                 pageUrl: pageUrl,
-                fileId: fileId,
-                chatBotInteractor: makeChatBotInteractor(
-                    courseId: courseId,
-                    pageUrl: pageUrl,
-                    fileId: fileId
-                )
+                fileId: fileId
             )
         )
+        let view = AssistChatView(viewModel: viewModel)
+        let viewController = CoreHostingController(view)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        return navigationController
     }
 
     static func makeChatBotInteractor(courseId: String? = nil, pageUrl: String? = nil, fileId: String? = nil) -> AssistChatInteractor {

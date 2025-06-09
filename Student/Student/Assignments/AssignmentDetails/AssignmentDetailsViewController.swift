@@ -260,6 +260,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             self?.updateGradeBorder(using: gradeSection)
         }
         presenter?.viewIsReady()
+
+        // updateSubmissionLabels is also called from the update method that is triggered by CoreData
+        // but during a file resubmission flow the presenter's onlineUploadState is updated after
+        // CoreData is modified so this class won't be notified of the change. This is the workaround.
+        presenter?.didChangeOnlineUploadState = { [weak self] state in
+            guard let state else { return }
+            self?.updateSubmissionLabels(state: state)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

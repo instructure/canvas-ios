@@ -68,6 +68,10 @@ public final class Group: NSManagedObject, WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.showOnDashboard = !item.concluded
+
+        // `is_favorite` always has value when retrieved via `/api/v1/{context}/groups` api,
+        // while for api `/api/v1/users/self/favorites/groups`, it always received with no value.
+        // That's why we can assume the value to be `true` if not present.
         model.isFavorite = item.is_favorite ?? true
 
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {

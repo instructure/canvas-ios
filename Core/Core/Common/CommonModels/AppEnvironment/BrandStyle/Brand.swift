@@ -158,7 +158,11 @@ public struct Brand: Equatable {
         self.primaryDark = primary != nil ? primary!.ensureContrast(against: .backgroundLightest) : .textInfo
     }
 
-    public init(response: APIBrandVariables, headerImage: UIImage?) {
+    public init(
+        response: APIBrandVariables,
+        headerImage: UIImage?,
+        institutionLogo: URL?
+    ) {
         self.init(
             buttonPrimaryBackground: UIColor(hexString: response.button_primary_bgd),
             buttonPrimaryText: UIColor(hexString: response.button_primary_text),
@@ -176,7 +180,7 @@ public struct Brand: Equatable {
             navTextColor: UIColor(hexString: response.nav_text_color),
             navTextColorActive: UIColor(hexString: response.nav_text_color_active),
             primary: UIColor(hexString: response.primary),
-            institutionLogo: response.institutionLogo
+            institutionLogo: institutionLogo
         )
     }
 
@@ -244,6 +248,7 @@ public struct Brand: Equatable {
         logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
         logoView.image = headerImage
         logoView.backgroundColor = headerImageBackground
+        logoView.accessibilityElementsHidden = true
         return logoView
     }
 }

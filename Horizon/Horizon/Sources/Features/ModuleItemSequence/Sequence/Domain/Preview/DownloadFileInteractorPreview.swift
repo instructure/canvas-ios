@@ -33,5 +33,14 @@ class DownloadFileInteractorPreview: DownloadFileInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func download(
+        remoteURL: URL,
+        fileName: String
+    ) -> AnyPublisher<URL, Error> {
+        Just(URL(string: "https://github.com/instructure/canvas-ios")!)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 }
 #endif

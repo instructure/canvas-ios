@@ -49,7 +49,7 @@ final class NotebookViewModel {
 
     var isBackVisible: Bool { courseId == nil }
     var isCloseVisible: Bool { courseId != nil }
-    var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && state == .data && isNextDisabled && isPreviousDisabled }
+    var isEmptyCardVisible: Bool { notes.isEmpty && filter == nil && isLoaderVisible == false && isNextDisabled && isPreviousDisabled }
     var isFiltersVisible: Bool { courseId == nil }
     var isNavigationBarVisible: Bool { courseId == nil || pageUrl != nil }
     private(set) var isNextDisabled: Bool = true
@@ -59,7 +59,7 @@ final class NotebookViewModel {
     private(set) var isPreviousDisabled: Bool = true
     var navigationBarTopPadding: CGFloat { courseId == nil ? .zero : .huiSpaces.space24 }
     private(set) var notes: [NotebookNote] = []
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var isLoaderVisible = true
     private(set) var title: String = ""
 
     // MARK: - Private variables
@@ -117,19 +117,27 @@ final class NotebookViewModel {
 
     func nextPage() {
         guard let cursor = notes.last?.cursor else { return }
-        state = .loading
+        isLoaderVisible = true
         courseNoteInteractor.set(cursor: Cursor(previous: cursor))
     }
 
     func previousPage() {
         guard let cursor = notes.first?.cursor else { return }
-        state = .loading
+        isLoaderVisible = true
         courseNoteInteractor.set(cursor: Cursor(next: cursor))
     }
 
     func refresh(refreshComplete: @escaping RefreshCompletion) {
         self.refreshComplete = refreshComplete
         courseNoteInteractor.refresh()
+    }
+
+    func refresh() async {
+        await withCheckedContinuation { continuation in
+            refresh {
+                continuation.resume()
+            }
+        }
     }
 
     // MARK: - Private functions
@@ -150,7 +158,7 @@ final class NotebookViewModel {
         }
         isNextDisabled = courseNotes.last?.hasNext != true
         isPreviousDisabled = courseNotes.first?.hasPrevious != true
-        state = .data
+        isLoaderVisible = false
         refreshComplete?()
         refreshComplete = nil
     }

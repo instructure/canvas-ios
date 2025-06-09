@@ -24,6 +24,7 @@ import Combine
 final class MultiSelectionViewModelTests: XCTestCase {
 
     private enum TestConstants {
+        static let title = "some title"
         static let allItems: [OptionItem] = [
             .make(id: "0"),
             .make(id: "1"),
@@ -47,6 +48,7 @@ final class MultiSelectionViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         testee = MultiSelectionViewModel(
+            title: TestConstants.title,
             allOptions: TestConstants.allItems,
             selectedOptions: inputSelectedOptions
         )
@@ -57,8 +59,28 @@ final class MultiSelectionViewModelTests: XCTestCase {
         super.tearDown()
     }
 
+    func test_title() {
+        XCTAssertEqual(testee.title, TestConstants.title)
+    }
+
     func test_allOptions() {
         XCTAssertEqual(testee.allOptions, TestConstants.allItems)
+    }
+
+    func test_optionsCounts_whenSectionHasTitle() {
+        XCTAssertEqual(testee.optionCount, TestConstants.allItems.count)
+        XCTAssertEqual(testee.listLevelAccessibilityLabel, nil)
+    }
+
+    func test_optionsCounts_whenSectionHasNoTitle() {
+        testee = MultiSelectionViewModel(
+            title: nil,
+            allOptions: TestConstants.allItems,
+            selectedOptions: inputSelectedOptions
+        )
+
+        XCTAssertEqual(testee.optionCount, TestConstants.allItems.count)
+        XCTAssertEqual(testee.listLevelAccessibilityLabel, "\(TestConstants.allItems.count) items")
     }
 
     func test_selectedOption_shouldMatchInputSubject() {

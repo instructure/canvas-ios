@@ -100,9 +100,12 @@ class AssignmentDetailsPresenter {
         didSet {
             if onlineUploadState != oldValue {
                 update()
+                didChangeOnlineUploadState?(onlineUploadState)
             }
         }
     }
+    var didChangeOnlineUploadState: ((OnlineUploadState?) -> Void)?
+
     var lockExplanation: String {
         guard let assignment = assignment else { return "" }
 
@@ -202,14 +205,11 @@ class AssignmentDetailsPresenter {
                 onlineUploadState = .failed
             }
         } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
-            // A file uploaded to the file server doesn't mean it's also submitted to the assignment so we check both
-            if let submission = assignment?.submission, submission.status == .submitted {
-                // This state is not always reached because the file is deleted after a successful upload.
-                // We listen to the successful upload notification to work around this.
-                onlineUploadState = .completed
-            } else {
-                onlineUploadState = .uploading
-            }
+            // All files are uploaded, but we don't know if they are submitted to the assignment or not.
+            // This is not trivial to check because if there's a resubmission then the assignment is
+            // already in a submitted state so we wait for the successful submission notification
+            // from UploadManager to turn the state to `completed`.
+            onlineUploadState = .uploading
         } else if onlineUpload.first(where: { $0.isUploading }) != nil {
             onlineUploadState = .uploading
         } else {

@@ -56,13 +56,33 @@ public final class CDBrandVariables: NSManagedObject {
         let dbEntity: CDBrandVariables = context.first(scope: .all) ?? context.insert()
         dbEntity.apiBrandVariablesRaw = json
         dbEntity.headerImageRaw = headerImageData
-        dbEntity.institutionLogo = item.institutionLogo
+        dbEntity.institutionLogo = getInstitutionLogoURL(item.institutionLogo)
         return dbEntity
     }
 
     public func applyBrandTheme() {
         guard let brandVariables else { return }
 
-        Brand.shared = Brand(response: brandVariables, headerImage: headerImage)
+        Brand.shared = Brand(
+            response: brandVariables,
+            headerImage: headerImage,
+            institutionLogo: Self.getInstitutionLogoURL(brandVariables.institutionLogo)
+        )
+    }
+
+    private static func getInstitutionLogoURL(_ url: URL?) -> URL? {
+        guard let url else { return nil }
+
+        // If the URL is already absolute (has a scheme), return it as-is
+        if url.scheme != nil {
+            return url
+        }
+
+        // Otherwise, resolve it relative to the base URL
+        guard let baseURL = AppEnvironment.shared.currentSession?.baseURL else {
+            return nil
+        }
+
+        return URL(string: url.absoluteString, relativeTo: baseURL)
     }
 }

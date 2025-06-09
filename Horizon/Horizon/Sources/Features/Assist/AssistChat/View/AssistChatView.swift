@@ -41,29 +41,27 @@ struct AssistChatView: View {
             sendMessageView
         }
         .scrollIndicators(.hidden)
-        .onAppear {
-            if !viewModel.hasAssistChipOptions {
-                isFocused = true
-            }
-            viewModel.listenToChatBot(viewController: viewController)
+        .onChange(of: viewModel.shouludOpenKeyboard) { _, newValue in
+            isFocused = newValue
         }
-        .paddingStyle([.horizontal, .top], .standard)
-        .padding(.bottom, 23)
+        .onFirstAppear { viewModel.setViewController(viewController) }
+        .padding([.horizontal, .top], .huiSpaces.space16)
+        .animation(.smooth, value: viewModel.isBackButtonVisible)
+        .padding(.bottom, .huiSpaces.space24)
         .applyHorizonGradient()
     }
 
     private var topHeader: some View {
-        ZStack(alignment: .trailingLastTextBaseline) {
+        HStack {
+            HorizonUI.IconButton(Image.huiIcons.arrowBack, type: .white, isSmall: true) {
+                viewModel.setInitialState()
+            }
+            .hidden(!viewModel.isBackButtonVisible)
+            Spacer()
             AssistTitle()
-
-            Button {
+            Spacer()
+            HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: true) {
                 viewModel.dismiss(controller: viewController)
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(Color.huiColors.icon.default)
-                    .padding()
-                    .background(Color.huiColors.surface.pageSecondary)
-                    .clipShape(.circle)
             }
         }
     }

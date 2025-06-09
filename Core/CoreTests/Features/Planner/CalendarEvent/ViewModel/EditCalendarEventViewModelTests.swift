@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 final class EditCalendarEventViewModelTests: CoreTestCase {
 
@@ -769,5 +770,3 @@ final class EditCalendarEventViewModelTests: CoreTestCase {
         return selectedCalendar
     }
 }
-
-private struct MockError: Error { }
