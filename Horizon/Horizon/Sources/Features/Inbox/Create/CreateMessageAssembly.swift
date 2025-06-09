@@ -21,8 +21,19 @@ import SwiftUI
 
 struct CreateMessageAssembly {
     public static func makeViewController() -> UIViewController {
-        CoreHostingController(
-            CreateMessageView(viewModel: .init())
+        let uploadIdentifier = UUID().uuidString
+        return CoreHostingController(
+            CreateMessageView(viewModel:
+                .init(
+                    composeMessageInteractor: ComposeMessageInteractorLive(
+                        batchId: uploadIdentifier,
+                        uploadManager: UploadManager(
+                            env: AppEnvironment.shared,
+                            identifier: uploadIdentifier
+                        )
+                    )
+                )
+            )
         )
     }
 }

@@ -22,18 +22,29 @@ import SwiftUI
 
 extension HorizonUI {
     public struct MultiSelect: View {
+        public struct Option: Identifiable, Hashable {
+            public let id: String
+            public let label: String
+
+            public init(id: String, label: String) {
+                self.id = id
+                self.label = label
+            }
+        }
         // MARK: Dependencies
 
         private let disabled: Bool
         private let error: String?
         private let label: String?
-        private let options: [String]
-        private var optionsFiltered: [String] {
-            options.filter { !selections.contains($0) }
+        private let options: [Option]
+        private var optionsFiltered: [Option] {
+            options.filter { option in
+                selections.first { $0.id == option.id} == nil
+            }
         }
         private let placeholder: String?
         private let zIndex: Double
-        @Binding private var selections: [String]
+        @Binding private var selections: [Option]
 
         // MARK: Properties
 
@@ -51,7 +62,7 @@ extension HorizonUI {
             }
             return max(
                 loading ? spinnerHeight : 0,
-                min(displayedOptionHeight * CGFloat(options.count) + .huiSpaces.space4, 300)
+                min(displayedOptionHeight * CGFloat(optionsFiltered.count) + .huiSpaces.space4, 300)
             )
         }
 
@@ -80,11 +91,11 @@ extension HorizonUI {
         // MARK: - Init
 
         public init(
-            selections: Binding<[String]>,
+            selections: Binding<[Option]>,
             focused: Binding<Bool>,
             label: String? = nil,
             textInput: Binding<String>,
-            options: [String],
+            options: [Option],
             loading: Binding<Bool>,
             disabled: Bool = false,
             placeholder: String? = nil,
@@ -189,8 +200,8 @@ extension HorizonUI {
 
         private var dropDownOptions: some View {
             VStack(spacing: .zero) {
-                ForEach(optionsFiltered, id: \.self) { item in
-                    dropDownOption(item)
+                ForEach(optionsFiltered, id: \.id) { option in
+                    dropDownOption(option)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -212,8 +223,8 @@ extension HorizonUI {
                 }
         }
 
-        private func dropDownOption(_ text: String) -> some View {
-            Text(text)
+        private func dropDownOption(_ option: Option) -> some View {
+            Text(option.label)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -233,7 +244,7 @@ extension HorizonUI {
                 .huiTypography(.p1)
                 .onTapGesture {
                     focused = false
-                    selections.append(text)
+                    selections.append(option)
                 }
         }
 
@@ -312,9 +323,9 @@ extension HorizonUI {
         }
 
         @ViewBuilder
-        private func option(_ text: String) -> some View {
+        private func option(_ option: Option) -> some View {
             HStack {
-                Text(text)
+                Text(option.label)
                     .huiTypography(.p3)
                 HorizonUI.icons.closeSmall
                     .frame(width: HorizonUI.spaces.space12, height: HorizonUI.spaces.space12)
@@ -335,7 +346,7 @@ extension HorizonUI {
                     )
             )
             .onTapGesture {
-                selections.removeAll(where: { $0 == text })
+                selections.removeAll(where: { $0.id == option.id })
                 textInput = ""
             }
         }
@@ -401,7 +412,10 @@ extension HorizonUI {
 }
 
 #Preview {
-    @Previewable @State var selections = ["One", "Two"]
+    @Previewable @State var selections = [
+        HorizonUI.MultiSelect.Option(id: "Horse", label: "Horse"),
+        HorizonUI.MultiSelect.Option(id: "Elephant", label: "Elephant")
+    ]
     @Previewable @State var focused = true
     @Previewable @State var textInput = "Type here"
     @Previewable @State var selectedOptionIndex = 0
@@ -434,7 +448,7 @@ extension HorizonUI {
         "Xylophone",
         "Yak",
         "Zebra"
-    ]
+    ].map { HorizonUI.MultiSelect.Option(id: $0, label: $0) }
 
     VStack(alignment: .leading) {
         VStack(alignment: .leading) {

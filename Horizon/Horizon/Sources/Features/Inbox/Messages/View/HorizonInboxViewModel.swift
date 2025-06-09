@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import HorizonUI
 import SwiftUI
 
 @Observable
@@ -171,7 +172,7 @@ class HorizonInboxViewModel {
         }.map { $0.element }
     }
 
-    private func onInboxMessageListItems(tuple: ([InboxMessageListItem], [String])) {
+    private func onInboxMessageListItems(tuple: ([InboxMessageListItem], [HorizonUI.MultiSelect.Option])) {
         let inboxMessageListItems = tuple.0
         let messageRowsInterim = inboxMessageListItems
             .filter(filterByPerson)
@@ -205,7 +206,7 @@ class HorizonInboxViewModel {
             return true
         }
         return personFilter.contains { current in
-            messageListItem.participantName.lowercased().contains(current.lowercased())
+            messageListItem.participantName.lowercased().contains(current.label.lowercased())
         }
     }
 

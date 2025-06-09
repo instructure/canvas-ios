@@ -40,7 +40,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     private let alreadyUploadedFiles = CurrentValueSubject<[File], Never>([])
     private lazy var fileStore = uploadManager.subscribe(batchID: batchId, eventHandler: {})
 
-    init(
+    public init(
         env: AppEnvironment = .shared,
         batchId: String,
         uploadFolderPath: String? = nil,

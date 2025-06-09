@@ -22,7 +22,7 @@ extension HorizonUI.MultiSelect {
     struct Storybook: View {
 
         @State var focused = false
-        @State var selections = ["Option 1"]
+        @State var selections: [HorizonUI.MultiSelect.Option] = []
         @State var textInput = ""
         @State var loading = false
 
@@ -32,7 +32,9 @@ extension HorizonUI.MultiSelect {
                 focused: $focused,
                 label: "Label",
                 textInput: $textInput,
-                options: Array(1 ... 20).map { "Option \($0)" },
+                options: Array(1 ... 20).map {
+                    Option(id: "Option \($0)", label: "Option \($0)")
+                },
                 loading: $loading
             )
             .frame(maxHeight: .infinity, alignment: .top)

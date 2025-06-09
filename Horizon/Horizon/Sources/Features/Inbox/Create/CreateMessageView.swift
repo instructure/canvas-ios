@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
@@ -23,7 +24,6 @@ struct CreateMessageView: View {
 
     @Environment(\.viewController) private var viewController
     @Bindable var viewModel: CreateMessageViewModel
-    private let peopleSelectionViewModel: PeopleSelectionViewModel = .init()
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -51,28 +51,44 @@ struct CreateMessageView: View {
     }
 
     private var footer: some View {
-        HStack {
+        HStack(spacing: .huiSpaces.space8) {
             Spacer()
-            HorizonUI.PrimaryButton(
-                String(localized: "Cancel", bundle: .horizon),
-                type: .white
-            ) {
-                viewModel.close(viewController: viewController)
-            }
-
-            HorizonUI.PrimaryButton(
-                String(localized: "Send", bundle: .horizon),
-                type: .institution
-            ) {
-                viewModel.sendMessage(viewController: viewController)
+            footerCancelButton
+                .opacity(viewModel.cancelButtonOpacity)
+            ZStack(alignment: .center) {
+                HorizonUI.Spinner(size: .xSmall)
+                    .opacity(viewModel.spinnerOpacity)
+                footerSendButton
+                    .opacity(viewModel.sendButtonOpacity)
             }
         }
         .frame(height: 92)
+        .frame(maxWidth: .infinity)
         .padding(.horizontal, .huiSpaces.space24)
         .overlay(
             divider,
             alignment: .top
         )
+    }
+
+    private var footerCancelButton: some View {
+        HorizonUI.PrimaryButton(
+            String(localized: "Cancel", bundle: .horizon),
+            type: .white
+        ) {
+            viewModel.close(viewController: viewController)
+        }
+        .disabled(viewModel.isCloseDisabled)
+    }
+
+    private var footerSendButton: some View {
+        HorizonUI.PrimaryButton(
+            String(localized: "Send", bundle: .horizon),
+            type: .institution
+        ) {
+            viewModel.sendMessage(viewController: viewController)
+        }
+        .disabled(viewModel.isSendDisabled)
     }
 
     private var divider: some View {
@@ -84,8 +100,9 @@ struct CreateMessageView: View {
 
     private var individualMessageCheckbox: some View {
         HorizonUI.Controls.Checkbox(
-            isOn: $viewModel.isIndividualMessageEnabled,
-            title: String(localized: "Send individual messages to each recipient")
+            isOn: $viewModel.isIndividualMessage,
+            title: String(localized: "Send individual messages to each recipient"),
+            isDisabled: viewModel.isCheckboxDisbled
         )
     }
 
@@ -101,6 +118,7 @@ struct CreateMessageView: View {
             ) {
                 viewModel.close(viewController: viewController)
             }
+            .disabled(viewModel.isCloseDisabled)
         }
         .frame(height: 88)
         .padding(.horizontal, .huiSpaces.space24)
@@ -113,25 +131,32 @@ struct CreateMessageView: View {
     private var messageBodyInput: some View {
         HorizonUI.TextArea(
             $viewModel.body,
-            placeholder: String(localized: "Message", bundle: .horizon)
+            placeholder: String(localized: "Message", bundle: .horizon),
+            disabled: viewModel.isBodyDisabled
         )
         .frame(height: 144)
     }
 
     private var messageTitleInput: some View {
         HorizonUI.TextInput(
-            $viewModel.title,
-            placeholder: String(localized: "Title/Subject", bundle: .horizon)
+            $viewModel.subject,
+            placeholder: String(localized: "Title/Subject", bundle: .horizon),
+            disabled: viewModel.isSubjectDisabled
         )
     }
 
     private var peopleSelection: some View {
-        PeopleSelectionView(viewModel: peopleSelectionViewModel)
+        PeopleSelectionView(
+            viewModel: viewModel.peopleSelectionViewModel,
+            disabled: viewModel.isPeopleSelectionDisabled
+        )
     }
 }
 
 #Preview {
     CreateMessageView(
-        viewModel: .init()
+        viewModel: .init(
+            composeMessageInteractor: ComposeMessageInteractorPreview()
+        )
     )
 }

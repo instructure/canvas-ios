@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import HorizonUI
 import SwiftUI
 
 @Observable
@@ -28,8 +29,11 @@ class PeopleSelectionViewModel {
             onFocused()
         }
     }
-    var personOptions: [String] = []
-    var searchByPersonSelections: [String] {
+    var personOptions: [HorizonUI.MultiSelect.Option] = []
+    var recipientIDs: [String] {
+        searchByPersonSelections.map { $0.id }
+    }
+    var searchByPersonSelections: [HorizonUI.MultiSelect.Option] {
         get {
             personFilterSubject.value
         }
@@ -37,7 +41,7 @@ class PeopleSelectionViewModel {
             personFilterSubject.send(newValue)
         }
     }
-    let personFilterSubject = CurrentValueSubject<[String], Never>([])
+    let personFilterSubject = CurrentValueSubject<[HorizonUI.MultiSelect.Option], Never>([])
     var searchLoading: Bool = false
 
     // MARK: - Private
@@ -53,9 +57,7 @@ class PeopleSelectionViewModel {
     private let api: API
 
     // MARK: - Init
-    init(
-        api: API = AppEnvironment.shared.api
-    ) {
+    init(api: API = AppEnvironment.shared.api) {
         self.api = api
     }
 
@@ -72,7 +74,12 @@ class PeopleSelectionViewModel {
             guard let apiSearchRecipients = apiSearchRecipients else {
                 return
             }
-            self?.personOptions = apiSearchRecipients.map { $0.name }
+            self?.personOptions = apiSearchRecipients.map {
+                HorizonUI.MultiSelect.Option(
+                    id: $0.id.rawValue,
+                    label: $0.name
+                )
+            }
             self?.searchLoading = false
         }
     }

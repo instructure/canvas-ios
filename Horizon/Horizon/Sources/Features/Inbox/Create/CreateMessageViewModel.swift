@@ -17,26 +17,86 @@
 //
 
 import Core
+import Combine
 import SwiftUI
 
 @Observable
 class CreateMessageViewModel {
     // MARK: - Outputs
     var body: String = ""
-    var isIndividualMessageEnabled: Bool = false
-    var title: String = ""
+    var cancelButtonOpacity: Double {
+        sendButtonOpacity
+    }
+    var isBodyDisabled: Bool {
+        isSending
+    }
+    var isCheckboxDisbled: Bool {
+        isSending
+    }
+    var isCloseDisabled: Bool {
+        isSending
+    }
+    var isPeopleSelectionDisabled: Bool {
+        isSending
+    }
+    var isSubjectDisabled: Bool {
+        isSending
+    }
+    var sendButtonOpacity: Double {
+        isSending ? 0.0 : 1.0
+    }
+    var spinnerOpacity: Double {
+        isSending ? 1.0 : 0.0
+    }
+    var isIndividualMessage: Bool = false
+    var subject: String = ""
+    var isSendDisabled: Bool {
+        subject.isEmpty || body.isEmpty || peopleSelectionViewModel.searchByPersonSelections.isEmpty || isSending
+    }
+
+    // MARK: - Private
+    private var isSending = false
+    let peopleSelectionViewModel: PeopleSelectionViewModel = .init()
 
     // MARK: - Properties
+    private let composeMessageInteractor: ComposeMessageInteractor
     private let router: Router
+    private var subscriptions: Set<AnyCancellable> = []
+    private let userID: String
 
-    init(router: Router = AppEnvironment.shared.router) {
+    init(
+        userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
+        composeMessageInteractor: ComposeMessageInteractor,
+        router: Router = AppEnvironment.shared.router
+    ) {
+        self.userID = userID
+        self.composeMessageInteractor = composeMessageInteractor
         self.router = router
     }
 
     func close(viewController: WeakViewController) {
-        router.pop(from: viewController)
+        router.dismiss(viewController)
     }
 
     func sendMessage(viewController: WeakViewController) {
+        isSending = true
+        composeMessageInteractor.createConversation(
+            parameters: MessageParameters(
+                subject: subject,
+                body: body,
+                recipientIDs: peopleSelectionViewModel.recipientIDs,
+                context: .user(userID),
+                bulkMessage: !isIndividualMessage
+            )
+        )
+        .sink (
+            receiveCompletion: {
+                [weak self] _ in
+                self?.isSending = false
+                self?.close(viewController: viewController)
+            },
+            receiveValue: { _ in }
+        )
+        .store(in: &subscriptions)
     }
 }
