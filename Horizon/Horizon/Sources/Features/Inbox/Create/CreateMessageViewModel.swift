@@ -57,20 +57,27 @@ class CreateMessageViewModel {
     // MARK: - Private
     private var isSending = false
     let peopleSelectionViewModel: PeopleSelectionViewModel = .init()
-
-    // MARK: - Properties
-    private let composeMessageInteractor: ComposeMessageInteractor
-    private let router: Router
     private var subscriptions: Set<AnyCancellable> = []
+
+    // MARK: - Dependencies
+    private let composeMessageInteractor: ComposeMessageInteractor
+    private let inboxMessageInteractor: InboxMessageInteractor
+    private let router: Router
     private let userID: String
 
     init(
         userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
         composeMessageInteractor: ComposeMessageInteractor,
+        inboxMessageInteractor: InboxMessageInteractor = InboxMessageInteractorLive(
+            env: AppEnvironment.shared,
+            tabBarCountUpdater: .init(),
+            messageListStateUpdater: .init()
+        ),
         router: Router = AppEnvironment.shared.router
     ) {
         self.userID = userID
         self.composeMessageInteractor = composeMessageInteractor
+        self.inboxMessageInteractor = inboxMessageInteractor
         self.router = router
     }
 
@@ -80,23 +87,46 @@ class CreateMessageViewModel {
 
     func sendMessage(viewController: WeakViewController) {
         isSending = true
-        composeMessageInteractor.createConversation(
-            parameters: MessageParameters(
-                subject: subject,
-                body: body,
-                recipientIDs: peopleSelectionViewModel.recipientIDs,
-                context: .user(userID),
-                bulkMessage: !isIndividualMessage
-            )
-        )
-        .sink (
-            receiveCompletion: {
-                [weak self] _ in
-                self?.isSending = false
+        Task { [weak self] in
+            await self?.sendMessage()
+            await self?.refreshSentMessages()
+            performUIUpdate {
                 self?.close(viewController: viewController)
-            },
-            receiveValue: { _ in }
-        )
-        .store(in: &subscriptions)
+            }
+        }
+    }
+
+    // MARK: - Private Methods
+    private func sendMessage() async {
+        await withCheckedContinuation { continuation in
+            self.composeMessageInteractor.createConversation(
+                parameters: MessageParameters(
+                    subject: self.subject,
+                    body: self.body,
+                    recipientIDs: self.peopleSelectionViewModel.recipientIDs,
+                    bulkMessage: !self.isIndividualMessage
+                )
+            )
+            .sink(
+                receiveCompletion: { _ in
+                    continuation.resume()
+                },
+                receiveValue: { _ in }
+            )
+            .store(in: &self.subscriptions)
+        }
+    }
+
+    private func refreshSentMessages() async {
+        await withCheckedContinuation { continuation in
+            _ = inboxMessageInteractor.setContext(.user(userID))
+            _ = self.inboxMessageInteractor.setScope(.sent)
+            self.inboxMessageInteractor
+                .refresh()
+                .sink { _ in
+                    continuation.resume()
+                }
+                .store(in: &self.subscriptions)
+        }
     }
 }

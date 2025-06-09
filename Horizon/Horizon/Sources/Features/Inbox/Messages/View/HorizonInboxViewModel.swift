@@ -63,7 +63,6 @@ class HorizonInboxViewModel {
             filter = FilterOption.allCases.first { $0.title == newValue } ?? .all
         }
     }
-    var messageRows: [MessageRowViewModel] = []
     var isMessagesFilterFocused: Bool = false {
         didSet {
             onMessagesFilterFocused()
@@ -72,7 +71,9 @@ class HorizonInboxViewModel {
     var isSearchDisabled: Bool {
         filter == .announcements
     }
+    var messageRows: [MessageRowViewModel] = []
     var peopleSelectionViewModel: PeopleSelectionViewModel!
+    var screenState: InstUI.ScreenState = .data
 
     // MARK: - Private
     private var filter: FilterOption = FilterOption.all {
@@ -99,6 +100,7 @@ class HorizonInboxViewModel {
     private let router: Router
 
     init(
+        userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
         api: API = AppEnvironment.shared.api,
         router: Router = AppEnvironment.shared.router,
         inboxMessageInteractor: InboxMessageInteractor = InboxMessageInteractorLive(
@@ -114,7 +116,7 @@ class HorizonInboxViewModel {
         self.announcementsInteractor = announcementsInteractor
         self.peopleSelectionViewModel = .init()
 
-        _ = inboxMessageInteractor.setContext(.user(AppEnvironment.shared.currentSession?.userID ?? ""))
+        _ = inboxMessageInteractor.setContext(.user(userID))
 
         Publishers.CombineLatest(
             inboxMessageInteractor.messages,
@@ -129,7 +131,10 @@ class HorizonInboxViewModel {
     }
 
     func goToComposeMessage(_ viewController: WeakViewController) {
-        router.route(to: "/conversations/create", from: viewController)
+        router.route(
+            to: "/conversations/create",
+            from: viewController
+        )
     }
 
     func loadMoreIfScrolledEnough(
@@ -152,6 +157,15 @@ class HorizonInboxViewModel {
             return
         }
         _ = inboxMessageInteractor.loadNextPage()
+    }
+
+    func refresh(endRefreshing: @escaping () -> Void) {
+        inboxMessageInteractor
+            .refresh()
+            .sink { _ in
+                endRefreshing()
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Private Methods

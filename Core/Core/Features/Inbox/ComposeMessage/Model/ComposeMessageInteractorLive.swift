@@ -127,7 +127,7 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
             subject: parameters.subject,
             body: parameters.body,
             recipientIDs: parameters.recipientIDs,
-            canvasContextID: parameters.context.canvasContextID,
+            canvasContextID: parameters.context?.canvasContextID,
             attachmentIDs: parameters.attachmentIDs,
             bulkMessage: parameters.bulkMessage
         )

@@ -28,40 +28,47 @@ struct HorizonInboxView: View {
     let coordinateSpaceName: String = "scroll"
 
     var body: some View {
-        VStack {
-            topBar
-            GeometryReader { scrollViewProxy in
-                ScrollView {
-                    VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
-                        filterSelection
+            VStack {
+                topBar
+                GeometryReader { scrollViewProxy in
+                    InstUI.BaseScreen(
+                        state: viewModel.screenState,
+                        config: .init(refreshable: true),
+                        refreshAction: viewModel.refresh
+                    ) { _ in
+                        VStack(alignment: .leading, spacing: HorizonUI.spaces.space16) {
+                            filterSelection
+                                .padding(.horizontal, HorizonUI.spaces.space16 - 4)
+
+                            PeopleSelectionView(
+                                viewModel: viewModel.peopleSelectionViewModel,
+                                disabled: viewModel.isSearchDisabled
+                            )
                             .padding(.horizontal, HorizonUI.spaces.space16 - 4)
 
-                        PeopleSelectionView(
-                            viewModel: viewModel.peopleSelectionViewModel,
-                            disabled: viewModel.isSearchDisabled
-                        )
-                        .padding(.horizontal, HorizonUI.spaces.space16 - 4)
-
-                        messageList
-                    }
-                    .background(
-                        GeometryReader { contentProxy in
-                            Color.clear
-                                .onChange(of: contentProxy.frame(in: .named(coordinateSpaceName)).minY) {
-                                    viewModel.loadMoreIfScrolledEnough(
-                                        scrollViewProxy: scrollViewProxy,
-                                        contentProxy: contentProxy,
-                                        coordinateSpaceName: coordinateSpaceName
-                                    )
-                                }
+                            messageList
                         }
-                    )
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(
+                            GeometryReader { contentProxy in
+                                Color.clear
+                                    .onChange(of: contentProxy.frame(in: .named(coordinateSpaceName)).minY) {
+                                        viewModel.loadMoreIfScrolledEnough(
+                                            scrollViewProxy: scrollViewProxy,
+                                            contentProxy: contentProxy,
+                                            coordinateSpaceName: coordinateSpaceName
+                                        )
+                                    }
+                            }
+                        )
                 }
                 .coordinateSpace(name: coordinateSpaceName)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(HorizonUI.colors.surface.pagePrimary)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarHidden(true)
     }
 
@@ -183,7 +190,6 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
         value = nextValue()
     }
 }
-
 
 #Preview {
     HorizonInboxView(
