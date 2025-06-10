@@ -297,45 +297,47 @@ let router = Router(routes: [
         )
     },
 
-    RouteHandler("/courses/:courseID/modules") { _, params, _ in
+    RouteHandler("/courses/:courseID/modules") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID)
+        return ModuleListViewController
+            .create(env: env, courseID: courseID.localID)
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _, env in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
+        return ModuleListViewController
+            .create(env: env, courseID: courseID.localID, moduleID: moduleID.localID)
     },
 
-    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
-            courseID: courseID,
+            env: env,  
+            courseID: courseID.localID,
             assetType: .moduleItem,
-            assetID: itemID,
+            assetID: itemID.localID,
             url: url
         )
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
-            courseID: courseID,
+            env: env,
+            courseID: courseID.localID,
             assetType: .moduleItem,
-            assetID: itemID,
+            assetID: itemID.localID,
             url: url
         )
     },
 
-    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _ in
+    RouteHandler("/courses/:courseID/module_item_redirect/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: .shared,
-            courseID: courseID,
+            env: env,
+            courseID: courseID.localID,
             assetType: .moduleItem,
-            assetID: itemID,
+            assetID: itemID.localID,
             url: url
         )
     },
