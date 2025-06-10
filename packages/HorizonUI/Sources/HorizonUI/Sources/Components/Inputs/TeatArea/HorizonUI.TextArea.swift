@@ -26,6 +26,7 @@ extension HorizonUI {
 
         // MARK: - Properties
 
+        private let autoExpand: Bool
         private let error: String?
         private let helperText: String?
         private let label: String?
@@ -42,7 +43,8 @@ extension HorizonUI {
             helperText: String? = nil,
             placeholder: String? = nil,
             disabled: Bool = false,
-            focused: FocusState<Bool>? = nil
+            focused: FocusState<Bool>? = nil,
+            autoExpand: Bool = false
         ) {
             self.error = error
             self.helperText = helperText
@@ -51,6 +53,7 @@ extension HorizonUI {
             self._text = text
             self.disabled = disabled
             self._focused = focused ?? FocusState()
+            self.autoExpand = autoExpand
         }
 
         // MARK: - Body
@@ -114,7 +117,10 @@ extension HorizonUI {
         }
 
         private var textField: some View {
-            TextEditor(text: $text)
+            let view = autoExpand ?
+                AnyView(TextField("", text: $text, axis: .vertical).lineLimit(1 ... 10)) :
+                AnyView(TextEditor(text: $text))
+            return view
                 .padding(.huiSpaces.space12)
                 .padding(.trailing, .huiSpaces.space24)
                 .huiTypography(.p1)
@@ -165,26 +171,4 @@ extension HorizonUI {
             isErrorEmpty ? Color.huiColors.surface.institution : Color.huiColors.surface.error
         }
     }
-}
-
-#Preview {
-    @Previewable @State var text = ""
-    let disabled = false
-    let error: String? = nil
-    let small = true
-
-    ScrollView {
-        VStack {
-            HorizonUI.TextArea(
-                $text,
-                label: "Hello, World!",
-                error: error,
-                helperText: "This is some helper text",
-                placeholder: "Placeholder text",
-                disabled: disabled
-            )
-        }
-        .frame(maxHeight: .infinity, alignment: .top)
-    }
-    .background(Color.huiColors.surface.pagePrimary)
 }

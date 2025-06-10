@@ -168,6 +168,16 @@ class HorizonInboxViewModel {
             .store(in: &subscriptions)
     }
 
+    func viewMessage(conversationID: String?, viewController: WeakViewController) {
+        guard let conversationID = conversationID else {
+            return
+        }
+        router.route(
+            to: "/conversations/\(conversationID)",
+            from: viewController
+        )
+    }
+
     // MARK: - Private Methods
     private func addAnnouncements(to messageRows: [MessageRowViewModel]) -> [MessageRowViewModel] {
         if filter != .all || peopleSelectionViewModel.personFilterSubject.value.isNotEmpty {
@@ -192,9 +202,6 @@ class HorizonInboxViewModel {
             .filter(filterByPerson)
             .map { $0.viewModel }
         messageRows = addAnnouncements(to: messageRowsInterim)
-        messageRows.forEach {
-            print($0.id)
-        }
     }
 
     private func didSetFilter() {
@@ -245,9 +252,7 @@ class HorizonInboxViewModel {
         let subtitle: String
         let isAnnouncement: Bool
         let isNew: Bool
-        var id: String {
-            "\(date?.timeIntervalSince1970 ?? 0)-\(title)-\(subtitle)-\(isNew)-\(isAnnouncement)"
-        }
+        let id: String?
     }
 }
 
@@ -258,7 +263,8 @@ extension Announcement {
             title: viewModelTitle,
             subtitle: title,
             isAnnouncement: true,
-            isNew: false
+            isNew: false,
+            id: nil
         )
     }
 
@@ -274,7 +280,8 @@ extension InboxMessageListItem {
             title: title,
             subtitle: participantName,
             isAnnouncement: false,
-            isNew: isUnread
+            isNew: isUnread,
+            id: id
         )
     }
 }

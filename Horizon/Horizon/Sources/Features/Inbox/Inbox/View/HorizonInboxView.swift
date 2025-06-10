@@ -74,8 +74,13 @@ struct HorizonInboxView: View {
 
     private var messageList: some View {
         VStack {
-            ForEach(viewModel.messageRows, id: \.self) { messageRow in
-                MessageRow(viewModel: messageRow)
+            ForEach(viewModel.messageRows, id: \.id) { messageRow in
+                MessageRow(viewModel: messageRow) {
+                    viewModel.viewMessage(
+                        conversationID: messageRow.id,
+                        viewController: viewController
+                    )
+                }
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
@@ -119,7 +124,8 @@ struct HorizonInboxView: View {
 
 struct MessageRow: View {
 
-    var viewModel: HorizonInboxViewModel.MessageRowViewModel
+    let viewModel: HorizonInboxViewModel.MessageRowViewModel
+    let onTap: () -> Void
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -146,6 +152,10 @@ struct MessageRow: View {
         .padding(.bottom, .huiSpaces.space12)
         .padding(.leading, .huiSpaces.space16)
         .padding(.trailing, .huiSpaces.space12)
+        .background(HorizonUI.colors.surface.pageSecondary)
+        .onTapGesture {
+            onTap()
+        }
         .overlay(
             Rectangle()
                 .frame(height: 1)

@@ -210,7 +210,7 @@ enum HorizonRoutes {
                         return true
                     }
                 }()
-                return MessageDetailsAssembly.makeViewController(
+                return HorizonMessageDetailsAssembly.makeViewController(
                     env: AppEnvironment.shared,
                     conversationID: conversationID,
                     allowArchive: allowArchive
