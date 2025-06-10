@@ -34,7 +34,8 @@ class ParentSubmissionInteractorTests: ParentTestCase {
             userName: "Test Parent"
         )
         let assignmentURL = URL(string: "https://\(host)/assignment/123/submissions")!
-        let authenticatedSessionURL = URL(string: "https://authenticated")!
+        let authenticatedSessionURL = URL(string: "https://authenticated?display=borderless")!
+        let expectedSessionURL = URL(string: "https://authenticated?embedded=true")!
         let sessionRequested = expectation(description: "sessionRequested")
         api.mock(GetWebSessionRequest(to: assignmentURL)) { _ in
             sessionRequested.fulfill()
@@ -75,7 +76,7 @@ class ParentSubmissionInteractorTests: ParentTestCase {
                 XCTAssertTrue(expectedCookie.isEqualProperties(to: cookies.first))
             }
         )
-        XCTAssertEqual(mockWebView.receivedRequestToLoad, URLRequest(url: authenticatedSessionURL))
+        XCTAssertEqual(mockWebView.receivedRequestToLoad, URLRequest(url: expectedSessionURL))
         XCTAssertEqual(mockWebView.isLoadingChecked, true)
     }
 }
