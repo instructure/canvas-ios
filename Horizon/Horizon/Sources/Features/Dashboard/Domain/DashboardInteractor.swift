@@ -78,16 +78,26 @@ final class DashboardInteractorLive: DashboardInteractor {
             .publisher(for: .moduleItemRequirementCompleted)
             .compactMap { $0.object as? ModuleItemAttributes }
             .flatMap {
-                ReactiveStore(
-                    useCase: GetModuleItem(
-                        courseID: $0.courseID,
-                        moduleID: $0.moduleID,
-                        itemID: $0.itemID
+                Publishers.Zip(
+                    ReactiveStore(
+                        useCase: GetModuleItem(
+                            courseID: $0.courseID,
+                            moduleID: $0.moduleID,
+                            itemID: $0.itemID
+                        )
                     )
+                    .getEntities(ignoreCache: true),
+
+                    ReactiveStore(
+                        useCase: GetModule(
+                            courseID: $0.courseID,
+                            moduleID: $0.moduleID
+                        )
+                    )
+                    .getEntities(ignoreCache: true)
                 )
-                .getEntities(ignoreCache: true)
             }
-            .replaceError(with: [])
+            .replaceError(with: ([], []))
             .map { _ in () }
             .eraseToAnyPublisher()
     }

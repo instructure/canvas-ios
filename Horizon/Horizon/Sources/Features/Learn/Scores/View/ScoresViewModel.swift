@@ -72,6 +72,7 @@ final class ScoresViewModel {
         unowned let unownedSelf = self
 
         selectedFilterOptionRelay
+            .dropFirst() // Using dropFirst because we already triggered courseDetailsForceRefreshed via NotificationCenter to avoid duplication.
             .flatMap { filter in
                 unownedSelf.interactor.getScores(
                     sortedBy: filter,
