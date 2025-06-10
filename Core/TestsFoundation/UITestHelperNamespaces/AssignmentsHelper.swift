@@ -304,7 +304,7 @@ public class AssignmentsHelper: BaseHelper {
         let submissionTypes = [SubmissionType.external_tool, SubmissionType.media_recording, SubmissionType.online_upload, SubmissionType.online_url]
         let assignment = createAssignment(
             course: course, name: assignmentName, description: assignmentDescription,
-            published: true, submissionTypes: submissionTypes, pointsPossible: 10)
+            published: true, submissionTypes: submissionTypes, pointsPossible: 10, sleepAfter: true)
         return assignment
     }
 
