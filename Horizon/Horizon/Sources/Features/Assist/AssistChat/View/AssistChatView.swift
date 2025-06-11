@@ -25,30 +25,36 @@ struct AssistChatView: View {
 
     @Bindable var viewModel: AssistChatViewModel
     @FocusState private var isFocused: Bool
+    private let retryKey = "retry"
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        VStack {
+        VStack(spacing: .huiSpaces.space32) {
             topHeader
-            InstUI.BaseScreen(
-                state: viewModel.state,
-                config: .init(refreshable: false)
-            ) { _ in
+            ScrollView {
                 contentView()
             }
             .scrollDismissesKeyboard(.immediately)
-            Spacer()
             sendMessageView
         }
         .scrollIndicators(.hidden)
-        .onChange(of: viewModel.shouludOpenKeyboard) { _, newValue in
-            isFocused = newValue
+        .onReceive(viewModel.shouludOpenKeyboardPulisher) { value in
+            isFocused = value
+        }
+        .onChange(of: viewModel.isRetryButtonVisible) { _, _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                viewModel.scrollViewProxy?.scrollTo(retryKey, anchor: .bottom)
+            }
         }
         .onFirstAppear { viewModel.setViewController(viewController) }
-        .padding([.horizontal, .top], .huiSpaces.space16)
-        .animation(.smooth, value: viewModel.isBackButtonVisible)
-        .padding(.bottom, .huiSpaces.space24)
+        .padding(.huiSpaces.space24)
+        .animation(.smooth, value: [viewModel.isBackButtonVisible, viewModel.isRetryButtonVisible])
         .applyHorizonGradient()
+        .overlay {
+            if viewModel.isLoaderVisible {
+                HorizonUI.Spinner(size: .medium, showBackground: true)
+            }
+        }
     }
 
     private var topHeader: some View {
@@ -68,16 +74,39 @@ struct AssistChatView: View {
 
     private func contentView() -> some View {
         ScrollViewReader { scrollViewProxy in
-            LazyVStack(alignment: .leading, spacing: 12) {
+            LazyVStack(alignment: .leading, spacing: .huiSpaces.space16) {
                 ForEach(viewModel.messages) { message in
                     AssistChatMessageView(message: message)
                         .id(message.id)
                         .transition(.scaleAndFade)
                 }
+                if viewModel.isRetryButtonVisible {
+                    Button {
+                        viewModel.retry()
+                    } label: {
+                        retryView
+                    }
+                    .frame(minHeight: 44)
+                    .padding(.top, -(.huiSpaces.space16))
+                    .id(retryKey)
+                }
             }
             .onAppear {
                 viewModel.scrollViewProxy = scrollViewProxy
             }
+        }
+    }
+
+    private var retryView: some View {
+        HStack(spacing: .zero) {
+            Text("This prompt was not received. Try again", bundle: .horizon)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .foregroundStyle(Color.huiColors.text.surfaceColored)
+                .huiTypography(.labelSmall)
+            Image.huiIcons.refresh
+                .resizable()
+                .frame(width: 20, height: 20)
+                .foregroundStyle(Color.huiColors.icon.surfaceColored)
         }
     }
 
@@ -88,31 +117,28 @@ struct AssistChatView: View {
                 .huiTypography(.labelLargeBold)
                 .foregroundStyle(Color.huiColors.text.surfaceColored)
 
-            HStack {
+            HStack(spacing: .huiSpaces.space16) {
                 TextEditor(text: $viewModel.message)
                     .frame(minHeight: 44)
                     .frame(maxHeight: 100)
                     .fixedSize(horizontal: false, vertical: true)
+                    .huiTypography(.p1)
                     .focused($isFocused)
                     .cornerRadius(HorizonUI.CornerRadius.level1.attributes.radius)
+                    .padding(.huiSpaces.space4)
                     .overlay(
-                        RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1.attributes.radius)
-                            .stroke(Color.huiColors.surface.overlayWhite, lineWidth: 1)
+                        RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                            .inset(by: 0.6)
+                            .stroke(Color.huiColors.surface.overlayWhite, lineWidth: 1.2)
                     )
                     .foregroundColor(Color.huiColors.text.surfaceColored)
                     .scrollContentBackground(.hidden)
                     .background(.clear)
 
-                Button {
+                HorizonUI.IconButton(Image.huiIcons.arrowUpward, type: .white) {
                     viewModel.send()
-                } label: {
-                    Image(systemName: "arrow.up")
-                        .foregroundStyle(viewModel.isDisableSendButton ? Color.textLight : Color.backgroundSuccess)
-                        .padding()
-                        .background(Color.backgroundLightest)
-                        .opacity(viewModel.isDisableSendButton ? 0.3 : 1)
-                        .clipShape(Circle())
                 }
+                .opacity(viewModel.isDisableSendButton ? 0.5 : 1)
                 .disabled(viewModel.isDisableSendButton)
             }
         }

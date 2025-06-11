@@ -16,32 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
-import SwiftUI
+import Foundation
 
-struct AssistTitle: View {
-
-    var body: some View {
-        title
+extension String {
+    var trimmedEmptyLines: String {
+        self
+            .components(separatedBy: .newlines)
+            .filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
+            .joined(separator: " ")
     }
-
-    private var title: some View {
-        HStack {
-            HorizonUI.icons.ai
-            Text(String(localized: "Assist", bundle: .horizon))
-                .huiTypography(.h3)
-
-        }
-        .foregroundStyle(Color.huiColors.text.surfaceColored)
-        .frame(maxWidth: .infinity)
-    }
-}
-
-#Preview {
-    VStack(alignment: .leading) {
-        AssistTitle()
-    }
-    .frame(maxHeight: .infinity)
-    .padding(.horizontal, .huiSpaces.space16)
-    .background(Color.gray)
 }

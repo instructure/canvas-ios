@@ -24,10 +24,14 @@ import Foundation
 protocol AssistChatInteractor {
     func publish(action: AssistChatAction)
     func setInitialState()
-    var listen: AnyPublisher<AssistChatResponse, Error> { get }
+    var listen: AnyPublisher<AssistChatInteractorLive.State, Never> { get }
 }
 
-class AssistChatInteractorLive: AssistChatInteractor {
+final class AssistChatInteractorLive: AssistChatInteractor {
+    enum State {
+        case success(AssistChatResponse)
+        case failure(Error)
+    }
     // MARK: - Dependencies
 
     private let cedarDomainService: DomainService
@@ -40,8 +44,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
     private var pageContextPublisher: AnyPublisher<AssistChatPageContext, Error>?
     private let initialStatePublisher = PassthroughSubject<Void, Never>()
     private var actionCancellable: AnyCancellable?
-    private let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-    private let responsePublisher = PassthroughSubject<AssistChatResponse, Error>()
+    private let responsePublisher = PassthroughSubject<AssistChatInteractorLive.State, Never>()
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - init
@@ -106,7 +109,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
             .sink(
                 receiveCompletion: { _ in},
                 receiveValue: { [weak self]  response in
-                    self?.responsePublisher.send(response)
+                    self?.responsePublisher.send(.success(response))
                 }
             )
             .store(in: &subscriptions)
@@ -136,9 +139,13 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 )
             }
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { [weak self] completion in
+                    if case .failure(let error) = completion {
+                        self?.responsePublisher.send(.failure(error))
+                    }
+                },
                 receiveValue: { [weak self] response in
-                    self?.responsePublisher.send(response)
+                    self?.responsePublisher.send(.success(response))
                 }
             )
     }
@@ -151,7 +158,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     /// Subscribe to the responses from the interactor
-    var listen: AnyPublisher<AssistChatResponse, Error> {
+    var listen: AnyPublisher<AssistChatInteractorLive.State, Never> {
         responsePublisher
             .eraseToAnyPublisher()
     }
@@ -313,18 +320,6 @@ class AssistChatInteractorLive: AssistChatInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func chipGenerator(history: [AssistChatMessage], pageContext: AssistChatPageContext) -> AnyPublisher<[AssistChipOption], Error> {
-        // swiftlint:disable line_length
-        let prompt = """
-                You are an agent designed to prepare potential quick response chips to show in a Learning Management System app based on an assistant agent's conversation with a learner. I'll provide you with the message history from the learner and the assistant. Create 1-3 quick response chips based off how you think the learner might want to continue the conversation. We only want to show useful response chips, so don't feel obligated to produce 3. Answer in JSON with this format: [{chip: "", prompt: ""}, {chip: "", prompt: ""}, ...]. The chip should be a 1-2 word description of the follow-up. Some good examples are \"summarize\", \"key takeaways\", \"tell me more\", \"flashcards\", or \"quiz\". Do not include chips that have been chosen previously in the chat. The prompt is the full prompt to send back to the conversation agent if the learner taps on the chip. Do not include anything in your response that is not JSON. For instance, do not return, \"Here are 3 potential quick response chips based on the conversation:\". Here's the chat history in JSON: \(history.json).
-            """
-        // swiftlint:enable line_length
-
-        return basicChat(prompt: prompt, pageContext: pageContext)
-            .map { $0.toChipOptions() }
-            .eraseToAnyPublisher()
-    }
-
     /// Given the prompt, ask the AI to classify it to one of our ClassifierOptions (e.g., chat, flashcards, quiz)
     private func classifier(
         prompt: String,
@@ -332,7 +327,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         userShortName: String,
         action: AssistChatAction,
         history: [AssistChatMessage]
-    ) -> AnyPublisher<String, any Error> {
+    ) -> AnyPublisher<String, Error> {
         let longExplanations = ClassifierOption.allCases.map { $0.longExplanation }.joined(separator: ", ")
         let defaultOption = ClassifierOption.defaultOption.rawValue
         let shortOptions = ClassifierOption.allCases.map { $0.rawValue }.joined(separator: ", ")
@@ -428,7 +423,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
             )
         }
 
-        responsePublisher.send(response)
+        responsePublisher.send(.success(response))
 
         return Just(response.chatHistory)
             .eraseToAnyPublisher()
@@ -547,17 +542,18 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var hasAssistChipOptions: Bool = true
 
     func publish(action: AssistChatAction) {}
-    var listen: AnyPublisher<AssistChatResponse, Error> = Just(
-        AssistChatResponse(
-            quizItem: .init(
-                question: "What is the capital of France?",
-                answers: ["Paris", "London", "Berlin", "Madrid"],
-                correctAnswerIndex: 0
-            ),
-            chatHistory: []
+    var listen: AnyPublisher<AssistChatInteractorLive.State, Never> = Just(
+        .success(
+            AssistChatResponse(
+                quizItem: .init(
+                    question: "What is the capital of France?",
+                    answers: ["Paris", "London", "Berlin", "Madrid"],
+                    correctAnswerIndex: 0
+                ),
+                chatHistory: []
+            )
         )
     )
-    .setFailureType(to: Error.self)
     .eraseToAnyPublisher()
 
     func setInitialState() {}
