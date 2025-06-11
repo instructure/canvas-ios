@@ -23,16 +23,16 @@ import CombineSchedulers
 
 @Observable
 final class AssistChatViewModel {
-    // MARK: - Input
+    // MARK: - Inputs
 
     var message = ""
 
-    // MARK: - Output
+    // MARK: - Outputs
 
     private(set) var chipOptions: [String]?
     private(set) var messages: [AssistChatMessageViewModel] = []
     private(set) var isBackButtonVisible: Bool = false
-    private(set) var shouludOpenKeyboardPulisher = PassthroughSubject<Bool, Never>()
+    private(set) var shouldOpenKeyboardPublisher = PassthroughSubject<Bool, Never>()
     private(set) var isLoaderVisible = false
     private(set) var isRetryButtonVisible = false
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -42,7 +42,7 @@ final class AssistChatViewModel {
         message.trimmed().isEmpty || !canSendMessage
     }
 
-    // MARK: - Input / Output
+    // MARK: - Inputs/Outputs
 
     var isErrorToastPresented = false
 
@@ -113,7 +113,7 @@ final class AssistChatViewModel {
         chatMessages = chatMessages.dropLast()
         chatBotInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
         isRetryButtonVisible = false
-        shouludOpenKeyboardPulisher.send(false)
+        shouldOpenKeyboardPublisher.send(false)
     }
 
     func dismiss(controller: WeakViewController) {
@@ -127,7 +127,7 @@ final class AssistChatViewModel {
     func send() {
         isRetryButtonVisible = false
         isLoaderVisible = true
-        shouludOpenKeyboardPulisher.send(true)
+        shouldOpenKeyboardPublisher.send(true)
         send(message: message.trimmedEmptyLines)
     }
 
@@ -158,14 +158,14 @@ final class AssistChatViewModel {
         if response.chatHistory.isEmpty {
             let chipOptions = response.chipOptions ?? []
             hasAssistChipOptions = true
-            shouludOpenKeyboardPulisher.send(false)
+            shouldOpenKeyboardPublisher.send(false)
             newMessages = chipOptions.map { chipOption in
                 chipOption.viewModel { [weak self] in
                     self?.send(chipOption: chipOption)
                 }
             }
         } else {
-            shouludOpenKeyboardPulisher.send(messages.isEmpty)
+            shouldOpenKeyboardPublisher.send(messages.isEmpty)
             newMessages = response.chatHistory.map {
                 $0.viewModel(response: response) { [weak self] quickResponse in
                     self?.send(chipOption: quickResponse)

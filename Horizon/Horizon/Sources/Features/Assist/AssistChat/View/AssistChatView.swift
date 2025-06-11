@@ -25,7 +25,7 @@ struct AssistChatView: View {
 
     @Bindable var viewModel: AssistChatViewModel
     @FocusState private var isFocused: Bool
-    private let retryKey = "retry"
+    private let retryViewId = "retry"
     @Environment(\.viewController) private var viewController
 
     var body: some View {
@@ -38,12 +38,12 @@ struct AssistChatView: View {
             sendMessageView
         }
         .scrollIndicators(.hidden)
-        .onReceive(viewModel.shouludOpenKeyboardPulisher) { value in
+        .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
             isFocused = value
         }
         .onChange(of: viewModel.isRetryButtonVisible) { _, _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                viewModel.scrollViewProxy?.scrollTo(retryKey, anchor: .bottom)
+                viewModel.scrollViewProxy?.scrollTo(retryViewId, anchor: .bottom)
             }
         }
         .onFirstAppear { viewModel.setViewController(viewController) }
@@ -92,7 +92,7 @@ struct AssistChatView: View {
                     }
                     .frame(minHeight: 44)
                     .padding(.top, -(.huiSpaces.space16))
-                    .id(retryKey)
+                    .id(retryViewId)
                 }
             }
             .onAppear {
