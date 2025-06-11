@@ -105,7 +105,7 @@ struct HorizonMessageDetailsView: View {
     }
 
     private var replyArea: some View {
-        VStack(spacing: HorizonUI.spaces.space16) {
+        VStack(spacing: HorizonUI.spaces.space8) {
             HorizonUI.TextArea(
                 $model.reply,
                 placeholder: String(localized: "Reply", bundle: .horizon),
@@ -123,7 +123,7 @@ struct HorizonMessageDetailsView: View {
         }
         .background(HorizonUI.colors.surface.pagePrimary)
         .padding(.horizontal, HorizonUI.spaces.space24)
-        .padding(.vertical, HorizonUI.spaces.space16)
+        .padding(.vertical, HorizonUI.spaces.space8)
     }
 
     private var sendButton: some View {

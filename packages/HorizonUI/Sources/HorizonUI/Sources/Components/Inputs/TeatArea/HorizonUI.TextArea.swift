@@ -117,6 +117,7 @@ extension HorizonUI {
         }
 
         private var textField: some View {
+            let cornerRadius = HorizonUI.CornerRadius.level1_5.attributes.radius
             let view = autoExpand ?
                 AnyView(TextField("", text: $text, axis: .vertical).lineLimit(1 ... 10)) :
                 AnyView(TextEditor(text: $text))
@@ -127,6 +128,7 @@ extension HorizonUI {
                 .background(Color.huiColors.surface.pageSecondary)
                 .focused($focused)
                 .disabled(disabled)
+                .cornerRadius(cornerRadius)
                 .overlay(
                     ZStack {
                         Text(placeholder ?? "")
@@ -138,7 +140,7 @@ extension HorizonUI {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 )
                 .overlay(
-                    RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                    RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(
                             textFieldBorderColor,
                             lineWidth: HorizonUI.Borders.level1.rawValue
