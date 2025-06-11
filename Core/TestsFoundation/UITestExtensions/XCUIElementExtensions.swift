@@ -242,13 +242,13 @@ public extension XCUIElement {
     func cutText(tapSelectAll: Bool = true, tapSelect: Bool = false, customApp: XCUIApplication? = nil) -> XCUIElement {
         let appInUse = customApp ?? app
         if tapSelectAll {
-            let selectAll = appInUse.find(label: "Select All")
-            actionUntilElementCondition(action: .tap, element: selectAll, condition: .visible)
-            selectAll.hit()
+            let selectAllButton = appInUse.find(label: "Select All")
+            actionUntilElementCondition(action: .tap, element: selectAllButton, condition: .visible)
+            selectAllButton.hit()
         } else if tapSelect {
-            let justSelect = appInUse.find(label: "Select")
-            actionUntilElementCondition(action: .tap, element: justSelect, condition: .visible)
-            justSelect.hit()
+            let selectButton = appInUse.find(label: "Select")
+            actionUntilElementCondition(action: .tap, element: selectButton, condition: .visible)
+            selectButton.hit()
         }
         let cutButton = appInUse.find(label: "Cut")
         let cutVisible = actionUntilElementCondition(action: .tap, element: cutButton, condition: .visible, timeout: 5)
