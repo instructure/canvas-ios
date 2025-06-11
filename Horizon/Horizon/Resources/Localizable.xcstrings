@@ -139,6 +139,12 @@
     "Atlantic Time (Canada) (-04:00/-03:00)" : {
 
     },
+    "Attach file" : {
+
+    },
+    "Attach from Canvas files" : {
+
+    },
     "Attempt" : {
 
     },
@@ -747,6 +753,9 @@
     "Rangoon (+06:30/+06:30)" : {
 
     },
+    "Record audio" : {
+
+    },
     "Regenerate" : {
 
     },
@@ -811,6 +820,9 @@
 
     },
     "Select a Submission Type" : {
+
+    },
+    "Select Attachment Type" : {
 
     },
     "Send" : {
@@ -886,6 +898,9 @@
 
     },
     "Taipei (+08:00)" : {
+
+    },
+    "Take photo" : {
 
     },
     "Take Photo or Video" : {
@@ -969,7 +984,13 @@
     "Unsupported Item" : {
 
     },
+    "Upload file" : {
+
+    },
     "Upload File" : {
+
+    },
+    "Upload photo" : {
 
     },
     "Urumqi (+06:00/+06:00)" : {

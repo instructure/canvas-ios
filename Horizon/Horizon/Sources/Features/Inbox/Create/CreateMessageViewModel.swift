@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import Core
 import Combine
 import SwiftUI
@@ -27,6 +28,7 @@ class CreateMessageViewModel {
     var cancelButtonOpacity: Double {
         sendButtonOpacity
     }
+    var isAudioRecordVisible = false
     var isBodyDisabled: Bool {
         isSending
     }
@@ -36,6 +38,8 @@ class CreateMessageViewModel {
     var isCloseDisabled: Bool {
         isSending
     }
+    var isFilePickerVisible = false
+    var isImagePickerVisible = false
     var isPeopleSelectionDisabled: Bool {
         isSending
     }
@@ -49,10 +53,11 @@ class CreateMessageViewModel {
         isSending ? 1.0 : 0.0
     }
     var isIndividualMessage: Bool = false
-    var subject: String = ""
     var isSendDisabled: Bool {
         subject.isEmpty || body.isEmpty || peopleSelectionViewModel.searchByPersonSelections.isEmpty || isSending
     }
+    var isTakePhotoVisible = false
+    var subject: String = ""
 
     // MARK: - Private
     private var isSending = false
@@ -60,9 +65,11 @@ class CreateMessageViewModel {
     private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: - Dependencies
+    private let audioSession: AudioSessionProtocol
+    private let cameraPermissionService: CameraPermissionService.Type
     private let composeMessageInteractor: ComposeMessageInteractor
     private let inboxMessageInteractor: InboxMessageInteractor
-    private let router: Router
+    let router: Router
     private let userID: String
 
     init(
@@ -73,12 +80,50 @@ class CreateMessageViewModel {
             tabBarCountUpdater: .init(),
             messageListStateUpdater: .init()
         ),
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        audioSession: AudioSessionProtocol = AVAudioApplication.shared,
+        cameraPermissionService: CameraPermissionService.Type = AVCaptureDevice.self
     ) {
         self.userID = userID
         self.composeMessageInteractor = composeMessageInteractor
         self.inboxMessageInteractor = inboxMessageInteractor
         self.router = router
+        self.audioSession = audioSession
+        self.cameraPermissionService = cameraPermissionService
+
+        composeMessageInteractor
+            .attachments
+            .sink { files in
+
+            }
+            .store(in: &subscriptions)
+    }
+
+    // MARK: - Inputs
+
+    func addFile(file: File) {
+        composeMessageInteractor.addFile(file: file)
+    }
+
+    func addFile(url: URL) {
+        isImagePickerVisible = false
+        isTakePhotoVisible = false
+        isFilePickerVisible = false
+        isAudioRecordVisible = false
+
+        composeMessageInteractor.addFile(url: url)
+    }
+
+    func addFiles(urls: [URL]) {
+        urls.forEach { url in
+            if url.startAccessingSecurityScopedResource() {
+                addFile(url: url)
+            }
+        }
+    }
+
+    func attachFile(viewController: WeakViewController) {
+        showDialog(viewController: viewController)
     }
 
     func close(viewController: WeakViewController) {
@@ -115,6 +160,71 @@ class CreateMessageViewModel {
             )
             .store(in: &self.subscriptions)
         }
+    }
+
+    private func showDialog(viewController: WeakViewController) {
+        let sheet = BottomSheetPickerViewController.create()
+        sheet.title = String(localized: "Select Attachment Type", bundle: .core)
+
+        sheet.addAction(
+            image: .documentLine,
+            title: String(localized: "Upload file", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            self?.isFilePickerVisible = true
+        }
+        sheet.addAction(
+            image: .imageLine,
+            title: String(localized: "Upload photo", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            self?.isImagePickerVisible = true
+        }
+        sheet.addAction(
+            image: .cameraLine,
+            title: String(localized: "Take photo", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            guard let self else {
+                return
+            }
+            VideoRecorder.requestPermission(cameraService: cameraPermissionService) { isEnabled in
+                if isEnabled {
+                    self.isTakePhotoVisible = true
+                } else {
+                    viewController.value.showPermissionError(.camera)
+                }
+            }
+        }
+        sheet.addAction(
+            image: .audioLine,
+            title: String(localized: "Record audio", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            guard let self else {
+                return
+            }
+            AudioRecorderViewController.requestPermission(audioSession: self.audioSession) { isEnabled in
+                if isEnabled {
+                    self.isAudioRecordVisible = true
+                } else {
+                    viewController.value.showPermissionError(.microphone)
+                }
+             }
+        }
+        sheet.addAction(
+            image: .folderLine,
+            title: String(localized: "Attach from Canvas files", bundle: .core),
+            accessibilityIdentifier: nil
+        ) { [weak self] in
+            guard let self, let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() else { return }
+
+            let viewController = AttachmentPickerAssembly.makeFilePickerViewController(env: .shared, onSelect: self.addFile)
+            self.router.show(viewController, from: top, options: .modal(isDismissable: true, embedInNav: true))
+
+        }
+
+        router.show(sheet, from: viewController, options: .modal())
     }
 
     private func refreshSentMessages() async {

@@ -32,19 +32,66 @@ struct CreateMessageView: View {
             footer
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .fileImporter(
+            isPresented: $viewModel.isFilePickerVisible,
+            allowedContentTypes: [.item],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                viewModel.addFiles(urls: urls)
+            case .failure:
+                break
+            }
+        }
+        .sheet(isPresented: $viewModel.isImagePickerVisible) {
+            ImagePickerViewController(
+                sourceType: .photoLibrary,
+                imageHandler: viewModel.addFile
+            )
+        }
+        .sheet(isPresented: $viewModel.isTakePhotoVisible) {
+            ImagePickerViewController(
+                sourceType: .camera,
+                imageHandler: viewModel.addFile
+            )
+            .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $viewModel.isAudioRecordVisible) {
+            AttachmentPickerAssembly.makeAudioPickerViewcontroller(
+                router: viewModel.router,
+                onSelect: viewModel.addFile
+            )
+            .interactiveDismissDisabled()
+        }
     }
 
     // MARK: - Private
 
+    private var attachFileRow: some View {
+        HStack(spacing: .huiSpaces.space8) {
+            HorizonUI.icons.attachFile
+                .foregroundStyle(HorizonUI.colors.icon.default)
+            Text(String(localized: "Attach file", bundle: .horizon))
+                .huiTypography(.buttonTextLarge)
+                .foregroundStyle(HorizonUI.colors.text.title)
+            Spacer()
+        }
+        .onTapGesture(perform: { viewModel.attachFile(viewController: viewController) })
+        // Add tap action here if needed
+    }
+
     private var bodyContent: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: .huiSpaces.space24) {
+            VStack(alignment: .leading, spacing: .huiSpaces.space12) {
                 peopleSelection
                 individualMessageCheckbox
                 messageTitleInput
                 messageBodyInput
+                attachFileRow
                 Spacer()
             }
+            .padding(.top, .huiSpaces.space12)
         }
         .padding(.horizontal, .huiSpaces.space24)
         .frame(maxHeight: .infinity, alignment: .topLeading)
