@@ -32,15 +32,17 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     var loadingSpinnerOpacity: Double {
         isSending ? 1.0 : 0.0
     }
+    @Published public private(set) var messagesAscending: [MessageViewModel] = []
 
     // MARK: - Private
     private var isSending: Bool = false
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
     private let composeMessageInteractor: ComposeMessageInteractor
     private let messageDetailsInteractor: MessageDetailsInteractor
+    private let myID: String
     private let router: Router
-    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Initialization
     init(
@@ -53,12 +55,15 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
         self.router = router
         self.messageDetailsInteractor = messageDetailsInteractor
         self.composeMessageInteractor = composeMessageInteractor
+        self.myID = myID
         super.init(
             router: router,
             interactor: messageDetailsInteractor,
             myID: myID,
             allowArchive: allowArchive
         )
+
+        listenForMessages()
     }
 
     // MARK: - Inputs
@@ -66,36 +71,66 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
         router.pop(from: viewController)
     }
 
-    func refresh(finish: @escaping () -> Void) {
-        _ = messageDetailsInteractor.refresh().sink {
-            finish()
-        }
+    func refresh(finish: (() -> Void)? = nil) {
+        messageDetailsInteractor
+            .refresh()
+            .sink { finish?() }
+            .store(in: &subscriptions)
     }
 
     func sendMessage(viewController: WeakViewController) {
+        guard let conversation = conversations.first,
+              let contextCode = conversation.contextCode,
+              let context = Context(canvasContextID: contextCode) else {
+            return
+        }
+
         isSending = true
         Task { [weak self] in
             guard let self = self else {
                 return
             }
-            _ = self.composeMessageInteractor.addConversationMessage(
+            let recipientIDs = self.messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != self.myID }
+            self.composeMessageInteractor.addConversationMessage(
                 parameters: MessageParameters(
-                    subject: "",
+                    subject: conversation.subject,
                     body: self.reply,
-                    recipientIDs: self.messageDetailsInteractor.userMap.map { $0.key },
+                    recipientIDs: recipientIDs,
                     attachmentIDs: [],
-                    bulkMessage: false
+                    context: context,
+                    conversationID: conversation.id,
+                    bulkMessage: true
                 )
             ).sink(
                 receiveCompletion: { _ in
                     performUIUpdate {
                         self.isSending = false
                         self.reply = ""
-                        _ = self.messageDetailsInteractor.refresh()
                     }
                 },
                 receiveValue: { _ in }
             )
+            .store(in: &self.subscriptions)
         }
+    }
+
+    // MARK: - Private Methods
+    private func listenForMessages() {
+        messageDetailsInteractor
+            .messages
+            .map {
+                $0.sorted { $0.createdAt ?? .distantPast < $1.createdAt ?? .distantPast }
+            }
+            .map { messages in
+                messages.map {
+                    MessageViewModel(
+                        item: $0,
+                        myID: self.myID,
+                        userMap: self.messageDetailsInteractor.userMap,
+                        router: self.router
+                    )
+                }
+            }
+            .assign(to: &$messagesAscending)
     }
 }

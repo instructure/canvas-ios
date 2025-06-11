@@ -26,12 +26,16 @@ struct HorizonMessageDetailsAssembly {
         allowArchive: Bool
     ) -> UIViewController {
         let uploadIdentifier = UUID().uuidString
+        let appEnvironment = AppEnvironment.shared
         let viewModel = HorizonMessageDetailsViewModel(
-            messageDetailsInteractor: MessageDetailsInteractorLive(env: env, conversationID: conversationID),
+            messageDetailsInteractor: MessageDetailsInteractorLive(
+                env: appEnvironment,
+                conversationID: conversationID
+            ),
             composeMessageInteractor: ComposeMessageInteractorLive(
                 batchId: uploadIdentifier,
                 uploadManager: UploadManager(
-                    env: AppEnvironment.shared,
+                    env: appEnvironment,
                     identifier: uploadIdentifier
                 )
             ),

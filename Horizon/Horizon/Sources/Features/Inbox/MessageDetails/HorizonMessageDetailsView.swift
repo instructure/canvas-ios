@@ -41,42 +41,51 @@ struct HorizonMessageDetailsView: View {
     }
 
     private var messages: some View {
-        InstUI.BaseScreen(
-            state: .data,
-            config: .init(refreshable: true),
-            refreshAction: model.refresh
-        ) { _ in
-            VStack(spacing: HorizonUI.spaces.space24) {
-                ForEach(model.messages, id: \.id) { message in
-                    messageBody(message)
-                        .overlay(
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundStyle(
-                                    model.messages.firstIndex(where: {$0.id == message.id}) == 0 ?
-                                        .clear :
-                                        HorizonUI.colors.lineAndBorders.lineStroke
-                                ),
-                            alignment: .top
-                        )
+        ScrollViewReader { proxy in
+            RefreshableScrollView(
+                content: {
+                    VStack(spacing: HorizonUI.spaces.space24) {
+                        ForEach(model.messagesAscending, id: \.id) { message in
+                            messageBody(message)
+                                .id(message.id)
+                                .overlay(
+                                    Rectangle()
+                                        .frame(height: 1)
+                                        .foregroundStyle(
+                                            model.messagesAscending.firstIndex(where: { $0.id == message.id }) == 0 ?
+                                                .clear :
+                                                HorizonUI.colors.lineAndBorders.lineStroke
+                                        ),
+                                    alignment: .top
+                                )
+                        }
+                    }
+                    .padding(.top, HorizonUI.spaces.space16)
+                    .padding(.bottom, HorizonUI.spaces.space24)
+                    .padding(.leading, HorizonUI.spaces.space24)
+                    .padding(.trailing, HorizonUI.spaces.space24)
+                },
+                refreshAction: model.refresh
+            )
+            .frame(maxHeight: .infinity, alignment: .top)
+            .frame(maxWidth: .infinity)
+            .background(HorizonUI.colors.surface.pageSecondary)
+            .clipShape(
+                .rect(
+                    topLeadingRadius: 32,
+                    bottomLeadingRadius: 0,
+                    bottomTrailingRadius: 0,
+                    topTrailingRadius: 32
+                )
+            )
+            .onChange(of: model.messagesAscending.count) {
+                if let last = model.messagesAscending.last {
+                    withAnimation {
+                        proxy.scrollTo(last.id, anchor: .bottom)
+                    }
                 }
             }
-            .padding(.top, HorizonUI.spaces.space16)
-            .padding(.bottom, HorizonUI.spaces.space24)
-            .padding(.leading, HorizonUI.spaces.space24)
-            .padding(.trailing, HorizonUI.spaces.space24)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
-        .frame(maxWidth: .infinity)
-        .background(HorizonUI.colors.surface.pageSecondary)
-        .clipShape(
-            .rect(
-                topLeadingRadius: 32,
-                bottomLeadingRadius: 0,
-                bottomTrailingRadius: 0,
-                topTrailingRadius: 32
-            )
-        )
     }
 
     private func messageBody(_ message: MessageViewModel) -> some View {
