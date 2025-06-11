@@ -21,14 +21,6 @@ import SwiftUI
 
 struct CommentInputView: View {
 
-    // TODO: remove styles once UX is decided
-    enum Style {
-        case old
-        case new
-        case new2
-    }
-    var style: Style = .old
-
     enum AttachmentType {
         case audio
         case video
@@ -51,65 +43,11 @@ struct CommentInputView: View {
     @State private var showAttachmentTypeSheet = false
 
     var body: some View {
-        switch style {
-        case .old: contentOld
-        case .new: contentNew
-        case .new2: contentNew2
-        }
-    }
-
-    private var contentOld: some View {
-        VStack(spacing: 0) {
-            InstUI.Divider()
-
-            HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-                if hasCommentLibraryButton {
-                    commentLibraryButton
-                        .commentToolbarButtonOffset()
-                }
-                if hasAttachmentButton {
-                    attachmentButton
-                        .commentToolbarButtonOffset()
-                }
-                HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    commentEditorOld
-                    sendButton
-                        .commentToolbarButtonOffset()
-                }
-                .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 6))
-                .background(RoundedRectangle(cornerRadius: 22).fill(Color.backgroundLightest))
-                .background(RoundedRectangle(cornerRadius: 22).stroke(Color.borderMedium))
-            }
-            .paddingStyle(.horizontal, .standard)
-            .padding(.vertical, 4)
-        }
-        .background(Color.backgroundLight)
-    }
-
-    private var contentNew: some View {
-        HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-            if hasCommentLibraryButton {
-                commentLibraryButton
-                    .commentToolbarButtonOffset()
-            }
-            if hasAttachmentButton {
-                attachmentButton
-                    .commentToolbarButtonOffset()
-            }
-            commentEditorNew
-            sendButton
-                .commentToolbarButtonOffset()
-        }
-        .paddingStyle(.horizontal, .standard)
-        .padding(.vertical, 4)
-    }
-
-    private var contentNew2: some View {
         VStack(spacing: 0) {
             InstUI.Divider()
 
             VStack(alignment: .leading, spacing: 8) {
-                commentEditorOld
+                commentEditor
                 // TODO: fix vertical truncation
                     .paddingStyle(set: .textEditorCorrection)
                 InstUI.Divider()
@@ -139,16 +77,8 @@ struct CommentInputView: View {
 
     // MARK: - TextField
 
-    private var commentEditorOld: some View {
+    private var commentEditor: some View {
         DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Comment", bundle: .teacher))
-            .font(.regular16)
-            .lineLimit(10)
-            .accessibilityLabel(Text("Comment", bundle: .teacher))
-            .identifier("SubmissionComments.commentTextView")
-    }
-
-    private var commentEditorNew: some View {
-        DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Write your Comment here", bundle: .teacher))
             .font(.regular16)
             .lineLimit(10)
             .accessibilityLabel(Text("Comment", bundle: .teacher))
@@ -223,8 +153,7 @@ private extension View {
 #Preview {
     VStack {
         CommentInputView(
-            style: .old,
-            comment: .constant("Sample Text OLD"),
+            comment: .constant("Sample Text"),
             hasCommentLibraryButton: true,
             hasAttachmentButton: true,
             contextColor: .green,
@@ -235,31 +164,6 @@ private extension View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            style: .new,
-            comment: .constant("Sample Text NEW"),
-            hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
-            contextColor: .green,
-            showCommentLibraryAction: {},
-            addAttachmentAction: { _ in },
-            sendAction: {}
-        )
-        .background(Color.backgroundLightest)
-
-        CommentInputView(
-            style: .new2,
-            comment: .constant("Sample Text NEW 2"),
-            hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
-            contextColor: .green,
-            showCommentLibraryAction: {},
-            addAttachmentAction: { _ in },
-            sendAction: {}
-        )
-        .background(Color.backgroundLightest)
-
-        CommentInputView(
-            style: .new2,
             comment: .constant(""),
             hasCommentLibraryButton: true,
             hasAttachmentButton: true,
