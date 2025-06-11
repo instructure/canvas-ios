@@ -52,11 +52,10 @@ struct CommentInputView: View {
         VStack(spacing: 0) {
             InstUI.Divider()
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 12) {
                 commentEditor
                 // TODO: fix vertical truncation
-                    .paddingStyle(set: .textEditorCorrection)
-                InstUI.Divider()
+
                 HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
                     switch commentLibraryButtonType {
                     case .openLibrary:
@@ -87,12 +86,21 @@ struct CommentInputView: View {
 
     // MARK: - TextField
 
+    @ViewBuilder
     private var commentEditor: some View {
-        DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Comment", bundle: .teacher))
-            .font(.regular16)
-            .lineLimit(10)
-            .accessibilityLabel(Text("Comment", bundle: .teacher))
-            .identifier("SubmissionComments.commentTextView")
+        VStack(alignment: .leading, spacing: 2) {
+            if comment.isNotEmpty {
+                Text("Comment", bundle: .teacher)
+                    .font(.regular12)
+                    .foregroundStyle(.textPlaceholder)
+            }
+            DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Comment", bundle: .teacher))
+                .paddingStyle(set: .textEditorCorrection)
+                .font(.regular14)
+                .lineLimit(10)
+                .accessibilityLabel(Text("Comment", bundle: .teacher))
+                .identifier("SubmissionComments.commentTextView")
+        }
     }
 
     // MARK: - Buttons
@@ -165,9 +173,12 @@ private extension View {
 #if DEBUG
 
 #Preview {
+    @Previewable @State var text: String = "Sample text"
+    @Previewable @State var textEmpty: String = ""
+
     VStack {
         CommentInputView(
-            comment: .constant("Sample Text"),
+            comment: $text,
             commentLibraryButtonType: .openLibrary,
             isAttachmentButtonEnabled: true,
             contextColor: .green,
@@ -178,7 +189,7 @@ private extension View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: .constant("Sample Text"),
+            comment: $text,
             commentLibraryButtonType: .closeLibrary,
             isAttachmentButtonEnabled: false,
             contextColor: .green,
@@ -189,7 +200,7 @@ private extension View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: .constant("Sample Text"),
+            comment: $text,
             commentLibraryButtonType: .hidden,
             isAttachmentButtonEnabled: true,
             contextColor: .green,
@@ -200,7 +211,7 @@ private extension View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: .constant(""),
+            comment: $textEmpty,
             commentLibraryButtonType: .openLibrary,
             isAttachmentButtonEnabled: true,
             contextColor: .green,

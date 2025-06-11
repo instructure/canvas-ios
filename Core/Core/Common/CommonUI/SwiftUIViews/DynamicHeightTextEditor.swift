@@ -79,7 +79,7 @@ public struct DynamicHeightTextEditor: View {
     private var placeholderView: some View {
         if text.isEmpty, let placeholder = placeholder {
             Text(placeholder)
-                .foregroundColor(.textDark)
+                .foregroundColor(.textPlaceholder)
                 .padding(.leading, textEditorHorizontalPadding)
                 .padding(.top, textEditorTopPadding)
                 .accessibility(hidden: true)
