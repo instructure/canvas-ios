@@ -312,7 +312,7 @@ let router = Router(routes: [
     RouteHandler("/courses/:courseID/modules/items/:itemID") { url, params, _, env in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         return ModuleItemSequenceViewController.create(
-            env: env,  
+            env: env,
             courseID: courseID.localID,
             assetType: .moduleItem,
             assetID: itemID.localID,
