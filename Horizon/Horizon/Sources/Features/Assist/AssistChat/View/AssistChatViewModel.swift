@@ -42,6 +42,10 @@ final class AssistChatViewModel {
         message.trimmed().isEmpty || !canSendMessage
     }
 
+    // MARK: - Input / Output
+
+    var isErrorToastPresented = false
+
     // MARK: - Dependencies
 
     private var chatBotInteractor: AssistChatInteractor
@@ -88,6 +92,7 @@ final class AssistChatViewModel {
                     isRetryButtonVisible = true
                     isLoaderVisible = false
                     canSendMessage = true
+                    isErrorToastPresented = true
                 }
             }
             .store(in: &subscriptions)

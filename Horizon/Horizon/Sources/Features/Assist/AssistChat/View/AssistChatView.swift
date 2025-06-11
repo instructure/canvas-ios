@@ -55,6 +55,10 @@ struct AssistChatView: View {
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
         }
+        .huiToast(
+            viewModel: .init(text: String(localized: "Error fetching response.", bundle: .horizon), style: .error),
+            isPresented: $viewModel.isErrorToastPresented
+        )
     }
 
     private var topHeader: some View {
