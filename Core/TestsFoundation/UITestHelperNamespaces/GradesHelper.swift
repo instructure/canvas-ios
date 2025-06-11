@@ -124,6 +124,7 @@ public class GradesHelper: BaseHelper {
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
         for assignment in assignments {
             submitAssignment(course: course, student: student, assignment: assignment)
+            sleep(1)
         }
     }
 
@@ -139,6 +140,7 @@ public class GradesHelper: BaseHelper {
                         published: true,
                         points_possible: points_possible?[i] ?? 100,
                         grading_type: grading_type)))
+            sleep(1)
         }
         return assignments
     }
