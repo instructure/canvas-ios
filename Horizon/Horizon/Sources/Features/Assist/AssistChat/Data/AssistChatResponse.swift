@@ -52,22 +52,7 @@ extension AssistChatResponse {
     ) -> AssistChatResponse {
         let localResponse: AssistStaticLearnerResponse = .review
         return .init(
-            AssistChatMessage(
-                botResponse: String(
-                    format: NSLocalizedString(
-                        "How can I help today with the %@ course material?",
-                        bundle: .horizon,
-                        comment: "Assist chat initial response when only one course is available"
-                    ),
-                    courseName
-                ),
-                chipOptions: [
-                    .init(
-                        chip: localResponse.chip,
-                        localResponse: localResponse
-                    )
-                ]
-            ),
+            AssistChatMessage(staticResponse: .courseAssistance(courseName)),
             chatHistory: chatHistory,
             isFreeTextAvailable: true
         )
@@ -77,22 +62,12 @@ extension AssistChatResponse {
 /// Used when the user is asked to select from one of their courses
 extension AssistChatResponse {
     static func courseSelection(
-        courses: [(name: String, id: String)],
+        courses: [CourseNameAndID],
         chatHistory: [AssistChatMessage] = []
     ) -> AssistChatResponse {
         .init(
             AssistChatMessage(
-                botResponse: String(
-                    localized: "Which of your courses would you like to discuss?",
-                    bundle: .horizon
-                ),
-                chipOptions: courses.map { course in
-                    let localResponse: AssistStaticLearnerResponse = .selectCourse(courseName: course.name, courseID: course.id)
-                    return .init(
-                        chip: localResponse.chip,
-                        localResponse: localResponse
-                    )
-                }
+                staticResponse: .selectACourse(courses)
             ),
             chatHistory: chatHistory,
             isFreeTextAvailable: true
@@ -116,14 +91,7 @@ extension AssistChatResponse {
     static func review(chatHistory: [AssistChatMessage] = []) -> AssistChatResponse {
         .init(
             AssistChatMessage(
-                botResponse: String(
-                    localized: "How would you like to review today?",
-                    bundle: .horizon
-                ),
-                chipOptions: [
-                    .init(.flashcards),
-                    .init(.quiz)
-                ]
+                staticResponse: .review
             ),
             chatHistory: chatHistory,
             isFreeTextAvailable: false

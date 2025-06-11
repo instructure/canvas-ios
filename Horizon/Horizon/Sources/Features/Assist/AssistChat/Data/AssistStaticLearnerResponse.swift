@@ -35,6 +35,7 @@ enum AssistStaticLearnerResponse {
         }
     }
 
+    /// Returns a localized string for the chip option
     var chip: String {
         switch self {
         case .selectCourse(let courseName, _):

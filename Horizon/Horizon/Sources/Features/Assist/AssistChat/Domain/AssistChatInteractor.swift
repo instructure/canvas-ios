@@ -287,7 +287,12 @@ class AssistChatInteractorLive: AssistChatInteractor {
             }
             if courses.count > 1 {
                 return AssistChatResponse.courseSelection(
-                    courses: courses.map { (name: $0.course.name ?? "", id: $0.courseID) },
+                    courses: courses.map {
+                        CourseNameAndID(
+                            name: $0.course.name ?? "",
+                            id: $0.courseID
+                        )
+                    },
                 )
             }
             return AssistChatResponse(
