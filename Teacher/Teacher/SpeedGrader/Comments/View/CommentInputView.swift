@@ -144,7 +144,7 @@ struct CommentInputView: View {
             label: {
                 Image.circleArrowUpSolid
                     .scaledIcon()
-                    .foregroundStyle(contextColor)
+                    .foregroundStyle(comment.isNotEmpty ? contextColor : .disabledGray)
             }
         )
         .buttonStyle(.plain)
