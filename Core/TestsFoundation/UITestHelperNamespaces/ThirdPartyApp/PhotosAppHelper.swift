@@ -36,10 +36,8 @@ public class PhotosAppHelper: BaseHelper {
     }
 
     public static func tapFirstPicture() {
-        let recentlySaved = photosApp.descendants(matching: .any).matching(label: "Recently Saved").firstMatch
-        guard recentlySaved.waitForExistence(timeout: defaultTimeout) else { return }
-        recentlySaved.tap()
         let thePhoto = photosApp.descendants(matching: .image).matching(labelContaining: "Photo, March").firstMatch
+        photosApp.actionUntilElementCondition(action: .swipeDown(.onElement), element: thePhoto, condition: .visible, timeout: 5)
         guard thePhoto.waitForExistence(timeout: defaultTimeout) else { return }
         thePhoto.tap()
     }

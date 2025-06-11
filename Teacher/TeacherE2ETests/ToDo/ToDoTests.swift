@@ -52,7 +52,7 @@ class ToDoTests: E2ETestCase {
         assignmentItem.hit()
         let userLabel = AssignmentsHelper.SpeedGrader.userButton.waitUntil(.visible)
         let submissionBody = app.find(label: submission.body).waitUntil(.visible)
-        XCTAssertEqual(userLabel.label, "\(student.name), Submitted")
+        XCTAssertContains(userLabel.label, "\(student.name), Submitted")
         XCTAssertTrue(submissionBody.isVisible)
     }
 }

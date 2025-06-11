@@ -218,11 +218,11 @@ public class CalendarHelper: BaseHelper {
             public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
 
             public static func userItem(user: DSUser) -> XCUIElement {
-                return app.find(label: user.name, type: .switch)
+                return app.find(id: "user_\(user.id)")
             }
 
             public static func courseItem(course: DSCourse) -> XCUIElement {
-                return app.find(label: course.name, type: .switch)
+                return app.find(id: "course_\(course.id)")
             }
         }
 

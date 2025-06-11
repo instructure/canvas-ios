@@ -404,6 +404,6 @@ class GradesTests: E2ETestCase {
         basedOnGradedSwitch.hit()
         XCTAssertEqual(basedOnGradedSwitch.waitUntil(.value(expected: "off")).stringValue, "off")
         XCTAssertTrue(totalGrade.isVisible)
-        XCTAssertContains(totalGrade.label, notBasedOnGradedExpected)
+        XCTAssertContains(totalGrade.waitUntil(.labelContaining(expected: notBasedOnGradedExpected)).label, notBasedOnGradedExpected)
     }
 }

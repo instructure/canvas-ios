@@ -309,10 +309,10 @@ class CalendarTests: E2ETestCase {
         let courseItem = Helper.Todo.CalendarSelector.courseItem(course: course).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(courseItem.isVisible)
-        XCTAssertEqual(courseItem.stringValue, "0")
+        XCTAssertTrue(courseItem.isUnselected)
 
         courseItem.hit()
-        XCTAssertEqual(courseItem.waitUntil(.value(expected: "1")).stringValue, "1")
+        XCTAssertTrue(courseItem.waitUntil(.selected).isSelected)
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
@@ -398,7 +398,7 @@ class CalendarTests: E2ETestCase {
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
-        XCTAssertEqual(userItem.stringValue, "1")
+        XCTAssertTrue(userItem.isSelected)
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
@@ -484,7 +484,7 @@ class CalendarTests: E2ETestCase {
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
-        XCTAssertEqual(userItem.stringValue, "1")
+        XCTAssertTrue(userItem.isSelected)
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)
@@ -604,7 +604,7 @@ class CalendarTests: E2ETestCase {
         let userItem = Helper.Todo.CalendarSelector.userItem(user: student).waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(userItem.isVisible)
-        XCTAssertEqual(userItem.stringValue, "1")
+        XCTAssertTrue(userItem.isSelected)
 
         backButton.hit()
         XCTAssertTrue(datePicker.waitUntil(.visible).isVisible)

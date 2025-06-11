@@ -57,7 +57,7 @@ class AssignmentsTests: E2ETestCase {
         let dueLabel = DetailsHelper.due.waitUntil(.visible)
         let submissionTypesLabel = DetailsHelper.submissionTypes.waitUntil(.visible)
         let viewAllSubmissionsButton = DetailsHelper.viewAllSubmissionsButton.waitUntil(.visible)
-        let oneNeedsGrading = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
+        let needsGradingButton = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
         XCTAssertEqual(nameLabel.label, assignment.name)
@@ -70,8 +70,8 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submissionTypesLabel.isVisible)
         XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
         XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(oneNeedsGrading.isVisible)
-        XCTAssertEqual(oneNeedsGrading.stringValue, "100%")
+        XCTAssertTrue(needsGradingButton.isVisible)
+        XCTAssertEqual(needsGradingButton.stringValue, "1 item")
         XCTAssertTrue(descriptionLabel.isVisible)
     }
 
