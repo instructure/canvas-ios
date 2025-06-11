@@ -350,7 +350,7 @@ struct SubmissionGraderView: View {
                 .identifier("SpeedGrader.toolPicker")
                 InstUI.Divider()
             } else {
-                InstUI.SegmentedPicker(selection: $tab.animation()) {
+                InstUI.SegmentedPicker(selection: $tab) {
                     ForEach(GraderTab.allCases, id: \.self) { tab in
                         Text(tab.title(viewModel: viewModel))
                             .tag(tab)
@@ -380,6 +380,9 @@ struct SubmissionGraderView: View {
                     )
 
                     gradesTab(bottomInset: bottomInset, isDrawer: isDrawer, geometry: geometry)
+                        // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
+                        // and it would block interaction with the attempts picker and the submission content.
+                        .allowsHitTesting(tab == .grades)
                     commentsTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
