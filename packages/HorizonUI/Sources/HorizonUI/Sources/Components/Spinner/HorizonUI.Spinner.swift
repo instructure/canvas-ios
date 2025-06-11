@@ -212,5 +212,5 @@ private struct PartialCircleShape: Shape {
 }
 
 #Preview {
-    HorizonUI.Spinner(showBackground: true)
+    HorizonUI.Spinner(showBackground: false)
 }

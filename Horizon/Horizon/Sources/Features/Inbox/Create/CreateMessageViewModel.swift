@@ -28,6 +28,10 @@ class CreateMessageViewModel {
     var cancelButtonOpacity: Double {
         sendButtonOpacity
     }
+    var attachmentButtonOpacity: Double {
+        isAttachmentLoading ? 0.5 : 1.0
+    }
+    var attachmentViewModels: [AttachmentViewModel] = []
     var isAudioRecordVisible = false
     var isBodyDisabled: Bool {
         isSending
@@ -54,12 +58,19 @@ class CreateMessageViewModel {
     }
     var isIndividualMessage: Bool = false
     var isSendDisabled: Bool {
-        subject.isEmpty || body.isEmpty || peopleSelectionViewModel.searchByPersonSelections.isEmpty || isSending
+        subject.isEmpty ||
+            body.isEmpty ||
+            peopleSelectionViewModel.searchByPersonSelections.isEmpty ||
+            isSending ||
+            isAttachmentLoading
     }
     var isTakePhotoVisible = false
     var subject: String = ""
 
     // MARK: - Private
+    private var isAttachmentLoading: Bool {
+        attachmentViewModels.contains { $0.isLoading }
+    }
     private var isSending = false
     let peopleSelectionViewModel: PeopleSelectionViewModel = .init()
     private var subscriptions: Set<AnyCancellable> = []
@@ -91,12 +102,7 @@ class CreateMessageViewModel {
         self.audioSession = audioSession
         self.cameraPermissionService = cameraPermissionService
 
-        composeMessageInteractor
-            .attachments
-            .sink { files in
-
-            }
-            .store(in: &subscriptions)
+        listenForAttachments()
     }
 
     // MARK: - Inputs
@@ -128,6 +134,25 @@ class CreateMessageViewModel {
 
     func close(viewController: WeakViewController) {
         router.dismiss(viewController)
+    }
+
+    func listenForAttachments() {
+        composeMessageInteractor
+            .attachments
+            .sink { [weak self] files in
+                self?.attachmentViewModels = files.map {
+                    AttachmentViewModel(
+                        $0,
+                        onCancel: { [weak self] in
+                            self?.composeMessageInteractor.cancel()
+                        },
+                        onDelete: { [weak self] file in
+                            self?.composeMessageInteractor.removeFile(file: file)
+                        }
+                    )
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     func sendMessage(viewController: WeakViewController) {
@@ -163,6 +188,9 @@ class CreateMessageViewModel {
     }
 
     private func showDialog(viewController: WeakViewController) {
+        if isAttachmentLoading {
+            return
+        }
         let sheet = BottomSheetPickerViewController.create()
         sheet.title = String(localized: "Select Attachment Type", bundle: .core)
 
@@ -238,5 +266,47 @@ class CreateMessageViewModel {
                 }
                 .store(in: &self.subscriptions)
         }
+    }
+}
+
+struct AttachmentViewModel: Identifiable {
+    typealias OnCancel = () -> Void
+    typealias OnDelete = (File) -> Void
+
+    var cancelOpacity: Double {
+        isLoading ? 1.0 : 0.0
+    }
+    var checkmarkOpacity: Double {
+        isLoading ? 0.0 : 1.0
+    }
+    var deleteOpacity: Double {
+        isLoading ? 0.0 : 1.0
+    }
+    var spinnerOpacity: Double {
+        isLoading ? 1.0 : 0.0
+    }
+    var isLoading: Bool {
+        !file.isUploaded
+    }
+    var filename: String {
+        file.filename
+    }
+    let id: String = UUID().uuidString
+    private let onCancel: OnCancel
+    private let onDelete: OnDelete
+
+    private let file: File
+
+    init(_ file: File, onCancel: @escaping OnCancel, onDelete: @escaping OnDelete) {
+        self.file = file
+        self.onCancel = onCancel
+        self.onDelete = onDelete
+    }
+
+    func cancel() {
+        onCancel()
+    }
+    func delete() {
+        onDelete(file)
     }
 }
