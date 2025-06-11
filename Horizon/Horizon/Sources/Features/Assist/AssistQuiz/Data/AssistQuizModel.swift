@@ -26,7 +26,7 @@ struct AssistQuizModel {
     let options: [AnswerOption]
     let correctAnswerIndex: Int
 
-    init(from quiz: AssistChatResponse.QuizItem) {
+    init(from quiz: QuizItem) {
         id = UUID()
         question = quiz.question
         options = quiz.answers.map { AnswerOption($0) }

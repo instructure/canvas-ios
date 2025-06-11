@@ -16,18 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
-struct AssistChatFlashCard: Codable, Equatable {
-
+struct QuizItem: Codable, Equatable {
     let question: String
-    let answer: String
-
-    static func build(from string: String?) -> [AssistChatFlashCard]? {
-        guard let data = string?.data(using: .utf8) else {
-            return nil
-        }
-        let flashCards = try? JSONDecoder().decode([AssistChatFlashCard].self, from: data)
-        return flashCards
-    }
+    let answers: [String]
+    let correctAnswerIndex: Int
 }

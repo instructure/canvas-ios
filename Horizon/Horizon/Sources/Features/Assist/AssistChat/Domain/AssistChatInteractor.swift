@@ -279,7 +279,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         )
         .getEntities()
         .map { [weak self] courses in
-            if let course = courses.first{ $0.course.id == self?.courseID } {
+            if let course = courses.first(where: { $0.course.id == self?.courseID }) {
                 return .courseHelp(courseName: course.course.name ?? "", chatHistory: chatHistory)
             }
             if let courseName = courses.first?.course.name, courses.count == 1 {
@@ -291,7 +291,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 )
             }
             return AssistChatResponse(
-                message: AssistChatMessage(
+                AssistChatMessage(
                     botResponse: String(
                         localized: "It looks like you're not enrolled in any courses yet. Please enroll in a course and come back!",
                         bundle: .horizon
@@ -321,18 +321,6 @@ class AssistChatInteractorLive: AssistChatInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func chipGenerator(history: [AssistChatMessage], pageContext: AssistChatPageContext) -> AnyPublisher<[AssistChipOption], Error> {
-        // swiftlint:disable line_length
-        let prompt = """
-                You are an agent designed to prepare potential quick response chips to show in a Learning Management System app based on an assistant agent's conversation with a learner. I'll provide you with the message history from the learner and the assistant. Create 1-3 quick response chips based off how you think the learner might want to continue the conversation. We only want to show useful response chips, so don't feel obligated to produce 3. Answer in JSON with this format: [{chip: "", prompt: ""}, {chip: "", prompt: ""}, ...]. The chip should be a 1-2 word description of the follow-up. Some good examples are \"summarize\", \"key takeaways\", \"tell me more\", \"flashcards\", or \"quiz\". Do not include chips that have been chosen previously in the chat. The prompt is the full prompt to send back to the conversation agent if the learner taps on the chip. Do not include anything in your response that is not JSON. For instance, do not return, \"Here are 3 potential quick response chips based on the conversation:\". Here's the chat history in JSON: \(history.json).
-            """
-        // swiftlint:enable line_length
-
-        return basicChat(prompt: prompt, pageContext: pageContext)
-            .map { $0.toChipOptions() }
-            .eraseToAnyPublisher()
-    }
-
     /// Given the prompt, ask the AI to classify it to one of our ClassifierOptions (e.g., chat, flashcards, quiz)
     private func classifier(
         prompt: String,
@@ -357,7 +345,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         action: AssistChatAction,
         history: [AssistChatMessage] = []
     ) -> AnyPublisher<AssistChatResponse, Error> {
-        let chipPrompt = AssistChipOption(AssistChipOption.Default.flashcards, userShortName: userShortName).prompt
+        let chipPrompt = AssistChipOption(AssistChipOption.Default.flashcards, userShortName: userShortName).prompt ?? ""
         let pageContext = pageContextPublisher.value
         let pageContextPrompt = pageContext.prompt ?? ""
         let prompt = "\(chipPrompt) \(pageContextPrompt) \(history.json)"
@@ -367,7 +355,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         )
         .compactMap { response in
             AssistChatResponse(
-                flashCards: AssistChatFlashCard.build(from: response) ?? [],
+                AssistChatMessage(flashCards: AssistChatFlashCard.build(from: response) ?? []),
                 chatHistory: history
             )
         }
@@ -397,7 +385,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 : basicChat(prompt: "\(history.json) \(pageContext.prompt ?? "")", pageContext: pageContext)
             return
                 chatMethod
-                .map { AssistChatResponse(message: AssistChatMessage(botResponse: $0), chatHistory: history) }
+                .map { AssistChatResponse(AssistChatMessage(botResponse: $0), chatHistory: history) }
                 .eraseToAnyPublisher()
         case .flashcards:
             return flashcards(
@@ -418,15 +406,15 @@ class AssistChatInteractorLive: AssistChatInteractor {
         switch action {
         case .chat(let prompt, let history):
             response = AssistChatResponse(
-                message: AssistChatMessage(userResponse: prompt),
+                AssistChatMessage(userResponse: prompt),
                 chatHistory: history,
                 isLoading: true
             )
         case .chip(let option, let history):
             response = AssistChatResponse(
-                message: AssistChatMessage(
-                    prompt: option.prompt,
-                    text: option.chip
+                AssistChatMessage(
+                    userResponse: option.chip,
+                    prompt: option.prompt
                 ),
                 chatHistory: history,
                 isLoading: true
@@ -458,14 +446,14 @@ class AssistChatInteractorLive: AssistChatInteractor {
                     quizOutput.map { quizOutput in
                         guard let quizItem = quizOutput.quizItems.first else {
                             return AssistChatResponse(
-                                message: AssistChatMessage(
+                                AssistChatMessage(
                                     botResponse: "Sorry, I'm unable to generate a quiz for you at this time."
                                 ),
                                 chatHistory: history
                             )
                         }
                         return AssistChatResponse(
-                            quizItem: quizItem,
+                            AssistChatMessage(quizItem: quizItem),
                             chatHistory: history
                         )
                     }
@@ -505,9 +493,9 @@ class AssistChatInteractorLive: AssistChatInteractor {
 // MARK: - Extensions
 
 private extension CedarGenerateQuizMutation.QuizOutput {
-    var quizItems: [AssistChatResponse.QuizItem] {
+    var quizItems: [QuizItem] {
         data.generateQuiz.map {
-            AssistChatResponse.QuizItem(
+            QuizItem(
                 question: $0.question,
                 answers: $0.options,
                 correctAnswerIndex: $0.result
@@ -547,11 +535,7 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     func publish(action: AssistChatAction) {}
     var listen: AnyPublisher<AssistChatResponse, Error> = Just(
         AssistChatResponse(
-            message: AssistChatMessage(
-                prompt: nil,
-                text: "Welcome Back, Steve!",
-                role: .Assistant
-            )
+            AssistChatMessage(botResponse: "Welcome Back, Steve!")
         )
     )
     .setFailureType(to: Error.self)

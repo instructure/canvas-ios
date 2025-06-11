@@ -68,7 +68,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
     }
 
     static func == (lhs: AssistChatMessageViewModel, rhs: AssistChatMessageViewModel) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.id == rhs.id && lhs.chipOptions == rhs.chipOptions
     }
 
     var alignment: Alignment {

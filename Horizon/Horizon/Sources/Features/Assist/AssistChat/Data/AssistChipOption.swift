@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct AssistChipOption {
+struct AssistChipOption: Equatable {
     let chip: String
     let localResponse: AssistStaticLearnerResponse?
     let prompt: String?

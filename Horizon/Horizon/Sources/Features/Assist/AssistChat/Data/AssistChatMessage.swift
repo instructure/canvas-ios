@@ -28,31 +28,65 @@ struct AssistChatMessage: Codable, Equatable {
     let prompt: String?
 
     /// The text shown to the user in the history. This may be different from the prompt sent to the AI
-    let text: String
+    let text: String?
 
     /// Whether or not this came from the AI
     let role: Role
 
-    init(botResponse: String) {
-        prompt = botResponse
-        text = botResponse
-        role = .Assistant
-        id = UUID()
+    let chipOptions: [AssistChipOption]?
+
+    let flashCards: [AssistChatFlashCard]?
+
+    let quizItem: QuizItem?
+
+    init(botResponse: String, chipOptions: [AssistChipOption] = []) {
+        self.init(
+            role: .Assistant,
+            prompt: botResponse,
+            text: botResponse,
+            chipOptions: chipOptions
+        )
     }
 
-    init(userResponse: String) {
-        prompt = userResponse
-        text = userResponse
-        role = .User
-        id = UUID()
+    /// The user has asked for FlashCards
+    init(flashCards: [AssistChatFlashCard]) {
+        self.init(
+            role: .Assistant,
+            flashCards: flashCards
+        )
     }
 
-    init(prompt: String?, text: String, role: Role = .User) {
+    /// The user has asked for a quiz
+    init(quizItem: QuizItem) {
+        self.init(
+            role: .Assistant,
+            quizItem: quizItem
+        )
+    }
+
+    init(userResponse: String, prompt: String? = nil) {
+        self.init(
+            role: .User,
+            prompt: prompt ?? userResponse,
+            text: userResponse
+        )
+    }
+
+    private init(
+        role: Role,
+        prompt: String? = nil,
+        text: String? = nil,
+        chipOptions: [AssistChipOption] = [],
+        flashCards: [AssistChatFlashCard] = [],
+        quizItem: QuizItem? = nil
+    ) {
+        self.id = UUID()
+        self.role = role
         self.prompt = prompt
         self.text = text
-        id = UUID()
-
-        self.role = role
+        self.chipOptions = chipOptions
+        self.flashCards = flashCards
+        self.quizItem = quizItem
     }
 
     func encode(to encoder: Encoder) throws {
@@ -60,6 +94,9 @@ struct AssistChatMessage: Codable, Equatable {
         try container.encode(prompt, forKey: .prompt)
         try container.encode(text, forKey: .text)
         try container.encode(role, forKey: .role)
+        try container.encodeIfPresent(chipOptions, forKey: .chipOptions)
+        try container.encodeIfPresent(flashCards, forKey: .flashCards)
+        try container.encodeIfPresent(quizItem, forKey: .quizItem)
     }
 
     enum Role: String, Codable, Equatable {

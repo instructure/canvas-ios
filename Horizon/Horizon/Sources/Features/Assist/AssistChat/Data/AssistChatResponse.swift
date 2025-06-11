@@ -28,65 +28,19 @@ class AssistChatResponse {
 
     // MARK: - Optional
 
-    let chipOptions: [AssistChipOption]?
-    let flashCards: [AssistChatFlashCard]?
     let isLoading: Bool
-    let quizItem: QuizItem?
     let isFreeTextAvailable: Bool
-
-    init(chipOptions: [AssistChipOption], chatHistory: [AssistChatMessage] = []) {
-        self.chipOptions = chipOptions
-        self.chatHistory = chatHistory
-
-        self.isLoading = false
-        self.flashCards = nil
-        self.quizItem = nil
-        self.isFreeTextAvailable = true
-    }
-
-    /// The user has asked for FlashCards, so we're giving it to them
-    init(flashCards: [AssistChatFlashCard], chatHistory: [AssistChatMessage]) {
-        self.flashCards = flashCards
-        self.chatHistory = chatHistory
-
-        self.isLoading = false
-        self.chipOptions = nil
-        self.quizItem = nil
-        self.isFreeTextAvailable = true
-    }
-
-    /// The user has asked for a quiz, so we're giving it to them
-    init(quizItem: QuizItem, chatHistory: [AssistChatMessage]) {
-        self.chatHistory = chatHistory
-        self.quizItem = quizItem
-
-        self.isLoading = false
-        self.chipOptions = nil
-        self.flashCards = nil
-        self.isFreeTextAvailable = true
-    }
 
     /// Publishing an updated chat history. This happens when chatting with the bot
     init(
-        message: AssistChatMessage,
-        chipOptions: [AssistChipOption] = [],
+        _ message: AssistChatMessage,
         chatHistory: [AssistChatMessage] = [],
         isLoading: Bool = false,
         isFreeTextAvailable: Bool = true
     ) {
         self.chatHistory = chatHistory + [message]
-        self.chipOptions = chipOptions
         self.isLoading = isLoading
         self.isFreeTextAvailable = isFreeTextAvailable
-
-        self.flashCards = nil
-        self.quizItem = nil
-    }
-
-    struct QuizItem {
-        let question: String
-        let answers: [String]
-        let correctAnswerIndex: Int
     }
 }
 
@@ -98,7 +52,7 @@ extension AssistChatResponse {
     ) -> AssistChatResponse {
         let localResponse: AssistStaticLearnerResponse = .review
         return .init(
-            message: AssistChatMessage(
+            AssistChatMessage(
                 botResponse: String(
                     format: NSLocalizedString(
                         "How can I help today with the %@ course material?",
@@ -107,13 +61,13 @@ extension AssistChatResponse {
                     ),
                     courseName
                 ),
+                chipOptions: [
+                    .init(
+                        chip: localResponse.chip,
+                        localResponse: localResponse
+                    )
+                ]
             ),
-            chipOptions: [
-                .init(
-                    chip: localResponse.chip,
-                    localResponse: localResponse
-                )
-            ],
             chatHistory: chatHistory,
             isFreeTextAvailable: true
         )
@@ -127,21 +81,21 @@ extension AssistChatResponse {
         chatHistory: [AssistChatMessage] = []
     ) -> AssistChatResponse {
         .init(
-            message: AssistChatMessage(
+            AssistChatMessage(
                 botResponse: String(
                     localized: "Which of your courses would you like to discuss?",
                     bundle: .horizon
-                )
+                ),
+                chipOptions: courses.map { course in
+                    let localResponse: AssistStaticLearnerResponse = .selectCourse(courseName: course.name, courseID: course.id)
+                    return .init(
+                        chip: localResponse.chip,
+                        localResponse: localResponse
+                    )
+                }
             ),
-            chipOptions: courses.map { course in
-                let localResponse: AssistStaticLearnerResponse = .selectCourse(courseName: course.name, courseID: course.id)
-                return .init(
-                    chip: localResponse.chip,
-                    localResponse: localResponse
-                )
-            },
             chatHistory: chatHistory,
-            isFreeTextAvailable: false
+            isFreeTextAvailable: true
         )
     }
 }
@@ -150,7 +104,7 @@ extension AssistChatResponse {
 extension AssistChatResponse {
     convenience init() {
         self.init(
-            message: AssistChatMessage(
+            AssistChatMessage(
                 botResponse: String(localized: "Thanks for visiting! Please check back later.")
             ),
             isFreeTextAvailable: false
@@ -161,16 +115,16 @@ extension AssistChatResponse {
 extension AssistChatResponse {
     static func review(chatHistory: [AssistChatMessage] = []) -> AssistChatResponse {
         .init(
-            message: AssistChatMessage(
+            AssistChatMessage(
                 botResponse: String(
                     localized: "How would you like to review today?",
                     bundle: .horizon
                 ),
+                chipOptions: [
+                    .init(.flashcards),
+                    .init(.quiz)
+                ]
             ),
-            chipOptions: [
-                .init(.flashcards),
-                .init(.quiz)
-            ],
             chatHistory: chatHistory,
             isFreeTextAvailable: false
         )

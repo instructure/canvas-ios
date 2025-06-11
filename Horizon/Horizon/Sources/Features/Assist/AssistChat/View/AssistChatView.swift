@@ -48,7 +48,6 @@ struct AssistChatView: View {
                     Spacer()
                     sendMessageView
                 }
-                .opacity(viewModel.isOpeningVisible ? 0 : 1)
             }
         }
         .scrollIndicators(.hidden)
@@ -79,17 +78,7 @@ struct AssistChatView: View {
     }
 
     private var animatedOpening: some View {
-        let w = 1024.0
-        let h = 768.0
-        let targetW = 200.0
-        let scaleEffect = targetW / w
-        let newW = w * scaleEffect
-        let newH = h * scaleEffect
-        return VStack(alignment: .center) {
-            LottieView(name: "HappyPanda", bundle: .horizon)
-                .scaleEffect(scaleEffect)
-                .frame(width: newW, height: newH)
-
+        VStack(alignment: .center) {
             Text(viewModel.openingText)
                 .foregroundStyle(Color.huiColors.text.surfaceColored)
                 .huiTypography(.h1)

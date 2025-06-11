@@ -94,7 +94,7 @@ final class AssistChatViewModel {
                     }
                     Task { [weak self] in
                         guard let self = self else { return }
-                        try? await Task.sleep(nanoseconds: 3_000_000_000)
+                        try? await Task.sleep(nanoseconds: 1_500_000_000)
                         withAnimation {
                             self.isOpeningVisible = false
                         }
@@ -149,17 +149,16 @@ final class AssistChatViewModel {
     private func onMessage(_ response: AssistChatResponse, viewController: WeakViewController) {
         self.chatMessages = response.chatHistory
 
+        let lastMessage = response.chatHistory.last
+
         var newMessages: [AssistChatMessageViewModel] = []
 
         withAnimation {
             isFreeTextVisible = response.isFreeTextAvailable
         }
 
-        // How the chips are displayed will depend on the history
-        // If we have no history, they are displayed as semitransparent message bubbles
-        // If we do have a history, they are pills at the end of the last message
         if response.chatHistory.isEmpty {
-            let chipOptions = response.chipOptions ?? []
+            let chipOptions = lastMessage?.chipOptions ?? []
             newMessages = chipOptions.map { chipOption in
                 chipOption.viewModel { [weak self] in
                     self?.send(chipOption: chipOption)
@@ -173,17 +172,17 @@ final class AssistChatViewModel {
             }
         }
 
-        add(newMessages: newMessages)
+        update(comparedTo: newMessages)
+        add(comparedTo: newMessages)
         remove(notAppearingIn: newMessages)
         addLoadingMessageAfterDelay(if: response.isLoading)
-
-        if let flashCards = response.flashCards?.flashCardModels, flashCards.count > 0 {
+        if let flashCards = lastMessage?.flashCards?.flashCardModels, flashCards.count > 0 {
             router.route(
                 to: "/assistant/flashcards",
                 userInfo: ["flashCards": flashCards],
                 from: viewController
             )
-        } else if let quizItem = response.quizItem {
+        } else if let quizItem = lastMessage?.quizItem {
             let quizModel = AssistQuizModel(from: quizItem)
             let params = ["courseId": courseId, "pageUrl": pageUrl, "fileId": fileId].map { (key, value) in
                 guard let value = value else { return nil }
@@ -199,18 +198,27 @@ final class AssistChatViewModel {
     }
 
     /// add new messages to the list of messages
-    private func add(newMessages: [AssistChatMessageViewModel]) {
-
+    private func add(comparedTo newMessages: [AssistChatMessageViewModel]) {
+        weak var weakSelf = self
         newMessages.filter { newMessage in
-            !self.messages.contains { message in
+            weakSelf?.messages.contains { message in
                 message.id == newMessage.id
-            }
+            } == false
         }.enumerated().forEach { index, message in
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index)) { [weak self] in
-                guard let self = self else { return }
-                withAnimation(.easeInOut(duration: animationDuration)) { [weak self] in
-                    guard let self = self else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index)) {
+                withAnimation(.easeInOut(duration: weakSelf?.animationDuration ?? 0.35)) {
+                    guard let self = weakSelf else { return }
                     self.messages.append(message)
+                }
+            }
+        }
+    }
+
+    private func update(comparedTo newMessages: [AssistChatMessageViewModel]) {
+        messages.enumerated().forEach { index, message in
+            if message != newMessages[index] {
+                withAnimation(.easeInOut(duration: animationDuration)) {
+                    messages[index] = newMessages[index]
                 }
             }
         }
@@ -285,12 +293,16 @@ private extension AssistChipOption {
 }
 
 private extension AssistChatMessage {
-    func viewModel(response: AssistChatResponse, onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil) -> AssistChatMessageViewModel {
+    func viewModel(
+        response: AssistChatResponse,
+        onTapChipOption: AssistChatMessageViewModel.OnTapChipOption? = nil
+    ) -> AssistChatMessageViewModel {
         AssistChatMessageViewModel(
             id: self.id,
-            content: self.text,
+            content: self.text ?? "",
             style: self.role == .Assistant ? .transparent : .white,
-            chipOptions: self == response.chatHistory.last ? (response.chipOptions ?? []) : [],
+            // only show chip options for the last messages
+            chipOptions: self == response.chatHistory.last ? (response.chatHistory.last?.chipOptions ?? []) : [],
             onTapChipOption: onTapChipOption
         )
     }
