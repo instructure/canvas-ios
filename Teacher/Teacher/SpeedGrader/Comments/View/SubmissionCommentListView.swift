@@ -124,10 +124,10 @@ struct SubmissionCommentListView: View {
     private var toolbar: some View {
         CommentInputView(
             comment: $comment,
-            hasCommentLibraryButton: commentLibrary.shouldShow,
+            commentLibraryButtonType: commentLibrary.shouldShow ? .openLibrary : .hidden,
             isAttachmentButtonEnabled: true,
             contextColor: viewModel.contextColor,
-            showCommentLibraryAction: { showCommentLibrary = true },
+            commentLibraryAction: { showCommentLibrary = true },
             addAttachmentAction: { type in
                 switch type {
                 case .audio: recordAudio()

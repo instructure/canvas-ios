@@ -27,16 +27,22 @@ struct CommentInputView: View {
         case file
     }
 
+    enum CommentLibraryButtonType {
+        case openLibrary
+        case closeLibrary
+        case hidden
+    }
+
     @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     @Binding var comment: String
 
-    let hasCommentLibraryButton: Bool
+    let commentLibraryButtonType: CommentLibraryButtonType
     let isAttachmentButtonEnabled: Bool
     let contextColor: Color
 
-    let showCommentLibraryAction: () -> Void
+    let commentLibraryAction: () -> Void
     let addAttachmentAction: (AttachmentType) -> Void
     let sendAction: () -> Void
 
@@ -52,8 +58,13 @@ struct CommentInputView: View {
                     .paddingStyle(set: .textEditorCorrection)
                 InstUI.Divider()
                 HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    if hasCommentLibraryButton {
-                        commentLibraryButton
+                    switch commentLibraryButtonType {
+                    case .openLibrary:
+                        commentLibraryButton(isCurrentlyClosed: true)
+                    case .closeLibrary:
+                        commentLibraryButton(isCurrentlyClosed: false)
+                    case .hidden:
+                        SwiftUI.EmptyView()
                     }
 
                     attachmentButton
@@ -86,16 +97,19 @@ struct CommentInputView: View {
 
     // MARK: - Buttons
 
-    private var commentLibraryButton: some View {
+    @ViewBuilder
+    private func commentLibraryButton(isCurrentlyClosed: Bool) -> some View {
+        let icon = isCurrentlyClosed ? Image.chatLine : Image.chevronDown
+        let label = isCurrentlyClosed ? Text("Open comment library", bundle: .teacher) : Text("Close comment library", bundle: .teacher)
         Button(
-            action: showCommentLibraryAction,
+            action: commentLibraryAction,
             label: {
-                Image.chatLine
+                icon
                     .scaledIcon()
-                    .foregroundColor(.textDark)
+                    .foregroundStyle(.textDark)
             }
         )
-        .accessibilityLabel(Text("Open comment library", bundle: .teacher))
+        .accessibilityLabel(label)
         .identifier("SubmissionComments.showCommentLibraryButton")
     }
 
@@ -154,10 +168,10 @@ private extension View {
     VStack {
         CommentInputView(
             comment: .constant("Sample Text"),
-            hasCommentLibraryButton: true,
+            commentLibraryButtonType: .openLibrary,
             isAttachmentButtonEnabled: true,
             contextColor: .green,
-            showCommentLibraryAction: {},
+            commentLibraryAction: {},
             addAttachmentAction: { _ in },
             sendAction: {}
         )
@@ -165,10 +179,21 @@ private extension View {
 
         CommentInputView(
             comment: .constant("Sample Text"),
-            hasCommentLibraryButton: true,
+            commentLibraryButtonType: .closeLibrary,
             isAttachmentButtonEnabled: false,
             contextColor: .green,
-            showCommentLibraryAction: {},
+            commentLibraryAction: {},
+            addAttachmentAction: { _ in },
+            sendAction: {}
+        )
+        .background(Color.backgroundLightest)
+
+        CommentInputView(
+            comment: .constant("Sample Text"),
+            commentLibraryButtonType: .hidden,
+            isAttachmentButtonEnabled: true,
+            contextColor: .green,
+            commentLibraryAction: {},
             addAttachmentAction: { _ in },
             sendAction: {}
         )
@@ -176,10 +201,10 @@ private extension View {
 
         CommentInputView(
             comment: .constant(""),
-            hasCommentLibraryButton: true,
+            commentLibraryButtonType: .openLibrary,
             isAttachmentButtonEnabled: true,
             contextColor: .green,
-            showCommentLibraryAction: {},
+            commentLibraryAction: {},
             addAttachmentAction: { _ in },
             sendAction: {}
         )
