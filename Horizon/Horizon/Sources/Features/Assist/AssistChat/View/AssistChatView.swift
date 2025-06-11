@@ -52,7 +52,7 @@ struct AssistChatView: View {
         .applyHorizonGradient()
         .overlay {
             if viewModel.isLoaderVisible {
-                HorizonUI.Spinner(size: .medium, showBackground: true)
+                HorizonUI.Spinner(size: .small, showBackground: true)
             }
         }
     }
