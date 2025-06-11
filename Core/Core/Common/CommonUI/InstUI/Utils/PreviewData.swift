@@ -22,10 +22,10 @@ import Foundation
 
 extension InstUI {
 
-    enum PreviewData {
-        static let loremIpsumShort = "Lorem ipsum dolor sit amet"
-        static let loremIpsumMedium = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus"
-        static let loremIpsumLong = """
+    public enum PreviewData {
+        public static let loremIpsumShort = "Lorem ipsum dolor sit amet"
+        public static let loremIpsumMedium = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus"
+        public static let loremIpsumLong = """
                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus\
                          rutrum. Donec tempus vulputate posuere. Aenean blandit nunc vitae tempus sodales.\
                          In vehicula venenatis tempus. In pharetra aliquet neque, non viverra massa sodales eget.\
@@ -33,7 +33,7 @@ extension InstUI {
                          New line!
                          """
 
-        static func loremIpsumLong(_ multiplier: Int) -> String {
+        public static func loremIpsumLong(_ multiplier: Int) -> String {
             guard multiplier > 0 else { return loremIpsumLong }
 
             return Array(repeating: loremIpsumLong, count: multiplier)

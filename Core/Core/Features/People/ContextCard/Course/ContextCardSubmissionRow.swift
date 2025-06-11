@@ -115,7 +115,7 @@ struct ContextCardSubmissionRow: View {
     private func navigateToAssignment() {
         guard let urlString = assignment.htmlURL?.absoluteString else { return }
         let route = "\(urlString)/submissions/\(submission.userID)"
-        let options: RouteOptions = (env.app == .teacher) ? .modal(.fullScreen) : .modal(embedInNav: true, addDoneButton: true)
+        let options: RouteOptions = (env.app == .teacher) ? .modal(.fullScreen, embedInNav: true) : .modal(embedInNav: true, addDoneButton: true)
         env.router.route(to: route, from: controller, options: options)
     }
 }

@@ -376,6 +376,45 @@ public struct GetModulesRequest: APIRequestable {
     }
 }
 
+public struct GetModuleRequest: APIRequestable {
+    public typealias Response = APIModule
+    public enum Include: String, CaseIterable {
+        case content_details, items, estimated_durations
+    }
+
+    public let courseID: String
+    public let moduleID: String
+    public let include: [Include]
+    public let perPage: Int?
+
+    public init(
+        courseID: String,
+        moduleID: String,
+        include: [Include] = [],
+        perPage: Int? = nil
+    ) {
+        self.courseID = courseID
+        self.moduleID = moduleID
+        self.include = include
+        self.perPage = perPage
+    }
+
+    public var path: String {
+        let context = Context(.course, id: courseID)
+        return "\(context.pathComponent)/modules/\(moduleID)"
+    }
+
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .include(include.map { $0.rawValue })
+        ]
+        if let perPage = perPage {
+            query.append(.perPage(perPage))
+        }
+        return query
+    }
+}
+
 public struct GetModuleItemsRequest: APIRequestable {
     public typealias Response = [APIModuleItem]
     public enum Include: String {

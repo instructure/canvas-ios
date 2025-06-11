@@ -119,6 +119,22 @@ final class AssistChatViewModel {
         self.viewController = viewController
     }
 
+    // MARK: - Inputs
+
+    func setInitialState() {
+        shouludOpenKeyboard = false
+        chatBotInteractor.setInitialState()
+        self.isBackButtonVisible = false
+    }
+
+    func dismiss(controller: WeakViewController) {
+        router.dismiss(controller)
+    }
+
+    func setViewController(_ viewController: WeakViewController) {
+        self.viewController = viewController
+    }
+
     func send() {
         isRetryButtonVisible = false
         isLoaderVisible = true

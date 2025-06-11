@@ -22,31 +22,45 @@ import SwiftUI
 
 struct NotebookView: View {
 
-    @Bindable var viewModel: NotebookViewModel
+    @State var viewModel: NotebookViewModel
     @Environment(\.viewController) private var viewController
 
     var body: some View {
-        if viewModel.isNavigationBarVisible {
-            InstUI.BaseScreen(
-                state: viewModel.state,
-                config: .init(
-                    refreshable: true,
-                    loaderBackgroundColor: HorizonUI.colors.surface.pagePrimary
-                ),
-                refreshAction: viewModel.refresh
-            ) { _ in
-                content
-                    .padding(.all, .huiSpaces.space16)
+        VStack {
+            if viewModel.isLoaderVisible {
+                loadingView
+            } else {
+                if viewModel.isNavigationBarVisible {
+                    ScrollView(showsIndicators: false) { content }
+                        .refreshable {
+                            await viewModel.refresh()
+                        }
+                } else {
+                    ScrollView(showsIndicators: false) { content }
+                }
             }
-            .background(HorizonUI.colors.surface.pagePrimary)
-            .frame(maxHeight: .infinity)
-            .toolbar(.hidden)
-            .safeAreaInset(edge: .top, spacing: .zero) {
+        }
+        .background(HorizonUI.colors.surface.pagePrimary)
+        .frame(maxHeight: .infinity)
+        .toolbar(.hidden)
+        .safeAreaInset(edge: .top, spacing: .zero) {
+            if viewModel.isNavigationBarVisible {
                 navigationBar
             }
-        } else {
-            content
         }
+    }
+
+    private var loadingView: some View {
+        VStack {
+            Spacer()
+            HorizonUI.Spinner(
+                size: .small,
+                showBackground: true
+            )
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .containerRelativeFrame(.vertical)
     }
 
     private var content: some View {
@@ -63,7 +77,8 @@ struct NotebookView: View {
                 }
             }
         }
-        .padding(.bottom, .huiSpaces.space16)
+        .padding(.huiSpaces.space16)
+        .padding(.horizontal, .huiSpaces.space8)
         .animation(.smooth, value: viewModel.notes.count)
     }
 

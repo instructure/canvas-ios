@@ -160,14 +160,18 @@ class LoginFindSchoolViewController: UIViewController {
     }
 
     func replaceRootDomain(urlString: String, newRootDomain: String) -> String? {
-        let urlWithScheme = "https://\(urlString)"
+        var cleanedUrlString = urlString
+        if let regex = try? Regex("^(https?://)?") {
+            cleanedUrlString = urlString.replacing(regex, with: "")
+        }
+        let urlWithScheme = "https://\(cleanedUrlString)"
 
         guard let url = URL(string: urlWithScheme) else {
             return nil
         }
 
         // Try to extract host, fallback to raw string if needed
-        let host = url.host ?? urlString
+        let host = url.host ?? cleanedUrlString
         let parts = host.components(separatedBy: ".")
 
         let subdomain: String

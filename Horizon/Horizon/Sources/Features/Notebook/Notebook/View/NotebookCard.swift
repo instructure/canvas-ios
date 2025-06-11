@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import HorizonUI
+import SwiftUI
 
 struct NotebookCard<Content: View>: View {
     private let content: Content

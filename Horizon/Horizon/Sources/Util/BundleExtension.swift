@@ -20,6 +20,6 @@ import Foundation
 
 private class Placeholder {}
 
-public extension Bundle {
-    static let horizon = Bundle(for: Placeholder.self)
+extension Bundle {
+    public static let horizon = Bundle(for: Placeholder.self)
 }

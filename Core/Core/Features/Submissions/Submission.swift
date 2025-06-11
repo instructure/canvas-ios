@@ -427,6 +427,11 @@ extension Submission {
         if submittedAt != nil { return .submitted }
         return .notSubmitted
     }
+
+    public var statusIncludingGradedState: SubmissionStatus {
+        if isGraded { return excused == true ? .excused : .graded }
+        return status
+    }
 }
 
 /// This is merely used to properly describe the state of submission in certain contexts.
@@ -480,6 +485,8 @@ public enum SubmissionStatus {
     case missing
     case submitted
     case notSubmitted
+    case graded
+    case excused
 
     public var text: String {
         switch self {
@@ -491,6 +498,10 @@ public enum SubmissionStatus {
             return String(localized: "Submitted", bundle: .core)
         case .notSubmitted:
             return String(localized: "Not Submitted", bundle: .core)
+        case .excused:
+            return String(localized: "Excused", bundle: .core)
+        case .graded:
+            return String(localized: "Graded", bundle: .core)
         }
     }
 
@@ -504,6 +515,10 @@ public enum SubmissionStatus {
             return .textSuccess
         case .notSubmitted:
             return .textDark
+        case .excused:
+            return .textWarning
+        case .graded:
+            return .textSuccess
         }
     }
 
@@ -515,6 +530,8 @@ public enum SubmissionStatus {
             return .clockSolid
         case .missing, .notSubmitted:
             return .noSolid
+        case .excused, .graded:
+            return .completeSolid
         }
     }
 }

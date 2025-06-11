@@ -17,7 +17,6 @@
 //
 
 enum SpeedGraderUserIdNormalization {
-
     /// Helper function to help normalize user ids coming from webview urls
     static func normalizeUserId(_ userId: String?) -> String {
         if let userId, userId.containsOnlyNumbers {

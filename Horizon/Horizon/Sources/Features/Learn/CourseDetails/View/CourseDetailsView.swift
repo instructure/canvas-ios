@@ -161,6 +161,7 @@ private struct CotentView: View {
         case .myProgress:
             modulesView(modules: viewModel.course.modules)
                 .padding(.bottom, .huiSpaces.space24)
+                .id(viewModel.course.id)
         case .overview:
             overview(htmlString: viewModel.overviewDescription)
                 .padding(.bottom, .huiSpaces.space24)
@@ -169,8 +170,8 @@ private struct CotentView: View {
                 .padding(.horizontal, .huiSpaces.space24)
         case .notebook:
             NotebookAssembly.makeView(courseID: viewModel.course.id)
-                .padding(.horizontal, .huiSpaces.space24)
                 .padding(.bottom, .huiSpaces.space24)
+                .id(viewModel.course.id)
         }
     }
 

@@ -32,9 +32,11 @@ struct AssistTitle: View {
                 .huiTypography(.h3)
 
         }
+        .foregroundStyle(Color.textLightest)
         .foregroundStyle(Color.huiColors.text.surfaceColored)
         .frame(maxWidth: .infinity)
     }
+
 }
 
 #Preview {

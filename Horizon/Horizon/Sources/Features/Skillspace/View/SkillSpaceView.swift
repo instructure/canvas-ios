@@ -16,11 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import HorizonUI
+import SwiftUI
 
 struct SkillSpaceView: View {
-
     let viewModel: HEmbeddedWebPageContainerViewModel
 
     var body: some View {
@@ -33,8 +32,8 @@ struct SkillSpaceView: View {
         HStack(spacing: .zero) {
             InstitutionLogo()
             Spacer()
+                .padding(.horizontal, .huiSpaces.space24)
+                .padding(.bottom, .huiSpaces.space4)
         }
-        .padding(.horizontal, .huiSpaces.space24)
-        .padding(.bottom, .huiSpaces.space4)
     }
 }

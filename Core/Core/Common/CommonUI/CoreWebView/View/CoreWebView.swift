@@ -601,11 +601,16 @@ extension CoreWebView: WKUIDelegate {
 extension CoreWebView {
     static var cookieKeepAliveTimer: Timer?
     static var cookieKeepAliveWebView = CoreWebView()
+    private static var injectionSubscription: AnyCancellable?
 
     public static func keepCookieAlive(for env: AppEnvironment) {
         guard env.api.loginSession?.accessToken != nil,
               cookieKeepAliveTimer == nil
         else { return }
+
+        injectionSubscription = CoreWebViewCrossCookieInjection()
+            .injectCrossSiteCookies(httpCookieStore: cookieKeepAliveWebView.configuration.websiteDataStore.httpCookieStore)
+            .sink()
 
         performUIUpdate {
             cookieKeepAliveTimer?.invalidate()
