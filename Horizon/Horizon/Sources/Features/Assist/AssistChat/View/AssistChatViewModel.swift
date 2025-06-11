@@ -209,23 +209,6 @@ final class AssistChatViewModel {
         }
     }
 
-    /// add a loading message after a delay if the response is still loading
-    private func addLoadingMessageAfterDelay(if isLoading: Bool) {
-        unowned let unownedSelf = self
-        canSendMessage = !isLoading
-        if isLoading {
-            dispatchWorkItem?.cancel()
-            dispatchWorkItem = DispatchWorkItem {
-                unownedSelf.withAnimationAndScrollToBottom {
-                    unownedSelf.messages.append(AssistChatMessageViewModel())
-                }
-            }
-            dispatchWorkItem.map { dispatchWorkItem in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: dispatchWorkItem)
-            }
-        }
-    }
-
     /// animate the addition of a message and scroll to the bottom of the list after the animation completes
     private func withAnimationAndScrollToBottom(_ block: @escaping () -> Void) {
         withAnimation(.easeInOut(duration: animationDuration)) {
