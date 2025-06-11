@@ -53,7 +53,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     public static func create(context: Context, env: AppEnvironment) -> AnnouncementListViewController {
         let controller = loadFromStoryboard()
-        controller.context = context
+        controller.context = context.local
         controller.env = env
         return controller
     }
@@ -127,7 +127,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
         tableView.reloadData()
 
         if !selectedFirstTopic, topics.state != .loading, let id = topics.first?.id {
-            let url = "\(context.pathComponent)/announcements/\(id)"
+            let url = "/\(context.pathComponent)/announcements/\(id)"
             selectedFirstTopic = true
             if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
                 env.router.route(to: url, from: self, options: .detail)
@@ -137,7 +137,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     @objc func add() {
         env.router.route(
-            to: "\(context.pathComponent)/announcements/new".asRoute(in: env),
+            to: "/\(context.pathComponent)/announcements/new".asRoute(in: env),
             userInfo: [DiscussionsAssembly.SourceViewKey: self],
             from: self,
             options: .modal(isDismissable: false, embedInNav: true)
@@ -177,7 +177,7 @@ extension AnnouncementListViewController: UITableViewDataSource, UITableViewDele
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let id = topics[indexPath]?.id else { return }
-        env.router.route(to: "\(context.pathComponent)/announcements/\(id)", from: self, options: .detail)
+        env.router.route(to: "/\(context.pathComponent)/announcements/\(id)", from: self, options: .detail)
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
