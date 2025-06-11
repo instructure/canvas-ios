@@ -22,13 +22,6 @@ public extension HorizonUI.LearningObjectItem {
     enum RequirementType {
         case optional
         case required
-
-        var title: String {
-            switch self {
-            case .optional: return String(localized: "Optional")
-            case .required: return String(localized: "Required")
-            }
-        }
     }
 
     enum Status {

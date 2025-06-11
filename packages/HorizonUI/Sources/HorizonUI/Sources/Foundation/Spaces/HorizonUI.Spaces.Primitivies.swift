@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
 public extension HorizonUI.Spaces {
     struct Primitives: Sendable {
