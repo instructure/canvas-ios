@@ -38,7 +38,7 @@ final class CourseDetailsViewModel {
 
     // MARK: - Inputs / Outputs
 
-    var selectedTabIndex: Int = 1
+    var selectedTabIndex: Int?
 
     // MARK: - Private
 
@@ -113,8 +113,8 @@ final class CourseDetailsViewModel {
             pullToRefreshCancellable?.cancel()
             pullToRefreshCancellable = nil
             isLoaderVisible = true
-            selectedTabIndex = 1
             self.selectedCoure = selectedCourse
+            self.selectedTabIndex = nil
             getCourse(for: selectedCourse?.id ?? "")
                 .sink { [weak self] courseInfo in
                     self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
@@ -134,14 +134,13 @@ final class CourseDetailsViewModel {
     }
 
     private func fetchData() {
-        Publishers.Zip(
+        Publishers.CombineLatest(
             getCourse(for: courseID),
             getCourses()
         )
         .sink { [weak self] courseInfo, courses in
             self?.courses = courses
             self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
-            self?.isLoaderVisible = false
         }
         .store(in: &subscriptions)
     }
@@ -169,14 +168,13 @@ final class CourseDetailsViewModel {
         guard let course, (course.id == selectedCoure?.id || selectedCoure == nil ) else {
             return
         }
-        let currentProgress = self.course.progress
-        let nextProgress = course.progress
         self.course = course
-        self.course.progress = max(nextProgress, currentProgress)
         selectedCoure = .init(id: course.id, name: course.name)
         overviewDescription = syllabus ?? ""
         // Firt tab is 0 -> Overview 1 -> MyProgress
-        selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
+        if selectedTabIndex == nil {
+            selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
+        }
         isLoaderVisible = false
     }
 }

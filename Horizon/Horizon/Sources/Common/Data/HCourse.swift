@@ -41,7 +41,7 @@ struct HCourse: Identifiable {
     let enrollmentID: String
     let enrollments: [HEnrollment]
     let modules: [HModule]
-    var progress: Double
+    let progress: Double
     let overviewDescription: String
     let learningObjectCardModel: LearningObjectCard? // upcoming module item details
 
