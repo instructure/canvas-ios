@@ -33,7 +33,7 @@ struct CommentInputView: View {
     @Binding var comment: String
 
     let hasCommentLibraryButton: Bool
-    let hasAttachmentButton: Bool
+    let isAttachmentButtonEnabled: Bool
     let contextColor: Color
 
     let showCommentLibraryAction: () -> Void
@@ -55,9 +55,8 @@ struct CommentInputView: View {
                     if hasCommentLibraryButton {
                         commentLibraryButton
                     }
-                    if hasAttachmentButton {
-                        attachmentButton
-                    }
+
+                    attachmentButton
 
                     sendButton
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -106,9 +105,10 @@ struct CommentInputView: View {
             label: {
                 Image.paperclipLine
                     .scaledIcon()
-                    .foregroundColor(.textDark)
+                    .foregroundStyle(isAttachmentButtonEnabled ? .textDark : .disabledGray)
             }
         )
+        .disabled(!isAttachmentButtonEnabled)
         .accessibility(label: Text("Add Attachment", bundle: .teacher))
         .identifier("SubmissionComments.addMediaButton")
         .actionSheet(isPresented: $showAttachmentTypeSheet) {
@@ -155,7 +155,18 @@ private extension View {
         CommentInputView(
             comment: .constant("Sample Text"),
             hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
+            isAttachmentButtonEnabled: true,
+            contextColor: .green,
+            showCommentLibraryAction: {},
+            addAttachmentAction: { _ in },
+            sendAction: {}
+        )
+        .background(Color.backgroundLightest)
+
+        CommentInputView(
+            comment: .constant("Sample Text"),
+            hasCommentLibraryButton: true,
+            isAttachmentButtonEnabled: false,
             contextColor: .green,
             showCommentLibraryAction: {},
             addAttachmentAction: { _ in },
@@ -166,7 +177,7 @@ private extension View {
         CommentInputView(
             comment: .constant(""),
             hasCommentLibraryButton: true,
-            hasAttachmentButton: true,
+            isAttachmentButtonEnabled: true,
             contextColor: .green,
             showCommentLibraryAction: {},
             addAttachmentAction: { _ in },

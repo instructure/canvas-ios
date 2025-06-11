@@ -125,7 +125,7 @@ struct SubmissionCommentListView: View {
         CommentInputView(
             comment: $comment,
             hasCommentLibraryButton: commentLibrary.shouldShow,
-            hasAttachmentButton: true,
+            isAttachmentButtonEnabled: true,
             contextColor: viewModel.contextColor,
             showCommentLibraryAction: { showCommentLibrary = true },
             addAttachmentAction: { type in
