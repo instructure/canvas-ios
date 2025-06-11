@@ -18,10 +18,10 @@
 
 import UIKit
 
-public final class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
-    let webView = CoreWebView()
+    public var webView: CoreWebView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
@@ -67,12 +67,13 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         env: AppEnvironment,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> PageDetailsViewController {
-        let controller = loadFromStoryboard()
+        let controller = loadFromStoryboard(bundle: .core)
         controller.context = context
         controller.pageURL = pageURL
         controller.app = app
         controller.env = env
         controller.offlineModeInteractor = offlineModeInteractor
+
         return controller
     }
 
@@ -113,8 +114,11 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
         }
     }
 
-    // Parent uses a different coloring logic so we prevent any update here. 
+    // Parent uses a different coloring logic so we prevent any update here.
     private func updateNavBar() {
+        guard AppEnvironment.shared.app != .horizon else {
+            return
+        }
         guard
             let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
             let color = context.contextType == .course ? courses.first?.color : groups.first?.color,
@@ -148,7 +152,8 @@ public final class PageDetailsViewController: UIViewController, ColoredNavViewPr
     private func updatePages() {
         guard let page = pages.first else { return }
         localPages = env.subscribe(scope: .where(#keyPath(Page.id), equals: page.id)) { [weak self] in
-            self?.update() }
+            self?.update()
+        }
         localPages?.refresh()
     }
 
