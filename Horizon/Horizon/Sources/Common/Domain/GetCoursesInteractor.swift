@@ -25,7 +25,7 @@ import Foundation
 protocol GetCoursesInteractor {
     func getCourseWithModules(id: String, ignoreCache: Bool) -> AnyPublisher<HCourse?, Never>
     func getCoursesWithoutModules(ignoreCache: Bool) -> AnyPublisher<[HCourse], Never>
-    func getCourseSyllabus(courseID: String) -> AnyPublisher<String?, Never>
+    func getCourseSyllabus(courseID: String, ignoreCache: Bool) -> AnyPublisher<String?, Never>
 }
 
 final class GetCoursesInteractorLive: GetCoursesInteractor {
@@ -75,9 +75,9 @@ final class GetCoursesInteractorLive: GetCoursesInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getCourseSyllabus(courseID: String) -> AnyPublisher<String?, Never> {
+    func getCourseSyllabus(courseID: String, ignoreCache: Bool) -> AnyPublisher<String?, Never> {
         ReactiveStore(useCase: GetCourse(courseID: courseID))
-            .getEntities()
+            .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .map { $0.first?.syllabusBody }
             .eraseToAnyPublisher()

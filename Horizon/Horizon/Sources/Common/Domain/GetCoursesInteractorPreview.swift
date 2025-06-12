@@ -22,7 +22,7 @@ import Core
 import Foundation
 
 class GetCoursesInteractorPreview: GetCoursesInteractor {
-    func getCourseSyllabus(courseID: String) -> AnyPublisher<String?, Never> {
+    func getCourseSyllabus(courseID: String, ignoreCache: Bool) -> AnyPublisher<String?, Never> {
         Just("Syllabus Information").eraseToAnyPublisher()
     }
 
