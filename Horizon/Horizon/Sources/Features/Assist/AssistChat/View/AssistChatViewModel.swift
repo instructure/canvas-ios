@@ -178,19 +178,19 @@ final class AssistChatViewModel {
         canSendMessage = !response.isLoading
         isLoaderVisible = response.isLoading
 
+        let params = ["courseId": courseId, "pageUrl": pageUrl, "fileId": fileId].map { (key, value) in
+            guard let value = value else { return nil }
+            return "\(key)=\(value)"
+        }.compactMap { $0 }.joined(separator: "&")
+
         if let flashCards = response.flashCards?.flashCardModels, flashCards.count > 0 {
             router.route(
-                to: "/assistant/flashcards",
+                to: "/assistant/flashcards?\(params)",
                 userInfo: ["flashCards": flashCards],
                 from: viewController
             )
         } else if let quizItem = response.quizItem {
             let quizModel = AssistQuizModel(from: quizItem)
-            let params = ["courseId": courseId, "pageUrl": pageUrl, "fileId": fileId].map { (key, value) in
-                guard let value = value else { return nil }
-                return "\(key)=\(value)"
-            }.compactMap { $0 }.joined(separator: "&")
-
             router.route(
                 to: "/assistant/quiz?\(params)",
                 userInfo: ["quizModel": quizModel],
@@ -241,7 +241,7 @@ final class AssistChatViewModel {
 
 // MARK: - Extensions
 
-private extension Array where Element == AssistChatFlashCard {
+extension Array where Element == AssistChatFlashCard {
     var flashCardModels: [AssistFlashCardModel] {
         self.map(\.flashCardModel)
     }

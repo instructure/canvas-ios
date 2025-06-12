@@ -76,9 +76,23 @@ final class AssistAssembly {
         return AssistQuizView(viewModel: viewModel)
     }
 
-    static func makeAIFlashCardView(flashCards: [AssistFlashCardModel]) -> AssistFlashCardView {
+    static func makeAIFlashCardView(
+        courseId: String? = nil,
+        fileId: String? = nil,
+        pageUrl: String? = nil,
+        flashCards: [AssistFlashCardModel]
+    ) -> AssistFlashCardView {
         let router = AppEnvironment.shared.router
-        let viewModel = AssistFlashCardViewModel(flashCards: flashCards, router: router)
+        let chatBotInteractor = makeChatBotInteractor(
+            courseId: courseId,
+            pageUrl: pageUrl,
+            fileId: fileId
+        )
+        let viewModel = AssistFlashCardViewModel(
+            flashCards: flashCards,
+            router: router,
+            chatBotInteractor: chatBotInteractor
+        )
         return AssistFlashCardView(viewModel: viewModel)
     }
 }
