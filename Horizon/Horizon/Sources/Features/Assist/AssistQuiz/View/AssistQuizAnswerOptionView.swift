@@ -17,7 +17,7 @@
 //
 
 import SwiftUI
-import Core
+import HorizonUI
 
 struct AssistQuizAnswerOptionView: View {
     let selectedAnswer: AssistQuizModel.AnswerOption
@@ -27,22 +27,26 @@ struct AssistQuizAnswerOptionView: View {
     var body: some View {
         HStack {
             Text(selectedAnswer.answer)
-                .foregroundColor(isSelected ? .textDarkest : textColor)
+                .huiTypography(.p1)
+                .foregroundColor(textColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
-                .paddingStyle(.leading, .standard)
-
+                .padding(.huiSpaces.space16)
             Spacer()
 
             if let isCorrect = isCorrect {
                 statusIcon(isCorrect: isCorrect)
+            } else if isSelected {
+                Image.huiIcons.check
+                    .foregroundStyle(Color.huiColors.icon.default)
+                    .padding(.trailing, .huiSpaces.space16)
             }
         }
-        .paddingStyle(.vertical, .standard)
         .background {
-            RoundedRectangle(cornerRadius: 16)
-                .strokeBorder(Color.backgroundLightest, lineWidth: 1)
-                .background(RoundedRectangle(cornerRadius: 16).fill(backgroundColor))
+            RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                .strokeBorder(Color.huiColors.icon.surfaceColored, lineWidth: 1)
+                .background(RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius)
+                    .fill(backgroundColor))
         }
     }
 }
@@ -51,40 +55,28 @@ struct AssistQuizAnswerOptionView: View {
 
 extension AssistQuizAnswerOptionView {
     private var textColor: Color {
-        if let isCorrect = isCorrect {
-            return isCorrect ? .backgroundSuccess : .backgroundDanger
+        if let isCorrect {
+            return isCorrect ? Color.huiColors.text.success : Color.huiColors.text.error
+        } else if isSelected {
+            return Color.huiColors.text.title
         }
-        return .textLightest
+        return Color.huiColors.text.surfaceColored
     }
 
     private var backgroundColor: Color {
         if isCorrect != nil {
-            return .backgroundLightest
+            return Color.huiColors.surface.cardPrimary
         }
-        return isSelected ? .backgroundLightest : .clear
-    }
-
-    private func statusIcon(isCorrect: Bool) -> some View {
-        Image(systemName: isCorrect ? "checkmark.circle" : "xmark.circle")
-            .resizable()
-            .foregroundColor( isCorrect ? .backgroundSuccess : .backgroundDanger)
-            .frame(width: 24, height: 24)
-            .paddingStyle(.trailing, .standard)
+        return isSelected ? Color.huiColors.surface.cardPrimary : .clear
     }
 
     @ViewBuilder
-    private var selectionIndicator: some View {
-        ZStack {
-            Circle()
-                .strokeBorder(isSelected ? Color.black : Color.white, lineWidth: 1)
-                .frame(width: 24, height: 24)
-            if isSelected {
-                Circle()
-                    .fill(Color.black)
-                    .frame(width: 12, height: 12)
-            }
-        }
-        .paddingStyle(.trailing, .standard)
+    private func statusIcon(isCorrect: Bool) -> some View {
+        (isCorrect ? Image.huiIcons.checkCircle : Image.huiIcons.cancel)
+            .resizable()
+            .foregroundColor( isCorrect ? Color.huiColors.icon.success : Color.huiColors.icon.error)
+            .frame(width: 24, height: 24)
+            .padding(.trailing, .huiSpaces.space16)
     }
 }
 

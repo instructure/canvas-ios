@@ -19,24 +19,32 @@
 import Combine
 import Core
 import SwiftUI
+import CombineSchedulers
 
 @Observable
 final class AssistChatViewModel {
-    // MARK: - Input
+    // MARK: - Inputs
 
     var message = ""
 
-    // MARK: - Output
+    // MARK: - Outputs
 
     private(set) var chipOptions: [String]?
     private(set) var messages: [AssistChatMessageViewModel] = []
     private(set) var isBackButtonVisible: Bool = false
-    private(set) var shouludOpenKeyboard: Bool = false
+    private(set) var shouldOpenKeyboardPublisher = PassthroughSubject<Bool, Never>()
+    private(set) var isLoaderVisible = false
+    private(set) var isRetryButtonVisible = false
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     var scrollViewProxy: ScrollViewProxy?
     private(set) var state: InstUI.ScreenState = .data
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty || !canSendMessage
     }
+
+    // MARK: - Inputs/Outputs
+
+    var isErrorToastPresented = false
 
     // MARK: - Dependencies
 
@@ -62,32 +70,32 @@ final class AssistChatViewModel {
         pageUrl: String? = nil,
         fileId: String? = nil,
         chatBotInteractor: AssistChatInteractor,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.courseId = courseId
         self.pageUrl = pageUrl
         self.fileId = fileId
         self.router = router
+        self.scheduler = scheduler
         self.chatBotInteractor = chatBotInteractor
 
-        chatBotInteractor
+        self.chatBotInteractor
             .listen
-            .receive(on: DispatchQueue.main).sink(
-            receiveCompletion: { [weak self] completion in
-                guard let self = self else { return }
-                switch completion {
-                case .finished:
-                    break
-                case .failure:
-                    messages = messages.dropLast()
-                }
-            },
-            receiveValue: { [weak self] message in
+            .receive(on: scheduler)
+            .sink { [weak self] result in
                 guard let self else { return }
-                self.onMessage(message, viewController: viewController)
+                switch result {
+                case .success(let message):
+                    onMessage(message, viewController: viewController)
+                case .failure:
+                    isRetryButtonVisible = true
+                    isLoaderVisible = false
+                    canSendMessage = true
+                    isErrorToastPresented = true
+                }
             }
-        )
-        .store(in: &subscriptions)
+            .store(in: &subscriptions)
 
         chatBotInteractor.publish(action: .chat())
     }
@@ -95,9 +103,17 @@ final class AssistChatViewModel {
     // MARK: - Inputs
 
     func setInitialState() {
-        shouludOpenKeyboard = false
         chatBotInteractor.setInitialState()
-        self.isBackButtonVisible = false
+        isRetryButtonVisible = false
+        isBackButtonVisible = false
+    }
+
+    func retry() {
+        guard let lastMessage = messages.popLast() else { return }
+        chatMessages = chatMessages.dropLast()
+        chatBotInteractor.publish(action: .chat(prompt: lastMessage.content, history: chatMessages))
+        isRetryButtonVisible = false
+        shouldOpenKeyboardPublisher.send(false)
     }
 
     func dismiss(controller: WeakViewController) {
@@ -109,7 +125,10 @@ final class AssistChatViewModel {
     }
 
     func send() {
-        send(message: message)
+        isRetryButtonVisible = false
+        isLoaderVisible = true
+        shouldOpenKeyboardPublisher.send(true)
+        send(message: message.trimmedEmptyLines)
     }
 
     func send(chipOption: AssistChipOption) {
@@ -139,14 +158,14 @@ final class AssistChatViewModel {
         if response.chatHistory.isEmpty {
             let chipOptions = response.chipOptions ?? []
             hasAssistChipOptions = true
-            shouludOpenKeyboard = false
+            shouldOpenKeyboardPublisher.send(false)
             newMessages = chipOptions.map { chipOption in
                 chipOption.viewModel { [weak self] in
                     self?.send(chipOption: chipOption)
                 }
             }
         } else {
-            shouludOpenKeyboard = true
+            shouldOpenKeyboardPublisher.send(messages.isEmpty)
             newMessages = response.chatHistory.map {
                 $0.viewModel(response: response) { [weak self] quickResponse in
                     self?.send(chipOption: quickResponse)
@@ -156,7 +175,8 @@ final class AssistChatViewModel {
 
         add(newMessages: newMessages)
         remove(notAppearingIn: newMessages)
-        addLoadingMessageAfterDelay(if: response.isLoading)
+        canSendMessage = !response.isLoading
+        isLoaderVisible = response.isLoading
 
         if let flashCards = response.flashCards?.flashCardModels, flashCards.count > 0 {
             router.route(
@@ -190,23 +210,6 @@ final class AssistChatViewModel {
                 }
             }.forEach { message in
                 self.messages.append(message)
-            }
-        }
-    }
-
-    /// add a loading message after a delay if the response is still loading
-    private func addLoadingMessageAfterDelay(if isLoading: Bool) {
-        unowned let unownedSelf = self
-        canSendMessage = !isLoading
-        if isLoading {
-            dispatchWorkItem?.cancel()
-            dispatchWorkItem = DispatchWorkItem {
-                unownedSelf.withAnimationAndScrollToBottom {
-                    unownedSelf.messages.append(AssistChatMessageViewModel())
-                }
-            }
-            dispatchWorkItem.map { dispatchWorkItem in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: dispatchWorkItem)
             }
         }
     }

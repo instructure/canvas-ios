@@ -352,6 +352,9 @@
     "Error" : {
 
     },
+    "Error fetching response." : {
+
+    },
     "Error loading comments." : {
 
     },
@@ -937,6 +940,9 @@
 
     },
     "This is where all your notes, taken directly within your learning objects, are stored and organized. It's your personal hub for keeping track of key insights, important excerpts, and reflections as you learn. Dive in to review or expand on your notes anytime!" : {
+
+    },
+    "This prompt was not received. Try again" : {
 
     },
     "Tijuana (-08:00/-07:00)" : {

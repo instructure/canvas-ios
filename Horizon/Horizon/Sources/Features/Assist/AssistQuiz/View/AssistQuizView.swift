@@ -18,7 +18,6 @@
 
 import HorizonUI
 import SwiftUI
-import Core
 
 struct AssistQuizView: View {
     let viewModel: AssistQuizViewModel
@@ -26,16 +25,24 @@ struct AssistQuizView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: .huiSpaces.space16) {
                 headerView
-                questionTitle
-                answerOptions
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .huiTypography(.p1)
+                        .foregroundStyle(Color.huiColors.text.surfaceColored)
+                } else {
+                    questionTitle
+                    answerOptions
+                }
             }
             .animation(.smooth, value: viewModel.didSubmitQuiz)
             .padding(.huiSpaces.space16)
         }
         .scrollBounceBehavior(.basedOnSize)
         .applyHorizonGradient()
+        .animation(.smooth, value: viewModel.selectedAnswer)
         .safeAreaInset(edge: .bottom) {
             if !viewModel.isLoaderVisible {
                 footerView
@@ -78,22 +85,25 @@ extension AssistQuizView {
     private var questionTitle: some View {
         Text(viewModel.quiz?.question ?? "")
             .frame(maxWidth: .infinity, alignment: .leading)
-            .font(.regular24)
-            .foregroundStyle(Color.textLightest)
+            .huiTypography(.p1)
+            .foregroundStyle(Color.huiColors.text.surfaceColored)
             .padding(.top, 40)
             .padding(.bottom, 20)
     }
 
     private var answerOptions: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: .huiSpaces.space8) {
             ForEach(viewModel.quiz?.options ?? []) { answer in
                 Button {
                     viewModel.selectedAnswer = answer
                 } label: {
+                    let isCorrect = viewModel.isCorrect(answer: answer)
                     AssistQuizAnswerOptionView(
                         selectedAnswer: answer,
                         isSelected: answer == viewModel.selectedAnswer,
-                        isCorrect: viewModel.isCorrect(answer: answer)
+                        isCorrect: answer == viewModel.selectedAnswer
+                        ? isCorrect
+                        : isCorrect == true ? isCorrect : nil
                     )
                 }
             }
@@ -145,7 +155,7 @@ extension AssistQuizView {
             }
 
         }
-        .paddingStyle([.bottom, .horizontal], .standard)
+        .padding([.bottom, .horizontal], .huiSpaces.space16)
     }
 }
 

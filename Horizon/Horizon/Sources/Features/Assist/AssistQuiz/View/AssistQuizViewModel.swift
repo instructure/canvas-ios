@@ -31,6 +31,7 @@ final class AssistQuizViewModel {
     // MARK: - Output
 
     private(set) var isLoaderVisible = true
+    private(set) var errorMessage: String?
     var quiz: AssistQuizModel? {
         didSet {
             if quiz == nil {
@@ -65,12 +66,18 @@ final class AssistQuizViewModel {
         self.router = router
         self.scheduler = scheduler
 
-        self.chatBotInteractor.listen.receive(on: scheduler).sink(
-            receiveCompletion: { _ in },
-            receiveValue: { [weak self] message in
-                self?.onMessage(message)
+        self.chatBotInteractor
+            .listen
+            .receive(on: scheduler)
+            .sink { [weak self] result in
+                switch result {
+                case .success(let message):
+                    self?.onMessage(message)
+                case .failure(let error):
+                    self?.isLoaderVisible = false
+                    self?.errorMessage = error.localizedDescription
+                }
             }
-        )
         .store(in: &subscriptions)
 
         quiz = quizModel
