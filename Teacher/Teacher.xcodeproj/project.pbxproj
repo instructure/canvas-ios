@@ -161,6 +161,11 @@
 		CFCADAFB2D9D9AE0003796E7 /* RubricGradingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCADAFA2D9D9AD7003796E7 /* RubricGradingInteractor.swift */; };
 		CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */; };
 		CFD96BA92719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */; };
+		CFF4AA9D2DF9D05F00B0351F /* GetGradeStatusesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AA9C2DF9D05F00B0351F /* GetGradeStatusesRequest.swift */; };
+		CFF4AAA02DF9E26800B0351F /* APIGradeStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AA9F2DF9E26700B0351F /* APIGradeStatuses.swift */; };
+		CFF4AAA32DF9EE0E00B0351F /* GradeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA22DF9EE0E00B0351F /* GradeStatus.swift */; };
+		CFF4AAA52DFAB93000B0351F /* GradeStatusesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA42DFAB93000B0351F /* GradeStatusesInteractor.swift */; };
+		CFF4AAA72DFAD2D400B0351F /* GradeStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA62DFAD2C200B0351F /* GradeStatusView.swift */; };
 		D900B41A29CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */; };
 		D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */; };
 		D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051E29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift */; };
@@ -403,6 +408,11 @@
 		CFCADAFA2D9D9AD7003796E7 /* RubricGradingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricGradingInteractor.swift; sourceTree = "<group>"; };
 		CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModel.swift; sourceTree = "<group>"; };
 		CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewerViewModelTests.swift; sourceTree = "<group>"; };
+		CFF4AA9C2DF9D05F00B0351F /* GetGradeStatusesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGradeStatusesRequest.swift; sourceTree = "<group>"; };
+		CFF4AA9F2DF9E26700B0351F /* APIGradeStatuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradeStatuses.swift; sourceTree = "<group>"; };
+		CFF4AAA22DF9EE0E00B0351F /* GradeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatus.swift; sourceTree = "<group>"; };
+		CFF4AAA42DFAB93000B0351F /* GradeStatusesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusesInteractor.swift; sourceTree = "<group>"; };
+		CFF4AAA62DFAD2C200B0351F /* GradeStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusView.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemViewModelTests.swift; sourceTree = "<group>"; };
 		D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemView.swift; sourceTree = "<group>"; };
@@ -1016,6 +1026,7 @@
 		CF0605D32D95A83D0014C2EC /* Grading */ = {
 			isa = PBXGroup;
 			children = (
+				CFF4AA9A2DF9CEC200B0351F /* GradeStatus */,
 				CF0605D62D95A8DB0014C2EC /* Rubrics */,
 				CF0605D52D95A8CF0014C2EC /* Points */,
 			);
@@ -1329,6 +1340,50 @@
 				CFCADAFA2D9D9AD7003796E7 /* RubricGradingInteractor.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CFF4AA9A2DF9CEC200B0351F /* GradeStatus */ = {
+			isa = PBXGroup;
+			children = (
+				CFF4AAA82DFAD30500B0351F /* View */,
+				CFF4AAA12DF9E76D00B0351F /* ViewModel */,
+				CFF4AA9B2DF9CECE00B0351F /* Model */,
+				CFF4AAA22DF9EE0E00B0351F /* GradeStatus.swift */,
+			);
+			path = GradeStatus;
+			sourceTree = "<group>";
+		};
+		CFF4AA9B2DF9CECE00B0351F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFF4AA9E2DF9D06500B0351F /* API */,
+				CFF4AAA42DFAB93000B0351F /* GradeStatusesInteractor.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFF4AA9E2DF9D06500B0351F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CFF4AA9F2DF9E26700B0351F /* APIGradeStatuses.swift */,
+				CFF4AA9C2DF9D05F00B0351F /* GetGradeStatusesRequest.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		CFF4AAA12DF9E76D00B0351F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CFF4AAA82DFAD30500B0351F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFF4AAA62DFAD2C200B0351F /* GradeStatusView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D9624A7B29C4AECB00F5303F /* QuizSubmissionList */ = {
@@ -1684,6 +1739,7 @@
 				0856FCCC2DB641EC009067CF /* SubmissionListScreen.swift in Sources */,
 				7D742F382554D01400FD6CF1 /* RubricsView.swift in Sources */,
 				CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */,
+				CFF4AAA02DF9E26800B0351F /* APIGradeStatuses.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
 				CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */,
 				089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */,
@@ -1700,6 +1756,7 @@
 				EBAF32F627AACFC9000ACD32 /* SubmissionCommentLibraryViewModel.swift in Sources */,
 				CFD96BA72719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
+				CFF4AAA32DF9EE0E00B0351F /* GradeStatus.swift in Sources */,
 				CF13E554299D136F00F57F69 /* QuizSubmissionListAssembly.swift in Sources */,
 				CF0F188C2DC0D5A10054D21A /* SpeedGraderUserIdNormalization.swift in Sources */,
 				CF06060C2D96EA100014C2EC /* RubricCriterionView.swift in Sources */,
@@ -1714,6 +1771,7 @@
 				EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */,
 				CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */,
 				089AACBA2DD5F7FB0022F341 /* TeacherAssignmentDetailsScreen.swift in Sources */,
+				CFF4AAA72DFAD2D400B0351F /* GradeStatusView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */,
 				0856FCCE2DB64425009067CF /* SubmissionListViewModel.swift in Sources */,
@@ -1742,6 +1800,7 @@
 				CF1247262DB012B700EB10F6 /* SpeedGraderViewModel.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
 				CF1247212DB0114300EB10F6 /* SpeedGraderScreen.swift in Sources */,
+				CFF4AA9D2DF9D05F00B0351F /* GetGradeStatusesRequest.swift in Sources */,
 				CF13E552299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
@@ -1755,6 +1814,7 @@
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
 				CF0606122D9A9A990014C2EC /* RubricsViewModel.swift in Sources */,
 				EBE802AF27B41C5F0003A663 /* CommentLibrarySheet.swift in Sources */,
+				CFF4AAA52DFAB93000B0351F /* GradeStatusesInteractor.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */,
 				CFCADAEA2D9BE21F003796E7 /* RubricCriterionViewModel.swift in Sources */,
 				7D7D6D5225102052002B1485 /* SubmissionGraderView.swift in Sources */,

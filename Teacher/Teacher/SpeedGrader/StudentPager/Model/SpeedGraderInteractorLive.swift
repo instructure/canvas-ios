@@ -33,6 +33,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     private let filter: [GetSubmissions.Filter]
     private var subscriptions = Set<AnyCancellable>()
     private let sortNeedsGradingSubmissionsFirst: Bool
+    private let gradeStatusesInteractor: GradeStatusesInteractor
 
     init(
         context: Context,
@@ -40,6 +41,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         userID: String,
         filter: [GetSubmissions.Filter],
         sortNeedsGradingSubmissionsFirst: Bool,
+        gradeStatusesInteractor: GradeStatusesInteractor,
         env: AppEnvironment
     ) {
         self.env = env
@@ -48,6 +50,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.userID = userID
         self.filter = filter
         self.sortNeedsGradingSubmissionsFirst = sortNeedsGradingSubmissionsFirst
+        self.gradeStatusesInteractor = gradeStatusesInteractor
     }
 
     func load() {
@@ -73,20 +76,21 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         assignmentLoad
             .flatMap { [weak self] assignment in
                 guard let self else {
-                    return Publishers.noInstanceFailure(output: (Assignment, [Submission]).self)
+                    return Publishers.noInstanceFailure(output: (Assignment, [Submission], [GradeStatus]).self)
                 }
-                return Publishers.CombineLatest(
+                return Publishers.CombineLatest3(
                     loadEnrollments(),
-                    loadSubmissions(anonymizeStudents: assignment.anonymizeStudents)
+                    loadSubmissions(anonymizeStudents: assignment.anonymizeStudents),
+                    gradeStatusesInteractor.fetchCustomGradeStatuses(courseID: context.id)
                 )
-                .map { (assignment, $0.1) }
+                .map { (assignment, $0.1, $0.2) }
                 .eraseToAnyPublisher()
             }
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.state.send(.error(.unexpectedError(error)))
                 }
-            } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission]) in
+            } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission], gradeStatuses: [GradeStatus]) in
                 guard let self else { return }
 
                 let submissions = sortNeedsGradingSubmissionsFirst
@@ -110,7 +114,8 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 data = SpeedGraderData(
                     assignment: assignment,
                     submissions: submissions,
-                    focusedSubmissionIndex: focusedSubmissionIndex
+                    focusedSubmissionIndex: focusedSubmissionIndex,
+                    gradeStatuses: gradeStatuses
                 )
                 state.send(.data)
             }

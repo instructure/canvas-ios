@@ -49,6 +49,7 @@ struct SpeedGraderData {
 
     /// Index for the selected student
     let focusedSubmissionIndex: Int
+    let gradeStatuses: [GradeStatus]
 }
 
 enum SpeedGraderInteractorState: Equatable {
