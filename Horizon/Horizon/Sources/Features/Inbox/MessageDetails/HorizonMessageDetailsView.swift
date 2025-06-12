@@ -29,15 +29,17 @@ struct HorizonMessageDetailsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            titleBar
-                .padding(.horizontal, HorizonUI.spaces.space24)
-            messages
-            replyArea
+        AttachmentView(viewModel: model.attachmentViewModel) {
+            VStack(alignment: .leading) {
+                titleBar
+                    .padding(.horizontal, HorizonUI.spaces.space24)
+                messages
+                replyArea
+            }
+            .background(HorizonUI.colors.surface.pagePrimary)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .navigationBarHidden(true)
         }
-        .background(HorizonUI.colors.surface.pagePrimary)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationBarHidden(true)
     }
 
     private var messages: some View {
@@ -60,10 +62,8 @@ struct HorizonMessageDetailsView: View {
                                 )
                         }
                     }
+                    .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
                     .padding(.top, HorizonUI.spaces.space16)
-                    .padding(.bottom, HorizonUI.spaces.space24)
-                    .padding(.leading, HorizonUI.spaces.space24)
-                    .padding(.trailing, HorizonUI.spaces.space24)
                 },
                 refreshAction: model.refresh
             )
@@ -105,35 +105,64 @@ struct HorizonMessageDetailsView: View {
     }
 
     private var replyArea: some View {
-        VStack(spacing: HorizonUI.spaces.space8) {
+        VStack(spacing: HorizonUI.spaces.space16) {
             HorizonUI.TextArea(
                 $model.reply,
                 placeholder: String(localized: "Reply", bundle: .horizon),
                 autoExpand: true
             )
+            replyAreaAttachments
             HStack {
+                replyAreaAttachFileButton
                 Spacer()
-                ZStack {
-                    HorizonUI.Spinner(size: .xSmall)
-                        .opacity(model.loadingSpinnerOpacity)
-                    sendButton
-                        .opacity(model.sendButtonOpacity)
-                }
+                replyAreaSendButton
             }
         }
         .background(HorizonUI.colors.surface.pagePrimary)
         .padding(.horizontal, HorizonUI.spaces.space24)
-        .padding(.vertical, HorizonUI.spaces.space8)
+        .padding(.top, HorizonUI.spaces.space8)
+        .padding(.bottom, HorizonUI.spaces.space16)
     }
 
-    private var sendButton: some View {
-        HorizonUI.PrimaryButton(
-            String(localized: "Send", bundle: .horizon),
-            type: .institution
-        ) {
-            model.sendMessage(viewController: viewController)
+    @ViewBuilder
+    private var replyAreaAttachments: some View {
+        if model.attachmentItems.isNotEmpty {
+            VStack(spacing: .huiSpaces.space8) {
+                ForEach(model.attachmentItems) { attachment in
+                    AttachmentItemView(viewModel: attachment)
+                }
+            }
+            .padding(.zero)
         }
-        .disabled(model.isSendDisabled)
+    }
+
+    private var replyAreaAttachFileButton: some View {
+        HorizonUI.PrimaryButton(
+            String(localized: "Attach file", bundle: .horizon),
+            type: .white,
+            leading: HorizonUI.icons.attachFile
+        ) {
+            model.attachFile(viewController: viewController)
+        }
+    }
+
+    private var replyAreaSendButton: some View {
+        HStack {
+            Spacer()
+            ZStack {
+                HorizonUI.Spinner(size: .xSmall)
+                    .opacity(model.loadingSpinnerOpacity)
+
+                HorizonUI.PrimaryButton(
+                    String(localized: "Send", bundle: .horizon),
+                    type: .institution
+                ) {
+                    model.sendMessage(viewController: viewController)
+                }
+                .disabled(model.isSendDisabled)
+                    .opacity(model.sendButtonOpacity)
+            }
+        }
     }
 
     private var titleBar: some View {

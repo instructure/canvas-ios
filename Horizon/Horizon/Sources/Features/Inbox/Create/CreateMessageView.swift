@@ -32,57 +32,27 @@ struct CreateMessageView: View {
             footer
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .fileImporter(
-            isPresented: $viewModel.isFilePickerVisible,
-            allowedContentTypes: [.item],
-            allowsMultipleSelection: false
-        ) { result in
-            switch result {
-            case .success(let urls):
-                viewModel.addFiles(urls: urls)
-            case .failure:
-                break
-            }
-        }
-        .sheet(isPresented: $viewModel.isImagePickerVisible) {
-            ImagePickerViewController(
-                sourceType: .photoLibrary,
-                imageHandler: viewModel.addFile
-            )
-        }
-        .sheet(isPresented: $viewModel.isTakePhotoVisible) {
-            ImagePickerViewController(
-                sourceType: .camera,
-                imageHandler: viewModel.addFile
-            )
-            .interactiveDismissDisabled()
-        }
-        .sheet(isPresented: $viewModel.isAudioRecordVisible) {
-            AttachmentPickerAssembly.makeAudioPickerViewcontroller(
-                router: viewModel.router,
-                onSelect: viewModel.addFile
-            )
-            .interactiveDismissDisabled()
-        }
     }
 
     // MARK: - Private
 
     private var bodyContent: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: .huiSpaces.space12) {
-                peopleSelection
-                individualMessageCheckbox
-                messageTitleInput
-                messageBodyInput
-                fileAttachmentButtonRow
-                fileAttachments
-                Spacer()
+        AttachmentView(viewModel: viewModel.attachmentViewModel) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: .huiSpaces.space12) {
+                    peopleSelection
+                    individualMessageCheckbox
+                    messageTitleInput
+                    messageBodyInput
+                    fileAttachmentButtonRow
+                    fileAttachments
+                    Spacer()
+                }
+                .padding(.top, .huiSpaces.space12)
             }
-            .padding(.top, .huiSpaces.space12)
+            .padding(.horizontal, .huiSpaces.space24)
+            .frame(maxHeight: .infinity, alignment: .topLeading)
         }
-        .padding(.horizontal, .huiSpaces.space24)
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 
     private var fileAttachmentButtonRow: some View {
@@ -94,14 +64,14 @@ struct CreateMessageView: View {
                 .foregroundStyle(HorizonUI.colors.text.title)
             Spacer()
         }
-        .onTapGesture { viewModel.attachFile(viewController: viewController) }
+        .onTapGesture { viewModel.attachFile(from: viewController) }
         .opacity(viewModel.attachmentButtonOpacity)
     }
 
     private var fileAttachments: some View {
         VStack(spacing: .huiSpaces.space8) {
-            ForEach(viewModel.attachmentViewModels) { attachment in
-                FileAttachment(viewModel: attachment)
+            ForEach(viewModel.attachmentItems) { attachment in
+                AttachmentItemView(viewModel: attachment)
             }
         }
     }
@@ -206,74 +176,6 @@ struct CreateMessageView: View {
             viewModel: viewModel.peopleSelectionViewModel,
             disabled: viewModel.isPeopleSelectionDisabled
         )
-    }
-}
-
-struct FileAttachment: View {
-    var viewModel: AttachmentViewModel
-
-    var body: some View {
-        HStack {
-            ZStack {
-                spinner
-                checkbox
-            }
-            title
-            Spacer()
-            ZStack {
-                cancelButton
-                deleteButton
-            }
-        }
-        .frame(height: 48)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, HorizonUI.spaces.space16)
-        .padding(.vertical, HorizonUI.spaces.space8)
-        .cornerRadius(HorizonUI.spaces.space16)
-        .overlay(
-            RoundedRectangle(cornerRadius: HorizonUI.spaces.space16)
-                .stroke(Color.huiColors.lineAndBorders.lineStroke, lineWidth: 1)
-        )
-        .padding(1)
-    }
-
-    private var cancelButton: some View {
-        HorizonUI.IconButton(
-            HorizonUI.icons.close,
-            type: .white,
-            isSmall: true
-        ) {
-            viewModel.cancel()
-        }
-        .opacity(viewModel.cancelOpacity)
-    }
-
-    private var checkbox: some View {
-        HorizonUI.icons.checkCircleFull
-            .foregroundStyle(Color.huiColors.icon.success)
-            .opacity(viewModel.checkmarkOpacity)
-    }
-
-    private var deleteButton: some View {
-        HorizonUI.IconButton(
-            HorizonUI.icons.delete,
-            type: .white,
-            isSmall: true
-        ) {
-            viewModel.delete()
-        }
-        .opacity(viewModel.deleteOpacity)
-    }
-
-    private var spinner: some View {
-        HorizonUI.Spinner(size: .xSmall)
-            .opacity(viewModel.spinnerOpacity)
-            .frame(width: 24, height: 24)
-    }
-
-    private var title: some View {
-        Text(viewModel.filename)
-            .huiTypography(.p1)
     }
 }
 

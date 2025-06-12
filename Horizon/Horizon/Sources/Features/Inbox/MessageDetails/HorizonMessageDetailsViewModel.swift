@@ -22,12 +22,15 @@ import SwiftUI
 
 class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     // MARK: - Outputs
+    var attachmentItems: [AttachmentItemViewModel] {
+        attachmentViewModel.items
+    }
     var isSendDisabled: Bool {
-        reply.isEmpty || isSending
+        reply.isEmpty || isSending || attachmentViewModel.isUploading
     }
     @Published var reply: String = ""
     var sendButtonOpacity: Double {
-        isSending ? 0.0 : 1.0
+        isSending ? (attachmentViewModel.isUploading ? 0.5 : 0.0) : 1.0
     }
     var loadingSpinnerOpacity: Double {
         isSending ? 1.0 : 0.0
@@ -39,6 +42,7 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
+    let attachmentViewModel: AttachmentViewModel
     private let composeMessageInteractor: ComposeMessageInteractor
     private let messageDetailsInteractor: MessageDetailsInteractor
     private let myID: String
@@ -47,12 +51,17 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     // MARK: - Initialization
     init(
         router: Router = AppEnvironment.shared.router,
+        attachmentViewModel: AttachmentViewModel? = nil,
         messageDetailsInteractor: MessageDetailsInteractor,
         composeMessageInteractor: ComposeMessageInteractor,
         myID: String = AppEnvironment.shared.currentSession?.userID ?? "",
         allowArchive: Bool
     ) {
         self.router = router
+        self.attachmentViewModel = attachmentViewModel ?? AttachmentViewModel(
+            router: router,
+            composeMessageInteractor: composeMessageInteractor
+        )
         self.messageDetailsInteractor = messageDetailsInteractor
         self.composeMessageInteractor = composeMessageInteractor
         self.myID = myID
@@ -67,6 +76,10 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     }
 
     // MARK: - Inputs
+    func attachFile(viewController: WeakViewController) {
+        attachmentViewModel.show(from: viewController)
+    }
+
     func pop(viewController: WeakViewController) {
         router.pop(from: viewController)
     }
