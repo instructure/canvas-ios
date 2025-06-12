@@ -85,7 +85,7 @@ struct AssistChatMessageViewModel: Identifiable, Equatable {
         case .white:
             return Color.huiColors.surface.cardPrimary
         case .semitransparent:
-            return  Color.huiColors.surface.cardPrimary.opacity(0.1)
+            return Color.huiColors.surface.cardPrimary.opacity(0.1)
         case .transparent:
             return .clear
         }

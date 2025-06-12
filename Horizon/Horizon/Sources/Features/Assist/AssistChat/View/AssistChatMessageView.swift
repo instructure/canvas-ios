@@ -24,17 +24,13 @@ struct AssistChatMessageView: View {
     let message: AssistChatMessageViewModel
 
     var body: some View {
-        VStack {
-            HStack {
-                if message.isLoading {
-                    TypingAnimationView(background: message.backgroundColor)
-                } else {
-                    messageContent
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: message.alignment)
-            .onTapGesture {
-                message.onTap?()
+        VStack(spacing: .zero) {
+            if !message.isLoading {
+                messageContent
+                    .frame(maxWidth: .infinity, alignment: message.alignment)
+                    .onTapGesture {
+                        message.onTap?()
+                    }
             }
             WrappingHStack(models: message.chipOptions) { quickResponse in
                 HorizonUI.Pill(title: quickResponse.chip, style: .outline(.light))
