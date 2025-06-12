@@ -53,6 +53,6 @@ public class GetModule: APIUseCase {
         to client: NSManagedObjectContext
     ) {
         guard let response = response else { return }
-        Module.update(with: response, forCourse: courseID, in: client)
+        Module.save(response, forCourse: courseID, updateModuleItems: false, in: client)        
     }
 }
