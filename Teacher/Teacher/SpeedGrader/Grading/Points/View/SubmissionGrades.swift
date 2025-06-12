@@ -110,7 +110,14 @@ struct SubmissionGrades: View {
                         slider
                     }
 
-                    GradeStatusView(viewModel: .init(gradeStatuses: gradeStatuses))
+                    // TODO: Extract interactor creation
+                    GradeStatusView(
+                        viewModel: .init(
+                            gradeStatuses: gradeStatuses,
+                            submissionId: submission.id,
+                            interactor: GradeStatusesInteractorLive(api: env.api)
+                        )
+                    )
 
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)

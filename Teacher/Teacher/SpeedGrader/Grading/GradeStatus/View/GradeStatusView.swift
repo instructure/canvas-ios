@@ -26,7 +26,12 @@ struct GradeStatusView: View {
 
     var body: some View {
         InstUI.PickerMenu(
-            selectedOption: $viewModel.selectedOption,
+            selectedOption: Binding(
+                get: { viewModel.selectedOption },
+                set: { newValue in
+                    if let value = newValue { viewModel.didSelectGradeStatus.send(value) }
+                }
+            ),
             allOptions: viewModel.options,
             label: { cell }
         )
@@ -62,9 +67,16 @@ struct GradeStatusView: View {
         GradeStatus(defaultName: "Graded"),
         GradeStatus(defaultName: "Excused")
     ]
+
     VStack(spacing: 20) {
-        GradeStatusView(viewModel: .init(gradeStatuses: statuses, selectedId: nil))
-        GradeStatusView(viewModel: .init(gradeStatuses: statuses, selectedId: statuses[1].id))
+        GradeStatusView(
+            viewModel: .init(
+                gradeStatuses: statuses,
+                selectedId: nil,
+                submissionId: "",
+                interactor: GradeStatusesInteractorPreview(gradeStatuses: statuses)
+            )
+        )
     }
 }
 

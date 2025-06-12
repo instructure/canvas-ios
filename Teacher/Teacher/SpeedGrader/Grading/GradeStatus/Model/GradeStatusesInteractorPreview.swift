@@ -16,22 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Foundation
+import Combine
+import Core
 
-struct GradeStatus: Identifiable, Equatable {
-    let id: String
-    let name: String
-    let isCustom: Bool
+class GradeStatusesInteractorPreview: GradeStatusesInteractor {
+    let gradeStatuses: [GradeStatus]
 
-    init(custom: APIGradeStatuses.CustomGradeStatus) {
-        self.id = custom.restId
-        self.name = custom.name
-        self.isCustom = true
+    init(gradeStatuses: [GradeStatus] = []) {
+        self.gradeStatuses = gradeStatuses
     }
 
-    init(defaultName: String) {
-        self.id = defaultName
-        self.name = defaultName.capitalized
-        self.isCustom = false
+    func fetchCustomGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error> {
+        Just(gradeStatuses)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func updateSubmissionGradeStatus(
+        submissionId: String,
+        customGradeStatusId: String?,
+        latePolicyStatus: String?
+    ) -> AnyPublisher<Void, Error> {
+        Just(())
+            .delay(for: .seconds(2), scheduler: RunLoop.main)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
+#endif

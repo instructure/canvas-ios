@@ -21,15 +21,65 @@ import Combine
 import SwiftUI
 
 class GradeStatusViewModel: ObservableObject {
-    @Published var selectedOption: OptionItem?
-    @Published var isLoading: Bool = false
+    @Published private(set) var selectedOption: OptionItem?
+    @Published private(set) var isLoading: Bool = false
     let options: [OptionItem]
+    let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
 
     private let gradeStatuses: [GradeStatus]
+    private let interactor: GradeStatusesInteractor
+    private let submissionId: String
     private var subscriptions = Set<AnyCancellable>()
 
-    init(gradeStatuses: [GradeStatus], selectedId: String? = nil) {
+    init(
+        gradeStatuses: [GradeStatus],
+        selectedId: String? = nil,
+        submissionId: String,
+        interactor: GradeStatusesInteractor
+    ) {
         self.gradeStatuses = gradeStatuses
+        self.interactor = interactor
+        self.submissionId = submissionId
         options = gradeStatuses.map { OptionItem(id: $0.id, title: $0.name) }
+        uploadGradeStatus(on: didSelectGradeStatus)
+    }
+
+    func uploadGradeStatus(
+        on publisher: PassthroughSubject<OptionItem, Never>
+    ) {
+        publisher
+            .compactMap { [gradeStatuses] selectedOption in
+                guard let selectedStatus = gradeStatuses.first(where: { $0.id == selectedOption.id }) else {
+                    return nil
+                }
+                return (selectedOption, selectedStatus)
+            }
+            .map { [weak self] (selectedOption: OptionItem, selectedStatus: GradeStatus) in
+                self?.isLoading = true
+                self?.selectedOption = selectedOption
+                return selectedStatus
+            }
+            .flatMap { [submissionId, interactor] newStatus in
+                let customGradeStatusId = newStatus.isCustom ? newStatus.id : nil
+                let latePolicyStatus = newStatus.isCustom ? nil : newStatus.id
+                return interactor.updateSubmissionGradeStatus(
+                    submissionId: submissionId,
+                    customGradeStatusId: customGradeStatusId,
+                    latePolicyStatus: latePolicyStatus
+                )
+            }
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.isLoading = false
+                case .failure:
+                    self?.isLoading = false
+                    // Handle error appropriately, e.g., show an alert
+                }
+            } receiveValue: { [weak self] _ in
+                // Optionally handle success, e.g., update UI or notify user
+                self?.isLoading = false
+            }
+            .store(in: &subscriptions)
     }
 }

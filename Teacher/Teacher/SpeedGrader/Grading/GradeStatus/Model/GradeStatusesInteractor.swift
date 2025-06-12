@@ -22,6 +22,7 @@ import Core
 
 protocol GradeStatusesInteractor {
     func fetchCustomGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error>
+    func updateSubmissionGradeStatus(submissionId: String, customGradeStatusId: String?, latePolicyStatus: String?) -> AnyPublisher<Void, Error>
 }
 
 final class GradeStatusesInteractorLive: GradeStatusesInteractor {
@@ -31,7 +32,9 @@ final class GradeStatusesInteractorLive: GradeStatusesInteractor {
         self.api = api
     }
 
-    func fetchCustomGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error> {
+    func fetchCustomGradeStatuses(
+        courseID: String
+    ) -> AnyPublisher<[GradeStatus], Error> {
         let request = GetGradeStatusesRequest(courseID: courseID)
         return api.makeRequest(request)
             .map { $0.body }
@@ -40,6 +43,17 @@ final class GradeStatusesInteractorLive: GradeStatusesInteractor {
                 let custom = response.customGradeStatuses.map { GradeStatus(custom: $0) }
                 return defaults + custom
             }
+            .eraseToAnyPublisher()
+    }
+
+    func updateSubmissionGradeStatus(
+        submissionId: String,
+        customGradeStatusId: String?,
+        latePolicyStatus: String?
+    ) -> AnyPublisher<Void, Error> {
+        let request = UpdateSubmissionGradeStatusRequest(submissionId: submissionId, customGradeStatusId: customGradeStatusId, latePolicyStatus: latePolicyStatus)
+        return api.makeRequest(request)
+            .map { _ in () }
             .eraseToAnyPublisher()
     }
 }
