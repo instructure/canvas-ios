@@ -63,7 +63,7 @@ final class EDXLoginStartViewController: UIViewController {
         return button
     }()
 
-    private var digitalcampusHost: String = "digitalcampus.test.instructure.com"
+    private var digitalcampusHost: String = "digitalcampus.beta.instructure.com"
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
     var app: App = .student

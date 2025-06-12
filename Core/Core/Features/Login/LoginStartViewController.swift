@@ -45,7 +45,7 @@ class LoginStartViewController: UIViewController {
     private var originalButtonStackViewCenterYConstraint: NSLayoutConstraint!
     private var offlineModeInteractor: OfflineModeInteractor?
 
-    private var digitalcampusHost: String = "digitalcampus.test.instructure.com"
+    private var digitalcampusHost: String = "digitalcampus.beta.instructure.com"
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
