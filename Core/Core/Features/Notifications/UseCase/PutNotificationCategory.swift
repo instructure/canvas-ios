@@ -18,26 +18,32 @@
 
 import CoreData
 
-struct PutNotificationCategory: APIUseCase {
-    typealias Model = NotificationCategory
+public struct PutNotificationCategory: APIUseCase {
+    public typealias Model = NotificationCategory
 
     let channelID: String
     let category: String
     let notifications: [String]
     let frequency: NotificationFrequency
 
-    let cacheKey: String? = nil
+    public let cacheKey: String? = nil
 
-    var request: PutNotificationPreferencesRequest {
+    public var request: PutNotificationPreferencesRequest {
         return PutNotificationPreferencesRequest(channelID: channelID, notifications: notifications, frequency: frequency)
     }
 
-    func write(response: Request.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public init(channelID: String, category: String, notifications: [String], frequency: NotificationFrequency) {
+        self.channelID = channelID
+        self.category = category
+        self.notifications = notifications
+        self.frequency = frequency
+    }
+
+    public func write(response: Request.Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard response != nil else { return }
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-            #keyPath(NotificationCategory.channelID), channelID,
-            #keyPath(NotificationCategory.category), category
-        )
+                                    #keyPath(NotificationCategory.channelID), channelID,
+                                    #keyPath(NotificationCategory.category), category)
         let model: NotificationCategory = client.fetch(predicate).first ?? client.insert()
         model.channelID = channelID
         model.category = category

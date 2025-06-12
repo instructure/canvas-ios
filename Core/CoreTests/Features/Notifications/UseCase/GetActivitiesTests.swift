@@ -34,11 +34,10 @@ class GetActivitiesTests: CoreTestCase {
     }
 
     func testScope() {
-        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@ && %K != %@",
+        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@",
                                 #keyPath(Activity.typeRaw), ActivityType.conference.rawValue,
                                 #keyPath(Activity.typeRaw), ActivityType.collaboration.rawValue,
-                                #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue,
-                                #keyPath(Activity.typeRaw), ActivityType.conversation.rawValue)
+                                #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
         let contextFilter = NSPredicate(value: true)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, contextFilter])
         let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false) ]
@@ -49,11 +48,10 @@ class GetActivitiesTests: CoreTestCase {
     func testScopeForCourse() {
         let contextID = "course_1234"
         useCase = GetActivities(context: Context(.course, id: "1234"))
-        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@ && %K != %@",
+        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@",
                                #keyPath(Activity.typeRaw), ActivityType.conference.rawValue,
                                #keyPath(Activity.typeRaw), ActivityType.collaboration.rawValue,
-                               #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue,
-                               #keyPath(Activity.typeRaw), ActivityType.conversation.rawValue)
+                               #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
         let contextFilter = NSPredicate(format: "%K == %@", #keyPath(Activity.canvasContextIDRaw), contextID)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, contextFilter])
         let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false) ]

@@ -19,18 +19,18 @@
 import Foundation
 import CoreData
 
-class NotificationCategory: NSManagedObject {
-    @NSManaged var channelID: String
-    @NSManaged var category: String
-    @NSManaged var frequencyRaw: String
-    @NSManaged var notificationsRaw: String
+public class NotificationCategory: NSManagedObject {
+    @NSManaged public var channelID: String
+    @NSManaged public var category: String
+    @NSManaged public var frequencyRaw: String
+    @NSManaged public var notificationsRaw: String
 
-    var frequency: NotificationFrequency {
+    public var frequency: NotificationFrequency {
         get { return NotificationFrequency(rawValue: frequencyRaw) ?? .never }
         set { frequencyRaw = newValue.rawValue }
     }
 
-    var notifications: [String] {
+    public var notifications: [String] {
         get { return notificationsRaw.components(separatedBy: ",") }
         set { notificationsRaw = newValue.joined(separator: ",") }
     }

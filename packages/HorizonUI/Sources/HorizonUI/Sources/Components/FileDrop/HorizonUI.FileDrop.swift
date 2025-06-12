@@ -39,7 +39,7 @@ public extension HorizonUI {
 
         public var body: some View {
             VStack(alignment: .center, spacing: .huiSpaces.space24) {
-                HorizonUI.PrimaryButton(String(localized: "Upload File"), type: .blue) {
+                HorizonUI.PrimaryButton(String(localized: "Upload File"), type: .institution) {
                     onTap()
                 }
                 acceptedFilesView

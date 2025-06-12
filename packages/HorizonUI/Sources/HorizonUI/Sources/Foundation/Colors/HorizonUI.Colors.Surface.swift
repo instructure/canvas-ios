@@ -26,6 +26,7 @@ public extension HorizonUI.Colors {
         public let cardSecondary = Color(hexString: "#F9F9F9")
         public let divider = Color(hexString: "#E8EAEC")
         public let error = Color(hexString: "#C71F23")
+        public let errorPressed = Color(hexString: "#9F191C")
         public var institution: Color { Color(uiColor: Self.institutionWrapper.color) }
         public let inversePrimary = Color(hexString: "#273540")
         public let inverseSecondary = Color(hexString: "#0A1B2A")
@@ -34,8 +35,24 @@ public extension HorizonUI.Colors {
         public let pagePrimary = Color(hexString: "#F2F4F4")
         public let pageSecondary = Color(hexString: "#FFFFFF")
         public let pageTertiary = Color(hexString: "#E8EAEC")
+        public let trueBlack = Color(hexString: "#000000")
         public let warning = Color(hexString: "#CF4A00")
         public let success = Color(hexString: "#03893D")
+        public let igniteAIPrimaryStart = Color(hexString: "#9E58BD")
+        public let igniteAIPrimaryEnd = Color(hexString: "#00828E")
+        public var igniteAIPrimaryGradient: LinearGradient {
+            igniteAIGradient(
+                start: Color.huiColors.surface.igniteAIPrimaryStart,
+                end: Color.huiColors.surface.igniteAIPrimaryEnd
+            )
+        }
+        private func igniteAIGradient(start: Color, end: Color) -> LinearGradient {
+            LinearGradient(
+                gradient: Gradient(colors: [start, end]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        }
 
         static let institutionWrapper = InstitutionWrapper()
 

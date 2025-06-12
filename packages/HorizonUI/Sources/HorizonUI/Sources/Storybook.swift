@@ -131,11 +131,6 @@ public struct Storybook: View {
                         Text("Navigation").tint(Color.black)
                     }
                     NavigationLink {
-                        HorizonUI.IntroBlock.Storybook()
-                    } label: {
-                        Text("Intro Block").tint(Color.black)
-                    }
-                    NavigationLink {
                         HorizonUI.Overlay.Storybook()
                     } label: {
                         Text("Navigation Overlay").tint(Color.black)

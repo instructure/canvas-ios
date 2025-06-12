@@ -40,6 +40,7 @@ public extension HorizonUI {
         }
 
         private static let manropeR12: VariantAndSize = .init(variant: .manropeRegular, size: 12)
+        private static let manropeR20: VariantAndSize = .init(variant: .manropeRegular, size: 20)
 
         private static let manropeB28: VariantAndSize = .init(variant: .manropeBold, size: 28)
         private static let manropeB24: VariantAndSize = .init(variant: .manropeBold, size: 24)
@@ -66,6 +67,7 @@ public extension HorizonUI {
         }
 
         let manropeRegular12: Font = HorizonUI.Fonts.manropeR12.scaledFont()
+        let manropeRegular20: Font = HorizonUI.Fonts.manropeR20.scaledFont()
 
         let manropeBold28: Font = HorizonUI.Fonts.manropeB28.scaledFont()
         let manropeBold24: Font = HorizonUI.Fonts.manropeB24.scaledFont()

@@ -22,11 +22,12 @@ import XCTest
 
 class UserProfileTests: CoreTestCase {
     func testUserProfile() {
-        let apiProfile = APIProfile.make(k5_user: true)
+        let apiProfile = APIProfile.make(k5_user: true, time_zone: "America/Los_Angeles")
         let profile = UserProfile.save(apiProfile, in: databaseClient)
         XCTAssertEqual(profile.id, apiProfile.id.value)
         XCTAssertEqual(profile.calendarURL, apiProfile.calendar?.ics)
         XCTAssertEqual(profile.isK5User, true)
+        XCTAssertEqual(profile.defaultTimeZone, apiProfile.time_zone)
     }
 
     func testGetUserProfile() {

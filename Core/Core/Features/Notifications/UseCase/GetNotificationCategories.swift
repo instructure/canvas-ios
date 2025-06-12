@@ -18,27 +18,31 @@
 
 import CoreData
 
-struct GetNotificationCategories: CollectionUseCase {
-    typealias Model = NotificationCategory
+public struct GetNotificationCategories: CollectionUseCase {
+    public typealias Model = NotificationCategory
 
     let channelID: String
 
-    var cacheKey: String? {
+    public var cacheKey: String? {
         return request.path
     }
 
-    var scope: Scope {
+    public var scope: Scope {
         return .where(
             #keyPath(NotificationCategory.channelID), equals: channelID,
             orderBy: #keyPath(NotificationCategory.category)
         )
     }
 
-    var request: GetNotificationPreferencesRequest {
+    public var request: GetNotificationPreferencesRequest {
         return GetNotificationPreferencesRequest(channelID: channelID)
     }
 
-    func write(response: Request.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public init(channelID: String) {
+        self.channelID = channelID
+    }
+
+    public func write(response: Request.Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let preferences = response?.notification_preferences else { return }
         var categories: [String: ([String], NotificationFrequency)] = [:]
         for pref in preferences {
@@ -49,9 +53,8 @@ struct GetNotificationCategories: CollectionUseCase {
         }
         for (category, (notifications, frequency)) in categories {
             let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
-                #keyPath(NotificationCategory.channelID), channelID,
-                #keyPath(NotificationCategory.category), category
-            )
+                                        #keyPath(NotificationCategory.channelID), channelID,
+                                        #keyPath(NotificationCategory.category), category)
             let model: NotificationCategory = client.fetch(predicate).first ?? client.insert()
             model.channelID = channelID
             model.category = category

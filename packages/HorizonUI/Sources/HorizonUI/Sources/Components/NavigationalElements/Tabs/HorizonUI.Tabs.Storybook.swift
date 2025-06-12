@@ -17,8 +17,8 @@
 //
 
 import SwiftUI
-public extension HorizonUI.Tabs {
-    struct Storybook: View {
+extension HorizonUI.Tabs {
+    public struct Storybook: View {
         @State private var selectedTabIndex: Int? = 0
         private let tabs = ["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5", "Tab 6"]
 
@@ -31,8 +31,4 @@ public extension HorizonUI.Tabs {
             .navigationTitle("Tabs")
         }
     }
-}
-
-#Preview {
-    HorizonUI.Tabs.Storybook()
 }

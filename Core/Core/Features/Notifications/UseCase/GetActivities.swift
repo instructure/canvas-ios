@@ -25,8 +25,13 @@ public class GetActivities: CollectionUseCase {
     public typealias Response = Request.Response
 
     private let context: Context?
-    public init(context: Context? = nil) {
+    private let onlyActiveCourses: Bool
+    public init(
+        context: Context? = nil,
+        onlyActiveCourses: Bool = true
+    ) {
         self.context = context
+        self.onlyActiveCourses = onlyActiveCourses
     }
 
     public var cacheKey: String? {
@@ -34,11 +39,10 @@ public class GetActivities: CollectionUseCase {
     }
 
     public var scope: Scope {
-        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@ && %K != %@",
+        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@",
                                #keyPath(Activity.typeRaw), ActivityType.conference.rawValue,
                                #keyPath(Activity.typeRaw), ActivityType.collaboration.rawValue,
-                               #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue,
-                               #keyPath(Activity.typeRaw), ActivityType.conversation.rawValue)
+                               #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
         var contextFilter: NSPredicate {
             guard let contextID = context?.canvasContextID  else {
                 return NSPredicate(value: true)
@@ -51,6 +55,6 @@ public class GetActivities: CollectionUseCase {
     }
 
     public var request: GetActivitiesRequest {
-        return GetActivitiesRequest()
+        return GetActivitiesRequest(onlyActiveCourses: onlyActiveCourses)
     }
 }

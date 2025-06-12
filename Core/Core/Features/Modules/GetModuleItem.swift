@@ -30,11 +30,16 @@ public class GetModuleItem: APIUseCase {
     public let scope: Scope
     public let cacheKey: String?
 
-    public init(courseID: String, moduleID: String, itemID: String) {
+    public init(
+        courseID: String,
+        moduleID: String,
+        itemID: String,
+        include: [GetModuleItemRequest.Include] = [.content_details]
+    ) {
         self.courseID = courseID
         self.moduleID = moduleID
         self.itemID = itemID
-        request = GetModuleItemRequest(courseID: courseID, moduleID: moduleID, itemID: itemID, include: [.content_details])
+        request = GetModuleItemRequest(courseID: courseID, moduleID: moduleID, itemID: itemID, include: include)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
             NSPredicate(key: #keyPath(ModuleItem.id), equals: itemID)
