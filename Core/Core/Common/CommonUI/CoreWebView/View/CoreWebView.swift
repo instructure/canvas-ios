@@ -718,6 +718,8 @@ extension CoreWebView {
         isOffline: Bool?,
         filePath: URL?,
         content: String?,
+        courseID: String? = nil,
+        moduleItemID: String? = nil,
         originalBaseURL: URL?
     ) {
         if let filePath, isOffline == true, FileManager.default.fileExists(atPath: filePath.path) {
@@ -733,7 +735,12 @@ extension CoreWebView {
             }
 
         } else {
-            loadHTMLString(HTMLWistiaHandler.updateWistia(in: content) ?? content ?? "", baseURL: originalBaseURL)
+            loadHTMLString(
+                HTMLWistiaHandler.updateWistia(in: content, courseID: courseID, moduleItemID: moduleItemID)
+                ?? content
+                ?? "",
+                baseURL: originalBaseURL
+            )
         }
     }
 }
