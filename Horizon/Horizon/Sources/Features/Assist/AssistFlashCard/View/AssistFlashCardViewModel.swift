@@ -19,12 +19,15 @@
 import Foundation
 import Observation
 import Core
+import Combine
+import CombineSchedulers
 
 @Observable
 final class AssistFlashCardViewModel {
     // MARK: - Output
 
-    private(set) var state: InstUI.ScreenState = .data
+    private(set) var isLoaderVisible = false
+    private(set) var errorMessage: String?
     private(set) var isNextButtonDisabled = false
     private(set) var isPreviousButtonDisabled = true
     private(set) var flashCards: [AssistFlashCardModel] = []
@@ -36,6 +39,7 @@ final class AssistFlashCardViewModel {
             flashCards.count
         )
     }
+    private var chatHistory: [AssistChatMessage] = []
     var currentCardIndex: Int? = 0 {
         didSet {
             isPreviousButtonDisabled = currentCardIndex == 0
@@ -46,14 +50,35 @@ final class AssistFlashCardViewModel {
     // MARK: - Dependencies
 
     private let router: Router
+    private let chatBotInteractor: AssistChatInteractor
+    private var subscriptions = Set<AnyCancellable>()
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
     init(
         flashCards: [AssistFlashCardModel] = [],
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        chatBotInteractor: AssistChatInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.flashCards = flashCards
         self.router = router
+        self.chatBotInteractor = chatBotInteractor
+        self.scheduler = scheduler
+
+        self.chatBotInteractor
+            .listen
+            .receive(on: scheduler)
+            .sink { [weak self] result in
+                switch result {
+                case .success(let message):
+                    self?.onMessage(message)
+                case .failure(let error):
+                    self?.isLoaderVisible = false
+                    self?.errorMessage = error.localizedDescription
+                }
+            }
+        .store(in: &subscriptions)
     }
 
     // MARK: - Input Actions
@@ -77,5 +102,21 @@ final class AssistFlashCardViewModel {
     func makeCardFlipped(at index: Int) {
         guard flashCards.indices.contains(index) else { return }
         flashCards[index].makeItFlipped()
+    }
+
+    func regenerate() {
+        isLoaderVisible = true
+        chatBotInteractor.publish(
+            action: .chip(option: AssistChipOption(.flashcards), history: chatHistory)
+        )
+    }
+
+    private func onMessage(_ response: AssistChatResponse) {
+        chatHistory = response.chatHistory
+        guard let flashCardModels =  response.flashCards?.flashCardModels else {
+            return
+        }
+        flashCards = flashCardModels
+        isLoaderVisible = false
     }
 }
