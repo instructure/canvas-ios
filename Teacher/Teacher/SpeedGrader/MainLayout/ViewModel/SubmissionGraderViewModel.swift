@@ -41,6 +41,7 @@ class SubmissionGraderViewModel: ObservableObject {
     @Published private(set) var contextColor = Color(Brand.shared.primary)
     let assignment: Assignment
     let submission: Submission
+    let gradeStatuses: [GradeStatus]
 
     // sub-viewmodels
     private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
@@ -57,11 +58,13 @@ class SubmissionGraderViewModel: ObservableObject {
     init(
         assignment: Assignment,
         latestSubmission: Submission,
+        gradeStatuses: [GradeStatus],
         contextColor: AnyPublisher<Color, Never>,
         env: AppEnvironment
     ) {
         self.assignment = assignment
         self.submission = latestSubmission
+        self.gradeStatuses = gradeStatuses
         selectedAttempt = latestSubmission
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
         commentListViewModel = SubmissionCommentsAssembly.makeCommentListViewModel(

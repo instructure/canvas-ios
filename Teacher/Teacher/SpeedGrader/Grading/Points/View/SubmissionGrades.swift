@@ -21,6 +21,7 @@ import SwiftUI
 
 struct SubmissionGrades: View {
     let assignment: Assignment
+    let gradeStatuses: [GradeStatus]
     let containerHeight: CGFloat
     @ObservedObject var submission: Submission
 
@@ -108,6 +109,8 @@ struct SubmissionGrades: View {
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
                         slider
                     }
+
+                    GradeStatusView(viewModel: .init(gradeStatuses: gradeStatuses))
 
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)

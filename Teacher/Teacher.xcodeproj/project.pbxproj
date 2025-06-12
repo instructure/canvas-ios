@@ -166,6 +166,7 @@
 		CFF4AAA32DF9EE0E00B0351F /* GradeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA22DF9EE0E00B0351F /* GradeStatus.swift */; };
 		CFF4AAA52DFAB93000B0351F /* GradeStatusesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA42DFAB93000B0351F /* GradeStatusesInteractor.swift */; };
 		CFF4AAA72DFAD2D400B0351F /* GradeStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAA62DFAD2C200B0351F /* GradeStatusView.swift */; };
+		CFF4AAAB2DFB048200B0351F /* GradeStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF4AAAA2DFB048000B0351F /* GradeStatusViewModel.swift */; };
 		D900B41A29CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */; };
 		D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */; };
 		D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051E29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift */; };
@@ -413,6 +414,7 @@
 		CFF4AAA22DF9EE0E00B0351F /* GradeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatus.swift; sourceTree = "<group>"; };
 		CFF4AAA42DFAB93000B0351F /* GradeStatusesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusesInteractor.swift; sourceTree = "<group>"; };
 		CFF4AAA62DFAD2C200B0351F /* GradeStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusView.swift; sourceTree = "<group>"; };
+		CFF4AAAA2DFB048000B0351F /* GradeStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatusViewModel.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemViewModelTests.swift; sourceTree = "<group>"; };
 		D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemView.swift; sourceTree = "<group>"; };
@@ -1374,6 +1376,7 @@
 		CFF4AAA12DF9E76D00B0351F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CFF4AAAA2DFB048000B0351F /* GradeStatusViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1744,6 +1747,7 @@
 				CF13E559299D1AEC00F57F69 /* QuizSubmissionListView.swift in Sources */,
 				089AACBE2DD5FAAE0022F341 /* TeacherDateSection.swift in Sources */,
 				7D7126B12534B980000DEDE4 /* DrawerContainer.swift in Sources */,
+				CFF4AAAB2DFB048200B0351F /* GradeStatusViewModel.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				7D0A28E2251A8284004FB3B6 /* SubmissionHeaderView.swift in Sources */,
 				5B9C5C072DB9B04000103E21 /* SubmissionCommentsAssembly.swift in Sources */,
