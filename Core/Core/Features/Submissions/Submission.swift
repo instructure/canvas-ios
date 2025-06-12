@@ -40,6 +40,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var attachments: Set<File>?
     @NSManaged public var attempt: Int
     @NSManaged public var body: String?
+    @NSManaged public var customGradeStatusId: String?
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
     @NSManaged public var enteredGrade: String?
     @NSManaged var enteredScoreRaw: NSNumber?
@@ -158,6 +159,7 @@ extension Submission: WriteableModel {
         model.assignmentID = item.assignment_id.value
         model.attempt = item.attempt ?? 0
         model.body = item.body
+        model.customGradeStatusId = item.custom_grade_status_id
         model.enteredGrade = item.entered_grade
         model.enteredScore = item.entered_score
         model.excused = item.excused

@@ -38,6 +38,7 @@ struct APIGradeStatuses: Codable, Equatable {
         let color: String
         let name: String
         let restId: String
+        // TODO: Remove if unused
         let graphId: String
 
         private enum CodingKeys: String, CodingKey {
