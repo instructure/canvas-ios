@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 public enum ModuleState: String, Codable {
     case locked, unlocked, started, completed
@@ -107,7 +107,7 @@ public class Module: NSManagedObject {
         module.state = item.state
         if updateModuleItems {
             module.items = item.items?.map { .save($0, forCourse: courseID, in: context) } ?? []
-        }    
+        }
         module.prerequisiteModuleIDs = item.prerequisite_module_ids
         module.requireSequentialProgress = item.require_sequential_progress
         module.unlockAt = item.unlock_at
