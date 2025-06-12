@@ -20,7 +20,7 @@ import Foundation
 import Combine
 import Core
 
-protocol GradeStatusesInteractor {
+protocol GradeStatusInteractor {
     func fetchCustomGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error>
     func updateSubmissionGradeStatus(
         submissionId: String,
@@ -29,7 +29,7 @@ protocol GradeStatusesInteractor {
     ) -> AnyPublisher<Void, Error>
 }
 
-final class GradeStatusesInteractorLive: GradeStatusesInteractor {
+final class GradeStatusInteractorLive: GradeStatusInteractor {
     private let api: API
 
     init(api: API) {

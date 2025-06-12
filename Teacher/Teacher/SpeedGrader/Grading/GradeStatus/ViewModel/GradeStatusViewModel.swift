@@ -27,7 +27,7 @@ class GradeStatusViewModel: ObservableObject {
     let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
 
     private let gradeStatuses: [GradeStatus]
-    private let interactor: GradeStatusesInteractor
+    private let interactor: GradeStatusInteractor
     private let submissionId: String
     private var subscriptions = Set<AnyCancellable>()
 
@@ -35,7 +35,7 @@ class GradeStatusViewModel: ObservableObject {
         gradeStatuses: [GradeStatus],
         selectedId: String? = nil,
         submissionId: String,
-        interactor: GradeStatusesInteractor
+        interactor: GradeStatusInteractor
     ) {
         self.gradeStatuses = gradeStatuses
         self.interactor = interactor

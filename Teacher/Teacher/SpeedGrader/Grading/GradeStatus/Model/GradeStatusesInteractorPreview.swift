@@ -22,7 +22,7 @@ import Foundation
 import Combine
 import Core
 
-class GradeStatusesInteractorPreview: GradeStatusesInteractor {
+class GradeStatusesInteractorPreview: GradeStatusInteractor {
     let gradeStatuses: [GradeStatus]
 
     init(gradeStatuses: [GradeStatus] = []) {

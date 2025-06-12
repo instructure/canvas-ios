@@ -115,7 +115,7 @@ struct SubmissionGrades: View {
                         viewModel: .init(
                             gradeStatuses: gradeStatuses,
                             submissionId: submission.id,
-                            interactor: GradeStatusesInteractorLive(api: env.api)
+                            interactor: GradeStatusInteractorLive(api: env.api)
                         )
                     )
 
