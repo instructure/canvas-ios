@@ -25,10 +25,8 @@ enum DrawerState {
 }
 
 // Place after the main content in a ZStack(alignment: .bottom)
-struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
+struct DrawerContainer<Content: View>: View {
     let content: Content
-    let leadingContent: Leading
-    let trailingContent: Trailing
     let minHeight: CGFloat
     let maxHeight: CGFloat
 
@@ -51,17 +49,8 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
     }
     @State var translation: CGFloat = 0
 
-    init(
-        state: Binding<DrawerState>,
-        minHeight: CGFloat,
-        maxHeight: CGFloat,
-        @ViewBuilder content: () -> Content,
-        @ViewBuilder leadingContent: () -> Leading,
-        @ViewBuilder trailingContent: () -> Trailing
-    ) {
+    init(state: Binding<DrawerState>, minHeight: CGFloat, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
         self.content = content()
-        self.leadingContent = leadingContent()
-        self.trailingContent = trailingContent()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
         self._state = state
@@ -69,36 +58,26 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                leadingContent
-
-                Button(action: buttonAction) {
-                    HStack {
-                        Spacer(minLength: 4)
-                        RoundedRectangle(cornerRadius: 2)
-                            .fill(Color.borderMedium)
-                            .frame(width: 36, height: 4)
-                            .padding(EdgeInsets(top: 24, leading: 0, bottom: 8, trailing: 0))
-                        Spacer(minLength: 4)
-                    }
-                }
-                .padding(.top, -16)
-                .highPriorityGesture(DragGesture(coordinateSpace: .global)
-                    .onChanged { value in translation = -value.translation.height }
-                    .onEnded { value in
-                        withTransaction(DrawerState.transaction) {
-                            let y = height - value.predictedEndTranslation.height - minHeight
-                            let dy = maxHeight - minHeight
-                            state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
-                            translation = 0
-                        }
-                    }
-                )
-                .accessibility(identifier: "SpeedGrader.drawerGripper")
-                .accessibility(label: buttonA11yText)
-
-                trailingContent
-            }
+            Button(action: buttonAction, label: { HStack {
+                Spacer()
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(Color.borderMedium)
+                    .frame(width: 36, height: 4)
+                    .padding(EdgeInsets(top: 24, leading: 0, bottom: 8, trailing: 0))
+                Spacer()
+            } })
+            .padding(.top, -16)
+            .highPriorityGesture(DragGesture(coordinateSpace: .global)
+                .onChanged { value in translation = -value.translation.height }
+                .onEnded { value in withTransaction(DrawerState.transaction) {
+                    let y = height - value.predictedEndTranslation.height - minHeight
+                    let dy = maxHeight - minHeight
+                    state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
+                    translation = 0
+                } }
+            )
+            .accessibility(identifier: "SpeedGrader.drawerGripper")
+            .accessibility(label: buttonA11yText)
             Spacer(minLength: 4)
             content
         }
@@ -131,4 +110,3 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         }
     }
 }
-
