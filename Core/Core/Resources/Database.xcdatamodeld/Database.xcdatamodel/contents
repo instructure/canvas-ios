@@ -18,7 +18,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="notificationCategory" optional="YES" attributeType="String"/>
-        <attribute name="readState" optional="YES" attributeType="String"/>
+        <attribute name="readState" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="score" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
