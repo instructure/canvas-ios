@@ -78,7 +78,7 @@ struct SubmissionGraderView: View {
     var body: some View {
         GeometryReader { geometry in
             let bottomInset = geometry.safeAreaInsets.bottom
-            let minHeight = bottomInset + 58
+            let minHeight = bottomInset + 86
             let maxHeight = bottomInset + geometry.size.height - 64
             // At 1/4 of a screen offset, scale to 90% and round corners to 20
             let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
@@ -214,6 +214,16 @@ struct SubmissionGraderView: View {
             }
             DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
                 tools(bottomInset: bottomInset, isDrawer: true)
+            } leadingContent: {
+                Button { drawerState != .max ? snapDrawerTo(.max) : snapDrawerTo(.mid) } label: {
+                    drawerState != .max ?
+                    Image(systemName: "arrow.down.backward.and.arrow.up.forward") :
+                    Image(systemName: "arrow.up.forward.and.arrow.down.backward")
+                }
+            } trailingContent: {
+                Button{ drawerState != .min ? snapDrawerTo(.min) : snapDrawerTo(.max) } label: {
+                    drawerState != .min ? Image(systemName: "chevron.down") : Image(systemName: "chevron.up")
+                }
             }
         }
         .onAppear { didChangeLayout(to: .portrait) }
@@ -313,43 +323,6 @@ struct SubmissionGraderView: View {
     @ViewBuilder
     private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
         VStack(spacing: 0) {
-            if isDrawer {
-                let titles = GraderTab.allCases.map {
-                    $0.title(viewModel: viewModel)
-                }
-                OldSegmentedPicker(
-                    titles,
-                    selectedIndex: Binding(
-                        get: { selectedDrawerTabIndex },
-                        set: { newValue in
-                            selectedDrawerTabIndex = newValue ?? 0
-                            if drawerState == .min {
-                                snapDrawerTo(.mid)
-                            }
-                            let newTab = SubmissionGraderView.GraderTab(rawValue: newValue ?? 0)!
-                            withAnimation(.default) {
-                                tab = newTab
-                            }
-                            controller.view.endEditing(true)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                focusedTab = tab
-                            }
-                        }
-                    ),
-                    selectionAlignment: .bottom,
-                    content: { item, _ in
-                        Text(item)
-                            .font(.regular14)
-                            .foregroundColor(.textDark)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .frame(maxWidth: .infinity)
-                            .contentShape(Rectangle())
-                    }
-                )
-                .identifier("SpeedGrader.toolPicker")
-                InstUI.Divider()
-            } else {
                 InstUI.SegmentedPicker(selection: $tab) {
                     ForEach(GraderTab.allCases, id: \.self) { tab in
                         Text(tab.title(viewModel: viewModel))
@@ -357,7 +330,9 @@ struct SubmissionGraderView: View {
                     }
                 }
                 .padding(.horizontal, 16)
-                .frame(height: profileHeaderSize.height)
+                .padding(.top, 8)
+                .padding(.bottom, 16)
+//                .frame(height: profileHeaderSize.height)
                 .onChange(of: tab) {
                     controller.view.endEditing(true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -366,7 +341,7 @@ struct SubmissionGraderView: View {
                 }
                 .identifier("SpeedGrader.toolPicker")
                 InstUI.Divider()
-            }
+
             GeometryReader { geometry in
                 HStack(spacing: 0) {
                     let drawerFileID = Binding<String?>(
