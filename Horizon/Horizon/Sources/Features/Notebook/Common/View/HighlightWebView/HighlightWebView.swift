@@ -76,7 +76,7 @@ final class HighlightWebView: CoreWebView {
 
         self.highlightWebFeature = highlightWebFeature
 
-        super.init(features: [highlightWebFeature])
+        super.init(features: [highlightWebFeature, .enableZoom])
 
         self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
 
