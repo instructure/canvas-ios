@@ -24,29 +24,32 @@ struct CourseNameAndID: Codable, Equatable {
 
 /// These are predefined responses from which a learner can select
 enum AssistStaticBotResponse: Codable, Equatable {
-    case courseAssistance(_ courseName: String)
+    case courseAssistance(_ courseName: String, pageContext: AssistChatPageContext?)
     case review
-    case selectACourse(_ courses: [CourseNameAndID])
+    case selectACourse(_ courses: [CourseNameAndID], pageContext: AssistChatPageContext? = nil)
 
     var chipOptions: [AssistChipOption] {
         switch self {
-        case .courseAssistance:
+        case .courseAssistance(_, let pageContext):
+            if pageContext == nil {
+                return [AssistChipOption.init(assistStaticLearnerResponse: .answerQuestion)]
+            }
             return [
-                .init(
-                    chip: AssistStaticLearnerResponse.review.chip,
-                    localResponse: AssistStaticLearnerResponse.review
-                )
+                AssistChipOption.init(assistStaticLearnerResponse: .flashCards),
+                AssistChipOption.init(assistStaticLearnerResponse: .quiz),
+                AssistChipOption.init(assistStaticLearnerResponse: .answerQuestion)
             ]
         case .review:
             return [
                 AssistChipOption(.flashcards),
                 AssistChipOption(.quiz)
             ]
-        case .selectACourse(let courses):
+        case .selectACourse(let courses, let pageContext):
             return courses.map { course in
                 let localResponse: AssistStaticLearnerResponse = .selectCourse(
                     courseName: course.name,
-                    courseID: course.id
+                    courseID: course.id,
+                    pageContext: pageContext
                 )
                 return .init(
                     chip: localResponse.chip,
@@ -58,28 +61,54 @@ enum AssistStaticBotResponse: Codable, Equatable {
 
     var prompt: String? {
         switch self {
-        case .selectACourse(let courses):
+        case .selectACourse(let courses, _):
             var jsonCourses = "[]"
             if let jsonData = try? JSONEncoder().encode(courses),
                let jsonString = String(data: jsonData, encoding: .utf8) {
                 jsonCourses = jsonString
             }
             return """
-                The user has been asked to select from a list of courses. Those course names and IDs in JSON are [\(jsonCourses)]. Based on the user response select one of the courses and return the JSON of the course you think they've asked for. It's OK if what the user types is not exact. If the user's response does not resemble any of the course names, return an empty string. Only include the JSON in the response, nothing else. Do not include any additional text or explanation.
+                The user has been asked to select from a list of courses. Those course names and IDs in JSON are [\(jsonCourses)]. Based on the user response select one or none of the courses. If you select one of the listed courses, return the JSON of the course you think they've asked for. It's OK if what the user types is not exact but it should be close. If the user's response does not resemble any of the course names, return an empty string. Only include the JSON in the response, nothing else. Do not include any additional text or explanation.
+            """
+        case .review:
+            return """
+                The user has been asked how they would like to review today. Based on the user response, select one of the following options: flashcards or quiz. If the user's response does not resemble either option, return an empty string. Only include the selected option in the response, nothing else. Do not include any additional text or explanation.
             """
         default:
             return nil
         }
     }
 
-    func responseHandler(response: String) -> AssistChatMessage? {
+    func responseHandler(response: String, assistDataEnvironment: AssistDataEnvironment) -> AssistChatMessage? {
         switch self {
-        case .selectACourse(let courses):
+        case .selectACourse(let courses, _):
             if let data = response.data(using: .utf8),
                let course = try? JSONDecoder().decode(CourseNameAndID.self, from: data) {
-               return AssistChatMessage(staticResponse: .courseAssistance(course.name))
+                assistDataEnvironment.setCourseID(course.id)
+                return AssistChatMessage(
+                    staticResponse: .courseAssistance(
+                        course.name,
+                        pageContext: assistDataEnvironment.pageContext.value
+                    )
+                )
             }
             return AssistChatMessage(staticResponse: .selectACourse(courses))
+        case .review:
+            if response.lowercased().contains("flashcards") {
+                return AssistChatMessage(userResponse: "Flashcards")
+            } else if response.lowercased().contains("quiz") {
+                return AssistChatMessage(userResponse: "Quiz")
+            }
+            return nil
+        default:
+            return nil
+        }
+    }
+
+    var service: DomainService.Option? {
+        switch self {
+        case .review:
+            return .cedar
         default:
             return nil
         }
@@ -87,7 +116,7 @@ enum AssistStaticBotResponse: Codable, Equatable {
 
     var text: String {
         switch self {
-        case .courseAssistance(let courseName):
+        case .courseAssistance(let courseName, _):
             return String(
                 format: NSLocalizedString(
                     "How can I help today with the %@ course material?",

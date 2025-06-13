@@ -37,7 +37,14 @@ struct AssistChipOption: Equatable {
         self.prompt = localResponse.chip
     }
 
-    enum Default: CaseIterable {
+    init(assistStaticLearnerResponse: AssistStaticLearnerResponse) {
+        self.chip = assistStaticLearnerResponse.chip
+        self.localResponse = assistStaticLearnerResponse
+
+        self.prompt = assistStaticLearnerResponse.chip
+    }
+
+    enum Default: Codable, CaseIterable {
         case summarize
         case keyTakeaways
         case tellMeMore

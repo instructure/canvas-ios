@@ -37,7 +37,6 @@ final class AssistChatViewModel {
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty
     }
-    var isFreeTextVisible: Bool = false
     var isOpeningVisible: Bool = false
     var openingText: String = ""
 
@@ -152,10 +151,6 @@ final class AssistChatViewModel {
         let lastMessage = response.chatHistory.last
 
         var newMessages: [AssistChatMessageViewModel] = []
-
-        withAnimation {
-            isFreeTextVisible = response.isFreeTextAvailable
-        }
 
         if response.chatHistory.isEmpty {
             let chipOptions = lastMessage?.chipOptions ?? []

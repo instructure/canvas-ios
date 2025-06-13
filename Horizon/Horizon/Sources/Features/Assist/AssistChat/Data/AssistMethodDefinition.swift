@@ -21,6 +21,9 @@ import Core
 import Foundation
 
 class GenerateQuiz: AssistMethodDefinition {
+    enum GenerateQuizError: Error {
+        case failedToGenerateQuiz
+    }
 
     var methodName: String = "generateQuiz"
     var description: String = "Given the ID"
@@ -39,18 +42,18 @@ class GenerateQuiz: AssistMethodDefinition {
         self.cedarDomainService = cedarDomainService
     }
 
-    func handler(_ response: String, chatHistory: [AssistChatMessage]) {
+    func handler(_ response: String, chatHistory: [AssistChatMessage]) -> AnyPublisher<AssistChatResponse, Error> {
         guard let courseID = extract(parameter: "courseID", from: response),
               let pageUrl = extract(parameter: "pageURL", from: response) else {
-            return
+            return Fail(error: GenerateQuizError.failedToGenerateQuiz).eraseToAnyPublisher()
         }
-        ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageUrl))
+        return ReactiveStore(useCase: GetPage(context: .course(courseID), url: pageUrl))
             .getEntities()
             .map { AssistChatPageContext(title: $0.first?.title ?? "", body: $0.first?.body ?? "") }
             .replaceError(with: AssistChatPageContext())
             .flatMap { [weak self] pageContext in
-                guard let self = self else { return .Empty().eraseToAnyPublisher() }
-                return self.quiz(pageContext: pageContext, chatHistory: chatHistory)
+                self?.quiz(pageContext: pageContext, chatHistory: chatHistory) ??
+                    Fail(error: GenerateQuizError.failedToGenerateQuiz).eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
@@ -59,28 +62,36 @@ class GenerateQuiz: AssistMethodDefinition {
         pageContext: AssistChatPageContext,
         chatHistory: [AssistChatMessage]
     ) -> AnyPublisher<AssistChatResponse, Error> {
-        cedarDomainService.api()
-            .compactMap { cedarApi in
-                // TODO: Handle the case where the page context is empty
-                cedarApi
-                    .makeRequest(CedarGenerateQuizMutation(context: pageContext.prompt ?? ""))
+        cedarDomainService
+            .api()
+            .flatMap { cedarApi in
+                guard let prompt = pageContext.prompt else {
+                    return Just(
+                        AssistChatResponse(
+                            AssistChatMessage(botResponse: "Sorry, I couldn't generate a quiz right now. Try again later."),
+                            chatHistory: chatHistory
+                        )
+                    )
+                    .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
-            }
-            .flatMap { (response: CedarGenerateQuizMutation.QuizOutput?) in
-                response?.map { quizOutput in
-                    guard let quizItem = quizOutput.quizItems.first else {
+                }
+                return cedarApi
+                    .makeRequest(CedarGenerateQuizMutation(context: prompt))
+                    .map { quizOutput in
+                        guard let quizItem = quizOutput?.quizItems.first else {
+                            return AssistChatResponse(
+                                AssistChatMessage(
+                                    botResponse: "Sorry, I'm unable to generate a quiz for you at this time."
+                                ),
+                                chatHistory: chatHistory
+                            )
+                        }
                         return AssistChatResponse(
-                            AssistChatMessage(
-                                botResponse: "Sorry, I'm unable to generate a quiz for you at this time."
-                            ),
-                            chatHistory: history
+                            AssistChatMessage(quizItem: quizItem),
+                            chatHistory: chatHistory
                         )
                     }
-                    return AssistChatResponse(
-                        AssistChatMessage(quizItem: quizItem),
-                        chatHistory: history
-                    )
-                }
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
@@ -90,7 +101,7 @@ protocol AssistMethodDefinition {
     var methodName: String { get }
     var description: String { get }
     var parameters: [String: String] { get }
-    func handler(_:String, chatHistory: [AssistChatMessage]) -> Void
+    func handler(_:String, chatHistory: [AssistChatMessage]) -> AnyPublisher<AssistChatResponse, Error>
 }
 
 extension AssistMethodDefinition {

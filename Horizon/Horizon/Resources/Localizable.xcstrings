@@ -103,6 +103,9 @@
     "Arizona (-07:00)" : {
 
     },
+    "Ask a question" : {
+
+    },
     "Assignment due dates" : {
 
     },
@@ -268,6 +271,9 @@
     "Copenhagen (+01:00/+02:00)" : {
 
     },
+    "Create flash cards" : {
+
+    },
     "Cuiaba (-04:00/-04:00)" : {
 
     },
@@ -398,9 +404,6 @@
 
     },
     "Hello, Career!" : {
-
-    },
-    "Help me review material I've already studied" : {
 
     },
     "Helsinki (+02:00/+03:00)" : {
@@ -735,6 +738,9 @@
     "Quiz" : {
 
     },
+    "Quiz me" : {
+
+    },
     "Rangoon (+06:30/+06:30)" : {
 
     },
@@ -988,6 +994,9 @@
 
     },
     "West Central Africa (+01:00)" : {
+
+    },
+    "What is your question today?" : {
 
     },
     "Which of your courses would you like to discuss?" : {

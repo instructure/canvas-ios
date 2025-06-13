@@ -122,7 +122,6 @@ struct AssistChatView: View {
                 .disabled(viewModel.isDisableSendButton)
             }
         }
-        .opacity(viewModel.isFreeTextVisible ? 1 : 0)
     }
 }
 

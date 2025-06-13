@@ -18,7 +18,7 @@
 
 /// The AssistChatPageContext is used to capture the context of the page that the user is interacting with.
 /// This can be sent with the prompt for tha AI to have more context when generating responses.
-struct AssistChatPageContext {
+struct AssistChatPageContext: Codable, Hashable, Sendable {
     let title: String?
     let body: String?
 

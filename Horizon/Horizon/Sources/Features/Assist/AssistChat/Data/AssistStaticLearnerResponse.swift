@@ -19,29 +19,53 @@ import Foundation
 
 /// These are predefined responses from which a learner can select
 enum AssistStaticLearnerResponse {
-    case selectCourse(courseName: String, courseID: String)
-    case review
+    case answerQuestion
+    case selectCourse(courseName: String, courseID: String, pageContext: AssistChatPageContext?)
+    case flashCards
+    case quiz
 
     /// Based on a selected learner response, compose a response for the AI Assistant
-    func assistChatResponse(chatHistory: [AssistChatMessage]) -> AssistChatResponse {
+    func assistChatResponse(chatHistory: [AssistChatMessage]) -> AssistChatResponse? {
+        let newChatHistory = chatHistory + [AssistChatMessage(userResponse: chip)]
         switch self {
-        case .selectCourse(let courseName, _):
+        case .answerQuestion:
+            return AssistChatResponse(
+                AssistChatMessage(
+                    botResponse: String(localized: "What is your question today?", bundle: .horizon)
+                ),
+                chatHistory: newChatHistory
+            )
+        case .selectCourse(let courseName, _, let pageContext):
             return .courseHelp(
                 courseName: courseName,
-                chatHistory: chatHistory + [AssistChatMessage(userResponse: chip)]
+                pageContext: pageContext,
+                chatHistory: newChatHistory
             )
-        case .review:
-            return .review(chatHistory: chatHistory + [AssistChatMessage(userResponse: chip)])
+        default:
+            return nil
         }
     }
 
     /// Returns a localized string for the chip option
     var chip: String {
         switch self {
-        case .selectCourse(let courseName, _):
+        case .answerQuestion:
+            return String(localized: "Ask a question", bundle: .horizon)
+        case .selectCourse(let courseName, _, _):
             return courseName
-        case .review:
-            return String(localized: "Help me review material I've already studied")
+        case .flashCards:
+            return String(localized: "Create flash cards", bundle: .horizon)
+        case .quiz:
+            return String(localized: "Quiz me", bundle: .horizon)
+        }
+    }
+
+    var service: DomainService.Option? {
+        switch self {
+        case .quiz, .flashCards:
+            return .cedar
+        default:
+            return nil
         }
     }
 }

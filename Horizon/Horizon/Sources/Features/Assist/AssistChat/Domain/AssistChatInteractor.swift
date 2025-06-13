@@ -40,10 +40,9 @@ class AssistChatInteractorLive: AssistChatInteractor {
     // MARK: - Private
 
     private let actionPublisher = CurrentValueRelay<AssistChatAction?>(nil)
+    private let assistDataEnvironment: AssistDataEnvironment = AssistDataEnvironment()
     /// The ID of the course we're currently discussing
-    private var courseID: String?
     private let localURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-    private let pageContextPublisher: CurrentValueSubject<AssistChatPageContext, Never> = .init(AssistChatPageContext())
     private let responsePublisher = PassthroughSubject<AssistChatResponse, Error>()
     private var subscriptions = Set<AnyCancellable>()
     private var userShortName: String? {
@@ -73,8 +72,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
             .map { AssistChatPageContext(title: $0.first?.title ?? "", body: $0.first?.body ?? "") }
             .replaceError(with: AssistChatPageContext())
             .sink { [weak self] pageContext in
-                guard let self = self else { return }
-                self.pageContextPublisher.send(pageContext)
+                self?.assistDataEnvironment.setPageContext(pageContext)
             }
             .store(in: &subscriptions)
     }
@@ -120,8 +118,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
             }
             .replaceError(with: AssistChatPageContext())
             .sink { [weak self] pageContext in
-                guard let self = self else { return }
-                self.pageContextPublisher.send(pageContext)
+                self?.assistDataEnvironment.setPageContext(pageContext)
             }
             .store(in: &subscriptions)
     }
@@ -137,28 +134,24 @@ class AssistChatInteractorLive: AssistChatInteractor {
         self.pineDomainService = pineDomainService
         self.downloadFileInteractor = downloadFileInteractor
         self.userID = userID
-        self.courseID = courseID
+        self.assistDataEnvironment.setCourseID(courseID)
 
         self.listenForUserShortNameUpdates()
 
         userShortNamePublisher.sink { [weak self] userShortName in
             guard let self = self, !userShortName.isEmpty else { return }
-            return self.pageContextPublisher.sink { [weak self] _ in
-                guard let self = self else { return }
-                return self.actionPublisher.flatMap { [weak self] _ in
-                    guard let self = self else {
-                        return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
-                    }
-                    return self.actionHandler()
+            return self.actionPublisher.flatMap { [weak self] _ in
+                guard let self = self else {
+                    return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
                 }
-                .sink(
-                    receiveCompletion: { _ in },
-                    receiveValue: { [weak self] response in
-                        self?.responsePublisher.send(response)
-                    }
-                )
-                .store(in: &self.subscriptions)
+                return self.actionHandler()
             }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] response in
+                    self?.responsePublisher.send(response)
+                }
+            )
             .store(in: &self.subscriptions)
         }
         .store(in: &subscriptions)
@@ -198,8 +191,8 @@ class AssistChatInteractorLive: AssistChatInteractor {
         case .chip(let option, let history):
             prompt = option.prompt ?? ""
             assistStaticLearnerResponse = option.localResponse
-            if case .selectCourse(_, let courseID) = assistStaticLearnerResponse {
-                self.courseID = courseID
+            if case .selectCourse(_, let courseID, _) = assistStaticLearnerResponse {
+                self.assistDataEnvironment.setCourseID(courseID)
             }
             chatHistory = history
         }
@@ -209,8 +202,9 @@ class AssistChatInteractorLive: AssistChatInteractor {
             return courseSelectionResponse(chatHistory: chatHistory).eraseToAnyPublisher()
         }
 
-        if let localResponse = assistStaticLearnerResponse {
-            return Just(localResponse.assistChatResponse(chatHistory: chatHistory))
+        if let localResponse = assistStaticLearnerResponse,
+           let assistChatResponse = localResponse.assistChatResponse(chatHistory: chatHistory) {
+            return Just(assistChatResponse)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
@@ -221,21 +215,32 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 guard let self = weakSelf else {
                     return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
                 }
-                var service = self.cedarConversation(prompt: prompt, history: newHistory)
-                if let courseID = self.courseID {
-                    service = self.pineRAGService(
-                        history: newHistory,
-                        courseID: courseID
+                if assistStaticBotResponse?.responseHandler != nil {
+                    return self.cedarConversation(prompt: prompt, history: newHistory)
+                        .map {
+                            let message = assistStaticBotResponse?
+                                .responseHandler(response: $0, assistDataEnvironment: self.assistDataEnvironment) ??
+                                AssistChatMessage(botResponse: $0)
+                            return AssistChatResponse(
+                                message,
+                                chatHistory: newHistory
+                            )
+                        }
+                        .eraseToAnyPublisher()
+                }
+                return self.classifier(
+                    prompt: prompt,
+                    action: action,
+                    history: newHistory
+                )
+                .flatMap {
+                    self.handleClassifierPromptResponse(
+                        classification: $0,
+                        action: action,
+                        history: newHistory
                     )
                 }
-                return service
-                    .map {
-                        AssistChatResponse(
-                            assistStaticBotResponse?.responseHandler(response: $0) ?? AssistChatMessage(botResponse: $0),
-                            chatHistory: newHistory
-                        )
-                    }
-                    .eraseToAnyPublisher()
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
@@ -259,11 +264,19 @@ class AssistChatInteractorLive: AssistChatInteractor {
         )
         .getEntities()
         .map { [weak self] courses in
-            if let course = courses.first(where: { $0.course.id == self?.courseID }) {
-                return .courseHelp(courseName: course.course.name ?? "", chatHistory: chatHistory)
+            if let course = courses.first(where: { $0.course.id == self?.assistDataEnvironment.courseID.value }) {
+                return .courseHelp(
+                    courseName: course.course.name ?? "",
+                    pageContext: self?.assistDataEnvironment.pageContext.value,
+                    chatHistory: chatHistory
+                )
             }
             if let courseName = courses.first?.course.name, courses.count == 1 {
-                return AssistChatResponse.courseHelp(courseName: courseName)
+                return AssistChatResponse.courseHelp(
+                    courseName: courseName,
+                    pageContext: self?.assistDataEnvironment.pageContext.value,
+                    chatHistory: chatHistory
+                )
             }
             if courses.count > 1 {
                 return AssistChatResponse.courseSelection(
@@ -308,7 +321,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
 
     private func cedarBasicChat(
         prompt: String,
-        pageContext: AssistChatPageContext = AssistChatPageContext()
+        pageContext: AssistChatPageContext?
     ) -> AnyPublisher<String, Error> {
         cedarDomainService.api()
             .flatMap { cedarApi in
@@ -349,7 +362,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         let longExplanations = ClassifierOption.allCases.map { $0.longExplanation }.joined(separator: ", ")
         let defaultOption = ClassifierOption.defaultOption.rawValue
         let shortOptions = ClassifierOption.allCases.map { $0.rawValue }.joined(separator: ", ")
-        let pageContext = pageContextPublisher.value
+        let pageContext = assistDataEnvironment.pageContext.value
 
         // swiftlint:disable line_length
         let classifierPrompt =
@@ -362,10 +375,10 @@ class AssistChatInteractorLive: AssistChatInteractor {
     /// Calls the basic chat endpoint to generate flashcards
     private func flashcards(
         action: AssistChatAction,
-        history: [AssistChatMessage] = []
+        history: [AssistChatMessage] = [],
+        pageContext: AssistChatPageContext
     ) -> AnyPublisher<AssistChatResponse, Error> {
         let chipPrompt = AssistChipOption(AssistChipOption.Default.flashcards, userShortName: userShortName).prompt ?? ""
-        let pageContext = pageContextPublisher.value
         let pageContextPrompt = pageContext.prompt ?? ""
         let prompt = "\(chipPrompt) \(pageContextPrompt) \(history.json)"
         return cedarBasicChat(
@@ -386,37 +399,45 @@ class AssistChatInteractorLive: AssistChatInteractor {
     private func handleClassifierPromptResponse(
         classification: String,
         action: AssistChatAction,
-        history: [AssistChatMessage],
-        courseID: String
+        history: [AssistChatMessage]
     ) -> AnyPublisher<AssistChatResponse, Error> {
         let defaultOption = ClassifierOption.defaultOption
         let classifierOption = ClassifierOption(rawValue: classification) ?? defaultOption
-        let pageContext = pageContextPublisher.value
-
-        // only use Pine chat if we don't have a document context
-        let usePineRAGService = pageContext.prompt == nil
 
         switch classifierOption {
         case .chat:
-            let chatMethod =
-                usePineRAGService
-            ? pineRAGService(history: history, courseID: courseID)
-                : cedarBasicChat(prompt: "\(history.json) \(pageContext.prompt ?? "")", pageContext: pageContext)
-            return
-                chatMethod
-                .map { AssistChatResponse(AssistChatMessage(botResponse: $0), chatHistory: history) }
+            if let courseID = assistDataEnvironment.courseID.value {
+                return pineRAGService(history: history, courseID: courseID).map {
+                    AssistChatResponse(AssistChatMessage(botResponse: $0), chatHistory: history)
+                }
                 .eraseToAnyPublisher()
+            }
+            if let pageContext = assistDataEnvironment.pageContext.value {
+                return cedarBasicChat(
+                    prompt: "\(history.json) \(pageContext.prompt ?? "")",
+                    pageContext: pageContext).map {
+                        AssistChatResponse(AssistChatMessage(botResponse: $0), chatHistory: history)
+                    }
+                    .eraseToAnyPublisher()
+            }
         case .flashcards:
-            return flashcards(
-                action: action,
-                history: history
-            )
+            if let pageContext = assistDataEnvironment.pageContext.value {
+                return flashcards(
+                    action: action,
+                    history: history,
+                    pageContext: pageContext
+                )
+            }
         case .quiz:
-            return quiz(
-                action: action,
-                history: history
-            )
+            if let pageContext = assistDataEnvironment.pageContext.value {
+                return quiz(
+                    action: action,
+                    history: history,
+                    pageContext: pageContext
+                )
+            }
         }
+        return courseSelectionResponse(chatHistory: history)
     }
 
     /// publishes an updated history based on the action the user took, then returns that updated history
@@ -449,10 +470,10 @@ class AssistChatInteractorLive: AssistChatInteractor {
     /// Calls the cedar endpoint to generate a quiz
     private func quiz(
         action: AssistChatAction,
-        history: [AssistChatMessage]
+        history: [AssistChatMessage],
+        pageContext: AssistChatPageContext
     ) -> AnyPublisher<AssistChatResponse, Error> {
-        let pageContext = pageContextPublisher.value
-        return cedarDomainService.api()
+        cedarDomainService.api()
             .flatMap { cedarApi in
                 // swiftlint:disable line_length
                 let prompt =
@@ -511,7 +532,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
 
 // MARK: - Extensions
 
-private extension CedarGenerateQuizMutation.QuizOutput {
+extension CedarGenerateQuizMutation.QuizOutput {
     var quizItems: [QuizItem] {
         data.generateQuiz.map {
             QuizItem(
@@ -528,7 +549,7 @@ private extension Array where Element == AssistChatMessage {
         prependUserMessage()
             .map {
                 DomainServiceConversationMessage(
-                    text: $0.prompt ?? $0.text ?? "",
+                    text: $0.text ?? $0.prompt ?? "",
                     role: $0.role == .Assistant ? .Assistant : .User
                 )
             }

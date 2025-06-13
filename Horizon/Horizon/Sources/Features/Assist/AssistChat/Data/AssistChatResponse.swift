@@ -29,7 +29,6 @@ class AssistChatResponse {
     // MARK: - Optional
 
     let isLoading: Bool
-    let isFreeTextAvailable: Bool
 
     /// Publishing an updated chat history. This happens when chatting with the bot
     init(
@@ -40,7 +39,6 @@ class AssistChatResponse {
     ) {
         self.chatHistory = chatHistory + [message]
         self.isLoading = isLoading
-        self.isFreeTextAvailable = isFreeTextAvailable
     }
 }
 
@@ -48,12 +46,12 @@ class AssistChatResponse {
 extension AssistChatResponse {
     static func courseHelp(
         courseName: String,
+        pageContext: AssistChatPageContext?,
         chatHistory: [AssistChatMessage] = []
     ) -> AssistChatResponse {
         .init(
-            AssistChatMessage(staticResponse: .courseAssistance(courseName)),
-            chatHistory: chatHistory,
-            isFreeTextAvailable: true
+            AssistChatMessage(staticResponse: .courseAssistance(courseName, pageContext: pageContext)),
+            chatHistory: chatHistory
         )
     }
 }
@@ -66,8 +64,7 @@ extension AssistChatResponse {
     ) -> AssistChatResponse {
         .init(
             AssistChatMessage(staticResponse: .selectACourse(courses)),
-            chatHistory: chatHistory,
-            isFreeTextAvailable: true
+            chatHistory: chatHistory
         )
     }
 }
@@ -78,8 +75,7 @@ extension AssistChatResponse {
         self.init(
             AssistChatMessage(
                 botResponse: String(localized: "Thanks for visiting! Please check back later.")
-            ),
-            isFreeTextAvailable: false
+            )
         )
     }
 }
@@ -90,8 +86,7 @@ extension AssistChatResponse {
             AssistChatMessage(
                 staticResponse: .review
             ),
-            chatHistory: chatHistory,
-            isFreeTextAvailable: false
+            chatHistory: chatHistory
         )
     }
 }
