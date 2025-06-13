@@ -19,7 +19,7 @@
 import WidgetKit
 import SwiftUI
 
-struct GradesWidgetView: View {
+struct GradesWidgetOldView: View {
     private let model: GradeModel
     private var firstGrade: GradeItem? { model.assignmentGrades.first ?? model.courseGrades.first }
     @Environment(\.widgetFamily)
@@ -60,10 +60,10 @@ struct GradesWidgetView: View {
 
 #if DEBUG
 
-struct GradesWidgetPreviews: PreviewProvider {
+struct GradesWidgetOldPreviews: PreviewProvider {
     static var previews: some View {
         let data = GradeModel.make()
-        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemSmall))
+        GradesWidgetOldView(model: data).previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
 

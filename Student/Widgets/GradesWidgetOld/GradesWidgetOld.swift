@@ -16,16 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import WidgetKit
+import SwiftUI
 
-@main
-struct Widgets: WidgetBundle {
+struct GradesWidgetOld: Widget {
+    let kind: String = "GradesWidgetOld"
 
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        GradeWidget()
-        TodoWidget()
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: GradesWidgetOldProvider()) { model in
+            GradesWidgetOldView(model: model)
+        }
+        .configurationDisplayName(String(localized: "Grades", comment: "Name of the grades widget"))
+        .description(String(localized: "View the latest grades from assignments and your favorite courses.", comment: "Description of the grades widget"))
     }
 }

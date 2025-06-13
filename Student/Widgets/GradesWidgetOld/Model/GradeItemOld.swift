@@ -21,7 +21,7 @@ import SwiftUI
 import WidgetKit
 
 /** Widgets need the Encodable protocol but since Color is not Encodable we store its hex value as a string. */
-struct GradeItem: Hashable, Encodable {
+struct GradeItemOld: Hashable, Encodable {
     let name: String
     let grade: String
     let colorHex: String

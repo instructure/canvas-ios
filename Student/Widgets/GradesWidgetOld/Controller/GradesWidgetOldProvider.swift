@@ -19,14 +19,14 @@
 import Core
 import WidgetKit
 
-class GradesWidgetProvider: CommonWidgetProvider<GradeModel> {
+class GradesWidgetOldProvider: CommonWidgetProvider<GradeModelOld> {
     private var colors: Store<GetCustomColors>?
     private var submissions: Store<GetRecentlyGradedSubmissions>?
     private var courses: Store<GetCourses>?
     private var favoriteCourses: Store<GetCourses>?
 
     init() {
-        super.init(loggedOutModel: GradeModel(isLoggedIn: false), timeout: 2 * 60 * 60)
+        super.init(loggedOutModel: GradeModelOld(isLoggedIn: false), timeout: 2 * 60 * 60)
     }
 
     override func fetchData() {
@@ -58,6 +58,6 @@ class GradesWidgetProvider: CommonWidgetProvider<GradeModel> {
         }
         let courseGrades = favoriteCourses.all.map { GradeItem(course: $0) }
 
-        updateWidget(model: GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades))
+        updateWidget(model: GradeModelOld(assignmentGrades: assignmentGrades, courseGrades: courseGrades))
     }
 }

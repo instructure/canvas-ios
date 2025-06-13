@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import WidgetKit
 
-@main
-struct Widgets: WidgetBundle {
+struct GradeWidgetEntry: TimelineEntry {
+    static let publicPreview: Self = .init(
+        data: .make(),
+        date: Date()
+    )
+    static let loggedOutModel: Self = .init(
+        data: GradeModel(isLoggedIn: false),
+        date: Date()
+    )
 
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        GradeWidget()
-        TodoWidget()
-    }
+    let data: GradeModel
+    let date: Date
 }

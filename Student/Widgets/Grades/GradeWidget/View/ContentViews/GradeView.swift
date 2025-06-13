@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import WidgetKit
+import SwiftUI
+import Core
 
-@main
-struct Widgets: WidgetBundle {
+struct GradeView: View {
+    @Environment(\.widgetFamily) private var family
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        GradeWidget()
-        TodoWidget()
+    @ScaledMetric private var scale: CGFloat = 1
+
+    private let gradeItem: GradeItem
+
+    init(gradeItem: GradeItem) {
+        self.gradeItem = gradeItem
+    }
+
+    var body: some View {
+        // To do
     }
 }
+
+// MARK: - Previews
+
+#if DEBUG
+
+#Preview("GradeWidgetData", as: .systemSmall) {
+    GradeWidget()
+} timeline: {
+    GradeWidgetEntry(data: GradeModel.make(), date: Date())
+}
+
+#endif

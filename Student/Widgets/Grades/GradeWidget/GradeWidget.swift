@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
-struct GradesWidget: Widget {
-    let kind: String = "GradesWidget"
+struct GradeWidget: Widget {
+    static let kind: String = "GradeWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: GradesWidgetProvider()) { model in
-            GradesWidgetView(model: model)
+        StaticConfiguration(kind: Self.kind, provider: GradeWidgetProvider()) { model in
+            GradeWidgetScreen(model: model.data)
         }
-        .configurationDisplayName(String(localized: "Grades", comment: "Name of the grades widget"))
-        .description(String(localized: "View the latest grades from assignments and your favorite courses.", comment: "Description of the grades widget"))
+        .contentMarginsDisabled()
+        .configurationDisplayName(String(localized: "Grade Widget", comment: "Name of the grade widget"))
+        .description(String(localized: "View the grade of your course.", comment: "Description of the grade widget"))
+        .supportedFamilies([.systemSmall])
     }
 }
+
+#if DEBUG
+
+#Preview("GradeWidget", as: .systemSmall) {
+    GradeWidget()
+} timeline: {
+    GradeWidgetEntry(data: GradeModel.make(), date: Date())
+}
+
+#endif

@@ -121,6 +121,7 @@
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>GradeWidgetIntentIntent</string>
 		<string>com.instructure.icanvas.watchApp</string>
 		<string>com.instructure.siri.shortcut.getgrades</string>
 	</array>
