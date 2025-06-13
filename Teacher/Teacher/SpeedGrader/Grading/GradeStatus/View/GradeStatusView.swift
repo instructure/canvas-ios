@@ -78,6 +78,7 @@ struct GradeStatusView: View {
                 gradeStatuses: statuses,
                 customGradeStatusId: nil,
                 latePolicyStatus: nil,
+                userId: "",
                 submissionId: "",
                 interactor: GradeStatusInteractorPreview(gradeStatuses: statuses)
             )

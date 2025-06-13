@@ -29,11 +29,12 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     public let userID: String
     public let context: Context
 
+    let gradeStatusInteractor: GradeStatusInteractor
+
     private let env: AppEnvironment
     private let filter: [GetSubmissions.Filter]
     private var subscriptions = Set<AnyCancellable>()
     private let sortNeedsGradingSubmissionsFirst: Bool
-    private let gradeStatusInteractor: GradeStatusInteractor
 
     init(
         context: Context,

@@ -23,6 +23,8 @@ import Combine
 import Core
 
 class GradeStatusInteractorPreview: GradeStatusInteractor {
+    var refreshSubmission: ((String) -> Void)?
+
     let gradeStatuses: [GradeStatus]
 
     init(gradeStatuses: [GradeStatus] = []) {
@@ -37,6 +39,7 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
 
     func updateSubmissionGradeStatus(
         submissionId: String,
+        userId: String,
         customGradeStatusId: String?,
         latePolicyStatus: String?
     ) -> AnyPublisher<Void, Error> {

@@ -22,6 +22,8 @@ import Combine
 import Core
 
 class SpeedGraderInteractorPreview: SpeedGraderInteractor {
+    var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorPreview()
+
     let contextInfo = CurrentValueSubject<SpeedGraderContextInfo?, Never>(
         .init(
             courseName: "Course name with a lot of info in it",

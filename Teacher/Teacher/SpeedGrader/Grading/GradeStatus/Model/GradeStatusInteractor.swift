@@ -21,15 +21,21 @@ import Combine
 import Core
 
 protocol GradeStatusInteractor {
+    /// When we update a submission's grade status, we want to refresh the submission in the DB.
+    var refreshSubmission: ((_ userId: String) -> Void)? { get set }
+
     func fetchGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error>
+
     func updateSubmissionGradeStatus(
         submissionId: String,
+        userId: String,
         customGradeStatusId: String?,
         latePolicyStatus: String?
     ) -> AnyPublisher<Void, Error>
 }
 
 final class GradeStatusInteractorLive: GradeStatusInteractor {
+    var refreshSubmission: ((_ userId: String) -> Void)?
     private let api: API
 
     init(api: API) {
@@ -52,6 +58,7 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
 
     func updateSubmissionGradeStatus(
         submissionId: String,
+        userId: String,
         customGradeStatusId: String?,
         latePolicyStatus: String?
     ) -> AnyPublisher<Void, Error> {
@@ -61,7 +68,10 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
             latePolicyStatus: latePolicyStatus
         )
         return api.makeRequest(request)
-            .mapToVoid()
+            .map { [weak self] _ in
+                self?.refreshSubmission?(userId)
+                return ()
+            }
             .eraseToAnyPublisher()
     }
 }

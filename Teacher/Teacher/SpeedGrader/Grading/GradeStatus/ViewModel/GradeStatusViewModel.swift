@@ -39,6 +39,7 @@ class GradeStatusViewModel: ObservableObject {
     private let gradeStatuses: [GradeStatus]
     private let interactor: GradeStatusInteractor
     private let submissionId: String
+    private let userId: String
     private var subscriptions = Set<AnyCancellable>()
     private static let defaultOption = OptionItem(
         id: "none",
@@ -49,14 +50,17 @@ class GradeStatusViewModel: ObservableObject {
         gradeStatuses: [GradeStatus],
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
-        selectedId: String? = nil,
+        userId: String,
         submissionId: String,
         interactor: GradeStatusInteractor
     ) {
         self.gradeStatuses = gradeStatuses
         self.interactor = interactor
         self.submissionId = submissionId
-        options = gradeStatuses.map { OptionItem(id: $0.id, title: $0.name) }
+        self.userId = userId
+        options = gradeStatuses
+            .map { OptionItem(id: $0.id, title: $0.name) }
+            .sorted { $0.title < $1.title }
 
         if let initialStatus = gradeStatuses.gradeStatusFor(
             customGradeStatusId: customGradeStatusId,
@@ -84,11 +88,12 @@ class GradeStatusViewModel: ObservableObject {
                 self?.isLoading = true
                 return (selectedOption, selectedStatus)
             }
-            .flatMap { [submissionId, interactor] (selectedOption, selectedStatus) in
+            .flatMap { [submissionId, userId, interactor] (selectedOption, selectedStatus) in
                 let customGradeStatusId = selectedStatus.isCustom ? selectedStatus.id : nil
                 let latePolicyStatus = selectedStatus.isCustom ? nil : selectedStatus.id
                 return interactor.updateSubmissionGradeStatus(
                     submissionId: submissionId,
+                    userId: userId,
                     customGradeStatusId: customGradeStatusId,
                     latePolicyStatus: latePolicyStatus
                 )
@@ -100,7 +105,7 @@ class GradeStatusViewModel: ObservableObject {
                     self?.isLoading = false
                     self?.isShowingSaveFailedAlert = true
                 },
-                receiveValue: { [weak self] (selectedOption, selectedStatus) in
+                receiveValue: { [weak self] (selectedOption, _) in
                     self?.selectedOption = selectedOption
                     self?.isLoading = false
                 }

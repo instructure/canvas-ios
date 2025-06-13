@@ -61,6 +61,7 @@ class SubmissionGraderViewModel: ObservableObject {
         latestSubmission: Submission,
         gradeStatuses: [GradeStatus],
         contextColor: AnyPublisher<Color, Never>,
+        gradeStatusInteractor: GradeStatusInteractor,
         env: AppEnvironment
     ) {
         self.assignment = assignment
@@ -79,8 +80,9 @@ class SubmissionGraderViewModel: ObservableObject {
             gradeStatuses: gradeStatuses,
             customGradeStatusId: submission.customGradeStatusId,
             latePolicyStatus: submission.latePolicyStatus,
+            userId: submission.userID,
             submissionId: submission.id,
-            interactor: GradeStatusInteractorLive(api: env.api)
+            interactor: gradeStatusInteractor
         )
         self.env = env
 
