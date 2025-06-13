@@ -24,7 +24,13 @@ class GradeStatusViewModel: ObservableObject {
     // MARK: - Outputs
     @Published private(set) var selectedOption: OptionItem
     @Published private(set) var isLoading: Bool = false
+    @Published var isShowingSaveFailedAlert = false
     let options: [OptionItem]
+    let errorAlertViewModel = ErrorAlertViewModel(
+        title: String(localized: "Error", bundle: .teacher),
+        message: String(localized: "Failed to save grade status.\nPlease try again.", bundle: .teacher),
+        buttonTitle: String(localized: "OK", bundle: .teacher)
+    )
 
     // MARK: - Inputs
     let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
@@ -76,30 +82,29 @@ class GradeStatusViewModel: ObservableObject {
             }
             .map { [weak self] (selectedOption: OptionItem, selectedStatus: GradeStatus) in
                 self?.isLoading = true
-                self?.selectedOption = selectedOption
-                return selectedStatus
+                return (selectedOption, selectedStatus)
             }
-            .flatMap { [submissionId, interactor] newStatus in
-                let customGradeStatusId = newStatus.isCustom ? newStatus.id : nil
-                let latePolicyStatus = newStatus.isCustom ? nil : newStatus.id
+            .flatMap { [submissionId, interactor] (selectedOption, selectedStatus) in
+                let customGradeStatusId = selectedStatus.isCustom ? selectedStatus.id : nil
+                let latePolicyStatus = selectedStatus.isCustom ? nil : selectedStatus.id
                 return interactor.updateSubmissionGradeStatus(
                     submissionId: submissionId,
                     customGradeStatusId: customGradeStatusId,
                     latePolicyStatus: latePolicyStatus
                 )
+                .map { (selectedOption, selectedStatus) }
             }
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished:
+            .receive(on: RunLoop.main)
+            .sinkFailureOrValue(
+                receiveFailure: { [weak self] _ in
                     self?.isLoading = false
-                case .failure:
+                    self?.isShowingSaveFailedAlert = true
+                },
+                receiveValue: { [weak self] (selectedOption, selectedStatus) in
+                    self?.selectedOption = selectedOption
                     self?.isLoading = false
-                    // Handle error appropriately, e.g., show an alert
                 }
-            } receiveValue: { [weak self] _ in
-                // Optionally handle success, e.g., update UI or notify user
-                self?.isLoading = false
-            }
+            )
             .store(in: &subscriptions)
     }
 }

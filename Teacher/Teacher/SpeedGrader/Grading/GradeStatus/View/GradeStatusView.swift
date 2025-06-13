@@ -35,6 +35,10 @@ struct GradeStatusView: View {
             allOptions: viewModel.options,
             label: { cell }
         )
+        .errorAlert(
+            isPresented: $viewModel.isShowingSaveFailedAlert,
+            presenting: viewModel.errorAlertViewModel
+        )
     }
 
     private var cell: some View {
