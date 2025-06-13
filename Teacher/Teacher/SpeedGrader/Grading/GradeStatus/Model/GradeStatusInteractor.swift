@@ -21,7 +21,7 @@ import Combine
 import Core
 
 protocol GradeStatusInteractor {
-    func fetchCustomGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error>
+    func fetchGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error>
     func updateSubmissionGradeStatus(
         submissionId: String,
         customGradeStatusId: String?,
@@ -36,7 +36,7 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
         self.api = api
     }
 
-    func fetchCustomGradeStatuses(
+    func fetchGradeStatuses(
         courseID: String
     ) -> AnyPublisher<[GradeStatus], Error> {
         let request = GetGradeStatusesRequest(courseID: courseID)

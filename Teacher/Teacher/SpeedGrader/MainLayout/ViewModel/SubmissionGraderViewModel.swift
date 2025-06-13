@@ -46,6 +46,7 @@ class SubmissionGraderViewModel: ObservableObject {
     // sub-viewmodels
     private(set) var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
     let commentListViewModel: SubmissionCommentListViewModel
+    let gradeStatusViewModel: GradeStatusViewModel
 
     // MARK: - Inputs
 
@@ -73,6 +74,13 @@ class SubmissionGraderViewModel: ObservableObject {
             latestAttemptNumber: latestSubmission.attempt,
             contextColor: contextColor,
             env: env
+        )
+        gradeStatusViewModel = GradeStatusViewModel(
+            gradeStatuses: gradeStatuses,
+            customGradeStatusId: submission.customGradeStatusId,
+            latePolicyStatus: submission.latePolicyStatus,
+            submissionId: submission.id,
+            interactor: GradeStatusInteractorLive(api: env.api)
         )
         self.env = env
 

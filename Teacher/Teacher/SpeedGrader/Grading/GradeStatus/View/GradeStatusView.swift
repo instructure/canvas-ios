@@ -47,7 +47,7 @@ struct GradeStatusView: View {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
             } else {
-                Text(viewModel.selectedOption?.title ?? "None")
+                Text(viewModel.selectedOption.title)
                     .font(.system(size: 20, weight: .regular))
                     .foregroundColor(Color(red: 0.53, green: 0.57, blue: 0.62))
                 Image(systemName: "chevron.down")
@@ -72,9 +72,10 @@ struct GradeStatusView: View {
         GradeStatusView(
             viewModel: .init(
                 gradeStatuses: statuses,
-                selectedId: nil,
+                customGradeStatusId: nil,
+                latePolicyStatus: nil,
                 submissionId: "",
-                interactor: GradeStatusesInteractorPreview(gradeStatuses: statuses)
+                interactor: GradeStatusInteractorPreview(gradeStatuses: statuses)
             )
         )
     }

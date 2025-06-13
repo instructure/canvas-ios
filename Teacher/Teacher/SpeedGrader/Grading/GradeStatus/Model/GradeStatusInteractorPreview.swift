@@ -22,14 +22,14 @@ import Foundation
 import Combine
 import Core
 
-class GradeStatusesInteractorPreview: GradeStatusInteractor {
+class GradeStatusInteractorPreview: GradeStatusInteractor {
     let gradeStatuses: [GradeStatus]
 
     init(gradeStatuses: [GradeStatus] = []) {
         self.gradeStatuses = gradeStatuses
     }
 
-    func fetchCustomGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error> {
+    func fetchGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error> {
         Just(gradeStatuses)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

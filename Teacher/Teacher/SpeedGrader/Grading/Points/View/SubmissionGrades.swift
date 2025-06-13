@@ -37,6 +37,7 @@ struct SubmissionGrades: View {
     @State var sliderValue: Double?
 
     @ObservedObject var rubricsViewModel: RubricsViewModel
+    @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
 
     var hasLateDeduction: Bool {
         submission.late &&
@@ -110,14 +111,7 @@ struct SubmissionGrades: View {
                         slider
                     }
 
-                    // TODO: Extract interactor creation
-                    GradeStatusView(
-                        viewModel: .init(
-                            gradeStatuses: gradeStatuses,
-                            submissionId: submission.id,
-                            interactor: GradeStatusInteractorLive(api: env.api)
-                        )
-                    )
+                    GradeStatusView(viewModel: gradeStatusViewModel)
 
                     if assignment.rubric?.isEmpty == false {
                         Divider().padding(.horizontal, 16)

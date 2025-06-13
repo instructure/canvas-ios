@@ -33,7 +33,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     private let filter: [GetSubmissions.Filter]
     private var subscriptions = Set<AnyCancellable>()
     private let sortNeedsGradingSubmissionsFirst: Bool
-    private let gradeStatusesInteractor: GradeStatusInteractor
+    private let gradeStatusInteractor: GradeStatusInteractor
 
     init(
         context: Context,
@@ -50,7 +50,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.userID = userID
         self.filter = filter
         self.sortNeedsGradingSubmissionsFirst = sortNeedsGradingSubmissionsFirst
-        self.gradeStatusesInteractor = gradeStatusesInteractor
+        self.gradeStatusInteractor = gradeStatusInteractor
     }
 
     func load() {
@@ -81,7 +81,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 return Publishers.CombineLatest3(
                     loadEnrollments(),
                     loadSubmissions(anonymizeStudents: assignment.anonymizeStudents),
-                    gradeStatusesInteractor.fetchCustomGradeStatuses(courseID: context.id)
+                    gradeStatusInteractor.fetchGradeStatuses(courseID: context.id)
                 )
                 .map { (assignment, $0.1, $0.2) }
                 .eraseToAnyPublisher()
