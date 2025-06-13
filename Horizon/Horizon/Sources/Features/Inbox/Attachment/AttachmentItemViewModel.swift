@@ -20,9 +20,10 @@ import Core
 import Foundation
 
 struct AttachmentItemViewModel: Identifiable {
-    typealias OnCancel = () -> Void
-    typealias OnDelete = (File) -> Void
+    typealias OnCancel = (() -> Void)?
+    typealias OnDelete = ((File) -> Void)?
 
+    // MARK: - Outputs
     var cancelOpacity: Double {
         isLoading ? 1.0 : 0.0
     }
@@ -31,6 +32,9 @@ struct AttachmentItemViewModel: Identifiable {
     }
     var deleteOpacity: Double {
         isLoading ? 0.0 : 1.0
+    }
+    var downloadOpacity: Double {
+        onCancel == nil || onDelete == nil ? 1.0 : 0.0
     }
     var spinnerOpacity: Double {
         isLoading ? 1.0 : 0.0
@@ -41,22 +45,43 @@ struct AttachmentItemViewModel: Identifiable {
     var filename: String {
         file.filename
     }
+
+    // MARK: - Properties
     let id: String = UUID().uuidString
+
+    // MARK: - Dependencies
+    private let file: File
     private let onCancel: OnCancel
     private let onDelete: OnDelete
 
-    private let file: File
+    // MARK: - Init
+    /// Used for a file that's already uploaded and can be downloaded
+    init(_ file: File) {
+        self.file = file
 
-    init(_ file: File, onCancel: @escaping OnCancel, onDelete: @escaping OnDelete) {
+        self.onCancel = nil
+        self.onDelete = nil
+    }
+
+    /// Used for a file that's being uploaded
+    init(
+        _ file: File,
+        onCancel: OnCancel,
+        onDelete: OnDelete
+    ) {
         self.file = file
         self.onCancel = onCancel
         self.onDelete = onDelete
     }
 
+    // MARK: - Inputs
     func cancel() {
-        onCancel()
+        onCancel?()
     }
     func delete() {
-        onDelete(file)
+        onDelete?(file)
+    }
+    func download() {
+        //file.download()
     }
 }

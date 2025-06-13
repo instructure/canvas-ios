@@ -43,6 +43,7 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
 
     // MARK: - Dependencies
     let attachmentViewModel: AttachmentViewModel
+    private let conversationID: String
     private let composeMessageInteractor: ComposeMessageInteractor
     private let messageDetailsInteractor: MessageDetailsInteractor
     private let myID: String
@@ -51,6 +52,7 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     // MARK: - Initialization
     init(
         router: Router = AppEnvironment.shared.router,
+        conversationID: String,
         attachmentViewModel: AttachmentViewModel? = nil,
         messageDetailsInteractor: MessageDetailsInteractor,
         composeMessageInteractor: ComposeMessageInteractor,
@@ -58,6 +60,7 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
         allowArchive: Bool
     ) {
         self.router = router
+        self.conversationID = conversationID
         self.attachmentViewModel = attachmentViewModel ?? AttachmentViewModel(
             router: router,
             composeMessageInteractor: composeMessageInteractor
@@ -131,19 +134,38 @@ class HorizonMessageDetailsViewModel: MessageDetailsViewModel {
     private func listenForMessages() {
         messageDetailsInteractor
             .messages
-            .map {
-                $0.sorted { $0.createdAt ?? .distantPast < $1.createdAt ?? .distantPast }
-            }
-            .map { messages in
-                messages.map {
-                    MessageViewModel(
-                        item: $0,
-                        myID: self.myID,
-                        userMap: self.messageDetailsInteractor.userMap,
-                        router: self.router
-                    )
-                }
-            }
+            .map(markMessageAsRead)
+            .map(sortOldestToNewest)
+            .map(toViewModels)
             .assign(to: &$messagesAscending)
+    }
+
+    private func markMessageAsRead(_ conversationMessages: [ConversationMessage]) -> [ConversationMessage] {
+        messageDetailsInteractor.updateState(
+            messageId: conversationID,
+            state: .read
+        )
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { _ in }
+        )
+        .store(in: &self.subscriptions)
+
+        return conversationMessages
+    }
+
+    private func sortOldestToNewest(_ conversationMessages: [ConversationMessage]) -> [ConversationMessage] {
+        conversationMessages.sorted { $0.createdAt ?? .distantPast < $1.createdAt ?? .distantPast }
+    }
+
+    private func toViewModels(_ conversationMessages: [ConversationMessage]) -> [MessageViewModel] {
+        conversationMessages.map {
+            MessageViewModel(
+                item: $0,
+                myID: myID,
+                userMap: messageDetailsInteractor.userMap,
+                router: router
+            )
+        }
     }
 }

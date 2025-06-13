@@ -168,14 +168,23 @@ class HorizonInboxViewModel {
             .store(in: &subscriptions)
     }
 
-    func viewMessage(conversationID: String?, viewController: WeakViewController) {
-        guard let conversationID = conversationID else {
-            return
+    func viewMessage(
+        announcement: Announcement?,
+        inboxMessageListItem: InboxMessageListItem?,
+        viewController: WeakViewController
+    ) {
+        if let inboxMessageListItem = inboxMessageListItem {
+            router.route(
+                to: "/conversations/\(inboxMessageListItem.id)",
+                from: viewController
+            )
         }
-        router.route(
-            to: "/conversations/\(conversationID)",
-            from: viewController
-        )
+        if let announcement = announcement {
+            router.route(
+                to: "/announcements/\(announcement.id)",
+                from: viewController
+            )
+        }
     }
 
     // MARK: - Private Methods
@@ -243,45 +252,59 @@ class HorizonInboxViewModel {
         }
     }
 
-    struct MessageRowViewModel: Hashable, Identifiable {
-        let date: Date?
+    struct MessageRowViewModel: Equatable, Hashable, Identifiable {
+        let announcement: Announcement?
+        var date: Date? {
+            announcement?.date ?? inboxMessageListItem?.dateRaw
+        }
         var dateString: String {
             date.map { $0.relativeDateOnlyString } ?? ""
         }
-        let title: String
-        let subtitle: String
-        let isAnnouncement: Bool
-        let isNew: Bool
-        let id: String?
+        var title: String {
+            if let announcement = announcement {
+                if let courseName = announcement.courseName {
+                    return "Announcement for \(courseName)"
+                }
+                return "Announcement"
+            }
+            return inboxMessageListItem?.title ?? ""
+        }
+        var subtitle: String {
+            if let announcement = announcement {
+                return announcement.title
+            }
+            return inboxMessageListItem?.participantName ?? ""
+        }
+        var isAnnouncement: Bool {
+            inboxMessageListItem == nil
+        }
+        var isNew: Bool {
+            inboxMessageListItem?.isUnread == true
+        }
+        var id: String {
+            if let announcement = announcement {
+                return "announcement_\(announcement.id)"
+            }
+            return "message_\(inboxMessageListItem?.id ?? "")"
+        }
+        let inboxMessageListItem: InboxMessageListItem?
     }
 }
 
 extension Announcement {
     var viewModel: HorizonInboxViewModel.MessageRowViewModel {
         .init(
-            date: date,
-            title: viewModelTitle,
-            subtitle: title,
-            isAnnouncement: true,
-            isNew: false,
-            id: nil
+            announcement: self,
+            inboxMessageListItem: nil
         )
-    }
-
-    private var viewModelTitle: String {
-        courseName != nil ? "Announcement for \(courseName ?? "")" : "Announcement"
     }
 }
 
 extension InboxMessageListItem {
     var viewModel: HorizonInboxViewModel.MessageRowViewModel {
         .init(
-            date: dateRaw,
-            title: title,
-            subtitle: participantName,
-            isAnnouncement: false,
-            isNew: isUnread,
-            id: id
+            announcement: nil,
+            inboxMessageListItem: self
         )
     }
 }

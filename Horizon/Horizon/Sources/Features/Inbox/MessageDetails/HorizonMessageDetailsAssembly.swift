@@ -21,13 +21,35 @@ import UIKit
 
 struct HorizonMessageDetailsAssembly {
     public static func makeViewController(
-        env: AppEnvironment,
         conversationID: String,
         allowArchive: Bool
     ) -> UIViewController {
         let uploadIdentifier = UUID().uuidString
         let appEnvironment = AppEnvironment.shared
         let viewModel = HorizonMessageDetailsViewModel(
+            conversationID: conversationID,
+            messageDetailsInteractor: MessageDetailsInteractorLive(
+                env: appEnvironment,
+                conversationID: conversationID
+            ),
+            composeMessageInteractor: ComposeMessageInteractorLive(
+                batchId: uploadIdentifier,
+                uploadManager: UploadManager(
+                    env: appEnvironment,
+                    identifier: uploadIdentifier
+                )
+            ),
+            allowArchive: allowArchive
+        )
+        let view = HorizonMessageDetailsView(model: viewModel)
+        return CoreHostingController(view)
+    }
+    public static func makeViewController(
+        announcementID: String
+    ) -> UIViewController {
+        let appEnvironment = AppEnvironment.shared
+        let viewModel = HorizonMessageDetailsViewModel(
+            conversationID: conversationID,
             messageDetailsInteractor: MessageDetailsInteractorLive(
                 env: appEnvironment,
                 conversationID: conversationID

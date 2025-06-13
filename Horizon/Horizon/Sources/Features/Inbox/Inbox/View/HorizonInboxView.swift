@@ -77,7 +77,8 @@ struct HorizonInboxView: View {
             ForEach(viewModel.messageRows, id: \.id) { messageRow in
                 MessageRow(viewModel: messageRow) {
                     viewModel.viewMessage(
-                        conversationID: messageRow.id,
+                        announcement: messageRow.announcement,
+                        inboxMessageListItem: messageRow.inboxMessageListItem,
                         viewController: viewController
                     )
                 }

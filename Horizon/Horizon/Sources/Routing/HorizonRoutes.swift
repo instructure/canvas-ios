@@ -211,9 +211,15 @@ enum HorizonRoutes {
                     }
                 }()
                 return HorizonMessageDetailsAssembly.makeViewController(
-                    env: AppEnvironment.shared,
                     conversationID: conversationID,
                     allowArchive: allowArchive
+                )
+            },
+            RouteHandler("/announcements/:announcementID") { _, params, userInfo in
+                guard let announcementID = params["announcementID"] else { return nil }
+                return HorizonMessageDetailsAssembly.makeViewController(
+                    env: AppEnvironment.shared,
+                    announcementID: announcementID
                 )
             }
         ]

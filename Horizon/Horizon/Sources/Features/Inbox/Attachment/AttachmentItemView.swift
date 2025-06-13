@@ -33,6 +33,7 @@ struct AttachmentItemView: View {
             ZStack {
                 cancelButton
                 deleteButton
+                downloadButton
             }
         }
         .frame(height: 48)
@@ -74,6 +75,17 @@ struct AttachmentItemView: View {
             viewModel.delete()
         }
         .opacity(viewModel.deleteOpacity)
+    }
+
+    private var downloadButton: some View {
+        HorizonUI.IconButton(
+            HorizonUI.icons.download,
+            type: .white,
+            isSmall: true
+        ) {
+            viewModel.download()
+        }
+        .opacity(viewModel.downloadOpacity)
     }
 
     private var spinner: some View {

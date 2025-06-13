@@ -20,9 +20,11 @@ import Combine
 import Core
 import Foundation
 
-struct Announcement {
-    let date: Date?
+struct Announcement: Equatable, Identifiable, Hashable {
     let courseName: String?
+    let date: Date?
+    let id: String
+    let isAccountAnnouncement: Bool
     let title: String
 }
 
@@ -104,8 +106,10 @@ class AnnouncementsInteractorLive: AnnouncementsInteractor {
 extension AccountNotification {
     var announcement: Announcement {
         Announcement(
-            date: startAt ?? endAt,
             courseName: nil,
+            date: startAt ?? endAt,
+            id: id,
+            isAccountAnnouncement: true,
             title: subject
         )
     }
@@ -114,8 +118,10 @@ extension AccountNotification {
 extension DiscussionTopic {
     func announcement(courseName: String?) -> Announcement {
         Announcement(
-            date: postedAt,
             courseName: courseName,
+            date: postedAt,
+            id: id,
+            isAccountAnnouncement: false,
             title: title ?? ""
         )
     }

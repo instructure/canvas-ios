@@ -100,6 +100,14 @@ struct HorizonMessageDetailsView: View {
             }
             Text(message.body)
                 .huiTypography(.p1)
+            if message.attachments.isNotEmpty {
+                VStack(spacing: HorizonUI.spaces.space8) {
+                    ForEach(message.attachments, id: \.self) { file in
+                        AttachmentItemView(viewModel: AttachmentItemViewModel(file))
+                    }
+                }
+                .padding(.top, HorizonUI.spaces.space8)
+            }
         }
         .padding(.vertical, HorizonUI.spaces.space16)
     }
@@ -193,6 +201,7 @@ struct HorizonMessageDetailsView: View {
     HorizonMessageDetailsView(
         model: HorizonMessageDetailsViewModel(
             router: AppEnvironment.shared.router,
+            conversationID: "ConversationID",
             messageDetailsInteractor: MessageDetailsInteractorPreview(
                 env: AppEnvironment.shared,
                 subject: "Test Subject",
