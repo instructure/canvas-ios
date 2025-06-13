@@ -59,7 +59,7 @@ class GradeStatusViewModel: ObservableObject {
             .map { OptionItem(id: $0.id, title: $0.name) }
             .sorted { $0.title < $1.title }
 
-        if let initialStatus = interactor.gradeStatuses.gradeStatusFor(
+        if let initialStatus = interactor.gradeStatusFor(
             customGradeStatusId: customGradeStatusId,
             latePolicyStatus: latePolicyStatus
         ) {
@@ -75,17 +75,14 @@ class GradeStatusViewModel: ObservableObject {
         on publisher: PassthroughSubject<OptionItem, Never>
     ) {
         publisher
-            .compactMap { [interactor] selectedOption in
+            .compactMap { [weak self, interactor] selectedOption in
                 guard let selectedStatus = interactor.gradeStatuses.first(where: { $0.id == selectedOption.id }) else {
                     return nil
                 }
-                return (selectedOption, selectedStatus)
-            }
-            .map { [weak self] (selectedOption: OptionItem, selectedStatus: GradeStatus) in
                 self?.isLoading = true
                 return (selectedOption, selectedStatus)
             }
-            .flatMap { [submissionId, userId, interactor] (selectedOption, selectedStatus) in
+            .flatMap { [submissionId, userId, interactor] (selectedOption: OptionItem, selectedStatus: GradeStatus) in
                 let customGradeStatusId = selectedStatus.isCustom ? selectedStatus.id : nil
                 let latePolicyStatus = selectedStatus.isCustom ? nil : selectedStatus.id
                 return interactor.updateSubmissionGradeStatus(
@@ -108,20 +105,5 @@ class GradeStatusViewModel: ObservableObject {
                 }
             )
             .store(in: &subscriptions)
-    }
-}
-
-extension [GradeStatus] {
-
-    func gradeStatusFor(
-        customGradeStatusId: String?,
-        latePolicyStatus: LatePolicyStatus?
-    ) -> GradeStatus? {
-        if let customGradeStatusId {
-            return first { $0.isCustom && $0.id == customGradeStatusId }
-        } else if let lateStatus = latePolicyStatus?.rawValue {
-            return first { !$0.isCustom && $0.id == lateStatus }
-        }
-        return nil
     }
 }

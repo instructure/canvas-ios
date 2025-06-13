@@ -47,5 +47,12 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func gradeStatusFor(
+        customGradeStatusId: String?,
+        latePolicyStatus: Core.LatePolicyStatus?
+    ) -> GradeStatus? {
+        nil
+    }
 }
 #endif

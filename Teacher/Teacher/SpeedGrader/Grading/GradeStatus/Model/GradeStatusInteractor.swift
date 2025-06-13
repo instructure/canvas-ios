@@ -34,6 +34,11 @@ protocol GradeStatusInteractor {
         customGradeStatusId: String?,
         latePolicyStatus: String?
     ) -> AnyPublisher<Void, Error>
+
+    func gradeStatusFor(
+        customGradeStatusId: String?,
+        latePolicyStatus: LatePolicyStatus?
+    ) -> GradeStatus?
 }
 
 final class GradeStatusInteractorLive: GradeStatusInteractor {
@@ -77,5 +82,17 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
                 return ()
             }
             .eraseToAnyPublisher()
+    }
+
+    func gradeStatusFor(
+        customGradeStatusId: String?,
+        latePolicyStatus: LatePolicyStatus?
+    ) -> GradeStatus? {
+        if let customGradeStatusId {
+            return gradeStatuses.first { $0.isCustom && $0.id == customGradeStatusId }
+        } else if let lateStatus = latePolicyStatus?.rawValue {
+            return gradeStatuses.first { !$0.isCustom && $0.id == lateStatus }
+        }
+        return nil
     }
 }
