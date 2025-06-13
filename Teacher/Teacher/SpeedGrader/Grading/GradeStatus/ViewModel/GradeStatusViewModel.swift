@@ -36,7 +36,6 @@ class GradeStatusViewModel: ObservableObject {
     let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
 
     // MARK: - Private
-    private let gradeStatuses: [GradeStatus]
     private let interactor: GradeStatusInteractor
     private let submissionId: String
     private let userId: String
@@ -47,22 +46,20 @@ class GradeStatusViewModel: ObservableObject {
     )
 
     init(
-        gradeStatuses: [GradeStatus],
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
         userId: String,
         submissionId: String,
         interactor: GradeStatusInteractor
     ) {
-        self.gradeStatuses = gradeStatuses
         self.interactor = interactor
         self.submissionId = submissionId
         self.userId = userId
-        options = gradeStatuses
+        options = interactor.gradeStatuses
             .map { OptionItem(id: $0.id, title: $0.name) }
             .sorted { $0.title < $1.title }
 
-        if let initialStatus = gradeStatuses.gradeStatusFor(
+        if let initialStatus = interactor.gradeStatuses.gradeStatusFor(
             customGradeStatusId: customGradeStatusId,
             latePolicyStatus: latePolicyStatus
         ) {
@@ -78,8 +75,8 @@ class GradeStatusViewModel: ObservableObject {
         on publisher: PassthroughSubject<OptionItem, Never>
     ) {
         publisher
-            .compactMap { [gradeStatuses] selectedOption in
-                guard let selectedStatus = gradeStatuses.first(where: { $0.id == selectedOption.id }) else {
+            .compactMap { [interactor] selectedOption in
+                guard let selectedStatus = interactor.gradeStatuses.first(where: { $0.id == selectedOption.id }) else {
                     return nil
                 }
                 return (selectedOption, selectedStatus)

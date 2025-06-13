@@ -23,16 +23,15 @@ import Combine
 import Core
 
 class GradeStatusInteractorPreview: GradeStatusInteractor {
-    var refreshSubmission: ((String) -> Void)?
-
     let gradeStatuses: [GradeStatus]
+    var refreshSubmission: ((String) -> Void)?
 
     init(gradeStatuses: [GradeStatus] = []) {
         self.gradeStatuses = gradeStatuses
     }
 
-    func fetchGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error> {
-        Just(gradeStatuses)
+    func fetchGradeStatuses() -> AnyPublisher<Void, Error> {
+        Just(())
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

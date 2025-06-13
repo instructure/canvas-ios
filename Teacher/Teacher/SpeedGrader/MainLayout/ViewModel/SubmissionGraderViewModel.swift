@@ -77,7 +77,6 @@ class SubmissionGraderViewModel: ObservableObject {
             env: env
         )
         gradeStatusViewModel = GradeStatusViewModel(
-            gradeStatuses: gradeStatuses,
             customGradeStatusId: submission.customGradeStatusId,
             latePolicyStatus: submission.latePolicyStatus,
             userId: submission.userID,

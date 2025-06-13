@@ -21,10 +21,12 @@ import Combine
 import Core
 
 protocol GradeStatusInteractor {
+    var gradeStatuses: [GradeStatus] { get }
+
     /// When we update a submission's grade status, we want to refresh the submission in the DB.
     var refreshSubmission: ((_ userId: String) -> Void)? { get set }
 
-    func fetchGradeStatuses(courseID: String) -> AnyPublisher<[GradeStatus], Error>
+    func fetchGradeStatuses() -> AnyPublisher<Void, Error>
 
     func updateSubmissionGradeStatus(
         submissionId: String,
@@ -36,22 +38,24 @@ protocol GradeStatusInteractor {
 
 final class GradeStatusInteractorLive: GradeStatusInteractor {
     var refreshSubmission: ((_ userId: String) -> Void)?
-    private let api: API
+    private(set) var gradeStatuses: [GradeStatus] = []
 
-    init(api: API) {
+    private let api: API
+    private let courseId: String
+
+    init(courseId: String, api: API) {
+        self.courseId = courseId
         self.api = api
     }
 
-    func fetchGradeStatuses(
-        courseID: String
-    ) -> AnyPublisher<[GradeStatus], Error> {
-        let request = GetGradeStatusesRequest(courseID: courseID)
+    func fetchGradeStatuses() -> AnyPublisher<Void, Error> {
+        let request = GetGradeStatusesRequest(courseID: courseId)
         return api.makeRequest(request)
             .map { $0.body }
-            .map { response in
+            .map { [weak self] response in
                 let defaults = response.defaultGradeStatuses.map { GradeStatus(defaultName: $0) }
                 let custom = response.customGradeStatuses.map { GradeStatus(custom: $0) }
-                return defaults + custom
+                self?.gradeStatuses = defaults + custom
             }
             .eraseToAnyPublisher()
     }

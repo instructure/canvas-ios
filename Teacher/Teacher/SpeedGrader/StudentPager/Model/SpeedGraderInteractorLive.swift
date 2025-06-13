@@ -77,21 +77,21 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         assignmentLoad
             .flatMap { [weak self] assignment in
                 guard let self else {
-                    return Publishers.noInstanceFailure(output: (Assignment, [Submission], [GradeStatus]).self)
+                    return Publishers.noInstanceFailure(output: (Assignment, [Submission]).self)
                 }
                 return Publishers.CombineLatest3(
                     loadEnrollments(),
                     loadSubmissions(anonymizeStudents: assignment.anonymizeStudents),
-                    gradeStatusInteractor.fetchGradeStatuses(courseID: context.id)
+                    gradeStatusInteractor.fetchGradeStatuses()
                 )
-                .map { (assignment, $0.1, $0.2) }
+                .map { (assignment, $0.1) }
                 .eraseToAnyPublisher()
             }
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.state.send(.error(.unexpectedError(error)))
                 }
-            } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission], gradeStatuses: [GradeStatus]) in
+            } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission]) in
                 guard let self else { return }
 
                 let submissions = sortNeedsGradingSubmissionsFirst
@@ -115,8 +115,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
                 data = SpeedGraderData(
                     assignment: assignment,
                     submissions: submissions,
-                    focusedSubmissionIndex: focusedSubmissionIndex,
-                    gradeStatuses: gradeStatuses
+                    focusedSubmissionIndex: focusedSubmissionIndex
                 )
                 state.send(.data)
             }

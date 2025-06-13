@@ -30,7 +30,7 @@ enum SpeedGraderAssembly {
         env: AppEnvironment
     ) -> UIViewController {
         let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
-        let gradeStatusInteractor = GradeStatusInteractorLive(api: env.api)
+        let gradeStatusInteractor = GradeStatusInteractorLive(courseId: context.id, api: env.api)
         let interactor = SpeedGraderInteractorLive(
             context: context,
             assignmentID: assignmentId,
@@ -85,8 +85,7 @@ enum SpeedGraderAssembly {
         return SpeedGraderData(
             assignment: assignment,
             submissions: [submission1, submission2],
-            focusedSubmissionIndex: 1,
-            gradeStatuses: [GradeStatus(defaultName: "Excused")]
+            focusedSubmissionIndex: 1
         )
     }
 
