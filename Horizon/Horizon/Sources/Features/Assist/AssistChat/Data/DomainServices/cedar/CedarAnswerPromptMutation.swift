@@ -40,7 +40,7 @@ class CedarAnswerPromptMutation: APIGraphQLRequestable {
         self.variables = Variables(model: model.rawValue, prompt: prompt, document: document)
     }
 
-    public static let operationName: String = "AnswerPrompt"
+    public static let operationName: String = "answerPrompt"
     public static var query: String = """
         mutation \(operationName)($model: String!, $prompt: String!, $document: DocumentBlock) {
             answerPrompt(input: { model: $model, prompt: $prompt, document: $document})

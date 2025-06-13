@@ -185,51 +185,57 @@ class AssistChatInteractorLive: AssistChatInteractor {
             return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
         }
         var prompt: String = ""
-        var localResponse: AssistStaticLearnerResponse?
+        var assistStaticLearnerResponse: AssistStaticLearnerResponse?
+        var assistStaticBotResponse: AssistStaticBotResponse?
         var chatHistory: [AssistChatMessage] = []
 
         switch action {
-        case .chat(let message, let history):
-            prompt = message
+        case .chat(_, let history):
+            let last = history.last
+            assistStaticBotResponse = last?.staticResponse
+            prompt = last?.prompt ?? ""
             chatHistory = history
         case .chip(let option, let history):
             prompt = option.prompt ?? ""
-            localResponse = option.localResponse
-            if case .selectCourse(_, let courseID) = localResponse {
+            assistStaticLearnerResponse = option.localResponse
+            if case .selectCourse(_, let courseID) = assistStaticLearnerResponse {
                 self.courseID = courseID
             }
             chatHistory = history
         }
 
         // This should really only happen when the user first opens the chat
-        guard let courseID = courseID else {
-            return courseSelectionResponse(chatHistory: chatHistory).eraseToAnyPublisher()
-        }
         if prompt.isEmpty {
             return courseSelectionResponse(chatHistory: chatHistory).eraseToAnyPublisher()
         }
 
-        if let localResponse = localResponse {
+        if let localResponse = assistStaticLearnerResponse {
             return Just(localResponse.assistChatResponse(chatHistory: chatHistory))
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
 
+        weak var weakSelf = self
         return publish(using: action)
             .flatMap { newHistory in
-                self.classifier(
-                    prompt: prompt,
-                    action: action,
-                    history: newHistory
-                )
-                .flatMap { classification in
-                    self.handleClassifierPromptResponse(
-                        classification: classification,
-                        action: action,
+                guard let self = weakSelf else {
+                    return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
+                }
+                var service = self.cedarConversation(prompt: prompt, history: newHistory)
+                if let courseID = self.courseID {
+                    service = self.pineRAGService(
                         history: newHistory,
                         courseID: courseID
                     )
                 }
+                return service
+                    .map {
+                        AssistChatResponse(
+                            assistStaticBotResponse?.responseHandler(response: $0) ?? AssistChatMessage(botResponse: $0),
+                            chatHistory: newHistory
+                        )
+                    }
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
@@ -244,32 +250,6 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 self.userShortNamePublisher.send(userShortName)
             }
             .store(in: &subscriptions)
-    }
-
-    /// Makes a request to the pine endpoint using the given history
-    private func pineRAGService(history: [AssistChatMessage], courseID: String) -> AnyPublisher<String, Error> {
-        var messages = history.filter { $0.prompt != nil }.map {
-            PineQueryMutation.APIMessageInput(
-                text: $0.prompt ?? "", role: $0.role == .Assistant ? .Assistant : .User)
-        }
-        if messages.first?.role != .User {
-            // the first and last messages are required to be user messages.
-            messages = [.init(text: "Hello", role: .User)] + messages
-        }
-
-        return pineDomainService.api()
-            .flatMap { pineApi in
-                pineApi.makeRequest(
-                    PineQueryMutation(
-                        messages: messages,
-                        courseID: courseID
-                    )
-                )
-                .compactMap { ragData in
-                    ragData.map { $0.data.query.response }
-                }
-            }
-            .eraseToAnyPublisher()
     }
 
     /// Returns any configured chips to show based on the context. If there are none, we return a default message
@@ -309,9 +289,26 @@ class AssistChatInteractorLive: AssistChatInteractor {
     }
 
     /// Makes a request to the cedar endpoint using the given prompt and returns an answer
-    private func basicChat(
+    private func cedarConversation(
         prompt: String,
-        pageContext: AssistChatPageContext? = nil
+        history: [AssistChatMessage] = [],
+    ) -> AnyPublisher<String, Error> {
+        cedarDomainService.api()
+            .flatMap { cedarApi in
+                cedarApi.makeRequest(
+                    CedarConversationMutation(
+                        systemPrompt: prompt,
+                        messages: history.domainServiceConversationMessages
+                    )
+                )
+            }
+            .map { $0?.data.conversation.response ?? "" }
+            .eraseToAnyPublisher()
+    }
+
+    private func cedarBasicChat(
+        prompt: String,
+        pageContext: AssistChatPageContext = AssistChatPageContext()
     ) -> AnyPublisher<String, Error> {
         cedarDomainService.api()
             .flatMap { cedarApi in
@@ -323,6 +320,23 @@ class AssistChatInteractorLive: AssistChatInteractor {
                 )
             }
             .map { graphQlResponse, _ in graphQlResponse.data.answerPrompt }
+            .eraseToAnyPublisher()
+    }
+
+    /// Makes a request to the pine endpoint using the given history
+    private func pineRAGService(history: [AssistChatMessage], courseID: String) -> AnyPublisher<String, Error> {
+        pineDomainService.api()
+            .flatMap { pineApi in
+                pineApi.makeRequest(
+                    PineQueryMutation(
+                        messages: history.domainServiceConversationMessages,
+                        courseID: courseID
+                    )
+                )
+                .compactMap { ragData in
+                    ragData.map { $0.data.query.response }
+                }
+            }
             .eraseToAnyPublisher()
     }
 
@@ -342,7 +356,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
             "You are an agent designed to route a learner's question to the appropriate assistant. The possible assistants are \(longExplanations). If you're not sure, choose \(defaultOption). ALWAYS answer with a single word - either \(shortOptions). Here's the learner's question: \(prompt). Here is our chat history in JSON: \(history.json)"
         // swiftlint:enable line_length
 
-        return basicChat(prompt: classifierPrompt, pageContext: pageContext)
+        return cedarBasicChat(prompt: classifierPrompt, pageContext: pageContext)
     }
 
     /// Calls the basic chat endpoint to generate flashcards
@@ -354,7 +368,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
         let pageContext = pageContextPublisher.value
         let pageContextPrompt = pageContext.prompt ?? ""
         let prompt = "\(chipPrompt) \(pageContextPrompt) \(history.json)"
-        return basicChat(
+        return cedarBasicChat(
             prompt: prompt,
             pageContext: pageContext
         )
@@ -387,7 +401,7 @@ class AssistChatInteractorLive: AssistChatInteractor {
             let chatMethod =
                 usePineRAGService
             ? pineRAGService(history: history, courseID: courseID)
-                : basicChat(prompt: "\(history.json) \(pageContext.prompt ?? "")", pageContext: pageContext)
+                : cedarBasicChat(prompt: "\(history.json) \(pageContext.prompt ?? "")", pageContext: pageContext)
             return
                 chatMethod
                 .map { AssistChatResponse(AssistChatMessage(botResponse: $0), chatHistory: history) }
@@ -510,11 +524,28 @@ private extension CedarGenerateQuizMutation.QuizOutput {
 }
 
 private extension Array where Element == AssistChatMessage {
+    var domainServiceConversationMessages: [DomainServiceConversationMessage] {
+        prependUserMessage()
+            .map {
+                DomainServiceConversationMessage(
+                    text: $0.prompt ?? $0.text ?? "",
+                    role: $0.role == .Assistant ? .Assistant : .User
+                )
+            }
+    }
+
     var json: String {
         guard let encoded = try? JSONEncoder().encode(self) else {
             return "[]"
         }
         return String(data: encoded, encoding: .utf8) ?? "[]"
+    }
+
+    private func prependUserMessage() -> [AssistChatMessage] {
+        guard let first = first, first.role != .User else {
+            return self
+        }
+        return [.init(userResponse: "Hello")] + self
     }
 }
 

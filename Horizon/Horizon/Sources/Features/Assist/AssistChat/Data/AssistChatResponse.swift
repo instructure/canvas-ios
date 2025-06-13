@@ -50,8 +50,7 @@ extension AssistChatResponse {
         courseName: String,
         chatHistory: [AssistChatMessage] = []
     ) -> AssistChatResponse {
-        let localResponse: AssistStaticLearnerResponse = .review
-        return .init(
+        .init(
             AssistChatMessage(staticResponse: .courseAssistance(courseName)),
             chatHistory: chatHistory,
             isFreeTextAvailable: true
@@ -66,9 +65,7 @@ extension AssistChatResponse {
         chatHistory: [AssistChatMessage] = []
     ) -> AssistChatResponse {
         .init(
-            AssistChatMessage(
-                staticResponse: .selectACourse(courses)
-            ),
+            AssistChatMessage(staticResponse: .selectACourse(courses)),
             chatHistory: chatHistory,
             isFreeTextAvailable: true
         )

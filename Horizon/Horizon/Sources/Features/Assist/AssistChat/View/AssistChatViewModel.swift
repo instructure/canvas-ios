@@ -216,7 +216,7 @@ final class AssistChatViewModel {
 
     private func update(comparedTo newMessages: [AssistChatMessageViewModel]) {
         messages.enumerated().forEach { index, message in
-            if message != newMessages[index] {
+            if index < newMessages.count && message != newMessages[index] {
                 withAnimation(.easeInOut(duration: animationDuration)) {
                     messages[index] = newMessages[index]
                 }

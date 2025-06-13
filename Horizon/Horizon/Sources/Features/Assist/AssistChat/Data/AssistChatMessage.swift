@@ -46,7 +46,7 @@ struct AssistChatMessage: Codable, Equatable {
     init(staticResponse: AssistStaticBotResponse) {
         self.init(
             role: .Assistant,
-            prompt: staticResponse.text,
+            prompt: staticResponse.prompt ?? staticResponse.text,
             text: staticResponse.text,
             chipOptions: staticResponse.chipOptions,
             staticResponse: staticResponse
