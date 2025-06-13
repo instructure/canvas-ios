@@ -51,37 +51,40 @@ struct CommentInputView: View {
     var body: some View {
         VStack(spacing: 0) {
             InstUI.Divider()
-
-            VStack(alignment: .leading, spacing: 12) {
-                commentEditor
-                // TODO: fix vertical truncation
-
-                HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
-                    switch commentLibraryButtonType {
-                    case .openLibrary:
-                        commentLibraryButton(isCurrentlyClosed: true)
-                    case .closeLibrary:
-                        commentLibraryButton(isCurrentlyClosed: false)
-                    case .hidden:
-                        SwiftUI.EmptyView()
-                    }
-
-                    attachmentButton
-
-                    sendButton
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-            }
-            // TODO: Area outside of buttons could focus the TextField
-            .padding(.leading, 16)
-            .padding(.trailing, 8)
-            .padding(.vertical, 8)
-            .background(RoundedRectangle(cornerRadius: 24).fill(Color.backgroundLightest))
-            .background(RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium))
-            .paddingStyle(.horizontal, .standard)
-            .padding(.vertical, 8)
-            .accessibilityElement(children: .contain)
+            content
+                .paddingStyle(.horizontal, .standard)
+                .padding(.vertical, 8)
+                .background(.backgroundLightest)
         }
+    }
+
+    private var content: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            commentEditor
+
+            HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
+                switch commentLibraryButtonType {
+                case .openLibrary:
+                    commentLibraryButton(isCurrentlyClosed: true)
+                case .closeLibrary:
+                    commentLibraryButton(isCurrentlyClosed: false)
+                case .hidden:
+                    SwiftUI.EmptyView()
+                }
+
+                attachmentButton
+
+                sendButton
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+        }
+        // TODO: Area outside of buttons could focus the TextField
+        .padding(.leading, 16)
+        .padding(.trailing, 8)
+        .padding(.vertical, 8)
+        .background(RoundedRectangle(cornerRadius: 24).fill(Color.backgroundLightest))
+        .background(RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium))
+        .accessibilityElement(children: .contain)
     }
 
     // MARK: - TextField
@@ -95,7 +98,6 @@ struct CommentInputView: View {
                     .foregroundStyle(.textPlaceholder)
             }
             DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Comment", bundle: .teacher))
-                .paddingStyle(set: .textEditorCorrection)
                 .font(.regular14)
                 .lineLimit(10)
                 .accessibilityLabel(Text("Comment", bundle: .teacher))
@@ -174,11 +176,13 @@ private extension View {
 
 #Preview {
     @Previewable @State var text: String = "Sample text"
+    @Previewable @State var textShort: String = .loremIpsumShort
+    @Previewable @State var textLong: String = .loremIpsumLong
     @Previewable @State var textEmpty: String = ""
 
     VStack {
         CommentInputView(
-            comment: $text,
+            comment: $textShort,
             commentLibraryButtonType: .openLibrary,
             isAttachmentButtonEnabled: true,
             contextColor: .green,
@@ -189,7 +193,7 @@ private extension View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: $text,
+            comment: $textLong,
             commentLibraryButtonType: .closeLibrary,
             isAttachmentButtonEnabled: false,
             contextColor: .green,
@@ -200,7 +204,7 @@ private extension View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: $text,
+            comment: $textLong,
             commentLibraryButtonType: .hidden,
             isAttachmentButtonEnabled: true,
             contextColor: .green,

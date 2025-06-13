@@ -22,6 +22,8 @@ import SwiftUI
  This text editor starts as a one line height component, then as text is entered it grows until its maximum height is reached.
  */
 public struct DynamicHeightTextEditor: View {
+    static let negatedVerticalPaddings = InstUI.Styles.Padding.textEditorVerticalCorrection.rawValue * -2
+
     // MARK: - Dependencies
 
     @Binding private var text: String
@@ -30,12 +32,7 @@ public struct DynamicHeightTextEditor: View {
     // MARK: - Private properties
 
     /** The height of the TextEditor. Calculated by  measuring the text's rendered size and adding paddings. */
-    @State private var textEditorHeight: CGFloat = 33.5
-    // These are estimated values. SwiftUI.TextEditor has some internal paddings which we cannot influence nor measure.
-    private let textEditorVerticalPadding: CGFloat = 7
-    private let textEditorHorizontalPadding: CGFloat = 5
-    private let textEditorTopPadding: CGFloat = 2
-    @State private var textToMeasureHeight: String = "Placeholder"
+    @State private var textEditorHeight: CGFloat = 0
 
     // MARK: - Init
 
@@ -45,45 +42,33 @@ public struct DynamicHeightTextEditor: View {
     }
 
     public var body: some View {
-        ZStack(alignment: .leading) {
-            Text(textToMeasureHeight)
-                .padding(.vertical, textEditorVerticalPadding)
-                .background(GeometryReader {
-                    Color.clear.preference(
-                        key: ViewSizeKey.self,
-                        value: $0.frame(in: .local).size.height
-                    )
-                }).hidden()
+        ZStack(alignment: .topLeading) {
+            Text(text.nilIfEmpty ?? placeholder ?? "Placeholder")
+                .onSizeChange {
+                    textEditorHeight = $0.height + Self.negatedVerticalPaddings
+                }
+                .allowsHitTesting(false)
+                .hidden()
+
             TextEditor(text: $text)
                 .foregroundColor(.textDarkest)
                 .background(Color.clear)
                 .scrollContentBackground(.hidden)
                 .frame(height: textEditorHeight)
-                .overlay(placeholderView, alignment: .leading)
-                .offset(y: -2)
-                .onAppear {
-                   UITextView.appearance().backgroundColor = .clear
-                 }.onDisappear {
-                   UITextView.appearance().backgroundColor = nil
-                 }
+                .paddingStyle(set: .textEditorCorrection)
+                .overlay(placeholderView, alignment: .topLeading)
         }
-        .onChange(of: text) {
-            textToMeasureHeight = text.isEmpty ? "Placeholder" : text
-        }
-        .onPreferenceChange(ViewSizeKey.self) {
-            textEditorHeight = $0
-        }
+        .clipped()
     }
 
     @ViewBuilder
     private var placeholderView: some View {
-        if text.isEmpty, let placeholder = placeholder {
+        if let placeholder, text.isEmpty {
             Text(placeholder)
-                .foregroundColor(.textPlaceholder)
-                .padding(.leading, textEditorHorizontalPadding)
-                .padding(.top, textEditorTopPadding)
+                .foregroundStyle(.textPlaceholder)
+                .offset(y: 1.5)
+                .allowsHitTesting(false)
                 .accessibility(hidden: true)
-                .allowsHitTesting(false) // Make sure taps go through to the TextEditor, doesn't work on iOS 14
         }
     }
 }
