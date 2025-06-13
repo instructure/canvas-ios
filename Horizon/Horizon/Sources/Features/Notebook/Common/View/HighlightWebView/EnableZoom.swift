@@ -19,7 +19,8 @@
 import Core
 
 private class EnableZoom: CoreWebViewFeature {
-    private let script: String = """
+    private let script: String =
+    """
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
