@@ -153,7 +153,6 @@ extension AssistQuizView {
             } else {
                 tryAgainButton
             }
-
         }
         .padding([.bottom, .horizontal], .huiSpaces.space16)
     }
