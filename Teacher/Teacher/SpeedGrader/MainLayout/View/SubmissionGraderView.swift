@@ -215,13 +215,17 @@ struct SubmissionGraderView: View {
             DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
                 tools(bottomInset: bottomInset, isDrawer: true)
             } leadingContent: {
-                Button { drawerState != .max ? snapDrawerTo(.max) : snapDrawerTo(.mid) } label: {
+                Button {
+                    drawerState != .mid ? snapDrawerTo(.mid) : snapDrawerTo(.max)
+                } label: {
                     drawerState != .max ?
                     Image(systemName: "arrow.down.backward.and.arrow.up.forward") :
                     Image(systemName: "arrow.up.forward.and.arrow.down.backward")
                 }
             } trailingContent: {
-                Button{ drawerState != .min ? snapDrawerTo(.min) : snapDrawerTo(.max) } label: {
+                Button {
+                    drawerState != .min ? snapDrawerTo(.min) : snapDrawerTo(.max)
+                } label: {
                     drawerState != .min ? Image(systemName: "chevron.down") : Image(systemName: "chevron.up")
                 }
             }
