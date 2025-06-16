@@ -160,6 +160,7 @@
 		CFFEADAA2E006FED00277F69 /* QuizSubmissionListInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEADA92E006FED00277F69 /* QuizSubmissionListInteractorLive.swift */; };
 		CFFEADAC2E00703000277F69 /* RollCallSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEADAB2E00703000277F69 /* RollCallSession.swift */; };
 		CFFEADAE2E00705900277F69 /* SubmissionViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEADAD2E00705900277F69 /* SubmissionViewer.swift */; };
+		CFFEADB12E007B0600277F69 /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEADB02E007B0600277F69 /* IBDesignables.swift */; };
 		D900B41A29CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */; };
 		D91C051D29AE10170032BFB1 /* QuizSubmissionListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */; };
 		D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C051E29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift */; };
@@ -328,7 +329,6 @@
 		7D742F372554D01400FD6CF1 /* RubricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricsView.swift; sourceTree = "<group>"; };
 		7D742F442556566F00FD6CF1 /* OldCommentEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldCommentEditorView.swift; sourceTree = "<group>"; };
 		7D7D6D5125102052002B1485 /* SubmissionGraderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionGraderView.swift; sourceTree = "<group>"; };
-		7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRootFolders.swift; sourceTree = "<group>"; };
 		7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmissionViewer.swift; sourceTree = "<group>"; };
 		8B086F0F2AB1F00A0013C15F /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
@@ -402,6 +402,7 @@
 		CFFEADA92E006FED00277F69 /* QuizSubmissionListInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractorLive.swift; sourceTree = "<group>"; };
 		CFFEADAB2E00703000277F69 /* RollCallSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollCallSession.swift; sourceTree = "<group>"; };
 		CFFEADAD2E00705900277F69 /* SubmissionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewer.swift; sourceTree = "<group>"; };
+		CFFEADB02E007B0600277F69 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D900B41929CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemViewModelTests.swift; sourceTree = "<group>"; };
 		D91C051C29AE10170032BFB1 /* QuizSubmissionListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListItemView.swift; sourceTree = "<group>"; };
@@ -923,7 +924,7 @@
 		B15CA293221E0F890014FB02 /* IBDesignables */ = {
 			isa = PBXGroup;
 			children = (
-				7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */,
+				CFFEADB02E007B0600277F69 /* IBDesignables.swift */,
 			);
 			path = IBDesignables;
 			sourceTree = "<group>";
@@ -1676,6 +1677,7 @@
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
 				CF4C5F7C2DA02401005AE000 /* SpeedGraderInteractorLive.swift in Sources */,
 				CF93FCB82D5A5AF600C4538F /* SpeedGraderAssembly.swift in Sources */,
+				CFFEADB12E007B0600277F69 /* IBDesignables.swift in Sources */,
 				7D3DC0C0252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift in Sources */,
 				7D7126C425374457000DEDE4 /* SubmissionCommentListView.swift in Sources */,
 				7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */,
