@@ -71,8 +71,8 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 leadingContent
-                    .padding(.leading, 8)
-                    .padding(.trailing, 14)
+                    .padding(.trailing, 8)
+                    .padding(.leading, 14)
 
                 Button(action: buttonAction) {
                     RoundedRectangle(cornerRadius: 2)

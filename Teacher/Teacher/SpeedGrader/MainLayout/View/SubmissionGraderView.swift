@@ -67,11 +67,11 @@ struct SubmissionGraderView: View {
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
         _rubricsViewModel = StateObject(wrappedValue:
-            RubricsViewModel(
-                assignment: viewModel.assignment,
-                submission: viewModel.submission,
-                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
-            )
+                                            RubricsViewModel(
+                                                assignment: viewModel.assignment,
+                                                submission: viewModel.submission,
+                                                interactor: RubricGradingInteractorLive(assignment: viewModel.assignment, submission: viewModel.submission)
+                                            )
         )
     }
 
@@ -218,15 +218,29 @@ struct SubmissionGraderView: View {
                 Button {
                     drawerState != .mid ? snapDrawerTo(.mid) : snapDrawerTo(.max)
                 } label: {
-                    drawerState != .max ?
-                    Image(systemName: "arrow.down.backward.and.arrow.up.forward") :
-                    Image(systemName: "arrow.up.forward.and.arrow.down.backward")
+                    drawerState != .max ? Image.fullScreenLine : Image.exitFullScreenLine
+                }
+                .accessibilityShowsLargeContentViewer {
+                    drawerState != .max ? Image.fullScreenLine : Image.exitFullScreenLine
+                    Text(
+                        drawerState != .max ?
+                        String(localized: "Expand", bundle: .teacher) :
+                        String(localized: "Collapse", bundle: .teacher)
+                    )
                 }
             } trailingContent: {
                 Button {
                     drawerState != .min ? snapDrawerTo(.min) : snapDrawerTo(.max)
                 } label: {
-                    drawerState != .min ? Image(systemName: "chevron.down") : Image(systemName: "chevron.up")
+                    drawerState != .min ? Image.arrowOpenDownLine : Image.arrowOpenUpLine
+                }
+                .accessibilityShowsLargeContentViewer {
+                    drawerState != .min ? Image.arrowOpenDownLine : Image.arrowOpenUpLine
+                    Text(
+                        drawerState != .min ?
+                        String(localized: "Close", bundle: .teacher) :
+                        String(localized: "Open", bundle: .teacher)
+                    )
                 }
             }
         }
@@ -327,24 +341,24 @@ struct SubmissionGraderView: View {
     @ViewBuilder
     private func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
         VStack(spacing: 0) {
-                InstUI.SegmentedPicker(selection: $tab) {
-                    ForEach(GraderTab.allCases, id: \.self) { tab in
-                        Text(tab.title(viewModel: viewModel))
-                            .tag(tab)
-                    }
+            InstUI.SegmentedPicker(selection: $tab) {
+                ForEach(GraderTab.allCases, id: \.self) { tab in
+                    Text(tab.title(viewModel: viewModel))
+                        .tag(tab)
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
-                .padding(.bottom, 16)
-//                .frame(height: profileHeaderSize.height)
-                .onChange(of: tab) {
-                    controller.view.endEditing(true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        focusedTab = tab
-                    }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .padding(.bottom, 16)
+            //                .frame(height: profileHeaderSize.height)
+            .onChange(of: tab) {
+                controller.view.endEditing(true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    focusedTab = tab
                 }
-                .identifier("SpeedGrader.toolPicker")
-                InstUI.Divider()
+            }
+            .identifier("SpeedGrader.toolPicker")
+            InstUI.Divider()
 
             GeometryReader { geometry in
                 HStack(spacing: 0) {
@@ -359,8 +373,8 @@ struct SubmissionGraderView: View {
                     )
 
                     gradesTab(bottomInset: bottomInset, isDrawer: isDrawer, geometry: geometry)
-                        // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
-                        // and it would block interaction with the attempts picker and the submission content.
+                    // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
+                    // and it would block interaction with the attempts picker and the submission content.
                         .allowsHitTesting(tab == .grades)
                     commentsTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
                 }
