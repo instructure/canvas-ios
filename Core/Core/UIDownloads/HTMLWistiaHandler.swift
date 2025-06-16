@@ -193,7 +193,7 @@ public struct HTMLWistiaHandler {
             // Load Token
             async function loadCSRF() {
                 const response = await fetch(
-                    `https://canvas-analytics-lti.stg.oc.2u.com/wistia/csrf`,
+                    `https://canvas-analytics-lti.prod.oc.2u.com/wistia/csrf`,
                     {
                         credentials: "include",
                     }
@@ -213,7 +213,7 @@ public struct HTMLWistiaHandler {
                 formData.append("csrfmiddlewaretoken", token);
 
                 fetch(
-                    `https://canvas-analytics-lti.stg.oc.2u.com/wistia/video/user/activity`,
+                    `https://canvas-analytics-lti.prod.oc.2u.com/wistia/video/user/activity`,
                     {
                         method: "POST",
                         credentials: "include",
