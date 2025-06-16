@@ -350,7 +350,7 @@ struct SubmissionGraderView: View {
                 .identifier("SpeedGrader.toolPicker")
                 InstUI.Divider()
             } else {
-                InstUI.SegmentedPicker(selection: $tab.animation()) {
+                InstUI.SegmentedPicker(selection: $tab) {
                     ForEach(GraderTab.allCases, id: \.self) { tab in
                         Text(tab.title(viewModel: viewModel))
                             .tag(tab)
