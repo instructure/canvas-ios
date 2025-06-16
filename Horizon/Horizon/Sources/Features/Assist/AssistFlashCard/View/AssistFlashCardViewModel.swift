@@ -117,6 +117,7 @@ final class AssistFlashCardViewModel {
             return
         }
         flashCards = flashCardModels
+        currentCardIndex = 0
         isLoaderVisible = false
     }
 }
