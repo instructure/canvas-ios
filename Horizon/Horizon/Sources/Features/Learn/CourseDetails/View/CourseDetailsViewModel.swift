@@ -83,12 +83,20 @@ final class CourseDetailsViewModel {
                 continuation.resume()
                 return
             }
-            pullToRefreshCancellable = getCoursesInteractor.getCourseWithModules(id: course.id, ignoreCache: true)
+            let coursePublisher = getCoursesInteractor
+                .getCourseWithModules(id: course.id, ignoreCache: true)
                 .first()
-                .sink { [weak self] course in
+
+            let syllabusPublisher = getCoursesInteractor
+                .getCourseSyllabus(courseID: course.id, ignoreCache: true)
+
+            pullToRefreshCancellable = coursePublisher
+                .zip(syllabusPublisher)
+                .sink { [weak self] course, syllabus in
                     continuation.resume()
-                    guard let course = course, let self = self else { return }
+                    guard let self = self, let course = course else { return }
                     self.course = course
+                    self.overviewDescription = syllabus ?? ""
                 }
         }
     }
@@ -158,7 +166,7 @@ final class CourseDetailsViewModel {
         // Should use CombineLatest instead of Zip to track changes to the course
         Publishers.CombineLatest(
             getCoursesInteractor.getCourseWithModules(id: id, ignoreCache: false),
-            getCoursesInteractor.getCourseSyllabus(courseID: id)
+            getCoursesInteractor.getCourseSyllabus(courseID: id, ignoreCache: false)
         )
         .map { (course: $0, syllabus: $1) }
         .eraseToAnyPublisher()
