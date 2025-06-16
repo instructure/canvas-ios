@@ -150,4 +150,3 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
 }
 
 #endif
-
