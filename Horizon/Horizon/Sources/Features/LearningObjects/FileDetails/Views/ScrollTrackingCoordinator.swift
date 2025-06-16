@@ -24,7 +24,6 @@ final class ScrollTrackingCoordinator: NSObject, UIScrollViewDelegate {
     private var lastZoomScale: CGFloat = 1.0
     private let minDelta: CGFloat = 0.1
     private let minScrollThreshold: CGFloat = 5.0
-    private var yOffsets: [CGFloat] = []
 
     var isZoomingIn = false
     let didScroll: (Bool) -> Void
@@ -40,13 +39,7 @@ final class ScrollTrackingCoordinator: NSObject, UIScrollViewDelegate {
         guard delta > minScrollThreshold else { return }
 
         lastYOffset = yOffset
-        yOffsets.append(yOffset)
-
-        if yOffsets.count == 10 {
-            let averageYOffset = yOffsets.reduce(0, +) / CGFloat(yOffsets.count)
-            didScroll(isZoomingIn || averageYOffset > threshold)
-            yOffsets.removeAll()
-        }
+        didScroll(isZoomingIn || yOffset > threshold)
     }
 
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
