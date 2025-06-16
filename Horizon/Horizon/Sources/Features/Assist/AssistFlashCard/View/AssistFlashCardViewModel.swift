@@ -116,8 +116,8 @@ final class AssistFlashCardViewModel {
         guard let flashCardModels =  response.flashCards?.flashCardModels else {
             return
         }
-        flashCards = flashCardModels
         currentCardIndex = 0
+        flashCards = flashCardModels
         isLoaderVisible = false
     }
 }
