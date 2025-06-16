@@ -71,6 +71,11 @@ extension AssistFlashCardStepIndicatorView {
 
 #if DEBUG
 #Preview {
-    AssistFlashCardStepIndicatorView(viewModel: .init(router: AppEnvironment.shared.router))
+    AssistFlashCardStepIndicatorView(
+        viewModel: .init(
+            router: AppEnvironment.shared.router,
+            chatBotInteractor: AssistChatInteractorPreview()
+        )
+    )
 }
 #endif

@@ -291,10 +291,19 @@ enum HorizonRoutes {
                     fileId: fileId
                 )
             },
-            RouteHandler("/assistant/flashcards") { _, _, userInfo in
+            RouteHandler("/assistant/flashcards") {url, _, userInfo in
                 let flashCards = userInfo?["flashCards"] as? [AssistFlashCardModel] ?? []
+                let queryItems = url.queryItems ?? []
+                let courseId = queryItems.first(where: { $0.name == "courseId" })?.value
+                let pageUrl = queryItems.first(where: { $0.name == "pageUrl" })?.value
+                let fileId = queryItems.first(where: { $0.name == "fileId" })?.value
                 return CoreHostingController(
-                    AssistAssembly.makeAIFlashCardView(flashCards: flashCards)
+                    AssistAssembly.makeAIFlashCardView(
+                        courseId: courseId,
+                        fileId: fileId,
+                        pageUrl: pageUrl,
+                        flashCards: flashCards
+                    )
                 )
             },
             RouteHandler("/assistant/quiz") { url, _, userInfo in

@@ -27,29 +27,57 @@ struct AssistFlashCardView: View {
     var body: some View {
         VStack {
             headerView
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: HorizonUI.spaces.space16) {
-                    flashCardsView
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.surfaceColored)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: HorizonUI.spaces.space16) {
+                        flashCardsView
+                    }
+                    .scrollTargetLayout()
                 }
-                .scrollTargetLayout()
+                .scrollTargetBehavior(.viewAligned)
+                .contentMargins(.horizontal, HorizonUI.spaces.space32, for: .scrollContent)
+                .scrollPosition(id: $viewModel.currentCardIndex)
             }
-            .scrollTargetBehavior(.viewAligned)
-            .contentMargins(.horizontal, HorizonUI.spaces.space32, for: .scrollContent)
-            .scrollPosition(id: $viewModel.currentCardIndex)
         }
         .animation(.smooth, value: viewModel.currentCardIndex)
-        .padding(.huiSpaces.space16)
-        .safeAreaInset(edge: .bottom) {
-            AssistFlashCardStepIndicatorView(viewModel: viewModel)
-                .padding(.bottom, 5)
+        .padding([.top, .horizontal], .huiSpaces.space16)
+        .safeAreaInset(edge: .bottom, spacing: .zero) {
+            VStack(spacing: .huiSpaces.space24) {
+                AssistFlashCardStepIndicatorView(viewModel: viewModel)
+                HorizonUI.PrimaryButton(
+                    String(localized: "Regenerate Flashcards", bundle: .horizon),
+                    type: .white) {
+                        viewModel.regenerate()
+                    }
+            }
+            .padding([.bottom, .top], .huiSpaces.space16)
         }
         .applyHorizonGradient()
+        .overlay { loaderView }
     }
 }
 
 // MARK: - Components
 
 extension AssistFlashCardView {
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            ZStack {
+                Rectangle()
+                    .fill(Color.clear)
+                    .applyHorizonGradient()
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
+    }
+
     private var headerView: some View {
         HStack {
             HorizonUI.IconButton(Image.huiIcons.arrowBack, type: .white, isSmall: true) {
@@ -70,7 +98,7 @@ extension AssistFlashCardView {
             AssistFlashCardItemView(item: item)
                 .containerRelativeFrame(.horizontal)
                 .containerRelativeFrame(.vertical) { height, _ in
-                    height * 0.8
+                    height * 0.75
                 }
                 .rotation3DEffect(
                     .degrees(item.isFlipped ? 180 : 0),
@@ -107,7 +135,8 @@ extension AssistFlashCardView {
                     backContent: "Back Content 3"
                 )
             ],
-            router: AppEnvironment.shared.router
+            router: AppEnvironment.shared.router,
+            chatBotInteractor: AssistChatInteractorPreview()
         )
     )
 }
