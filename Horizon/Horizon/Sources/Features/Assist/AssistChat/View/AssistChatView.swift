@@ -52,7 +52,7 @@ struct AssistChatView: View {
         .applyHorizonGradient()
         .overlay {
             if viewModel.isLoaderVisible {
-                HorizonUI.Spinner(size: .small, showBackground: true)
+                HorizonUI.Spinner(size: .small, foregroundColor: Color.huiColors.surface.cardPrimary)
             }
         }
         .huiToast(
@@ -142,7 +142,6 @@ struct AssistChatView: View {
                 HorizonUI.IconButton(Image.huiIcons.arrowUpward, type: .white) {
                     viewModel.send()
                 }
-                .opacity(viewModel.isDisableSendButton ? 0.5 : 1)
                 .disabled(viewModel.isDisableSendButton)
             }
         }
