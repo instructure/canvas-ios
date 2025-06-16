@@ -32,6 +32,7 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
     var context = Context.currentUser
     var env: AppEnvironment = .shared
     var pageURL = ""
+    var userInfo: [String: Any]?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -67,6 +68,7 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
         pageURL: String,
         app: App,
         env: AppEnvironment,
+        userInfo: [String: Any]? = nil,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> PageDetailsViewController {
         let controller = loadFromStoryboard()
@@ -74,6 +76,7 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
         controller.pageURL = pageURL
         controller.app = app
         controller.env = env
+        controller.userInfo = userInfo
         controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
@@ -143,6 +146,8 @@ public final class PageDetailsViewController: DownloadableViewController, Colore
             isOffline: offlineModeInteractor?.isNetworkOffline(),
             filePath: offlinePath,
             content: page.body,
+            courseID: courses.first?.id,
+            moduleItemID: userInfo?["moduleItemID"] as? String,
             originalBaseURL: page.htmlURL
         )
         if let course = courses.first {

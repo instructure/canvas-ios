@@ -174,7 +174,7 @@ public final class ModuleItemDetailsViewController: DownloadableViewController, 
         default:
             guard let url = item.url else { return nil }
             let preparedURL = url.appendingOrigin("module_item_details")
-            let itemViewController = env.router.match(preparedURL)
+            let itemViewController = env.router.match(preparedURL, userInfo: ["moduleItemID": itemID as Any])
 
             if let itemViewController, let routeTemplate = env.router.template(for: preparedURL) {
                 RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: itemViewController)

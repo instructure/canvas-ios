@@ -20,11 +20,12 @@ import SwiftSoup
 import UIKit
 
 public struct HTMLWistiaHandler {
-    public static func updateWistia(in html: String?) -> String? {
+    public static func updateWistia(in html: String?, courseID: String?, moduleItemID: String?) -> String? {
         guard let html = html else { return nil }
         let isPad = UIDevice.current.userInterfaceIdiom == .pad
         let usualTranscriptHeight: Int = 285
         let shortenTranscriptHeight: Int = 175
+        var wistiaIDs: [String] = []
         do {
             let document = try SwiftSoup.parse(html)
             let iframes = try document.getElementsByTag("iframe")
@@ -34,6 +35,7 @@ public struct HTMLWistiaHandler {
                     let styleValue = try? iframe.attr("style")
 
                     if let id = getWistiaId(from: src) {
+                        wistiaIDs.append(id)
                         var stringToReplace: String = ""
                         let currentHTML = try document.html()
                         let v1Link = "https://fast.wistia.com/assets/external/E-v1.js"
@@ -97,11 +99,133 @@ public struct HTMLWistiaHandler {
                 </script>
                 """
             }
+            html += wistiaPlayerAnalyticsScript(
+                wistiaIDs: wistiaIDs,
+                courseID: courseID ?? "",
+                userID: AppEnvironment.shared.currentSession?.userID ?? "",
+                moduleItemID: moduleItemID
+            )
             return html
         } catch {
 
         }
         return nil
+    }
+
+    // swiftlint:disable:next function_body_length
+    private static func wistiaPlayerAnalyticsScript(
+        wistiaIDs: [String],
+        courseID: String,
+        userID: String,
+        moduleItemID: String?
+    ) -> String {
+        guard wistiaIDs.count > 0 else {
+            return ""
+        }
+        var moduleItemParamString: String
+        if let moduleItemID = moduleItemID {
+            moduleItemParamString = "module_item_id: \"\(moduleItemID)\","
+        } else {
+            moduleItemParamString = ""
+        }
+
+        return """
+        <script type='text/javascript'>
+            const wistiaIDs = [\(wistiaIDs.map { "\"\($0)\"" }.joined(separator: ", "))];
+            // Add listeners for video player
+            async function addListenerForWistia(player, wistiaID) {
+                const csrf_token = await loadCSRF();
+                const watchedPercents = new Set();
+
+                player.addEventListener('timeupdate', () => {
+                    const percent = Math.floor((player.currentTime / player.duration) * 100);
+
+                    // For every 5%
+                    for (let p = 5; p <= 100; p += 5) {
+                        if (percent >= p && !watchedPercents.has(p)) {
+                            watchedPercents.add(p);
+                            sendWatchedTime(
+                                {
+                                    watched_percentage: p,
+                                    course_id: "###COURSE_ID###",
+                                    user_id: "###USER_ID###",
+                                    wistia_media_id: wistiaID,
+                                    ###MODULE_ITEM_ID_PARAM_STRING###
+                                },
+                                csrf_token
+                            );
+                        }
+                    }
+                });
+            }
+            function waitForWistiaVideoPlayer(wistiaID, callback, interval = 200) {
+                const checkPlayer = setInterval(() => {
+                    const videos = document.getElementsByTagName('video');
+                    var wistiaPlayer = null;
+                    for (const video of videos) {
+                        if (video.innerHTML.includes(wistiaID)) {
+                            wistiaPlayer = video;
+                            break;
+                        }
+                    }
+                    if (wistiaPlayer) {
+                        clearInterval(checkPlayer);
+                        callback(wistiaPlayer, wistiaID);
+                    }
+                }, interval);
+            }
+            !(function () {
+                setTimeout(
+                    function() {
+                        for (const id of wistiaIDs) {
+                            waitForWistiaVideoPlayer(
+                                id,
+                                function(player, wistiaID) {
+                                    addListenerForWistia(player, wistiaID);
+                                }
+                            );
+                        }
+                    },
+                    1500
+                );
+            })();
+
+            // Load Token
+            async function loadCSRF() {
+                const response = await fetch(
+                    `https://canvas-analytics-lti.prod.oc.2u.com/wistia/csrf`,
+                    {
+                        credentials: "include",
+                    }
+                );
+                const data = await response.json();
+                return data.csrfToken;
+            }
+
+            // Send Analytic Event
+            function sendWatchedTime(payload, token) {
+                const formData = new FormData();
+
+                Object.entries(payload).forEach(([key, value]) => {
+                    formData.append(key, value);
+                });
+
+                formData.append("csrfmiddlewaretoken", token);
+
+                fetch(
+                    `https://canvas-analytics-lti.prod.oc.2u.com/wistia/video/user/activity`,
+                    {
+                        method: "POST",
+                        credentials: "include",
+                        body: formData,
+                    }
+                ).catch((error) => console.error("Error:", error));
+            }
+        </script>
+        """
+            .replacingOccurrences(of: "###MODULE_ITEM_ID_PARAM_STRING###", with: moduleItemParamString)
+            .replacingOccurrences(of: "###COURSE_ID###", with: courseID)
+            .replacingOccurrences(of: "###USER_ID###", with: userID)
     }
 
     static func isWistiaLink(_ link: String) -> Bool {
