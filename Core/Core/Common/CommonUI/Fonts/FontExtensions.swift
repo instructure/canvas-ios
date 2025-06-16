@@ -83,7 +83,7 @@ public extension Font {
     }
 }
 
-private extension UIFont.Name {
+extension UIFont.Name {
 
     var weight: UIFont.Weight {
         switch rawValue.lowercased() {
