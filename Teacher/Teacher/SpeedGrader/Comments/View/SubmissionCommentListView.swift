@@ -57,21 +57,67 @@ struct SubmissionCommentListView: View {
         self._focusedTab = focusedTab
     }
 
+//    var body: some View {
+//        GeometryReader { geometry in
+//            VStack(spacing: 0) {
+//                ScrollView {
+//                    switch viewModel.state {
+//                    case .data:
+//                        comments
+//                    // Assume already loaded by parent, so skip loading & error
+//                    case .loading, .empty, .error:
+//                        EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
+//                            .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
+//                    }
+//                }
+//                    .background(Color.backgroundLightest)
+//                    .scaleEffect(y: viewModel.state == .data ? -1 : 1)
+//                switch showRecorder {
+//                case .audio:
+//                    InstUI.Divider()
+//                    AudioRecorder {
+//                        show(recorder: nil)
+//                        sendMediaComment(type: .audio, url: $0)
+//                    }
+//                        .background(Color.backgroundLight)
+//                        .frame(height: 240)
+//                        .transition(.move(edge: .bottom))
+//                case .video:
+//                    InstUI.Divider()
+//                    VideoRecorder(camera: .front) {
+//                        show(recorder: nil)
+//                        sendMediaComment(type: .video, url: $0)
+//                    }
+//                        .background(Color.backgroundLight)
+//                        .frame(height: geometry.size.height)
+//                        .transition(.move(edge: .bottom))
+//                case nil:
+//                    toolbar
+//                        .transition(.opacity)
+//                }
+//            }.sheet(isPresented: $showCommentLibrary) {
+//                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment, contextColor: viewModel.contextColor) {
+//                    sendComment()
+//                }
+//            }
+//        }
+//    }
+
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 0) {
-                ScrollView {
-                    switch viewModel.state {
-                    case .data:
-                        comments
+            ScrollView {
+                switch viewModel.state {
+                case .data:
+                    comments
                     // Assume already loaded by parent, so skip loading & error
-                    case .loading, .empty, .error:
-                        EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
-                            .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
-                    }
+                case .loading, .empty, .error:
+                    EmptyPanda(.NoComments, message: Text("There are no messages yet.", bundle: .teacher))
+                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
                 }
-                    .background(Color.backgroundLightest)
-                    .scaleEffect(y: viewModel.state == .data ? -1 : 1)
+            }
+            .background(Color.backgroundLightest)
+            .scaleEffect(y: viewModel.state == .data ? -1 : 1)
+            .safeAreaInset(edge: .bottom) {
                 switch showRecorder {
                 case .audio:
                     InstUI.Divider()
@@ -79,23 +125,24 @@ struct SubmissionCommentListView: View {
                         show(recorder: nil)
                         sendMediaComment(type: .audio, url: $0)
                     }
-                        .background(Color.backgroundLight)
-                        .frame(height: 240)
-                        .transition(.move(edge: .bottom))
+                    .background(Color.backgroundLight)
+                    .frame(height: 240)
+                    .transition(.move(edge: .bottom))
                 case .video:
                     InstUI.Divider()
                     VideoRecorder(camera: .front) {
                         show(recorder: nil)
                         sendMediaComment(type: .video, url: $0)
                     }
-                        .background(Color.backgroundLight)
-                        .frame(height: geometry.size.height)
-                        .transition(.move(edge: .bottom))
+                    .background(Color.backgroundLight)
+                    .frame(height: geometry.size.height)
+                    .transition(.move(edge: .bottom))
                 case nil:
                     toolbar
                         .transition(.opacity)
                 }
-            }.sheet(isPresented: $showCommentLibrary) {
+            }
+            .sheet(isPresented: $showCommentLibrary) {
                 CommentLibrarySheet(viewModel: commentLibrary, comment: $comment, contextColor: viewModel.contextColor) {
                     sendComment()
                 }

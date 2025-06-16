@@ -20,6 +20,8 @@ import Foundation
 import SwiftUI
 
 public struct UITextViewWrapper: UIViewRepresentable {
+    public typealias Context = UIViewRepresentableContext<UITextViewWrapper>
+
     @Binding var text: String
     let textViewBuilder: () -> UITextView
 
@@ -31,22 +33,24 @@ public struct UITextViewWrapper: UIViewRepresentable {
         self.textViewBuilder = textViewBuilder
     }
 
-    public func makeUIView(context: UIViewRepresentableContext<UITextViewWrapper>) -> UITextView {
-        let tv = textViewBuilder()
-        tv.delegate = context.coordinator
-        return tv
+    public func makeCoordinator() -> Coordinator {
+        .init(self)
     }
 
-    public func updateUIView(_ textView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
+    public func makeUIView(context: Context) -> UITextView {
+        let textView = textViewBuilder()
+        textView.delegate = context.coordinator
+        textView.adjustsFontForContentSizeCategory = true
+        return textView
+    }
+
+    public func updateUIView(_ textView: UITextView, context: Context) {
         if text != textView.text {
             textView.text = text
         }
+        textView.textColor = .textDarkest
     }
 
-    public func makeCoordinator() -> Coordinator {
-        let coordinator = Coordinator(self)
-        return coordinator
-    }
 
     public class Coordinator: NSObject, UITextViewDelegate {
 

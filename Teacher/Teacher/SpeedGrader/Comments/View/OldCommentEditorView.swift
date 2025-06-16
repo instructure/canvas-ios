@@ -31,8 +31,7 @@ struct OldCommentEditorView: View {
 
     var body: some View {
         HStack(alignment: .bottom) {
-            DynamicHeightTextEditor(text: $text, placeholder: String(localized: "Comment", bundle: .teacher))
-                .font(.regular16)
+            DynamicHeightTextEditor(text: $text, placeholder: String(localized: "Comment", bundle: .teacher), font: .regular16)
                 .lineLimit(10)
                 .accessibility(label: Text("Comment", bundle: .teacher))
                 .identifier("SubmissionComments.commentTextView")

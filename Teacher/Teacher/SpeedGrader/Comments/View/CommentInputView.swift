@@ -97,11 +97,14 @@ struct CommentInputView: View {
                     .font(.regular12)
                     .foregroundStyle(.textPlaceholder)
             }
-            DynamicHeightTextEditor(text: $comment, placeholder: String(localized: "Comment", bundle: .teacher))
-                .font(.regular14)
-                .lineLimit(10)
-                .accessibilityLabel(Text("Comment", bundle: .teacher))
-                .identifier("SubmissionComments.commentTextView")
+            DynamicHeightTextEditor(
+                text: $comment,
+                placeholder: String(localized: "Comment", bundle: .teacher),
+                font: .regular14
+            )
+            .lineLimit(6)
+            .accessibilityLabel(Text("Comment", bundle: .teacher))
+            .identifier("SubmissionComments.commentTextView")
         }
     }
 
