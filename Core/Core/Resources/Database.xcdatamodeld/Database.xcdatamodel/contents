@@ -259,7 +259,11 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignment" inverseName="relationship" inverseEntity="CDHScoresAssignment"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmissionScores" inverseName="assignmentGroups" inverseEntity="CDSubmissionScores"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmissionScores" inverseName="assignmentGroups" inverseEntity="CDHSubmissionScores"/>
+    </entity>
+    <entity name="CDHSubmissionScores" representedClassName="Core.CDHSubmissionScores" syncable="YES">
+        <attribute name="enrollmentID" attributeType="String"/>
+        <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDHScoresAssignmentGroup"/>
     </entity>
     <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
@@ -329,10 +333,6 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="isRead" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmission" inverseName="comments" inverseEntity="CDSubmission"/>
-    </entity>
-    <entity name="CDSubmissionScores" representedClassName="Core.CDSubmissionScores" syncable="YES">
-        <attribute name="enrollmentID" attributeType="String"/>
-        <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDHScoresAssignmentGroup"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>

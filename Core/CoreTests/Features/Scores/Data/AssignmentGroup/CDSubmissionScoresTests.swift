@@ -83,7 +83,7 @@ final class CDSubmissionScoresTests: CoreTestCase {
         ))
 
         let enrollmentId = "enrollment-456"
-        let savedEntity = CDSubmissionScores.save(response, enrollmentId: enrollmentId, in: databaseClient)
+        let savedEntity = CDHSubmissionScores.save(response, enrollmentId: enrollmentId, in: databaseClient)
 
         XCTAssertEqual(savedEntity.enrollmentID, enrollmentId)
         XCTAssertEqual(savedEntity.assignmentGroups.count, 1)
@@ -93,14 +93,14 @@ final class CDSubmissionScoresTests: CoreTestCase {
         XCTAssertEqual(group?.name, "Assignments")
         XCTAssertEqual(group?.groupWeight?.doubleValue, 40.0)
 
-        let fetchedEntity: CDSubmissionScores? = databaseClient.first(where: #keyPath(CDSubmissionScores.enrollmentID), equals: enrollmentId)
+        let fetchedEntity: CDHSubmissionScores? = databaseClient.first(where: #keyPath(CDHSubmissionScores.enrollmentID), equals: enrollmentId)
         XCTAssertNotNil(fetchedEntity)
         XCTAssertEqual(fetchedEntity?.enrollmentID, enrollmentId)
     }
 
     func testSaveWithExistingEntity() {
         let enrollmentId = "enrollment-456"
-        let initialEntity: CDSubmissionScores = databaseClient.insert()
+        let initialEntity: CDHSubmissionScores = databaseClient.insert()
         initialEntity.enrollmentID = enrollmentId
         initialEntity.assignmentGroups = []
         try! databaseClient.save()
@@ -124,7 +124,7 @@ final class CDSubmissionScoresTests: CoreTestCase {
             )
         ))
 
-        let updatedEntity = CDSubmissionScores.save(response, enrollmentId: enrollmentId, in: databaseClient)
+        let updatedEntity = CDHSubmissionScores.save(response, enrollmentId: enrollmentId, in: databaseClient)
 
         XCTAssertEqual(updatedEntity.objectID, initialEntity.objectID)
 
@@ -146,7 +146,7 @@ final class CDSubmissionScoresTests: CoreTestCase {
         ))
 
         let enrollmentId = "enrollment-456"
-        let entity = CDSubmissionScores.save(response, enrollmentId: enrollmentId, in: databaseClient)
+        let entity = CDHSubmissionScores.save(response, enrollmentId: enrollmentId, in: databaseClient)
 
         XCTAssertEqual(entity.assignmentGroups.count, 0)
     }

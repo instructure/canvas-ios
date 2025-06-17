@@ -55,7 +55,7 @@ final public class GetSubmissionScoresUseCase: APIUseCase {
         guard let response else {
             return
         }
-        CDSubmissionScores.save(
+        CDHSubmissionScores.save(
             response,
             enrollmentId: enrollmentId,
             in: client
@@ -63,6 +63,6 @@ final public class GetSubmissionScoresUseCase: APIUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CDSubmissionScores.enrollmentID), equals: enrollmentId)
+        return .where(#keyPath(CDHSubmissionScores.enrollmentID), equals: enrollmentId)
     }
 }

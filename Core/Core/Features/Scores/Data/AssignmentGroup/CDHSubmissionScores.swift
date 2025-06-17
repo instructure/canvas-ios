@@ -18,7 +18,7 @@
 
 import CoreData
 
-final public class CDSubmissionScores: NSManagedObject {
+final public class CDHSubmissionScores: NSManagedObject {
     @NSManaged public var enrollmentID: String
     @NSManaged public var assignmentGroups: Set<CDHScoresAssignmentGroup>
 
@@ -27,8 +27,8 @@ final public class CDSubmissionScores: NSManagedObject {
         _ apiEntity: GetSubmissionScoresResponse,
         enrollmentId: String,
         in context: NSManagedObjectContext
-    ) -> CDSubmissionScores {
-        let dbEntity: CDSubmissionScores = context.first(where: #keyPath(CDSubmissionScores.enrollmentID), equals: enrollmentId) ?? context.insert()
+    ) -> CDHSubmissionScores {
+        let dbEntity: CDHSubmissionScores = context.first(where: #keyPath(CDHSubmissionScores.enrollmentID), equals: enrollmentId) ?? context.insert()
 
         dbEntity.enrollmentID = enrollmentId
         if let apiAssignmentGroups = apiEntity.data?.legacyNode?.course?.assignmentGroups {

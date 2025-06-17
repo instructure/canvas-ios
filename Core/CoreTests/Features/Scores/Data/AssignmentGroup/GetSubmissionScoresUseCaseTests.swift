@@ -37,7 +37,7 @@ final class GetSubmissionScoresUseCaseTests: CoreTestCase {
     func testScope() {
         let useCase = GetSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
 
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(CDSubmissionScores.enrollmentID), equals: "enrollment-456"))
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(CDHSubmissionScores.enrollmentID), equals: "enrollment-456"))
     }
 
     func testWrite() {
@@ -106,7 +106,7 @@ final class GetSubmissionScoresUseCaseTests: CoreTestCase {
 
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let scores: [CDSubmissionScores] = databaseClient.fetch()
+        let scores: [CDHSubmissionScores] = databaseClient.fetch()
         XCTAssertEqual(scores.count, 1)
 
         let score = scores.first
@@ -141,7 +141,7 @@ final class GetSubmissionScoresUseCaseTests: CoreTestCase {
 
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
 
-        let scores: [CDSubmissionScores] = databaseClient.fetch()
+        let scores: [CDHSubmissionScores] = databaseClient.fetch()
         XCTAssertEqual(scores.count, 0)
     }
 }
