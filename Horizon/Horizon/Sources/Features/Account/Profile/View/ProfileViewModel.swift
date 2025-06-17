@@ -31,9 +31,11 @@ final class ProfileViewModel {
         }
     }
     var nameDisabled: Bool {
-        isLoading
+        isLoading || !canUpdateName
     }
     var nameError: String = " "
+    private(set) var errorMessage: String = ""
+    private(set) var canUpdateName = true
     var displayName: String = "" {
         didSet {
             validateDisplayName()
@@ -41,12 +43,16 @@ final class ProfileViewModel {
         }
     }
     var displayNameDisabled: Bool {
-        isLoading
+        isLoading || !canUpdateName
     }
     var displayNameError: String = " "
     var email: String = ""
     var isSaveDisabled: Bool = true
     var isLoading: Bool = true
+
+    // MARK: - Inputs / Output
+
+    var isAlertErrorPresented: Bool = false
 
     // MARK: - Private
 
@@ -72,18 +78,23 @@ final class ProfileViewModel {
     ) {
         self.updateUserProfileInteractor = updateUserProfileInteractor
 
-        getUserInteractor
-            .getUser()
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] user in
-                    self?.nameOriginal = user.name
-                    self?.displayNameOriginal = user.shortName ?? ""
-                    self?.email = user.email ?? ""
-                    self?.validate()
-                    self?.isLoading = false
+        let userProfile = getUserInteractor.getUser()
+        let userPermission = getUserInteractor.canUpdateName()
+
+        Publishers.Zip(userProfile, userPermission)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.localizedDescription
+                    self?.isAlertErrorPresented = true
                 }
-            )
+                self?.isLoading = false
+            } receiveValue: { [weak self] (user, canUpdateName) in
+                self?.canUpdateName = canUpdateName
+                self?.nameOriginal = user.name
+                self?.displayNameOriginal = user.shortName ?? ""
+                self?.email = user.email ?? ""
+                self?.validate()
+            }
             .store(in: &subscriptions)
     }
 

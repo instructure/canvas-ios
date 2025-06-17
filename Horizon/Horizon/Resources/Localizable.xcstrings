@@ -283,6 +283,9 @@
     "Display Name" : {
 
     },
+    "Display Name can only be changed by your institution." : {
+
+    },
     "Done" : {
 
     },
@@ -368,6 +371,9 @@
 
     },
     "Full Name" : {
+
+    },
+    "Full Name can only be changed by your institution." : {
 
     },
     "Georgetown (-04:00/-04:00)" : {
@@ -736,9 +742,6 @@
 
     },
     "Regenerate Flashcards" : {
-
-    },
-    "Required" : {
 
     },
     "Result: %@" : {
