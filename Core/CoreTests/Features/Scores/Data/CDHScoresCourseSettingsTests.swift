@@ -84,7 +84,6 @@ final class CDHScoresCourseSettingsTests: CoreTestCase {
         let apiSettings = APICourseSettings.make(
             restrict_quantitative_data: nil
         )
-        let apiCourse = APICourse.make(settings: apiSettings)
 
         let savedSettings = CDHScoresCourseSettings.save(
             apiSettings,

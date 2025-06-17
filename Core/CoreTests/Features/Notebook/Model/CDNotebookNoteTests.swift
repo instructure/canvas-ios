@@ -64,27 +64,15 @@ final class CDHNotebookNoteTests: CoreTestCase {
     }
 
     func testDeserializeLabels() {
-        let labelsString: String? = "tag1;tag2;tag3"
-
-        XCTAssertEqual(labelsString.deserializeLabels, ["tag1", "tag2", "tag3"])
-
-        let emptyLabelsString: String? = nil
-        XCTAssertNil(emptyLabelsString.deserializeLabels)
-
-        let singleLabelString: String? = "tag1"
-        XCTAssertEqual(singleLabelString.deserializeLabels, ["tag1"])
+        XCTAssertEqual(CDHNotebookNote.deserializeLabels(from: "tag1;tag2;tag3"), ["tag1", "tag2", "tag3"])
+        XCTAssertNil(CDHNotebookNote.deserializeLabels(from: nil))
+        XCTAssertEqual(CDHNotebookNote.deserializeLabels(from: "tag1"), ["tag1"])
     }
 
     func testSerializeLabels() {
-        let labels = ["tag2", "tag1", "tag3"]
-
-        XCTAssertEqual(labels.serializeLabels, "tag1;tag2;tag3")
-
-        let emptyLabels: [String] = []
-        XCTAssertEqual(emptyLabels.serializeLabels, "")
-
-        let singleLabel = ["tag1"]
-        XCTAssertEqual(singleLabel.serializeLabels, "tag1")
+        XCTAssertEqual(CDHNotebookNote.serializeLabels(from: ["tag2", "tag1", "tag3"]), "tag1;tag2;tag3")
+        XCTAssertEqual(CDHNotebookNote.serializeLabels(from: []), "")
+        XCTAssertEqual(CDHNotebookNote.serializeLabels(from: ["tag1"]), "tag1")
     }
 
     func testFetchByID() {
@@ -128,6 +116,6 @@ final class CDHNotebookNoteTests: CoreTestCase {
         XCTAssertNotNil(updatedNote)
         XCTAssertEqual(updatedNote?.content, "Updated content")
         XCTAssertEqual(updatedNote?.labels, "updated;new")
-        XCTAssertEqual(updatedNote?.labels?.deserializeLabels, ["updated", "new"])
+        XCTAssertEqual(CDHNotebookNote.deserializeLabels(from: updatedNote?.labels), ["updated", "new"])
     }
 }
