@@ -37,22 +37,12 @@ final public class CDHNotebookNote: NSManagedObject {
     @NSManaged public var startContainer: String?
     @NSManaged public var startOffset: NSNumber?
     @NSManaged public var userID: String?
-}
-
-extension String {
-    public var deserializeLabels: [String]? {
-        split(separator: ";").map { String($0) }
+    
+    public static func deserializeLabels(from string: String?) -> [String]? {
+        string?.split(separator: ";").map { String($0) }
     }
-}
-
-extension String? {
-    public var deserializeLabels: [String]? {
-        self?.deserializeLabels
-    }
-}
-
-extension Array where Element == String {
-    public var serializeLabels: String? {
-        sorted().joined(separator: ";")
+    
+    public static func serializeLabels(from strings: [String]) -> String? {
+        strings.sorted().joined(separator: ";")
     }
 }
