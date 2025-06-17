@@ -22,7 +22,7 @@ import Foundation
 public class GetCoursesProgressionUseCase: APIUseCase {
     // MARK: - Typealias
 
-    public typealias Model = CDCourse
+    public typealias Model = CDHCourse
     public typealias Request = GetCoursesProgressionRequest
 
     // MARK: - Properties
@@ -60,13 +60,13 @@ public class GetCoursesProgressionUseCase: APIUseCase {
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
         enrollments.forEach { enrollment in
-            CDCourse.save(enrollment, in: client)
+            CDHCourse.save(enrollment, in: client)
         }
     }
 
     public var scope: Scope {
         if let courseId = courseId {
-            return .where(#keyPath(CDCourse.courseID), equals: courseId)
+            return .where(#keyPath(CDHCourse.courseID), equals: courseId)
         }
         return .all
     }

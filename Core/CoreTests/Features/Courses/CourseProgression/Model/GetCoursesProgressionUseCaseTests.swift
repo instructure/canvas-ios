@@ -87,7 +87,7 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
         let useCase = GetCoursesProgressionUseCase(userId: "user_1")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let cdCourses: [CDCourse] = databaseClient.fetch(scope: .where(#keyPath(CDCourse.courseID), equals: "course_1"))
+        let cdCourses: [CDHCourse] = databaseClient.fetch(scope: .where(#keyPath(CDHCourse.courseID), equals: "course_1"))
         XCTAssertEqual(cdCourses.count, 1)
         XCTAssertEqual(cdCourses.first?.courseID, "course_1")
         XCTAssertEqual(cdCourses.first?.state, "active")

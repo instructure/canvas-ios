@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-public final class CDCourse: NSManagedObject, WriteableModel {
+public final class CDHCourse: NSManagedObject, WriteableModel {
     public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
 
     // MARK: - Properties
@@ -45,7 +45,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
     public static func save(
         _ items: [GetCoursesProgressionResponse.EnrollmentModel],
         in context: NSManagedObjectContext
-    ) -> [CDCourse] {
+    ) -> [CDHCourse] {
         items.map { save($0, in: context) }
     }
 
@@ -53,7 +53,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
     public static func save(
         _ enrollmentModel: GetCoursesProgressionResponse.EnrollmentModel,
         in context: NSManagedObjectContext
-    ) -> CDCourse {
+    ) -> CDHCourse {
         let enrollmentModelCourse = enrollmentModel.course
         let courseId = enrollmentModelCourse.id
 
@@ -76,7 +76,7 @@ public final class CDCourse: NSManagedObject, WriteableModel {
         enrollmentModel: GetCoursesProgressionResponse.EnrollmentModel,
         course: Course,
         in context: NSManagedObjectContext
-    ) -> CDCourse {
+    ) -> CDHCourse {
         let courseId = enrollmentModel.course.id
         let institutionName = enrollmentModel.course.account?.name
         let courseProgression = enrollmentModel
@@ -94,8 +94,8 @@ public final class CDCourse: NSManagedObject, WriteableModel {
                 .incompleteModulesConnection?
                 .nodes ?? []
 
-        let model: CDCourse =
-            context.first(where: #keyPath(CDCourse.courseID), equals: courseId) ?? context.insert()
+        let model: CDHCourse =
+            context.first(where: #keyPath(CDHCourse.courseID), equals: courseId) ?? context.insert()
 
         model.course = course
         model.courseID = courseId

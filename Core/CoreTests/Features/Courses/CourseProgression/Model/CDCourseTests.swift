@@ -43,7 +43,7 @@ class CDCourseTests: CoreTestCase {
                 modulesConnection: nil
             )
         )
-        let course = CDCourse.save(mockEnrollment, in: databaseClient)
+        let course = CDHCourse.save(mockEnrollment, in: databaseClient)
         XCTAssertEqual(course.completionPercentage, 100.0)
         XCTAssertNil(course.nextModuleID)
         XCTAssertNil(course.nextModuleItemID)
@@ -105,7 +105,7 @@ class CDCourseTests: CoreTestCase {
                 modulesConnection: nil
             )
         )
-        let course = CDCourse.save(mockEnrollment, in: databaseClient)
+        let course = CDHCourse.save(mockEnrollment, in: databaseClient)
         XCTAssertEqual(course.completionPercentage, 50.0)
         XCTAssertEqual(course.nextModuleID, "module_2")
         XCTAssertEqual(course.nextModuleItemID, "item_2")
@@ -163,7 +163,7 @@ class CDCourseTests: CoreTestCase {
                 )
             )
         )
-        let course = CDCourse.save(mockEnrollment, in: databaseClient)
+        let course = CDHCourse.save(mockEnrollment, in: databaseClient)
         XCTAssertEqual(course.completionPercentage, 0.0)
         XCTAssertEqual(course.nextModuleID, "module_3")
         XCTAssertEqual(course.nextModuleItemID, "content_3")
