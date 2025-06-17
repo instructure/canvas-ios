@@ -34,7 +34,7 @@ protocol SpeedGraderInteractor: AnyObject {
 
     /// Loads all data and updates `state`, `data` and `contextInfo` properties.
     func load()
-    func refreshSubmission(forUserId: String)
+    func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error>
 }
 
 struct SpeedGraderContextInfo: Equatable {

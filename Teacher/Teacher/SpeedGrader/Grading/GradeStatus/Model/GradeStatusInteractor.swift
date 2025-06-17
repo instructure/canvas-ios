@@ -23,9 +23,7 @@ import CoreData
 
 protocol GradeStatusInteractor {
     var gradeStatuses: [GradeStatus] { get }
-
-    /// When we update a submission's grade status, we want to refresh the submission in the DB.
-    var refreshSubmission: ((_ userId: String) -> Void)? { get set }
+    var speedGraderInteractor: SpeedGraderInteractor? { get set }
 
     func fetchGradeStatuses() -> AnyPublisher<Void, Error>
 
@@ -49,7 +47,7 @@ protocol GradeStatusInteractor {
 }
 
 final class GradeStatusInteractorLive: GradeStatusInteractor {
-    var refreshSubmission: ((_ userId: String) -> Void)?
+    var speedGraderInteractor: SpeedGraderInteractor?
     private(set) var gradeStatuses: [GradeStatus] = []
 
     private let api: API
@@ -84,10 +82,11 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
             latePolicyStatus: latePolicyStatus
         )
         return api.makeRequest(request)
-            .map { [weak self] _ in
-                self?.refreshSubmission?(userId)
-                return ()
+            .flatMap { [speedGraderInteractor] _ in
+                assert(speedGraderInteractor != nil)
+                return speedGraderInteractor?.refreshSubmission(forUserId: userId) ?? Publishers.typedEmpty()
             }
+            .mapToVoid()
             .eraseToAnyPublisher()
     }
 

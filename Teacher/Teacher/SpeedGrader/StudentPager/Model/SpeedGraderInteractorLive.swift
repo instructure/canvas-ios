@@ -123,12 +123,12 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     }
 
     /// This only refreshes the submission in CoreData but won't update the entity published in the interactor's state.
-    func refreshSubmission(forUserId: String) {
+    func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error> {
         let submissionUseCase = GetSubmission(context: context, assignmentID: assignmentID, userID: forUserId)
-        ReactiveStore(useCase: submissionUseCase, environment: env)
+        return ReactiveStore(useCase: submissionUseCase, environment: env)
             .getEntities(ignoreCache: true)
-            .sink()
-            .store(in: &subscriptions)
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     // MARK: - Entity Loaders

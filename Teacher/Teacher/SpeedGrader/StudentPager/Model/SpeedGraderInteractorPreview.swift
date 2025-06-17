@@ -45,7 +45,8 @@ class SpeedGraderInteractorPreview: SpeedGraderInteractor {
     func load() {
     }
 
-    func refreshSubmission(forUserId: String) {
+    func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 

@@ -40,9 +40,7 @@ enum SpeedGraderAssembly {
             gradeStatusInteractor: gradeStatusInteractor,
             env: env
         )
-        gradeStatusInteractor.refreshSubmission = { [weak interactor] userId in
-            interactor?.refreshSubmission(forUserId: userId)
-        }
+        gradeStatusInteractor.speedGraderInteractor = interactor
         let viewModel = SpeedGraderViewModel(
             interactor: interactor,
             environment: env
