@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import WidgetKit
+import SwiftUI
+import AppIntents
 
-@main
-struct Widgets: WidgetBundle {
+struct CourseTotalGradeWidget: Widget {
+    let kind: String = "CourseTotalGradeWidget"
 
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        CourseTotalGradeWidget()
-        GradesWidget()
-        TodoWidget()
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(
+            kind: kind,
+            provider: CourseTotalGradeWidgetProvider()
+        ) { model in
+            CourseTotalGradeView(model: model)
+        }
+        .configurationDisplayName(Text("Course Grade"))
+        .description(Text("View total grade for a course"))
+        .supportedFamilies([.systemSmall])
     }
 }

@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "Add To-do" : {
 
     },
@@ -1805,6 +1808,12 @@
     "Canvas To-do Widget" : {
 
     },
+    "Course" : {
+
+    },
+    "Course Grade" : {
+
+    },
     "Course Grades" : {
       "localizations" : {
         "ar" : {
@@ -2577,6 +2586,9 @@
           }
         }
       }
+    },
+    "Grade" : {
+
     },
     "Grades" : {
       "comment" : "Name of the grades widget",
@@ -3352,6 +3364,9 @@
     "Let's Get You Logged In!" : {
 
     },
+    "Logged out" : {
+
+    },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
 
     },
@@ -3610,6 +3625,9 @@
           }
         }
       }
+    },
+    "No Grades" : {
+
     },
     "No Grades To Display" : {
       "localizations" : {
@@ -4390,6 +4408,12 @@
 
     },
     "Reloading Widget" : {
+
+    },
+    "Select Course" : {
+
+    },
+    "Selects the course to display grade for." : {
 
     },
     "Susan Jorgenson" : {
@@ -5431,6 +5455,9 @@
           }
         }
       }
+    },
+    "View total grade for a course" : {
+
     },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"

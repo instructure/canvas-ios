@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import AppIntents
 import SwiftUI
-import WidgetKit
 
-@main
-struct Widgets: WidgetBundle {
+struct CourseEntity: AppEntity {
+    let id: String
+    let name: String
+    let color: Color
 
-    @WidgetBundleBuilder
-    var body: some Widget {
-        AnnouncementsWidget()
-        CourseTotalGradeWidget()
-        GradesWidget()
-        TodoWidget()
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Course"
+    static var defaultQuery = CourseQuery()
+
+    var displayRepresentation: DisplayRepresentation {
+        DisplayRepresentation(title: "\(name)")
     }
 }
