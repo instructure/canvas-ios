@@ -251,7 +251,15 @@
         <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="state" optional="YES" attributeType="String"/>
         <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresAssignmentGroup" inverseName="assignments" inverseEntity="CDScoresAssignmentGroup"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="assignments" inverseEntity="CDHScoresAssignmentGroup"/>
+    </entity>
+    <entity name="CDHScoresAssignmentGroup" representedClassName="Core.CDHScoresAssignmentGroup" syncable="YES">
+        <attribute name="enrollmentID" attributeType="String"/>
+        <attribute name="groupWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignment" inverseName="relationship" inverseEntity="CDHScoresAssignment"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmissionScores" inverseName="assignmentGroups" inverseEntity="CDSubmissionScores"/>
     </entity>
     <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
@@ -290,14 +298,6 @@
         <attribute name="shortDescription" attributeType="String"/>
         <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRubricCriterion" inverseName="ratingsRaw" inverseEntity="CDRubricCriterion"/>
     </entity>
-    <entity name="CDScoresAssignmentGroup" representedClassName="Core.CDScoresAssignmentGroup" syncable="YES">
-        <attribute name="enrollmentID" attributeType="String"/>
-        <attribute name="groupWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignment" inverseName="relationship" inverseEntity="CDHScoresAssignment"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSubmissionScores" inverseName="assignmentGroups" inverseEntity="CDSubmissionScores"/>
-    </entity>
     <entity name="CDScoresCourse" representedClassName="Core.CDScoresCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="hideFinalGrade" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -332,7 +332,7 @@
     </entity>
     <entity name="CDSubmissionScores" representedClassName="Core.CDSubmissionScores" syncable="YES">
         <attribute name="enrollmentID" attributeType="String"/>
-        <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDScoresAssignmentGroup"/>
+        <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDHScoresAssignmentGroup"/>
     </entity>
     <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
         <attribute name="authorName" attributeType="String"/>

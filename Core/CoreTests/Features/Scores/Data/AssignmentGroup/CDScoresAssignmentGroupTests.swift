@@ -65,7 +65,7 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
         )
 
         let enrollmentId = "enrollment-456"
-        let savedEntity = CDScoresAssignmentGroup.save(apiEntity, enrollmentId: enrollmentId, in: databaseClient)
+        let savedEntity = CDHScoresAssignmentGroup.save(apiEntity, enrollmentId: enrollmentId, in: databaseClient)
 
         XCTAssertEqual(savedEntity.enrollmentID, enrollmentId)
         XCTAssertEqual(savedEntity.id, "group-123")
@@ -77,14 +77,14 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
         XCTAssertEqual(assignment?.id, "assignment-1")
         XCTAssertEqual(assignment?.name, "Homework 1")
 
-        let fetchedEntity: CDScoresAssignmentGroup? = databaseClient.first(where: #keyPath(CDScoresAssignmentGroup.id), equals: "group-123")
+        let fetchedEntity: CDHScoresAssignmentGroup? = databaseClient.first(where: #keyPath(CDHScoresAssignmentGroup.id), equals: "group-123")
         XCTAssertNotNil(fetchedEntity)
         XCTAssertEqual(fetchedEntity?.id, "group-123")
     }
 
     func testSaveWithExistingEntity() {
         let groupId = "group-123"
-        let initialEntity: CDScoresAssignmentGroup = databaseClient.insert()
+        let initialEntity: CDHScoresAssignmentGroup = databaseClient.insert()
         initialEntity.enrollmentID = "enrollment-456"
         initialEntity.id = groupId
         initialEntity.name = "Old Name"
@@ -112,7 +112,7 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
             )
         )
 
-        let updatedEntity = CDScoresAssignmentGroup.save(apiEntity, enrollmentId: "enrollment-updated", in: databaseClient)
+        let updatedEntity = CDHScoresAssignmentGroup.save(apiEntity, enrollmentId: "enrollment-updated", in: databaseClient)
 
         XCTAssertEqual(updatedEntity.objectID, initialEntity.objectID)
 
@@ -135,7 +135,7 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
         )
 
         let enrollmentId = "enrollment-456"
-        let savedEntity = CDScoresAssignmentGroup.save(apiEntity, enrollmentId: enrollmentId, in: databaseClient)
+        let savedEntity = CDHScoresAssignmentGroup.save(apiEntity, enrollmentId: enrollmentId, in: databaseClient)
 
         XCTAssertEqual(savedEntity.enrollmentID, enrollmentId)
         XCTAssertEqual(savedEntity.id, "group-123")
@@ -154,7 +154,7 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
         )
 
         let enrollmentId = "enrollment-456"
-        let savedEntity = CDScoresAssignmentGroup.save(apiEntity, enrollmentId: enrollmentId, in: databaseClient)
+        let savedEntity = CDHScoresAssignmentGroup.save(apiEntity, enrollmentId: enrollmentId, in: databaseClient)
 
         XCTAssertEqual(savedEntity.assignments.count, 0)
     }

@@ -18,7 +18,7 @@
 
 import CoreData
 
-final public class CDScoresAssignmentGroup: NSManagedObject {
+final public class CDHScoresAssignmentGroup: NSManagedObject {
     // MARK: - Propertites
 
     @NSManaged public var enrollmentID: String
@@ -32,8 +32,8 @@ final public class CDScoresAssignmentGroup: NSManagedObject {
         _ apiEntity: GetSubmissionScoresResponse.AssignmentGroup,
         enrollmentId: String,
         in context: NSManagedObjectContext
-    ) -> CDScoresAssignmentGroup {
-        let dbEntity: CDScoresAssignmentGroup = context.first(where: #keyPath(CDScoresAssignmentGroup.id), equals: apiEntity.id) ?? context.insert()
+    ) -> CDHScoresAssignmentGroup {
+        let dbEntity: CDHScoresAssignmentGroup = context.first(where: #keyPath(CDHScoresAssignmentGroup.id), equals: apiEntity.id) ?? context.insert()
 
         dbEntity.enrollmentID = enrollmentId
         dbEntity.id = apiEntity.id ?? ""

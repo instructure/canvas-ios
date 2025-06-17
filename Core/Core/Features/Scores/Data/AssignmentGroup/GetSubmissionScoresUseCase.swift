@@ -23,7 +23,7 @@ final public class GetSubmissionScoresUseCase: APIUseCase {
 
     // MARK: - Typealias
 
-    public typealias Model = CDScoresAssignmentGroup
+    public typealias Model = CDHScoresAssignmentGroup
     public typealias Request = GetSubmissionScoresRequest
 
     // MARK: - Properties

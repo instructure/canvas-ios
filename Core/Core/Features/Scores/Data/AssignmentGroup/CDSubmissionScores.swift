@@ -20,7 +20,7 @@ import CoreData
 
 final public class CDSubmissionScores: NSManagedObject {
     @NSManaged public var enrollmentID: String
-    @NSManaged public var assignmentGroups: Set<CDScoresAssignmentGroup>
+    @NSManaged public var assignmentGroups: Set<CDHScoresAssignmentGroup>
 
     @discardableResult
     public static func save(
@@ -32,8 +32,8 @@ final public class CDSubmissionScores: NSManagedObject {
 
         dbEntity.enrollmentID = enrollmentId
         if let apiAssignmentGroups = apiEntity.data?.legacyNode?.course?.assignmentGroups {
-            let assignmentsEntities: [CDScoresAssignmentGroup] = apiAssignmentGroups.map { apiItem in
-                return CDScoresAssignmentGroup.save(apiItem, enrollmentId: enrollmentId, in: context)
+            let assignmentsEntities: [CDHScoresAssignmentGroup] = apiAssignmentGroups.map { apiItem in
+                return CDHScoresAssignmentGroup.save(apiItem, enrollmentId: enrollmentId, in: context)
             }
             dbEntity.assignmentGroups = Set(assignmentsEntities)
         } else {
