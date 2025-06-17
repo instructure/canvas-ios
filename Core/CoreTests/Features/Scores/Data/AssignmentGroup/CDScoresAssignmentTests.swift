@@ -54,7 +54,7 @@ final class CDScoresAssignmentTests: CoreTestCase {
             submissionTypes: ["online_quiz"]
         )
 
-        let savedEntity = CDScoresAssignment.save(apiEntity, in: databaseClient)
+        let savedEntity = CDHScoresAssignment.save(apiEntity, in: databaseClient)
 
         XCTAssertEqual(savedEntity.id, "assignment-123")
         XCTAssertEqual(savedEntity.name, "Quiz 1")
@@ -70,14 +70,14 @@ final class CDScoresAssignmentTests: CoreTestCase {
         XCTAssertEqual(savedEntity.commentsCount?.intValue, 2)
         XCTAssertEqual(savedEntity.isRead, false)
 
-        let fetchedEntity: CDScoresAssignment? = databaseClient.first(where: #keyPath(CDScoresAssignment.id), equals: "assignment-123")
+        let fetchedEntity: CDHScoresAssignment? = databaseClient.first(where: #keyPath(CDHScoresAssignment.id), equals: "assignment-123")
         XCTAssertNotNil(fetchedEntity)
         XCTAssertEqual(fetchedEntity?.id, "assignment-123")
     }
 
     func testSaveWithExistingEntity() {
         let assignmentId = "assignment-123"
-        let initialEntity: CDScoresAssignment = databaseClient.insert()
+        let initialEntity: CDHScoresAssignment = databaseClient.insert()
         initialEntity.id = assignmentId
         initialEntity.name = "Old Name"
         initialEntity.pointsPossible = 10.0
@@ -114,7 +114,7 @@ final class CDScoresAssignmentTests: CoreTestCase {
             submissionTypes: ["online_text_entry"]
         )
 
-        let updatedEntity = CDScoresAssignment.save(apiEntity, in: databaseClient)
+        let updatedEntity = CDHScoresAssignment.save(apiEntity, in: databaseClient)
 
         XCTAssertEqual(updatedEntity.objectID, initialEntity.objectID)
 
@@ -135,7 +135,7 @@ final class CDScoresAssignmentTests: CoreTestCase {
             submissionTypes: ["online_text_entry"]
         )
 
-        let savedEntity = CDScoresAssignment.save(apiEntity, in: databaseClient)
+        let savedEntity = CDHScoresAssignment.save(apiEntity, in: databaseClient)
 
         XCTAssertEqual(savedEntity.id, "assignment-123")
         XCTAssertEqual(savedEntity.name, "Unsubmitted Assignment")
@@ -160,7 +160,7 @@ final class CDScoresAssignmentTests: CoreTestCase {
             submissionTypes: nil
         )
 
-        let savedEntity = CDScoresAssignment.save(apiEntity, in: databaseClient)
+        let savedEntity = CDHScoresAssignment.save(apiEntity, in: databaseClient)
 
         XCTAssertEqual(savedEntity.id, "assignment-123")
         XCTAssertNil(savedEntity.score)
@@ -181,7 +181,7 @@ final class CDScoresAssignmentTests: CoreTestCase {
             submissionTypes: nil
         )
 
-        let savedEntity = CDScoresAssignment.save(apiEntity, in: databaseClient)
+        let savedEntity = CDHScoresAssignment.save(apiEntity, in: databaseClient)
 
         XCTAssertEqual(savedEntity.id, "assignment-123")
         XCTAssertNil(savedEntity.name)

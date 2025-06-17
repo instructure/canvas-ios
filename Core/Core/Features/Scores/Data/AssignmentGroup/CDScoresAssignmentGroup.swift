@@ -25,7 +25,7 @@ final public class CDScoresAssignmentGroup: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String?
     @NSManaged public var groupWeight: NSNumber?
-    @NSManaged public var assignments: Set<CDScoresAssignment>
+    @NSManaged public var assignments: Set<CDHScoresAssignment>
 
     @discardableResult
     public static func save(
@@ -40,8 +40,8 @@ final public class CDScoresAssignmentGroup: NSManagedObject {
         dbEntity.name = apiEntity.name
         dbEntity.groupWeight = if let groupWeight = apiEntity.groupWeight { NSNumber(value: groupWeight) } else { nil }
         if let apiAssignments = apiEntity.assignmentsConnection?.nodes {
-            let assignmentsEntities: [CDScoresAssignment] = apiAssignments.map { apiItem in
-                return CDScoresAssignment.save(apiItem, in: context)
+            let assignmentsEntities: [CDHScoresAssignment] = apiAssignments.map { apiItem in
+                return CDHScoresAssignment.save(apiItem, in: context)
             }
             dbEntity.assignments = Set(assignmentsEntities)
         } else {
