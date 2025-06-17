@@ -27,7 +27,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
             computed_current_grade: "A"
         )
 
-        let savedEntity = CDScoresCourseEnrollment.save(
+        let savedEntity = CDHScoresCourseEnrollment.save(
             courseID: courseID,
             apiEntity: apiEnrollment,
             in: databaseClient
@@ -37,7 +37,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
         XCTAssertEqual(savedEntity.grade, "A")
         XCTAssertEqual(savedEntity.score?.doubleValue, 95.5)
 
-        let enrollments: [CDScoresCourseEnrollment] = databaseClient.fetch()
+        let enrollments: [CDHScoresCourseEnrollment] = databaseClient.fetch()
         XCTAssertEqual(enrollments.count, 1)
         XCTAssertEqual(enrollments.first?.grade, "A")
         XCTAssertEqual(enrollments.first?.score?.doubleValue, 95.5)
@@ -51,7 +51,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
             computed_current_grade: "A"
         )
 
-        CDScoresCourseEnrollment.save(
+        CDHScoresCourseEnrollment.save(
             courseID: courseID,
             apiEntity: apiEnrollment1,
             in: databaseClient
@@ -62,13 +62,13 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
             computed_current_grade: "B+"
         )
 
-        let updatedEntity = CDScoresCourseEnrollment.save(
+        let updatedEntity = CDHScoresCourseEnrollment.save(
             courseID: courseID,
             apiEntity: apiEnrollment2,
             in: databaseClient
         )
 
-        let enrollments: [CDScoresCourseEnrollment] = databaseClient.fetch()
+        let enrollments: [CDHScoresCourseEnrollment] = databaseClient.fetch()
         XCTAssertEqual(enrollments.count, 1)
 
         XCTAssertEqual(updatedEntity.courseID, courseID)
@@ -83,7 +83,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
             computed_current_grade: nil
         )
 
-        let savedEntity = CDScoresCourseEnrollment.save(
+        let savedEntity = CDHScoresCourseEnrollment.save(
             courseID: courseID,
             apiEntity: apiEnrollment,
             in: databaseClient
@@ -102,7 +102,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
             computed_current_grade: "A"
         )
 
-        let savedEntity = CDScoresCourseEnrollment.save(
+        let savedEntity = CDHScoresCourseEnrollment.save(
             courseID: courseID,
             apiEntity: apiEnrollment,
             in: databaseClient
@@ -123,7 +123,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
             computed_current_grade: "A"
         )
 
-        let savedEntity = CDScoresCourseEnrollment.save(
+        let savedEntity = CDHScoresCourseEnrollment.save(
             courseID: courseID,
             apiEntity: apiEnrollment1,
             in: databaseClient
@@ -140,7 +140,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
             in: databaseClient
         )
 
-        let enrollments: [CDScoresCourseEnrollment] = databaseClient.fetch()
+        let enrollments: [CDHScoresCourseEnrollment] = databaseClient.fetch()
         XCTAssertEqual(enrollments.count, 1)
         XCTAssertEqual(enrollments.first?.grade, "B+")
         XCTAssertEqual(enrollments.first?.score?.doubleValue, 88.5)
@@ -149,7 +149,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
     func testUpdateWithNonExistingEntity() {
         let courseID = "course-123"
 
-        let enrollment = CDScoresCourseEnrollment(context: databaseClient)
+        let enrollment = CDHScoresCourseEnrollment(context: databaseClient)
         enrollment.courseID = courseID
 
         let apiEnrollment = APIEnrollment.make(
@@ -165,7 +165,7 @@ final class CDScoresCourseEnrollmentTests: CoreTestCase {
 
         try? databaseClient.save()
 
-        let enrollments: [CDScoresCourseEnrollment] = databaseClient.fetch()
+        let enrollments: [CDHScoresCourseEnrollment] = databaseClient.fetch()
         XCTAssertEqual(enrollments.count, 1)
         XCTAssertEqual(enrollments.first?.courseID, courseID)
         XCTAssertEqual(enrollments.first?.grade, "A")

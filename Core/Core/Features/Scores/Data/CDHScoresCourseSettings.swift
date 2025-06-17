@@ -18,25 +18,25 @@
 
 import CoreData
 
-public final class CDScoresCourseSettings: NSManagedObject {
+public final class CDHScoresCourseSettings: NSManagedObject {
     @NSManaged public var restrictQuantitativeData: Bool
-    @NSManaged public var course: CDScoresCourse
+    @NSManaged public var course: CDHScoresCourse
 
     @discardableResult
     static func save(
         _ item: APICourseSettings,
-        course: CDScoresCourse,
+        course: CDHScoresCourse,
         in context: NSManagedObjectContext
-    ) -> CDScoresCourseSettings {
-        let entity: CDScoresCourseSettings = {
-            if let settings: CDScoresCourseSettings = context.first(
-                where: #keyPath(CDScoresCourseSettings.course.courseID),
+    ) -> CDHScoresCourseSettings {
+        let entity: CDHScoresCourseSettings = {
+            if let settings: CDHScoresCourseSettings = context.first(
+                where: #keyPath(CDHScoresCourseSettings.course.courseID),
                 equals: course.courseID
             ) {
                 return settings
             }
 
-            let settings: CDScoresCourseSettings = context.insert()
+            let settings: CDHScoresCourseSettings = context.insert()
             settings.restrictQuantitativeData = false
             return settings
         }()

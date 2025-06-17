@@ -16,41 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
-
-public class GetScoresCourseUseCase: APIUseCase {
-    public typealias Model = CDHScoresCourse
-
+public struct HScoresCourse {
     public let courseID: String
-    private let include: [GetCourseRequest.Include]
+    public let enrollments: [HScoresCourseEnrollment]
+    public let hideFinalGrade: Bool
+    public let settings: HScoresCourseSettings
 
     public init(
         courseID: String,
-        include: [GetCourseRequest.Include] = GetCourseRequest.defaultIncludes
+        enrollments: [HScoresCourseEnrollment],
+        hideFinalGrade: Bool,
+        settings: HScoresCourseSettings
     ) {
         self.courseID = courseID
-        self.include = include
+        self.enrollments = enrollments
+        self.hideFinalGrade = hideFinalGrade
+        self.settings = settings
     }
 
-    public var cacheKey: String? {
-        return "get-score-course-\(courseID)"
-    }
-
-    public var scope: Scope {
-        return .where(#keyPath(CDHScoresCourse.courseID), equals: courseID)
-    }
-
-    public var request: GetCourseRequest {
-        return GetCourseRequest(courseID: courseID, include: include)
-    }
-
-    public func write(
-        response: APICourse?,
-        urlResponse _: URLResponse?,
-        to client: NSManagedObjectContext
-    ) {
-        if let course = response {
-            CDHScoresCourse.save(course, in: client)
+    public init(from entity: CDHScoresCourse) {
+        self.courseID = entity.courseID
+        self.enrollments = entity.enrollments.map(HScoresCourseEnrollment.init(from:))
+        self.hideFinalGrade = entity.hideFinalGrade
+        if let settings = entity.settings {
+            self.settings = .init(from: settings)
+        } else {
+            self.settings = .init(restrictQuantitativeData: false)
         }
     }
 }

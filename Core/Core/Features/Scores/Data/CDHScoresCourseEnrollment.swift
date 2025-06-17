@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-public final class CDScoresCourseEnrollment: NSManagedObject {
+public final class CDHScoresCourseEnrollment: NSManagedObject {
     @NSManaged public var courseID: String
     @NSManaged public var score: NSNumber?
     @NSManaged public var grade: String?
@@ -29,9 +29,9 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
         courseID: String,
         apiEntity: APIEnrollment,
         in context: NSManagedObjectContext
-    ) -> CDScoresCourseEnrollment {
-        let dbEntity: CDScoresCourseEnrollment = context.first(
-            where: #keyPath(CDScoresCourseEnrollment.courseID),
+    ) -> CDHScoresCourseEnrollment {
+        let dbEntity: CDHScoresCourseEnrollment = context.first(
+            where: #keyPath(CDHScoresCourseEnrollment.courseID),
             equals: courseID
         ) ?? context.insert()
         dbEntity.courseID = courseID
@@ -49,8 +49,8 @@ public final class CDScoresCourseEnrollment: NSManagedObject {
         apiEntity: APIEnrollment,
         in context: NSManagedObjectContext
     ) {
-        let dbEntity: CDScoresCourseEnrollment = context.first(
-            where: #keyPath(CDScoresCourseEnrollment.courseID),
+        let dbEntity: CDHScoresCourseEnrollment = context.first(
+            where: #keyPath(CDHScoresCourseEnrollment.courseID),
             equals: courseID
         ) ?? context.insert()
         dbEntity.courseID = courseID

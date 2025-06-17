@@ -21,7 +21,7 @@ import XCTest
 
 final class CDScoresCourseSettingsTests: CoreTestCase {
     func testSave() {
-        let course = CDScoresCourse(context: databaseClient)
+        let course = CDHScoresCourse(context: databaseClient)
         course.courseID = "course-123"
         try? databaseClient.save()
 
@@ -29,7 +29,7 @@ final class CDScoresCourseSettingsTests: CoreTestCase {
             restrict_quantitative_data: true
         )
 
-        let savedSettings = CDScoresCourseSettings.save(
+        let savedSettings = CDHScoresCourseSettings.save(
             apiSettings,
             course: course,
             in: databaseClient
@@ -38,8 +38,8 @@ final class CDScoresCourseSettingsTests: CoreTestCase {
         XCTAssertEqual(savedSettings.restrictQuantitativeData, true)
         XCTAssertEqual(savedSettings.course, course)
 
-        let settings: CDScoresCourseSettings? = databaseClient.first(
-            where: #keyPath(CDScoresCourseSettings.course),
+        let settings: CDHScoresCourseSettings? = databaseClient.first(
+            where: #keyPath(CDHScoresCourseSettings.course),
             equals: course
         )
         XCTAssertNotNil(settings)
@@ -47,7 +47,7 @@ final class CDScoresCourseSettingsTests: CoreTestCase {
     }
 
     func testSaveWithExistingEntity() {
-        let course = CDScoresCourse(context: databaseClient)
+        let course = CDHScoresCourse(context: databaseClient)
         course.courseID = "course-123"
         try? databaseClient.save()
 
@@ -55,7 +55,7 @@ final class CDScoresCourseSettingsTests: CoreTestCase {
             restrict_quantitative_data: true
         )
 
-        CDScoresCourseSettings.save(
+        CDHScoresCourseSettings.save(
             apiSettings1,
             course: course,
             in: databaseClient
@@ -65,20 +65,20 @@ final class CDScoresCourseSettingsTests: CoreTestCase {
             restrict_quantitative_data: false
         )
 
-        let updatedSettings = CDScoresCourseSettings.save(
+        let updatedSettings = CDHScoresCourseSettings.save(
             apiSettings2,
             course: course,
             in: databaseClient
         )
 
-        let settings: [CDScoresCourseSettings] = databaseClient.fetch()
+        let settings: [CDHScoresCourseSettings] = databaseClient.fetch()
         XCTAssertEqual(settings.count, 1)
 
         XCTAssertEqual(updatedSettings.restrictQuantitativeData, false)
     }
 
     func testSaveWithNilValues() {
-        let course = CDScoresCourse(context: databaseClient)
+        let course = CDHScoresCourse(context: databaseClient)
         course.courseID = "course-123"
 
         let apiSettings = APICourseSettings.make(
@@ -86,7 +86,7 @@ final class CDScoresCourseSettingsTests: CoreTestCase {
         )
         let apiCourse = APICourse.make(settings: apiSettings)
 
-        let savedSettings = CDScoresCourseSettings.save(
+        let savedSettings = CDHScoresCourseSettings.save(
             apiSettings,
             course: course,
             in: databaseClient

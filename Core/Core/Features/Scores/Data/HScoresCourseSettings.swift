@@ -16,24 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct ScoresCourseEnrollment {
-    public let courseID: String
-    public let score: Double?
-    public let grade: String?
+public struct HScoresCourseSettings {
+    public let restrictQuantitativeData: Bool
 
-    public init(
-        courseID: String,
-        score: Double?,
-        grade: String?
-    ) {
-        self.courseID = courseID
-        self.score = score
-        self.grade = grade
+    init(restrictQuantitativeData: Bool) {
+        self.restrictQuantitativeData = restrictQuantitativeData
     }
 
-    init(from entity: CDScoresCourseEnrollment) {
-        self.courseID = entity.courseID
-        self.grade = entity.grade
-        self.score = entity.score?.doubleValue
+    init(from entity: CDHScoresCourseSettings) {
+        self.restrictQuantitativeData = entity.restrictQuantitativeData
     }
 }

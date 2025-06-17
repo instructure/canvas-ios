@@ -16,32 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct ScoresCourse {
+public struct HScoresCourseEnrollment {
     public let courseID: String
-    public let enrollments: [ScoresCourseEnrollment]
-    public let hideFinalGrade: Bool
-    public let settings: ScoresCourseSettings
+    public let score: Double?
+    public let grade: String?
 
     public init(
         courseID: String,
-        enrollments: [ScoresCourseEnrollment],
-        hideFinalGrade: Bool,
-        settings: ScoresCourseSettings
+        score: Double?,
+        grade: String?
     ) {
         self.courseID = courseID
-        self.enrollments = enrollments
-        self.hideFinalGrade = hideFinalGrade
-        self.settings = settings
+        self.score = score
+        self.grade = grade
     }
 
-    public init(from entity: CDScoresCourse) {
+    init(from entity: CDHScoresCourseEnrollment) {
         self.courseID = entity.courseID
-        self.enrollments = entity.enrollments.map(ScoresCourseEnrollment.init(from:))
-        self.hideFinalGrade = entity.hideFinalGrade
-        if let settings = entity.settings {
-            self.settings = .init(from: settings)
-        } else {
-            self.settings = .init(restrictQuantitativeData: false)
-        }
+        self.grade = entity.grade
+        self.score = entity.score?.doubleValue
     }
 }

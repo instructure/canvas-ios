@@ -22,16 +22,16 @@ import XCTest
 final class ScoresCourseTests: CoreTestCase {
     func testInitWithParameters() {
         let enrollments = [
-            ScoresCourseEnrollment(
+            HScoresCourseEnrollment(
                 courseID: "course-123",
                 score: 95.5,
                 grade: "A"
             )
         ]
 
-        let settings = ScoresCourseSettings(restrictQuantitativeData: true)
+        let settings = HScoresCourseSettings(restrictQuantitativeData: true)
 
-        let course = ScoresCourse(
+        let course = HScoresCourse(
             courseID: "course-123",
             enrollments: enrollments,
             hideFinalGrade: true,
@@ -47,23 +47,23 @@ final class ScoresCourseTests: CoreTestCase {
     }
 
     func testInitFromEntity() {
-        let courseEntity = CDScoresCourse(context: databaseClient)
+        let courseEntity = CDHScoresCourse(context: databaseClient)
         courseEntity.courseID = "course-123"
         courseEntity.hideFinalGrade = false
 
-        let enrollmentEntity = CDScoresCourseEnrollment(context: databaseClient)
+        let enrollmentEntity = CDHScoresCourseEnrollment(context: databaseClient)
         enrollmentEntity.courseID = "course-123"
         enrollmentEntity.grade = "A"
         enrollmentEntity.score = NSNumber(value: 95.5)
 
-        let settingsEntity = CDScoresCourseSettings(context: databaseClient)
+        let settingsEntity = CDHScoresCourseSettings(context: databaseClient)
         settingsEntity.restrictQuantitativeData = true
 
         courseEntity.enrollments = [enrollmentEntity]
         courseEntity.settings = settingsEntity
         settingsEntity.course = courseEntity
 
-        let course = ScoresCourse(from: courseEntity)
+        let course = HScoresCourse(from: courseEntity)
 
         XCTAssertEqual(course.courseID, "course-123")
         XCTAssertEqual(course.enrollments.count, 1)
@@ -74,18 +74,18 @@ final class ScoresCourseTests: CoreTestCase {
     }
 
     func testInitFromEntityWithNoSettings() {
-        let courseEntity = CDScoresCourse(context: databaseClient)
+        let courseEntity = CDHScoresCourse(context: databaseClient)
         courseEntity.courseID = "course-123"
         courseEntity.settings = nil
 
-        let enrollmentEntity = CDScoresCourseEnrollment(context: databaseClient)
+        let enrollmentEntity = CDHScoresCourseEnrollment(context: databaseClient)
         enrollmentEntity.courseID = "course-123"
         enrollmentEntity.grade = "A"
         enrollmentEntity.score = NSNumber(value: 95.5)
 
         courseEntity.enrollments = [enrollmentEntity]
 
-        let course = ScoresCourse(from: courseEntity)
+        let course = HScoresCourse(from: courseEntity)
 
         XCTAssertEqual(course.courseID, "course-123")
         XCTAssertEqual(course.enrollments.count, 1)
@@ -96,7 +96,7 @@ final class ScoresCourseTests: CoreTestCase {
 
 final class ScoresCourseEnrollmentTests: CoreTestCase {
     func testInitWithParameters() {
-        let enrollment = ScoresCourseEnrollment(
+        let enrollment = HScoresCourseEnrollment(
             courseID: "course-123",
             score: 95.5,
             grade: "A"
@@ -108,12 +108,12 @@ final class ScoresCourseEnrollmentTests: CoreTestCase {
     }
 
     func testInitFromEntity() {
-        let entity = CDScoresCourseEnrollment(context: databaseClient)
+        let entity = CDHScoresCourseEnrollment(context: databaseClient)
         entity.courseID = "course-123"
         entity.grade = "A"
         entity.score = NSNumber(value: 95.5)
 
-        let enrollment = ScoresCourseEnrollment(from: entity)
+        let enrollment = HScoresCourseEnrollment(from: entity)
 
         XCTAssertEqual(enrollment.courseID, "course-123")
         XCTAssertEqual(enrollment.score, 95.5)
@@ -121,12 +121,12 @@ final class ScoresCourseEnrollmentTests: CoreTestCase {
     }
 
     func testInitFromEntityWithNilValues() {
-        let entity = CDScoresCourseEnrollment(context: databaseClient)
+        let entity = CDHScoresCourseEnrollment(context: databaseClient)
         entity.courseID = "course-123"
         entity.grade = nil
         entity.score = nil
 
-        let enrollment = ScoresCourseEnrollment(from: entity)
+        let enrollment = HScoresCourseEnrollment(from: entity)
 
         XCTAssertEqual(enrollment.courseID, "course-123")
         XCTAssertNil(enrollment.score)
@@ -136,15 +136,15 @@ final class ScoresCourseEnrollmentTests: CoreTestCase {
 
 final class ScoresCourseSettingsTests: CoreTestCase {
     func testInitWithParameters() {
-        let settings = ScoresCourseSettings(restrictQuantitativeData: true)
+        let settings = HScoresCourseSettings(restrictQuantitativeData: true)
         XCTAssertEqual(settings.restrictQuantitativeData, true)
     }
 
     func testInitFromEntity() {
-        let entity = CDScoresCourseSettings(context: databaseClient)
+        let entity = CDHScoresCourseSettings(context: databaseClient)
         entity.restrictQuantitativeData = true
 
-        let settings = ScoresCourseSettings(from: entity)
+        let settings = HScoresCourseSettings(from: entity)
 
         XCTAssertEqual(settings.restrictQuantitativeData, true)
     }

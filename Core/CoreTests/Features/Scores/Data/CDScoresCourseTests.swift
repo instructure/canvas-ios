@@ -37,7 +37,7 @@ final class CDScoresCourseTests: CoreTestCase {
             )
         )
 
-        let savedEntity = CDScoresCourse.save(apiCourse, in: databaseClient)
+        let savedEntity = CDHScoresCourse.save(apiCourse, in: databaseClient)
         try? databaseClient.save()
 
         XCTAssertEqual(savedEntity.courseID, "course-123")
@@ -67,7 +67,7 @@ final class CDScoresCourseTests: CoreTestCase {
             )
         )
 
-        CDScoresCourse.save(apiCourse1, in: databaseClient)
+        CDHScoresCourse.save(apiCourse1, in: databaseClient)
         try? databaseClient.save()
 
         let apiCourse2 = APICourse.make(
@@ -85,10 +85,10 @@ final class CDScoresCourseTests: CoreTestCase {
             )
         )
 
-        let updatedEntity = CDScoresCourse.save(apiCourse2, in: databaseClient)
+        let updatedEntity = CDHScoresCourse.save(apiCourse2, in: databaseClient)
         try? databaseClient.save()
 
-        let courses: [CDScoresCourse] = databaseClient.fetch()
+        let courses: [CDHScoresCourse] = databaseClient.fetch()
         XCTAssertEqual(courses.count, 1)
 
         XCTAssertEqual(updatedEntity.courseID, "course-123")
@@ -112,7 +112,7 @@ final class CDScoresCourseTests: CoreTestCase {
             )
         )
 
-        let savedEntity = CDScoresCourse.save(apiCourse, in: databaseClient)
+        let savedEntity = CDHScoresCourse.save(apiCourse, in: databaseClient)
         try? databaseClient.save()
 
         XCTAssertEqual(savedEntity.courseID, "course-123")
@@ -136,7 +136,7 @@ final class CDScoresCourseTests: CoreTestCase {
             settings: nil
         )
 
-        let savedEntity = CDScoresCourse.save(apiCourse, in: databaseClient)
+        let savedEntity = CDHScoresCourse.save(apiCourse, in: databaseClient)
         try? databaseClient.save()
 
         XCTAssertEqual(savedEntity.courseID, "course-123")

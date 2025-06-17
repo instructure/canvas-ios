@@ -261,6 +261,22 @@
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignment" inverseName="relationship" inverseEntity="CDHScoresAssignment"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHSubmissionScores" inverseName="assignmentGroups" inverseEntity="CDHSubmissionScores"/>
     </entity>
+    <entity name="CDHScoresCourse" representedClassName="Core.CDHScoresCourse" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="hideFinalGrade" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresCourseEnrollment" inverseName="relationship" inverseEntity="CDHScoresCourseEnrollment"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHScoresCourseSettings" inverseName="course" inverseEntity="CDHScoresCourseSettings"/>
+    </entity>
+    <entity name="CDHScoresCourseEnrollment" representedClassName="Core.CDHScoresCourseEnrollment" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="grade" optional="YES" attributeType="String"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHScoresCourse" inverseName="enrollments" inverseEntity="CDHScoresCourse"/>
+    </entity>
+    <entity name="CDHScoresCourseSettings" representedClassName="Core.CDHScoresCourseSettings" syncable="YES">
+        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHScoresCourse" inverseName="settings" inverseEntity="CDHScoresCourse"/>
+    </entity>
     <entity name="CDHSubmissionScores" representedClassName="Core.CDHSubmissionScores" syncable="YES">
         <attribute name="enrollmentID" attributeType="String"/>
         <relationship name="assignmentGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHScoresAssignmentGroup" inverseName="relationship" inverseEntity="CDHScoresAssignmentGroup"/>
@@ -301,22 +317,6 @@
         <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="shortDescription" attributeType="String"/>
         <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRubricCriterion" inverseName="ratingsRaw" inverseEntity="CDRubricCriterion"/>
-    </entity>
-    <entity name="CDScoresCourse" representedClassName="Core.CDScoresCourse" syncable="YES">
-        <attribute name="courseID" attributeType="String"/>
-        <attribute name="hideFinalGrade" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDScoresCourseEnrollment" inverseName="relationship" inverseEntity="CDScoresCourseEnrollment"/>
-        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourseSettings" inverseName="course" inverseEntity="CDScoresCourseSettings"/>
-    </entity>
-    <entity name="CDScoresCourseEnrollment" representedClassName="Core.CDScoresCourseEnrollment" syncable="YES">
-        <attribute name="courseID" attributeType="String"/>
-        <attribute name="grade" optional="YES" attributeType="String"/>
-        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="enrollments" inverseEntity="CDScoresCourse"/>
-    </entity>
-    <entity name="CDScoresCourseSettings" representedClassName="Core.CDScoresCourseSettings" syncable="YES">
-        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDScoresCourse" inverseName="settings" inverseEntity="CDScoresCourse"/>
     </entity>
     <entity name="CDSubmission" representedClassName="Core.CDSubmission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>

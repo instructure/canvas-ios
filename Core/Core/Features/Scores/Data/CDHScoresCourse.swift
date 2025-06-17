@@ -18,28 +18,28 @@
 
 import CoreData
 
-public final class CDScoresCourse: NSManagedObject {
+public final class CDHScoresCourse: NSManagedObject {
     @NSManaged public var courseID: String
     @NSManaged public var hideFinalGrade: Bool
-    @NSManaged public var enrollments: Set<CDScoresCourseEnrollment>
-    @NSManaged public var settings: CDScoresCourseSettings?
+    @NSManaged public var enrollments: Set<CDHScoresCourseEnrollment>
+    @NSManaged public var settings: CDHScoresCourseSettings?
 
     @discardableResult
     public static func save(
         _ apiEntity: APICourse,
         in context: NSManagedObjectContext
-    ) -> CDScoresCourse {
-        let dbEntity: CDScoresCourse = context.first(
-            where: #keyPath(CDScoresCourse.courseID),
+    ) -> CDHScoresCourse {
+        let dbEntity: CDHScoresCourse = context.first(
+            where: #keyPath(CDHScoresCourse.courseID),
             equals: apiEntity.id.value
         ) ?? context.insert()
         dbEntity.courseID = apiEntity.id.value
 
         if let apiEnrollments = apiEntity.enrollments {
-            let enrollmentEntities: [CDScoresCourseEnrollment] = apiEnrollments.map { apiItem in
+            let enrollmentEntities: [CDHScoresCourseEnrollment] = apiEnrollments.map { apiItem in
                 /// This enrollment contains the grade fields necessary to calculate grades on the dashboard.
                 /// This is a special enrollment that has no courseID nor enrollmentID and contains no Grade objects.
-                let enrollment = CDScoresCourseEnrollment.save(
+                let enrollment = CDHScoresCourseEnrollment.save(
                     courseID: dbEntity.courseID,
                     apiEntity: apiItem,
                     in: context
@@ -52,7 +52,7 @@ public final class CDScoresCourse: NSManagedObject {
         }
 
         if let apiSettings = apiEntity.settings {
-            let settingsEntity = CDScoresCourseSettings.save(
+            let settingsEntity = CDHScoresCourseSettings.save(
                 apiSettings,
                 course: dbEntity,
                 in: context
