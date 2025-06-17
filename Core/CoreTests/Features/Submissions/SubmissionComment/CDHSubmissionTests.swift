@@ -20,16 +20,16 @@
 import Foundation
 import XCTest
 
-class CDSubmissionTests: CoreTestCase {
+class CDHSubmissionTests: CoreTestCase {
     func testSave() {
         let submissionId = "submission-123"
         let assignmentId = "assignment-456"
         let unreadCount = 3
 
-        let comment = GetSubmissionCommentsResponse.Comment(
+        let comment = GetHSubmissionCommentsResponse.Comment(
             id: "comment-1",
             attempt: 2,
-            author: GetSubmissionCommentsResponse.Author(
+            author: GetHSubmissionCommentsResponse.Author(
                 id: "author-1",
                 avatarURL: "https://example.com/avatar.jpg",
                 shortName: "Test Author"
@@ -40,24 +40,24 @@ class CDSubmissionTests: CoreTestCase {
             createdAt: Date()
         )
 
-        let edge = GetSubmissionCommentsResponse.Edge(node: comment)
+        let edge = GetHSubmissionCommentsResponse.Edge(node: comment)
 
-        let connection = GetSubmissionCommentsResponse.CommentsConnection(
+        let connection = GetHSubmissionCommentsResponse.CommentsConnection(
             pageInfo: nil,
             edges: [edge]
         )
 
-        let submission = GetSubmissionCommentsResponse.Submission(
+        let submission = GetHSubmissionCommentsResponse.Submission(
             unreadCommentCount: unreadCount,
             id: submissionId,
             commentsConnection: connection
         )
 
-        let dataModel = GetSubmissionCommentsResponse.DataModel(submission: submission)
+        let dataModel = GetHSubmissionCommentsResponse.DataModel(submission: submission)
 
-        let response = GetSubmissionCommentsResponse(data: dataModel)
+        let response = GetHSubmissionCommentsResponse(data: dataModel)
 
-        let savedSubmission = CDSubmission.save(response, assignmentID: assignmentId, in: databaseClient)
+        let savedSubmission = CDHSubmission.save(response, assignmentID: assignmentId, in: databaseClient)
 
         XCTAssertEqual(savedSubmission.id, submissionId)
         XCTAssertEqual(savedSubmission.assignmentID, assignmentId)
@@ -74,9 +74,9 @@ class CDSubmissionTests: CoreTestCase {
     }
 
     func testSaveWithEmptyData() {
-        let response = GetSubmissionCommentsResponse(data: nil)
+        let response = GetHSubmissionCommentsResponse(data: nil)
 
-        let savedSubmission = CDSubmission.save(response, assignmentID: "assignment-123", in: databaseClient)
+        let savedSubmission = CDHSubmission.save(response, assignmentID: "assignment-123", in: databaseClient)
 
         XCTAssertEqual(savedSubmission.id, "")
         XCTAssertEqual(savedSubmission.assignmentID, "assignment-123")
@@ -85,17 +85,17 @@ class CDSubmissionTests: CoreTestCase {
     }
 
     func testSaveWithNoComments() {
-        let submission = GetSubmissionCommentsResponse.Submission(
+        let submission = GetHSubmissionCommentsResponse.Submission(
             unreadCommentCount: 0,
             id: "submission-123",
             commentsConnection: nil
         )
 
-        let response = GetSubmissionCommentsResponse(
-            data: GetSubmissionCommentsResponse.DataModel(submission: submission)
+        let response = GetHSubmissionCommentsResponse(
+            data: GetHSubmissionCommentsResponse.DataModel(submission: submission)
         )
 
-        let savedSubmission = CDSubmission.save(response, assignmentID: "assignment-123", in: databaseClient)
+        let savedSubmission = CDHSubmission.save(response, assignmentID: "assignment-123", in: databaseClient)
 
         XCTAssertEqual(savedSubmission.id, "submission-123")
         XCTAssertEqual(savedSubmission.assignmentID, "assignment-123")

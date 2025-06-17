@@ -19,27 +19,27 @@
 @testable import Core
 import XCTest
 
-class GetSubmissionCommentsRequestTests: CoreTestCase {
+class GetHSubmissionCommentsRequestTests: CoreTestCase {
     func testInit() {
         let assignmentId = "assignment-123"
         let userId = "user-456"
-        let request = GetSubmissionCommentsRequest(assignmentId: assignmentId, userId: userId)
+        let request = GetHSubmissionCommentsRequest(assignmentId: assignmentId, userId: userId)
 
         XCTAssertEqual(request.variables.assignmentId, assignmentId)
         XCTAssertEqual(request.variables.userId, userId)
     }
 
     func testInputEquality() {
-        let input1 = GetSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1")
-        let input2 = GetSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1")
-        let input3 = GetSubmissionCommentsRequest.Input(userId: "user-2", assignmentId: "assignment-1")
+        let input1 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1")
+        let input2 = GetHSubmissionCommentsRequest.Input(userId: "user-1", assignmentId: "assignment-1")
+        let input3 = GetHSubmissionCommentsRequest.Input(userId: "user-2", assignmentId: "assignment-1")
 
         XCTAssertEqual(input1, input2)
         XCTAssertNotEqual(input1, input3)
     }
 
     func testQueryContainsExpectedFields() {
-        let query = GetSubmissionCommentsRequest.query
+        let query = GetHSubmissionCommentsRequest.query
 
         XCTAssertTrue(query.contains("query GetSubmissionComments($assignmentId: ID!, $userId: ID!)"))
         XCTAssertTrue(query.contains("submission(assignmentId: $assignmentId, userId: $userId)"))
@@ -57,13 +57,13 @@ class GetSubmissionCommentsRequestTests: CoreTestCase {
     }
 
     func testCodingInput() throws {
-        let input = GetSubmissionCommentsRequest.Input(userId: "user-123", assignmentId: "assignment-456")
+        let input = GetHSubmissionCommentsRequest.Input(userId: "user-123", assignmentId: "assignment-456")
 
         let encoder = JSONEncoder()
         let data = try encoder.encode(input)
 
         let decoder = JSONDecoder()
-        let decodedInput = try decoder.decode(GetSubmissionCommentsRequest.Input.self, from: data)
+        let decodedInput = try decoder.decode(GetHSubmissionCommentsRequest.Input.self, from: data)
 
         XCTAssertEqual(decodedInput.userId, "user-123")
         XCTAssertEqual(decodedInput.assignmentId, "assignment-456")

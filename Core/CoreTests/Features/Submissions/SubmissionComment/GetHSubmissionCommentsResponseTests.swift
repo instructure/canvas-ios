@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class GetSubmissionCommentsResponseTests: CoreTestCase {
+class GetHSubmissionCommentsResponseTests: CoreTestCase {
     func testDecodingCompleteResponse() throws {
         let jsonString = """
         {
@@ -80,7 +80,7 @@ class GetSubmissionCommentsResponseTests: CoreTestCase {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        let response = try decoder.decode(GetSubmissionCommentsResponse.self, from: jsonData)
+        let response = try decoder.decode(GetHSubmissionCommentsResponse.self, from: jsonData)
 
         XCTAssertNotNil(response.data)
         XCTAssertNotNil(response.data?.submission)
@@ -146,7 +146,7 @@ class GetSubmissionCommentsResponseTests: CoreTestCase {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        let response = try decoder.decode(GetSubmissionCommentsResponse.self, from: jsonData)
+        let response = try decoder.decode(GetHSubmissionCommentsResponse.self, from: jsonData)
 
         XCTAssertNotNil(response.data)
         XCTAssertNotNil(response.data?.submission)
@@ -180,7 +180,7 @@ class GetSubmissionCommentsResponseTests: CoreTestCase {
         let jsonData = jsonString.data(using: .utf8)!
         let decoder = JSONDecoder()
 
-        let response = try decoder.decode(GetSubmissionCommentsResponse.self, from: jsonData)
+        let response = try decoder.decode(GetHSubmissionCommentsResponse.self, from: jsonData)
 
         XCTAssertNotNil(response.data)
         XCTAssertNil(response.data?.submission)

@@ -19,12 +19,12 @@
 import Foundation
 import CoreData
 
-public struct GetSubmissionCommentsUseCase: APIUseCase {
+public struct GetHSubmissionCommentsUseCase: APIUseCase {
 
     // MARK: - Typealias
 
-    public typealias Model = CDSubmission
-    public typealias Request = GetSubmissionCommentsRequest
+    public typealias Model = CDHSubmission
+    public typealias Request = GetHSubmissionCommentsRequest
 
     // MARK: - Properties
 
@@ -35,7 +35,7 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
     private let userId: String
     private let assignmentId: String
 
-    public var request: GetSubmissionCommentsRequest {
+    public var request: GetHSubmissionCommentsRequest {
         .init(
             assignmentId: assignmentId,
             userId: userId
@@ -55,14 +55,14 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
     // MARK: - Functions
 
     public func write(
-        response: GetSubmissionCommentsResponse?,
+        response: GetHSubmissionCommentsResponse?,
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
         guard let response else {
             return
         }
-        CDSubmission.save(
+        CDHSubmission.save(
             response,
             assignmentID: assignmentId,
             in: client
@@ -70,6 +70,6 @@ public struct GetSubmissionCommentsUseCase: APIUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(CDSubmission.assignmentID), equals: assignmentId)
+        return .where(#keyPath(CDHSubmission.assignmentID), equals: assignmentId)
     }
 }

@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class CDSubmissionCommentTests: CoreTestCase {
+class CDHSubmissionCommentTests: CoreTestCase {
     func testSave() {
         let commentId = "comment-123"
         let authorId = "author-456"
@@ -29,10 +29,10 @@ class CDSubmissionCommentTests: CoreTestCase {
         let assignmentId = "assignment-789"
         let attempt = 3
 
-        let comment = GetSubmissionCommentsResponse.Comment(
+        let comment = GetHSubmissionCommentsResponse.Comment(
             id: commentId,
             attempt: attempt,
-            author: GetSubmissionCommentsResponse.Author(
+            author: GetHSubmissionCommentsResponse.Author(
                 id: authorId,
                 avatarURL: "https://example.com/avatar.jpg",
                 shortName: authorName
@@ -43,7 +43,7 @@ class CDSubmissionCommentTests: CoreTestCase {
             createdAt: createdAt
         )
 
-        let savedComment = CDSubmissionComment.save(comment, assignmentID: assignmentId, in: databaseClient)
+        let savedComment = CDHSubmissionComment.save(comment, assignmentID: assignmentId, in: databaseClient)
 
         XCTAssertEqual(savedComment.id, commentId)
         XCTAssertEqual(savedComment.attempt, attempt)
@@ -55,7 +55,7 @@ class CDSubmissionCommentTests: CoreTestCase {
     }
 
     func testSaveWithNilData() {
-        let savedComment = CDSubmissionComment.save(nil, assignmentID: "assignment-123", in: databaseClient)
+        let savedComment = CDHSubmissionComment.save(nil, assignmentID: "assignment-123", in: databaseClient)
 
         XCTAssertEqual(savedComment.id, "")
         XCTAssertNil(savedComment.attempt)
@@ -67,10 +67,10 @@ class CDSubmissionCommentTests: CoreTestCase {
     }
 
     func testSaveExistingComment() {
-        let comment1 = GetSubmissionCommentsResponse.Comment(
+        let comment1 = GetHSubmissionCommentsResponse.Comment(
             id: "comment-123",
             attempt: 1,
-            author: GetSubmissionCommentsResponse.Author(
+            author: GetHSubmissionCommentsResponse.Author(
                 id: "author-1",
                 avatarURL: "https://example.com/avatar.jpg",
                 shortName: "Author 1"
@@ -81,12 +81,12 @@ class CDSubmissionCommentTests: CoreTestCase {
             createdAt: Date()
         )
 
-        let savedComment1 = CDSubmissionComment.save(comment1, assignmentID: "assignment-123", in: databaseClient)
+        let savedComment1 = CDHSubmissionComment.save(comment1, assignmentID: "assignment-123", in: databaseClient)
 
-        let comment2 = GetSubmissionCommentsResponse.Comment(
+        let comment2 = GetHSubmissionCommentsResponse.Comment(
             id: "comment-123",
             attempt: 2,
-            author: GetSubmissionCommentsResponse.Author(
+            author: GetHSubmissionCommentsResponse.Author(
                 id: "author-2",
                 avatarURL: "https://example.com/avatar2.jpg",
                 shortName: "Author 2"
@@ -97,7 +97,7 @@ class CDSubmissionCommentTests: CoreTestCase {
             createdAt: Date()
         )
 
-        let savedComment2 = CDSubmissionComment.save(comment2, assignmentID: "assignment-123", in: databaseClient)
+        let savedComment2 = CDHSubmissionComment.save(comment2, assignmentID: "assignment-123", in: databaseClient)
 
         XCTAssertEqual(savedComment1, savedComment2) // Should be the same object
         XCTAssertEqual(savedComment2.id, "comment-123")
@@ -109,7 +109,7 @@ class CDSubmissionCommentTests: CoreTestCase {
     }
 
     func testAttemptProperty() {
-        let comment = databaseClient.insert() as CDSubmissionComment
+        let comment = databaseClient.insert() as CDHSubmissionComment
 
         comment.attemptFromAPI = nil
         XCTAssertNil(comment.attempt)

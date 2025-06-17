@@ -18,8 +18,8 @@
 
 import Foundation
 
-public struct GetSubmissionCommentsRequest: APIGraphQLRequestable {
-    public typealias Response = GetSubmissionCommentsResponse
+public struct GetHSubmissionCommentsRequest: APIGraphQLRequestable {
+    public typealias Response = GetHSubmissionCommentsResponse
     public let variables: Input
 
     public struct Input: Codable, Equatable {

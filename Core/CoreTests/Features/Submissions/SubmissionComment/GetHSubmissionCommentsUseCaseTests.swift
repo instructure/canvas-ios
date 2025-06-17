@@ -19,33 +19,33 @@
 @testable import Core
 import XCTest
 
-class GetSubmissionCommentsUseCaseTests: CoreTestCase {
+class GetHSubmissionCommentsUseCaseTests: CoreTestCase {
     func testInit() {
-        let useCase = GetSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
 
         XCTAssertEqual(useCase.request.variables.userId, "user-123")
         XCTAssertEqual(useCase.request.variables.assignmentId, "assignment-456")
     }
 
     func testCacheKey() {
-        let useCase = GetSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
 
         XCTAssertEqual(useCase.cacheKey, "Submission-assignment-456-user-123-Comments")
     }
 
     func testScope() {
-        let useCase = GetSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
 
-        let expectedScope = Scope.where(#keyPath(CDSubmission.assignmentID), equals: "assignment-456")
+        let expectedScope = Scope.where(#keyPath(CDHSubmission.assignmentID), equals: "assignment-456")
 
         XCTAssertEqual(useCase.scope, expectedScope)
     }
 
     func testWriteWithValidResponse() {
-        let comment = GetSubmissionCommentsResponse.Comment(
+        let comment = GetHSubmissionCommentsResponse.Comment(
             id: "comment-1",
             attempt: 1,
-            author: GetSubmissionCommentsResponse.Author(
+            author: GetHSubmissionCommentsResponse.Author(
                 id: "author-1",
                 avatarURL: "https://example.com/avatar.jpg",
                 shortName: "Test Author"
@@ -56,26 +56,26 @@ class GetSubmissionCommentsUseCaseTests: CoreTestCase {
             createdAt: Date()
         )
 
-        let edge = GetSubmissionCommentsResponse.Edge(node: comment)
-        let connection = GetSubmissionCommentsResponse.CommentsConnection(
+        let edge = GetHSubmissionCommentsResponse.Edge(node: comment)
+        let connection = GetHSubmissionCommentsResponse.CommentsConnection(
             pageInfo: nil,
             edges: [edge]
         )
 
-        let submission = GetSubmissionCommentsResponse.Submission(
+        let submission = GetHSubmissionCommentsResponse.Submission(
             unreadCommentCount: 0,
             id: "submission-123",
             commentsConnection: connection
         )
 
-        let dataModel = GetSubmissionCommentsResponse.DataModel(submission: submission)
-        let response = GetSubmissionCommentsResponse(data: dataModel)
+        let dataModel = GetHSubmissionCommentsResponse.DataModel(submission: submission)
+        let response = GetHSubmissionCommentsResponse(data: dataModel)
 
-        let useCase = GetSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
 
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let submissions: [CDSubmission] = databaseClient.fetch()
+        let submissions: [CDHSubmission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)
 
         let savedSubmission = submissions.first
@@ -89,11 +89,11 @@ class GetSubmissionCommentsUseCaseTests: CoreTestCase {
     }
 
     func testWriteWithNilResponse() {
-        let useCase = GetSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
+        let useCase = GetHSubmissionCommentsUseCase(userId: "user-123", assignmentId: "assignment-456")
 
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
 
-        let submissions: [CDSubmission] = databaseClient.fetch()
+        let submissions: [CDHSubmission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 0)
     }
 }

@@ -18,21 +18,21 @@
 
 import CoreData
 
-final public class CDSubmission: NSManagedObject {
+final public class CDHSubmission: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var assignmentID: String
     @NSManaged public var hasUnreadComment: Bool
-    @NSManaged public var comments: Set<CDSubmissionComment>
+    @NSManaged public var comments: Set<CDHSubmissionComment>
 
     @discardableResult
     public static func save(
-        _ apiEntity: GetSubmissionCommentsResponse,
+        _ apiEntity: GetHSubmissionCommentsResponse,
         assignmentID: String,
         in context: NSManagedObjectContext
-    ) -> CDSubmission {
+    ) -> CDHSubmission {
 
-        let dbEntity: CDSubmission = context.first(
-            where: #keyPath(CDSubmission.id),
+        let dbEntity: CDHSubmission = context.first(
+            where: #keyPath(CDHSubmission.id),
             equals: apiEntity.data?.submission?.id
         ) ?? context.insert()
 
@@ -43,8 +43,8 @@ final public class CDSubmission: NSManagedObject {
         dbEntity.hasUnreadComment = (submission?.unreadCommentCount ?? 0) > 0
 
         if let commentsConnection = submission?.commentsConnection?.edges {
-            let commentEntities: [CDSubmissionComment] = commentsConnection.map { apiItem in
-                return CDSubmissionComment.save(apiItem.node, assignmentID: assignmentID, in: context)
+            let commentEntities: [CDHSubmissionComment] = commentsConnection.map { apiItem in
+                return CDHSubmissionComment.save(apiItem.node, assignmentID: assignmentID, in: context)
             }
             dbEntity.comments = Set(commentEntities)
         } else {
