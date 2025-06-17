@@ -12585,6 +12585,9 @@
     "Expanded" : {
 
     },
+    "Extended" : {
+
+    },
     "Failed to launch rollcall LTI tool." : {
       "localizations" : {
         "ar" : {
@@ -22434,6 +22437,9 @@
           }
         }
       }
+    },
+    "Missing" : {
+
     },
     "Moderated Grading Unsupported" : {
       "localizations" : {

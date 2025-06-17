@@ -24,14 +24,28 @@ struct GradeStatus: Identifiable, Equatable {
     let isCustom: Bool
 
     init(custom: APIGradeStatuses.CustomGradeStatus) {
-        self.id = custom.restId
+        self.id = custom.id
         self.name = custom.name
         self.isCustom = true
     }
 
     init(defaultName: String) {
         self.id = defaultName
-        self.name = defaultName.capitalized
+        self.name = defaultName.localizedGradeStatusName
         self.isCustom = false
+    }
+}
+
+extension String {
+
+    var localizedGradeStatusName: String {
+        switch self {
+        case "late": String(localized: "Late", bundle: .teacher)
+        case "missing": String(localized: "Missing", bundle: .teacher)
+        case "excused": String(localized: "Excused", bundle: .teacher)
+        case "extended": String(localized: "Extended", bundle: .teacher)
+        case "none": String(localized: "None", bundle: .teacher)
+        default: capitalized
+        }
     }
 }

@@ -37,12 +37,10 @@ struct APIGradeStatuses: Codable, Equatable {
     struct CustomGradeStatus: Codable, Equatable {
         let color: String
         let name: String
-        let restId: String
-        // TODO: Remove if unused
-        let graphId: String
+        let id: String
 
         private enum CodingKeys: String, CodingKey {
-            case color, name, restId = "_id", graphId = "id"
+            case color, name, id = "_id"
         }
     }
 
