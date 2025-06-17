@@ -22,7 +22,7 @@ import Foundation
 public class GetLearnCoursesUseCase: APIUseCase {
     // MARK: - Typealias
 
-    public typealias Model = CDLearnCourse
+    public typealias Model = CDHLearnCourse
     public typealias Request = GetCoursesProgressionRequest
 
     // MARK: - Properties
@@ -52,7 +52,7 @@ public class GetLearnCoursesUseCase: APIUseCase {
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
         enrollments.forEach { enrollment in
-            CDLearnCourse.save(enrollment, in: client)
+            CDHLearnCourse.save(enrollment, in: client)
         }
     }
 }

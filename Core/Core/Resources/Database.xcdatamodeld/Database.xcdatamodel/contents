@@ -213,6 +213,11 @@
         <attribute name="state" attributeType="String"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="courseProgress" inverseEntity="Course"/>
     </entity>
+    <entity name="CDHLearnCourse" representedClassName="Core.CDHLearnCourse" syncable="YES">
+        <attribute name="enrollmentId" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -230,11 +235,6 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
-    </entity>
-    <entity name="CDLearnCourse" representedClassName="Core.CDLearnCourse" syncable="YES">
-        <attribute name="enrollmentId" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="CDNotebookNote" representedClassName=".CDNotebookNote" syncable="YES">
         <attribute name="after" optional="YES" attributeType="String"/>

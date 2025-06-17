@@ -61,7 +61,7 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
         let useCase = GetLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let learnCourses: [CDLearnCourse] = databaseClient.fetch()
+        let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
         XCTAssertEqual(learnCourses.count, 1)
 
         let savedCourse = learnCourses.first
@@ -111,10 +111,10 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
         let useCase = GetLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let learnCourses: [CDLearnCourse] = databaseClient.fetch()
+        let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
         XCTAssertEqual(learnCourses.count, 2)
 
-        let sortedCourses = learnCourses.sorted { (course1: CDLearnCourse, course2: CDLearnCourse) -> Bool in
+        let sortedCourses = learnCourses.sorted { (course1: CDHLearnCourse, course2: CDHLearnCourse) -> Bool in
             course1.id < course2.id
         }
 
@@ -131,7 +131,7 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
         let useCase = GetLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
 
-        let learnCourses: [CDLearnCourse] = databaseClient.fetch()
+        let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
         XCTAssertEqual(learnCourses.count, 0)
     }
 
@@ -147,7 +147,7 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
         let useCase = GetLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let learnCourses: [CDLearnCourse] = databaseClient.fetch()
+        let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
         XCTAssertEqual(learnCourses.count, 0)
     }
 }

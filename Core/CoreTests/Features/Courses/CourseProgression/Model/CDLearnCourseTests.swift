@@ -34,7 +34,7 @@ class CDLearnCourseTests: CoreTestCase {
                 modulesConnection: nil
             )
         )
-        let entity = CDLearnCourse.save(enrollment, in: databaseClient)
+        let entity = CDHLearnCourse.save(enrollment, in: databaseClient)
         XCTAssertEqual(entity.id, "course_1")
         XCTAssertEqual(entity.name, "Test Course")
         XCTAssertEqual(entity.enrollmentId, "enroll_1")
@@ -69,7 +69,7 @@ class CDLearnCourseTests: CoreTestCase {
                 )
             )
         ]
-        let entities = CDLearnCourse.save(enrollments, in: databaseClient)
+        let entities = CDHLearnCourse.save(enrollments, in: databaseClient)
         XCTAssertEqual(entities.count, 2)
         let entity1 = entities[0]
         let entity2 = entities[1]
@@ -95,7 +95,7 @@ class CDLearnCourseTests: CoreTestCase {
                 modulesConnection: nil
             )
         )
-        _ = CDLearnCourse.save(enrollment1, in: databaseClient)
+        _ = CDHLearnCourse.save(enrollment1, in: databaseClient)
         let enrollment2 = GetCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enroll_1",
@@ -109,7 +109,7 @@ class CDLearnCourseTests: CoreTestCase {
                 modulesConnection: nil
             )
         )
-        let updated = CDLearnCourse.save(enrollment2, in: databaseClient)
+        let updated = CDHLearnCourse.save(enrollment2, in: databaseClient)
         XCTAssertEqual(updated.id, "course_1")
         XCTAssertEqual(updated.name, "Updated Name")
         XCTAssertEqual(updated.enrollmentId, "enroll_1")
