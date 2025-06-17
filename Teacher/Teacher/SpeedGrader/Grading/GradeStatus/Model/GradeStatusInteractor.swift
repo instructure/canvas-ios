@@ -84,7 +84,7 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
         return api.makeRequest(request)
             .flatMap { [speedGraderInteractor] _ in
                 assert(speedGraderInteractor != nil)
-                return speedGraderInteractor?.refreshSubmission(forUserId: userId) ?? Publishers.typedEmpty()
+                return speedGraderInteractor?.refreshSubmission(forUserId: userId) ?? Publishers.typedJust(failureType: Error.self)
             }
             .mapToVoid()
             .eraseToAnyPublisher()

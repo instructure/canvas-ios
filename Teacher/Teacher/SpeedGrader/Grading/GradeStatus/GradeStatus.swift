@@ -38,7 +38,7 @@ struct GradeStatus: Identifiable, Equatable {
 
 extension String {
 
-    var localizedGradeStatusName: String {
+    fileprivate var localizedGradeStatusName: String {
         switch self {
         case "late": String(localized: "Late", bundle: .teacher)
         case "missing": String(localized: "Missing", bundle: .teacher)
