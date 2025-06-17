@@ -55,6 +55,18 @@ struct SubmissionGraderView: View {
         controller.value.navigationController?.view.frame.size ?? .zero
     }
 
+    private var openCloseButtonAccessibilityLabel: String {
+        drawerState != .min ?
+        String(localized: "Close", bundle: .teacher) :
+        String(localized: "Open", bundle: .teacher)
+    }
+
+    private var expandCollapseButtonAccessibilityLabel: String {
+        drawerState != .max ?
+        String(localized: "Expand", bundle: .teacher) :
+        String(localized: "Collapse", bundle: .teacher)
+    }
+
     init(
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
@@ -221,13 +233,10 @@ struct SubmissionGraderView: View {
                 } label: {
                     drawerState != .max ? Image.fullScreenLine : Image.exitFullScreenLine
                 }
+                .accessibilityLabel(expandCollapseButtonAccessibilityLabel)
                 .accessibilityShowsLargeContentViewer {
                     drawerState != .max ? Image.fullScreenLine : Image.exitFullScreenLine
-                    Text(
-                        drawerState != .max ?
-                        String(localized: "Expand", bundle: .teacher) :
-                        String(localized: "Collapse", bundle: .teacher)
-                    )
+                    Text(expandCollapseButtonAccessibilityLabel)
                 }
             } trailingContent: {
                 Button {
@@ -235,13 +244,10 @@ struct SubmissionGraderView: View {
                 } label: {
                     drawerState != .min ? Image.arrowOpenDownLine : Image.arrowOpenUpLine
                 }
+                .accessibilityLabel(openCloseButtonAccessibilityLabel)
                 .accessibilityShowsLargeContentViewer {
                     drawerState != .min ? Image.arrowOpenDownLine : Image.arrowOpenUpLine
-                    Text(
-                        drawerState != .min ?
-                        String(localized: "Close", bundle: .teacher) :
-                        String(localized: "Open", bundle: .teacher)
-                    )
+                    Text(openCloseButtonAccessibilityLabel)
                 }
             }
         }
