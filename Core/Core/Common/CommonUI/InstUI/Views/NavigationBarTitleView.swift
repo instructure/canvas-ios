@@ -49,6 +49,13 @@ extension InstUI {
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isHeader)
+            .accessibilityShowsLargeContentViewer {
+                Text(
+                    [title, subtitle]
+                        .compactMap { $0 }
+                        .joined(separator: "\n")
+                )
+            }
         }
     }
 }
