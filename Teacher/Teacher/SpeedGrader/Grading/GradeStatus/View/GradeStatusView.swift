@@ -42,23 +42,25 @@ struct GradeStatusView: View {
     }
 
     private var cell: some View {
-        HStack {
+        HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
             Text(String(localized: "Status", bundle: .teacher))
-                .font(.system(size: 20, weight: .medium))
-                .foregroundColor(Color(red: 0.22, green: 0.27, blue: 0.31))
-            Spacer(minLength: 0)
+                .font(.semibold16)
+                .foregroundColor(Color.textDarkest)
+                .frame(maxWidth: .infinity, alignment: .leading)
             if viewModel.isLoading {
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
+                    .progressViewStyle(.circular)
             } else {
                 Text(viewModel.selectedOption.title)
-                    .font(.system(size: 20, weight: .regular))
-                    .foregroundColor(Color(red: 0.53, green: 0.57, blue: 0.62))
-                Image(systemName: "chevron.down")
-                    .foregroundColor(Color(red: 0.53, green: 0.57, blue: 0.62))
+                    .font(.regular14)
+                    .foregroundColor(Color.textDark)
+                Image.chevronDown
+                    .scaledIcon(size: 24)
+                    .foregroundColor(Color.textDark)
             }
         }
-        .paddingStyle(set: .standardCell)
+        .frame(minHeight: 52)
+        .paddingStyle(.horizontal, .standard)
         .background(Color.backgroundLightest)
     }
 }
