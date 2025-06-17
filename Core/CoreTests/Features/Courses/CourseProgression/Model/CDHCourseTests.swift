@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class CDCourseTests: CoreTestCase {
+class CDHCourseTests: CoreTestCase {
     func testAPIResponseSave_completedCourse() {
         let mockEnrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "completed",

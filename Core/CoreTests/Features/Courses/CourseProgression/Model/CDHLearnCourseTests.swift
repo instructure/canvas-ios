@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class CDLearnCourseTests: CoreTestCase {
+class CDHLearnCourseTests: CoreTestCase {
     func testSaveSingleEnrollment() {
         let enrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",

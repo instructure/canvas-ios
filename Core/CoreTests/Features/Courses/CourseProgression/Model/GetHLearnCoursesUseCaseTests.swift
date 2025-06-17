@@ -21,7 +21,7 @@ import CoreData
 import TestsFoundation
 import XCTest
 
-class GetLearnCoursesUseCaseTests: CoreTestCase {
+class GetHLearnCoursesUseCaseTests: CoreTestCase {
     func testCacheKey() {
         let useCase = GetHLearnCoursesUseCase(userId: "user_123")
         XCTAssertEqual(useCase.cacheKey, "learn-courses")

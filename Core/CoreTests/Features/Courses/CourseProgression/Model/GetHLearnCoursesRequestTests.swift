@@ -21,7 +21,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class GetLearnCoursesProgressionRequestTests: CoreTestCase {
+class GetHLearnCoursesProgressionRequestTests: CoreTestCase {
     func testInputInit() {
         let input = GetHLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
         XCTAssertEqual(input.id, "user_123")

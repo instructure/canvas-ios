@@ -20,7 +20,7 @@
 import CoreData
 import XCTest
 
-class GetCoursesProgressionUseCaseTests: CoreTestCase {
+class GetHCoursesProgressionUseCaseTests: CoreTestCase {
     func testCacheKeyWithCourseId() {
         let useCase = GetHCoursesProgressionUseCase(userId: "user_1", courseId: "course_123")
         XCTAssertEqual(useCase.cacheKey, "courses-progression-course_123")
