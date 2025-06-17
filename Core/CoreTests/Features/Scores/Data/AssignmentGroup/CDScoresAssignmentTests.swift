@@ -19,20 +19,20 @@
 @testable import Core
 import XCTest
 
-final class CDScoresAssignmentTests: CoreTestCase {
+final class CDHScoresAssignmentTests: CoreTestCase {
     func testSaveWithFullSubmission() {
         let dueDate = Date()
         let submittedDate = Date().addingTimeInterval(-3600)
 
-        let apiEntity = GetSubmissionScoresResponse.Assignment(
+        let apiEntity = GetHSubmissionScoresResponse.Assignment(
             id: "assignment-123",
             name: "Quiz 1",
             pointsPossible: 50.0,
             htmlUrl: URL(string: "https://canvas.instructure.com/assignment/123"),
             dueAt: dueDate,
-            submissionsConnection: GetSubmissionScoresResponse.SubmissionNode(
+            submissionsConnection: GetHSubmissionScoresResponse.SubmissionNode(
                 nodes: [
-                    GetSubmissionScoresResponse.Submission(
+                    GetHSubmissionScoresResponse.Submission(
                         state: "graded",
                         late: true,
                         excused: false,
@@ -42,10 +42,10 @@ final class CDScoresAssignmentTests: CoreTestCase {
                         score: 45.0,
                         grade: "A",
                         submissionStatus: "submitted",
-                        commentsConnection: GetSubmissionScoresResponse.Comment(
+                        commentsConnection: GetHSubmissionScoresResponse.Comment(
                             nodes: [
-                                GetSubmissionScoresResponse.CommentsConnectionNode(id: "comment-1", read: true),
-                                GetSubmissionScoresResponse.CommentsConnectionNode(id: "comment-2", read: false)
+                                GetHSubmissionScoresResponse.CommentsConnectionNode(id: "comment-1", read: true),
+                                GetHSubmissionScoresResponse.CommentsConnectionNode(id: "comment-2", read: false)
                             ]
                         )
                     )
@@ -89,15 +89,15 @@ final class CDScoresAssignmentTests: CoreTestCase {
         initialEntity.isMissing = false
         try! databaseClient.save()
 
-        let apiEntity = GetSubmissionScoresResponse.Assignment(
+        let apiEntity = GetHSubmissionScoresResponse.Assignment(
             id: assignmentId,
             name: "Updated Name",
             pointsPossible: 20.0,
             htmlUrl: URL(string: "https://canvas.instructure.com/assignment/123"),
             dueAt: Date(),
-            submissionsConnection: GetSubmissionScoresResponse.SubmissionNode(
+            submissionsConnection: GetHSubmissionScoresResponse.SubmissionNode(
                 nodes: [
-                    GetSubmissionScoresResponse.Submission(
+                    GetHSubmissionScoresResponse.Submission(
                         state: "graded",
                         late: true,
                         excused: false,
@@ -125,7 +125,7 @@ final class CDScoresAssignmentTests: CoreTestCase {
     }
 
     func testSaveWithNoSubmission() {
-        let apiEntity = GetSubmissionScoresResponse.Assignment(
+        let apiEntity = GetHSubmissionScoresResponse.Assignment(
             id: "assignment-123",
             name: "Unsubmitted Assignment",
             pointsPossible: 100.0,
@@ -150,13 +150,13 @@ final class CDScoresAssignmentTests: CoreTestCase {
     }
 
     func testSaveWithEmptySubmissionsArray() {
-        let apiEntity = GetSubmissionScoresResponse.Assignment(
+        let apiEntity = GetHSubmissionScoresResponse.Assignment(
             id: "assignment-123",
             name: "Assignment",
             pointsPossible: 100.0,
             htmlUrl: nil,
             dueAt: nil,
-            submissionsConnection: GetSubmissionScoresResponse.SubmissionNode(nodes: []),
+            submissionsConnection: GetHSubmissionScoresResponse.SubmissionNode(nodes: []),
             submissionTypes: nil
         )
 
@@ -171,7 +171,7 @@ final class CDScoresAssignmentTests: CoreTestCase {
     }
 
     func testSaveWithNilValues() {
-        let apiEntity = GetSubmissionScoresResponse.Assignment(
+        let apiEntity = GetHSubmissionScoresResponse.Assignment(
             id: "assignment-123",
             name: nil,
             pointsPossible: nil,

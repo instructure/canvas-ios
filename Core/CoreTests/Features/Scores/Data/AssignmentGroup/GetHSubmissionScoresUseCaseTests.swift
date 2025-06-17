@@ -19,9 +19,9 @@
 @testable import Core
 import XCTest
 
-final class GetSubmissionScoresUseCaseTests: CoreTestCase {
+final class GetHSubmissionScoresUseCaseTests: CoreTestCase {
     func testRequest() {
-        let useCase = GetSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
+        let useCase = GetHSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
         let request = useCase.request
 
         XCTAssertEqual(request.variables.userId, "user-123")
@@ -29,51 +29,51 @@ final class GetSubmissionScoresUseCaseTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        let useCase = GetSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
+        let useCase = GetHSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
 
         XCTAssertEqual(useCase.cacheKey, "Submission-Scores-enrollment-456")
     }
 
     func testScope() {
-        let useCase = GetSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
+        let useCase = GetHSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
 
         XCTAssertEqual(useCase.scope, Scope.where(#keyPath(CDHSubmissionScores.enrollmentID), equals: "enrollment-456"))
     }
 
     func testWrite() {
-        let useCase = GetSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
+        let useCase = GetHSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
 
-        let response = GetSubmissionScoresResponse(data: GetSubmissionScoresResponse.DataModel(
-            legacyNode: GetSubmissionScoresResponse.LegacyNode(
+        let response = GetHSubmissionScoresResponse(data: GetHSubmissionScoresResponse.DataModel(
+            legacyNode: GetHSubmissionScoresResponse.LegacyNode(
                 id: "enrollment-456",
-                grades: GetSubmissionScoresResponse.Grades(finalScore: 85.5, finalGrade: "B"),
-                course: GetSubmissionScoresResponse.Course(
+                grades: GetHSubmissionScoresResponse.Grades(finalScore: 85.5, finalGrade: "B"),
+                course: GetHSubmissionScoresResponse.Course(
                     applyGroupWeights: true,
                     assignmentGroups: [
-                        GetSubmissionScoresResponse.AssignmentGroup(
+                        GetHSubmissionScoresResponse.AssignmentGroup(
                             id: "group-1",
                             name: "Assignments",
                             groupWeight: 40.0,
-                            gradesConnection: GetSubmissionScoresResponse.GradesConnection(
+                            gradesConnection: GetHSubmissionScoresResponse.GradesConnection(
                                 nodes: [
-                                    GetSubmissionScoresResponse.GradesConnectionNode(
+                                    GetHSubmissionScoresResponse.GradesConnectionNode(
                                         currentScore: 90.0,
                                         finalScore: 90.0,
                                         state: "graded"
                                     )
                                 ]
                             ),
-                            assignmentsConnection: GetSubmissionScoresResponse.AssignmentsConnection(
+                            assignmentsConnection: GetHSubmissionScoresResponse.AssignmentsConnection(
                                 nodes: [
-                                    GetSubmissionScoresResponse.Assignment(
+                                    GetHSubmissionScoresResponse.Assignment(
                                         id: "assignment-1",
                                         name: "Assignment 1",
                                         pointsPossible: 100.0,
                                         htmlUrl: URL(string: "https://canvas.instructure.com/assignment/1"),
                                         dueAt: Date(),
-                                        submissionsConnection: GetSubmissionScoresResponse.SubmissionNode(
+                                        submissionsConnection: GetHSubmissionScoresResponse.SubmissionNode(
                                             nodes: [
-                                                GetSubmissionScoresResponse.Submission(
+                                                GetHSubmissionScoresResponse.Submission(
                                                     state: "graded",
                                                     late: false,
                                                     excused: false,
@@ -83,9 +83,9 @@ final class GetSubmissionScoresUseCaseTests: CoreTestCase {
                                                     score: 90.0,
                                                     grade: "A-",
                                                     submissionStatus: "submitted",
-                                                    commentsConnection: GetSubmissionScoresResponse.Comment(
+                                                    commentsConnection: GetHSubmissionScoresResponse.Comment(
                                                         nodes: [
-                                                            GetSubmissionScoresResponse.CommentsConnectionNode(
+                                                            GetHSubmissionScoresResponse.CommentsConnectionNode(
                                                                 id: "comment-1",
                                                                 read: true
                                                             )
@@ -137,7 +137,7 @@ final class GetSubmissionScoresUseCaseTests: CoreTestCase {
     }
 
     func testWriteWithNilResponse() {
-        let useCase = GetSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
+        let useCase = GetHSubmissionScoresUseCase(userId: "user-123", enrollmentId: "enrollment-456")
 
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
 

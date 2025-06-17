@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-final class CDScoresCourseTests: CoreTestCase {
+final class CDHScoresCourseTests: CoreTestCase {
     func testSave() {
         let apiCourse = APICourse.make(
             id: ID("course-123"),

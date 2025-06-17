@@ -19,12 +19,12 @@
 import Foundation
 import CoreData
 
-final public class GetSubmissionScoresUseCase: APIUseCase {
+final public class GetHSubmissionScoresUseCase: APIUseCase {
 
     // MARK: - Typealias
 
     public typealias Model = CDHScoresAssignmentGroup
-    public typealias Request = GetSubmissionScoresRequest
+    public typealias Request = GetHSubmissionScoresRequest
 
     // MARK: - Properties
 
@@ -35,7 +35,7 @@ final public class GetSubmissionScoresUseCase: APIUseCase {
     let userId: String
     let enrollmentId: String
 
-    public var request: GetSubmissionScoresRequest {
+    public var request: GetHSubmissionScoresRequest {
         .init(userId: userId, enrollmentId: enrollmentId)
     }
 
@@ -48,7 +48,7 @@ final public class GetSubmissionScoresUseCase: APIUseCase {
 
     // MARK: - Functions
     public func write(
-        response: GetSubmissionScoresResponse?,
+        response: GetHSubmissionScoresResponse?,
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {

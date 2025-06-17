@@ -37,7 +37,7 @@ final public class CDHScoresAssignment: NSManagedObject {
 
     @discardableResult
     public static func save(
-        _ apiEntity: GetSubmissionScoresResponse.Assignment,
+        _ apiEntity: GetHSubmissionScoresResponse.Assignment,
         in context: NSManagedObjectContext
     ) -> CDHScoresAssignment {
 

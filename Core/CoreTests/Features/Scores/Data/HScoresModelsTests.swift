@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-final class ScoresCourseTests: CoreTestCase {
+final class HScoresCourseTests: CoreTestCase {
     func testInitWithParameters() {
         let enrollments = [
             HScoresCourseEnrollment(

@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct GetSubmissionScoresResponse: Codable {
+public struct GetHSubmissionScoresResponse: Codable {
     let data: DataModel?
 
     struct DataModel: Codable {

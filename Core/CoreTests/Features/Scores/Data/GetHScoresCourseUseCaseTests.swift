@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-final class GetScoresCourseUseCaseTests: CoreTestCase {
+final class GetHScoresCourseUseCaseTests: CoreTestCase {
     func testRequest() {
         let useCase = GetScoresCourseUseCase(courseID: "course-123")
         let request = useCase.request

@@ -29,7 +29,7 @@ final public class CDHScoresAssignmentGroup: NSManagedObject {
 
     @discardableResult
     public static func save(
-        _ apiEntity: GetSubmissionScoresResponse.AssignmentGroup,
+        _ apiEntity: GetHSubmissionScoresResponse.AssignmentGroup,
         enrollmentId: String,
         in context: NSManagedObjectContext
     ) -> CDHScoresAssignmentGroup {

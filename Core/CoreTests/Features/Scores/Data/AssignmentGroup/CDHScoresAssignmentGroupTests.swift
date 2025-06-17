@@ -19,32 +19,32 @@
 @testable import Core
 import XCTest
 
-final class CDScoresAssignmentGroupTests: CoreTestCase {
+final class CDHScoresAssignmentGroupTests: CoreTestCase {
     func testSave() {
-        let apiEntity = GetSubmissionScoresResponse.AssignmentGroup(
+        let apiEntity = GetHSubmissionScoresResponse.AssignmentGroup(
             id: "group-123",
             name: "Homework",
             groupWeight: 35.5,
-            gradesConnection: GetSubmissionScoresResponse.GradesConnection(
+            gradesConnection: GetHSubmissionScoresResponse.GradesConnection(
                 nodes: [
-                    GetSubmissionScoresResponse.GradesConnectionNode(
+                    GetHSubmissionScoresResponse.GradesConnectionNode(
                         currentScore: 88.5,
                         finalScore: 88.5,
                         state: "graded"
                     )
                 ]
             ),
-            assignmentsConnection: GetSubmissionScoresResponse.AssignmentsConnection(
+            assignmentsConnection: GetHSubmissionScoresResponse.AssignmentsConnection(
                 nodes: [
-                    GetSubmissionScoresResponse.Assignment(
+                    GetHSubmissionScoresResponse.Assignment(
                         id: "assignment-1",
                         name: "Homework 1",
                         pointsPossible: 50.0,
                         htmlUrl: URL(string: "https://canvas.instructure.com/assignment/1"),
                         dueAt: Date(),
-                        submissionsConnection: GetSubmissionScoresResponse.SubmissionNode(
+                        submissionsConnection: GetHSubmissionScoresResponse.SubmissionNode(
                             nodes: [
-                                GetSubmissionScoresResponse.Submission(
+                                GetHSubmissionScoresResponse.Submission(
                                     state: "graded",
                                     late: false,
                                     excused: false,
@@ -92,14 +92,14 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
         initialEntity.assignments = []
         try! databaseClient.save()
 
-        let apiEntity = GetSubmissionScoresResponse.AssignmentGroup(
+        let apiEntity = GetHSubmissionScoresResponse.AssignmentGroup(
             id: groupId,
             name: "Updated Name",
             groupWeight: 20.0,
             gradesConnection: nil,
-            assignmentsConnection: GetSubmissionScoresResponse.AssignmentsConnection(
+            assignmentsConnection: GetHSubmissionScoresResponse.AssignmentsConnection(
                 nodes: [
-                    GetSubmissionScoresResponse.Assignment(
+                    GetHSubmissionScoresResponse.Assignment(
                         id: "assignment-2",
                         name: "New Assignment",
                         pointsPossible: 100.0,
@@ -126,7 +126,7 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
     }
 
     func testSaveWithNilValues() {
-        let apiEntity = GetSubmissionScoresResponse.AssignmentGroup(
+        let apiEntity = GetHSubmissionScoresResponse.AssignmentGroup(
             id: "group-123",
             name: nil,
             groupWeight: nil,
@@ -145,12 +145,12 @@ final class CDScoresAssignmentGroupTests: CoreTestCase {
     }
 
     func testSaveWithEmptyAssignmentsArray() {
-        let apiEntity = GetSubmissionScoresResponse.AssignmentGroup(
+        let apiEntity = GetHSubmissionScoresResponse.AssignmentGroup(
             id: "group-123",
             name: "Homework",
             groupWeight: 35.5,
             gradesConnection: nil,
-            assignmentsConnection: GetSubmissionScoresResponse.AssignmentsConnection(nodes: [])
+            assignmentsConnection: GetHSubmissionScoresResponse.AssignmentsConnection(nodes: [])
         )
 
         let enrollmentId = "enrollment-456"

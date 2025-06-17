@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-final class GetSubmissionScoresResponseTests: CoreTestCase {
+final class GetHSubmissionScoresResponseTests: CoreTestCase {
     func testDecodingFullResponse() {
         guard let jsonData = jsonString.data(using: .utf8) else {
             XCTFail("Failed to convert JSON string to Data")
@@ -29,7 +29,7 @@ final class GetSubmissionScoresResponseTests: CoreTestCase {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            let response = try decoder.decode(GetSubmissionScoresResponse.self, from: jsonData)
+            let response = try decoder.decode(GetHSubmissionScoresResponse.self, from: jsonData)
 
             XCTAssertEqual(response.data?.legacyNode?.id, "enrollment-123")
             XCTAssertEqual(response.data?.legacyNode?.grades?.finalScore, 85.5)
@@ -85,7 +85,7 @@ final class GetSubmissionScoresResponseTests: CoreTestCase {
         }
 
         do {
-            let response = try JSONDecoder().decode(GetSubmissionScoresResponse.self, from: jsonData)
+            let response = try JSONDecoder().decode(GetHSubmissionScoresResponse.self, from: jsonData)
 
             XCTAssertEqual(response.data?.legacyNode?.id, "enrollment-123")
             XCTAssertNil(response.data?.legacyNode?.grades)

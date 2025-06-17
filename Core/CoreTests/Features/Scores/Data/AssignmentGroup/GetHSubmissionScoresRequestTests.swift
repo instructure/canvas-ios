@@ -19,25 +19,25 @@
 @testable import Core
 import XCTest
 
-final class GetSubmissionScoresRequestTests: CoreTestCase {
+final class GetHSubmissionScoresRequestTests: CoreTestCase {
     func testInit() {
-        let request = GetSubmissionScoresRequest(userId: "user-123", enrollmentId: "enrollment-456")
+        let request = GetHSubmissionScoresRequest(userId: "user-123", enrollmentId: "enrollment-456")
 
         XCTAssertEqual(request.variables.userId, "user-123")
         XCTAssertEqual(request.variables.enrollmentId, "enrollment-456")
     }
 
     func testInputEquatable() {
-        let input1 = GetSubmissionScoresRequest.Input(userId: "user-123", enrollmentId: "enrollment-456")
-        let input2 = GetSubmissionScoresRequest.Input(userId: "user-123", enrollmentId: "enrollment-456")
-        let input3 = GetSubmissionScoresRequest.Input(userId: "user-789", enrollmentId: "enrollment-456")
+        let input1 = GetHSubmissionScoresRequest.Input(userId: "user-123", enrollmentId: "enrollment-456")
+        let input2 = GetHSubmissionScoresRequest.Input(userId: "user-123", enrollmentId: "enrollment-456")
+        let input3 = GetHSubmissionScoresRequest.Input(userId: "user-789", enrollmentId: "enrollment-456")
 
         XCTAssertEqual(input1, input2)
         XCTAssertNotEqual(input1, input3)
     }
 
     func testQuery() {
-        let query = GetSubmissionScoresRequest.query
+        let query = GetHSubmissionScoresRequest.query
         XCTAssertTrue(query.contains("query GetSubmissionScoresForCourse($enrollmentId: ID!, $userId: ID!)"))
         XCTAssertTrue(query.contains("legacyNode(_id: $enrollmentId, type: Enrollment)"))
         XCTAssertTrue(query.contains("grades {"))

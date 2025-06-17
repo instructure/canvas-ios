@@ -19,39 +19,39 @@
 @testable import Core
 import XCTest
 
-final class CDSubmissionScoresTests: CoreTestCase {
+final class CDHSubmissionScoresTests: CoreTestCase {
     func testSave() {
-        let response = GetSubmissionScoresResponse(data: GetSubmissionScoresResponse.DataModel(
-            legacyNode: GetSubmissionScoresResponse.LegacyNode(
+        let response = GetHSubmissionScoresResponse(data: GetHSubmissionScoresResponse.DataModel(
+            legacyNode: GetHSubmissionScoresResponse.LegacyNode(
                 id: "enrollment-456",
-                grades: GetSubmissionScoresResponse.Grades(finalScore: 85.5, finalGrade: "B"),
-                course: GetSubmissionScoresResponse.Course(
+                grades: GetHSubmissionScoresResponse.Grades(finalScore: 85.5, finalGrade: "B"),
+                course: GetHSubmissionScoresResponse.Course(
                     applyGroupWeights: true,
                     assignmentGroups: [
-                        GetSubmissionScoresResponse.AssignmentGroup(
+                        GetHSubmissionScoresResponse.AssignmentGroup(
                             id: "group-1",
                             name: "Assignments",
                             groupWeight: 40.0,
-                            gradesConnection: GetSubmissionScoresResponse.GradesConnection(
+                            gradesConnection: GetHSubmissionScoresResponse.GradesConnection(
                                 nodes: [
-                                    GetSubmissionScoresResponse.GradesConnectionNode(
+                                    GetHSubmissionScoresResponse.GradesConnectionNode(
                                         currentScore: 90.0,
                                         finalScore: 90.0,
                                         state: "graded"
                                     )
                                 ]
                             ),
-                            assignmentsConnection: GetSubmissionScoresResponse.AssignmentsConnection(
+                            assignmentsConnection: GetHSubmissionScoresResponse.AssignmentsConnection(
                                 nodes: [
-                                    GetSubmissionScoresResponse.Assignment(
+                                    GetHSubmissionScoresResponse.Assignment(
                                         id: "assignment-1",
                                         name: "Assignment 1",
                                         pointsPossible: 100.0,
                                         htmlUrl: URL(string: "https://canvas.instructure.com/assignment/1"),
                                         dueAt: Date(),
-                                        submissionsConnection: GetSubmissionScoresResponse.SubmissionNode(
+                                        submissionsConnection: GetHSubmissionScoresResponse.SubmissionNode(
                                             nodes: [
-                                                GetSubmissionScoresResponse.Submission(
+                                                GetHSubmissionScoresResponse.Submission(
                                                     state: "graded",
                                                     late: false,
                                                     excused: false,
@@ -61,9 +61,9 @@ final class CDSubmissionScoresTests: CoreTestCase {
                                                     score: 90.0,
                                                     grade: "A-",
                                                     submissionStatus: "submitted",
-                                                    commentsConnection: GetSubmissionScoresResponse.Comment(
+                                                    commentsConnection: GetHSubmissionScoresResponse.Comment(
                                                         nodes: [
-                                                            GetSubmissionScoresResponse.CommentsConnectionNode(
+                                                            GetHSubmissionScoresResponse.CommentsConnectionNode(
                                                                 id: "comment-1",
                                                                 read: true
                                                             )
@@ -105,14 +105,14 @@ final class CDSubmissionScoresTests: CoreTestCase {
         initialEntity.assignmentGroups = []
         try! databaseClient.save()
 
-        let response = GetSubmissionScoresResponse(data: GetSubmissionScoresResponse.DataModel(
-            legacyNode: GetSubmissionScoresResponse.LegacyNode(
+        let response = GetHSubmissionScoresResponse(data: GetHSubmissionScoresResponse.DataModel(
+            legacyNode: GetHSubmissionScoresResponse.LegacyNode(
                 id: enrollmentId,
                 grades: nil,
-                course: GetSubmissionScoresResponse.Course(
+                course: GetHSubmissionScoresResponse.Course(
                     applyGroupWeights: false,
                     assignmentGroups: [
-                        GetSubmissionScoresResponse.AssignmentGroup(
+                        GetHSubmissionScoresResponse.AssignmentGroup(
                             id: "group-2",
                             name: "Updated Group",
                             groupWeight: 60.0,
@@ -134,11 +134,11 @@ final class CDSubmissionScoresTests: CoreTestCase {
     }
 
     func testSaveWithNoAssignmentGroups() {
-        let response = GetSubmissionScoresResponse(data: GetSubmissionScoresResponse.DataModel(
-            legacyNode: GetSubmissionScoresResponse.LegacyNode(
+        let response = GetHSubmissionScoresResponse(data: GetHSubmissionScoresResponse.DataModel(
+            legacyNode: GetHSubmissionScoresResponse.LegacyNode(
                 id: "enrollment-456",
                 grades: nil,
-                course: GetSubmissionScoresResponse.Course(
+                course: GetHSubmissionScoresResponse.Course(
                     applyGroupWeights: false,
                     assignmentGroups: nil
                 )
