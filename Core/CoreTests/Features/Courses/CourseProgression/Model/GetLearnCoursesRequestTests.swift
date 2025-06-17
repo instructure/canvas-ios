@@ -23,27 +23,27 @@ import XCTest
 
 class GetLearnCoursesProgressionRequestTests: CoreTestCase {
     func testInputInit() {
-        let input = GetLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
+        let input = GetHLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
         XCTAssertEqual(input.id, "user_123")
         XCTAssertTrue(input.horizonCourses)
     }
 
     func testRequestInit() {
-        let request = GetLearnCoursesProgressionRequest(userId: "user_123", horizonCourses: true)
+        let request = GetHLearnCoursesProgressionRequest(userId: "user_123", horizonCourses: true)
         XCTAssertEqual(request.variables.id, "user_123")
         XCTAssertTrue(request.variables.horizonCourses)
 
-        let defaultRequest = GetLearnCoursesProgressionRequest(userId: "user_123")
+        let defaultRequest = GetHLearnCoursesProgressionRequest(userId: "user_123")
         XCTAssertEqual(defaultRequest.variables.id, "user_123")
         XCTAssertTrue(defaultRequest.variables.horizonCourses)
 
-        let falseRequest = GetLearnCoursesProgressionRequest(userId: "user_123", horizonCourses: false)
+        let falseRequest = GetHLearnCoursesProgressionRequest(userId: "user_123", horizonCourses: false)
         XCTAssertEqual(falseRequest.variables.id, "user_123")
         XCTAssertFalse(falseRequest.variables.horizonCourses)
     }
 
     func testOperationName() {
-        XCTAssertEqual(GetLearnCoursesProgressionRequest.operationName, "GetUserCourses")
+        XCTAssertEqual(GetHLearnCoursesProgressionRequest.operationName, "GetUserCourses")
     }
 
     func testQuery() {
@@ -63,14 +63,14 @@ class GetLearnCoursesProgressionRequestTests: CoreTestCase {
                 }
             }
         """
-        XCTAssertEqual(GetLearnCoursesProgressionRequest.query, expectedQuery)
+        XCTAssertEqual(GetHLearnCoursesProgressionRequest.query, expectedQuery)
     }
 
     func testInputEquality() {
-        let input1 = GetLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
-        let input2 = GetLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
-        let input3 = GetLearnCoursesProgressionRequest.Input(id: "user_456", horizonCourses: true)
-        let input4 = GetLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: false)
+        let input1 = GetHLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
+        let input2 = GetHLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: true)
+        let input3 = GetHLearnCoursesProgressionRequest.Input(id: "user_456", horizonCourses: true)
+        let input4 = GetHLearnCoursesProgressionRequest.Input(id: "user_123", horizonCourses: false)
 
         XCTAssertEqual(input1, input2)
         XCTAssertNotEqual(input1, input3)

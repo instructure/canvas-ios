@@ -19,55 +19,40 @@
 import CoreData
 import Foundation
 
-public class GetCoursesProgressionUseCase: APIUseCase {
+public class GetHLearnCoursesUseCase: APIUseCase {
     // MARK: - Typealias
 
-    public typealias Model = CDHCourse
-    public typealias Request = GetCoursesProgressionRequest
+    public typealias Model = CDHLearnCourse
+    public typealias Request = GetHCoursesProgressionRequest
 
     // MARK: - Properties
 
     public var cacheKey: String? {
-        if let courseId {
-            return "courses-progression-\(courseId)"
-        } else {
-            return "courses-progression"
-        }
+        return "learn-courses"
     }
 
-    private let courseId: String?
     private let userId: String
-    private let horizonCourses: Bool
 
-    public var request: GetCoursesProgressionRequest {
-        .init(userId: userId, horizonCourses: horizonCourses)
+    public var request: GetHCoursesProgressionRequest {
+        .init(userId: userId, horizonCourses: true)
     }
 
     // MARK: - Init
 
-    public init(userId: String, courseId: String? = nil, horizonCourses: Bool = false) {
+    public init(userId: String) {
         self.userId = userId
-        self.courseId = courseId
-        self.horizonCourses = horizonCourses
     }
 
     // MARK: - Functions
 
     public func write(
-        response: GetCoursesProgressionResponse?,
+        response: GetHCoursesProgressionResponse?,
         urlResponse _: URLResponse?,
         to client: NSManagedObjectContext
     ) {
         let enrollments = response?.data?.user?.enrollments ?? []
         enrollments.forEach { enrollment in
-            CDHCourse.save(enrollment, in: client)
+            CDHLearnCourse.save(enrollment, in: client)
         }
-    }
-
-    public var scope: Scope {
-        if let courseId = courseId {
-            return .where(#keyPath(CDHCourse.courseID), equals: courseId)
-        }
-        return .all
     }
 }

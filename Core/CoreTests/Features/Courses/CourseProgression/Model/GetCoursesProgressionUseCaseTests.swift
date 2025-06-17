@@ -22,17 +22,17 @@ import XCTest
 
 class GetCoursesProgressionUseCaseTests: CoreTestCase {
     func testCacheKeyWithCourseId() {
-        let useCase = GetCoursesProgressionUseCase(userId: "user_1", courseId: "course_123")
+        let useCase = GetHCoursesProgressionUseCase(userId: "user_1", courseId: "course_123")
         XCTAssertEqual(useCase.cacheKey, "courses-progression-course_123")
     }
 
     func testCacheKeyWithoutCourseId() {
-        let useCase = GetCoursesProgressionUseCase(userId: "user_1")
+        let useCase = GetHCoursesProgressionUseCase(userId: "user_1")
         XCTAssertEqual(useCase.cacheKey, "courses-progression")
     }
 
     func testRequestProperties() {
-        let useCase = GetCoursesProgressionUseCase(userId: "user_1", horizonCourses: true)
+        let useCase = GetHCoursesProgressionUseCase(userId: "user_1", horizonCourses: true)
         let request = useCase.request
 
         XCTAssertEqual(request.variables.id, "user_1")
@@ -40,7 +40,7 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
     }
 
     func testScopeWithCourseId() {
-        let useCase = GetCoursesProgressionUseCase(userId: "user_1", courseId: "course_123")
+        let useCase = GetHCoursesProgressionUseCase(userId: "user_1", courseId: "course_123")
         let scope = useCase.scope
 
         XCTAssertEqual(scope.predicate.predicateFormat, "courseID == \"course_123\"")
@@ -51,7 +51,7 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
     }
 
     func testScopeWithoutCourseId() {
-        let useCase = GetCoursesProgressionUseCase(userId: "user_1")
+        let useCase = GetHCoursesProgressionUseCase(userId: "user_1")
         let scope = useCase.scope
 
         XCTAssertTrue(scope.predicate.predicateFormat == "TRUEPREDICATE")
@@ -62,10 +62,10 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
     }
 
     func testWriteSavesCoursesToCoreData() {
-        let enrollment = GetCoursesProgressionResponse.EnrollmentModel(
+        let enrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enroll_1",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_1",
                 name: "Test Course",
                 account: nil,
@@ -76,15 +76,15 @@ class GetCoursesProgressionUseCaseTests: CoreTestCase {
             )
         )
 
-        let response = GetCoursesProgressionResponse(
-            data: GetCoursesProgressionResponse.DataModel(
-                user: GetCoursesProgressionResponse.LegacyNodeModel(
+        let response = GetHCoursesProgressionResponse(
+            data: GetHCoursesProgressionResponse.DataModel(
+                user: GetHCoursesProgressionResponse.LegacyNodeModel(
                     enrollments: [enrollment]
                 )
             )
         )
 
-        let useCase = GetCoursesProgressionUseCase(userId: "user_1")
+        let useCase = GetHCoursesProgressionUseCase(userId: "user_1")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
         let cdCourses: [CDHCourse] = databaseClient.fetch(scope: .where(#keyPath(CDHCourse.courseID), equals: "course_1"))

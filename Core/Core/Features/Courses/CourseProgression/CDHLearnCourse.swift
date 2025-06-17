@@ -20,7 +20,7 @@ import CoreData
 import Foundation
 
 public final class CDHLearnCourse: NSManagedObject, WriteableModel {
-    public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
+    public typealias JSON = GetHCoursesProgressionResponse.EnrollmentModel
 
     @NSManaged public var id: String
     @NSManaged public var name: String
@@ -28,7 +28,7 @@ public final class CDHLearnCourse: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(
-        _ items: [GetCoursesProgressionResponse.EnrollmentModel],
+        _ items: [GetHCoursesProgressionResponse.EnrollmentModel],
         in context: NSManagedObjectContext
     ) -> [CDHLearnCourse] {
         items.map { save($0, in: context) }
@@ -36,7 +36,7 @@ public final class CDHLearnCourse: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(
-        _ enrollmentModel: GetCoursesProgressionResponse.EnrollmentModel,
+        _ enrollmentModel: GetHCoursesProgressionResponse.EnrollmentModel,
         in context: NSManagedObjectContext
     ) -> CDHLearnCourse {
         let course = enrollmentModel.course

@@ -20,7 +20,7 @@ import CoreData
 import Foundation
 
 public final class CDHCourse: NSManagedObject, WriteableModel {
-    public typealias JSON = GetCoursesProgressionResponse.EnrollmentModel
+    public typealias JSON = GetHCoursesProgressionResponse.EnrollmentModel
 
     // MARK: - Properties
 
@@ -43,7 +43,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(
-        _ items: [GetCoursesProgressionResponse.EnrollmentModel],
+        _ items: [GetHCoursesProgressionResponse.EnrollmentModel],
         in context: NSManagedObjectContext
     ) -> [CDHCourse] {
         items.map { save($0, in: context) }
@@ -51,7 +51,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(
-        _ enrollmentModel: GetCoursesProgressionResponse.EnrollmentModel,
+        _ enrollmentModel: GetHCoursesProgressionResponse.EnrollmentModel,
         in context: NSManagedObjectContext
     ) -> CDHCourse {
         let enrollmentModelCourse = enrollmentModel.course
@@ -73,7 +73,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
     // MARK: - Private
 
     private static func saveCourseProgression(
-        enrollmentModel: GetCoursesProgressionResponse.EnrollmentModel,
+        enrollmentModel: GetHCoursesProgressionResponse.EnrollmentModel,
         course: Course,
         in context: NSManagedObjectContext
     ) -> CDHCourse {
@@ -163,7 +163,7 @@ public final class CDHCourse: NSManagedObject, WriteableModel {
     }
 
     private static func saveCourse(
-        enrollmentModelCourse: GetCoursesProgressionResponse.CourseModel,
+        enrollmentModelCourse: GetHCoursesProgressionResponse.CourseModel,
         id courseId: String,
         in context: NSManagedObjectContext
     ) -> Course {

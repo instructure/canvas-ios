@@ -18,8 +18,8 @@
 
 import Foundation
 
-public struct GetCoursesProgressionRequest: APIGraphQLRequestable {
-    public typealias Response = GetCoursesProgressionResponse
+public struct GetHCoursesProgressionRequest: APIGraphQLRequestable {
+    public typealias Response = GetHCoursesProgressionResponse
     public let variables: Input
 
     public struct Input: Codable, Equatable {

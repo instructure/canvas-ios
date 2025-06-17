@@ -21,21 +21,21 @@ import XCTest
 
 class CDCourseTests: CoreTestCase {
     func testAPIResponseSave_completedCourse() {
-        let mockEnrollment = GetCoursesProgressionResponse.EnrollmentModel(
+        let mockEnrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "completed",
             id: "enrollment_2",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_2",
                 name: "Completed Course",
-                account: GetCoursesProgressionResponse.AccountModel(name: "Completed Account"),
+                account: GetHCoursesProgressionResponse.AccountModel(name: "Completed Account"),
                 imageUrl: "https://example.com/completed.png",
                 syllabusBody: "Completed syllabus",
-                usersConnection: GetCoursesProgressionResponse.UsersConnection(
+                usersConnection: GetHCoursesProgressionResponse.UsersConnection(
                     nodes: [
-                        GetCoursesProgressionResponse.NodeModel(
-                            courseProgression: GetCoursesProgressionResponse.CourseProgression(
-                                requirements: GetCoursesProgressionResponse.Requirements(completionPercentage: 100.0),
-                                incompleteModulesConnection: GetCoursesProgressionResponse.IncompleteModulesConnection(nodes: [])
+                        GetHCoursesProgressionResponse.NodeModel(
+                            courseProgression: GetHCoursesProgressionResponse.CourseProgression(
+                                requirements: GetHCoursesProgressionResponse.Requirements(completionPercentage: 100.0),
+                                incompleteModulesConnection: GetHCoursesProgressionResponse.IncompleteModulesConnection(nodes: [])
                             )
                         )
                     ]
@@ -57,35 +57,35 @@ class CDCourseTests: CoreTestCase {
 
     func testAPIResponseSave_nextModuleItemFromIncompleteModules() {
         let dueDate = Date()
-        let mockEnrollment = GetCoursesProgressionResponse.EnrollmentModel(
+        let mockEnrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enrollment_3",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_3",
                 name: "Active Course",
-                account: GetCoursesProgressionResponse.AccountModel(name: "Active Account"),
+                account: GetHCoursesProgressionResponse.AccountModel(name: "Active Account"),
                 imageUrl: "https://example.com/active.png",
                 syllabusBody: "Active syllabus",
-                usersConnection: GetCoursesProgressionResponse.UsersConnection(
+                usersConnection: GetHCoursesProgressionResponse.UsersConnection(
                     nodes: [
-                        GetCoursesProgressionResponse.NodeModel(
-                            courseProgression: GetCoursesProgressionResponse.CourseProgression(
-                                requirements: GetCoursesProgressionResponse.Requirements(completionPercentage: 50.0),
-                                incompleteModulesConnection: GetCoursesProgressionResponse.IncompleteModulesConnection(
+                        GetHCoursesProgressionResponse.NodeModel(
+                            courseProgression: GetHCoursesProgressionResponse.CourseProgression(
+                                requirements: GetHCoursesProgressionResponse.Requirements(completionPercentage: 50.0),
+                                incompleteModulesConnection: GetHCoursesProgressionResponse.IncompleteModulesConnection(
                                     nodes: [
-                                        GetCoursesProgressionResponse.IncompleteNode(
-                                            module: GetCoursesProgressionResponse.Module(
+                                        GetHCoursesProgressionResponse.IncompleteNode(
+                                            module: GetHCoursesProgressionResponse.Module(
                                                 id: "module_2",
                                                 name: "Module 2",
                                                 position: 2
                                             ),
-                                            incompleteItemsConnection: GetCoursesProgressionResponse.IncompleteItemsConnection(
+                                            incompleteItemsConnection: GetHCoursesProgressionResponse.IncompleteItemsConnection(
                                                 nodes: [
-                                                    GetCoursesProgressionResponse.ModuleContent(
+                                                    GetHCoursesProgressionResponse.ModuleContent(
                                                         url: "https://example.com/item2",
                                                         id: "item_2",
                                                         estimatedDuration: "45m",
-                                                        content: GetCoursesProgressionResponse.ContentNode(
+                                                        content: GetHCoursesProgressionResponse.ContentNode(
                                                             id: "content_2",
                                                             title: "Content 2",
                                                             dueAt: dueDate,
@@ -119,37 +119,37 @@ class CDCourseTests: CoreTestCase {
 
     func testAPIResponseSave_nextModuleItemFromModulesConnection() {
         let dueDate = Date()
-        let mockEnrollment = GetCoursesProgressionResponse.EnrollmentModel(
+        let mockEnrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enrollment_4",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_4",
                 name: "Not Started Course",
-                account: GetCoursesProgressionResponse.AccountModel(name: "Not Started Account"),
+                account: GetHCoursesProgressionResponse.AccountModel(name: "Not Started Account"),
                 imageUrl: "https://example.com/notstarted.png",
                 syllabusBody: "Not started syllabus",
-                usersConnection: GetCoursesProgressionResponse.UsersConnection(
+                usersConnection: GetHCoursesProgressionResponse.UsersConnection(
                     nodes: [
-                        GetCoursesProgressionResponse.NodeModel(
-                            courseProgression: GetCoursesProgressionResponse.CourseProgression(
-                                requirements: GetCoursesProgressionResponse.Requirements(completionPercentage: 0.0),
-                                incompleteModulesConnection: GetCoursesProgressionResponse.IncompleteModulesConnection(nodes: [])
+                        GetHCoursesProgressionResponse.NodeModel(
+                            courseProgression: GetHCoursesProgressionResponse.CourseProgression(
+                                requirements: GetHCoursesProgressionResponse.Requirements(completionPercentage: 0.0),
+                                incompleteModulesConnection: GetHCoursesProgressionResponse.IncompleteModulesConnection(nodes: [])
                             )
                         )
                     ]
                 ),
-                modulesConnection: GetCoursesProgressionResponse.ModulesConnection(
+                modulesConnection: GetHCoursesProgressionResponse.ModulesConnection(
                     edges: [
-                        GetCoursesProgressionResponse.ModulesConnection.Edge(
-                            node: GetCoursesProgressionResponse.ModulesConnection.Node(
+                        GetHCoursesProgressionResponse.ModulesConnection.Edge(
+                            node: GetHCoursesProgressionResponse.ModulesConnection.Node(
                                 id: "module_3",
                                 name: "Module 3",
                                 moduleItems: [
-                                    GetCoursesProgressionResponse.ModulesConnection.ModuleItem(
+                                    GetHCoursesProgressionResponse.ModulesConnection.ModuleItem(
                                         id: "item_3",
                                         estimatedDuration: "60m",
                                         url: "https://example.com/item3",
-                                        content: GetCoursesProgressionResponse.ModulesConnection.Content(
+                                        content: GetHCoursesProgressionResponse.ModulesConnection.Content(
                                             id: "content_3",
                                             title: "Content 3",
                                             __typename: "Assignment",

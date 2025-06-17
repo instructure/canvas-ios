@@ -21,13 +21,13 @@ import XCTest
 
 class CDLearnCourseTests: CoreTestCase {
     func testSaveSingleEnrollment() {
-        let enrollment = GetCoursesProgressionResponse.EnrollmentModel(
+        let enrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enroll_1",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_1",
                 name: "Test Course",
-                account: GetCoursesProgressionResponse.AccountModel(name: "Institution 1"),
+                account: GetHCoursesProgressionResponse.AccountModel(name: "Institution 1"),
                 imageUrl: "https://example.com/image1.png",
                 syllabusBody: "Syllabus 1",
                 usersConnection: nil,
@@ -42,26 +42,26 @@ class CDLearnCourseTests: CoreTestCase {
 
     func testSaveMultipleEnrollments() {
         let enrollments = [
-            GetCoursesProgressionResponse.EnrollmentModel(
+            GetHCoursesProgressionResponse.EnrollmentModel(
                 state: "active",
                 id: "enroll_1",
-                course: GetCoursesProgressionResponse.CourseModel(
+                course: GetHCoursesProgressionResponse.CourseModel(
                     id: "course_1",
                     name: "Course 1",
-                    account: GetCoursesProgressionResponse.AccountModel(name: "Institution 1"),
+                    account: GetHCoursesProgressionResponse.AccountModel(name: "Institution 1"),
                     imageUrl: "https://example.com/image1.png",
                     syllabusBody: "Syllabus 1",
                     usersConnection: nil,
                     modulesConnection: nil
                 )
             ),
-            GetCoursesProgressionResponse.EnrollmentModel(
+            GetHCoursesProgressionResponse.EnrollmentModel(
                 state: "completed",
                 id: "enroll_2",
-                course: GetCoursesProgressionResponse.CourseModel(
+                course: GetHCoursesProgressionResponse.CourseModel(
                     id: "course_2",
                     name: "Course 2",
-                    account: GetCoursesProgressionResponse.AccountModel(name: "Institution 2"),
+                    account: GetHCoursesProgressionResponse.AccountModel(name: "Institution 2"),
                     imageUrl: "https://example.com/image2.png",
                     syllabusBody: "Syllabus 2",
                     usersConnection: nil,
@@ -82,13 +82,13 @@ class CDLearnCourseTests: CoreTestCase {
     }
 
     func testOverwriteExistingCourse() {
-        let enrollment1 = GetCoursesProgressionResponse.EnrollmentModel(
+        let enrollment1 = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enroll_1",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_1",
                 name: "Original Name",
-                account: GetCoursesProgressionResponse.AccountModel(name: "Institution 1"),
+                account: GetHCoursesProgressionResponse.AccountModel(name: "Institution 1"),
                 imageUrl: "https://example.com/image1.png",
                 syllabusBody: "Syllabus 1",
                 usersConnection: nil,
@@ -96,13 +96,13 @@ class CDLearnCourseTests: CoreTestCase {
             )
         )
         _ = CDHLearnCourse.save(enrollment1, in: databaseClient)
-        let enrollment2 = GetCoursesProgressionResponse.EnrollmentModel(
+        let enrollment2 = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enroll_1",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_1",
                 name: "Updated Name",
-                account: GetCoursesProgressionResponse.AccountModel(name: "Institution 1"),
+                account: GetHCoursesProgressionResponse.AccountModel(name: "Institution 1"),
                 imageUrl: "https://example.com/image1.png",
                 syllabusBody: "Syllabus 1",
                 usersConnection: nil,

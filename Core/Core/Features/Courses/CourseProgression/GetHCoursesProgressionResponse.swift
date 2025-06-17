@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct GetCoursesProgressionResponse: Codable {
+public struct GetHCoursesProgressionResponse: Codable {
     let data: DataModel?
 
     struct DataModel: Codable {

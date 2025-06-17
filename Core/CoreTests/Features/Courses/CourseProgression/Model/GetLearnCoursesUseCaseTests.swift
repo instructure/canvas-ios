@@ -23,12 +23,12 @@ import XCTest
 
 class GetLearnCoursesUseCaseTests: CoreTestCase {
     func testCacheKey() {
-        let useCase = GetLearnCoursesUseCase(userId: "user_123")
+        let useCase = GetHLearnCoursesUseCase(userId: "user_123")
         XCTAssertEqual(useCase.cacheKey, "learn-courses")
     }
 
     func testRequestProperties() {
-        let useCase = GetLearnCoursesUseCase(userId: "user_123")
+        let useCase = GetHLearnCoursesUseCase(userId: "user_123")
         let request = useCase.request
 
         XCTAssertEqual(request.variables.id, "user_123")
@@ -36,10 +36,10 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
     }
 
     func testWriteSavesLearnCoursesToCoreData() {
-        let enrollment = GetCoursesProgressionResponse.EnrollmentModel(
+        let enrollment = GetHCoursesProgressionResponse.EnrollmentModel(
             state: "active",
             id: "enroll_1",
-            course: GetCoursesProgressionResponse.CourseModel(
+            course: GetHCoursesProgressionResponse.CourseModel(
                 id: "course_1",
                 name: "Learn Course 1",
                 account: nil,
@@ -50,15 +50,15 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
             )
         )
 
-        let response = GetCoursesProgressionResponse(
-            data: GetCoursesProgressionResponse.DataModel(
-                user: GetCoursesProgressionResponse.LegacyNodeModel(
+        let response = GetHCoursesProgressionResponse(
+            data: GetHCoursesProgressionResponse.DataModel(
+                user: GetHCoursesProgressionResponse.LegacyNodeModel(
                     enrollments: [enrollment]
                 )
             )
         )
 
-        let useCase = GetLearnCoursesUseCase(userId: "user_123")
+        let useCase = GetHLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
         let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
@@ -72,10 +72,10 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
 
     func testWriteWithMultipleEnrollments() {
         let enrollments = [
-            GetCoursesProgressionResponse.EnrollmentModel(
+            GetHCoursesProgressionResponse.EnrollmentModel(
                 state: "active",
                 id: "enroll_1",
-                course: GetCoursesProgressionResponse.CourseModel(
+                course: GetHCoursesProgressionResponse.CourseModel(
                     id: "course_1",
                     name: "Learn Course 1",
                     account: nil,
@@ -85,10 +85,10 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
                     modulesConnection: nil
                 )
             ),
-            GetCoursesProgressionResponse.EnrollmentModel(
+            GetHCoursesProgressionResponse.EnrollmentModel(
                 state: "invited",
                 id: "enroll_2",
-                course: GetCoursesProgressionResponse.CourseModel(
+                course: GetHCoursesProgressionResponse.CourseModel(
                     id: "course_2",
                     name: "Learn Course 2",
                     account: nil,
@@ -100,15 +100,15 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
             )
         ]
 
-        let response = GetCoursesProgressionResponse(
-            data: GetCoursesProgressionResponse.DataModel(
-                user: GetCoursesProgressionResponse.LegacyNodeModel(
+        let response = GetHCoursesProgressionResponse(
+            data: GetHCoursesProgressionResponse.DataModel(
+                user: GetHCoursesProgressionResponse.LegacyNodeModel(
                     enrollments: enrollments
                 )
             )
         )
 
-        let useCase = GetLearnCoursesUseCase(userId: "user_123")
+        let useCase = GetHLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
         let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
@@ -128,7 +128,7 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
     }
 
     func testWriteWithNilResponse() {
-        let useCase = GetLearnCoursesUseCase(userId: "user_123")
+        let useCase = GetHLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
 
         let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
@@ -136,15 +136,15 @@ class GetLearnCoursesUseCaseTests: CoreTestCase {
     }
 
     func testWriteWithEmptyEnrollments() {
-        let response = GetCoursesProgressionResponse(
-            data: GetCoursesProgressionResponse.DataModel(
-                user: GetCoursesProgressionResponse.LegacyNodeModel(
+        let response = GetHCoursesProgressionResponse(
+            data: GetHCoursesProgressionResponse.DataModel(
+                user: GetHCoursesProgressionResponse.LegacyNodeModel(
                     enrollments: []
                 )
             )
         )
 
-        let useCase = GetLearnCoursesUseCase(userId: "user_123")
+        let useCase = GetHLearnCoursesUseCase(userId: "user_123")
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
 
         let learnCourses: [CDHLearnCourse] = databaseClient.fetch()
