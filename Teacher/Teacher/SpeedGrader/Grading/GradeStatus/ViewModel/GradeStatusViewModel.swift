@@ -22,7 +22,7 @@ import SwiftUI
 
 class GradeStatusViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published private(set) var selectedOption: OptionItem
+    @Published private(set) var selectedOption = OptionItem.none
     @Published private(set) var isLoading: Bool = false
     @Published var isShowingSaveFailedAlert = false
     let options: [OptionItem]
@@ -34,22 +34,21 @@ class GradeStatusViewModel: ObservableObject {
 
     // MARK: - Inputs
     let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
+    let didChangeAttempt = PassthroughSubject<Int, Never>()
 
     // MARK: - Private
     private let interactor: GradeStatusInteractor
     private let submissionId: String
     private let userId: String
     private var subscriptions = Set<AnyCancellable>()
-    private static let defaultOption = OptionItem(
-        id: "none",
-        title: String(localized: "None", bundle: .teacher)
-    )
+    private var databaseObservation: AnyCancellable?
 
     init(
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
         userId: String,
         submissionId: String,
+        attempt: Int,
         interactor: GradeStatusInteractor
     ) {
         self.interactor = interactor
@@ -59,16 +58,9 @@ class GradeStatusViewModel: ObservableObject {
             .map { OptionItem(id: $0.id, title: $0.name) }
             .sorted { $0.title < $1.title }
 
-        if let initialStatus = interactor.gradeStatusFor(
-            customGradeStatusId: customGradeStatusId,
-            latePolicyStatus: latePolicyStatus
-        ) {
-            self.selectedOption = OptionItem(id: initialStatus.id, title: initialStatus.name)
-        } else {
-            self.selectedOption = Self.defaultOption
-        }
-
         uploadGradeStatus(on: didSelectGradeStatus)
+        observeGradeStatusOnAttemptInDatabase(on: didChangeAttempt)
+        didChangeAttempt.send(attempt)
     }
 
     private func uploadGradeStatus(
@@ -105,5 +97,42 @@ class GradeStatusViewModel: ObservableObject {
                 }
             )
             .store(in: &subscriptions)
+    }
+
+    private func observeGradeStatusOnAttemptInDatabase(on publisher: PassthroughSubject<Int, Never>) {
+        publisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] attempt in
+                guard let self else { return }
+                let gradeStatusChanged = self.interactor.observeGradeStatusChanges(
+                    submissionId: self.submissionId,
+                    attempt: attempt
+                )
+                self.refreshGradeStatus(on: gradeStatusChanged)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func refreshGradeStatus(on publisher: AnyPublisher<GradeStatus?, Never>) {
+        databaseObservation = publisher
+            .map { OptionItem.from($0) }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] option in
+                self?.selectedOption = option
+            }
+    }
+}
+
+private extension OptionItem {
+    static var none: OptionItem {
+        OptionItem(
+            id: "none",
+            title: String(localized: "None", bundle: .teacher)
+        )
+    }
+
+    static func from(_ status: GradeStatus?) -> OptionItem {
+        guard let status else { return .none }
+        return OptionItem(id: status.id, title: status.name)
     }
 }

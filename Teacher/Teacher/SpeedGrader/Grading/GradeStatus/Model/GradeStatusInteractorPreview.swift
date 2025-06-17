@@ -50,9 +50,14 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
 
     func gradeStatusFor(
         customGradeStatusId: String?,
-        latePolicyStatus: Core.LatePolicyStatus?
+        latePolicyStatus: Core.LatePolicyStatus?,
+        isExcused: Bool?
     ) -> GradeStatus? {
         nil
+    }
+
+    func observeGradeStatusChanges(submissionId: String, attempt: Int) -> AnyPublisher<GradeStatus?, Never> {
+        Just(nil).eraseToAnyPublisher()
     }
 }
 #endif

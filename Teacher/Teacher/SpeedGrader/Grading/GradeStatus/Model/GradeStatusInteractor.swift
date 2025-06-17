@@ -19,6 +19,7 @@
 import Foundation
 import Combine
 import Core
+import CoreData
 
 protocol GradeStatusInteractor {
     var gradeStatuses: [GradeStatus] { get }
@@ -37,8 +38,14 @@ protocol GradeStatusInteractor {
 
     func gradeStatusFor(
         customGradeStatusId: String?,
-        latePolicyStatus: LatePolicyStatus?
+        latePolicyStatus: LatePolicyStatus?,
+        isExcused: Bool?
     ) -> GradeStatus?
+
+    func observeGradeStatusChanges(
+        submissionId: String,
+        attempt: Int
+    ) -> AnyPublisher<GradeStatus?, Never>
 }
 
 final class GradeStatusInteractorLive: GradeStatusInteractor {
@@ -86,13 +93,39 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
 
     func gradeStatusFor(
         customGradeStatusId: String?,
-        latePolicyStatus: LatePolicyStatus?
+        latePolicyStatus: LatePolicyStatus?,
+        isExcused: Bool?
     ) -> GradeStatus? {
         if let customGradeStatusId {
             return gradeStatuses.first { $0.isCustom && $0.id == customGradeStatusId }
         } else if let lateStatus = latePolicyStatus?.rawValue {
             return gradeStatuses.first { !$0.isCustom && $0.id == lateStatus }
+        } else if isExcused == true {
+            return gradeStatuses.first { !$0.isCustom && $0.id == LatePolicyStatus.excused.rawValue }
         }
+
         return nil
+    }
+
+    func observeGradeStatusChanges(
+        submissionId: String,
+        attempt: Int
+    ) -> AnyPublisher<GradeStatus?, Never> {
+        let predicate = NSPredicate.id(submissionId).and(NSPredicate(key: "attempt", equals: attempt))
+        let useCase = LocalUseCase<Submission>(scope: Scope(predicate: predicate, order: []))
+        let store = ReactiveStore(useCase: useCase)
+        return store.getEntities(keepObservingDatabaseChanges: true)
+            .map { $0.first }
+            .map { [weak self] submission in
+                guard let self else { return nil }
+                return self.gradeStatusFor(
+                    customGradeStatusId: submission?.customGradeStatusId,
+                    latePolicyStatus: submission?.latePolicyStatus,
+                    isExcused: submission?.excused
+                )
+            }
+            .removeDuplicates()
+            .replaceError(with: nil)
+            .eraseToAnyPublisher()
     }
 }

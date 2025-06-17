@@ -81,6 +81,7 @@ class SubmissionGraderViewModel: ObservableObject {
             latePolicyStatus: submission.latePolicyStatus,
             userId: submission.userID,
             submissionId: submission.id,
+            attempt: submission.attempt,
             interactor: gradeStatusInteractor
         )
         self.env = env
@@ -118,6 +119,7 @@ class SubmissionGraderViewModel: ObservableObject {
         }
 
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: selectedAttempt)
+        gradeStatusViewModel.didChangeAttempt.send(attemptNumber)
     }
 
     func didSelectFile(fileId: String?) {
