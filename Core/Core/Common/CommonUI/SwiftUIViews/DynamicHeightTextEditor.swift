@@ -23,19 +23,16 @@ import SwiftUI
  */
 public struct DynamicHeightTextEditor: View {
 
-    // MARK: - Dependencies
-
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     @Binding private var text: String
     private let placeholder: String?
     private let font: UIFont.Name
+    private let lineHeight: Typography.LineHeight
+    private let lineLimit: CGFloat?
     private let isScrollDisabled: Bool
 
-    // MARK: - Private properties
-
-    /** The height of the TextEditor. Calculated by  measuring the text's rendered size and adding paddings. */
-    @State private var textEditorHeight: CGFloat = 0
+    @State private var textViewHeight: CGFloat = 0
 
     // MARK: - Init
 
@@ -43,37 +40,35 @@ public struct DynamicHeightTextEditor: View {
         text: Binding<String>,
         placeholder: String? = nil,
         font: UIFont.Name,
+        lineHeight: Typography.LineHeight = .fit,
+        lineLimit: CGFloat? = nil,
         isScrollDisabled: Bool = false
     ) {
         _text = text
         self.placeholder = placeholder
         self.font = font
+        self.lineHeight = lineHeight
+        self.lineLimit = lineLimit
         self.isScrollDisabled = isScrollDisabled
     }
 
     public var body: some View {
-        ZStack(alignment: .topLeading) {
-            Text(text.nilIfEmpty ?? placeholder ?? "Placeholder")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .onSizeChange {
-                    textEditorHeight = $0.height
-                }
-                .allowsHitTesting(false)
-                .hidden()
-
-            UITextViewWrapper(text: $text) {
-                let textView = UITextView()
-                textView.isScrollEnabled = !isScrollDisabled
-                textView.backgroundColor = .clear
-                textView.font(.scaledNamedFont(font), lineHeight: .fit)
-                return textView
-            }
-            .scrollContentBackground(.hidden)
-            .frame(maxHeight: textEditorHeight, alignment: .topLeading)
-            .overlay(placeholderView, alignment: .topLeading)
+        UITextViewWrapper(text: $text, height: $textViewHeight) { textView in
+            textView.isScrollEnabled = !isScrollDisabled
+            textView.backgroundColor = .clear
+            textView.textColor = .textDarkest
+            textView.font(.scaledNamedFont(font), lineHeight: lineHeight)
         }
-        .font(font, lineHeight: .fit)
-        .clipped()
+        .scrollContentBackground(.hidden)
+        .frame(maxHeight: height, alignment: .topLeading)
+        .overlay(placeholderView, alignment: .topLeading)
+    }
+
+    private var height: CGFloat {
+        guard let lineLimit else { return textViewHeight }
+
+        let modifiedLineHeight = lineHeight.toPoints(for: .scaledNamedFont(font))
+        return min(textViewHeight, lineLimit * modifiedLineHeight)
     }
 
     @ViewBuilder
@@ -81,7 +76,7 @@ public struct DynamicHeightTextEditor: View {
         if let placeholder, text.isEmpty {
             Text(placeholder)
                 .foregroundStyle(.textPlaceholder)
-                .offset(y: 1.5)
+                .font(font, lineHeight: lineHeight)
                 .allowsHitTesting(false)
                 .accessibility(hidden: true)
         }

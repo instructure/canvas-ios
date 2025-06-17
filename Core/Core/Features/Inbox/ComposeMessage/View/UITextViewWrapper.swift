@@ -23,14 +23,27 @@ public struct UITextViewWrapper: UIViewRepresentable {
     public typealias Context = UIViewRepresentableContext<UITextViewWrapper>
 
     @Binding var text: String
-    let textViewBuilder: () -> UITextView
+    @Binding var height: CGFloat
+    let textViewSetup: (UITextView) -> Void
 
+    public init(
+        text: Binding<String>,
+        height: Binding<CGFloat>,
+        textViewSetup: @escaping (UITextView) -> Void
+    ) {
+        self._text = text
+        self._height = height
+        self.textViewSetup = textViewSetup
+    }
+
+    // TODO: remove
     public init(
         text: Binding<String>,
         textViewBuilder: @escaping () -> UITextView
     ) {
         self._text = text
-        self.textViewBuilder = textViewBuilder
+        self._height = .constant(100)
+        self.textViewSetup = { _ in }
     }
 
     public func makeCoordinator() -> Coordinator {
@@ -38,36 +51,55 @@ public struct UITextViewWrapper: UIViewRepresentable {
     }
 
     public func makeUIView(context: Context) -> UITextView {
-        let textView = textViewBuilder()
+        let textView = UITextView()
+        textViewSetup(textView)
         textView.delegate = context.coordinator
-        textView.adjustsFontForContentSizeCategory = true
 
         // clear out the default insets
         textView.contentInset = .zero
         textView.textContainerInset = .zero
         textView.textContainer.lineFragmentPadding = 0
 
+        // make textView follow font size changes dynamically
+        textView.adjustsFontForContentSizeCategory = true
+
+        textView.text = text
+        updateHeight(textView)
+
         return textView
     }
 
     public func updateUIView(_ textView: UITextView, context: Context) {
-        if text != textView.text {
+        textView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        textView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+
+        if textView.text != text {
             textView.text = text
         }
-        textView.textColor = .textDarkest
+
+        // updating regardless of text change to react to font size changes
+        updateHeight(textView)
     }
 
+    private func updateHeight(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            let sizeThatFits = textView.sizeThatFits(CGSize(width: textView.frame.width, height: 0))
+            self.height = sizeThatFits.height
+        }
+    }
 
     public class Coordinator: NSObject, UITextViewDelegate {
-
         var parent: UITextViewWrapper
 
-        init(_ textField: UITextViewWrapper) {
-            self.parent = textField
+        init(_ parent: UITextViewWrapper) {
+            self.parent = parent
         }
 
         public func textViewDidChange(_ textView: UITextView) {
-            parent.text = textView.text
+            DispatchQueue.main.async { [weak self] in
+                self?.parent.text = textView.text
+                self?.parent.updateHeight(textView)
+            }
         }
     }
 }
