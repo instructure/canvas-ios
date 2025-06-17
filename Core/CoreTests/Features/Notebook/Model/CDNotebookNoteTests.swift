@@ -19,9 +19,9 @@
 @testable import Core
 import XCTest
 
-final class CDNotebookNoteTests: CoreTestCase {
+final class CDHNotebookNoteTests: CoreTestCase {
     func testInitialization() {
-        let note = CDNotebookNote(context: databaseClient)
+        let note = CDHNotebookNote(context: databaseClient)
         note.id = "note-123"
         note.courseID = "course-456"
         note.pageID = "page-789"
@@ -42,7 +42,7 @@ final class CDNotebookNoteTests: CoreTestCase {
 
         try? databaseClient.save()
 
-        let fetchedNote: CDNotebookNote? = databaseClient.first(where: #keyPath(CDNotebookNote.id), equals: "note-123")
+        let fetchedNote: CDHNotebookNote? = databaseClient.first(where: #keyPath(CDHNotebookNote.id), equals: "note-123")
 
         XCTAssertNotNil(fetchedNote)
         XCTAssertEqual(fetchedNote?.id, "note-123")
@@ -88,7 +88,7 @@ final class CDNotebookNoteTests: CoreTestCase {
     }
 
     func testFetchByID() {
-        let note = CDNotebookNote(context: databaseClient)
+        let note = CDHNotebookNote(context: databaseClient)
         note.id = "fetch-test-123"
         note.courseID = "course-456"
         note.pageID = "page-789"
@@ -97,14 +97,14 @@ final class CDNotebookNoteTests: CoreTestCase {
 
         try? databaseClient.save()
 
-        let fetchedNote: CDNotebookNote? = databaseClient.fetch(scope: .where(#keyPath(CDNotebookNote.id), equals: "fetch-test-123")).first
+        let fetchedNote: CDHNotebookNote? = databaseClient.fetch(scope: .where(#keyPath(CDHNotebookNote.id), equals: "fetch-test-123")).first
 
         XCTAssertNotNil(fetchedNote)
         XCTAssertEqual(fetchedNote?.id, "fetch-test-123")
     }
 
     func testUpdateNote() {
-        let note = CDNotebookNote(context: databaseClient)
+        let note = CDHNotebookNote(context: databaseClient)
         note.id = "update-test-123"
         note.courseID = "course-456"
         note.pageID = "page-789"
@@ -115,7 +115,7 @@ final class CDNotebookNoteTests: CoreTestCase {
 
         try? databaseClient.save()
 
-        let fetchedNote: CDNotebookNote? = databaseClient.first(where: #keyPath(CDNotebookNote.id), equals: "update-test-123")
+        let fetchedNote: CDHNotebookNote? = databaseClient.first(where: #keyPath(CDHNotebookNote.id), equals: "update-test-123")
         XCTAssertNotNil(fetchedNote)
 
         fetchedNote?.content = "Updated content"
@@ -123,7 +123,7 @@ final class CDNotebookNoteTests: CoreTestCase {
 
         try? databaseClient.save()
 
-        let updatedNote: CDNotebookNote? = databaseClient.first(where: #keyPath(CDNotebookNote.id), equals: "update-test-123")
+        let updatedNote: CDHNotebookNote? = databaseClient.first(where: #keyPath(CDHNotebookNote.id), equals: "update-test-123")
 
         XCTAssertNotNil(updatedNote)
         XCTAssertEqual(updatedNote?.content, "Updated content")

@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-final public class CDNotebookNote: NSManagedObject {
+final public class CDHNotebookNote: NSManagedObject {
     @NSManaged public var after: String? // used for paging in the query used to fetch this object
     @NSManaged public var before: String? // used for paging in the query used to fetch this object
     @NSManaged public var content: String? // the text of the note

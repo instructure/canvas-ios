@@ -218,25 +218,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
     </entity>
-    <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
-        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="observedUserDisplayName" optional="YES" attributeType="String"/>
-        <attribute name="observedUserId" optional="YES" attributeType="String"/>
-        <attribute name="userId" attributeType="String"/>
-    </entity>
-    <entity name="CDInboxSettings" representedClassName="Core.CDInboxSettings" syncable="YES">
-        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="outOfOfficeFirstDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="outOfOfficeLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="outOfOfficeMessage" optional="YES" attributeType="String"/>
-        <attribute name="outOfOfficeSubject" optional="YES" attributeType="String"/>
-        <attribute name="signature" optional="YES" attributeType="String"/>
-        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
-    </entity>
-    <entity name="CDNotebookNote" representedClassName=".CDNotebookNote" syncable="YES">
+    <entity name="CDHNotebookNote" representedClassName=".CDHNotebookNote" syncable="YES">
         <attribute name="after" optional="YES" attributeType="String"/>
         <attribute name="before" optional="YES" attributeType="String"/>
         <attribute name="content" optional="YES" attributeType="String"/>
@@ -254,6 +236,24 @@
         <attribute name="startContainer" optional="YES" attributeType="String"/>
         <attribute name="startOffset" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDInboxEnrollment" representedClassName="Core.CDInboxEnrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="observedUserDisplayName" optional="YES" attributeType="String"/>
+        <attribute name="observedUserId" optional="YES" attributeType="String"/>
+        <attribute name="userId" attributeType="String"/>
+    </entity>
+    <entity name="CDInboxSettings" representedClassName="Core.CDInboxSettings" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="outOfOfficeFirstDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="outOfOfficeLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="outOfOfficeMessage" optional="YES" attributeType="String"/>
+        <attribute name="outOfOfficeSubject" optional="YES" attributeType="String"/>
+        <attribute name="signature" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="useOutOfOffice" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="useSignature" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="CDRubricCriterion" representedClassName="Core.CDRubricCriterion" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
