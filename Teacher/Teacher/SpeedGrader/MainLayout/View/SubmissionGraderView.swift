@@ -79,7 +79,7 @@ struct SubmissionGraderView: View {
         GeometryReader { geometry in
             let bottomInset = geometry.safeAreaInsets.bottom
             let minHeight = bottomInset + 86
-            let maxHeight = bottomInset + geometry.size.height - 64
+            let maxHeight = bottomInset + geometry.size.height
             // At 1/4 of a screen offset, scale to 90% and round corners to 20
             let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
             let scale = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 1, toMax: 0.9)
@@ -90,7 +90,6 @@ struct SubmissionGraderView: View {
                 minHeight: minHeight,
                 maxHeight: maxHeight
             )
-            .background(Color.backgroundLightest)
             .cornerRadius(cornerRadius)
             .scaleEffect(scale)
             .edgesIgnoringSafeArea(.bottom)
@@ -196,22 +195,24 @@ struct SubmissionGraderView: View {
                 }
 
                 let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
-                ZStack(alignment: .top) {
-                    VStack(spacing: 0) {
-                        SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
-                        SubmissionViewer(
-                            assignment: viewModel.assignment,
-                            submission: viewModel.selectedAttempt,
-                            fileID: viewModel.selectedFile?.id,
-                            studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
-                            handleRefresh: handleRefresh
-                        )
-                    }
-                    .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
-                    .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+
+                VStack(spacing: 0) {
+                    SimilarityScoreView(viewModel.selectedAttempt, file: viewModel.selectedFile)
+                    SubmissionViewer(
+                        assignment: viewModel.assignment,
+                        submission: viewModel.selectedAttempt,
+                        fileID: viewModel.selectedFile?.id,
+                        studentAnnotationViewModel: viewModel.studentAnnotationViewModel,
+                        handleRefresh: handleRefresh
+                    )
                 }
-                Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
+                .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+
+                Spacer()
+                    .frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
             }
+
             DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
                 tools(bottomInset: bottomInset, isDrawer: true)
             } leadingContent: {
@@ -350,7 +351,6 @@ struct SubmissionGraderView: View {
             .padding(.horizontal, 16)
             .padding(.top, 8)
             .padding(.bottom, 16)
-            //                .frame(height: profileHeaderSize.height)
             .onChange(of: tab) {
                 controller.view.endEditing(true)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -373,8 +373,8 @@ struct SubmissionGraderView: View {
                     )
 
                     gradesTab(bottomInset: bottomInset, isDrawer: isDrawer, geometry: geometry)
-                    // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
-                    // and it would block interaction with the attempts picker and the submission content.
+                        // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
+                        // and it would block interaction with the attempts picker and the submission content.
                         .allowsHitTesting(tab == .grades)
                     commentsTab(bottomInset: bottomInset, isDrawer: isDrawer, fileID: drawerFileID, geometry: geometry)
                 }
