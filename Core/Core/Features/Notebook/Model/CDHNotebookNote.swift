@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-final public class CDHNotebookNote: NSManagedObject {
+public final class CDHNotebookNote: NSManagedObject {
     @NSManaged public var after: String? // used for paging in the query used to fetch this object
     @NSManaged public var before: String? // used for paging in the query used to fetch this object
     @NSManaged public var content: String? // the text of the note
@@ -37,11 +37,11 @@ final public class CDHNotebookNote: NSManagedObject {
     @NSManaged public var startContainer: String?
     @NSManaged public var startOffset: NSNumber?
     @NSManaged public var userID: String?
-    
+
     public static func deserializeLabels(from string: String?) -> [String]? {
         string?.split(separator: ";").map { String($0) }
     }
-    
+
     public static func serializeLabels(from strings: [String]) -> String? {
         strings.sorted().joined(separator: ";")
     }
