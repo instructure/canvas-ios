@@ -46,7 +46,7 @@ protocol GradeStatusInteractor {
     ) -> AnyPublisher<GradeStatus?, Never>
 }
 
-final class GradeStatusInteractorLive: GradeStatusInteractor {
+class GradeStatusInteractorLive: GradeStatusInteractor {
     var speedGraderInteractor: SpeedGraderInteractor?
     private(set) var gradeStatuses: [GradeStatus] = []
 
@@ -100,7 +100,7 @@ final class GradeStatusInteractorLive: GradeStatusInteractor {
         } else if let lateStatus = latePolicyStatus?.rawValue {
             return gradeStatuses.first { !$0.isCustom && $0.id == lateStatus }
         } else if isExcused == true {
-            return gradeStatuses.first { !$0.isCustom && $0.id == LatePolicyStatus.excused.rawValue }
+            return gradeStatuses.first { !$0.isCustom && $0.id == "excused" }
         }
 
         return nil

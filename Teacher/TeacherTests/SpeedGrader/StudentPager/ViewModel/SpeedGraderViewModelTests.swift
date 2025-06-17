@@ -118,7 +118,7 @@ class SpeedGraderViewModelTests: TeacherTestCase {
     }
 }
 
-private class SpeedGraderInteractorMock: SpeedGraderInteractor {
+class SpeedGraderInteractorMock: SpeedGraderInteractor {
     var gradeStatusInteractor: GradeStatusInteractor = GradeStatusInteractorMock()
 
     var state = CurrentValueSubject<SpeedGraderInteractorState, Never>(.loading)
@@ -135,8 +135,10 @@ private class SpeedGraderInteractorMock: SpeedGraderInteractor {
         isLoadCalled = true
     }
 
+    private(set) var isRefreshSubmissionCalled = false
     func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error> {
-        Publishers.typedJust(failureType: Error.self)
+        isRefreshSubmissionCalled = true
+        return Publishers.typedJust(failureType: Error.self)
     }
 
     func mockData(viewContext: NSManagedObjectContext) {

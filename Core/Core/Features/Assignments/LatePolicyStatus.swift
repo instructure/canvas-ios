@@ -19,5 +19,5 @@
 import Foundation
 
 public enum LatePolicyStatus: String, Codable {
-    case late, missing, none, extended, excused
+    case late, missing, none, extended
 }
