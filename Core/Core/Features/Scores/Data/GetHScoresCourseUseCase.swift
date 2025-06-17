@@ -18,7 +18,7 @@
 
 import CoreData
 
-public class GetScoresCourseUseCase: APIUseCase {
+public class GetHScoresCourseUseCase: APIUseCase {
     public typealias Model = CDHScoresCourse
 
     public let courseID: String

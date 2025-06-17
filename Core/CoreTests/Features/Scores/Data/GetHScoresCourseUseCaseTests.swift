@@ -21,7 +21,7 @@ import XCTest
 
 final class GetHScoresCourseUseCaseTests: CoreTestCase {
     func testRequest() {
-        let useCase = GetScoresCourseUseCase(courseID: "course-123")
+        let useCase = GetHScoresCourseUseCase(courseID: "course-123")
         let request = useCase.request
 
         XCTAssertEqual(request.courseID, "course-123")
@@ -30,7 +30,7 @@ final class GetHScoresCourseUseCaseTests: CoreTestCase {
 
     func testRequestWithCustomIncludes() {
         let customIncludes: [GetCourseRequest.Include] = [.term, .favorites]
-        let useCase = GetScoresCourseUseCase(courseID: "course-123", include: customIncludes)
+        let useCase = GetHScoresCourseUseCase(courseID: "course-123", include: customIncludes)
         let request = useCase.request
 
         XCTAssertEqual(request.courseID, "course-123")
@@ -38,19 +38,19 @@ final class GetHScoresCourseUseCaseTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        let useCase = GetScoresCourseUseCase(courseID: "course-123")
+        let useCase = GetHScoresCourseUseCase(courseID: "course-123")
 
         XCTAssertEqual(useCase.cacheKey, "get-score-course-course-123")
     }
 
     func testScope() {
-        let useCase = GetScoresCourseUseCase(courseID: "course-123")
+        let useCase = GetHScoresCourseUseCase(courseID: "course-123")
 
         XCTAssertEqual(useCase.scope, Scope.where(#keyPath(CDHScoresCourse.courseID), equals: "course-123"))
     }
 
     func testWrite() {
-        let useCase = GetScoresCourseUseCase(courseID: "course-123")
+        let useCase = GetHScoresCourseUseCase(courseID: "course-123")
 
         let apiCourse = APICourse.make(
             id: ID("course-123"),
@@ -90,7 +90,7 @@ final class GetHScoresCourseUseCaseTests: CoreTestCase {
     }
 
     func testWriteWithNilResponse() {
-        let useCase = GetScoresCourseUseCase(courseID: "course-123")
+        let useCase = GetHScoresCourseUseCase(courseID: "course-123")
 
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
 
