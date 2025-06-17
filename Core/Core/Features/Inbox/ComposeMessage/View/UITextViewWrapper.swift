@@ -41,6 +41,12 @@ public struct UITextViewWrapper: UIViewRepresentable {
         let textView = textViewBuilder()
         textView.delegate = context.coordinator
         textView.adjustsFontForContentSizeCategory = true
+
+        // clear out the default insets
+        textView.contentInset = .zero
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+
         return textView
     }
 

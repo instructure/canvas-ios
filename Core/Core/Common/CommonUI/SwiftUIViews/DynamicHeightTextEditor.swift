@@ -22,7 +22,6 @@ import SwiftUI
  This text editor starts as a one line height component, then as text is entered it grows until its maximum height is reached.
  */
 public struct DynamicHeightTextEditor: View {
-    static let negatedVerticalPaddings = InstUI.Styles.Padding.textEditorVerticalCorrection.rawValue * -2
 
     // MARK: - Dependencies
 
@@ -55,8 +54,9 @@ public struct DynamicHeightTextEditor: View {
     public var body: some View {
         ZStack(alignment: .topLeading) {
             Text(text.nilIfEmpty ?? placeholder ?? "Placeholder")
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .onSizeChange {
-                    textEditorHeight = $0.height + Self.negatedVerticalPaddings
+                    textEditorHeight = $0.height
                 }
                 .allowsHitTesting(false)
                 .hidden()
@@ -70,7 +70,6 @@ public struct DynamicHeightTextEditor: View {
             }
             .scrollContentBackground(.hidden)
             .frame(maxHeight: textEditorHeight, alignment: .topLeading)
-            .paddingStyle(set: .textEditorCorrection)
             .overlay(placeholderView, alignment: .topLeading)
         }
         .font(font, lineHeight: .fit)
