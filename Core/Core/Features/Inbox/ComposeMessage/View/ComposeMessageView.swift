@@ -409,16 +409,13 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             InstUI.UITextViewWrapper(text: $model.bodyText) { tv in
                 tv.isScrollEnabled = false
                 tv.textContainer.widthTracksTextView = true
-                tv.textContainer.lineBreakMode = .byWordWrapping
+                tv.textColor = .textDarkest
                 tv.font = UIFont.scaledNamedFont(.regular16)
                 tv.translatesAutoresizingMaskIntoConstraints = false
                 tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultHorizontalPaddingValue)).isActive = true
                 tv.backgroundColor = .backgroundLightest
             }
-            .font(.regular16, lineHeight: .condensed)
-            .textInputAutocapitalization(.sentences)
             .focused($focusedInput, equals: .message)
-            .foregroundColor(.textDarkest)
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .frame(minHeight: 60)
             .accessibilityLabel(Text("Message Input", bundle: .core))

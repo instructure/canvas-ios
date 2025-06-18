@@ -100,16 +100,13 @@ public struct InboxSettingsView: View {
                     tv.placeholderColor = .textPlaceholder
                     tv.isScrollEnabled = false
                     tv.textContainer.widthTracksTextView = true
-                    tv.textContainer.lineBreakMode = .byWordWrapping
+                    tv.textColor = .textDarkest
                     tv.font = UIFont.scaledNamedFont(.regular16)
                     tv.translatesAutoresizingMaskIntoConstraints = false
                     tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultPadding)).isActive = true
                     tv.backgroundColor = .backgroundLightest
                 }
-                .font(.regular16, lineHeight: .condensed)
-                .textInputAutocapitalization(.sentences)
                 .focused($focusedInput, equals: .signature)
-                .foregroundColor(.textDarkest)
                 .disabled(!viewModel.useSignature)
                 .opacity(!viewModel.useSignature ? 0.6 : 1)
                 .frame(minHeight: 60)
