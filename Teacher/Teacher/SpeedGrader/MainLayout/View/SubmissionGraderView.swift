@@ -250,6 +250,7 @@ struct SubmissionGraderView: View {
                     Text(openCloseButtonAccessibilityLabel)
                 }
             }
+            .accessibilityAddTraits(drawerState == .max ? .isModal : [])
         }
         .onAppear { didChangeLayout(to: .portrait) }
     }
