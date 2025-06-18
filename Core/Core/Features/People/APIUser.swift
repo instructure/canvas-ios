@@ -151,12 +151,10 @@ public struct APIProfile: Codable, Equatable {
     public struct Permissions: Codable, Equatable {
         public let canUpdateName: Bool?
         public let canUpdateAvatar: Bool?
-        public let limitParentAppWebAccess: Bool?
 
         enum CodingKeys: String, CodingKey {
             case canUpdateName = "can_update_name"
             case canUpdateAvatar = "can_update_avatar"
-            case limitParentAppWebAccess = "limit_parent_app_web_access"
         }
     }
 }

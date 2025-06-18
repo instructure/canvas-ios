@@ -46,8 +46,19 @@ struct ProfileView: View {
                 Alert(title: Text(viewModel.errorMessage), message: Text(viewModel.errorMessage))
             }
         }
+        .overlay { loaderView }
     }
 
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            ZStack {
+                Color.huiColors.surface.pageSecondary
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
+    }
     private var nameView: some View {
         HorizonUI.TextInput(
             $viewModel.name,
@@ -84,7 +95,7 @@ struct ProfileView: View {
     private var saveButton: some View {
         SavingButton(
             title: String(localized: "Save Changes", bundle: .horizon),
-            isLoading: $viewModel.isLoading,
+            isLoading: $viewModel.saveLoaderIsVisiable,
             isDisabled: $viewModel.isSaveDisabled,
             onSave: viewModel.save
         )
