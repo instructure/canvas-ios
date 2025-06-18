@@ -22,6 +22,7 @@ import SwiftUI
 struct CourseEntity: AppEntity {
     let id: String
     let name: String
+    var isKnown: Bool = true
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Course"
     static var defaultQuery = CourseQuery()

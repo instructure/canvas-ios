@@ -24,7 +24,7 @@ import SwiftUI
 struct CourseQuery: EntityQuery {
 
     func entities(for identifiers: [CourseEntity.ID]) async throws -> [CourseEntity] {
-        return await CourseTotalGradeModel
+        let fetched = await CourseTotalGradeModel
             .interactor
             .fetchCourses(ofIDs: identifiers)
             .map { course in
@@ -33,6 +33,13 @@ struct CourseQuery: EntityQuery {
                     name: course.name ?? ""
                 )
             }
+
+        if fetched.isNotEmpty { return fetched }
+
+        // Respond with mock to indicate loading
+        return identifiers.map { cid in
+            return CourseEntity(id: cid, name: "", isKnown: false)
+        }
     }
 
     func suggestedEntities() async throws -> [CourseEntity] {

@@ -43,6 +43,8 @@ class CourseTotalGradeWidgetProvider: AppIntentTimelineProvider {
             )
         }
 
+        CourseTotalGradeModel.interactor.updateEnvironment()
+
         guard CourseTotalGradeModel.interactor.isLoggedIn else {
             return Timeline(
                 entries: [CourseTotalGradeModel(isLoggedIn: false)],
@@ -53,6 +55,13 @@ class CourseTotalGradeWidgetProvider: AppIntentTimelineProvider {
         guard let course = configuration.course else {
             return Timeline(
                 entries: [CourseTotalGradeModel()],
+                policy: .never
+            )
+        }
+
+        guard course.isKnown else {
+            return Timeline(
+                entries: [CourseTotalGradeModel(isLoading: true)],
                 policy: .never
             )
         }

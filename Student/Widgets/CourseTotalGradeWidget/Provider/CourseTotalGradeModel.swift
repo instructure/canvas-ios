@@ -62,9 +62,11 @@ class CourseTotalGradeModel: WidgetModel {
     }
 
     var data: Data?
+    var isLoading: Bool
 
-    init(isLoggedIn: Bool = true, data: Data? = nil) {
+    init(isLoggedIn: Bool = true, data: Data? = nil, isLoading: Bool = false) {
         self.data = data
+        self.isLoading = isLoading
         super.init(isLoggedIn: isLoggedIn)
     }
 }

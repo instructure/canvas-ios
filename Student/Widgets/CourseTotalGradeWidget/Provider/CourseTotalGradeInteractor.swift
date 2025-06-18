@@ -21,7 +21,7 @@ import Combine
 
 protocol CourseTotalGradeInteractorProtocol {
     var isLoggedIn: Bool { get }
-    func setupEnvironment()
+    func updateEnvironment()
     func fetchSuggestedCourses() async throws -> [Course]
     func fetchCourses(ofIDs courseIDs: [String]) async -> [Course]
     func fetchCourse(withID courseID: String) async -> Course?
@@ -32,19 +32,23 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
 
     private var env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
-    private(set) var isLoggedIn: Bool = false
 
-    init(env: AppEnvironment) {
+    init(env: AppEnvironment = .shared) {
         self.env = env
-        self.setupEnvironment()
     }
 
-    func setupEnvironment() {
+    func updateEnvironment() {
+        // Reset
         env.app = .student
+        env.currentSession = nil
 
+        // Update with latest session
         guard let session = LoginSession.mostRecent else { return }
         env.userDidLogin(session: session, isSilent: true)
-        isLoggedIn = true
+    }
+
+    var isLoggedIn: Bool {
+        env.currentSession != nil
     }
 
     private var userID: String? {
@@ -104,8 +108,6 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
         let interactor = GradeListAssembly
             .makeInteractor(environment: env, courseID: courseID, userID: self.userID)
 
-        print("fetching total grade for: \(course.name ?? "")")
-
         return await withCheckedContinuation { continuation in
             interactor
                 .getGrades(
@@ -148,5 +150,5 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
 }
 
 extension CourseTotalGradeModel {
-    static var interactor: CourseTotalGradeInteractorProtocol = CourseTotalGradeInteractorLive(env: .shared)
+    static var interactor: CourseTotalGradeInteractorProtocol = CourseTotalGradeInteractorLive()
 }

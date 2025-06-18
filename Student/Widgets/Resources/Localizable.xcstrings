@@ -2073,9 +2073,6 @@
         }
       }
     },
-    "Course to show total grade for" : {
-
-    },
     "Double tap to view full list of to-dos" : {
 
     },
@@ -3370,7 +3367,7 @@
     "Let's Get You Logged In!" : {
 
     },
-    "Logged out" : {
+    "Loading" : {
 
     },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
@@ -4419,7 +4416,13 @@
     "Select Course" : {
 
     },
-    "Selects the course to display grade for." : {
+    "Select course to show total grade" : {
+
+    },
+    "Selects the course to display total grade for." : {
+
+    },
+    "Something Went Wrong!" : {
 
     },
     "Susan Jorgenson" : {
@@ -4935,6 +4938,9 @@
           }
         }
       }
+    },
+    "To see your grades, please log in to your account in the app." : {
+
     },
     "To see your to-dos, please log in to your account in the app.  It'll just take a sec!" : {
 
@@ -5467,6 +5473,9 @@
     },
     "View your to-do items." : {
       "comment" : "Description of the to-do widget"
+    },
+    "We're having trouble showing your grades right now." : {
+
     },
     "We're having trouble showing your tasks right now.  Please try again in a bit or head to the app." : {
 

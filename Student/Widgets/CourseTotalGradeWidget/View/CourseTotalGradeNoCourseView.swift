@@ -17,11 +17,29 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct CourseTotalGradeNoCourseView: View {
     var body: some View {
-        Text("Select Course")
+        Text("Select course to show total grade")
             .font(.regular14)
             .foregroundStyle(.textDark)
+            .multilineTextAlignment(.leading)
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
+
+#if DEBUG
+
+struct CourseTotalGradeNoCourseView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        CourseTotalGradeNoCourseView()
+            .defaultWidgetContainerBackground()
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewDisplayName("No Course")
+    }
+}
+
+#endif

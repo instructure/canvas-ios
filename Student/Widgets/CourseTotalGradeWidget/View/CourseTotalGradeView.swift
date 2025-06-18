@@ -58,47 +58,20 @@ struct CourseTotalGradeView: View {
                             }
                         )
                     case .failure, .courseNotFound:
-                        CourseTotalGradeErrorView()
+                        CourseTotalGradeStatusView(status: .failure)
                     }
+                } else if model.isLoading {
+                    Text("Loading")
+                        .font(.regular12)
+                        .foregroundStyle(.textDark)
                 } else {
                     CourseTotalGradeNoCourseView()
                 }
             } else {
-                CourseTotalGradeLoggedoutView()
+                CourseTotalGradeStatusView(status: .loggedOut)
             }
         }
         .containerBackground(Color.backgroundLightest, for: .widget)
-    }
-}
-
-struct CourseTodalGradeResultView<GradeView: View>: View {
-
-    let attributes: CourseTotalGradeModel.CourseAttributes
-    @ViewBuilder let gradeView: () -> GradeView
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Image("student-logomark")
-                    .scaledIcon(size: 24)
-                Text("Grade")
-                    .font(.semibold14)
-                    .foregroundStyle(.textDarkest)
-                Spacer()
-            }
-
-            VStack(alignment: .leading, spacing: 8) {
-                Text(attributes.name)
-                    .font(.regular14)
-                    .foregroundStyle(attributes.color ?? .gray)
-                    .lineLimit(3)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                gradeView()
-            }
-        }
-        .frame(maxHeight: .infinity, alignment: .top)
     }
 }
 
