@@ -1291,6 +1291,9 @@
         }
       }
     },
+    "Based on graded assignments" : {
+
+    },
     "Biology 201" : {
       "comment" : "Example course name",
       "localizations" : {
@@ -2069,6 +2072,9 @@
           }
         }
       }
+    },
+    "Course to show total grade for" : {
+
     },
     "Double tap to view full list of to-dos" : {
 

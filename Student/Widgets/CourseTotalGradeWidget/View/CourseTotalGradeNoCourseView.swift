@@ -16,17 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import AppIntents
 import SwiftUI
 
-struct CourseEntity: AppEntity {
-    let id: String
-    let name: String
-
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Course"
-    static var defaultQuery = CourseQuery()
-
-    var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(name)")
+struct CourseTotalGradeNoCourseView: View {
+    var body: some View {
+        Text("Select Course")
+            .font(.regular14)
+            .foregroundStyle(.textDark)
     }
 }

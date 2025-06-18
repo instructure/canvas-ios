@@ -20,47 +20,53 @@ import WidgetKit
 import SwiftUI
 
 class CourseTotalGradeModel: WidgetModel {
+
+    struct CourseAttributes {
+        let name: String
+        let color: Color?
+    }
+
+    enum FetchResult {
+        case grade(attributes: CourseAttributes, text: String)
+        case noGrade(attributes: CourseAttributes)
+        case restricted(attributes: CourseAttributes)
+        case failure(attributes: CourseAttributes, error: String)
+        case courseNotFound
+    }
+
+    struct Data {
+        static func courseNotFound(courseID: String) -> Data {
+            Data(
+                courseID: courseID,
+                fetchResult: .courseNotFound
+            )
+        }
+
+        let courseID: String
+        let fetchResult: FetchResult
+    }
+
     override class var publicPreview: CourseTotalGradeModel {
         CourseTotalGradeModel(
-            data: CourseTotalGradeData(
+            data: Data(
                 courseID: "random-course-id",
-                courseName: "Example Course",
-                courseColor: .mint,
-                grade: .init("89%")
+                fetchResult: .grade(
+                    attributes: CourseAttributes(
+                        name: "Example Course",
+                        color: .green
+                    ),
+                    text: "90%"
+                )
             )
         )
     }
 
-    var data: CourseTotalGradeData?
+    var data: Data?
 
-    init(isLoggedIn: Bool = true, data: CourseTotalGradeData? = nil) {
+    init(isLoggedIn: Bool = true, data: Data? = nil) {
         self.data = data
         super.init(isLoggedIn: isLoggedIn)
     }
 }
 
-struct CourseTotalGradeData {
-    static func empty(courseID: String) -> CourseTotalGradeData{
-        CourseTotalGradeData(
-            courseID: courseID,
-            courseName: "???",
-            courseColor: nil,
-            grade: GradeValue("", locked: true)
-        )
-    }
-
-    struct GradeValue {
-        let rawValue: String
-        let locked: Bool
-
-        init(_ rawValue: String, locked: Bool = false) {
-            self.rawValue = rawValue
-            self.locked = locked
-        }
-    }
-
-    let courseID: String
-    let courseName: String
-    let courseColor: Color?
-    let grade: GradeValue?
-}
+typealias CourseTotalGradeData = CourseTotalGradeModel.Data

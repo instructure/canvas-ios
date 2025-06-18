@@ -24,7 +24,7 @@ class CourseTotalGradeWidgetProvider: AppIntentTimelineProvider {
     typealias Entry = CourseTotalGradeModel
     typealias Intent = SelectCourseIntent
 
-    private let refreshTime: TimeInterval = 1 * 60 * 60 // 1 hour
+    private let refreshTime: TimeInterval = 30 * 60 // 30 minutes
 
     func placeholder(in context: TimelineProviderContext) -> CourseTotalGradeModel {
         CourseTotalGradeModel.publicPreview
@@ -43,7 +43,7 @@ class CourseTotalGradeWidgetProvider: AppIntentTimelineProvider {
             )
         }
 
-        guard CourseTotalGradeInteractor.shared.isLoggedIn else {
+        guard CourseTotalGradeModel.interactor.isLoggedIn else {
             return Timeline(
                 entries: [CourseTotalGradeModel(isLoggedIn: false)],
                 policy: .after(Date.now.addingTimeInterval(refreshTime))
@@ -57,12 +57,15 @@ class CourseTotalGradeWidgetProvider: AppIntentTimelineProvider {
             )
         }
 
-        let totalGrade = await CourseTotalGradeInteractor
-            .shared
-            .fetchCourseTotalGrade(courseID: course.id)
+        let gradeData = await CourseTotalGradeModel
+            .interactor
+            .fetchCourseTotalGrade(
+                courseID: course.id,
+                baseOnGradedAssignment: configuration.basedOnGradedAssignments
+            )
 
         return Timeline(
-            entries: [CourseTotalGradeModel(data: totalGrade)],
+            entries: [CourseTotalGradeModel(data: gradeData)],
             policy: .after(Date.now.addingTimeInterval(refreshTime))
         )
     }

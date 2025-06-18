@@ -28,70 +28,103 @@ struct CourseTotalGradeView: View {
         ZStack {
             if model.isLoggedIn {
                 if let data = model.data {
-                    VStack(alignment: .leading, spacing: 16) {
-                        HStack {
-                            Image("student-logomark")
-                                .scaledIcon(size: 24)
-                            Text("Grade")
-                                .font(.semibold14)
-                                .foregroundStyle(.textDarkest)
-                            Spacer()
-                        }
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(data.courseName)
-                                .font(.regular14)
-                                .foregroundStyle(data.courseColor ?? .gray)
-                                .lineLimit(3)
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: true)
-
-                            if let grade = data.grade {
-                                if grade.locked {
-                                    Image
-                                        .lockLine
-                                        .scaledIcon(size: 24)
-                                        .foregroundStyle(.textDark)
-
-                                } else {
-                                    Text(grade.rawValue)
-                                        .font(.bold22)
-                                        .foregroundStyle(Color.textDarkest)
-                                }
-                            } else {
+                    switch data.fetchResult {
+                    case .grade(let attributes, let text):
+                        CourseTodalGradeResultView(
+                            attributes: attributes,
+                            gradeView: {
+                                Text(text)
+                                    .font(.bold22)
+                                    .foregroundStyle(Color.textDarkest)
+                            }
+                        )
+                    case .noGrade(let attributes):
+                        CourseTodalGradeResultView(
+                            attributes: attributes,
+                            gradeView: {
                                 Text("No Grades")
                                     .font(.regular22)
                                     .foregroundStyle(Color.textDark)
                             }
-                        }
+                        )
+                    case .restricted(let attributes):
+                        CourseTodalGradeResultView(
+                            attributes: attributes,
+                            gradeView: {
+                                Image
+                                    .lockLine
+                                    .scaledIcon(size: 24)
+                                    .foregroundStyle(.textDark)
+                            }
+                        )
+                    case .failure, .courseNotFound:
+                        CourseTotalGradeErrorView()
                     }
-                    .frame(maxHeight: .infinity, alignment: .top)
                 } else {
-                    Text("Select Course")
+                    CourseTotalGradeNoCourseView()
                 }
             } else {
-                Text("Logged out")
+                CourseTotalGradeLoggedoutView()
             }
         }
         .containerBackground(Color.backgroundLightest, for: .widget)
     }
 }
 
+struct CourseTodalGradeResultView<GradeView: View>: View {
+
+    let attributes: CourseTotalGradeModel.CourseAttributes
+    @ViewBuilder let gradeView: () -> GradeView
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Image("student-logomark")
+                    .scaledIcon(size: 24)
+                Text("Grade")
+                    .font(.semibold14)
+                    .foregroundStyle(.textDarkest)
+                Spacer()
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text(attributes.name)
+                    .font(.regular14)
+                    .foregroundStyle(attributes.color ?? .gray)
+                    .lineLimit(3)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                gradeView()
+            }
+        }
+        .frame(maxHeight: .infinity, alignment: .top)
+    }
+}
+
 #if DEBUG
 
-#Preview(as: .systemSmall, widget: {
-    CourseTotalGradeWidget()
-}, timeline: {
-    CourseTotalGradeModel(
-        isLoggedIn: true,
-//        data: nil
-        data: CourseTotalGradeData(
-            courseID: "random-course-id",
-            courseName: "Music Test Course something longer than three lines just to sho...",
-            courseColor: .blue,
-            grade: .init("100%", locked: true)
+struct CourseTotalGradeView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        CourseTotalGradeView(
+            model: CourseTotalGradeModel(
+                isLoggedIn: true,
+        //        data: nil
+                data: CourseTotalGradeModel.Data(
+                    courseID: "random-course-id",
+                    fetchResult: .grade(
+                        attributes: .init(
+                            name: "Music Test Course",// something longer than three lines just to sho...",
+                            color: .blue
+                        ),
+                        text: "87%"
+                    )
+                )
+            )
         )
-    )
-})
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+}
 
 #endif

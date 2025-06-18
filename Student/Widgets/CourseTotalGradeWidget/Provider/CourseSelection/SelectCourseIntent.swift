@@ -21,10 +21,13 @@ import AppIntents
 
 struct SelectCourseIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Select Course"
-    static var description = IntentDescription("Selects the course to display grade for.")
+    static var description = IntentDescription("Selects the course to display total grade for.")
 
     @Parameter(title: "Course")
     var course: CourseEntity?
+
+    @Parameter(title: "Based on graded assignments", default: true)
+    var basedOnGradedAssignments: Bool
 
     init() { }
 }

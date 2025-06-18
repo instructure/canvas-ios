@@ -24,27 +24,25 @@ import SwiftUI
 struct CourseQuery: EntityQuery {
 
     func entities(for identifiers: [CourseEntity.ID]) async throws -> [CourseEntity] {
-        return await CourseTotalGradeInteractor
-            .shared
+        return await CourseTotalGradeModel
+            .interactor
             .fetchCourses(ofIDs: identifiers)
             .map { course in
                 CourseEntity(
                     id: course.id,
-                    name: course.name ?? "",
-                    color: Color(uiColor: course.color)
+                    name: course.name ?? ""
                 )
             }
     }
 
     func suggestedEntities() async throws -> [CourseEntity] {
-        return try await CourseTotalGradeInteractor
-            .shared
+        return try await CourseTotalGradeModel
+            .interactor
             .fetchSuggestedCourses()
             .map { course in
                 CourseEntity(
                     id: course.id,
-                    name: course.name ?? "",
-                    color: Color(uiColor: course.color)
+                    name: course.name ?? ""
                 )
             }
     }

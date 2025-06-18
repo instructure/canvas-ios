@@ -19,8 +19,16 @@
 import Core
 import Combine
 
-class CourseTotalGradeInteractor {
-    static let shared = CourseTotalGradeInteractor(env: .shared)
+protocol CourseTotalGradeInteractorProtocol {
+    var isLoggedIn: Bool { get }
+    func setupEnvironment()
+    func fetchSuggestedCourses() async throws -> [Course]
+    func fetchCourses(ofIDs courseIDs: [String]) async -> [Course]
+    func fetchCourse(withID courseID: String) async -> Course?
+    func fetchCourseTotalGrade(courseID: String, baseOnGradedAssignment: Bool) async -> CourseTotalGradeData
+}
+
+class CourseTotalGradeInteractorLive: CourseTotalGradeInteractorProtocol {
 
     private var env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
@@ -28,10 +36,10 @@ class CourseTotalGradeInteractor {
 
     init(env: AppEnvironment) {
         self.env = env
-        self.setup()
+        self.setupEnvironment()
     }
 
-    func setup() {
+    func setupEnvironment() {
         env.app = .student
 
         guard let session = LoginSession.mostRecent else { return }
@@ -79,14 +87,22 @@ class CourseTotalGradeInteractor {
         }
     }
 
-    private var interactor: GradeListInteractor?
+    func fetchCourseTotalGrade(courseID: String, baseOnGradedAssignment: Bool) async -> CourseTotalGradeModel.Data {
+        guard
+            let course = await fetchCourse(withID: courseID),
+            let courseName = course.name
+        else {
+            return .courseNotFound(courseID: courseID)
+        }
 
-    func fetchCourseTotalGrade(courseID: String) async -> CourseTotalGradeData? {
-        guard let course = await fetchCourse(withID: courseID) else { return nil }
+        let courseAttributes = CourseTotalGradeModel.CourseAttributes(
+            name: courseName,
+            color: course.color.asColor
+        )
 
         let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
         let interactor = GradeListAssembly
-            .makeInteractor(environment: self.env, courseID: courseID, userID: self.userID)
+            .makeInteractor(environment: env, courseID: courseID, userID: self.userID)
 
         print("fetching total grade for: \(course.name ?? "")")
 
@@ -94,31 +110,43 @@ class CourseTotalGradeInteractor {
             interactor
                 .getGrades(
                     arrangeBy: .dueDate,
-                    baseOnGradedAssignment: true,
+                    baseOnGradedAssignment: baseOnGradedAssignment,
                     gradingPeriodID: courseEnrollment?.currentGradingPeriodID,
                     ignoreCache: false
                 )
-                .map({ listData -> CourseTotalGradeData in
-                    guard let courseName = listData.courseName else {
-                        return .empty(courseID: courseID)
+                .map({ listData -> CourseTotalGradeModel.Data in
+
+                    guard let gradeText = listData.totalGradeText else {
+                        return CourseTotalGradeData(courseID: courseID, fetchResult: .restricted(attributes: courseAttributes))
                     }
 
-                    return CourseTotalGradeData(
-                        courseID: courseID,
-                        courseName: courseName,
-                        courseColor: listData.courseColor?.asColor,
-                        grade: listData.totalGradeText.flatMap { .init($0) }
-                    )
-                })
-                .replaceEmpty(with: .empty(courseID: courseID))
-                .sinkFailureOrValue { error in
+                    let fetchResult: CourseTotalGradeModel.FetchResult = gradeText.isNotEmpty
+                        ? .grade(attributes: courseAttributes, text: gradeText)
+                        : .noGrade(attributes: courseAttributes)
 
-                    print(error)
-                    continuation.resume(returning: nil)
+                    return CourseTotalGradeData(courseID: courseID, fetchResult: fetchResult)
+                })
+                .replaceEmpty(
+                    with: CourseTotalGradeData(
+                        courseID: courseID,
+                        fetchResult: .restricted(attributes: courseAttributes)
+                    )
+                )
+                .sinkFailureOrValue { error in
+                    continuation.resume(
+                        returning: CourseTotalGradeData(
+                            courseID: courseID,
+                            fetchResult: .failure(attributes: courseAttributes, error: error.localizedDescription)
+                        )
+                    )
                 } receiveValue: { gradeData in
                     continuation.resume(returning: gradeData)
                 }
                 .store(in: &self.subscriptions)
         }
     }
+}
+
+extension CourseTotalGradeModel {
+    static var interactor: CourseTotalGradeInteractorProtocol = CourseTotalGradeInteractorLive(env: .shared)
 }
