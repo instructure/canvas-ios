@@ -85,40 +85,32 @@ public struct DynamicHeightTextEditor: View {
 
 #if DEBUG
 
-//struct DynamicHeightTextEditor_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DynamicHeightTextEditor(text: .constant(""), placeholder: "Placeholder")
-//            .font(.regular14)
-//            .previewLayout(.sizeThatFits)
-//            .border(Color.red)
-//
-//        DynamicHeightTextEditor(text: .constant("Placeholder"), placeholder: "Placeholder")
-//            .font(.regular14)
-//            .previewLayout(.sizeThatFits)
-//            .border(Color.red)
-//
-//        DynamicHeightTextEditor(text: .constant("1"))
-//            .font(.regular14)
-//            .previewLayout(.sizeThatFits)
-//            .border(Color.red)
-//
-//        DynamicHeightTextEditor(text: .constant("1\n2"))
-//            .previewLayout(.sizeThatFits)
-//            .font(.regular14)
-//            .border(Color.red)
-//
-//        DynamicHeightTextEditor(text: .constant("1\n2\n3"))
-//            .font(.regular14)
-//            .lineLimit(2)
-//            .previewLayout(.sizeThatFits)
-//            .border(Color.red)
-//
-//        DynamicHeightTextEditor(text: .constant("1\n2\n3\n4\n5\n6\n7\n8\n9"))
-//            .font(.regular14)
-//            .lineLimit(3)
-//            .previewLayout(.sizeThatFits)
-//            .border(Color.red)
-//    }
-//}
+struct DynamicHeightTextEditor_Previews: PreviewProvider {
+    static var previews: some View {
+        DynamicHeightTextEditor(text: .constant(""), placeholder: "Placeholder", font: .regular14)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
+
+        DynamicHeightTextEditor(text: .constant("Placeholder"), placeholder: "Placeholder", font: .regular14)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
+
+        DynamicHeightTextEditor(text: .constant("1"), font: .regular14)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
+
+        DynamicHeightTextEditor(text: .constant("1\n2"), font: .regular14)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
+
+        DynamicHeightTextEditor(text: .constant("1\n2\n3"), font: .regular14, lineLimit: 2)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
+
+        DynamicHeightTextEditor(text: .constant("1\n2\n3\n4\n5\n6\n7\n8\n9"), font: .regular14, lineLimit: 3)
+            .previewLayout(.sizeThatFits)
+            .border(Color.red)
+    }
+}
 
 #endif

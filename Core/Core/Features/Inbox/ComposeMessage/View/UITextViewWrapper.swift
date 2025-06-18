@@ -70,11 +70,10 @@ public struct UITextViewWrapper: UIViewRepresentable {
     }
 
     public func updateUIView(_ textView: UITextView, context: Context) {
-        textView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        textView.setContentHuggingPriority(.defaultHigh, for: .vertical)
-
         if textView.text != text {
-            textView.text = text
+            DispatchQueue.main.async {
+                textView.text = text
+            }
         }
 
         // updating regardless of text change to react to font size changes
@@ -84,7 +83,7 @@ public struct UITextViewWrapper: UIViewRepresentable {
     private func updateHeight(_ textView: UITextView) {
         DispatchQueue.main.async {
             let sizeThatFits = textView.sizeThatFits(CGSize(width: textView.frame.width, height: 0))
-            self.height = sizeThatFits.height
+            height = sizeThatFits.height
         }
     }
 
