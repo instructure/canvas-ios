@@ -19,6 +19,7 @@
 import Combine
 @testable import Core
 @testable import Teacher
+import Foundation
 
 final class GradeStatusInteractorMock: GradeStatusInteractor {
     var speedGraderInteractor: SpeedGraderInteractor?
@@ -33,6 +34,7 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
     }
 
     var updateSubmissionGradeStatusCalled = false
+    var shouldFailUpdateSubmissionGradeStatus = false
     func updateSubmissionGradeStatus(
         submissionId: String,
         userId: String,
@@ -40,6 +42,9 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
         latePolicyStatus: String?
     ) -> AnyPublisher<Void, Error> {
         updateSubmissionGradeStatusCalled = true
+        if shouldFailUpdateSubmissionGradeStatus {
+            return Fail(error: NSError.internalError()).eraseToAnyPublisher()
+        }
         return Publishers.typedJust(failureType: Error.self)
     }
 
