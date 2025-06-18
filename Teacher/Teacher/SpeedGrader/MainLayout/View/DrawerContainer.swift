@@ -104,7 +104,7 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
             Spacer(minLength: 4)
             content
         }
-        .frame(maxWidth: 800, maxHeight: max(minHeight, min(maxHeight, height + translation)))
+        .frame(maxHeight: max(minHeight, min(maxHeight, height + translation)))
         .background(DrawerBackground()
             .fill(Color.backgroundLightest)
             .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
