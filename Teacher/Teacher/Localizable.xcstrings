@@ -45446,6 +45446,7 @@
       }
     },
     "Write your Comment here" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

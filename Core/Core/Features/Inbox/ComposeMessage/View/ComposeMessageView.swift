@@ -406,8 +406,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
 
-            UITextViewWrapper(text: $model.bodyText) {
-                let tv = UITextView()
+            InstUI.UITextViewWrapper(text: $model.bodyText) { tv in
                 tv.isScrollEnabled = false
                 tv.textContainer.widthTracksTextView = true
                 tv.textContainer.lineBreakMode = .byWordWrapping
@@ -415,7 +414,6 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                 tv.translatesAutoresizingMaskIntoConstraints = false
                 tv.widthAnchor.constraint(equalToConstant: geometry.frame(in: .global).width - (2 * defaultHorizontalPaddingValue)).isActive = true
                 tv.backgroundColor = .backgroundLightest
-                return tv
             }
             .font(.regular16, lineHeight: .condensed)
             .textInputAutocapitalization(.sentences)

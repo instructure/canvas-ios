@@ -97,7 +97,7 @@ struct CommentInputView: View {
                     .font(.regular12)
                     .foregroundStyle(.textPlaceholder)
             }
-            DynamicHeightTextEditor(
+            InstUI.ScrollableTextEditor(
                 text: $comment,
                 placeholder: String(localized: "Comment", bundle: .teacher),
                 font: .regular14,
