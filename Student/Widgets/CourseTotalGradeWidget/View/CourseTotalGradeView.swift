@@ -33,9 +33,7 @@ struct CourseTotalGradeView: View {
                         CourseTodalGradeResultView(
                             attributes: attributes,
                             gradeView: {
-                                Text(text)
-                                    .font(.bold22)
-                                    .foregroundStyle(Color.textDarkest)
+                                Text(text.styledAsGrade())
                             }
                         )
                     case .noGrade(let attributes):
@@ -83,7 +81,7 @@ struct CourseTotalGradeView_Previews: PreviewProvider {
         CourseTotalGradeView(
             model: CourseTotalGradeModel(
                 isLoggedIn: true,
-        //        data: nil
+//                data: nil
                 data: CourseTotalGradeModel.Data(
                     courseID: "random-course-id",
                     fetchResult: .grade(
@@ -91,9 +89,10 @@ struct CourseTotalGradeView_Previews: PreviewProvider {
                             name: "Music Test Course",// something longer than three lines just to sho...",
                             color: .blue
                         ),
-                        text: "87%"
+                        text: "78/100"
                     )
                 )
+//                isLoading: true
             )
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))
