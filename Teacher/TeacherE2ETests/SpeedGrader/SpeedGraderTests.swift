@@ -114,11 +114,12 @@ class SpeedGraderTests: E2ETestCase {
         // MARK: Check Assignment Details
         assignmentItem.hit()
         let viewAllSubmissionsButton = DetailsHelper.viewAllSubmissionsButton.waitUntil(.visible)
-        let oneNeedsGradingButton = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
+        let needsGradingButton = DetailsHelper.oneNeedsGradingButton.waitUntil(.visible)
         XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(oneNeedsGradingButton.isVisible)
+        XCTAssertTrue(needsGradingButton.isVisible)
+        XCTAssertEqual(needsGradingButton.stringValue, "1 item")
 
-        oneNeedsGradingButton.hit()
+        needsGradingButton.hit()
         let submissionsNavBar = SubmissionsHelper.navBar.waitUntil(.visible)
         let needsGradingLabel = SubmissionsHelper.needsGradingLabel.waitUntil(.visible)
         let submissionItem = SubmissionsHelper.cell(student: student).waitUntil(.visible)
@@ -189,10 +190,11 @@ class SpeedGraderTests: E2ETestCase {
 
         assignmentItem.hit()
         let viewAllSubmissionsButton = DetailsHelper.viewAllSubmissionsButton.waitUntil(.visible)
-        let oneGradedLabel = DetailsHelper.oneGradedButton.waitUntil(.visible)
+        let gradedButton = DetailsHelper.oneGradedButton.waitUntil(.visible)
         let editButton = DetailsHelper.editButton.waitUntil(.visible)
         XCTAssertTrue(viewAllSubmissionsButton.isVisible)
-        XCTAssertTrue(oneGradedLabel.isVisible)
+        XCTAssertTrue(gradedButton.isVisible)
+        XCTAssertEqual(gradedButton.stringValue, "1 item")
         XCTAssertTrue(editButton.isVisible)
 
         // MARK: Edit the assignment with new score
@@ -205,7 +207,7 @@ class SpeedGraderTests: E2ETestCase {
         XCTAssertEqual(pointsField.stringValue, score)
 
         let newScore = "0"
-        pointsField.cutText()
+        pointsField.cutText(tapSelectAll: false, tapSelect: true)
         pointsField.writeText(text: newScore)
         pointsField.waitUntil(.value(expected: newScore))
         XCTAssertEqual(pointsField.stringValue, newScore)
