@@ -33,10 +33,8 @@ struct GetGradeStatusesRequest: APIGraphQLRequestable {
           course(id: $courseID) {
             customGradeStatusesConnection {
               nodes {
-                color
                 name
                 _id
-                id
               }
             }
             gradeStatuses

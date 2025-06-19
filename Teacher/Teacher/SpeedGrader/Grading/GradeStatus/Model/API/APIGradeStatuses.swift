@@ -35,12 +35,11 @@ struct APIGradeStatuses: Codable, Equatable {
     // MARK: - Types
 
     struct CustomGradeStatus: Codable, Equatable {
-        let color: String
         let name: String
         let id: String
 
         private enum CodingKeys: String, CodingKey {
-            case color, name, id = "_id"
+            case name, id = "_id"
         }
     }
 
