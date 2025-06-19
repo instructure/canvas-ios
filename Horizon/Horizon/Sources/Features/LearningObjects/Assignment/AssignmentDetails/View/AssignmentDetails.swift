@@ -38,8 +38,11 @@ struct AssignmentDetails: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
+                if let submission = viewModel.submission, viewModel.didTapViewAttempts {
+                    viewAttemptText(attempt: submission.attempt)
+                }
+                topView
                 VStack(spacing: .huiSpaces.space24) {
-                    topView
                     startQuizButton
                     introView
                         .id(viewModel.courseID)
@@ -79,6 +82,18 @@ struct AssignmentDetails: View {
             .readingFrame { frame in
                 isShowHeader = frame.minY > -100
             }
+    }
+
+    private func viewAttemptText(attempt: Int) -> some View {
+        HStack(spacing: .huiSpaces.space2) {
+            Text("VIEWING ATTEMPT", bundle: .horizon)
+            Text(attempt.description)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, .huiSpaces.space8)
+        .foregroundStyle(Color.huiColors.surface.institution)
+        .background(Color.huiColors.surface.pagePrimary)
+        .huiTypography(.p2)
     }
 
     @ViewBuilder

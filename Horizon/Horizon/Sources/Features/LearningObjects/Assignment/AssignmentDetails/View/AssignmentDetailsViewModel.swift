@@ -51,6 +51,7 @@ final class AssignmentDetailsViewModel {
     private(set) var selectedSubmission: AssignmentSubmissionType = .text
     private(set) var externalURL: URL?
     private(set) var submissionProperties: SubmissionProperties?
+    private(set) var didTapViewAttempts = false
     var isStartTyping = false
     var assignmentPreference: AssignmentPreferenceKeyType?
     var isSubmitButtonHidden: Bool {
@@ -169,6 +170,7 @@ final class AssignmentDetailsViewModel {
             }
             hasSubmittedBefore = true
             submission = selectedSubmission
+            didTapViewAttempts = true
             submissionProperties?.hasUnreadComments = hasUnreadComments(for: selectedSubmission?.attempt)
             didLoadAssignment(submissionProperties)
         }
