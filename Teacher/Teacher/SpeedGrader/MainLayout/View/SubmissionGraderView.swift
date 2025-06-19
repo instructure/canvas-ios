@@ -424,7 +424,6 @@ struct SubmissionGraderView: View {
         VStack(spacing: 0) {
             SubmissionGrades(
                 assignment: viewModel.assignment,
-                gradeStatuses: viewModel.gradeStatuses,
                 containerHeight: geometry.size.height,
                 submission: viewModel.submission,
                 rubricsViewModel: rubricsViewModel,

@@ -21,7 +21,6 @@ import SwiftUI
 
 struct SubmissionGrades: View {
     let assignment: Assignment
-    let gradeStatuses: [GradeStatus]
     let containerHeight: CGFloat
     @ObservedObject var submission: Submission
 

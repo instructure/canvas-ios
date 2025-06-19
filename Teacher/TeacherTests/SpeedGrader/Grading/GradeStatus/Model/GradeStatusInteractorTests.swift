@@ -31,41 +31,41 @@ class GradeStatusInteractorTests: TeacherTestCase {
     }
 
     func test_fetchGradeStatuses_populatesGradeStatuses() {
-        let interactor = GradeStatusInteractorLive(courseId: "1", api: api)
+        let testee = GradeStatusInteractorLive(courseId: "1", api: api)
         mockGradeStatusesAPI()
 
         // WHEN
-        XCTAssertFinish(interactor.fetchGradeStatuses())
+        XCTAssertFinish(testee.fetchGradeStatuses())
 
         // THEN
-        XCTAssertEqual(interactor.gradeStatuses.count, 4)
-        XCTAssertEqual(interactor.gradeStatuses[0].id, "excused")
-        XCTAssertEqual(interactor.gradeStatuses[1].id, "late")
-        XCTAssertEqual(interactor.gradeStatuses[2].id, "custom1")
-        XCTAssertEqual(interactor.gradeStatuses[3].id, "custom2")
+        XCTAssertEqual(testee.gradeStatuses.count, 4)
+        XCTAssertEqual(testee.gradeStatuses[0].id, "excused")
+        XCTAssertEqual(testee.gradeStatuses[1].id, "late")
+        XCTAssertEqual(testee.gradeStatuses[2].id, "custom1")
+        XCTAssertEqual(testee.gradeStatuses[3].id, "custom2")
 
-        let custom = interactor.gradeStatusFor(
+        let custom = testee.gradeStatusFor(
             customGradeStatusId: "custom1",
             latePolicyStatus: nil,
             isExcused: nil
         )
         XCTAssertEqual(custom?.id, "custom1")
 
-        let excused = interactor.gradeStatusFor(
+        let excused = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: nil,
             isExcused: true
         )
         XCTAssertEqual(excused?.id, "excused")
 
-        let late = interactor.gradeStatusFor(
+        let late = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: .late,
             isExcused: nil
         )
         XCTAssertEqual(late?.id, "late")
 
-        let notFound = interactor.gradeStatusFor(
+        let notFound = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: nil,
             isExcused: nil
@@ -74,14 +74,14 @@ class GradeStatusInteractorTests: TeacherTestCase {
     }
 
     func test_updateSubmissionGradeStatus_triggersRefresh() {
-        let interactor = GradeStatusInteractorLive(courseId: "1", api: api)
+        let testee = GradeStatusInteractorLive(courseId: "1", api: api)
         let speedGraderMock = SpeedGraderInteractorMock()
-        interactor.speedGraderInteractor = speedGraderMock
+        testee.speedGraderInteractor = speedGraderMock
         let request = UpdateSubmissionGradeStatusRequest(submissionId: "sub1", customGradeStatusId: "custom1", latePolicyStatus: nil)
         api.mock(request, value: APINoContent())
 
         // WHEN
-        XCTAssertFinish(interactor.updateSubmissionGradeStatus(
+        XCTAssertFinish(testee.updateSubmissionGradeStatus(
             submissionId: "sub1",
             userId: "user1",
             customGradeStatusId: "custom1",
@@ -93,15 +93,15 @@ class GradeStatusInteractorTests: TeacherTestCase {
     }
 
     func test_observeGradeStatusChanges_emits() {
-        let interactor = GradeStatusInteractorLive(courseId: "1", api: api)
+        let testee = GradeStatusInteractorLive(courseId: "1", api: api)
         mockGradeStatusesAPI()
-        XCTAssertFinish(interactor.fetchGradeStatuses())
+        XCTAssertFinish(testee.fetchGradeStatuses())
 
         let expectation = expectation(description: "observeGradeStatusChanges emits")
         var receivedStatuses: [GradeStatus?] = []
 
         // WHEN
-        interactor.observeGradeStatusChanges(submissionId: "sub1", attempt: 1)
+        testee.observeGradeStatusChanges(submissionId: "sub1", attempt: 1)
             .sink { status in
                 receivedStatuses.append(status)
                 if receivedStatuses.count == 4 {

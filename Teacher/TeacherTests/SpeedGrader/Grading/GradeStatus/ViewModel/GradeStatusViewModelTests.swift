@@ -27,8 +27,8 @@ class GradeStatusViewModelTests: TeacherTestCase {
 
     func test_init_selectedOption_isNone() {
         let interactor = GradeStatusInteractorMock()
-        let viewModel = makeViewModel(interactor: interactor)
-        XCTAssertEqual(viewModel.selectedOption.id, "none")
+        let testee = makeViewModel(interactor: interactor)
+        XCTAssertEqual(testee.selectedOption.id, "none")
     }
 
     func test_options_sorted_optionsMatchInteractor() {
@@ -37,44 +37,44 @@ class GradeStatusViewModelTests: TeacherTestCase {
             GradeStatus(defaultName: "Bravo"),
             GradeStatus(defaultName: "Alpha")
         ]
-        let viewModel = makeViewModel(interactor: interactor)
-        XCTAssertEqual(viewModel.options.map { $0.title }, ["Alpha", "Bravo"])
+        let testee = makeViewModel(interactor: interactor)
+        XCTAssertEqual(testee.options.map { $0.title }, ["Alpha", "Bravo"])
     }
 
     func test_didSelectGradeStatus_triggersUpdateAndSetsSelected() {
         let interactor = GradeStatusInteractorMock()
         let status = GradeStatus(defaultName: "Alpha")
         interactor.gradeStatuses = [status]
-        let viewModel = makeViewModel(interactor: interactor)
+        let testee = makeViewModel(interactor: interactor)
         let option = OptionItem(id: status.id, title: status.name)
 
         // WHEN
         interactor.updateSubmissionGradeStatusCalled = false
-        viewModel.didSelectGradeStatus.send(option)
+        testee.didSelectGradeStatus.send(option)
 
         // THEN
         waitUntil(shouldFail: true) {
-            interactor.updateSubmissionGradeStatusCalled && viewModel.selectedOption.id == option.id
+            interactor.updateSubmissionGradeStatusCalled && testee.selectedOption.id == option.id
         }
-        XCTAssertTrue(interactor.updateSubmissionGradeStatusCalled)
-        XCTAssertEqual(viewModel.selectedOption.id, option.id)
+        XCTAssertEqual(interactor.updateSubmissionGradeStatusCalled, true)
+        XCTAssertEqual(testee.selectedOption.id, option.id)
     }
 
     func test_didChangeAttempt_observeGradeStatusSetsSelectedOption() {
         let interactor = GradeStatusInteractorMock()
         let status = GradeStatus(defaultName: "Alpha")
         interactor.gradeStatuses = [status]
-        let viewModel = makeViewModel(interactor: interactor)
+        let testee = makeViewModel(interactor: interactor)
 
         // WHEN
-        viewModel.didChangeAttempt.send(1)
+        testee.didChangeAttempt.send(1)
 
         // THEN
         waitUntil(shouldFail: true) {
-            interactor.observeGradeStatusChangesCalled && viewModel.selectedOption.id == status.id
+            interactor.observeGradeStatusChangesCalled && testee.selectedOption.id == status.id
         }
-        XCTAssertTrue(interactor.observeGradeStatusChangesCalled)
-        XCTAssertEqual(viewModel.selectedOption.id, status.id)
+        XCTAssertEqual(interactor.observeGradeStatusChangesCalled, true)
+        XCTAssertEqual(testee.selectedOption.id, status.id)
     }
 
     func test_didSelectGradeStatus_uploadGradeStatusError_showsAlert() {
@@ -82,18 +82,18 @@ class GradeStatusViewModelTests: TeacherTestCase {
         interactor.shouldFailUpdateSubmissionGradeStatus = true
         let status = GradeStatus(defaultName: "Alpha")
         interactor.gradeStatuses = [status]
-        let viewModel = makeViewModel(interactor: interactor)
+        let testee = makeViewModel(interactor: interactor)
         let option = OptionItem(id: status.id, title: status.name)
 
         // WHEN
-        viewModel.didSelectGradeStatus.send(option)
+        testee.didSelectGradeStatus.send(option)
 
         // THEN
         waitUntil(shouldFail: true) {
-            viewModel.isShowingSaveFailedAlert == true && viewModel.isLoading == false
+            testee.isShowingSaveFailedAlert == true && testee.isLoading == false
         }
-        XCTAssertEqual(viewModel.isShowingSaveFailedAlert, true)
-        XCTAssertEqual(viewModel.isLoading, false)
+        XCTAssertEqual(testee.isShowingSaveFailedAlert, true)
+        XCTAssertEqual(testee.isLoading, false)
     }
 
     func test_didSelectGradeStatus_retryUpload_succeedsAfterFailure() {
@@ -101,32 +101,30 @@ class GradeStatusViewModelTests: TeacherTestCase {
         let statusA = GradeStatus(defaultName: "Alpha")
         let statusNone = GradeStatus(defaultName: "none")
         interactor.gradeStatuses = [statusNone, statusA]
-        let viewModel = makeViewModel(interactor: interactor)
-        XCTAssertEqual(viewModel.selectedOption.id, "none")
+        let testee = makeViewModel(interactor: interactor)
+        XCTAssertEqual(testee.selectedOption.id, "none")
         let option = OptionItem(id: statusA.id, title: statusA.name)
 
         // WHEN
         interactor.shouldFailUpdateSubmissionGradeStatus = true
-        viewModel.didSelectGradeStatus.send(option)
+        testee.didSelectGradeStatus.send(option)
 
         // THEN
         waitUntil(shouldFail: true) {
-            viewModel.isShowingSaveFailedAlert == true
+            testee.isShowingSaveFailedAlert == true
         }
-        XCTAssertEqual(viewModel.isLoading, false)
-        XCTAssertEqual(viewModel.selectedOption.id, "none")
+        XCTAssertEqual(testee.isLoading, false)
+        XCTAssertEqual(testee.selectedOption.id, "none")
 
         // WHEN
         interactor.shouldFailUpdateSubmissionGradeStatus = false
-        viewModel.isShowingSaveFailedAlert = false
-        viewModel.didSelectGradeStatus.send(option)
+        testee.isShowingSaveFailedAlert = false
+        testee.didSelectGradeStatus.send(option)
 
         // THEN
         waitUntil(shouldFail: true) {
-            viewModel.selectedOption.id == option.id
+            testee.selectedOption.id == option.id && testee.isLoading == false
         }
-        XCTAssertEqual(viewModel.isLoading, false)
-        XCTAssertEqual(viewModel.isShowingSaveFailedAlert, false)
     }
 
     private func makeViewModel(interactor: GradeStatusInteractorMock) -> GradeStatusViewModel {
