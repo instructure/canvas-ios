@@ -24,22 +24,27 @@ struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
     @Environment(\.viewController) private var viewController
 
-    private var tabs: [Tabs] {
+    private var tabs: [CourseDetailsTabs] {
         let showingOverview = !viewModel.overviewDescription.isEmpty
         return (showingOverview ? [.overview] : []) + [.myProgress, .scores, .notebook]
     }
     // MARK: - Dependencies
 
     private let isBackButtonVisible: Bool
-
+    private let shouldHideTabBar: Bool
+    private let onShowNavigationBarAndTabBar: (Bool) -> Void
     // MARK: - Init
 
     init(
         viewModel: CourseDetailsViewModel,
-        isBackButtonVisible: Bool = true
+        isBackButtonVisible: Bool = true,
+        shouldHideTabBar: Bool = false,
+        onShowNavigationBarAndTabBar: @escaping (Bool) -> Void
     ) {
         self.viewModel = viewModel
+        self.shouldHideTabBar = shouldHideTabBar
         self.isBackButtonVisible = isBackButtonVisible
+        self.onShowNavigationBarAndTabBar = onShowNavigationBarAndTabBar
     }
 
     var body: some View {
@@ -66,7 +71,8 @@ struct CourseDetailsView: View {
         .animation(.linear, value: viewModel.isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
-        .toolbar(.hidden)
+        .onWillDisappear { onShowNavigationBarAndTabBar(true) }
+        .onWillAppear { onShowNavigationBarAndTabBar(false) }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -144,7 +150,7 @@ struct CourseDetailsView: View {
             .frame(height: 0)
             .readingFrame { frame in
                 // Need to make sure the tabBar is visible before starting the animation, because we hide it when going through the module item sequence.
-                if viewController.isTabBarVisible {
+                if viewController.isTabBarVisible || shouldHideTabBar {
                     viewModel.showHeaderPublisher.send(frame.minY > -100)
                 }
             }
@@ -153,7 +159,7 @@ struct CourseDetailsView: View {
 
 private struct CotentView: View {
     @Environment(\.viewController) private var viewController
-    let selectedTab: CourseDetailsView.Tabs
+    let selectedTab: CourseDetailsTabs
     let viewModel: CourseDetailsViewModel
 
     var body: some View {
@@ -198,37 +204,10 @@ private struct CotentView: View {
     }
 }
 
-extension CourseDetailsView {
-    enum Tabs: CaseIterable, Identifiable {
-        case overview
-        case myProgress
-        case scores
-        case notebook
-//        case quickLinks
-
-        var localizedString: String {
-            switch self {
-            case .myProgress:
-                return String(localized: "My Progress", bundle: .horizon)
-            case .overview:
-                return String(localized: "Overview", bundle: .horizon)
-            case .scores:
-                return String(localized: "Scores", bundle: .horizon)
-            case .notebook:
-                return String(localized: "Notebook", bundle: .horizon)
-//            case .quickLinks:
-//                return String(localized: "Quick Links", bundle: .horizon)
-            }
-        }
-
-        var id: Self {
-            self
-        }
-    }
-}
-
 extension WeakViewController {
    fileprivate var isTabBarVisible: Bool {
         !((value.tabBarController?.tabBar.isHidden) ?? true)
     }
 }
+
+

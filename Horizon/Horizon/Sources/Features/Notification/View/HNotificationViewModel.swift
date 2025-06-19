@@ -43,11 +43,16 @@ final class HNotificationViewModel {
     // MARK: - Dependencies
 
     private let interactor: NotificationInteractor
+    private let router: Router
 
     // MARK: - Init
 
-    init(interactor: NotificationInteractor) {
+    init(
+        interactor: NotificationInteractor,
+        router: Router
+    ) {
         self.interactor = interactor
+        self.router = router
         fetchNotifications()
     }
 
@@ -73,6 +78,19 @@ final class HNotificationViewModel {
                 }
                 .store(in: &subscriptions)
         }
+    }
+
+    func navigeteToCourseDetails(
+        notification: NotificationModel,
+        viewController: WeakViewController
+    ) {
+        let view = LearnAssembly.makeCourseDetailsViewController(
+            courseID: notification.courseID,
+            enrollmentID: notification.enrollmentID,
+            shoudHideTabBar: true,
+            selectedTab: notification.isScoreAnnouncement ? .scores : .myProgress
+        )
+        router.show(view, from: viewController)
     }
 
     // MARK: - Private Functions

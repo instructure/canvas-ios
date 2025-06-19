@@ -47,6 +47,7 @@ final class CourseDetailsViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private let getCoursesInteractor: GetCoursesInteractor
     private let learnCoursesInteractor: GetLearnCoursesInteractor
+    private let selectedTab: CourseDetailsTabs?
     private var pullToRefreshCancellable: AnyCancellable?
 
     // MARK: - Init
@@ -58,7 +59,8 @@ final class CourseDetailsViewModel {
         learnCoursesInteractor: GetLearnCoursesInteractor,
         courseID: String,
         enrollmentID: String,
-        course: HCourse?
+        course: HCourse?,
+        selectedTab: CourseDetailsTabs? = nil
     ) {
         self.router = router
         self.getCoursesInteractor = getCoursesInteractor
@@ -66,6 +68,7 @@ final class CourseDetailsViewModel {
         self.courseID = courseID
         self.course = course ?? .init()
         self.isLoaderVisible = true
+        self.selectedTab = selectedTab
         fetchData()
         observeCourseSelection()
         observeHeaderVisiablity()
@@ -106,6 +109,9 @@ final class CourseDetailsViewModel {
     }
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
+        print(url.absoluteString)
+
+        
         router.route(to: url, from: from)
     }
 
@@ -179,9 +185,14 @@ final class CourseDetailsViewModel {
         self.course = course
         selectedCoure = .init(id: course.id, name: course.name)
         overviewDescription = syllabus ?? ""
-        // Firt tab is 0 -> Overview 1 -> MyProgress
         if selectedTabIndex == nil {
-            selectedTabIndex = overviewDescription.isEmpty ? 0 : 1
+            selectedTabIndex = if let index = selectedTab?.rawValue {
+                // We use index - 1 to designate the correctly selected tab.
+                overviewDescription.isEmpty ? index - 1 : index
+            } else {
+                // Firt tab is 0 -> Overview 1 -> MyProgress
+                overviewDescription.isEmpty ? 0 : 1
+            }
         }
         isLoaderVisible = false
     }

@@ -16,25 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Combine
+enum CourseDetailsTabs: Int, CaseIterable, Identifiable {
+    case overview
+    case myProgress
+    case scores
+    case notebook
+    //  case quickLinks
 
-#if DEBUG
-final class NotificationInteractorPreview: NotificationInteractor {
-    func getNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
-        Just([
-            .init(
-                id: "1",
-                category: "announcement from [Course]",
-                title: "[first two lines of the message......... there’s more.].",
-                date: "Mar 17",
-                isRead: true,
-                courseID: "12",
-                enrollmentID: "1211",
-                isScoreAnnouncement: false
-            )
-        ])
-        .eraseToAnyPublisher()
+    var localizedString: String {
+        switch self {
+        case .myProgress:
+            return String(localized: "My Progress", bundle: .horizon)
+        case .overview:
+            return String(localized: "Overview", bundle: .horizon)
+        case .scores:
+            return String(localized: "Scores", bundle: .horizon)
+        case .notebook:
+            return String(localized: "Notebook", bundle: .horizon)
+        // case .quickLinks:
+            // return String(localized: "Quick Links", bundle: .horizon)
+        }
+    }
+
+    var id: Self {
+        self
     }
 }
-#endif

@@ -24,6 +24,7 @@ struct HNotificationView: View {
     // MARK: - Private Properties
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.viewController) private var viewController
 
     // MARK: - Dependencies
 
@@ -73,7 +74,14 @@ struct HNotificationView: View {
             } else {
                 ScrollView(showsIndicators: false) {
                     ForEach(viewModel.notifications) { activity in
-                        notificationRow(notification: activity)
+                        Button {
+                            viewModel.navigeteToCourseDetails(
+                                notification: activity,
+                                viewController: viewController
+                            )
+                        } label: {
+                            notificationRow(notification: activity)
+                        }
                         Divider()
                             .hidden(activity == viewModel.notifications.last)
                     }
@@ -93,12 +101,14 @@ struct HNotificationView: View {
             Text(notification.category)
                 .foregroundStyle(Color.huiColors.text.timestamp)
                 .huiTypography(.labelSmall)
+                .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(alignment: .top) {
                 Text(notification.title)
                     .huiTypography(notification.isRead ? .p1 : .labelLargeBold)
                     .foregroundStyle(Color.huiColors.text.body)
+                    .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 if !notification.isRead {
                     Circle()
