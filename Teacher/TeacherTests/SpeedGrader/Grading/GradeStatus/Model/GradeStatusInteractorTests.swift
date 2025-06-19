@@ -143,8 +143,8 @@ class GradeStatusInteractorTests: TeacherTestCase {
                 course: APIGradeStatuses.Course(
                     customGradeStatusesConnection: APIGradeStatuses.CustomGradeStatusesConnection(
                         nodes: [
-                            APIGradeStatuses.CustomGradeStatus(color: "#FF0000", name: "Custom1", id: "custom1"),
-                            APIGradeStatuses.CustomGradeStatus(color: "#00FF00", name: "Custom2", id: "custom2")
+                            APIGradeStatuses.CustomGradeStatus(name: "Custom1", id: "custom1"),
+                            APIGradeStatuses.CustomGradeStatus(name: "Custom2", id: "custom2")
                         ]
                     ),
                     gradeStatuses: ["excused", "late"]

@@ -22,7 +22,7 @@ import XCTest
 class GradeStatusTests: XCTestCase {
 
     func test_init_with_custom_grade_status() {
-        let custom = APIGradeStatuses.CustomGradeStatus(color: "#FF0000", name: "Reviewed", id: "custom1")
+        let custom = APIGradeStatuses.CustomGradeStatus(name: "Reviewed", id: "custom1")
         let status = GradeStatus(custom: custom)
         XCTAssertEqual(status.id, "custom1")
         XCTAssertEqual(status.name, "Reviewed")
