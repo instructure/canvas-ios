@@ -209,5 +209,3 @@ extension WeakViewController {
         !((value.tabBarController?.tabBar.isHidden) ?? true)
     }
 }
-
-

@@ -109,9 +109,6 @@ final class CourseDetailsViewModel {
     }
 
     func moduleItemDidTap(url: URL, from: WeakViewController) {
-        print(url.absoluteString)
-
-        
         router.route(to: url, from: from)
     }
 
