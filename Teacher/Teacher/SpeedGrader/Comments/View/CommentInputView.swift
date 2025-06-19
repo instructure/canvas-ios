@@ -47,6 +47,7 @@ struct CommentInputView: View {
     let sendAction: () -> Void
 
     @State private var showAttachmentTypeSheet = false
+    @FocusState private var isFocused: Bool
 
     var body: some View {
         VStack(spacing: 0) {
@@ -55,6 +56,10 @@ struct CommentInputView: View {
                 .paddingStyle(.horizontal, .standard)
                 .padding(.vertical, 8)
                 .background(.backgroundLightest)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isFocused = true
         }
     }
 
@@ -78,7 +83,6 @@ struct CommentInputView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
-        // TODO: Area outside of buttons could focus the TextField
         .padding(.leading, 16)
         .padding(.trailing, 8)
         .padding(.vertical, 8)
@@ -103,6 +107,7 @@ struct CommentInputView: View {
                 font: .regular14,
                 lineLimit: 5.5
             )
+            .focused($isFocused)
             .accessibilityLabel(Text("Comment", bundle: .teacher))
             .identifier("SubmissionComments.commentTextView")
         }
@@ -167,13 +172,7 @@ struct CommentInputView: View {
     }
 }
 
-private extension View {
-    // Toolbar buttons should be center aligned with the last row of the comment textfield.
-    // This offset is an approximation for that.
-    func commentToolbarButtonOffset() -> some View {
-        scaledOffset(y: -5, useIconScale: true)
-    }
-}
+// MARK: - Preview
 
 #if DEBUG
 
