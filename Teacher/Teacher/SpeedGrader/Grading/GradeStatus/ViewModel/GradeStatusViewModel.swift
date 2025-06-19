@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import CombineExt
 import SwiftUI
 
 class GradeStatusViewModel: ObservableObject {
@@ -67,14 +68,24 @@ class GradeStatusViewModel: ObservableObject {
         on publisher: PassthroughSubject<OptionItem, Never>
     ) {
         publisher
-            .compactMap { [weak self, interactor] selectedOption in
-                guard let selectedStatus = interactor.gradeStatuses.first(where: { $0.id == selectedOption.id }) else {
+            .compactMap { [weak self, interactor] selectedOption -> (OptionItem, GradeStatus)? in
+                guard let self, let selectedStatus = interactor.gradeStatuses.first(where: { $0.id == selectedOption.id }) else {
                     return nil
                 }
-                self?.isLoading = true
-                return (selectedOption, selectedStatus)
+                self.isLoading = true
+                let oldOption = self.selectedOption
+                // We select the option now to make voiceover properly handle focus
+                // after the menu is dismissed. If the request fails we revert to the old value.
+                self.selectedOption = selectedOption
+                return (oldOption, selectedStatus)
             }
-            .flatMap { [submissionId, userId, interactor] (selectedOption: OptionItem, selectedStatus: GradeStatus) in
+            .flatMap { (oldOption: OptionItem, selectedStatus: GradeStatus) in
+                UIAccessibility.announcePersistently(
+                    String(localized: "Saving grade status.", bundle: .teacher)
+                )
+                .map { (oldOption, selectedStatus) }
+            }
+            .flatMap { [submissionId, userId, interactor] (oldOption: OptionItem, selectedStatus: GradeStatus) in
                 let customGradeStatusId = selectedStatus.isCustom ? selectedStatus.id : nil
                 let latePolicyStatus = selectedStatus.isCustom ? nil : selectedStatus.id
                 return interactor.updateSubmissionGradeStatus(
@@ -83,19 +94,21 @@ class GradeStatusViewModel: ObservableObject {
                     customGradeStatusId: customGradeStatusId,
                     latePolicyStatus: latePolicyStatus
                 )
-                .map { (selectedOption, selectedStatus) }
+                .mapToResult()
+                .map { ($0, oldOption) }
+            }
+            .flatMap { (result: Result<Void, Error>, oldOption: OptionItem) in
+                Self.announceSuccessfulSaveIfNecessary(result: result, oldOption: oldOption)
             }
             .receive(on: RunLoop.main)
-            .sinkFailureOrValue(
-                receiveFailure: { [weak self] _ in
-                    self?.isLoading = false
+            .sink { [weak self] result, oldOption in
+                if result.isFailure {
+                    self?.selectedOption = oldOption
                     self?.isShowingSaveFailedAlert = true
-                },
-                receiveValue: { [weak self] (selectedOption, _) in
-                    self?.selectedOption = selectedOption
-                    self?.isLoading = false
                 }
-            )
+
+                self?.isLoading = false
+            }
             .store(in: &subscriptions)
     }
 
@@ -120,6 +133,22 @@ class GradeStatusViewModel: ObservableObject {
             .sink { [weak self] option in
                 self?.selectedOption = option
             }
+    }
+
+    private static func announceSuccessfulSaveIfNecessary(
+        result: Result<Void, Error>,
+        oldOption: OptionItem
+    ) -> AnyPublisher<(Result<Void, Error>, OptionItem), Never> {
+        if result.isFailure {
+            return Just((result, oldOption))
+                .eraseToAnyPublisher()
+        }
+
+        return UIAccessibility.announcePersistently(
+            String(localized: "Grade status successfully saved.", bundle: .teacher)
+        )
+        .map { (result, oldOption) }
+        .eraseToAnyPublisher()
     }
 }
 
