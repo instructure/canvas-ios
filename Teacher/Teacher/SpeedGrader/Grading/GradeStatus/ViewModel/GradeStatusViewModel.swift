@@ -69,7 +69,11 @@ class GradeStatusViewModel: ObservableObject {
     ) {
         publisher
             .compactMap { [weak self, interactor] selectedOption -> (OptionItem, GradeStatus)? in
-                guard let self, let selectedStatus = interactor.gradeStatuses.first(where: { $0.id == selectedOption.id }) else {
+                guard
+                    let self,
+                    self.selectedOption != selectedOption, // If the user selects the same option, we don't need to do anything
+                    let selectedStatus = interactor.gradeStatuses.first(where: { $0.id == selectedOption.id })
+                else {
                     return nil
                 }
                 self.isLoading = true
