@@ -53,7 +53,8 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
     func gradeStatusFor(
         customGradeStatusId: String?,
         latePolicyStatus: Core.LatePolicyStatus?,
-        isExcused: Bool?
+        isExcused: Bool?,
+        isLate: Bool?
     ) -> GradeStatus? {
         nil
     }

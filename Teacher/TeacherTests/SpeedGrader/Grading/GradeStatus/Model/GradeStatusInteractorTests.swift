@@ -47,30 +47,42 @@ class GradeStatusInteractorTests: TeacherTestCase {
         let custom = testee.gradeStatusFor(
             customGradeStatusId: "custom1",
             latePolicyStatus: nil,
-            isExcused: nil
+            isExcused: nil,
+            isLate: nil
         )
         XCTAssertEqual(custom?.id, "custom1")
 
         let excused = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: nil,
-            isExcused: true
+            isExcused: true,
+            isLate: nil
         )
         XCTAssertEqual(excused?.id, "excused")
 
         let late = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: .late,
-            isExcused: nil
+            isExcused: nil,
+            isLate: nil
         )
         XCTAssertEqual(late?.id, "late")
 
         let notFound = testee.gradeStatusFor(
             customGradeStatusId: nil,
             latePolicyStatus: nil,
-            isExcused: nil
+            isExcused: nil,
+            isLate: nil
         )
         XCTAssertNil(notFound)
+
+        let lateByIsLate = testee.gradeStatusFor(
+            customGradeStatusId: nil,
+            latePolicyStatus: nil,
+            isExcused: nil,
+            isLate: true
+        )
+        XCTAssertEqual(lateByIsLate?.id, "late")
     }
 
     func test_updateSubmissionGradeStatus_triggersRefresh() {

@@ -37,7 +37,8 @@ protocol GradeStatusInteractor {
     func gradeStatusFor(
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
-        isExcused: Bool?
+        isExcused: Bool?,
+        isLate: Bool?
     ) -> GradeStatus?
 
     func observeGradeStatusChanges(
@@ -93,7 +94,8 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
     func gradeStatusFor(
         customGradeStatusId: String?,
         latePolicyStatus: LatePolicyStatus?,
-        isExcused: Bool?
+        isExcused: Bool?,
+        isLate: Bool?
     ) -> GradeStatus? {
         if let customGradeStatusId {
             return gradeStatuses.first { $0.isCustom && $0.id == customGradeStatusId }
@@ -101,8 +103,9 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
             return gradeStatuses.first { !$0.isCustom && $0.id == lateStatus }
         } else if isExcused == true {
             return gradeStatuses.first { !$0.isCustom && $0.id == "excused" }
+        } else if isLate == true {
+            return gradeStatuses.first { !$0.isCustom && $0.id == LatePolicyStatus.late.rawValue }
         }
-
         return nil
     }
 
@@ -120,7 +123,8 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
                 return self.gradeStatusFor(
                     customGradeStatusId: submission?.customGradeStatusId,
                     latePolicyStatus: submission?.latePolicyStatus,
-                    isExcused: submission?.excused
+                    isExcused: submission?.excused,
+                    isLate: submission?.late
                 )
             }
             .removeDuplicates()
