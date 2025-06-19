@@ -56,7 +56,7 @@ class GradeStatusViewModel: ObservableObject {
         self.submissionId = submissionId
         self.userId = userId
         options = interactor.gradeStatuses
-            .map { OptionItem(id: $0.id, title: $0.name) }
+            .map { OptionItem(id: $0.id, title: $0.name, accessibilityId: "SpeedGrader.GradeStatusMenuItem.\($0.id)") }
             .sorted { $0.title < $1.title }
 
         uploadGradeStatus(on: didSelectGradeStatus)

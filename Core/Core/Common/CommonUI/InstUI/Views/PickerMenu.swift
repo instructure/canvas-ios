@@ -106,6 +106,7 @@ extension InstUI {
                 option.customAccessibilityLabel
                     ?? [option.title, option.subtitle].joined(separator: ", ")
             )
+            .identifier(option.accessibilityId)
         }
     }
 }

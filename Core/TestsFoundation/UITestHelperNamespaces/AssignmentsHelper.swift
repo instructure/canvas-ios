@@ -46,6 +46,14 @@ public class AssignmentsHelper: BaseHelper {
         public static var toolPicker: XCUIElement { app.find(id: "SpeedGrader.toolPicker") }
         public static var gradeButton: XCUIElement { app.find(id: "SpeedGrader.gradeButton") }
         public static var gradeSlider: XCUIElement { app.find(label: "Grade Slider", type: .slider) }
+        public static var statusPicker: XCUIElement { app.find(id: "SpeedGrader.statusPicker") }
+
+        public struct GradeStatusButtons {
+            public static var excused: XCUIElement { app.find(id: "SpeedGrader.GradeStatusMenuItem.excused", type: .button) }
+            public static var late: XCUIElement { app.find(id: "SpeedGrader.GradeStatusMenuItem.late", type: .button) }
+            public static var missing: XCUIElement { app.find(id: "SpeedGrader.GradeStatusMenuItem.missing", type: .button) }
+            public static var none: XCUIElement { app.find(id: "SpeedGrader.GradeStatusMenuItem.none", type: .button) }
+        }
 
         // MARK: Navigation bar
         // Speedgrader is fullscreen so there's only one navigation bar

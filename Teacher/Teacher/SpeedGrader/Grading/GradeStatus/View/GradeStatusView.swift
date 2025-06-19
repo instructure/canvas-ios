@@ -62,6 +62,7 @@ struct GradeStatusView: View {
         .frame(minHeight: 52)
         .paddingStyle(.horizontal, .standard)
         .background(Color.backgroundLightest)
+        .identifier("SpeedGrader.statusPicker")
     }
 }
 
