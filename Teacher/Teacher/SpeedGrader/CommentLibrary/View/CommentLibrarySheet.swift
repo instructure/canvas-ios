@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct CommentLibrarySheet: View {
@@ -27,29 +28,27 @@ struct CommentLibrarySheet: View {
     let sendAction: () -> Void
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack(spacing: 0) {
-                headerView
-                CommentLibraryList(viewModel: viewModel, comment: $comment) {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                OldCommentEditorView(
-                    text: $comment,
-                    shouldShowCommentLibrary: false,
-                    showCommentLibrary: .constant(false),
-                    action: editorAction,
-                    containerHeight: geometry.size.height,
-                    contextColor: contextColor
-                )
-                    .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
-                    .background(Color.backgroundLight)
-                    .onChange(of: comment) {
-                        viewModel.comment = comment
-                    }
-            }.onAppear {
-                viewModel.comment = comment
-                viewModel.viewDidAppear()
+        VStack(spacing: 0) {
+            headerView
+            CommentLibraryList(viewModel: viewModel, comment: $comment) {
+                presentationMode.wrappedValue.dismiss()
             }
+            CommentInputView(
+                comment: $comment,
+                commentLibraryButtonType: .closeLibrary,
+                isAttachmentButtonEnabled: false,
+                contextColor: contextColor,
+                commentLibraryAction: { presentationMode.wrappedValue.dismiss() },
+                addAttachmentAction: { _ in },
+                sendAction: editorAction
+            )
+        }
+        .onAppear {
+            viewModel.comment = comment
+            viewModel.viewDidAppear()
+        }
+        .onChange(of: comment) {
+            viewModel.comment = comment
         }
     }
 
