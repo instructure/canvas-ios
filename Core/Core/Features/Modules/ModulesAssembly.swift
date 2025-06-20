@@ -23,19 +23,24 @@ class ModulesAssembly {
     private static var publishInteractorsByCourseIds: [String: ModulePublishInteractor] = [:]
     private static var subscriptions = Set<AnyCancellable>()
 
-    public static func publishInteractor(for courseId: String) -> ModulePublishInteractor {
+    public static func publishInteractor(for courseId: String, env: AppEnvironment) -> ModulePublishInteractor {
         if let interactor = publishInteractorsByCourseIds[courseId] {
             return interactor
         }
 
-        let interactor = ModulePublishInteractorLive(courseId: courseId)
+        let interactor = ModulePublishInteractorLive(
+            app: env.app,
+            courseId: courseId,
+            api: env.api
+        )
+
         publishInteractorsByCourseIds[courseId] = interactor
 
         interactor
             .statusUpdates
             .receive(on: RunLoop.main)
             .sink { update in
-                AppEnvironment.shared.topViewController?.findSnackBarViewModel()?.showSnack(update)
+                env.topViewController?.findSnackBarViewModel()?.showSnack(update)
             }
             .store(in: &subscriptions)
 

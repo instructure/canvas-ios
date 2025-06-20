@@ -29,7 +29,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     @IBOutlet weak var tableView: UITableView!
     public let titleSubtitleView = TitleSubtitleView.create()
 
-    private let env = AppEnvironment.shared
+    private var env: AppEnvironment = .shared
     public var color: UIColor?
     private var courseID = ""
     private var moduleID: String?
@@ -53,18 +53,19 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     private var isPageDisabled: Bool {
         tabs.first { $0.id == "modules" } == nil && courses.first?.defaultView != .modules
     }
-    private var collapsedIDs: [String: [String]] = AppEnvironment.shared.userDefaults?.collapsedModules ?? [:] {
+    private lazy var collapsedIDs: [String: [String]] = env.userDefaults?.collapsedModules ?? [:] {
         didSet {
-            AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
+            env.userDefaults?.collapsedModules = collapsedIDs
         }
     }
-    private lazy var publishInteractor = ModulesAssembly.publishInteractor(for: courseID)
+    private lazy var publishInteractor = ModulesAssembly.publishInteractor(for: courseID, env: env)
     private var subscriptions = Set<AnyCancellable>()
 
-    public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
+    public static func create(env: AppEnvironment, courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.moduleID = moduleID
+        controller.env = env
         return controller
     }
 

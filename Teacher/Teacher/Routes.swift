@@ -292,14 +292,14 @@ let router = Router(routes: [
     RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails),
     RouteHandler("/:context/:contextID/files/:fileID/edit", factory: fileEditor),
 
-    RouteHandler("/courses/:courseID/modules") { _, params, _ in
+    RouteHandler("/courses/:courseID/modules") { _, params, _, env in
         guard let courseID = params["courseID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID)
+        return ModuleListViewController.create(env: env, courseID: courseID)
     },
 
-    RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _ in
+    RouteHandler("/courses/:courseID/modules/:moduleID") { _, params, _, env in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
+        return ModuleListViewController.create(env: env, courseID: courseID, moduleID: moduleID)
     },
 
     RouteHandler("/courses/:courseID/modules/:moduleID/items/:itemID") { url, params, _ in

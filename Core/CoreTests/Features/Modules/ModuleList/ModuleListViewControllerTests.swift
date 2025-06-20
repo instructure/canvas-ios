@@ -31,7 +31,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         }
     }
 
-    lazy var viewController = ModuleListViewController.create(courseID: "1")
+    lazy var viewController = ModuleListViewController.create(env: environment, courseID: "1")
     var save: XCTestExpectation?
 
     func loadView() {
@@ -258,7 +258,7 @@ class ModuleListViewControllerTests: CoreTestCase {
             GetModuleItemsRequest(courseID: "1", moduleID: "7", include: [.content_details, .mastery_paths]),
             value: [.make(id: "7")]
         )
-        let viewController = ModuleListViewController.create(courseID: "1", moduleID: "5")
+        let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "5")
         viewController.view.layoutIfNeeded()
         drainMainQueue()
         XCTAssertEqual(viewController.tableView.numberOfSections, 7)
@@ -317,7 +317,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertFalse(after.isExpanded)
         XCTAssertEqual(before.accessibilityLabel, "Module 1, expanded")
 
-        let viewController = ModuleListViewController.create(courseID: "1")
+        let viewController = ModuleListViewController.create(env: environment, courseID: "1")
         viewController.view.layoutIfNeeded()
         drainMainQueue()
         let later = viewController.tableView.headerView(forSection: 0) as! ModuleSectionHeaderView
