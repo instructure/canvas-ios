@@ -134,7 +134,7 @@ final class AssistQuizViewModel {
         let quizzes = quizItems.map { AssistQuizModel(from: $0) }
         quiz = quizzes.first
     }
-    
+
     private func fetchQuizzes() {
         isLoaderVisible = true
         currentQuizIndex = 0
