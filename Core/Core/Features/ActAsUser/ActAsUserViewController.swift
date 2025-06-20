@@ -141,7 +141,8 @@ public class ActAsUserViewController: UIViewController {
                 userID: user.id.value,
                 userName: user.short_name,
                 userEmail: user.email,
-                oauthType: session.oauthType
+                clientID: session.clientID,
+                clientSecret: session.clientSecret
             ))
         } }
     }

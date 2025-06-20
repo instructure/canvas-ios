@@ -51,12 +51,6 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var hostURL: URL?
     /// Returns host with https prefix in URL format e.g.: https://institution.instructure.com
     var hostURLWithHttpsPrefix: URL?
-    /// Challenge pair used for PKCE OAuth login
-    var challenge: PKCEChallenge.ChallengePair?
-
-    /// App Client ID used for PKCE Login. In release/debug mode it should be set from Secrets.
-    /// Additionally, it can be injected through the viewController's create method for testing purposes.
-    var clientID: String?
 
     var authenticationProvider: String?
     var method = AuthenticationMethod.normalLogin
@@ -92,8 +86,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         mdmLogin: MDMLogin? = nil,
         loginDelegate: LoginDelegate?,
         method: AuthenticationMethod,
-        pairingCode: String? = nil,
-        clientID: String? = Secret.appClientID.string // Used for PKCE Login, defaults to Secrets. Can be overriden for testing purposes.
+        pairingCode: String? = nil
     ) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.title = host
@@ -105,7 +98,6 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         controller.loginDelegate = loginDelegate
         controller.method = method
         controller.pairingCode = pairingCode
-        controller.clientID = clientID
         return controller
     }
 
@@ -119,18 +111,20 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         setupProgressView()
         setupIndeterminateLoadingIndicator()
 
-        // If ManualOAuth was selected, we provide the client_id and client_secret to the oauth request.
+        // Manual OAuth provided mobileVerifyModel
         if let mobileVerifyModel {
             // Modify the title to include the url scheme to easily catch http/https errors.
             title = mobileVerifyModel.base_url?.absoluteString
-            loadManualOAuthLoginWebRequest()
-        // For PKCE OAuth login, we provide a client_id and generate a code challenge pair.
-        } else {
-            guard clientID != nil else {
-                fatalError("App Client ID not set")
-            }
-            loadPKCEOauthLoginWebRequest()
+            return loadLoginWebRequest()
         }
+
+        // Lookup OAuth from mobile verify
+        task?.cancel()
+        task = API().makeRequest(GetMobileVerifyRequest(domain: host)) { [weak self] (response, _, _) in performUIUpdate {
+            self?.mobileVerifyModel = response
+            self?.task = nil
+            self?.loadLoginWebRequest()
+        } }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -212,38 +206,14 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         }
     }
 
-    private func loadManualOAuthLoginWebRequest() {
+    private func loadLoginWebRequest() {
         guard let verify = mobileVerifyModel, let url = verify.base_url, let clientID = verify.client_id else {
             showFailedPanda(reason: .invalidDomain)
             return
         }
-        let requestable = LoginWebRequest(
-            authMethod: method,
-            clientID: clientID,
-            provider: authenticationProvider
-        )
+
+        let requestable = LoginWebRequest(authMethod: method, clientID: clientID, provider: authenticationProvider)
         if var request = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil) {
-            request.timeoutInterval = 30
-            webView.load(request)
-        }
-    }
-
-    private func loadPKCEOauthLoginWebRequest() {
-        guard let challenge = PKCEChallenge().generateChallenge(), let hostURL, let clientID else {
-            return
-        }
-        self.challenge = challenge
-
-        let isCanvasLogin = AppEnvironment.shared.app == .horizon && hostURL.absoluteString.lowercased().contains("intelvio.instructure.com") == true
-
-        let requestable = LoginWebRequestPKCE(
-            clientID: clientID,
-            host: hostURL,
-            challenge: challenge,
-            isSiteAdminLogin: method == .siteAdminLogin,
-            isCanvasLogin: isCanvasLogin
-        )
-        if var request = try? requestable.urlRequest(relativeTo: hostURL, accessToken: nil, actAsUserID: nil) {
             request.timeoutInterval = 30
             webView.load(request)
         }
@@ -309,52 +279,39 @@ extension LoginWebViewController: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
-        weak var weakSelf = self
-
         let queryItems = components.queryItems
-
-        // wait for "https://canvas/login?code="
-        if url.absoluteString.hasPrefix("https://canvas/login"),
-           let code = queryItems?.first(where: { $0.name == "code" })?.value, !code.isEmpty {
+        if // wait for "https://canvas/login?code="
+            url.absoluteString.hasPrefix("https://canvas/login"),
+            let code = queryItems?.first(where: { $0.name == "code" })?.value, !code.isEmpty,
+            let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
             task?.cancel()
-            if let mobileVerify = mobileVerifyModel {
-                let oauthType = OAuthType.manual(
-                    .init(
-                        baseURL: mobileVerify.base_url,
-                        clientID: mobileVerify.client_id,
-                        clientSecret: mobileVerify.client_secret
-                    )
-                )
-                task = API().makeRequest(
-                    PostLoginOAuthRequest(
-                        oauthType: oauthType,
-                        code: code
-                    )
-                ) { response, _, error in
-                    performUIUpdate {
-                        weakSelf?.handleLoginResult(oauthType: oauthType, response: response, error: error)
-                    }
+            task = API().makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in performUIUpdate {
+                guard let self = self else { return }
+                guard let token = response, error == nil else {
+                    self.showError(error ?? NSError.internalError())
+                    return
                 }
-            } else if let challenge = challenge, let hostURLWithHttpsPrefix, let clientID {
-                let oauthType = OAuthType.pkce(
-                    .init(
-                        baseURL: hostURLWithHttpsPrefix,
-                        clientID: clientID,
-                        codeVerifier: challenge.codeVerifier
-                    )
+                let session = LoginSession(
+                    accessToken: token.access_token,
+                    baseURL: baseURL,
+                    expiresAt: token.expires_in.flatMap { Clock.now + $0 },
+                    locale: token.user.effective_locale,
+                    refreshToken: token.refresh_token,
+                    userID: token.user.id.value,
+                    userName: token.user.name,
+                    clientID: mobileVerify.client_id,
+                    clientSecret: mobileVerify.client_secret
                 )
-                task = API().makeRequest(
-                    PostLoginOAuthRequest(
-                        oauthType: oauthType,
-                        code: code
-                    )
-                ) { response, _, error in
-                    performUIUpdate {
-                        weakSelf?.handleLoginResult(oauthType: oauthType, response: response, error: error)
-                    }
+                if let completion = self.loginCompletion {
+                    completion(session)
+                } else if AppEnvironment.shared.app == .horizon {
+                    self.loginDelegate?.userDidLogin(session: session)
+                    self.env.router.route(to: "/splash", from: self)
+                } else {
+                    self.env.router.show(LoadingViewController.create(), from: self)
+                    self.loginDelegate?.userDidLogin(session: session)
                 }
-            }
-
+            } }
             return decisionHandler(.cancel)
         } else if queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {
             // access_denied is the only currently implemented error code
@@ -366,35 +323,7 @@ extension LoginWebViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    private func handleLoginResult(oauthType: OAuthType, response: APIOAuthToken?, error: Error?) {
-        guard let token = response, error == nil, let hostURLWithHttpsPrefix else {
-            self.showError(error ?? NSError.internalError())
-            return
-        }
-        let session = LoginSession(
-            accessToken: token.access_token,
-            baseURL: hostURLWithHttpsPrefix,
-            expiresAt: token.expires_in.flatMap { Clock.now + $0 },
-            locale: token.user.effective_locale,
-            refreshToken: token.refresh_token,
-            userID: token.user.id.value,
-            userName: token.user.name,
-            oauthType: oauthType,
-            canvasRegion: token.canvas_region
-        )
-
-        if let completion = self.loginCompletion {
-            completion(session)
-        } else if AppEnvironment.shared.app == .horizon {
-            self.loginDelegate?.userDidLogin(session: session)
-            self.env.router.route(to: "/splash", from: self)
-        } else {
-            self.env.router.show(LoadingViewController.create(), from: self)
-            self.loginDelegate?.userDidLogin(session: session)
-        }
-    }
-
-    public func webView(_: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         progressView.alpha = 1
         progressView.isHidden = false
     }
