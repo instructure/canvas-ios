@@ -38,7 +38,7 @@ struct AssignmentDetails: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
-                if let submission = viewModel.submission, viewModel.didTapViewAttempts {
+                if let submission = viewModel.submission, viewModel.shouldShowViewAttempts {
                     viewAttemptText(attempt: submission.attempt)
                 }
                 topView
