@@ -19,7 +19,7 @@
 import Core
 import UIKit
 
-final class LearnAssembly {
+struct LearnAssembly {
     static func makeGetCoursesInteractor() -> GetCoursesInteractor {
         GetCoursesInteractorLive()
     }
@@ -27,20 +27,22 @@ final class LearnAssembly {
     static func makeCourseDetailsViewController(
         courseID: String,
         enrollmentID: String,
-        course: HCourse? = nil
+        course: HCourse? = nil,
+        shoudHideTabBar: Bool = false,
+        selectedTab: CourseDetailsTabs? = nil
     ) -> UIViewController {
         let appEnvironment = AppEnvironment.shared
+        let viewModel = CourseDetailsViewModel(
+            router: appEnvironment.router,
+            getCoursesInteractor: makeGetCoursesInteractor(),
+            learnCoursesInteractor: GetLearnCoursesInteractorLive(),
+            courseID: courseID,
+            enrollmentID: enrollmentID,
+            course: course,
+            selectedTab: selectedTab
+        )
         return CoreHostingController(
-            CourseDetailsView(
-                viewModel: .init(
-                    router: appEnvironment.router,
-                    getCoursesInteractor: makeGetCoursesInteractor(),
-                    learnCoursesInteractor: GetLearnCoursesInteractorLive(),
-                    courseID: courseID,
-                    enrollmentID: enrollmentID,
-                    course: course
-                )
-            )
+            makeCourseDetailsView(viewModel: viewModel, shoudHideTabBar: shoudHideTabBar)
         )
     }
 
@@ -65,20 +67,32 @@ final class LearnAssembly {
         enrollmentID: String,
         course: HCourse? = nil
     ) -> CourseDetailsView {
-        return CourseDetailsView(
-            viewModel: makeViewModel(
-                courseID: courseID,
-                enrollmentID: enrollmentID,
-                course: course
-            ),
+        let viewModel = makeViewModel(
+            courseID: courseID,
+            enrollmentID: enrollmentID,
+            course: course
+        )
+        return makeCourseDetailsView(
+            viewModel: viewModel,
             isBackButtonVisible: false
         )
     }
 
-    static func makeCourseDetailsView(viewModel: CourseDetailsViewModel) -> CourseDetailsView {
-        CourseDetailsView(
+    static func makeCourseDetailsView(
+        viewModel: CourseDetailsViewModel,
+        isBackButtonVisible: Bool = true,
+        shoudHideTabBar: Bool = false,
+    ) -> CourseDetailsView {
+        let environment = AppEnvironment.shared
+        let showTabBarAndNavigationBar: (Bool) -> Void = { isVisible in
+            environment.tabBar(isVisible: shoudHideTabBar ? isVisible : true)
+            environment.navigationBar(isVisible: isVisible)
+        }
+       return CourseDetailsView(
             viewModel: viewModel,
-            isBackButtonVisible: false
+            isBackButtonVisible: isBackButtonVisible,
+            shouldHideTabBar: shoudHideTabBar,
+            onShowNavigationBarAndTabBar: showTabBarAndNavigationBar
         )
     }
 
