@@ -426,7 +426,8 @@ struct SubmissionGraderView: View {
                 assignment: viewModel.assignment,
                 containerHeight: geometry.size.height,
                 submission: viewModel.submission,
-                rubricsViewModel: rubricsViewModel
+                rubricsViewModel: rubricsViewModel,
+                gradeStatusViewModel: viewModel.gradeStatusViewModel
             )
             .clipped()
             Spacer().frame(height: bottomInset)

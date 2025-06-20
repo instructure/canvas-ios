@@ -21,6 +21,8 @@ import Core
 import SwiftUI
 
 protocol SpeedGraderInteractor: AnyObject {
+    var gradeStatusInteractor: GradeStatusInteractor { get }
+
     var state: CurrentValueSubject<SpeedGraderInteractorState, Never> { get }
     var data: SpeedGraderData? { get }
     /// Submissions can take some time to load so we separate the loading of metadata to have the nav bar themed quickly
@@ -32,7 +34,7 @@ protocol SpeedGraderInteractor: AnyObject {
 
     /// Loads all data and updates `state`, `data` and `contextInfo` properties.
     func load()
-    func refreshSubmission(forUserId: String)
+    func refreshSubmission(forUserId: String) -> AnyPublisher<Void, Error>
 }
 
 struct SpeedGraderContextInfo: Equatable {

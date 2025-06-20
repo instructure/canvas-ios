@@ -10759,6 +10759,9 @@
         }
       }
     },
+    "Days late" : {
+
+    },
     "Description" : {
       "localizations" : {
         "ar" : {
@@ -13575,6 +13578,9 @@
         }
       }
     },
+    "Due: %@" : {
+
+    },
     "Edit" : {
       "localizations" : {
         "ar" : {
@@ -13830,6 +13836,9 @@
           }
         }
       }
+    },
+    "Enter days late" : {
+
     },
     "Error" : {
       "localizations" : {
@@ -15368,6 +15377,9 @@
         }
       }
     },
+    "Extended" : {
+
+    },
     "Failed to launch rollcall LTI tool." : {
       "localizations" : {
         "ar" : {
@@ -15879,6 +15891,9 @@
           }
         }
       }
+    },
+    "Failed to save grade status.\nPlease try again." : {
+
     },
     "File %lld of %lld" : {
       "comment" : "Example: File 1 of 2",
@@ -19222,6 +19237,9 @@
           }
         }
       }
+    },
+    "Grade status successfully saved." : {
+
     },
     "Graded" : {
       "localizations" : {
@@ -25976,6 +25994,9 @@
         }
       }
     },
+    "Missing" : {
+
+    },
     "Moderated Grading Unsupported" : {
       "localizations" : {
         "ar" : {
@@ -28279,6 +28300,9 @@
           }
         }
       }
+    },
+    "None" : {
+
     },
     "Not Graded" : {
       "localizations" : {
@@ -34936,6 +34960,9 @@
         }
       }
     },
+    "Saving grade status." : {
+
+    },
     "Scored above..." : {
       "localizations" : {
         "ar" : {
@@ -37239,6 +37266,9 @@
           }
         }
       }
+    },
+    "Status" : {
+
     },
     "Student" : {
       "localizations" : {

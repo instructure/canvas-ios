@@ -82,7 +82,10 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     @discardableResult
-    open func setNetworkStateOffline() -> Bool {
+    open func setNetworkStateOffline(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> Bool {
         do {
             if try CommandLine.isOnline() {
                 try CommandLine.setConnection(state: .off)
@@ -90,13 +93,20 @@ open class E2ETestCase: CoreUITestCase {
 
             return try CommandLine.isOffline()
         } catch(let error) {
-            XCTFail(error.localizedDescription)
+            XCTFail(
+                error.localizedDescription,
+                file: file,
+                line: line
+            )
             return false
         }
     }
 
     @discardableResult
-    open func setNetworkStateOnline() -> Bool {
+    open func setNetworkStateOnline(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> Bool {
         do {
             if try CommandLine.isOffline() {
                 try CommandLine.setConnection(state: .on)
@@ -105,7 +115,11 @@ open class E2ETestCase: CoreUITestCase {
 
             return try CommandLine.isOnline()
         } catch(let error) {
-            XCTFail(error.localizedDescription)
+            XCTFail(
+                error.localizedDescription,
+                file: file,
+                line: line
+            )
             return false
         }
     }

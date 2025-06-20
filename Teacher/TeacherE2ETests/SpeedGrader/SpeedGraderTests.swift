@@ -69,6 +69,17 @@ class SpeedGraderTests: E2ETestCase {
             XCTAssertVisible(SpeedGraderHelper.courseNameLabel(course: course).waitUntil(.visible))
         }
 
+        XCTContext.runActivity(named: "Check status picker values") { _ in
+            SpeedGraderHelper.drawerGripper.hit()
+            SpeedGraderHelper.statusPicker.hit()
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.excused.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.late.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.missing.waitUntil(.visible))
+            XCTAssertVisible(SpeedGraderHelper.GradeStatusButtons.none.waitUntil(.visible))
+            XCTAssertTrue(SpeedGraderHelper.GradeStatusButtons.none.isSelected)
+            SpeedGraderHelper.GradeStatusButtons.none.actionUntilElementCondition(action: .tap, condition: .vanish)
+        }
+
         XCTContext.runActivity(named: "Swipe to the first student") { _ in
             let firstUserNameLabel = SpeedGraderHelper.userNameLabel(user: student1)
             firstUserNameLabel.actionUntilElementCondition(

@@ -28,11 +28,12 @@ public class GradeSubmission: APIUseCase {
     let excused: Bool?
     let grade: String?
     let rubricAssessment: APIRubricAssessmentMap?
+    let lateSeconds: Int?
 
     public var cacheKey: String? { nil }
     public var request: PutSubmissionGradeRequest {
         PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: .init(
-            submission: .init(excuse: excused, posted_grade: grade),
+            submission: .init(excuse: excused, posted_grade: grade, seconds_late_override: lateSeconds),
             rubric_assessment: rubricAssessment
         ))
     }
@@ -43,6 +44,7 @@ public class GradeSubmission: APIUseCase {
         userID: String,
         excused: Bool? = nil,
         grade: String? = nil,
+        lateSeconds: Int? = nil,
         rubricAssessment: APIRubricAssessmentMap? = nil
     ) {
         self.courseID = courseID
@@ -50,6 +52,7 @@ public class GradeSubmission: APIUseCase {
         self.userID = userID
         self.excused = excused
         self.grade = grade
+        self.lateSeconds = lateSeconds
         self.rubricAssessment = rubricAssessment
     }
 
@@ -73,6 +76,7 @@ public class GradeSubmission: APIUseCase {
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
         model.late = item.late == true
         model.latePolicyStatus = item.late_policy_status
+        model.lateSeconds = item.seconds_late ?? 0
         model.missing = item.missing == true
         model.pointsDeducted = item.points_deducted
         model.postedAt = item.posted_at
