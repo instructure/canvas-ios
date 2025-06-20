@@ -25,17 +25,13 @@ struct SubmissionCommentListView: View {
     @Binding var attempt: Int
     @Binding var fileID: String?
     @Binding var showRecorder: MediaCommentType?
-    @Binding var comment: String
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     @ObservedObject private var viewModel: SubmissionCommentListViewModel
-    @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @State var error: Text?
-    @State var showMediaOptions = false
-    @State var showCommentLibrary = false
 
     @AccessibilityFocusState private var focusedTab: SubmissionGraderView.GraderTab?
 
@@ -44,16 +40,12 @@ struct SubmissionCommentListView: View {
         attempt: Binding<Int>,
         fileID: Binding<String?>,
         showRecorder: Binding<MediaCommentType?>,
-        enteredComment: Binding<String>,
-        commentLibrary: SubmissionCommentLibraryViewModel,
         focusedTab: AccessibilityFocusState<SubmissionGraderView.GraderTab?>
     ) {
         self.viewModel = viewModel
         self._attempt = attempt
         self._fileID = fileID
         self._showRecorder = showRecorder
-        self._comment = enteredComment
-        self.commentLibrary = commentLibrary
         self._focusedTab = focusedTab
     }
 
@@ -96,11 +88,6 @@ struct SubmissionCommentListView: View {
                         .transition(.opacity)
                 }
             }
-            .sheet(isPresented: $showCommentLibrary) {
-                CommentLibrarySheet(viewModel: commentLibrary, comment: $comment, contextColor: viewModel.contextColor) {
-                    sendComment()
-                }
-            }
         }
     }
 
@@ -124,11 +111,13 @@ struct SubmissionCommentListView: View {
 
     private var toolbar: some View {
         CommentInputView(
-            comment: $comment,
-            commentLibraryButtonType: commentLibrary.shouldShow ? .openLibrary : .hidden,
+            comment: viewModel.comment,
+            commentLibraryButtonType: viewModel.isCommentLibraryAvailable ? .openLibrary : .hidden,
             isAttachmentButtonEnabled: true,
             contextColor: viewModel.contextColor,
-            commentLibraryAction: { showCommentLibrary = true },
+            commentLibraryAction: {
+                viewModel.presentCommentLibrary(sendAction: sendComment, source: controller)
+            },
             addAttachmentAction: { type in
                 switch type {
                 case .audio: recordAudio()
@@ -142,14 +131,14 @@ struct SubmissionCommentListView: View {
     }
 
     func sendComment() {
-        let text = comment.trimmingCharacters(in: .whitespacesAndNewlines)
+        let text = viewModel.comment.value.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
 
         error = nil
-        comment = ""
+        viewModel.comment.value = ""
         viewModel.sendTextComment(text) { result in
             if result.isFailure {
-                self.comment = text
+                viewModel.comment.value = text
             }
             handleSendCommentResult(result)
         }
@@ -218,13 +207,5 @@ struct SubmissionCommentListView: View {
         withAnimation(.default) {
             showRecorder = recorder
         }
-    }
-}
-
-private extension View {
-    // Toolbar buttons should be center aligned with the last row of the comment textfield.
-    // This offset is an approximation for that.
-    func commentToolbarButtonOffset() -> some View {
-        scaledOffset(y: -5, useIconScale: true)
     }
 }

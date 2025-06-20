@@ -43,7 +43,7 @@ class SubmissionCommentLibraryViewModelTests: TeacherTestCase {
         api.mock(APICommentLibraryRequest(userId: "1"), value: response)
 
         // When
-        let testee = SubmissionCommentLibraryViewModel()
+        let testee = CommentLibraryViewModel()
 
         let exp1 = expectation(description: "fetch completed")
         testee.viewDidAppear(completion: { exp1.fulfill() })

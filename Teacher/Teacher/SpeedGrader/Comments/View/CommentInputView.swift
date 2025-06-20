@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import SwiftUI
 
@@ -36,18 +37,37 @@ struct CommentInputView: View {
     @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
-    @Binding var comment: String
+    @State private var commentSubject = CurrentValueSubject<String, Never>("")
+    @State private var comment: String = ""
 
-    let commentLibraryButtonType: CommentLibraryButtonType
-    let isAttachmentButtonEnabled: Bool
-    let contextColor: Color
+    private let commentLibraryButtonType: CommentLibraryButtonType
+    private let isAttachmentButtonEnabled: Bool
+    private let contextColor: Color
 
-    let commentLibraryAction: () -> Void
-    let addAttachmentAction: (AttachmentType) -> Void
-    let sendAction: () -> Void
+    private let commentLibraryAction: () -> Void
+    private let addAttachmentAction: (AttachmentType) -> Void
+    private let sendAction: () -> Void
 
     @State private var showAttachmentTypeSheet = false
     @FocusState private var isFocused: Bool
+
+    init(
+        comment: CurrentValueSubject<String, Never>,
+        commentLibraryButtonType: CommentLibraryButtonType,
+        isAttachmentButtonEnabled: Bool,
+        contextColor: Color,
+        commentLibraryAction: @escaping () -> Void,
+        addAttachmentAction: @escaping (AttachmentType) -> Void,
+        sendAction: @escaping () -> Void
+    ) {
+        self.commentSubject = comment
+        self.commentLibraryButtonType = commentLibraryButtonType
+        self.isAttachmentButtonEnabled = isAttachmentButtonEnabled
+        self.contextColor = contextColor
+        self.commentLibraryAction = commentLibraryAction
+        self.addAttachmentAction = addAttachmentAction
+        self.sendAction = sendAction
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -56,6 +76,9 @@ struct CommentInputView: View {
                 .paddingStyle(.horizontal, .standard)
                 .padding(.vertical, 8)
                 .background(.backgroundLightest)
+        }
+        .onReceive(commentSubject) {
+            comment = $0
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -102,7 +125,10 @@ struct CommentInputView: View {
                     .foregroundStyle(.textPlaceholder)
             }
             InstUI.ScrollableTextEditor(
-                text: $comment,
+                text: Binding(
+                    get: { commentSubject.value },
+                    set: { commentSubject.value = $0 }
+                ),
                 placeholder: String(localized: "Comment", bundle: .teacher),
                 font: .regular14,
                 lineLimit: 5.5
@@ -177,14 +203,9 @@ struct CommentInputView: View {
 #if DEBUG
 
 #Preview {
-    @Previewable @State var text: String = "Sample text"
-    @Previewable @State var textShort: String = .loremIpsumShort
-    @Previewable @State var textLong: String = .loremIpsumLong
-    @Previewable @State var textEmpty: String = ""
-
     VStack {
         CommentInputView(
-            comment: $textShort,
+            comment: .init(.loremIpsumShort),
             commentLibraryButtonType: .openLibrary,
             isAttachmentButtonEnabled: true,
             contextColor: .green,
@@ -195,7 +216,7 @@ struct CommentInputView: View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: $textLong,
+            comment: .init(.loremIpsumLong),
             commentLibraryButtonType: .closeLibrary,
             isAttachmentButtonEnabled: false,
             contextColor: .green,
@@ -206,7 +227,7 @@ struct CommentInputView: View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: $textLong,
+            comment: .init(.loremIpsumLong),
             commentLibraryButtonType: .hidden,
             isAttachmentButtonEnabled: true,
             contextColor: .green,
@@ -217,7 +238,7 @@ struct CommentInputView: View {
         .background(Color.backgroundLightest)
 
         CommentInputView(
-            comment: $textEmpty,
+            comment: .init(""),
             commentLibraryButtonType: .openLibrary,
             isAttachmentButtonEnabled: true,
             contextColor: .green,

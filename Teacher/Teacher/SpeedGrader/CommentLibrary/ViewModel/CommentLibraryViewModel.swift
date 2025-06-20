@@ -20,35 +20,28 @@ import Core
 import Combine
 import SwiftUI
 
-class SubmissionCommentLibraryViewModel: ObservableObject {
+class CommentLibraryViewModel: ObservableObject {
 
-    public enum ViewModelState<T: Equatable>: Equatable {
-        case loading
-        case empty
-        case data(T)
-    }
-
-    @Published public private(set) var state: ViewModelState<[LibraryComment]> = .loading
-    @Published public var endCursor: String?
+    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var comments: [LibraryComment] = []
+    @Published var endCursor: String?
 
     public var shouldShow: Bool {
         settings.first?.commentLibrarySuggestionsEnabled ?? false
     }
 
-    public var comment: String {
-        get { commentSubject.value }
-        set { commentSubject.send(newValue) }
-    }
-
     private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
-    private var commentSubject = CurrentValueSubject<String, Never>("")
+
+    // comment currently entered in comment input view
+    let comment: CurrentValueSubject<String, Never>
 
     private let env = AppEnvironment.shared
     private var subscriptions = Set<AnyCancellable>()
-    private var comments: [LibraryComment] = []
 
-    init() {
-        commentSubject
+    init(comment: CurrentValueSubject<String, Never>) {
+        self.comment = comment
+
+        comment
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .removeDuplicates()
             .mapToVoid()
@@ -89,9 +82,13 @@ class SubmissionCommentLibraryViewModel: ObservableObject {
             completion()
         }
     }
+
+    func dismiss(_ viewController: WeakViewController) {
+        env.router.dismiss(viewController)
+    }
 }
 
-extension SubmissionCommentLibraryViewModel: Refreshable {
+extension CommentLibraryViewModel: Refreshable {
 
     @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
@@ -103,17 +100,17 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
 
     @MainActor
     public func refresh() async {
-        self.state = .loading
+        state = .loading
 
         let userId = env.currentSession?.userID ?? ""
-        let requestable = APICommentLibraryRequest(query: comment, userId: userId)
+        let requestable = APICommentLibraryRequest(query: comment.value, userId: userId)
 
         do {
             let response = try await env.api.makeRequest(requestable)
-            let comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-            self.comments = comments
-            self.endCursor = response.pageInfo?.nextCursor
-            self.state = .data(comments)
+            let newComments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
+            comments = newComments
+            endCursor = response.pageInfo?.nextCursor
+            state = comments.isEmpty ? .empty : .data
         } catch { }
     }
 
@@ -123,17 +120,17 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
 
         let userId = env.currentSession?.userID ?? ""
         let requestable = APICommentLibraryRequest(
-            query: comment,
+            query: comment.value,
             userId: userId,
             cursor: endCursor
         )
 
         if let response = try? await env.api.makeRequest(requestable) {
             let newComments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-            let allComments = self.comments + newComments
-            self.comments = allComments
+            let allComments = comments + newComments
+            comments = allComments
 
-            self.state = .data(allComments)
+            state = comments.isEmpty ? .empty : .data
             self.endCursor = response.pageInfo?.nextCursor
         }
     }
