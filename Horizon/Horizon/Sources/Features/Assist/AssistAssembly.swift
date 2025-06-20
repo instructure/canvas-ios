@@ -65,14 +65,14 @@ final class AssistAssembly {
         courseId: String? = nil,
         fileId: String? = nil,
         pageUrl: String? = nil,
-        quizModel: AssistQuizModel? = nil
+        quizzes: [AssistQuizModel] = []
     ) -> AssistQuizView {
         let chatBotInteractor = makeChatBotInteractor(
             courseId: courseId,
             pageUrl: pageUrl,
             fileId: fileId
         )
-        let viewModel = AssistQuizViewModel(chatBotInteractor: chatBotInteractor, quizModel: quizModel)
+        let viewModel = AssistQuizViewModel(chatBotInteractor: chatBotInteractor, quizzes: quizzes)
         return AssistQuizView(viewModel: viewModel)
     }
 

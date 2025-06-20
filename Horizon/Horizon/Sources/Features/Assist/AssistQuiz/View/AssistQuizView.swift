@@ -160,6 +160,6 @@ extension AssistQuizView {
 
 #if DEBUG
 #Preview {
-    AssistQuizView(viewModel: .init(chatBotInteractor: AssistChatInteractorPreview()))
+    AssistQuizView(viewModel: .init(chatBotInteractor: AssistChatInteractorPreview(), quizzes: []))
 }
 #endif

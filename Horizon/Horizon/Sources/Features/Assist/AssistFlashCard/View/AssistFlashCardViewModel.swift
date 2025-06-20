@@ -39,13 +39,18 @@ final class AssistFlashCardViewModel {
             flashCards.count
         )
     }
-    private var chatHistory: [AssistChatMessage] = []
     var currentCardIndex: Int? = 0 {
         didSet {
             isPreviousButtonDisabled = currentCardIndex == 0
             isNextButtonDisabled = currentCardIndex == (flashCards.count - 1)
         }
     }
+
+    // MARK: - Private Propertites
+
+    private var chatHistory: [AssistChatMessage] = []
+    private var paginatedFlashCards: [[AssistFlashCardModel]] = [[]]
+    private var currentPage = 0
 
     // MARK: - Dependencies
 
@@ -61,11 +66,11 @@ final class AssistFlashCardViewModel {
         chatBotInteractor: AssistChatInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.flashCards = flashCards
+        self.paginatedFlashCards = flashCards.chunked(into: 5)
         self.router = router
         self.chatBotInteractor = chatBotInteractor
         self.scheduler = scheduler
-
+        self.flashCards = paginatedFlashCards.first ?? []
         self.chatBotInteractor
             .listen
             .receive(on: scheduler)
@@ -105,10 +110,18 @@ final class AssistFlashCardViewModel {
     }
 
     func regenerate() {
-        isLoaderVisible = true
-        chatBotInteractor.publish(
-            action: .chip(option: AssistChipOption(.flashcards), history: chatHistory)
-        )
+        let countFlashCards = paginatedFlashCards.count
+        guard currentPage < countFlashCards - 1 else {
+            isLoaderVisible = true
+            currentPage = 0
+            chatBotInteractor.publish(
+                action: .chip(option: AssistChipOption(.flashcards), history: chatHistory)
+            )
+            return
+        }
+        currentPage += 1
+        flashCards = paginatedFlashCards[safe: currentPage] ?? []
+        currentCardIndex = 0
     }
 
     private func onMessage(_ response: AssistChatResponse) {
@@ -117,7 +130,9 @@ final class AssistFlashCardViewModel {
             return
         }
         currentCardIndex = 0
-        flashCards = flashCardModels
+        currentPage = 0
+        paginatedFlashCards = flashCardModels.chunked(into: 5)
+        flashCards = paginatedFlashCards.first ?? []
         isLoaderVisible = false
     }
 }

@@ -447,15 +447,8 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                 )
                 .compactMap { (quizOutput: CedarGenerateQuizMutation.QuizOutput?) in
                     quizOutput.map { quizOutput in
-                        guard let quizItem = quizOutput.quizItems.first else {
-                            return AssistChatResponse(
-                                message: AssistChatMessage(
-                                    botResponse: "Sorry, I'm unable to generate a quiz for you at this time."),
-                                chatHistory: history
-                            )
-                        }
                         return AssistChatResponse(
-                            quizItem: quizItem,
+                            quizItems: quizOutput.quizItems,
                             chatHistory: history
                         )
                     }
@@ -545,11 +538,13 @@ struct AssistChatInteractorPreview: AssistChatInteractor {
     var listen: AnyPublisher<AssistChatInteractorLive.State, Never> = Just(
         .success(
             AssistChatResponse(
-                quizItem: .init(
-                    question: "What is the capital of France?",
-                    answers: ["Paris", "London", "Berlin", "Madrid"],
-                    correctAnswerIndex: 0
-                ),
+                quizItems: [
+                    .init(
+                        question: "What is the capital of France?",
+                        answers: ["Paris", "London", "Berlin", "Madrid"],
+                        correctAnswerIndex: 0
+                    )
+                ],
                 chatHistory: []
             )
         )
