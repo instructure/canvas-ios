@@ -1,0 +1,67 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import WidgetKit
+import SwiftUI
+
+struct GradesListWidgetScreen: View {
+
+    @Environment(\.widgetFamily) private var family
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    let model: GradesListModel
+
+    var body: some View {
+        content
+            .defaultGradesListWidgetContainer()
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        if model.isLoggedIn {
+
+            if model.error == nil, let items = model.getItems(for: family) as? [GradesListItem] {
+                GradesListView(items: items)
+            } else {
+//                WidgetFailureView()
+            }
+
+        } else {
+
+            GradesListLoggedOutView()
+        }
+    }
+}
+
+extension View {
+    func defaultGradesListWidgetContainer() -> some View {
+        containerBackground(for: .widget) { Color.backgroundLightest }
+    }
+}
+
+#if DEBUG
+
+struct GradesListWidgetPreviews: PreviewProvider {
+    static var previews: some View {
+        GradesListWidgetScreen(model: GradesListModel.make())
+            .defaultGradesListWidgetContainer()
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+    }
+}
+
+#endif

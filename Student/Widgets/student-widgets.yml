@@ -49,3 +49,15 @@ schemes:
         _XCWidgetFamily: systemMedium
     profile:
       askForAppToLaunch: true
+  Widgets - GradesList:
+    build:
+      targets:
+        Widgets: all
+        Student: all
+    run:
+      askForAppToLaunch: true
+      environmentVariables:
+        _XCWidgetKind: GradesListWidget
+        _XCWidgetFamily: systemMedium
+    profile:
+      askForAppToLaunch: true
