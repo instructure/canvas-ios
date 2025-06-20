@@ -7942,6 +7942,9 @@
         }
       }
     },
+    "Collapse" : {
+
+    },
     "Collapsed" : {
       "localizations" : {
         "ar" : {
@@ -15111,6 +15114,9 @@
           }
         }
       }
+    },
+    "Expand" : {
+
     },
     "Expanded" : {
       "localizations" : {
