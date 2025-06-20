@@ -1145,6 +1145,7 @@
         <attribute name="isLatest" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO"/>
         <attribute name="late" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String"/>
+        <attribute name="lateSeconds" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="missing" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="pointsDeductedRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

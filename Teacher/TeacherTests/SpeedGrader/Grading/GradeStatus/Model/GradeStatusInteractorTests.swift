@@ -110,42 +110,43 @@ class GradeStatusInteractorTests: TeacherTestCase {
         XCTAssertFinish(testee.fetchGradeStatuses())
 
         let expectation = expectation(description: "observeGradeStatusChanges emits")
-        var receivedStatuses: [GradeStatus?] = []
+        var receivedStatuses: [(GradeStatus, Int, Date?)] = []
 
         // WHEN
         testee.observeGradeStatusChanges(submissionId: "sub1", attempt: 1)
-            .sink { status in
-                receivedStatuses.append(status)
-                if receivedStatuses.count == 4 {
+            .sink { tuple in
+                receivedStatuses.append(tuple)
+                if receivedStatuses.count == 3 {
                     expectation.fulfill()
                 }
             }
             .store(in: &cancellables)
 
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
         let submission = Submission(context: databaseClient)
         submission.id = "sub1"
         submission.attempt = 1
         submission.customGradeStatusId = "custom1"
         submission.latePolicyStatus = nil
         submission.excused = nil
+        submission.lateSeconds = 86400
         try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
 
         submission.customGradeStatusId = nil
         submission.latePolicyStatus = .late
         try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
 
         submission.customGradeStatusId = nil
         submission.latePolicyStatus = nil
         submission.excused = true
         try? databaseClient.save()
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 4 }
+        waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
 
         // THEN
         wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(receivedStatuses.map { $0?.id }, [nil, "custom1", "late", "excused"])
+        XCTAssertEqual(receivedStatuses.map { $0.0.id }, ["custom1", "late", "excused"])
+        XCTAssertEqual(receivedStatuses.map { $0.1 }, [1, 1, 1])
     }
 
     private func mockGradeStatusesAPI() {

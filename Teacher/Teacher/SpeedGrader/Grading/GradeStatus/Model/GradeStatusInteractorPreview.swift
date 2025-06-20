@@ -28,6 +28,10 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
     let gradeStatuses: [GradeStatus]
     var refreshSubmission: ((String) -> Void)?
 
+    var previewStatus: GradeStatus?
+    var previewDaysLate: Int?
+    var previewDueDate: Date?
+
     init(gradeStatuses: [GradeStatus] = []) {
         self.gradeStatuses = gradeStatuses
     }
@@ -59,8 +63,12 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
         nil
     }
 
-    func observeGradeStatusChanges(submissionId: String, attempt: Int) -> AnyPublisher<GradeStatus?, Never> {
-        Just(nil).eraseToAnyPublisher()
+    func observeGradeStatusChanges(submissionId: String, attempt: Int) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never> {
+        if let status = previewStatus, let daysLate = previewDaysLate {
+            return Just((status, daysLate, previewDueDate)).eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
     }
 }
 #endif

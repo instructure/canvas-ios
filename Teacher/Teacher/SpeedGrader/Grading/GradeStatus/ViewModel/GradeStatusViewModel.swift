@@ -24,7 +24,10 @@ import SwiftUI
 class GradeStatusViewModel: ObservableObject {
     // MARK: - Outputs
     @Published private(set) var selectedOption = OptionItem.none
-    @Published private(set) var isLoading: Bool = false
+    @Published private(set) var isLoading = false
+    @Published private(set) var isShowingDaysLateSection = false
+    @Published private(set) var daysLate = ""
+    @Published private(set) var dueDate = ""
     @Published var isShowingSaveFailedAlert = false
     let options: [OptionItem]
     let errorAlertViewModel = ErrorAlertViewModel(
@@ -79,6 +82,13 @@ class GradeStatusViewModel: ObservableObject {
                 // We select the option now to make voiceover properly handle focus
                 // after the menu is dismissed. If the request fails we revert to the old value.
                 self.selectedOption = selectedOption
+
+                // If late is disabled we instantly hide the days late section to avoid
+                // inconsistencies of it being edited while the disable request is in progress.
+                if oldOption.isLate {
+                    self.isShowingDaysLateSection = false
+                }
+
                 return (oldOption, selectedStatus)
             }
             .flatMap { (oldOption: OptionItem, selectedStatus: GradeStatus) in
@@ -104,12 +114,18 @@ class GradeStatusViewModel: ObservableObject {
             }
             .receive(on: RunLoop.main)
             .sink { [weak self] result, oldOption in
+                guard let self else { return }
+
                 if result.isFailure {
-                    self?.selectedOption = oldOption
-                    self?.isShowingSaveFailedAlert = true
+                    self.selectedOption = oldOption
+                    self.isShowingSaveFailedAlert = true
                 }
 
-                self?.isLoading = false
+                self.isLoading = false
+
+                if self.selectedOption.isLate {
+                    self.isShowingDaysLateSection = true
+                }
             }
             .store(in: &subscriptions)
     }
@@ -128,12 +144,17 @@ class GradeStatusViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func refreshGradeStatus(on publisher: AnyPublisher<GradeStatus?, Never>) {
+    private func refreshGradeStatus(on publisher: AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never>) {
         databaseObservation = publisher
-            .map { OptionItem.from($0) }
+            .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: String, dueDate: String) in
+                (OptionItem.from(status), "\(daysLate)", dueDate?.relativeDateTimeString ?? "")
+            }
             .receive(on: RunLoop.main)
-            .sink { [weak self] option in
+            .sink { [weak self] (option, daysLate, dueDate) in
                 self?.selectedOption = option
+                self?.isShowingDaysLateSection = option.isLate
+                self?.daysLate = daysLate
+                self?.dueDate = dueDate
             }
     }
 
@@ -155,6 +176,10 @@ class GradeStatusViewModel: ObservableObject {
 }
 
 private extension OptionItem {
+    var isLate: Bool {
+        id == LatePolicyStatus.late.rawValue
+    }
+
     static var none: OptionItem {
         OptionItem(
             id: "none",

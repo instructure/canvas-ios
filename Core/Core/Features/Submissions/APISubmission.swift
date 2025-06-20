@@ -45,6 +45,7 @@ public struct APISubmission: Codable, Equatable {
     let posted_at: Date?
     let preview_url: URL?
     var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
+    let seconds_late: Int?
     var score: Double?
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
@@ -167,6 +168,7 @@ extension APISubmission {
         preview_url: URL? = nil,
         rubric_assessment: APIRubricAssessmentMap? = nil,
         score: Double? = nil,
+        seconds_late: Int? = nil,
         submission_comments: [APISubmissionComment]? = nil,
         submission_history: [APISubmission]? = nil,
         submission_type: SubmissionType? = nil,
@@ -203,6 +205,7 @@ extension APISubmission {
             posted_at: posted_at,
             preview_url: preview_url,
             rubric_assessment: rubric_assessment,
+            seconds_late: seconds_late,
             score: score,
             submission_comments: submission_comments,
             submission_history: submission_history,

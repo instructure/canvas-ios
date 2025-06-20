@@ -25,21 +25,33 @@ struct GradeStatusView: View {
     @State private var showMenu = false
 
     var body: some View {
-        InstUI.PickerMenu(
-            selectedOption: Binding(
-                get: { viewModel.selectedOption },
-                set: { newValue in
-                    if let value = newValue { viewModel.didSelectGradeStatus.send(value) }
+        VStack(spacing: 0) {
+            InstUI.PickerMenu(
+                selectedOption: Binding(
+                    get: { viewModel.selectedOption },
+                    set: { newValue in
+                        if let value = newValue { viewModel.didSelectGradeStatus.send(value) }
+                    }
+                ),
+                allOptions: viewModel.options,
+                identifierGroup: "SpeedGrader.GradeStatusMenuItem",
+                label: { cell }
+            )
+            .errorAlert(
+                isPresented: $viewModel.isShowingSaveFailedAlert,
+                presenting: viewModel.errorAlertViewModel
+            )
+
+            if viewModel.isShowingDaysLateSection {
+                GradeStatusDaysLateView(
+                    daysLate: viewModel.daysLate,
+                    dueDate: viewModel.dueDate
+                ) { newDaysLateValue in
+
                 }
-            ),
-            allOptions: viewModel.options,
-            identifierGroup: "SpeedGrader.GradeStatusMenuItem",
-            label: { cell }
-        )
-        .errorAlert(
-            isPresented: $viewModel.isShowingSaveFailedAlert,
-            presenting: viewModel.errorAlertViewModel
-        )
+            }
+        }
+        .animation(.smooth, value: viewModel.isShowingDaysLateSection)
     }
 
     private var cell: some View {
@@ -71,9 +83,9 @@ struct GradeStatusView: View {
 
 #Preview {
     let statuses = [
-        GradeStatus(defaultName: "None"),
-        GradeStatus(defaultName: "Graded"),
-        GradeStatus(defaultName: "Excused")
+        GradeStatus(defaultName: "none"),
+        GradeStatus(defaultName: "excused"),
+        GradeStatus(defaultName: "late")
     ]
 
     VStack(spacing: 20) {

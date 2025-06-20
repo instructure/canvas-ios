@@ -58,11 +58,17 @@ final class GradeStatusInteractorMock: GradeStatusInteractor {
     }
 
     var observeGradeStatusChangesCalled = false
+    var mockDaysLate = 0
+    var mockDueDate: Date? = nil
     func observeGradeStatusChanges(
         submissionId: String,
         attempt: Int
-    ) -> AnyPublisher<GradeStatus?, Never> {
+    ) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never> {
         observeGradeStatusChangesCalled = true
-        return Just(gradeStatuses.first).eraseToAnyPublisher()
+        if let status = gradeStatuses.first {
+            return Just((status, mockDaysLate, mockDueDate)).eraseToAnyPublisher()
+        } else {
+            return Empty().eraseToAnyPublisher()
+        }
     }
 }

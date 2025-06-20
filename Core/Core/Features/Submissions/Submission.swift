@@ -56,6 +56,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var isLatest: Bool
     @NSManaged public var late: Bool
     @NSManaged var latePolicyStatusRaw: String?
+    @NSManaged public var lateSeconds: Int
     @NSManaged public var missing: Bool
     @NSManaged var pointsDeductedRaw: NSNumber?
     @NSManaged public var postedAt: Date?
@@ -173,6 +174,7 @@ extension Submission: WriteableModel {
         model.id = item.id.value
         model.late = item.late == true
         model.latePolicyStatus = item.late_policy_status
+        model.lateSeconds = item.seconds_late ?? 0
         model.missing = item.missing == true
         model.pointsDeducted = item.points_deducted
         model.postedAt = item.posted_at

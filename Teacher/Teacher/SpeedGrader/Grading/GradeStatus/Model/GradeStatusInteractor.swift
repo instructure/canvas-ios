@@ -44,7 +44,7 @@ protocol GradeStatusInteractor {
     func observeGradeStatusChanges(
         submissionId: String,
         attempt: Int
-    ) -> AnyPublisher<GradeStatus?, Never>
+    ) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never>
 }
 
 class GradeStatusInteractorLive: GradeStatusInteractor {
@@ -112,23 +112,33 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
     func observeGradeStatusChanges(
         submissionId: String,
         attempt: Int
-    ) -> AnyPublisher<GradeStatus?, Never> {
+    ) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never> {
         let predicate = NSPredicate.id(submissionId).and(NSPredicate(key: "attempt", equals: attempt))
         let useCase = LocalUseCase<Submission>(scope: Scope(predicate: predicate, order: []))
         let store = ReactiveStore(useCase: useCase)
         return store.getEntities(keepObservingDatabaseChanges: true)
             .map { $0.first }
-            .map { [weak self] submission in
-                guard let self else { return nil }
-                return self.gradeStatusFor(
-                    customGradeStatusId: submission?.customGradeStatusId,
-                    latePolicyStatus: submission?.latePolicyStatus,
-                    isExcused: submission?.excused,
-                    isLate: submission?.late
-                )
+            .compactMap { [weak self] submission in
+                guard
+                    let self,
+                    let submission,
+                    let status = self.gradeStatusFor(
+                        customGradeStatusId: submission.customGradeStatusId,
+                        latePolicyStatus: submission.latePolicyStatus,
+                        isExcused: submission.excused,
+                        isLate: submission.late
+                    )
+                else {
+                    return nil
+                }
+                let daysLate = Int(ceil(Double(submission.lateSeconds) / 86400.0))
+                let dueDate = submission.assignment?.dueAt
+                return (status, daysLate, dueDate)
             }
-            .removeDuplicates()
-            .replaceError(with: nil)
+            .removeDuplicates { lhs, rhs in
+                lhs.0.id == rhs.0.id && lhs.1 == rhs.1 && lhs.2 == rhs.2
+            }
+            .catch { _ in Publishers.typedEmpty() }
             .eraseToAnyPublisher()
     }
 }
