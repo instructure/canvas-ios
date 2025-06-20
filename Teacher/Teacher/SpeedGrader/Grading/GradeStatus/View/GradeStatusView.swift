@@ -79,8 +79,6 @@ struct GradeStatusView: View {
     VStack(spacing: 20) {
         GradeStatusView(
             viewModel: .init(
-                customGradeStatusId: nil,
-                latePolicyStatus: nil,
                 userId: "",
                 submissionId: "",
                 attempt: 0,

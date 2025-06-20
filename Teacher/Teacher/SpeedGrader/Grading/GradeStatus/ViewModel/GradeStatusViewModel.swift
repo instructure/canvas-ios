@@ -45,8 +45,6 @@ class GradeStatusViewModel: ObservableObject {
     private var databaseObservation: AnyCancellable?
 
     init(
-        customGradeStatusId: String?,
-        latePolicyStatus: LatePolicyStatus?,
         userId: String,
         submissionId: String,
         attempt: Int,

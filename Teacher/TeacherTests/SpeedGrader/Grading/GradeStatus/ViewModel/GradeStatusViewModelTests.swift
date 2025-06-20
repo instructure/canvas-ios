@@ -129,8 +129,6 @@ class GradeStatusViewModelTests: TeacherTestCase {
 
     private func makeViewModel(interactor: GradeStatusInteractorMock) -> GradeStatusViewModel {
         GradeStatusViewModel(
-            customGradeStatusId: nil,
-            latePolicyStatus: nil,
             userId: "user1",
             submissionId: "sub1",
             attempt: 1,
