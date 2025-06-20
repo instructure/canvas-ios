@@ -10,15 +10,15 @@
     </entity>
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
-        <attribute name="context_type" optional="YES" attributeType="String"/>
-        <attribute name="course_id" optional="YES" attributeType="String"/>
+        <attribute name="contextType" optional="YES" attributeType="String"/>
+        <attribute name="courseId" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="message" optional="YES" attributeType="String"/>
-        <attribute name="notification_category" optional="YES" attributeType="String"/>
-        <attribute name="read_state" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="notificationCategory" optional="YES" attributeType="String"/>
+        <attribute name="readState" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="score" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
