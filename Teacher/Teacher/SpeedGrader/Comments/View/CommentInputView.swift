@@ -34,7 +34,6 @@ struct CommentInputView: View {
         case hidden
     }
 
-    @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     @State private var commentSubject = CurrentValueSubject<String, Never>("")
@@ -177,13 +176,18 @@ struct CommentInputView: View {
                 .cancel()
             ])
         }
+        .onChange(of: showAttachmentTypeSheet) {
+            if showAttachmentTypeSheet {
+                isFocused = false
+            }
+        }
     }
 
     private var sendButton: some View {
         Button(
             action: {
                 sendAction()
-                controller.view.endEditing(true)
+                isFocused = false
             },
             label: {
                 Image.circleArrowUpSolid
