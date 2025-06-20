@@ -116,7 +116,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
 
     // Parent uses a different coloring logic so we prevent any update here.
     private func updateNavBar() {
-        guard AppEnvironment.shared.app != .horizon else {
+        if AppEnvironment.shared.app == .horizon {
             return
         }
         guard
