@@ -105,7 +105,7 @@ final class HNotificationViewModel {
     }
 
     private func handleResponse(notifications: [NotificationModel]) {
-        paginatedNotifications = notifications.chunked(into: 2)
+        paginatedNotifications = notifications.chunked(into: 10)
         isFooterVisible = paginatedNotifications.count > 1
         totalPages = paginatedNotifications.count
         self.notifications = paginatedNotifications.first ?? []
