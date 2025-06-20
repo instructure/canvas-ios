@@ -33,6 +33,7 @@ struct GradeStatusView: View {
                 }
             ),
             allOptions: viewModel.options,
+            identifierGroup: "SpeedGrader.GradeStatusMenuItem",
             label: { cell }
         )
         .errorAlert(

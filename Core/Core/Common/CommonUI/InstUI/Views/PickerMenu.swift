@@ -26,22 +26,30 @@ extension InstUI {
 
         private let label: Label
         private let allOptions: [OptionItem]
+        private let identifierGroup: String?
         @Binding private var selectedOption: OptionItem?
         @AccessibilityFocusState private var isA11yFocused: Bool
 
+        /// - parameters:
+        ///   - identifierGroup: If specified, option items will have a11y identifiers in the form `<identifierGroup>.<option.id>`
         public init(
             selectedOption: Binding<OptionItem?>,
             allOptions: [OptionItem],
+            identifierGroup: String? = nil,
             @ViewBuilder label: () -> Label
         ) {
             self._selectedOption = selectedOption
             self.allOptions = allOptions
+            self.identifierGroup = identifierGroup
             self.label = label()
         }
 
+        /// - parameters:
+        ///   - identifierGroup: If specified, option items will have a11y identifiers in the form `<identifierGroup>.<option.id>`
         public init(
             selectedId: Binding<String?>,
             allOptions: [OptionItem],
+            identifierGroup: String? = nil,
             @ViewBuilder label: () -> Label
         ) {
             self._selectedOption = Binding(
@@ -49,12 +57,16 @@ extension InstUI {
                 set: { selectedId.wrappedValue = $0?.id }
             )
             self.allOptions = allOptions
+            self.identifierGroup = identifierGroup
             self.label = label()
         }
 
+        /// - parameters:
+        ///   - identifierGroup: If specified, option items will have a11y identifiers in the form `<identifierGroup>.<option.id>`
         public init(
             selectedId: Binding<Int>,
             allOptions: [OptionItem],
+            identifierGroup: String? = nil,
             @ViewBuilder label: () -> Label
         ) {
             self._selectedOption = Binding(
@@ -65,6 +77,7 @@ extension InstUI {
                 }
             )
             self.allOptions = allOptions
+            self.identifierGroup = identifierGroup
             self.label = label()
         }
 
@@ -106,7 +119,7 @@ extension InstUI {
                 option.customAccessibilityLabel
                     ?? [option.title, option.subtitle].joined(separator: ", ")
             )
-            .identifier(option.accessibilityId)
+            .identifier(identifierGroup.flatMap { "\($0).\(option.id)" })
         }
     }
 }
