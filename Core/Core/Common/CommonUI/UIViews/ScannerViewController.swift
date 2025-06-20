@@ -202,7 +202,6 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         }
 
         let orientationDegrees = CGFloat((orientation.rawValue - 1) * 90)
-        print(orientationDegrees)
 
         guard
             let previewLayer = previewLayer,
