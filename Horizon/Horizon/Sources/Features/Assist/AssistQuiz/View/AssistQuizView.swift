@@ -25,8 +25,9 @@ struct AssistQuizView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: .huiSpaces.space16) {
+            VStack(spacing: .zero) {
                 headerView
+                    .padding(.bottom, .huiSpaces.space32)
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -34,6 +35,7 @@ struct AssistQuizView: View {
                         .foregroundStyle(Color.huiColors.text.surfaceColored)
                 } else {
                     questionTitle
+                        .padding(.bottom, .huiSpaces.space16)
                     answerOptions
                 }
             }
@@ -63,7 +65,7 @@ extension AssistQuizView {
                     .fill(Color.clear)
                     .applyHorizonGradient()
                     .ignoresSafeArea()
-                HorizonUI.Spinner(size: .small, showBackground: true)
+                HorizonUI.Spinner(size: .small, foregroundColor: Color.huiColors.surface.cardPrimary)
             }
         }
     }
@@ -87,8 +89,6 @@ extension AssistQuizView {
             .frame(maxWidth: .infinity, alignment: .leading)
             .huiTypography(.p1)
             .foregroundStyle(Color.huiColors.text.surfaceColored)
-            .padding(.top, 40)
-            .padding(.bottom, 20)
     }
 
     private var answerOptions: some View {
@@ -146,14 +146,13 @@ extension AssistQuizView {
     }
 
     private var footerView: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: .huiSpaces.space12) {
             if !viewModel.didSubmitQuiz {
                 submitQuizButton
                 regenerateQuizButton
             } else {
                 tryAgainButton
             }
-
         }
         .padding([.bottom, .horizontal], .huiSpaces.space16)
     }

@@ -27,6 +27,7 @@ struct AssistFlashCardView: View {
     var body: some View {
         VStack {
             headerView
+                .padding(.horizontal, .huiSpaces.space24)
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -45,7 +46,7 @@ struct AssistFlashCardView: View {
             }
         }
         .animation(.smooth, value: viewModel.currentCardIndex)
-        .padding([.top, .horizontal], .huiSpaces.space16)
+        .padding(.top, .huiSpaces.space16)
         .safeAreaInset(edge: .bottom, spacing: .zero) {
             VStack(spacing: .huiSpaces.space24) {
                 AssistFlashCardStepIndicatorView(viewModel: viewModel)
@@ -73,7 +74,7 @@ extension AssistFlashCardView {
                     .fill(Color.clear)
                     .applyHorizonGradient()
                     .ignoresSafeArea()
-                HorizonUI.Spinner(size: .small, showBackground: true)
+                HorizonUI.Spinner(size: .small, foregroundColor: Color.huiColors.surface.cardPrimary)
             }
         }
     }
