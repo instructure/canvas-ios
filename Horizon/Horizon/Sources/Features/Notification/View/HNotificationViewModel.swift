@@ -26,6 +26,7 @@ final class HNotificationViewModel {
 
     private(set) var notifications: [NotificationModel] = []
     private(set) var isLoaderVisible: Bool = true
+    private(set) var isFooterVisible: Bool = false
     private(set) var isNextButtonEnabled: Bool = false
     private(set) var isPreviousButtonEnabled: Bool = false
 
@@ -104,7 +105,8 @@ final class HNotificationViewModel {
     }
 
     private func handleResponse(notifications: [NotificationModel]) {
-        paginatedNotifications = notifications.chunked(into: 10)
+        paginatedNotifications = notifications.chunked(into: 2)
+        isFooterVisible = paginatedNotifications.count > 1
         totalPages = paginatedNotifications.count
         self.notifications = paginatedNotifications.first ?? []
         currentPage = 0

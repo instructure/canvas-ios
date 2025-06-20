@@ -42,16 +42,21 @@ struct HNotificationView: View {
     var body: some View {
         VStack(spacing: .zero) {
             contentView
-            Divider()
-                .hidden(viewModel.notifications.isEmpty)
-            footerView
-                .padding(.top, .huiSpaces.space16)
-                .frame(maxWidth: .infinity)
-                .background(Color.huiColors.surface.pageSecondary)
 
+            if viewModel.isFooterVisible {
+                Divider()
+                    .hidden(viewModel.notifications.isEmpty)
+                footerView
+                    .padding(.top, .huiSpaces.space16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.huiColors.surface.pageSecondary)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.huiColors.surface.pagePrimary)
+        .background(viewModel.isFooterVisible
+                    ? Color.huiColors.surface.pagePrimary
+                    : Color.huiColors.surface.pageSecondary
+        )
         .overlay { loaderView }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .onWillDisappear { onShowNavigationBarAndTabBar(true) }
@@ -110,11 +115,11 @@ struct HNotificationView: View {
                     .foregroundStyle(Color.huiColors.text.body)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                if !notification.isRead {
-                    Circle()
-                        .fill(Color.huiColors.surface.institution)
-                        .frame(width: 8, height: 8)
-                }
+//                if !notification.isRead {
+//                    Circle()
+//                        .fill(Color.huiColors.surface.institution)
+//                        .frame(width: 8, height: 8)
+//                }
             }
 
             Text(notification.date)
