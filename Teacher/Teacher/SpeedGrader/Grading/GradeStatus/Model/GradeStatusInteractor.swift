@@ -45,6 +45,12 @@ protocol GradeStatusInteractor {
         submissionId: String,
         attempt: Int
     ) -> AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never>
+
+    func updateLateDays(
+        submissionId: String,
+        userId: String,
+        daysLate: Int
+    ) -> AnyPublisher<Void, Error>
 }
 
 class GradeStatusInteractorLive: GradeStatusInteractor {
@@ -53,9 +59,11 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
 
     private let api: API
     private let courseId: String
+    private let assignmentId: String
 
-    init(courseId: String, api: API) {
+    init(courseId: String, assignmentId: String, api: API) {
         self.courseId = courseId
+        self.assignmentId = assignmentId
         self.api = api
     }
 
@@ -139,6 +147,24 @@ class GradeStatusInteractorLive: GradeStatusInteractor {
                 lhs.0.id == rhs.0.id && lhs.1 == rhs.1 && lhs.2 == rhs.2
             }
             .catch { _ in Publishers.typedEmpty() }
+            .eraseToAnyPublisher()
+    }
+
+    func updateLateDays(
+        submissionId: String,
+        userId: String,
+        daysLate: Int
+    ) -> AnyPublisher<Void, Error> {
+        let lateSeconds = daysLate * 86400
+        let useCase = GradeSubmission(
+            courseID: courseId,
+            assignmentID: assignmentId,
+            userID: userId,
+            lateSeconds: lateSeconds
+        )
+        let store = ReactiveStore(useCase: useCase)
+        return store.getEntities(ignoreCache: true)
+            .mapToVoid()
             .eraseToAnyPublisher()
     }
 }

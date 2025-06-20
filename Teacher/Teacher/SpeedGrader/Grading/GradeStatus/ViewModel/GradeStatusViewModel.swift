@@ -39,6 +39,7 @@ class GradeStatusViewModel: ObservableObject {
     // MARK: - Inputs
     let didSelectGradeStatus = PassthroughSubject<OptionItem, Never>()
     let didChangeAttempt = PassthroughSubject<Int, Never>()
+    let didChangeLateDaysValue = PassthroughSubject<Int, Never>()
 
     // MARK: - Private
     private let interactor: GradeStatusInteractor
@@ -62,6 +63,7 @@ class GradeStatusViewModel: ObservableObject {
 
         uploadGradeStatus(on: didSelectGradeStatus)
         observeGradeStatusOnAttemptInDatabase(on: didChangeAttempt)
+        uploadLateDays(on: didChangeLateDaysValue)
         didChangeAttempt.send(attempt)
     }
 
@@ -156,6 +158,34 @@ class GradeStatusViewModel: ObservableObject {
                 self?.daysLate = daysLate
                 self?.dueDate = dueDate
             }
+    }
+
+    private func uploadLateDays(on publisher: PassthroughSubject<Int, Never>) {
+        let submissionId = self.submissionId
+        let userId = self.userId
+
+        publisher
+            .map { [weak self] in
+                self?.isLoading = true
+                return $0
+            }
+            .flatMap { [interactor] newLateDays in
+                interactor.updateLateDays(
+                    submissionId: submissionId,
+                    userId: userId,
+                    daysLate: newLateDays
+                )
+                .mapToResult()
+            }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] result in
+                if result.isFailure {
+                    self?.isShowingSaveFailedAlert = true
+                }
+
+                self?.isLoading = false
+            }
+            .store(in: &subscriptions)
     }
 
     private static func announceSuccessfulSaveIfNecessary(

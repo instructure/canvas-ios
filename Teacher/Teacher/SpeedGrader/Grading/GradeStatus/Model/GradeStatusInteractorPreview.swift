@@ -70,5 +70,13 @@ class GradeStatusInteractorPreview: GradeStatusInteractor {
             return Empty().eraseToAnyPublisher()
         }
     }
+
+    func updateLateDays(
+        submissionId: String,
+        userId: String,
+        daysLate: Int
+    ) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
 }
 #endif

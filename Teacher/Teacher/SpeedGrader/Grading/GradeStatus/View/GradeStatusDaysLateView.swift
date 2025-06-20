@@ -23,6 +23,7 @@ struct GradeStatusDaysLateView: View {
     @Environment(\.viewController) private var viewController
     let daysLate: String
     let dueDate: String
+    let isLoading: Bool
     let onEdit: (Int) -> Void
 
     var body: some View {
@@ -36,24 +37,29 @@ struct GradeStatusDaysLateView: View {
                     .foregroundColor(.textDark)
             }
             Spacer()
-            Button(action: presentNumberInputDialog) {
-                HStack(spacing: 17) {
-                    Text(daysLate)
-                        .font(.semibold16)
-                    Image.editLine
-                        .scaledIcon(size: 18)
+            if isLoading {
+                ProgressView()
+                    .tint(nil)
+            } else {
+                Button(action: presentNumberInputDialog) {
+                    HStack(spacing: 17) {
+                        Text(daysLate)
+                            .font(.semibold16)
+                        Image.editLine
+                            .scaledIcon(size: 18)
+                    }
+                    .padding(.leading, 10)
+                    .padding(.trailing, 18)
+                    .padding(.top, 7)
+                    .padding(.bottom, 9)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(.tint, lineWidth: 1)
+                    )
                 }
-                .padding(.leading, 10)
-                .padding(.trailing, 18)
-                .padding(.top, 7)
-                .padding(.bottom, 9)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(.tint, lineWidth: 1)
-                )
+                .buttonStyle(PlainButtonStyle())
+                .foregroundStyle(.tint)
             }
-            .buttonStyle(PlainButtonStyle())
-            .foregroundStyle(.tint)
         }
         .paddingStyle(.top, .cellTop)
         .paddingStyle(.bottom, .cellBottom)
@@ -94,13 +100,25 @@ import UIKit
 
 struct GradeStatusDaysLateView_Previews: PreviewProvider {
     static var previews: some View {
-        CoreHostingControllerPreview {
-            GradeStatusDaysLateView(
-                daysLate: "4",
-                dueDate: "2025-02-02 23:59:00",
-                onEdit: { _ in }
-            )
-            .tint(Color.red)
+        VStack(spacing: 0) {
+            CoreHostingControllerPreview {
+                GradeStatusDaysLateView(
+                    daysLate: "4",
+                    dueDate: "2025-02-02 23:59:00",
+                    isLoading: false,
+                    onEdit: { _ in }
+                )
+                .tint(Color.red)
+            }
+            CoreHostingControllerPreview {
+                GradeStatusDaysLateView(
+                    daysLate: "4",
+                    dueDate: "2025-02-02 23:59:00",
+                    isLoading: true,
+                    onEdit: { _ in }
+                )
+                .tint(Color.red)
+            }
         }
         .previewLayout(.sizeThatFits)
     }

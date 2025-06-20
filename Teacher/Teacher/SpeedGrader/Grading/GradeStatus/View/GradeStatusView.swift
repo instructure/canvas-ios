@@ -45,10 +45,12 @@ struct GradeStatusView: View {
             if viewModel.isShowingDaysLateSection {
                 GradeStatusDaysLateView(
                     daysLate: viewModel.daysLate,
-                    dueDate: viewModel.dueDate
-                ) { newDaysLateValue in
-
-                }
+                    dueDate: viewModel.dueDate,
+                    isLoading: viewModel.isLoading,
+                    onEdit: { newDaysLateValue in
+                        viewModel.didChangeLateDaysValue.send(newDaysLateValue)
+                    }
+                )
             }
         }
         .animation(.smooth, value: viewModel.isShowingDaysLateSection)

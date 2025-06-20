@@ -522,10 +522,12 @@ public struct PutSubmissionGradeRequest: APIRequestable {
         public struct Submission: Codable, Equatable {
             let excuse: Bool?
             let posted_grade: String?
+            let seconds_late_override: Int?
 
-            public init(excuse: Bool?, posted_grade: String?) {
+            public init(excuse: Bool?, posted_grade: String?, seconds_late_override: Int?) {
                 self.excuse = excuse
                 self.posted_grade = posted_grade
+                self.seconds_late_override = seconds_late_override
             }
         }
 
