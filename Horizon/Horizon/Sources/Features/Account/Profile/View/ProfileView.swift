@@ -42,14 +42,31 @@ struct ProfileView: View {
                 .padding(.horizontal, .huiSpaces.space24)
                 .padding(.vertical, .huiSpaces.space48)
             }
+            .alert(isPresented: $viewModel.isAlertErrorPresented) {
+                Alert(title: Text(viewModel.errorMessage), message: Text(viewModel.errorMessage))
+            }
         }
+        .overlay { loaderView }
     }
 
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            ZStack {
+                Color.huiColors.surface.pageSecondary
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
+    }
     private var nameView: some View {
         HorizonUI.TextInput(
             $viewModel.name,
             label: String(localized: "Full Name", bundle: .horizon),
             error: viewModel.nameError,
+            helperText: !viewModel.canUpdateName
+            ? String(localized: "Full Name can only be changed by your institution.", bundle: .horizon)
+            : nil,
             disabled: viewModel.nameDisabled
         )
     }
@@ -59,7 +76,9 @@ struct ProfileView: View {
             $viewModel.displayName,
             label: String(localized: "Display Name", bundle: .horizon),
             error: viewModel.displayNameError,
-            helperText: String(localized: "Required", bundle: .horizon),
+            helperText: !viewModel.canUpdateName
+            ? String(localized: "Display Name can only be changed by your institution.", bundle: .horizon)
+            : nil,
             disabled: viewModel.displayNameDisabled
         )
     }
@@ -76,7 +95,7 @@ struct ProfileView: View {
     private var saveButton: some View {
         SavingButton(
             title: String(localized: "Save Changes", bundle: .horizon),
-            isLoading: $viewModel.isLoading,
+            isLoading: $viewModel.saveLoaderIsVisiable,
             isDisabled: $viewModel.isSaveDisabled,
             onSave: viewModel.save
         )

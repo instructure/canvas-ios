@@ -35,5 +35,11 @@ final class GetUserInteractorPreview: GetUserInteractor {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+
+    func canUpdateName() -> AnyPublisher<Bool, any Error> {
+        Just(true)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 }
 #endif
