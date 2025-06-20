@@ -37,8 +37,11 @@ extension InstUI {
         public var body: some View {
             // Simply passing a string will be treated as a localized key
             // and will create an entry in the strings dictionary.
-            Picker("" as String, selection: selection, content: content)
-                .pickerStyle(.segmented)
+            Picker("" as String,
+                   selection: selection.animation(.smooth(duration: 0.25)),
+                   content: content
+            )
+            .pickerStyle(.segmented)
         }
 
         private func updateSegmentedControlAppearance() {

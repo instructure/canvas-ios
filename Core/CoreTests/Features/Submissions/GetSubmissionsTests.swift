@@ -287,7 +287,13 @@ class GetSubmissionsTests: CoreTestCase {
     func testGetSubmissionsFilterPredicate() {
         typealias Filter = GetSubmissions.Filter
         XCTAssertEqual(Filter.late.predicate, NSPredicate(key: #keyPath(Submission.late), equals: true))
-        XCTAssertEqual(Filter.notSubmitted.predicate, NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil))
+        XCTAssertEqual(
+            Filter.notSubmitted.predicate,
+            NSCompoundPredicate(type: .and, subpredicates: [
+                NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil),
+                NSPredicate(key: #keyPath(Submission.workflowStateRaw), equals: SubmissionWorkflowState.unsubmitted.rawValue)
+            ])
+        )
         XCTAssertEqual(Filter.graded.predicate, NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
             #keyPath(Submission.excusedRaw),
             #keyPath(Submission.scoreRaw),

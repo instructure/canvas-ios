@@ -39,6 +39,18 @@ public struct GetRecentlyGradedSubmissions: CollectionUseCase {
     }
 }
 
+public struct ModuleItemAttributes {
+    public let courseID: String
+    public let moduleID: String
+    public let itemID: String
+
+    public init(courseID: String, moduleID: String, itemID: String) {
+        self.courseID = courseID
+        self.moduleID = moduleID
+        self.itemID = itemID
+    }
+}
+
 public class CreateSubmission: APIUseCase {
     let context: Context
     let assignmentID: String
@@ -341,7 +353,10 @@ public class GetSubmissions: CollectionUseCase {
             case .late:
                 return NSPredicate(key: #keyPath(Submission.late), equals: true)
             case .notSubmitted:
-                return NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
+                return NSCompoundPredicate(type: .and, subpredicates: [
+                    NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil),
+                    NSPredicate(key: #keyPath(Submission.workflowStateRaw), equals: SubmissionWorkflowState.unsubmitted.rawValue)
+                ])
             case .needsGrading:
                 let notExcused = NSPredicate(format: "%K == nil OR %K != true", #keyPath(Submission.excusedRaw), #keyPath(Submission.excusedRaw))
                 let hasValidSubmissionType = NSPredicate(format: "%K != nil", #keyPath(Submission.typeRaw))
