@@ -18,7 +18,7 @@
 
 import Core
 
-class CedarGenerateQuizMutation: APIGraphQLRequestable {
+struct CedarGenerateQuizMutation: APIGraphQLRequestable {
     let variables: Input
 
     var path: String {
@@ -34,7 +34,7 @@ class CedarGenerateQuizMutation: APIGraphQLRequestable {
 
     public init(
         context: String,
-        numberOfQuestions: Int = 1,
+        numberOfQuestions: Int = 15,
         numberOfOptionsPerQuestion: Int = 4,
         maxLengthOfQuestions: Int = 100
     ) {

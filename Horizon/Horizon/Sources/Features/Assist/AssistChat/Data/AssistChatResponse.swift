@@ -28,7 +28,7 @@ struct AssistChatResponse {
     let chipOptions: [AssistChipOption]?
     let flashCards: [AssistChatFlashCard]?
     let isLoading: Bool
-    let quizItem: QuizItem?
+    let quizItems: [QuizItem]?
 
     init(chipOptions: [AssistChipOption], chatHistory: [AssistChatMessage] = []) {
         self.chipOptions = chipOptions
@@ -36,7 +36,7 @@ struct AssistChatResponse {
 
         self.isLoading = false
         self.flashCards = nil
-        self.quizItem = nil
+        self.quizItems = nil
     }
 
     /// The user has asked for FlashCards, so we're giving it to them
@@ -46,13 +46,13 @@ struct AssistChatResponse {
 
         self.isLoading = false
         self.chipOptions = nil
-        self.quizItem = nil
+        self.quizItems = nil
     }
 
     /// The user has asked for a quiz, so we're giving it to them
-    init(quizItem: QuizItem, chatHistory: [AssistChatMessage]) {
+    init(quizItems: [QuizItem], chatHistory: [AssistChatMessage]) {
         self.chatHistory = chatHistory
-        self.quizItem = quizItem
+        self.quizItems = quizItems
 
         self.isLoading = false
         self.chipOptions = nil
@@ -71,7 +71,7 @@ struct AssistChatResponse {
         self.isLoading = isLoading
 
         self.flashCards = nil
-        self.quizItem = nil
+        self.quizItems = nil
     }
 
     struct QuizItem {

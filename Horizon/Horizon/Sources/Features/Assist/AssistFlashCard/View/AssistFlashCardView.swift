@@ -30,7 +30,7 @@ struct AssistFlashCardView: View {
                 .padding(.horizontal, .huiSpaces.space24)
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.surfaceColored)
             } else {
