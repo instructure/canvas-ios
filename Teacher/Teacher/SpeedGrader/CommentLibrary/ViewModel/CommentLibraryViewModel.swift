@@ -45,20 +45,19 @@ class CommentLibraryViewModel: ObservableObject {
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .removeDuplicates()
             .mapToVoid()
-            .flatMap({
-                return Future { [weak self] promise in
+            .flatMap { [weak self] in
+                return Future { promise in
                     self?.refresh(completion: { promise(.success) })
                 }
-            })
+            }
             .sink(receiveValue: {})
             .store(in: &subscriptions)
     }
 
     func viewDidAppear(completion: (() -> Void)? = nil) {
-        fetchSettings {
-            if self.shouldShow {
-                self.refresh(completion: { completion?() })
-            }
+        fetchSettings { [weak self] in
+            guard let self, shouldShow else { return }
+            refresh(completion: { completion?() })
         }
     }
 
