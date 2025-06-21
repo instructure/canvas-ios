@@ -174,7 +174,7 @@
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B423D6472F00685A63 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
-		EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */; };
+		EB35BC5427BA4DF500166F0D /* CommentLibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BC5327BA4DF500166F0D /* CommentLibraryViewModelTests.swift */; };
 		EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A24D261206CA0003241C /* GradeSliderTests.swift */; };
 		EBAF32F627AACFC9000ACD32 /* CommentLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAF32F527AACFC9000ACD32 /* CommentLibraryViewModel.swift */; };
 		EBE802AF27B41C5F0003A663 /* CommentLibraryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE802AE27B41C5F0003A663 /* CommentLibraryScreen.swift */; };
@@ -417,7 +417,7 @@
 		E841D8BA23D6472F00685A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
-		EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentLibraryViewModelTests.swift; sourceTree = "<group>"; };
+		EB35BC5327BA4DF500166F0D /* CommentLibraryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryViewModelTests.swift; sourceTree = "<group>"; };
 		EB71A24D261206CA0003241C /* GradeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderTests.swift; sourceTree = "<group>"; };
 		EBAF32F527AACFC9000ACD32 /* CommentLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryViewModel.swift; sourceTree = "<group>"; };
 		EBE802AE27B41C5F0003A663 /* CommentLibraryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLibraryScreen.swift; sourceTree = "<group>"; };
@@ -1162,7 +1162,7 @@
 		CF0606032D96E4A00014C2EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */,
+				EB35BC5327BA4DF500166F0D /* CommentLibraryViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1780,7 +1780,7 @@
 				D9624A7E29C4AEF000F5303F /* QuizSubmissionListItemTests.swift in Sources */,
 				D9B4850029CCA8090004EBB5 /* QuizSubmissionListInteractorLiveTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
-				EB35BC5427BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift in Sources */,
+				EB35BC5427BA4DF500166F0D /* CommentLibraryViewModelTests.swift in Sources */,
 				CF0F18922DC0E7EC0054D21A /* SpeedGraderInteractorLiveTests.swift in Sources */,
 				D9B484FE29CC91A70004EBB5 /* QuizSubmissionViewModelTests.swift in Sources */,
 				D9B4851E29CDED990004EBB5 /* QuizSubmissionListFilterTests.swift in Sources */,
