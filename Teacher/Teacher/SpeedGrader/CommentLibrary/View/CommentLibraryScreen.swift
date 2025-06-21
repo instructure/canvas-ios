@@ -72,6 +72,7 @@ struct CommentLibraryScreen: View {
             doneButton
         }
         .navigationBarStyle(.modal)
+        .background(.backgroundLightest)
         .onAppear {
             viewModel.viewDidAppear()
         }
@@ -84,6 +85,7 @@ struct CommentLibraryScreen: View {
             } label: {
                 Text("Done", bundle: .teacher)
                     .font(.semibold16)
+                    .foregroundStyle(contextColor)
             }
         }
     }
@@ -119,6 +121,7 @@ struct CommentLibraryScreen: View {
 
             InstUI.Divider(viewModel.comments.last == libraryComment ? .full : .padded)
         }
+        .background(.backgroundLightest)
     }
 
     @ViewBuilder
