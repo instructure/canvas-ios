@@ -48,9 +48,6 @@ class SubmissionGraderViewModel: ObservableObject {
 
     // MARK: - Inputs
 
-    /** This is mainly used by `SubmissionCommentList` but since it's re-created on rotation and app backgrounding the entered text is lost. */
-    @Published var enteredComment: String = ""
-
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
 
