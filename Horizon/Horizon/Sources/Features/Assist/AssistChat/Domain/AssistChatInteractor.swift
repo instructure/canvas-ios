@@ -135,7 +135,6 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                         .setFailureType(to: Error.self)
                         .eraseToAnyPublisher()
                 }
-
                 return self.prepareCombinedPublisher()
                     .map { (pageContext, userShortName) in
                         (action, pageContext, userShortName)
@@ -143,8 +142,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                     .eraseToAnyPublisher()
             }
             .flatMap { [weak self] action, pageContext, userShortName in
-                guard let self = self
-                else {
+                guard let self = self else {
                     return Empty<AssistChatResponse, Error>(completeImmediately: true).eraseToAnyPublisher()
                 }
                 return self.actionHandler(
