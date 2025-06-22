@@ -29,21 +29,41 @@ class RubricCircleView: UIView {
     private static let w: CGFloat = 49
     fileprivate static let space: CGFloat = 10
     fileprivate static let stringPadding = "      "
+
+    private var isAnimating = false
     private var buttons: [UIButton] = []
-    var rubric: RubricViewModel?
+
+    var rubric: RubricViewModel? {
+        didSet {
+            buttons.forEach {
+                $0.removeFromSuperview()
+                $0.removeTarget(self, action: #selector(actionButtonClicked(sender:)), for: .primaryActionTriggered)
+            }
+            buttons.removeAll()
+            createButtons()
+            setNeedsLayout()
+        }
+    }
+
     weak var buttonClickDelegate: RubricCircleViewButtonDelegate?
     var courseColor: UIColor = UIColor.red
     private var currentlySelectedButton: UIButton?
     private var selectedButtonTransform = CGAffineTransform(scaleX: 1.135, y: 1.135)
-    var heightConstraint: NSLayoutConstraint?
-    var buttonsDidLayout = false
+    private var heightConstraint: NSLayoutConstraint!
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        heightConstraint = heightAnchor.constraint(equalToConstant: 30)
+        heightConstraint.isActive = true
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        if buttons.count == 0 {
-            setupButtons()
-            buttonsDidLayout = true
-        }
+        updateButtonsLayout()
     }
 
     private static var formatter: NumberFormatter = {
@@ -53,24 +73,14 @@ class RubricCircleView: UIView {
         return formatter
     }()
 
-    private func setupButtons() {
-        //  remove old buttons
-        buttons.forEach { $0.removeFromSuperview() }
+    private func createButtons() {
         if rubric?.onlyShowComments == true { return }
 
-        buttons = []
-
-        let space: CGFloat = RubricCircleView.space
         let ratings: [Double] = rubric?.ratings ?? []
         let rubricID: String = rubric?.id ?? "0"
         let descriptions: [String] = rubric?.descriptions ?? []
-        let count = ratings.count
 
-        var center = CGPoint(x: 0, y: 0)
-        var runningWidthTotal: CGFloat = 0.0
-        var rows: CGFloat = 0.0
-
-        for i in 0..<count {
+        for i in 0 ..< ratings.count {
             let r = ratings[i]
             let description = descriptions[i]
 
@@ -95,22 +105,12 @@ class RubricCircleView: UIView {
             }
 
             let title = (rubric?.hideRubricPoints ?? false) ? (rubric?.rubricRatings[i].shortDescription ?? "-") + RubricCircleView.stringPadding : RubricCircleView.formatter.string(for: r) ?? ""
-            let size = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)])
-            let circleWidth = ceil( max( RubricCircleView.w, size.width ) )
 
-            runningWidthTotal += circleWidth + space
-            if runningWidthTotal >= (frame.size.width - (space * 2) ) {
-                rows += 1
-                runningWidthTotal = 0
-                center.y += RubricCircleView.w + space
-                center.x = 0
-            }
-            let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: circleWidth, height: RubricCircleView.w))
+            let button = CapsuleButton()
             button.tag = i
             button.isExclusiveTouch = true
             button.accessibilityIdentifier = "RubricCell.RatingButton.\(rubricID)-\(r)"
             button.addTarget(self, action: #selector(actionButtonClicked(sender:)), for: .primaryActionTriggered)
-            button.layer.cornerRadius = floor( RubricCircleView.w / 2 )
             button.layer.masksToBounds = true
             button.setTitle(title, for: .normal)
             button.titleLabel?.textAlignment = .center
@@ -132,23 +132,43 @@ class RubricCircleView: UIView {
             button.layer.borderColor = color.cgColor
             button.layer.borderWidth = 1.0
             button.accessibilityLabel = a11yLabel
+
             if selected { button.transform = selectedButtonTransform }
-
-            center.x += circleWidth + space
         }
-
-        //  this is not the best form to have a view control it's own sizing,
-        //  better for parent view to do this, but this view does not take advantage
-        //  of autolayout constraints so.......😬 here goes anyway
-        if let rubric = rubric, heightConstraint == nil {
-            let h = RubricCircleView.computedHeight(rubric: rubric, maxWidth: frame.size.width)
-            addConstraintsWithVFL("V:[view(h)]", metrics: ["h": h])
-        }
-
-        registerForTraitChanges()
     }
 
-    var isAnimating = false
+    private func updateButtonsLayout() {
+        let space: CGFloat = RubricCircleView.space
+        let maxRunningWidth = frame.size.width - (space * 2)
+
+        var center = CGPoint(x: 0, y: 0)
+        var totalHeight: CGFloat = 0
+
+        for i in 0 ..< buttons.count {
+            let button = buttons[i]
+
+            let title = button.title(for: .normal) ?? ""
+            let size = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)])
+            let circleWidth = ceil( max( RubricCircleView.w, size.width ) )
+
+            let proposedMaxX = center.x + circleWidth + space
+            if proposedMaxX >= maxRunningWidth {
+                center.y += RubricCircleView.w + space
+                center.x = 0
+            }
+
+            button.frame = CGRect(
+                origin: center,
+                size: CGSize(width: circleWidth, height: RubricCircleView.w)
+            )
+
+            center.x += circleWidth + space
+            totalHeight = max(totalHeight, button.frame.maxY)
+        }
+
+        heightConstraint.constant = totalHeight
+    }
+
     @objc func actionButtonClicked(sender: DynamicButton) {
         if isAnimating { return }
         isAnimating = true
@@ -159,7 +179,7 @@ class RubricCircleView: UIView {
         }
     }
 
-    func animateButtonClick(sender: DynamicButton, completionHandler: @escaping () -> Void) {
+    private func animateButtonClick(sender: DynamicButton, completionHandler: @escaping () -> Void) {
         let delay = 0.05
 
         let sameButtonClicked: Bool = sender == currentlySelectedButton
@@ -187,7 +207,7 @@ class RubricCircleView: UIView {
         })
     }
 
-    func updateAccesibilityOnSelectedButton(previous: UIButton?, next: UIButton?) {
+    private func updateAccesibilityOnSelectedButton(previous: UIButton?, next: UIButton?) {
         var defaultSelectedButton: UIButton?
         if var defaultSelectedIndex = rubric?.selectedIndex {
             if rubric?.isCustomAssessment == true && buttons.count > 0 { defaultSelectedIndex = buttons.count - 1 }
@@ -208,7 +228,7 @@ class RubricCircleView: UIView {
         }
     }
 
-    func adjustButtonAppearance(showAsSelected: Bool, button: UIButton?) {
+    private func adjustButtonAppearance(showAsSelected: Bool, button: UIButton?) {
         guard let button = button else { return }
         var selected = false
         if let assessmentIndex = rubric?.selectedIndex {
@@ -224,55 +244,11 @@ class RubricCircleView: UIView {
         button.setTitleColor(color, for: .normal)
         button.layer.borderColor = color.cgColor
     }
+}
 
-    private static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
-        let count = CGFloat(rubric.ratings.count)
-        let howManyCanFitInWidth = CGFloat( ceil( maxWidth / (w + space) ) )
-        if howManyCanFitInWidth == 0 { return 0 }
-        let rows = CGFloat(ceil(count / howManyCanFitInWidth))
-        //  If both hideRubricPoints and freeFormCriterionComments are set,
-        //  circle view should not be visible. Only comments should show of rubric.
-        if rubric.onlyShowComments { return 0 }
-        if rubric.hideRubricPoints { return hidePointsHeight(rubric: rubric, maxWidth: maxWidth) }
-        return (rows * w) + ((rows - 1) * space)
-    }
-
-    /**
-    When `hideRubricPoints` is set on the rubric view model, then we measure the each button circle by the size of the
-    text vs a strict height of 49 ( private static let w: CGFloat = 49 ) which is used for a numeric score.
-    - Parameter rubric: view model
-    - Parameter maxWidth: max width
-    - Returns: CGFloat  height of circlview to be used for all view height computation.
-    */
-    private static func hidePointsHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
-        guard rubric.hideRubricPoints else { return 0.0 }
-        var rows: CGFloat = 1
-        var total: CGFloat = 0.0
-        rubric.rubricRatings.forEach { r in
-            let str = r.shortDescription + stringPadding
-            let fontAttributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)]
-            let size = str.size(withAttributes: fontAttributes)
-            let width = ceil( max(w, size.width) )
-            total += ceil( width ) + space
-            if total >= ( maxWidth - (space * 2) ) {
-                rows += 1
-                total = 0
-            }
-        }
-        return (rows * w) + ((rows - 1) * space)
-    }
-
-    private func registerForTraitChanges() {
-        let traits: [UITrait] = [
-            UITraitUserInterfaceStyle.self,
-            UITraitVerticalSizeClass.self,
-            UITraitHorizontalSizeClass.self,
-            UITraitLayoutDirection.self
-        ]
-        registerForTraitChanges(traits) { (self: RubricCircleView, _) in
-            if self.buttonsDidLayout {
-                self.setupButtons()
-            }
-        }
+private class CapsuleButton: DynamicButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height / 2
     }
 }
