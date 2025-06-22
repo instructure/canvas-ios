@@ -20,24 +20,23 @@ import SwiftUI
 import WidgetKit
 
 struct CourseTotalGradeView: View {
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let model: CourseTotalGradeModel
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             if model.isLoggedIn {
                 if let data = model.data {
                     switch data.fetchResult {
                     case .grade(let attributes, let text):
-                        CourseTodalGradeResultView(
+                        CourseTotalGradeResultView(
                             attributes: attributes,
                             gradeView: {
                                 Text(text.styledAsGrade())
                             }
                         )
                     case .noGrade(let attributes):
-                        CourseTodalGradeResultView(
+                        CourseTotalGradeResultView(
                             attributes: attributes,
                             gradeView: {
                                 Text("No Grades")
@@ -46,7 +45,7 @@ struct CourseTotalGradeView: View {
                             }
                         )
                     case .restricted(let attributes):
-                        CourseTodalGradeResultView(
+                        CourseTotalGradeResultView(
                             attributes: attributes,
                             gradeView: {
                                 Image

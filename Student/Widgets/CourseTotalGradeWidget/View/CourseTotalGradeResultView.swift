@@ -17,8 +17,11 @@
 //
 
 import SwiftUI
+import WidgetKit
 
-struct CourseTodalGradeResultView<GradeView: View>: View {
+struct CourseTotalGradeResultView<GradeView: View>: View {
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let attributes: CourseTotalGradeModel.CourseAttributes
     @ViewBuilder let gradeView: () -> GradeView
@@ -38,7 +41,7 @@ struct CourseTodalGradeResultView<GradeView: View>: View {
                 Text(attributes.name)
                     .font(.regular14)
                     .foregroundStyle(attributes.color ?? .gray)
-                    .lineLimit(3)
+                    .lineLimit(lineLimit)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
 
@@ -47,4 +50,33 @@ struct CourseTodalGradeResultView<GradeView: View>: View {
         }
         .frame(maxHeight: .infinity, alignment: .top)
     }
+
+    private var lineLimit: Int {
+        switch dynamicTypeSize {
+        case .xxxLarge...DynamicTypeSize.accessibility2:
+            2
+        case .accessibility2...:
+            1
+        default:
+            3
+        }
+    }
 }
+
+#if DEBUG
+
+struct CourseTotalGradeResultView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        CourseTotalGradeResultView(
+            attributes: .init(name: "Example Course", color: .red),
+            gradeView: {
+                Text("95 / 100".styledAsGrade())
+            }
+        )
+        .defaultWidgetContainerBackground()
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+}
+
+#endif
