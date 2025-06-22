@@ -96,19 +96,26 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         self.pineDomainService = pineDomainService
         self.downloadFileInteractor = downloadFileInteractor
         self.pageContextPublisher = pageContextPublisher
-        unowned let unownedSelf = self
         initialStatePublisher
-            .flatMap { unownedSelf.prepareCombinedPublisher() }
-            .flatMap { context, userShortName in
-                unownedSelf.actionHandler(
+            .flatMap { [weak self] _ -> AnyPublisher<(AssistChatPageContext, String), Error> in
+                guard let self = self else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+                }
+                return self.prepareCombinedPublisher()
+            }
+            .flatMap { [weak self] context, userShortName -> AnyPublisher<AssistChatResponse, Error> in
+                guard let self = self else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+                }
+                return self.actionHandler(
                     action: .chat(prompt: "", history: []),
                     pageContext: context,
                     userShortName: userShortName
                 )
             }
             .sink(
-                receiveCompletion: { _ in},
-                receiveValue: { [weak self]  response in
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] response in
                     self?.responsePublisher.send(.success(response))
                 }
             )
@@ -120,12 +127,20 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     /// Publishes a new user action to the interactor
     func publish(action: AssistChatAction) {
         actionPublisher.accept(action)
-        unowned let unownedSelf = self
         actionCancellable = actionPublisher
             .compactMap { $0 }
-            .flatMap { action in
-                unownedSelf.prepareCombinedPublisher()
-                    .map { (action, $0.0, $0.1) }
+            .flatMap { [weak self] action -> AnyPublisher<(AssistChatAction, AssistChatPageContext, String), Error> in
+                guard let self = self else {
+                    return Just((action, AssistChatPageContext(), ""))
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+
+                return self.prepareCombinedPublisher()
+                    .map { (pageContext, userShortName) in
+                        (action, pageContext, userShortName)
+                    }
+                    .eraseToAnyPublisher()
             }
             .flatMap { [weak self] action, pageContext, userShortName in
                 guard let self = self
@@ -198,18 +213,21 @@ final class AssistChatInteractorLive: AssistChatInteractor {
             return buildInitialResponse(for: pageContext, with: userShortName)
                 .eraseToAnyPublisher()
         }
-        unowned let unownedSelf = self
         return publish(using: action, with: userShortName)
-            .flatMap { newHistory in
-                unownedSelf.classifier(
+            .flatMap { [weak self] newHistory -> AnyPublisher<AssistChatResponse, Error> in
+                guard let self = self else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+                }
+
+                return self.classifier(
                     prompt: prompt,
                     pageContext: pageContext,
                     userShortName: userShortName,
                     action: action,
                     history: newHistory
                 )
-                .flatMap { classification in
-                    unownedSelf.handleClassifierPromptResponse(
+                .flatMap { classification -> AnyPublisher<AssistChatResponse, Error> in
+                    return self.handleClassifierPromptResponse(
                         classification: classification,
                         action: action,
                         pageContext: pageContext,
@@ -218,6 +236,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
                         useAdvancedChat: useAdvancedChat
                     )
                 }
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
