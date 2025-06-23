@@ -94,7 +94,6 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
         XCTAssertEqual(testee.state, .error)
     }
 
-
     func test_state_whenGetUserSettingsFails_shouldBeError() {
         interactor.getIsCommentLibraryEnabledResult = Publishers.typedFailure(error: MockError())
 

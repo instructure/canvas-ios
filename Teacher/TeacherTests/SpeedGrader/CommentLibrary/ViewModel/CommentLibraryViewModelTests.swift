@@ -45,6 +45,11 @@ class CommentLibraryViewModelTests: TeacherTestCase {
         // When
         let testee = CommentLibraryViewModel(comment: .init(""))
 
+        let exp1 = expectation(description: "refresh completed")
+        testee.refresh(completion: { exp1.fulfill() })
+
+        wait(for: [exp1], timeout: 2)
+
         // Then
         XCTAssertEqual(testee.endCursor, "next_cursor")
 
