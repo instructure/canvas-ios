@@ -516,6 +516,28 @@
         }
       }
     },
+    "%lld days late." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld day late."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld days late."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Absent" : {
       "localizations" : {
         "ar" : {
@@ -10762,6 +10784,9 @@
     "Days late" : {
 
     },
+    "Days late successfully saved." : {
+
+    },
     "Description" : {
       "localizations" : {
         "ar" : {
@@ -12810,6 +12835,9 @@
         }
       }
     },
+    "Double-tap to change late days number." : {
+
+    },
     "Drawer menu" : {
       "localizations" : {
         "ar" : {
@@ -13065,6 +13093,9 @@
           }
         }
       }
+    },
+    "Due date was on %@." : {
+
     },
     "Due Dates, Double tap for details." : {
       "localizations" : {
@@ -27277,6 +27308,9 @@
         }
       }
     },
+    "No Due Date" : {
+
+    },
     "No due date set." : {
       "localizations" : {
         "ar" : {
@@ -27532,6 +27566,9 @@
           }
         }
       }
+    },
+    "No due date was on set." : {
+
     },
     "No Grade" : {
       "localizations" : {
@@ -34959,6 +34996,9 @@
           }
         }
       }
+    },
+    "Saving days late." : {
+
     },
     "Saving grade status." : {
 

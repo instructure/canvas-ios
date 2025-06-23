@@ -47,6 +47,8 @@ struct GradeStatusView: View {
                     daysLate: viewModel.daysLate,
                     dueDate: viewModel.dueDate,
                     isLoading: viewModel.isLoading,
+                    accessibilityLabel: viewModel.daysLateA11yLabel,
+                    accessibilityHint: viewModel.daysLateA11yHint,
                     onEdit: { newDaysLateValue in
                         viewModel.didChangeLateDaysValue.send(newDaysLateValue)
                     }
@@ -64,14 +66,14 @@ struct GradeStatusView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             if viewModel.isLoading {
                 ProgressView()
-                    .progressViewStyle(.circular)
+                    .tint(nil)
             } else {
                 Text(viewModel.selectedOption.title)
                     .font(.regular14)
-                    .foregroundColor(Color.textDark)
+                    .foregroundStyle(.tint)
                 Image.chevronDown
                     .scaledIcon(size: 24)
-                    .foregroundColor(Color.textDark)
+                    .foregroundStyle(.tint)
             }
         }
         .frame(minHeight: 52)

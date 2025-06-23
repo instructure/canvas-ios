@@ -394,6 +394,7 @@ struct SubmissionGraderView: View {
             // Clipping won't prevent user interaction so we need to limit it not to swallow touches outside of the drawer.
             .contentShape(Rectangle())
         }
+        .tint(viewModel.contextColor)
     }
 
     private func snapDrawerTo(_ state: DrawerState) {

@@ -27,8 +27,10 @@ class GradeStatusViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published private(set) var isShowingDaysLateSection = false
     @Published private(set) var daysLate = ""
+    @Published private(set) var daysLateA11yLabel = ""
     @Published private(set) var dueDate = ""
     @Published var isShowingSaveFailedAlert = false
+    let daysLateA11yHint = String(localized: "Double-tap to change late days number.", bundle: .teacher)
     let options: [OptionItem]
     let errorAlertViewModel = ErrorAlertViewModel(
         title: String(localized: "Error", bundle: .teacher),
@@ -148,15 +150,21 @@ class GradeStatusViewModel: ObservableObject {
 
     private func refreshGradeStatus(on publisher: AnyPublisher<(GradeStatus, daysLate: Int, dueDate: Date?), Never>) {
         databaseObservation = publisher
-            .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: String, dueDate: String) in
-                (OptionItem.from(status), "\(daysLate)", dueDate?.relativeDateTimeString ?? "")
+            .map { (status, daysLate, dueDate) -> (OptionItem, daysLate: Int, dueDate: String) in
+                (OptionItem.from(status), daysLate, dueDate?.relativeDateTimeString ?? "")
             }
             .receive(on: RunLoop.main)
             .sink { [weak self] (option, daysLate, dueDate) in
                 self?.selectedOption = option
                 self?.isShowingDaysLateSection = option.isLate
-                self?.daysLate = daysLate
-                self?.dueDate = dueDate
+                self?.daysLate = "\(daysLate)"
+                self?.dueDate = dueDate.isEmpty ? String(localized: "No Due Date", bundle: .teacher) : dueDate
+                self?.daysLateA11yLabel = {
+                    let daysLateText = String(localized: "\(daysLate) days late.", bundle: .teacher)
+                    let dueDateText = dueDate.isEmpty ? String(localized: "No due date was on set.", bundle: .teacher)
+                                                      : String(localized: "Due date was on \(dueDate).", bundle: .teacher)
+                    return "\(daysLateText) \(dueDateText)"
+                }()
             }
     }
 
@@ -165,9 +173,15 @@ class GradeStatusViewModel: ObservableObject {
         let userId = self.userId
 
         publisher
-            .map { [weak self] in
+            .map { [weak self] newLateDays in
                 self?.isLoading = true
-                return $0
+                return newLateDays
+            }
+            .flatMap { newLateDays in
+                UIAccessibility.announcePersistently(
+                    String(localized: "Saving days late.", bundle: .teacher)
+                )
+                .map { newLateDays }
             }
             .flatMap { [interactor] newLateDays in
                 interactor.updateLateDays(
@@ -176,6 +190,17 @@ class GradeStatusViewModel: ObservableObject {
                     daysLate: newLateDays
                 )
                 .mapToResult()
+            }
+            .flatMap { result in
+                if result.isSuccess {
+                    return UIAccessibility.announcePersistently(
+                        String(localized: "Days late successfully saved.", bundle: .teacher)
+                    )
+                    .map { result }
+                    .eraseToAnyPublisher()
+                } else {
+                    return Just(result).eraseToAnyPublisher()
+                }
             }
             .receive(on: RunLoop.main)
             .sink { [weak self] result in

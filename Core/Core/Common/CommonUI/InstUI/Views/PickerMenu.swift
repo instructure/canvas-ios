@@ -119,7 +119,7 @@ extension InstUI {
                 option.customAccessibilityLabel
                     ?? [option.title, option.subtitle].joined(separator: ", ")
             )
-            .identifier(identifierGroup.flatMap { "\($0).\(option.id)" })
+            .identifier(identifierGroup, option.id)
         }
     }
 }

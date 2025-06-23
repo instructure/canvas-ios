@@ -24,7 +24,10 @@ struct GradeStatusDaysLateView: View {
     let daysLate: String
     let dueDate: String
     let isLoading: Bool
+    let accessibilityLabel: String
+    let accessibilityHint: String
     let onEdit: (Int) -> Void
+    @AccessibilityFocusState private var isA11yFocused: Bool
 
     var body: some View {
         HStack(alignment: .center) {
@@ -65,6 +68,12 @@ struct GradeStatusDaysLateView: View {
         .paddingStyle(.bottom, .cellBottom)
         .paddingStyle(.horizontal, .standard)
         .background(Color.backgroundLightest)
+        .accessibilityElement()
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAction { presentNumberInputDialog() }
+        .accessibilityLabel(accessibilityLabel)
+        .accessibilityHint(accessibilityHint)
+        .accessibilityFocused($isA11yFocused)
     }
 
     private func presentNumberInputDialog() {
@@ -89,6 +98,7 @@ struct GradeStatusDaysLateView: View {
             if let text = alert.textFields?.first?.text, let value = Int(text) {
                 onEdit(value)
             }
+            isA11yFocused = true
         })
         viewController.value.present(alert, animated: true)
     }
@@ -106,6 +116,8 @@ struct GradeStatusDaysLateView_Previews: PreviewProvider {
                     daysLate: "4",
                     dueDate: "2025-02-02 23:59:00",
                     isLoading: false,
+                    accessibilityLabel: "",
+                    accessibilityHint: "",
                     onEdit: { _ in }
                 )
                 .tint(Color.red)
@@ -115,6 +127,8 @@ struct GradeStatusDaysLateView_Previews: PreviewProvider {
                     daysLate: "4",
                     dueDate: "2025-02-02 23:59:00",
                     isLoading: true,
+                    accessibilityLabel: "",
+                    accessibilityHint: "",
                     onEdit: { _ in }
                 )
                 .tint(Color.red)
