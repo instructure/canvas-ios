@@ -172,7 +172,7 @@ class RubricViewController: UIViewController {
             //  TODO: - hide rating blurb here
             container.isHidden = true
         }
-        container.backgroundColor = courseColor.withAlphaComponent(.RubricCircle.colorAlpha)
+        container.backgroundColor = courseColor.withAlphaComponent(.RubricCircle.courseColorAlpha)
 
         if !(model.comment?.isEmpty ?? true) {
             let comment = ChatBubbleView(frame: CGRect.zero)

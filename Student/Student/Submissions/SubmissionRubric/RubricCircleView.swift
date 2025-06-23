@@ -232,7 +232,7 @@ class RubricCircleView: UIView {
 
         if !showAsSelected { button.transform = CGAffineTransform.identity }
 
-        let bgColor = selected ? courseColor : showAsSelected ? courseColor.withAlphaComponent(.RubricCircle.colorAlpha) : UIColor.backgroundLightest
+        let bgColor = selected ? courseColor : showAsSelected ? courseColor.withAlphaComponent(.RubricCircle.courseColorAlpha) : UIColor.backgroundLightest
         let color = selected ? UIColor.backgroundLightest : showAsSelected ? courseColor : UIColor.borderDark
 
         button.backgroundColor = bgColor
@@ -263,7 +263,7 @@ extension CGAffineTransform {
 extension CGFloat {
 
     enum RubricCircle {
-        static var colorAlpha: CGFloat = 0.07
+        static var courseColorAlpha: CGFloat = 0.07
         static let length: CGFloat = 49
         static let spacing: CGFloat = 10
     }
