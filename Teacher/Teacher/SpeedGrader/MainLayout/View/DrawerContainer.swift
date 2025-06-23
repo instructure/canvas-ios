@@ -25,10 +25,8 @@ enum DrawerState {
 }
 
 // Place after the main content in a ZStack(alignment: .bottom)
-struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
+struct DrawerContainer<Content: View>: View {
     let content: Content
-    let toolbarLeading: Leading
-    let toolbarTrailing: Trailing
     let minHeight: CGFloat
     let maxHeight: CGFloat
 
@@ -56,12 +54,8 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         minHeight: CGFloat,
         maxHeight: CGFloat,
         @ViewBuilder content: () -> Content,
-        @ViewBuilder toolbarLeading: () -> Leading,
-        @ViewBuilder toolbarTrailing: () -> Trailing
     ) {
         self.content = content()
-        self.toolbarLeading = toolbarLeading()
-        self.toolbarTrailing = toolbarTrailing()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
         self._state = state
@@ -70,11 +64,16 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                toolbarLeading
-                    .padding(.trailing, 8)
-                    .padding(.leading, 14)
+                Button(action: expandCollapseButtonAction) { expandCollapseButtonImage }
+                .padding(.trailing, 8)
+                .padding(.leading, 14)
+                .accessibilityLabel(expandCollapseButtonAccessibilityText)
+                .accessibilityShowsLargeContentViewer {
+                    state != .max ? Image.fullScreenLine : Image.exitFullScreenLine
+                    expandCollapseButtonAccessibilityText
+                }
 
-                Button(action: buttonAction) {
+                Button(action: dragIndicatorAction) {
                     RoundedRectangle(cornerRadius: 2)
                         .fill(Color.borderMedium)
                         .frame(width: 36, height: 4)
@@ -94,10 +93,15 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
                     }
                 )
                 .accessibility(identifier: "SpeedGrader.drawerGripper")
-                .accessibility(label: buttonA11yText)
+                .accessibilityLabel(buttonA11yText)
 
-                toolbarTrailing
-                    .padding(.horizontal, 16)
+                Button(action: openCloseButtonAction) { openCloseButtonImage }
+                .padding(.horizontal, 16)
+                .accessibilityLabel(openCloseButtonAccessibilityText)
+                .accessibilityShowsLargeContentViewer {
+                    openCloseButtonImage
+                    openCloseButtonAccessibilityText
+                }
             }
             .padding(.top, 16)
 
@@ -111,20 +115,59 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         )
     }
 
-    func buttonAction() { withTransaction(DrawerState.transaction) {
-        switch state {
-        case .min: state = .mid
-        case .mid: state = .max
-        case .max: state = .min
+    private func snapDrawer(to state: DrawerState) {
+        withTransaction(DrawerState.transaction) {
+            self.state = state
         }
-    } }
+    }
 
-    var buttonA11yText: Text {
+    private func dragIndicatorAction() {
         switch state {
-        case .min: return Text("Open Drawer half screen", bundle: .teacher)
-        case .mid: return Text("Open Drawer full screen", bundle: .teacher)
-        case .max: return Text("Close Drawer", bundle: .teacher)
+        case .min: snapDrawer(to: .mid)
+        case .mid: snapDrawer(to: .max)
+        case .max: snapDrawer(to: .min)
         }
+    }
+
+    private var buttonA11yText: Text {
+        switch state {
+        case .min: Text("Open Drawer half screen", bundle: .teacher)
+        case .mid: Text("Open Drawer full screen", bundle: .teacher)
+        case .max: Text("Close Drawer", bundle: .teacher)
+        }
+    }
+
+    @ViewBuilder
+    private var expandCollapseButtonImage: some View {
+        state == .max ? Image.exitFullScreenLine : Image.fullScreenLine
+    }
+
+    private func expandCollapseButtonAction() {
+        state == .mid ? snapDrawer(to: .max) : snapDrawer(to: .mid)
+    }
+
+    private var expandCollapseButtonAccessibilityText: Text {
+        switch state {
+        case .min: Text("Expand drawer half screen", bundle: .teacher)
+        case .mid: Text("Expand drawer full screen", bundle: .teacher)
+        case .max: Text("Collapse drawer half screen", bundle: .teacher)
+        }
+    }
+
+    @ViewBuilder
+    private var openCloseButtonImage: some View {
+        Image.chevronDown
+            .rotationEffect(state != .min ? .degrees(0) : .degrees(180))
+    }
+
+    private func openCloseButtonAction() {
+        state == .min ? snapDrawer(to: .max) : snapDrawer(to: .min)
+    }
+
+    private var openCloseButtonAccessibilityText: Text {
+        state == .min ?
+        Text("Open drawer full screen", bundle: .teacher) :
+        Text("Close drawer", bundle: .teacher)
     }
 
     struct DrawerBackground: Shape {
@@ -143,9 +186,7 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         state: $state,
         minHeight: 32,
         maxHeight: 512,
-        content: { Color.red.frame(height: 128) },
-        toolbarLeading: { Image(systemName: "chevron.left") },
-        toolbarTrailing: { Image(systemName: "chevron.right") }
+        content: { Color.red.frame(height: 128) }
     )
 }
 

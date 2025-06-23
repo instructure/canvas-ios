@@ -55,18 +55,6 @@ struct SubmissionGraderView: View {
         controller.value.navigationController?.view.frame.size ?? .zero
     }
 
-    private var openCloseButtonAccessibilityLabel: String {
-        drawerState != .min ?
-        String(localized: "Close drawer", bundle: .teacher) :
-        String(localized: "Open drawer", bundle: .teacher)
-    }
-
-    private var expandCollapseButtonAccessibilityLabel: String {
-        drawerState != .max ?
-        String(localized: "Expand drawer", bundle: .teacher) :
-        String(localized: "Collapse drawer", bundle: .teacher)
-    }
-
     init(
         env: AppEnvironment,
         userIndexInSubmissionList: Int,
@@ -227,29 +215,6 @@ struct SubmissionGraderView: View {
 
             DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
                 tools(bottomInset: bottomInset, isDrawer: true)
-            } toolbarLeading: {
-                Button {
-                    drawerState != .mid ? snapDrawerTo(.mid) : snapDrawerTo(.max)
-                } label: {
-                    drawerState != .max ? Image.fullScreenLine : Image.exitFullScreenLine
-                }
-                .accessibilityLabel(expandCollapseButtonAccessibilityLabel)
-                .accessibilityShowsLargeContentViewer {
-                    drawerState != .max ? Image.fullScreenLine : Image.exitFullScreenLine
-                    Text(expandCollapseButtonAccessibilityLabel)
-                }
-            } toolbarTrailing: {
-                Button {
-                    drawerState != .min ? snapDrawerTo(.min) : snapDrawerTo(.max)
-                } label: {
-                    Image.chevronDown
-                        .rotationEffect(drawerState != .min ? .degrees(0) : .degrees(180))
-                }
-                .accessibilityLabel(openCloseButtonAccessibilityLabel)
-                .accessibilityShowsLargeContentViewer {
-                    drawerState != .min ? Image.arrowOpenDownLine : Image.arrowOpenUpLine
-                    Text(openCloseButtonAccessibilityLabel)
-                }
             }
             .accessibilityAddTraits(drawerState == .max ? .isModal : [])
         }

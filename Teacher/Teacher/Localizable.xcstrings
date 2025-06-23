@@ -6427,7 +6427,7 @@
         }
       }
     },
-    "Collapse drawer" : {
+    "Collapse drawer half screen" : {
 
     },
     "Collapsed" : {
@@ -12588,7 +12588,10 @@
         }
       }
     },
-    "Expand drawer" : {
+    "Expand drawer full screen" : {
+
+    },
+    "Expand drawer half screen" : {
 
     },
     "Expanded" : {
@@ -25013,7 +25016,7 @@
         }
       }
     },
-    "Open drawer" : {
+    "Open drawer full screen" : {
 
     },
     "Open Drawer full screen" : {
