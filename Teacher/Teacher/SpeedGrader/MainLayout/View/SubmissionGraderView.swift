@@ -57,14 +57,14 @@ struct SubmissionGraderView: View {
 
     private var openCloseButtonAccessibilityLabel: String {
         drawerState != .min ?
-        String(localized: "Close", bundle: .teacher) :
-        String(localized: "Open", bundle: .teacher)
+        String(localized: "Close drawer", bundle: .teacher) :
+        String(localized: "Open drawer", bundle: .teacher)
     }
 
     private var expandCollapseButtonAccessibilityLabel: String {
         drawerState != .max ?
-        String(localized: "Expand", bundle: .teacher) :
-        String(localized: "Collapse", bundle: .teacher)
+        String(localized: "Expand drawer", bundle: .teacher) :
+        String(localized: "Collapse drawer", bundle: .teacher)
     }
 
     init(
@@ -227,7 +227,7 @@ struct SubmissionGraderView: View {
 
             DrawerContainer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
                 tools(bottomInset: bottomInset, isDrawer: true)
-            } leadingContent: {
+            } toolbarLeading: {
                 Button {
                     drawerState != .mid ? snapDrawerTo(.mid) : snapDrawerTo(.max)
                 } label: {
@@ -238,11 +238,12 @@ struct SubmissionGraderView: View {
                     drawerState != .max ? Image.fullScreenLine : Image.exitFullScreenLine
                     Text(expandCollapseButtonAccessibilityLabel)
                 }
-            } trailingContent: {
+            } toolbarTrailing: {
                 Button {
                     drawerState != .min ? snapDrawerTo(.min) : snapDrawerTo(.max)
                 } label: {
-                    drawerState != .min ? Image.arrowOpenDownLine : Image.arrowOpenUpLine
+                    Image.chevronDown
+                        .rotationEffect(drawerState != .min ? .degrees(0) : .degrees(180))
                 }
                 .accessibilityLabel(openCloseButtonAccessibilityLabel)
                 .accessibilityShowsLargeContentViewer {

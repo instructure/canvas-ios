@@ -56,12 +56,12 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         minHeight: CGFloat,
         maxHeight: CGFloat,
         @ViewBuilder content: () -> Content,
-        @ViewBuilder leadingContent: () -> Leading,
-        @ViewBuilder trailingContent: () -> Trailing
+        @ViewBuilder toolbarLeading: () -> Leading,
+        @ViewBuilder toolbarTrailing: () -> Trailing
     ) {
         self.content = content()
-        self.leadingContent = leadingContent()
-        self.trailingContent = trailingContent()
+        self.leadingContent = toolbarLeading()
+        self.trailingContent = toolbarTrailing()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
         self._state = state
@@ -144,8 +144,8 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         minHeight: 32,
         maxHeight: 512,
         content: { Color.red.frame(height: 128) },
-        leadingContent: { Image(systemName: "chevron.left") },
-        trailingContent: { Image(systemName: "chevron.right") }
+        toolbarLeading: { Image(systemName: "chevron.left") },
+        toolbarTrailing: { Image(systemName: "chevron.right") }
     )
 }
 

@@ -5912,6 +5912,9 @@
         }
       }
     },
+    "Close drawer" : {
+
+    },
     "Close Drawer" : {
       "localizations" : {
         "ar" : {
@@ -6424,7 +6427,7 @@
         }
       }
     },
-    "Collapse" : {
+    "Collapse drawer" : {
 
     },
     "Collapsed" : {
@@ -12585,7 +12588,7 @@
         }
       }
     },
-    "Expand" : {
+    "Expand drawer" : {
 
     },
     "Expanded" : {
@@ -25009,6 +25012,9 @@
           }
         }
       }
+    },
+    "Open drawer" : {
+
     },
     "Open Drawer full screen" : {
       "localizations" : {
