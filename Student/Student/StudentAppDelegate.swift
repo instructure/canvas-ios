@@ -261,7 +261,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
     }
 
-    func checkForTodoWidgetPresence() {
+    func checkForWidgetsPresence() {
         WidgetCenter.shared.getCurrentConfigurations { result in
             guard result.isSuccess, let widgetInfo = result.value else { return }
 
@@ -333,7 +333,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
 
         if isTrackingEnabled {
-            analyticsTracker.startSession(completion: checkForTodoWidgetPresence)
+            analyticsTracker.startSession(completion: checkForWidgetsPresence)
         } else {
             analyticsTracker.endSession()
         }

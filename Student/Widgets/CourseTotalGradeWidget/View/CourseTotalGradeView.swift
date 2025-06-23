@@ -40,7 +40,7 @@ struct CourseTotalGradeView: View {
                             attributes: attributes,
                             gradeView: {
                                 Text("No Grades")
-                                    .font(.regular22)
+                                    .font(.scaledRestrictly(.regular22))
                                     .foregroundStyle(Color.textDark)
                             }
                         )
@@ -59,7 +59,7 @@ struct CourseTotalGradeView: View {
                     }
                 } else if model.isLoading {
                     Text("Loading")
-                        .font(.regular12)
+                        .font(.scaledRestrictly(.regular12))
                         .foregroundStyle(.textDark)
                 } else {
                     CourseTotalGradeNoCourseView()

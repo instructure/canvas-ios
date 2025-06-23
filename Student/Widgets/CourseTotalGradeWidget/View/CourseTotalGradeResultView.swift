@@ -31,17 +31,21 @@ struct CourseTotalGradeResultView<GradeView: View>: View {
             HStack {
                 Image("student-logomark")
                     .scaledIcon(size: 24)
+                    .dynamicTypeSize(...DynamicTypeSize.accessibility2)
                 Text("Grade")
-                    .font(.semibold14)
+                    .font(.scaledRestrictly(.semibold14))
                     .foregroundStyle(.textDarkest)
                 Spacer()
             }
+            .accessibilityElement()
+            .accessibilityLabel(Text("Canvas Course Total Grade Widget"))
+            .accessibilityHint("Double tap to view course grades tab")
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(attributes.name)
-                    .font(.regular14)
+                    .font(.scaledRestrictly(.regular14))
                     .foregroundStyle(attributes.color ?? .gray)
-                    .lineLimit(lineLimit)
+                    .lineLimit(3)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
 
@@ -49,17 +53,6 @@ struct CourseTotalGradeResultView<GradeView: View>: View {
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
-    }
-
-    private var lineLimit: Int {
-        switch dynamicTypeSize {
-        case .xxxLarge...DynamicTypeSize.accessibility2:
-            2
-        case .accessibility2...:
-            1
-        default:
-            3
-        }
     }
 }
 

@@ -1808,6 +1808,9 @@
         }
       }
     },
+    "Canvas Course Total Grade Widget" : {
+
+    },
     "Canvas To-do Widget" : {
 
     },
@@ -2072,6 +2075,9 @@
           }
         }
       }
+    },
+    "Double tap to view course grades tab" : {
+
     },
     "Double tap to view full list of to-dos" : {
 

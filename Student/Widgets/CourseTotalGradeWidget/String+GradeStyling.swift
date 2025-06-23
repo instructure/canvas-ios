@@ -33,7 +33,7 @@ extension String {
 
             attributed = AttributedString(noGradesText)
             attributed.foregroundColor = Color.textDark
-            attributed.font = Font.regular22
+            attributed.font = Font.scaledRestrictly(.regular22)
             return attributed
         }
 
@@ -43,14 +43,14 @@ extension String {
             let secondaryRange = range.lowerBound ..< attributed.endIndex
 
             attributed[mainRange].foregroundColor = Color.textDarkest
-            attributed[mainRange].font = Font.bold22
+            attributed[mainRange].font = Font.scaledRestrictly(.bold22)
 
             attributed[secondaryRange].foregroundColor = Color.textDark
-            attributed[secondaryRange].font = Font.regular22
+            attributed[secondaryRange].font = Font.scaledRestrictly(.regular22)
         } else {
 
             attributed.foregroundColor = Color.textDarkest
-            attributed.font = Font.bold22
+            attributed.font = Font.scaledRestrictly(.bold22)
         }
 
         return attributed

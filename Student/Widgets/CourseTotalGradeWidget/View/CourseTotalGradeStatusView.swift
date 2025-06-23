@@ -65,10 +65,10 @@ struct CourseTotalGradeStatusView: View {
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 4) {
                 Text(status.title)
-                    .font(.semibold12)
+                    .font(.scaledRestrictly(.semibold12))
                     .foregroundStyle(Color.textDarkest)
                 Text(status.subtitle)
-                    .font(.regular12)
+                    .font(.scaledRestrictly(.regular12))
                     .foregroundStyle(Color.textDarkest)
             }
         }

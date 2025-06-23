@@ -22,7 +22,7 @@ import WidgetKit
 struct CourseTotalGradeNoCourseView: View {
     var body: some View {
         Text("Select course to show total grade")
-            .font(.regular14)
+            .font(.scaledRestrictly(.regular14))
             .foregroundStyle(.textDark)
             .multilineTextAlignment(.leading)
             .fixedSize(horizontal: false, vertical: true)
