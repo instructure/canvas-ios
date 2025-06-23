@@ -68,7 +68,16 @@ struct CourseTotalGradeView: View {
                 CourseTotalGradeStatusView(status: .loggedOut)
             }
         }
+        .widgetURL(courseGradesURL)
         .containerBackground(Color.backgroundLightest, for: .widget)
+    }
+
+    private var courseGradesURL: URL? {
+        guard let data = model.data else { return nil }
+        return .gradesRoute(
+            forCourse: data.courseID,
+            color: data.fetchResult.attributes?.color?.hexString.dropFirst().description
+        )
     }
 }
 

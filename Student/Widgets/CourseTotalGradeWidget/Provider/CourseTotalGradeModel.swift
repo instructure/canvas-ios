@@ -32,6 +32,15 @@ class CourseTotalGradeModel: WidgetModel {
         case restricted(attributes: CourseAttributes)
         case failure(attributes: CourseAttributes, error: String)
         case courseNotFound
+
+        var attributes: CourseAttributes? {
+            switch self {
+            case .grade(let attribs, _), .noGrade(let attribs), .restricted(let attribs), .failure(let attribs, _):
+                return attribs
+            case .courseNotFound:
+                return nil
+            }
+        }
     }
 
     struct Data {
