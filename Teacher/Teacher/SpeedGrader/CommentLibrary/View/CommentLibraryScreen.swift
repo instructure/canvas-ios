@@ -73,9 +73,6 @@ struct CommentLibraryScreen: View {
         }
         .navigationBarStyle(.modal)
         .background(.backgroundLightest)
-        .onAppear {
-            viewModel.viewDidAppear()
-        }
     }
 
     private var doneButton: some ToolbarContent {

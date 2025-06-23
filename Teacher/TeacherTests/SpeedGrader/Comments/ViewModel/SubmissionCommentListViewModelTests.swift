@@ -94,6 +94,15 @@ class SubmissionCommentListViewModelTests: TeacherTestCase {
         XCTAssertEqual(testee.state, .error)
     }
 
+
+    func test_state_whenGetUserSettingsFails_shouldBeError() {
+        interactor.getIsCommentLibraryEnabledResult = Publishers.typedFailure(error: MockError())
+
+        let testee = makeViewModel()
+
+        XCTAssertEqual(testee.state, .error)
+    }
+
     func test_state_whenThereAreNoComments_shouldBeEmpty() {
         interactor.getSubmissionAttemptsResult = Publishers.typedJust([submission])
         interactor.getCommentsResult = Publishers.typedJust([])
@@ -368,6 +377,15 @@ private final class SubmissionCommentsInteractorMock: SubmissionCommentsInteract
     func getIsAssignmentEnhancementsEnabled() -> AnyPublisher<Bool, Error> {
         getIsAssignmentEnhancementsEnabledCallsCount += 1
         return getIsAssignmentEnhancementsEnabledResult ?? Publishers.typedJust(false)
+    }
+
+    // MARK: - getIsCommentLibraryEnabled
+
+    var getIsCommentLibraryEnabledCallsCount: Int = 0
+    var getIsCommentLibraryEnabledResult: AnyPublisher<Bool, Error>?
+    func getIsCommentLibraryEnabled() -> AnyPublisher<Bool, Error> {
+        getIsCommentLibraryEnabledCallsCount += 1
+        return getIsCommentLibraryEnabledResult ?? Publishers.typedJust(false)
     }
 
     // MARK: - createTextComment

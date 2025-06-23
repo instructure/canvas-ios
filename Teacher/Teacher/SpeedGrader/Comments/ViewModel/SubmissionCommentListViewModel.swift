@@ -29,13 +29,10 @@ class SubmissionCommentListViewModel: ObservableObject {
     @Published private(set) var state: InstUI.ScreenState = .loading
     @Published private(set) var contextColor: Color = Color(Brand.shared.primary)
     @Published private(set) var cellViewModels: [SubmissionCommentListCellViewModel] = []
+    @Published private(set) var isCommentLibraryEnabled: Bool = false
 
     // comment currently entered in comment input view
     let comment: CurrentValueSubject<String, Never>
-
-    var isCommentLibraryAvailable: Bool {
-        commentLibraryViewModel.shouldShow
-    }
 
     // MARK: - Private variables
 
@@ -89,15 +86,17 @@ class SubmissionCommentListViewModel: ObservableObject {
 
         contextColor.assign(to: &$contextColor)
 
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest4(
             interactor.getSubmissionAttempts(),
             interactor.getComments(),
-            interactor.getIsAssignmentEnhancementsEnabled()
+            interactor.getIsAssignmentEnhancementsEnabled(),
+            interactor.getIsCommentLibraryEnabled()
         )
-        .map { submissions, comments, isAssignmentEnhancementsEnabled in
+        .map { submissions, comments, isAssignmentEnhancementsEnabled, isCommentLibraryEnabled in
             unownedSelf.submissions = submissions
             unownedSelf.allComments = comments
             unownedSelf.isAssignmentEnhancementsEnabled = isAssignmentEnhancementsEnabled
+            unownedSelf.isCommentLibraryEnabled = isCommentLibraryEnabled
             return unownedSelf
                 .filterComments(comments, for: unownedSelf.selectedAttemptNumber)
                 .map(unownedSelf.commentViewModel)

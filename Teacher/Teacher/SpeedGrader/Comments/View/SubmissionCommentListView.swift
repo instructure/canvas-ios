@@ -112,7 +112,7 @@ struct SubmissionCommentListView: View {
     private var toolbar: some View {
         CommentInputView(
             comment: viewModel.comment,
-            commentLibraryButtonType: viewModel.isCommentLibraryAvailable ? .openLibrary : .hidden,
+            commentLibraryButtonType: viewModel.isCommentLibraryEnabled ? .openLibrary : .hidden,
             isAttachmentButtonEnabled: true,
             contextColor: viewModel.contextColor,
             commentLibraryAction: {

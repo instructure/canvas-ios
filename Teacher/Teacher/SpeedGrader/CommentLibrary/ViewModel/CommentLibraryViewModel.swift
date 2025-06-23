@@ -26,12 +26,6 @@ class CommentLibraryViewModel: ObservableObject {
     @Published private(set) var comments: [LibraryComment] = []
     @Published var endCursor: String?
 
-    public var shouldShow: Bool {
-        settings.first?.commentLibrarySuggestionsEnabled ?? false
-    }
-
-    private var settings = AppEnvironment.shared.subscribe(GetUserSettings(userID: "self"))
-
     // comment currently entered in comment input view
     let comment: CurrentValueSubject<String, Never>
 
@@ -52,19 +46,6 @@ class CommentLibraryViewModel: ObservableObject {
             }
             .sink(receiveValue: {})
             .store(in: &subscriptions)
-    }
-
-    func viewDidAppear(completion: (() -> Void)? = nil) {
-        fetchSettings { [weak self] in
-            guard let self, shouldShow else { return }
-            refresh(completion: { completion?() })
-        }
-    }
-
-    private func fetchSettings(_ completion: @escaping () -> Void) {
-        settings.refresh(force: true) { _ in
-            completion()
-        }
     }
 
     func attributedText(with string: String, rangeString: Binding<String>, attributes: AttributeContainer) -> Text {
