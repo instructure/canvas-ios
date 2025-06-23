@@ -27,8 +27,8 @@ enum DrawerState {
 // Place after the main content in a ZStack(alignment: .bottom)
 struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
     let content: Content
-    let leadingContent: Leading
-    let trailingContent: Trailing
+    let toolbarLeading: Leading
+    let toolbarTrailing: Trailing
     let minHeight: CGFloat
     let maxHeight: CGFloat
 
@@ -60,8 +60,8 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
         @ViewBuilder toolbarTrailing: () -> Trailing
     ) {
         self.content = content()
-        self.leadingContent = toolbarLeading()
-        self.trailingContent = toolbarTrailing()
+        self.toolbarLeading = toolbarLeading()
+        self.toolbarTrailing = toolbarTrailing()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
         self._state = state
@@ -70,7 +70,7 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                leadingContent
+                toolbarLeading
                     .padding(.trailing, 8)
                     .padding(.leading, 14)
 
@@ -96,7 +96,7 @@ struct DrawerContainer<Content: View, Leading: View, Trailing: View>: View {
                 .accessibility(identifier: "SpeedGrader.drawerGripper")
                 .accessibility(label: buttonA11yText)
 
-                trailingContent
+                toolbarTrailing
                     .padding(.horizontal, 16)
             }
             .padding(.top, 16)
