@@ -25,16 +25,6 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
     func testGroupSubmissionCheck() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-<<<<<<<< HEAD:Teacher/TeacherTests/SpeedGrader/MainLayout/View/SubmissionHeaderViewTests.swift
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
-========
->>>>>>>> origin/master:Teacher/TeacherTests/SpeedGrader/MainLayout/ViewModel/SubmissionHeaderViewModelTests.swift
         assignment.gradedIndividually = false
         submission.groupID = "TestGroupID"
 
@@ -49,16 +39,6 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
     func testGroupName() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-<<<<<<<< HEAD:Teacher/TeacherTests/SpeedGrader/MainLayout/View/SubmissionHeaderViewTests.swift
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
-========
->>>>>>>> origin/master:Teacher/TeacherTests/SpeedGrader/MainLayout/ViewModel/SubmissionHeaderViewModelTests.swift
         assignment.gradedIndividually = false
         submission.groupName = "TestGroup Name"
 
@@ -81,16 +61,6 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
     func testRouteToGroupSubmitter() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-<<<<<<<< HEAD:Teacher/TeacherTests/SpeedGrader/MainLayout/View/SubmissionHeaderViewTests.swift
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
-========
->>>>>>>> origin/master:Teacher/TeacherTests/SpeedGrader/MainLayout/ViewModel/SubmissionHeaderViewModelTests.swift
         assignment.gradedIndividually = false
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
@@ -107,16 +77,6 @@ class SubmissionHeaderViewModelTests: TeacherTestCase {
     func testRouteToIndividialInGroupSubmission() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-<<<<<<<< HEAD:Teacher/TeacherTests/SpeedGrader/MainLayout/View/SubmissionHeaderViewTests.swift
-        let testee = SubmissionHeaderView(
-            assignment: assignment,
-            submission: submission,
-            isLandscapeLayout: false,
-            landscapeSplitLayoutViewModel: SpeedGraderLandscapeSplitLayoutViewModel()
-        )
-
-========
->>>>>>>> origin/master:Teacher/TeacherTests/SpeedGrader/MainLayout/ViewModel/SubmissionHeaderViewModelTests.swift
         assignment.gradedIndividually = true
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
